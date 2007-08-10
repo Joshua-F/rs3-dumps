@@ -1,7 +1,7 @@
 // 50
 [clientscript,script50](component $component0, component $component1)
 if (~script51($component0) = 0) {
-    if (map_members = false & ($component0 = interface_271:com_47 | $component0 = interface_271:com_49 | $component0 = interface_271:com_51)) {
+    if (map_members = false & ($component0 = interface_271:com_47 | $component0 = interface_271:com_49 | $component0 = interface_271:com_51 | $component0 = interface_271:com_53 | $component0 = interface_271:com_55)) {
         mes("You need to be on a members' server to use this Prayer.");
         return;
     }
@@ -101,6 +101,34 @@ if (~script51($component0) = 0) {
     if ($component0 = interface_271:com_51 & stat_base(prayer) < 52) {
         sound_synth(synth_2673, 1, 0);
         return;
+    }
+    if ($component0 = interface_271:com_53) {
+        if (stat_base(prayer) < 60) {
+            sound_synth(synth_2673, 1, 0);
+            return;
+        }
+        if (stat_base(defence) < 55) {
+            sound_synth(synth_2673, 1, 0);
+            return;
+        }
+        if (%varplayerbit_3909 ! 8) {
+            sound_synth(synth_2673, 1, 0);
+            return;
+        }
+    }
+    if ($component0 = interface_271:com_55) {
+        if (stat_base(prayer) < 70) {
+            sound_synth(synth_2673, 1, 0);
+            return;
+        }
+        if (stat_base(defence) < 70) {
+            sound_synth(synth_2673, 1, 0);
+            return;
+        }
+        if (%varplayerbit_3909 ! 8) {
+            sound_synth(synth_2673, 1, 0);
+            return;
+        }
     }
     if_sethide(false, $component1);
     if_setop(1, "Deactivate", $component0);
