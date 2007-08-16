@@ -47,10 +47,22 @@ while ($int1 < friend_count) {
     cc_setonop("script204($int1, event_op)");
     $int1 = calc($int1 + 1);
 }
-if (friend_count > 0) {
-    if_setscrollsize(0, calc(15 * friend_count), $component0);
-} else {
-    if_setscrollsize(0, 15, $component0);
+def_int $int2 = calc(15 * friend_count);
+def_int $int3 = if_getheight(interface_590:com_18);
+if ($int2 < 15) {
+    $int2 = 15;
 }
-cc_deleteall(interface_590:com_19);
-~scrollbar_vertical(interface_590:com_19, interface_590:com_18, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+def_int $int4 = calc($int2 - $int3);
+if ($int4 < 0) {
+    $int4 = 0;
+}
+def_int $int5 = if_getscrolly(interface_590:com_18);
+if ($int5 > $int4) {
+    $int5 = $int4;
+}
+if (friend_count > 0) {
+    if_setscrollsize(0, $int2, interface_590:com_18);
+} else {
+    if_setscrollsize(0, 15, interface_590:com_18);
+}
+~scrollbar_resize(interface_590:com_19, interface_590:com_18, $int5);
