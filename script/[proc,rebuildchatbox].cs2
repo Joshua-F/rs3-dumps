@@ -71,6 +71,15 @@ while ($int1 < 100) {
         if ($chattype2 = 10) {
             if_settext("<col=8a2be2><chat_gethistoryname($int1)> is requesting your assistance.", $component3);
         }
+        if ($chattype2 = 14) {
+            if_settext("<col=7e3200><chat_gethistoryname($int1)> wishes to duel with you (stake).", $component3);
+        }
+        if ($chattype2 = 15) {
+            if_settext("<col=7e3200><chat_gethistoryname($int1)> wishes to duel with you (friendly).", $component3);
+        }
+        if ($chattype2 = 16) {
+            if_settext("<col=7e3200><chat_gethistoryname($int1)> wishes to challenge your clan to a clan war.", $component3);
+        }
         if_clearops($component3);
         if ($chattype2 = ^chattype_modchat | $chattype2 = ^chattype_publicchat | $chattype2 = ^chattype_privatechat | $chattype2 = ^chattype_modprivatechat | $chattype2 = ^chattype_friendschat) {
             if_setopbase("<col=ffffff><chat_gethistoryname($int1)>", $component3);
@@ -82,7 +91,7 @@ while ($int1 < 100) {
         } else if ($chattype2 = ^chattype_engine) {
             if_setopbase("<col=ffffff><chat_gethistoryname($int1)>", $component3);
             if_setop(1, "Accept trade", $component3);
-        } else if ($chattype2 = 8) {
+        } else if ($chattype2 = 8 | $chattype2 = 14 | $chattype2 = 15 | $chattype2 = 16) {
             if_setopbase("<col=ffffff><chat_gethistoryname($int1)>", $component3);
             if_setop(2, "Accept challenge", $component3);
         } else if ($chattype2 = 10) {
