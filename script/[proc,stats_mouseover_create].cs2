@@ -14,19 +14,15 @@ def_int $int4 = calc(parawidth($string0, 190, p12_full) + 10);
 def_int $int5 = parawidth("Current Xp:", 190, p12_full);
 def_int $int6 = parawidth($string1, 190, p12_full);
 def_int $int7 = calc($int5 + 10 + $int6);
-if ($int4 < $int7) {
-    $int4 = $int7;
-}
+$int4 = max($int4, $int7);
 if (stat_base($stat1) < 99) {
-    $int5 = parawidth("Next level at:", 190, p12_full);
+    $int5 = parawidth("Next level:", 190, p12_full);
     $int6 = parawidth($string2, 190, p12_full);
     $int7 = calc($int5 + 3 + $int6);
 } else {
     $int7 = 0;
 }
-if ($int4 < $int7) {
-    $int4 = $int7;
-}
+$int4 = max($int4, $int7);
 if (stat_base($stat1) < 99) {
     $int5 = parawidth("Remainder:", 190, p12_full);
     $int6 = parawidth($string3, 190, p12_full);
@@ -34,16 +30,14 @@ if (stat_base($stat1) < 99) {
 } else {
     $int7 = 0;
 }
-if ($int4 < $int7) {
-    $int4 = $int7;
-}
+$int4 = max($int4, $int7);
 $int5 = calc(if_getx($component0) + 32);
-$int6 = calc(if_gety($component0) + 32);
+$int6 = calc(if_gety($component0) - if_getscrolly(if_getlayer($component0)) + 32);
 if (calc($int5 + $int4 + 4) > 190) {
     $int5 = calc(190 - ($int4 + 4));
 }
-if (calc($int6 + $int3 * 16 + 4) > 261) {
-    $int6 = calc(if_gety($component0) - ($int3 * 16 + 6));
+if (calc($int6 + $int3 * 16 + 4) > if_getheight($component2)) {
+    $int6 = calc(if_gety($component0) - if_getscrolly(if_getlayer($component0)) - ($int3 * 16 + 5));
 }
 cc_create($component2, ^iftype_rectangle, 0);
 cc_setsize(calc($int4 + 4), calc(4 + $int3 * 16));
@@ -84,7 +78,7 @@ if (stat_base($stat1) < 99) {
     cc_settextfont(p12_full);
     cc_settextalign(^settextalign_left, ^settextalign_top, 0);
     cc_settextshadow(false);
-    cc_settext("Next level at:");
+    cc_settext("Next level:");
     cc_create($component2, ^iftype_text, 6);
     cc_setposition(calc($int5 + 2), calc($int6 + 35));
     cc_setsize($int4, 16);
