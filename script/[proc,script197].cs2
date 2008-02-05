@@ -6,6 +6,7 @@ def_int $int2 = 0;
 def_int $int3 = clan_getchatminkick;
 def_int $int4 = clan_getchatrank;
 def_int $int5 = 0;
+def_int $int6 = 0;
 while ($int2 < $int1) {
     $int5 = calc($int2 + $int2 + $int2);
     cc_create($component0, ^iftype_text, $int5);
@@ -33,7 +34,12 @@ while ($int2 < $int1) {
     cc_create($component0, ^iftype_text, calc($int5 + 1));
     cc_settextfont(p11_full);
     cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
-    cc_settext("World <tostring(clan_getchatuserworld($int2))>");
+    $int6 = clan_getchatuserworld($int2);
+    if ($int6 >= 8000) {
+        cc_settext("FunOrb");
+    } else {
+        cc_settext("World <tostring(clan_getchatuserworld($int2))>");
+    }
     cc_setposition(98, calc($int2 * 15));
     cc_setsize(50, 15);
     cc_setcolour(0xffff64);
@@ -83,22 +89,22 @@ if ($int1 > 0) {
     if_settext("Join Chat", interface_589:com_8);
     if_setop(1, "Join Chat", interface_589:com_8);
 }
-def_int $int6 = calc(15 * $int1);
-def_int $int7 = if_getheight(interface_589:com_5);
-if ($int6 < 15) {
-    $int6 = 15;
+def_int $int7 = calc(15 * $int1);
+def_int $int8 = if_getheight(interface_589:com_5);
+if ($int7 < 15) {
+    $int7 = 15;
 }
-def_int $int8 = calc($int6 - $int7);
-if ($int8 < 0) {
-    $int8 = 0;
+def_int $int9 = calc($int7 - $int8);
+if ($int9 < 0) {
+    $int9 = 0;
 }
-def_int $int9 = if_getscrolly(interface_589:com_5);
-if ($int9 > $int8) {
-    $int9 = $int8;
+def_int $int10 = if_getscrolly(interface_589:com_5);
+if ($int10 > $int9) {
+    $int10 = $int9;
 }
 if ($int1 > 0) {
-    if_setscrollsize(0, $int6, interface_589:com_5);
+    if_setscrollsize(0, $int7, interface_589:com_5);
 } else {
     if_setscrollsize(0, 15, interface_589:com_5);
 }
-~scrollbar_resize(interface_589:com_6, interface_589:com_5, $int9);
+~script72(interface_589:com_6, interface_589:com_5, $int10);
