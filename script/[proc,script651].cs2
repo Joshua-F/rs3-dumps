@@ -25,26 +25,18 @@ cc_setcolour(^white);
 cc_settrans(255);
 ~script584($component1, $string0);
 def_int $int9 = if_getnextsubid($component1);
+if_setonmouseover("script629($int0)", $component1);
+if_setonmouseleave("script631($int0)", $component1);
 if (stockmarket_isofferempty($int0) = true) {
-    if ($int0 < 2 | playermember = true) {
-        if (%varplayer_1112 ! $int0) {
-            if_setop(1, "Make Offer", $component1);
-            if_setonmouseover("script629($component1)", $component1);
-            if_setonmouseleave("script631($component1)", $component1);
+    if_setonop(null, $component1);
+    if_setop(1, "", $component1);
+    if_setop(2, "", $component1);
+    if ($int0 >= 2) {
+        if (playermember = true) {
+            if_sethide(true, ~script624($int0));
         } else {
-            if_setop(1, "", $component1);
-            ~script630($component1);
-            if_setonmouseover(null, $component1);
-            if_setonmouseleave(null, $component1);
+            if_sethide(false, ~script624($int0));
         }
-        if_setop(2, "", $component1);
-    } else {
-        if_sethide(false, ~script624($int0));
-        if_setonmouseover(null, $component1);
-        if_setonmouseleave(null, $component1);
-        if_setonop(null, $component1);
-        if_setop(1, "", $component1);
-        if_setop(2, "", $component1);
     }
 } else {
     if_setop(1, "View Offer", $component1);
@@ -53,8 +45,6 @@ if (stockmarket_isofferempty($int0) = true) {
     } else {
         if_setop(2, "", $component1);
     }
-    if_setonmouseover("script629($component1)", $component1);
-    if_setonmouseleave("script631($component1)", $component1);
 }
 def_string $string1 = ~script46($int5, ",");
 def_string $string2 = ~script46($int8, ",");
@@ -69,25 +59,7 @@ def_int $int15 = 0;
 def_int $int16 = 0;
 if (stockmarket_isofferempty($int0) = true) {
     if ($int0 < 2 | playermember = true) {
-        if ($int0 = %varplayer_1112) {
-            if_sethide(false, $component12);
-        } else {
-            cc_create($component1, ^iftype_graphic, $int9);
-            cc_setgraphic("grand_exchange_misc_graphics,5");
-            cc_setsize(16, 14);
-            cc_setposition(5, 29);
-            $int9 = calc($int9 + 1);
-            $string3 = "Click here to make a new offer";
-            cc_create($component1, ^iftype_rectangle, $int9);
-            cc_setposition(0, 29);
-            cc_setsize($int2, calc($int3 - 29));
-            cc_setfill(true);
-            cc_settrans(255);
-            cc_setonmouserepeat("script648($component1, $int9, $component13, $string3, 25, 106)");
-            cc_setonmouseleave("script40($component13)");
-            cc_setonclick("script40($component13)");
-            $int9 = calc($int9 + 1);
-        }
+        if_sethide(false, $component12);
     }
 } else {
     $int10 = 7;
