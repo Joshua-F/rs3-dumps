@@ -8,7 +8,12 @@ cc_settiling(false);
 cc_setonclick("script34($component0, $component1, event_mousey)");
 .cc_create($component0, ^iftype_graphic, 1);
 .cc_setposition(0, 16);
-def_int $int8 = calc((if_getheight($component0) - 32) * if_getheight($component0) / if_getscrollheight($component1));
+def_int $int8 = 0;
+if (if_getscrollheight($component1) <= 0) {
+    $int8 = calc((if_getheight($component0) - 32) * if_getheight($component0));
+} else {
+    $int8 = calc((if_getheight($component0) - 32) * if_getheight($component0) / if_getscrollheight($component1));
+}
 if ($int8 < 10) {
     $int8 = 10;
 }
