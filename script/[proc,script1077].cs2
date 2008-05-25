@@ -1,0 +1,27 @@
+// 1077
+[proc,script1077](chatphrase $chatphrase0)
+activechatphrase_prepare($chatphrase0);
+def_int $int1 = 0;
+def_int $int2 = chatphrase_getdynamiccommandcount($chatphrase0);
+while ($int1 < $int2 & $int1 < 10) {
+    switch_int (chatphrase_getdynamiccommand($chatphrase0, $int1)) {
+        case 0 :
+            ~script1078($int1);
+        case 1 :
+            ~script1079($int1);
+        case 2 :
+            ~script1078($int1);
+    }
+    $int1 = calc($int1 + 1);
+}
+if (%varclient_126 = 0) {
+    activechatphrase_sendpublic;
+} else if (%varclient_126 = 1 | %varclient_126 = 3) {
+    activechatphrase_sendprivate(removetags(%varclientstring_27));
+} else if (%varclient_126 = 2) {
+    activechatphrase_sendclan;
+}
+%varclient_130 = $chatphrase0;
+%varclient_131 = %varclient_126;
+%varclientstring_28 = %varclientstring_27;
+~script1054;

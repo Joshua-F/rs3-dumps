@@ -4,7 +4,7 @@ def_int $chattype1 = chat_gethistorytype($int0);
 if ($chattype1 = ^chattype_modprivatechat) {
     return(true);
 }
-if ($chattype1 = ^chattype_privatechat) {
+if ($chattype1 = ^chattype_privatechat | $chattype1 = ^chattype_quickchat_private_incoming) {
     if (chat_getfilter_private = ^chatfilter_on) {
         return(true);
     }
@@ -13,7 +13,7 @@ if ($chattype1 = ^chattype_privatechat) {
     }
     return(false);
 }
-if ($chattype1 = ^chattype_loginlogoutnotification | $chattype1 = ^chattype_privatechatout) {
+if ($chattype1 = ^chattype_loginlogoutnotification | $chattype1 = ^chattype_privatechatout | $chattype1 = ^chattype_quickchat_private_outgoing) {
     if (chat_getfilter_private < 2) {
         return(true);
     }
