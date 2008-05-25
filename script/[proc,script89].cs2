@@ -33,7 +33,13 @@ if (%varplayer_287 = 1) {
             if ($chattype5 = ^chattype_modprivatechat) {
                 if_settext("From <chat_gethistoryname($int4)>: <chat_gethistorymessage($int4)>", $component1);
             }
-            if ($chattype5 = ^chattype_privatechat | $chattype5 = ^chattype_modprivatechat) {
+            if ($chattype5 = ^chattype_quickchat_private_incoming) {
+                if_settext("From <chat_gethistoryname($int4)>: <chat_gethistorymessage($int4)>", $component1);
+            }
+            if ($chattype5 = ^chattype_quickchat_private_outgoing) {
+                if_settext("To <chat_gethistoryname($int4)>: <chat_gethistorymessage($int4)>", $component1);
+            }
+            if ($chattype5 = ^chattype_privatechat | $chattype5 = ^chattype_modprivatechat | $chattype5 = ^chattype_quickchat_private_incoming | $chattype5 = ^chattype_quickchat_private_outgoing) {
                 if_setopbase("<col=ffffff><chat_gethistoryname($int4)>", $component1);
                 if_setop(8, "Add friend", $component1);
                 if_setop(9, "Add ignore", $component1);
