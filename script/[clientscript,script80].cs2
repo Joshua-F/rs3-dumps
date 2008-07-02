@@ -1,42 +1,24 @@
 // 80
 [clientscript,script80]
-if_setonkey("script73(event_keycode, event_keychar)", interface_137:com_51);
-if_setonchattransmit("script81", interface_548:com_112);
-if_setonmisctransmit("script82", interface_548:com_112);
-%varclientstring_1 = "";
-%varclient_42 = -1;
-%varclient_41 = 0;
-%varclient_43 = chat_gethistorylength;
-%varclient_3 = -1;
-%varclient_4 = 0;
-%varclientstring_2 = "";
-%varclientstring_3 = "";
-%varclientstring_4 = "";
-%varclientstring_5 = "";
-%varclientstring_6 = "";
-%varclientstring_7 = "";
-%varclientstring_8 = "";
-%varclientstring_9 = "";
-%varclientstring_10 = "";
-%varclientstring_11 = "";
-%varclientstring_12 = "";
-%varclientstring_13 = "";
-%varclientstring_14 = "";
-%varclientstring_15 = "";
-%varclientstring_16 = "";
-%varclientstring_17 = "";
-%varclientstring_18 = "";
-%varclientstring_19 = "";
-%varclientstring_20 = "";
-%varclientstring_21 = "";
-if (unknown_command_3328 = true | map_quickchat = true) {
-    if_settext("Left-click here to enter Public Quick Chat or right-click for Clan Quick Chat.", interface_137:com_51);
-    if_setposition(if_getx(interface_137:com_51), if_gety(interface_137:com_51), interface_137:com_52);
-    if_setsize(parawidth("Left-click here to enter Public Quick Chat or right-click for Clan Quick Chat.", if_getwidth(interface_137:com_51), p12_full), if_getheight(interface_137:com_51), interface_137:com_52);
-} else {
-    if_settext("<chat_playername><img=3>: <col=0000ff><escape(%varclientstring_1)>*", interface_137:com_51);
-    if_setposition(if_getx(interface_137:com_51), if_gety(interface_137:com_51), interface_137:com_52);
-    if_setsize(parawidth("<chat_playername><img=3>:", if_getwidth(interface_137:com_51), p12_full), if_getheight(interface_137:com_51), interface_137:com_52);
+def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $int2 = 0;
+while ($int0 < inv_size(inv_140)) {
+    cc_create(interface_363:com_6, ^iftype_graphic, $int0);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc(38 * $int1), calc(38 * $int2), ^setpos_abs_left, ^setpos_abs_top);
+    if (inv_getobj(inv_140, $int0) ! null) {
+        cc_setobject(inv_getobj(inv_140, $int0), inv_getnum(inv_140, $int0));
+        cc_setopbase(oc_name(inv_getobj(inv_140, $int0)));
+        cc_setop(1, "Move");
+        cc_setonclick("script106(interface_363:com_6, $int0)");
+    } else {
+        cc_sethide(true);
+    }
+    $int0 = calc($int0 + 1);
+    $int1 = calc($int1 + 1);
+    if ($int1 = 5) {
+        $int1 = 0;
+        $int2 = calc($int2 + 1);
+    }
 }
-~script178;
-%varclientstring_0 = "";
