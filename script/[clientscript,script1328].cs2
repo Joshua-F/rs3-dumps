@@ -2,9 +2,14 @@
 [clientscript,script1328]
 def_string $string0 = "";
 if (unknown_command_5408 = 1) {
-    %varclient_178 = max(fullscreen_lastmode, 0);
-    ~script1169(interface_261:com_21, interface_261:com_22, interface_261:com_24, interface_261:com_23, tradebacking_dark, "scrollbar_v2,1", "scrollbar_v2,1", tradebacking_light, ^white, ^yellow, p11_full, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-    $string0 = "Resolution at which to go fullscreen";
+    if (playermember = true) {
+        %varclient_178 = max(fullscreen_lastmode, 0);
+        ~script1169(interface_261:com_21, interface_261:com_22, interface_261:com_24, interface_261:com_23, tradebacking_dark, "scrollbar_v2,1", "scrollbar_v2,1", tradebacking_light, ^white, ^yellow, p11_full, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+        $string0 = "Resolution at which to go fullscreen";
+    } else {
+        if_setonclick(null, interface_261:com_24);
+        $string0 = "Fullscreen is only available for members.";
+    }
 } else {
     if_setonclick(null, interface_261:com_24);
     $string0 = "Fullscreen is only available for RuneScape High Detail";

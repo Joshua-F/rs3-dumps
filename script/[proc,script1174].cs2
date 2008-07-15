@@ -12,7 +12,7 @@ if_setontimer(null, interface_744:com_9);
 %varclient_174 = 0;
 if ($component0 = interface_744:com_35) {
     if_settext("World <tostring(map_world)>", interface_744:com_46);
-    if (unknown_command_5408 = 1) {
+    if (unknown_command_5408 = 1 & fullscreen_modecount > 0) {
         if_setonmouseover("script45(event_com, ^white)", interface_744:com_48);
         if_setonmouseleave("script45(event_com, 0x663300)", interface_744:com_48);
         if_setonclick("script1177", interface_744:com_48);
@@ -62,20 +62,30 @@ if ($component0 = interface_744:com_40) {
 } else {
     if_sethide(true, interface_744:com_40);
     %varclientstring_33 = "";
+    login_resetreply;
 }
 if ($component0 = interface_744:com_278) {
     if_sethide(false, interface_744:com_278);
+    unknown_command_5606;
     ~script1388;
+    if_settext("Please input your date of birth:", interface_744:com_233);
+    if_setcolour(0x461e00, interface_744:com_233);
 } else {
     if_sethide(true, interface_744:com_278);
 }
 if ($component0 = interface_744:com_279) {
     if_sethide(false, interface_744:com_279);
+    unknown_command_5606;
 } else {
     if_sethide(true, interface_744:com_279);
 }
 if ($component0 = interface_744:com_280) {
     if_sethide(false, interface_744:com_280);
+    unknown_command_5606;
+    if_settext("Please input a username, then click `Next' to check that it is available.", interface_744:com_257);
+    if_setcolour(0x461e00, interface_744:com_257);
+    if_settext("Usernames can be a maximum of 12 characters long and may contain letters, numbers and underscores. Note: first letters will be capitalised and underscores will be converted into spaces. For example, the username red_rooster would display in the game as Red Rooster.", interface_744:com_258);
+    if_setcolour(0x461e00, interface_744:com_258);
     if_setontimer("script1227", interface_744:com_9);
     %varclient_174 = 3;
 } else {
@@ -83,14 +93,21 @@ if ($component0 = interface_744:com_280) {
 }
 def_string $string0 = %varclientstring_34;
 if ($component0 = interface_744:com_281) {
+    unknown_command_5606;
     if_sethide(false, interface_744:com_281);
+    if_setcolour(0x461e00, interface_744:com_267);
     if (compare($string0, "") ! 0) {
         if_settext("Congratulations! The username <col=8c320a><$string0></col> is currently available.", interface_744:com_267);
+    } else {
+        if_settext("Congratulations! That username is currently available.", interface_744:com_267);
     }
 } else {
     if_sethide(true, interface_744:com_281);
 }
 if ($component0 = interface_744:com_284) {
+    unknown_command_5606;
+    if_settext("Please choose a password and click `Create' to create your account.", interface_744:com_287);
+    if_setcolour(0x461e00, interface_744:com_287);
     if_sethide(false, interface_744:com_284);
     if_setontimer("script1228", interface_744:com_9);
     %varclient_174 = 4;

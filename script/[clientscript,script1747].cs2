@@ -1,0 +1,16 @@
+// 1747
+[clientscript,script1747](component $component0)
+def_string $string0 = "";
+if (%varplayer_1268 > 0) {
+    $string0 = "If you borrow this item, it will be returned to its owner's Returned Items box <col=ff0000><~script1751(%varplayer_1268)></col>, even if you're using it at the time.<br><br>If you die, this item will be protected over <col=ff0000>all</col> other items.";
+} else {
+    $string0 = "If you borrow this item, it will be returned to its owner's Returned Items box, <col=ff0000>immediately</col>, if <col=ff0000>either of you</col> logs out.<br><br>If you die, this item will be protected over <col=ff0000>all</col> other items.";
+}
+if_settext($string0, $component0);
+def_int $int1 = paraheight($string0, if_getwidth($component0), p12_full);
+$int1 = calc(12 * $int1 + 6);
+if_settextfont(p12_full, $component0);
+if_setsize(if_getwidth($component0), $int1, ^setsize_abs, ^setsize_abs, $component0);
+if_setsize(if_getwidth(if_getlayer($component0)), calc($int1 + 10), ^setsize_abs, ^setsize_abs, if_getlayer($component0));
+cc_deleteall(if_getlayer($component0));
+~script559(if_getlayer($component0));
