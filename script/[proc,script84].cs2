@@ -34,7 +34,7 @@ if ($int0 < 100) {
 }
 $int1 = 0;
 %varclient_132 = null;
-if (unknown_command_5304 = 1) {
+if (getwindowmode ! 0) {
     while ($int1 < 100) {
         if (~script193($int1) = true & ~script90($int1, $int4) = true) {
             $int0 = calc($int0 - 1);
@@ -67,7 +67,7 @@ if (unknown_command_5304 = 1) {
             } else if ($chattype2 = 15) {
                 if_settext("<col=7e3200><chat_gethistoryname($int1)> wishes to duel with you (friendly).", $component3);
             } else if ($chattype2 = 16) {
-                if_settext("<col=7e3200><chat_gethistoryname($int1)> wishes to challenge your clan to a clan war.", $component3);
+                if_settext("<col=7e3200><chat_gethistoryname($int1)> wishes to challenge your clan to a Clan War.", $component3);
             } else if ($chattype2 = ^chattype_quickchat_public) {
                 if (compare(chat_playername, removetags(chat_gethistoryname($int1))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int1)) > 0) {
                     if_settext("<chat_gethistoryname($int1)><img=3>: <col=7fa9ff><chat_gethistorymessage($int1)>", $component3);
@@ -93,10 +93,18 @@ if (unknown_command_5304 = 1) {
             if_setonop("script86(event_op, event_opbase, $int1)", $component3);
             if ($chattype2 = ^chattype_modchat | $chattype2 = ^chattype_publicchat | $chattype2 = ^chattype_privatechat | $chattype2 = ^chattype_modprivatechat | $chattype2 = ^chattype_friendschat) {
                 if_setopbase("<col=ffffff><chat_gethistoryname($int1)>", $component3);
-                if_setop(6, "Add friend", $component3);
-                if_setop(7, "Add ignore", $component3);
-                if (staffmodlevel > 0 | playermod > 0) {
-                    if_setop(8, "Report abuse", $component3);
+                if (compare(removetags(chat_playername), removetags(chat_gethistoryname($int1))) ! 0) {
+                    if (friend_test(chat_gethistoryname($int1)) = true) {
+                        if (map_quickchat = false & unknown_command_3328 = false) {
+                            if_setop(6, "Message", $component3);
+                        }
+                    } else {
+                        if_setop(6, "Add friend", $component3);
+                        if_setop(7, "Add ignore", $component3);
+                    }
+                    if (staffmodlevel > 0 | playermod > 0) {
+                        if_setop(8, "Report abuse", $component3);
+                    }
                 }
             } else if ($chattype2 = ^chattype_engine) {
                 if_setopbase("<col=ffffff><chat_gethistoryname($int1)>", $component3);
@@ -109,21 +117,29 @@ if (unknown_command_5304 = 1) {
                 if_setop(3, "Give assistance", $component3);
             } else if ($chattype2 = ^chattype_quickchat_public | $chattype2 = ^chattype_quickchat_private_incoming | $chattype2 = ^chattype_quickchat_friend_chat) {
                 if_setopbase("<col=ffffff><chat_gethistoryname($int1)>", $component3);
-                if_setop(6, "Add friend", $component3);
-                if_setop(7, "Add ignore", $component3);
-                if (compare(chat_playername, removetags(chat_gethistoryname($int1))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int1)) > 0) {
-                    if (%varclient_132 = null) {
-                        %varclient_132 = chat_gethistoryphrase($int1);
-                        %varclientstring_29 = chat_gethistoryname($int1);
-                        if ($chattype2 = ^chattype_quickchat_friend_chat) {
-                            %varclient_133 = 6;
-                        } else if ($chattype2 = ^chattype_quickchat_private_incoming) {
-                            %varclient_133 = 5;
-                        } else {
-                            %varclient_133 = 4;
+                if (compare(removetags(chat_playername), removetags(chat_gethistoryname($int1))) ! 0) {
+                    if (friend_test(chat_gethistoryname($int1)) = true) {
+                        if (map_quickchat = false & unknown_command_3328 = false) {
+                            if_setop(6, "Message", $component3);
                         }
+                    } else {
+                        if_setop(6, "Add friend", $component3);
+                        if_setop(7, "Add ignore", $component3);
                     }
-                    if_setop(9, "Quick Response", $component3);
+                    if (chatphrase_getautoresponsecount(chat_gethistoryphrase($int1)) > 0) {
+                        if (%varclient_132 = null) {
+                            %varclient_132 = chat_gethistoryphrase($int1);
+                            %varclientstring_29 = chat_gethistoryname($int1);
+                            if ($chattype2 = ^chattype_quickchat_friend_chat) {
+                                %varclient_133 = 6;
+                            } else if ($chattype2 = ^chattype_quickchat_private_incoming) {
+                                %varclient_133 = 5;
+                            } else {
+                                %varclient_133 = 4;
+                            }
+                        }
+                        if_setop(9, "Quick Response", $component3);
+                    }
                 }
             }
         }
@@ -162,7 +178,7 @@ if (unknown_command_5304 = 1) {
             } else if ($chattype2 = 15) {
                 if_settext("<col=7e3200><chat_gethistoryname($int1)> wishes to duel with you (friendly).", $component3);
             } else if ($chattype2 = 16) {
-                if_settext("<col=7e3200><chat_gethistoryname($int1)> wishes to challenge your clan to a clan war.", $component3);
+                if_settext("<col=7e3200><chat_gethistoryname($int1)> wishes to challenge your clan to a Clan War.", $component3);
             } else if ($chattype2 = ^chattype_quickchat_public) {
                 if (compare(chat_playername, removetags(chat_gethistoryname($int1))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int1)) > 0) {
                     if_settext("<chat_gethistoryname($int1)><img=3>: <col=0000ff><chat_gethistorymessage($int1)>", $component3);
@@ -188,10 +204,18 @@ if (unknown_command_5304 = 1) {
             if_setonop("script86(event_op, event_opbase, $int1)", $component3);
             if ($chattype2 = ^chattype_modchat | $chattype2 = ^chattype_publicchat | $chattype2 = ^chattype_privatechat | $chattype2 = ^chattype_modprivatechat | $chattype2 = ^chattype_friendschat) {
                 if_setopbase("<col=ffffff><chat_gethistoryname($int1)>", $component3);
-                if_setop(6, "Add friend", $component3);
-                if_setop(7, "Add ignore", $component3);
-                if (staffmodlevel > 0 | playermod > 0) {
-                    if_setop(8, "Report abuse", $component3);
+                if (compare(removetags(chat_playername), removetags(chat_gethistoryname($int1))) ! 0) {
+                    if (friend_test(chat_gethistoryname($int1)) = true) {
+                        if (map_quickchat = false & unknown_command_3328 = false) {
+                            if_setop(6, "Message", $component3);
+                        }
+                    } else {
+                        if_setop(6, "Add friend", $component3);
+                        if_setop(7, "Add ignore", $component3);
+                    }
+                    if (staffmodlevel > 0 | playermod > 0) {
+                        if_setop(8, "Report abuse", $component3);
+                    }
                 }
             } else if ($chattype2 = ^chattype_engine) {
                 if_setopbase("<col=ffffff><chat_gethistoryname($int1)>", $component3);
@@ -204,21 +228,29 @@ if (unknown_command_5304 = 1) {
                 if_setop(3, "Give assistance", $component3);
             } else if ($chattype2 = ^chattype_quickchat_public | $chattype2 = ^chattype_quickchat_private_incoming | $chattype2 = ^chattype_quickchat_friend_chat) {
                 if_setopbase("<col=ffffff><chat_gethistoryname($int1)>", $component3);
-                if_setop(6, "Add friend", $component3);
-                if_setop(7, "Add ignore", $component3);
-                if (compare(chat_playername, removetags(chat_gethistoryname($int1))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int1)) > 0) {
-                    if (%varclient_132 = null) {
-                        %varclient_132 = chat_gethistoryphrase($int1);
-                        %varclientstring_29 = chat_gethistoryname($int1);
-                        if ($chattype2 = ^chattype_quickchat_friend_chat) {
-                            %varclient_133 = 6;
-                        } else if ($chattype2 = ^chattype_quickchat_private_incoming) {
-                            %varclient_133 = 5;
-                        } else {
-                            %varclient_133 = 4;
+                if (compare(removetags(chat_playername), removetags(chat_gethistoryname($int1))) ! 0) {
+                    if (friend_test(chat_gethistoryname($int1)) = true) {
+                        if (map_quickchat = false & unknown_command_3328 = false) {
+                            if_setop(6, "Message", $component3);
                         }
+                    } else {
+                        if_setop(6, "Add friend", $component3);
+                        if_setop(7, "Add ignore", $component3);
                     }
-                    if_setop(9, "Quick Response", $component3);
+                    if (chatphrase_getautoresponsecount(chat_gethistoryphrase($int1)) > 0) {
+                        if (%varclient_132 = null) {
+                            %varclient_132 = chat_gethistoryphrase($int1);
+                            %varclientstring_29 = chat_gethistoryname($int1);
+                            if ($chattype2 = ^chattype_quickchat_friend_chat) {
+                                %varclient_133 = 6;
+                            } else if ($chattype2 = ^chattype_quickchat_private_incoming) {
+                                %varclient_133 = 5;
+                            } else {
+                                %varclient_133 = 4;
+                            }
+                        }
+                        if_setop(9, "Quick Response", $component3);
+                    }
                 }
             }
         }

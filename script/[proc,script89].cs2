@@ -16,7 +16,7 @@ if (reboottimer > 0) {
 }
 def_int $int4 = 0;
 def_int $chattype5 = ^chattype_gamemessage;
-if (%varplayer_287 = 1 & (unknown_command_5304 = 0 | %varclient_41 ! -1)) {
+if (%varplayer_287 = 1 & (getwindowmode = 0 | %varclient_41 ! -1)) {
     while ($int4 < 100 & $int0 < 5) {
         if (~script91($int4) = true) {
             $component1 = enum(int, component, enum_580, $int0);
@@ -41,17 +41,23 @@ if (%varplayer_287 = 1 & (unknown_command_5304 = 0 | %varclient_41 ! -1)) {
             }
             if ($chattype5 = ^chattype_privatechat | $chattype5 = ^chattype_modprivatechat | $chattype5 = ^chattype_quickchat_private_incoming | $chattype5 = ^chattype_quickchat_private_outgoing) {
                 if_setopbase("<col=ffffff><chat_gethistoryname($int4)>", $component1);
-                if_setop(8, "Add friend", $component1);
-                if_setop(9, "Add ignore", $component1);
-                if (staffmodlevel > 0 | playermod > 0) {
-                    if_setop(10, "Report abuse", $component1);
-                } else {
-                    if_setop(10, "", $component1);
+                if (compare(removetags(chat_playername), removetags(chat_gethistoryname($int4))) ! 0) {
+                    if (friend_test(chat_gethistoryname($int4)) = true) {
+                        if (map_quickchat = false & unknown_command_3328 = false) {
+                            if_setop(8, "Message", $component1);
+                        }
+                    } else {
+                        if_setop(8, "Add friend", $component1);
+                        if_setop(9, "Add ignore", $component1);
+                    }
+                    if (staffmodlevel > 0 | playermod > 0) {
+                        if_setop(10, "Report abuse", $component1);
+                    } else {
+                        if_setop(10, "", $component1);
+                    }
                 }
             } else {
-                if_setop(8, "", $component1);
-                if_setop(9, "", $component1);
-                if_setop(10, "", $component1);
+                if_clearops($component1);
             }
             $int0 = calc($int0 + 1);
         }
