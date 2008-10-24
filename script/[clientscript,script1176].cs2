@@ -1,10 +1,15 @@
 // 1176
 [clientscript,script1176]
-if (getwindowmode = ^windowmode_resizable) {
-    if_settext("Exit Fullscreen", interface_744:com_48);
-} else {
-    if_settext("Go Fullscreen", interface_744:com_48);
+if (%varclient_543 = 3 & getwindowmode ! ^windowmode_fullscreen) {
     if (%varclient_174 = 6) {
-        ~script1123;
+        ~script1893(1);
+        return;
     }
+    ~script1888;
+    if (if_gethide(interface_744:com_226) = false) {
+        ~script1174(interface_744:com_226);
+    } else if (if_gethide(interface_744:com_138) = false) {
+        ~script1174(interface_744:com_138);
+    }
+    %varclient_543 = getwindowmode;
 }
