@@ -1,5 +1,8 @@
 // 1941
 [clientscript,script1941]
+if (%varclient_556 = 0) {
+    return;
+}
 def_int $int0 = calc(%varclient_556 - clientclock);
 def_int $int1 = calc($int0 / 3000);
 def_int $int2 = calc($int0 / 50 % 60);
@@ -18,6 +21,8 @@ if ($int1 < 1) {
     if_setcolour(^red, interface_809:com_15);
     if_settextshadow(true, interface_809:com_15);
     ~script1942;
+} else if (if_gethide(interface_809:com_18) = false) {
+    if_sethide(true, interface_809:com_18);
 }
 def_int $int3 = calc(%varplayer_1332 + %varplayer_1334 + %varplayer_1337 + 2 * (%varplayer_1333 - %varplayer_1335));
 if_settext("Score: <tostring($int3)>", interface_809:com_17);
