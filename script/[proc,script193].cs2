@@ -3,34 +3,40 @@
 if (%varclient_41 = 0) {
     return(true);
 }
-if (%varclient_41 = -1) {
-    return(false);
-}
 def_int $chattype1 = chat_gethistorytype($int0);
 if ($chattype1 = null) {
     return(false);
 }
-if (%varclient_41 = 1 & $chattype1 = ^chattype_gamemessage) {
-    return(true);
-}
-if (%varclient_41 = 2 & ($chattype1 = ^chattype_modchat | $chattype1 = ^chattype_publicchat | $chattype1 = ^chattype_quickchat_public)) {
-    return(true);
-}
-if (%varclient_41 = 3 & ($chattype1 = ^chattype_privatechat | $chattype1 = ^chattype_loginlogoutnotification | $chattype1 = ^chattype_privatechatout | $chattype1 = ^chattype_modprivatechat | $chattype1 = ^chattype_quickchat_private_incoming | $chattype1 = ^chattype_quickchat_private_outgoing)) {
-    return(true);
-}
-if (%varclient_41 = 4 & ($chattype1 = ^chattype_friendschat | $chattype1 = ^chattype_friendschatnotification | $chattype1 = 16 | $chattype1 = ^chattype_quickchat_friend_chat)) {
-    return(true);
-}
-if (%varclient_41 = 5) {
-    if ($chattype1 = ^chattype_engine | $chattype1 = 8 | $chattype1 = 12 | $chattype1 = 14 | $chattype1 = 15 | $chattype1 = 21) {
-        return(true);
-    }
-    if (~script506($int0) = true) {
-        return(true);
-    }
-}
-if (%varclient_41 = 6 & ($chattype1 = 10 | $chattype1 = 13)) {
-    return(true);
+switch_int (%varclient_41) {
+    case 1 :
+        if ($chattype1 = ^chattype_gamemessage) {
+            return(true);
+        }
+    case 2 :
+        if ($chattype1 = ^chattype_modchat | $chattype1 = ^chattype_publicchat | $chattype1 = ^chattype_quickchat_public) {
+            return(true);
+        }
+    case 3 :
+        switch_int ($chattype1) {
+            case ^chattype_privatechat, ^chattype_privatechatout, ^chattype_loginlogoutnotification, ^chattype_quickchat_private_incoming, ^chattype_quickchat_private_outgoing, ^chattype_modprivatechat :
+                return(true);
+        }
+    case 4 :
+        switch_int ($chattype1) {
+            case ^chattype_friendschat, ^chattype_friendschatnotification, 16, ^chattype_quickchat_friend_chat :
+                return(true);
+        }
+    case 5 :
+        switch_int ($chattype1) {
+            case ^chattype_engine, 8, 12, 14, 15, 21 :
+                return(true);
+        }
+        if (~script506($int0) = true) {
+            return(true);
+        }
+    case 6 :
+        if ($chattype1 = 10 | $chattype1 = 13) {
+            return(true);
+        }
 }
 return(false);
