@@ -1,0 +1,167 @@
+// 2162
+[proc,script2162](int $int0, int $int1, int $int2, int $int3)
+if ($int1 = -1 | $int2 = -1 | $int3 = -1) {
+    return;
+}
+def_int $intarray0(calc(%varclient_273 + 1));
+def_int $intarray1(calc(%varclient_273 + 1));
+def_struct $struct4 = enum(int, struct, enum_169, $int0);
+if ($struct4 = null) {
+    return;
+}
+def_enum $enum5 = struct_param($struct4, param_61);
+def_component $component6 = struct_param($struct4, param_152);
+def_component $component7 = struct_param($struct4, param_153);
+def_enum $enum8 = struct_param($struct4, param_674);
+%varclient_698 = ~script1432;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_boolean $boolean11 = true;
+def_int $int12 = 0;
+def_int $int13 = 1;
+def_enum $enum14 = enum(int, enum, struct_param($struct4, param_673), $int1);
+def_enum $enum15 = enum(int, enum, struct_param($struct4, param_676), $int1);
+def_enum $enum16 = enum(int, enum, struct_param($struct4, param_675), $int1);
+if ($enum16 = null) {
+    $enum16 = enum_223;
+}
+if ($enum14 = null) {
+    return;
+}
+def_int $int17 = enum_getoutputcount($enum14);
+def_int $int18 = if_getscrolly($component6);
+def_int $int19 = if_getscrollheight($component6);
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_string $string0 = "";
+~script2164($int0);
+while ($int9 <= %varclient_273) {
+    $intarray0($int9) = $int9;
+    $int9 = calc($int9 + 1);
+}
+$int9 = 0;
+~script2163(intarray0, $enum5, 0, %varclient_273);
+switch_int ($int0) {
+    case 1 :
+        while ($int9 <= %varclient_273) {
+            $intarray1($int9) = ~script2193($intarray0($int9));
+            $int9 = calc($int9 + 1);
+        }
+    case 3 :
+        while ($int9 <= %varclient_273) {
+            $intarray1($int9) = 0;
+            $int9 = calc($int9 + 1);
+        }
+}
+$int9 = 0;
+def_int $int22 = 0;
+if ($int2 = 1) {
+    $int22 = calc($int17 - 1);
+}
+def_int $int23 = 5;
+while ($int2 = 0 & $int22 < $int17 | $int2 = 1 & $int22 >= 0) {
+    $int20 = enum(int, int, $enum16, $int22);
+    if_setposition(0, $int23, ^setpos_abs_left, ^setpos_abs_top, enum(int, component, $enum8, $int22));
+    $string0 = enum(int, string, $enum14, $int20);
+    if_settext($string0, enum(int, component, $enum8, $int22));
+    $int23 = calc($int23 + 20);
+    $int12 = 0;
+    while ($int10 < %varclient_272) {
+        %varclient_699 = enum(int, struct, $enum5, $intarray0($int9));
+        if (%varclient_699 ! null) {
+            $int10 = calc($int10 + 1);
+            switch_int ($int1) {
+                case 0 :
+                    $int21 = struct_param(%varclient_699, param_691);
+                    if ($int21 = 4 & %varplayer_281 = 1000) {
+                        $int21 = 0;
+                    }
+                case 1 :
+                    switch_int ($int0) {
+                        case 1 :
+                            $int21 = $intarray1($int9);
+                        case 3 :
+                            $int21 = struct_param(%varclient_699, param_677);
+                    }
+                case 2 :
+                    switch_int ($int0) {
+                        case 1 :
+                            $int21 = struct_param(%varclient_699, param_683);
+                        case 3 :
+                            $int21 = struct_param(%varclient_699, param_678);
+                    }
+                case 3 :
+                    $int21 = struct_param(%varclient_699, param_679);
+            }
+            if ($int21 ! $int20) {
+                $int13 = 0;
+            }
+            if ($int13 = 1 & $int3 = 1) {
+                $boolean11 = ~script2149;
+                if ($boolean11 = false) {
+                    $int13 = 0;
+                }
+            }
+            if ($int13 = 1 & cc_find($component6, $intarray0($int9)) = true) {
+                cc_setposition(10, $int23, ^setpos_abs_left, ^setpos_abs_top);
+                cc_sethide(false);
+                cc_setonmouseover("script690($int0, $intarray0($int9))");
+                cc_setonmouseleave("script1949($int0, $intarray0($int9), $intarray1($int9))");
+                if ($intarray1($int9) = 0) {
+                    cc_setcolour(^red);
+                } else if ($intarray1($int9) = 1) {
+                    cc_setcolour(^yellow);
+                } else {
+                    cc_setcolour(^green);
+                }
+                if (%varplayerbit_696 = $int0 & %varplayerbit_697 = $intarray0($int9)) {
+                    cc_setop(3, "Stop showing on World Map");
+                    cc_setcolour(^cyan);
+                } else {
+                    cc_setop(3, "");
+                }
+                $int23 = calc($int23 + 15);
+                $int12 = calc($int12 + 1);
+                if (enum(int, int, $enum15, $int20) = 1 & compare(struct_param(%varclient_699, param_692), "") ! 0) {
+                    if_settext(struct_param(%varclient_699, param_692), enum(int, component, $enum8, $int22));
+                }
+            }
+            $int13 = 1;
+        }
+        $int9 = calc($int9 + 1);
+    }
+    if ($int12 ! 0) {
+        $int23 = calc($int23 + 10);
+    } else {
+        if_settext("", enum(int, component, $enum8, $int22));
+        $int23 = calc($int23 - 20);
+    }
+    $int9 = 0;
+    $int10 = 0;
+    if ($int2 = 0) {
+        $int22 = calc($int22 + 1);
+    } else {
+        $int22 = calc($int22 - 1);
+    }
+}
+if (%varclient_695 = 1 | $int19 ! $int23 | $int2 = 1 & %varclient_694 = 0 | $int2 = 0 & %varclient_694 = 1) {
+    if_setscrollsize(167, $int23, $component6);
+    $int19 = $int23;
+    if_setscrollpos(0, 0, $component6);
+    ~script31($component7, $component6, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+} else {
+    if_setscrollpos(0, $int18, $component6);
+}
+%varclient_692 = $int3;
+%varclient_694 = $int2;
+if (%varclient_692 = 1) {
+    if_setgraphic("options_radio_buttons,2", interface_190:com_14);
+} else {
+    if_setgraphic("options_radio_buttons,0", interface_190:com_14);
+}
+if (%varclient_694 = 1) {
+    if_setgraphic("options_radio_buttons,2", interface_190:com_16);
+} else {
+    if_setgraphic("options_radio_buttons,0", interface_190:com_16);
+}
+%varclient_695 = 0;
