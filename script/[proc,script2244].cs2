@@ -1,0 +1,52 @@
+// 2244
+[proc,script2244]
+if_sethide(false, interface_744:com_291);
+if_sethide(false, interface_744:com_294);
+if_sethide(false, interface_744:com_297);
+if (cc_find(interface_744:com_288, 0) = true) {
+    cc_setvflip(true);
+}
+cc_create(interface_744:com_291, ^iftype_graphic, 0);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(if_getwidth(interface_744:com_291), if_getheight(interface_744:com_291), ^setsize_abs, ^setsize_abs);
+cc_setgraphic(graphic_1402);
+cc_settiling(true);
+cc_create(interface_744:com_291, ^iftype_rectangle, 1);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(if_getwidth(interface_744:com_291), if_getheight(interface_744:com_291), ^setsize_abs, ^setsize_abs);
+cc_setcolour(^black);
+def_int $int0 = enum_getoutputcount(enum_1626);
+if_setscrollsize(if_getwidth(interface_744:com_294), calc($int0 * 15 + 15), interface_744:com_294);
+def_int $int1 = 0;
+def_string $string0 = "";
+$string0 = "Select one";
+cc_create(interface_744:com_294, ^iftype_text, $int1);
+cc_settext($string0);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_setposition(5, calc($int1 * 15), ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(calc(if_getwidth(interface_744:com_294) - 16), 15, ^setsize_abs, ^setsize_abs);
+cc_settextshadow(false);
+cc_settextfont(p11_full);
+cc_setcolour(0x663300);
+cc_setonmouseover("script2249(interface_744:com_294, $int1, true)");
+cc_setonmouseleave("script2249(interface_744:com_294, $int1, false)");
+cc_setonclick("script2245($string0)");
+def_int $int2 = 0;
+$int1 = calc($int1 + 1);
+while ($int2 < $int0) {
+    $string0 = enum(int, string, enum_1626, $int2);
+    cc_create(interface_744:com_294, ^iftype_text, $int1);
+    cc_settext($string0);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_setposition(5, calc($int1 * 15), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(calc(if_getwidth(interface_744:com_294) - 16), 15, ^setsize_abs, ^setsize_abs);
+    cc_settextshadow(false);
+    cc_settextfont(p11_full);
+    cc_setcolour(0x663300);
+    cc_setonmouseover("script2249(interface_744:com_294, $int1, true)");
+    cc_setonmouseleave("script2249(interface_744:com_294, $int1, false)");
+    cc_setonclick("script2245($string0)");
+    $int2 = calc($int2 + 1);
+    $int1 = calc($int1 + 1);
+}
+~script31(interface_744:com_297, interface_744:com_294, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");

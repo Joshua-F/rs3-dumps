@@ -1,21 +1,21 @@
 // 1221
 [clientscript,script1221](int $key0, char $char1)
-if (%varclient_174 = 6) {
+if (%varclient_174 = 23) {
     return;
 }
-if (%varclient_174 = 7 & $key0 = ^key_escape) {
+if (%varclient_174 = 24 & $key0 = ^key_escape) {
     ~script723(0);
     return;
 }
 if (%varclient_174 = 0) {
     if ($key0 = ^key_return) {
-        if (if_gethide(interface_744:com_226) = false) {
-            ~script1174(interface_744:com_241);
+        if (if_gethide(interface_744:com_553) = false) {
+            ~script1174(interface_744:com_568);
         }
         return;
     }
-    if ($key0 = ^key_escape & if_gethide(interface_744:com_226) = true) {
-        ~script1174(interface_744:com_226);
+    if ($key0 = ^key_escape & if_gethide(interface_744:com_553) = true) {
+        ~script1174(interface_744:com_553);
     }
     return;
 }
@@ -32,29 +32,14 @@ if (%varclient_174 = 1) {
         return;
     }
     if ($key0 = ^key_escape) {
-        ~script1174(interface_744:com_226);
+        ~script1174(interface_744:com_553);
         return;
     }
     if (string_length(%varclientstring_32) >= 12 & $key0 ! ^key_backspace) {
         return;
     }
     %varclientstring_32 = removetags(~script74(%varclientstring_32, 0, $key0, $char1));
-    if_settext(%varclientstring_32, interface_744:com_340);
-    return;
-}
-if (%varclient_174 = 3) {
-    if (create_reply = -3) {
-        return;
-    }
-    if ($key0 = ^key_escape) {
-        ~script1174(interface_744:com_226);
-        return;
-    }
-    if (string_length(%varclientstring_34) >= 12 & $key0 ! ^key_backspace) {
-        return;
-    }
-    %varclientstring_34 = removetags(~script74(%varclientstring_34, 0, $key0, $char1));
-    if_settext(%varclientstring_34, interface_744:com_394);
+    if_settext(%varclientstring_32, interface_744:com_667);
     return;
 }
 def_string $string0 = "";
@@ -80,7 +65,7 @@ if (%varclient_174 = 2) {
         return;
     }
     if ($key0 = ^key_escape) {
-        ~script1174(interface_744:com_226);
+        ~script1174(interface_744:com_553);
         return;
     }
     if (string_length(%varclientstring_33) >= 20 & $key0 ! ^key_backspace) {
@@ -92,62 +77,23 @@ if (%varclient_174 = 2) {
         $string0 = append($string0, "*");
         $int2 = calc($int2 - 1);
     }
-    if_settext($string0, interface_744:com_346);
+    if_settext($string0, interface_744:com_673);
     return;
 }
-if (%varclient_174 = 4) {
-    if (create_reply = -3) {
+switch_int (%varclient_174) {
+    case 21 :
+        ~script2221($key0, $char1);
         return;
-    }
-    if ($key0 = ^key_return | $key0 = ^key_tab) {
-        if (%varclient_175 >= clientclock) {
-            return;
-        }
-        %varclient_175 = clientclock;
-        %varclient_174 = 5;
+    case 22 :
+        ~script2222($key0, $char1);
         return;
-    }
-    if ($key0 = ^key_escape) {
-        ~script1174(interface_744:com_226);
+    case 3, 4, 5, 6, 7, 8, 9 :
+        ~script2218($key0, $char1);
         return;
-    }
-    if (string_length(%varclientstring_35) >= 20 & $key0 ! ^key_backspace) {
+    case 10, 11, 14, 15, 16, 17, 18 :
+        ~script2219($key0, $char1);
         return;
-    }
-    %varclientstring_35 = ~script74(%varclientstring_35, 0, $key0, $char1);
-    $int2 = string_length(%varclientstring_35);
-    while ($int2 > 0) {
-        $string0 = append($string0, "*");
-        $int2 = calc($int2 - 1);
-    }
-    if_settext($string0, interface_744:com_421);
-    return;
-}
-if (%varclient_174 = 5) {
-    if (create_reply = -3) {
+    case 12, 13, 19, 20 :
+        ~script2220($key0, $char1);
         return;
-    }
-    if ($key0 = ^key_tab) {
-        if (%varclient_175 >= clientclock) {
-            return;
-        }
-        %varclient_175 = clientclock;
-        %varclient_174 = 4;
-        return;
-    }
-    if ($key0 = ^key_escape) {
-        ~script1174(interface_744:com_226);
-        return;
-    }
-    if (string_length(%varclientstring_36) >= 20 & $key0 ! ^key_backspace) {
-        return;
-    }
-    %varclientstring_36 = ~script74(%varclientstring_36, 0, $key0, $char1);
-    $int2 = string_length(%varclientstring_36);
-    while ($int2 > 0) {
-        $string0 = append($string0, "*");
-        $int2 = calc($int2 - 1);
-    }
-    if_settext($string0, interface_744:com_426);
-    return;
 }
