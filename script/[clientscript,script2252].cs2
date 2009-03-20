@@ -26,9 +26,9 @@ if (if_getgraphic($component3) = graphic_1717 | if_getgraphic($component4) = gra
     $int1 = 0;
 }
 def_int $int5 = 1;
-def_component $component6 = interface_744:com_435;
-def_component $component7 = interface_744:com_447;
-def_component $component8 = interface_744:com_441;
+def_component $component6 = interface_744:com_447;
+def_component $component7 = interface_744:com_436;
+def_component $component8 = interface_744:com_445;
 if ($boolean0 = true) {
     $component6 = interface_744:com_373;
     $component7 = interface_744:com_363;
@@ -37,18 +37,20 @@ if ($boolean0 = true) {
 if_settext("", $component6);
 if_setgraphic(null, $component7);
 if_setgraphic(null, $component8);
-if (~script2204(%varclientstring_128) = false) {
-    if_settext("Please supply a valid email address.", $component6);
-    if_setgraphic(login_cross, $component7);
-    $int5 = 0;
-} else if (~script2204(%varclientstring_129) = false) {
-    if_settext("Please supply a valid email address.", $component6);
-    if_setgraphic(login_cross, $component8);
-    $int5 = 0;
-} else if (compare(%varclientstring_128, %varclientstring_129) ! 0) {
-    if_settext("Please make sure both email addresses match.", $component6);
-    if_setgraphic(login_cross, $component8);
-    $int5 = 0;
+if (compare(%varclientstring_128, "") ! 0 | compare(%varclientstring_129, "") ! 0) {
+    if (~script2204(%varclientstring_128) = false) {
+        if_settext("Please supply a valid email address.", $component6);
+        if_setgraphic(login_cross, $component7);
+        $int5 = 0;
+    } else if (~script2204(%varclientstring_129) = false) {
+        if_settext("Please supply a valid email address.", $component6);
+        if_setgraphic(login_cross, $component8);
+        $int5 = 0;
+    } else if (compare(%varclientstring_128, %varclientstring_129) ! 0) {
+        if_settext("Please make sure both email addresses match.", $component6);
+        if_setgraphic(login_cross, $component8);
+        $int5 = 0;
+    }
 }
 if ($int1 = 1 & $int5 = 1) {
     ~script2253($boolean0);
