@@ -1,38 +1,15 @@
 // 7
 [clientscript,script7]
-if_settext("Quest Points: <tostring(%varplayer_101)>", interface_274:com_2);
-def_int $int0 = 0;
-def_int $int1 = 0;
-while ($int0 <= 17) {
-    $int1 = ~script4($int0);
-    if ($int1 = 2) {
-        if_setcolour(^green, enum(int, component, enum_208, $int0));
-    } else if ($int1 = 1) {
-        if_setcolour(^yellow, enum(int, component, enum_208, $int0));
-    } else {
-        if_setcolour(^red, enum(int, component, enum_208, $int0));
-    }
-    $int0 = calc($int0 + 1);
+def_int $int0 = calc(%varclient_10 - 100);
+%varclient_10 = 0;
+if ($int0 < -1 | $int0 = ~script1305) {
+    return;
 }
-$int0 = 0;
-$int1 = 0;
-while ($int0 <= 131) {
-    $int1 = ~script5($int0);
-    if ($int1 = 2) {
-        if_setcolour(^green, enum(int, component, enum_209, $int0));
-    } else if ($int1 = 1) {
-        if_setcolour(^yellow, enum(int, component, enum_209, $int0));
-    } else {
-        if_setcolour(^red, enum(int, component, enum_209, $int0));
-    }
-    $int0 = calc($int0 + 1);
+def_component $component1 = ~script8($int0);
+if ($component1 = null) {
+    return;
 }
-if (%varplayer_281 = 1000) {
-    if_setcolour(^green, interface_274:com_5);
-} else if (%varplayer_281 > 0) {
-    if_setcolour(^yellow, interface_274:com_5);
-} else {
-    if_setcolour(^red, interface_274:com_5);
+if (if_hassub($component1) = false) {
+    return;
 }
-~script398;
-~script399;
+~script71($int0);

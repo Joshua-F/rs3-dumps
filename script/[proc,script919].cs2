@@ -1,0 +1,27 @@
+// 919
+[proc,script919]
+def_int $int0 = inv_total(inv_93, %varclient_743);
+def_string $string0 = "(Player stock)";
+def_string $string1 = "Best price:";
+def_int $int1 = -1;
+if (%varclient_744 = 0 & %varclient_745 = 0) {
+    $string1 = "None available";
+    $string0 = "";
+} else if (%varclient_745 = 0 | %varclient_744 > 0 & %varclient_744 < %varclient_745) {
+    $int1 = %varclient_744;
+    $string0 = "(Main stock)";
+} else {
+    $int1 = %varclient_745;
+}
+if_settext($string0, interface_449:com_19);
+if_settext($string1, interface_449:com_18);
+if ($int1 > $int0) {
+    if_setcolour(^red, interface_449:com_20);
+} else {
+    if_setcolour(0xff9900, interface_449:com_20);
+}
+if ($int1 > -1) {
+    if_setobject(%varclient_743, $int1, interface_449:com_17);
+} else {
+    if_setobject(null, -1, interface_449:com_17);
+}
