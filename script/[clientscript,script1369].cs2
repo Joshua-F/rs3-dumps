@@ -19,6 +19,21 @@ worldmap_setmap($wma6);
 ~script1839(%varplayerbit_5367, $component1, $component2, $component3);
 if_setonkey("script1382(event_keycode, event_keychar, $component4)", $component4);
 %varclientstring_31 = "";
-if (%varclient_622 ! null & worldmap_coordinmap(%varclient_622, $wma6) = true) {
-    if_setontimer("script2054(calc(clientclock + 5), $component0, %varclient_622)", $component0);
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_coord $coord9 = %varclient_622;
+if ($coord9 ! null) {
+    $int7, $int8 = worldmap_getdisplaycoord($coord9);
+    if ($int7 < 0 | $int8 < 0) {
+        $coord9 = movecoord(0_0_0_0_0, coordx($coord9), ~script686(calc(coordy($coord9) - 1), 4), coordz($coord9));
+        $int7, $int8 = worldmap_getdisplaycoord($coord9);
+        if ($int7 < 0 | $int8 < 0) {
+            $coord9 = movecoord(0_0_0_0_0, coordx($coord9), ~script686(calc(coordy($coord9) - 1), 4), coordz($coord9));
+            $int7, $int8 = worldmap_getdisplaycoord($coord9);
+            if ($int7 < 0 | $int8 < 0) {
+                return;
+            }
+        }
+    }
+    if_setontimer("script2054(calc(clientclock + 4), $component0, $coord9)", $component0);
 }

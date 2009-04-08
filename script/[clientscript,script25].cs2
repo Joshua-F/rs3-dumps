@@ -5,14 +5,16 @@ def_int $int3 = 0;
 def_int $int4 = 0;
 def_int $int5 = 0;
 def_int $int6 = 0;
-$int4 = calc((if_getwidth(interface_620:com_23) - 36 * 10) / (10 - 1));
-$int5 = calc((if_getheight(interface_620:com_23) - 128) / 3);
+$int4 = calc((if_getwidth(interface_620:com_24) - 36 * 10) / (10 - 1));
+$int5 = calc((if_getheight(interface_620:com_24) - 128) / 3);
+def_obj $obj7 = null;
 while ($int6 = 0) {
-    if (enum(int, namedobj, $enum1, calc($int2 + 1)) ! obj_11760) {
-        cc_create(interface_620:com_23, ^iftype_graphic, $int2);
+    $obj7 = enum(int, namedobj, $enum1, calc($int2 + 1));
+    if ($obj7 ! obj_11760) {
+        cc_create(interface_620:com_24, ^iftype_graphic, $int2);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc((36 + $int4) * ($int2 % 10)), calc($int2 / 10 * (32 + $int5)), ^setpos_abs_left, ^setpos_abs_top);
-        cc_setobject(enum(int, namedobj, $enum1, calc($int2 + 1)), -1);
+        cc_setobject($obj7, -1);
         cc_setopbase("<col=ff981f><oc_name(enum(int, namedobj, $enum1, calc($int2 + 1)))>");
         cc_setop(1, "Value");
         cc_setop(2, "Buy 1");
@@ -22,6 +24,12 @@ while ($int6 = 0) {
         cc_setop(6, "Examine");
         cc_setgraphicshadow(0x333333);
         cc_setoutline(1);
+        cc_create(interface_620:com_23, ^iftype_rectangle, $int2);
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc((36 + $int4) * ($int2 % 10)), calc($int2 / 10 * (32 + $int5)), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setfill(true);
+        cc_setcolour(^red);
+        ~script812($obj7);
         $int2 = calc($int2 + 1);
     } else {
         $int6 = 1;
@@ -32,7 +40,7 @@ $int2 = 0;
 $int6 = 0;
 while ($int6 = 0) {
     if (enum(int, namedobj, $enum1, calc($int2 + 1)) ! obj_11760) {
-        cc_create(interface_620:com_23, ^iftype_graphic, $int3);
+        cc_create(interface_620:com_24, ^iftype_graphic, $int3);
         cc_setsize(12, 6, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc((36 + $int4) * ($int2 % 10)), calc($int2 / 10 * (32 + $int5)), ^setpos_abs_left, ^setpos_abs_top);
         cc_setgraphic(shop_infinity_icon);
