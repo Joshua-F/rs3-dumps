@@ -17,18 +17,39 @@ if ($int0 < 0) {
     $int0 = 60;
 }
 def_int $int3 = comlevel_active;
-def_int $int4 = calc($int3 - ($int0 + (5 + $int3 / 10)));
-if ($int4 < 20) {
-    $int4 = 20;
+def_int $int4 = 0;
+def_int $int5 = 0;
+if (~pvpwild_world_check = 1) {
+    $int4 = calc($int3 - $int0);
+    if ($int4 < 20) {
+        $int4 = 20;
+    }
+    $int5 = calc($int3 + $int0);
+    if ($int5 > 138) {
+        $int5 = 138;
+    }
+    if ($int4 = $int5) {
+        if (getwindowmode < 2) {
+            if_settext(" ", interface_548:com_7);
+        } else {
+            if_settext(" ", interface_746:com_20);
+        }
+        return;
+    }
+} else {
+    $int4 = calc($int3 - ($int0 + (5 + $int3 / 10)));
+    if ($int4 < 20) {
+        $int4 = 20;
+    }
+    $int5 = calc($int3 + ($int0 + (5 + $int3 / 10)));
+    if ($int5 > 138) {
+        $int5 = 138;
+    }
+    while ($int5 < 139 & calc($int5 - ($int0 + (5 + $int5 / 10))) <= $int3) {
+        $int5 = calc($int5 + 1);
+    }
+    $int5 = calc($int5 - 1);
 }
-def_int $int5 = calc($int3 + ($int0 + (5 + $int3 / 10)));
-if ($int5 > 138) {
-    $int5 = 138;
-}
-while ($int5 < 139 & calc($int5 - ($int0 + (5 + $int5 / 10))) <= $int3) {
-    $int5 = calc($int5 + 1);
-}
-$int5 = calc($int5 - 1);
 if (getwindowmode < 2) {
     if_settext("<tostring($int4)> - <tostring($int5)>", interface_548:com_7);
 } else {
