@@ -2169,6 +2169,18 @@ readyanim=seq_7158,seq_11610
 crawlanim=seq_11610
 readyanim=seq_11613,seq_11610
 
+// 424
+[bas_424]
+readyanim=seq_11631,seq_11635
+
+// 425
+[bas_425]
+readyanim=seq_11641,seq_11638
+
+// 426
+[bas_426]
+readyanim=seq_11626,seq_11630
+
 // 435
 [bas_435]
 readyanim=seq_9171,null
