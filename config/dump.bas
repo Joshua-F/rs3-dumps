@@ -2181,6 +2181,38 @@ readyanim=seq_11641,seq_11638
 [bas_426]
 readyanim=seq_11626,seq_11630
 
+// 427
+[bas_427]
+readyanim=seq_11668,seq_11668
+
+// 428
+[bas_428]
+readyanim=seq_10979,seq_10979
+
+// 429
+[bas_429]
+readyanim=seq_11669,seq_11669
+
+// 430
+[bas_430]
+readyanim=seq_11670,seq_11670
+
+// 431
+[bas_431]
+readyanim=seq_11667,seq_11662
+
+// 432
+[bas_432]
+readyanim=seq_11675,null
+
+// 433
+[bas_433]
+readyanim=seq_11682,null
+
+// 434
+[bas_434]
+readyanim=seq_11676,null
+
 // 435
 [bas_435]
 readyanim=seq_9171,null
@@ -7206,4 +7238,139 @@ readyanim=seq_11436,seq_11433
 [bas_1481]
 runanim=seq_11481
 readyanim=seq_11482,seq_819
+
+// 1482
+[bas_1482]
+readyanim=seq_11683,null
+
+// 1483
+[bas_1483]
+readyanim=seq_11677,null
+
+// 1484
+[bas_1484]
+readyanim=seq_11684,null
+
+// 1485
+[bas_1485]
+readyanim=seq_11672,null
+
+// 1486
+[bas_1486]
+readyanim=seq_11679,null
+
+// 1487
+[bas_1487]
+readyanim=seq_11685,null
+
+// 1488
+[bas_1488]
+readyanim=seq_11671,null
+
+// 1489
+[bas_1489]
+readyanim=seq_11678,null
+
+// 1490
+[bas_1490]
+readyanim=seq_11673,null
+
+// 1491
+[bas_1491]
+readyanim=seq_11674,null
+
+// 1492
+[bas_1492]
+readyanim=seq_11680,null
+
+// 1493
+[bas_1493]
+readyanim=seq_11681,null
+
+// 1494
+[bas_1494]
+readyanim=seq_11686,null
+
+// 1495
+[bas_1495]
+readyanim=seq_11687,null
+
+// 1496
+[bas_1496]
+readyanim=seq_2700,null
+
+// 1497
+[bas_1497]
+readyanim=seq_11690,null
+
+// 1498
+[bas_1498]
+walkanim_b=seq_820
+walkanim_l=seq_821
+walkanim_r=seq_822
+readyanim=seq_11659,seq_819
+
+// 1499
+[bas_1499]
+walkanim_b=seq_820
+walkanim_l=seq_821
+walkanim_r=seq_822
+readyanim=seq_11658,seq_819
+
+// 1500
+[bas_1500]
+walkanim_b=seq_820
+walkanim_l=seq_821
+walkanim_r=seq_822
+readyanim=seq_11660,seq_819
+
+// 1501
+[bas_1501]
+readyanim=seq_11701,seq_11700
+
+// 1502
+[bas_1502]
+runanim=seq_11693
+readyanim=seq_5804,seq_11693
+
+// 1503
+[bas_1503]
+runanim=seq_11694
+readyanim=seq_11691,seq_11698
+
+// 1504
+[bas_1504]
+readyanim=seq_11692,seq_11695
+
+// 1505
+[bas_1505]
+readyanim=seq_11699,seq_11695
+
+// 1506
+[bas_1506]
+readyanim=seq_5808,seq_11697
+
+// 1507
+[bas_1507]
+readyanim=seq_5808,seq_11697
+
+// 1508
+[bas_1508]
+readyanim=seq_5808,seq_11697
+
+// 1509
+[bas_1509]
+readyanim=seq_5808,seq_11697
+
+// 1510
+[bas_1510]
+readyanim=seq_6268,seq_11695
+
+// 1511
+[bas_1511]
+readyanim=seq_5806,seq_11696
+
+// 1512
+[bas_1512]
+readyanim=seq_5807,seq_11695
 
