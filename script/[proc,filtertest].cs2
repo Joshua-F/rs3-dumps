@@ -5,6 +5,11 @@ switch_int (chat_gethistorytype($int0)) {
         return(false);
     case ^chattype_gamemessage, ^chattype_modchat :
         return(true);
+    case ^chattype_group_same_team :
+        if (%varplayerbit_6161 = 1) {
+            return(false);
+        }
+        return(true);
     case ^chattype_publicchat, ^chattype_quickchat_public :
         if (chat_getfilter_public = ^chatfilter_on) {
             return(true);
