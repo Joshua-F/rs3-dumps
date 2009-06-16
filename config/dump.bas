@@ -1408,7 +1408,7 @@ readyanim=seq_8737,seq_6088
 readyanim=seq_8720,seq_8719
 
 [bas_353]
-readyanim=seq_7389,seq_7390
+readyanim=seq_2715,seq_2715
 
 [bas_354]
 readyanim=seq_3359,seq_3359
@@ -5912,18 +5912,6 @@ readyanim=seq_5673,seq_5673
 [bas_1527]
 readyanim=seq_11751,seq_11752
 
-[bas_1528]
-readyanim=seq_5732,seq_819
-
-[bas_1529]
-readyanim=seq_11784,seq_819
-
-[bas_1530]
-readyanim=seq_11790,seq_819
-
-[bas_1531]
-readyanim=seq_11787,seq_819
-
 [bas_1532]
 readyanim=seq_11808,seq_11808
 
@@ -5974,4 +5962,13 @@ readyanim=seq_11799,seq_11799
 
 [bas_1548]
 readyanim=seq_11809,seq_11809
+
+[bas_1549]
+readyanim=seq_5732,seq_819
+
+[bas_1550]
+readyanim=seq_11787,seq_819
+
+[bas_1551]
+readyanim=seq_2920,seq_819
 
