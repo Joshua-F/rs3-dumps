@@ -7593,3 +7593,18 @@ readyanim=seq_11895,seq_11896
 [bas_1564]
 readyanim=seq_2034,seq_819
 
+// 1565
+[bas_1565]
+walkanim_b=seq_9869
+walkanim_l=seq_9869
+walkanim_r=seq_9869
+readyanim=seq_2037,seq_9869
+
+// 1566
+[bas_1566]
+readyanim=seq_11912,null
+
+// 1567
+[bas_1567]
+readyanim=seq_11914,null
+
