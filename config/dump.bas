@@ -3089,11 +3089,11 @@ readyanim=seq_9447,seq_9448
 
 // 632
 [bas_632]
-readyanim=seq_3159,seq_3159
+readyanim=seq_11940,seq_11941
 
 // 633
 [bas_633]
-readyanim=seq_3160,seq_3161
+readyanim=seq_11935,seq_11936
 
 // 634
 [bas_634]
