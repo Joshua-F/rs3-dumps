@@ -7655,6 +7655,10 @@ walkanim_r=seq_3272
 runanim=seq_824
 readyanim=seq_3269,seq_3270
 
+// 1574
+[bas_1574]
+readyanim=seq_12106,seq_819
+
 // 1575
 [bas_1575]
 crawlanim=seq_392
@@ -7767,4 +7771,8 @@ readyanim=seq_12076,seq_12080
 // 1593
 [bas_1593]
 readyanim=seq_12077,seq_12081
+
+// 1594
+[bas_1594]
+readyanim=seq_2772,null
 
