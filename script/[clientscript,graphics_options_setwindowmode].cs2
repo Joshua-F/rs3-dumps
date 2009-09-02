@@ -1,0 +1,34 @@
+// 2698
+[clientscript,graphics_options_setwindowmode](int $int0, int $int1, int $int2, int $int3, int $int4)
+if ($int0 = getwindowmode) {
+    return;
+}
+def_int $int5 = -1;
+if ($int0 ! 3) {
+    setwindowmode($int0);
+    $int5 = getwindowmode;
+    if ($int0 ! $int5) {
+        ~graphics_options_message($int4, "Unable to enter that mode.");
+    }
+    setdefaultwindowmode($int5);
+    ~graphics_options_rebuild($int3, $int5, $int1, $int2, $int4);
+    if ($int0 >= 2 & $int5 >= 2) {
+        %varclient_994 = 2;
+    }
+    return;
+}
+if (playermember = false) {
+    ~graphics_options_message($int4, "Fullscreen mode is only available to members.");
+    return;
+}
+if (fullscreen_modecount > %varclient_178 & fullscreen_enter(fullscreen_getmode(%varclient_178)) = true) {
+    ~graphics_options_rebuild($int3, $int0, $int1, $int2, $int4);
+    ~script2700(2, $int4);
+    return;
+}
+$int0 = getdefaultwindowmode;
+setwindowmode($int0);
+if ($int4 = 2) {
+    mes("Unable to enter fullscreen mode at that resolution.");
+}
+~graphics_options_rebuild($int3, $int0, $int1, $int2, $int4);
