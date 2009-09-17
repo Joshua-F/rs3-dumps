@@ -5,6 +5,7 @@ def_int $int1 = 0;
 def_int $chattype2 = ^chattype_gamemessage;
 def_component $component3 = null;
 def_int $int4 = 0;
+def_int $int5 = 1;
 if (%varclient_41 = 3) {
     $int4 = 1;
 }
@@ -16,19 +17,19 @@ while ($int1 < 100) {
 }
 if ($int0 < 8) {
     $int0 = 8;
-    ~script85(interface_137:com_58);
-    ~script85(interface_137:com_59);
     ~script85(interface_137:com_60);
     ~script85(interface_137:com_61);
     ~script85(interface_137:com_62);
     ~script85(interface_137:com_63);
     ~script85(interface_137:com_64);
     ~script85(interface_137:com_65);
+    ~script85(interface_137:com_66);
+    ~script85(interface_137:com_67);
 }
-if_setscrollsize(463, calc($int0 * 14 + 2), interface_137:com_56);
-~scrollbar_resize(interface_137:com_57, interface_137:com_56, calc(%varclient_7 + (if_getscrollheight(interface_137:com_56) - %varclient_8)));
-%varclient_7 = if_getscrolly(interface_137:com_56);
-%varclient_8 = if_getscrollheight(interface_137:com_56);
+if_setscrollsize(463, calc($int0 * 14 + 2), interface_137:com_58);
+~scrollbar_resize(interface_137:com_59, interface_137:com_58, calc(%varclient_7 + (if_getscrollheight(interface_137:com_58) - %varclient_8)));
+%varclient_7 = if_getscrolly(interface_137:com_58);
+%varclient_8 = if_getscrollheight(interface_137:com_58);
 if ($int0 < 100) {
     ~script85(enum(int, component, enum_579, $int0));
 }
@@ -48,8 +49,12 @@ while ($int1 < 100) {
         $component3 = enum(int, component, enum_579, $int0);
         $chattype2 = chat_gethistorytype($int1);
         switch_int ($chattype2) {
-            case ^chattype_gamemessage, ^chattype_friendschatnotification, 12, 13, ^chattype_group_same_team :
+            case ^chattype_gamemessage, ^chattype_friendschatnotification, 12, 13, ^chattype_group_same_team, ^chattype_quickchat_group_same_team :
                 if_settext(chat_gethistorymessage($int1), $component3);
+                if ($int5 = 1 & $chattype2 = ^chattype_gamemessage) {
+                    %varclientstring_196 = chat_gethistorymessage($int1);
+                    $int5 = 0;
+                }
             case ^chattype_modchat :
                 if_settext("<chat_gethistoryname($int1)>: <$string0><chat_gethistorymessage($int1)>", $component3);
             case ^chattype_publicchat :
@@ -100,7 +105,7 @@ while ($int1 < 100) {
                 if_settext("<col=7e3200><chat_gethistoryname($int1)> <chat_gethistorymessage($int1)>", $component3);
         }
         if_clearops($component3);
-        if_setonop("chat_op(event_op, event_opbase, $int1)", $component3);
+        if_setonop("chat_op(event_op, unknown_command_5019($int1), $int1)", $component3);
         if_setopbase("<col=ffffff><removetags(chat_gethistoryname($int1))>", $component3);
         switch_int ($chattype2) {
             case ^chattype_modchat, ^chattype_publicchat, ^chattype_privatechat, ^chattype_modprivatechat, ^chattype_friendschat, ^chattype_privatechatout :
@@ -139,13 +144,19 @@ while ($int1 < 100) {
                             %varclientstring_29 = chat_gethistoryname($int1);
                             if ($chattype2 = ^chattype_quickchat_friend_chat) {
                                 %varclient_133 = 6;
+                                if_setop(9, "Quick Response", $component3);
                             } else if ($chattype2 = ^chattype_quickchat_private_incoming) {
                                 %varclient_133 = 5;
+                                if (friend_test(unknown_command_5019($int1)) = true) {
+                                    if_setop(9, "Quick Response", $component3);
+                                }
                             } else {
                                 %varclient_133 = 4;
+                                if_setop(9, "Quick Response", $component3);
                             }
+                        } else {
+                            if_setop(9, "Quick Response", $component3);
                         }
-                        if_setop(9, "Quick Response", $component3);
                     }
                 }
             case 21 :
