@@ -6090,10 +6090,6 @@ walkanim_l=seq_1207
 walkanim_r=seq_1208
 readyanim=seq_2940,seq_1205
 
-// 1262
-[bas_1262]
-readyanim=seq_2958,seq_162
-
 // 1263
 [bas_1263]
 readyanim=seq_2942,null
@@ -7983,4 +7979,16 @@ walkanim_l=seq_12316
 walkanim_r=seq_12317
 runanim=seq_10082
 readyanim=seq_809,seq_12314
+
+// 1630
+[bas_1630]
+readyanim=seq_165,seq_167
+
+// 1631
+[bas_1631]
+readyanim=seq_12403,seq_12404
+
+// 1632
+[bas_1632]
+readyanim=seq_165,seq_167
 
