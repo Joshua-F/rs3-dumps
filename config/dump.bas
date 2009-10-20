@@ -262,7 +262,7 @@ readyanim=seq_5335,seq_5334
 readyanim=seq_5345,seq_5344
 
 [bas_66]
-hillrotate=32,64
+hillrotate=0,49
 readyanim=seq_5852,seq_5848
 
 [bas_67]
@@ -422,7 +422,7 @@ readyanim=seq_195,seq_189
 readyanim=seq_9669,seq_9670
 
 [bas_110]
-hillrotate=32,64
+hillrotate=0,49
 readyanim=seq_6374,seq_6373
 
 [bas_111]
@@ -1574,12 +1574,6 @@ walkanim_b=seq_820
 walkanim_l=seq_821
 walkanim_r=seq_822
 readyanim=seq_1705,seq_819
-
-[bas_389]
-walkanim_b=seq_820
-walkanim_l=seq_821
-walkanim_r=seq_822
-readyanim=seq_4859,seq_819
 
 [bas_390]
 readyanim=seq_6864,seq_6867
@@ -4089,7 +4083,7 @@ readyanim=seq_5773,seq_5773
 walkanim_b=seq_820
 walkanim_l=seq_821
 walkanim_r=seq_822
-readyanim=seq_627,seq_819
+readyanim=seq_12455,seq_819
 
 [bas_1071]
 readyanim=seq_10558,seq_10557
@@ -6383,4 +6377,9 @@ runanim_b=seq_12435
 runanim_l=seq_12435
 runanim_r=seq_12435
 readyanim=seq_12435,seq_12435
+
+[bas_1635]
+readyanim_l=seq_4859
+readyanim_r=seq_4859
+readyanim=seq_4859,null
 
