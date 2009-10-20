@@ -15,19 +15,17 @@ while ($int1 < 100) {
     }
     $int1 = calc($int1 + 1);
 }
-if ($int0 < 8) {
-    $int0 = 8;
-    ~script85(interface_137:com_60);
-    ~script85(interface_137:com_61);
-    ~script85(interface_137:com_62);
-    ~script85(interface_137:com_63);
-    ~script85(interface_137:com_64);
-    ~script85(interface_137:com_65);
-    ~script85(interface_137:com_66);
-    ~script85(interface_137:com_67);
+def_int $int6 = calc(if_getheight(interface_137:com_58) / 14);
+def_int $int7 = 0;
+if ($int0 < $int6) {
+    $int0 = $int6;
+    while ($int7 < $int6) {
+        ~script85(enum(int, component, enum_579, $int7));
+        $int7 = calc($int7 + 1);
+    }
 }
 if_setscrollsize(463, calc($int0 * 14 + 2), interface_137:com_58);
-~scrollbar_resize(interface_137:com_59, interface_137:com_58, calc(%varclient_7 + (if_getscrollheight(interface_137:com_58) - %varclient_8)));
+~scrollbar_resize(interface_137:com_159, interface_137:com_58, calc(%varclient_7 + if_getscrollheight(interface_137:com_58) - %varclient_8));
 %varclient_7 = if_getscrolly(interface_137:com_58);
 %varclient_8 = if_getscrollheight(interface_137:com_58);
 if ($int0 < 100) {
@@ -55,9 +53,7 @@ while ($int1 < 100) {
                     %varclientstring_196 = chat_gethistorymessage($int1);
                     $int5 = 0;
                 }
-            case ^chattype_modchat :
-                if_settext("<chat_gethistoryname($int1)>: <$string0><chat_gethistorymessage($int1)>", $component3);
-            case ^chattype_publicchat :
+            case ^chattype_modchat, ^chattype_publicchat :
                 if_settext("<chat_gethistoryname($int1)>: <$string0><chat_gethistorymessage($int1)>", $component3);
             case ^chattype_privatechat :
                 if_settext("From <chat_gethistoryname($int1)>: <$string1><chat_gethistorymessage($int1)>", $component3);
