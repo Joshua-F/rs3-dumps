@@ -8,14 +8,18 @@ if ($int0 = -1 | $int0 < 0) {
     } else {
         %varclientstring_126 = "Year";
     }
-    if_settext(%varclientstring_126, interface_744:com_354);
+    if_settext(%varclientstring_126, interface_744:com_124);
     return;
 }
-if ($int0 >= 0 & $int0 <= 8) {
+def_int $int1 = ~script2201(substring(tostring(date_year), 2, 4));
+if (date_year < 2009) {
+    $int1 = 9;
+}
+if ($int0 >= 0 & $int0 <= $int1) {
     $int0 = calc(2000 + $int0);
-} else if ($int0 >= 9 & $int0 <= 99) {
+} else if ($int0 > $int1 & $int0 <= 99) {
     $int0 = calc(1900 + $int0);
 }
 %varclientstring_126 = tostring($int0);
-if_settext(%varclientstring_126, interface_744:com_354);
+if_settext(%varclientstring_126, interface_744:com_124);
 %varclient_732 = $int0;

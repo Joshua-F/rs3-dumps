@@ -1049,6 +1049,8 @@ readyanim=seq_9870,seq_9870
 
 // 210
 [bas_210]
+readyanim_l=seq_9735
+readyanim_r=seq_9735
 readyanim=seq_9735,seq_9736
 
 // 211
@@ -3750,12 +3752,7 @@ readyanim=seq_3346,null
 
 // 771
 [bas_771]
-readyanim_l=seq_828
-readyanim_r=seq_828
-walkanim_b=seq_828
-walkanim_l=seq_828
-walkanim_r=seq_828
-readyanim=seq_828,seq_828
+readyanim=seq_12513,seq_9724
 
 // 772
 [bas_772]
@@ -6071,21 +6068,15 @@ readyanim=seq_7368,seq_7368
 
 // 1259
 [bas_1259]
-walkanim_b=seq_2562
-walkanim_l=seq_2562
-walkanim_r=seq_2562
-readyanim=seq_2939,seq_2562
+readyanim=seq_2939,null
 
 // 1260
 [bas_1260]
-readyanim=seq_2943,seq_189
+readyanim=seq_2943,null
 
 // 1261
 [bas_1261]
-walkanim_b=seq_1206
-walkanim_l=seq_1207
-walkanim_r=seq_1208
-readyanim=seq_2940,seq_1205
+readyanim=seq_2940,null
 
 // 1262
 [bas_1262]
@@ -6112,7 +6103,7 @@ readyanim=seq_5510,seq_5511
 
 // 1267
 [bas_1267]
-readyanim=seq_9299,seq_9299
+readyanim=seq_9299,null
 
 // 1268
 [bas_1268]
@@ -8080,4 +8071,24 @@ walkanim_l=seq_12511
 walkanim_r=seq_12511
 runanim=seq_3178
 readyanim=seq_12510,seq_12511
+
+// 1645
+[bas_1645]
+crawlanim=seq_5486
+readyanim=null,null
+randomreadyanim=seq_5482,90
+randomreadyanim=seq_5484,10
+
+// 1646
+[bas_1646]
+readyanim=seq_5504,seq_12514
+
+// 1647
+[bas_1647]
+readyanim=seq_195,seq_189
+
+// 1648
+[bas_1648]
+runanim=seq_12525
+readyanim=seq_12523,seq_12524
 
