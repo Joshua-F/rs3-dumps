@@ -11,7 +11,7 @@ switch_int (%varclient_174) {
             if (%varclient_175 >= clientclock) {
                 return;
             }
-            if (cc_find(interface_744:com_259, 1) = true) {
+            if (cc_find(interface_744:com_27, 1) = true) {
                 $string0 = cc_gettext;
             }
             if (compare($string0, "Select one") = 0) {
@@ -26,7 +26,7 @@ switch_int (%varclient_174) {
                 ~script2230(3);
             }
         } else if ($key0 = ^key_return) {
-            if (cc_find(interface_744:com_265, %varclient_195) = true) {
+            if (cc_find(interface_744:com_29, %varclient_195) = true) {
                 ~script275(cc_gettext, 1, %varclient_195);
             }
         } else if ($key0 = ^key_up | $key0 = ^key_left | $key0 = ^key_down | $key0 = ^key_right) {
@@ -39,24 +39,28 @@ switch_int (%varclient_174) {
             } else {
                 %varclient_195 = enum_getoutputcount(enum_1626);
             }
-            if (if_gethide(interface_744:com_265) = true) {
+            if (if_gethide(interface_744:com_29) = true) {
                 if ($key0 = ^key_end) {
                     $string0 = enum(int, string, enum_1626, calc(%varclient_195 - 1));
                 }
                 ~script275($string0, 1, %varclient_195);
-            } else if (cc_find(interface_744:com_268, 1) = true) {
-                ~scrollbar_vertical_doscroll(interface_744:com_268, interface_744:com_265, calc(15 * %varclient_195), true);
+            } else if (cc_find(interface_744:com_30, 1) = true) {
+                ~scrollbar_vertical_doscroll(interface_744:com_30, interface_744:com_29, calc(15 * %varclient_195), true);
             }
         } else if ($key0 = ^key_escape) {
-            if (cc_find(interface_744:com_259, 1) = true) {
-                $string0 = cc_gettext;
-            }
-            if (compare($string0, "Select one") = 0) {
-                %varclient_195 = 0;
+            if (if_gethide(interface_744:com_28) = false) {
+                if (cc_find(interface_744:com_27, 1) = true) {
+                    $string0 = cc_gettext;
+                }
+                if (compare($string0, "Select one") = 0) {
+                    %varclient_195 = 0;
+                } else {
+                    %varclient_195 = calc(~script278($string0) + 1);
+                }
+                ~script275($string0, 1, %varclient_195);
             } else {
-                %varclient_195 = calc(~script278($string0) + 1);
+                ~script2206;
             }
-            ~script275($string0, 1, %varclient_195);
         } else {
             ~script2250($key0, $char1);
         }
@@ -67,7 +71,7 @@ switch_int (%varclient_174) {
             if (%varclient_175 >= clientclock) {
                 return;
             }
-            if (cc_find(interface_744:com_257, 1) = true) {
+            if (cc_find(interface_744:com_38, 1) = true) {
                 $string0 = cc_gettext;
             }
             if (compare($string0, enum(int, string, enum_1601, 0)) = 0) {
@@ -75,46 +79,50 @@ switch_int (%varclient_174) {
             } else {
                 %varclient_800 = ~script269($string0, enum_1601);
             }
-            ~script260(interface_744:com_257, interface_744:com_260, interface_744:com_263, interface_744:com_266, interface_744:com_257, $string0, 1, %varclient_800, 0);
+            ~script260(interface_744:com_38, interface_744:com_39, interface_744:com_40, interface_744:com_41, interface_744:com_38, $string0, 1, %varclient_800, 0);
             if ($key0 = ^key_tab & keyheld_shift = true) {
                 ~script2230(5);
             } else {
                 ~script2230(7);
             }
         } else if ($key0 = ^key_return) {
-            if (cc_find(interface_744:com_263, %varclient_800) = true) {
-                ~script260(interface_744:com_257, interface_744:com_260, interface_744:com_263, interface_744:com_266, interface_744:com_257, cc_gettext, 1, %varclient_800, 0);
+            if (cc_find(interface_744:com_40, %varclient_800) = true) {
+                ~script260(interface_744:com_38, interface_744:com_39, interface_744:com_40, interface_744:com_41, interface_744:com_38, cc_gettext, 1, %varclient_800, 0);
             }
         } else if ($key0 = ^key_up | $key0 = ^key_left | $key0 = ^key_down | $key0 = ^key_right) {
-            ~script268(interface_744:com_257, interface_744:com_260, interface_744:com_263, interface_744:com_266, interface_744:com_257, $key0, 1, 0, enum_1601);
+            ~script268(interface_744:com_38, interface_744:com_39, interface_744:com_40, interface_744:com_41, interface_744:com_38, $key0, 1, 0, enum_1601);
         } else if ($key0 = ^key_page_up | $key0 = ^key_page_down) {
-            ~script268(interface_744:com_257, interface_744:com_260, interface_744:com_263, interface_744:com_266, interface_744:com_257, $key0, 5, 0, enum_1601);
+            ~script268(interface_744:com_38, interface_744:com_39, interface_744:com_40, interface_744:com_41, interface_744:com_38, $key0, 5, 0, enum_1601);
         } else if ($key0 = ^key_home | $key0 = ^key_end) {
             if ($key0 = ^key_home) {
                 %varclient_800 = 0;
             } else {
                 %varclient_800 = calc(enum_getoutputcount(enum_1601) - 1);
             }
-            if (if_gethide(interface_744:com_263) = true) {
+            if (if_gethide(interface_744:com_40) = true) {
                 if ($key0 = ^key_end) {
                     $string0 = enum(int, string, enum_1601, %varclient_800);
                 }
-                ~script260(interface_744:com_257, interface_744:com_260, interface_744:com_263, interface_744:com_266, interface_744:com_257, $string0, 1, %varclient_800, 0);
-            } else if (cc_find(interface_744:com_266, 1) = true) {
-                ~scrollbar_vertical_doscroll(interface_744:com_266, interface_744:com_263, calc(15 * %varclient_800), true);
+                ~script260(interface_744:com_38, interface_744:com_39, interface_744:com_40, interface_744:com_41, interface_744:com_38, $string0, 1, %varclient_800, 0);
+            } else if (cc_find(interface_744:com_41, 1) = true) {
+                ~scrollbar_vertical_doscroll(interface_744:com_41, interface_744:com_40, calc(15 * %varclient_800), true);
             }
         } else if ($key0 = ^key_escape) {
-            if (cc_find(interface_744:com_257, 1) = true) {
-                $string0 = cc_gettext;
-            }
-            if (compare($string0, enum(int, string, enum_1601, 0)) = 0) {
-                %varclient_800 = 0;
+            if (if_gethide(interface_744:com_39) = false) {
+                if (cc_find(interface_744:com_38, 1) = true) {
+                    $string0 = cc_gettext;
+                }
+                if (compare($string0, enum(int, string, enum_1601, 0)) = 0) {
+                    %varclient_800 = 0;
+                } else {
+                    %varclient_800 = ~script269($string0, enum_1601);
+                }
+                ~script260(interface_744:com_38, interface_744:com_39, interface_744:com_40, interface_744:com_41, interface_744:com_38, $string0, 1, %varclient_800, 0);
             } else {
-                %varclient_800 = ~script269($string0, enum_1601);
+                ~script2206;
             }
-            ~script260(interface_744:com_257, interface_744:com_260, interface_744:com_263, interface_744:com_266, interface_744:com_257, $string0, 1, %varclient_800, 0);
         } else {
-            ~script266(interface_744:com_257, interface_744:com_260, interface_744:com_263, interface_744:com_266, interface_744:com_257, $key0, $char1, enum_1601, 0);
+            ~script266(interface_744:com_38, interface_744:com_39, interface_744:com_40, interface_744:com_41, interface_744:com_38, $key0, $char1, enum_1601, 0);
         }
         return;
     case 7 :
@@ -123,7 +131,7 @@ switch_int (%varclient_174) {
             if (%varclient_175 >= clientclock) {
                 return;
             }
-            if (cc_find(interface_744:com_258, 1) = true) {
+            if (cc_find(interface_744:com_33, 1) = true) {
                 $string0 = cc_gettext;
             }
             if (compare($string0, enum(int, string, enum_1602, 0)) = 0) {
@@ -131,46 +139,50 @@ switch_int (%varclient_174) {
             } else {
                 %varclient_801 = ~script269($string0, enum_1602);
             }
-            ~script260(interface_744:com_258, interface_744:com_261, interface_744:com_264, interface_744:com_267, interface_744:com_258, $string0, 1, %varclient_801, 1);
+            ~script260(interface_744:com_33, interface_744:com_34, interface_744:com_35, interface_744:com_36, interface_744:com_33, $string0, 1, %varclient_801, 1);
             if ($key0 = ^key_tab & keyheld_shift = true) {
                 ~script2230(6);
             } else {
                 ~script2230(8);
             }
         } else if ($key0 = ^key_return) {
-            if (cc_find(interface_744:com_264, %varclient_801) = true) {
-                ~script260(interface_744:com_258, interface_744:com_261, interface_744:com_264, interface_744:com_267, interface_744:com_258, cc_gettext, 1, %varclient_801, 1);
+            if (cc_find(interface_744:com_35, %varclient_801) = true) {
+                ~script260(interface_744:com_33, interface_744:com_34, interface_744:com_35, interface_744:com_36, interface_744:com_33, cc_gettext, 1, %varclient_801, 1);
             }
         } else if ($key0 = ^key_up | $key0 = ^key_left | $key0 = ^key_down | $key0 = ^key_right) {
-            ~script268(interface_744:com_258, interface_744:com_261, interface_744:com_264, interface_744:com_267, interface_744:com_258, $key0, 1, 1, enum_1602);
+            ~script268(interface_744:com_33, interface_744:com_34, interface_744:com_35, interface_744:com_36, interface_744:com_33, $key0, 1, 1, enum_1602);
         } else if ($key0 = ^key_page_up | $key0 = ^key_page_down) {
-            ~script268(interface_744:com_258, interface_744:com_261, interface_744:com_264, interface_744:com_267, interface_744:com_258, $key0, 5, 1, enum_1602);
+            ~script268(interface_744:com_33, interface_744:com_34, interface_744:com_35, interface_744:com_36, interface_744:com_33, $key0, 5, 1, enum_1602);
         } else if ($key0 = ^key_home | $key0 = ^key_end) {
             if ($key0 = ^key_home) {
                 %varclient_801 = 0;
             } else {
                 %varclient_801 = calc(enum_getoutputcount(enum_1602) - 1);
             }
-            if (if_gethide(interface_744:com_264) = true) {
+            if (if_gethide(interface_744:com_35) = true) {
                 if ($key0 = ^key_end) {
                     $string0 = enum(int, string, enum_1602, %varclient_801);
                 }
-                ~script260(interface_744:com_258, interface_744:com_261, interface_744:com_264, interface_744:com_267, interface_744:com_258, $string0, 1, %varclient_801, 1);
-            } else if (cc_find(interface_744:com_267, 1) = true) {
-                ~scrollbar_vertical_doscroll(interface_744:com_267, interface_744:com_264, calc(15 * %varclient_801), true);
+                ~script260(interface_744:com_33, interface_744:com_34, interface_744:com_35, interface_744:com_36, interface_744:com_33, $string0, 1, %varclient_801, 1);
+            } else if (cc_find(interface_744:com_36, 1) = true) {
+                ~scrollbar_vertical_doscroll(interface_744:com_36, interface_744:com_35, calc(15 * %varclient_801), true);
             }
         } else if ($key0 = ^key_escape) {
-            if (cc_find(interface_744:com_258, 1) = true) {
-                $string0 = cc_gettext;
-            }
-            if (compare($string0, enum(int, string, enum_1602, 0)) = 0) {
-                %varclient_801 = 0;
+            if (if_gethide(interface_744:com_34) = false) {
+                if (cc_find(interface_744:com_33, 1) = true) {
+                    $string0 = cc_gettext;
+                }
+                if (compare($string0, enum(int, string, enum_1602, 0)) = 0) {
+                    %varclient_801 = 0;
+                } else {
+                    %varclient_801 = ~script269($string0, enum_1602);
+                }
+                ~script260(interface_744:com_33, interface_744:com_34, interface_744:com_35, interface_744:com_36, interface_744:com_33, $string0, 1, %varclient_801, 1);
             } else {
-                %varclient_801 = ~script269($string0, enum_1602);
+                ~script2206;
             }
-            ~script260(interface_744:com_258, interface_744:com_261, interface_744:com_264, interface_744:com_267, interface_744:com_258, $string0, 1, %varclient_801, 1);
         } else {
-            ~script266(interface_744:com_258, interface_744:com_261, interface_744:com_264, interface_744:com_267, interface_744:com_258, $key0, $char1, enum_1602, 1);
+            ~script266(interface_744:com_33, interface_744:com_34, interface_744:com_35, interface_744:com_36, interface_744:com_33, $key0, $char1, enum_1602, 1);
         }
         return;
 }
