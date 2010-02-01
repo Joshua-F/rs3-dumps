@@ -13,21 +13,51 @@ if ($key0 = ^key_f10) {
     return;
 }
 def_int $int2 = 0;
+if ($key0 = ^key_tab) {
+    if (string_length(%varclientstring_276) > 0) {
+        $int2 = friend_getslotfromname(%varclientstring_276);
+        if ($int2 ! -1) {
+            if (map_quickchat = false & unknown_command_3328 = false) {
+                ~meslayer_mode6(%varclientstring_276);
+                return;
+            }
+            if (friend_platform($int2) = 1) {
+                ~quickchat_open(1, %varclientstring_276);
+            } else {
+                ~quickchat_open(3, %varclientstring_276);
+            }
+            return;
+        }
+        if (%varclient_183 > calc(clientclock - 100)) {
+            return;
+        }
+        mes("That player is not on your Friends list.");
+        %varclient_183 = clientclock;
+        return;
+    }
+    if (%varclient_183 > calc(clientclock - 100)) {
+        return;
+    }
+    mes("You haven't received any messages to which you can reply.");
+    %varclient_183 = clientclock;
+    return;
+}
 def_int $int3 = 0;
+def_int $int4 = 0;
 if ($key0 = ^key_f11) {
-    $int2 = 150;
-    $int3 = calc(clientclock - %varclient_158);
-    if ($int3 > 1500) {
+    $int3 = 150;
+    $int4 = calc(clientclock - %varclient_158);
+    if ($int4 > 1500) {
         %varclient_159 = 0;
     }
     if (%varclient_159 >= 7) {
-        $int2 = 600;
+        $int3 = 600;
     } else if (%varclient_159 >= 5) {
-        $int2 = 450;
+        $int3 = 450;
     } else if (%varclient_159 >= 3) {
-        $int2 = 300;
+        $int3 = 300;
     }
-    if ($int3 >= $int2) {
+    if ($int4 >= $int3) {
         %varclient_158 = clientclock;
         %varclient_159 = calc(%varclient_159 + 1);
         if (%varclient_130 ! null) {
@@ -53,9 +83,9 @@ if (staffmodlevel > 0) {
     }
     return;
 }
-def_int $int4 = 0;
 def_int $int5 = 0;
 def_int $int6 = 0;
+def_int $int7 = 0;
 switch_int ($key0) {
     case ^key_return :
         if (string_length(%varclientstring_1) <= 0) {
