@@ -6637,3 +6637,13 @@ randomreadyanim=seq_12774,6
 runanim=seq_12786
 readyanim=seq_12784,seq_12785
 
+[bas_1696]
+hillrotate=24,24
+hillrotatelimit=48,48
+readyanim=seq_12790,seq_12790
+
+[bas_1697]
+hillrotate=24,24
+hillrotatelimit=64,64
+readyanim=seq_12788,seq_12789
+
