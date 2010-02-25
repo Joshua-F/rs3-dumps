@@ -38,7 +38,9 @@ readyanim=seq_808,seq_819
 readyanim=seq_7575,seq_8337
 
 [bas_6]
-hillrotate=64,32
+runanim=seq_12823
+hillrotate=16,16
+hillrotatelimit=16,3
 readyanim=seq_5225,seq_5226
 
 [bas_7]
@@ -48,7 +50,7 @@ readyanim=seq_8271,seq_8273
 readyanim=seq_8077,seq_8076
 
 [bas_9]
-hillrotate=64,32
+hillrotate=32,24
 readyanim=seq_4932,seq_4931
 
 [bas_10]
@@ -56,7 +58,9 @@ hillrotate=24,24
 readyanim=seq_7718,seq_7719
 
 [bas_11]
-hillrotate=64,32
+runanim=seq_12827
+hillrotate=32,16
+hillrotatelimit=16,3
 readyanim=seq_5785,seq_5781
 
 [bas_12]
@@ -81,6 +85,9 @@ hillrotate=32,32
 readyanim=seq_5326,seq_5325
 
 [bas_18]
+runanim=seq_12821
+hillrotate=12,12
+hillrotatelimit=4,3
 readyanim=seq_7760,seq_7759
 
 [bas_19]
@@ -4917,6 +4924,9 @@ readyanim=seq_5160,seq_5164
 readyanim=seq_5160,seq_5164
 
 [bas_1285]
+runanim=seq_12818
+hillrotate=12,12
+hillrotatelimit=3,3
 readyanim=seq_8186,seq_7847
 
 [bas_1286]
@@ -4937,6 +4947,9 @@ readyanim=seq_8301,seq_8302
 readyanim=seq_8089,seq_8092
 
 [bas_1291]
+runanim=seq_12826
+hillrotate=14,14
+hillrotatelimit=12,3
 readyanim=seq_8021,seq_8022
 
 [bas_1292]
@@ -4955,6 +4968,9 @@ hillrotate=64,24
 readyanim=seq_6374,seq_6373
 
 [bas_1296]
+runanim=seq_12825
+hillrotate=24,24
+hillrotatelimit=4,3
 readyanim=seq_7849,seq_7848
 
 [bas_1297]
@@ -4999,7 +5015,7 @@ readyanim=seq_7738,seq_7735
 readyanim=seq_5386,seq_7808
 
 [bas_1309]
-hillrotate=64,64
+hillrotate=32,32
 readyanim=seq_8518,seq_6220
 
 [bas_1310]
@@ -5015,6 +5031,9 @@ readyanim=seq_7949,seq_7952
 readyanim=seq_8197,seq_8198
 
 [bas_1314]
+runanim=seq_12819
+hillrotate=12,12
+hillrotatelimit=6,6
 readyanim=seq_8171,seq_8175
 
 [bas_1315]
@@ -5037,6 +5056,9 @@ readyanim=seq_8098,seq_8100
 readyanim=seq_8255,seq_8256
 
 [bas_1321]
+runanim=seq_12820
+hillrotate=12,12
+hillrotatelimit=4,3
 readyanim=seq_8246,seq_8245
 
 [bas_1322]
@@ -5049,7 +5071,9 @@ readyanim=seq_7781,seq_7784
 readyanim=seq_7690,seq_7687
 
 [bas_1325]
-hillrotate=64,64
+runanim=seq_12817
+hillrotate=24,24
+hillrotatelimit=16,4
 readyanim=seq_7772,seq_7768
 
 [bas_1326]
@@ -5057,6 +5081,9 @@ hillrotate=64,32
 readyanim=seq_8297,seq_8291
 
 [bas_1327]
+runanim=seq_12824
+hillrotate=12,12
+hillrotatelimit=4,3
 readyanim=seq_8204,seq_8207
 
 [bas_1328]
@@ -5064,10 +5091,12 @@ hillrotate=64,32
 readyanim=seq_8155,seq_8158
 
 [bas_1329]
+runanim=seq_12816
 hillrotate=32,32
 readyanim=seq_8146,seq_8145
 
 [bas_1330]
+runanim=seq_12822
 hillrotate=16,16
 readyanim=seq_7751,seq_7750
 
@@ -6646,4 +6675,17 @@ readyanim=seq_12790,seq_12790
 hillrotate=24,24
 hillrotatelimit=64,64
 readyanim=seq_12788,seq_12789
+
+[bas_1698]
+readyanim=seq_12810,null
+
+[bas_1699]
+readyanim=seq_12815,null
+
+[bas_1700]
+readyanim=seq_12834,seq_12833
+
+[bas_1701]
+runanim=seq_11481
+readyanim=seq_11482,seq_12314
 
