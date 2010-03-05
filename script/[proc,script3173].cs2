@@ -1,0 +1,38 @@
+// 3173
+[proc,script3173](component $component0)
+if (minimenuopen(interface_912:com_21, -1) = true) {
+    if_setontimer("script3172($component0)", $component0);
+    return;
+}
+cc_deleteall(interface_912:com_21);
+if_setscrollsize(0, 0, interface_912:com_21);
+if_setscrollpos(0, 0, interface_912:com_21);
+def_string $string0 = "<col=7fa9ff>";
+def_string $string1 = "<col=ff5256>";
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $chattype3 = ^chattype_gamemessage;
+def_string $string2 = "";
+def_string $string3 = "";
+while ($int1 < 100) {
+    $chattype3 = chat_gethistorytype($int1);
+    $string2 = chat_gethistoryname($int1);
+    $string3 = unknown_command_5019($int1);
+    switch_int ($chattype3) {
+        case ^chattype_friendschatnotification, ^chattype_snapshotfeedback :
+            $int2 = ~script3174($int2, chat_gethistorymessage($int1), 0, "", "", $chattype3);
+        case ^chattype_friendschat :
+            $int2 = ~script3174($int2, "[<$string0><chat_gethistoryclan($int1)></col>] <$string2>: <$string1><chat_gethistorymessage($int1)>", 1, $string2, $string3, $chattype3);
+        case ^chattype_quickchat_friend_chat :
+            $int2 = ~script3174($int2, "[<$string0><chat_gethistoryclan($int1)></col>] <$string2>: <$string1><chat_gethistorymessage($int1)>", 1, $string2, $string3, $chattype3);
+    }
+    $int1 = calc($int1 + 1);
+}
+cc_deleteall(interface_912:com_22);
+def_int $int4 = 0;
+if ($int2 > calc(if_getheight(interface_912:com_21) / 15)) {
+    $int4 = calc($int2 * 15);
+}
+if_setscrollsize(0, $int4, interface_912:com_21);
+if_setscrollpos(0, $int4, interface_912:com_21);
+~scrollbar_vertical(interface_912:com_22, interface_912:com_21, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

@@ -1,0 +1,45 @@
+// 3054
+[proc,script3054](component $component0)
+if (minimenuopen(interface_909:com_39, -1) = true) {
+    if_setontimer("script3053($component0)", $component0);
+    return;
+}
+cc_deleteall(interface_909:com_39);
+if_setscrollsize(0, 0, interface_909:com_39);
+if_setscrollpos(0, 0, interface_909:com_39);
+def_string $string0 = "<col=ff5256>";
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $chattype3 = ^chattype_gamemessage;
+def_string $string1 = "";
+def_string $string2 = "";
+while ($int1 < 100) {
+    $chattype3 = chat_gethistorytype($int1);
+    $string1 = chat_gethistoryname($int1);
+    $string2 = unknown_command_5019($int1);
+    switch_int ($chattype3) {
+        case ^chattype_gamemessage, ^chattype_snapshotfeedback :
+            $int2 = ~script3055($int2, chat_gethistorymessage($int1), 0, "", "", $chattype3);
+        case ^chattype_privatechat :
+            $int2 = ~script3055($int2, "From <$string1>: <$string0><chat_gethistorymessage($int1)>", 1, $string1, $string2, $chattype3);
+        case ^chattype_loginlogoutnotification :
+            $int2 = ~script3055($int2, "<$string0><chat_gethistorymessage($int1)>", 1, $string1, $string2, $chattype3);
+        case ^chattype_privatechatout :
+            $int2 = ~script3055($int2, "To <$string1>: <$string0><chat_gethistorymessage($int1)>", 1, $string1, $string2, $chattype3);
+        case ^chattype_modprivatechat :
+            $int2 = ~script3055($int2, "From <$string1>: <$string0><chat_gethistorymessage($int1)>", 1, $string1, $string2, $chattype3);
+        case ^chattype_quickchat_private_incoming :
+            $int2 = ~script3055($int2, "From <$string1>: <$string0><chat_gethistorymessage($int1)>", 1, $string1, $string2, $chattype3);
+        case ^chattype_quickchat_private_outgoing :
+            $int2 = ~script3055($int2, "To <$string1>: <$string0><chat_gethistorymessage($int1)>", 1, $string1, $string2, $chattype3);
+    }
+    $int1 = calc($int1 + 1);
+}
+cc_deleteall(interface_909:com_40);
+def_int $int4 = 0;
+if ($int2 > calc(if_getheight(interface_909:com_39) / 15)) {
+    $int4 = calc($int2 * 15);
+}
+if_setscrollsize(0, $int4, interface_909:com_39);
+if_setscrollpos(0, $int4, interface_909:com_39);
+~scrollbar_vertical(interface_909:com_40, interface_909:com_39, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

@@ -1,0 +1,30 @@
+// 3062
+[proc,lobbyscreen_entergame](component $component0)
+if (worldlist_fetch = false) {
+    ~lobbyscreen_loginbutton_text(0);
+    if_setontimer("lobbyscreen_entergame($component0)", $component0);
+    return;
+}
+~lobbyscreen_loginbutton_text(1);
+if_setontimer(null, $component0);
+~lobby_popup_close;
+if (~script1431 = 1 & %varclient_547 = 0) {
+    ~script3076(interface_906:com_68);
+    ~script3074(interface_906:com_66);
+    ~script3026(interface_906:com_68);
+    ~script3025(interface_906:com_66);
+    if_sethide(false, interface_906:com_51);
+    sound_jingle(jingle_349, 0);
+    if (~pvpwild_world_check = 1) {
+        if_settext("Bounty World", interface_906:com_61);
+        if_settext("Warning: This is a Bounty World. Players can attack you throughout the Wilderness.<br><br>If you die, you may lose all of your items.<br><br>You have been warned.", interface_906:com_62);
+    } else {
+        if_settext("PvP World", interface_906:com_61);
+        if_settext("Warning: This is a PvP World. Players can attack you throughout RuneScape.<br><br>If you die, you may lose all of your items.<br><br>You have been warned.", interface_906:com_62);
+    }
+    return;
+}
+%varclient_200 = 0;
+~lobbyscreen_loginbutton_text(0);
+unknown_command_5612(0);
+if_setontimer("lobbyscreen_entergametimer($component0, map_world)", $component0);

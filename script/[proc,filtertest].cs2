@@ -3,9 +3,9 @@
 switch_int (chat_gethistorytype($int0)) {
     case null :
         return(false);
-    case ^chattype_gamemessage, ^chattype_modchat, ^chattype_quickchat_group_same_team :
+    case ^chattype_gamemessage, ^chattype_modchat, 110, ^chattype_snapshotfeedback :
         return(true);
-    case ^chattype_group_same_team :
+    case ^chattype_spam :
         if (%varplayerbit_6161 = 1) {
             return(false);
         }
@@ -29,7 +29,7 @@ switch_int (chat_gethistorytype($int0)) {
             return(true);
         }
         return(false);
-    case ^chattype_engine, 8, 14, 15, 21 :
+    case ^chattype_tradereq, ^chattype_challenge, 105, 106, ^chattype_ally_request :
         if (chat_getfilter_trade = ^chatfilter_on) {
             return(true);
         }
@@ -50,7 +50,7 @@ switch_int (chat_gethistorytype($int0)) {
             return(false);
         }
         return(true);
-    case ^chattype_friendschat, 16, ^chattype_quickchat_friend_chat :
+    case ^chattype_friendschat, ^chattype_clan_challenge, ^chattype_quickchat_friend_chat :
         if (%varplayer_1054 = 0) {
             return(true);
         }
@@ -58,7 +58,7 @@ switch_int (chat_gethistorytype($int0)) {
             return(true);
         }
         return(false);
-    case 10 :
+    case ^chattype_assistreq :
         if (%varplayer_1055 = 0) {
             return(true);
         }
@@ -71,12 +71,12 @@ switch_int (chat_gethistorytype($int0)) {
             return(true);
         }
         return(false);
-    case 12 :
+    case ^chattype_trade_notification :
         if (chat_getfilter_trade < 2) {
             return(true);
         }
         return(false);
-    case 13 :
+    case ^chattype_assist_notification :
         if (%varplayer_1055 < 2) {
             return(true);
         }

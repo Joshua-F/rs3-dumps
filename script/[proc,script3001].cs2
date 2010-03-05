@@ -1,0 +1,15 @@
+// 3001
+[proc,script3001]
+def_int $int0 = userdetail_lobby_lastloginday;
+if ($int0 = 0) {
+    if_settext("Welcome to RuneScape!", interface_907:com_1);
+    return;
+}
+def_int $int1 = calc(date_runeday - $int0);
+if ($int1 < 1) {
+    if_settext("You last logged in earlier today from: <userdetail_lobby_lastloginaddress>", interface_907:com_1);
+} else if ($int1 = 1) {
+    if_settext("You last logged in yesterday from: <userdetail_lobby_lastloginaddress>", interface_907:com_1);
+} else {
+    if_settext("You last logged in <tostring($int1)> days ago from: <userdetail_lobby_lastloginaddress>", interface_907:com_1);
+}

@@ -1,0 +1,15 @@
+// 3022
+[clientscript,lobbyscreen_input_keyboard](int $key0, char $char1, component $component2, int $int3, int $int4, string $string0)
+switch_int ($key0) {
+    case ^key_return :
+        ~lobbyscreen_input_ok($int4, $string0);
+        return;
+    case ^key_escape :
+        ~lobbyscreen_input_close;
+        return;
+    case null, ^key_backspace, ^key_del :
+        if ($int4 ! -1 & $int4 ! 6 & (char_isprintable($char1) = true | $key0 = ^key_backspace | $key0 = ^key_del)) {
+            %varclientstring_277 = removetags(~add_to_inputstring(%varclientstring_277, $int3, $key0, $char1));
+            if_settext(%varclientstring_277, $component2);
+        }
+}

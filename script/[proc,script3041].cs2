@@ -1,0 +1,78 @@
+// 3041
+[proc,script3041](component $component0, component $component1, component $component2, component $component3, component $component4)
+if (minimenuopen($component2, -1) = true) {
+    if_setontimer("script3040($component0, $component1, $component2, $component3, $component4)", $component3);
+    return;
+} else {
+    if_setontimer(null, $component3);
+}
+cc_deleteall($component0);
+cc_deleteall($component1);
+cc_deleteall($component2);
+def_int $int5 = ignore_count;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 15;
+def_int $int11 = 0;
+def_int $int12 = 5;
+def_int $int13 = 0;
+if ($int5 = -2) {
+    ~script3038("Loading Ignore List.<br><br>Please wait.", $component2);
+} else if ($int5 = -1) {
+    ~script3038("Connecting to server.<br><br>Please wait.", $component2);
+} else if ($int5 > 0) {
+    while ($int6 < $int5) {
+        $string0, $string1 = ignore_getname($int6);
+        ~cc_add_rect($component2, $int6, if_getwidth($component2), $int10, 0, $int7, ^black, true, 0);
+        if (calc($int6 % 2) = 0) {
+            cc_setcolour(0x201911);
+        } else {
+            cc_setcolour(0x292016);
+        }
+        cc_setonmouseover("script3031($component2, $int6, $string1)");
+        cc_setonmouseleave("script3036($component2, $int6)");
+        cc_setopbase($string0);
+        cc_setop(1, "Delete");
+        cc_setonop("lobby_friends_ignoreop(event_op, $string0, $component2, $int6)");
+        ~cc_add_graphic($component1, $int6, 14, 14, 5, calc($int7 + 1), null, false, false, false, 0);
+        if (compare($string1, "") ! 0) {
+            cc_setgraphic(friends_changed_name);
+            $int12 = 20;
+        } else {
+            cc_setgraphic(null);
+            $int12 = 5;
+        }
+        $string2 = $string0;
+        ~cc_add_text($component0, $int6, 0, $int10, $int12, $int7, $string2, ^white, p11_full, ^settextalign_left, ^settextalign_centre, 0, true);
+        cc_setsize($int12, $int10, ^setsize_minus, ^setsize_abs);
+        cc_setmaxlines(1);
+        $int7 = calc($int7 + $int10);
+        $int6 = calc($int6 + 1);
+    }
+    $int9 = calc(if_getheight($component3) / $int10 + 1);
+    if ($int9 > $int5) {
+        while ($int6 < $int9) {
+            ~cc_add_rect($component2, $int6, if_getwidth($component2), $int10, 0, $int7, ^black, true, 0);
+            if (calc($int6 % 2) = 0) {
+                cc_setcolour(0x201911);
+            } else {
+                cc_setcolour(0x292016);
+            }
+            $int7 = calc($int7 + $int10);
+            $int6 = calc($int6 + 1);
+        }
+        $int11 = if_getheight($component3);
+    } else {
+        $int11 = $int7;
+    }
+    if_setscrollsize(0, $int11, $component3);
+    ~scrollbar_vertical($component4, $component3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+} else if ($int5 = 0) {
+    ~script3038("You are not ignoring any players.", $component2);
+}
+return;
