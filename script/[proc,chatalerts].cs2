@@ -15,17 +15,17 @@ if ($int0 > %varclient_43) {
         $chattype1 = chat_gethistorytype($int0);
         if (~filtertest($int0, 0) = true & ~partnercheck($int0) = false) {
             switch_int ($chattype1) {
-                case ^chattype_gamemessage, ^chattype_group_same_team, ^chattype_quickchat_group_same_team :
+                case ^chattype_gamemessage, ^chattype_spam, 110, ^chattype_snapshotfeedback :
                     ~chat_alert_enable(1);
                 case ^chattype_modchat, ^chattype_publicchat, ^chattype_quickchat_public :
                     ~chat_alert_enable(2);
                 case ^chattype_privatechat, ^chattype_loginlogoutnotification, ^chattype_privatechatout, ^chattype_modprivatechat, ^chattype_quickchat_private_incoming, ^chattype_quickchat_private_outgoing :
                     ~chat_alert_enable(3);
-                case ^chattype_engine, 8, 12, 14, 15, 21 :
+                case ^chattype_tradereq, ^chattype_challenge, ^chattype_trade_notification, 105, 106, ^chattype_ally_request :
                     ~chat_alert_enable(5);
-                case ^chattype_friendschat, ^chattype_friendschatnotification, 16, ^chattype_quickchat_friend_chat :
+                case ^chattype_friendschat, ^chattype_friendschatnotification, ^chattype_clan_challenge, ^chattype_quickchat_friend_chat :
                     ~chat_alert_enable(4);
-                case 10, 13 :
+                case ^chattype_assistreq, ^chattype_assist_notification :
                     ~chat_alert_enable(6);
             }
         }

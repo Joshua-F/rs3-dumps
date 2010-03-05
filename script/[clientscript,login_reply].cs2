@@ -1,0 +1,208 @@
+// 2946
+[clientscript,login_reply]
+def_int $int0 = ~login_getreply;
+if ($int0 = -3) {
+    if_settext("Performing login...", interface_596:com_80);
+    if_setonclick(null, interface_596:com_68);
+    ~login_popup($int0, 0, "LOGGING IN<br>PLEASE WAIT", 1, null, 0, -1, "", 0, "");
+    return;
+}
+~login_popup_close;
+def_int $int1 = 0;
+def_string $string0 = "";
+if ($int0 = 21) {
+    if_settext("Performing login...", interface_596:com_80);
+    if_setonclick(null, interface_596:com_68);
+    if (%varclient_200 = 0) {
+        %varclient_200 = login_hoptime;
+    }
+    %varclient_200 = calc(%varclient_200 - 1);
+    if (%varclient_200 <= 0) {
+        if_setontimer(null, interface_596:com_68);
+        ~login_dologin;
+        return;
+    }
+    $int1 = calc(%varclient_200 / 50);
+    if ($int1 = 1) {
+        $string0 = "YOU HAVE ONLY JUST LEFT ANOTHER WORLD. YOUR PROFILE WILL BE TRANSFERRED IN<br>1 SECOND.";
+    } else {
+        $string0 = "YOU HAVE ONLY JUST LEFT ANOTHER WORLD. YOUR PROFILE WILL BE TRANSFERRED IN<br><tostring($int1)> SECONDS.";
+    }
+    ~login_popup($int0, 0, $string0, 0, "loadingwheel,12", 0, -1, "", 0, "");
+    return;
+}
+~login_popup_close;
+def_int $int2 = 0;
+def_string $string1 = "";
+if ($int0 = 1) {
+    if_settext("Performing login...", interface_596:com_80);
+    if_setonclick(null, interface_596:com_68);
+    if (%varclient_201 = 0) {
+        %varclient_202 = video_advert_play;
+    }
+    $int2 = calc((500 - %varclient_201) / 50);
+    if (%varclient_202 = false) {
+        if ($int2 = 1) {
+            $string1 = "COULD NOT DISPLAY VIDEO ADVERTISEMENT. LOGIN WILL CONTINUE IN 1 SECOND.";
+        } else {
+            $string1 = "COULD NOT DISPLAY VIDEO ADVERTISEMENT. LOGIN WILL CONTINUE IN <tostring($int2)> SECONDS.";
+        }
+    } else if (%varclient_201 < 500) {
+        if ($int2 = 1) {
+            $string1 = "DISPLAYING VIDEO ADVERTISEMENT. LOGIN WILL CONTINUE IN 1 SECOND.";
+        } else {
+            $string1 = "DISPLAYING VIDEO ADVERTISEMENT. LOGIN WILL CONTINUE IN <tostring($int2)> SECONDS.";
+        }
+    } else {
+        $string1 = "Displaying video advertisement. Login will continue in 0 seconds.";
+    }
+    ~login_popup($int0, 0, $string1, 0, "loadingwheel,12", 0, -1, "", 0, "");
+    %varclient_201 = calc(%varclient_201 + 1);
+    if (%varclient_202 = true & video_advert_has_finished = false | %varclient_201 < 500) {
+        return;
+    }
+    ~login_popup_close;
+    login_continue;
+    return;
+}
+~login_popup_close;
+if (%varclient_1089 = 1) {
+    if_settext("Play Now", interface_596:com_80);
+} else if (%varclient_1093 = 1) {
+    if_settext("Log in", interface_596:com_80);
+} else {
+    if_settext("Login", interface_596:com_80);
+}
+if_setonclick("login_dologin", interface_596:com_68);
+if_setontimer(null, interface_596:com_68);
+def_string $string2 = "";
+def_int $int3 = 1;
+def_int $int4 = 0;
+def_graphic $graphic5 = "loadingwheel,9";
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_string $string3 = "";
+def_int $int8 = 1;
+def_string $string4 = "BACK";
+switch_int ($int0) {
+    case -2 :
+        if (%varclient_1089 = 1) {
+            %varclient_174 = 1;
+        } else if (string_length(%varclientstring_32) = 0) {
+            %varclient_174 = 2;
+        } else {
+            %varclient_174 = 3;
+        }
+        ~login_popup_close;
+        return;
+    case 29 :
+        switch_int (login_disallowresult) {
+            case 0 :
+                $string2 = "YOU MUST HAVE A COMBAT LEVEL OF AT LEAST 20 (WITHOUT SUMMONING) TO ENTER A PvP WORLD.";
+            case 1 :
+                $string2 = "YOU ARE CURRENTLY CARRYING LENT ITEMS AND CANNOT ENTER A PvP WORLD.";
+            case 2 :
+                $string2 = "YOU MUST BE STANDING IN THE WILDERNESS OR EDGEVILLE TO ENTER THIS BOUNTY WORLD.";
+            case 3 :
+                $string2 = "YOU MUST HAVE A TOTAL SKILL LEVEL OF 1,000 OR GREATER TO ENTER THIS WORLD.";
+            case 5 :
+                $string2 = "YOU MUST HAVE A TOTAL SKILL LEVEL OF 1,500 OR GREATER TO ENTER THIS WORLD.";
+            case 4 :
+                $string2 = "YOU MUST MOVE TO A SAFE AREA BEFORE YOU CAN LOG IN TO A PvP OR BOUNTY WORLD.";
+            case default :
+                $string2 = "UNEXPECTED SERVER RESPONSE. PLEASE TRY USING A DIFFERENT WORLD.";
+        }
+    case -5 :
+        $string2 = "CONNECTION TIMED OUT. PLEASE TRY USING A DIFFERENT WORLD.";
+    case -4 :
+        $string2 = "ERROR CONNECTING TO SERVER.";
+    case -1 :
+        $string2 = "NO RESPONSE FROM SERVER. PLEASE TRY USING A DIFFERENT WORLD.";
+    case 5 :
+        $string2 = "YOUR ACCOUNT HAS NOT LOGGED OUT FROM ITS LAST SESSION. TRY AGAIN IN A FEW MINUTES.";
+    case 7 :
+        $string2 = "THIS WORLD IS FULL. PLEASE USE A DIFFERENT WORLD.";
+    case 8 :
+        $string2 = "UNABLE TO CONNECT: LOGIN SERVER OFFLINE.";
+    case 9 :
+        $string2 = "LOGIN LIMIT EXCEEDED: TOO MANY CONNECTIONS FROM YOUR ADDRESS.";
+    case 10 :
+        $string2 = "UNABLE TO CONNECT: BAD SESSION ID.";
+    case 13 :
+        $string2 = "COULD NOT COMPLETE LOGIN. PLEASE TRY USING A DIFFERENT WORLD.";
+    case 16 :
+        $string2 = "TOO MANY INCORRECT LOGINS FROM YOUR ADDRESS. PLEASE WAIT 5 MINUTES BEFORE TRYING AGAIN.";
+    case 17 :
+        $string2 = "YOU ARE STANDING IN A MEMBERS-ONLY AREA. TO PLAY ON THIS WORLD, MOVE TO A FREE AREA FIRST.";
+    case 20 :
+        $string2 = "INVALID LOGINSERVER REQUESTED. PLEASE TRY USING A DIFFERENT WORLD.";
+    case 22 :
+        $string2 = "MALFORMED LOGIN PACKET. PLEASE TRY AGAIN.";
+    case 23 :
+        $string2 = "NO REPLY FROM LOGIN SERVER. PLEASE WAIT A MINUTE AND TRY AGAIN.";
+    case 24 :
+        $string2 = "ERROR LOADING YOUR PROFILE. PLEASE CONTACT CUSTOMER SUPPORT.";
+    case 25 :
+        $string2 = "UNEXPECTED LOGINSERVER RESPONSE. PLEASE TRY USING A DIFFERENT WORLD.";
+    case 26 :
+        $string2 = "THIS COMPUTER'S ADDRESS HAS BEEN BLOCKED AS IT WAS USED TO BREAK OUR RULES.";
+    case 27 :
+        $string2 = "SERVICE UNAVAILABLE.";
+    case 14 :
+        $int3 = 0;
+        $graphic5 = "loadingwheel,11";
+        $string2 = "THE SERVER IS BEING UPDATED. PLEASE WAIT A FEW MINUTES AND TRY AGAIN.";
+    case 6 :
+        $int3 = 0;
+        $graphic5 = "loadingwheel,11";
+        $string2 = "RUNESCAPE HAS BEEN UPDATED! PLEASE RELOAD THIS PAGE.";
+    case 33 :
+        $int3 = 0;
+        $graphic5 = "loadingwheel,10";
+        $string2 = "YOUR DEMO ACCOUNT IS AWAITING TRANSFER. PLEASE TRY AGAIN IN A MOMENT.";
+    case 3 :
+        $string2 = "INVALID USERNAME OR PASSWORD.";
+        $string4 = "TRY AGAIN";
+        $int6 = 1;
+        $string3 = "FORGOTTEN YOUR PASSWORD?";
+    case 4 :
+        $string2 = "YOUR ACCOUNT HAS BEEN DISABLED. CHECK YOUR MESSAGE CENTRE FOR DETAILS.";
+        $int6 = 1;
+        $string3 = "MESSAGE CENTRE";
+    case 11 :
+        $string2 = "YOUR PASSWORD IS AN EXTREMELY COMMON CHOICE, AND IS VERY WEAK. YOU MUST CHANGE IT BEFORE YOU CAN LOGIN.";
+        $int6 = 1;
+        $string3 = "CHANGE PASSWORD";
+    case 18 :
+        $graphic5 = "loadingwheel,13";
+        $string2 = "YOUR ACCOUNT HAS BEEN LOCKED AS WE SUSPECT IT HAS BEEN STOLEN.";
+        $int6 = 1;
+        $string3 = "RECOVER ACCOUNT";
+    case 30 :
+        $string2 = "THIS IS NOT A MEMBERS' ACCOUNT; PLEASE CHOOSE A 'FREE' WORLD FROM THE WEBSITE TO PLAY ON THIS ACCOUNT.";
+        $int6 = 1;
+        if (unknown_command_5420 = true) {
+            $string3 = "CHOOSE WORLD";
+        } else {
+            $string3 = "SUBSCRIBE";
+        }
+    case 31 :
+        $string2 = "YOU MUST CHANGE YOUR ACCOUNT'S DISPLAY NAME BEFORE YOU CAN LOGIN";
+        $int6 = 1;
+        $string3 = "CHANGE DISPLAY NAME";
+    case 19 :
+        $string2 = "FULLSCREEN IS CURRENTLY A MEMBERS-ONLY FEATURE. TO LOG IN, EITHER EXIT FULLSCREEN VIA THE OPTIONS MENU OR USE A MEMBERS' ACCOUNT.";
+        $int6 = 1;
+        $string3 = "SUBSCRIBE";
+    case 12 :
+        $string2 = "YOU NEED A MEMBERS' ACCOUNT TO LOG IN TO THIS WORLD. PLEASE SUBSCRIBE OR USE A DIFFERENT WORLD.";
+        $int6 = 1;
+        $string3 = "SUBSCRIBE";
+    case 32 :
+        $string2 = "YOUR ACCOUNT HAS NEGATIVE MEMBERSHIP CREDIT. PLEASE LOG INTO THE BILLING SYSTEM TO ADD CREDIT TO YOUR ACCOUNT.";
+        $int6 = 1;
+        $string3 = "ADD CREDIT";
+    case default :
+        $string2 = "UNEXPECTED SERVER RESPONSE. PLEASE TRY USING A DIFFERENT WORLD.";
+}
+~login_popup($int0, $int3, $string2, $int4, $graphic5, $int6, $int7, $string3, $int8, $string4);

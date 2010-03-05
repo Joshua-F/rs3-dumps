@@ -1,0 +1,23 @@
+// 3057
+[clientscript,lobbyscreen_load]
+if_sethide(true, interface_906:com_23);
+~lobby_popup_close;
+~script3058;
+~lobbyscreen_tabswitch(0);
+~lobbyscreen_loginbutton_text(1);
+%varclientstring_277 = "";
+%varclient_547 = 0;
+mes("Welcome to the RuneScape Lobby.");
+mes_typed(^chattype_friendschatnotification, 0, "Welcome to the RuneScape Lobby.");
+if (userdetail_quickchat = true) {
+    mes("Users restricted to quick-chat cannot send messages from the Lobby.");
+    mes_typed(^chattype_friendschatnotification, 0, "Users restricted to quick-chat cannot send messages from the Lobby.");
+}
+~toplevel_minimenu_setup;
+~script2710(interface_906:com_1, interface_906:com_2, interface_906:com_3, interface_911:com_18, interface_911:com_24, interface_911:com_23);
+%varclient_1095 = 0;
+if_setonkey("script1328(event_keycode)", interface_906:com_0);
+if (%varclient_1093 = 1 & userdetail_lobby_membership = 0) {
+    ~lobby_popup(-2000, 0, "TO ENJOY MEMBERS' BENEFITS YOU WILL NEED TO SUBSCRIBE", 0, "loadingwheel,8", 1, 0, "SUBSCRIBE", "Subscribe", 1, "PLAY FREE GAME INSTEAD", "Play Free Game Instead");
+    %varclient_1093 = 0;
+}

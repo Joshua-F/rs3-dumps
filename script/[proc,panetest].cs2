@@ -9,7 +9,7 @@ if ($chattype1 = null) {
 }
 switch_int (%varclient_41) {
     case 1 :
-        if ($chattype1 = ^chattype_gamemessage | $chattype1 = ^chattype_group_same_team | $chattype1 = ^chattype_quickchat_group_same_team) {
+        if ($chattype1 = ^chattype_gamemessage | $chattype1 = ^chattype_spam | $chattype1 = 110 | $chattype1 = ^chattype_snapshotfeedback) {
             return(true);
         }
     case 2 :
@@ -23,19 +23,19 @@ switch_int (%varclient_41) {
         }
     case 4 :
         switch_int ($chattype1) {
-            case ^chattype_friendschat, ^chattype_friendschatnotification, 16, ^chattype_quickchat_friend_chat :
+            case ^chattype_friendschat, ^chattype_friendschatnotification, ^chattype_clan_challenge, ^chattype_quickchat_friend_chat :
                 return(true);
         }
     case 5 :
         switch_int ($chattype1) {
-            case ^chattype_engine, 8, 12, 14, 15, 21 :
+            case ^chattype_tradereq, ^chattype_challenge, ^chattype_trade_notification, 105, 106, ^chattype_ally_request :
                 return(true);
         }
         if (~partnercheck($int0) = true) {
             return(true);
         }
     case 6 :
-        if ($chattype1 = 10 | $chattype1 = 13) {
+        if ($chattype1 = ^chattype_assistreq | $chattype1 = ^chattype_assist_notification) {
             return(true);
         }
 }

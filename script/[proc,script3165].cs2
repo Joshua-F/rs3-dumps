@@ -1,0 +1,109 @@
+// 3165
+[proc,script3165](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
+if (minimenuopen($component3, -1) = true) {
+    if_setontimer("script3164($component0, $component1, $component2, $component3, $component4, $component5)", $component4);
+    return;
+} else {
+    if_setontimer(null, $component4);
+}
+cc_deleteall($component0);
+cc_deleteall($component1);
+cc_deleteall($component2);
+cc_deleteall($component3);
+def_int $int6 = 0;
+def_int $int7 = clan_getchatcount;
+def_int $int8 = 0;
+def_string $string0 = "";
+def_int $int9 = 15;
+def_int $int10 = 17;
+def_int $rgb11 = ^black;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = 0;
+def_string $string1 = "";
+if ($int7 <= 0) {
+    if_settext("Not in chat", interface_912:com_17);
+    if_settext("None", interface_912:com_18);
+    if_settext("Join Clan Chat", interface_912:com_37);
+    if_setop(1, "Join Clan Chat", interface_912:com_35);
+    ~script3076(interface_912:com_36);
+    ~script3026(interface_912:com_37);
+    ~script3166("You are not currently in a Clan Chat.<br><br>Use the button below if you wish to join a Clan Chat.", $component3);
+    if_setsize(if_getwidth(interface_912:com_41), if_getheight(interface_912:com_40), ^setsize_abs, ^setsize_abs, interface_912:com_41);
+} else {
+    if_settext(clan_getchatdisplayname, interface_912:com_17);
+    if_settext(clan_getchatownername, interface_912:com_18);
+    if_settext("Leave Clan Chat", interface_912:com_37);
+    if_setop(1, "Leave Clan Chat", interface_912:com_35);
+    ~script3074(interface_912:com_36);
+    ~script3025(interface_912:com_37);
+    if_setsize(if_getwidth(interface_912:com_41), 4, ^setsize_abs, ^setsize_minus, interface_912:com_41);
+    while ($int8 < $int7) {
+        $int16 = clan_getchatuserrank($int8);
+        $string1 = clan_getchatusername_unfiltered($int8);
+        $string0 = clan_getchatusername($int8);
+        ~cc_add_rect($component3, $int8, if_getwidth($component3), $int9, 0, $int12, ^black, true, 0);
+        if (calc($int8 % 2) = 0) {
+            cc_setcolour(0x201911);
+        } else {
+            cc_setcolour(0x292016);
+        }
+        cc_setonmouseover("script3167($component3, $int8, $int16)");
+        cc_setonmouseleave("script3169($component3, $int8)");
+        if (clan_isself($int8) = false) {
+            cc_setonop("script3170($string1, event_op)");
+            if (friend_test(removetags($string1)) = true) {
+                cc_setop(8, "Remove friend <$string0>");
+            } else if (ignore_test(removetags($string1)) = true) {
+                cc_setop(9, "Remove ignore <$string0>");
+            } else {
+                cc_setop(6, "Add friend <$string0>");
+                cc_setop(7, "Add ignore <$string0>");
+            }
+        }
+        if (clan_getchatrank >= clan_getchatminkick & clan_getchatrank > $int16) {
+            cc_setop(10, "Kick user: <$string0>");
+        }
+        ~cc_add_graphic($component1, $int8, 9, 9, 5, calc($int12 + 2), ~script198($int16), false, false, false, 0);
+        ~cc_add_text($component0, $int8, 0, $int9, $int10, $int12, $string0, ^white, p11_full, ^settextalign_left, ^settextalign_centre, 0, true);
+        cc_setsize($int10, $int9, ^setsize_minus, ^setsize_abs);
+        cc_setmaxlines(1);
+        $int13 = clan_getchatuserworld($int8);
+        if ($int13 = 0) {
+            $string0 = "Offline";
+            $rgb11 = ^red;
+        } else {
+            $string0 = clan_getchatuserworldname($int8);
+            if ($int13 = map_world) {
+                $rgb11 = ^green;
+            } else {
+                $rgb11 = ^yellow;
+            }
+        }
+        ~cc_add_text($component2, $int8, 0, $int9, 5, $int12, $string0, $rgb11, p11_full, ^settextalign_left, ^settextalign_centre, 0, true);
+        cc_setsize(5, $int9, ^setsize_minus, ^setsize_abs);
+        cc_setmaxlines(1);
+        $int12 = calc($int12 + $int9);
+        $int8 = calc($int8 + 1);
+    }
+    $int14 = calc(if_getheight($component4) / $int9 + 1);
+    if ($int14 > $int7) {
+        while ($int8 < $int14) {
+            ~cc_add_rect($component3, $int8, if_getwidth($component3), $int9, 0, $int12, ^black, true, 0);
+            if (calc($int8 % 2) = 0) {
+                cc_setcolour(0x201911);
+            } else {
+                cc_setcolour(0x292016);
+            }
+            $int12 = calc($int12 + $int9);
+            $int8 = calc($int8 + 1);
+        }
+        $int15 = if_getheight($component4);
+    } else {
+        $int15 = $int12;
+    }
+    if_setscrollsize(0, $int15, $component4);
+    ~scrollbar_vertical($component5, $component4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+}

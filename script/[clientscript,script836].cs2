@@ -1,8 +1,17 @@
 // 836
-[clientscript,script836]
-def_int $int0 = getwindowmode;
-def_int $int1 = -1;
-if ($int0 ! 3) {
-    $int1 = detailget_toolkit;
-    ~graphics_options_rebuild($int1, $int0, ~graphics_options_reviewoptions($int1), 1);
+[clientscript,script836](component $component0, int $int1)
+def_int $int2 = calc(clientclock - $int1);
+def_int $int3 = 0;
+if ($int2 <= 20) {
+    $int3 = calc(1 * $int2 + 50);
+    if_setposition(43, $int3, ^setpos_abs_left, ^setpos_abs_top, interface_548:com_31);
+    return;
+}
+if_sethide(true, interface_548:com_31);
+if_setposition(43, 50, ^setpos_abs_left, ^setpos_abs_top, interface_548:com_31);
+if_setontimer(null, $component0);
+if (%varplayerbit_7230 > 999999) {
+    if_settext("<tostring(calc(%varplayerbit_7230 / 1000000))>mil. xp", interface_548:com_39);
+} else {
+    if_settext("<tostring(%varplayerbit_7230)>xp", interface_548:com_39);
 }

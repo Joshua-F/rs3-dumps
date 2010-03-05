@@ -16,8 +16,8 @@ if_setscrollsize(0, 0, interface_594:com_94);
 if_setscrollpos(0, 0, interface_594:com_94);
 while ($int1 >= 0) {
     $chattype3 = chat_gethistorytype($int1);
-    if ($chattype3 ! ^chattype_gamemessage & $chattype3 ! ^chattype_friendschatnotification & $chattype3 ! 12 & $chattype3 ! 13 & compare(chat_gethistoryname($int1), "") ! 0 & compare(chat_gethistorymessage($int1), "") ! 0) {
-        if (compare(removetags(chat_gethistoryname($int1)), chat_playername) ! 0 & $chattype3 ! ^chattype_privatechatout) {
+    if ($chattype3 ! ^chattype_gamemessage & $chattype3 ! ^chattype_friendschatnotification & $chattype3 ! ^chattype_trade_notification & $chattype3 ! ^chattype_assist_notification & compare(chat_gethistoryname($int1), "") ! 0 & compare(chat_gethistorymessage($int1), "") ! 0) {
+        if (compare(removetags(chat_gethistoryname($int1)), chat_playername_unfiltered) ! 0 & $chattype3 ! ^chattype_privatechatout) {
             $int4 = 1;
             cc_create(interface_594:com_93, ^iftype_rectangle, if_getnextsubid(interface_594:com_93));
             cc_setposition(0, calc($int2 * 14), ^setpos_abs_left, ^setpos_abs_top);
@@ -44,7 +44,7 @@ while ($int1 >= 0) {
             cc_settext("To <chat_gethistoryname($int1)>: <chat_gethistorymessage($int1)>");
         }
         cc_setcolour(0x777777);
-        if (compare(removetags(chat_gethistoryname($int1)), chat_playername) ! 0 & $chattype3 ! ^chattype_privatechatout) {
+        if (compare(removetags(chat_gethistoryname($int1)), chat_playername_unfiltered) ! 0 & $chattype3 ! ^chattype_privatechatout) {
             cc_setopbase(removetags(chat_gethistoryname($int1)));
             cc_setop(1, "Report");
             cc_setonop("script234(event_comsubid)");
