@@ -1,22 +1,30 @@
 // 2945
 [proc,login_dologin]
-if (%varclient_174 ! 4) {
-    %varclient_1089 = %varclient_174;
-}
-~login_popup_close;
+%varclient_1100 = -1;
 if (%varclient_174 = 1) {
+    if (~script2192 = false) {
+        return;
+    }
+    if (unknown_command_5620 = 0) {
+        %varclient_1089 = 1;
+        unknown_command_5619(0);
+        ~script2959;
+        return;
+    } else {
+        ~script3231(-1000, 0, "THERE IS ALREADY A DEMO ACCOUNT ON THIS COMPUTER. WOULD YOU LIKE TO CONTINUE FROM WHERE YOU LEFT OFF?", 0, "loadingwheel,10", 1, 1, "NO - ERASE AND START OVER", 1, "YES - CONTINUE DEMO");
+    }
     return;
 }
-if (string_length(%varclientstring_32) = 0) {
-    %varclient_174 = 2;
-    return;
-}
-if (string_length(%varclientstring_33) = 0) {
-    %varclient_174 = 3;
+if (string_length(%varclientstring_32) = 0 | string_length(%varclientstring_33) = 0) {
+    if (%varclient_1093 = 1) {
+        ~login_open(3);
+    } else {
+        ~login_open(2);
+    }
     return;
 }
 if (unknown_command_5420 = true & ~script1299 = 1 & %varclient_547 = 0) {
-    %varclient_174 = 28;
+    %varclient_174 = 11;
     if_sethide(false, interface_744:com_9);
     sound_jingle(jingle_349, 0);
     if (~script1183 = 1) {
@@ -31,12 +39,13 @@ if (unknown_command_5420 = true & ~script1299 = 1 & %varclient_547 = 0) {
 }
 %varclient_200 = 0;
 %varclient_201 = 0;
-if_settext("Performing login...", interface_596:com_80);
-if_setonclick(null, interface_596:com_68);
+if_settext("Performing login...", interface_596:com_87);
+if_setonclick(null, interface_596:com_75);
 ~login_popup(-3, 0, "LOGGING IN<br>PLEASE WAIT", 1, null, 0, -1, "", 0, "");
-if (unknown_command_5420 = false) {
-    unknown_command_5615(%varclientstring_32, %varclientstring_33);
-} else {
+%varclient_1100 = -3;
+if (unknown_command_5420 = true) {
     login_request(%varclientstring_32, %varclientstring_33, 0);
+} else {
+    unknown_command_5615(%varclientstring_32, %varclientstring_33);
 }
-if_setontimer("login_reply", interface_596:com_68);
+if_setontimer("login_reply", interface_596:com_75);

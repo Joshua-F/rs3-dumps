@@ -1,0 +1,36 @@
+// 3228
+[proc,script3228](int $int0, component $component1, component $component2, component $component3, int $int4)
+~create_error("", $component1, $component2);
+if_setgraphic(null, $component3);
+def_string $string0 = "";
+switch_int ($int0) {
+    case 6 :
+        $string0 = %varclientstring_124;
+    case 7 :
+        $string0 = %varclientstring_125;
+}
+def_int $int5 = string_length($string0);
+if ($int5 <= 0) {
+    return;
+}
+if ($int5 < 5) {
+    if_setgraphic(login_cross, $component3);
+    ~create_error("Password is too short - it must be at least 5 characters long.", $component1, $component2);
+    return;
+} else if ($int5 > 20) {
+    if_setgraphic(login_cross, $component3);
+    ~create_error("Password is too long - it must be no more than 20 characters.", $component1, $component2);
+    return;
+} else if (~script2202($string0) = true) {
+    if_setgraphic(login_cross, $component3);
+    ~create_error("Passwords may only contain letters and numbers.", $component1, $component2);
+    return;
+} else if (compare($string0, %varclientstring_122) = 0) {
+    if_setgraphic(login_cross, $component3);
+    ~create_error("Your password is too similar to your username.", $component1, $component2);
+    return;
+} else if ($int4 = 1 & compare(%varclientstring_124, %varclientstring_125) ! 0 & string_length(%varclientstring_124) > 0 & string_length(%varclientstring_125) > 0) {
+    if_setgraphic(login_cross, $component3);
+    ~create_error("Please make sure both passwords match.", $component1, $component2);
+    return;
+}

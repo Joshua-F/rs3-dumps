@@ -14,12 +14,15 @@ def_int $int5 = 0;
 def_int $int6 = 0;
 def_struct $struct7 = null;
 def_int $int8 = -1;
-if (map_members = true) {
+if (~script2047 = 1) {
+    %varclient_693 = 3;
+} else if (map_members = true) {
     %varclient_693 = %varplayerbit_4536;
 } else {
     %varclient_693 = 0;
 }
 %varclient_694 = %varplayerbit_4538;
+%varclient_1103 = %varplayerbit_7264;
 %varclient_692 = %varplayerbit_4537;
 %varclient_272 = enum_getoutputcount($enum2);
 while ($int6 < %varclient_272) {
@@ -38,15 +41,21 @@ while ($int6 < %varclient_272) {
                 if (~ql4_getprogress($int5) = 0) {
                     cc_setop(1, "View Quest Overview");
                     cc_setop(2, "View Quest Journal");
-                    cc_setop(3, "Set Objective");
+                    if (~script2047 = 0) {
+                        cc_setop(3, "Set Objective");
+                    }
                 } else {
                     cc_setop(1, "View Quest Journal");
                     cc_setop(2, "View Quest Overview");
-                    cc_setop(3, "Set Objective");
+                    if (~script2047 = 0) {
+                        cc_setop(3, "Set Objective");
+                    }
                 }
             } else {
                 cc_setop(1, "View Quest Journal");
-                cc_setop(2, "Set Objective");
+                if (~script2047 = 0) {
+                    cc_setop(2, "Set Objective");
+                }
             }
         }
         cc_settext(struct_param($struct7, param_845));
@@ -77,10 +86,10 @@ while ($int5 < calc(%varclient_273 + 10)) {
     $int5 = calc($int5 + 1);
 }
 if (struct_param($struct1, param_692) = 0) {
-    ~ql4_sort($int0, %varclient_693, %varclient_694, %varclient_692);
+    ~ql4_sort($int0, %varclient_693, %varclient_694, %varclient_692, %varclient_1103);
 } else if (struct_param($struct1, param_692) = 1) {
-    ~ql4_sort($int0, 1, 0, 0);
-    if_setonvartransmit("script2780($int0, 1, 0, 0){varplayer_1384, varplayer_1402}", $component3);
+    ~ql4_sort($int0, 1, 0, 0, 0);
+    if_setonvartransmit("script2780($int0, 1, 0, 0, 0){varplayer_1384, varplayer_1402}", $component3);
 }
 ~scrollbar_vertical($component4, $component3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 if ($int8 ! -1) {

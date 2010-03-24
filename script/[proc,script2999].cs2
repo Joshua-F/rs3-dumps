@@ -35,7 +35,11 @@ switch_int (userdetail_lobby_emailstatus) {
         if_settext("Your account no longer has a registered email address. Click <col=0166ff><u=0166ff>here</u></col> to register again.", interface_907:com_37);
         $string1 = "set_address.ws";
 }
-if_setonclick("lobbyscreen_link($string0, $string1, true)", interface_907:com_37);
+if (string_length($string1) > 0) {
+    if_setonclick("lobbyscreen_link($string0, $string1, true)", interface_907:com_37);
+} else {
+    if_setonclick(null, interface_907:com_37);
+}
 def_int $int0 = userdetail_lobby_recoveryday;
 $string0 = "recovery_questions";
 if ($int0 = 0) {
@@ -80,6 +84,8 @@ if ($int2 > 2) {
     ~script3008(~script3011(3));
     if_settext("<tostring($int2)> DAYS", interface_907:com_49);
     if_settext("You have <tostring($int2)> days of member credit remaining. Click <col=0166ff><u=0166ff>here</u></col> to view your account information. Make sure you play on a members' world to enjoy all of your members' benefits.", interface_907:com_50);
+    $string0 = "billing_core";
+    $string1 = "userdetails.ws";
 } else if ($int2 > 0) {
     if_setgraphic(graphic_2672, interface_907:com_44);
     ~script3010(~script3011(3));
@@ -90,9 +96,14 @@ if ($int2 > 2) {
         if_settext("<tostring($int2)> DAYS", interface_907:com_49);
         if_settext("You have <tostring($int2)> days of member credit remaining. Credit low! Renew now to avoid losing member status. Click <col=0166ff><u=0166ff>here</u></col> to renew.", interface_907:com_50);
     }
+    $string0 = "dob";
+    $string1 = "set_members_dob.ws";
 } else {
     if_setgraphic(graphic_2672, interface_907:com_44);
     ~script3010(~script3011(3));
     if_settext("0 DAYS", interface_907:com_49);
     if_settext("You are not a member. Members get loads of extra benefits and features. Click <col=0166ff><u=0166ff>here</u></col> to become a member.", interface_907:com_50);
+    $string0 = "dob";
+    $string1 = "set_members_dob.ws";
 }
+if_setonclick("lobbyscreen_link($string0, $string1, true)", interface_907:com_50);

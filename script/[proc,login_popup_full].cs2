@@ -1,0 +1,71 @@
+// 3232
+[proc,login_popup_full](int $int0, int $int1, string $string0, int $int2, graphic $graphic3, int $int4, int $int5, string $string1, int $int6, string $string2, int $int7)
+if (if_gethide(interface_596:com_19) = false) {
+    return;
+}
+if (%varclient_174 ! 4) {
+    %varclient_1089 = %varclient_174;
+}
+%varclient_174 = 4;
+def_int $int8 = 250;
+if ($int4 = 1) {
+    $int8 = max(250, calc(stringwidth($string1, menu_font_small) + 36));
+    if (calc($int8 % 2) > 0) {
+        $int8 = calc($int8 + 1);
+    }
+}
+if_setsize($int8, 135, ^setsize_abs, ^setsize_abs, interface_596:com_27);
+def_int $int9 = calc(paraheight($string0, if_getwidth(interface_596:com_30), menu_font_small) * 16 + 5);
+if_setsize(20, $int9, ^setsize_minus, ^setsize_abs, interface_596:com_30);
+if_settext($string0, interface_596:com_30);
+switch_int ($int1) {
+    case 0 :
+        if_setcolour(0x271c00, interface_596:com_41);
+        if_setcolour(^black, interface_596:com_42);
+    case 1 :
+        if_setcolour(0x72311f, interface_596:com_41);
+        if_setcolour(0xff8c60, interface_596:com_42);
+}
+if ($int2 = 1) {
+    %varclient_1092 = calc(clientclock + 8);
+    if_setgraphic("loadingwheel,0", interface_596:com_29);
+    if_setontimer("login_popup_throbber", interface_596:com_29);
+} else {
+    %varclient_1092 = 0;
+    if_setontimer(null, interface_596:com_29);
+    if_setgraphic($graphic3, interface_596:com_29);
+}
+$int9 = calc(if_gety(interface_596:com_30) + $int9);
+if ($int4 = 0 & $int6 = 0) {
+    $int9 = calc($int9 + 12);
+    if_sethide(true, interface_596:com_31);
+    if_sethide(true, interface_596:com_36);
+} else if ($int4 = 1 & $int6 = 0) {
+    $int9 = calc($int9 + 40);
+    if_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_bottom, interface_596:com_31);
+    if_sethide(false, interface_596:com_31);
+    if_sethide(true, interface_596:com_36);
+    ~script2955($string1, interface_596:com_31, interface_596:com_32, interface_596:com_33, interface_596:com_34, $int5);
+} else if ($int4 = 0 & $int6 = 1) {
+    $int9 = calc($int9 + 48);
+    if_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_bottom, interface_596:com_36);
+    if_sethide(false, interface_596:com_36);
+    if_sethide(true, interface_596:com_31);
+    ~script2956($string2, interface_596:com_36, interface_596:com_37, interface_596:com_38, interface_596:com_39);
+} else {
+    $int9 = calc($int9 + 80);
+    if ($int7 = 0) {
+        if_setposition(0, 45, ^setpos_abs_centre, ^setpos_abs_bottom, interface_596:com_31);
+        if_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_bottom, interface_596:com_36);
+    } else {
+        if_setposition(0, 6, ^setpos_abs_centre, ^setpos_abs_bottom, interface_596:com_31);
+        if_setposition(0, 38, ^setpos_abs_centre, ^setpos_abs_bottom, interface_596:com_36);
+    }
+    if_sethide(false, interface_596:com_36);
+    if_sethide(false, interface_596:com_31);
+    ~script2955($string1, interface_596:com_31, interface_596:com_32, interface_596:com_33, interface_596:com_34, $int5);
+    ~script2956($string2, interface_596:com_36, interface_596:com_37, interface_596:com_38, interface_596:com_39);
+}
+if_setsize(if_getwidth(interface_596:com_27), $int9, ^setsize_abs, ^setsize_abs, interface_596:com_27);
+~script2952(interface_596:com_31, interface_596:com_36, $int0);
+if_sethide(false, interface_596:com_19);

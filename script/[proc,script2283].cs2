@@ -1,28 +1,20 @@
 // 2283
-[proc,script2283]
-if (compare(%varclientstring_122, "") = 0) {
-    if_setgraphic(null, interface_673:com_418);
-    if_settext("", interface_673:com_412);
-    ~script2966(interface_673:com_412, interface_673:com_408);
-    return;
-}
-if (compare(%varclientstring_122, %varclientstring_123) = 0) {
-    return;
-}
+[proc,script2283](boolean $boolean0)
 %varclientstring_123 = %varclientstring_122;
-if_settext("", interface_673:com_412);
-~script2966(interface_673:com_412, interface_673:com_408);
-if_setgraphic(null, interface_673:com_418);
-%varclient_734 = -1;
-if (~script2203(%varclientstring_122) = false) {
-    if_setgraphic(login_cross, interface_673:com_418);
-    if_settext("Please supply a valid username.", interface_673:com_412);
-    ~script2966(interface_673:com_412, interface_673:com_408);
-    %varclient_734 = 1;
-    ~script2230(%varclient_174);
+if (string_length(%varclientstring_122) <= 0) {
+    if_setgraphic(null, interface_673:com_117);
+    ~create_error("", interface_673:com_106, interface_673:com_105);
+    ~script3223(0);
     return;
 }
-~script2231(1);
-~script2225;
+~create_error("", interface_673:com_106, interface_673:com_105);
+if_setgraphic(null, interface_673:com_117);
+if (~script2203(%varclientstring_122) = false) {
+    if_setgraphic(login_cross, interface_673:com_117);
+    ~create_error("Please supply a valid username.", interface_673:com_106, interface_673:com_105);
+    ~script3223(0);
+    return;
+}
+~script3208(1);
 unknown_command_5604(%varclientstring_122);
-if_setontimer("script2284", interface_673:com_283);
+if_setontimer("script2284($boolean0)", interface_673:com_5);
