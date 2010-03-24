@@ -1,11 +1,22 @@
 // 943
 [clientscript,script943](int $int0, int $int1, int $int2, int $rgb3)
-%varclient_693 = $int1;
-~ql4_sort($int0, %varclient_693, %varclient_694, %varclient_692);
-~script1349(interface_190:com_16, interface_190:com_14, interface_190:com_15, null, 1);
 def_enum $enum4 = struct_param(enum(int, struct, enum_169, $int0), param_782);
-if (cc_find(interface_190:com_16, 2) = true) {
-    cc_settext(enum(int, string, $enum4, $int1));
-    cc_setcolour($rgb3);
-    cc_setonmouseleave("script1354(interface_190:com_16, 2, $rgb3)");
+if (map_members = false) {
+    mes("More advanced grouping options are available on a members' world.");
+} else if (%varplayer_281 < 1000) {
+    mes("More advanced grouping options will be available when you've finished the Tutorial.");
+} else {
+    if (%varclient_693 = $int1) {
+        %varclient_694 = calc((1 + %varclient_694) % 2);
+    } else {
+        %varclient_693 = $int1;
+        %varclient_694 = 0;
+    }
+    ~ql4_sort($int0, %varclient_693, %varclient_694, %varclient_692, %varclient_1103);
+    ~script1349(interface_190:com_16, interface_190:com_14, interface_190:com_15, null, 1);
+    if (cc_find(interface_190:com_16, 2) = true) {
+        cc_settext(enum(int, string, $enum4, $int1));
+        cc_setcolour($rgb3);
+        cc_setonmouseleave("script1354(interface_190:com_16, 2, $rgb3)");
+    }
 }

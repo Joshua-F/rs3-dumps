@@ -2,23 +2,27 @@
 [clientscript,login_reply]
 def_int $int0 = ~login_getreply;
 if ($int0 = -3) {
-    if_settext("Performing login...", interface_596:com_80);
-    if_setonclick(null, interface_596:com_68);
+    if_settext("Performing login...", interface_596:com_87);
+    if_setonclick(null, interface_596:com_75);
     ~login_popup($int0, 0, "LOGGING IN<br>PLEASE WAIT", 1, null, 0, -1, "", 0, "");
+    %varclient_1100 = -3;
     return;
 }
-~login_popup_close;
+if (%varclient_1100 = -3) {
+    ~login_popup_close;
+}
 def_int $int1 = 0;
 def_string $string0 = "";
 if ($int0 = 21) {
-    if_settext("Performing login...", interface_596:com_80);
-    if_setonclick(null, interface_596:com_68);
+    %varclient_1100 = 21;
+    if_settext("Performing login...", interface_596:com_87);
+    if_setonclick(null, interface_596:com_75);
     if (%varclient_200 = 0) {
         %varclient_200 = login_hoptime;
     }
     %varclient_200 = calc(%varclient_200 - 1);
     if (%varclient_200 <= 0) {
-        if_setontimer(null, interface_596:com_68);
+        if_setontimer(null, interface_596:com_75);
         ~login_dologin;
         return;
     }
@@ -28,15 +32,19 @@ if ($int0 = 21) {
     } else {
         $string0 = "YOU HAVE ONLY JUST LEFT ANOTHER WORLD. YOUR PROFILE WILL BE TRANSFERRED IN<br><tostring($int1)> SECONDS.";
     }
-    ~login_popup($int0, 0, $string0, 0, "loadingwheel,12", 0, -1, "", 0, "");
+    if (if_gethide(interface_596:com_19) = true) {
+        ~login_popup($int0, 0, $string0, 0, "loadingwheel,12", 1, 1, "ABORT LOGIN", 0, "");
+    } else {
+        ~login_popup_text_update($string0);
+    }
     return;
 }
 ~login_popup_close;
 def_int $int2 = 0;
 def_string $string1 = "";
 if ($int0 = 1) {
-    if_settext("Performing login...", interface_596:com_80);
-    if_setonclick(null, interface_596:com_68);
+    if_settext("Performing login...", interface_596:com_87);
+    if_setonclick(null, interface_596:com_75);
     if (%varclient_201 = 0) {
         %varclient_202 = video_advert_play;
     }
@@ -66,15 +74,8 @@ if ($int0 = 1) {
     return;
 }
 ~login_popup_close;
-if (%varclient_1089 = 1) {
-    if_settext("Play Now", interface_596:com_80);
-} else if (%varclient_1093 = 1) {
-    if_settext("Log in", interface_596:com_80);
-} else {
-    if_settext("Login", interface_596:com_80);
-}
-if_setonclick("login_dologin", interface_596:com_68);
-if_setontimer(null, interface_596:com_68);
+if_setonclick("login_dologin", interface_596:com_75);
+if_setontimer(null, interface_596:com_75);
 def_string $string2 = "";
 def_int $int3 = 1;
 def_int $int4 = 0;
@@ -86,14 +87,14 @@ def_int $int8 = 1;
 def_string $string4 = "BACK";
 switch_int ($int0) {
     case -2 :
-        if (%varclient_1089 = 1) {
-            %varclient_174 = 1;
-        } else if (string_length(%varclientstring_32) = 0) {
-            %varclient_174 = 2;
-        } else {
-            %varclient_174 = 3;
-        }
         ~login_popup_close;
+        if (%varclient_174 = 1) {
+            ~login_open(1);
+        } else if (%varclient_1093 = 1) {
+            ~login_open(3);
+        } else {
+            ~login_open(2);
+        }
         return;
     case 29 :
         switch_int (login_disallowresult) {
@@ -206,3 +207,4 @@ switch_int ($int0) {
         $string2 = "UNEXPECTED SERVER RESPONSE. PLEASE TRY USING A DIFFERENT WORLD.";
 }
 ~login_popup($int0, $int3, $string2, $int4, $graphic5, $int6, $int7, $string3, $int8, $string4);
+login_resetreply;

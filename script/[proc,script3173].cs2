@@ -5,8 +5,6 @@ if (minimenuopen(interface_912:com_21, -1) = true) {
     return;
 }
 cc_deleteall(interface_912:com_21);
-if_setscrollsize(0, 0, interface_912:com_21);
-if_setscrollpos(0, 0, interface_912:com_21);
 def_string $string0 = "<col=7fa9ff>";
 def_string $string1 = "<col=ff5256>";
 def_int $int1 = 0;
@@ -28,11 +26,18 @@ while ($int1 < 100) {
     }
     $int1 = calc($int1 + 1);
 }
-cc_deleteall(interface_912:com_22);
-def_int $int4 = 0;
-if ($int2 > calc(if_getheight(interface_912:com_21) / 15)) {
-    $int4 = calc($int2 * 15);
+def_int $int4 = calc(if_getheight(interface_912:com_21) / 15);
+$int1 = 0;
+def_int $int5 = 0;
+if ($int2 < $int4) {
+    $int5 = calc($int4 - $int2);
+    while ($int1 < $int5) {
+        $int2 = ~script3174($int2, "", 0, "", "", ^chattype_gamemessage);
+        $int1 = calc($int1 + 1);
+    }
 }
-if_setscrollsize(0, $int4, interface_912:com_21);
-if_setscrollpos(0, $int4, interface_912:com_21);
-~scrollbar_vertical(interface_912:com_22, interface_912:com_21, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+def_int $int6 = max(calc($int2 * 15), calc($int4 * 15));
+if_setscrollsize(0, $int6, interface_912:com_21);
+~scrollbar_resize(interface_912:com_22, interface_912:com_21, calc(%varclient_1124 + if_getscrollheight(interface_912:com_21) - %varclient_1125));
+%varclient_1124 = if_getscrolly(interface_912:com_21);
+%varclient_1125 = if_getscrollheight(interface_912:com_21);

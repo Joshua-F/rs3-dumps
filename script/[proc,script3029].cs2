@@ -22,6 +22,9 @@ def_int $int11 = 15;
 def_int $int12 = 0;
 def_int $int13 = 5;
 def_int $rgb14 = ^black;
+def_int $int15 = 0;
+def_int $int16 = 0;
+def_string $string3 = "";
 if ($int6 = -2) {
     ~script3038("Loading Friends List.<br><br>Please wait.", $component3);
     if_setsize(if_getwidth(interface_909:com_18), if_getheight(interface_909:com_23), ^setsize_abs, ^setsize_abs, interface_909:com_18);
@@ -39,8 +42,17 @@ if ($int6 = -2) {
         } else {
             cc_setcolour(0x292016);
         }
-        cc_setonmouseover("script3030($component3, $int7, $string1)");
-        cc_setonmouseleave("script3035($component3, $int7)");
+        cc_setonmouseover("script3030($component3, $int7)");
+        cc_setonmouseleave("script3035");
+        if (string_length($string1) > 0) {
+            $int16 = calc(stringwidth("Last known as: <$string1>", p11_full) + 8);
+            if ($int16 > if_getwidth(interface_909:com_6)) {
+                $string3 = "Last known as:<br><$string1>";
+            } else {
+                $string3 = "Last known as: <$string1>";
+            }
+            cc_setonmouserepeat("script2467(event_com, event_comsubid, $string3, event_mousex, event_mousey, interface_909:com_28, interface_909:com_19, interface_909:com_22, p11_full)");
+        }
         cc_setopbase($string0);
         if ($int9 > 0) {
             cc_setop(1, "Message");
@@ -96,8 +108,18 @@ if ($int6 = -2) {
     } else {
         $int12 = $int8;
     }
-    if_setscrollsize(0, $int12, $component4);
-    ~scrollbar_vertical($component5, $component4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    if ($int10 <= $int6) {
+        $int15 = if_getscrolly(interface_909:com_28);
+        if_setscrollsize(0, $int12, interface_909:com_28);
+        if ($int15 > $int12) {
+            $int15 = $int12;
+        }
+        ~scrollbar_resize(interface_909:com_34, interface_909:com_28, $int15);
+    } else {
+        if_setscrollsize(0, 0, interface_909:com_28);
+        if_setscrollpos(0, 0, interface_909:com_28);
+        ~scrollbar_resize(interface_909:com_34, interface_909:com_28, 0);
+    }
 } else if ($int6 = 0) {
     ~script3038("You have not added any friends to your list.", $component3);
     if_setsize(if_getwidth(interface_909:com_18), if_getheight(interface_909:com_23), ^setsize_abs, ^setsize_abs, interface_909:com_18);

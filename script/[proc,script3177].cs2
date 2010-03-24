@@ -3,19 +3,23 @@
 %varclientstring_279 = "";
 %varclient_6 = $boolean0;
 %varclient_1094 = 0;
+if_opensubclient(interface_906:com_47, interface_914);
 ~script3181;
 if (string_length($string0) > 0) {
     %varclientstring_277 = removetags($string0);
-    if_settext(%varclientstring_277, interface_914:com_29);
+} else {
+    %varclientstring_277 = "";
 }
-if_opensubclient(interface_906:com_106, interface_914);
-if_sethide(false, interface_906:com_80);
+if_settext(%varclientstring_277, interface_914:com_29);
 if (if_gethide(enum(int, component, enum_941, 3)) = false) {
     ~script3161(0);
 }
 if_setonkey("script3185(event_keycode, event_keychar, event_com)", interface_914:com_29);
 if_setonop("script3182", interface_914:com_18);
-if_setontimer("script3184(event_com)", interface_914:com_29);
+%varclient_1097 = string_length(%varclientstring_277);
+if_setonclick("script1878(event_mousex, interface_914:com_29, interface_914:com_30)", interface_914:com_29);
+~script1879(interface_914:com_29, interface_914:com_30, %varclientstring_277);
+if_sethide(true, interface_914:com_30);
 if (playermod = 1 | staffmodlevel > 0) {
     if (%varclient_6 = false) {
         if_setgraphic("options_radio_buttons_boxed,0", interface_914:com_25);
@@ -38,3 +42,4 @@ if (playermod = 1 | staffmodlevel > 0) {
     if_setposition(299, 82, ^setpos_abs_left, ^setpos_abs_top, interface_914:com_18);
     if_sethide(true, interface_914:com_23);
 }
+if_sethide(false, interface_906:com_21);
