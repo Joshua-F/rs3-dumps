@@ -3124,6 +3124,7 @@ readyanim=seq_7718,seq_7719
 readyanim=seq_3211,seq_3210
 
 [bas_809]
+runanim=seq_8326
 readyanim=seq_3212,seq_3210
 
 [bas_810]
@@ -5137,6 +5138,7 @@ readyanim=seq_8344,seq_8343
 readyanim=seq_8346,seq_8348
 
 [bas_1342]
+runanim=seq_8326
 hillrotate=24,24
 readyanim=seq_8324,seq_8326
 
@@ -6749,4 +6751,7 @@ readyanim=null,seq_11411
 
 [bas_1716]
 readyanim=null,seq_6120
+
+[bas_1717]
+readyanim=seq_10814,seq_10812
 
