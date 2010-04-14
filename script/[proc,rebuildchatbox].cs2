@@ -100,6 +100,8 @@ while ($int1 < 100) {
                 }
             case ^chattype_ally_request :
                 if_settext("<col=7e3200><chat_gethistoryname($int1)> <chat_gethistorymessage($int1)>", $component3);
+            case ^chattype_dungeon_invite, 112 :
+                if_settext("<col=7e3200><chat_gethistoryname($int1)> <chat_gethistorymessage($int1)>", $component3);
         }
         if_clearops($component3);
         if_setonop("chat_op(event_op, unknown_command_5019($int1), $int1)", $component3);
@@ -125,6 +127,10 @@ while ($int1 < 100) {
                 if_setop(2, "Accept challenge", $component3);
             case ^chattype_assistreq :
                 if_setop(3, "Give assistance", $component3);
+            case ^chattype_dungeon_invite :
+                if_setop(4, "Open invitation", $component3);
+            case 112 :
+                if_setop(3, "Vote", $component3);
             case ^chattype_quickchat_public, ^chattype_quickchat_private_incoming, ^chattype_quickchat_friend_chat :
                 if (compare(removetags(chat_playername_unfiltered), removetags(chat_gethistoryname($int1))) ! 0) {
                     if (friend_test(unknown_command_5019($int1)) = true) {

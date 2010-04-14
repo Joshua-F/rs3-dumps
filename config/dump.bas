@@ -8473,3 +8473,398 @@ readyanim=null,seq_6120
 [bas_1717]
 readyanim=seq_10814,seq_10812
 
+// 1718
+[bas_1718]
+readyanim=seq_13348,null
+
+// 1719
+[bas_1719]
+readyanim=seq_12984,seq_12985
+
+// 1720
+[bas_1720]
+readyanim=seq_13597,seq_13598
+
+// 1721
+[bas_1721]
+readyanim=seq_13015,null
+
+// 1722
+[bas_1722]
+readyanim=seq_13395,seq_13395
+
+// 1723
+[bas_1723]
+readyanim=null,seq_13059
+randomreadyanim=seq_13057,75
+randomreadyanim=seq_13058,25
+
+// 1724
+[bas_1724]
+readyanim=seq_13064,null
+
+// 1725
+[bas_1725]
+readyanim=seq_13299,null
+
+// 1726
+[bas_1726]
+readyanim=null,seq_13293
+randomreadyanim=seq_13291,205
+randomreadyanim=seq_13292,50
+
+// 1727
+[bas_1727]
+readyanim=seq_13295,null
+
+// 1728
+[bas_1728]
+readyanim=seq_13068,null
+
+// 1729
+[bas_1729]
+readyanim=seq_13072,null
+
+// 1730
+[bas_1730]
+readyanim=seq_13358,null
+
+// 1731
+[bas_1731]
+readyanim=seq_13381,null
+
+// 1732
+[bas_1732]
+readyanim=seq_13357,null
+
+// 1733
+[bas_1733]
+readyanim=seq_13376,null
+
+// 1734
+[bas_1734]
+readyanim=seq_13361,null
+
+// 1735
+[bas_1735]
+readyanim=seq_13358,null
+
+// 1736
+[bas_1736]
+readyanim=seq_13364,null
+
+// 1737
+[bas_1737]
+readyanim=seq_13360,null
+
+// 1738
+[bas_1738]
+readyanim=seq_13357,null
+
+// 1739
+[bas_1739]
+readyanim=seq_13363,null
+
+// 1740
+[bas_1740]
+readyanim=seq_13257,seq_13258
+
+// 1741
+[bas_1741]
+readyanim=seq_13256,seq_13256
+
+// 1742
+[bas_1742]
+readyanim=seq_13167,seq_13168
+
+// 1743
+[bas_1743]
+walkanim_b=seq_820
+walkanim_l=seq_821
+walkanim_r=seq_822
+readyanim=null,seq_819
+randomreadyanim=seq_13179,80
+randomreadyanim=seq_13180,20
+
+// 1744
+[bas_1744]
+walkturn_l=seq_13182
+walkturn_r=seq_13182
+readyanim=null,seq_13182
+randomreadyanim=seq_13181,80
+
+// 1745
+[bas_1745]
+readyanim=null,null
+randomreadyanim=seq_13183,70
+randomreadyanim=seq_13184,20
+randomreadyanim=seq_13185,10
+
+// 1746
+[bas_1746]
+walkturn_l=seq_13189
+walkturn_r=seq_13189
+readyanim=null,seq_13189
+randomreadyanim=seq_13187,80
+randomreadyanim=seq_13188,20
+
+// 1747
+[bas_1747]
+walkanim_b=seq_13219
+walkanim_l=seq_13222
+walkanim_r=seq_13223
+runanim=seq_13220
+readyanim=seq_13217,seq_13218
+
+// 1748
+[bas_1748]
+readyanim=null,null
+randomreadyanim=seq_13412,80
+randomreadyanim=seq_13413,20
+
+// 1749
+[bas_1749]
+runanim=seq_13673
+readyanim_l=seq_13673
+readyanim_r=seq_13673
+walkturn_l=seq_13673
+walkturn_r=seq_13673
+walkanim_l=seq_13673
+walkanim_r=seq_13673
+readyanim=seq_13672,seq_13673
+
+// 1750
+[bas_1750]
+runanim=seq_13673
+readyanim_l=seq_13673
+readyanim_r=seq_13673
+walkturn_l=seq_13673
+walkturn_r=seq_13673
+walkanim_l=seq_13673
+walkanim_r=seq_13673
+readyanim=seq_13672,seq_13673
+
+// 1751
+[bas_1751]
+runanim=seq_13667
+readyanim_l=seq_13666
+readyanim_r=seq_13666
+walkturn_l=seq_13666
+walkturn_r=seq_13666
+walkanim_l=seq_13666
+walkanim_r=seq_13666
+readyanim=seq_13613,seq_13666
+
+// 1752
+[bas_1752]
+runanim=seq_13681
+readyanim_l=seq_13680
+readyanim_r=seq_13680
+walkturn_l=seq_13680
+walkturn_r=seq_13680
+walkanim_l=seq_13680
+walkanim_r=seq_13680
+readyanim=seq_13679,seq_13680
+
+// 1753
+[bas_1753]
+runanim=seq_13681
+readyanim_l=seq_13680
+readyanim_r=seq_13680
+walkturn_l=seq_13680
+walkturn_r=seq_13680
+walkanim_l=seq_13680
+walkanim_r=seq_13680
+readyanim=seq_13679,seq_13680
+
+// 1754
+[bas_1754]
+runanim=seq_13289
+readyanim_l=seq_13680
+readyanim_r=seq_13680
+walkturn_l=seq_13680
+walkturn_r=seq_13680
+walkanim_l=seq_13680
+walkanim_r=seq_13680
+readyanim=seq_13679,seq_13680
+
+// 1755
+[bas_1755]
+walkanim_b=seq_13157
+walkanim_l=seq_13157
+walkanim_r=seq_13157
+readyanim_l=seq_13157
+readyanim_r=seq_13157
+readyanim=seq_13156,seq_13157
+
+// 1756
+[bas_1756]
+walkanim_b=seq_13162
+walkanim_l=seq_13162
+walkanim_r=seq_13162
+readyanim_l=seq_13162
+readyanim_r=seq_13162
+readyanim=seq_13161,seq_13162
+
+// 1757
+[bas_1757]
+readyanim=seq_13358,seq_13358
+
+// 1758
+[bas_1758]
+readyanim=seq_13361,seq_13361
+
+// 1759
+[bas_1759]
+readyanim=seq_13364,seq_13364
+
+// 1760
+[bas_1760]
+readyanim=seq_13357,seq_13357
+
+// 1761
+[bas_1761]
+readyanim=seq_13360,seq_13360
+
+// 1762
+[bas_1762]
+readyanim=seq_13363,seq_13363
+
+// 1763
+[bas_1763]
+walkturn_l=seq_13405
+walkturn_r=seq_13405
+readyanim=seq_13395,seq_13405
+
+// 1764
+[bas_1764]
+readyanim=seq_13410,seq_13410
+
+// 1765
+[bas_1765]
+readyanim=seq_13417,seq_841
+
+// 1766
+[bas_1766]
+runanim=seq_13294
+readyanim=seq_13291,seq_13293
+
+// 1767
+[bas_1767]
+runanim=seq_13304
+walkanim_b=seq_13306
+runanim_b=seq_13305
+runanim_l=seq_13307
+runanim_r=seq_13308
+walkanim_l=seq_13309
+walkanim_r=seq_13310
+readyanim=seq_13302,seq_13303
+
+// 1768
+[bas_1768]
+walkanim_b=seq_13334
+walkanim_l=seq_13334
+walkanim_r=seq_13334
+readyanim=seq_13333,seq_13334
+
+// 1769
+[bas_1769]
+readyanim=seq_13418,seq_13419
+
+// 1770
+[bas_1770]
+readyanim=seq_13421,seq_13421
+
+// 1771
+[bas_1771]
+readyanim_l=seq_12999
+readyanim_r=seq_12999
+walkturn_l=seq_12999
+walkturn_r=seq_12999
+walkanim_l=seq_12999
+walkanim_r=seq_12999
+readyanim=null,seq_12999
+randomreadyanim=seq_12998,95
+randomreadyanim=seq_13002,5
+
+// 1772
+[bas_1772]
+readyanim=seq_13445,seq_13445
+
+// 1773
+[bas_1773]
+readyanim=null,seq_13467
+randomreadyanim=seq_13465,95
+randomreadyanim=seq_13466,5
+
+// 1774
+[bas_1774]
+readyanim=seq_13476,seq_13477
+
+// 1775
+[bas_1775]
+readyanim=seq_13487,seq_13488
+
+// 1776
+[bas_1776]
+readyanim=seq_13516,seq_13516
+
+// 1777
+[bas_1777]
+readyanim=seq_13767,seq_13768
+
+// 1778
+[bas_1778]
+readyanim=seq_13767,seq_13769
+
+// 1779
+[bas_1779]
+walkanim_b=seq_13648
+walkanim_l=seq_13649
+walkanim_r=seq_13650
+readyanim=seq_13646,seq_13647
+
+// 1780
+[bas_1780]
+readyanim=seq_13651,null
+
+// 1781
+[bas_1781]
+runanim=seq_13704
+readyanim=null,seq_13699
+randomreadyanim=seq_13696,60
+randomreadyanim=seq_13697,10
+randomreadyanim=seq_13698,30
+
+// 1782
+[bas_1782]
+readyanim_l=seq_13714
+readyanim_r=seq_13714
+walkturn_l=seq_13714
+walkturn_r=seq_13714
+walkanim_l=seq_13714
+walkanim_r=seq_13714
+readyanim=null,seq_13714
+randomreadyanim=seq_13712,80
+randomreadyanim=seq_13713,20
+
+// 1783
+[bas_1783]
+readyanim=seq_13731,seq_13739
+
+// 1784
+[bas_1784]
+readyanim=seq_13763,seq_13761
+
+// 1785
+[bas_1785]
+readyanim=seq_13794,seq_13793
+
+// 1786
+[bas_1786]
+readyanim=seq_13795,seq_13796
+
+// 1787
+[bas_1787]
+readyanim=seq_13794,seq_13793
+
