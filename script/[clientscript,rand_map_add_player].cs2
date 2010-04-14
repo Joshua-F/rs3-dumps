@@ -1,0 +1,38 @@
+// 3279
+[clientscript,rand_map_add_player](int $int0, int $int1, int $int2, string $string0)
+if ($int0 = -1 | $int1 = -1) {
+    return;
+}
+def_int $int3 = 0;
+def_int $int4 = 0;
+switch_int (%varplayerbit_7373) {
+    case 1 :
+        $int3 = calc(if_getwidth(interface_942:com_3) / 4);
+        $int4 = calc(if_getheight(interface_942:com_3) / 4);
+    case 2 :
+        $int3 = calc(if_getwidth(interface_942:com_3) / 4);
+}
+cc_create(interface_942:com_5, ^iftype_graphic, %varclient_1152);
+%varclient_1152 = calc(%varclient_1152 + 1);
+switch_int ($int2) {
+    case 1 :
+        cc_setgraphic("rand_map_player_pips,0");
+        cc_setposition(calc($int0 * 32 + 6 + $int3), calc($int1 * 32 + 20 + $int4), ^setpos_abs_left, ^setpos_abs_bottom);
+    case 2 :
+        cc_setgraphic("rand_map_player_pips,1");
+        cc_setposition(calc($int0 * 32 + 20 + $int3), calc($int1 * 32 + 20 + $int4), ^setpos_abs_left, ^setpos_abs_bottom);
+    case 3 :
+        cc_setgraphic("rand_map_player_pips,2");
+        cc_setposition(calc($int0 * 32 + 13 + $int3), calc($int1 * 32 + 13 + $int4), ^setpos_abs_left, ^setpos_abs_bottom);
+    case 4 :
+        cc_setgraphic("rand_map_player_pips,3");
+        cc_setposition(calc($int0 * 32 + 6 + $int3), calc($int1 * 32 + 6 + $int4), ^setpos_abs_left, ^setpos_abs_bottom);
+    case 5 :
+        cc_setgraphic("rand_map_player_pips,4");
+        cc_setposition(calc($int0 * 32 + 20 + $int3), calc($int1 * 32 + 6 + $int4), ^setpos_abs_left, ^setpos_abs_bottom);
+}
+cc_setsize(11, 11, ^setsize_abs, ^setsize_abs);
+cc_setonmouserepeat("rand_map_tooltip(event_com, event_comsubid, interface_942:com_7, $string0)");
+cc_setonmouseleave("deltooltip(interface_942:com_7)");
+cc_setfill(true);
+cc_sethide(false);

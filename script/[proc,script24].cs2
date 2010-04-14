@@ -27,12 +27,21 @@ if (~script1566(%varplayerbit_3288, %varplayerbit_3289) = 1) {
     } else {
         cc_setgraphic(graphic_2287);
     }
-} else {
-    cc_setoutline(1);
-    cc_setgraphicshadow(0x604e32);
-    if ($obj1 ! null) {
+} else if ($obj1 ! null) {
+    if ($obj1 = obj_18637 | $obj1 = obj_18638) {
+        cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
+        cc_setposition(0, $int4, ^setpos_abs_centre, ^setpos_abs_top);
+        cc_setoutline(0);
+        if ($obj1 = obj_18637) {
+            cc_setgraphic("magicon2,51");
+        } else {
+            cc_setgraphic("magicon2,50");
+        }
+    } else {
+        cc_setoutline(1);
+        cc_setgraphicshadow(0x604e32);
         cc_setobject($obj1, -1);
-        if (%varplayerbit_3288 = 21) {
+        if (%varplayerbit_3288 = 21 & %varplayerbit_3289 ! 10) {
             cc_setop(1, "Check protection price");
             cc_setonop("script1865(event_op, $obj1)");
             cc_setonmouseover("script1862(event_com, event_comsubid)");
@@ -43,9 +52,9 @@ if (~script1566(%varplayerbit_3288, %varplayerbit_3289) = 1) {
             cc_setonmouseover("script1862(event_com, event_comsubid)");
             cc_setonmouseleave("script1863(event_com, event_comsubid)");
         }
-    } else {
-        cc_setobject(obj_7620, -1);
     }
+} else {
+    cc_setobject(obj_7620, -1);
 }
 cc_setposition(28, $int4, ^setpos_abs_left, ^setpos_abs_top);
 cc_create(interface_499:com_7, ^iftype_text, calc($int3 * 3 + 2));
