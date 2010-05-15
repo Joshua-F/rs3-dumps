@@ -1,15 +1,14 @@
 // 2708
 [proc,script2708](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
-%varclient_1240 = 1;
 %varclientstring_32 = "";
 %varclientstring_33 = "";
 %varclient_547 = 0;
 %varclient_1093 = 0;
 %varclient_1102 = 0;
-if_opensubclient(interface_744:com_31, interface_882);
+if_opensubclient(interface_744:com_33, interface_882);
 ~graphics_options_init(0);
-if_setonclick("loginscreen_setactivemenu(0)", interface_882:com_16);
-if_opensubclient(interface_744:com_7, interface_905);
+if_setonclick("loginscreen_setactivemenu(1)", interface_882:com_22);
+if_opensubclient(interface_744:com_8, interface_905);
 ~script2970;
 %varclient_176 = 0;
 if_setonkey("loginscreen_keypress(event_keycode, event_keychar)", interface_744:com_0);
@@ -17,15 +16,33 @@ if_setonkey("loginscreen_keypress(event_keycode, event_keychar)", interface_744:
 ~cursors_login;
 ~script2928;
 if (%varclient_1095 = 1 & unknown_command_5620 = 1) {
-    %varclient_1090 = 5;
-    %varclient_1091 = 5;
-    ~loginscreen_setactivemenu_full(5, 1);
+    %varclient_1090 = 7;
+    %varclient_1091 = 7;
+    ~loginscreen_setactivemenu_full(7, 1);
 } else if (frombilling = true) {
-    %varclient_1090 = 3;
-    %varclient_1091 = 3;
-    ~loginscreen_setactivemenu_full(3, 1);
+    %varclient_1090 = 4;
+    %varclient_1091 = 4;
+    ~loginscreen_setactivemenu_full(4, 1);
 } else {
-    %varclient_1090 = 0;
-    %varclient_1091 = 0;
-    ~loginscreen_setactivemenu_full(0, 1);
+    if (unknown_command_5420 = true) {
+        %varclient_1240 = 2;
+    }
+    if (%varclient_1240 < 2) {
+        %varclient_1090 = 0;
+        %varclient_1091 = 0;
+        ~loginscreen_setactivemenu_full(0, 1);
+    } else if (unknown_command_5623 = true) {
+        %varclient_1090 = 5;
+        %varclient_1091 = 5;
+        ~loginscreen_setactivemenu_full(5, 1);
+        if (%varclient_1273 = 1) {
+            return;
+        } else {
+            if_setontimer("script3381(interface_975:com_50, 0)", interface_975:com_50);
+        }
+    } else {
+        %varclient_1090 = 1;
+        %varclient_1091 = 1;
+        ~loginscreen_setactivemenu_full(1, 1);
+    }
 }

@@ -7,25 +7,35 @@ def_component $component14 = null;
 def_component $component15 = null;
 def_component $component16 = null;
 def_component $component17 = null;
+def_component $component18 = null;
+def_component $component19 = null;
 if ($int10 = 1) {
-    $component14 = interface_742:com_1;
-    $component15 = interface_742:com_83;
-    $component16 = interface_742:com_88;
-    $component17 = interface_742:com_89;
+    $component14 = interface_742:com_0;
+    $component15 = interface_742:com_16;
+    $component16 = interface_742:com_21;
+    $component17 = interface_742:com_22;
+    $component18 = interface_742:com_20;
+    $component19 = interface_742:com_2;
 } else if ($int10 = 2) {
     $component14 = interface_911:com_0;
-    $component15 = interface_911:com_123;
-    $component16 = interface_911:com_128;
-    $component17 = interface_911:com_129;
+    $component15 = interface_911:com_62;
+    $component16 = interface_911:com_67;
+    $component17 = interface_911:com_68;
+    $component18 = interface_911:com_66;
+    $component19 = interface_911:com_2;
 } else {
     $component14 = interface_882:com_0;
-    $component15 = interface_882:com_138;
-    $component16 = interface_882:com_143;
-    $component17 = interface_882:com_144;
+    $component15 = interface_882:com_1;
+    $component16 = interface_882:com_6;
+    $component17 = interface_882:com_7;
+    $component18 = interface_882:com_5;
+    $component19 = interface_882:com_30;
 }
+def_int $int20 = 0;
 if (cc_find($component0, $int1) = true) {
-    $int11 = ~script1743;
-    $int12 = calc(~script1744 + cc_getheight - 1);
+    $int11 = calc(~script1743 + ~script3365($component19));
+    $int20 = ~script1744;
+    $int12 = calc($int20 + cc_getheight - 1 + ~script3366($component19));
     $int13 = cc_getwidth;
 }
 if (if_gethide($component15) = false & if_getx($component15) = $int11 & if_gety($component15) = $int12) {
@@ -34,54 +44,55 @@ if (if_gethide($component15) = false & if_getx($component15) = $int11 & if_gety(
 cc_deleteall($component16);
 cc_deleteall($component17);
 if_setscrollpos(0, 0, $component16);
-def_enum $enum18 = struct_param($struct5, param_683);
-def_int $int19 = ~graphics_options_detailget($struct5);
-def_int $int20 = ~script829($struct5, $enum18);
-def_int $int21 = 0;
-def_int $int22 = 0;
-while ($int22 <= $int20) {
-    if ($int22 ! $int19) {
+def_enum $enum21 = struct_param($struct5, param_683);
+def_int $int22 = ~graphics_options_detailget($struct5);
+def_int $int23 = ~script829($struct5, $enum21);
+def_int $int24 = 0;
+def_int $int25 = 0;
+while ($int25 <= $int23) {
+    if ($int25 ! $int22) {
         cc_create($component16, ^iftype_text, if_getnextsubid($component16));
         cc_setsize(2, 15, ^setsize_minus, ^setsize_abs);
-        cc_setposition(0, $int21, ^setpos_abs_centre, ^setpos_abs_top);
+        cc_setposition(0, $int24, ^setpos_abs_centre, ^setpos_abs_top);
         cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
         cc_settextfont(p11_full);
         cc_setonmouseover("cc_text_colour_swapper(event_com, event_comsubid, 0x26527b)");
-        if ($int22 < $int20) {
+        if ($int25 < $int23) {
             cc_setcolour(^white);
             cc_setonmouseleave("cc_text_colour_swapper(event_com, event_comsubid, ^white)");
         } else {
             cc_setcolour(0x00b1e1);
             cc_setonmouseleave("cc_text_colour_swapper(event_com, event_comsubid, 0x00b1e1)");
         }
-        if ($enum18 ! null) {
-            cc_settext(enum(int, string, $enum18, $int22));
+        if ($enum21 ! null) {
+            cc_settext(enum(int, string, $enum21, $int25));
         } else {
-            cc_settext(~graphics_options_resolutions($int22));
+            cc_settext(~graphics_options_resolutions($int25));
         }
-        cc_setonclick("script2699($int22, $struct5, $int6, $int7, $int8, $int9, $int10)");
-        $int21 = calc($int21 + cc_getheight);
+        cc_setonclick("script2699($int25, $struct5, $int6, $int7, $int8, $int9, $int10)");
+        $int24 = calc($int24 + cc_getheight);
     }
-    $int22 = calc($int22 + 1);
+    $int25 = calc($int25 + 1);
 }
-$int21 = calc($int21 + 2);
-def_int $int23 = 0;
+$int24 = calc($int24 + 2);
+def_int $int26 = 0;
 if ($int10 = 1) {
-    $int23 = calc(334 - $int12);
+    $int26 = 334;
 } else {
-    $int23 = calc(if_getheight($component14) - $int12);
+    $int26 = if_getheight($component14);
 }
-if ($int23 < $int21) {
-    if_setscrollsize(0, $int21, $component16);
-    if_sethide(false, $component17);
-    ~scrollbar_vertical($component17, $component16, graphic_2217, graphic_2215, graphic_2214, graphic_2216, graphic_2212, graphic_2213);
-    $int21 = $int23;
+def_int $int27 = 1;
+if ($int26 < calc($int12 + $int24)) {
+    $int12 = calc($int20 + 1 - $int24 + ~script3366($component19));
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, $component18);
+    $int27 = 0;
 } else {
+    if_setposition(0, 1, ^setpos_abs_centre, ^setpos_abs_bottom, $component18);
     if_setscrollsize(0, 0, $component16);
     if_sethide(true, $component17);
 }
 if_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top, $component15);
-if_setsize($int13, $int21, ^setsize_abs, ^setsize_abs, $component15);
+if_setsize($int13, $int24, ^setsize_abs, ^setsize_abs, $component15);
 if_sethide(false, $component15);
 if (cc_find($component0, $int2) = true) {
     cc_setgraphic(graphic_2556);
@@ -95,7 +106,9 @@ if (cc_find($component0, $int1) = true) {
     cc_setonmouseleave("script2691(event_com, $int2, false, $int3, 0x5f5b52, false)");
     if (.cc_find($component0, $int3) = true) {
         .cc_setcolour(0xb2aa9f);
-        .cc_setsize(.cc_getwidth, calc(cc_getheight + 5), ^setsize_abs, ^setsize_abs);
+        if ($int27 = 1) {
+            .cc_setsize(.cc_getwidth, calc(cc_getheight + 5), ^setsize_abs, ^setsize_abs);
+        }
     }
 }
 if_setonclick("script2696($component0, $int1, $int2, $int3, $int4, $struct5, $int6, $int7, $int8, $int9, $int10)", $component14);
