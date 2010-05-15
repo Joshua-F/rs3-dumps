@@ -1,10 +1,10 @@
 // 3067
 [clientscript,script3067](int $int0)
 if (worldlist_fetch = false) {
-    if_setontimer("script3067($int0)", interface_906:com_161);
+    if_setontimer("script3067($int0)", interface_906:com_171);
     return;
 } else {
-    if_setontimer(null, interface_906:com_161);
+    if_setontimer(null, interface_906:com_171);
 }
 def_int $int1 = 0;
 def_int $int2 = 0;
@@ -14,24 +14,40 @@ def_string $string1 = "";
 def_int $int4 = 0;
 def_int $int5 = 0;
 def_string $string2 = "";
+def_int $int6 = -1;
 if ($int0 = 1) {
-    $int1 = %varclient_998;
+    $int6 = %varclient_998;
 } else if ($int0 = 2) {
-    $int1 = %varclient_999;
+    $int6 = %varclient_999;
 } else {
     return;
 }
+$int1, $int2, $string0, $int3, $string1, $int4, $int5, $string2 = worldlist_start;
+def_int $int7 = 0;
+while ($int1 ! -1 & $int7 = 0) {
+    if ($int1 = $int6) {
+        $int7 = 1;
+    } else {
+        $int1, $int2, $string0, $int3, $string1, $int4, $int5, $string2 = worldlist_next;
+    }
+}
+if ($int0 = 1) {
+    ~script3382(interface_906:com_173);
+} else if ($int0 = 2) {
+    ~script3382(interface_906:com_174);
+}
 if ($int1 > 0) {
-    $int2, $string0, $int3, $string1, $int4, $int5, $string2 = worldlist_specific($int1);
     if (map_world ! $int1) {
         if (worldlist_switch($int1, $string2) = true) {
             %varclient_547 = 0;
-            ~lobbyscreen_entergame(interface_906:com_160);
+            ~lobbyscreen_entergame(interface_906:com_170);
         } else {
             ~lobbyscreen_loginbutton_text(1);
             ~lobby_popup(-5, 1, "COULD NOT CONNECT YOU TO THAT WORLD. PLEASE CHOOSE ANOTHER.", 0, "loadingwheel,9", 0, -1, "", "", 1, "BACK", "Back");
         }
     } else {
-        ~lobbyscreen_entergame(interface_906:com_160);
+        ~lobbyscreen_entergame(interface_906:com_170);
     }
+} else {
+    ~lobby_popup(-5, 1, "WORLD <tostring($int6)> IS RUNNING IN A DIFFERENT LANGUAGE OR IS UNAVAILABLE.", 0, "loadingwheel,9", 0, -1, "", "", 1, "BACK", "Back");
 }

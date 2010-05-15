@@ -136,12 +136,19 @@ def_int $int37 = 0;
 def_int $int38 = 0;
 def_int $int39 = 0;
 def_string $string6 = "";
+def_int $int40 = 0;
+def_int $int41 = 0;
 $int2 = 0;
 while ($int2 = 0) {
     if ($int17 = -1) {
         $int2 = 1;
     } else {
         $graphic28, $string3, $graphic22, $rgb27, $graphic29, $rgb26, $graphic25, $string4, $string5 = ~script3117($int17, $int18, $int37, $string0, $string1, $int20, $int19);
+        if ($int17 = %varclient_998) {
+            $int40 = 1;
+        } else if ($int17 = %varclient_999) {
+            $int41 = 1;
+        }
         ~cc_add_rect($component4, $int37, if_getwidth($component4), 20, 0, $int38, $rgb26, true, 0);
         ~cc_add_graphic($component5, $int37, 13, 12, 0, calc($int38 + 4), $graphic25, false, false, false, 0);
         cc_setposition(0, calc($int38 + 4), ^setpos_abs_centre, ^setpos_abs_top);
@@ -193,14 +200,99 @@ while ($int2 = 0) {
 if_setscrollsize(0, calc($int38 + if_gety(interface_910:com_62)), interface_910:com_61);
 ~scrollbar_vertical($component16, interface_910:com_61, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 if (%varclient_998 > 0) {
-    ~script3118(%varclient_998, interface_910:com_20, $int35);
+    ~script3118(%varclient_998, interface_910:com_20, $int35, $int40);
 } else {
     ~script3119(interface_910:com_20, 1);
 }
 if (%varclient_999 > 0) {
-    ~script3118(%varclient_999, interface_910:com_21, $int36);
+    ~script3118(%varclient_999, interface_910:com_21, $int36, $int41);
 } else {
     ~script3119(interface_910:com_21, 0);
+}
+if (%varclient_998 > 0 & %varclient_999 > 0) {
+    if ($int40 = 0 & $int41 = 0) {
+        if_sethide(true, interface_910:com_22);
+    } else if ($int40 = 1 & $int41 = 0) {
+        if_setposition(if_getx(interface_910:com_55), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_55);
+        if_setposition(if_getx(interface_910:com_56), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_56);
+        if_setposition(if_getx(interface_910:com_57), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_57);
+        if_setposition(if_getx(interface_910:com_58), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_58);
+        if_setposition(if_getx(interface_910:com_59), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_59);
+        if_setposition(if_getx(interface_910:com_60), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_60);
+        if_setsize(if_getwidth(interface_910:com_55), 20, ^setsize_abs, ^setsize_abs, interface_910:com_55);
+        if_setsize(if_getwidth(interface_910:com_56), 20, ^setsize_abs, ^setsize_abs, interface_910:com_56);
+        if_setsize(if_getwidth(interface_910:com_57), 20, ^setsize_abs, ^setsize_abs, interface_910:com_57);
+        if_setsize(if_getwidth(interface_910:com_58), 20, ^setsize_abs, ^setsize_abs, interface_910:com_58);
+        if_setsize(if_getwidth(interface_910:com_59), 20, ^setsize_abs, ^setsize_abs, interface_910:com_59);
+        if_setsize(if_getwidth(interface_910:com_60), 20, ^setsize_abs, ^setsize_abs, interface_910:com_60);
+        if_sethide(false, interface_910:com_22);
+    } else if ($int40 = 0 & $int41 = 1) {
+        if_setposition(if_getx(interface_910:com_55), 20, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_55);
+        if_setposition(if_getx(interface_910:com_56), 20, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_56);
+        if_setposition(if_getx(interface_910:com_57), 20, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_57);
+        if_setposition(if_getx(interface_910:com_58), 20, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_58);
+        if_setposition(if_getx(interface_910:com_59), 20, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_59);
+        if_setposition(if_getx(interface_910:com_60), 20, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_60);
+        if_setsize(if_getwidth(interface_910:com_55), 20, ^setsize_abs, ^setsize_abs, interface_910:com_55);
+        if_setsize(if_getwidth(interface_910:com_56), 20, ^setsize_abs, ^setsize_abs, interface_910:com_56);
+        if_setsize(if_getwidth(interface_910:com_57), 20, ^setsize_abs, ^setsize_abs, interface_910:com_57);
+        if_setsize(if_getwidth(interface_910:com_58), 20, ^setsize_abs, ^setsize_abs, interface_910:com_58);
+        if_setsize(if_getwidth(interface_910:com_59), 20, ^setsize_abs, ^setsize_abs, interface_910:com_59);
+        if_setsize(if_getwidth(interface_910:com_60), 20, ^setsize_abs, ^setsize_abs, interface_910:com_60);
+        if_sethide(false, interface_910:com_22);
+    } else {
+        if_setposition(if_getx(interface_910:com_55), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_55);
+        if_setposition(if_getx(interface_910:com_56), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_56);
+        if_setposition(if_getx(interface_910:com_57), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_57);
+        if_setposition(if_getx(interface_910:com_58), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_58);
+        if_setposition(if_getx(interface_910:com_59), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_59);
+        if_setposition(if_getx(interface_910:com_60), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_60);
+        if_setsize(if_getwidth(interface_910:com_55), 0, ^setsize_abs, ^setsize_minus, interface_910:com_55);
+        if_setsize(if_getwidth(interface_910:com_56), 0, ^setsize_abs, ^setsize_minus, interface_910:com_56);
+        if_setsize(if_getwidth(interface_910:com_57), 0, ^setsize_abs, ^setsize_minus, interface_910:com_57);
+        if_setsize(if_getwidth(interface_910:com_58), 0, ^setsize_abs, ^setsize_minus, interface_910:com_58);
+        if_setsize(if_getwidth(interface_910:com_59), 0, ^setsize_abs, ^setsize_minus, interface_910:com_59);
+        if_setsize(if_getwidth(interface_910:com_60), 0, ^setsize_abs, ^setsize_minus, interface_910:com_60);
+        if_sethide(false, interface_910:com_22);
+    }
+} else if (%varclient_998 > 0 & %varclient_999 <= 0) {
+    if ($int40 = 0) {
+        if_sethide(true, interface_910:com_22);
+    } else {
+        if_setposition(if_getx(interface_910:com_55), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_55);
+        if_setposition(if_getx(interface_910:com_56), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_56);
+        if_setposition(if_getx(interface_910:com_57), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_57);
+        if_setposition(if_getx(interface_910:com_58), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_58);
+        if_setposition(if_getx(interface_910:com_59), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_59);
+        if_setposition(if_getx(interface_910:com_60), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_60);
+        if_setsize(if_getwidth(interface_910:com_55), 0, ^setsize_abs, ^setsize_minus, interface_910:com_55);
+        if_setsize(if_getwidth(interface_910:com_56), 0, ^setsize_abs, ^setsize_minus, interface_910:com_56);
+        if_setsize(if_getwidth(interface_910:com_57), 0, ^setsize_abs, ^setsize_minus, interface_910:com_57);
+        if_setsize(if_getwidth(interface_910:com_58), 0, ^setsize_abs, ^setsize_minus, interface_910:com_58);
+        if_setsize(if_getwidth(interface_910:com_59), 0, ^setsize_abs, ^setsize_minus, interface_910:com_59);
+        if_setsize(if_getwidth(interface_910:com_60), 0, ^setsize_abs, ^setsize_minus, interface_910:com_60);
+        if_sethide(false, interface_910:com_22);
+    }
+} else if (%varclient_998 <= 0 & %varclient_999 > 0) {
+    if ($int41 = 0) {
+        if_sethide(true, interface_910:com_22);
+    } else {
+        if_setposition(if_getx(interface_910:com_55), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_55);
+        if_setposition(if_getx(interface_910:com_56), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_56);
+        if_setposition(if_getx(interface_910:com_57), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_57);
+        if_setposition(if_getx(interface_910:com_58), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_58);
+        if_setposition(if_getx(interface_910:com_59), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_59);
+        if_setposition(if_getx(interface_910:com_60), 0, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_60);
+        if_setsize(if_getwidth(interface_910:com_55), 0, ^setsize_abs, ^setsize_minus, interface_910:com_55);
+        if_setsize(if_getwidth(interface_910:com_56), 0, ^setsize_abs, ^setsize_minus, interface_910:com_56);
+        if_setsize(if_getwidth(interface_910:com_57), 0, ^setsize_abs, ^setsize_minus, interface_910:com_57);
+        if_setsize(if_getwidth(interface_910:com_58), 0, ^setsize_abs, ^setsize_minus, interface_910:com_58);
+        if_setsize(if_getwidth(interface_910:com_59), 0, ^setsize_abs, ^setsize_minus, interface_910:com_59);
+        if_setsize(if_getwidth(interface_910:com_60), 0, ^setsize_abs, ^setsize_minus, interface_910:com_60);
+        if_sethide(false, interface_910:com_22);
+    }
+} else {
+    if_sethide(true, interface_910:com_22);
 }
 if_sethide(true, interface_910:com_1);
 if_sethide(false, interface_910:com_12);
