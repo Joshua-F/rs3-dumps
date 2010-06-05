@@ -2,7 +2,12 @@
 [proc,firstrun]
 if_opensubclient(interface_744:com_7, interface_976);
 def_string $string0 = "";
-if (%varclient_1240 = -1) {
+if (%varclient_1277 = 1 & %varclient_1240 = -1) {
+    $string0 = "This is your first time playing, click below to auto choose best graphics settings. Or chose 'Leave Alone' to continue with default settings.";
+    if_settext($string0, interface_976:com_2);
+    if_setsize(if_getwidth(interface_976:com_0), calc(22 * paraheight($string0, if_getwidth(interface_976:com_2), welcome_font_small) + 86), ^setsize_abs, ^setsize_abs, interface_976:com_0);
+    if_setsize(stringwidth(if_gettext(interface_976:com_4), p11_full), if_getheight(interface_976:com_4), ^setsize_abs, ^setsize_abs, interface_976:com_4);
+} else if (%varclient_1240 = -1) {
     $string0 = "This is your first time playing, click below to auto choose best graphics settings.";
     if_settext($string0, interface_976:com_2);
     if_setposition(0, 10, ^setpos_abs_centre, ^setpos_abs_top, interface_976:com_2);
@@ -12,7 +17,11 @@ if (%varclient_1240 = -1) {
     if_sethide(true, interface_976:com_4);
 } else {
     $string0 = "Available graphics options have changed. Click below to auto choose best graphics settings.";
+    if (%varclient_1277 = 1) {
+        $string0 = "Available graphics options have changed. Click below to auto choose best graphics settings. Or chose 'Leave Alone' to continue with your current settings.";
+    }
     if_settext($string0, interface_976:com_2);
     if_setsize(if_getwidth(interface_976:com_0), calc(22 * paraheight($string0, if_getwidth(interface_976:com_2), welcome_font_small) + 86), ^setsize_abs, ^setsize_abs, interface_976:com_0);
     if_setsize(stringwidth(if_gettext(interface_976:com_4), p11_full), if_getheight(interface_976:com_4), ^setsize_abs, ^setsize_abs, interface_976:com_4);
 }
+%varclient_1277 = 1;

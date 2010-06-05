@@ -9115,3 +9115,9 @@ readyanim=seq_13887,seq_13888
 [bas_1833]
 readyanim=seq_14092,seq_14093
 
+// 1834
+[bas_1834]
+readyanim_l=seq_4872
+readyanim_r=seq_4872
+readyanim=seq_4872,null
+
