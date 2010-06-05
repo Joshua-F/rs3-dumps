@@ -80,7 +80,11 @@ if (staffmodlevel > 0) {
     }
 } else if (userdetail_quickchat = true | map_quickchat = true | ~script2047 = 1) {
     if ($key0 = ^key_return) {
-        ~quickchat_open(0, "");
+        if (%varclient_41 = 4) {
+            ~quickchat_open(2, "");
+        } else {
+            ~quickchat_open(0, "");
+        }
         return;
     }
     if (char_isprintable($char1) = true & compare("/", append_char("", $char1)) = 0) {
@@ -96,7 +100,11 @@ switch_int ($key0) {
     case ^key_return :
         if (string_length(%varclientstring_1) <= 0) {
             %varclientstring_1 = "";
-            ~quickchat_open(0, "");
+            if (%varclient_41 = 4) {
+                ~quickchat_open(2, "");
+            } else {
+                ~quickchat_open(0, "");
+            }
             return;
         }
         if (compare("/", %varclientstring_1) = 0) {
@@ -111,7 +119,30 @@ switch_int ($key0) {
             ~script1558(0);
             return;
         }
-        chat_sendpublic(%varclientstring_1);
+        if (%varclient_41 = 4) {
+            if (compare("", clan_getchatdisplayname) = 0) {
+                %varclient_41 = 0;
+                ~script181(0);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox;
+                ~rebuildpmbox;
+                mes("You aren't in a Clan Chat channel.");
+            } else {
+                chat_setmode(1);
+                if (compare(substring(%varclientstring_1, 0, 1), "/") = 0) {
+                    %varclientstring_1 = substring(%varclientstring_1, 1, string_length(%varclientstring_1));
+                }
+                chat_sendpublic(%varclientstring_1);
+            }
+        } else {
+            if (compare(substring(%varclientstring_1, 0, 1), "/") = 0) {
+                chat_setmode(1);
+                %varclientstring_1 = substring(%varclientstring_1, 1, string_length(%varclientstring_1));
+            } else {
+                chat_setmode(0);
+            }
+            chat_sendpublic(%varclientstring_1);
+        }
         ~chatout_add(%varclientstring_1);
         %varclientstring_1 = "";
     case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :

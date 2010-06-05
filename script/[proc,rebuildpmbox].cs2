@@ -19,13 +19,18 @@ if (reboottimer > 0) {
     $int0 = 1;
     if_clearops(interface_754:com_5);
     if_setonop(null, interface_754:com_5);
+    if_settextshadow(true, interface_754:com_5);
 }
 def_int $int4 = 0;
 def_int $chattype5 = ^chattype_gamemessage;
-if (%varplayer_287 = 1 & (getwindowmode < 2 | %varclient_41 ! -1)) {
+def_int $rgb6 = enum(int, int, enum_3056, %varplayer_287);
+def_boolean $boolean7 = enum(int, boolean, enum_3057, %varplayer_287);
+if (%varplayer_287 > 0 & (getwindowmode < 2 | %varclient_41 ! -1)) {
     while ($int4 < 100 & $int0 < 5) {
         if (~pm_filtertest($int4) = true) {
             $component1 = enum(int, component, enum_580, $int0);
+            if_setcolour($rgb6, $component1);
+            if_settextshadow($boolean7, $component1);
             $chattype5 = chat_gethistorytype($int4);
             switch_int ($chattype5) {
                 case ^chattype_privatechat, ^chattype_modprivatechat, ^chattype_quickchat_private_incoming :
