@@ -3,18 +3,25 @@
 if (~script2047 = 1) {
     return(0);
 }
-def_int $int0 = map_world;
-def_int $int1 = 0;
+def_int $int0 = 0;
+if (unknown_command_5420 = true) {
+    $int0 = worldlist_specific_thisworld;
+    if (testbit($int0, 5) = ^true) {
+        return(1);
+    }
+    return(0);
+}
+def_int $int1 = map_world;
 def_string $string0 = "";
 def_int $int2 = 0;
 def_string $string1 = "";
 def_int $int3 = 0;
 def_int $int4 = 0;
 def_string $string2 = "";
-if ($int0 ! -1) {
-    $int1, $string0, $int2, $string1, $int3, $int4, $string2 = worldlist_specific($int0);
-}
-if (testbit($int1, 5) = ^true) {
-    return(1);
+if ($int1 ! -1) {
+    $int0, $string0, $int2, $string1, $int3, $int4, $string2 = worldlist_specific($int1);
+    if (testbit($int0, 5) = ^true) {
+        return(1);
+    }
 }
 return(0);
