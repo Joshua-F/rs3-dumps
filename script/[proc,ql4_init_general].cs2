@@ -36,26 +36,24 @@ while ($int6 < %varclient_272) {
         cc_settextfont(p11_full);
         cc_settextalign(^settextalign_left, ^settextalign_top, 0);
         cc_settextshadow(true);
-        if (struct_param($struct1, param_692) = 0) {
-            if (struct_param($struct7, param_694) = 1) {
-                if (~ql4_getprogress($int5) = 0) {
-                    cc_setop(1, "View Quest Overview");
-                    cc_setop(2, "View Quest Journal");
-                    if (~script2047 = 0) {
-                        cc_setop(3, "Set Objective");
-                    }
-                } else {
-                    cc_setop(1, "View Quest Journal");
-                    cc_setop(2, "View Quest Overview");
-                    if (~script2047 = 0) {
-                        cc_setop(3, "Set Objective");
-                    }
+        if (struct_param($struct7, param_694) = 1) {
+            if (~ql4_getprogress($int5) = 0) {
+                cc_setop(1, "View Quest Overview");
+                cc_setop(2, "View Quest Journal");
+                if (~script2047 = 0) {
+                    cc_setop(3, "Set Objective");
                 }
             } else {
                 cc_setop(1, "View Quest Journal");
+                cc_setop(2, "View Quest Overview");
                 if (~script2047 = 0) {
-                    cc_setop(2, "Set Objective");
+                    cc_setop(3, "Set Objective");
                 }
+            }
+        } else {
+            cc_setop(1, "View Quest Journal");
+            if (~script2047 = 0) {
+                cc_setop(2, "Set Objective");
             }
         }
         cc_settext(struct_param($struct7, param_845));
@@ -72,25 +70,15 @@ while ($int5 < calc(%varclient_273 + 10)) {
     cc_create($component3, ^iftype_text, $int5);
     cc_settextfont(b12_full);
     cc_setsize(0, 30, ^setsize_minus, ^setsize_abs);
-    if (struct_param($struct1, param_692) = 0) {
-        cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
-        cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-    } else {
-        cc_setsize(0, 30, ^setsize_minus, ^setsize_abs);
-        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    }
+    cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     cc_settext("");
     cc_setcolour(0xff9900);
     cc_sethide(true);
     cc_settextshadow(true);
     $int5 = calc($int5 + 1);
 }
-if (struct_param($struct1, param_692) = 0) {
-    ~ql4_sort($int0, %varclient_693, %varclient_694, %varclient_692, %varclient_1103);
-} else if (struct_param($struct1, param_692) = 1) {
-    ~ql4_sort($int0, 1, 0, 0, 0);
-    if_setonvartransmit("script2780($int0, 1, 0, 0, 0){varplayer_1384, varplayer_1402}", $component3);
-}
+~ql4_sort($int0, %varclient_693, %varclient_694, %varclient_692, %varclient_1103);
 ~scrollbar_vertical($component4, $component3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 if ($int8 ! -1) {
     ~script214($component3, $int8);
