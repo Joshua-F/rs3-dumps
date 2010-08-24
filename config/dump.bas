@@ -9341,3 +9341,139 @@ walkanim_l=seq_13295
 walkanim_r=seq_13295
 readyanim=seq_13295,seq_13295
 
+// 1856
+[bas_1856]
+runanim=seq_14313
+readyanim=null,seq_14312
+randomreadyanim=seq_14311,90
+randomreadyanim=seq_14315,30
+
+// 1857
+[bas_1857]
+crawlanim=seq_14351
+readyanim=seq_14350,seq_14351
+
+// 1858
+[bas_1858]
+runanim=seq_14518
+walkanim_b=seq_14518
+runanim_b=seq_14518
+runanim_l=seq_14518
+runanim_r=seq_14518
+walkanim_l=seq_14518
+walkanim_r=seq_14518
+readyanim=seq_14518,seq_14518
+
+// 1859
+[bas_1859]
+readyanim_l=seq_14381
+readyanim_r=seq_14381
+walkanim_l=seq_14397
+walkanim_r=seq_14397
+walkanim_b=seq_14397
+walkturn_l=seq_14397
+walkturn_r=seq_14397
+readyanim=null,seq_14397
+randomreadyanim=seq_14381,90
+randomreadyanim=seq_14382,10
+
+// 1860
+[bas_1860]
+readyanim_l=seq_14381
+readyanim_r=seq_14381
+walkanim_l=seq_14372
+walkanim_r=seq_14372
+walkanim_b=seq_14372
+walkturn_l=seq_14372
+walkturn_r=seq_14372
+readyanim=null,seq_14372
+randomreadyanim=seq_14381,90
+randomreadyanim=seq_14382,10
+
+// 1861
+[bas_1861]
+readyanim_l=seq_14381
+readyanim_r=seq_14381
+walkanim_l=seq_14377
+walkanim_r=seq_14377
+walkanim_b=seq_14377
+walkturn_l=seq_14377
+walkturn_r=seq_14377
+readyanim=null,seq_14377
+randomreadyanim=seq_14381,90
+randomreadyanim=seq_14382,10
+
+// 1862
+[bas_1862]
+readyanim_l=seq_14421
+readyanim_r=seq_14421
+readyanim=seq_14420,seq_14421
+
+// 1863
+[bas_1863]
+readyanim=seq_14419,seq_14419
+
+// 1864
+[bas_1864]
+readyanim=seq_14454,seq_14453
+
+// 1865
+[bas_1865]
+readyanim=seq_14499,seq_14502
+
+// 1866
+[bas_1866]
+walkturn_l=seq_14483
+walkturn_r=seq_14484
+readyanim=seq_14464,seq_14465
+
+// 1867
+[bas_1867]
+readyanim=seq_14470,null
+
+// 1868
+[bas_1868]
+walkturn_l=seq_14482
+walkturn_r=seq_14481
+readyanim=seq_14479,seq_14480
+
+// 1869
+[bas_1869]
+readyanim=seq_14406,seq_14407
+
+// 1870
+[bas_1870]
+readyanim=seq_14571,seq_14571
+
+// 1871
+[bas_1871]
+readyanim=seq_14587,seq_14587
+
+// 1872
+[bas_1872]
+readyanim=seq_14574,seq_14575
+
+// 1873
+[bas_1873]
+readyanim=seq_14581,seq_14577
+
+// 1874
+[bas_1874]
+readyanim=seq_14585,seq_14586
+
+// 1875
+[bas_1875]
+readyanim=seq_14592,seq_14593
+
+// 1876
+[bas_1876]
+readyanim=seq_14597,seq_14598
+
+// 1877
+[bas_1877]
+readyanim=seq_14599,seq_14603
+
+// 1878
+[bas_1878]
+readyanim=seq_14604,seq_14605
+

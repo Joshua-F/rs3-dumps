@@ -60,6 +60,9 @@ switch_int ($key0) {
                 %varclient_1027 = 1;
                 clan_joinchat(%varclientstring_22);
             }
+        } else if (%varclient_5 = 14) {
+            ~music_search_close;
+            return;
         }
         if_sethide(true, interface_752:com_3);
         if_sethide(true, interface_752:com_7);
@@ -73,6 +76,8 @@ switch_int ($key0) {
         if (%varclient_5 = 12) {
             ~script1806(%varclientstring_38);
             ~meslayer_close(0);
+        } else if (%varclient_5 = 14) {
+            ~music_search_close;
         }
         return;
     case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
@@ -88,6 +93,8 @@ switch_int ($key0) {
                 %varclientstring_22, %varclient_1029 = ~script802(%varclient_1029, %varclientstring_22, 6, $key0, $char1);
             case 13 :
                 %varclientstring_22, %varclient_1029 = ~script802(%varclient_1029, %varclientstring_22, 5, $key0, $char1);
+            case 14 :
+                %varclientstring_22, %varclient_1029 = ~script802(%varclient_1029, %varclientstring_22, 4, $key0, $char1);
             case default :
                 %varclientstring_22, %varclient_1029 = ~script802(%varclient_1029, %varclientstring_22, 2, $key0, $char1);
         }
@@ -96,4 +103,7 @@ if_settext(escape(%varclientstring_22), interface_752:com_5);
 ~script1557;
 if (%varclient_5 = 11) {
     ~script1475;
+} else if (%varclient_5 = 14) {
+    %varclientstring_196 = lowercase(%varclientstring_22);
+    ~music_v3_refresh;
 }

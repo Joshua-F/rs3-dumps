@@ -1,24 +1,27 @@
 // 80
-[clientscript,trail_puzzle_generation]
-def_int $int0 = 0;
+[clientscript,trail_puzzle_generation](component $component0)
 def_int $int1 = 0;
 def_int $int2 = 0;
-while ($int0 < inv_size(inv_140)) {
-    cc_create(interface_363:com_6, ^iftype_graphic, $int0);
-    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc(38 * $int1), calc(38 * $int2), ^setpos_abs_left, ^setpos_abs_top);
-    if (inv_getobj(inv_140, $int0) ! null) {
-        cc_setobject(inv_getobj(inv_140, $int0), inv_getnum(inv_140, $int0));
-        cc_setopbase(oc_name(inv_getobj(inv_140, $int0)));
+def_int $int3 = 0;
+while ($int1 < inv_size(inv_140)) {
+    cc_create($component0, ^iftype_model, $int1);
+    cc_setsize(49, 49, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc(56 * $int2), calc(56 * $int3), ^setpos_abs_left, ^setpos_abs_top);
+    unknown_command_1121(300, 3000);
+    if (inv_getobj(inv_140, $int1) ! null) {
+        cc_setobject(inv_getobj(inv_140, $int1), inv_getnum(inv_140, $int1));
+        cc_setmodelangle(0, 0, 512, 0, 0, 1340);
+        cc_setmodelorthog(true);
+        cc_setopbase(oc_name(inv_getobj(inv_140, $int1)));
         cc_setop(1, "Move");
-        cc_setonop("trail_puzzle_click(interface_363:com_6, $int0, event_op)");
+        cc_setonop("trail_puzzle_click(event_com, $int1, event_op)");
     } else {
         cc_sethide(true);
     }
-    $int0 = calc($int0 + 1);
     $int1 = calc($int1 + 1);
-    if ($int1 = 5) {
-        $int1 = 0;
-        $int2 = calc($int2 + 1);
+    $int2 = calc($int2 + 1);
+    if ($int2 = 5) {
+        $int2 = 0;
+        $int3 = calc($int3 + 1);
     }
 }
