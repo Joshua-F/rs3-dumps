@@ -1056,8 +1056,6 @@ modelangle=512,0,0
 modelzoom=1512
 modelanim=seq_10221
 modelorthog=yes
-unknown100=64598
-unknown101=3017
 transmitop=10
 opbase=<col=ff9040>Arrow
 op10=Examine
@@ -2229,11 +2227,12 @@ xmode=abs_right
 layer=com_9
 graphic="toplevel_worldmap_button,0"
 colour=0xffffffff
-transmitop=1,10
-op1=World Map
+transmitop=1,2,10
+op1=*
+op2=*
 op10= 
-onmouseover=graphic_swapper(event_com, "toplevel_worldmap_button,1")
-onmouseleave=graphic_swapper(event_com, "toplevel_worldmap_button,0")
+onload=worldmap_button(event_com)
+onvartransmit=worldmap_button(event_com){varplayer_638, varplayer_1159}
 
 // 746:177
 [com_177]
@@ -2252,16 +2251,26 @@ onvarctransmit=script720{varclient_1096}
 type=layer
 x=210
 y=6
-width=97
+width=103
 height=106
 xmode=abs_right
 hide=yes
 transmitop=10
 op10=  
+onvartransmit=script517{varplayer_1801}
 onstattransmit=script517
 
 // 746:179
 [com_179]
+type=layer
+x=-711
+y=-6
+width=1024
+height=768
+layer=com_178
+
+// 746:180
+[com_180]
 type=layer
 x=7
 width=73
@@ -2271,24 +2280,24 @@ hide=yes
 transmitop=10
 op10=  
 
-// 746:180
-[com_180]
+// 746:181
+[com_181]
 type=graphic
 width=24
 height=34
-layer=com_179
+layer=com_180
 graphic=graphic_3065
 colour=0xffffffff
 transmitop=10
 op10=  
 
-// 746:181
-[com_181]
+// 746:182
+[com_182]
 type=text
 widthmode=minus
 heightmode=minus
 xmode=abs_centre
-layer=com_179
+layer=com_180
 textfont=p11_full
 text=100000xp
 textalignh=right
@@ -2298,30 +2307,16 @@ colour=0xcc6600
 transmitop=10
 op10=  
 
-// 746:182
-[com_182]
+// 746:183
+[com_183]
 type=layer
 x=1
 y=2
-width=94
+width=3
 height=30
+widthmode=minus
 layer=com_178
 noclickthrough=yes
-transmitop=10
-op10=    
-
-// 746:183
-[com_183]
-type=graphic
-x=2
-y=10
-width=6
-height=6
-ymode=abs_bottom
-layer=com_182
-graphic=graphic_2727
-tiling=yes
-colour=0xffffffff
 transmitop=10
 op10=    
 
@@ -2329,11 +2324,12 @@ op10=
 [com_184]
 type=graphic
 x=2
-y=2
+y=10
 width=6
 height=6
-layer=com_182
-graphic=graphic_2721
+ymode=abs_bottom
+layer=com_183
+graphic=graphic_2727
 tiling=yes
 colour=0xffffffff
 transmitop=10
@@ -2342,14 +2338,12 @@ op10=
 // 746:185
 [com_185]
 type=graphic
-x=8
-y=10
+x=2
+y=2
 width=6
 height=6
-xmode=abs_right
-ymode=abs_bottom
-layer=com_182
-graphic=graphic_2729
+layer=com_183
+graphic=graphic_2721
 tiling=yes
 colour=0xffffffff
 transmitop=10
@@ -2359,12 +2353,13 @@ op10=
 [com_186]
 type=graphic
 x=8
-y=2
+y=10
 width=6
 height=6
 xmode=abs_right
-layer=com_182
-graphic=graphic_2723
+ymode=abs_bottom
+layer=com_183
+graphic=graphic_2729
 tiling=yes
 colour=0xffffffff
 transmitop=10
@@ -2372,6 +2367,21 @@ op10=
 
 // 746:187
 [com_187]
+type=graphic
+x=8
+y=2
+width=6
+height=6
+xmode=abs_right
+layer=com_183
+graphic=graphic_2723
+tiling=yes
+colour=0xffffffff
+transmitop=10
+op10=    
+
+// 746:188
+[com_188]
 type=rectangle
 x=8
 y=8
@@ -2379,25 +2389,9 @@ width=22
 height=24
 widthmode=minus
 heightmode=minus
-layer=com_182
+layer=com_183
 colour=0x4d493e
 fill=yes
-transmitop=10
-op10=    
-
-// 746:188
-[com_188]
-type=graphic
-x=8
-y=8
-width=6
-height=24
-heightmode=minus
-xmode=abs_right
-layer=com_182
-graphic=graphic_2726
-tiling=yes
-colour=0xffffffff
 transmitop=10
 op10=    
 
@@ -2405,13 +2399,13 @@ op10=
 [com_189]
 type=graphic
 x=8
-y=10
-width=22
-height=6
-widthmode=minus
-ymode=abs_bottom
-layer=com_182
-graphic=graphic_2728
+y=8
+width=6
+height=24
+heightmode=minus
+xmode=abs_right
+layer=com_183
+graphic=graphic_2726
 tiling=yes
 colour=0xffffffff
 transmitop=10
@@ -2420,13 +2414,14 @@ op10=
 // 746:190
 [com_190]
 type=graphic
-x=2
-y=8
-width=6
-height=24
-heightmode=minus
-layer=com_182
-graphic=graphic_2724
+x=8
+y=10
+width=22
+height=6
+widthmode=minus
+ymode=abs_bottom
+layer=com_183
+graphic=graphic_2728
 tiling=yes
 colour=0xffffffff
 transmitop=10
@@ -2435,13 +2430,13 @@ op10=
 // 746:191
 [com_191]
 type=graphic
-x=8
-y=2
-width=22
-height=6
-widthmode=minus
-layer=com_182
-graphic=graphic_2722
+x=2
+y=8
+width=6
+height=24
+heightmode=minus
+layer=com_183
+graphic=graphic_2724
 tiling=yes
 colour=0xffffffff
 transmitop=10
@@ -2449,41 +2444,55 @@ op10=
 
 // 746:192
 [com_192]
-type=layer
-x=1
-y=1
-width=82
-height=20
-layer=com_182
+type=graphic
+x=8
+y=2
+width=22
+height=6
+widthmode=minus
+layer=com_183
+graphic=graphic_2722
+tiling=yes
+colour=0xffffffff
 transmitop=10
 op10=    
 
 // 746:193
 [com_193]
+type=layer
+x=1
+y=1
+width=12
+height=20
+widthmode=minus
+layer=com_183
+transmitop=10
+op10=    
+
+// 746:194
+[com_194]
 type=text
 x=1
 width=29
 widthmode=minus
 heightmode=minus
 xmode=abs_right
-layer=com_192
-textfont=tutorial_font
-text=88888888
+layer=com_193
+textfont=p12_full
 textalignh=right
 textalignv=centre
 textshadow=yes
 transmitop=10
 op10=     
 
-// 746:194
-[com_194]
+// 746:195
+[com_195]
 type=text
 x=-1
-width=52
-widthmode=minus
+width=30
 heightmode=minus
-layer=com_192
-textfont=tutorial_font
+layer=com_193
+textfont=p12_full
 text=XP:
 textalignh=centre
 textalignv=centre
@@ -2491,8 +2500,8 @@ textshadow=yes
 transmitop=10
 op10=      
 
-// 746:195
-[com_195]
+// 746:196
+[com_196]
 type=layer
 x=25
 y=-2
@@ -2504,29 +2513,15 @@ hide=yes
 transmitop=10
 op10=  
 
-// 746:196
-[com_196]
+// 746:197
+[com_197]
 type=graphic
 x=2
 y=78
 width=6
 height=6
-layer=com_195
+layer=com_196
 graphic=graphic_2727
-tiling=yes
-colour=0xffffffff
-transmitop=10
-op10=  
-
-// 746:197
-[com_197]
-type=graphic
-x=2
-y=2
-width=6
-height=6
-layer=com_195
-graphic=graphic_2721
 tiling=yes
 colour=0xffffffff
 transmitop=10
@@ -2535,12 +2530,12 @@ op10=
 // 746:198
 [com_198]
 type=graphic
-x=78
-y=78
+x=2
+y=2
 width=6
 height=6
-layer=com_195
-graphic=graphic_2729
+layer=com_196
+graphic=graphic_2721
 tiling=yes
 colour=0xffffffff
 transmitop=10
@@ -2548,28 +2543,28 @@ op10=
 
 // 746:199
 [com_199]
-type=rectangle
-x=8
-y=8
-width=70
-height=70
-layer=com_195
-colour=0x4d493e
-fill=yes
+type=graphic
+x=78
+y=78
+width=6
+height=6
+layer=com_196
+graphic=graphic_2729
+tiling=yes
+colour=0xffffffff
 transmitop=10
 op10=  
 
 // 746:200
 [com_200]
-type=graphic
-x=78
+type=rectangle
+x=8
 y=8
-width=6
+width=70
 height=70
-layer=com_195
-graphic=graphic_2726
-tiling=yes
-colour=0xffffffff
+layer=com_196
+colour=0x4d493e
+fill=yes
 transmitop=10
 op10=  
 
@@ -2577,11 +2572,11 @@ op10=
 [com_201]
 type=graphic
 x=78
-y=2
+y=8
 width=6
-height=6
-layer=com_195
-graphic=graphic_2723
+height=70
+layer=com_196
+graphic=graphic_2726
 tiling=yes
 colour=0xffffffff
 transmitop=10
@@ -2590,12 +2585,12 @@ op10=
 // 746:202
 [com_202]
 type=graphic
-x=8
-y=78
-width=70
+x=78
+y=2
+width=6
 height=6
-layer=com_195
-graphic=graphic_2728
+layer=com_196
+graphic=graphic_2723
 tiling=yes
 colour=0xffffffff
 transmitop=10
@@ -2604,12 +2599,12 @@ op10=
 // 746:203
 [com_203]
 type=graphic
-x=2
-y=8
-width=6
-height=70
-layer=com_195
-graphic=graphic_2724
+x=8
+y=78
+width=70
+height=6
+layer=com_196
+graphic=graphic_2728
 tiling=yes
 colour=0xffffffff
 transmitop=10
@@ -2618,12 +2613,12 @@ op10=
 // 746:204
 [com_204]
 type=graphic
-x=8
-y=2
-width=70
-height=6
-layer=com_195
-graphic=graphic_2722
+x=2
+y=8
+width=6
+height=70
+layer=com_196
+graphic=graphic_2724
 tiling=yes
 colour=0xffffffff
 transmitop=10
@@ -2632,12 +2627,12 @@ op10=
 // 746:205
 [com_205]
 type=graphic
-x=80
-y=4
-width=4
-height=34
-layer=com_195
-graphic=graphic_2734
+x=8
+y=2
+width=70
+height=6
+layer=com_196
+graphic=graphic_2722
 tiling=yes
 colour=0xffffffff
 transmitop=10
@@ -2645,17 +2640,31 @@ op10=
 
 // 746:206
 [com_206]
-type=layer
-x=2
-y=40
-width=82
-height=20
-layer=com_195
+type=graphic
+x=80
+y=4
+width=4
+height=34
+layer=com_196
+graphic=graphic_2734
+tiling=yes
+colour=0xffffffff
 transmitop=10
 op10=  
 
 // 746:207
 [com_207]
+type=layer
+x=2
+y=40
+width=82
+height=20
+layer=com_196
+transmitop=10
+op10=  
+
+// 746:208
+[com_208]
 type=text
 x=6
 y=1
@@ -2663,8 +2672,8 @@ width=39
 widthmode=minus
 heightmode=minus
 xmode=abs_right
-layer=com_206
-textfont=tutorial_font
+layer=com_207
+textfont=p12_full
 text=00:00
 textalignh=right
 textalignv=centre
@@ -2672,16 +2681,16 @@ textshadow=yes
 transmitop=10
 op10=    
 
-// 746:208
-[com_208]
+// 746:209
+[com_209]
 type=text
 x=-1
 y=1
 width=39
 widthmode=minus
 heightmode=minus
-layer=com_206
-textfont=tutorial_font
+layer=com_207
+textfont=p12_full
 text=Time:
 textalignh=centre
 textalignv=centre
@@ -2689,14 +2698,14 @@ textshadow=yes
 transmitop=10
 op10=     
 
-// 746:209
-[com_209]
+// 746:210
+[com_210]
 type=text
 x=45
 y=47
 width=38
 height=18
-layer=com_195
+layer=com_196
 hide=yes
 textfont=p11_full
 text=10xp
@@ -2707,27 +2716,27 @@ colour=0xffff00
 transmitop=10
 op10= 
 
-// 746:210
-[com_210]
+// 746:211
+[com_211]
 type=layer
 x=1
 y=62
 width=82
 height=20
-layer=com_195
+layer=com_196
 transmitop=10
 op10=  
 
-// 746:211
-[com_211]
+// 746:212
+[com_212]
 type=text
 x=1
 width=29
 widthmode=minus
 heightmode=minus
 xmode=abs_right
-layer=com_210
-textfont=tutorial_font
+layer=com_211
+textfont=p12_full
 text=888888xp
 textalignh=right
 textalignv=centre
@@ -2735,15 +2744,15 @@ textshadow=yes
 transmitop=10
 op10=   
 
-// 746:212
-[com_212]
+// 746:213
+[com_213]
 type=text
 x=-1
 width=52
 widthmode=minus
 heightmode=minus
-layer=com_210
-textfont=tutorial_font
+layer=com_211
+textfont=p12_full
 text=XP:
 textalignh=centre
 textalignv=centre
@@ -2751,45 +2760,28 @@ textshadow=yes
 transmitop=10
 op10=    
 
-// 746:213
-[com_213]
+// 746:214
+[com_214]
 type=layer
 x=2
 y=-3
 width=81
 height=51
-layer=com_195
-transmitop=10
-op10= 
-
-// 746:214
-[com_214]
-type=text
-x=2
-y=5
-width=83
-height=17
-layer=com_213
-textfont=tutorial_font
-text=Modifier
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xffff00
+layer=com_196
 transmitop=10
 op10= 
 
 // 746:215
 [com_215]
 type=text
-x=-5
-y=17
-width=60
-height=30
-layer=com_213
-textfont=welcome_font_large
-text=2.8
-textalignh=right
+x=2
+y=5
+width=83
+height=17
+layer=com_214
+textfont=p12_full
+text=Modifier
+textalignh=centre
 textalignv=centre
 textshadow=yes
 colour=0xffff00
@@ -2799,12 +2791,29 @@ op10=
 // 746:216
 [com_216]
 type=text
+x=-5
+y=17
+width=60
+height=30
+layer=com_214
+textfont=welcome_font_large
+text=2.8
+textalignh=right
+textalignv=centre
+textshadow=yes
+colour=0xffff00
+transmitop=10
+op10= 
+
+// 746:217
+[com_217]
+type=text
 x=55
 y=14
 width=26
 height=42
-layer=com_213
-textfont=menu_font_small
+layer=com_214
+textfont=p12_full
 text=x
 textalignv=centre
 textshadow=yes
@@ -2812,30 +2821,30 @@ colour=0xffff00
 transmitop=10
 op10=  
 
-// 746:217
-[com_217]
-type=line
-x=4
-y=42
-width=78
-layer=com_195
-colour=0x333333
-transmitop=10
-op10= 
-
 // 746:218
 [com_218]
 type=line
 x=4
+y=42
+width=78
+layer=com_196
+colour=0x333333
+transmitop=10
+op10= 
+
+// 746:219
+[com_219]
+type=line
+x=4
 y=61
 width=78
-layer=com_195
+layer=com_196
 colour=0x333333
 transmitop=10
 op10=  
 
-// 746:219
-[com_219]
+// 746:220
+[com_220]
 type=layer
 y=2
 width=40
@@ -2845,26 +2854,26 @@ layer=com_177
 transmitop=10
 op10=     
 
-// 746:220
-[com_220]
+// 746:221
+[com_221]
 type=graphic
 x=7
 width=17
 height=34
-layer=com_219
+layer=com_220
 hide=yes
 graphic=xp_token_bg
 colour=0xffffffff
 transmitop=10
 op10= 
 
-// 746:221
-[com_221]
+// 746:222
+[com_222]
 type=graphic
 x=6
 width=34
 height=34
-layer=com_219
+layer=com_220
 graphic="xp_token,0"
 colour=0xffffffff
 transmitop=1,8,10
