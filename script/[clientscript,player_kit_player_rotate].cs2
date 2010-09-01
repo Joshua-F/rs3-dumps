@@ -3,24 +3,22 @@
 def_int $int3 = 0;
 def_int $int4 = 0;
 if (cc_find($component0, $int1) = true) {
-    if ($int2 = -1) {
-        cc_setmodelangle(cc_getmodelxof, cc_getmodelyof, cc_getmodelangle_x, ~script686(calc(cc_getmodelangle_y - 2), 2048), cc_getmodelangle_z, cc_getmodelzoom);
+    if ($int2 > 0) {
+        cc_setmodelangle(cc_getmodelxof, cc_getmodelyof, cc_getmodelangle_x, ~script686(calc(cc_getmodelangle_y - 10), 2048), cc_getmodelangle_z, cc_getmodelzoom);
+    } else if ($int2 < 0) {
+        cc_setmodelangle(cc_getmodelxof, cc_getmodelyof, cc_getmodelangle_x, calc((cc_getmodelangle_y + 10) % 2048), cc_getmodelangle_z, cc_getmodelzoom);
     } else {
         $int3 = cc_getmodelangle_y;
-        if ($int3 = $int2) {
-            cc_setontimer("player_kit_player_rotate(event_com, event_comsubid, -1)");
-            $int4 = $int3;
-        } else if ($int3 < $int2) {
-            if ($int3 < 512 & $int2 >= 1556) {
-                $int4 = ~script686(calc($int3 - 15), 2048);
-            } else {
-                $int4 = min(calc($int3 + 15), $int2);
+        if ($int3 > 1024) {
+            $int4 = calc($int3 + 15);
+            if ($int4 >= 2048) {
+                $int4 = 0;
             }
-        } else if ($int2 < 512 & $int3 >= 1556) {
-            $int4 = calc(($int3 + 15) % 2048);
+            cc_setmodelangle(cc_getmodelxof, cc_getmodelyof, cc_getmodelangle_x, $int4, cc_getmodelangle_z, cc_getmodelzoom);
+        } else if ($int3 > 0) {
+            cc_setmodelangle(cc_getmodelxof, cc_getmodelyof, cc_getmodelangle_x, max(calc($int3 - 15), 0), cc_getmodelangle_z, cc_getmodelzoom);
         } else {
-            $int4 = max(calc($int3 - 15), $int2);
+            cc_setontimer(null);
         }
-        cc_setmodelangle(cc_getmodelxof, cc_getmodelyof, cc_getmodelangle_x, $int4, cc_getmodelangle_z, cc_getmodelzoom);
     }
 }
