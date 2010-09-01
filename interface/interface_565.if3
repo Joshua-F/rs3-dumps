@@ -6,7 +6,6 @@ width=319
 height=252
 graphic=tradebacking
 tiling=yes
-colour=0x000000
 opbase= 
 
 [com_1]
@@ -17,7 +16,6 @@ width=32
 height=200
 graphic="v2_stone_borders,1"
 tiling=yes
-colour=0x000000
 
 [com_2]
 type=graphic
@@ -26,7 +24,6 @@ y=34
 width=32
 height=32
 graphic="v2_stone_borders,4"
-colour=0x000000
 
 [com_3]
 type=graphic
@@ -36,7 +33,6 @@ width=23
 height=200
 graphic="v2_stone_borders,3"
 tiling=yes
-colour=0x000000
 
 [com_4]
 type=graphic
@@ -46,7 +42,6 @@ width=270
 height=26
 graphic="v2_stone_borders,0"
 tiling=yes
-colour=0x000000
 opbase= 
 
 [com_5]
@@ -57,7 +52,6 @@ width=269
 height=24
 graphic="v2_stone_borders,2"
 tiling=yes
-colour=0x000000
 opbase= 
 
 [com_6]
@@ -67,7 +61,6 @@ y=265
 width=32
 height=32
 graphic="v2_stone_borders,6"
-colour=0x000000
 
 [com_7]
 type=graphic
@@ -76,7 +69,6 @@ y=34
 width=32
 height=32
 graphic="v2_stone_borders,5"
-colour=0x000000
 
 [com_8]
 type=graphic
@@ -85,7 +77,6 @@ y=265
 width=32
 height=32
 graphic="v2_stone_borders,7"
-colour=0x000000
 
 [com_9]
 type=graphic
@@ -95,7 +86,6 @@ width=311
 height=26
 graphic="v2_stone_borders,8"
 tiling=yes
-colour=0x000000
 
 [com_10]
 type=graphic
@@ -104,7 +94,6 @@ y=50
 width=32
 height=32
 graphic="v2_stone_borders,9"
-colour=0x000000
 
 [com_11]
 type=graphic
@@ -113,7 +102,6 @@ y=50
 width=32
 height=32
 graphic="v2_stone_borders,10"
-colour=0x000000
 
 [com_12]
 type=graphic
@@ -122,11 +110,10 @@ y=43
 width=16
 height=16
 graphic="v2_stone_close_button,0"
-colour=0x000000
 transmitop=1
 op1=Close
-onmouseover=graphic_swapper(interface_565:com_12, "v2_stone_close_button,1")
-onmouseleave=graphic_swapper(interface_565:com_12, "v2_stone_close_button,0")
+onmouseover=graphic_swapper(event_com, "v2_stone_close_button,1")
+onmouseleave=graphic_swapper(event_com, "v2_stone_close_button,0")
 onop=closebutton_click
 
 [com_13]
@@ -154,6 +141,8 @@ textalignh=centre
 textalignv=centre
 textshadow=yes
 colour=0xff7d1f
+onload=cws_setup(interface_565:com_21, interface_565:com_20, 10)
+onvartransmit=cws_setup(interface_565:com_21, interface_565:com_20, 10){varplayer_1045}
 
 [com_15]
 type=graphic
@@ -162,7 +151,6 @@ y=42
 width=19
 height=19
 graphic="warning_icons,0"
-colour=0x000000
 
 [com_16]
 type=graphic
@@ -171,7 +159,6 @@ y=42
 width=19
 height=19
 graphic="warning_icons,0"
-colour=0x000000
 
 [com_17]
 type=text
@@ -185,10 +172,10 @@ textalignh=centre
 textalignv=centre
 textshadow=yes
 colour=0xff0000
-transmitop=1
-op1=Yes
-onmouseover=cws_mouseover(event_com, ^green)
-onmouseleave=cws_mouseover(event_com, ^red)
+pausebutton=yes
+pausetext=Proceed
+onmouseover=text_colour_swapper(event_com, 0xff981f)
+onmouseleave=text_colour_swapper(event_com, ^red)
 
 [com_18]
 type=text
@@ -202,10 +189,10 @@ textalignh=centre
 textalignv=centre
 textshadow=yes
 colour=0xff0000
-transmitop=1
-op1=No
-onmouseover=cws_mouseover(event_com, ^green)
-onmouseleave=cws_mouseover(event_com, ^red)
+pausebutton=yes
+pausetext=Stay out
+onmouseover=text_colour_swapper(event_com, 0xff981f)
+onmouseleave=text_colour_swapper(event_com, ^red)
 
 [com_19]
 type=text
@@ -228,11 +215,6 @@ width=19
 height=19
 layer=com_21
 graphic="warning_icons,1"
-colour=0x000000
-transmitop=1
-op1=Off/On
-onvartransmit=cws_graphic_swap(interface_565:com_20, 10){varplayer_1045}
-onclick=cws_toggle(interface_565:com_20)
 
 [com_21]
 type=layer
@@ -241,4 +223,8 @@ y=267
 width=270
 height=20
 hide=yes
+pausebutton=yes
+pausetext=Toggle
+onmouseover=text_colour_swapper(interface_565:com_19, ^white)
+onmouseleave=text_colour_swapper(interface_565:com_19, 0xff981f)
 
