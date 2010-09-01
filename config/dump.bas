@@ -9477,3 +9477,7 @@ readyanim=seq_14599,seq_14603
 [bas_1878]
 readyanim=seq_14604,seq_14605
 
+// 1879
+[bas_1879]
+readyanim=null,null
+
