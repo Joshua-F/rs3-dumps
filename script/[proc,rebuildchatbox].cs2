@@ -37,16 +37,27 @@ $int1 = 0;
 def_string $string0 = "<col=0000ff>";
 def_string $string1 = "<col=800000>";
 def_string $string2 = "<col=800080>";
+def_int $rgb9 = ^black;
+def_int $rgb10 = ^black;
+def_string $string3 = "<col=000000>";
 if (getwindowmode >= 2) {
     $string0 = "<col=7fa9ff>";
     $string1 = "<col=ff5256>";
     $string2 = "<col=ff78d9>";
+    $rgb10 = ^white;
+    $string3 = "<col=ffffff>";
+    $rgb9 = enum(int, int, enum_3056, %varplayerbit_3612);
+} else if (%varplayerbit_3612 = 0) {
+    $rgb9 = 0x800000;
+} else {
+    $rgb9 = enum(int, int, enum_3056, %varplayerbit_3612);
 }
 while ($int1 < 100) {
     if (~panetest($int1) = true & ~filtertest($int1, $int4) = true) {
         $int0 = calc($int0 - 1);
         $component3 = enum(int, component, enum_579, $int0);
         $chattype2 = chat_gethistorytype($int1);
+        if_setcolour($rgb10, $component3);
         switch_int ($chattype2) {
             case ^chattype_gamemessage, ^chattype_engine, ^chattype_obj_examine, ^chattype_npc_examine, ^chattype_loc_examine, ^chattype_friendschatnotification, ^chattype_trade_notification, ^chattype_assist_notification, ^chattype_spam, 110, ^chattype_snapshotfeedback, ^chattype_friendnotification, ^chattype_ignorenotification :
                 if_settext(chat_gethistorymessage($int1), $component3);
@@ -69,7 +80,8 @@ while ($int1 < 100) {
             case ^chattype_challenge :
                 if_settext("<col=7e3200><chat_gethistoryname($int1)> <chat_gethistorymessage($int1)>", $component3);
             case ^chattype_friendschat :
-                if_settext("[<$string0><chat_gethistoryclan($int1)></col>] <chat_gethistoryname($int1)>: <$string1><chat_gethistorymessage($int1)>", $component3);
+                if_setcolour($rgb9, $component3);
+                if_settext("<$string3>[</col><$string0><chat_gethistoryclan($int1)></col><$string3>] <chat_gethistoryname($int1)>: </col><chat_gethistorymessage($int1)>", $component3);
             case ^chattype_assistreq :
                 if_settext("<col=8a2be2><chat_gethistoryname($int1)> <chat_gethistorymessage($int1)>", $component3);
             case 105 :
@@ -93,10 +105,11 @@ while ($int1 < 100) {
             case ^chattype_quickchat_private_outgoing :
                 if_settext("To <chat_gethistoryname($int1)>: <$string1><chat_gethistorymessage($int1)>", $component3);
             case ^chattype_quickchat_friend_chat :
+                if_setcolour($rgb9, $component3);
                 if (compare(removetags(chat_playername_unfiltered), removetags(chat_gethistoryname($int1))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int1)) > 0) {
-                    if_settext("[<$string0><chat_gethistoryclan($int1)></col>] <chat_gethistoryname($int1)><img=3>: <$string1><chat_gethistorymessage($int1)>", $component3);
+                    if_settext("<$string3>[</col><$string0><chat_gethistoryclan($int1)></col><$string3>] <chat_gethistoryname($int1)><img=3>: </col><chat_gethistorymessage($int1)>", $component3);
                 } else {
-                    if_settext("[<$string0><chat_gethistoryclan($int1)></col>] <chat_gethistoryname($int1)>: <$string1><chat_gethistorymessage($int1)>", $component3);
+                    if_settext("<$string3>[</col><$string0><chat_gethistoryclan($int1)></col><$string3>] <chat_gethistoryname($int1)>: </col><chat_gethistorymessage($int1)>", $component3);
                 }
             case ^chattype_ally_request :
                 if_settext("<col=7e3200><chat_gethistoryname($int1)> <chat_gethistorymessage($int1)>", $component3);
