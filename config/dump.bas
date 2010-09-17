@@ -9311,6 +9311,7 @@ walkanim_l=seq_14250
 walkanim_r=seq_14250
 readyanim_l=seq_14250
 readyanim_r=seq_14250
+hillrotate=40,40
 readyanim=seq_14251,seq_14250
 
 // 1852
