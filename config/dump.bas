@@ -9482,3 +9482,27 @@ readyanim=seq_14604,seq_14605
 [bas_1879]
 readyanim=null,null
 
+// 1880
+[bas_1880]
+readyanim=seq_14728,null
+
+// 1881
+[bas_1881]
+readyanim=null,null
+randomreadyanim=seq_14729,80
+randomreadyanim=seq_14731,20
+
+// 1882
+[bas_1882]
+readyanim=seq_14727,null
+
+// 1883
+[bas_1883]
+readyanim_l=seq_823
+readyanim_r=seq_823
+walkanim_b=seq_820
+walkanim_l=seq_821
+walkanim_r=seq_822
+runanim=seq_824
+readyanim=seq_13818,seq_819
+
