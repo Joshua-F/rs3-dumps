@@ -1,11 +1,12 @@
 // 3094
 [clientscript,script3094]
-if (%varclient_1322 = 1 & lobby_entergamereply = -3) {
-    %varclient_1322 = 0;
-}
-if (lobby_entergamereply ! -3 & %varclient_1322 = 0) {
+def_int $int0 = lobby_entergamereply;
+if ($int0 ! -3 & %varclient_1322 = 0) {
     if_setontimer(null, interface_906:com_35);
     return;
+}
+if (%varclient_1322 = 1 & $int0 = -3) {
+    %varclient_1322 = 0;
 }
 if (clientclock < %varclient_1092) {
     return;

@@ -1,15 +1,25 @@
 // 2356
-[clientscript,script2356]
-if (gender ! 1) {
-    if_sethide(false, interface_309:com_6);
-    if_sethide(false, interface_309:com_13);
-    if_sethide(true, interface_309:com_7);
-    if_sethide(true, interface_309:com_12);
-    if_setgraphic("player_kit_fancy_off,4", interface_309:com_16);
-    if_setgraphic("player_kit_fancy,3", interface_309:com_15);
-    %varclient_776 = 1;
-    %varclient_773 = 700;
-    ~script2358(interface_309:com_6);
-    ~script2364(interface_309:com_13, interface_309:com_6);
-    ~player_kit_select(interface_309:com_6, %varclient_775, ~script2362);
+[clientscript,script2356](int $int0)
+def_int $int1 = if_getwidth(interface_905:com_5);
+def_int $int2 = 0;
+if ($int1 < $int0) {
+    $int2 = calc($int1 + 9);
+    if ($int2 >= $int0) {
+        if_setsize(calc($int0 + 5), 0, ^setsize_abs, ^setsize_minus, interface_916:com_2);
+        if_setsize($int0, 0, ^setsize_abs, ^setsize_minus, interface_905:com_5);
+        if_setontimer(null, interface_916:com_21);
+        return;
+    }
+    if_setsize(calc($int2 + 5), 0, ^setsize_abs, ^setsize_minus, interface_916:com_2);
+    if_setsize($int2, 0, ^setsize_abs, ^setsize_minus, interface_905:com_5);
+} else {
+    $int2 = calc($int1 - 9);
+    if ($int2 <= $int0) {
+        if_setsize(calc($int0 + 5), 0, ^setsize_abs, ^setsize_minus, interface_916:com_2);
+        if_setsize($int0, 0, ^setsize_abs, ^setsize_minus, interface_905:com_5);
+        if_setontimer(null, interface_916:com_21);
+        return;
+    }
+    if_setsize(calc($int2 + 5), 0, ^setsize_abs, ^setsize_minus, interface_916:com_2);
+    if_setsize($int2, 0, ^setsize_abs, ^setsize_minus, interface_905:com_5);
 }
