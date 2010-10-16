@@ -1,12 +1,14 @@
 // 2357
 [clientscript,script2357](component $component0)
-if (gender = 1) {
-    if_sethide(true, interface_309:com_15);
-} else {
-    %varclient_776 = 0;
-    if_sethide(false, interface_309:com_15);
-    if_setgraphic("player_kit_fancy_off,3", interface_309:com_15);
-    if_setop(1, "View Hairstyles", interface_309:com_16);
-    if_setop(1, "View Beards", interface_309:com_15);
+if_sendtofront($component0);
+if (%varplayer_1893 = null) {
+    return;
 }
-~script2358($component0);
+def_component $component1 = enum(component, component, enum_1592, %varplayer_1893);
+def_int $int2 = if_getx($component0);
+def_int $int3 = if_gety($component0);
+if ($component0 = interface_1053:com_82) {
+    $int2 = calc($int2 + if_getwidth($component0) / 2 - if_getwidth($component1) / 2);
+    $int3 = calc($int3 + if_getheight($component0) / 2 - if_getheight($component1) / 2);
+}
+if_setposition($int2, $int3, ^setpos_abs_left, ^setpos_abs_top, $component1);
