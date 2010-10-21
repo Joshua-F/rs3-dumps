@@ -9644,3 +9644,63 @@ walkanim_b=seq_248
 walkanim_l=seq_248
 readyanim=seq_279,seq_248
 
+// 1903
+[bas_1903]
+readyanim=seq_14872,seq_14872
+
+// 1904
+[bas_1904]
+readyanim=seq_14882,null
+
+// 1905
+[bas_1905]
+readyanim=seq_14875,null
+
+// 1906
+[bas_1906]
+readyanim=seq_14881,seq_14880
+
+// 1907
+[bas_1907]
+readyanim=null,seq_14880
+randomreadyanim=seq_14879,95
+randomreadyanim=seq_14881,10
+
+// 1908
+[bas_1908]
+readyanim=null,seq_14880
+randomreadyanim=seq_14879,95
+randomreadyanim=seq_14881,10
+
+// 1909
+[bas_1909]
+readyanim=seq_2108,null
+
+// 1910
+[bas_1910]
+readyanim=seq_866,null
+
+// 1911
+[bas_1911]
+readyanim=null,null
+randomreadyanim=seq_866,100
+randomreadyanim=seq_2107,20
+
+// 1912
+[bas_1912]
+readyanim=null,null
+randomreadyanim=seq_2108,100
+randomreadyanim=seq_2414,30
+
+// 1913
+[bas_1913]
+readyanim_l=seq_823
+readyanim_r=seq_823
+walkanim_b=seq_820
+walkanim_l=seq_821
+walkanim_r=seq_822
+runanim=seq_824
+readyanim=null,seq_819
+randomreadyanim=seq_14885,100
+randomreadyanim=seq_808,50
+
