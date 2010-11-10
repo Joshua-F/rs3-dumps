@@ -2575,6 +2575,9 @@ walkanim_l=seq_745
 walkanim_r=seq_745
 readyanim=seq_745,seq_744
 
+[bas_663]
+readyanim=seq_15028,seq_15028
+
 [bas_664]
 walkanim_b=seq_6532
 walkanim_l=seq_821
