@@ -6,24 +6,28 @@ def_int $int2 = 0;
 def_int $int3 = 0;
 def_int $int4 = 0;
 if (getwindowmode >= 2) {
-    if_setsize(viewport_geteffectivesize, ^setsize_abs, ^setsize_abs, interface_746:com_6);
+    if_setsize(viewport_geteffectivesize, ^setsize_abs, ^setsize_abs, interface_746:com_5);
     ~script1658;
     ~chatbox_resize_window;
     $int0 = if_getwidth(interface_746:com_1);
     $int1 = if_getheight(interface_746:com_1);
     $int2 = calc(($int0 - 512) / 2);
     if (if_hassubmodal(interface_746:com_8, interface_762) = true) {
-        $int4 = calc($int1 - 185);
-        $int3 = 175;
-        if ($int4 > 942) {
-            $int4 = 942;
-            $int3 = calc(($int1 - 175 - $int4) / 2 + 175);
-        } else if ($int4 < 334) {
-            $int4 = 334;
-            $int3 = calc(($int1 - 334) / 2);
+        if (%varplayerbit_8348 = 1) {
+            if_setsize(10, 10, ^setsize_abs, ^setsize_abs, interface_746:com_8);
+        } else {
+            $int4 = calc($int1 - 185);
+            $int3 = 175;
+            if ($int4 > 942) {
+                $int4 = 942;
+                $int3 = calc(($int1 - 175 - $int4) / 2 + 175);
+            } else if ($int4 < 334) {
+                $int4 = 334;
+                $int3 = calc(($int1 - 334) / 2);
+            }
+            if_setsize(512, $int4, ^setsize_abs, ^setsize_abs, interface_746:com_8);
+            ~script1654;
         }
-        if_setsize(512, $int4, ^setsize_abs, ^setsize_abs, interface_746:com_8);
-        ~script1654;
     } else {
         if_setsize(512, 334, ^setsize_abs, ^setsize_abs, interface_746:com_8);
         $int3 = calc(($int1 - 334) / 2);
@@ -124,4 +128,34 @@ if (getwindowmode >= 2) {
         if_setposition(180, 0, ^setpos_abs_left, ^setpos_abs_top, interface_746:com_138);
         if_setposition(210, 0, ^setpos_abs_left, ^setpos_abs_top, interface_746:com_140);
     }
+} else if (if_hassubmodal(interface_548:com_18, interface_762) = true & %varplayerbit_8348 = 1) {
+    if_setsize(10, 10, ^setsize_abs, ^setsize_abs, interface_548:com_18);
+    if_sendtofront(interface_548:com_9);
+    if_sendtofront(interface_548:com_10);
+    if_sendtofront(interface_548:com_11);
+    if_sendtofront(interface_548:com_14);
+    if_sendtofront(interface_548:com_15);
+    if_sendtofront(interface_548:com_16);
+    if_sendtofront(interface_548:com_17);
+    if_sendtofront(interface_548:com_19);
+    if_sendtofront(interface_548:com_20);
+    if_sendtofront(interface_548:com_38);
+    if_sendtofront(interface_548:com_7);
+    if_sendtofront(interface_548:com_8);
+    if_sendtofront(interface_548:com_18);
+} else {
+    if_setsize(512, 334, ^setsize_abs, ^setsize_abs, interface_548:com_18);
+    if_sendtofront(interface_548:com_7);
+    if_sendtofront(interface_548:com_8);
+    if_sendtofront(interface_548:com_9);
+    if_sendtofront(interface_548:com_10);
+    if_sendtofront(interface_548:com_11);
+    if_sendtofront(interface_548:com_14);
+    if_sendtofront(interface_548:com_15);
+    if_sendtofront(interface_548:com_16);
+    if_sendtofront(interface_548:com_17);
+    if_sendtofront(interface_548:com_18);
+    if_sendtofront(interface_548:com_19);
+    if_sendtofront(interface_548:com_20);
+    if_sendtofront(interface_548:com_38);
 }
