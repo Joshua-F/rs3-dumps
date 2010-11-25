@@ -3,40 +3,68 @@
 if (create_reply = -3) {
     return;
 }
+def_string $string0 = "";
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
 switch_int (%varclient_174) {
     case 6 :
         switch_int ($key0) {
             case ^key_escape :
-                if (if_gethide(interface_673:com_8) = false) {
-                    ~script3223(1);
-                } else {
-                    ~script2206;
-                }
+                ~script2206;
                 return;
             case ^key_return, ^key_tab :
-                if (%varclient_175 >= clientclock | if_gethide(interface_673:com_8) = false) {
+                if (%varclient_175 >= clientclock) {
                     return;
                 }
                 if ($key0 = ^key_tab & keyheld_shift = true) {
-                    ~create_focus(8, 1);
+                    ~create_focus(15, 1);
+                } else {
+                    ~create_focus(14, 1);
+                }
+                return;
+            case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
+                %varclient_1099 = ~script1553($key0, %varclient_1099, %varclientstring_122);
+                ~script3218(interface_673:com_87, interface_673:com_31, interface_673:com_88, %varclientstring_122, 6);
+                return;
+        }
+        if (string_length(%varclientstring_122) >= 320 & $key0 ! ^key_backspace & $key0 ! ^key_del) {
+            return;
+        }
+        if (string_indexof_char("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&'*+-/=?^_.{}~@", $char1, 0) ! -1 | $key0 = ^key_backspace | $key0 = ^key_del) {
+            %varclientstring_122, %varclient_1099 = ~script802(%varclient_1099, %varclientstring_122, 3, $key0, $char1);
+            if_settext(%varclientstring_122, interface_673:com_31);
+            ~script3218(interface_673:com_87, interface_673:com_31, interface_673:com_88, %varclientstring_122, 6);
+        }
+        return;
+    case 14 :
+        switch_int ($key0) {
+            case ^key_escape :
+                ~script2206;
+                return;
+            case ^key_return, ^key_tab :
+                if (%varclient_175 >= clientclock) {
+                    return;
+                }
+                if ($key0 = ^key_tab & keyheld_shift = true) {
+                    ~create_focus(6, 1);
                 } else {
                     ~create_focus(7, 1);
                 }
                 return;
             case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
-                %varclient_1099 = ~script1553($key0, %varclient_1099, %varclientstring_122);
-                ~script3218(interface_673:com_81, interface_673:com_83, %varclientstring_122, 6);
+                %varclient_1099 = ~script1553($key0, %varclient_1099, %varclientstring_326);
+                ~script3218(interface_673:com_106, interface_673:com_107, interface_673:com_108, %varclientstring_326, 14);
                 return;
         }
-        if (string_length(%varclientstring_122) >= 12 & $key0 ! ^key_backspace & $key0 ! ^key_del) {
+        if (string_length(%varclientstring_326) >= 320 & $key0 ! ^key_backspace & $key0 ! ^key_del) {
             return;
         }
-        if (string_indexof_char("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_ ", $char1, 0) ! -1 | $key0 = ^key_backspace | $key0 = ^key_del) {
-            %varclientstring_122, %varclient_1099 = ~script802(%varclient_1099, %varclientstring_122, 0, $key0, $char1);
-            if_settext(%varclientstring_122, interface_673:com_82);
-            ~script3218(interface_673:com_81, interface_673:com_83, %varclientstring_122, 6);
-            ~create_error("", interface_673:com_73, interface_673:com_72);
-            if_setgraphic(null, interface_673:com_84);
+        if (string_indexof_char("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&'*+-/=?^_.{}~@", $char1, 0) ! -1 | $key0 = ^key_backspace | $key0 = ^key_del) {
+            %varclientstring_326, %varclient_1099 = ~script802(%varclient_1099, %varclientstring_326, 3, $key0, $char1);
+            if_settext(%varclientstring_326, interface_673:com_107);
+            ~script3218(interface_673:com_106, interface_673:com_107, interface_673:com_108, %varclientstring_326, 14);
         }
         return;
     case 7 :
@@ -49,23 +77,22 @@ switch_int (%varclient_174) {
                     return;
                 }
                 if ($key0 = ^key_tab & keyheld_shift = true) {
-                    ~create_focus(6, 1);
+                    ~create_focus(14, 1);
                 } else {
                     ~create_focus(8, 1);
                 }
                 return;
             case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
                 %varclient_1099 = ~script1553($key0, %varclient_1099, %varclientstring_124);
-                ~script3218(interface_673:com_65, interface_673:com_67, ~script2949(%varclientstring_124), 7);
+                ~script3218(interface_673:com_77, interface_673:com_78, interface_673:com_79, ~script2949(%varclientstring_124), 7);
+                return;
         }
-        if (string_length(%varclientstring_124) >= 20 & $key0 ! ^key_backspace & $key0 ! ^key_del) {
+        if (string_length(%varclientstring_124) > 20 & $key0 ! ^key_backspace & $key0 ! ^key_del) {
             return;
         }
         %varclientstring_124, %varclient_1099 = ~script802(%varclient_1099, %varclientstring_124, 0, $key0, $char1);
-        if_settext(~script2949(%varclientstring_124), interface_673:com_66);
-        ~script3218(interface_673:com_65, interface_673:com_67, ~script2949(%varclientstring_124), 7);
-        if_setgraphic(null, interface_673:com_68);
-        ~create_error("", interface_673:com_57, interface_673:com_56);
+        if_settext(~script2949(%varclientstring_124), interface_673:com_78);
+        ~script3218(interface_673:com_77, interface_673:com_78, interface_673:com_79, ~script2949(%varclientstring_124), 7);
         return;
     case 8 :
         switch_int ($key0) {
@@ -76,27 +103,122 @@ switch_int (%varclient_174) {
                 if (%varclient_175 >= clientclock) {
                     return;
                 }
-                if ($key0 = ^key_return & string_length(%varclientstring_122) > 0 & string_length(%varclientstring_124) > 0 & string_length(%varclientstring_125) > 0) {
-                    ~script2967(0);
+                if ($key0 = ^key_tab & keyheld_shift = true) {
+                    ~create_focus(7, 1);
+                } else {
+                    ~create_focus(15, 1);
+                }
+                return;
+            case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
+                %varclient_1099 = ~script1553($key0, %varclient_1099, %varclientstring_125);
+                ~script3218(interface_673:com_67, interface_673:com_68, interface_673:com_69, ~script2949(%varclientstring_125), 8);
+                return;
+        }
+        if (string_length(%varclientstring_125) > 20 & $key0 ! ^key_backspace & $key0 ! ^key_del) {
+            return;
+        }
+        %varclientstring_125, %varclient_1099 = ~script802(%varclient_1099, %varclientstring_125, 0, $key0, $char1);
+        if_settext(~script2949(%varclientstring_125), interface_673:com_68);
+        ~script3218(interface_673:com_67, interface_673:com_68, interface_673:com_69, ~script2949(%varclientstring_125), 8);
+        return;
+    case 15 :
+        switch_int ($key0) {
+            case ^key_escape :
+                ~script2206;
+                return;
+            case ^key_return, ^key_tab :
+                if (%varclient_175 >= clientclock) {
                     return;
                 }
                 if ($key0 = ^key_tab & keyheld_shift = true) {
-                    ~create_focus(7, 1);
+                    ~create_focus(8, 1);
+                } else if ($key0 = ^key_return & string_length(%varclientstring_122) > 0 & string_length(%varclientstring_326) > 0 & string_length(%varclientstring_124) > 0 & string_length(%varclientstring_125) > 0 & %varclient_1407 ! 0) {
+                    ~script2967(0);
+                    return;
                 } else {
                     ~create_focus(6, 1);
                 }
                 return;
             case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
-                %varclient_1099 = ~script1553($key0, %varclient_1099, %varclientstring_125);
-                ~script3218(interface_673:com_49, interface_673:com_51, ~script2949(%varclientstring_125), 8);
+                %varclient_1099 = ~script1553($key0, %varclient_1099, tostring(%varclient_1407));
+                ~script3218(interface_673:com_113, interface_673:com_30, interface_673:com_114, tostring(%varclient_1407), 15);
+                return;
         }
-        if (string_length(%varclientstring_125) >= 20 & $key0 ! ^key_backspace & $key0 ! ^key_del) {
+        if (string_length(tostring(%varclient_1407)) >= 3 & $key0 ! ^key_backspace & $key0 ! ^key_del) {
             return;
         }
-        %varclientstring_125, %varclient_1099 = ~script802(%varclient_1099, %varclientstring_125, 0, $key0, $char1);
-        if_settext(~script2949(%varclientstring_125), interface_673:com_50);
-        ~script3218(interface_673:com_49, interface_673:com_51, ~script2949(%varclientstring_125), 8);
-        if_setgraphic(null, interface_673:com_52);
-        ~create_error("", interface_673:com_41, interface_673:com_40);
+        if (string_length(tostring(%varclient_1407)) = 3) {
+            $int3 = calc(%varclient_1407 / 100);
+            $int4 = calc((%varclient_1407 - $int3 * 100) / 10);
+            $int5 = calc(%varclient_1407 - ($int3 * 100 + $int4 * 10));
+        } else if (string_length(tostring(%varclient_1407)) = 2) {
+            $int3 = calc(%varclient_1407 / 10);
+            $int4 = calc(%varclient_1407 - $int3 * 10);
+        }
+        if (char_isnumeric($char1) = true) {
+            $int2 = string_indexof_char("0123456789", $char1, 0);
+            if (%varclient_1407 < 1) {
+                %varclient_1407 = $int2;
+            } else {
+                %varclient_1407 = calc(%varclient_1407 * 10 + $int2);
+            }
+            %varclient_1099 = string_length(tostring(%varclient_1407));
+        } else if ($key0 = ^key_backspace) {
+            if (%varclient_1099 >= 3) {
+                %varclient_1407 = calc(%varclient_1407 / 10);
+            } else if (%varclient_1099 = 2) {
+                if (string_length(tostring(%varclient_1407)) = 3) {
+                    %varclient_1407 = calc($int3 * 10 + $int5);
+                } else if (string_length(tostring(%varclient_1407)) = 2) {
+                    %varclient_1407 = calc(%varclient_1407 / 10);
+                } else {
+                    %varclient_1407 = 0;
+                    %varclient_1099 = 0;
+                }
+            } else if (%varclient_1099 = 1) {
+                if (string_length(tostring(%varclient_1407)) = 3) {
+                    %varclient_1407 = calc(%varclient_1407 - $int3 * 100);
+                } else if (string_length(tostring(%varclient_1407)) = 2) {
+                    %varclient_1407 = calc(%varclient_1407 - $int3 * 10);
+                } else {
+                    %varclient_1407 = 0;
+                    %varclient_1099 = 0;
+                }
+            } else {
+                return;
+            }
+            %varclient_1099 = max(calc(%varclient_1099 - 1), 0);
+        } else if ($key0 = ^key_del) {
+            if (%varclient_1099 >= 3) {
+                return;
+            } else if (%varclient_1099 = 2) {
+                if (string_length(tostring(%varclient_1407)) = 3) {
+                    %varclient_1407 = calc(%varclient_1407 / 10);
+                } else {
+                    %varclient_1099 = string_length(tostring(%varclient_1407));
+                }
+            } else if (%varclient_1099 = 1) {
+                if (string_length(tostring(%varclient_1407)) = 3) {
+                    %varclient_1407 = calc($int3 * 10 + $int5);
+                } else if (string_length(tostring(%varclient_1407)) = 2) {
+                    %varclient_1407 = calc(%varclient_1407 / 10);
+                } else {
+                    return;
+                }
+            } else if (string_length(tostring(%varclient_1407)) = 3) {
+                %varclient_1407 = calc(%varclient_1407 - $int3 * 100);
+            } else if (string_length(tostring(%varclient_1407)) = 2) {
+                %varclient_1407 = $int4;
+            } else {
+                %varclient_1407 = 0;
+            }
+        }
+        if (%varclient_1407 < 1) {
+            if_settext("", interface_673:com_30);
+            ~script3218(interface_673:com_113, interface_673:com_30, interface_673:com_114, "", 15);
+        } else {
+            if_settext(tostring(%varclient_1407), interface_673:com_30);
+            ~script3218(interface_673:com_113, interface_673:com_30, interface_673:com_114, tostring(%varclient_1407), 15);
+        }
         return;
 }

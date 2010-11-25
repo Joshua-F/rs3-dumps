@@ -1,19 +1,43 @@
 // 548
-[clientscript,stats_update](int $int0, int $int1, int $int2, stat $stat3, component $component4, component $component5)
+[clientscript,stats_update](int $int0, int $int1, int $int2, int $int3, int $int4, stat $stat5, component $component6, component $component7)
 if (%varclient_80 = 0) {
     return;
 }
-def_string $string0 = "<enum(stat, string, enum_680, $stat3)>: <tostring(stat($stat3))>/<tostring(stat_base($stat3))>";
-if (cc_find($component5, $int0) = true & parawidth($string0, 190, p12_full) < cc_getwidth & %varclient_80 = stat_base($stat3)) {
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $intbool10 = ^false;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_string $string0 = "<enum(stat, string, enum_680, $stat5)>: <tostring(stat($stat5))>/<tostring(stat_base($stat5))>";
+if (cc_find($component7, $int0) = true & parawidth($string0, 190, p12_full) < cc_getwidth & %varclient_80 = stat_base($stat5)) {
     cc_settext($string0);
-    if (cc_find($component5, $int1) = true) {
-        cc_settext(~tostring_spacer(stat_visible_xp($stat3), ","));
+    if (cc_find($component7, $int1) = true) {
+        cc_settext(~tostring_spacer(stat_visible_xp($stat5), ","));
     }
-    if (stat_base($stat3) < 99 & cc_find($component5, $int2) = true) {
-        cc_settext(~tostring_spacer(calc(enum(int, int, enum_716, calc(stat_base($stat3) + 1)) - stat_visible_xp($stat3)), ","));
+    if (stat_base($stat5) < 99 & cc_find($component7, $int2) = true) {
+        cc_settext(~tostring_spacer(calc(enum(int, int, enum_716, calc(stat_base($stat5) + 1)) - stat_visible_xp($stat5)), ","));
+    }
+    if (~script4036(enum(stat, int, enum_1482, $stat5)) = ^true) {
+        $intbool10, $int8, $int9 = ~script4037(enum(stat, int, enum_1482, $stat5));
+        if (cc_find($component7, $int3) = true) {
+            if ($intbool10 = ^true) {
+                $int12 = enum(int, int, enum_716, $int9);
+                $int13 = enum(int, int, enum_716, $int8);
+                $int11 = scale(calc(stat_visible_xp($stat5) - $int12), calc($int13 - $int12), 100);
+            } else {
+                $int11 = scale(calc(stat_visible_xp($stat5) - $int9), calc($int8 - $int9), 100);
+            }
+            if ($int11 > 100) {
+                $int11 = 100;
+            }
+            $int11 = calc($int11 * ($int4 - 4));
+            $int11 = calc($int11 / 100);
+            cc_setsize($int11, 10, ^setsize_abs, ^setsize_abs);
+        }
     }
     return;
 }
-cc_deleteall($component5);
-%varclient_80 = stat_base($stat3);
-~stats_mouseover_create($component4, $stat3, $component5);
+cc_deleteall($component7);
+%varclient_80 = stat_base($stat5);
+~stats_mouseover_create($component6, $stat5, $component7);
