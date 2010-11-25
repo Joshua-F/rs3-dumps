@@ -941,6 +941,7 @@ readyanim=seq_6518,seq_6517
 
 // 185
 [bas_185]
+hillrotate=32,32
 readyanim=seq_8798,seq_8794
 
 // 186
@@ -9759,4 +9760,16 @@ readyanim=seq_14918,seq_14918
 // 1921
 [bas_1921]
 readyanim=seq_15015,seq_15002
+
+// 1922
+[bas_1922]
+readyanim=null,null
+randomreadyanim=seq_3289,175
+randomreadyanim=seq_3290,10
+
+// 1923
+[bas_1923]
+readyanim=null,seq_3286
+randomreadyanim=seq_3287,90
+randomreadyanim=seq_3288,10
 

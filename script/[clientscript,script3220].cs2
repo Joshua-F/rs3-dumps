@@ -4,75 +4,42 @@ def_int $int0 = create_reply;
 if ($int0 = -3) {
     return;
 }
-if_setontimer(null, interface_673:com_28);
+if_setontimer(null, interface_673:com_17);
 def_int $int1 = 0;
-def_int $int2 = 0;
-def_component $component3 = interface_673:com_84;
-def_component $component4 = interface_673:com_68;
-def_component $component5 = interface_673:com_73;
-def_component $component6 = interface_673:com_72;
-def_component $component7 = interface_673:com_57;
-def_component $component8 = interface_673:com_56;
 if ($int0 = 2) {
     notify_accountcreated;
     ~script2223;
 } else {
-    ~create_error("", $component5, $component6);
-    if_setgraphic(null, $component3);
-    if_setgraphic(null, $component4);
-    if_setgraphic(null, interface_673:com_52);
-    ~create_error("", $component5, $component6);
-    ~create_error("", $component7, $component8);
-    ~create_error("", interface_673:com_41, interface_673:com_40);
     switch_int ($int0) {
-        case -4, -1 :
-            ~create_error("There was an error contacting the server. Please try using a different world.", $component5, $component6);
+        case default :
+            ~create_error("Unexpected server response.", interface_673:com_81);
+        case -4, -1, 3 :
+            ~create_error("Error contacting server.", interface_673:com_81);
         case -5 :
-            ~create_error("There was no response from the server. Please try using a different world.", $component5, $component6);
-        case 3 :
-            ~create_error("There was an error contacting the account creation server. Please try again.", $component5, $component6);
+            ~create_error("No response from server.", interface_673:com_81);
         case 7 :
-            ~create_error("The server is currently very busy. Please try again shortly.", $component5, $component6);
+            ~create_error("The server is currently very busy. Please try again shortly.", interface_673:com_81);
         case 9, 38 :
-            ~create_error("You cannot create an account at this time. Please try again later.", $component5, $component6);
+            ~create_error("You cannot create an account at this time. Please try again later.", interface_673:com_81);
         case 20 :
-            if_setgraphic(login_cross, $component3);
-            ~create_error("Sorry, that username is not available. Please choose again.", $component5, $component6);
-            $int2 = 1;
+            ~create_error("That Email address is not available.", interface_673:com_81);
         case 21 :
-            if_setgraphic(login_cross, $component3);
-            ~create_error("", $component5, $component6);
-            ~create_suggestions(unknown_command_5610);
-        case 22 :
-            if_setgraphic(login_cross, $component3);
-            ~create_error("Please supply a valid username.", $component5, $component6);
-            $int2 = 1;
+            ~create_error("Please enter a valid Email address.", interface_673:com_81);
+        case 37 :
+            ~create_error("RuneScape has been updated. Please reload this page.", interface_673:com_81);
         case 30 :
             $int1 = string_length(%varclientstring_124);
             if ($int1 < 5) {
-                ~create_error("Password is too short, it must be at least 5 characters long.", $component7, $component8);
+                ~create_error("Passwords must be at least 5 characters long.", interface_673:com_71);
             } else if ($int1 > 20) {
-                ~create_error("Password is too long, it must be no more than 20 characters.", $component7, $component8);
+                ~create_error("Passwords must be no more than <tostring(20)> characters long.", interface_673:com_71);
             } else {
-                ~create_error("Please supply a valid password.", $component7, $component8);
+                ~create_error("Please supply a valid password.", interface_673:com_71);
             }
-            if_setgraphic(login_cross, $component4);
         case 31 :
-            ~create_error("Passwords may only contain letters and numbers.", $component7, $component8);
-            if_setgraphic(login_cross, $component4);
+            ~create_error("Passwords may only contain letters and numbers.", interface_673:com_71);
         case 32, 33 :
-            ~create_error("Your password is too easy to guess.", $component7, $component8);
-            if_setgraphic(login_cross, $component4);
-        case 34, 35, 36 :
-            ~create_error("Your password is too similar to your username.", $component7, $component8);
-            if_setgraphic(login_cross, $component4);
-        case 37 :
-            ~create_error("RuneScape has been updated. Please reload this page.", $component5, $component6);
-        case default :
-            ~create_error("Unexpected server response. Please try again.", $component5, $component6);
+            ~create_error("Your password is too easy to guess.", interface_673:com_71);
     }
 }
 ~script3208(0);
-if ($int2 = 1) {
-    ~script2283(false);
-}

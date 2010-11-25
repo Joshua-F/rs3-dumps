@@ -1,0 +1,61 @@
+// 3998
+[clientscript,script3998](int $int0, string $string0)
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 170;
+def_int $int7 = 0;
+def_int $int8 = 2;
+def_component $component9 = null;
+if ($int0 = -1 & if_find(interface_917:com_94) = true | cc_find(interface_917:com_94, $int0) = true) {
+    if (%varclient_1 < calc(clientclock + $int8)) {
+        if (%varclient_1 < clientclock) {
+            %varclient_1 = clientclock;
+        }
+        %varclient_1 = calc(%varclient_1 + 2);
+        return;
+    }
+    %varclient_1 = calc(clientclock + $int8 + 10);
+    if (%varclient_2 ! 1) {
+        $component9 = if_getlayer(interface_917:com_97);
+        if ($component9 ! null & $int6 >= calc(if_getwidth($component9) - if_getwidth(interface_917:com_96) - 30)) {
+            $int6 = calc(if_getwidth($component9) - if_getwidth(interface_917:com_96) - 30);
+        }
+        $int5 = calc(4 + parawidth($string0, calc($int6 - 4), p12_full));
+        $int7 = calc(4 + 16 * paraheight($string0, calc($int6 - 4), p12_full));
+        if ($component9 ! null) {
+            $int1 = calc(cc_getx + 5);
+            if (calc($int1 + $int5 + 5) > if_getwidth(interface_917:com_94)) {
+                $int1 = calc(if_getwidth(interface_917:com_94) - $int5 - 5);
+            }
+            $int2 = calc(cc_gety + cc_getheight + 5 - if_getscrolly(interface_917:com_94));
+        }
+        if ($int2 < 0) {
+            $int2 = if_getscrolly(interface_917:com_94);
+        } else if ($int2 > calc(if_getheight($component9) - $int7 - 25)) {
+            $int2 = calc(if_getheight($component9) - $int7 - 25);
+        }
+        if_setsize($int5, $int7, ^setsize_abs, ^setsize_abs, interface_917:com_97);
+        if_setposition($int1, $int2, ^setpos_abs_left, ^setpos_abs_top, interface_917:com_97);
+        cc_deleteall(interface_917:com_97);
+        cc_create(interface_917:com_97, ^iftype_rectangle, 0);
+        cc_setsize(if_getwidth(interface_917:com_97), if_getheight(interface_917:com_97), ^setsize_abs, ^setsize_abs);
+        cc_setfill(true);
+        cc_setcolour(^black);
+        cc_settrans(110);
+        cc_create(interface_917:com_97, ^iftype_rectangle, 1);
+        cc_setsize(if_getwidth(interface_917:com_97), if_getheight(interface_917:com_97), ^setsize_abs, ^setsize_abs);
+        cc_setfill(false);
+        cc_setcolour(^black);
+        cc_create(interface_917:com_97, ^iftype_text, 2);
+        cc_setsize(calc($int6 - 4), if_getheight(interface_917:com_97), ^setsize_abs, ^setsize_abs);
+        cc_setposition(2, 0, ^setpos_abs_left, ^setpos_abs_top);
+        cc_settext($string0);
+        cc_settextalign(^settextalign_left, ^settextalign_centre, 16);
+        cc_settextfont(p12_full);
+        cc_setcolour(0xeeeeee);
+        %varclient_2 = 1;
+    }
+}

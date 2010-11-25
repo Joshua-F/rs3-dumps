@@ -1,77 +1,43 @@
 // 2967
 [proc,script2967](int $int0)
-def_int $int1 = 0;
 ~script3209;
 ~script3208(1);
-def_int $int2 = 1;
-~create_error("", interface_673:com_57, interface_673:com_56);
-if_setgraphic(null, interface_673:com_68);
-def_int $int3 = string_length(%varclientstring_124);
-if ($int3 <= 0) {
-    ~create_error("Please supply a password.", interface_673:com_57, interface_673:com_56);
-    $int2 = 0;
-} else if ($int3 < 5) {
-    if_setgraphic(login_cross, interface_673:com_68);
-    ~create_error("Password is too short - it must be at least 5 characters long.", interface_673:com_57, interface_673:com_56);
-    $int2 = 0;
-} else if ($int3 > 20) {
-    if_setgraphic(login_cross, interface_673:com_68);
-    ~create_error("Password is too long, it must be no more than 20 characters.", interface_673:com_57, interface_673:com_56);
-    $int2 = 0;
-} else if (~script2202(%varclientstring_124) = true) {
-    if_setgraphic(login_cross, interface_673:com_68);
-    ~create_error("Passwords may only contain letters and numbers.", interface_673:com_57, interface_673:com_56);
-    $int2 = 0;
-} else if (compare(%varclientstring_124, %varclientstring_122) = 0) {
-    if_setgraphic(login_cross, interface_673:com_68);
-    ~create_error("Your password is too similar to your username.", interface_673:com_57, interface_673:com_56);
-    $int2 = 0;
+def_boolean $boolean1 = ~script3228(7, 0, 0);
+def_boolean $boolean2 = ~script3228(8, 0, 0);
+def_int $int3 = 1;
+if (compare(%varclientstring_124, %varclientstring_125) ! 0 & string_length(%varclientstring_124) > 0 & string_length(%varclientstring_125) > 0) {
+    ~create_error("Please ensure both passwords match.", interface_673:com_61);
+    $int3 = 0;
 }
 def_int $int4 = 1;
-~create_error("", interface_673:com_41, interface_673:com_40);
-if_setgraphic(null, interface_673:com_52);
-$int3 = string_length(%varclientstring_125);
-if ($int3 <= 0) {
-    ~create_error("Please supply a password.", interface_673:com_41, interface_673:com_40);
+if (string_length(%varclientstring_122) <= 0) {
+    ~create_error("Please enter your Email address here.", interface_673:com_81);
     $int4 = 0;
-} else if ($int3 < 5) {
-    if_setgraphic(login_cross, interface_673:com_52);
-    ~create_error("Password is too short - it must be at least 5 characters long.", interface_673:com_41, interface_673:com_40);
-    $int4 = 0;
-} else if ($int3 > 20) {
-    if_setgraphic(login_cross, interface_673:com_52);
-    ~create_error("Password is too long, it must be no more than 20 characters.", interface_673:com_41, interface_673:com_40);
-    $int4 = 0;
-} else if (~script2202(%varclientstring_125) = true) {
-    if_setgraphic(login_cross, interface_673:com_52);
-    ~create_error("Passwords may only contain letters and numbers.", interface_673:com_41, interface_673:com_40);
-    $int4 = 0;
-} else if (compare(%varclientstring_125, %varclientstring_122) = 0) {
-    if_setgraphic(login_cross, interface_673:com_52);
-    ~create_error("Your password is too similar to your username.", interface_673:com_41, interface_673:com_40);
+}
+if (~create_check_email(%varclientstring_122) = false) {
+    ~create_error("Please enter a valid Email address.", interface_673:com_81);
     $int4 = 0;
 }
 def_int $int5 = 1;
-if (compare(%varclientstring_124, %varclientstring_125) ! 0 & string_length(%varclientstring_124) > 0 & string_length(%varclientstring_125) > 0) {
-    if_setgraphic(login_cross, interface_673:com_52);
-    ~create_error("Please make sure both passwords match.", interface_673:com_41, interface_673:com_40);
+if (string_length(%varclientstring_326) <= 0) {
+    ~create_error("Please enter your Email address again here.", interface_673:com_100);
     $int5 = 0;
 }
-def_int $int6 = 1;
-~create_error("", interface_673:com_73, interface_673:com_72);
-if_setgraphic(null, interface_673:com_84);
-if (string_length(%varclientstring_122) <= 0) {
-    ~create_error("Please supply a username.", interface_673:com_73, interface_673:com_72);
-    if_setgraphic(null, interface_673:com_84);
-    $int6 = 0;
-} else if (~script2203(%varclientstring_122) = false) {
-    if_setgraphic(login_cross, interface_673:com_84);
-    ~create_error("Please supply a valid username.", interface_673:com_73, interface_673:com_72);
-    $int6 = 0;
+if (compare(%varclientstring_122, %varclientstring_326) ! 0) {
+    ~create_error("Please ensure both Email addresses match.", interface_673:com_100);
+    $int5 = 0;
 }
-if ($int6 = 1 & $int2 = 1 & $int4 = 1 & $int5 = 1) {
-    unknown_command_5605(%varclientstring_122, %varclientstring_124);
-    if_setontimer("script3220", interface_673:com_28);
+def_boolean $boolean6 = ~script3954(0);
+if ($int4 = 1 & $int5 = 1 & $boolean1 = true & $boolean2 = true & $int3 = 1 & $boolean6 = true) {
+    if (%varclient_1407 < 13) {
+        unknown_command_5626;
+        ~script4038;
+    } else if (unknown_command_5625 = true) {
+        ~script4038;
+    } else {
+        unknown_command_5605(%varclientstring_122, %varclientstring_124, %varclient_1407, %varclient_1411);
+        if_setontimer("script3220", interface_673:com_17);
+    }
 } else {
     ~script3208(0);
 }

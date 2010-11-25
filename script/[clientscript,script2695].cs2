@@ -29,7 +29,7 @@ if ($int10 = 1) {
     $component16 = interface_882:com_6;
     $component17 = interface_882:com_7;
     $component18 = interface_882:com_5;
-    $component19 = interface_882:com_30;
+    $component19 = interface_882:com_28;
 }
 def_int $int20 = 0;
 if (cc_find($component0, $int1) = true) {
@@ -49,8 +49,12 @@ def_int $int22 = ~graphics_options_detailget($struct5);
 def_int $int23 = ~script829($struct5, $enum21);
 def_int $int24 = 0;
 def_int $int25 = 0;
+def_int $int26 = 0;
+if ($struct5 = struct_1009) {
+    $int26 = 1;
+}
 while ($int25 <= $int23) {
-    if ($int25 ! $int22) {
+    if ($int26 ! $int22) {
         cc_create($component16, ^iftype_text, if_getnextsubid($component16));
         cc_setsize(2, 15, ^setsize_minus, ^setsize_abs);
         cc_setposition(0, $int24, ^setpos_abs_centre, ^setpos_abs_top);
@@ -59,41 +63,42 @@ while ($int25 <= $int23) {
         cc_setonmouseover("cc_text_colour_swapper(event_com, event_comsubid, 0x26527b)");
         if ($struct5 ! struct_1009) {
             if ($int25 < $int23) {
-                cc_setcolour(^white);
-                cc_setonmouseleave("cc_text_colour_swapper(event_com, event_comsubid, ^white)");
+                cc_setcolour(0xebe0bc);
+                cc_setonmouseleave("cc_text_colour_swapper(event_com, event_comsubid, 0xebe0bc)");
             } else {
                 cc_setcolour(0x00b1e1);
                 cc_setonmouseleave("cc_text_colour_swapper(event_com, event_comsubid, 0x00b1e1)");
             }
         } else if ($int25 > 0) {
-            cc_setcolour(^white);
-            cc_setonmouseleave("cc_text_colour_swapper(event_com, event_comsubid, ^white)");
+            cc_setcolour(0xebe0bc);
+            cc_setonmouseleave("cc_text_colour_swapper(event_com, event_comsubid, 0xebe0bc)");
         } else {
             cc_setcolour(0x00b1e1);
             cc_setonmouseleave("cc_text_colour_swapper(event_com, event_comsubid, 0x00b1e1)");
         }
         if ($enum21 ! null) {
-            cc_settext(enum(int, string, $enum21, $int25));
+            cc_settext(enum(int, string, $enum21, $int26));
         } else {
             cc_settext(~graphics_options_resolutions($int25));
         }
-        cc_setonclick("script2699($int25, $struct5, $int6, $int7, $int8, $int9, $int10)");
+        cc_setonclick("script2699($int26, $struct5, $int6, $int7, $int8, $int9, $int10)");
         $int24 = calc($int24 + cc_getheight);
     }
     $int25 = calc($int25 + 1);
+    $int26 = calc($int26 + 1);
 }
 $int24 = calc($int24 + 2);
-def_int $int26 = 0;
+def_int $int27 = 0;
 if ($int10 = 1) {
-    $int26 = 334;
+    $int27 = 334;
 } else {
-    $int26 = if_getheight($component14);
+    $int27 = if_getheight($component14);
 }
-def_int $int27 = 1;
-if ($int26 < calc($int12 + $int24)) {
+def_int $int28 = 1;
+if ($int27 < calc($int12 + $int24)) {
     $int12 = calc($int20 + 1 - $int24 + ~script3366($component19));
     if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, $component18);
-    $int27 = 0;
+    $int28 = 0;
 } else {
     if_setposition(0, 1, ^setpos_abs_centre, ^setpos_abs_bottom, $component18);
     if_setscrollsize(0, 0, $component16);
@@ -114,7 +119,7 @@ if (cc_find($component0, $int1) = true) {
     cc_setonmouseleave("script2691(event_com, $int2, false, $int3, 0x5f5b52, false)");
     if (.cc_find($component0, $int3) = true) {
         .cc_setcolour(0xb2aa9f);
-        if ($int27 = 1) {
+        if ($int28 = 1) {
             .cc_setsize(.cc_getwidth, calc(cc_getheight + 5), ^setsize_abs, ^setsize_abs);
         }
     }
