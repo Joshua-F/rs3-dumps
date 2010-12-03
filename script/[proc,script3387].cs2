@@ -27,10 +27,11 @@ switch_int ($int4) {
         if_sethide(false, interface_911:com_3);
         if_setonclick("script3386($int0, $int1, $int2, $int3, $int4)", interface_911:com_3);
         if_setonresize("script2919(true, $int4)", interface_906:com_0);
+        ~lobby_resize;
 }
 if_sethide(true, $component6);
 if_setonclick(null, $component5);
-if (detailget_safemode = false) {
+if (detailget_canchoosesafemode = false) {
     if_setposition(58, if_gety(interface_977:com_50), ^setpos_abs_left, ^setpos_abs_top, interface_977:com_50);
     if_setposition(173, if_gety(interface_977:com_51), ^setpos_abs_right, ^setpos_abs_top, interface_977:com_51);
     if_setposition(58, if_gety(interface_977:com_52), ^setpos_abs_right, ^setpos_abs_top, interface_977:com_52);
@@ -64,48 +65,52 @@ def_int $int18 = 0;
 def_int $int19 = -1;
 while ($int17 < enum_getoutputcount(enum_201)) {
     $struct14 = enum(int, struct, enum_201, $int17);
-    if (testbit(struct_param($struct14, param_682), $int0) = ^true) {
-        $int13 = ~script2601(struct_param($struct14, param_845), $int11, $int7, $component9);
-        cc_create($component9, ^iftype_rectangle, if_getnextsubid($component9));
-        cc_setsize($int12, 16, ^setsize_abs, ^setsize_abs);
-        if ($int11 = 1) {
-            cc_setposition(4, $int7, ^setpos_abs_right, ^setpos_abs_top);
-        } else {
-            cc_setposition(calc(233 - $int12), $int7, ^setpos_abs_left, ^setpos_abs_top);
-        }
-        cc_setfill(true);
-        cc_setcolour(0x2e2b26);
-        .cc_create($component9, ^iftype_rectangle, if_getnextsubid($component9));
+    $int13 = ~script2601(struct_param($struct14, param_845), $int11, $int7, $component9);
+    cc_create($component9, ^iftype_rectangle, if_getnextsubid($component9));
+    cc_setsize($int12, 16, ^setsize_abs, ^setsize_abs);
+    if ($int11 = 1) {
+        cc_setposition(4, $int7, ^setpos_abs_right, ^setpos_abs_top);
+    } else {
+        cc_setposition(calc(233 - $int12), $int7, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    cc_setfill(true);
+    cc_setcolour(0x2e2b26);
+    .cc_create($component9, ^iftype_rectangle, if_getnextsubid($component9));
+    .cc_setsize(cc_getwidth, cc_getheight, ^setsize_abs, ^setsize_abs);
+    .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setfill(false);
+    .cc_setcolour(0x5f5b52);
+    $int8 = .cc_getid;
+    .cc_create($component9, ^iftype_text, if_getnextsubid($component9));
+    .cc_settextfont(p11_full);
+    .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    $int16 = ~graphics_options_detailget($struct14);
+    if ($int16 <= -1) {
         .cc_setsize(cc_getwidth, cc_getheight, ^setsize_abs, ^setsize_abs);
         .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
-        .cc_setfill(false);
-        .cc_setcolour(0x5f5b52);
-        $int8 = .cc_getid;
-        .cc_create($component9, ^iftype_text, if_getnextsubid($component9));
-        .cc_settextfont(p11_full);
-        .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-        $int16 = ~graphics_options_detailget($struct14);
-        if ($int16 = -1) {
-            .cc_setsize(cc_getwidth, cc_getheight, ^setsize_abs, ^setsize_abs);
-            .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
-            .cc_setcolour(0xebe0bc);
-            .cc_settext("N/A");
-        } else {
-            .cc_setsize($int3, cc_getheight, ^setsize_abs, ^setsize_abs);
-            .cc_setposition(calc(cc_getx + 2), cc_gety, ^setpos_abs_left, ^setpos_abs_top);
-            $enum15 = struct_param($struct14, param_683);
-            $int18 = ~script829($struct14, $enum15);
-            if ($struct14 ! struct_1009) {
-                if ($int16 < $int18) {
-                    .cc_setcolour(0xebe0bc);
-                } else {
-                    .cc_setcolour(0x00b1e1);
-                }
-            } else if ($int16 > 0) {
+        .cc_setcolour(0xebe0bc);
+        .cc_settext("<col=646464>N/A");
+    } else {
+        .cc_setsize($int3, cc_getheight, ^setsize_abs, ^setsize_abs);
+        .cc_setposition(calc(cc_getx + 2), cc_gety, ^setpos_abs_left, ^setpos_abs_top);
+        $enum15 = struct_param($struct14, param_683);
+        $int18 = ~script829($struct14, $enum15);
+        if ($struct14 ! struct_1009) {
+            if ($int16 < $int18) {
                 .cc_setcolour(0xebe0bc);
             } else {
                 .cc_setcolour(0x00b1e1);
             }
+        } else if ($int16 > 0) {
+            .cc_setcolour(0xebe0bc);
+        } else {
+            .cc_setcolour(0x00b1e1);
+        }
+        if (testbit(struct_param($struct14, param_682), $int0) ! ^true) {
+            .cc_settext("<col=646464>N/A");
+            .cc_setsize(cc_getwidth, cc_getheight, ^setsize_abs, ^setsize_abs);
+            .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
+        } else {
             .cc_settext(enum(int, string, $enum15, $int16));
             .cc_create($component9, ^iftype_graphic, if_getnextsubid($component9));
             .cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
@@ -115,18 +120,18 @@ while ($int17 < enum_getoutputcount(enum_201)) {
             cc_setonmouseleave("script2691(event_com, .cc_getid, false, $int8, 0x5f5b52, true)");
             cc_setonclick("script2695(event_com, event_comsubid, .cc_getid, $int8, $int13, $struct14, $int2, $int3, $int0, $int1, $int4)");
         }
-        if ($int11 = 1) {
-            $int11 = 0;
-            $int7 = calc($int7 + 20);
-            $int19 = if_getnextsubid($component10);
-            cc_create($component10, ^iftype_rectangle, $int19);
-            cc_setsize(2, 1, ^setsize_minus, ^setsize_abs);
-            cc_setposition(1, calc($int7 + 3), ^setpos_abs_left, ^setpos_abs_top);
-            cc_setfill(true);
-            cc_setcolour(0x80786d);
-        } else {
-            $int11 = 1;
-        }
+    }
+    if ($int11 = 1) {
+        $int11 = 0;
+        $int7 = calc($int7 + 20);
+        $int19 = if_getnextsubid($component10);
+        cc_create($component10, ^iftype_rectangle, $int19);
+        cc_setsize(2, 1, ^setsize_minus, ^setsize_abs);
+        cc_setposition(1, calc($int7 + 3), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setfill(true);
+        cc_setcolour(0x80786d);
+    } else {
+        $int11 = 1;
     }
     $int17 = calc($int17 + 1);
 }

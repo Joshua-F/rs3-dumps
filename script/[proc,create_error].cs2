@@ -5,6 +5,8 @@ def_int $int2 = 0;
 def_int $int3 = 0;
 def_int $int4 = 0;
 def_int $int5 = 0;
+def_string $string1 = "accountappeal";
+def_string $string2 = "passwordchoice.ws";
 switch_component ($component0) {
     case default :
         if_sethide(true, interface_673:com_22);
@@ -95,3 +97,8 @@ $int1 = calc(if_getheight(interface_673:com_22) / 2);
 $int3 = calc($int2 - $int1);
 if_setposition($int4, $int3, ^setpos_abs_left, ^setpos_abs_top, interface_673:com_22);
 if_sethide(false, interface_673:com_22);
+if (compare(if_gettext(interface_673:com_21), "Email already in use. Try a different email or click <u=ebe0bc>here</u> to recover this account.") = 0) {
+    if_setonclick("loginscreen_link($string1, $string2, true)", interface_673:com_23);
+} else {
+    if_setonclick(null, interface_673:com_23);
+}
