@@ -251,9 +251,15 @@ if ($intbool4 = ^true) {
     if ($intbool7 = ^true) {
         $int24 = enum(int, int, enum_716, $int6);
         $int25 = enum(int, int, enum_716, $int5);
-        $int14 = scale(calc(stat_visible_xp($stat1) - $int24), calc($int25 - $int24), 100);
-    } else {
+        if (calc($int25 - $int24) ! 0) {
+            $int14 = scale(calc(stat_visible_xp($stat1) - $int24), calc($int25 - $int24), 100);
+        } else {
+            $int14 = -1;
+        }
+    } else if (calc($int5 - $int6) ! 0) {
         $int14 = scale(calc(stat_visible_xp($stat1) - $int6), calc($int5 - $int6), 100);
+    } else {
+        $int14 = -1;
     }
     if ($int14 > 100) {
         $int14 = 100;

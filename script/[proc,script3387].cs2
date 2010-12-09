@@ -31,61 +31,114 @@ switch_int ($int4) {
 }
 if_sethide(true, $component6);
 if_setonclick(null, $component5);
-if (detailget_canchoosesafemode = false) {
-    if_setposition(58, if_gety(interface_977:com_50), ^setpos_abs_left, ^setpos_abs_top, interface_977:com_50);
-    if_setposition(173, if_gety(interface_977:com_51), ^setpos_abs_right, ^setpos_abs_top, interface_977:com_51);
-    if_setposition(58, if_gety(interface_977:com_52), ^setpos_abs_right, ^setpos_abs_top, interface_977:com_52);
-    if_setsize(400, if_getheight(interface_977:com_46), ^setsize_abs, ^setsize_abs, interface_977:com_46);
-    ~script1147(1, $int0, 64028723, interface_977:com_55, interface_977:com_56, $int4);
-    ~script1147(2, $int0, 64028722, interface_977:com_57, interface_977:com_58, $int4);
-    ~script1147(3, $int0, 64028724, interface_977:com_53, interface_977:com_54, $int4);
-} else {
-    ~script1147(0, $int0, 64028721, interface_977:com_59, interface_977:com_60, $int4);
-    ~script1147(1, $int0, 64028723, interface_977:com_55, interface_977:com_56, $int4);
-    ~script1147(2, $int0, 64028722, interface_977:com_57, interface_977:com_58, $int4);
-    ~script1147(3, $int0, 64028724, interface_977:com_53, interface_977:com_54, $int4);
-}
 def_int $int7 = 0;
-def_int $int8 = -1;
-def_component $component9 = interface_977:com_28;
-def_component $component10 = interface_977:com_27;
-cc_deleteall($component9);
-cc_deleteall($component10);
-~script2601("Brightness", 0, $int7, $component9);
+def_int $int8 = 1;
+def_component $component9 = null;
+def_component $component10 = null;
+def_component $component11 = null;
+def_component $component12 = null;
+def_component $component13 = null;
+if (unknown_command_7214 = 0) {
+    switch_int ($int0) {
+        case 0 :
+            ~script1147(0, $int0, 64028721, interface_977:com_59, interface_977:com_60, $int4);
+        case 2 :
+            ~script1147(2, $int0, 64028721, interface_977:com_59, interface_977:com_60, $int4);
+        case 1 :
+            ~script1147(1, $int0, 64028721, interface_977:com_59, interface_977:com_60, $int4);
+        case 3 :
+            ~script1147(3, $int0, 64028721, interface_977:com_59, interface_977:com_60, $int4);
+    }
+    if_setposition(175, if_gety(interface_977:com_49), ^setpos_abs_right, ^setpos_abs_top, interface_977:com_49);
+    if_setsize(350, if_getheight(interface_977:com_47), ^setsize_abs, ^setsize_abs, interface_977:com_46);
+} else {
+    if (detailget_canchoosesafemode = true) {
+        $component9 = interface_977:com_49;
+        ~script1147(0, $int0, 64028721, interface_977:com_59, interface_977:com_60, $int4);
+        $int7 = calc($int7 + 1);
+    }
+    while ($int8 < 4) {
+        if (unknown_command_7314($int8) < 3) {
+            switch_int ($int8) {
+                case 2 :
+                    $component13 = interface_977:com_50;
+                    ~script1147(1, $int0, 64028722, interface_977:com_57, interface_977:com_58, $int4);
+                case 1 :
+                    $component13 = interface_977:com_51;
+                    ~script1147(2, $int0, 64028723, interface_977:com_55, interface_977:com_56, $int4);
+                case 3 :
+                    $component13 = interface_977:com_52;
+                    ~script1147(3, $int0, 64028724, interface_977:com_53, interface_977:com_54, $int4);
+            }
+            $int7 = calc($int7 + 1);
+            if ($component9 = null) {
+                $component9 = $component13;
+            } else if ($component10 = null) {
+                $component10 = $component13;
+            } else if ($component11 = null) {
+                $component11 = $component13;
+            } else if ($component12 = null) {
+                $component12 = $component13;
+            }
+        }
+        $int8 = calc($int8 + 1);
+    }
+    switch_int ($int7) {
+        case 1 :
+            if_setposition(175, if_gety($component9), ^setpos_abs_right, ^setpos_abs_top, $component9);
+            if_setsize(350, if_getheight(interface_977:com_47), ^setsize_abs, ^setsize_abs, interface_977:com_46);
+        case 2 :
+            if_setposition(90, if_gety($component9), ^setpos_abs_left, ^setpos_abs_top, $component9);
+            if_setposition(90, if_gety($component10), ^setpos_abs_right, ^setpos_abs_top, $component10);
+            if_setsize(400, if_getheight(interface_977:com_47), ^setsize_abs, ^setsize_abs, interface_977:com_46);
+        case 3 :
+            if_setposition(58, if_gety($component9), ^setpos_abs_left, ^setpos_abs_top, $component9);
+            if_setposition(173, if_gety($component10), ^setpos_abs_right, ^setpos_abs_top, $component10);
+            if_setposition(58, if_gety($component11), ^setpos_abs_right, ^setpos_abs_top, $component11);
+            if_setsize(400, if_getheight(interface_977:com_47), ^setsize_abs, ^setsize_abs, interface_977:com_46);
+    }
+}
+def_int $int14 = 0;
+def_int $int15 = -1;
+def_component $component16 = interface_977:com_28;
+def_component $component17 = interface_977:com_27;
+cc_deleteall($component16);
+cc_deleteall($component17);
+~script2601("Brightness", 0, $int14, $component16);
 ~loginscreen_brightness(interface_977:com_32, interface_977:com_33);
 if_setdraggable(interface_977:com_32, -1, interface_977:com_33);
-def_int $int11 = 1;
-def_int $int12 = calc($int3 + 21);
-def_int $int13 = -1;
-def_struct $struct14 = null;
-def_enum $enum15 = null;
-def_int $int16 = 0;
-def_int $int17 = 0;
-def_int $int18 = 0;
-def_int $int19 = -1;
-while ($int17 < enum_getoutputcount(enum_201)) {
-    $struct14 = enum(int, struct, enum_201, $int17);
-    $int13 = ~script2601(struct_param($struct14, param_845), $int11, $int7, $component9);
-    cc_create($component9, ^iftype_rectangle, if_getnextsubid($component9));
-    cc_setsize($int12, 16, ^setsize_abs, ^setsize_abs);
-    if ($int11 = 1) {
-        cc_setposition(4, $int7, ^setpos_abs_right, ^setpos_abs_top);
+def_int $int18 = 1;
+def_int $int19 = calc($int3 + 21);
+def_int $int20 = -1;
+def_struct $struct21 = null;
+def_enum $enum22 = null;
+def_int $int23 = 0;
+def_int $int24 = 0;
+def_int $int25 = 0;
+def_int $int26 = -1;
+while ($int24 < enum_getoutputcount(enum_201)) {
+    $struct21 = enum(int, struct, enum_201, $int24);
+    $int20 = ~script2601(struct_param($struct21, param_845), $int18, $int14, $component16);
+    cc_create($component16, ^iftype_rectangle, if_getnextsubid($component16));
+    cc_setsize($int19, 16, ^setsize_abs, ^setsize_abs);
+    if ($int18 = 1) {
+        cc_setposition(4, $int14, ^setpos_abs_right, ^setpos_abs_top);
     } else {
-        cc_setposition(calc(233 - $int12), $int7, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition(calc(233 - $int19), $int14, ^setpos_abs_left, ^setpos_abs_top);
     }
     cc_setfill(true);
     cc_setcolour(0x2e2b26);
-    .cc_create($component9, ^iftype_rectangle, if_getnextsubid($component9));
+    .cc_create($component16, ^iftype_rectangle, if_getnextsubid($component16));
     .cc_setsize(cc_getwidth, cc_getheight, ^setsize_abs, ^setsize_abs);
     .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
     .cc_setfill(false);
     .cc_setcolour(0x5f5b52);
-    $int8 = .cc_getid;
-    .cc_create($component9, ^iftype_text, if_getnextsubid($component9));
+    $int15 = .cc_getid;
+    .cc_create($component16, ^iftype_text, if_getnextsubid($component16));
     .cc_settextfont(p11_full);
     .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    $int16 = ~graphics_options_detailget($struct14);
-    if ($int16 <= -1) {
+    $int23 = ~graphics_options_detailget($struct21);
+    if ($int23 <= -1) {
         .cc_setsize(cc_getwidth, cc_getheight, ^setsize_abs, ^setsize_abs);
         .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
         .cc_setcolour(0xebe0bc);
@@ -93,55 +146,55 @@ while ($int17 < enum_getoutputcount(enum_201)) {
     } else {
         .cc_setsize($int3, cc_getheight, ^setsize_abs, ^setsize_abs);
         .cc_setposition(calc(cc_getx + 2), cc_gety, ^setpos_abs_left, ^setpos_abs_top);
-        $enum15 = struct_param($struct14, param_683);
-        $int18 = ~script829($struct14, $enum15);
-        if ($struct14 ! struct_1009) {
-            if ($int16 < $int18) {
+        $enum22 = struct_param($struct21, param_683);
+        $int25 = ~script829($struct21, $enum22);
+        if ($struct21 ! struct_1009) {
+            if ($int23 < $int25) {
                 .cc_setcolour(0xebe0bc);
             } else {
                 .cc_setcolour(0x00b1e1);
             }
-        } else if ($int16 > 0) {
+        } else if ($int23 > 0) {
             .cc_setcolour(0xebe0bc);
         } else {
             .cc_setcolour(0x00b1e1);
         }
-        if (testbit(struct_param($struct14, param_682), $int0) ! ^true) {
+        if (testbit(struct_param($struct21, param_682), $int0) ! ^true) {
             .cc_settext("<col=646464>N/A");
             .cc_setsize(cc_getwidth, cc_getheight, ^setsize_abs, ^setsize_abs);
             .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
         } else {
-            .cc_settext(enum(int, string, $enum15, $int16));
-            .cc_create($component9, ^iftype_graphic, if_getnextsubid($component9));
+            .cc_settext(enum(int, string, $enum22, $int23));
+            .cc_create($component16, ^iftype_graphic, if_getnextsubid($component16));
             .cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
-            .cc_setposition(calc(cc_getx + cc_getwidth - (.cc_getwidth + 1)), calc($int7 + (16 - .cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+            .cc_setposition(calc(cc_getx + cc_getwidth - (.cc_getwidth + 1)), calc($int14 + (16 - .cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
             .cc_setgraphic(graphic_2554);
-            cc_setonmouseover("script2691(event_com, .cc_getid, true, $int8, 0x80786d, true)");
-            cc_setonmouseleave("script2691(event_com, .cc_getid, false, $int8, 0x5f5b52, true)");
-            cc_setonclick("script2695(event_com, event_comsubid, .cc_getid, $int8, $int13, $struct14, $int2, $int3, $int0, $int1, $int4)");
+            cc_setonmouseover("script2691(event_com, .cc_getid, true, $int15, 0x80786d, true)");
+            cc_setonmouseleave("script2691(event_com, .cc_getid, false, $int15, 0x5f5b52, true)");
+            cc_setonclick("script2695(event_com, event_comsubid, .cc_getid, $int15, $int20, $struct21, $int2, $int3, $int0, $int1, $int4)");
         }
     }
-    if ($int11 = 1) {
-        $int11 = 0;
-        $int7 = calc($int7 + 20);
-        $int19 = if_getnextsubid($component10);
-        cc_create($component10, ^iftype_rectangle, $int19);
+    if ($int18 = 1) {
+        $int18 = 0;
+        $int14 = calc($int14 + 20);
+        $int26 = if_getnextsubid($component17);
+        cc_create($component17, ^iftype_rectangle, $int26);
         cc_setsize(2, 1, ^setsize_minus, ^setsize_abs);
-        cc_setposition(1, calc($int7 + 3), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition(1, calc($int14 + 3), ^setpos_abs_left, ^setpos_abs_top);
         cc_setfill(true);
         cc_setcolour(0x80786d);
     } else {
-        $int11 = 1;
+        $int18 = 1;
     }
-    $int17 = calc($int17 + 1);
+    $int24 = calc($int24 + 1);
 }
-if ($int11 = 1) {
-    $int7 = calc($int7 + 20);
+if ($int18 = 1) {
+    $int14 = calc($int14 + 20);
 }
-if ($int19 ! -1 & $int11 = 0 & cc_find($component10, $int19) = true) {
+if ($int26 ! -1 & $int18 = 0 & cc_find($component17, $int26) = true) {
     cc_delete;
 }
-if_setsize(if_getwidth(interface_977:com_26), calc($int7 + 5), ^setsize_abs, ^setsize_abs, interface_977:com_26);
+if_setsize(if_getwidth(interface_977:com_26), calc($int14 + 5), ^setsize_abs, ^setsize_abs, interface_977:com_26);
 if_setsize(if_getwidth(interface_977:com_24), calc(if_gety(interface_977:com_26) + if_getheight(interface_977:com_26)), ^setsize_abs, ^setsize_abs, interface_977:com_24);
 if_setsize(if_getwidth(interface_977:com_3), calc(if_gety(interface_977:com_24) + if_getheight(interface_977:com_24)), ^setsize_abs, ^setsize_abs, interface_977:com_3);
 switch_int ($int4) {
