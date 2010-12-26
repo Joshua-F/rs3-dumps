@@ -3,8 +3,10 @@
 ~script2872;
 def_int $intarray0(calc(969 + 1));
 def_int $int0 = 0;
-%varclientstring_196 = "";
-~meslayer_close(14);
+if (%varclient_89 = 0 | %varclient_89 = -1) {
+    %varclientstring_196 = "";
+    %varclient_89 = 1;
+}
 while ($int0 <= 969) {
     $intarray0($int0) = $int0;
     cc_create(interface_187:com_1, ^iftype_text, calc($int0 * 2));
@@ -16,41 +18,24 @@ if_setparam_int(param_1133, -1, interface_187:com_4);
 $int0 = 0;
 def_int $int1 = 0;
 def_int $int2 = 0;
-def_int $int3 = 0;
-def_int $int4 = 5;
-def_int $int5 = 0;
 while ($int1 <= 969) {
     $int0 = $intarray0($int1);
     if (cc_find(interface_187:com_1, calc($int0 * 2)) = true & .cc_find(interface_187:com_1, calc($int0 * 2 + 1)) = true) {
         if (enum(int, midi, enum_1351, $int0) ! midi_147 & enum(int, int, enum_1350, $int0) = 0) {
             cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
             cc_settext(enum_string(enum_1345, $int0));
-            cc_setposition(15, $int4, ^setpos_abs_left, ^setpos_abs_top);
             cc_setsize(150, 15, ^setsize_abs, ^setsize_abs);
             cc_setonop("script833(event_op, $int0)");
-            cc_setop(2, "Unlock hint");
             cc_setopbase(enum_string(enum_1345, $int0));
             .cc_setopbase(enum_string(enum_1345, $int0));
             cc_settextshadow(false);
             cc_settextfont(p11_full);
             cc_setonmouseover("cc_text_colour_swapper(event_com, event_comsubid, ^white)");
             .cc_setsize(12, 12, ^setsize_abs, ^setsize_abs);
-            .cc_setposition(2, calc($int4 + 1), ^setpos_abs_left, ^setpos_abs_top);
-            if (~music_getvar($int0) = ^true) {
-                ~script3681($int0);
-                $int3 = calc($int3 + 1);
-            } else {
-                cc_setcolour(^red);
-                cc_setonmouseleave("cc_text_colour_swapper(event_com, event_comsubid, ^red)");
-                .cc_sethide(true);
-                .cc_setonop(null);
-            }
-            if ($int5 = 0) {
+            if ($int2 = 0) {
                 if_setparam_int(param_1133, $int0, interface_187:com_4);
-                $int5 = 1;
+                $int2 = 1;
             }
-            $int2 = calc($int2 + 1);
-            $int4 = calc($int4 + 15);
         }
         if ($int1 < 969) {
             cc_setparam_int(param_1133, $intarray0(calc($int1 + 1)));
@@ -58,7 +43,5 @@ while ($int1 <= 969) {
     }
     $int1 = calc($int1 + 1);
 }
-if_setscrollsize(167, calc(5 + $int4), interface_187:com_1);
-if_setscrollpos(0, 0, interface_187:com_1);
 ~scrollbar_vertical(interface_187:com_2, interface_187:com_1, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-if_settext("Unlocked:<br><tostring($int3)> / <tostring($int2)>", interface_187:com_5);
+~music_v3_refresh;
