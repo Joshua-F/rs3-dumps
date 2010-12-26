@@ -13,7 +13,8 @@ def_component $component9 = null;
 def_component $component10 = null;
 def_int $int11 = -1;
 def_int $int12 = 0;
-if_setgraphic(enum(int, graphic, enum_3491, %varplayerbit_8575), interface_1056:com_111);
+def_string $string0 = null;
+if_setgraphic(enum(int, graphic, enum_3491, %varplayerbit_8575), interface_1056:com_112);
 while ($int2 < 6) {
     switch_int ($int2) {
         case 0 :
@@ -27,46 +28,52 @@ while ($int2 < 6) {
         case 1 :
             $int1 = %varplayerbit_8588;
             $struct0 = enum(int, struct, enum_3483, %varplayerbit_8588);
-            $component4 = interface_1056:com_143;
-            $component9 = interface_1056:com_145;
-            $component7 = interface_1056:com_144;
-            $component10 = interface_1056:com_141;
+            $component4 = interface_1056:com_144;
+            $component9 = interface_1056:com_146;
+            $component7 = interface_1056:com_145;
+            $component10 = interface_1056:com_142;
             if_setonop("script3976(%varplayerbit_8588, 2, event_op)", $component10);
         case 2 :
             $int1 = %varplayerbit_8589;
             $struct0 = enum(int, struct, enum_3483, %varplayerbit_8589);
-            $component4 = interface_1056:com_148;
-            $component9 = interface_1056:com_150;
-            $component7 = interface_1056:com_149;
-            $component10 = interface_1056:com_146;
+            $component4 = interface_1056:com_149;
+            $component9 = interface_1056:com_151;
+            $component7 = interface_1056:com_150;
+            $component10 = interface_1056:com_147;
             if_setonop("script3976(%varplayerbit_8589, 3, event_op)", $component10);
         case 3 :
             $int1 = %varplayerbit_8590;
             $struct0 = enum(int, struct, enum_3483, %varplayerbit_8590);
-            $component4 = interface_1056:com_153;
-            $component9 = interface_1056:com_155;
-            $component7 = interface_1056:com_154;
-            $component10 = interface_1056:com_151;
+            $component4 = interface_1056:com_154;
+            $component9 = interface_1056:com_156;
+            $component7 = interface_1056:com_155;
+            $component10 = interface_1056:com_152;
             if_setonop("script3976(%varplayerbit_8590, 4, event_op)", $component10);
         case 4 :
             $int1 = %varplayerbit_8591;
             $struct0 = enum(int, struct, enum_3483, %varplayerbit_8591);
-            $component4 = interface_1056:com_158;
-            $component9 = interface_1056:com_160;
-            $component7 = interface_1056:com_159;
-            $component10 = interface_1056:com_156;
+            $component4 = interface_1056:com_159;
+            $component9 = interface_1056:com_161;
+            $component7 = interface_1056:com_160;
+            $component10 = interface_1056:com_157;
             if_setonop("script3976(%varplayerbit_8591, 5, event_op)", $component10);
         case 5 :
             $int1 = %varplayerbit_8592;
             $struct0 = enum(int, struct, enum_3483, %varplayerbit_8592);
-            $component4 = interface_1056:com_164;
-            $component9 = interface_1056:com_166;
-            $component7 = interface_1056:com_165;
-            $component10 = interface_1056:com_161;
+            $component4 = interface_1056:com_165;
+            $component9 = interface_1056:com_167;
+            $component7 = interface_1056:com_166;
+            $component10 = interface_1056:com_162;
             if_setonop("script3976(%varplayerbit_8592, 6, event_op)", $component10);
     }
+    $string0 = " -<br>";
+    $string0 = append(struct_param($struct0, param_1266), $string0);
+    $string0 = append($string0, struct_param($struct0, param_1273));
+    if (%varplayer_281 < 1000 | %varplayerbit_6494 < 5) {
+        $string0 = struct_param($struct0, param_1266);
+    }
     if ($int1 ! 4094) {
-        if_setonmouserepeat("script3981($component10, struct_param($struct0, param_1266))", $component10);
+        if_setonmouserepeat("script3981($component10, $string0)", $component10);
     } else {
         if_setonmouserepeat(null, $component10);
     }
@@ -74,7 +81,10 @@ while ($int2 < 6) {
     if (%varplayerbit_8577 = $int12 & ~script3999(%varplayerbit_8576) = 0) {
         $struct0 = enum(int, struct, enum_3483, %varplayerbit_8576);
         if_setonop("script3976(%varplayerbit_8576, $int12, event_op)", $component10);
-        if_setonmouserepeat("script3981($component10, struct_param($struct0, param_1266))", $component10);
+        $string0 = " -<br>";
+        $string0 = append(struct_param($struct0, param_1266), $string0);
+        $string0 = append($string0, struct_param($struct0, param_1273));
+        if_setonmouserepeat("script3981($component10, $string0)", $component10);
     }
     if ($struct0 ! null) {
         $graphic8 = enum(int, graphic, enum_3492, struct_param($struct0, param_1272));
@@ -102,8 +112,14 @@ while ($int2 < 6) {
             if_setop(1, "Summary", $component10);
             if_setop(2, "Pin/Unpin Task", $component10);
         }
+        if (%varplayer_281 < 1000) {
+            if_setop(2, "", $component10);
+        }
     }
     $int2 = calc($int2 + 1);
 }
-if_settext(enum(int, string, enum_3487, %varplayerbit_8575), interface_1056:com_109);
+if_settext(enum(int, string, enum_3487, %varplayerbit_8575), interface_1056:com_110);
+if (%varplayer_281 < 1000) {
+    ~script4101(true);
+}
 ~script3975;
