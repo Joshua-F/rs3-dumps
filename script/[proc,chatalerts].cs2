@@ -30,6 +30,10 @@ if ($int0 > %varclient_43) {
                     ~chat_alert_enable(5);
                 case ^chattype_assistreq, ^chattype_assist_notification :
                     ~chat_alert_enable(6);
+                case ^chattype_system_broadcast :
+                    if (string_length(chat_gethistorymessage($int0)) > 1) {
+                        ~chat_alert_enable(1);
+                    }
             }
         }
         $int0 = calc($int0 - 1);
