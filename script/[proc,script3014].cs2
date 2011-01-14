@@ -1,5 +1,18 @@
 // 3014
 [proc,script3014]
-if_settext("Merry Christmas everyone! Are you ready to brave the Heimland Games? Head to one of the Christmas cupboards or speak to me in Daemonheim to find out more!", interface_908:com_14);
-if_sethide(false, interface_908:com_9);
-return;
+if_sethide(false, interface_908:com_15);
+if_sethide(true, interface_908:com_30);
+def_int $int0 = random(100);
+if ($int0 < 20 & userdetail_lobby_membership > 0) {
+    if_settext("Event info: Triumvirate Stealing Creation tournament on 15th January. See the Triumvirate forums for more details!", interface_908:com_19);
+    return;
+} else if ($int0 < 40) {
+    if_settext("Join RuneScape's 10th Anniversary celebrations! Visit the Events forum for details.", interface_908:com_19);
+    return;
+} else {
+    if_sethide(false, interface_908:com_30);
+    if_sethide(true, interface_908:com_15);
+    if_setgraphic(graphic_4544, interface_908:com_31);
+    if_settext("Don't forget to vote in the Wilderness and free trade referendum.<br>Hurry, voting ends on the 14th January.<br>Visit runescape.com to vote now!", interface_908:com_32);
+    return;
+}

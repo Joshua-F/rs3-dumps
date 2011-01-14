@@ -11,6 +11,7 @@ switch_int ($int0) {
         opplayer(7, $string0);
     case 4 :
         opplayer(1, $string0);
+    case 5 :
     case 6 :
         if (~script2709 = 0) {
             mes("You cannot add a friend until you have entered your date of birth");
@@ -36,5 +37,9 @@ switch_int ($int0) {
             ~quickchat_respond(6, chat_gethistoryname($int1), chat_gethistoryphrase($int1));
         }
     case 10 :
-        opplayer(5, $string0);
+        if ($chattype2 = ^chattype_friendschat | $chattype2 = ^chattype_quickchat_friend_chat) {
+            ~script1892($string0);
+        } else {
+            opplayer(5, $string0);
+        }
 }

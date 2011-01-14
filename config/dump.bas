@@ -1079,7 +1079,7 @@ readyanim=seq_2148,seq_2148
 
 // 212
 [bas_212]
-readyanim=seq_2155,seq_2154
+readyanim=seq_15235,seq_15234
 
 // 213
 [bas_213]
@@ -1805,12 +1805,10 @@ readyanim=seq_2040,seq_2041
 
 // 358
 [bas_358]
-readyanim_l=seq_10498
-readyanim_r=seq_10498
-walkanim_b=seq_2048
-walkanim_l=seq_2048
-walkanim_r=seq_2048
-readyanim=seq_10498,seq_2048
+walkanim_b=seq_6319
+walkanim_l=seq_6319
+walkanim_r=seq_6319
+readyanim=seq_6320,seq_6319
 
 // 359
 [bas_359]
@@ -9875,4 +9873,96 @@ walkanim_b=seq_9869
 walkanim_l=seq_9869
 walkanim_r=seq_9869
 readyanim=seq_15120,seq_9869
+
+// 1937
+[bas_1937]
+readyanim=seq_15208,null
+
+// 1938
+[bas_1938]
+readyanim=null,seq_4759
+randomreadyanim=seq_4759,90
+randomreadyanim=seq_9152,10
+
+// 1939
+[bas_1939]
+readyanim=seq_11173,seq_11173
+
+// 1940
+[bas_1940]
+readyanim=null,null
+randomreadyanim=seq_13795,80
+randomreadyanim=seq_15165,10
+randomreadyanim=seq_15166,10
+
+// 1941
+[bas_1941]
+readyanim=seq_15157,seq_15157
+
+// 1942
+[bas_1942]
+readyanim=seq_15167,seq_15167
+
+// 1943
+[bas_1943]
+readyanim=seq_15212,seq_15212
+
+// 1944
+[bas_1944]
+readyanim=seq_15213,seq_15213
+
+// 1945
+[bas_1945]
+readyanim=seq_15214,seq_15214
+
+// 1946
+[bas_1946]
+readyanim=seq_15216,seq_15216
+
+// 1947
+[bas_1947]
+readyanim=seq_15215,seq_15215
+
+// 1948
+[bas_1948]
+readyanim=seq_15211,seq_98
+
+// 1949
+[bas_1949]
+runanim=seq_15204
+readyanim=seq_15205,seq_15204
+
+// 1950
+[bas_1950]
+readyanim=seq_15230,seq_15229
+
+// 1951
+[bas_1951]
+readyanim=seq_10814,seq_15231
+
+// 1952
+[bas_1952]
+walkanim_b=seq_15233
+walkanim_l=seq_15233
+walkanim_r=seq_15233
+readyanim=seq_15232,seq_15233
+
+// 1953
+[bas_1953]
+readyanim=seq_7008,seq_7001
+
+// 1954
+[bas_1954]
+hillrotate=16,4
+readyanim=seq_15240,seq_6583
+
+// 1955
+[bas_1955]
+readyanim_l=seq_1209
+readyanim_r=seq_1209
+walkanim_b=seq_1206
+walkanim_l=seq_1207
+walkanim_r=seq_1208
+runanim=seq_1210
+readyanim=seq_813,seq_12024
 
