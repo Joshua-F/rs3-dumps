@@ -1,29 +1,36 @@
 // 3367
 [proc,script3367]
 def_int $int0 = 0;
+def_int $int1 = 0;
 if (%varclient_1243 < stat_visible_xp(attack)) {
     $int0 = calc($int0 + (stat_visible_xp(attack) - %varclient_1243));
+    $int1 = calc($int1 + (stat_visible_xp(attack) - %varclient_1243) / 2);
 }
 if (%varclient_1244 < stat_visible_xp(strength)) {
     $int0 = calc($int0 + (stat_visible_xp(strength) - %varclient_1244));
+    $int1 = calc($int1 + (stat_visible_xp(strength) - %varclient_1244) / 2);
 }
 if (%varclient_1245 < stat_visible_xp(defence)) {
     $int0 = calc($int0 + (stat_visible_xp(defence) - %varclient_1245));
+    $int1 = calc($int1 + (stat_visible_xp(defence) - %varclient_1245) / 2);
 }
 if (%varclient_1246 < stat_visible_xp(ranged)) {
     $int0 = calc($int0 + (stat_visible_xp(ranged) - %varclient_1246));
+    $int1 = calc($int1 + (stat_visible_xp(ranged) - %varclient_1246) / 2);
 }
 if (%varclient_1247 < stat_visible_xp(prayer)) {
     $int0 = calc($int0 + (stat_visible_xp(prayer) - %varclient_1247));
 }
 if (%varclient_1248 < stat_visible_xp(magic)) {
     $int0 = calc($int0 + (stat_visible_xp(magic) - %varclient_1248));
+    $int1 = calc($int1 + (stat_visible_xp(magic) - %varclient_1248) / 2);
 }
 if (%varclient_1249 < stat_visible_xp(runecraft)) {
     $int0 = calc($int0 + (stat_visible_xp(runecraft) - %varclient_1249));
 }
 if (%varclient_1250 < stat_visible_xp(hitpoints)) {
     $int0 = calc($int0 + (stat_visible_xp(hitpoints) - %varclient_1250));
+    $int1 = calc($int1 + (stat_visible_xp(hitpoints) - %varclient_1250) / 2);
 }
 if (%varclient_1251 < stat_visible_xp(crafting)) {
     $int0 = calc($int0 + (stat_visible_xp(crafting) - %varclient_1251));
@@ -78,6 +85,8 @@ if (%varclient_1267 < stat_visible_xp(dungeoneering)) {
 }
 if ($int0 = 0) {
     return;
+} else if (%varplayer_2044 > 0) {
+    ~script337($int0, $int1);
 } else {
     ~script3368($int0);
 }
