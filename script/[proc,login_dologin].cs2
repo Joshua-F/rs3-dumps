@@ -5,31 +5,36 @@ if (unknown_command_5623 = false & (string_length(%varclientstring_32) = 0 | str
     ~login_open(11);
     return;
 }
-if (unknown_command_5420 = true & ~script1431 = 1 & %varclient_547 = 0) {
+def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = 0;
+if (unknown_command_5420 = true & ~script2727 = true & %varclient_547 = 0) {
     %varclient_174 = 12;
     if_sethide(false, interface_744:com_28);
     sound_jingle(jingle_349, 0);
-    if (~pvpwild_world_check = 1) {
-        if_settext("Bounty World", interface_744:com_42);
-        if_settext("Warning: This is a Bounty World. Players can attack you throughout the Wilderness.<br><br>If you die, you may lose all of your items.<br><br>You have been warned.", interface_744:com_43);
-    } else {
-        if_settext("PvP World", interface_744:com_42);
-        if_settext("Warning: This is a PvP World. Players can attack you throughout RuneScape.<br><br>If you die, you may lose all of your items.<br><br>You have been warned.", interface_744:com_43);
-    }
+    ~script3412(interface_744:com_42, interface_744:com_43);
+    $int2 = if_getwidth(interface_744:com_43);
+    $int3 = if_getwidth(interface_744:com_43);
+    $int0 = max(337, calc(stringwidth(if_gettext(interface_744:com_42), menu_font_small) + 31));
+    $int3 = max(152, calc(paraheight(if_gettext(interface_744:com_43), $int2, b12_full) * 16));
+    $int1 = max(252, calc($int3 + 100));
+    if_setsize($int2, $int3, ^setsize_abs, ^setsize_abs, interface_744:com_43);
+    if_setsize($int0, $int1, ^setsize_abs, ^setsize_abs, interface_744:com_28);
     if_sethide(true, interface_744:com_26);
     if_sethide(true, interface_744:com_27);
     return;
 }
 %varclient_200 = 0;
 %varclient_201 = 0;
-def_component $component0 = interface_596:com_52;
-def_component $component1 = interface_596:com_42;
+def_component $component4 = interface_596:com_52;
+def_component $component5 = interface_596:com_42;
 if (unknown_command_5623 = true) {
-    $component0 = interface_975:com_54;
-    $component1 = interface_975:com_50;
+    $component4 = interface_975:com_54;
+    $component5 = interface_975:com_50;
 }
-if_settext("Logging in...", $component0);
-if_setonclick(null, $component1);
+if_settext("Logging in...", $component4);
+if_setonclick(null, $component5);
 ~login_popup(-3, 0, "Logging In - Please Wait", 1, null, 0, -1, "", 0, "");
 %varclient_1100 = -3;
 def_string $string0 = %varclientstring_32;
