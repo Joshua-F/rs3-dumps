@@ -373,7 +373,7 @@ readyanim=seq_6793,seq_6796
 readyanim=seq_808,seq_808
 
 [bas_93]
-readyanim=seq_5800,seq_5799
+readyanim=seq_12454,seq_5799
 
 [bas_94]
 readyanim=seq_4777,seq_4773
@@ -8014,4 +8014,18 @@ readyanim=seq_813,seq_12024
 hillrotate=0,16
 hillrotatelimit=64,64
 readyanim=seq_15254,seq_15256
+
+[bas_1957]
+readyanim_l=seq_1831
+readyanim_r=seq_1831
+walkanim_b=seq_1831
+walkanim_l=seq_1831
+walkanim_r=seq_1831
+readyanim=seq_4326,seq_1831
+
+[bas_1958]
+readyanim=seq_1493,seq_1494
+
+[bas_1959]
+readyanim=seq_5248,seq_5442
 
