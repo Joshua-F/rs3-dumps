@@ -386,8 +386,14 @@ hillrotate=16,4
 readyanim=seq_6561,seq_6583
 
 [bas_97]
-hillrotate=64,0
-hillrotatelimit=0,20
+readyanim_l=seq_3967
+readyanim_r=seq_3967
+walkanim_l=seq_6556
+walkanim_r=seq_6556
+walkturn_l=seq_6556
+walkturn_r=seq_6556
+hillrotate=0,16
+hillrotatelimit=64,64
 readyanim=seq_6580,seq_6556
 
 [bas_98]
@@ -402,6 +408,7 @@ hillrotate=48,48
 readyanim=seq_6252,seq_6253
 
 [bas_101]
+hillrotate=8,8
 readyanim=seq_2704,seq_2703
 
 [bas_102]
@@ -426,6 +433,7 @@ readyanim=seq_7222,seq_7224
 readyanim=seq_7217,seq_7216
 
 [bas_108]
+runanim=seq_15263
 readyanim=seq_195,seq_189
 
 [bas_109]
@@ -1417,7 +1425,7 @@ readyanim=seq_3728,seq_3728
 readyanim=seq_3729,seq_3729
 
 [bas_350]
-readyanim=seq_8728,seq_8723
+readyanim=seq_8737,seq_6088
 
 [bas_351]
 readyanim=seq_8737,seq_6088
@@ -1997,19 +2005,21 @@ readyanim=seq_6062,seq_6061
 [bas_499]
 readyanim=seq_6036,seq_6036
 
-[bas_500]
-readyanim=seq_4538,null
-
-[bas_501]
-readyanim=seq_4537,null
-
-[bas_502]
-readyanim=seq_4536,null
-
 [bas_503]
+walkanim_b=seq_6799
+walkanim_l=seq_6799
+walkanim_r=seq_6799
+walkturn_l=seq_6799
+walkturn_r=seq_6799
 readyanim=seq_6798,seq_6799
 
 [bas_504]
+readyanim_l=seq_15272
+readyanim_r=seq_15273
+walkturn_l=seq_3953
+walkturn_r=seq_3953
+walkanim_l=seq_15272
+walkanim_r=seq_15273
 readyanim=seq_3952,seq_3953
 
 [bas_505]
@@ -4268,7 +4278,11 @@ readyanim=null,seq_4790
 readyanim=seq_4825,seq_4779
 
 [bas_1112]
-readyanim=seq_3952,null
+readyanim_l=seq_15272
+readyanim_r=seq_15273
+walkturn_l=seq_15272
+walkturn_r=seq_15273
+readyanim=seq_3952,seq_3953
 
 [bas_1113]
 readyanim=seq_6140,seq_6141
@@ -8028,4 +8042,63 @@ readyanim=seq_1493,seq_1494
 
 [bas_1959]
 readyanim=seq_5248,seq_5442
+
+[bas_1960]
+readyanim=seq_5471,null
+
+[bas_1961]
+runanim=seq_1215
+readyanim=seq_1214,seq_8723
+
+[bas_1962]
+crawlanim=seq_3964
+readyanim_l=seq_3964
+readyanim_r=seq_3964
+walkanim_l=seq_3964
+walkanim_r=seq_3964
+readyanim=seq_3959,seq_3964
+
+[bas_1963]
+walkanim_b=seq_6796
+walkanim_l=seq_6796
+walkanim_r=seq_6796
+walkturn_l=seq_6796
+walkturn_r=seq_6796
+readyanim=seq_6793,seq_6796
+
+[bas_1964]
+walkanim_b=seq_781
+walkanim_l=seq_781
+walkanim_r=seq_781
+walkturn_l=seq_781
+walkturn_r=seq_781
+readyanim=seq_202,seq_781
+
+[bas_1965]
+readyanim=seq_15269,seq_15270
+
+[bas_1966]
+readyanim=seq_4536,null
+
+[bas_1967]
+readyanim=seq_4538,null
+
+[bas_1968]
+readyanim=seq_4537,null
+
+[bas_1969]
+readyanim=null,seq_1226
+randomreadyanim=seq_195,50
+randomreadyanim=seq_3216,50
+
+[bas_1970]
+readyanim=seq_1009,seq_1007
+
+[bas_1971]
+readyanim=null,seq_15274
+randomreadyanim=seq_7122,80
+randomreadyanim=seq_1391,20
+
+[bas_1972]
+readyanim=seq_195,seq_1226
 
