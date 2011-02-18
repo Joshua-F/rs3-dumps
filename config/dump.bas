@@ -2505,6 +2505,10 @@ readyanim=seq_6062,seq_6061
 [bas_499]
 readyanim=seq_6036,seq_6036
 
+// 500
+[bas_500]
+readyanim=seq_11449,null
+
 // 503
 [bas_503]
 walkanim_b=seq_6799
