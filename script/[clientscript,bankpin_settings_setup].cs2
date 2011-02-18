@@ -1,0 +1,64 @@
+// 4146
+[clientscript,bankpin_settings_setup]
+def_int $int0 = 0;
+if (testbit(%varclient_98, 31) = ^true) {
+    if_sethide(true, interface_14:com_13);
+    if_sethide(false, interface_14:com_31);
+    ~v2_stone_button_out_filled(interface_14:com_33);
+    ~v2_stone_button_out_filled(interface_14:com_35);
+} else {
+    if_sethide(false, interface_14:com_13);
+    if_sethide(true, interface_14:com_31);
+    ~script1088(interface_14:com_14, 0);
+    ~script1298(interface_14:com_16, 0, 0, 0);
+    ~script1088(interface_14:com_21, 19);
+    $int0 = calc(if_getheight(interface_14:com_16) - 14);
+    switch_int (calc(%varclient_98 & 3)) {
+        case 0 :
+            if_settext("No PIN set", interface_14:com_23);
+            $int0 = calc($int0 / 2);
+            ~script4147(interface_14:com_18, $int0, calc((0 - $int0) / 2), "Set a PIN");
+            ~script4147(interface_14:com_19, $int0, calc($int0 / 2), "Change recovery delay");
+            if_sethide(true, interface_14:com_20);
+        case default :
+            if_settext("You have a PIN", interface_14:com_23);
+            $int0 = calc($int0 / 3);
+            ~script4147(interface_14:com_18, $int0, calc(0 - $int0), "Change your PIN");
+            ~script4147(interface_14:com_19, $int0, 0, "Delete your PIN");
+            ~script4147(interface_14:com_20, $int0, $int0, "Change recovery delay");
+        case 3 :
+            if_settext("PIN coming soon", interface_14:com_23);
+            $int0 = min($int0, 50);
+            ~script4147(interface_14:com_18, $int0, 0, "Cancel the PIN");
+            if_sethide(true, interface_14:com_19);
+            if_sethide(true, interface_14:com_20);
+    }
+    if (testbit(%varclient_98, 10) = ^true) {
+        if_settext("7 days", interface_14:com_25);
+    } else {
+        if_settext("3 days", interface_14:com_25);
+    }
+}
+cc_deleteall(interface_14:com_28);
+cc_create(interface_14:com_28, ^iftype_text, 0);
+cc_settextfont(p12_full);
+cc_setcolour(0xff981f);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_settext(%varclientstring_344);
+if (calc(paraheight(%varclientstring_344, calc(if_getwidth(if_getlayer(interface_14:com_28)) - 14), p12_full) * 12 + 5) <= if_getheight(interface_14:com_28)) {
+    if_setsize(14, 40, ^setsize_minus, ^setsize_minus, interface_14:com_28);
+    if_setscrollsize(0, 0, interface_14:com_28);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    if_sethide(true, interface_14:com_29);
+    return;
+}
+if_setsize(31, 40, ^setsize_minus, ^setsize_minus, interface_14:com_28);
+$int0 = calc(paraheight(%varclientstring_344, if_getwidth(interface_14:com_28), p12_full) * 12 + 5);
+if_setscrollsize(0, $int0, interface_14:com_28);
+if_setscrollpos(0, 0, interface_14:com_28);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+cc_setsize(0, $int0, ^setsize_minus, ^setsize_abs);
+if_sethide(false, interface_14:com_29);
+~scrollbar_vertical(interface_14:com_29, interface_14:com_28, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
