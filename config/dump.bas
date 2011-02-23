@@ -2008,6 +2008,9 @@ readyanim=seq_6036,seq_6036
 [bas_500]
 readyanim=seq_11449,null
 
+[bas_501]
+readyanim=seq_195,null
+
 [bas_503]
 walkanim_b=seq_6799
 walkanim_l=seq_6799
