@@ -2513,6 +2513,10 @@ readyanim=seq_11449,null
 [bas_501]
 readyanim=seq_195,null
 
+// 502
+[bas_502]
+readyanim=seq_4457,seq_4459
+
 // 503
 [bas_503]
 walkanim_b=seq_6799
@@ -5642,6 +5646,12 @@ readyanim=seq_8683,seq_8684
 
 // 1158
 [bas_1158]
+walkturn_l=seq_3997
+walkturn_r=seq_3997
+readyanim_l=seq_3997
+readyanim_r=seq_3997
+walkanim_l=seq_3997
+walkanim_r=seq_3997
 readyanim=seq_3950,seq_3997
 
 // 1159
@@ -5763,7 +5773,12 @@ readyanim=seq_3987,seq_3984
 
 // 1184
 [bas_1184]
-readyanim=seq_1501,seq_1501
+walkanim_b=seq_52
+walkanim_l=seq_52
+walkanim_r=seq_52
+readyanim=null,seq_52
+randomreadyanim=seq_51,235
+randomreadyanim=seq_107,20
 
 // 1185
 [bas_1185]
@@ -6864,7 +6879,13 @@ readyanim=seq_179,seq_176
 
 // 1412
 [bas_1412]
-readyanim=seq_306,seq_303
+walkanim_l=seq_35
+walkanim_r=seq_35
+readyanim_l=seq_35
+readyanim_r=seq_35
+walkturn_l=seq_32
+walkturn_r=seq_32
+readyanim=seq_34,seq_35
 
 // 1413
 [bas_1413]
@@ -10079,4 +10100,30 @@ randomreadyanim=seq_1391,20
 // 1972
 [bas_1972]
 readyanim=seq_195,seq_1226
+
+// 1973
+[bas_1973]
+readyanim=seq_15309,seq_4458
+
+// 1974
+[bas_1974]
+readyanim=seq_11456,seq_11456
+
+// 1975
+[bas_1975]
+readyanim=seq_15321,seq_15320
+
+// 1976
+[bas_1976]
+walkanim_l=seq_32
+walkanim_r=seq_32
+readyanim_l=seq_32
+readyanim_r=seq_32
+walkturn_l=seq_32
+walkturn_r=seq_32
+readyanim=seq_32,seq_32
+
+// 1977
+[bas_1977]
+readyanim=seq_41,null
 
