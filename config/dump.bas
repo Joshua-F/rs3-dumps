@@ -3595,6 +3595,9 @@ readyanim=seq_2803,seq_2802
 [bas_921]
 readyanim=seq_5584,seq_5583
 
+[bas_922]
+readyanim=seq_9608,null
+
 [bas_923]
 readyanim=seq_479,null
 
@@ -3606,6 +3609,9 @@ readyanim=seq_5029,seq_5030
 
 [bas_926]
 readyanim=seq_5002,null
+
+[bas_927]
+readyanim=seq_9629,null
 
 [bas_928]
 readyanim=seq_1838,seq_1839
@@ -3695,7 +3701,7 @@ readyanim=seq_7163,null
 readyanim=seq_7164,null
 
 [bas_950]
-readyanim=seq_9217,seq_9216
+readyanim=seq_3605,seq_3606
 
 [bas_951]
 readyanim=seq_9198,null
@@ -8242,4 +8248,41 @@ readyanim=seq_9026,seq_15229
 
 [bas_1990]
 readyanim=seq_9045,seq_283
+
+[bas_1991]
+readyanim=seq_9627,null
+
+[bas_1992]
+runanim=seq_9635
+readyanim=seq_9635,seq_9635
+
+[bas_1993]
+runanim=seq_9725
+readyanim=seq_9725,seq_9725
+
+[bas_1994]
+runanim=seq_9726
+readyanim=seq_9726,seq_9726
+
+[bas_1995]
+crawlanim=seq_10862
+runanim=seq_10862
+readyanim=seq_10862,seq_10862
+
+[bas_1996]
+readyanim=seq_9755,seq_9755
+
+[bas_1997]
+readyanim=seq_10084,seq_10084
+
+[bas_1998]
+readyanim=seq_3054,null
+
+[bas_1999]
+readyanim_l=seq_227
+readyanim_r=seq_227
+walkanim_l=seq_228
+walkanim_r=seq_228
+runanim=seq_3589
+readyanim=seq_227,seq_228
 
