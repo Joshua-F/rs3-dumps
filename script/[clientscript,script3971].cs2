@@ -15,6 +15,9 @@ def_int $int11 = -1;
 def_int $int12 = 0;
 def_string $string0 = null;
 if_setgraphic(enum(int, graphic, enum_3491, %varplayerbit_8575), interface_1056:com_112);
+if (%varplayerbit_9030 = 1) {
+    if_setgraphic("stonemenusideicons,3", interface_1056:com_112);
+}
 while ($int2 < 6) {
     switch_int ($int2) {
         case 0 :
@@ -69,10 +72,10 @@ while ($int2 < 6) {
     $string0 = " -<br>";
     $string0 = append(struct_param($struct0, param_1266), $string0);
     $string0 = append($string0, struct_param($struct0, param_1273));
-    if (%varplayer_281 < 1000 | %varplayerbit_6494 < 5) {
+    if (%varplayerbit_4895 = 3 & (%varplayer_281 < 1000 | %varplayerbit_6494 < 5)) {
         $string0 = struct_param($struct0, param_1266);
     }
-    if ($int1 ! 4094) {
+    if (~script3999($int1) = 0) {
         if_setonmouserepeat("script3981($component10, $string0)", $component10);
     } else {
         if_setonmouserepeat(null, $component10);
@@ -81,10 +84,11 @@ while ($int2 < 6) {
     if (%varplayerbit_8577 = $int12 & ~script3999(%varplayerbit_8576) = 0) {
         $struct0 = enum(int, struct, enum_3483, %varplayerbit_8576);
         if_setonop("script3976(%varplayerbit_8576, $int12, event_op)", $component10);
-        $string0 = " -<br>";
-        $string0 = append(struct_param($struct0, param_1266), $string0);
-        $string0 = append($string0, struct_param($struct0, param_1273));
-        if_setonmouserepeat("script3981($component10, $string0)", $component10);
+        if (~script3999($int1) = 0) {
+            if_setonmouserepeat("script3981($component10, $string0)", $component10);
+        } else {
+            if_setonmouserepeat(null, $component10);
+        }
     }
     if ($struct0 ! null) {
         $graphic8 = enum(int, graphic, enum_3492, struct_param($struct0, param_1272));
@@ -118,8 +122,15 @@ while ($int2 < 6) {
     }
     $int2 = calc($int2 + 1);
 }
-if_settext(enum(int, string, enum_3487, %varplayerbit_8575), interface_1056:com_110);
-if (%varplayer_281 < 1000) {
-    ~script4101(true);
+if_sethide(false, interface_1056:com_111);
+if_sethide(false, interface_1056:com_112);
+if (%varplayerbit_8575 = 61) {
+    if_settext("Quest Area", interface_1056:com_110);
+    if_sethide(true, interface_1056:com_111);
+    if_sethide(true, interface_1056:com_112);
+} else if (%varplayerbit_9030 = 1) {
+    if_settext("Introductory Tasks", interface_1056:com_110);
+} else {
+    if_settext(enum(int, string, enum_3487, %varplayerbit_8575), interface_1056:com_110);
 }
 ~script3975;

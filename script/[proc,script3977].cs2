@@ -1,6 +1,12 @@
 // 3977
 [proc,script3977](int $int0)
 ~deltooltip_action(interface_1056:com_136);
+if ($int0 = 0 & %varplayer_281 < 1000) {
+    $int0 = 4094;
+}
+if (~script3999($int0) = 1) {
+    return;
+}
 def_struct $struct1 = null;
 def_string $string0 = "";
 def_string $string1 = "";
@@ -13,6 +19,11 @@ def_struct $struct5 = enum(int, struct, enum_3494, $int4);
 if ($struct1 ! null) {
     $string0 = struct_param($struct1, param_1266);
     $string1 = struct_param($struct1, param_1273);
+    if ($int0 > 419 & $int0 < 424) {
+        $string1 = append($string1, "<br><br>Click on the Hints tab above if you wish to see more information on how to complete this Task.");
+    } else if ($int0 = 419) {
+        $string1 = append($string1, "<br><br>Simply click on Jack to start a conversation - as a new player you will start just nearby.");
+    }
     if (struct_param($struct1, param_1270) ! 4094) {
         $string2 = struct_param(enum(int, struct, enum_2252, struct_param($struct1, param_1270)), param_951);
         $graphic3 = struct_param(enum(int, struct, enum_2252, struct_param($struct1, param_1270)), param_952);
@@ -159,7 +170,7 @@ if ($struct5 ! null & $struct5 ! struct_1645) {
         $int6 = ~script3978(0, $int6, struct_param($struct5, param_1279), interface_1056:com_73, 4094, null, interface_1056:com_74);
     }
 } else if (%varplayerbit_8601 > %varplayerbit_8602) {
-    $string2 = "You have already earned a sum of money, which you may claim by talking to any taskmaster or increase by continuing to complete Tasks.";
+    $string2 = "You have already earned a sum of money, which you may claim by talking to any Taskmaster or you can increase by completing more Tasks.";
     $int6 = ~script3978(0, $int6, $string2, interface_1056:com_67, 4094, null, interface_1056:com_74);
 }
 $int6 = max($int6, if_getheight(interface_1056:com_74));
@@ -170,16 +181,29 @@ if ($int6 > if_getheight(interface_1056:com_74)) {
 } else {
     if_sethide(true, interface_1056:com_95);
 }
+def_string $string5 = "";
+def_int $int11 = 5;
 if (~task_get_progress($int0) = 2) {
     if_sethide(true, interface_1056:com_88);
     if_sethide(true, interface_1056:com_90);
-    if (%varplayer_281 = 1000) {
+    if (%varplayer_281 = 1000 | %varplayerbit_9029 = 1) {
         if_sethide(false, interface_1056:com_130);
+    }
+    if ($int0 = 419) {
+        $string5 = "Task complete! Click here to return to the task list.";
+        if (getwindowmode >= 2) {
+            if (if_getwidth(interface_746:com_0) < 997) {
+                $int11 = calc($int11 + 40);
+            }
+            ~script4248($string5, 158, $int11, 1, ^white, graphic_5631);
+        } else {
+            ~script4247($string5, 175, -1, 1, ^white, graphic_5631);
+        }
     }
 } else if (struct_param($struct1, param_1267) = 60) {
     if_sethide(true, interface_1056:com_88);
     if_sethide(true, interface_1056:com_130);
-    if (%varplayer_281 < 135) {
+    if (%varplayer_281 < 135 & %varplayerbit_9029 = 0) {
         if_sethide(true, interface_1056:com_90);
     } else {
         if_sethide(false, interface_1056:com_90);
@@ -190,6 +214,25 @@ if (~task_get_progress($int0) = 2) {
         if_sethide(false, interface_1056:com_88);
     } else {
         if_sethide(true, interface_1056:com_88);
+    }
+    if ($int0 = 420 | $int0 = 363 | $int0 = 419 & %varplayer_281 = 1000) {
+        $string5 = "Click on the Hints tab for more on how to complete this Task.";
+    } else if ($int0 = 421) {
+        $string5 = "Remember, the Hints tab provides more details about a Task.";
+    } else {
+        $string5 = "";
+    }
+    if (%varplayerbit_9030 = 0) {
+        $string5 = "";
+    }
+    if (getwindowmode >= 2) {
+        if (if_getwidth(interface_746:com_0) < 997) {
+            ~script4248($string5, 196, 223, 1, ^white, graphic_5631);
+        } else {
+            ~script4248($string5, 196, 183, 1, ^white, graphic_5631);
+        }
+    } else {
+        ~script4247($string5, 217, 177, 1, ^white, graphic_5631);
     }
 }
 if_setsize(0, calc(15 + $int6), ^setsize_minus, ^setsize_abs, interface_1056:com_96);
