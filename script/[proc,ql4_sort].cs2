@@ -118,9 +118,28 @@ while ($int2 = 0 & $int23 < $int18 | $int2 = 1 & $int23 >= 0) {
             if ($int14 = 1 & cc_find($component7, $intarray0($int10)) = true) {
                 cc_setposition(10, $int24, ^setpos_abs_left, ^setpos_abs_top);
                 cc_sethide(false);
-                if (struct_param(%varclient_699, param_694) = 1 & $intarray1($int10) ! 0) {
+                if (struct_param(%varclient_699, param_694) = 1) {
+                    if ($intarray1($int10) = 0) {
+                        cc_setop(1, "View Quest Overview");
+                        cc_setop(2, "View Quest Journal");
+                        cc_setop(3, "Toggle Map Hint");
+                    } else if ($intarray1($int10) = 1) {
+                        cc_setop(1, "View Quest Journal");
+                        cc_setop(2, "View Quest Overview");
+                        cc_setop(3, "Toggle Map Hints");
+                    } else {
+                        cc_setop(1, "View Quest Journal");
+                        cc_setop(2, "View Quest Overview");
+                        cc_setop(3, "");
+                    }
+                } else {
                     cc_setop(1, "View Quest Journal");
-                    cc_setop(2, "View Quest Overview");
+                    cc_setop(3, "");
+                    if ($intarray1($int10) = 0) {
+                        cc_setop(2, "Toggle Map Hint");
+                    } else {
+                        cc_setop(2, "");
+                    }
                 }
                 cc_setonmouseover("cc_text_colour_swapper(event_com, event_comsubid, ^white)");
                 if ($intarray0($int10) = $int26) {
