@@ -10286,3 +10286,25 @@ walkanim_r=seq_228
 runanim=seq_3589
 readyanim=seq_227,seq_228
 
+// 2000
+[bas_2000]
+readyanim=seq_3609,seq_3609
+
+// 2001
+[bas_2001]
+readyanim=seq_3608,seq_3608
+
+// 2002
+[bas_2002]
+readyanim=seq_3480,null
+
+// 2003
+[bas_2003]
+readyanim=seq_3482,null
+
+// 2004
+[bas_2004]
+hillrotate=29,29
+unknown53=no
+readyanim=seq_9653,null
+
