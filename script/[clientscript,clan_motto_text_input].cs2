@@ -1,0 +1,29 @@
+// 4379
+[clientscript,clan_motto_text_input](component $component0, component $component1, char $char2, int $key3, component $component4)
+%varclientstring_345 = if_gettext($component0);
+switch_int ($key3) {
+    case ^key_return :
+        ~clan_motto_return;
+    case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
+        if (keyheld_shift = false) {
+            return;
+        }
+        ~script1553($key3, %varclient_1496, %varclientstring_345);
+    case ^key_backspace :
+        if (string_length(%varclientstring_345) > 0) {
+            %varclientstring_345 = substring(%varclientstring_345, 0, calc(string_length(%varclientstring_345) - 1));
+        }
+    case default :
+        if (string_length(%varclientstring_345) < 80) {
+            %varclientstring_345 = ~add_to_inputstring(%varclientstring_345, 0, $key3, $char2);
+        }
+}
+%varclient_1496 = ~script1552(%varclient_1496, %varclientstring_345, graphic_5631, $component0, -1);
+if_setposition(%varclient_1496, if_gety($component4), ^setpos_abs_left, ^setpos_abs_top, $component4);
+if_settext("<tostring(string_length(%varclientstring_345))>/80", $component1);
+if (string_length(%varclientstring_345) >= 70) {
+    if_setcolour(0xdd0000, $component1);
+} else {
+    if_setcolour(0x1f1d19, $component1);
+}
+if_settext(%varclientstring_345, $component0);

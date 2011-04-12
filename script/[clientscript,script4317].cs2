@@ -1,0 +1,44 @@
+// 4317
+[clientscript,script4317]
+cc_deleteall(interface_1091:com_6);
+def_int $int0 = friend_count;
+if ($int0 = -2) {
+    if_settext("Loading Friends List.<br>Please wait.", interface_1091:com_3);
+    return;
+} else if ($int0 = -1) {
+    if_settext("Connecting to Friend Server.<br>Please wait.", interface_1091:com_3);
+    return;
+}
+if_settext("Friends List loaded", interface_1091:com_3);
+def_int $int1 = 0;
+def_int $int2 = parawidth(" ", ^max_32bit_int, friendslist_font);
+def_string $string0 = "";
+def_string $string1 = "";
+def_int $int3 = 0;
+def_int $int4 = -1;
+def_int $int5 = -1;
+def_string $string2 = "";
+while ($int1 < $int0) {
+    $int3 = calc($int1 * 15 + 5);
+    $string0, $string2 = friend_getname($int1);
+    $string1 = $string0;
+    cc_create(interface_1091:com_6, ^iftype_text, if_getnextsubid(interface_1091:com_6));
+    cc_setsize(16384, 14, ^setsize_rel, ^setsize_abs);
+    cc_setposition(0, $int3, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setcolour(^white);
+    cc_settextfont(friendslist_font);
+    cc_settextshadow(true);
+    cc_setopbase("<col=ffffff><$string0>");
+    cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+    cc_settext("name");
+    $int1 = calc($int1 + 1);
+}
+def_int $int6 = 0;
+def_int $int7 = 0;
+$int6 = if_getscrolly(interface_1091:com_6);
+$int7 = calc($int1 * 15 + 10);
+if_setscrollsize(0, $int7, interface_1091:com_6);
+if ($int6 > $int7) {
+    $int6 = $int7;
+}
+~scrollbar_vertical(interface_1091:com_5, interface_1091:com_6, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");

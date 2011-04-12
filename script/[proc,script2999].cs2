@@ -120,11 +120,16 @@ if ($int1 = 0) {
     if_setonmouseleave("text_swapper(event_com, $string2)", interface_907:com_16);
 }
 ~script3376(interface_907:com_16);
-def_int $int2 = 0;
+def_boolean $boolean2 = false;
 def_int $int3 = 0;
-$int3, $int2 = userdetail_lobby_membership;
+def_int $int4 = 0;
+$int3, $int4, $boolean2 = userdetail_lobby_membership;
 def_string $string4 = format_datetime_from_minutes($int3);
-if ($int2 = 1) {
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_string $string5 = "";
+if ($boolean2 = true) {
     if_setgraphic(graphic_2669, interface_907:com_48);
     ~script3008(~script3011(3));
     if_settext("Subscription Active", interface_907:com_53);
@@ -136,11 +141,17 @@ if ($int2 = 1) {
     $string0 = "billing_core";
     $string1 = "userdetails.ws";
 } else if (playermember = true) {
+    $int5 = calc($int4 / 1440);
+    $int6 = calc($int4 % 1440 / 60);
+    $int7 = calc($int4 % 60);
+    if (calc($int5 + $int6 + $int7) ! 0) {
+        $string5 = " (in <~date_tostring($int5, $int6, $int7)>)";
+    }
     if_setgraphic(graphic_2669, interface_907:com_48);
     ~script3008(~script3011(3));
     if_settext("Expires <$string4>", interface_907:com_53);
-    $string2 = "Your membership will expire on <$string4>. Renew now to avoid losing member status. Click <col=0166ff><u=0166ff>here</u></col> to renew.";
-    $string3 = "Your membership will expire on <$string4>. Renew now to avoid losing member status. Click <col=0296fe><u=0296fe>here</u></col> to renew.";
+    $string2 = "Your membership will expire on <$string4><$string5>. Renew now to avoid losing member status. Click <col=0166ff><u=0166ff>here</u></col> to renew.";
+    $string3 = "Your membership will expire on <$string4><$string5>. Renew now to avoid losing member status. Click <col=0296fe><u=0296fe>here</u></col> to renew.";
     if_settext($string2, interface_907:com_54);
     if_setonmouseover("text_swapper(event_com, $string3)", interface_907:com_54);
     if_setonmouseleave("text_swapper(event_com, $string2)", interface_907:com_54);
