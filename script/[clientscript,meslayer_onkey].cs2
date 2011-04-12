@@ -15,7 +15,11 @@ switch_int ($key0) {
                 } else if (%varclient_5 = 4) {
                     ignore_add(%varclientstring_22);
                 } else if (%varclient_5 = 5) {
-                    ignore_del(%varclientstring_22);
+                    if (ignore_test(~displayname_simplify(%varclientstring_22)) = true) {
+                        ignore_del(~displayname_simplify(%varclientstring_22));
+                    } else {
+                        mes("That player is not on your ignore list.");
+                    }
                 }
             } else if (%varclient_5 < 7) {
                 if (friend_count < 0) {
@@ -23,7 +27,11 @@ switch_int ($key0) {
                 } else if (%varclient_5 = 2) {
                     friend_add(%varclientstring_22);
                 } else if (%varclient_5 = 3) {
-                    friend_del(%varclientstring_22);
+                    if (friend_test(~displayname_simplify(%varclientstring_22)) = true) {
+                        friend_del(~displayname_simplify(%varclientstring_22));
+                    } else {
+                        mes("That player is not on your friends list.");
+                    }
                 } else if (%varclient_5 = 6) {
                     if (chat_getfilter_private = ^chatfilter_off) {
                         chat_setfilter(chat_getfilter_public, ^chatfilter_friends, chat_getfilter_trade);
@@ -60,11 +68,14 @@ switch_int ($key0) {
                 %varclient_1027 = 1;
                 clan_joinchat(%varclientstring_22);
             } else if (%varclient_5 = 15) {
-                ~script1892(%varclientstring_22);
+                ~friendschat_kick(%varclientstring_22);
+            } else if (%varclient_5 = 16) {
+                ~clan_chat_kick_find(%varclientstring_22);
             }
         } else if (%varclient_5 = 14) {
             ~music_search_close;
             return;
+        } else if (%varclient_5 = 7) {
         }
         if_sethide(true, interface_752:com_3);
         if_sethide(true, interface_752:com_7);

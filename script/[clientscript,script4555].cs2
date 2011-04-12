@@ -1,0 +1,29 @@
+// 4555
+[clientscript,script4555](int $key0, char $char1)
+if (clan_getchatcount <= 0 | userdetail_quickchat = true) {
+    return;
+}
+switch_int ($key0) {
+    case ^key_return :
+        if (clan_getchatcount > 0) {
+            if (string_length(%varclientstring_349) > 0) {
+                chat_setmode(1);
+                chat_sendpublic(%varclientstring_349);
+            }
+        } else {
+            mes_typed(^chattype_friendschatnotification, 0, "You are not in a Friends Chat Channel.");
+        }
+        %varclientstring_349 = "";
+        if_settext(escape(%varclientstring_349), interface_589:com_27);
+        %varclient_1507 = string_length(%varclientstring_349);
+        ~script4571(interface_589:com_27, interface_589:com_28, %varclientstring_349);
+    case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
+        %varclient_1507 = ~script1553($key0, %varclient_1507, %varclientstring_349);
+        ~script4571(interface_589:com_27, interface_589:com_28, %varclientstring_349);
+    case null, ^key_backspace, ^key_del :
+        if (char_isprintable($char1) = true | $key0 = ^key_backspace | $key0 = ^key_del) {
+            %varclientstring_349, %varclient_1507 = ~script802(%varclient_1507, %varclientstring_349, 0, $key0, $char1);
+            if_settext(escape(%varclientstring_349), interface_589:com_27);
+            ~script4571(interface_589:com_27, interface_589:com_28, %varclientstring_349);
+        }
+}
