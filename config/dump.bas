@@ -10324,3 +10324,35 @@ readyanim=seq_8169,null
 [bas_2007]
 readyanim=seq_10903,seq_10903
 
+// 2008
+[bas_2008]
+readyanim=seq_15335,null
+
+// 2009
+[bas_2009]
+readyanim=seq_15345,null
+
+// 2010
+[bas_2010]
+readyanim=seq_15361,seq_6531
+
+// 2011
+[bas_2011]
+readyanim=seq_15362,null
+
+// 2012
+[bas_2012]
+readyanim=seq_15355,null
+
+// 2013
+[bas_2013]
+readyanim=seq_15346,null
+
+// 2014
+[bas_2014]
+readyanim=seq_15337,null
+
+// 2015
+[bas_2015]
+readyanim=seq_15368,null
+

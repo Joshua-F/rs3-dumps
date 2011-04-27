@@ -124,8 +124,22 @@ while ($int1 < 100) {
                 }
             case ^chattype_quickchat_private_outgoing :
                 if_settext("To <chat_gethistoryname($int1)>: <$string1><chat_gethistorymessage($int1)>", $component3);
-            case ^chattype_quickchat_clanchat, ^chattype_quickchat_clanguestchat, ^chattype_quickchat_friend_chat :
+            case ^chattype_quickchat_clanchat :
                 if_setcolour($rgb14, $component3);
+                if (compare(removetags(chat_playername_unfiltered), removetags(chat_gethistoryname($int1))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int1)) > 0) {
+                    if_settext("<$string4>[</col><$string0><chat_gethistoryclan($int1)></col><$string4>] <chat_gethistoryname($int1)><img=3>: </col><chat_gethistorymessage($int1)>", $component3);
+                } else {
+                    if_settext("<$string4>[</col><$string0><chat_gethistoryclan($int1)></col><$string4>] <chat_gethistoryname($int1)>: </col><chat_gethistorymessage($int1)>", $component3);
+                }
+            case ^chattype_quickchat_clanguestchat :
+                if_setcolour($rgb15, $component3);
+                if (compare(removetags(chat_playername_unfiltered), removetags(chat_gethistoryname($int1))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int1)) > 0) {
+                    if_settext("<$string4>[</col><$string0><chat_gethistoryclan($int1)></col><$string4>] <chat_gethistoryname($int1)><img=3>: </col><chat_gethistorymessage($int1)>", $component3);
+                } else {
+                    if_settext("<$string4>[</col><$string0><chat_gethistoryclan($int1)></col><$string4>] <chat_gethistoryname($int1)>: </col><chat_gethistorymessage($int1)>", $component3);
+                }
+            case ^chattype_quickchat_friend_chat :
+                if_setcolour($rgb13, $component3);
                 if (compare(removetags(chat_playername_unfiltered), removetags(chat_gethistoryname($int1))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int1)) > 0) {
                     if_settext("<$string4>[</col><$string0><chat_gethistoryclan($int1)></col><$string4>] <chat_gethistoryname($int1)><img=3>: </col><chat_gethistorymessage($int1)>", $component3);
                 } else {

@@ -35,7 +35,7 @@ if_sethide(false, interface_1110:com_16);
 if_setonclanchanneltransmit("clan_chat_list_refresh(-1)", $component0);
 if_settext("", interface_1110:com_55);
 if_sethide(true, interface_1110:com_59);
-def_int $int13 = activeclanchannel_getuserslot(chat_playername_unfiltered);
+def_int $int13 = activeclanchannel_getuserslot(removetags(chat_playername));
 if ($int13 = -1) {
     return;
 }
@@ -52,7 +52,7 @@ while ($int3 < $int5) {
     cc_setcolour(0xa4997d);
     cc_settextfont(verdana_11pt_regular);
     cc_settextshadow(false);
-    if (compare($string1, chat_playername_unfiltered) ! 0) {
+    if (compare($string1, removetags(chat_playername)) ! 0) {
         cc_setopbase($string1);
         if (friend_test($string1) = true) {
             cc_setop(1, "Message");
