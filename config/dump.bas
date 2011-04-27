@@ -8316,3 +8316,27 @@ readyanim=seq_8169,null
 [bas_2007]
 readyanim=seq_10903,seq_10903
 
+[bas_2008]
+readyanim=seq_15335,null
+
+[bas_2009]
+readyanim=seq_15345,null
+
+[bas_2010]
+readyanim=seq_15361,seq_6531
+
+[bas_2011]
+readyanim=seq_15362,null
+
+[bas_2012]
+readyanim=seq_15355,null
+
+[bas_2013]
+readyanim=seq_15346,null
+
+[bas_2014]
+readyanim=seq_15337,null
+
+[bas_2015]
+readyanim=seq_15368,null
+
