@@ -8340,3 +8340,12 @@ readyanim=seq_15337,null
 [bas_2015]
 readyanim=seq_15368,null
 
+[bas_2016]
+readyanim=seq_1434,null
+
+[bas_2017]
+readyanim=null,null
+
+[bas_2018]
+readyanim=null,null
+
