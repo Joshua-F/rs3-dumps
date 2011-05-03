@@ -10356,3 +10356,15 @@ readyanim=seq_15337,null
 [bas_2015]
 readyanim=seq_15368,null
 
+// 2016
+[bas_2016]
+readyanim=seq_1434,null
+
+// 2017
+[bas_2017]
+readyanim=null,null
+
+// 2018
+[bas_2018]
+readyanim=null,null
+

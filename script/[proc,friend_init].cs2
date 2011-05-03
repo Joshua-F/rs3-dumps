@@ -1,8 +1,24 @@
 // 4552
 [proc,friend_init]
-if_settext("Friends List<br>RuneScape <tostring(map_world)>", interface_550:com_18);
-if_setonfriendtransmit("friend_transmit", interface_550:com_4);
-if_setscrollsize(0, 0, interface_550:com_9);
-if_setscrollpos(0, 0, interface_550:com_9);
-~scrollbar_vertical(interface_550:com_10, interface_550:com_9, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
+if_settext("Friends List<br>RuneScape <tostring(map_world)>", interface_550:com_20);
+if_setonfriendtransmit("friend_transmit", interface_550:com_6);
+if_setscrollsize(0, 0, interface_550:com_11);
+if_setscrollpos(0, 0, interface_550:com_11);
+~scrollbar_vertical(interface_550:com_12, interface_550:com_11, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
+def_component $component0 = interface_550:com_0;
+cc_deleteall($component0);
+def_int $int1 = 0;
+def_int $int2 = 0;
+while ($int2 < 200) {
+    $int1 = calc($int2 * 15 + 5);
+    if (calc($int2 % 2) ! 0) {
+        cc_create($component0, ^iftype_rectangle, if_getnextsubid($component0));
+        cc_setsize(16384, 15, ^setsize_rel, ^setsize_abs);
+        cc_setposition(0, $int1, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setcolour(0x232220);
+        cc_setfill(true);
+        cc_settrans(128);
+    }
+    $int2 = calc($int2 + 1);
+}
 ~friend_update(%varclient_1036);
