@@ -1630,10 +1630,12 @@ readyanim=seq_813,null
 readyanim=seq_2170,null
 
 [bas_396]
+readyanim_l=seq_823
+readyanim_r=seq_823
 walkanim_b=seq_820
 walkanim_l=seq_821
 walkanim_r=seq_822
-readyanim=seq_8943,seq_819
+readyanim=seq_808,seq_819
 
 [bas_397]
 readyanim=seq_8944,null
@@ -8293,10 +8295,18 @@ readyanim=seq_3609,seq_3609
 readyanim=seq_3608,seq_3608
 
 [bas_2002]
-readyanim=seq_3480,null
+readyanim_l=seq_3480
+readyanim_r=seq_3480
+walkturn_l=seq_3480
+walkturn_r=seq_3480
+readyanim=seq_3480,seq_3480
 
 [bas_2003]
-readyanim=seq_3482,null
+readyanim_l=seq_3482
+readyanim_r=seq_3482
+walkturn_l=seq_3482
+walkturn_r=seq_3482
+readyanim=seq_3482,seq_3482
 
 [bas_2004]
 hillrotate=29,29
@@ -8348,4 +8358,32 @@ readyanim=null,null
 
 [bas_2018]
 readyanim=null,null
+
+[bas_2019]
+readyanim=seq_4644,null
+
+[bas_2020]
+readyanim_l=seq_56
+readyanim_r=seq_56
+walkturn_l=seq_57
+walkturn_r=seq_57
+walkanim_l=seq_57
+walkanim_r=seq_57
+walkanim_b=seq_57
+readyanim=seq_56,seq_57
+
+[bas_2021]
+readyanim_l=seq_55
+readyanim_r=seq_55
+readyanim=seq_55,null
+
+[bas_2022]
+readyanim_l=seq_22
+readyanim_r=seq_22
+readyanim=seq_22,null
+
+[bas_2023]
+readyanim_l=seq_62
+readyanim_r=seq_62
+readyanim=seq_62,null
 
