@@ -25,7 +25,11 @@ def_int $int16 = 0;
 def_string $string1 = "";
 def_int $int17 = 0;
 def_int $int18 = ~script4468;
-def_int $int19 = activeclanchannel_getuserrank(activeclanchannel_getuserslot(chat_playername_unfiltered));
+def_int $int19 = activeclanchannel_getuserslot(removetags(chat_playername));
+def_int $int20 = 0;
+if ($int19 ! -1) {
+    $int20 = activeclanchannel_getuserrank($int19);
+}
 ~script1896;
 if_sethide(true, interface_912:com_12);
 if_settext(activeclanchannel_getclanname, interface_912:com_18);
@@ -42,7 +46,7 @@ while ($int8 < $int7) {
     }
     cc_setonmouseover("script3167($component3, $int8, $int16)");
     cc_setonmouseleave("script3169($component3, $int8)");
-    if (activeclanchannel_getuserslot(chat_playername_unfiltered) ! $int8) {
+    if (activeclanchannel_getuserslot(removetags(chat_playername)) ! $int8) {
         cc_setonop("script3170($string1, event_op)");
         if (friend_test(removetags($string1)) = true) {
             cc_setop(8, "Remove friend <$string0>");
@@ -53,7 +57,7 @@ while ($int8 < $int7) {
             cc_setop(7, "Add ignore <$string0>");
         }
     }
-    if ($int18 = 1 & $int19 > $int16) {
+    if ($int18 = 1 & $int20 > $int16) {
         cc_setop(10, "Kick/ban <$string0>");
     }
     ~cc_add_graphic($component1, $int8, 9, 9, 5, calc($int12 + 2), enum(int, graphic, enum_3712, $int16), false, false, false, 0);
