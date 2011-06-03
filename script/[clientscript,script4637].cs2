@@ -1,0 +1,70 @@
+// 4637
+[clientscript,script4637](int $int0)
+def_string $string0 = "";
+if_sethide(false, interface_153:com_52);
+if_settext("", interface_153:com_50);
+switch_int ($int0) {
+    case 1 :
+        if (if_gethide(interface_153:com_102) = false) {
+            return;
+        }
+        $string0 = "Three's Company<br><br>";
+        if (~script4643(1) = 0) {
+            $string0 = append($string0, "<col=cb6b3d>Attack 30, Ranged 30, Magic 30 required to play the unabridged version.<br><br>");
+        }
+        $string0 = append($string0, "Manage a party of adventurers in this saga. <br><br>+ Select 'Switch' to change to a target character. <br>+ Select 'Mark' on an enemy to focus your allies' attacks on that target.<br>+ Human enemies will focus their attacks on you, animals will attack your allies.");
+        cc_create(interface_153:com_42, ^iftype_text, 0);
+    case 2 :
+        if (if_gethide(interface_153:com_115) = false) {
+            return;
+        }
+        $string0 = "Vengeance<br><br>";
+        if (~script4643(2) = 0) {
+            $string0 = append($string0, "<col=cb6b3d>Agility 55, Thieving 55 required to play the unabridged version.<br><br>");
+        }
+        $string0 = append($string0, "A tragic tale of grief, warped into furious vengeance.<br><br>+ At some point in this saga, you will become poisoned. Keep an eye on your health. You will not take poison damage whilst in a conversation.<br>+ Look for alternative methods of defeating your human foes. Your environment may offer more indirect solutions.<br>+ Hellhounds will drop antipoison elixirs that will lessen your suffering temporarily.<br>+ Spiders drop food, but their bites may negate the effect of an antipoison elixir.<br>+ Choices you make in the saga will lead you towards 'noble' or 'ruthless' vengeance. Each has a different special attack. The further along that path you are, the more potent the special attack.");
+    case 3 :
+        if (if_gethide(interface_153:com_141) = false) {
+            return;
+        }
+        $string0 = "Learn the story behind the lonely death of Tobias Scutter, adventurer.";
+    case 4 :
+        if (if_gethide(interface_153:com_128) = false) {
+            return;
+        }
+        $string0 = "Thok It To 'Em<br><br>";
+        if (~script4643(4) = 0) {
+            $string0 = append($string0, "<col=cb6b3d>Stregth 70 required to play the unabridged version.<br><br>");
+        }
+        $string0 = append($string0, "Control mighty Thok, Fremennik warrior.<br><br>+ Thok heals damage and recovers special attack by killing enemies. Bosses provide greater health and special attack boosts than normal enemies.<br>+ Thok can eat food raw. He likes the taste.<br>+ Thok will randomly choose a special attack when you perform one. These include the awe-inspiring 'Northern Kiss'.");
+    case 5 :
+        if (if_gethide(interface_153:com_169) = false) {
+            return;
+        }
+        $string0 = "Love stories are so often tied to tragedy, and few are as tragic as this tale of two sorcerors.";
+    case 6 :
+        if (if_gethide(interface_153:com_155) = false) {
+            return;
+        }
+        $string0 = "Sometimes it's good to be bad. The necrolord is a twisted and cruel individual with dark aspirations.";
+}
+if_settext($string0, interface_153:com_44);
+def_int $int1 = paraheight($string0, 366, p12_full);
+def_int $int2 = calc($int1 * 15);
+if (cc_find(interface_153:com_42, 0) = true) {
+    if ($int0 = 1) {
+        cc_setposition(5, calc($int2 + 7), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(366, 15, ^setsize_abs, ^setsize_abs);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        $string0 = "All three characters must survive.";
+        cc_settext($string0);
+        cc_settextfont(b12_full);
+        cc_setcolour(0xcb6b3d);
+        $int2 = calc($int2 + 24);
+    } else {
+        cc_delete;
+    }
+}
+if_setscrollsize(0, $int2, interface_153:com_42);
+~scrollbar_resize(interface_153:com_43, interface_153:com_42, 0);
+~script4638($int0);
