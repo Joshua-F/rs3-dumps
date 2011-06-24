@@ -47,14 +47,31 @@ if ($int2 = 21) {
     } else {
         $string0 = "You have only just left another world. Your profile will be transferred in<br><tostring($int3)> seconds.";
     }
-    if (if_gethide(interface_906:com_19) = true) {
+    if (if_gethide(interface_906:com_29) = true) {
         ~lobby_popup($int2, 0, $string0, 0, "loadingwheel,12", 1, 1, "Abort Login", "Abort Login", 0, "", "");
     } else {
         ~lobby_popup_text_update($string0);
     }
     return;
 }
-if ($component0 = interface_906:com_13) {
+if ($int2 = 42) {
+    if_sethide(false, interface_906:com_40);
+    if_settext(tostring($int1), interface_906:com_5);
+    if_settext(tostring(unknown_command_5629), interface_906:com_6);
+    if (%varclient_1100 ! 42) {
+        ~lobbyscreen_input_full("World Full", "World <tostring($int1)> is currently full.<br>You have been added to the queue for this world.<br>You can track your progress in the queue from lower left corner of this screen.", 0, 11, "", "", 0);
+    }
+    %varclient_1100 = 42;
+    return;
+} else if ($int2 = 43) {
+    if_settext(tostring($int1), interface_906:com_5);
+    if_settext(tostring(unknown_command_5629), interface_906:com_6);
+    %varclient_1100 = 43;
+    return;
+} else {
+    if_sethide(true, interface_906:com_40);
+}
+if ($component0 = interface_906:com_23) {
     ~lobbyscreen_load(true, 1);
 }
 ~lobby_popup_close;
@@ -92,6 +109,8 @@ switch_int ($int2) {
             case default :
                 $string4 = "Unexpected server response. Please try using a different world.";
         }
+    case 45 :
+        $string4 = "You must be near the TzHaar Fight Pits entrance to enter a global match.";
     case -5 :
         $string4 = "Connection timed out. Please try using a different world.";
     case -4 :
@@ -134,6 +153,12 @@ switch_int ($int2) {
         $string4 = "Unable to connect: authentication server offline.";
     case 37 :
         $string4 = "Your account is currently inaccessible. Please try again in a few minutes.";
+    case 39 :
+        $string4 = "The instance you tried to join no longer exists. Please try using a different world.";
+    case 41 :
+        $string4 = "The instance you tried to join is full. Please try back later or try using a different world.";
+    case 44 :
+        $string4 = "Our systems are currently unavailable. Please try again in a few minutes.";
     case 35 :
         $string4 = "Your session has expired. Please click 'Back' in your browser to renew it.";
         $string7 = "Close";
@@ -181,6 +206,13 @@ switch_int ($int2) {
         $int8 = 0;
         $graphic10 = "loadingwheel,8";
         $string4 = "You need a member's account to log in to this world. Please subscribe or use a different world.";
+        $int11 = 1;
+        $string5 = "Subscribe";
+        $string6 = "Subscribe";
+    case 40 :
+        $int8 = 0;
+        $graphic10 = "loadingwheel,8";
+        $string4 = "You need a member's account to log in to this instance. Please subscribe or use a different world.";
         $int11 = 1;
         $string5 = "Subscribe";
         $string6 = "Subscribe";
