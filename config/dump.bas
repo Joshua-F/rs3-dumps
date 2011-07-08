@@ -10649,3 +10649,50 @@ walkanim_r=seq_4415
 runanim=seq_4990
 readyanim=seq_10814,seq_4415
 
+// 2059
+[bas_2059]
+readyanim=seq_2627,null
+
+// 2060
+[bas_2060]
+readyanim=seq_2626,null
+
+// 2061
+[bas_2061]
+readyanim=seq_2630,null
+
+// 2062
+[bas_2062]
+readyanim=seq_2663,null
+
+// 2063
+[bas_2063]
+readyanim=seq_2634,null
+
+// 2064
+[bas_2064]
+readyanim=seq_2636,null
+
+// 2065
+[bas_2065]
+readyanim=seq_2672,null
+
+// 2066
+[bas_2066]
+readyanim=seq_2638,null
+
+// 2067
+[bas_2067]
+readyanim=seq_2646,null
+
+// 2068
+[bas_2068]
+runanim=seq_2773
+readyanim_l=seq_2766
+readyanim_r=seq_2766
+walkturn_l=seq_2766
+walkturn_r=seq_2766
+walkanim_l=seq_2766
+walkanim_r=seq_2766
+readyanim=seq_2765,seq_2766
+
