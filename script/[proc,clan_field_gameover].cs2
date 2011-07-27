@@ -1,0 +1,55 @@
+// 5097
+[proc,clan_field_gameover]
+switch_int (%varplayerbit_9539) {
+    case 1 :
+        if_settext("Unable to load your clan data.", interface_1113:com_4);
+        if_settext("Sorry!", interface_1113:com_6);
+        if_setgraphic("aif_clans_battle_game_over_1,2", interface_1113:com_7);
+        if_settext("Please try again later when the system is less busy.", interface_1113:com_8);
+    case 2 :
+        if_settext("And the winner is:", interface_1113:com_4);
+        if_settext("<col=ff7f7f>Red Team!</col>", interface_1113:com_6);
+        if_setgraphic("aif_clans_battle_game_over_1,1", interface_1113:com_7);
+        if (%varplayerbit_9540 = 1) {
+            if_settext("Congratulations, your team won!", interface_1113:com_8);
+        } else if (%varplayerbit_9540 = 2) {
+            if_settext("Oh dear, better luck next time.", interface_1113:com_8);
+        } else {
+            if_settext("Better luck next time to the Blue Team.", interface_1113:com_8);
+        }
+    case 3 :
+        if_settext("And the winner is:", interface_1113:com_4);
+        if_settext("<col=7f7fff>Blue Team!</col>", interface_1113:com_6);
+        if_setgraphic("aif_clans_battle_game_over_1,0", interface_1113:com_7);
+        if (%varplayerbit_9540 = 2) {
+            if_settext("Congratulations, your team won!", interface_1113:com_8);
+        } else if (%varplayerbit_9540 = 1) {
+            if_settext("Oh dear, better luck next time.", interface_1113:com_8);
+        } else {
+            if_settext("Better luck next time to the Red Team.", interface_1113:com_8);
+        }
+    case 5 :
+        if_settext("And the result is:", interface_1113:com_4);
+        if_settext("It's a draw!", interface_1113:com_6);
+        if_setgraphic("aif_clans_battle_game_over_1,2", interface_1113:com_7);
+        if_settext("Well done, everyone!", interface_1113:com_8);
+    case 4 :
+        if_settext("And the winner is:", interface_1113:com_4);
+        if (string_length(%varclientstring_129) > 0) {
+            if_settext(%varclientstring_129, interface_1113:com_6);
+        } else {
+            if_settext("... missing!", interface_1113:com_6);
+        }
+        if_setgraphic("aif_clans_battle_game_over_1,2", interface_1113:com_7);
+        if_settext("Better luck next time to everyone else.", interface_1113:com_8);
+    case 6 :
+        if_settext("And the winner is:", interface_1113:com_4);
+        if_settext("YOU!", interface_1113:com_6);
+        if_setgraphic("aif_clans_battle_game_over_1,2", interface_1113:com_7);
+        if_settext("Congratulations!", interface_1113:com_8);
+    case default :
+        if_settext("", interface_1113:com_4);
+        if_settext("", interface_1113:com_6);
+        if_setgraphic(null, interface_1113:com_7);
+        if_settext("", interface_1113:com_8);
+}

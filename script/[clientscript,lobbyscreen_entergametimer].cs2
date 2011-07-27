@@ -88,12 +88,14 @@ def_string $string6 = "";
 def_int $int13 = 1;
 def_string $string7 = "Back";
 def_string $string8 = "Back";
+def_int $int14 = login_disallowresult;
+def_int $int15 = login_disallowtrigger;
 switch_int ($int2) {
     case -2 :
         ~lobby_popup_close;
         return;
     case 29 :
-        switch_int (login_disallowresult) {
+        switch_int ($int14) {
             case 0 :
                 $string4 = "You must have a Combat Level of at least 20 (not including Summoning) to enter a PvP world.";
             case 1 :
@@ -109,8 +111,31 @@ switch_int ($int2) {
             case default :
                 $string4 = "Unexpected server response. Please try using a different world.";
         }
+    case 46 :
+        $string4 = "This instance is marked for deletion/rebuild. Please try using a different world.";
     case 45 :
-        $string4 = "You must be near the TzHaar Fight Pits entrance to enter a global match.";
+        switch_int ($int15) {
+            case 0 :
+                switch_int ($int14) {
+                    case 0 :
+                        $string4 = "You must be near the TzHaar Fight Pits entrance to enter a global match.";
+                    case default :
+                        $string4 = "Unable to log in. Please try using a different world.";
+                }
+            case 1 :
+                switch_int ($int14) {
+                    case 1 :
+                        $string4 = "There was an error connecting to your meeting room. Please try again.";
+                    case 2 :
+                        $string4 = "You need a higher rank to enter that private tent.";
+                    case 3 :
+                        $string4 = "You need an invitation to enter that private room.";
+                    case default :
+                        $string4 = "Unable to log in. Please try using a different world.";
+                }
+            case default :
+                $string4 = "Unable to log in. Please try using a different world.";
+        }
     case -5 :
         $string4 = "Connection timed out. Please try using a different world.";
     case -4 :

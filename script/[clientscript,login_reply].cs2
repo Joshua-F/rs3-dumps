@@ -154,8 +154,31 @@ switch_int ($int1) {
             case default :
                 $string2 = "Unexpected server response. Please try using a different world.";
         }
+    case 46 :
+        $string2 = "This instance is marked for deletion/rebuild. Please try using a different world.";
     case 45 :
-        $string2 = "You must be near the TzHaar Fight Pits entrance to enter a global match.";
+        switch_int (login_disallowtrigger) {
+            case 0 :
+                switch_int (login_disallowresult) {
+                    case 0 :
+                        $string2 = "You must be near the TzHaar Fight Pits entrance to enter a global match.";
+                    case default :
+                        $string2 = "Unable to log in. Please try using a different world.";
+                }
+            case 1 :
+                switch_int (login_disallowresult) {
+                    case 1 :
+                        $string2 = "There was an error connecting to your meeting room. Please try again.";
+                    case 2 :
+                        $string2 = "You need a higher rank to enter that private tent.";
+                    case 3 :
+                        $string2 = "You need an invitation to enter that private room.";
+                    case default :
+                        $string2 = "Unable to log in. Please try using a different world.";
+                }
+            case default :
+                $string2 = "Unexpected server response. Please try using a different world.";
+        }
     case -5 :
         $string2 = "Connection timed out. Please try using a different world.";
     case -4 :
