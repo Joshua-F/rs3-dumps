@@ -2,7 +2,8 @@
 [clientscript,login_transfer_reply]
 def_int $int0 = 0;
 def_int $int1 = 0;
-$int0, $int1 = unknown_command_5627;
+def_int $int2 = -1;
+$int0, $int1, $int2 = unknown_command_5627;
 switch_int ($int0) {
     case 0 :
     case 1 :
@@ -96,5 +97,28 @@ switch_int ($int0) {
     case 44 :
         mes("Our systems are currently unavailable. Please try again in a few minutes.");
     case 45 :
-        mes("You must be near the TzHaar Fight Pits entrance to enter a global match.");
+        switch_int ($int2) {
+            case 0 :
+                switch_int ($int1) {
+                    case 0 :
+                        mes("You must be near the TzHaar Fight Pits entrance to enter a global match.");
+                    case default :
+                        mes("Unable to log in. Please try back later.");
+                }
+            case 1 :
+                switch_int ($int1) {
+                    case 1 :
+                        mes("There was an error connecting to your meeting room. Please try again.");
+                    case 2 :
+                        mes("You need a higher rank to enter that private tent.");
+                    case 3 :
+                        mes("You need an invitation to enter that private room.");
+                    case default :
+                        mes("Unable to log in. Please try back later.");
+                }
+            case default :
+                mes("Unable to log in. Please try back later.");
+        }
+    case 46 :
+        mes("This instance is marked for deletion/rebuild. Please try again in a few minutes.");
 }
