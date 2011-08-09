@@ -79,6 +79,15 @@ while ($int14 < $int13) {
         $string1 = $string0;
     }
     $int20 = friend_getworld($int14);
+    if (friend_is_referrer($int14) = true) {
+        $rgb25 = 0x88bcf3;
+        cc_create($component1, ^iftype_graphic, if_getnextsubid($component1));
+        cc_setsize(9, 9, ^setsize_abs, ^setsize_abs);
+        cc_setposition(93, calc($int21 + 3), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphic(aif_friends_list_icons);
+    } else {
+        $rgb25 = 0xa4997d;
+    }
     cc_create($component1, ^iftype_text, if_getnextsubid($component1));
     cc_setsize($int16, $int23, ^setsize_abs, ^setsize_abs);
     cc_setposition(0, $int21, ^setpos_abs_left, ^setpos_abs_top);
@@ -141,14 +150,14 @@ while ($int14 < $int13) {
         $string4 = "Offline";
         $string5 = "Offline";
         $int29 = 0;
-    } else if ($int20 >= 1100) {
-        $string4 = "Lobby";
-        $string5 = "Lobby";
-        $int29 = 0;
-    } else {
+    } else if (string_indexof_string(friend_getworldname($int14), "RuneScape", 0) ! -1) {
         $string4 = tostring($int20);
-        $string5 = "World <tostring($int20)>";
+        $string5 = friend_getworldname($int14);
         $int29 = calc(2 + 24 + 2);
+    } else {
+        $string4 = friend_getworldname($int14);
+        $string5 = $string4;
+        $int29 = 0;
     }
     $int26 = stringwidth($string4, verdana_11pt_regular);
     if ($int17 >= calc($int26 + $int29)) {
