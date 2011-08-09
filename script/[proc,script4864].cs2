@@ -38,6 +38,10 @@ def_int $int32 = 0;
 def_int $int33 = 0;
 def_int $int34 = 0;
 def_string $string1 = "";
+def_string $string2 = "You do not have permission from your clan to set the primary resource target.";
+def_string $string3 = "Toggle whether this resource is the primary resource target.";
+def_string $string4 = "You do not have permission from your clan to set resource target amounts.";
+def_string $string5 = "Set a target amount of this resource to be collected.";
 def_int $int35 = -1;
 def_int $intarray0(10);
 def_int $int36 = 0;
@@ -112,33 +116,33 @@ if (clanprofile_find = true) {
     ~script4866(5, %varclan_2728, $int14, $int20, $int37);
     ~script4866(6, %varclan_2729, 0, 0, $int37);
     ~script4866(7, %varclan_2730, $int15, $int21, $int37);
-    ~script4866(9, %varclan_2732, $int16, $int22, $int37);
     ~script4866(8, %varclan_2731, $int17, $int23, $int37);
+    ~script4866(9, %varclan_2732, $int16, $int22, $int37);
     ~script4866(10, %varclan_2733, 0, 0, $int37);
-    if_settext($string1, interface_1092:com_1760);
+    if_settext($string1, interface_1092:com_1759);
     switch_int (%varplayerbit_9553) {
         case 1 :
-            if_setgraphic("aif_clan_resource_icons,5", interface_1092:com_1782);
+            if_setgraphic("aif_clan_resource_icons,5", interface_1092:com_1781);
         case 2 :
-            if_setgraphic("aif_clan_resource_icons,4", interface_1092:com_1782);
+            if_setgraphic("aif_clan_resource_icons,4", interface_1092:com_1781);
         case 3 :
-            if_setgraphic("aif_clan_resource_icons,8", interface_1092:com_1782);
-        case 9 :
-            if_setgraphic("aif_clan_resource_icons,6", interface_1092:com_1782);
-        case 8 :
-            if_setgraphic("aif_clan_resource_icons,7", interface_1092:com_1782);
+            if_setgraphic("aif_clan_resource_icons,8", interface_1092:com_1781);
         case 4 :
-            if_setgraphic("aif_clan_resource_icons,2", interface_1092:com_1782);
+            if_setgraphic("aif_clan_resource_icons,2", interface_1092:com_1781);
         case 5 :
-            if_setgraphic("aif_clan_resource_icons,1", interface_1092:com_1782);
+            if_setgraphic("aif_clan_resource_icons,1", interface_1092:com_1781);
         case 6 :
-            if_setgraphic("aif_clan_resource_icons,3", interface_1092:com_1782);
+            if_setgraphic("aif_clan_resource_icons,3", interface_1092:com_1781);
         case 7 :
-            if_setgraphic("aif_clan_resource_icons,0", interface_1092:com_1782);
+            if_setgraphic("aif_clan_resource_icons,0", interface_1092:com_1781);
+        case 8 :
+            if_setgraphic("aif_clan_resource_icons,7", interface_1092:com_1781);
+        case 9 :
+            if_setgraphic("aif_clan_resource_icons,6", interface_1092:com_1781);
         case 10 :
-            if_setgraphic("aif_clan_resource_icons,9", interface_1092:com_1782);
+            if_setgraphic("aif_clan_resource_icons,9", interface_1092:com_1781);
         case default :
-            if_setgraphic(null, interface_1092:com_1782);
+            if_setgraphic(null, interface_1092:com_1781);
     }
     switch_int (%varplayerbit_9553) {
         case 1 :
@@ -155,10 +159,10 @@ if (clanprofile_find = true) {
             $int34 = %varclan_2739;
         case 7 :
             $int34 = %varclan_2740;
-        case 9 :
-            $int34 = %varclan_2742;
         case 8 :
             $int34 = %varclan_2741;
+        case 9 :
+            $int34 = %varclan_2742;
         case 10 :
             $int34 = %varclan_2743;
     }
@@ -167,22 +171,63 @@ if (clanprofile_find = true) {
     } else {
         $string1 = "No target set";
     }
-    if_sethide(false, interface_1092:com_153);
-    if_sethide(false, interface_1092:com_1773);
     if (%varplayerbit_9553 > 0) {
         if_settext(enum(int, string, enum_4285, %varplayerbit_9553), interface_1092:com_150);
-        if_settext($string1, interface_1092:com_1778);
+        if_settext($string1, interface_1092:com_1777);
         if (%varclan_2744 = %varplayerbit_9553) {
-            if_setgraphic("aif_checkbox_small,1", interface_1092:com_152);
+            if (~script5224(-1) = 1) {
+                if_setgraphic("aif_checkbox_small,0", interface_1092:com_152);
+                $string3 = "Toggle whether this resource is the primary resource target.";
+                if_setop(1, "Select Primary Target", interface_1092:com_152);
+            } else {
+                if_setgraphic("aif_checkbox_small,3", interface_1092:com_152);
+                $string3 = "You do not have permission from your clan to set the primary resource target.";
+                if_setop(1, "", interface_1092:com_152);
+            }
+        } else if (~script5224(-1) = 1) {
+            if (~script5214(%varplayerbit_9553) <= %varclan_2580) {
+                if_setgraphic("aif_checkbox_small,4", interface_1092:com_152);
+                $string3 = "Toggle whether this resource is the primary resource target.";
+                if_setop(1, "Select Primary Target", interface_1092:com_152);
+            } else {
+                if_setgraphic("aif_checkbox_small,7", interface_1092:com_152);
+                $string3 = "This resource will become available at citadel tier <tostring(~script5214(%varplayerbit_9553))>.";
+                if_setop(1, "", interface_1092:com_152);
+            }
         } else {
-            if_setgraphic("aif_checkbox_small,5", interface_1092:com_152);
+            if_setgraphic("aif_checkbox_small,7", interface_1092:com_152);
+            $string3 = "You do not have permission from your clan to set the primary resource target.";
+            if_setop(1, "", interface_1092:com_152);
         }
-        if (~script5214(%varplayerbit_9553) <= %varclan_2580) {
-            if_sethide(true, interface_1092:com_153);
-            if_sethide(true, interface_1092:com_1773);
+        if_setonmouserepeat("script4538(interface_1092:com_327, event_com, -1, $string3, 180, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 0, event_mousex, event_mousey)", interface_1092:com_152);
+        if_setonmouseleave("deltooltip(interface_1092:com_327)", interface_1092:com_152);
+        if_sethide(false, interface_1092:com_1772);
+        if_setonmouserepeat("script4538(interface_1092:com_327, event_com, -1, $string5, 180, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 0, event_mousex, event_mousey)", interface_1092:com_1769);
+        if_setonmouseleave("deltooltip(interface_1092:com_327)", interface_1092:com_1769);
+        if (~script5224(-1) = 1) {
+            if (~script5214(%varplayerbit_9553) <= %varclan_2580) {
+                if_sethide(true, interface_1092:com_1772);
+            } else {
+                if_sethide(false, interface_1092:com_1772);
+                $string4 = "This resource will become available at citadel tier <tostring(~script5214(%varplayerbit_9553))>.";
+            }
+        } else {
+            if_sethide(false, interface_1092:com_1772);
+            $string4 = "You do not have permission from your clan to set resource targets.";
         }
+        if_setonmouserepeat("script4538(interface_1092:com_327, event_com, -1, $string4, 180, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 0, event_mousex, event_mousey)", interface_1092:com_1772);
+        if_setonmouseleave("deltooltip(interface_1092:com_327)", interface_1092:com_1772);
     } else {
         if_settext("Select a resource for more information.", interface_1092:com_150);
         if_setgraphic("aif_checkbox_small,5", interface_1092:com_152);
+        if_sethide(false, interface_1092:com_1772);
+        $string4 = "Please select a resource from the left to view options.";
+        if_setonmouserepeat("script4538(interface_1092:com_327, event_com, -1, $string4, 180, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 0, event_mousex, event_mousey)", interface_1092:com_1772);
+        if_setonmouseleave("deltooltip(interface_1092:com_327)", interface_1092:com_1772);
+        if_setgraphic("aif_checkbox_small,7", interface_1092:com_152);
+        $string3 = "Please select a resource from the left to view options.";
+        if_setop(1, "", interface_1092:com_152);
+        if_setonmouserepeat("script4538(interface_1092:com_327, event_com, -1, $string3, 180, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 0, event_mousex, event_mousey)", interface_1092:com_152);
+        if_setonmouseleave("deltooltip(interface_1092:com_327)", interface_1092:com_152);
     }
 }
