@@ -8927,3 +8927,9 @@ readyanim=seq_7733,seq_7749
 [bas_2141]
 readyanim=seq_7357,seq_7357
 
+[bas_2142]
+readyanim=seq_9216,seq_9219
+
+[bas_2143]
+readyanim=seq_7077,null
+
