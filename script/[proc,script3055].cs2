@@ -6,16 +6,18 @@ cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
 cc_setcolour(^white);
 cc_settextfont(p11_full);
 cc_settext($string0);
+def_string $string3 = "";
 if ($int1 = 1) {
     cc_setopbase(removetags($string1));
     cc_setonop("script3056(event_op, $string1, $string2)");
     switch_int ($chattype2) {
-        case ^chattype_privatechat, ^chattype_modprivatechat, ^chattype_quickchat_private_incoming, ^chattype_loginlogoutnotification :
-            if (compare(removetags(chat_playername), removetags($string2)) ! 0) {
-                if (friend_test(removetags($string2)) = false & ignore_test(removetags($string2)) = false) {
+        case ^chattype_privatechat, ^chattype_privatechatout, ^chattype_modprivatechat, ^chattype_quickchat_private_incoming :
+            $string3 = removetags($string2);
+            if (compare(removetags(chat_playername), $string3) ! 0) {
+                if (friend_test($string3) = false & ignore_test($string3) = false) {
                     cc_setop(1, "Add friend");
                     cc_setop(2, "Add ignore");
-                } else if (friend_test(removetags($string2)) = true & userdetail_quickchat = false) {
+                } else if (friend_test($string3) = true & userdetail_quickchat = false) {
                     cc_setop(3, "Message");
                 }
                 if (staffmodlevel > 0 | playermod > 0) {
