@@ -58,9 +58,12 @@ hillrotate=49,0
 readyanim=seq_281,seq_280
 
 [bas_10]
+crawlanim=seq_9951
 runanim=seq_2176
-hillrotate=24,24
-readyanim=seq_7718,seq_7719
+hillrotate=16,8
+readyanim=null,seq_7719
+randomreadyanim=seq_9952,80
+randomreadyanim=seq_9953,20
 
 [bas_11]
 runanim=seq_12827
@@ -8996,4 +8999,14 @@ randomreadyanim=seq_9663,5
 readyanim=null,null
 randomreadyanim=seq_9664,95
 randomreadyanim=seq_9668,5
+
+[bas_2158]
+readyanim=seq_9945,seq_9945
+
+[bas_2159]
+crawlanim=seq_9947
+hillrotate=8,8
+readyanim=null,seq_9948
+randomreadyanim=seq_9949,80
+randomreadyanim=seq_9950,20
 
