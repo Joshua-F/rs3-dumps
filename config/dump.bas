@@ -2100,7 +2100,7 @@ readyanim=seq_11496,seq_11496
 
 // 406
 [bas_406]
-readyanim=seq_11558,seq_11557
+readyanim=seq_12231,seq_12261
 
 // 407
 [bas_407]
@@ -4474,7 +4474,7 @@ readyanim=seq_10656,seq_10657
 
 // 908
 [bas_908]
-readyanim=seq_10868,seq_10867
+readyanim=seq_12380,seq_12399
 
 // 909
 [bas_909]
@@ -11169,4 +11169,135 @@ hillrotate=8,8
 readyanim=null,seq_9948
 randomreadyanim=seq_9949,80
 randomreadyanim=seq_9950,20
+
+// 2160
+[bas_2160]
+readyanim=seq_11475,seq_11455
+
+// 2161
+[bas_2161]
+readyanim=seq_11484,seq_11455
+
+// 2162
+[bas_2162]
+readyanim=seq_11910,null
+
+// 2163
+[bas_2163]
+readyanim=seq_11663,null
+
+// 2164
+[bas_2164]
+readyanim=seq_10769,seq_11554
+
+// 2165
+[bas_2165]
+readyanim=seq_11013,seq_11125
+
+// 2166
+[bas_2166]
+readyanim=seq_11522,seq_11125
+
+// 2167
+[bas_2167]
+readyanim=seq_11523,seq_11125
+
+// 2168
+[bas_2168]
+readyanim=seq_11031,seq_11125
+
+// 2169
+[bas_2169]
+readyanim=seq_11124,seq_11125
+
+// 2170
+[bas_2170]
+readyanim=seq_11517,seq_11516
+
+// 2171
+[bas_2171]
+readyanim=seq_11431,seq_11506
+
+// 2172
+[bas_2172]
+readyanim=seq_11292,seq_11317
+
+// 2173
+[bas_2173]
+readyanim=seq_11541,seq_11541
+
+// 2174
+[bas_2174]
+readyanim=seq_11995,seq_11996
+
+// 2175
+[bas_2175]
+readyanim=seq_12007,seq_11997
+
+// 2176
+[bas_2176]
+readyanim=seq_11995,seq_11996
+
+// 2177
+[bas_2177]
+readyanim=seq_12025,seq_12026
+
+// 2178
+[bas_2178]
+readyanim=seq_10178,seq_10178
+
+// 2179
+[bas_2179]
+readyanim=seq_10197,seq_10197
+
+// 2180
+[bas_2180]
+readyanim=seq_10198,seq_10198
+
+// 2181
+[bas_2181]
+readyanim=seq_10216,seq_10216
+
+// 2182
+[bas_2182]
+readyanim=seq_10244,seq_10244
+
+// 2183
+[bas_2183]
+readyanim=seq_10245,seq_10245
+
+// 2184
+[bas_2184]
+readyanim=seq_10246,seq_10246
+
+// 2185
+[bas_2185]
+readyanim=seq_10248,seq_10248
+
+// 2186
+[bas_2186]
+readyanim=seq_10255,null
+
+// 2187
+[bas_2187]
+readyanim=seq_10476,seq_10425
+
+// 2188
+[bas_2188]
+readyanim=seq_10750,seq_10750
+
+// 2189
+[bas_2189]
+walkanim_b=seq_7192
+walkanim_l=seq_7193
+walkanim_r=seq_7194
+readyanim=seq_12350,seq_7191
+
+// 2190
+[bas_2190]
+readyanim=seq_10867,seq_10901
+
+// 2191
+[bas_2191]
+readyanim=seq_12393,seq_12407
 
