@@ -23,6 +23,7 @@ def_int $int14 = 0;
 def_int $int15 = 0;
 def_int $int16 = 0;
 def_string $string1 = "";
+def_string $string2 = "";
 def_int $int17 = 0;
 def_int $int18 = ~script4468;
 def_int $int19 = activeclanchannel_getuserslot(removetags(chat_playername));
@@ -36,21 +37,22 @@ if_settext(activeclanchannel_getclanname, interface_912:com_18);
 if_setsize(if_getwidth(interface_912:com_39), 4, ^setsize_abs, ^setsize_minus, interface_912:com_39);
 while ($int8 < $int7) {
     $int16 = activeclanchannel_getuserrank($int8);
-    $string1 = activeclanchannel_getuserdisplayname($int8);
-    $string0 = $string1;
+    $string2 = activeclanchannel_getuserdisplayname($int8);
+    $string0 = $string2;
     ~cc_add_rect($component3, $int8, if_getwidth($component3), $int9, 0, $int12, ^black, true, 0);
     if (calc($int8 % 2) = 0) {
         cc_setcolour(0x201911);
     } else {
         cc_setcolour(0x292016);
     }
-    cc_setonmouseover("script3167($component3, $int8, $int16)");
+    $string1 = "Rank: <enum(int, string, enum_3715, $int16)>";
+    cc_setonmouseover("script3167($component3, $int8, $string1)");
     cc_setonmouseleave("script3169($component3, $int8)");
     if (activeclanchannel_getuserslot(removetags(chat_playername)) ! $int8) {
-        cc_setonop("script3170($string1, event_op)");
-        if (friend_test(removetags($string1)) = true) {
+        cc_setonop("script3170($string2, event_op)");
+        if (friend_test(removetags($string2)) = true) {
             cc_setop(8, "Remove friend <$string0>");
-        } else if (ignore_test(removetags($string1)) = true) {
+        } else if (ignore_test(removetags($string2)) = true) {
             cc_setop(9, "Remove ignore <$string0>");
         } else {
             cc_setop(6, "Add friend <$string0>");
