@@ -11301,3 +11301,7 @@ readyanim=seq_10867,seq_10901
 [bas_2191]
 readyanim=seq_12393,seq_12407
 
+// 2192
+[bas_2192]
+readyanim=seq_12925,null
+
