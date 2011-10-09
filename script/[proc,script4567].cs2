@@ -38,8 +38,16 @@ if ($int2 < $int4) {
         $int1 = calc($int1 + 1);
     }
 }
-def_int $int6 = max(calc($int2 * 15), calc($int4 * 15));
-if_setscrollsize(0, $int6, interface_589:com_23);
+def_int $int6 = 0;
+def_int $int7 = 0;
+while ($int7 <= $int2) {
+    if (.cc_find(interface_589:com_23, $int7) = true) {
+        $int6 = calc($int6 + .cc_getheight);
+    }
+    $int7 = calc($int7 + 1);
+}
+def_int $int8 = max($int6, calc($int4 * 15));
+if_setscrollsize(0, $int8, interface_589:com_23);
 ~scrollbar_resize(interface_589:com_24, interface_589:com_23, calc(%varclient_1508 + if_getscrollheight(interface_589:com_23) - %varclient_1509));
 %varclient_1508 = if_getscrolly(interface_589:com_23);
 %varclient_1509 = if_getscrollheight(interface_589:com_23);
