@@ -1,11 +1,11 @@
 // 3173
 [proc,script3173](component $component0)
 ~script4548;
-if (minimenuopen(interface_912:com_21, -1) = true) {
+if (minimenuopen(interface_912:com_20, -1) = true) {
     if_setontimer("script3172($component0)", $component0);
     return;
 }
-cc_deleteall(interface_912:com_21);
+cc_deleteall(interface_912:com_20);
 def_string $string0 = "<col=7fa9ff>";
 def_string $string1 = "<col=ff5256>";
 def_int $int1 = 0;
@@ -29,7 +29,7 @@ while ($int1 < 100) {
     }
     $int1 = calc($int1 + 1);
 }
-def_int $int4 = calc(if_getheight(interface_912:com_21) / 15);
+def_int $int4 = calc(if_getheight(interface_912:com_20) / 15);
 $int1 = 0;
 def_int $int5 = 0;
 if ($int2 < $int4) {
@@ -39,8 +39,16 @@ if ($int2 < $int4) {
         $int1 = calc($int1 + 1);
     }
 }
-def_int $int6 = max(calc($int2 * 15), calc($int4 * 15));
-if_setscrollsize(0, $int6, interface_912:com_21);
-~scrollbar_resize(interface_912:com_22, interface_912:com_21, calc(%varclient_1124 + if_getscrollheight(interface_912:com_21) - %varclient_1125));
-%varclient_1124 = if_getscrolly(interface_912:com_21);
-%varclient_1125 = if_getscrollheight(interface_912:com_21);
+def_int $int6 = 0;
+def_int $int7 = 0;
+while ($int7 <= $int2) {
+    if (.cc_find(interface_912:com_20, $int7) = true) {
+        $int6 = calc($int6 + .cc_getheight);
+    }
+    $int7 = calc($int7 + 1);
+}
+def_int $int8 = max($int6, calc($int4 * 15));
+if_setscrollsize(0, $int8, interface_912:com_20);
+~scrollbar_resize(interface_912:com_21, interface_912:com_20, calc(%varclient_1124 + if_getscrollheight(interface_912:com_20) - %varclient_1125));
+%varclient_1124 = if_getscrolly(interface_912:com_20);
+%varclient_1125 = if_getscrollheight(interface_912:com_20);

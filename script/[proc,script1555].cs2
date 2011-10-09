@@ -1,14 +1,27 @@
 // 1555
 [proc,script1555](int $int0)
-if_setposition(~script1551(%varclient_1028, %varclientstring_1, p12_full, $int0), if_gety(interface_137:com_56), ^setpos_abs_left, ^setpos_abs_top, interface_137:com_56);
+if_setposition(~script1551(%varclient_1028, %varclientstring_1, p12_full, $int0), if_gety(interface_137:com_57), ^setpos_abs_left, ^setpos_abs_top, interface_137:com_57);
+def_int $int1 = if_getwidth(interface_137:com_55);
+def_int $int2 = string_length(%varclientstring_1);
+def_string $string0 = "";
+if (%varclient_1028 > 0) {
+    $string0 = substring(%varclientstring_1, 0, min(%varclient_1028, $int2));
+}
+def_int $int3 = calc(stringwidth($string0, p12_full) - $int1);
+if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, interface_137:com_56);
+if_setsize(max(stringwidth(if_gettext(interface_137:com_56), p12_full), $int1), if_getheight(interface_137:com_56), ^setsize_abs, ^setsize_abs, interface_137:com_56);
+if ($int3 > 0) {
+    if_setposition(calc(if_getx(interface_137:com_56) - $int3), 0, ^setpos_abs_left, ^setpos_abs_bottom, interface_137:com_56);
+    if_setposition(calc(if_getx(interface_137:com_57) - $int3), 0, ^setpos_abs_left, ^setpos_abs_centre, interface_137:com_57);
+}
 if (string_length(%varclientstring_1) <= 0) {
-    if_sethide(true, interface_137:com_56);
-    if_setontimer(null, interface_137:com_55);
+    if_sethide(true, interface_137:com_57);
+    if_setontimer(null, interface_137:com_56);
 } else {
     if (applet_hasfocus = true) {
-        if_sethide(false, interface_137:com_56);
+        if_sethide(false, interface_137:com_57);
     } else {
-        if_sethide(true, interface_137:com_56);
+        if_sethide(true, interface_137:com_57);
     }
-    if_setontimer("script1400(clientclock, interface_137:com_56)", interface_137:com_55);
+    if_setontimer("script1400(clientclock, interface_137:com_57)", interface_137:com_56);
 }
