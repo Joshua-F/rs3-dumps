@@ -11305,3 +11305,110 @@ readyanim=seq_12393,seq_12407
 [bas_2192]
 readyanim=seq_12925,null
 
+// 2193
+[bas_2193]
+readyanim_l=seq_13591
+readyanim_r=seq_13591
+crawlanim=seq_13216
+crawlanim_b=seq_13216
+crawlanim_l=seq_13216
+crawlanim_r=seq_13216
+crawlturn_l=seq_13216
+crawlturn_r=seq_13216
+readyanim=null,null
+randomreadyanim=seq_13202,90
+randomreadyanim=seq_13215,10
+
+// 2194
+[bas_2194]
+readyanim_l=seq_13592
+readyanim_r=seq_13592
+crawlanim=seq_13482
+crawlanim_b=seq_13482
+crawlanim_l=seq_13482
+crawlanim_r=seq_13482
+crawlturn_l=seq_13482
+crawlturn_r=seq_13482
+readyanim=seq_13446,null
+
+// 2195
+[bas_2195]
+readyanim_l=seq_13290
+readyanim_r=seq_13290
+runanim=seq_13373
+walkanim_b=seq_13221
+walkturn_l=seq_13221
+walkturn_r=seq_13221
+walkanim_l=seq_13221
+walkanim_r=seq_13221
+readyanim=seq_13290,seq_13221
+
+// 2196
+[bas_2196]
+readyanim_l=seq_13300
+readyanim_r=seq_13300
+runanim=seq_13387
+walkanim_b=seq_13268
+walkturn_l=seq_13268
+walkturn_r=seq_13268
+walkanim_l=seq_13268
+walkanim_r=seq_13268
+readyanim=seq_13300,seq_13268
+
+// 2197
+[bas_2197]
+readyanim_l=seq_13311
+readyanim_r=seq_13311
+runanim=seq_13397
+walkanim_b=seq_13274
+walkturn_l=seq_13274
+walkturn_r=seq_13274
+walkanim_l=seq_13274
+walkanim_r=seq_13274
+readyanim=seq_13311,seq_13274
+
+// 2198
+[bas_2198]
+readyanim_l=seq_13318
+readyanim_r=seq_13318
+runanim=seq_13444
+walkanim_b=seq_13283
+walkturn_l=seq_13283
+walkturn_r=seq_13283
+walkanim_l=seq_13283
+walkanim_r=seq_13283
+readyanim=seq_13318,seq_13283
+
+// 2199
+[bas_2199]
+readyanim_l=seq_13314
+readyanim_r=seq_13314
+runanim=seq_13415
+walkanim_b=seq_13278
+walkturn_l=seq_13278
+walkturn_r=seq_13278
+walkanim_l=seq_13278
+walkanim_r=seq_13278
+readyanim=seq_13314,seq_13278
+
+// 2200
+[bas_2200]
+readyanim_l=seq_13589
+readyanim_r=seq_13589
+walkanim_b=seq_13589
+walkturn_l=seq_13589
+walkturn_r=seq_13589
+walkanim_l=seq_13589
+walkanim_r=seq_13589
+readyanim=null,seq_13589
+randomreadyanim=seq_13571,90
+randomreadyanim=seq_13577,10
+
+// 2201
+[bas_2201]
+readyanim_l=seq_13590
+readyanim_r=seq_13590
+readyanim=null,seq_13590
+randomreadyanim=seq_13517,90
+randomreadyanim=seq_13518,10
+
