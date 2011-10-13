@@ -1,0 +1,160 @@
+// 4344
+[proc,script4344](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, graphic $graphic7, graphic $graphic8, graphic $graphic9)(int, int, int, int, int)
+def_component $component10 = interface_1143:com_59;
+def_int $int11 = 0;
+def_struct $struct12 = null;
+def_string $string0 = "";
+def_int $int13 = 0;
+def_enum $enum14 = enum_5182;
+def_struct $structarray0(enum_getoutputcount($enum14));
+def_int $int15 = 0;
+def_struct $struct16 = null;
+def_int $int17 = 0;
+while ($int17 < enum_getoutputcount($enum14)) {
+    $structarray0($int17) = enum(int, struct, $enum14, $int17);
+    $int17 = calc($int17 + 1);
+}
+$int17 = 0;
+$int15 = 1;
+def_int $int18 = 0;
+def_int $int19 = 0;
+switch_int (%varclient_1659) {
+    case default :
+        while ($int15 = 1) {
+            $int15 = 0;
+            $int17 = calc(enum_getoutputcount($enum14) - 1);
+            while ($int17 > 0) {
+                if (struct_param($structarray0($int17), param_1933) > 0) {
+                    $int18 = struct_param($structarray0($int17), param_1933);
+                } else {
+                    $int18 = struct_param($structarray0($int17), param_1932);
+                }
+                if (struct_param($structarray0(calc($int17 - 1)), param_1933) > 0) {
+                    $int19 = struct_param($structarray0(calc($int17 - 1)), param_1933);
+                } else {
+                    $int19 = struct_param($structarray0(calc($int17 - 1)), param_1932);
+                }
+                if ($int18 < $int19) {
+                    $int15 = 1;
+                    $struct16 = $structarray0(calc($int17 - 1));
+                    $structarray0(calc($int17 - 1)) = $structarray0($int17);
+                    $structarray0($int17) = $struct16;
+                }
+                $int17 = calc($int17 - 1);
+            }
+        }
+    case 1 :
+        while ($int15 = 1) {
+            $int15 = 0;
+            $int17 = calc(enum_getoutputcount($enum14) - 1);
+            while ($int17 > 0) {
+                if (struct_param($structarray0($int17), param_1933) > 0) {
+                    $int18 = struct_param($structarray0($int17), param_1933);
+                } else {
+                    $int18 = struct_param($structarray0($int17), param_1932);
+                }
+                if (struct_param($structarray0(calc($int17 - 1)), param_1933) > 0) {
+                    $int19 = struct_param($structarray0(calc($int17 - 1)), param_1933);
+                } else {
+                    $int19 = struct_param($structarray0(calc($int17 - 1)), param_1932);
+                }
+                if ($int18 > $int19) {
+                    $int15 = 1;
+                    $struct16 = $structarray0(calc($int17 - 1));
+                    $structarray0(calc($int17 - 1)) = $structarray0($int17);
+                    $structarray0($int17) = $struct16;
+                }
+                $int17 = calc($int17 - 1);
+            }
+        }
+    case 2 :
+        while ($int15 = 1) {
+            $int15 = 0;
+            $int17 = calc(enum_getoutputcount($enum14) - 1);
+            while ($int17 > 0) {
+                if (compare(struct_param($structarray0($int17), param_1930), struct_param($structarray0(calc($int17 - 1)), param_1930)) < 0) {
+                    $int15 = 1;
+                    $struct16 = $structarray0(calc($int17 - 1));
+                    $structarray0(calc($int17 - 1)) = $structarray0($int17);
+                    $structarray0($int17) = $struct16;
+                }
+                $int17 = calc($int17 - 1);
+            }
+        }
+    case 3 :
+        while ($int15 = 1) {
+            $int15 = 0;
+            $int17 = calc(enum_getoutputcount($enum14) - 1);
+            while ($int17 > 0) {
+                if (compare(struct_param($structarray0($int17), param_1930), struct_param($structarray0(calc($int17 - 1)), param_1930)) > 0) {
+                    $int15 = 1;
+                    $struct16 = $structarray0(calc($int17 - 1));
+                    $structarray0(calc($int17 - 1)) = $structarray0($int17);
+                    $structarray0($int17) = $struct16;
+                }
+                $int17 = calc($int17 - 1);
+            }
+        }
+}
+$int17 = 0;
+def_int $int20 = 1;
+while ($int20 <= 3) {
+    cc_create($component10, ^iftype_text, $int5);
+    $int5 = calc($int5 + 1);
+    if ($int20 = 1) {
+        cc_setposition(11, $int4, ^setpos_abs_left, ^setpos_abs_top);
+    } else {
+        $int2 = calc($int2 + $int3 + $int4);
+        cc_setposition(11, $int2, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    $int11 = cc_gety;
+    cc_setsize(calc(if_getwidth($component10) - 20), 13, ^setsize_abs, ^setsize_abs);
+    switch_int ($int20) {
+        case 1 :
+            cc_settext("Tier 1");
+        case 2 :
+            cc_settext("Tier 2");
+        case 3 :
+            cc_settext("Tier 3");
+        case 4 :
+            cc_settext("Tier 4");
+    }
+    cc_settextfont(verdana_13pt_regular);
+    cc_settextshadow(true);
+    cc_setcolour(0xe6be78);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 13);
+    if ($int20 = 1) {
+        cc_create($component10, ^iftype_text, $int5);
+        $int5 = calc($int5 + 1);
+        cc_setposition(7, $int11, ^setpos_abs_right, ^setpos_abs_top);
+        cc_setsize(calc(if_getwidth($component10) - 20), 13, ^setsize_abs, ^setsize_abs);
+        cc_settext("Scroll Down For More Tiers");
+        cc_settextfont(verdana_13pt_regular);
+        cc_settextshadow(true);
+        cc_setcolour(0xe6be78);
+        cc_settextalign(^settextalign_right, ^settextalign_centre, 13);
+    }
+    cc_create($component10, ^iftype_rectangle, $int5);
+    $int5 = calc($int5 + 1);
+    if ($int20 = 1) {
+        cc_setposition(11, 23, ^setpos_abs_left, ^setpos_abs_top);
+    } else {
+        $int2 = calc($int2 + 17);
+        cc_setposition(11, $int2, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    cc_setsize(calc(if_getwidth($component10) - 20), 1, ^setsize_abs, ^setsize_abs);
+    cc_setcolour(0xe6be78);
+    $int2 = calc(cc_gety + cc_getheight);
+    $int17 = 0;
+    $int0 = 0;
+    $int1 = $int4;
+    while ($int17 < enum_getoutputcount($enum14)) {
+        $struct12 = $structarray0($int17);
+        if (struct_param($struct12, param_1993) = $int20) {
+            $int0, $int1, $int2, $int3, $int5 = ~script5351($struct12, $int0, $int1, $int2, $int3, $int4, $int5, $int6, $graphic7, $graphic8, $graphic9);
+        }
+        $int17 = calc($int17 + 1);
+    }
+    $int20 = calc($int20 + 1);
+}
+return($int0, $int1, $int2, $int3, $int5);
