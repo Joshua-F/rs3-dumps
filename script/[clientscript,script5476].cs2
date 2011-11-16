@@ -1,0 +1,55 @@
+// 5476
+[clientscript,script5476](int $int0, int $int1)
+def_struct $struct2 = null;
+def_string $string0 = "";
+def_string $string1 = "";
+def_graphic $graphic3 = null;
+def_string $string2 = "";
+def_int $int4 = 0;
+if (%varplayerbit_9987 = 0) {
+    if_sethide(true, interface_1163:com_102);
+    if_sethide(false, interface_1163:com_103);
+} else {
+    if_sethide(false, interface_1163:com_102);
+    if_sethide(true, interface_1163:com_103);
+}
+if_settext(tostring(%varplayerbit_9990), interface_1163:com_28);
+if (%varplayerbit_9990 > 0) {
+    if_settext(tostring(calc(%varplayerbit_9990 / 3)), interface_1163:com_32);
+} else {
+    if_settext("0", interface_1163:com_32);
+}
+%varclient_2 = 0;
+sound_vorbis_volume(vorbis_8099, 1, 0, 255);
+if ($int1 = 0) {
+    if_settext(tostring(calc(%varplayerbit_9984 + 1)), interface_1163:com_44);
+    %varclient_1678 = calc(1 + random(48));
+    %varclient_1679 = 30;
+    %varclient_1677 = $int0;
+    if_sethide(true, interface_1163:com_88);
+    if_setontimer("script5477", interface_1163:com_39);
+} else {
+    %varclient_1677 = $int0;
+    if_settext(tostring(%varplayerbit_9984), interface_1163:com_44);
+    $struct2 = enum(int, struct, enum_5213, %varclient_1677);
+    $string0 = struct_param($struct2, param_2095);
+    $string1 = struct_param($struct2, param_2184);
+    $graphic3 = struct_param($struct2, param_2101);
+    if (struct_param($struct2, param_2097) = 1) {
+        $string2 = "<col=f5b241>Arena</col>: Single-way combat.";
+    } else if (struct_param($struct2, param_2097) = 2) {
+        $string2 = "<col=f5b241>Arena</col>: Multi-way combat.";
+    } else if (struct_param($struct2, param_2097) = 3) {
+        $string2 = "<col=f5b241>Arena</col>: Single-way combat with small blocking pillars.";
+    } else if (struct_param($struct2, param_2097) = 4) {
+        $string2 = "<col=f5b241>Arena</col>: Multi-way combat with large blocking pillars.";
+    } else if (struct_param($struct2, param_2097) = 5) {
+        $string2 = "<col=f5b241>Arena</col>: Multi-way combat with podiums";
+    }
+    if_settext($string0, interface_1163:com_87);
+    if_settext("<$string1><br><br><$string2>", interface_1163:com_34);
+    ~script5475("<$string1><br><br><$string2>", interface_1163:com_34, interface_1163:com_37, interface_1163:com_36);
+    if_setgraphic($graphic3, interface_1163:com_19);
+    $int4 = ~script5459(1);
+    if_settext(tostring($int4), interface_1163:com_30);
+}

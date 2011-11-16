@@ -11,7 +11,10 @@ if_setonop("script3399", interface_979:com_9);
 def_int $int2 = 100;
 def_int $int3 = 0;
 def_int $chattype4 = ^chattype_gamemessage;
-def_int $int5 = 0;
+def_int $int5 = 1;
+def_string $string1 = "";
+def_int $int6 = 0;
+def_int $int7 = 0;
 cc_deleteall(interface_979:com_27);
 cc_deleteall(interface_979:com_26);
 cc_deleteall(interface_979:com_25);
@@ -20,11 +23,26 @@ if_setscrollpos(0, 0, interface_979:com_27);
 while ($int2 >= 0) {
     $chattype4 = chat_gethistorytype($int2);
     if ($chattype4 ! ^chattype_gamemessage & $chattype4 ! ^chattype_engine & $chattype4 ! ^chattype_obj_examine & $chattype4 ! ^chattype_npc_examine & $chattype4 ! ^chattype_loc_examine & $chattype4 ! ^chattype_clanmessage & $chattype4 ! ^chattype_trade_notification & $chattype4 ! ^chattype_assist_notification & $chattype4 ! ^chattype_snapshotfeedback & $chattype4 ! ^chattype_friendnotification & $chattype4 ! ^chattype_ignorenotification & $chattype4 ! ^chattype_system_broadcast & compare(chat_gethistoryname($int2), "") ! 0 & compare(chat_gethistorymessage($int2), "") ! 0) {
+        if ($chattype4 ! ^chattype_privatechatout & $chattype4 ! ^chattype_quickchat_private_outgoing) {
+            if ($chattype4 = ^chattype_clanchat | $chattype4 = ^chattype_clanguestchat | $chattype4 = ^chattype_friendschat) {
+                if (compare(removetags(chat_gethistoryname($int2)), chat_playername_unfiltered) ! 0 & $chattype4 ! ^chattype_privatechatout & $chattype4 ! ^chattype_quickchat_private_outgoing) {
+                    $int6 = 0;
+                } else {
+                    $int6 = 14798;
+                }
+                $string1 = "<col=$text_colour>[</col><col=8888ff><chat_gethistoryclan($int2)></col><col=$text_colour>]<chat_gethistoryname($int2)>: <chat_gethistorymessage($int2)>";
+            } else {
+                $string1 = " <chat_gethistoryname($int2)>: <chat_gethistorymessage($int2)>";
+            }
+        } else {
+            $string1 = "To <chat_gethistoryname($int2)>: <chat_gethistorymessage($int2)>";
+        }
+        $int5 = paraheight($string1, if_getwidth(interface_979:com_27), p12_full);
         if (compare(removetags(chat_gethistoryname($int2)), chat_playername_unfiltered) ! 0 & $chattype4 ! ^chattype_privatechatout & $chattype4 ! ^chattype_quickchat_private_outgoing) {
-            $int5 = 1;
+            $int7 = 1;
             cc_create(interface_979:com_26, ^iftype_rectangle, if_getnextsubid(interface_979:com_26));
             cc_setposition(2, calc($int3 * 14 + 1), ^setpos_abs_left, ^setpos_abs_top);
-            cc_setsize(4, 14, ^setsize_minus, ^setsize_abs);
+            cc_setsize(4, calc($int5 * 14), ^setsize_minus, ^setsize_abs);
             cc_setcolour(0x606060);
             cc_settrans(255);
             cc_setfill(true);
@@ -32,7 +50,7 @@ while ($int2 >= 0) {
             cc_setonmouseleave("script3393(event_comsubid)");
             cc_create(interface_979:com_25, ^iftype_rectangle, if_getnextsubid(interface_979:com_25));
             cc_setposition(2, calc($int3 * 14 + 1), ^setpos_abs_left, ^setpos_abs_top);
-            cc_setsize(4, 14, ^setsize_minus, ^setsize_abs);
+            cc_setsize(4, calc($int5 * 14), ^setsize_minus, ^setsize_abs);
             cc_setcolour(0x494949);
             cc_settrans(255);
             cc_setfill(true);
@@ -40,12 +58,8 @@ while ($int2 >= 0) {
         }
         cc_create(interface_979:com_27, ^iftype_text, if_getnextsubid(interface_979:com_27));
         cc_setposition(5, calc($int3 * 14), ^setpos_abs_left, ^setpos_abs_top);
-        cc_setsize(10, 14, ^setsize_minus, ^setsize_abs);
-        if ($chattype4 ! ^chattype_privatechatout & $chattype4 ! ^chattype_quickchat_private_outgoing) {
-            cc_settext(" <chat_gethistoryname($int2)>: <chat_gethistorymessage($int2)>");
-        } else {
-            cc_settext("To <chat_gethistoryname($int2)>: <chat_gethistorymessage($int2)>");
-        }
+        cc_setsize(10, calc($int5 * 14), ^setsize_minus, ^setsize_abs);
+        cc_settext($string1);
         cc_setcolour(0x666678);
         if (compare(removetags(chat_gethistoryname($int2)), chat_playername_unfiltered) ! 0 & $chattype4 ! ^chattype_privatechatout & $chattype4 ! ^chattype_quickchat_private_outgoing) {
             cc_setopbase(removetags(chat_gethistoryname($int2)));
@@ -55,11 +69,11 @@ while ($int2 >= 0) {
         }
         cc_settextfont(p12_full);
         cc_settextalign(^settextalign_left, ^settextalign_top, 14);
-        $int3 = calc($int3 + 1);
+        $int3 = calc($int3 + $int5);
     }
     $int2 = calc($int2 - 1);
 }
-if ($int5 = 0) {
+if ($int7 = 0) {
     cc_create(interface_979:com_27, ^iftype_text, if_getnextsubid(interface_979:com_27));
     cc_setposition(5, calc($int3 * 14), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(16384, 14, ^setsize_rel, ^setsize_abs);
