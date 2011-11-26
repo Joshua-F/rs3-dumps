@@ -1,7 +1,7 @@
 // 2708
 [proc,script2708](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
-setup_messagebox(0, 0, 4, 3, 135, 30, loadingbox_border_corner, loadingbox_border_side, tradebacking, ^white, verdana_11pt_regular);
-if_setsize(278, 90, ^setsize_abs, ^setsize_abs, interface_744:com_23);
+setup_messagebox(0, 0, 4, 3, 135, 30, loadingbox_border_corner, loadingbox_border_side, aif_small_load_back, 0xffa200, verdana_11pt_regular);
+if_setsize(180, 100, ^setsize_abs, ^setsize_abs, interface_744:com_23);
 if_setgraphic(graphic_2498, interface_744:com_23);
 if_setgraphic(battle_title_widescreen_2, interface_744:com_8);
 if_setgraphic(battle_title_widescreen_1, interface_744:com_9);
@@ -22,7 +22,7 @@ if_sethflip(false, interface_744:com_74);
 if_setvflip(true, interface_744:com_74);
 if_setgraphic("corner_frame_1,4", interface_744:com_4);
 if_setgraphic("corner_frame_1,4", interface_744:com_6);
-unknown_command_6039(random(18));
+detail_loadingscreentype(random(18));
 if (%varclient_176 <= 0) {
     %varclient_176 = calc((random(5) + 1) * 10);
 }
@@ -38,6 +38,7 @@ if_setonclick("loginscreen_setactivemenu(11)", interface_882:com_20);
 if_setonkey("loginscreen_keypress(event_keycode, event_keychar)", interface_744:com_17);
 ~script2710($component0, $component1, $component2, $component3, $component4, $component5);
 ~cursors_login;
+~script1427;
 if (frombilling = true) {
     %varclient_1090 = 11;
     %varclient_1091 = 11;
@@ -50,7 +51,7 @@ if (frombilling = true) {
         %varclient_1090 = 0;
         %varclient_1091 = 0;
         ~loginscreen_setactivemenu_full(0, true, false);
-    } else if (unknown_command_5623 = true) {
+    } else if (has_signonkey = true) {
         %varclient_1090 = 5;
         %varclient_1091 = 5;
         ~loginscreen_setactivemenu_full(5, true, false);
@@ -70,7 +71,10 @@ if (frombilling = true) {
     }
 }
 ~login_resize;
-if (unknown_command_5436 = false) {
+if (%varclient_1701 = -1) {
+    %varclient_1701 = 1;
+}
+if (java_version_supported = false) {
     if_opensubclient(interface_744:com_116, interface_405);
     if_setnoclickthrough(true, interface_744:com_116);
 }

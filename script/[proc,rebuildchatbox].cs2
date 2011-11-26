@@ -8,7 +8,7 @@ def_int $int4 = 1;
 if (%varclient_41 = 3) {
     $int2 = 1;
 }
-cc_deleteall(interface_137:com_58);
+cc_deleteall(interface_137:com_57);
 def_int $int5 = -1;
 def_int $int6 = ~script4467;
 def_int $int7 = -1;
@@ -48,9 +48,11 @@ def_int $int18 = 0;
 def_int $int19 = 0;
 def_int $int20 = 2;
 def_int $int21 = 2;
+if_setnoclickthrough(~int_to_bool(%varclient_1701), interface_746:com_76);
+if_setnoclickthrough(~int_to_bool(%varclient_1701), interface_548:com_151);
 while ($int18 < 100) {
     if (~panetest($int18) = true & ~filtertest($int18, $int2) = true) {
-        cc_create(interface_137:com_58, ^iftype_text, $int14);
+        cc_create(interface_137:com_57, ^iftype_text, $int14);
         $int15 = $int14;
         $int16 = 1;
         $int14 = calc($int14 + 1);
@@ -244,7 +246,7 @@ while ($int18 < 100) {
                 $int4 = 0;
         }
     }
-    if (cc_find(interface_137:com_58, $int15) = true & $int16 = 1) {
+    if (cc_find(interface_137:com_57, $int15) = true & $int16 = 1) {
         $int19 = max(paraheight(cc_gettext, 484, cc_getfontmetrics), 1);
         cc_setsize(max(min(parawidth(cc_gettext, 484, cc_getfontmetrics), 484), 1), calc(14 * $int19), ^setsize_abs, ^setsize_abs);
         $int20 = calc($int20 + cc_getheight);
@@ -252,8 +254,16 @@ while ($int18 < 100) {
     }
     $int18 = calc($int18 + 1);
 }
-$int20 = max($int20, if_getheight(interface_137:com_58));
-if_setscrollsize(463, $int20, interface_137:com_58);
-~scrollbar_resize(interface_137:com_59, interface_137:com_58, calc(%varclient_7 + if_getscrollheight(interface_137:com_58) - %varclient_8));
-%varclient_7 = if_getscrolly(interface_137:com_58);
-%varclient_8 = if_getscrollheight(interface_137:com_58);
+$int20 = max($int20, if_getheight(interface_137:com_57));
+if_setscrollsize(463, $int20, interface_137:com_57);
+if (getwindowmode >= 2) {
+    ~script5509(interface_137:com_58, interface_137:com_57, calc(%varclient_7 + if_getscrollheight(interface_137:com_57) - %varclient_8));
+} else {
+    ~scrollbar_resize(interface_137:com_58, interface_137:com_57, calc(%varclient_7 + if_getscrollheight(interface_137:com_57) - %varclient_8));
+}
+%varclient_7 = if_getscrolly(interface_137:com_57);
+%varclient_8 = if_getscrollheight(interface_137:com_57);
+if_setnoclickthrough(true, interface_746:com_76);
+if (getwindowmode >= 2 & %varclient_1701 = 1) {
+    if_setnoclickthrough(false, interface_746:com_76);
+}

@@ -8064,14 +8064,14 @@ readyanim=seq_12228,seq_12227
 
 // 1622
 [bas_1622]
-readyanim_l=seq_9946
-readyanim_r=seq_9946
-walkanim_b=seq_9954
-walkanim_l=seq_9954
-walkanim_r=seq_9954
-readyanim=null,seq_9954
-randomreadyanim=seq_12289,220
-randomreadyanim=seq_9946,35
+readyanim_l=seq_4641
+readyanim_r=seq_4641
+walkanim_b=seq_5739
+walkanim_l=seq_5739
+walkanim_r=seq_5739
+readyanim=null,seq_5739
+randomreadyanim=seq_9946,220
+randomreadyanim=seq_4641,35
 
 // 1623
 [bas_1623]
@@ -11767,4 +11767,8 @@ readyanim=seq_15421,seq_15421
 // 2262
 [bas_2262]
 readyanim=seq_8828,seq_15428
+
+// 2263
+[bas_2263]
+readyanim=seq_15444,seq_15445
 

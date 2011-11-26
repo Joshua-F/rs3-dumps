@@ -36,28 +36,28 @@ while ($int1 >= 0) {
         } else {
             $string3 = "To <chat_gethistoryname($int1)>: <chat_gethistorymessage($int1)>";
         }
-        $int4 = paraheight($string3, if_getwidth(interface_594:com_94), p12_full);
+        $int4 = paraheight($string3, calc(if_getwidth(interface_594:com_94) - 5), p12_full);
         if (compare(removetags(chat_gethistoryname($int1)), chat_playername_unfiltered) ! 0 & $chattype3 ! ^chattype_privatechatout & $chattype3 ! ^chattype_quickchat_private_outgoing) {
             $int6 = 1;
             cc_create(interface_594:com_93, ^iftype_rectangle, if_getnextsubid(interface_594:com_93));
-            cc_setposition(0, calc($int2 * 14 + 2), ^setpos_abs_left, ^setpos_abs_top);
-            cc_setsize(451, calc($int4 * 14), ^setsize_abs, ^setsize_abs);
+            cc_setposition(0, calc($int2 * 15 + 2), ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize(451, calc($int4 * 15), ^setsize_abs, ^setsize_abs);
             cc_setcolour(0x678ab0);
             cc_settrans(255);
             cc_setfill(true);
             cc_setonmouseover("script237(event_comsubid)");
             cc_setonmouseleave("script238(event_comsubid)");
             cc_create(interface_594:com_92, ^iftype_rectangle, if_getnextsubid(interface_594:com_92));
-            cc_setposition(0, calc($int2 * 14 + 2), ^setpos_abs_left, ^setpos_abs_top);
-            cc_setsize(450, calc($int4 * 14), ^setsize_abs, ^setsize_abs);
+            cc_setposition(0, calc($int2 * 15 + 2), ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize(450, calc($int4 * 15), ^setsize_abs, ^setsize_abs);
             cc_setcolour(0x678ab0);
             cc_settrans(255);
             cc_setfill(true);
             cc_setonmouseover("snapshot_selected_highlight(event_comsubid)");
         }
         cc_create(interface_594:com_94, ^iftype_text, if_getnextsubid(interface_594:com_94));
-        cc_setposition(5, calc($int2 * 14), ^setpos_abs_left, ^setpos_abs_top);
-        cc_setsize(5, calc(14 * $int4), ^setsize_minus, ^setsize_abs);
+        cc_setposition(5, calc($int2 * 15), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(5, calc(15 * $int4), ^setsize_minus, ^setsize_abs);
         cc_settext($string3);
         cc_setcolour(0x777777);
         $string1 = removetags(unknown_command_5019($int1));
@@ -68,22 +68,22 @@ while ($int1 >= 0) {
             cc_setcolour(^black);
         }
         cc_settextfont(p12_full);
-        cc_settextalign(^settextalign_left, ^settextalign_top, 14);
+        cc_settextalign(^settextalign_left, ^settextalign_top, 15);
         $int2 = calc($int2 + $int4);
     }
     $int1 = calc($int1 - 1);
 }
 if ($int6 = 0) {
     cc_create(interface_594:com_94, ^iftype_text, if_getnextsubid(interface_594:com_94));
-    cc_setposition(5, calc($int2 * 14), ^setpos_abs_left, ^setpos_abs_top);
-    cc_setsize(16384, 14, ^setsize_rel, ^setsize_abs);
+    cc_setposition(5, calc($int2 * 15), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(16384, 15, ^setsize_rel, ^setsize_abs);
     cc_settext("There is no chat to report at the moment.");
     cc_setcolour(0x000099);
     cc_settextfont(p12_full);
-    cc_settextalign(^settextalign_left, ^settextalign_top, 14);
+    cc_settextalign(^settextalign_left, ^settextalign_top, 15);
+    $int2 = calc($int2 + 1);
 }
-if_setsize(63, if_getheight(interface_594:com_87), ^setsize_minus, ^setsize_abs, interface_594:com_87);
-if_setscrollsize(0, calc($int2 * 14), interface_594:com_91);
+if_setscrollsize(if_getwidth(interface_594:com_91), calc(2 + $int2 * 15), interface_594:com_91);
 ~scrollbar_vertical(interface_594:com_86, interface_594:com_91, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 if (cc_find(interface_594:com_86, 1) = true) {
     ~scrollbar_vertical_doscroll(interface_594:com_86, interface_594:com_91, if_getscrollheight(interface_594:com_91), true);

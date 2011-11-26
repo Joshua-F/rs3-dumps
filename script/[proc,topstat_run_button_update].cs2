@@ -1,28 +1,40 @@
 // 1741
 [proc,topstat_run_button_update](component $component0)
+def_graphic $graphic1 = "topstat_icon,2";
+def_graphic $graphic2 = "topstat_icon,4";
+def_graphic $graphic3 = "topstat_icon,5";
+def_graphic $graphic4 = "topstat_icon,6";
+def_graphic $graphic5 = "topstat_fill_full,2";
+def_graphic $graphic6 = "topstat_fill_full,6";
+if (getwindowmode >= 2) {
+    $graphic1 = "aif_topstat_icon,2";
+    $graphic2 = "aif_topstat_icon,4";
+    $graphic3 = "aif_topstat_icon,5";
+    $graphic4 = "aif_topstat_icon,6";
+    $graphic5 = "aif_topstat_fill_full,2";
+    $graphic6 = "aif_topstat_fill_full,6";
+    if_setsize(67, 34, ^setsize_abs, ^setsize_abs, interface_750:com_3);
+    if_setposition(2, 2, ^setpos_abs_right, ^setpos_abs_top, interface_750:com_6);
+    if_setgraphic(graphic_8625, $component0);
+    if_setposition(3, 15, ^setpos_abs_left, ^setpos_abs_top, interface_750:com_7);
+    if_setsize(34, 14, ^setsize_abs, ^setsize_abs, interface_750:com_7);
+} else {
+    if_setsize(57, 34, ^setsize_abs, ^setsize_abs, interface_750:com_3);
+    if_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top, interface_750:com_6);
+    if_setgraphic(graphic_1206, $component0);
+    if_setposition(31, 15, ^setpos_abs_left, ^setpos_abs_top, interface_750:com_7);
+    if_setsize(24, 14, ^setsize_abs, ^setsize_abs, interface_750:com_7);
+}
 if (%varclient_119 = 1) {
-    if_setgraphic("topstat_icon,4", interface_750:com_6);
-    if_setgraphic("topstat_fill_full,6", interface_750:com_3);
+    if_setgraphic($graphic2, interface_750:com_2);
+    if_setgraphic($graphic6, interface_750:com_0);
     if_setop(1, "Turn run mode off", $component0);
 } else if (%varclient_119 = 0) {
-    if_setgraphic("topstat_icon,2", interface_750:com_6);
-    if_setgraphic("topstat_fill_full,2", interface_750:com_3);
+    if_setgraphic($graphic1, interface_750:com_2);
+    if_setgraphic($graphic5, interface_750:com_0);
     if_setop(1, "Turn run mode on", $component0);
 } else if (%varclient_119 = 3) {
-    if_setgraphic("topstat_icon,5", interface_750:com_6);
+    if_setgraphic($graphic3, interface_750:com_2);
 } else if (%varclient_119 = 4) {
-    if_setgraphic("topstat_icon,6", interface_750:com_6);
-}
-if (getwindowmode >= 2) {
-    if_setgraphic(graphic_1207, $component0);
-    if_setposition(25, 1, ^setpos_abs_left, ^setpos_abs_top, interface_750:com_3);
-    if_setposition(25, 1, ^setpos_abs_left, ^setpos_abs_top, interface_750:com_4);
-    if_setposition(3, 15, ^setpos_abs_left, ^setpos_abs_top, interface_750:com_5);
-    if_setposition(31, 7, ^setpos_abs_left, ^setpos_abs_top, interface_750:com_6);
-} else {
-    if_setgraphic(graphic_1206, $component0);
-    if_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top, interface_750:com_3);
-    if_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top, interface_750:com_4);
-    if_setposition(29, 15, ^setpos_abs_left, ^setpos_abs_top, interface_750:com_5);
-    if_setposition(7, 7, ^setpos_abs_left, ^setpos_abs_top, interface_750:com_6);
+    if_setgraphic($graphic4, interface_750:com_2);
 }

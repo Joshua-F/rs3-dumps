@@ -1,33 +1,29 @@
 // 2923
-[clientscript,script2923](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
+[clientscript,script2923](component $component0, component $component1, int $int2, component $component3, component $component4, component $component5)
 if (%varplayer_102 > 0) {
-    if_setgraphic("topstat_fill_full,10", $component2);
-    if_setgraphic("topstat_fill_full,10", $component3);
     if_sethide(true, $component0);
     if_sethide(false, $component1);
     if_setop(1, "Use cure (p)", $component1);
 } else if (%varplayer_456 > 0) {
-    if_setgraphic("topstat_fill_full,9", $component2);
-    if_setgraphic("topstat_fill_full,9", $component3);
     if_sethide(true, $component0);
     if_sethide(false, $component1);
     if_setop(1, "Use cure (d)", $component1);
 } else {
-    if_setgraphic("topstat_fill_full,0", $component2);
-    if_setgraphic("topstat_fill_full,0", $component3);
     if_sethide(false, $component0);
     if_sethide(true, $component1);
     if_clearops($component1);
 }
-if_setsize(0, calc(16384 - max(min(scale(%varplayerbit_7198, ~script2916, 16384), 16384), 0)), ^setsize_minus, ^setsize_rel, $component3);
-if_setsize(0, calc(16384 - max(min(scale(~script2915, ~script2916, 16384), 16384), 0)), ^setsize_minus, ^setsize_rel, $component4);
+def_int $int6 = 3;
+def_int $int7 = 24;
+if_setsize(0, calc($int6 + ($int7 - scale(%varplayerbit_7198, ~script2916, $int7))), ^setsize_minus, ^setsize_abs, $component3);
+if_setsize(0, calc($int6 + ($int7 - scale(~script2915, ~script2916, $int7))), ^setsize_minus, ^setsize_abs, $component4);
 if_settext(tostring(%varplayerbit_7198), $component5);
-def_int $int6 = scale(%varplayerbit_7198, ~script2916, 100);
-if ($int6 > 75) {
+def_int $int8 = scale(%varplayerbit_7198, ~script2916, 100);
+if ($int8 > 75) {
     if_setcolour(^green, $component5);
-} else if ($int6 > 50) {
+} else if ($int8 > 50) {
     if_setcolour(^yellow, $component5);
-} else if ($int6 > 25) {
+} else if ($int8 > 25) {
     if_setcolour(0xff981f, $component5);
 } else {
     if_setcolour(^red, $component5);

@@ -1,11 +1,11 @@
 // 2946
 [clientscript,login_reply](int $int0)
 def_int $int1 = ~login_getreply;
-def_component $component2 = interface_596:com_60;
-def_component $component3 = interface_596:com_59;
-def_component $component4 = interface_596:com_45;
-def_component $component5 = interface_596:com_7;
-if (unknown_command_5623 = true) {
+def_component $component2 = interface_596:com_58;
+def_component $component3 = interface_596:com_57;
+def_component $component4 = interface_596:com_44;
+def_component $component5 = interface_596:com_6;
+if (has_signonkey = true) {
     $component2 = interface_975:com_49;
     $component4 = interface_975:com_44;
     $component5 = interface_975:com_26;
@@ -14,12 +14,12 @@ if ($int1 = 42) {
     if_setgraphic("corner_flourish,2", interface_744:com_97);
     if_sethide(false, interface_744:com_103);
     if_settext(tostring(map_world), interface_744:com_130);
-    if_settext(tostring(unknown_command_5629), interface_744:com_131);
+    if_settext(tostring(login_queue_position), interface_744:com_131);
     %varclient_1100 = 42;
     return;
 } else if ($int1 = 43) {
     if_settext(tostring(map_world), interface_744:com_130);
-    if_settext(tostring(unknown_command_5629), interface_744:com_131);
+    if_settext(tostring(login_queue_position), interface_744:com_131);
     %varclient_1100 = 43;
     return;
 } else {
@@ -100,7 +100,7 @@ if ($int1 = 1) {
     return;
 }
 ~login_popup_close;
-if (unknown_command_5623 = true) {
+if (has_signonkey = true) {
     if_settext("Play Game", $component2);
     if_settext("Play Game", $component3);
 } else {
@@ -108,10 +108,10 @@ if (unknown_command_5623 = true) {
     if_settext("Log In", $component3);
 }
 if_setonclick("login_dologin", $component4);
-if (unknown_command_5623 = true) {
+if (has_signonkey = true) {
     if_setontimer(null, interface_975:com_26);
 } else {
-    if_setontimer(null, interface_596:com_7);
+    if_setontimer(null, interface_596:com_6);
 }
 def_string $string2 = "";
 def_int $int8 = 1;
@@ -125,7 +125,7 @@ def_string $string4 = "Back";
 switch_int ($int1) {
     case -2 :
         ~login_popup_close;
-        if (unknown_command_5623 = true) {
+        if (has_signonkey = true) {
             return;
         } else {
             ~login_open(11);
