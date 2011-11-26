@@ -1,0 +1,60 @@
+// 5513
+[if_process_active_loc,interface_1177]
+if (getwindowmode = ^windowmode_small) {
+    return;
+}
+def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_component $component5 = if_getparentlayer(interface_1177:com_0);
+def_boolean $boolean6 = false;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+if (if_find(interface_1177:com_0) = true) {
+    if (compare(%varclientstring_306, "") ! 0) {
+        cc_setsize(min(200, calc(20 + parawidth(%varclientstring_306, 180, p12_full))), calc(22 + 15 * paraheight(%varclientstring_306, 180, p12_full)), ^setsize_abs, ^setsize_abs);
+    }
+    if (%varclient_1695 = 1) {
+        ~info_box_build;
+    }
+}
+if (%varclient_1696 = -1) {
+    %varclient_1696 = get_loc_overlay_height;
+}
+$int0, $int1, $int2 = get_loc_screen_position(%varclient_1696);
+$boolean6, $int7, $int8, $int9, $int10 = get_loc_bounding_box;
+if (if_find(interface_1177:com_0) = true & $boolean6 = false) {
+    ~info_reset;
+}
+if ($component5 ! null) {
+    $int3 = if_getwidth($component5);
+    $int4 = if_getheight($component5);
+}
+if (if_find(interface_1177:com_0) = true) {
+    $int0 = calc($int0 - cc_getwidth / 2);
+    $int1 = calc($int1 - cc_getheight / 2);
+    if ($int0 < 0) {
+        $int0 = 0;
+    }
+    if (calc($int3 - $int0) < cc_getwidth) {
+        $int0 = calc($int3 - cc_getwidth);
+    }
+    if ($int1 < 0) {
+        $int1 = 0;
+    }
+    if (calc($int4 - $int1) < cc_getheight) {
+        $int1 = calc($int4 - cc_getheight);
+    }
+    cc_setposition($int0, $int1, ^setpos_abs_left, ^setpos_abs_top);
+}
+if (if_find(interface_1177:com_0) = true & %varclient_1695 = 1) {
+    %varclient_1695 = 0;
+    cc_setontimer("info_box_timer(calc(%varclient_1694 + string_length(%varclientstring_306) * 2))");
+}
+if (cc_find(interface_1177:com_0, 9) = true) {
+    cc_settext(%varclientstring_306);
+}
