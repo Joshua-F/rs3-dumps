@@ -1,0 +1,109 @@
+// 336
+[clientscript,levelup_start]
+def_int $int0 = 0;
+if (%varclient_1756 = 0) {
+    if_sethide(true, interface_1216:com_11);
+    return;
+}
+if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, interface_1216:com_11);
+if_setgraphic(enum(int, graphic, enum_745, %varclient_1756), interface_1216:com_15);
+if_settrans(0, interface_1216:com_15);
+if_settrans(0, interface_1216:com_5);
+if_settrans(0, interface_1216:com_6);
+if_settrans(0, interface_1216:com_4);
+if_settrans(0, interface_1216:com_7);
+if_settrans(255, interface_1216:com_12);
+if_settrans(255, interface_1216:com_14);
+if_settrans(255, interface_1216:com_13);
+if_settrans(0, interface_1216:com_9);
+if_settrans(0, interface_1216:com_8);
+if_sethide(true, interface_1216:com_2);
+if_sethide(true, interface_1216:com_17);
+if_sethide(true, interface_1216:com_1);
+def_int $int1 = 0;
+def_stat $stat2 = enum(int, stat, enum_681, %varclient_1756);
+if_setgraphic(graphic_9233, interface_1216:com_8);
+if_setgraphic(graphic_9240, interface_1216:com_4);
+if_setgraphic(graphic_9239, interface_1216:com_5);
+if_setgraphic(graphic_9241, interface_1216:com_6);
+if_set2dangle(0, interface_1216:com_9);
+switch_int (map_lang) {
+    case 1 :
+        if_setsize(240, 33, ^setsize_abs, ^setsize_abs, interface_1216:com_10);
+        if_setgraphic(graphic_9242, interface_1216:com_7);
+    case 2 :
+        if_setsize(240, 33, ^setsize_abs, ^setsize_abs, interface_1216:com_10);
+        if_setgraphic(graphic_9243, interface_1216:com_7);
+    case 3 :
+        if_setsize(220, 33, ^setsize_abs, ^setsize_abs, interface_1216:com_10);
+        if_setgraphic(graphic_9244, interface_1216:com_7);
+    case default :
+        if_setsize(150, 33, ^setsize_abs, ^setsize_abs, interface_1216:com_10);
+        if_setgraphic(graphic_9245, interface_1216:com_7);
+}
+if (enum(stat, stat, enum_744, $stat2) = null) {
+    if_setgraphic(graphic_9263, interface_1216:com_8);
+    if_setgraphic(graphic_9257, interface_1216:com_4);
+    if_setgraphic(graphic_9256, interface_1216:com_5);
+    if_setgraphic(graphic_9258, interface_1216:com_6);
+    switch_int (map_lang) {
+        case 1 :
+            if_setsize(240, 33, ^setsize_abs, ^setsize_abs, interface_1216:com_10);
+            if_setgraphic(graphic_9259, interface_1216:com_7);
+        case 2 :
+            if_setsize(240, 33, ^setsize_abs, ^setsize_abs, interface_1216:com_10);
+            if_setgraphic(graphic_9260, interface_1216:com_7);
+        case 3 :
+            if_setsize(220, 33, ^setsize_abs, ^setsize_abs, interface_1216:com_10);
+            if_setgraphic(graphic_9261, interface_1216:com_7);
+        case default :
+            if_setsize(150, 33, ^setsize_abs, ^setsize_abs, interface_1216:com_10);
+            if_setgraphic(graphic_9262, interface_1216:com_7);
+    }
+}
+def_int $int3 = stat_base($stat2);
+if_sethide(false, interface_1216:com_12);
+if_sethide(false, interface_1216:com_13);
+if_sethide(false, interface_1216:com_14);
+if ($int3 < 10) {
+    if_setposition(0, 45, ^setpos_abs_centre, ^setpos_abs_top, interface_1216:com_12);
+    if_sethide(true, interface_1216:com_14);
+    if_sethide(true, interface_1216:com_13);
+    ~levelup_setlevelgraphic($int3, interface_1216:com_12);
+} else if ($int3 < 100) {
+    if_setposition(-10, 45, ^setpos_abs_centre, ^setpos_abs_top, interface_1216:com_12);
+    if_setposition(10, 45, ^setpos_abs_centre, ^setpos_abs_top, interface_1216:com_14);
+    ~levelup_setlevelgraphic(calc($int3 / 10), interface_1216:com_12);
+    ~levelup_setlevelgraphic(calc($int3 % 10), interface_1216:com_14);
+    if_sethide(true, interface_1216:com_13);
+} else {
+    if_setposition(-20, 45, ^setpos_abs_centre, ^setpos_abs_top, interface_1216:com_12);
+    if_setposition(0, 45, ^setpos_abs_centre, ^setpos_abs_top, interface_1216:com_13);
+    if_setposition(20, 45, ^setpos_abs_centre, ^setpos_abs_top, interface_1216:com_14);
+    ~levelup_setlevelgraphic(calc($int3 / 100), interface_1216:com_12);
+    ~levelup_setlevelgraphic(calc(($int3 - 100) / 10), interface_1216:com_13);
+    ~levelup_setlevelgraphic(calc($int3 % 10), interface_1216:com_14);
+}
+if ($int3 = 99 | $int3 = 120) {
+    if_sethide(false, interface_1216:com_2);
+    if_setmodel(model_32143, interface_1216:com_1);
+    $int0 = 8;
+} else {
+    if_setmodel(model_32167, interface_1216:com_1);
+}
+if (enum(stat, stat, enum_744, $stat2) = null) {
+    $int1 = 1;
+}
+if_setontimer("levelup_fadetimer(calc(clientclock + 100), calc(clientclock + 200), calc(clientclock + 500), %varclient_1756)", interface_1216:com_16);
+if_sethide(false, interface_1216:com_11);
+if_sethide(true, interface_1213:com_2);
+if_sethide(true, interface_1213:com_4);
+def_int $int4 = random(150);
+def_int $int5 = random(50);
+if (calc($int3 % 10) = 0) {
+    $int0 = 4;
+}
+if ($int0 > 0) {
+    if_setontimer("script337($int0, calc(clientclock + 25))", interface_1216:com_8);
+}
+%varclient_1756 = 0;

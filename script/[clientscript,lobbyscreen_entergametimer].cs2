@@ -22,11 +22,19 @@ def_string $string3 = "";
 if ($int2 = 21) {
     %varclient_1100 = 21;
     ~lobbyscreen_loginbutton_text(0);
-    if (%varclient_200 = 0) {
+    if (%varclient_200 = 0 & %varclient_1745 = 0) {
         %varclient_200 = login_hoptime;
+        if (playermember = false & video_advert_play = true) {
+            %varclient_1745 = 1;
+        }
     }
-    %varclient_200 = calc(%varclient_200 - 1);
-    if (%varclient_200 <= 0) {
+    if (%varclient_200 > 0) {
+        %varclient_200 = calc(%varclient_200 - 1);
+        if (%varclient_1745 = 1 & %varclient_200 = 0 & video_advert_has_finished = false) {
+            video_advert_allow_skip;
+        }
+    }
+    if (%varclient_200 <= 0 & (%varclient_1745 = 0 | video_advert_has_finished = true)) {
         if (worldlist_fetch = false) {
             %varclient_200 = 1;
             return;
@@ -38,6 +46,10 @@ if ($int2 = 21) {
             }
         }
         if_setontimer(null, $component0);
+        if (%varclient_1745 = 1) {
+            video_advert_force_remove;
+            %varclient_1745 = 0;
+        }
         ~lobbyscreen_entergame($component0);
         return;
     }
@@ -47,7 +59,7 @@ if ($int2 = 21) {
     } else {
         $string0 = "You have only just left another world. Your profile will be transferred in<br><tostring($int3)> seconds.";
     }
-    if (if_gethide(interface_906:com_29) = true) {
+    if (if_gethide(interface_906:com_34) = true) {
         ~lobby_popup($int2, 0, $string0, 0, "loadingwheel,12", 1, 1, "Abort Login", "Abort Login", 0, "", "");
     } else {
         ~lobby_popup_text_update($string0);
@@ -55,24 +67,24 @@ if ($int2 = 21) {
     return;
 }
 if ($int2 = 42) {
-    if_sethide(false, interface_906:com_40);
-    if_settext(tostring($int1), interface_906:com_5);
-    if_settext(tostring(login_queue_position), interface_906:com_6);
+    if_sethide(false, interface_906:com_45);
+    if_settext(tostring($int1), interface_906:com_9);
+    if_settext(tostring(login_queue_position), interface_906:com_10);
     if (%varclient_1100 ! 42) {
         ~lobby_popup($int2, 1, "World <tostring($int1)> is currently full.<br>You have been added to the<br>queue for this world.<br>You can track your progress in the<br>queue from lower left corner of this<br>screen.", 0, "loadingwheel,12", 0, 0, "", "", 1, "OK", "OK");
     }
     %varclient_1100 = 42;
     return;
 } else if ($int2 = 43) {
-    if_settext(tostring($int1), interface_906:com_5);
-    if_settext(tostring(login_queue_position), interface_906:com_6);
+    if_settext(tostring($int1), interface_906:com_9);
+    if_settext(tostring(login_queue_position), interface_906:com_10);
     %varclient_1100 = 43;
     return;
 } else {
-    if_sethide(true, interface_906:com_40);
+    if_sethide(true, interface_906:com_45);
 }
-if ($component0 = interface_906:com_23) {
-    ~lobbyscreen_load(true, 1);
+if ($component0 = interface_906:com_27) {
+    ~lobbyscreen_load(1, 1);
 }
 ~lobby_popup_close;
 ~lobbyscreen_loginbutton_text(1);
@@ -246,6 +258,10 @@ switch_int ($int2) {
         $int11 = 1;
         $string5 = "Add Credit";
         $string6 = "Add Credit";
+    case 47 :
+        $string4 = "You need to validate your email address to log in.";
+    case 48 :
+        $string4 = "Client token failure - please reload this page.";
     case default :
         $string4 = "Unexpected server response. Please try using a different world.";
 }
