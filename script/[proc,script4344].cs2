@@ -1,6 +1,6 @@
 // 4344
 [proc,script4344](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, graphic $graphic7, graphic $graphic8, graphic $graphic9)(int, int, int, int, int)
-def_component $component10 = interface_1143:com_59;
+def_component $component10 = interface_1143:com_73;
 def_int $int11 = 0;
 def_struct $struct12 = null;
 def_string $string0 = "";
@@ -58,7 +58,7 @@ switch_int (%varclient_1659) {
                 } else {
                     $int19 = struct_param($structarray0(calc($int17 - 1)), param_1932);
                 }
-                if ($int18 > $int19) {
+                if ($int18 < $int19) {
                     $int15 = 1;
                     $struct16 = $structarray0(calc($int17 - 1));
                     $structarray0(calc($int17 - 1)) = $structarray0($int17);
@@ -66,6 +66,13 @@ switch_int (%varclient_1659) {
                 }
                 $int17 = calc($int17 - 1);
             }
+        }
+        $int17 = calc(enum_getoutputcount($enum14) - 1);
+        while ($int17 > calc(enum_getoutputcount($enum14) / 2 - 1)) {
+            $struct16 = $structarray0($int17);
+            $structarray0($int17) = $structarray0(calc(enum_getoutputcount($enum14) - 1 - $int17));
+            $structarray0(calc(enum_getoutputcount($enum14) - 1 - $int17)) = $struct16;
+            $int17 = calc($int17 - 1);
         }
     case 2 :
         while ($int15 = 1) {
@@ -98,7 +105,7 @@ switch_int (%varclient_1659) {
 }
 $int17 = 0;
 def_int $int20 = 1;
-while ($int20 <= 3) {
+while ($int20 <= 4) {
     cc_create($component10, ^iftype_text, $int5);
     $int5 = calc($int5 + 1);
     if ($int20 = 1) {

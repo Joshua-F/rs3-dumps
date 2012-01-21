@@ -27,6 +27,12 @@ if ($npc8 ! null) {
     }
 }
 if_settext($string0, $component6);
+def_int $int11 = 0;
+if (calc(^max_32bit_int - inv_total(inv_93, obj_995) - inv_total(inv_623, obj_995)) > 0) {
+    $int11 = calc(inv_total(inv_93, obj_995) + inv_total(inv_623, obj_995));
+} else {
+    $int11 = ^max_32bit_int;
+}
 $int7 = enum(int, int, enum_1101, $int0);
 if ($int7 < 0) {
     if_settext("<col=ff0000>Unavailable</col>", $component4);
@@ -35,12 +41,12 @@ if ($int7 < 0) {
 if ($int7 = 0) {
     $string0 = "(No charge)";
 } else if ($int7 = 1) {
-    if (inv_total(inv_93, obj_995) >= 1) {
+    if ($int11 > 0) {
         $string0 = "1 coin";
     } else {
         $string0 = "<col=ff0000>1 coin</col>";
     }
-} else if (inv_total(inv_93, obj_995) >= $int7) {
+} else if ($int11 >= $int7) {
     $string0 = "<tostring_localised($int7, true)> coins";
     if (parawidth($string0, if_getwidth($component4), b12_full) > calc(if_getwidth($component4) - 5)) {
         $string0 = "<tostring_localised($int7, true)><br>coins";
@@ -53,7 +59,7 @@ if ($int7 = 0) {
 }
 if_settext(append("Confirm:<br>", $string0), $component4);
 $int7 = 0;
-def_graphic $graphic11 = null;
+def_graphic $graphic12 = null;
 while ($int7 <= 27) {
     cc_create($component3, ^iftype_graphic, $int7);
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
@@ -61,10 +67,10 @@ while ($int7 <= 27) {
     if ($int7 = $int0) {
         cc_setgraphic("wild_ditch_sign_button,0");
         cc_sethide(false);
-        $graphic11 = "wild_ditch_sign_button,1";
-        cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, $graphic11)");
-        $graphic11 = "wild_ditch_sign_button,0";
-        cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic11)");
+        $graphic12 = "wild_ditch_sign_button,1";
+        cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, $graphic12)");
+        $graphic12 = "wild_ditch_sign_button,0";
+        cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic12)");
         cc_setop(1, "Confirm:");
         cc_setopbase("<col=ff9040><enum(int, string, enum_1099, $int0)></col>");
     } else {

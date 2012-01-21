@@ -1,20 +1,28 @@
 // 1650
 [proc,chatbox_resize_window]
+def_component $component0 = interface_746:com_0;
+def_component $component1 = interface_746:com_75;
+def_component $component2 = interface_746:com_77;
+def_int $int3 = if_gety($component2);
+def_int $int4 = if_getheight($component0);
 if (~script1653 = true) {
     ~script1652(false);
-    if_sethide(true, interface_746:com_0);
+    if_sethide(true, $component0);
     return;
 } else if (%varclient_41 ! -1) {
-    if_sethide(false, interface_746:com_0);
+    if_sethide(false, $component0);
 }
 if (%varclient_1037 < 142) {
     %varclient_1037 = 142;
-} else if (%varclient_1037 > calc(if_getheight(interface_746:com_6) - 117)) {
+} else if (%varclient_1037 > calc(if_getheight(interface_746:com_4) - 117)) {
     ~script1651(0, true);
     return;
 }
-if_setsize(519, %varclient_1037, ^setsize_abs, ^setsize_abs, interface_746:com_76);
-if_setposition(0, 26, ^setpos_abs_left, ^setpos_abs_bottom, interface_746:com_76);
-if_setposition(0, calc(if_gety(interface_746:com_76) - (if_getheight(interface_746:com_0) + if_gety(interface_746:com_78))), ^setpos_abs_left, ^setpos_abs_top, interface_746:com_0);
-if_setposition(0, calc(if_gety(interface_746:com_76) - 69), ^setpos_abs_left, ^setpos_abs_top, interface_746:com_77);
+%varclient_7 = calc(%varclient_7 - (%varclient_1037 + 2 - if_getheight($component1)));
+if_setsize(519, calc(%varclient_1037 + 2), ^setsize_abs, ^setsize_abs, $component1);
+if_setposition(0, 26, ^setpos_abs_left, ^setpos_abs_bottom, $component1);
+def_int $int5 = calc(if_gety($component1) - 2 - $int4 - $int3);
+$int5 = calc($int5 + 4);
+if_setposition(0, $int5, ^setpos_abs_left, ^setpos_abs_top, $component0);
+if_setposition(0, calc(if_gety($component1) - 88), ^setpos_abs_left, ^setpos_abs_top, interface_746:com_78);
 ~rebuildchatbox;

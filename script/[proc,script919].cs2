@@ -1,23 +1,29 @@
 // 919
 [proc,script919]
 def_int $int0 = inv_total(inv_93, %varclient_743);
+def_int $int1 = inv_total(inv_623, %varclient_743);
 def_string $string0 = "Cost:";
-def_int $int1 = -1;
+def_int $int2 = -1;
 if (%varclient_744 = 0) {
     $string0 = "None available";
 } else if (%varclient_744 = -1) {
     $string0 = "Free sample!";
 } else {
-    $int1 = %varclient_744;
+    $int2 = %varclient_744;
 }
 if_settext($string0, interface_449:com_24);
-if ($int1 > $int0) {
+if (calc(^max_32bit_int - $int0 - $int1) > 0) {
+    $int0 = calc($int0 + $int1);
+} else {
+    $int0 = ^max_32bit_int;
+}
+if ($int2 > $int0) {
     if_setcolour(^red, interface_449:com_25);
 } else {
     if_setcolour(%varclient_1241, interface_449:com_25);
 }
-if ($int1 > -1) {
-    if_setobject_alwaysnum(%varclient_743, $int1, interface_449:com_23);
+if ($int2 > -1) {
+    if_setobject_alwaysnum(%varclient_743, $int2, interface_449:com_23);
 } else {
     if_setobject_nonum(null, -1, interface_449:com_23);
 }
