@@ -1,8 +1,20 @@
 // 946
-[clientscript,script946](int $int0, int $int1, component $component2, graphic $graphic3, component $component4, component $component5, component $component6, int $rgb7, int $rgb8, int $rgb9, graphic $graphic10, int $int11, int $int12, graphic $graphic13, graphic $graphic14, graphic $graphic15, graphic $graphic16, graphic $graphic17, graphic $graphic18)
-if (if_gethide($component2) = true) {
-    if_setscrollpos(0, 0, $component4);
-    ~script947($int0, $int1, $component2, $graphic3, $component4, $component5, $component6, $rgb7, $rgb8, $rgb9, $graphic10, $int11, $int12, $graphic13, $graphic14, $graphic15, $graphic16, $graphic17, $graphic18);
-} else {
-    ~script1349($component6, $component2, $component4, $component5, $int12);
+[clientscript,script946](component $component0, component $component1, component $component2)
+if (%varplayerbit_10837 < 1 | %varplayerbit_10837 > 37) {
+    if_sethide(true, $component1);
+    if_sethide(true, $component2);
+    return;
 }
+if (%varplayerbit_10837 = 37) {
+    if_settext("Har-Aken", $component2);
+} else {
+    if_settext("Wave <tostring(%varplayerbit_10837)>", $component2);
+}
+def_int $int3 = calc(0 - if_getheight($component0));
+if_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_centre, $component1);
+if_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_centre, $component2);
+if_sethide(false, $component1);
+if_sethide(false, $component2);
+if_setontimer("script1228($component0, $component1, $component2, clientclock)", $component0);
+if_setop(1, "Dismiss", $component1);
+if_setonop("script1229(event_op, $component0, $component1, $component2)", $component1);

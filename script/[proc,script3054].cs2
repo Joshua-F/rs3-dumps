@@ -11,6 +11,7 @@ def_int $int2 = 0;
 def_int $chattype3 = ^chattype_gamemessage;
 def_string $string1 = "";
 def_string $string2 = "";
+def_int $int4 = 1;
 while ($int2 < 100) {
     $chattype3 = chat_gethistorytype($int2);
     $string1 = chat_gethistoryname($int2);
@@ -20,17 +21,23 @@ while ($int2 < 100) {
             $int1 = ~script3055($int1, chat_gethistorymessage($int2), 0, "", "", $chattype3);
         case ^chattype_privatechat :
             $int1 = ~script3055($int1, "From <$string1>: <$string0><chat_gethistorymessage($int2)>", 1, $string1, $string2, $chattype3);
-            %varclientstring_276 = $string2;
+            if ($int4 = 1) {
+                %varclientstring_276, $int4 = $string2, 0;
+            }
         case ^chattype_loginlogoutnotification :
             $int1 = ~script3055($int1, "<$string0><chat_gethistorymessage($int2)>", 0, $string1, $string2, $chattype3);
         case ^chattype_privatechatout :
             $int1 = ~script3055($int1, "To <$string1>: <$string0><chat_gethistorymessage($int2)>", 1, $string1, $string2, $chattype3);
         case ^chattype_modprivatechat :
             $int1 = ~script3055($int1, "From <$string1>: <$string0><chat_gethistorymessage($int2)>", 1, $string1, $string2, $chattype3);
-            %varclientstring_276 = $string2;
+            if ($int4 = 1) {
+                %varclientstring_276, $int4 = $string2, 0;
+            }
         case ^chattype_quickchat_private_incoming :
             $int1 = ~script3055($int1, "From <$string1>: <$string0><chat_gethistorymessage($int2)>", 1, $string1, $string2, $chattype3);
-            %varclientstring_276 = $string2;
+            if ($int4 = 1) {
+                %varclientstring_276, $int4 = $string2, 0;
+            }
         case ^chattype_quickchat_private_outgoing :
             $int1 = ~script3055($int1, "To <$string1>: <$string0><chat_gethistorymessage($int2)>", 1, $string1, $string2, $chattype3);
         case ^chattype_system_broadcast :
@@ -38,27 +45,27 @@ while ($int2 < 100) {
     }
     $int2 = calc($int2 + 1);
 }
-def_int $int4 = calc(if_getheight(interface_909:com_52) / 15);
+def_int $int5 = calc(if_getheight(interface_909:com_52) / 15);
 $int2 = 0;
-def_int $int5 = 0;
-if ($int1 < $int4) {
-    $int5 = calc($int4 - $int1);
-    while ($int2 < $int5) {
+def_int $int6 = 0;
+if ($int1 < $int5) {
+    $int6 = calc($int5 - $int1);
+    while ($int2 < $int6) {
         $int1 = ~script3055($int1, "", 0, "", "", ^chattype_gamemessage);
         $int2 = calc($int2 + 1);
     }
 }
-def_int $int6 = 0;
 def_int $int7 = 0;
-while ($int7 <= $int1) {
-    if (.cc_find(interface_909:com_52, $int7) = true) {
-        $int6 = calc($int6 + .cc_getheight);
+def_int $int8 = 0;
+while ($int8 <= $int1) {
+    if (.cc_find(interface_909:com_52, $int8) = true) {
+        $int7 = calc($int7 + .cc_getheight);
     }
-    $int7 = calc($int7 + 1);
+    $int8 = calc($int8 + 1);
 }
-def_int $int8 = max($int6, calc($int4 * 15));
-if ($int8 > if_getheight(interface_909:com_52)) {
-    if_setscrollsize(0, $int8, interface_909:com_52);
+def_int $int9 = max($int7, calc($int5 * 15));
+if ($int9 > if_getheight(interface_909:com_52)) {
+    if_setscrollsize(0, $int9, interface_909:com_52);
     ~scrollbar_resize(interface_909:com_53, interface_909:com_52, calc(%varclient_1122 + if_getscrollheight(interface_909:com_52) - %varclient_1123));
 } else {
     if_setscrollsize(0, 0, interface_909:com_52);

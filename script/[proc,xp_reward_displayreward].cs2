@@ -1,0 +1,38 @@
+// 6036
+[proc,xp_reward_displayreward](stat $stat0, int $int1, int $int2)(string)
+if ($stat0 = null) {
+    return("N/A");
+}
+def_int $int3 = 0;
+def_int $int4 = 0;
+switch_int ($int2) {
+    case default :
+        $int3 = calc($int1 / 10);
+    case 13732, 20935, 20936, 23713, 23714, 23715, 23716 :
+        return("<enum(stat, string, enum_680, $stat0)> XP");
+    case 2528, 14058, 18767 :
+        $int3 = calc(stat_base($stat0) * 10);
+    case 11640 :
+        $int3 = calc(stat_base($stat0) * 15);
+    case 13463 :
+        $int4 = stat_base($stat0);
+        if ($int4 <= 18) {
+            $int3 = calc(enum(int, int, enum_716, calc($int4 + 1)) - enum(int, int, enum_716, $int4));
+        } else {
+            $int3 = calc(stat_base($stat0) * 25);
+        }
+    case 18782 :
+        $int4 = stat_base($stat0);
+        if ($int4 < 30) {
+            $int3 = calc(enum(int, int, enum_716, calc($int4 + 1)) - enum(int, int, enum_716, $int4));
+        } else {
+            $int3 = calc($int4 * $int4 - 2 * $int4 + 100);
+            $int3 = calc($int3 * ($int4 * 10000 / 20));
+            $int3 = calc($int3 / 10000);
+        }
+    case 20960, 20708 :
+        $int4 = stat_base($stat0);
+        $int3 = pow($int4, 2);
+        $int3 = calc($int3 - 2 * $int4 + 100);
+}
+return("<enum(stat, string, enum_680, $stat0)>: <tostring_localised($int3, true)> XP");

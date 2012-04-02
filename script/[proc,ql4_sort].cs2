@@ -68,6 +68,7 @@ if ($int0 = 1) {
 } else {
     $int26 = calc(%varplayerbit_697 - 1000 * ($int0 - 1));
 }
+def_struct $struct27 = null;
 while ($int2 = 0 & $int23 < $int18 | $int2 = 1 & $int23 >= 0) {
     $int21 = enum(int, int, $enum17, $int23);
     if (cc_find($component7, calc(%varclient_273 + $int23 + 1)) = true) {
@@ -79,12 +80,12 @@ while ($int2 = 0 & $int23 < $int18 | $int2 = 1 & $int23 >= 0) {
     }
     $int13 = 0;
     while ($int11 < %varclient_272) {
-        %varclient_699 = enum(int, struct, $enum6, $intarray0($int10));
-        if (%varclient_699 ! null) {
+        $struct27 = enum(int, struct, $enum6, $intarray0($int10));
+        if ($struct27 ! null) {
             $int11 = calc($int11 + 1);
             switch_int ($int1) {
                 case 0 :
-                    $int22 = struct_param(%varclient_699, param_856);
+                    $int22 = struct_param($struct27, param_856);
                     if ($int22 = 4 & %varplayer_281 = 1000) {
                         $int22 = 0;
                     }
@@ -93,21 +94,21 @@ while ($int2 = 0 & $int23 < $int18 | $int2 = 1 & $int23 >= 0) {
                         case 1 :
                             $int22 = $intarray1($int10);
                         case 3 :
-                            $int22 = struct_param(%varclient_699, param_677);
+                            $int22 = struct_param($struct27, param_677);
                     }
                 case 2 :
                     switch_int ($int0) {
                         case 1 :
-                            $int22 = struct_param(%varclient_699, param_848);
+                            $int22 = struct_param($struct27, param_848);
                         case 3 :
-                            $int22 = struct_param(%varclient_699, param_678);
+                            $int22 = struct_param($struct27, param_678);
                     }
             }
             if ($int22 ! $int21) {
                 $int14 = 0;
             }
             if ($int14 = 1 & $int3 = 0 & $intarray1($int10) = 0) {
-                $boolean12 = ~script2149;
+                $boolean12 = ~script2149($struct27);
                 if ($boolean12 = false) {
                     $int14 = 0;
                 }
@@ -118,7 +119,7 @@ while ($int2 = 0 & $int23 < $int18 | $int2 = 1 & $int23 >= 0) {
             if ($int14 = 1 & cc_find($component7, $intarray0($int10)) = true) {
                 cc_setposition(10, $int24, ^setpos_abs_left, ^setpos_abs_top);
                 cc_sethide(false);
-                if (struct_param(%varclient_699, param_694) = 1) {
+                if (struct_param($struct27, param_694) = 1) {
                     if ($intarray1($int10) = 0) {
                         cc_setop(1, "View Quest Overview");
                         cc_setop(2, "View Quest Journal");
@@ -157,8 +158,8 @@ while ($int2 = 0 & $int23 < $int18 | $int2 = 1 & $int23 >= 0) {
                 }
                 $int24 = calc($int24 + cc_getheight);
                 $int13 = calc($int13 + 1);
-                if (enum(int, int, $enum16, $int21) = 1 & compare(struct_param(%varclient_699, param_857), "") ! 0 & cc_find($component7, calc(%varclient_273 + $int23 + 1)) = true) {
-                    cc_settext(struct_param(%varclient_699, param_857));
+                if (enum(int, int, $enum16, $int21) = 1 & compare(struct_param($struct27, param_857), "") ! 0 & cc_find($component7, calc(%varclient_273 + $int23 + 1)) = true) {
+                    cc_settext(struct_param($struct27, param_857));
                 }
                 $int25 = calc($int25 + 1);
             }
@@ -190,16 +191,13 @@ if ($int0 = 1) {
     } else {
         $string1 = "Showing <tostring($int25)> of <tostring(%varclient_272)> items";
     }
-    if ($int2 = 1) {
-        $string1 = append($string1, " (reversed)");
-    }
-    if_settext($string1, interface_190:com_8);
+    if_settext($string1, interface_190:com_12);
 }
 if (%varclient_695 = 1 | $int20 ! calc($int24 + 5) | $int2 = 1 & %varclient_694 = 0 | $int2 = 0 & %varclient_694 = 1) {
     if_setscrollsize(if_getwidth($component7), calc($int24 + 5), $component7);
     $int20 = $int24;
     if_setscrollpos(0, 0, $component7);
-    ~scrollbar_vertical($component8, $component7, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    ~scrollbar_vertical($component8, $component7, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
 } else {
     if_setscrollpos(0, $int19, $component7);
 }
@@ -207,15 +205,19 @@ if ($int0 = 1) {
     %varclient_692 = $int3;
     %varclient_1103 = $int4;
     %varclient_694 = $int2;
-    if (%varclient_692 = 0) {
-        if_setgraphic("options_radio_buttons,2", interface_190:com_10);
+    if (%varclient_692 = 1) {
+        if_sethide(true, interface_190:com_4);
+        if_sethide(false, interface_190:com_5);
     } else {
-        if_setgraphic("options_radio_buttons,0", interface_190:com_10);
+        if_sethide(false, interface_190:com_4);
+        if_sethide(true, interface_190:com_5);
     }
-    if (%varclient_1103 = 1) {
-        if_setgraphic("options_radio_buttons,2", interface_190:com_12);
+    if (%varclient_1103 = 0) {
+        if_sethide(true, interface_190:com_8);
+        if_sethide(false, interface_190:com_9);
     } else {
-        if_setgraphic("options_radio_buttons,0", interface_190:com_12);
+        if_sethide(false, interface_190:com_8);
+        if_sethide(true, interface_190:com_9);
     }
 }
 %varclient_695 = 0;

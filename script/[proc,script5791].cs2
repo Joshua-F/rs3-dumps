@@ -1,0 +1,45 @@
+// 5791
+[proc,script5791]
+def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_string $string0 = "Keep doing this for as long as you want.";
+def_int $int4 = 0;
+def_string $string1 = "";
+if_sethide(true, interface_1220:com_2);
+if_sethide(true, interface_1220:com_20);
+if_sethide(true, interface_1220:com_30);
+if (~script3999(%varplayerbit_10700) = 0 & %varplayerbit_10700 = %varplayerbit_8576) {
+    if_sethide(false, interface_1220:com_30);
+    ~script4212(interface_1220:com_26, "I'm Finished", verdana_13pt_regular, 0xebe0bc, ^black);
+    if_sethide(false, interface_1220:com_19);
+    if_sethide(false, interface_1056:com_125);
+    ~script4212(interface_1220:com_35, "Recommended", verdana_13pt_regular, 0xebe0bc, ^black);
+    if_setposition(if_getx(interface_1220:com_31), calc(if_gety(interface_1220:com_29) + 2), ^setpos_abs_left, ^setpos_abs_top, interface_1220:com_31);
+    ~script5784(interface_1220:com_29);
+} else if (%varplayerbit_9030 = 1) {
+    if_sethide(true, interface_1220:com_19);
+    if_sethide(true, interface_1056:com_125);
+    ~script4212(interface_1220:com_35, "Next Task", verdana_13pt_regular, 0xebe0bc, ^black);
+    if_setposition(if_getx(interface_1220:com_31), calc(if_gety(interface_1220:com_29) + 2), ^setpos_abs_left, ^setpos_abs_top, interface_1220:com_31);
+    $int0, $int1, $int2 = ~script5814(%varplayerbit_8576);
+    if ($int0 ! 0 & map_members = true) {
+        if_sethide(false, interface_1220:com_2);
+        if_sethide(false, interface_1220:com_20);
+        ~aif_progressbar_set(scale($int1, $int2, 100), interface_1220:com_40, interface_1220:com_45);
+        ~script4212(interface_1220:com_45, "", p11_full, 0xebe0bc, ^black);
+        if_settext(enum(int, string, enum_5482, $int0), interface_1220:com_4);
+        if_setcolour(0xe5b051, interface_1220:com_4);
+        $string1 = "<tostring($int1)> of <tostring($int2)> Tasks done in this stage.";
+        if_setonmouserepeat("script4538(interface_1220:com_34, event_com, -1, $string1, 180, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 0, event_mousex, event_mousey)", interface_1220:com_20);
+    }
+    ~script4531(interface_1220:com_29);
+} else {
+    ~script4212(interface_1220:com_26, "Unpin Task", verdana_13pt_regular, 0xebe0bc, ^black);
+    if_sethide(false, interface_1220:com_19);
+    if_sethide(false, interface_1056:com_125);
+    ~script4212(interface_1220:com_35, "Active Task", verdana_13pt_regular, 0xebe0bc, ^black);
+    if_setposition(if_getx(interface_1220:com_31), calc(if_gety(interface_1220:com_29) + 2), ^setpos_abs_left, ^setpos_abs_top, interface_1220:com_31);
+    ~script4531(interface_1220:com_29);
+}

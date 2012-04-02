@@ -1,64 +1,30 @@
 // 4249
-[proc,script4249](int $int0)
-if (%varplayerbit_9030 = 0) {
-    ~script4248("", 0, 0, 0, ^black, graphic_5631);
-    return;
+[proc,script4249](string $string0, string $string1, component $component0, component $component1, component $component2, component $component3, component $component4, int $int5, int $int6)(int)
+def_int $int7 = calc(stringwidth($string0, p12_full) + 3);
+if_settext($string0, $component1);
+if ($component3 ! null) {
+    if_setposition($int7, 0, ^setpos_abs_left, ^setpos_abs_top, $component3);
 }
-if (%varplayerbit_8587 = 419 & if_gethide(interface_1056:com_130) = false) {
-    return;
-}
-def_string $string0 = "";
-def_int $int1 = 0;
-def_int $int2 = 0;
-def_int $int3 = 1;
-def_int $int4 = 0;
-if ($int0 = 1) {
-    if (%varplayerbit_8587 = 419 & if_gethide(interface_1056:com_122) = true) {
-        $string0 = "Click on the first Task in the list for details of how to complete it.";
-    } else if (%varplayerbit_8587 = 420 & if_gethide(interface_1056:com_122) = true) {
-        $string0 = "Click on the Task which is now first in the list.";
-    }
-    if (getwindowmode >= 2) {
-        $int1 = 180;
-        $int2 = 165;
-        $int4 = 1;
-        if (if_getwidth(interface_746:com_2) < 997) {
-            $int2 = calc($int2 + 40);
-        }
+$int7 = calc(if_getwidth($component0) - $int7);
+def_int $int8 = max(calc(paraheight($string1, $int7, p12_full) * 15 + 3), 20);
+if_setsize(0, $int8, ^setsize_minus, ^setsize_abs, $component0);
+if_setsize($int7, 0, ^setsize_abs, ^setsize_minus, $component2);
+if_settext($string1, $component2);
+if_setposition(0, $int6, ^setpos_abs_centre, ^setpos_abs_top, $component0);
+if ($component3 ! null) {
+    if ($int5 = 2) {
+        if_sethide(true, $component3);
+        if_sethide(false, $component2);
+        if_clearscripthooks($component3);
     } else {
-        $int1 = 207;
-        $int2 = 156;
+        if_sethide(true, $component2);
+        if_sethide(false, $component3);
+        if ($component4 ! null) {
+            if_setsize(calc(stringwidth(if_gettext($component4), if_getfontmetrics($component4)) + 10), if_getheight($component3), ^setsize_abs, ^setsize_abs, $component3);
+        }
+        if_setonop("script4250($component3, $component2)", $component3);
     }
 } else {
-    ~script4089;
-    if (%varplayerbit_8587 = 419) {
-        $string0 = "Click here to show the Task window.";
-    }
-    if (getwindowmode >= 2) {
-        if (if_getwidth(interface_746:com_2) > 997) {
-            $int1 = 288;
-            $int2 = 39;
-            $int3 = 2;
-            $int4 = 1;
-        } else {
-            $int1 = 51;
-            $int2 = 77;
-            $int3 = 2;
-            $int4 = 1;
-        }
-    } else {
-        $int1 = 210;
-        $int2 = 254;
-    }
+    if_sethide(false, $component2);
 }
-if (%varplayerbit_9030 = 0) {
-    $string0 = "";
-}
-if (if_hassuboverlay(interface_548:com_7, interface_1079) = true | if_hassuboverlay(interface_746:com_13, interface_1079) = true) {
-    $string0 = "";
-}
-if ($int4 = 0) {
-    ~script4247($string0, $int1, $int2, $int3, ^white, graphic_5631);
-} else {
-    ~script4248($string0, $int1, $int2, $int3, ^white, graphic_5631);
-}
+return(calc($int6 + $int8));
