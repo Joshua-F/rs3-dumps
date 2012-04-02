@@ -1,0 +1,32 @@
+// 6035
+[proc,xp_reward_checkskill](stat $stat0, int $int1, int $int2, int $int3)(boolean)
+if (map_members = false & enum_hasoutput(stat, enum_5472, $stat0) = true) {
+    if ($int3 = 1) {
+        mes("You must be on a members' world to gain XP in that skill.");
+    }
+    return(false);
+}
+if (stat_base($stat0) < $int1) {
+    if ($int3 = 1) {
+        mes("You must choose a skill in which you already have level <tostring($int1)>.");
+    }
+    return(false);
+}
+if ($stat0 = construction & %varplayerbit_2187 = 0) {
+    if ($int3 = 1) {
+        mes("You cannot earn Construction XP without owning a house.");
+    }
+    return(false);
+}
+switch_int ($int2) {
+    case 13439 :
+        switch_stat ($stat0) {
+            case attack, strength, defence, hitpoints, ranged, magic, mining, smithing, fishing, cooking, firemaking, woodcutting, prayer :
+            case default :
+                if ($int3 = 1) {
+                    mes("You may only use this lamp to increase a skill that you learned about while helping Sir Vant.");
+                }
+                return(false);
+        }
+}
+return(true);

@@ -160,6 +160,7 @@ def_int $int43 = 0;
 def_int $intbool44 = ^false;
 def_int $int45 = 0;
 def_int $int46 = 0;
+def_int $int47 = 0;
 while ($int36 < $int3) {
     if ($int4 ! 0) {
         $component37 = interface_1213:com_30;
@@ -406,42 +407,49 @@ while ($int36 < $int3) {
             $component40 = interface_1213:com_17;
             $component41 = interface_1213:com_15;
             $component42 = interface_1213:com_14;
+            $int47 = %varclient_1774;
         case interface_1213:com_12 :
             %varclient_1757 = 2;
             $component39 = interface_1213:com_18;
             $component40 = interface_1213:com_19;
             $component41 = interface_1213:com_55;
             $component42 = interface_1213:com_56;
+            $int47 = %varclient_1775;
         case interface_1213:com_11 :
             %varclient_1757 = 3;
             $component39 = interface_1213:com_20;
             $component40 = interface_1213:com_21;
             $component41 = interface_1213:com_57;
             $component42 = interface_1213:com_58;
+            $int47 = %varclient_1776;
         case interface_1213:com_10 :
             %varclient_1757 = 4;
             $component39 = interface_1213:com_22;
             $component40 = interface_1213:com_23;
             $component41 = interface_1213:com_59;
             $component42 = interface_1213:com_60;
+            $int47 = %varclient_1777;
         case interface_1213:com_9 :
             %varclient_1757 = 5;
             $component39 = interface_1213:com_24;
             $component40 = interface_1213:com_25;
             $component41 = interface_1213:com_61;
             $component42 = interface_1213:com_62;
+            $int47 = %varclient_1778;
         case interface_1213:com_8 :
             %varclient_1757 = 6;
             $component39 = interface_1213:com_26;
             $component40 = interface_1213:com_27;
             $component41 = interface_1213:com_63;
             $component42 = interface_1213:com_64;
+            $int47 = %varclient_1779;
         case interface_1213:com_7 :
             %varclient_1757 = 7;
             $component39 = interface_1213:com_28;
             $component40 = interface_1213:com_29;
             $component41 = interface_1213:com_65;
             $component42 = interface_1213:com_66;
+            $int47 = %varclient_1780;
     }
     $stat34 = enum(int, stat, enum_681, $int33);
     if ($stat34 ! null) {
@@ -459,11 +467,28 @@ while ($int36 < $int3) {
             $int31 = scale($int29, $int30, 100);
             $int32 = calc(~script5664($int33) - enum(int, int, enum_716, stat_base($stat34)));
             $int32 = scale($int32, $int30, 100);
-            if ($int31 < $int32 | $int32 < 1) {
-                if_setsize(if_getwidth($component39), max(scale(60, 50, min($int31, 50)), 5), ^setsize_abs, ^setsize_abs, $component39);
-                if_setsize(if_getwidth($component40), max(calc(max(calc($int31 - 50), 0) * 2), 5), ^setsize_abs, ^setsize_abs, $component40);
+            if ($int31 < $int32 | $int32 < 1 | $int47 ! $int33) {
+                if_setsize(if_getwidth($component39), max(scale(45, 50, min($int31, 50)), 1), ^setsize_abs, ^setsize_abs, $component39);
+                if_setsize(if_getwidth($component40), max(calc(max(calc($int31 - 50), 0) * 2), 0), ^setsize_abs, ^setsize_abs, $component40);
             } else {
-                if_setsize(if_getwidth($component39), max(if_getheight($component39), 5), ^setsize_abs, ^setsize_abs, $component39);
+                if_setsize(if_getwidth($component39), max(if_getheight($component39), 1), ^setsize_abs, ^setsize_abs, $component39);
+                if_setsize(if_getwidth($component40), max(if_getheight($component40), 0), ^setsize_abs, ^setsize_abs, $component40);
+            }
+            switch_component ($component38) {
+                case default :
+                    %varclient_1774 = $int33;
+                case interface_1213:com_12 :
+                    %varclient_1775 = $int33;
+                case interface_1213:com_11 :
+                    %varclient_1776 = $int33;
+                case interface_1213:com_10 :
+                    %varclient_1777 = $int33;
+                case interface_1213:com_9 :
+                    %varclient_1778 = $int33;
+                case interface_1213:com_8 :
+                    %varclient_1779 = $int33;
+                case interface_1213:com_7 :
+                    %varclient_1780 = $int33;
             }
             if_setontimer("script5655($component39, $component40, $int31, 0)", $component39);
             if_sethide(false, $component37);

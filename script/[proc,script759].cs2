@@ -36,6 +36,8 @@ def_int $int33 = 0;
 def_int $int34 = 0;
 def_int $int35 = 0;
 def_int $int36 = 1;
+def_graphic $graphic37 = "km_shoptile,2";
+def_graphic $graphic38 = "km_shoptile,0";
 while ($int5 <= calc($int4 - $int3)) {
     $int36 = 1;
     $obj32 = enum(int, obj, enum_1182, $int6);
@@ -165,18 +167,22 @@ while ($int5 <= calc($int4 - $int3)) {
         $int33 = calc(16 + $int7 % $int1 * 48 + $int7 % $int1 * 5);
         $int34 = calc($int7 / $int1 * 52 + $int7 / $int1 * 5);
         cc_create($component0, ^iftype_graphic, $int35);
-        $int35 = calc($int35 + 1);
         cc_setsize(48, 52, ^setsize_abs, ^setsize_abs);
         cc_setposition($int33, $int34, ^setpos_abs_left, ^setpos_abs_top);
         cc_setgraphic("km_shoptile,0");
-        cc_setonmouseover("script2724(event_com, $int35, false)");
-        cc_setonmouseleave("script2724(event_com, $int35, true)");
+        cc_setonmouserepeat("graphic_swapper_dynamic(event_com, $int35, $graphic37)");
+        cc_setonmouseleave("graphic_swapper_dynamic(event_com, $int35, $graphic38)");
+        $int35 = calc($int35 + 1);
         cc_create($component0, ^iftype_graphic, $int35);
         $int35 = calc($int35 + 1);
         cc_setsize(48, 52, ^setsize_abs, ^setsize_abs);
         cc_setposition($int33, $int34, ^setpos_abs_left, ^setpos_abs_top);
         cc_setgraphic("km_shoptile,1");
-        cc_sethide(true);
+        if (~script766($obj32) = 1 & stat_base(summoning) >= enum(obj, int, enum_1185, $obj32)) {
+            cc_sethide(false);
+        } else {
+            cc_sethide(true);
+        }
         cc_create($component0, ^iftype_graphic, $int35);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int33 + 6), calc($int34 + 4), ^setpos_abs_left, ^setpos_abs_top);

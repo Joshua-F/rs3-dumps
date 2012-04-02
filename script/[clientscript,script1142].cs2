@@ -1,11 +1,13 @@
 // 1142
 [clientscript,script1142]
+if_setonvartransmit(null, interface_884:com_6);
 def_obj $obj0 = inv_getobj(inv_94, 3);
 if ($obj0 = null | oc_members($obj0) = 1 & map_members = false) {
     ~script1143("Punch", "combaticons,14", "Accurate<br>Crush<br>Attack XP", "Kick", "combaticons,15", "Aggressive<br>Crush<br>Strength XP", "Block", "combaticons,16", "Defensive<br>Crush<br>Defence XP", "", null, "");
     return;
 }
 def_int $int1 = oc_param($obj0, param_686);
+def_string $string0 = "";
 switch_int ($int1) {
     case 1 :
         ~script1143("Bash", "combaticons2,13", "Accurate<br>Crush<br>Attack XP", "Pound", "combaticons2,14", "Aggressive<br>Crush<br>Strength XP", "Focus", "combaticons,19", "Defensive<br>Crush<br>Defence XP", "", null, "");
@@ -48,7 +50,7 @@ switch_int ($int1) {
     case 19 :
         ~script1143("Short fuse", "combaticons3,15", "Short fuse<br>Ranged XP", "Medium fuse", "combaticons3,9", "Medium fuse<br>Ranged XP", "Long fuse", "combaticons3,8", "Long fuse<br>Ranged XP<br>Defence XP", "", null, "");
     case 20 :
-        ~script1143("Aim and fire", "prayeron,13", "Aim and fire", "Kick", "combaticons,15", "Aggressive<br>Crush<br>Strength XP", "", null, "", "", null, "");
+        ~script1143("Aim and fire", "prayeron,13", "Aim and fire", "", null, "", "Kick", "combaticons,15", "Aggressive<br>Crush<br>Strength XP", "", null, "");
     case 21 :
         ~script1143("Scorch", "combaticons3,16", "Aggressive<br>Slash<br>Strength XP", "Flare", "combaticons3,17", "Accurate<br>Ranged<br>Ranged XP", "Blaze", "combaticons3,18", "Defensive<br>Magic<br>Magic XP", "", null, "");
     case 22 :
@@ -60,7 +62,16 @@ switch_int ($int1) {
     case 27 :
         ~script1143("Hack!", "combaticons,1", "Controlled<br>Slash<br>Shared XP", "Gouge!", "combaticons,2", "Controlled<br>Stab<br>Shared XP", "Smash!", "combaticons,3", "Controlled<br>Crush<br>Shared XP", "", null, "");
     case 28 :
-        ~script1143("Accurate", "combaticons2,15", "Accurate<br>Magic XP", "Long range", "combaticons2,17", "Long range<br>Magic XP<br>Defence XP", "", null, "", "", null, "");
+        if_setonvartransmit("script1142{varplayer_439}", interface_884:com_6);
+        if (%varplayerbit_2668 = 1) {
+            $string0 = "Defensive casting is enabled";
+        } else {
+            $string0 = "Defensive casting is disabled";
+        }
+        ~script1143("Accurate", "combaticons2,15", "Accurate<br>Magic XP<br><$string0>", "", null, "", "Long range", "combaticons2,17", "Long range<br>Magic XP<br>Defence XP", "", null, "");
     case default :
         ~script1143("Punch", "combaticons,14", "Accurate<br>Crush<br>Attack XP", "Kick", "combaticons,15", "Aggressive<br>Crush<br>Strength XP", "Block", "combaticons,16", "Defensive<br>Crush<br>Defence XP", "", null, "");
+}
+if (map_members = true & inv_getobj(inv_94, 13) = obj_24116 & $int1 = 17) {
+    ~script1143("Target-Head", "combaticons,20", "Chance to reduce Magic/casting speed in PvP<br>Ranged XP", "Target-Torso", "combaticons,21", "Chance to inflict bleeding damage in PvP<br>Ranged XP", "Target-Legs", "combaticons,22", "Chance to drain energy/freeze the target in PvP<br>Ranged XP", "", null, "");
 }

@@ -1,0 +1,43 @@
+// 5896
+[proc,script5896](int $int0, int $int1)
+def_component $component2 = interface_1253:com_63;
+if ($int1 < 0) {
+    $int1 = calc($int1 + 1);
+    if_setontimer("script5895($int0, $int1)", $component2);
+    return;
+}
+if_setontimer("script5895($int0, 0)", $component2);
+def_int $int3 = ~scale_round(if_get2dangle($component2), 65535, 360);
+def_int $int4 = 0;
+if ($int3 = 359) {
+    if ($int0 = 2) {
+        if_setontimer(null, $component2);
+        return;
+    } else {
+        $int4 = 355;
+    }
+} else if ($int3 = 357) {
+    if ($int0 = 2) {
+        $int4 = 359;
+    } else {
+        $int4 = 355;
+    }
+} else if ($int3 = 355) {
+    if ($int0 = 2) {
+        $int4 = 357;
+    } else {
+        $int4 = 354;
+    }
+} else if ($int3 = 354) {
+    if ($int0 = 2) {
+        $int4 = 355;
+    } else {
+        $int4 = 353;
+    }
+} else if ($int3 = 353) {
+    $int4 = 354;
+    $int0 = 2;
+    if_setontimer("script5895($int0, 0)", interface_1253:com_63);
+}
+def_int $int5 = ~scale_round($int4, 360, 65535);
+if_set2dangle($int5, $component2);
