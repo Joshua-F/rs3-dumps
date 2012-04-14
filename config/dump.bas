@@ -491,7 +491,7 @@ runanim_r=seq_1419
 readyanim=seq_222,seq_219
 
 [bas_117]
-readyanim=seq_9870,seq_9869
+readyanim=seq_808,seq_819
 
 [bas_118]
 walkanim_b=seq_820
@@ -3358,10 +3358,15 @@ readyanim=seq_528,seq_528
 readyanim=seq_8705,seq_2769
 
 [bas_849]
-readyanim=seq_8707,seq_2769
+hillrotate=12,8
+readyanim=null,seq_2769
+randomreadyanim=seq_16451,80
+randomreadyanim=seq_16452,20
 
 [bas_850]
-readyanim=seq_8707,null
+readyanim=null,null
+randomreadyanim=seq_16451,80
+randomreadyanim=seq_16452,20
 
 [bas_851]
 readyanim=seq_8706,null
@@ -10623,4 +10628,33 @@ randomreadyanim=seq_16368,30
 
 [bas_2447]
 readyanim=seq_16397,null
+
+[bas_2448]
+readyanim_l=seq_16427
+readyanim_r=seq_16427
+walkanim_l=seq_16427
+walkanim_r=seq_16427
+walkturn_l=seq_16427
+walkturn_r=seq_16427
+readyanim=seq_16430,seq_16427
+
+[bas_2449]
+readyanim_l=seq_16427
+readyanim_r=seq_16427
+walkanim_l=seq_16427
+walkanim_r=seq_16427
+walkturn_l=seq_16427
+walkturn_r=seq_16427
+readyanim=seq_16430,seq_16427
+
+[bas_2450]
+readyanim=seq_16430,null
+
+[bas_2451]
+readyanim=seq_7760,null
+
+[bas_2452]
+readyanim=null,seq_16454
+randomreadyanim=seq_16453,80
+randomreadyanim=seq_8707,20
 
