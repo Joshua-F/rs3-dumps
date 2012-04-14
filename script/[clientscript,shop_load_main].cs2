@@ -1,0 +1,21 @@
+// 6081
+[clientscript,shop_load_main]
+def_int $int0 = inv_total(inv_93, %varplayer_532);
+def_int $int1 = 0;
+if (%varplayer_118 ! null) {
+    if_setontimer(null, interface_1265:com_90);
+    ~shop_clear_item_info;
+    if (%varplayer_532 = obj_995) {
+        $int0 = calc($int0 + inv_total(inv_623, %varplayer_532));
+    }
+    if ($int0 = 0) {
+        if_settext("None!", interface_1265:com_207);
+        if_setgraphic("km_shopitems,0", interface_1265:com_206);
+    } else {
+        if_settext(~script940($int0), interface_1265:com_207);
+        if_setgraphic(enum(obj, graphic, enum_200, %varplayer_532), interface_1265:com_206);
+    }
+    $int1 = parawidth(if_gettext(interface_1265:com_207), if_getwidth(interface_1265:com_77), verdana_11pt_regular);
+    $int1 = calc($int1 + 2 + if_getwidth(interface_1265:com_206));
+    if_setsize($int1, 15, ^setsize_abs, ^setsize_abs, interface_1265:com_16);
+}

@@ -609,7 +609,7 @@ readyanim=seq_222,seq_219
 
 // 117
 [bas_117]
-readyanim=seq_9870,seq_9869
+readyanim=seq_808,seq_819
 
 // 118
 [bas_118]
@@ -4208,11 +4208,16 @@ readyanim=seq_8705,seq_2769
 
 // 849
 [bas_849]
-readyanim=seq_8707,seq_2769
+hillrotate=12,8
+readyanim=null,seq_2769
+randomreadyanim=seq_16451,80
+randomreadyanim=seq_16452,20
 
 // 850
 [bas_850]
-readyanim=seq_8707,null
+readyanim=null,null
+randomreadyanim=seq_16451,80
+randomreadyanim=seq_16452,20
 
 // 851
 [bas_851]
@@ -13071,4 +13076,38 @@ randomreadyanim=seq_16368,30
 // 2447
 [bas_2447]
 readyanim=seq_16397,null
+
+// 2448
+[bas_2448]
+readyanim_l=seq_16427
+readyanim_r=seq_16427
+walkanim_l=seq_16427
+walkanim_r=seq_16427
+walkturn_l=seq_16427
+walkturn_r=seq_16427
+readyanim=seq_16430,seq_16427
+
+// 2449
+[bas_2449]
+readyanim_l=seq_16427
+readyanim_r=seq_16427
+walkanim_l=seq_16427
+walkanim_r=seq_16427
+walkturn_l=seq_16427
+walkturn_r=seq_16427
+readyanim=seq_16430,seq_16427
+
+// 2450
+[bas_2450]
+readyanim=seq_16430,null
+
+// 2451
+[bas_2451]
+readyanim=seq_7760,null
+
+// 2452
+[bas_2452]
+readyanim=null,seq_16454
+randomreadyanim=seq_16453,80
+randomreadyanim=seq_8707,20
 

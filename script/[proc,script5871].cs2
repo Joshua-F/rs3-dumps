@@ -3,14 +3,14 @@
 if (%varplayerbit_8594 ! $int0) {
     return;
 }
-def_component $component2 = interface_1220:com_14;
-def_component $component3 = interface_1220:com_15;
-def_component $component4 = interface_1220:com_10;
-def_component $component5 = interface_1220:com_11;
-def_int $int6 = 79953981;
-def_int $int7 = 79953984;
-def_int $int8 = 79953972;
-def_int $int9 = 79953975;
+def_component $component2 = interface_1220:com_15;
+def_component $component3 = interface_1220:com_16;
+def_component $component4 = interface_1220:com_1;
+def_component $component5 = interface_1220:com_2;
+def_int $int6 = 79953982;
+def_int $int7 = 79953985;
+def_int $int8 = 79953973;
+def_int $int9 = 79953976;
 def_boolean $boolean10 = true;
 def_boolean $boolean11 = true;
 if ($int1 <= 0) {
@@ -87,11 +87,18 @@ if ($int1 = 0 & $int13 = 0) {
     $string0 = "There are no hints available for this Task. Good luck!";
 }
 def_int $int16 = ~script5798($int0, $struct12, 0, $string0, 0, $component2, null, -1);
-def_int $int17 = 76;
-if_setonop("script5870($int0, calc($int1 + 1))", interface_1220:com_61);
-if_sethide($boolean11, interface_1220:com_64);
-if_setonop("script5870($int0, calc($int1 - 1))", interface_1220:com_52);
-if_sethide($boolean10, interface_1220:com_55);
+def_int $int17 = if_getheight(interface_1220:com_13);
+if_setonop("script5870($int0, calc($int1 + 1))", interface_1220:com_62);
+if_sethide($boolean11, interface_1220:com_65);
+if_setonop("script5870($int0, calc($int1 - 1))", interface_1220:com_53);
+if_sethide($boolean10, interface_1220:com_56);
+if ($int13 < 2) {
+    if_sethide(true, interface_1220:com_14);
+    $int17 = calc($int17 + if_getheight(interface_1220:com_14));
+} else {
+    if_sethide(false, interface_1220:com_14);
+}
+if_setsize(if_getwidth(interface_1220:com_13), $int17, ^setsize_abs, ^setsize_abs, interface_1220:com_13);
 if_setsize(3, 0, ^setsize_minus, ^setsize_minus, $component2);
 if ($int16 < $int17) {
     if_sethide(true, $component3);
