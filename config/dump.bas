@@ -13627,3 +13627,11 @@ readyanim=seq_16928,null
 [bas_2537]
 readyanim=seq_16881,null
 
+// 2538
+[bas_2538]
+readyanim_l=seq_16938
+readyanim_r=seq_16938
+readyanim=null,null
+randomreadyanim=seq_16936,90
+randomreadyanim=seq_16937,10
+

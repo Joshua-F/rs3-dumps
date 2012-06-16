@@ -1,26 +1,32 @@
 // 266
 [proc,script266]
-def_int $intarray0(4);
-$intarray0(%varclient_1104) = calc($intarray0(%varclient_1104) + 1);
-$intarray0(%varclient_1105) = calc($intarray0(%varclient_1105) + 1);
-$intarray0(%varclient_1106) = calc($intarray0(%varclient_1106) + 1);
-$intarray0(%varclient_1107) = calc($intarray0(%varclient_1107) + 1);
-$intarray0(%varclient_1108) = calc($intarray0(%varclient_1108) + 1);
-if_settext("Small x <tostring($intarray0(1))>", interface_923:com_53);
-if_settext("Med. x <tostring($intarray0(2))>", interface_923:com_54);
-if_settext("Large x <tostring($intarray0(3))>", interface_923:com_55);
-def_string $string0 = "";
-if ($intarray0(1) > 0) {
-    $string0 = "Remove-weight";
+if_sethide(true, interface_923:com_0);
+if_sethide(true, interface_923:com_68);
+if_sethide(true, interface_923:com_73);
+if (%varclient_1104 = 0) {
+    if_sethide(true, interface_923:com_1);
+    if_settext("", interface_923:com_66);
+} else {
+    if_sethide(false, interface_923:com_1);
+    if_settext("1", interface_923:com_66);
 }
-if_setop(1, $string0, interface_923:com_53);
-$string0 = "";
-if ($intarray0(2) > 0) {
-    $string0 = "Remove-weight";
+if (%varclient_1105 = 0) {
+    if_sethide(true, interface_923:com_69);
+    if_settext("", interface_923:com_71);
+} else {
+    if_sethide(false, interface_923:com_69);
+    if_settext("2", interface_923:com_71);
 }
-if_setop(1, $string0, interface_923:com_54);
-$string0 = "";
-if ($intarray0(3) > 0) {
-    $string0 = "Remove-weight";
+if (%varclient_1106 = 0) {
+    if_sethide(true, interface_923:com_74);
+    if_settext("", interface_923:com_76);
+} else {
+    if_sethide(false, interface_923:com_74);
+    if_settext("3", interface_923:com_76);
 }
-if_setop(1, $string0, interface_923:com_55);
+if (%varclient_1104 = 0 & %varclient_1105 = 0 & %varclient_1106 = 0) {
+    if_setontimer("script6258", interface_923:com_109);
+} else {
+    if_setontimer(null, interface_923:com_109);
+    if_sethide(false, interface_923:com_108);
+}
