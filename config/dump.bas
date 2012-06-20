@@ -13635,3 +13635,11 @@ readyanim=null,null
 randomreadyanim=seq_16936,90
 randomreadyanim=seq_16937,10
 
+// 2539
+[bas_2539]
+readyanim=seq_16883,seq_16884
+
+// 2540
+[bas_2540]
+readyanim=seq_16948,seq_16949
+
