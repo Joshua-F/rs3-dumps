@@ -13643,3 +13643,9 @@ readyanim=seq_16883,seq_16884
 [bas_2540]
 readyanim=seq_16948,seq_16949
 
+// 2541
+[bas_2541]
+walkanim_l=seq_16992
+walkanim_r=seq_16992
+readyanim=seq_16991,seq_16992
+
