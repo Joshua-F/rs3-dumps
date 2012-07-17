@@ -13735,3 +13735,52 @@ readyanim=seq_17062,seq_17063
 [bas_2551]
 readyanim=seq_17066,seq_17066
 
+// 2552
+[bas_2552]
+hillrotate=64,32
+readyanim=seq_17107,seq_17107
+
+// 2553
+[bas_2553]
+readyanim_l=seq_1205
+readyanim_r=seq_1205
+walkanim_b=seq_1206
+walkanim_l=seq_1207
+walkanim_r=seq_1208
+runanim=seq_1210
+readyanim=seq_813,seq_1205
+
+// 2554
+[bas_2554]
+readyanim_l=seq_12024
+readyanim_r=seq_12024
+walkanim_b=seq_15075
+walkanim_l=seq_15076
+walkanim_r=seq_15077
+runanim=seq_15070
+readyanim=seq_15069,seq_15073
+
+// 2555
+[bas_2555]
+readyanim_l=seq_12024
+readyanim_r=seq_12024
+walkanim_b=seq_15075
+walkanim_l=seq_15076
+walkanim_r=seq_15077
+runanim=seq_15070
+readyanim=seq_15069,seq_15073
+
+// 2556
+[bas_2556]
+readyanim_l=seq_823
+readyanim_r=seq_823
+walkanim_b=seq_4227
+walkanim_l=seq_821
+walkanim_r=seq_822
+runanim=seq_4228
+readyanim=seq_4591,seq_4226
+
+// 2557
+[bas_2557]
+readyanim=seq_17120,seq_17120
+

@@ -1,0 +1,72 @@
+// 6466
+[proc,script6466](struct $struct0, int $int1, int $int2)(int, int)
+def_component $component3 = enum(int, component, enum_5961, struct_param($struct0, param_2532));
+if ($component3 = null) {
+    return($int1, $int2);
+}
+def_int $int4 = if_getnextsubid($component3);
+def_graphic $graphic5 = graphic_11898;
+def_graphic $graphic6 = graphic_11899;
+def_int $rgb7 = 0xb6b6b6;
+def_obj $obj8 = null;
+def_obj $obj9 = null;
+def_bas $bas10 = bas_1426;
+if (~script6488($struct0) = 0) {
+    $graphic5 = graphic_11900;
+    $graphic6 = graphic_11900;
+    $rgb7 = 0x666666;
+} else if (~script6489($struct0) = 1) {
+    $graphic5 = graphic_11901;
+    $graphic6 = graphic_11902;
+    $rgb7 = 0xb6b6b6;
+} else if (struct_param($struct0, param_2531) = 2 & struct_param($struct0, param_2532) = 3) {
+    $obj8 = enum(int, obj, struct_param($struct0, param_2542), 3);
+    $obj9 = inv_getobj(inv_94, 3);
+    if ($obj9 ! null) {
+        $bas10 = oc_param($obj9, param_644);
+    }
+    if ($obj8 ! null) {
+        if ($obj8 = %varplayer_2685) {
+            $graphic5 = graphic_11901;
+            $graphic6 = graphic_11902;
+            $rgb7 = 0xb6b6b6;
+        } else if (oc_param($obj8, param_644) ! bas_1426 & oc_param($obj8, param_644) ! $bas10) {
+            $graphic5 = graphic_11900;
+            $graphic6 = graphic_11900;
+            $rgb7 = 0x661111;
+        }
+    }
+}
+cc_create($component3, ^iftype_graphic, $int4);
+cc_setgraphic($graphic5);
+cc_setsize(calc(196 - 10), calc(29 - 5), ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int2 * 196 + (196 - cc_getwidth) / 2), calc($int1 + (29 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setop(1, "Preview");
+if ($graphic5 = graphic_11901) {
+    cc_setop(2, "Deactivate");
+} else if ($graphic5 = graphic_11898) {
+    cc_setop(2, "Activate");
+} else {
+    cc_setop(2, "");
+}
+cc_setonop("script6480(event_com, event_comsubid)");
+cc_setonmouseover("cc_graphic_swapper(event_com, cc_getid, $graphic6)");
+cc_setonmouseleave("cc_graphic_swapper(event_com, cc_getid, $graphic5)");
+def_string $string0 = struct_param($struct0, param_2533);
+cc_create($component3, ^iftype_text, calc($int4 + 1));
+cc_settext($string0);
+cc_settextfont(verdana_11pt_regular);
+cc_setcolour($rgb7);
+cc_setsize(calc(196 - 10), calc(29 - 5), ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int2 * 196 + (196 - cc_getwidth) / 2), calc($int1 + (29 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
+cc_create($component3, ^iftype_graphic, calc($int4 + 2));
+cc_setgraphic(struct_param($struct0, param_2534));
+cc_setsize(20, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int2 * 196 + (196 - cc_getwidth) / 2), calc($int1 + (29 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+if_setsize(0, calc($int1 + 29), ^setsize_minus, ^setsize_abs, $component3);
+$int2 = calc(($int2 + 1) % 2);
+if ($int2 = 0) {
+    $int1 = calc($int1 + 29);
+}
+return($int1, $int2);
