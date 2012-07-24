@@ -16,17 +16,21 @@ def_struct $struct3 = ~script5936(%varplayerbit_10860);
 def_int $int4 = struct_param($struct3, param_2268);
 def_obj $obj5 = inv_getobj(inv_665, %varplayerbit_10860);
 def_int $int6 = inv_getnum(inv_665, %varplayerbit_10860);
-if_setobject($obj5, $int6, interface_1253:com_35);
+$graphic0 = ~script5941(%varplayerbit_10860);
 if (%varplayerbit_10861 > 0) {
-    $graphic0 = ~script5941(%varplayerbit_10860);
+    if_setobject($obj5, $int6, interface_1253:com_202);
+    if_setobject($obj5, $int6, interface_1253:com_35);
+    if_settext(~script5909($int4, %varplayerbit_10865, $obj5, $int6), interface_1253:com_162);
     if_setgraphic($graphic0, interface_1253:com_201);
     if_setgraphic($graphic0, interface_1253:com_34);
-    if_settext(~script5909($int4, %varplayerbit_10865, $obj5, $int6), interface_1253:com_162);
 } else {
+    if_setobject(null, 0, interface_1253:com_202);
+    if_setobject(null, 0, interface_1253:com_35);
     if_settext("", interface_1253:com_162);
+    if_setgraphic(null, interface_1253:com_201);
+    if_setgraphic(null, interface_1253:com_34);
 }
-if_setobject($obj5, $int6, interface_1253:com_202);
-if_settext("Spins remaining: <tostring(calc(%varplayerbit_10862 + %varplayerbit_11026 + %varclient_1800))>", interface_1253:com_161);
+if_settext("Spins remaining: <tostring(max(0, calc(%varplayerbit_10862 + %varplayerbit_11026 + %varclient_1800)))>", interface_1253:com_161);
 if (playermember = false) {
     if_settext("Members get two spins a day. Subscribe now to claim your earned spin.", interface_1253:com_161);
     if_sethide(true, interface_1253:com_259);
@@ -44,3 +48,4 @@ if (playermember = false) {
 }
 ~script5910($int4);
 ~script1968;
+~script6506;
