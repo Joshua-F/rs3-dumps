@@ -1,0 +1,58 @@
+// 6566
+[proc,script6566]
+if (%varplayerbit_11769 > 0) {
+    ~script6567;
+    return;
+}
+def_graphic $graphic0 = null;
+if (%varclient_1785 = 1) {
+    return;
+}
+if (%varclient_1781 < 0 | %varclient_1781 >= 13) {
+    return;
+}
+%varclient_1785 = 1;
+def_int $int1 = 0;
+def_int $int2 = 0;
+$int1, $int2 = ~script5886(%varplayerbit_10860);
+if_setontimer("script5885($int1, $int2)", interface_1253:com_63);
+def_struct $struct3 = ~script5936(%varplayerbit_10860);
+def_int $int4 = struct_param($struct3, param_2268);
+def_obj $obj5 = inv_getobj(inv_665, %varplayerbit_10860);
+def_int $int6 = inv_getnum(inv_665, %varplayerbit_10860);
+$graphic0 = ~script5941(%varplayerbit_10860);
+if (%varplayerbit_10861 > 0) {
+    if_setobject($obj5, $int6, interface_1253:com_216);
+    if_setobject($obj5, $int6, interface_1253:com_45);
+    if_settext(~script5909($int4, %varplayerbit_10865, $obj5, $int6), interface_1253:com_175);
+    if_setgraphic($graphic0, interface_1253:com_215);
+    if_setgraphic($graphic0, interface_1253:com_44);
+    if_sethide(false, interface_1253:com_184);
+} else {
+    if_setobject(null, 0, interface_1253:com_216);
+    if_setobject(null, 0, interface_1253:com_45);
+    if_settext("", interface_1253:com_175);
+    if_setgraphic(null, interface_1253:com_215);
+    if_setgraphic(null, interface_1253:com_44);
+    if_sethide(true, interface_1253:com_184);
+    if_sethide(true, interface_1253:com_35);
+}
+if_settext("Spins remaining: <tostring(max(0, calc(%varplayerbit_10862 + %varplayerbit_11026 + %varclient_1800)))>", interface_1253:com_174);
+if (playermember = false) {
+    if_settext("Members get two spins a day. Subscribe now to claim your earned spin.", interface_1253:com_174);
+    if_sethide(true, interface_1253:com_273);
+    if_settext("Subscribe", interface_1253:com_278);
+    if_setop(1, "Subscribe", interface_1253:com_272);
+    if (oc_members($obj5) = 1 & playermember = false) {
+        if_settext("Subscribe to claim", interface_1253:com_194);
+        if_setop(1, "Subscribe", interface_1253:com_191);
+    }
+} else {
+    if_settext("Play again", interface_1253:com_278);
+    if_setop(1, "Play", interface_1253:com_272);
+    if_settext("Claim item", interface_1253:com_194);
+    if_setop(1, "Claim", interface_1253:com_191);
+}
+~script5910($int4);
+~script1968;
+~script6506;

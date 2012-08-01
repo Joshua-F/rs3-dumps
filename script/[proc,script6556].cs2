@@ -87,6 +87,7 @@ switch_int ($int0) {
         $component6 = interface_1317:com_247;
         $component7 = interface_1317:com_249;
 }
+def_obj $obj8 = null;
 if ($intbool5 = ^false) {
     if_setop(1, "Buy", $component6);
     if_settext(tostring(enum(int, int, enum_5996, $int0)), $component7);
@@ -105,12 +106,24 @@ if ($intbool5 = ^false) {
         if_setonmouseover(null, $component6);
         if_setonmouseleave(null, $component6);
     } else if ($int0 = 1 | $int0 = 9 | $int0 = 16) {
+        if ($int0 = 1) {
+            $obj8 = obj_24544;
+        } else if ($int0 = 9) {
+            $obj8 = obj_24545;
+        } else if ($int0 = 16) {
+            $obj8 = obj_24546;
+        }
         $graphic1 = "aif_buy_button_group_3,3";
         $graphic2 = "aif_buy_button_group_3,1";
         $graphic3 = "aif_buy_button_group_3,3";
         $graphic4 = "aif_buy_button_group_3,1";
-        if_setop(1, "Recharge", $component6);
-        if_settext("Recharge", $component7);
+        if (~obj_gettotal($obj8) = 0) {
+            if_setop(1, "Reclaim", $component6);
+            if_settext("Reclaim", $component7);
+        } else {
+            if_setop(1, "Recharge", $component6);
+            if_settext("Recharge", $component7);
+        }
         if_setgraphic("aif_buy_button_group_3,1", $component6);
         if_setonclick("graphic_swapper(event_com, $graphic1)", $component6);
         if_setonrelease("graphic_swapper(event_com, $graphic2)", $component6);
