@@ -13858,3 +13858,41 @@ readyanim=seq_824,seq_824
 [bas_2573]
 readyanim=seq_17157,seq_17157
 
+// 2574
+[bas_2574]
+readyanim_l=seq_7040
+readyanim_r=seq_7040
+walkanim_b=seq_7045
+walkanim_l=seq_7044
+walkanim_r=seq_7043
+runanim=seq_7039
+readyanim=seq_7047,seq_7046
+
+// 2575
+[bas_2575]
+readyanim_l=seq_823
+readyanim_r=seq_823
+walkanim_b=seq_820
+walkanim_l=seq_821
+walkanim_r=seq_822
+runanim=seq_17206
+readyanim=seq_17205,seq_17207
+
+// 2576
+[bas_2576]
+readyanim_l=seq_17197
+readyanim_r=seq_17197
+walkanim_b=seq_17197
+walkanim_l=seq_17197
+walkanim_r=seq_17197
+crawlanim=seq_17197
+crawlanim_b=seq_17197
+crawlanim_l=seq_17197
+crawlanim_r=seq_17197
+runanim=seq_17197
+runanim_b=seq_17197
+runanim_l=seq_17197
+runanim_r=seq_17197
+hillrotate=16,16
+readyanim=null,seq_17197
+
