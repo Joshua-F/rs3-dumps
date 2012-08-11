@@ -1,0 +1,42 @@
+// 6673
+[proc,script6673](int $int0, obj $obj1, int $int2)
+def_string $string0 = "";
+def_string $string1 = "";
+if_settext("Play again", interface_1253:com_278);
+if_setop(1, "Play", interface_1253:com_272);
+$string1 = "You must claim or discard your prize before spinning again.";
+$string0 = "Click to play again.";
+if (playermember = true) {
+    if (%varplayerbit_10862 > 0 | %varplayerbit_11026 > 0 | %varclient_1800 > 0) {
+        if (%varplayerbit_10861 > 0) {
+            if_sethide(false, interface_1253:com_273);
+            $string1 = "You must claim or discard your prize before spinning again.";
+        } else {
+            if_sethide(true, interface_1253:com_273);
+            $string0 = "Click to play again.";
+        }
+    } else if (%varplayerbit_10861 > 0) {
+        if_sethide(false, interface_1253:com_273);
+        $string1 = "You do not have any spins remaining.";
+    } else {
+        if_sethide(false, interface_1253:com_273);
+        $string1 = "You do not have any spins remaining.";
+    }
+} else if (%varplayerbit_10862 > 0 | %varplayerbit_11026 > 0 | %varclient_1800 > 0) {
+    if (%varplayerbit_10861 > 0) {
+        if_sethide(false, interface_1253:com_273);
+        $string1 = "You must claim or discard your prize before spinning again.";
+    } else {
+        if_sethide(true, interface_1253:com_273);
+        $string0 = "Click to play again.";
+    }
+} else {
+    if_settext("Subscribe", interface_1253:com_278);
+    if_setop(1, "Subscribe", interface_1253:com_272);
+    if_sethide(true, interface_1253:com_273);
+    $string1 = "Click to subscribe";
+    $string0 = "Click to subscribe";
+    if_settext("Members get two spins a day. Subscribe now to claim your earned spin.", interface_1253:com_174);
+}
+if_setonmouserepeat("script4538(interface_1253:com_62, event_com, -1, $string0, 200, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 3, event_mousex, event_mousey)", interface_1253:com_272);
+if_setonmouserepeat("script4538(interface_1253:com_62, event_com, -1, $string1, 200, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 3, event_mousex, event_mousey)", interface_1253:com_273);

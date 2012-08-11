@@ -4665,7 +4665,7 @@ readyanim=seq_7261,seq_819
 walkanim_b=seq_820
 walkanim_l=seq_821
 walkanim_r=seq_822
-readyanim=seq_10574,seq_819
+readyanim=seq_17251,seq_819
 
 // 948
 [bas_948]
@@ -13997,4 +13997,21 @@ walkanim_l=seq_821
 walkanim_r=seq_822
 runanim=seq_9754
 readyanim=seq_808,seq_819
+
+// 2589
+[bas_2589]
+readyanim_l=seq_17252
+readyanim_r=seq_17252
+walkanim_b=seq_17260
+walkanim_l=seq_17260
+walkanim_r=seq_17260
+walkturn_l=seq_17260
+walkturn_r=seq_17260
+runanim=seq_17258
+runanim_b=seq_17258
+runturn_l=seq_17258
+runturn_r=seq_17258
+runanim_l=seq_17258
+runanim_r=seq_17258
+readyanim=seq_17252,seq_17260
 

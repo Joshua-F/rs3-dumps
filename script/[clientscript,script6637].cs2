@@ -1,0 +1,75 @@
+// 6637
+[clientscript,script6637](int $int0)
+def_int $int1 = 0;
+def_int $int2 = 35;
+def_int $int3 = 30;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 32;
+while ($int1 <= enum_getoutputcount(enum_6103)) {
+    cc_create(interface_1334:com_39, ^iftype_graphic, $int1);
+    cc_setsize($int6, $int6, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic(enum(int, graphic, enum_6103, calc($int1 + 1)));
+    cc_setposition(calc($int2 + $int5 * $int6 + $int3 * $int5), calc($int2 + $int4 * $int6 + $int3 * $int4), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setalpha(true);
+    cc_setdragdeadtime(5);
+    cc_setdragdeadzone(5);
+    cc_setdraggable(interface_1334:com_39, -1);
+    cc_setondragcomplete("script6638(event_com, event_comsubid, event_com2, event_comsubid2)");
+    cc_setonmouserepeat("script4538(interface_1334:com_47, event_com, event_comsubid, enum(int, string, enum_6106, calc($int1 + 1)), 180, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 0, event_mousex, event_mousey)");
+    cc_setonmouseleave("deltooltip(interface_1334:com_47)");
+    $int1 = calc($int1 + 1);
+    if ($int5 = 6) {
+        $int5 = 0;
+        $int4 = calc($int4 + 1);
+    } else {
+        $int5 = calc($int5 + 1);
+    }
+}
+def_graphic $graphic7 = "aif_clan_avatar_buff_cancel_btn,1";
+def_graphic $graphic8 = "aif_clan_avatar_buff_cancel_btn,0";
+if_clearops(interface_1334:com_32);
+if_clearops(interface_1334:com_33);
+if_clearops(interface_1334:com_34);
+if_setgraphic("aif_clan_avatar_buff_selection,1", interface_1334:com_25);
+if_setgraphic("aif_clan_avatar_buff_selection,1", interface_1334:com_26);
+if_setgraphic("aif_clan_avatar_buff_selection,1", interface_1334:com_27);
+if_setgraphic("aif_clan_avatar_buff_cancel_btn,2", interface_1334:com_32);
+if_setgraphic("aif_clan_avatar_buff_cancel_btn,2", interface_1334:com_33);
+if_setgraphic("aif_clan_avatar_buff_cancel_btn,2", interface_1334:com_34);
+if_setonmouseover(null, interface_1334:com_32);
+if_setonmouseover(null, interface_1334:com_33);
+if_setonmouseover(null, interface_1334:com_34);
+if_setonmouseleave(null, interface_1334:com_32);
+if_setonmouseleave(null, interface_1334:com_33);
+if_setonmouseleave(null, interface_1334:com_34);
+if (%varplayerbit_11871 > 2) {
+    if_setgraphic("aif_clan_avatar_buff_selection,0", interface_1334:com_27);
+    if (%varplayerbit_11855 = 0) {
+        if_setgraphic("aif_clan_avatar_buff_cancel_btn,0", interface_1334:com_34);
+        if_setonmouseover("graphic_swapper(event_com, $graphic7)", interface_1334:com_34);
+        if_setonmouseleave("graphic_swapper(event_com, $graphic8)", interface_1334:com_34);
+        if_setop(1, "Remove", interface_1334:com_34);
+    }
+}
+if (%varplayerbit_11871 > 1) {
+    if_setgraphic("aif_clan_avatar_buff_selection,0", interface_1334:com_26);
+    if (%varplayerbit_11854 = 0) {
+        if_setgraphic("aif_clan_avatar_buff_cancel_btn,0", interface_1334:com_33);
+        if_setonmouseover("graphic_swapper(event_com, $graphic7)", interface_1334:com_33);
+        if_setonmouseleave("graphic_swapper(event_com, $graphic8)", interface_1334:com_33);
+        if_setop(1, "Remove", interface_1334:com_33);
+    }
+}
+if (%varplayerbit_11871 > 0) {
+    if_setgraphic("aif_clan_avatar_buff_selection,0", interface_1334:com_25);
+    if (%varplayerbit_11853 = 0) {
+        if_setgraphic("aif_clan_avatar_buff_cancel_btn,0", interface_1334:com_32);
+        if_setonmouseover("graphic_swapper(event_com, $graphic7)", interface_1334:com_32);
+        if_setonmouseleave("graphic_swapper(event_com, $graphic8)", interface_1334:com_32);
+        if_setop(1, "Remove", interface_1334:com_32);
+    }
+}
+~script6641;
+~script6646(interface_1334:com_45);
+return;
