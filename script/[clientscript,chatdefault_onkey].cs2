@@ -250,8 +250,13 @@ switch_int ($key0) {
             ~script1558(false);
             return;
         }
-        if (%varclient_1650 = 1 & compare(substring(%varclientstring_1, 0, 1), "/") ! 0) {
-            chat_sendprivate(%varclientstring_23, %varclientstring_1);
+        if (%varclient_1650 = 1) {
+            while (string_length(%varclientstring_1) > 0 & compare(substring(%varclientstring_1, 0, 1), "/") = 0) {
+                %varclientstring_1 = substring(%varclientstring_1, 1, string_length(%varclientstring_1));
+            }
+            if (string_length(%varclientstring_1) > 0) {
+                chat_sendprivate(%varclientstring_23, %varclientstring_1);
+            }
             %varclient_1650 = 0;
             %varclientstring_1 = "";
             return;
