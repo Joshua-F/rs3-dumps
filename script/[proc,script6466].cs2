@@ -1,5 +1,8 @@
 // 6466
 [proc,script6466](struct $struct0, int $int1, int $int2)(int, int)
+if (gender = 0 & struct_param($struct0, param_2531) = 1 & (struct_param($struct0, param_2532) = 1 | struct_param($struct0, param_2532) = 3 | struct_param($struct0, param_2532) = 4) & struct_param($struct0, param_2772) ! 0 & enum(int, struct, enum_2338, struct_param($struct0, param_2772)) = struct_741) {
+    return($int1, $int2);
+}
 def_component $component3 = enum(int, component, enum_5961, struct_param($struct0, param_2532));
 if ($component3 = null) {
     return($int1, $int2);
@@ -57,10 +60,16 @@ if (~script6488($struct0) = 0) {
         $rgb7 = 0x661111;
     }
 }
+def_int $int13 = 0;
+if (struct_param($struct0, param_2531) = 1) {
+    $int13 = 155;
+} else {
+    $int13 = 196;
+}
 cc_create($component3, ^iftype_graphic, $int4);
 cc_setgraphic($graphic5);
-cc_setsize(calc(196 - 10), calc(29 - 5), ^setsize_abs, ^setsize_abs);
-cc_setposition(calc($int2 * 196 + (196 - cc_getwidth) / 2), calc($int1 + (29 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(calc($int13 - 10), calc(29 - 5), ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int2 * $int13 + ($int13 - cc_getwidth) / 2), calc($int1 + (29 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
 cc_setop(1, "Preview");
 if ($graphic5 = graphic_11901) {
     cc_setop(2, "Deactivate");
@@ -72,18 +81,33 @@ if ($graphic5 = graphic_11901) {
 cc_setonop("script6480(event_com, event_comsubid)");
 cc_setonmouseover("cc_graphic_swapper(event_com, cc_getid, $graphic6)");
 cc_setonmouseleave("cc_graphic_swapper(event_com, cc_getid, $graphic5)");
-def_string $string0 = struct_param($struct0, param_2533);
+def_string $string0 = "";
+def_enum $enum14 = null;
+if (struct_param($struct0, param_2531) = 1) {
+    if (struct_param($struct0, param_2532) = 1 | struct_param($struct0, param_2532) = 3 | struct_param($struct0, param_2532) = 4) {
+        if (gender = 1) {
+            $enum14 = enum_2341;
+        } else {
+            $enum14 = enum_2338;
+        }
+        $string0 = struct_param(enum(int, struct, $enum14, struct_param($struct0, param_2772)), param_792);
+    } else if (struct_param($struct0, param_2532) = 2 | struct_param($struct0, param_2532) = 5) {
+        $string0 = enum(int, string, enum_2340, struct_param($struct0, param_2772));
+    }
+} else {
+    $string0 = struct_param($struct0, param_2533);
+}
 cc_create($component3, ^iftype_text, calc($int4 + 1));
 cc_settext($string0);
 cc_settextfont(verdana_11pt_regular);
 cc_setcolour($rgb7);
-cc_setsize(calc(196 - 10), calc(29 - 5), ^setsize_abs, ^setsize_abs);
-cc_setposition(calc($int2 * 196 + (196 - cc_getwidth) / 2), calc($int1 + (29 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(calc($int13 - 10), calc(29 - 5), ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int2 * $int13 + ($int13 - cc_getwidth) / 2), calc($int1 + (29 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
 cc_create($component3, ^iftype_graphic, calc($int4 + 2));
 cc_setgraphic(struct_param($struct0, param_2534));
 cc_setsize(20, 20, ^setsize_abs, ^setsize_abs);
-cc_setposition(calc($int2 * 196 + (196 - cc_getwidth) / 2), calc($int1 + (29 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setposition(calc($int2 * $int13 + ($int13 - cc_getwidth) / 2), calc($int1 + (29 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
 if_setsize(0, calc($int1 + 29), ^setsize_minus, ^setsize_abs, $component3);
 $int2 = calc(($int2 + 1) % 2);
 if ($int2 = 0) {

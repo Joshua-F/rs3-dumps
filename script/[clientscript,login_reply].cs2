@@ -10,6 +10,22 @@ if (has_signonkey = true) {
     $component4 = interface_975:com_44;
     $component5 = interface_975:com_26;
 }
+if ($int1 = 49) {
+    if (%varclient_1100 ! 49) {
+        ~login_popup_close;
+        ~login_popup($int1, 1, "The Jagex Account Guardian is protecting this account.<br><br>This device is not recognised. An email has been sent to the validated email address.<br><br>Follow the link in the email to add this device. (Please check your spam folders)", 0, "loadingwheel,16", 1, 0, "Resend Email", 1, "Back");
+    }
+    %varclient_1100 = 49;
+    return;
+}
+if ($int1 = 52) {
+    if (%varclient_1100 ! 52) {
+        ~login_popup_close;
+        ~login_popup($int1, 1, "The Jagex Account Guardian is protecting this account.<br><br>You need to validate this device to use with your account. Please follow the instructions in the window that will open shortly.<br><br>If no window appears, we can send you an email to complete the process.", 0, "loadingwheel,16", 1, 0, "Send Email", 1, "Back");
+    }
+    %varclient_1100 = 52;
+    return;
+}
 if ($int1 = 42) {
     if_setgraphic("corner_flourish,2", interface_744:com_97);
     if_sethide(false, interface_744:com_103);
@@ -122,6 +138,10 @@ def_int $int12 = 0;
 def_string $string3 = "";
 def_int $int13 = 1;
 def_string $string4 = "Back";
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = 0;
+def_int $int17 = 0;
 switch_int ($int1) {
     case -2 :
         ~login_popup_close;
@@ -275,13 +295,22 @@ switch_int ($int1) {
         $int11 = 1;
         $string3 = "Subscribe";
     case 32 :
-        $string2 = "Your account has negative membership credit. Please log into the billing system to add credit to your account.";
+        $string2 = "Your attempt to log into your account was unsuccessful.  Don't worry, it's easy to sort this out quickly.";
         $int11 = 1;
-        $string3 = "Add Credit";
-    case 47 :
+        $string3 = "Click Here";
+        $int13 = 0;
+    case 47, 51 :
         $string2 = "You need to validate your email address to log in.";
     case 48 :
         $string2 = "Your game session has now ended.<br><br>To play again, please close your browser tab/window and wait 5 minutes before reloading the game. ";
+    case 53 :
+        %varclient_200 = login_ban_duration;
+        $int15, $int16, $int17 = ~ban_time_remaining(%varclient_200);
+        $string2 = "Your ban will be lifted in<br><tostring($int15)> hours, <tostring($int16)> minutes, <tostring($int17)> seconds";
+        if_setontimer("script6715", interface_596:com_6);
+    case 50 :
+        $string2 = "The Jagex Account Guardian is protecting this account.<br><br>This device is not recognised.<br><br>No new devices can be added for up to 24 hours as too many failed attempts to answer the security questions have been made.<br><br>During this time access will still be granted to any devices already trusted.";
+        $graphic10 = "loadingwheel,16";
     case default :
         $string2 = "Unexpected server response. Please try using a different world.";
 }

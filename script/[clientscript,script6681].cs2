@@ -1,0 +1,103 @@
+// 6681
+[clientscript,script6681](component $component0)
+def_struct $struct1 = enum(component, struct, enum_6127, $component0);
+def_obj $obj2 = null;
+def_component $component3 = null;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_string $string0 = "";
+def_int $int6 = 0;
+if ($struct1 ! null) {
+    if_sethide(false, $component0);
+    cc_deleteall($component0);
+    cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+    cc_setsize(5, 0, ^setsize_abs, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    cc_setgraphic("aif_make_x_main_button_unavailble,0");
+    cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+    cc_setsize(5, 0, ^setsize_abs, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
+    cc_setgraphic("aif_make_x_main_button_unavailble,2");
+    cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+    cc_setsize(10, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setgraphic("aif_make_x_main_button_unavailble,1");
+    cc_settiling(false);
+    cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+    cc_setsize(5, 0, ^setsize_abs, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    cc_setgraphic("aif_make_x_main_button_unavailble,6");
+    cc_settrans(255);
+    .cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+    .cc_setsize(5, 0, ^setsize_abs, ^setsize_minus);
+    .cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
+    .cc_setgraphic("aif_make_x_main_button_unavailble,8");
+    .cc_settrans(255);
+    .cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+    .cc_setsize(10, 0, ^setsize_minus, ^setsize_minus);
+    .cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    .cc_setgraphic("aif_make_x_main_button_unavailble,7");
+    .cc_settiling(false);
+    .cc_settrans(255);
+    if_setonmouserepeat("script6682(event_com, cc_getid)", $component0);
+    cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+    $obj2, $int5 = struct_param($struct1, param_2633), struct_param($struct1, param_2634);
+    if ($obj2 ! null) {
+        $obj2 = oc_uncert($obj2);
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        cc_setobject_nonum($obj2, 1);
+        $string0 = oc_name($obj2);
+    } else {
+        cc_setsize(34, 34, ^setsize_abs, ^setsize_abs);
+        if (map_lang = 1) {
+            cc_setgraphic("aif_xp_token,2");
+        } else {
+            cc_setgraphic("aif_xp_token,0");
+        }
+        $string0 = "Hunter XP (x5)";
+    }
+    if_setopbase(append("<col=ff9040>", $string0), $component0);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setoutline(1);
+    cc_setgraphicshadow(0x302020);
+    $component3 = if_getlayer($component0);
+    if ($component3 ! null) {
+        cc_create($component3, ^iftype_text, if_getnextsubid($component3));
+        cc_setsize(if_getwidth($component0), calc(if_gety($component0) + if_getheight($component0)), ^setsize_abs, ^setsize_minus);
+        cc_setposition(if_getx($component0), 0, ^setpos_abs_left, ^setpos_abs_bottom);
+        cc_setcolour(0xffcd6c);
+        cc_settextfont(verdana_11pt_regular);
+        cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
+        cc_settextshadow(true);
+        cc_settext(~script940($int5));
+    }
+    $int6 = struct_param($struct1, param_2635);
+    if ($int6 > 0) {
+        .cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+        .cc_setsize(12, 12, ^setsize_abs, ^setsize_abs);
+        .cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setgraphic("km_shopitems,0");
+        if (stat_base(hunter) < $int6) {
+            .cc_sethide(false);
+        } else {
+            .cc_sethide(true);
+        }
+        if_setonstattransmit("script6684(event_com, .cc_getid, $int6){hunter}", $component0);
+        $string0 = append($string0, "<br>Level <col=ff0000><tostring($int6)></col> Hunter is required to catch this creature.");
+    }
+    if ($int5 = 1) {
+        $string0 = append($string0, "<br>1 point");
+    } else {
+        $string0 = append($string0, "<br><tostring_localised($int5, true)> points");
+    }
+    cc_create($component0, ^iftype_rectangle, if_getnextsubid($component0));
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_settrans(255);
+    cc_setonmouserepeat("script4538(interface_1340:com_29, event_com, event_comsubid, $string0, ^max_32bit_int, p11_full, p11_full, null, 10, 2, 0, event_mousex, event_mousey)");
+    cc_setonmouseleave("deltooltip(interface_1340:com_29)");
+    if_setop(1, "Info", $component0);
+    if_setonop("script6686(event_op, $obj2, $int5, $int6, $struct1)", $component0);
+} else {
+    if_sethide(true, $component0);
+}
