@@ -1,0 +1,143 @@
+// 6889
+[clientscript,duel3_confirm_options](component $component0, component $component1, component $component2, component $component3)
+cc_deleteall($component0);
+cc_deleteall($component2);
+def_int $int4 = ~duel3_confirm_addentry(0, $component0, "Boosted stats will be reset.", 0);
+$int4 = ~duel3_confirm_addentry($int4, $component0, "Existing prayers will be stopped.", 0);
+if (%varplayerbit_12261 > 0) {
+    $int4 = ~duel3_confirm_addentry($int4, $component0, "Some worn items will be taken off.", 0);
+}
+if ($int4 > if_getheight($component0)) {
+    if_setscrollsize(0, $int4, $component0);
+    ~script4529($component1, $component0, struct_7337);
+    if_sethide(false, $component1);
+    if_setposition(6, 20, ^setpos_abs_left, ^setpos_abs_top, $component0);
+} else {
+    if_setscrollsize(0, 0, $component0);
+    cc_deleteall($component1);
+    if_sethide(true, $component1);
+    if_setposition(0, 20, ^setpos_abs_centre, ^setpos_abs_top, $component0);
+}
+def_int $int5 = 0;
+def_obj $obj6 = inv_getobj(inv_94, 3);
+if (map_members = true & (inv_total(inv_93, obj_10148) > 0 | $obj6 = obj_10148 | inv_total(inv_93, obj_10147) > 0 | $obj6 = obj_10147 | inv_total(inv_93, obj_10146) > 0 | $obj6 = obj_10146 | inv_total(inv_93, obj_10149) > 0 | $obj6 = obj_10149)) {
+    $int5 = 1;
+}
+def_int $int7 = 0;
+if ($obj6 = obj_19830 | inv_total(inv_93, obj_19830) > 0) {
+    $int7 = 1;
+}
+def_int $int8 = 0;
+if ($obj6 ! null & oc_wearpos2($obj6) = 5) {
+    $int8 = 1;
+} else {
+    $int4 = calc(inv_size(inv_93) - 1);
+    while ($int4 >= 0) {
+        $obj6 = inv_getobj(inv_93, $int4);
+        if ($obj6 ! null & oc_wearpos($obj6) = 3 & oc_wearpos2($obj6) = 5) {
+            $int8, $int4 = 1, 0;
+        }
+        $int4 = calc($int4 - 1);
+    }
+}
+$int4 = 0;
+if (%varplayerbit_12250 = 1) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot forfeit the duel.", %varclient_1453);
+}
+if (%varplayerbit_12251 = 1) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot move.", %varclient_1454);
+}
+def_int $int9 = 0;
+if (%varplayerbit_12252 = 1) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot use Ranged attacks.", %varclient_1455);
+    $int9 = 1;
+} else if ($int7 = 1) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "Ranging is enabled, but <col=ffffff>your sling cannot be used against players</col>.", 0);
+}
+if (%varplayerbit_12253 = 1) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot use melee attacks.", %varclient_1456);
+    $int9 = 1;
+}
+if (%varplayerbit_12254 = 1) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot use Magic attacks.", %varclient_1457);
+    $int9 = 1;
+} else if (%varplayerbit_357 = 2) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "Magical combat is enabled, but you're on the <col=ffffff>Lunar spellbook</col>.", 0);
+}
+if ($int5 = 1 & $int9 = 1) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot use <col=ffffff>salamanders</col>.", 0);
+}
+def_string $string0 = "You can summon familiars.";
+if (%varplayerbit_12262 = 1) {
+    if ($int9 = 1) {
+        $string0 = "You can summon familiars. Melee / Ranged / Magic restrictions <col=ffffff>do not apply</col> to familiars' attacks.";
+    }
+    $int4 = ~duel3_confirm_addentry($int4, $component2, $string0, %varclient_1464);
+}
+if (%varplayerbit_12260 = 1) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot use special attacks.", %varclient_1463);
+}
+if (%varplayerbit_12259 = 1) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You can only attack with 'fun' weapons.", %varclient_1462);
+}
+if (%varplayerbit_12255 = 1) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot use drinks.", %varclient_1458);
+}
+if (%varplayerbit_12256 = 1) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot use food.", %varclient_1459);
+}
+if (%varplayerbit_12257 = 1) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot use Prayer.", %varclient_1460);
+}
+if (%varplayerbit_12258 = 1) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "There will be obstacles in the arena.", %varclient_1461);
+}
+if (testbit(%varplayerbit_12261, 0) = ^true) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot wear items on your head.", %varclient_1465);
+}
+if (testbit(%varplayerbit_12261, 1) = ^true) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot wear items on your back, such as capes.", %varclient_1466);
+}
+if (testbit(%varplayerbit_12261, 2) = ^true) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot wear items on your front, such as amulets.", %varclient_1467);
+}
+if (testbit(%varplayerbit_12261, 3) = ^true) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot wield items in your right hand.", %varclient_740);
+}
+if (testbit(%varplayerbit_12261, 4) = ^true) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot wear items on your torso.", %varclient_745);
+}
+if (testbit(%varplayerbit_12261, 5) = ^true) {
+    if ($int8 = 1) {
+        $string0 = "You cannot wield items in your left hand <col=ffffff>or use 2-handed weapons, such as bows</col>.";
+    } else {
+        $string0 = "You cannot wield items in your left hand or use 2-handed weapons.";
+    }
+    $int4 = ~duel3_confirm_addentry($int4, $component2, $string0, %varclient_780);
+}
+if (testbit(%varplayerbit_12261, 7) = ^true) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot wear items on your legs.", %varclient_781);
+}
+if (testbit(%varplayerbit_12261, 9) = ^true) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot wear items on your hands.", %varclient_782);
+}
+if (testbit(%varplayerbit_12261, 10) = ^true) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot wear items on your feet.", %varclient_789);
+}
+if (testbit(%varplayerbit_12261, 12) = ^true) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot use your ring slot.", %varclient_1409);
+}
+if (testbit(%varplayerbit_12261, 13) = ^true) {
+    $int4 = ~duel3_confirm_addentry($int4, $component2, "You cannot use your quiver.", %varclient_1410);
+}
+if ($int4 > if_getheight($component2)) {
+    if_setscrollsize(0, $int4, $component2);
+    ~script4529($component3, $component2, struct_7337);
+    if_sethide(false, $component3);
+    if_setposition(6, 20, ^setpos_abs_left, ^setpos_abs_top, $component2);
+} else {
+    if_setscrollsize(0, 0, $component2);
+    cc_deleteall($component3);
+    if_sethide(true, $component3);
+    if_setposition(0, 20, ^setpos_abs_centre, ^setpos_abs_top, $component2);
+}
