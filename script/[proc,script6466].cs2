@@ -81,6 +81,13 @@ if ($graphic5 = graphic_11901 & struct_param($struct0, param_2531) ! 1) {
 cc_setonop("script6480(event_com, event_comsubid)");
 cc_setonmouseover("cc_graphic_swapper(event_com, cc_getid, $graphic6)");
 cc_setonmouseleave("cc_graphic_swapper(event_com, cc_getid, $graphic5)");
+if (struct_param($struct0, param_2531) = 2 & struct_param($struct0, param_2532) = 15) {
+    if (~script4174($struct0) = 1 | ~script4175($struct0) = obj_9813 | ~script4175($struct0) = obj_9814 | ~script4175($struct0) = obj_20769 | ~script4175($struct0) = obj_20770 | ~script4175($struct0) = obj_20771 | ~script4175($struct0) = obj_20772) {
+        cc_setop(3, "Reclaim-item");
+    } else {
+        cc_setop(3, "");
+    }
+}
 def_string $string0 = "";
 def_enum $enum14 = null;
 if (struct_param($struct0, param_2531) = 1) {
@@ -93,6 +100,15 @@ if (struct_param($struct0, param_2531) = 1) {
         $string0 = struct_param(enum(int, struct, $enum14, struct_param($struct0, param_2772)), param_792);
     } else if (struct_param($struct0, param_2532) = 2 | struct_param($struct0, param_2532) = 5) {
         $string0 = enum(int, string, enum_2340, struct_param($struct0, param_2772));
+    }
+} else if (struct_param($struct0, param_2532) = 15) {
+    if (~script4175($struct0) = null) {
+        $string0 = struct_param($struct0, param_2533);
+    } else {
+        $string0 = "Cosmetic <oc_name(~script4175($struct0))>";
+        if (string_length($string0) > 27) {
+            $string0 = "<substring($string0, 0, 24)>...";
+        }
     }
 } else {
     $string0 = struct_param($struct0, param_2533);
