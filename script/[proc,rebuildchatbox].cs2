@@ -8,7 +8,7 @@ def_int $int4 = 1;
 if (%varclient_41 = 3) {
     $int2 = 1;
 }
-cc_deleteall(interface_137:com_57);
+cc_deleteall(interface_137:com_58);
 def_int $int5 = -1;
 def_int $int6 = ~script4467;
 def_int $int7 = -1;
@@ -32,13 +32,13 @@ if (getwindowmode >= 2) {
     $rgb12 = ^white;
     $string4 = "<col=ffffff>";
     $boolean13 = true;
-    $rgb10 = enum(int, int, enum_3724, %varplayerbit_3612);
-    $rgb9 = enum(int, int, enum_3723, %varplayerbit_9188);
-    $rgb11 = enum(int, int, enum_3726, %varplayerbit_9191);
+    $rgb10 = enum(int, int, enum_3724, %varplayerbit_1188);
+    $rgb9 = enum(int, int, enum_3723, %varplayerbit_1190);
+    $rgb11 = enum(int, int, enum_3726, %varplayerbit_1191);
 } else {
-    $rgb10 = enum(int, int, enum_3724, %varplayerbit_3612);
-    $rgb9 = enum(int, int, enum_3723, %varplayerbit_9188);
-    $rgb11 = enum(int, int, enum_3726, %varplayerbit_9191);
+    $rgb10 = enum(int, int, enum_3724, %varplayerbit_1188);
+    $rgb9 = enum(int, int, enum_3723, %varplayerbit_1190);
+    $rgb11 = enum(int, int, enum_3726, %varplayerbit_1191);
 }
 def_int $int14 = 0;
 def_int $int15 = 0;
@@ -48,11 +48,11 @@ def_int $int18 = 0;
 def_int $int19 = 0;
 def_int $int20 = 2;
 def_int $int21 = 2;
-if_setnoclickthrough(~int_to_bool(%varclient_1701), interface_746:com_62);
-if_setnoclickthrough(~int_to_bool(%varclient_1701), interface_548:com_170);
+if_setnoclickthrough(~int_to_bool(%varclient_1701), interface_746:com_24);
+if_setnoclickthrough(~int_to_bool(%varclient_1701), interface_548:com_16);
 while ($int18 < 100) {
     if (~panetest($int18) = true & ~filtertest($int18, $int2) = true) {
-        cc_create(interface_137:com_57, ^iftype_text, $int14);
+        cc_create(interface_137:com_58, ^iftype_text, $int14);
         $int15 = $int14;
         $int16 = 1;
         $int14 = calc($int14 + 1);
@@ -63,7 +63,7 @@ while ($int18 < 100) {
         cc_settextshadow($boolean13);
         cc_setposition(3, $int21, ^setpos_abs_left, ^setpos_abs_bottom);
         switch_int ($chattype17) {
-            case ^chattype_gamemessage, ^chattype_engine, ^chattype_obj_examine, ^chattype_npc_examine, ^chattype_loc_examine, ^chattype_friendschatnotification, ^chattype_clanmessage, ^chattype_trade_notification, ^chattype_ignorable_trade_notification, ^chattype_assist_notification, ^chattype_spam, 110, ^chattype_snapshotfeedback, ^chattype_friendnotification, ^chattype_ignorenotification, ^chattype_all_panes, 121 :
+            case ^chattype_gamemessage, ^chattype_engine, ^chattype_obj_examine, ^chattype_npc_examine, ^chattype_loc_examine, ^chattype_friendschatnotification, ^chattype_clanmessage, ^chattype_trade_notification, ^chattype_ignorable_trade_notification, ^chattype_assist_notification, ^chattype_spam, 110, ^chattype_snapshotfeedback, ^chattype_friendnotification, ^chattype_ignorenotification, ^chattype_all_panes, 121, ^chattype_raid_high, ^chattype_raid_dnd :
                 cc_settext(chat_gethistorymessage($int18));
                 if ($int3 = 1 & ($chattype17 = ^chattype_gamemessage | $chattype17 = ^chattype_engine | $chattype17 = ^chattype_obj_examine | $chattype17 = ^chattype_npc_examine | $chattype17 = ^chattype_loc_examine | $chattype17 = ^chattype_snapshotfeedback | $chattype17 = ^chattype_friendnotification | $chattype17 = ^chattype_ignorenotification)) {
                     %varclient_1269 = chat_getprevuid($int18);
@@ -105,13 +105,13 @@ while ($int18 < 100) {
             case ^chattype_rated_clan_war :
                 cc_settext("<col=7e3200><chat_gethistoryname($int18)> <chat_gethistorymessage($int18)>");
             case ^chattype_quickchat_public :
-                if (compare(removetags(chat_playername_unfiltered), removetags(chat_gethistoryname($int18))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int18)) > 0) {
+                if (compare(removetags(chat_playername), removetags(chat_gethistoryname($int18))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int18)) > 0) {
                     cc_settext("<chat_gethistoryname($int18)><img=3>: <$string0><chat_gethistorymessage($int18)>");
                 } else {
                     cc_settext("<chat_gethistoryname($int18)>: <$string0><chat_gethistorymessage($int18)>");
                 }
             case ^chattype_quickchat_private_incoming :
-                if (compare(removetags(chat_playername_unfiltered), removetags(chat_gethistoryname($int18))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int18)) > 0) {
+                if (compare(removetags(chat_playername), removetags(chat_gethistoryname($int18))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int18)) > 0) {
                     cc_settext("From <chat_gethistoryname($int18)><img=3>: <$string1><chat_gethistorymessage($int18)>");
                 } else {
                     cc_settext("From <chat_gethistoryname($int18)>: <$string1><chat_gethistorymessage($int18)>");
@@ -120,21 +120,21 @@ while ($int18 < 100) {
                 cc_settext("To <chat_gethistoryname($int18)>: <$string1><chat_gethistorymessage($int18)>");
             case ^chattype_quickchat_clanchat :
                 cc_setcolour($rgb10);
-                if (compare(removetags(chat_playername_unfiltered), removetags(chat_gethistoryname($int18))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int18)) > 0) {
+                if (compare(removetags(chat_playername), removetags(chat_gethistoryname($int18))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int18)) > 0) {
                     cc_settext("<$string4>[</col><$string0><chat_gethistoryclan($int18)></col><$string4>] <chat_gethistoryname($int18)><img=3>: </col><chat_gethistorymessage($int18)>");
                 } else {
                     cc_settext("<$string4>[</col><$string0><chat_gethistoryclan($int18)></col><$string4>] <chat_gethistoryname($int18)>: </col><chat_gethistorymessage($int18)>");
                 }
             case ^chattype_quickchat_clanguestchat :
                 cc_setcolour($rgb11);
-                if (compare(removetags(chat_playername_unfiltered), removetags(chat_gethistoryname($int18))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int18)) > 0) {
+                if (compare(removetags(chat_playername), removetags(chat_gethistoryname($int18))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int18)) > 0) {
                     cc_settext("<$string4>[</col><$string0><chat_gethistoryclan($int18)></col><$string4>] <chat_gethistoryname($int18)><img=3>: </col><chat_gethistorymessage($int18)>");
                 } else {
                     cc_settext("<$string4>[</col><$string0><chat_gethistoryclan($int18)></col><$string4>] <chat_gethistoryname($int18)>: </col><chat_gethistorymessage($int18)>");
                 }
             case ^chattype_quickchat_friend_chat :
                 cc_setcolour($rgb9);
-                if (compare(removetags(chat_playername_unfiltered), removetags(chat_gethistoryname($int18))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int18)) > 0) {
+                if (compare(removetags(chat_playername), removetags(chat_gethistoryname($int18))) ! 0 & chatphrase_getautoresponsecount(chat_gethistoryphrase($int18)) > 0) {
                     cc_settext("<$string4>[</col><$string0><chat_gethistoryclan($int18)></col><$string4>] <chat_gethistoryname($int18)><img=3>: </col><chat_gethistorymessage($int18)>");
                 } else {
                     cc_settext("<$string4>[</col><$string0><chat_gethistoryclan($int18)></col><$string4>] <chat_gethistoryname($int18)>: </col><chat_gethistorymessage($int18)>");
@@ -155,7 +155,7 @@ while ($int18 < 100) {
         cc_setopbase("<col=ffffff><removetags(chat_gethistoryname($int18))>");
         switch_int ($chattype17) {
             case ^chattype_modchat, ^chattype_publicchat, ^chattype_privatechat, ^chattype_modprivatechat, ^chattype_clanchat, ^chattype_clanguestchat, ^chattype_friendschat, ^chattype_privatechatout :
-                if (compare(removetags(chat_playername_unfiltered), removetags(chat_gethistoryname($int18))) = 0 | compare(removetags(chat_playername), removetags(chat_gethistoryname($int18))) = 0) {
+                if (compare(removetags(chat_playername), removetags(chat_gethistoryname($int18))) = 0 | compare(removetags(chat_playername_unfiltered), removetags(chat_gethistoryname($int18))) = 0) {
                 } else {
                     if (friend_test(unknown_command_5019($int18)) = true) {
                         if (map_quickchat = false & userdetail_quickchat = false) {
@@ -165,7 +165,7 @@ while ($int18 < 100) {
                         cc_setop(6, "Add friend");
                         cc_setop(7, "Add ignore");
                     }
-                    if (%varplayerbit_9982 = 1) {
+                    if (%varplayerbit_16564 = 1) {
                         cc_setop(8, "Report");
                     }
                     if ($chattype17 = ^chattype_clanchat & $int6 = 1) {
@@ -186,7 +186,7 @@ while ($int18 < 100) {
             case 112 :
                 cc_setop(3, "Vote");
             case ^chattype_quickchat_public, ^chattype_quickchat_private_incoming, ^chattype_quickchat_clanchat, ^chattype_quickchat_clanguestchat, ^chattype_quickchat_friend_chat :
-                if (compare(removetags(chat_playername_unfiltered), removetags(chat_gethistoryname($int18))) = 0 | compare(removetags(chat_playername), removetags(chat_gethistoryname($int18))) = 0) {
+                if (compare(removetags(chat_playername), removetags(chat_gethistoryname($int18))) = 0 | compare(removetags(chat_playername_unfiltered), removetags(chat_gethistoryname($int18))) = 0) {
                 } else {
                     if (friend_test(unknown_command_5019($int18)) = true) {
                         if (map_quickchat = false & userdetail_quickchat = false) {
@@ -205,7 +205,7 @@ while ($int18 < 100) {
                     if (chatphrase_getautoresponsecount(chat_gethistoryphrase($int18)) > 0) {
                         if (%varclient_132 = null) {
                             %varclient_132 = chat_gethistoryphrase($int18);
-                            %varclientstring_29 = chat_gethistoryname($int18);
+                            %varclient_2514 = chat_gethistoryname($int18);
                             if ($chattype17 = ^chattype_quickchat_friend_chat) {
                                 %varclient_133 = 6;
                                 cc_setop(9, "Quick Response");
@@ -242,11 +242,11 @@ while ($int18 < 100) {
     if ($int4 = 1) {
         switch_int (chat_gethistorytype($int18)) {
             case ^chattype_privatechat, ^chattype_modprivatechat, ^chattype_quickchat_private_incoming :
-                %varclientstring_276 = removetags(unknown_command_5019($int18));
+                %varclient_2505 = removetags(unknown_command_5019($int18));
                 $int4 = 0;
         }
     }
-    if (cc_find(interface_137:com_57, $int15) = true & $int16 = 1) {
+    if (cc_find(interface_137:com_58, $int15) = true & $int16 = 1) {
         $int19 = max(paraheight(cc_gettext, 484, cc_getfontmetrics), 1);
         cc_setsize(max(min(parawidth(cc_gettext, 484, cc_getfontmetrics), 484), 1), calc(14 * $int19), ^setsize_abs, ^setsize_abs);
         $int20 = calc($int20 + cc_getheight);
@@ -254,16 +254,16 @@ while ($int18 < 100) {
     }
     $int18 = calc($int18 + 1);
 }
-$int20 = max($int20, if_getheight(interface_137:com_57));
-if_setscrollsize(463, $int20, interface_137:com_57);
+$int20 = max($int20, if_getheight(interface_137:com_58));
+if_setscrollsize(463, $int20, interface_137:com_58);
 if (getwindowmode >= 2) {
-    ~script5509(interface_137:com_58, interface_137:com_57, calc(%varclient_7 + if_getscrollheight(interface_137:com_57) - %varclient_8));
+    ~script5509(interface_137:com_59, interface_137:com_58, calc(%varclient_7 + if_getscrollheight(interface_137:com_58) - %varclient_8));
 } else {
-    ~scrollbar_resize(interface_137:com_58, interface_137:com_57, calc(%varclient_7 + if_getscrollheight(interface_137:com_57) - %varclient_8));
+    ~scrollbar_resize(interface_137:com_59, interface_137:com_58, calc(%varclient_7 + if_getscrollheight(interface_137:com_58) - %varclient_8));
 }
-%varclient_7 = if_getscrolly(interface_137:com_57);
-%varclient_8 = if_getscrollheight(interface_137:com_57);
-if_setnoclickthrough(true, interface_746:com_62);
+%varclient_7 = if_getscrolly(interface_137:com_58);
+%varclient_8 = if_getscrollheight(interface_137:com_58);
+if_setnoclickthrough(true, interface_746:com_24);
 if (getwindowmode >= 2 & %varclient_1701 = 1) {
-    if_setnoclickthrough(false, interface_746:com_62);
+    if_setnoclickthrough(false, interface_746:com_24);
 }

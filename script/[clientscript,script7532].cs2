@@ -1,0 +1,51 @@
+// 7532
+[clientscript,script7532](component $component0, component $component1)
+~script4534(interface_1394:com_14);
+~script4510(interface_1394:com_22, struct_2816);
+~script4510(interface_1394:com_23, struct_2817);
+~script4510(interface_1394:com_24, struct_2818);
+~script4510(interface_1394:com_25, struct_2820);
+~script3984(interface_1394:com_27, struct_7252);
+if_sethide(true, interface_1394:com_12);
+if_setonclick("script7540(1)", interface_1394:com_17);
+def_enum $enum2 = null;
+if (~inzone(0_53_55_0_0, 3_53_55_63_63, coord) = true) {
+    $enum2 = enum_7320;
+}
+cc_deleteall($component0);
+cc_deleteall($component1);
+if_setscrollpos(0, 0, $component0);
+if ($enum2 = null) {
+    return;
+}
+def_int $int3 = calc(if_getwidth($component0) / 2);
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_struct $struct6 = enum(int, struct, $enum2, $int5);
+while ($struct6 ! null) {
+    cc_create($component0, ^iftype_rectangle, $int5);
+    cc_setsize($int3, 75, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settrans(255);
+    cc_setop(1, "Select");
+    if (calc($int5 % 2) = 0) {
+        cc_setontimer("script7533($component0, $int5, $int4, ^setpos_abs_left, $enum2, $struct6)");
+    } else {
+        cc_setontimer("script7533($component0, $int5, $int4, ^setpos_abs_right, $enum2, $struct6)");
+    }
+    $int5 = calc($int5 + 1);
+    $struct6 = enum(int, struct, $enum2, $int5);
+    if ($struct6 ! null) {
+        if (calc($int5 % 2) = 0) {
+            $int4 = calc($int4 + cc_getheight);
+        }
+    } else {
+        $int4 = calc($int4 + cc_getheight);
+    }
+}
+if ($int4 > if_getheight($component0)) {
+    if_setscrollsize(0, $int4, $component0);
+} else {
+    if_setscrollsize(0, 0, $component0);
+}
+~script4529($component1, $component0, struct_7337);

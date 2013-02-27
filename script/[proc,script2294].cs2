@@ -1,14 +1,25 @@
 // 2294
 [proc,script2294](int $int0)(int)
-if (%varplayerbit_6840 = 1) {
-    if (struct_param(enum(int, struct, enum_863, $int0), param_739) = true) {
-        return(1);
-    } else {
-        return(0);
+def_enum $enum1 = enum_6759;
+if (%varplayerbit_16789 = 1) {
+    $enum1 = enum_6760;
+}
+def_struct $struct2 = enum(int, struct, $enum1, $int0);
+def_int $int3 = 1;
+if (struct_param($struct2, param_2961) = 1) {
+    if (stat_base(prayer) >= struct_param($struct2, param_2965)) {
+        $int3 = 2;
+    }
+    if (stat_base(prayer) >= struct_param($struct2, param_2967)) {
+        $int3 = 3;
+    }
+    switch_int ($int3) {
+        case 1 :
+            $struct2 = struct_param($struct2, param_2964);
+        case 2 :
+            $struct2 = struct_param($struct2, param_2966);
+        case 3 :
+            $struct2 = struct_param($struct2, param_2968);
     }
 }
-if (struct_param(enum(int, struct, enum_2279, $int0), param_739) = true) {
-    return(1);
-} else {
-    return(0);
-}
+return(struct_param($struct2, param_2809));

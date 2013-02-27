@@ -1,0 +1,48 @@
+// 7502
+[clientscript,script7502]
+def_int $int0 = 0;
+def_obj $obj1 = null;
+def_graphic $graphic2 = null;
+def_int $int3 = 0;
+%varclient_2706 = false;
+%varclient_2707 = 0;
+while ($int0 < 28) {
+    switch_obj (inv_getobj(inv_93, $int0)) {
+        case obj_27338, obj_27339, obj_27340, obj_27341, obj_27342, obj_27343, obj_27344, obj_27345, obj_27346, obj_27347, obj_27348 :
+            $obj1 = inv_getobj(inv_93, $int0);
+            $int3 = 1;
+        case default :
+            $int3 = 0;
+    }
+    if ($int3 = 1) {
+        %varclient_2705 = 3;
+        $graphic2 = ~script7503($obj1);
+        switch_int (%varclient_2707) {
+            case 0 :
+                if_setgraphic($graphic2, interface_1389:com_9);
+                if_setgraphic(~script7504($graphic2), interface_1389:com_15);
+                if_settext(~script7505($graphic2), interface_1389:com_5);
+                if_settext(~script7515($graphic2), interface_1389:com_50);
+            case 1 :
+                if_setgraphic($graphic2, interface_1389:com_8);
+                if_sethide(false, interface_1389:com_8);
+            case 2 :
+                if_setgraphic($graphic2, interface_1389:com_10);
+                if_sethide(false, interface_1389:com_10);
+            case 3 :
+                if_setgraphic($graphic2, interface_1389:com_7);
+                if_sethide(false, interface_1389:com_7);
+            case 4 :
+                if_setgraphic($graphic2, interface_1389:com_11);
+                if_sethide(false, interface_1389:com_11);
+        }
+        %varclient_2707 = calc(%varclient_2707 + 1);
+        $int3 = 0;
+    }
+    $int0 = calc($int0 + 1);
+}
+if (%varclient_2710 = 0) {
+    if_setontimer("script7512(15, 0)", interface_1389:com_25);
+} else {
+    if_setontimer("script7512(%varclient_2710, 0)", interface_1389:com_25);
+}

@@ -1,0 +1,161 @@
+// 7298
+[proc,script7298]
+cc_deleteall(interface_1276:com_91);
+cc_deleteall(interface_1276:com_90);
+def_int $int0 = 0;
+def_obj $obj1 = null;
+def_int $int2 = 0;
+def_string $string0 = "";
+def_int $int3 = -1;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = -1;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_graphic $graphic9 = null;
+def_int $int10 = -1;
+while ($int0 < inv_size(inv_677)) {
+    $obj1 = inv_getobj(inv_677, $int0);
+    $int2 = ~script7311($int0);
+    switch_int ($int2) {
+        case 1 :
+            $int6 = %varplayerbit_17155;
+        case 2 :
+            $int6 = %varplayerbit_17168;
+        case 3 :
+            $int6 = %varplayerbit_17181;
+        case 4 :
+            $int6 = %varplayerbit_17194;
+        case 5 :
+            $int6 = %varplayerbit_17207;
+    }
+    if ($int2 > 0 & testbit(%varplayer_3404, $int0) = ^true) {
+        $string0 = "<col=f7edb7><tostring($int2)>";
+    } else {
+        $string0 = "<col=f7edb7>-";
+    }
+    if ($obj1 ! null) {
+        $int10 = ~script7317(inv_677, $int0);
+        if (enum_hasoutput(obj, enum_2173, $obj1) = true) {
+            cc_create(interface_1276:com_91, ^iftype_graphic, $int0);
+            cc_setgraphic(oc_param($obj1, param_3080));
+            cc_setsize(35, 35, ^setsize_abs, ^setsize_abs);
+            cc_setposition(18, calc(14 + $int5 * 55), ^setpos_abs_left, ^setpos_abs_top);
+            cc_setop(1, "Info");
+            cc_setop(2, "Dismiss");
+            cc_setonop("script7301");
+            cc_create(interface_1276:com_89, ^iftype_graphic, $int0);
+            if (%varplayerbit_17147 = $int0) {
+                cc_setgraphic("aif_pop_captain_icon_holder,2");
+            } else {
+                cc_setgraphic("aif_pop_captain_icon_holder,0");
+                $graphic9 = "aif_pop_captain_icon_holder,1";
+                cc_setonmouseover("cc_graphic_swapper(event_com, cc_getid, $graphic9)");
+                $graphic9 = "aif_pop_captain_icon_holder,0";
+                cc_setonmouseleave("cc_graphic_swapper(event_com, cc_getid, $graphic9)");
+            }
+            cc_setsize(55, 55, ^setsize_abs, ^setsize_abs);
+            cc_setposition(8, calc(4 + $int5 * 55), ^setpos_abs_left, ^setpos_abs_top);
+            cc_create(interface_1276:com_92, ^iftype_graphic, $int0);
+            cc_setgraphic(aif_pop_ship_number_holder);
+            cc_setsize(21, 21, ^setsize_abs, ^setsize_abs);
+            cc_setposition(9, calc(6 + $int5 * 55), ^setpos_abs_left, ^setpos_abs_top);
+            cc_create(interface_1276:com_93, ^iftype_text, $int0);
+            cc_setsize(21, 21, ^setsize_abs, ^setsize_abs);
+            cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+            cc_settextfont(p11_full);
+            cc_settext($string0);
+            cc_setposition(9, calc(7 + $int5 * 55), ^setpos_abs_left, ^setpos_abs_top);
+            cc_create(interface_1276:com_94, ^iftype_text, $int0);
+            cc_setsize(12, 12, ^setsize_abs, ^setsize_abs);
+            cc_settextfont(p11_full);
+            cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+            cc_settext(tostring($int10));
+            cc_setcolour(^white);
+            cc_settextshadow(true);
+            cc_setposition(40, calc(38 + $int5 * 55), ^setpos_abs_left, ^setpos_abs_top);
+            $int5 = calc($int5 + 1);
+        } else {
+            cc_create(interface_1276:com_91, ^iftype_graphic, $int0);
+            cc_setgraphic(oc_param($obj1, param_3080));
+            cc_setsize(35, 35, ^setsize_abs, ^setsize_abs);
+            $int8 = calc($int4 % 5);
+            $int7 = calc($int4 / 5);
+            cc_setposition(calc(74 + $int8 * 52), calc(14 + $int7 * 55), ^setpos_abs_left, ^setpos_abs_top);
+            cc_setop(1, "Info");
+            cc_setop(2, "Dismiss");
+            cc_setonop("script7301");
+            cc_create(interface_1276:com_89, ^iftype_graphic, $int0);
+            if (%varplayerbit_17147 = $int0) {
+                cc_setgraphic("aif_pop_crew_icon_holder,2");
+                cc_setonmouseover(null);
+                cc_setonmouseleave(null);
+            } else {
+                cc_setgraphic("aif_pop_crew_icon_holder,0");
+                $graphic9 = "aif_pop_crew_icon_holder,1";
+                cc_setonmouseover("cc_graphic_swapper(event_com, cc_getid, $graphic9)");
+                $graphic9 = "aif_pop_crew_icon_holder,0";
+                cc_setonmouseleave("cc_graphic_swapper(event_com, cc_getid, $graphic9)");
+            }
+            cc_setsize(45, 45, ^setsize_abs, ^setsize_abs);
+            cc_setposition(calc(69 + $int8 * 52), calc(9 + $int7 * 55), ^setpos_abs_left, ^setpos_abs_top);
+            cc_create(interface_1276:com_92, ^iftype_graphic, $int0);
+            cc_setgraphic(aif_pop_ship_number_holder);
+            cc_setsize(21, 21, ^setsize_abs, ^setsize_abs);
+            cc_setposition(calc(65 + $int8 * 52), calc(6 + $int7 * 55), ^setpos_abs_left, ^setpos_abs_top);
+            cc_create(interface_1276:com_93, ^iftype_text, $int0);
+            cc_setsize(21, 21, ^setsize_abs, ^setsize_abs);
+            cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+            cc_settextfont(p11_full);
+            cc_settext($string0);
+            cc_setposition(calc(65 + $int8 * 52), calc(7 + $int7 * 55), ^setpos_abs_left, ^setpos_abs_top);
+            cc_create(interface_1276:com_94, ^iftype_text, $int0);
+            cc_setsize(12, 12, ^setsize_abs, ^setsize_abs);
+            cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+            cc_settextfont(p11_full);
+            cc_settext(tostring($int10));
+            cc_setcolour(^white);
+            cc_settextshadow(true);
+            cc_setposition(calc(96 + $int8 * 52), calc(38 + $int7 * 55), ^setpos_abs_left, ^setpos_abs_top);
+            $int4 = calc($int4 + 1);
+        }
+    } else {
+        cc_create(interface_1276:com_91, ^iftype_graphic, $int0);
+        cc_create(interface_1276:com_89, ^iftype_graphic, $int0);
+        cc_create(interface_1276:com_92, ^iftype_graphic, $int0);
+        cc_create(interface_1276:com_93, ^iftype_text, $int0);
+        cc_create(interface_1276:com_94, ^iftype_text, $int0);
+    }
+    $int0 = calc($int0 + 1);
+}
+$int0 = 0;
+while ($int0 < inv_size(inv_678)) {
+    ~script7308($int0);
+    $int0 = calc($int0 + 1);
+}
+def_int $int11 = 0;
+def_int $int12 = 0;
+$int11, $int12 = ~script4187;
+def_string $string1 = "";
+if ($int11 = 0) {
+    $string1 = "<tostring($int12)>m";
+} else {
+    $string1 = "<tostring($int11)>h";
+}
+if (%varplayerbit_17461 > 0) {
+    if_settext("Rerolls available: <tostring(%varplayerbit_17461)>", interface_1276:com_109);
+} else {
+    if_settext("New crew in <$string1>", interface_1276:com_109);
+}
+if_settext("Add 5 Rerolls (<tostring(%varplayerbit_17420)>)", interface_1276:com_183);
+if (%varplayerbit_17420 < 1 | %varplayerbit_17461 > 10) {
+    if_sethide(false, interface_1276:com_181);
+} else {
+    if_sethide(true, interface_950:com_368);
+}
+if (%varplayerbit_17495 < 63) {
+    if_sethide(true, interface_1276:com_110);
+    if_sethide(true, interface_1276:com_65);
+    if_sethide(true, interface_1276:com_98);
+    if_sethide(true, interface_1276:com_57);
+}

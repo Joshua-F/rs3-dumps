@@ -5,39 +5,35 @@
 def_boolean $boolean1 = ~script3228(7, 0, 0);
 def_boolean $boolean2 = ~script3228(8, 0, 0);
 def_int $int3 = 1;
-if (compare(%varclientstring_124, %varclientstring_125) ! 0 & string_length(%varclientstring_124) > 0 & string_length(%varclientstring_125) > 0) {
-    ~create_error("Please ensure both passwords match.", interface_673:com_73);
+if (compare(%varclient_2559, %varclient_2560) ! 0 & string_length(%varclient_2559) > 0 & string_length(%varclient_2560) > 0) {
+    ~create_error("Please ensure both passwords match.", interface_673:com_74);
     $int3 = 0;
 }
 def_int $int4 = 1;
-if (string_length(%varclientstring_122) <= 0) {
-    ~create_error("Please enter your Email address here.", interface_673:com_93);
+if (string_length(%varclient_2555) <= 0) {
+    ~create_error("Please enter your Email address here.", interface_673:com_94);
     $int4 = 0;
 }
-if (~create_check_email(%varclientstring_122) = false) {
-    ~create_error("Please enter a valid Email address.", interface_673:com_93);
+if (~create_check_email(%varclient_2555) = false) {
+    ~create_error("Please enter a valid Email address.", interface_673:com_94);
     $int4 = 0;
 }
 def_int $int5 = 1;
-if (string_length(%varclientstring_326) <= 0) {
-    ~create_error("Please enter your Email address again here.", interface_673:com_112);
+if (string_length(%varclient_2556) <= 0) {
+    ~create_error("Please enter your Email address again here.", interface_673:com_113);
     $int5 = 0;
 }
-if (compare(%varclientstring_122, %varclientstring_326) ! 0) {
-    ~create_error("Please ensure both Email addresses match.", interface_673:com_112);
+if (compare(%varclient_2555, %varclient_2556) ! 0) {
+    ~create_error("Please ensure both Email addresses match.", interface_673:com_113);
     $int5 = 0;
 }
 def_boolean $boolean6 = ~script3954(0);
 if ($int4 = 1 & $int5 = 1 & $boolean1 = true & $boolean2 = true & $int3 = 1 & $boolean6 = true) {
-    if (%varclient_1407 < 13) {
+    if (%varclient_1407 < 13 & create_under13 = false) {
         create_setunder13;
-        ~script4038;
-    } else if (create_under13 = true) {
-        ~script4038;
-    } else {
-        create_createrequest(%varclientstring_122, %varclientstring_124, %varclient_1407, %varclient_1411);
-        if_setontimer("script3220", interface_673:com_26);
     }
+    create_createrequest(%varclient_2555, %varclient_2559, %varclient_1407, %varclient_1411);
+    if_setontimer("script3220", interface_673:com_26);
 } else {
     ~script3208(0);
 }

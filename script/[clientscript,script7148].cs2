@@ -1,0 +1,28 @@
+// 7148
+[clientscript,script7148](int $int0)
+if (%varplayerbit_1002 = 0) {
+    return;
+}
+def_int $int1 = %varplayerbit_1003;
+switch_int ($int0) {
+    case 0 :
+        %varplayerbit_1003 = min(%varplayerbit_1002, calc(%varplayerbit_1003 + 1));
+    case 1 :
+        %varplayerbit_1003 = max(1, calc(%varplayerbit_1003 - 1));
+}
+def_vorbis $vorbis2 = null;
+if ($int1 ! %varplayerbit_1003) {
+    ~script7147;
+    ~script7152;
+    ~script7153(interface_1371:com_4, 10);
+    ~script7153(interface_1371:com_5, 30);
+    switch_int (random(3)) {
+        case 0 :
+            $vorbis2 = vorbis_21248;
+        case 1 :
+            $vorbis2 = vorbis_21256;
+        case 2 :
+            $vorbis2 = vorbis_21256;
+    }
+    sound_vorbis_rate($vorbis2, 1, 0, 20, random_sound_pitch(5, 10));
+}

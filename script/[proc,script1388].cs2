@@ -1,23 +1,26 @@
 // 1388
 [proc,script1388](component $component0)
 cc_deleteall($component0);
-cc_deleteall(interface_271:com_6);
+cc_deleteall(interface_271:com_8);
 def_int $int1 = 5;
 def_int $int2 = 15;
 def_int $int3 = 15;
 def_int $int4 = 0;
 def_int $int5 = 6;
 def_int $int6 = 28;
-def_int $int7 = 30;
-if (%varplayerbit_6840 = 1) {
-    $int7 = 20;
+def_enum $enum7 = enum_6759;
+if (%varplayerbit_16789 = 1) {
+    $enum7 = enum_6760;
 }
-while ($int4 < $int7) {
+def_int $int8 = enum_getoutputcount($enum7);
+def_struct $struct9 = null;
+while ($int4 < $int8) {
     cc_create($component0, ^iftype_graphic, $int4);
     cc_setsize($int2, $int3, ^setsize_abs, ^setsize_abs);
     cc_settiling(true);
     cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
-    if (~script2297($int4) = 0) {
+    $struct9 = enum(int, struct, $enum7, $int4);
+    if (~script7168($struct9) = 0) {
         cc_setop(1, "Select<col=ff9040>");
         cc_setgraphic("miscgraphics,10");
     } else {
@@ -25,9 +28,8 @@ while ($int4 < $int7) {
         cc_setgraphic("miscgraphics,11");
     }
     cc_setonop("script2290(event_com, event_comsubid)");
-    cc_setonvartransmit("script2291(event_com, event_comsubid){varplayer_1397, varplayer_1587}");
-    $int4 = calc($int4 + 1);
-    if (calc($int4 % $int1) = 0) {
+    cc_setonvartransmit("script2291(event_com, event_comsubid){varplayer_1770, varplayer_1768}");
+    if (calc(++$int4 % $int1) = 0) {
         $int5 = 6;
         $int6 = calc($int6 + 35);
     } else {

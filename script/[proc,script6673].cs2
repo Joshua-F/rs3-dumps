@@ -1,42 +1,45 @@
 // 6673
 [proc,script6673](int $int0, obj $obj1, int $int2)
-def_string $string0 = "";
-def_string $string1 = "";
-if_settext("Play again", interface_1253:com_272);
-if_setop(1, "Play", interface_1253:com_266);
-$string1 = "You must claim or discard your prize before spinning again.";
-$string0 = "Click to play again.";
+def_graphic $graphic3 = graphic_15032;
+def_graphic $graphic4 = graphic_15035;
+def_string $string0 = "Play again";
+def_boolean $boolean5 = false;
+def_string $string1 = "You must claim or discard your prize before spinning again.";
+def_string $string2 = "Click to play again.";
 if (playermember = true) {
-    if (%varplayerbit_10862 > 0 | %varplayerbit_11026 > 0 | %varclient_1800 > 0) {
-        if (%varplayerbit_10861 > 0) {
-            if_sethide(false, interface_1253:com_267);
+    if (%varplayerbit_4324 > 0 | %varplayerbit_4325 > 0 | %varclient_1800 > 0) {
+        if (%varplayerbit_4345 > 0) {
+            $boolean5 = false;
             $string1 = "You must claim or discard your prize before spinning again.";
         } else {
-            if_sethide(true, interface_1253:com_267);
-            $string0 = "Click to play again.";
+            $boolean5 = true;
+            $string2 = "Click to play again.";
         }
-    } else if (%varplayerbit_10861 > 0) {
-        if_sethide(false, interface_1253:com_267);
-        $string1 = "You do not have any spins remaining.";
     } else {
-        if_sethide(false, interface_1253:com_267);
+        $boolean5 = false;
         $string1 = "You do not have any spins remaining.";
     }
-} else if (%varplayerbit_10862 > 0 | %varplayerbit_11026 > 0 | %varclient_1800 > 0) {
-    if (%varplayerbit_10861 > 0) {
-        if_sethide(false, interface_1253:com_267);
+} else if (%varplayerbit_4324 > 0 | %varplayerbit_4325 > 0 | %varclient_1800 > 0) {
+    if (%varplayerbit_4345 > 0) {
+        $boolean5 = false;
         $string1 = "You must claim or discard your prize before spinning again.";
     } else {
-        if_sethide(true, interface_1253:com_267);
-        $string0 = "Click to play again.";
+        $boolean5 = true;
+        $string2 = "Click to play again.";
     }
 } else {
-    if_settext("Subscribe", interface_1253:com_272);
-    if_setop(1, "Subscribe", interface_1253:com_266);
-    if_sethide(true, interface_1253:com_267);
+    $boolean5 = true;
+    $graphic3 = graphic_15032;
+    $graphic4 = graphic_15032;
+    $string0 = "Subscribe";
     $string1 = "Click to subscribe";
-    $string0 = "Click to subscribe";
-    if_settext("Members get two spins a day. Subscribe now to claim your earned spin.", interface_1253:com_168);
+    $string2 = "Click to subscribe";
 }
-if_setonmouserepeat("script4538(interface_1253:com_52, event_com, -1, $string0, 200, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 3, event_mousex, event_mousey)", interface_1253:com_266);
-if_setonmouserepeat("script4538(interface_1253:com_52, event_com, -1, $string1, 200, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 3, event_mousex, event_mousey)", interface_1253:com_267);
+if_setgraphic(~script2034($graphic3), interface_1253:com_283);
+if_setgraphic(~script2034($graphic4), interface_1253:com_286);
+if_setop(1, $string0, interface_1253:com_284);
+if_sethide($boolean5, interface_1253:com_285);
+def_string $string3 = "Purchase additional spins.";
+if_setonmouserepeat("script4538(interface_1253:com_86, event_com, -1, $string2, 200, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 3, event_mousex, event_mousey)", interface_1253:com_284);
+if_setonmouserepeat("script4538(interface_1253:com_86, event_com, -1, $string1, 200, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 3, event_mousex, event_mousey)", interface_1253:com_285);
+if_setonmouserepeat("script4538(interface_1253:com_86, event_com, -1, $string3, 200, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 3, event_mousex, event_mousey)", interface_1253:com_289);

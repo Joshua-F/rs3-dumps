@@ -1,3 +1,24 @@
 // 1705
-[clientscript,script1705]
-~script1706;
+[clientscript,script1705](component $component0, component $component1, int $int2, int $int3)
+def_int $int4 = calc(if_getscrollwidth($component1) - if_getwidth($component1));
+if ($int4 = 0) {
+    $int4 = 1;
+}
+if ($int2 < 0) {
+    $int2 = 0;
+}
+if ($int2 > $int4) {
+    $int2 = $int4;
+}
+if_setscrollpos($int2, 0, $component1);
+def_int $int5 = 0;
+if (cc_find($component0, 1) = true & $int3 = 1) {
+    $int5 = calc(if_getwidth($component0) - 32 - cc_getwidth);
+    cc_setposition(calc(16 + $int5 * $int2 / $int4), 0, ^setpos_abs_left, ^setpos_abs_top);
+    if (.cc_find($component0, 2) = true) {
+        .cc_setposition(cc_getx, 0, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    if (.cc_find($component0, 3) = true) {
+        .cc_setposition(calc(cc_getx + cc_getwidth - 5), 0, ^setpos_abs_left, ^setpos_abs_top);
+    }
+}

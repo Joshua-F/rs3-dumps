@@ -1,0 +1,31 @@
+// 6055
+[proc,script6055]
+set_entity_if(interface_639);
+def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $int2 = 0;
+$int0, $int1, $int2 = get_entity_screen_position(scale(get_entity_overlay_height, 100, 80));
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_component $component5 = if_get_gamescreen;
+if ($component5 ! null) {
+    $int3 = if_getwidth($component5);
+    $int4 = if_getheight($component5);
+}
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_boolean $boolean10 = false;
+$boolean10, $int6, $int7, $int8, $int9 = get_entity_bounding_box;
+if (entity_if_find(interface_639:com_0) = true) {
+    if ($boolean10 = true) {
+    }
+    $int0 = calc($int0 - scale(cc_getwidth, 100, 50));
+    $int1 = calc($int1 - scale(cc_getheight, 100, 50));
+    if (calc($int0 + cc_getwidth) < 0 | $int0 > $int3 | calc($int1 + cc_getheight) < 0 | $int1 > $int4 | $int2 < 0) {
+        set_entity_if(null);
+        return;
+    }
+    cc_setposition($int0, $int1, ^setpos_abs_left, ^setpos_abs_top);
+}

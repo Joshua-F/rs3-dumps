@@ -3,42 +3,59 @@
 .cc_create(interface_1218:com_72, ^iftype_graphic, if_getnextsubid(interface_1218:com_72));
 .cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
 .cc_setposition(10, calc($int1 + 5), ^setpos_abs_left, ^setpos_abs_top);
-if (enum(int, stat, enum_681, struct_param($struct2, param_2215)) = null | $struct2 = null) {
+if ($struct2 = null) {
     return;
 }
-if (stat_base(enum(int, stat, enum_681, struct_param($struct2, param_2215))) < struct_param($struct2, param_2212)) {
+def_obj $obj3 = struct_param($struct2, param_2213);
+def_stat $stat4 = enum(int, stat, enum_681, struct_param($struct2, param_2215));
+def_int $int5 = struct_param($struct2, param_2212);
+def_boolean $boolean6 = struct_param($struct2, param_2217);
+def_string $string0 = struct_param($struct2, param_2210);
+if ($obj3 ! null) {
+    if (string_length($string0) < 1) {
+        $string0 = oc_name($obj3);
+    }
+    if (oc_param($obj3, param_2640) > 0 & oc_param($obj3, param_2640) ! 62 & oc_param($obj3, param_2641) = 0 & oc_param($obj3, param_2640) = %varclient_1753) {
+        $stat4 = enum(int, stat, enum_681, oc_param($obj3, param_2640));
+        $int5 = oc_param($obj3, param_2645);
+        if (oc_param($obj3, param_2639) = true | oc_members(oc_param($obj3, param_2655)) = 1 | oc_members(oc_param($obj3, param_2656)) = 1 | oc_members(oc_param($obj3, param_2650)) = 1 | oc_members($obj3) = 1) {
+            $boolean6 = true;
+        }
+    }
+}
+if (stat_base($stat4) < $int5) {
     .cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
     .cc_setgraphic(aif_locked_button_icon);
     .cc_setposition(13, calc($int1 + 9), ^setpos_abs_left, ^setpos_abs_top);
     .cc_setonmouseover("script5693(event_comsubid, true)");
     .cc_setonmouseleave("script5694");
-} else if (struct_param($struct2, param_2213) = null) {
+} else if ($obj3 = null) {
     .cc_setgraphic(struct_param($struct2, param_2214));
 } else {
-    .cc_setobject(struct_param($struct2, param_2213), -1);
+    .cc_setobject($obj3, -1);
 }
 .cc_create(interface_1218:com_72, ^iftype_text, if_getnextsubid(interface_1218:com_72));
 .cc_setposition(45, calc($int1 + 5), ^setpos_abs_left, ^setpos_abs_top);
 .cc_settextfont(verdana_13pt_regular);
 .cc_settextshadow(true);
-if (struct_param($struct2, param_2212) = 0) {
+if ($int5 = 0) {
     .cc_settext("");
 } else {
-    .cc_settext(tostring(struct_param($struct2, param_2212)));
+    .cc_settext(tostring($int5));
 }
 .cc_setcolour(0xdb9000);
 .cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
 .cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
-if (struct_param($struct2, param_2217) = true) {
+if ($boolean6 = true) {
     .cc_create(interface_1218:com_72, ^iftype_text, if_getnextsubid(interface_1218:com_72));
-    .cc_setposition(80, calc($int1 + 5), ^setpos_abs_left, ^setpos_abs_top);
-    .cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+    .cc_setposition(74, calc($int1 + 9), ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setsize(25, 20, ^setsize_abs, ^setsize_abs);
     .cc_setonmouseover("script5693(event_comsubid, false)");
     .cc_setonmouseleave("script5694");
 }
 .cc_create(interface_1218:com_72, ^iftype_text, if_getnextsubid(interface_1218:com_72));
 .cc_setposition(100, calc($int1 + 8), ^setpos_abs_left, ^setpos_abs_top);
-.cc_settext(struct_param($struct2, param_2210));
+.cc_settext($string0);
 .cc_settextfont(verdana_13pt_regular);
 .cc_settextshadow(true);
 .cc_setcolour(0xe6be78);
