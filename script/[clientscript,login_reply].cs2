@@ -63,8 +63,7 @@ if ($int1 = 21) {
     if (%varclient_200 = 0) {
         %varclient_200 = login_hoptime;
     }
-    %varclient_200 = calc(%varclient_200 - 1);
-    if (%varclient_200 <= 0) {
+    if (--%varclient_200 <= 0) {
         if_setontimer(null, $component4);
         if ($int0 = 0) {
             ~login_dologin;
@@ -94,7 +93,7 @@ if ($int1 = 1) {
     if_settext("Logging in...", $component3);
     if_setonclick(null, $component4);
     $int7 = calc((500 - %varclient_201) / 50);
-    if (%varclient_202 = 0) {
+    if (%varclient_202 = false) {
         if ($int7 = 1) {
             $string1 = "Could not display video advertisement. Login will continue in 1 second.";
         } else {
@@ -163,6 +162,10 @@ switch_int ($int1) {
                 $string2 = "You must have a total skill level of 1,000 or greater to enter this world.";
             case 5 :
                 $string2 = "You must have a total skill level of 1,500 or greater to enter this world.";
+            case 6 :
+                $string2 = "You must have a total skill level of 2,000 or greater to enter this world.";
+            case 7 :
+                $string2 = "You must have a total skill level of 2,400 or greater to enter this world.";
             case 4 :
                 $string2 = "You must move to a safe area before you can log in to a PvP or bounty world.";
             case default :
@@ -200,7 +203,7 @@ switch_int ($int1) {
     case -1 :
         $string2 = "No response from server. Please try using a different world.";
     case 5 :
-        $string2 = "Your account has not logged out from its last session. Try again in a few minutes.";
+        $string2 = "Your account has not logged out from its last session or the server is too busy to handle your request. Please try again in a few minutes or try a different server.";
     case 7 :
         $string2 = "This world is full. Please use a different world.";
     case 8 :
@@ -239,6 +242,8 @@ switch_int ($int1) {
         $string2 = "The instance you tried to join is full. Please try back later or try using a different world.";
     case 44 :
         $string2 = "Our systems are currently unavailable. Please try again in a few minutes.";
+    case 55 :
+        $string2 = "Could not complete login. Access to this account is not authorised.";
     case 35 :
         $string2 = "Your session has expired. Please click 'Back' in your browser to renew it.";
         $string4 = "Close";

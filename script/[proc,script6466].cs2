@@ -1,87 +1,157 @@
 // 6466
 [proc,script6466](struct $struct0, int $int1, int $int2)(int, int)
-if (gender = 0 & struct_param($struct0, param_2531) = 1 & (struct_param($struct0, param_2532) = 1 | struct_param($struct0, param_2532) = 3 | struct_param($struct0, param_2532) = 4) & struct_param($struct0, param_2772) ! 0 & enum(int, struct, enum_2338, struct_param($struct0, param_2772)) = struct_741) {
+def_int $int3 = struct_param($struct0, param_2531);
+def_int $int4 = struct_param($struct0, param_2532);
+if (gender = 0 & $int3 = 1 & ($int4 = 1 | $int4 = 3 | $int4 = 4) & struct_param($struct0, param_2772) ! 0 & enum(int, struct, enum_2338, struct_param($struct0, param_2772)) = struct_741) {
     return($int1, $int2);
 }
-def_component $component3 = enum(int, component, enum_5961, struct_param($struct0, param_2532));
-if ($component3 = null) {
+def_component $component5 = enum(int, component, enum_5961, $int4);
+if ($component5 = null) {
     return($int1, $int2);
 }
-def_int $int4 = if_getnextsubid($component3);
-def_graphic $graphic5 = graphic_11898;
-def_graphic $graphic6 = graphic_11899;
-def_int $rgb7 = 0xb6b6b6;
-def_obj $obj8 = null;
-def_obj $obj9 = null;
+def_int $int6 = if_getnextsubid($component5);
+def_graphic $graphic7 = graphic_11898;
+def_graphic $graphic8 = graphic_11899;
+def_int $rgb9 = 0xb6b6b6;
 def_obj $obj10 = null;
 def_obj $obj11 = null;
-def_bas $bas12 = bas_1426;
+def_obj $obj12 = null;
+def_obj $obj13 = null;
+def_bas $bas14 = bas_1426;
+def_int $int15 = 0;
+def_int $int16 = 0;
 if (~script6488($struct0) = 0) {
-    $graphic5 = graphic_11900;
-    $graphic6 = graphic_11900;
-    $rgb7 = 0x666666;
-} else if (~script6489($struct0) = 1) {
-    $graphic5 = graphic_11901;
-    $graphic6 = graphic_11902;
-    $rgb7 = 0xb6b6b6;
-} else if (struct_param($struct0, param_2531) = 2 & struct_param($struct0, param_2532) = 3) {
-    $obj8 = enum(int, obj, struct_param($struct0, param_2542), 3);
-    $obj9 = inv_getobj(inv_670, 3);
-    if ($obj9 ! null) {
-        $bas12 = oc_param($obj9, param_644);
+    if (~script7388($struct0) = 1) {
+        $graphic7 = graphic_14950;
+        $graphic8 = graphic_14948;
+        $rgb9 = 0x666666;
+    } else {
+        $graphic7 = graphic_11900;
+        $graphic8 = graphic_11900;
+        $rgb9 = 0x666666;
     }
-    if ($obj8 ! null) {
-        if ($obj8 = %varplayer_2685) {
-            $graphic5 = graphic_11901;
-            $graphic6 = graphic_11902;
-            $rgb7 = 0xb6b6b6;
-        } else if (oc_param($obj8, param_644) ! bas_1426 & oc_param($obj8, param_644) ! $bas12) {
-            $graphic5 = graphic_11900;
-            $graphic6 = graphic_11900;
-            $rgb7 = 0x661111;
+} else if (~script6489($struct0) = 1) {
+    $graphic7 = graphic_11901;
+    $graphic8 = graphic_11902;
+    $rgb9 = 0xb6b6b6;
+} else if (~script7388($struct0) = 1) {
+    $graphic7 = graphic_14948;
+    $graphic8 = graphic_14949;
+    $rgb9 = 0xb6b6b6;
+    if ($int3 = 2 & $int4 = 3) {
+        $obj10 = enum(int, obj, struct_param($struct0, param_2542), 3);
+        $obj11 = inv_getobj(inv_670, 3);
+        if ($obj11 ! null) {
+            $bas14 = oc_param($obj11, param_644);
+        }
+        if ($obj10 ! null & oc_param($obj10, param_644) ! bas_1426 & oc_param($obj10, param_644) ! $bas14) {
+            $rgb9 = 0x661111;
+            $int16 = 1;
+        }
+    } else if ($int3 = 2 & $int4 = 5) {
+        $obj13 = enum(int, obj, struct_param($struct0, param_2542), 5);
+        $obj12 = inv_getobj(inv_670, 5);
+        if ($obj12 ! null) {
+            if ($obj12 ! null & oc_param($obj12, param_686) ! null) {
+                if (oc_param($obj13, param_686) ! oc_param($obj12, param_686)) {
+                    $rgb9 = 0x661111;
+                    $int15 = 1;
+                }
+            } else if ($obj12 ! null & oc_param($obj12, param_2832) = 1) {
+                if (oc_param($obj13, param_2832) ! oc_param($obj12, param_2832)) {
+                    $rgb9 = 0x661111;
+                    $int15 = 1;
+                }
+            } else if ($obj12 ! null & oc_param($obj12, param_686) = null) {
+                if (enum(obj, int, enum_7262, $obj13) ! enum(obj, int, enum_7262, $obj12)) {
+                    $rgb9 = 0x661111;
+                    $int15 = 1;
+                }
+            } else if (oc_wearpos2($obj11) = 5) {
+                $rgb9 = 0x661111;
+                $int15 = 1;
+            }
+        } else {
+            $rgb9 = 0x661111;
+            $int15 = 1;
         }
     }
-} else if (struct_param($struct0, param_2531) = 2 & struct_param($struct0, param_2532) = 5) {
-    $obj11 = enum(int, obj, struct_param($struct0, param_2542), 5);
-    $obj10 = inv_getobj(inv_94, 5);
+} else if ($int3 = 2 & $int4 = 3) {
+    $obj10 = enum(int, obj, struct_param($struct0, param_2542), 3);
+    $obj11 = inv_getobj(inv_670, 3);
+    if ($obj11 ! null) {
+        $bas14 = oc_param($obj11, param_644);
+    }
     if ($obj10 ! null) {
-        if ($obj11 = %varplayer_2728) {
-            $graphic5 = graphic_11901;
-            $graphic6 = graphic_11902;
-            $rgb7 = 0xb6b6b6;
-        } else if (oc_wearpos2($obj9) = 5) {
-            $graphic5 = graphic_11900;
-            $graphic6 = graphic_11900;
-            $rgb7 = 0x661111;
+        if ($obj10 = %varplayer_249) {
+            $graphic7 = graphic_11901;
+            $graphic8 = graphic_11902;
+            $rgb9 = 0xb6b6b6;
+        } else if (oc_param($obj10, param_644) ! bas_1426 & oc_param($obj10, param_644) ! $bas14) {
+            $graphic7 = graphic_11900;
+            $graphic8 = graphic_11900;
+            $rgb9 = 0x661111;
+        }
+    }
+} else if ($int3 = 2 & $int4 = 5) {
+    $obj13 = enum(int, obj, struct_param($struct0, param_2542), 5);
+    $obj12 = inv_getobj(inv_670, 5);
+    if ($obj12 ! null) {
+        if ($obj13 = %varplayer_250) {
+            $graphic7 = graphic_11901;
+            $graphic8 = graphic_11902;
+            $rgb9 = 0xb6b6b6;
+        } else if (oc_param($obj12, param_686) ! null) {
+            if (oc_param($obj13, param_686) ! oc_param($obj12, param_686)) {
+                $graphic7 = graphic_11900;
+                $graphic8 = graphic_11900;
+                $rgb9 = 0x661111;
+            }
+        } else if (oc_param($obj12, param_2832) = 1) {
+            if (oc_param($obj13, param_2832) ! oc_param($obj12, param_2832)) {
+                $graphic7 = graphic_11900;
+                $graphic8 = graphic_11900;
+                $rgb9 = 0x661111;
+            }
+        } else if ($obj12 ! null & oc_param($obj12, param_686) = null) {
+            if (enum(obj, int, enum_7262, $obj13) ! enum(obj, int, enum_7262, $obj12) | oc_param($obj13, param_686) ! oc_param($obj12, param_686)) {
+                $graphic7 = graphic_11900;
+                $graphic8 = graphic_11900;
+                $rgb9 = 0x661111;
+            }
+        } else if (oc_wearpos2($obj11) = 5) {
+            $graphic7 = graphic_11900;
+            $graphic8 = graphic_11900;
+            $rgb9 = 0x661111;
         }
     } else {
-        $graphic5 = graphic_11900;
-        $graphic6 = graphic_11900;
-        $rgb7 = 0x661111;
+        $graphic7 = graphic_11900;
+        $graphic8 = graphic_11900;
+        $rgb9 = 0x661111;
     }
 }
-def_int $int13 = 0;
-if (struct_param($struct0, param_2531) = 1) {
-    $int13 = 155;
+def_int $int17 = 0;
+if ($int3 = 1 | $int3 = 5) {
+    $int17 = 155;
 } else {
-    $int13 = 196;
+    $int17 = 196;
 }
-cc_create($component3, ^iftype_graphic, $int4);
-cc_setgraphic($graphic5);
-cc_setsize(calc($int13 - 10), calc(29 - 5), ^setsize_abs, ^setsize_abs);
-cc_setposition(calc($int2 * $int13 + ($int13 - cc_getwidth) / 2), calc($int1 + (29 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_create($component5, ^iftype_graphic, $int6);
+cc_setgraphic($graphic7);
+cc_setsize(calc($int17 - 10), calc(29 - 5), ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int2 * $int17 + ($int17 - cc_getwidth) / 2), calc($int1 + (29 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
 cc_setop(1, "Preview");
-if ($graphic5 = graphic_11901 & struct_param($struct0, param_2531) ! 1) {
+if ($graphic7 = graphic_11901 & $int3 ! 1 & $int3 ! 5) {
     cc_setop(2, "Deactivate");
-} else if ($graphic5 = graphic_11898) {
+} else if ($int15 = 0 & $int16 = 0 & ($graphic7 = graphic_11898 | $graphic7 = graphic_14948) & $int3 ! 5) {
     cc_setop(2, "Activate");
 } else {
     cc_setop(2, "");
 }
 cc_setonop("script6480(event_com, event_comsubid)");
-cc_setonmouseover("cc_graphic_swapper(event_com, cc_getid, $graphic6)");
-cc_setonmouseleave("cc_graphic_swapper(event_com, cc_getid, $graphic5)");
-if (struct_param($struct0, param_2531) = 2 & struct_param($struct0, param_2532) = 15) {
+cc_setonmouseover("cc_graphic_swapper(event_com, cc_getid, $graphic8)");
+cc_setonmouseleave("cc_graphic_swapper(event_com, cc_getid, $graphic7)");
+if ($int3 = 2 & $int4 = 15) {
     if (~script4174($struct0) = 1 | ~script4175($struct0) = obj_9813 | ~script4175($struct0) = obj_9814 | ~script4175($struct0) = obj_20769 | ~script4175($struct0) = obj_20770 | ~script4175($struct0) = obj_20771 | ~script4175($struct0) = obj_20772) {
         cc_setop(3, "Reclaim-item");
     } else {
@@ -89,19 +159,19 @@ if (struct_param($struct0, param_2531) = 2 & struct_param($struct0, param_2532) 
     }
 }
 def_string $string0 = "";
-def_enum $enum14 = null;
-if (struct_param($struct0, param_2531) = 1) {
-    if (struct_param($struct0, param_2532) = 1 | struct_param($struct0, param_2532) = 3 | struct_param($struct0, param_2532) = 4) {
+def_enum $enum18 = null;
+if ($int3 = 1) {
+    if ($int4 = 1 | $int4 = 3 | $int4 = 4) {
         if (gender = 1) {
-            $enum14 = enum_2341;
+            $enum18 = enum_2341;
         } else {
-            $enum14 = enum_2338;
+            $enum18 = enum_2338;
         }
-        $string0 = struct_param(enum(int, struct, $enum14, struct_param($struct0, param_2772)), param_792);
-    } else if (struct_param($struct0, param_2532) = 2 | struct_param($struct0, param_2532) = 5) {
+        $string0 = struct_param(enum(int, struct, $enum18, struct_param($struct0, param_2772)), param_792);
+    } else if ($int4 = 2 | $int4 = 5) {
         $string0 = enum(int, string, enum_2340, struct_param($struct0, param_2772));
     }
-} else if (struct_param($struct0, param_2532) = 15) {
+} else if ($int4 = 15) {
     if (~script4175($struct0) = null) {
         $string0 = struct_param($struct0, param_2533);
     } else {
@@ -113,20 +183,17 @@ if (struct_param($struct0, param_2531) = 1) {
 } else {
     $string0 = struct_param($struct0, param_2533);
 }
-cc_create($component3, ^iftype_text, calc($int4 + 1));
+cc_create($component5, ^iftype_text, calc($int6 + 1));
 cc_settext($string0);
 cc_settextfont(verdana_11pt_regular);
-cc_setcolour($rgb7);
-cc_setsize(calc($int13 - 10), calc(29 - 5), ^setsize_abs, ^setsize_abs);
-cc_setposition(calc($int2 * $int13 + ($int13 - cc_getwidth) / 2), calc($int1 + (29 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb9);
+cc_setsize(calc($int17 - 10), calc(29 - 5), ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int2 * $int17 + ($int17 - cc_getwidth) / 2), calc($int1 + (29 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
-cc_create($component3, ^iftype_graphic, calc($int4 + 2));
+cc_create($component5, ^iftype_graphic, calc($int6 + 2));
 cc_setgraphic(struct_param($struct0, param_2534));
 cc_setsize(20, 20, ^setsize_abs, ^setsize_abs);
-cc_setposition(calc($int2 * $int13 + ($int13 - cc_getwidth) / 2), calc($int1 + (29 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
-if_setsize(0, calc($int1 + 29), ^setsize_minus, ^setsize_abs, $component3);
-$int2 = calc(($int2 + 1) % 2);
-if ($int2 = 0) {
-    $int1 = calc($int1 + 29);
-}
+cc_setposition(calc($int2 * $int17 + ($int17 - cc_getwidth) / 2), calc($int1 + (29 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+if_setsize(0, calc($int1 + 29), ^setsize_minus, ^setsize_abs, $component5);
+$int1 = calc($int1 + 29);
 return($int1, $int2);

@@ -1,24 +1,44 @@
 // 6788
 [proc,script6788](int $int0)
-if (%varplayerbit_9030 = 1) {
-    if_sethide(true, interface_1220:com_12);
-    ~script4212(interface_1220:com_32, "Next Task", verdana_13pt_regular, 0xebe0bc, ^black);
-    if_setposition(if_getx(interface_1220:com_26), calc(if_gety(interface_1220:com_16) + 1), ^setpos_abs_left, ^setpos_abs_top, interface_1220:com_26);
+def_int $int1 = max(1, if_getwidth(interface_1220:com_1));
+def_int $int2 = max(1, if_getheight(interface_1220:com_1));
+def_int $int3 = 0;
+def_int $int4 = 0;
+$int3 = max(1, calc($int1 - if_getwidth(interface_1220:com_0)));
+$int4 = max(1, calc($int2 - if_getheight(interface_1220:com_0)));
+if (%varclient_2702 <= 0 | %varclient_2703 <= 0 | %varclient_2702 > $int3 | %varclient_2703 > $int4) {
+    %varclient_2702 = 1;
+    %varclient_2703 = 25;
+}
+if (%varplayerbit_3617 = 1) {
+    if_sethide(false, interface_1220:com_12);
+    if_settext("Get Directions", interface_1220:com_73);
+    if_setop(1, "Get Directions", interface_1220:com_70);
+    ~script4211(interface_1220:com_73, verdana_11pt_regular, 0xe3cccf, 0x27220f);
+    if_sethide(true, interface_1220:com_29);
+    if_setposition(scale(%varclient_2702, $int1, 16384), scale(%varclient_2703, $int2, 16384), ^setpos_rel_left, ^setpos_rel_top, interface_1220:com_0);
+    ~script4212(interface_1220:com_33, "Next Task", verdana_13pt_regular, 0xebe0bc, ^black);
+    if_setposition(if_getx(interface_1220:com_27), calc(if_gety(interface_1220:com_17) + 1), ^setpos_abs_left, ^setpos_abs_top, interface_1220:com_27);
 } else {
     if_sethide(false, interface_1220:com_12);
-    ~script4212(interface_1220:com_32, "Active Task", verdana_13pt_regular, 0xebe0bc, ^black);
-    if_setposition(if_getx(interface_1220:com_26), calc(if_gety(interface_1220:com_16) + 1), ^setpos_abs_left, ^setpos_abs_top, interface_1220:com_26);
+    if_settext("Open Noticeboard", interface_1220:com_73);
+    if_setop(1, "Open Noticeboard", interface_1220:com_70);
+    ~script4211(interface_1220:com_73, verdana_11pt_regular, 0xe3cccf, 0x27220f);
+    if_sethide(false, interface_1220:com_29);
+    if_setposition(scale(%varclient_2702, $int1, 16384), scale(%varclient_2703, $int2, 16384), ^setpos_rel_left, ^setpos_rel_top, interface_1220:com_0);
+    ~script4212(interface_1220:com_33, "Active Task", verdana_13pt_regular, 0xebe0bc, ^black);
+    if_setposition(if_getx(interface_1220:com_27), calc(if_gety(interface_1220:com_17) + 1), ^setpos_abs_left, ^setpos_abs_top, interface_1220:com_27);
 }
-if (%varplayerbit_10700 = 0 & $int0 = 0) {
+if (%varplayerbit_16612 = 0 & $int0 = 0) {
     if_sethide(true, interface_1220:com_0);
 } else {
     if_sethide(false, interface_1220:com_0);
 }
-def_struct $struct1 = ~task_get_data($int0);
-if ($struct1 = null) {
+def_struct $struct5 = ~task_get_data($int0);
+if ($struct5 = null) {
     return;
 }
-~script5796($int0, 0, interface_1220:com_24, interface_1220:com_23, interface_1220:com_22, null, null, null);
+~script5796($int0, 0, interface_1220:com_25, interface_1220:com_24, interface_1220:com_23, null, null, null);
 ~script5791;
-~script6793($int0, %varplayerbit_8578);
-~script6794($int0, %varplayerbit_8578);
+~script6793($int0, %varplayerbit_3563);
+~script6794($int0, %varplayerbit_3563);

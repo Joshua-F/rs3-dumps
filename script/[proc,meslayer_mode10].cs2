@@ -1,13 +1,13 @@
 // 111
 [proc,meslayer_mode10]
-if (%varclient_1413 = 0) {
+if (%varclient_1413 = false) {
     return;
 }
-if (%varclient_11 = 1) {
+if (%varclient_11 = true) {
     ~script675;
 }
 if (getwindowmode >= 2) {
-    if_sethide(false, interface_746:com_62);
+    if_sethide(false, interface_746:com_24);
 }
 if_sethide(false, interface_752:com_3);
 if_sethide(true, interface_752:com_7);
@@ -20,14 +20,15 @@ if_setonclick(null, interface_752:com_3);
 if_setonkey("meslayer_onkey(event_keycode, event_keychar)", interface_752:com_5);
 cc_create(interface_752:com_3, ^iftype_text, 0);
 ~meslayer_setupdynamicbutton;
-if (%varclient_1027 = 1 & string_length(%varclientstring_202) > 0) {
-    cc_settext("Last name entered: <%varclientstring_202>");
+if (%varclient_1027 = true & string_length(%varclient_2508) > 0) {
+    cc_settext("Last name entered: <%varclient_2508>");
 } else {
-    %varclientstring_202 = removetags(chat_playername_unfiltered);
-    %varclient_1027 = 1;
-    cc_settext("Your name: <%varclientstring_202>");
+    %varclient_2508 = removetags(chat_playername);
+    %varclient_1027 = true;
+    cc_settext("Your name: <%varclient_2508>");
 }
 cc_setop(1, "Use:");
-cc_setopbase("<col=ff9040><removetags(%varclientstring_202)></col>");
-cc_setonop("meslayer_lastname(%varclient_5, event_op, event_com, event_comsubid, %varclientstring_202)");
+cc_setopbase("<col=ff9040><removetags(%varclient_2508)></col>");
+cc_setonop("meslayer_lastname(%varclient_5, event_op, event_com, event_comsubid, %varclient_2508)");
 ~script1188;
+~script6999(0, 0);

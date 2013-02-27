@@ -23,19 +23,19 @@ if ($int7 = 21) {
     ~lobbyscreen_mute_volume;
     %varclient_1100 = 21;
     ~lobbyscreen_loginbutton_text(0);
-    if (%varclient_200 = 0 & %varclient_1745 = 0) {
+    if (%varclient_200 = 0 & %varclient_1745 = false) {
         %varclient_200 = login_hoptime;
         if (playermember = false & video_advert_play(6) = true) {
-            %varclient_1745 = 1;
+            %varclient_1745 = true;
         }
     }
     if (%varclient_200 > 0) {
         %varclient_200 = calc(%varclient_200 - 1);
-        if (%varclient_1745 = 1 & %varclient_200 = 0 & video_advert_has_finished = false) {
+        if (%varclient_1745 = true & %varclient_200 = 0 & video_advert_has_finished = false) {
             video_advert_allow_skip;
         }
     }
-    if (%varclient_200 <= 0 & (%varclient_1745 = 0 | video_advert_has_finished = true)) {
+    if (%varclient_200 <= 0 & (%varclient_1745 = false | video_advert_has_finished = true)) {
         if (worldlist_fetch = false) {
             %varclient_200 = 1;
             return;
@@ -47,11 +47,11 @@ if ($int7 = 21) {
             }
         }
         if_setontimer(null, $component0);
-        if (%varclient_1745 = 1) {
+        if (%varclient_1745 = true) {
             video_advert_force_remove;
-            %varclient_1745 = 0;
+            %varclient_1745 = false;
         }
-        if (%varclient_1745 = 0 | video_advert_has_finished = true) {
+        if (%varclient_1745 = false | video_advert_has_finished = true) {
             detail_soundvol($int2);
             detail_musicvol($int3);
             detail_bgsoundvol($int4);
@@ -126,6 +126,10 @@ switch_int ($int7) {
                 $string4 = "You must have a total skill level of 1,000 or greater to enter this world.";
             case 5 :
                 $string4 = "You must have a total skill level of 1,500 or greater to enter this world.";
+            case 6 :
+                $string4 = "You must have a total skill level of 2,000 or greater to enter this world.";
+            case 7 :
+                $string4 = "You must have a total skill level of 2,400 or greater to enter this world.";
             case 4 :
                 $string4 = "You must move to a safe area before you can log in to a PvP or bounty world.";
             case default :
@@ -163,7 +167,7 @@ switch_int ($int7) {
     case -1 :
         $string4 = "No response from server. Please try using a different world.";
     case 5 :
-        $string4 = "Your account has not logged out from its last session. Try again in a few minutes.";
+        $string4 = "Your account has not logged out from its last session or the server is too busy to handle your request. Please try again in a few minutes or try a different server.";
     case 7 :
         $string4 = "This world is full. Please use a different world.";
     case 8 :
@@ -204,6 +208,8 @@ switch_int ($int7) {
         $string4 = "The instance you tried to join is full. Please try back later or try using a different world.";
     case 44 :
         $string4 = "Our systems are currently unavailable. Please try again in a few minutes.";
+    case 55 :
+        $string4 = "Could not complete login. Access to this account is not authorised.";
     case 35 :
         $string4 = "Your session has expired. Please click 'Back' in your browser to renew it.";
         $string7 = "Close";

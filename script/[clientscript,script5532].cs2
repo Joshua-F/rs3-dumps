@@ -1,8 +1,20 @@
 // 5532
 [clientscript,script5532](component $component0, graphic $graphic1, int $int2)
-def_int $int3 = if_getscrollx(interface_1179:com_10);
-if_setscrollpos(calc(if_getscrollx(interface_1179:com_10) + $int2), 0, interface_1179:com_10);
-if ($int3 ! if_getscrollx(interface_1179:com_10)) {
+def_int $int3 = if_getscrollx(interface_1179:com_21);
+if_setscrollpos(calc(if_getscrollx(interface_1179:com_21) + $int2), 0, interface_1179:com_21);
+if ($int3 ! if_getscrollx(interface_1179:com_21)) {
     if_setgraphic($graphic1, $component0);
 }
 ~script5533;
+def_vorbis $vorbis4 = null;
+if (calc(clientclock % 5) = 0) {
+    switch_int (random(3)) {
+        case 0 :
+            $vorbis4 = vorbis_21248;
+        case 1 :
+            $vorbis4 = vorbis_21256;
+        case 2 :
+            $vorbis4 = vorbis_21256;
+    }
+    sound_vorbis_rate($vorbis4, 1, 0, 20, random_sound_pitch(5, 10));
+}

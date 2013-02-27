@@ -7,9 +7,20 @@ if (%varclient_1407 < 1) {
 } else if (%varclient_1407 > 120) {
     ~create_error("Please check the age entered and try again.", interface_673:com_48);
     return(false);
+} else if (%varclient_1407 < 13) {
+    if (create_under13 = false) {
+        create_setunder13;
+    }
+    if_settext("Parent's Email Address (Log-in)", interface_673:com_93);
+    if_settext("Retype Parent's Email Address", interface_673:com_112);
+    if_sethide(false, interface_673:com_50);
+    if_setgraphic(graphic_4056, interface_673:com_48);
+} else {
+    if_settext("Email Address (Log-in)", interface_673:com_93);
+    if_settext("Retype Email Address", interface_673:com_112);
 }
 if_setgraphic(graphic_4059, interface_673:com_48);
-if_sethide(true, interface_673:com_124);
+if_sethide(true, interface_673:com_125);
 if_sethide(true, interface_673:com_30);
 if ($int0 = 1) {
     ~create_focus(6, 1);

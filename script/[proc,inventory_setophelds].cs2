@@ -1,41 +1,42 @@
 // 2833
-[proc,inventory_setophelds](obj $obj0)
-cc_setopbase("<~script4033($obj0)><oc_name($obj0)>");
+[proc,inventory_setophelds](obj $obj0, boolean $boolean1)
+if ($boolean1 = true) {
+    cc_setopbase("<~script4033($obj0)><oc_name($obj0)>");
+}
 switch_obj ($obj0) {
     case obj_6099, obj_6100, obj_6101, obj_6102 :
-        ~script2411($obj0);
+        ~script2411($obj0, $boolean1);
         return;
     case obj_13561, obj_19760, obj_13562 :
-        ~script2431($obj0);
-        return;
-    case obj_18339 :
-        ~script1273($obj0);
+        ~script6468($obj0, $boolean1);
         return;
     case obj_5509 :
-        ~script5862(obj_5509);
+        ~script5862(obj_5509, $boolean1);
         return;
     case obj_5510, obj_5511 :
-        ~script5862(obj_5510);
+        ~script5862(obj_5510, $boolean1);
         return;
     case obj_5512, obj_5513 :
-        ~script5862(obj_5512);
+        ~script5862(obj_5512, $boolean1);
         return;
     case obj_5514, obj_5515 :
-        ~script5862(obj_5514);
+        ~script5862(obj_5514, $boolean1);
         return;
     case obj_24200, obj_24203, obj_24199, obj_24202 :
-        ~script2431($obj0);
+        ~script6468($obj0, $boolean1);
         return;
     case obj_19867, obj_19865, obj_19868, obj_19866 :
-        ~script2431($obj0);
+        ~script6468($obj0, $boolean1);
         return;
     case obj_24205 :
-        ~script6186($obj0);
+        ~script6186($obj0, $boolean1);
         return;
 }
-if (oc_uncert($obj0) ! $obj0 & %varplayerbit_9030 = 1) {
-    ~script2410("Read", cursor_50, oc_iop($obj0, 2), oc_icursor($obj0, 2), oc_iop($obj0, 3), oc_icursor($obj0, 3), oc_iop($obj0, 4), oc_icursor($obj0, 4), oc_iop($obj0, 5), oc_icursor($obj0, 5), oc_name($obj0));
-    return;
+if ($boolean1 = true) {
+    if (oc_uncert($obj0) ! $obj0 & %varplayerbit_3617 = 1) {
+        ~script2410("Read", cursor_50, oc_iop($obj0, 2), oc_icursor($obj0, 2), oc_iop($obj0, 3), oc_icursor($obj0, 3), oc_iop($obj0, 4), oc_icursor($obj0, 4), oc_iop($obj0, 5), oc_icursor($obj0, 5), oc_name($obj0), $boolean1);
+        return;
+    }
+    cc_setonvartransmit(null);
 }
-cc_setonvartransmit(null);
-~script2410(oc_iop($obj0, 1), oc_icursor($obj0, 1), oc_iop($obj0, 2), oc_icursor($obj0, 2), oc_iop($obj0, 3), oc_icursor($obj0, 3), oc_iop($obj0, 4), oc_icursor($obj0, 4), oc_iop($obj0, 5), oc_icursor($obj0, 5), oc_name($obj0));
+~script2410(oc_iop($obj0, 1), oc_icursor($obj0, 1), oc_iop($obj0, 2), oc_icursor($obj0, 2), oc_iop($obj0, 3), oc_icursor($obj0, 3), oc_iop($obj0, 4), oc_icursor($obj0, 4), oc_iop($obj0, 5), oc_icursor($obj0, 5), oc_name($obj0), $boolean1);

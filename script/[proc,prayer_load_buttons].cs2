@@ -1,5 +1,6 @@
 // 1237
 [proc,prayer_load_buttons](component $component0)
+if_setonstattransmit("script7082(event_com){prayer}", $component0);
 cc_deleteall($component0);
 def_int $int1 = 5;
 def_int $int2 = 30;
@@ -9,13 +10,13 @@ def_int $int5 = 8;
 def_int $int6 = $int5;
 def_int $int7 = 6;
 def_int $int8 = calc(30 + 7);
-if (%varclient_1052 = 1 & %varplayerbit_6840 = 0) {
+if (%varclient_1052 = 1 & %varplayerbit_16789 = 0) {
     $int5 = 5;
     $int6 = $int5;
     $int8 = calc(30 + 4);
 }
 def_int $int9 = calc(30 + 6);
-if (%varclient_181 = 1) {
+if (%varclient_181 = true) {
     $int5 = 8;
     $int6 = $int5;
     $int7 = 30;
@@ -27,33 +28,57 @@ def_graphic $graphic11 = null;
 def_graphic $graphic12 = null;
 def_string $string0 = "";
 def_int $int13 = 0;
-def_int $int14 = 30;
-if (%varplayerbit_6840 = 1) {
-    $int14 = 20;
+def_enum $enum14 = null;
+if (%varplayerbit_16789 = 1) {
+    $enum14 = enum_6760;
+} else {
+    $enum14 = enum_6759;
 }
-while ($int4 < $int14) {
-    $struct10 = enum(int, struct, enum_2279, $int4);
-    if (%varplayerbit_6840 = 1) {
-        $struct10 = enum(int, struct, enum_863, $int4);
+def_int $int15 = enum_getoutputcount($enum14);
+def_int $int16 = 1;
+while ($int4 < $int15) {
+    $struct10 = enum(int, struct, $enum14, $int4);
+    if (struct_param($struct10, param_2961) = 1) {
+        if (stat_base(prayer) >= struct_param($struct10, param_2965)) {
+            $int16 = 2;
+        }
+        if (stat_base(prayer) >= struct_param($struct10, param_2967)) {
+            $int16 = 3;
+        }
+        switch_int ($int16) {
+            case 1 :
+                $struct10 = struct_param($struct10, param_2964);
+            case 2 :
+                $struct10 = struct_param($struct10, param_2966);
+            case 3 :
+                $struct10 = struct_param($struct10, param_2968);
+        }
+        $int16 = 1;
     }
     $graphic12 = struct_param($struct10, param_736);
     $graphic11 = struct_param($struct10, param_735);
-    $string0 = struct_param($struct10, param_734);
-    $int13 = struct_param($struct10, param_737);
+    $string0 = "Level <tostring(struct_param($struct10, param_2807))><br><struct_param($struct10, param_2794)><br><struct_param($struct10, param_2795)>";
+    $int13 = struct_param($struct10, param_2807);
     cc_create($component0, ^iftype_graphic, $int4);
     cc_setsize($int2, $int3, ^setsize_abs, ^setsize_abs);
     cc_setposition($int6, $int7, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setgraphic($graphic12);
+    if (stat_base(prayer) < struct_param($struct10, param_2807)) {
+        cc_setgraphic($graphic12);
+    } else {
+        cc_setgraphic($graphic11);
+    }
+    cc_setdragdeadzone(5);
+    cc_setdragdeadtime(5);
     cc_setclickmask(false);
-    if (%varclient_181 = 0) {
+    if (%varclient_181 = false) {
         cc_setop(1, "Activate<col=ff9040>");
-        cc_setonvartransmit("prayer_varupdate(event_com, interface_271:com_7, $int4){varplayer_1395, varplayer_1582}");
-        cc_setonmouserepeat("script1160(event_com, event_comsubid, interface_271:com_49, $string0, 25, 190)");
+        cc_setondragcomplete("script7001(event_com, event_comsubid, event_com2)");
+        cc_setonmouseover("script7084(event_com, event_comsubid, $struct10, event_mousey)");
     }
     cc_setonstattransmit("prayer_statupdate($int13, $graphic12, $graphic11, event_com, event_comsubid){prayer}");
-    cc_setonmouseleave("deltooltip(interface_271:com_49)");
-    $int4 = calc($int4 + 1);
-    if (calc($int4 % $int1) = 0) {
+    cc_setonmouseleave("script7085");
+    cc_setonvartransmit("prayer_varupdate($component0, interface_271:com_9, $int4, $struct10){varplayer_3272, varplayer_3275}");
+    if (calc(++$int4 % $int1) = 0) {
         $int6 = $int5;
         $int7 = calc($int7 + $int9);
     } else {

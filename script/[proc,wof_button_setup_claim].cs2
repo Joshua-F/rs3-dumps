@@ -1,58 +1,65 @@
 // 6671
 [proc,wof_button_setup_claim](int $int0, obj $obj1, int $int2)
-def_string $string0 = "You do not have a prize to claim.";
+def_graphic $graphic3 = graphic_15020;
+def_graphic $graphic4 = graphic_15023;
+def_string $string0 = "Claim item";
+def_boolean $boolean5 = false;
 def_string $string1 = "You do not have a prize to claim.";
-if ((oc_members($obj1) = 1 | %varplayerbit_11874 = 1) & playermember = false) {
-    if_settext("Subscribe to claim", interface_1253:com_188);
-    if_setop(1, "Subscribe", interface_1253:com_185);
-    if_sethide(true, interface_1253:com_186);
-    if (%varplayerbit_10861 > 0) {
-        $string1 = "This prize can only be claimed on a members world.";
-        $string0 = "This prize can only be claimed on a members world.";
-    } else {
-        $string0 = "You do not have a prize to claim.";
-        $string1 = "You do not have a prize to claim.";
-        if_sethide(true, interface_1253:com_186);
-    }
+def_string $string2 = "You do not have a prize to claim.";
+if (%varplayerbit_4345 <= 0) {
+    $string1 = "You do not have a prize to claim.";
+    $string2 = "You do not have a prize to claim.";
+    $boolean5 = false;
+} else if ((oc_members($obj1) = 1 | %varplayerbit_4347 = 1) & map_members = false) {
+    $graphic3 = graphic_15114;
+    $graphic4 = graphic_15117;
+    $string0 = "Subscribe";
+    $boolean5 = true;
+    $string2 = "This prize can only be claimed on a members world.";
+    $string1 = "This prize can only be claimed on a members world.";
 } else {
-    if_settext("Claim item", interface_1253:com_188);
-    if_setop(1, "Claim", interface_1253:com_185);
-    if (%varplayerbit_10861 > 0) {
-        switch_int (%varclient_1790) {
-            case 1, 2 :
-                $string0 = "Claim your prize to your inventory.";
-                $string1 = "Your inventory doesn't have room for your prize at the moment.";
-            case 3, 4 :
-                $string0 = "Claim your prize to your bank.";
-                $string1 = "Your bank doesn't have room for your prize at the moment.";
-            case 5, 6 :
-                $string0 = "Claim your prize to your money pouch.";
-                $string1 = "Your money pouch doesn't have room for your prize at the moment.";
-            case 7 :
-                $string0 = "The Squeal of Fortune is not available at the moment. Please try later.";
-                $string1 = "The Squeal of Fortune is not available at the moment. Please try later.";
-            case 8 :
-                $string0 = "Unlock this emote.";
-                $string1 = "Unlock this emote.";
-                if_settext("Unlock emote", interface_1253:com_188);
-                if_setop(1, "Unlock emote", interface_1253:com_185);
-            case 9 :
-                $string0 = "Add the extra spins to your earned spins.";
-                $string1 = "Add the extra spins to your earned spins.";
-                if_settext("Add spins", interface_1253:com_188);
-                if_setop(1, "Add spins", interface_1253:com_185);
-        }
-        switch_int (%varclient_1790) {
-            case 1, 3, 5, 8, 9 :
-                if_sethide(true, interface_1253:com_186);
-            case default :
-                if_sethide(false, interface_1253:com_186);
-        }
-    } else {
-        $string0 = "You do not have a prize to claim.";
-        $string1 = "You do not have a prize to claim.";
-        if_sethide(false, interface_1253:com_186);
+    $graphic3 = graphic_15020;
+    $graphic4 = graphic_15023;
+    $string0 = "Claim item";
+    switch_int (%varclient_1790) {
+        case 1, 3, 5, 8, 9 :
+            $boolean5 = true;
+        case default :
+            $boolean5 = false;
+    }
+    switch_int (%varclient_1790) {
+        case 1, 2 :
+            $string1 = "Claim your prize to your inventory.";
+            $string2 = "Your inventory doesn't have room for your prize at the moment.";
+        case 3, 4 :
+            $string1 = "Claim your prize to your bank.";
+            $string2 = "Your bank doesn't have room for your prize at the moment.";
+        case 5, 6 :
+            $string1 = "Claim your prize to your money pouch.";
+            $string2 = "Your money pouch doesn't have room for your prize at the moment.";
+        case 7 :
+            $string1 = "The Squeal of Fortune is not available at the moment. Please try later.";
+            $string2 = "The Squeal of Fortune is not available at the moment. Please try later.";
+        case 8 :
+            $string1 = "Unlock this emote.";
+            $string2 = "Unlock this emote.";
+            $graphic3 = graphic_15126;
+            $graphic4 = graphic_15129;
+            $string0 = "Unlock emote";
+        case 9 :
+            $string1 = "Add the extra spins to your earned spins.";
+            $string2 = "Add the extra spins to your earned spins.";
+            $graphic3 = graphic_15138;
+            $graphic4 = graphic_15141;
+            $string0 = "Use ticket";
+        case 10 :
+            $string1 = "Loading...";
+            $string2 = "Loading...";
     }
 }
-if_setonmouserepeat("script4538(interface_1253:com_52, event_com, -1, $string0, 200, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 3, event_mousex, event_mousey)", interface_1253:com_185);
-if_setonmouserepeat("script4538(interface_1253:com_52, event_com, -1, $string1, 200, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 3, event_mousex, event_mousey)", interface_1253:com_186);
+if_setgraphic(~script2034($graphic3), interface_1253:com_193);
+if_setgraphic(~script2034($graphic4), interface_1253:com_208);
+if_setop(1, $string0, interface_1253:com_194);
+if_setonmouserepeat("script4538(interface_1253:com_86, event_com, -1, $string1, 200, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 3, event_mousex, event_mousey)", interface_1253:com_194);
+if_setonmouserepeat("script4538(interface_1253:com_86, event_com, -1, $string2, 200, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 3, event_mousex, event_mousey)", interface_1253:com_195);
+if_sethide($boolean5, interface_1253:com_195);

@@ -1,0 +1,15 @@
+// 7102
+[proc,script7102](string $string0, component $component0, component $component1)
+if (string_length($string0) <= 4) {
+    if (string_length($string0) = 1) {
+        $string0 = append("0", $string0);
+    }
+    $string0 = "<substring($string0, 0, calc(string_length($string0) - 1))>.<substring($string0, calc(string_length($string0) - 1), string_length($string0))>xp";
+} else {
+    $string0 = append(substring($string0, 0, calc(string_length($string0) - 1)), "xp");
+}
+$string0 = "+ <$string0>";
+if_settext($string0, $component0);
+if (compare("+ 0.0xp", $string0) ! 0) {
+    ~script7103($string0, $component1);
+}

@@ -57,7 +57,7 @@ if_setonclanchanneltransmit("clan_chat_list_refresh(-1)", $component0);
 if_settext(activeclanchannel_getclanname, interface_1110:com_27);
 if_settext("", interface_1110:com_62);
 if_sethide(true, interface_1110:com_67);
-def_int $int24 = activeclanchannel_getuserslot(removetags(chat_playername));
+def_int $int24 = activeclanchannel_getuserslot(removetags(chat_playername_unfiltered));
 if ($int24 = -1) {
     return;
 }
@@ -75,7 +75,7 @@ while ($int12 < $int14) {
     cc_setcolour(0xa4997d);
     cc_settextfont(verdana_11pt_regular);
     cc_settextshadow(true);
-    if (compare($string2, removetags(chat_playername)) ! 0) {
+    if (compare($string2, removetags(chat_playername_unfiltered)) ! 0) {
         cc_setopbase($string2);
         if (friend_test($string2) = true) {
             cc_setop(1, "Message");
@@ -195,7 +195,7 @@ while ($int12 < $int14) {
 def_int $int27 = 0;
 def_int $int28 = -1;
 if (%varclient_1518 >= 0) {
-    $int28 = activeclanchannel_getuserslot(%varclientstring_126);
+    $int28 = activeclanchannel_getuserslot(%varclient_2353);
     if ($int28 >= 0) {
         %varclient_1518 = $int28;
         if (cc_find($component10, %varclient_1518) = true) {
@@ -205,7 +205,7 @@ if (%varclient_1518 >= 0) {
         }
     } else {
         %varclient_1518 = -1;
-        %varclientstring_126 = "";
+        %varclient_2353 = "";
         if_sethide(false, interface_1110:com_13);
         ~script4628;
     }

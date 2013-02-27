@@ -1,0 +1,210 @@
+// 7002
+[proc,script7002](component $component0, int $int1, component $component2)
+if ($component0 = $component2 | $component0 = null | $component2 = null) {
+    return;
+}
+def_int $int3 = 0;
+def_graphic $graphic4 = null;
+switch_component ($component2) {
+    case default :
+        return;
+    case interface_746:com_54, interface_548:com_31, interface_640:com_27 :
+        switch_component ($component0) {
+            case default :
+                return;
+            case interface_640:com_32, interface_640:com_72, interface_640:com_76, interface_640:com_80, interface_640:com_84, interface_640:com_88, interface_640:com_92, interface_640:com_96, interface_640:com_100, interface_640:com_104, interface_640:com_108, interface_640:com_112 :
+                if_setobject(null, -1, $component0);
+                if_setgraphic(combatv2_blank_ability, $component0);
+                sound_vorbis_volume(vorbis_21213, 1, 0, 100);
+                if_clearops($component0);
+                if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component0);
+                if_setsize(30, 30, ^setsize_abs, ^setsize_abs, $component0);
+                if_clearscripthooks($component0);
+                if_settargetverb("", $component0);
+                if_setondragcomplete("script7001(event_com, event_comsubid, event_com2)", $component0);
+                return;
+        }
+    case interface_640:com_32, interface_640:com_72, interface_640:com_76, interface_640:com_80, interface_640:com_84, interface_640:com_88, interface_640:com_92, interface_640:com_96, interface_640:com_100, interface_640:com_104, interface_640:com_108, interface_640:com_112 :
+        $int3 = 0;
+}
+if ($int1 ! -1) {
+    if (cc_find($component0, $int1) = true) {
+        if (cc_getinvobject ! null) {
+            if_setobject(cc_getinvobject, -1, $component2);
+            if_setsize(36, 32, ^setsize_abs, ^setsize_abs, $component2);
+            if_setposition(3, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component2);
+            sound_vorbis_volume(vorbis_6185, 1, 0, 100);
+        } else {
+            if (cc_getgraphic = struct_param(struct_14874, param_2802)) {
+                return;
+            }
+            if_setgraphic(cc_getgraphic, $component2);
+            if_setsize(30, 30, ^setsize_abs, ^setsize_abs, $component2);
+            if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component2);
+            sound_vorbis_volume(vorbis_6185, 1, 0, 100);
+        }
+    }
+    return;
+} else if ($component0 = interface_749:com_2) {
+    $graphic4 = struct_param(struct_14539, param_2802);
+    if_setgraphic($graphic4, $component2);
+    if_setsize(20, 20, ^setsize_abs, ^setsize_abs, $component2);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component2);
+    sound_vorbis_volume(vorbis_6185, 1, 0, 100);
+    return;
+} else if ($component0 = interface_750:com_2) {
+    if (%varplayer_463 = 0) {
+        $graphic4 = "aif_topstat_icon,2";
+    } else {
+        $graphic4 = "aif_topstat_icon,4";
+    }
+    if_setgraphic($graphic4, $component2);
+    if_setsize(20, 20, ^setsize_abs, ^setsize_abs, $component2);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component2);
+    sound_vorbis_volume(vorbis_6185, 1, 0, 100);
+    return;
+} else if ($component0 = interface_748:com_7) {
+    $graphic4 = struct_param(struct_14723, param_2802);
+    if_setgraphic($graphic4, $component2);
+    if_setsize(20, 20, ^setsize_abs, ^setsize_abs, $component2);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component2);
+    sound_vorbis_volume(vorbis_6185, 1, 0, 100);
+    return;
+}
+def_obj $obj5 = if_getinvobject($component0);
+def_obj $obj6 = if_getinvobject($component2);
+def_graphic $graphic7 = if_getgraphic($component0);
+def_graphic $graphic8 = if_getgraphic($component2);
+def_int $rgb9 = if_getcolour($component0);
+def_int $rgb10 = if_getcolour($component2);
+if_setcolour($rgb9, $component2);
+if_setcolour($rgb10, $component0);
+def_int $int11 = if_getx($component0);
+def_int $int12 = if_gety($component0);
+def_int $int13 = if_getx($component2);
+def_int $int14 = if_gety($component2);
+if_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top, $component2);
+if_setposition($int13, $int14, ^setpos_abs_left, ^setpos_abs_top, $component0);
+def_int $int15 = if_getwidth($component0);
+def_int $int16 = if_getheight($component0);
+def_int $int17 = if_getwidth($component2);
+def_int $int18 = if_getheight($component2);
+if_setsize($int15, $int16, ^setsize_abs, ^setsize_abs, $component2);
+if_setsize($int17, $int18, ^setsize_abs, ^setsize_abs, $component0);
+if ($obj5 = null & $obj6 = null) {
+    if_setgraphic($graphic8, $component0);
+    if_setgraphic($graphic7, $component2);
+    sound_vorbis_volume(vorbis_6185, 1, 0, 100);
+} else if ($obj5 ! null & $obj6 ! null) {
+    if_setobject($obj6, -1, $component0);
+    if_setobject($obj5, -1, $component2);
+} else if ($obj5 ! null) {
+    if_setobject(null, -1, $component0);
+    if_setgraphic($graphic8, $component0);
+    if_setobject($obj5, -1, $component2);
+    sound_vorbis_volume(vorbis_6185, 1, 0, 100);
+} else {
+    if_setobject(null, -1, $component2);
+    if_setgraphic($graphic7, $component2);
+    if_setobject($obj6, -1, $component0);
+    sound_vorbis_volume(vorbis_6185, 1, 0, 100);
+}
+def_component $component19 = null;
+def_component $component20 = null;
+def_component $component21 = null;
+def_component $component22 = null;
+switch_component ($component0) {
+    case default :
+        return;
+    case interface_640:com_32 :
+        $component19 = interface_640:com_36;
+        $component20 = interface_640:com_69;
+    case interface_640:com_72 :
+        $component19 = interface_640:com_73;
+        $component20 = interface_640:com_74;
+    case interface_640:com_76 :
+        $component19 = interface_640:com_77;
+        $component20 = interface_640:com_78;
+    case interface_640:com_80 :
+        $component19 = interface_640:com_81;
+        $component20 = interface_640:com_82;
+    case interface_640:com_84 :
+        $component19 = interface_640:com_85;
+        $component20 = interface_640:com_86;
+    case interface_640:com_88 :
+        $component19 = interface_640:com_89;
+        $component20 = interface_640:com_90;
+    case interface_640:com_92 :
+        $component19 = interface_640:com_93;
+        $component20 = interface_640:com_94;
+    case interface_640:com_96 :
+        $component19 = interface_640:com_97;
+        $component20 = interface_640:com_98;
+    case interface_640:com_100 :
+        $component19 = interface_640:com_101;
+        $component20 = interface_640:com_102;
+    case interface_640:com_104 :
+        $component19 = interface_640:com_105;
+        $component20 = interface_640:com_106;
+    case interface_640:com_108 :
+        $component19 = interface_640:com_109;
+        $component20 = interface_640:com_110;
+    case interface_640:com_112 :
+        $component19 = interface_640:com_113;
+        $component20 = interface_640:com_114;
+}
+switch_component ($component2) {
+    case default :
+        return;
+    case interface_640:com_32 :
+        $component21 = interface_640:com_36;
+        $component22 = interface_640:com_69;
+    case interface_640:com_72 :
+        $component21 = interface_640:com_73;
+        $component22 = interface_640:com_74;
+    case interface_640:com_76 :
+        $component21 = interface_640:com_77;
+        $component22 = interface_640:com_78;
+    case interface_640:com_80 :
+        $component21 = interface_640:com_81;
+        $component22 = interface_640:com_82;
+    case interface_640:com_84 :
+        $component21 = interface_640:com_85;
+        $component22 = interface_640:com_86;
+    case interface_640:com_88 :
+        $component21 = interface_640:com_89;
+        $component22 = interface_640:com_90;
+    case interface_640:com_92 :
+        $component21 = interface_640:com_93;
+        $component22 = interface_640:com_94;
+    case interface_640:com_96 :
+        $component21 = interface_640:com_97;
+        $component22 = interface_640:com_98;
+    case interface_640:com_100 :
+        $component21 = interface_640:com_101;
+        $component22 = interface_640:com_102;
+    case interface_640:com_104 :
+        $component21 = interface_640:com_105;
+        $component22 = interface_640:com_106;
+    case interface_640:com_108 :
+        $component21 = interface_640:com_109;
+        $component22 = interface_640:com_110;
+    case interface_640:com_112 :
+        $component21 = interface_640:com_113;
+        $component22 = interface_640:com_114;
+}
+def_int $int23 = if_gettrans($component20);
+def_int $int24 = if_gettrans($component22);
+if_settrans($int23, $component22);
+if_settrans($int24, $component20);
+def_graphic $graphic25 = if_getgraphic($component19);
+def_graphic $graphic26 = if_getgraphic($component21);
+if_setgraphic($graphic25, $component21);
+if_setgraphic($graphic26, $component19);
+sound_vorbis_volume(vorbis_6185, 1, 0, 100);
+def_boolean $boolean27 = if_gethide($component19);
+def_boolean $boolean28 = if_gethide($component21);
+if_sethide($boolean27, $component21);
+if_sethide($boolean28, $component19);
+if_setontimer(null, $component21);
+if_setontimer(null, $component19);

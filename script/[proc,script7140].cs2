@@ -1,0 +1,71 @@
+// 7140
+[proc,script7140](obj $obj0, obj $obj1)(int)
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_string $string0 = "";
+def_component $component5 = null;
+def_component $component6 = null;
+def_component $component7 = null;
+def_int $int8 = 0;
+def_int $int9 = 0;
+while ($int8 < 4) {
+    switch_int ($int8) {
+        case 0 :
+            $int2 = oc_param($obj0, param_2833);
+            $int3 = oc_param($obj1, param_2833);
+            $string0 = "Melee Crit";
+            if ($int2 ! 0) {
+                $int9 = if_getheight(interface_1371:com_18);
+            }
+            $component5 = interface_1371:com_131;
+            $component6 = interface_1371:com_133;
+            $component7 = interface_1371:com_132;
+        case 1 :
+            $int2 = oc_param($obj0, param_2834);
+            $int3 = oc_param($obj1, param_2834);
+            $string0 = "Ranged Crit";
+            if ($int2 ! 0) {
+                $int9 = if_getheight(interface_1371:com_18);
+            }
+            $component5 = interface_1371:com_134;
+            $component6 = interface_1371:com_136;
+            $component7 = interface_1371:com_135;
+        case 2 :
+            $int2 = oc_param($obj0, param_2835);
+            $int3 = oc_param($obj1, param_2835);
+            $string0 = "Magic Crit";
+            if ($int2 ! 0) {
+                $int9 = if_getheight(interface_1371:com_18);
+            }
+            $component5 = interface_1371:com_137;
+            $component6 = interface_1371:com_139;
+            $component7 = interface_1371:com_138;
+        case 3 :
+            $int2 = oc_param($obj0, param_2946);
+            $int3 = oc_param($obj1, param_2946);
+            $string0 = "Prayer Bonus";
+            if ($int2 ! 0) {
+                $int9 = if_getheight(interface_1371:com_18);
+            }
+            $component5 = interface_1371:com_140;
+            $component6 = interface_1371:com_142;
+            $component7 = interface_1371:com_141;
+    }
+    if ($int2 > $int3) {
+        $int4 = 1;
+    } else if ($int2 < $int3) {
+        $int4 = -1;
+    } else {
+        $int4 = 0;
+    }
+    ~script1520($component5, $int4);
+    ~script7141($component6, $int2, $int4);
+    if ($int8 ! 3) {
+        if_settext(append(~script7247($int2), "%"), $component6);
+    }
+    if_setonmouserepeat("script4538(interface_1371:com_41, event_com, -1, $string0, if_getwidth(interface_1371:com_6), verdana_11pt_regular, verdana_11pt_regular, 0xc7a242, 13, 3, 2, event_mousex, event_mousey)", $component7);
+    if_setonmouseleave("deltooltip(interface_1371:com_41)", $component7);
+    $int8 = calc($int8 + 1);
+}
+return($int9);

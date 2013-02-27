@@ -1,25 +1,20 @@
 // 5918
-[clientscript,script5918](component $component0, int $int1)
-def_int $int2 = if_getwidth($component0);
-def_int $int3 = 150;
-def_int $int4 = 0;
-def_int $int5 = 15;
-def_int $int6 = calc($int3 - $int4);
-def_int $int7 = calc($int6 / $int5);
-if ($int1 = 0) {
-    $int2 = min(calc($int2 + $int7), $int3);
-    if ($int2 = $int3) {
-        $int1 = 1;
-        if_setontimer("script5918(event_com, $int1)", $component0);
-        ~script5914;
-        sound_vorbis_volume(~script2336(4282));
-        sound_vorbis_volume(~script2337(5712));
-        sound_vorbis_volume(~script2337(5713));
-    }
-} else {
-    $int2 = max(calc($int2 - $int7), $int4);
-    if ($int2 = $int4) {
-        if_setontimer(null, $component0);
-    }
+[clientscript,script5918](component $component0, int $int1, int $int2)
+def_int $int3 = if_getwidth($component0);
+def_int $int4 = 165;
+def_int $int5 = 1;
+def_int $int6 = 15;
+def_int $int7 = calc($int4 - $int5);
+def_int $int8 = calc($int7 / $int6);
+if ($int2 > 0 & ++$int2 >= 7) {
+    $int2 = 0;
+    ~script5914;
 }
-if_setsize($int2, if_getheight($component0), ^setsize_abs, ^setsize_abs, $component0);
+$int3 = min(calc($int3 + $int8), $int4);
+if ($int3 = $int4) {
+    if_setontimer(null, $component0);
+    if_setsize(max(1, $int3), 136, ^setsize_abs, ^setsize_abs, $component0);
+    return;
+}
+if_setsize(max(1, $int3), 136, ^setsize_abs, ^setsize_abs, $component0);
+if_setontimer("script5918(event_com, 0, $int2)", $component0);

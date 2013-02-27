@@ -1,0 +1,241 @@
+// 6184
+[proc,pop_ship_build_stats]
+if (%varplayer_3390 > ~script4186) {
+    if_settext("No Ship", interface_916:com_215);
+    if_settext("0", interface_916:com_309);
+    if_settext("0", interface_916:com_310);
+    if_settext("0", interface_916:com_311);
+    if_settext("0", interface_916:com_312);
+    if_settext(tostring(%varplayer_3390), interface_916:com_214);
+    if_sethide(true, interface_916:com_24);
+    if_sethide(true, interface_916:com_21);
+    if_sethide(true, interface_916:com_22);
+    if_sethide(true, interface_916:com_23);
+    if_sethide(true, interface_916:com_20);
+    if_sethide(true, interface_916:com_25);
+    if_sethide(true, interface_916:com_26);
+    if_sethide(true, interface_916:com_29);
+    if_sethide(true, interface_916:com_30);
+    if_sethide(true, interface_916:com_31);
+    if_sethide(true, interface_916:com_30);
+    return;
+}
+if_settext(%varclient_2601, interface_916:com_215);
+def_string $string0 = tostring(%varclient_2603);
+if_settext($string0, interface_916:com_309);
+def_string $string1 = tostring(%varclient_2607);
+if_settext($string1, interface_916:com_310);
+def_string $string2 = tostring(%varclient_2605);
+if_settext($string2, interface_916:com_311);
+def_string $string3 = tostring(%varclient_2609);
+if_settext($string3, interface_916:com_312);
+~script7252(%varplayer_3390);
+if_settext(tostring(%varplayer_3390), interface_916:com_214);
+if_sethide(true, interface_916:com_24);
+if_sethide(true, interface_916:com_21);
+if_sethide(true, interface_916:com_22);
+if_sethide(true, interface_916:com_23);
+if_sethide(true, interface_916:com_20);
+if_sethide(true, interface_916:com_29);
+if_sethide(false, interface_916:com_27);
+if_sethide(false, interface_916:com_231);
+if_sethide(false, interface_916:com_243);
+if_sethide(false, interface_916:com_244);
+if_sethide(false, interface_916:com_247);
+def_struct $struct0 = null;
+def_int $int1 = ~script2047;
+switch_int (%varplayer_3390) {
+    case 1 :
+        if (~pop_ship_available(1) = 0) {
+            $int1 = %varplayerbit_17071;
+        }
+    case 2 :
+        if (~pop_ship_available(2) = 0) {
+            $int1 = %varplayerbit_17082;
+        }
+    case 3 :
+        if (~pop_ship_available(3) = 0) {
+            $int1 = %varplayerbit_17093;
+        }
+    case 4 :
+        if (~pop_ship_available(4) = 0) {
+            $int1 = %varplayerbit_17104;
+        }
+}
+$struct0 = enum(int, struct, enum_1022, $int1);
+if ($struct0 = null) {
+    return;
+}
+if (%varplayerbit_17130 > 0 & $struct0 ! struct_17069) {
+    if_sethide(false, interface_916:com_31);
+    if_sethide(true, interface_916:com_30);
+    ~script7254($struct0);
+} else {
+    if_sethide(true, interface_916:com_31);
+    if_sethide(false, interface_916:com_30);
+}
+if (%varplayerbit_17495 >= 24 & %varplayerbit_17495 < 26) {
+    %varclient_2611 = 1;
+} else if (%varplayerbit_17495 = 26) {
+    %varclient_2611 = 2;
+} else if (%varplayerbit_17495 = 50) {
+    %varclient_2611 = 1;
+} else if (%varplayerbit_17495 = 52) {
+    %varclient_2611 = 2;
+}
+def_string $string4 = "";
+def_int $int2 = struct_param($struct0, param_3060);
+def_int $int3 = struct_param($struct0, param_3062);
+def_int $int4 = struct_param($struct0, param_3064);
+if_setgraphic(null, interface_916:com_388);
+if_setgraphic(null, interface_916:com_393);
+if_setgraphic(null, interface_916:com_398);
+if_settext("", interface_916:com_389);
+if_settext("", interface_916:com_394);
+if_settext("", interface_916:com_399);
+def_string $string5 = "";
+def_string $string6 = "";
+def_int $int5 = 0;
+def_obj $obj6 = null;
+def_int $int7 = -1;
+if (%varclient_2611 > 0) {
+    if_sethide(true, interface_916:com_32);
+    switch_int (%varplayer_3390) {
+        case 1 :
+            $int1 = %varplayerbit_17071;
+        case 2 :
+            $int1 = %varplayerbit_17082;
+        case 3 :
+            $int1 = %varplayerbit_17093;
+        case 4 :
+            $int1 = %varplayerbit_17104;
+    }
+    if (%varplayerbit_17495 >= 24 & %varplayerbit_17495 <= 28) {
+        $int1 = 415;
+    } else if (%varplayerbit_17495 >= 50 & %varplayerbit_17495 <= 54) {
+        $int1 = 417;
+    }
+    $struct0 = enum(int, struct, enum_1022, $int1);
+    if ($struct0 ! null & $struct0 ! struct_17069) {
+        $int7 = struct_param($struct0, param_2366);
+        $string4 = ~script2057($struct0, 0);
+        if_settext($string4, interface_916:com_254);
+        if (struct_param($struct0, param_3060) = 16) {
+            if_setgraphic(enum(int, graphic, enum_7213, %varplayerbit_17497), interface_916:com_388);
+        } else {
+            if_setgraphic(enum(int, graphic, enum_1024, struct_param($struct0, param_3060)), interface_916:com_388);
+        }
+        if (struct_param($struct0, param_3062) = 16) {
+            if_setgraphic(enum(int, graphic, enum_7213, %varplayerbit_17497), interface_916:com_393);
+        } else {
+            if_setgraphic(enum(int, graphic, enum_1024, struct_param($struct0, param_3062)), interface_916:com_393);
+        }
+        if (struct_param($struct0, param_3064) = 16) {
+            if_setgraphic(enum(int, graphic, enum_7213, %varplayerbit_17497), interface_916:com_398);
+        } else {
+            if_setgraphic(enum(int, graphic, enum_1024, struct_param($struct0, param_3064)), interface_916:com_398);
+        }
+        $int5 = struct_param($struct0, param_3061);
+        $string5 = tostring($int5);
+        if ($int7 = 2) {
+            $string5 = enum(int, string, enum_7164, $int5);
+            switch_int ($int5) {
+                case 0 :
+                    $obj6 = obj_26209;
+                case 2 :
+                    $obj6 = obj_26217;
+                case 3 :
+                    $obj6 = obj_26225;
+                case 4 :
+                    $obj6 = obj_26233;
+                case 5 :
+                    $obj6 = obj_26241;
+                case 6 :
+                    $obj6 = obj_26245;
+            }
+        } else if ($int7 = 6) {
+            switch_int ($int5) {
+                case 1 :
+                    $string5 = "Whaler";
+                case 2 :
+                    $string5 = "Biologist";
+                case 3 :
+                    $string5 = "Occultist";
+                case 4 :
+                    $string5 = "Assassin";
+                case 5 :
+                    $string5 = "Convict";
+                case 6 :
+                    $string5 = "Missionary";
+            }
+        } else if ($int7 = 7) {
+            $string5 = "New Trait";
+        } else if ($int7 = 4) {
+            if ($int5 < 7) {
+                $string5 = "25,000";
+            } else {
+                $string5 = "50,000 x2";
+            }
+        }
+        if (compare($string5, "") ! 0 & compare($string5, "0") ! 0 & compare($string5, "-1") ! 0) {
+            if_settext($string5, interface_916:com_389);
+            $string6 = append(enum(int, string, enum_1025, $int2), ": <$string5>");
+            if ($int7 = 2) {
+                $string6 = "Unlock island: <enum(int, string, enum_7164, $int5)>";
+            } else if ($int7 = 7) {
+                $string6 = "Captain gains a trait: <struct_param(enum(int, struct, enum_2175, $int5), param_3090)>";
+            } else if ($int7 = 4) {
+                $string6 = "Experience: <$string5>";
+            }
+            if_setonmouserepeat("script4538(interface_916:com_34, event_com, -1, $string6, 200, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 2, event_mousex, event_mousey)", interface_916:com_388);
+        }
+        $int5 = struct_param($struct0, param_3063);
+        $string5 = tostring($int5);
+        if ($int7 = 2 & $obj6 ! null) {
+            if_setgraphic(oc_param($obj6, param_3080), interface_916:com_393);
+            $string6 = "Unlock crewman: <oc_name($obj6)>";
+            if_setonmouserepeat("script4538(interface_916:com_34, event_com, -1, $string6, 200, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 2, event_mousex, event_mousey)", interface_916:com_393);
+            $string5 = "";
+        }
+        if (compare($string5, "") ! 0 & compare($string5, "0") ! 0 & compare($string5, "-1") ! 0) {
+            if_settext($string5, interface_916:com_394);
+            $string6 = append(enum(int, string, enum_1025, $int3), ": <$string5>");
+            if_setonmouserepeat("script4538(interface_916:com_34, event_com, -1, $string6, 200, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 2, event_mousex, event_mousey)", interface_916:com_393);
+        }
+        $int5 = struct_param($struct0, param_3065);
+        $string5 = tostring($int5);
+        if (compare($string5, "") ! 0 & compare($string5, "0") ! 0 & compare($string5, "-1") ! 0) {
+            if_settext($string5, interface_916:com_399);
+            $string6 = append(enum(int, string, enum_1025, $int4), ": <$string5>");
+            if_setonmouserepeat("script4538(interface_916:com_34, event_com, -1, $string6, 200, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 2, event_mousex, event_mousey)", interface_916:com_398);
+        }
+    }
+}
+switch_int (%varclient_2611) {
+    case 0 :
+        if_sethide(false, interface_916:com_24);
+        if_sethide(false, interface_916:com_21);
+        if_sethide(false, interface_916:com_22);
+        if_sethide(false, interface_916:com_23);
+        if_sethide(false, interface_916:com_20);
+        if_sethide(false, interface_916:com_29);
+        if_sethide(true, interface_916:com_27);
+    case 1 :
+        if_sethide(true, interface_916:com_31);
+        if_sethide(true, interface_916:com_30);
+        if_sethide(false, interface_916:com_27);
+        if_sethide(false, interface_916:com_231);
+        if_sethide(true, interface_916:com_243);
+        if_sethide(true, interface_916:com_244);
+        if_sethide(true, interface_916:com_247);
+        if_sethide(true, interface_916:com_248);
+    case 2 :
+        if_sethide(true, interface_916:com_31);
+        if_sethide(true, interface_916:com_30);
+        if_sethide(false, interface_916:com_27);
+        if_sethide(true, interface_916:com_231);
+        if_sethide(false, interface_916:com_243);
+        if_sethide(true, interface_916:com_244);
+        if_sethide(true, interface_916:com_247);
+        if_sethide(true, interface_916:com_248);
+}

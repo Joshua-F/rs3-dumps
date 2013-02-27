@@ -1,18 +1,27 @@
 // 4172
-[proc,script4172](struct $struct0)(int)
+[proc,script4172](struct $struct0, int $int1)(int)
 if ($struct0 = null) {
     return(0);
 }
-def_int $int1 = struct_param($struct0, param_2788);
-if ($int1 = -1) {
+def_int $int2 = struct_param($struct0, param_2788);
+if ($int2 = -1) {
     return(0);
 }
-def_obj $obj2 = ~script4173($int1);
-def_obj $obj3 = inv_getobj(inv_670, oc_wearpos($obj2));
-if ($obj3 = null | $obj2 = null) {
+def_inv $inv3 = inv_670;
+if ($int1 = 1) {
+    $inv3 = inv_671;
+}
+def_obj $obj4 = ~script4173($int2);
+def_obj $obj5 = inv_getobj($inv3, oc_wearpos($obj4));
+if ($obj5 = null | $obj4 = null) {
     return(0);
 }
-if ($obj2 = $obj3) {
-    return(1);
+if ($obj5 = $obj4) {
+    if ($int1 = 1) {
+        return(1);
+    }
+    if (testbit(%varplayer_3529, $int2) = ^true) {
+        return(1);
+    }
 }
 return(0);

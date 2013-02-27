@@ -1,0 +1,15 @@
+// 6299
+[clientscript,combatv2_cooldown_flash_dynamic](component $component0, int $int1, boolean $boolean2)
+if (cc_find($component0, $int1) = true) {
+    if ($boolean2 = true) {
+        cc_settrans(max(calc(cc_gettrans - 35), 0));
+        if (cc_gettrans = 0) {
+            cc_setontimer("combatv2_cooldown_flash_dynamic($component0, $int1, false)");
+        }
+    } else {
+        cc_settrans(min(calc(cc_gettrans + 35), 255));
+        if (cc_gettrans = 255) {
+            cc_setontimer(null);
+        }
+    }
+}

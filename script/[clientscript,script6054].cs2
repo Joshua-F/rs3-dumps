@@ -1,19 +1,16 @@
 // 6054
-[clientscript,script6054]
-def_component $component0 = interface_1253:com_90;
-sound_vorbis_rate(~script5996(14351));
-def_int $int1 = 1;
-if (%varclient_1803 = 1) {
-    %varclient_1803 = 0;
-    $int1 = 1;
-    if_sethflip(false, interface_1253:com_104);
-    if_sethflip(false, interface_1253:com_105);
-    if_sethflip(false, interface_1253:com_106);
+[clientscript,script6054](component $component0, int $int1)
+def_int $int2 = 35;
+if ($int1 = 0) {
+    if_settrans(max(calc(if_gettrans($component0) - $int2), 0), $component0);
+    if (if_gettrans($component0) <= 0) {
+        if_setontimer("script6054(event_com, 1)", $component0);
+    }
 } else {
-    %varclient_1803 = 1;
-    $int1 = 0;
-    if_sethflip(true, interface_1253:com_104);
-    if_sethflip(true, interface_1253:com_105);
-    if_sethflip(true, interface_1253:com_106);
+    if_settrans(min(calc(if_gettrans($component0) + $int2), 255), $component0);
+    if (if_gettrans($component0) >= 255) {
+        if_sethide(true, $component0);
+        if_setontimer("script6054(event_com, 0)", $component0);
+        return;
+    }
 }
-if_setontimer("script6055(event_com, $int1)", $component0);

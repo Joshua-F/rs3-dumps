@@ -1,0 +1,131 @@
+// 7126
+[proc,script7126](obj $obj0)
+def_int $int1 = 0;
+def_int $int2 = oc_param($obj0, param_2696);
+def_int $int3 = 1;
+def_string $string0 = "";
+def_string $string1 = "";
+if (oc_param($obj0, param_3037) = false) {
+    $int3 = oc_param($obj0, param_2653);
+} else {
+    $int3 = 1;
+}
+if ($int2 ! 0) {
+    ~script1520(interface_1370:com_4, 0);
+    if_setgraphic(enum(int, graphic, enum_371, $int2), interface_1370:com_51);
+    if (~script7166($obj0) = true) {
+        $string0 = tostring(calc($int3 * oc_param($obj0, param_2697) / 10000));
+    } else {
+        $string0 = tostring(calc($int3 * oc_param($obj0, param_2697)));
+    }
+    if (string_length($string0) <= 4) {
+        if (string_length($string0) = 1) {
+            $string0 = append("0", $string0);
+        }
+        $string0 = "<substring($string0, 0, calc(string_length($string0) - 1))>.<substring($string0, calc(string_length($string0) - 1), string_length($string0))>xp";
+    } else {
+        $string0 = append(substring($string0, 0, calc(string_length($string0) - 1)), "xp");
+    }
+    if_settext($string0, interface_1370:com_52);
+    $string1 = "<enum(int, string, enum_108, $int2)> Experience";
+} else {
+    ~script1520(interface_1370:com_4, 2);
+    if_setgraphic(null, interface_1370:com_51);
+    if_settext("-", interface_1370:com_52);
+    $string1 = "No xp Gain";
+}
+if_setonmouserepeat("script4538(interface_1371:com_68, event_com, -1, $string1, if_getwidth(interface_1370:com_23), verdana_11pt_regular, verdana_11pt_regular, 0xc7a242, 13, 3, 2, event_mousex, event_mousey)", interface_1370:com_44);
+if_setonmouseleave("deltooltip(interface_1371:com_68)", interface_1370:com_44);
+$int2 = oc_param($obj0, param_2698);
+if (oc_param($obj0, param_2996) = false) {
+    $int3 = oc_param($obj0, param_2653);
+} else {
+    $int3 = 1;
+}
+if ($int2 ! 0) {
+    ~script1520(interface_1370:com_63, 0);
+    if_setgraphic(enum(int, graphic, enum_371, $int2), interface_1370:com_64);
+    if (~script7166($obj0) = true) {
+        $string0 = tostring(calc($int3 * oc_param($obj0, param_2699) / 10000));
+    } else {
+        $string0 = tostring(calc($int3 * oc_param($obj0, param_2699)));
+    }
+    if (string_length($string0) <= 4) {
+        if (string_length($string0) = 1) {
+            $string0 = append("0", $string0);
+        }
+        $string0 = "<substring($string0, 0, calc(string_length($string0) - 1))>.<substring($string0, calc(string_length($string0) - 1), string_length($string0))>xp";
+    } else {
+        $string0 = append(substring($string0, 0, calc(string_length($string0) - 1)), "xp");
+    }
+    if_settext($string0, interface_1370:com_65);
+    $string1 = "<enum(int, string, enum_108, $int2)> Experience";
+} else {
+    ~script1520(interface_1370:com_63, 2);
+    if_setgraphic(null, interface_1370:com_64);
+    if_settext("-", interface_1370:com_65);
+    $string1 = "No Secondary xp gain";
+}
+if_setonmouserepeat("script4538(interface_1371:com_68, event_com, -1, $string1, if_getwidth(interface_1370:com_23), verdana_11pt_regular, verdana_11pt_regular, 0xc7a242, 13, 3, 2, event_mousex, event_mousey)", interface_1370:com_45);
+if_setonmouseleave("deltooltip(interface_1371:com_68)", interface_1370:com_45);
+if (oc_param($obj0, param_2989) ! null) {
+    $obj0 = oc_param($obj0, param_2989);
+}
+$int3 = oc_param($obj0, param_2653);
+def_int $int4 = 0;
+def_string $string2 = "Sell to Store Gold Value";
+def_string $string3 = "Grand Exchange Gold Value";
+def_string $string4 = "";
+if (stat_base(magic) >= 55) {
+    $string4 = "High Alchemy Gold Value";
+} else {
+    $string4 = "Low Alchemy Gold Value";
+}
+if (oc_cost($obj0) > 0) {
+    if (%varclient_2223 = 1) {
+        ~script1520(interface_1370:com_2, 0);
+        $int4 = calc($int3 * max(1, scale(oc_cost($obj0), 100, 30)));
+        if_settext(~script940($int4), interface_1370:com_66);
+        $string2 = "<$string2>: <tostring($int4)>";
+        if (%varclient_2224 ! -1) {
+            ~script1520(interface_1370:com_48, 0);
+            $int4 = calc($int3 * %varclient_2224);
+            if_settext(~script940($int4), interface_1370:com_68);
+            $string3 = "<$string3>: <tostring($int4)>";
+        } else {
+            ~script1520(interface_1370:com_48, 2);
+            if_settext("-", interface_1370:com_68);
+        }
+    } else {
+        ~script1520(interface_1370:com_2, 2);
+        ~script1520(interface_1370:com_48, 2);
+        if_settext("-", interface_1370:com_66);
+        if_settext("-", interface_1370:com_68);
+    }
+    if (oc_param($obj0, param_689) = 0) {
+        ~script1520(interface_1370:com_50, 0);
+        if (stat_base(magic) >= 55) {
+            $int4 = calc($int3 * scale(60, 100, oc_cost($obj0)));
+        } else {
+            $int4 = calc($int3 * scale(40, 100, oc_cost($obj0)));
+        }
+        if_settext(~script940($int4), interface_1370:com_70);
+        $string4 = "<$string4>: <tostring($int4)>";
+    } else {
+        ~script1520(interface_1370:com_50, 2);
+        if_settext("-", interface_1370:com_70);
+    }
+} else {
+    ~script1520(interface_1370:com_2, 2);
+    ~script1520(interface_1370:com_48, 2);
+    ~script1520(interface_1370:com_50, 2);
+    if_settext("-", interface_1370:com_66);
+    if_settext("-", interface_1370:com_68);
+    if_settext("-", interface_1370:com_70);
+}
+if_setonmouserepeat("script4538(interface_1371:com_68, event_com, -1, $string2, if_getwidth(interface_1370:com_23), verdana_11pt_regular, verdana_11pt_regular, 0xc7a242, 13, 3, 2, event_mousex, event_mousey)", interface_1370:com_46);
+if_setonmouseleave("deltooltip(interface_1371:com_68)", interface_1370:com_46);
+if_setonmouserepeat("script4538(interface_1371:com_68, event_com, -1, $string3, if_getwidth(interface_1370:com_23), verdana_11pt_regular, verdana_11pt_regular, 0xc7a242, 13, 3, 2, event_mousex, event_mousey)", interface_1370:com_47);
+if_setonmouseleave("deltooltip(interface_1371:com_68)", interface_1370:com_47);
+if_setonmouserepeat("script4538(interface_1371:com_68, event_com, -1, $string4, if_getwidth(interface_1370:com_23), verdana_11pt_regular, verdana_11pt_regular, 0xc7a242, 13, 3, 2, event_mousex, event_mousey)", interface_1370:com_49);
+if_setonmouseleave("deltooltip(interface_1371:com_68)", interface_1370:com_49);

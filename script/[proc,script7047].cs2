@@ -1,0 +1,165 @@
+// 7047
+[proc,script7047](int $int0, enum $enum1, int $int2, int $int3, intarray $intarray0, int $int5)(int)
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 8;
+def_int $int9 = calc($int0 - $int8);
+def_int $int10 = $int0;
+def_int $int11 = 0;
+def_struct $struct12 = null;
+def_int $int13 = enum_getoutputcount($enum1);
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_component $component16 = interface_275:com_14;
+def_component $component17 = interface_275:com_16;
+def_component $component18 = interface_275:com_19;
+def_component $component19 = interface_275:com_17;
+def_component $component20 = interface_275:com_18;
+def_int $int21 = 30;
+def_int $int22 = 30;
+def_int $int23 = 0;
+def_obj $obj24 = inv_getobj(inv_94, 3);
+def_obj $obj25 = inv_getobj(inv_94, 5);
+while ($int6 < $int13) {
+    $struct12 = enum(int, struct, $enum1, $intarray0($int6));
+    if ($struct12 ! null) {
+        $int14 = 1;
+        if (struct_param($struct12, param_2806) = 4) {
+            if ($int3 ! -1) {
+                $int15 = $int3;
+            } else {
+                $int15 = %varplayerbit_0;
+            }
+            if (%varclient_1725 = 11) {
+                if (struct_param($struct12, param_2872) = 1) {
+                    $int14 = 1;
+                } else {
+                    $int14 = 0;
+                }
+            } else if (struct_param($struct12, param_2871) ! 3 & struct_param($struct12, param_2871) ! $int15) {
+                $int14 = 0;
+            }
+            if ($int14 = 1) {
+                switch_int ($int2) {
+                    case 5 :
+                        if (struct_param($struct12, param_2880) ! 5) {
+                            $int14 = 0;
+                        }
+                    case 0 :
+                        if (struct_param($struct12, param_2880) ! 0) {
+                            $int14 = 0;
+                        }
+                    case 1, 4 :
+                        if (struct_param($struct12, param_2880) ! 1 & struct_param($struct12, param_2880) ! 4) {
+                            $int14 = 0;
+                        }
+                    case 2, 3 :
+                        if (struct_param($struct12, param_2880) ! 2 & struct_param($struct12, param_2880) ! 3) {
+                            $int14 = 0;
+                        }
+                }
+            }
+        }
+        if (struct_param($struct12, param_2976) = 1 & oc_param($obj24, param_2977) ! $struct12 & oc_param($obj25, param_2977) ! $struct12) {
+            $int14 = 0;
+        }
+        if (struct_param($struct12, param_2819) = 1) {
+            switch_struct ($struct12) {
+                case struct_14692, struct_14693, struct_14694, struct_14695 :
+                    if (%varplayer_1494 = 0) {
+                        $int14 = 0;
+                    }
+            }
+        }
+        if ($int14 = 1) {
+            $int11 = calc($int11 + 1);
+            $int7 = struct_param($struct12, param_2793);
+            if (cc_find($component17, $int7) = true) {
+                cc_delete;
+            }
+            cc_create($component17, ^iftype_graphic, $int7);
+            cc_setposition($int10, $int9, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize($int21, $int22, ^setsize_abs, ^setsize_abs);
+            cc_setgraphic(struct_param($struct12, param_2802));
+            cc_setopbase("<col=00ff00><struct_param($struct12, param_2794)>");
+            if (struct_param($struct12, param_2875) = 1) {
+                cc_settargetverb("Cast");
+                cc_setontargetenter("script7049(event_com, event_comsubid)");
+                cc_setontargetleave("script7050(event_com, event_comsubid)");
+                cc_settargetcursors(struct_param($struct12, param_2803), cursor_158);
+            } else if (struct_param($struct12, param_2880) = 5 | struct_param($struct12, param_2806) ! 4) {
+                cc_setop(1, "Activate");
+            } else {
+                cc_setop(1, "Cast");
+            }
+            if (struct_param($struct12, param_2874) = 1) {
+                cc_setop(2, "Auto-cast");
+            } else if (struct_param($struct12, param_2880) = 4) {
+                cc_setop(2, "Previous-destination");
+            }
+            if ($int5 = 1 | %varplayer_3226 ! null) {
+                cc_setop(10, "Charge-staff");
+            }
+            cc_setdragdeadzone(5);
+            cc_setdragdeadtime(5);
+            cc_setonmouseover("script7037(event_com, event_comsubid, $struct12, event_mousey)");
+            cc_setonmouseleave("script7040");
+            cc_setondragcomplete("script7001(event_com, event_comsubid, event_com2)");
+            cc_setonvartransmit("script7003(cc_getlayer, cc_getid, struct_param($struct12, param_2799), $struct12){varplayer_679}");
+            ~script7004(cc_getlayer, cc_getid, struct_param($struct12, param_2799), $struct12);
+            cc_setoninvtransmit("script7003(cc_getlayer, cc_getid, struct_param($struct12, param_2799), $struct12){inv_94, inv_93}");
+            cc_setonstattransmit("script7003(cc_getlayer, cc_getid, struct_param($struct12, param_2799), $struct12){attack, strength, defence, ranged, magic, hitpoints}");
+            if (cc_find($component19, $int7) = true) {
+                cc_delete;
+            }
+            cc_create($component19, ^iftype_graphic, $int7);
+            cc_setposition($int10, $int9, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize($int21, $int22, ^setsize_abs, ^setsize_abs);
+            cc_setgraphic("combatv2_cooldown_animation,0");
+            cc_setcolour(0x010101);
+            cc_settrans(45);
+            cc_sethide(true);
+            if (cc_find($component20, $int7) = true) {
+                cc_delete;
+            }
+            cc_create($component20, ^iftype_rectangle, $int7);
+            cc_setposition($int10, $int9, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize($int21, $int22, ^setsize_abs, ^setsize_abs);
+            cc_setcolour(^white);
+            cc_setfill(true);
+            cc_settrans(255);
+            cc_sethide(true);
+            if (struct_param($struct12, param_2874) = 1) {
+                cc_create($component18, ^iftype_rectangle, if_getnextsubid($component18));
+                $int23 = cc_getid;
+                cc_setposition($int10, $int9, ^setpos_abs_left, ^setpos_abs_top);
+                cc_setsize($int21, $int22, ^setsize_abs, ^setsize_abs);
+                cc_setfill(false);
+                cc_setcolour(0x969696);
+                if (%varplayerbit_43 = $int7) {
+                    cc_settrans(0);
+                    cc_setontimer("script7053($component18, $int23, true)");
+                } else {
+                    cc_settrans(255);
+                    cc_setontimer(null);
+                }
+                cc_setonvartransmit("script7051($component18, $int23, $int7){varplayer_0}");
+            }
+            if (struct_param($struct12, param_2807) > 0 & (stat_base(enum(int, stat, enum_681, struct_param($struct12, param_2806))) < struct_param($struct12, param_2807) | struct_param($struct12, param_2809) = 1 & map_members = false)) {
+                cc_create($component18, ^iftype_graphic, if_getnextsubid($component18));
+                cc_setsize(30, 30, ^setsize_abs, ^setsize_abs);
+                cc_setgraphic(graphic_14884);
+                cc_setposition($int10, $int9, ^setpos_abs_left, ^setpos_abs_top);
+                cc_setonstattransmit("script7058($component18, cc_getid, $struct12){enum(int, stat, enum_681, struct_param($struct12, param_2806))}");
+            }
+            $int10 = calc($int10 + $int21 + $int0);
+            if (calc($int10 + $int21) > if_getwidth($component16)) {
+                $int10 = $int0;
+                $int9 = calc($int9 + $int22 + ($int0 - $int8));
+            }
+            ~combatv2_cooldown_start($struct12, 1);
+        }
+    }
+    $int6 = calc($int6 + 1);
+}
+return($int11);

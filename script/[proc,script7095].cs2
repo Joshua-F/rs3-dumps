@@ -1,0 +1,38 @@
+// 7095
+[proc,script7095]
+if (%varplayer_1175 = null | %varplayer_1175 = obj_0) {
+    return;
+}
+if (%varclient_2229 < 0) {
+    ~script7098;
+    return;
+}
+def_vorbis $vorbis0 = null;
+if (%varclient_2229 > -1) {
+    switch_int (random(4)) {
+        case 0 :
+            $vorbis0 = vorbis_21232;
+        case 1 :
+            $vorbis0 = vorbis_21249;
+        case 2 :
+            $vorbis0 = vorbis_21257;
+        case 3 :
+            $vorbis0 = vorbis_21229;
+    }
+}
+sound_vorbis_rate($vorbis0, 1, 0, 30, random_sound_pitch(5, 10));
+def_string $string0 = "";
+~aif_progressbar_set(calc((%varclient_2228 - %varclient_2229) * 100 / %varclient_2228), interface_1251:com_28, null);
+$string0 = "<tostring(calc(%varclient_2228 - %varclient_2229))>/<tostring(%varclient_2228)>";
+~script4212(interface_1251:com_32, $string0, verdana_11pt_regular, 0xd5d9d3, ^black);
+def_int $int1 = calc(%varclient_2227 * 30 * %varclient_2229 / 50);
+if (%varclient_2229 > 0) {
+    $string0 = "<tostring(max(1, $int1))>s";
+} else {
+    ~script7098;
+    return;
+}
+if_settext($string0, interface_1251:com_2);
+if_setontimer("script7099(interface_1251:com_2, calc($int1 - 1), calc(clientclock + 50))", interface_1251:com_7);
+def_int $int2 = calc(clientclock + %varclient_2227 * 30 * 2);
+if_setontimer("script7097($int2)", interface_1251:com_18);
