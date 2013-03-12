@@ -1,8 +1,12 @@
 // 6035
 [proc,xp_reward_checkskill](stat $stat0, int $int1, obj $obj2, int $int3)(boolean)
-if (map_members = false & enum_hasoutput(stat, enum_5472, $stat0) = true) {
+if (map_members = false & enum_hasoutput(stat, enum_5472, $stat0) = true & stat_base($stat0) >= 5) {
     if ($int3 = 1) {
-        mes("You must be on a members' world to gain XP in that skill.");
+        if (playermember = false) {
+            mes("You have reached the maximum level for this skill in the free game. To gain more XP you must subscribe.");
+        } else {
+            mes("You have the reached the maximum level for this skill in the free game. To gain more XP you must log in to a members' world.");
+        }
         sound_vorbis_volume(vorbis_10046, 1, 0, 150);
     }
     return(false);

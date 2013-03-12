@@ -1,0 +1,29 @@
+// 7571
+[clientscript,script7571]
+if (%varplayer_1295 < 1000) {
+    mes("You can't do this while in the tutorial.");
+    return;
+}
+if (%varplayerbit_3617 = 1) {
+    mes("You cannot change your chat filters while you are in the tutorial as you might miss important messages that will help with your progress.");
+    return;
+}
+%varclient_41 = -1;
+~subchanged;
+switch_int (%varclient_42) {
+    case 0, 2 :
+        %varclient_1651 = 0;
+        chat_setmode(0);
+        ~script1558(false);
+    case 4 :
+        %varclient_1651 = 1;
+        chat_setmode(1);
+        ~script1558(false);
+    case 7 :
+        %varclient_1651 = 2;
+        chat_setmode(2);
+        ~script1558(false);
+}
+~redraw_chat_buttons;
+~rebuildchatbox;
+~rebuildpmbox;

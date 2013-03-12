@@ -69,6 +69,10 @@ while ($int6 < $int13) {
                     if (%varplayer_1494 = 0) {
                         $int14 = 0;
                     }
+                case struct_19255, struct_19254, struct_19252, struct_19251, struct_19253 :
+                    if (%varplayerbit_18021 < 250) {
+                        $int14 = 0;
+                    }
             }
         }
         if ($int14 = 1) {
@@ -136,9 +140,13 @@ while ($int6 < $int13) {
                 cc_setsize($int21, $int22, ^setsize_abs, ^setsize_abs);
                 cc_setfill(false);
                 cc_setcolour(0x969696);
-                if (%varplayerbit_43 = $int7) {
+                if (%varplayerbit_43 = $int7 | %varplayerbit_18050 = $int7 & %varplayerbit_43 ! %varplayerbit_18050) {
                     cc_settrans(0);
-                    cc_setontimer("script7053($component18, $int23, true)");
+                    if (%varplayerbit_43 = $int7) {
+                        cc_setontimer("script7053($component18, $int23, true, 0)");
+                    } else {
+                        cc_setontimer("script7053($component18, $int23, true, 1)");
+                    }
                 } else {
                     cc_settrans(255);
                     cc_setontimer(null);
