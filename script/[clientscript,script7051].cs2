@@ -1,10 +1,15 @@
 // 7051
 [clientscript,script7051](component $component0, int $int1, int $int2)
 if (cc_find($component0, $int1) = true) {
-    if (%varplayerbit_43 = $int2) {
+    if (%varplayerbit_43 = $int2 | %varplayerbit_18050 = $int2 & %varplayerbit_43 ! %varplayerbit_18050) {
         cc_settrans(0);
-        cc_setontimer("script7053($component0, $int1, true)");
+        if (%varplayerbit_43 = $int2) {
+            cc_setontimer("script7053($component0, $int1, true, 0)");
+        } else {
+            cc_setontimer("script7053($component0, $int1, true, 1)");
+        }
     } else {
+        cc_setcolour(0x969696);
         cc_settrans(255);
         cc_setontimer(null);
     }

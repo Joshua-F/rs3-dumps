@@ -4,23 +4,23 @@ def_obj $obj0 = inv_getobj(inv_94, 3);
 def_int $int1 = %varplayer_715;
 def_int $int2 = ~script7244($obj0);
 def_int $int3 = 0;
+def_string $string0 = enum(int, string, enum_6744, %varplayer_717);
+def_string $string1 = enum(int, string, enum_6741, oc_param($obj0, param_14));
+def_struct $struct4 = enum(int, struct, enum_6740, %varplayerbit_43);
 switch_int (~script7241($obj0)) {
     case 1 :
         $int3 = %varplayer_724;
     case 2 :
         $int3 = %varplayer_725;
-}
-if ($obj0 = null) {
-    $int3 = %varplayer_724;
-}
-def_string $string0 = enum(int, string, enum_6744, %varplayer_717);
-def_string $string1 = enum(int, string, enum_6741, oc_param($obj0, param_14));
-def_struct $struct4 = enum(int, struct, enum_6740, %varplayerbit_43);
-def_int $int5 = 0;
-if ($struct4 ! null & %varplayerbit_42 = 1) {
-    $int1 = calc(struct_param($struct4, param_2877) / 10 + stat(magic));
-    $int3 = %varplayer_726;
-    $string0 = enum(int, string, enum_6744, struct_param($struct4, param_2873));
+    case 3 :
+        if ($struct4 ! null) {
+            $string0 = enum(int, string, enum_6744, struct_param($struct4, param_2873));
+        } else {
+            $string0 = "-";
+        }
+        $int3 = %varplayer_726;
+    case default :
+        $int3 = %varplayer_724;
 }
 if_settext(tostring($int1), interface_667:com_51);
 if_settext(tostring($int2), interface_667:com_56);
