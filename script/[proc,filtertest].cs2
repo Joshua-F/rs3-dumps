@@ -1,5 +1,15 @@
 [proc,filtertest](int $int0, int $int1)(boolean)
-switch_int (chat_gethistorytype($int0)) {
+def_int $chattype2 = ^chattype_gamemessage;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
+def_chatphrase $chatphrase5 = null;
+def_string $string4 = "";
+$chattype2, $int3, $int4, $string0, $string1, $string2, $string3, $chatphrase5, $string4 = chat_gethistory_byuid($int0);
+switch_int ($chattype2) {
     case null :
         return(false);
     case ^chattype_gamemessage, ^chattype_engine, ^chattype_obj_examine, ^chattype_npc_examine, ^chattype_loc_examine, ^chattype_modchat, 110, ^chattype_snapshotfeedback, ^chattype_friendnotification, ^chattype_ignorenotification, ^chattype_system_broadcast, ^chattype_npc_chat, ^chattype_clan_join, ^chattype_all_panes :
@@ -13,7 +23,7 @@ switch_int (chat_gethistorytype($int0)) {
         if (chat_getfilter_public = ^chatfilter_on) {
             return(true);
         }
-        if (chat_getfilter_public = ^chatfilter_friends & friend_test(unknown_command_5019($int0)) = true) {
+        if (chat_getfilter_public = ^chatfilter_friends & friend_test($string1) = true) {
             return(true);
         }
         return(false);
@@ -24,7 +34,7 @@ switch_int (chat_gethistorytype($int0)) {
         if (chat_getfilter_private = ^chatfilter_on) {
             return(true);
         }
-        if (chat_getfilter_private = ^chatfilter_friends & friend_test(unknown_command_5019($int0)) = true) {
+        if (chat_getfilter_private = ^chatfilter_friends & friend_test($string1) = true) {
             return(true);
         }
         return(false);
@@ -32,7 +42,7 @@ switch_int (chat_gethistorytype($int0)) {
         if (chat_getfilter_trade = ^chatfilter_on) {
             return(true);
         }
-        if (chat_getfilter_trade = ^chatfilter_friends & friend_test(unknown_command_5019($int0)) = true) {
+        if (chat_getfilter_trade = ^chatfilter_friends & friend_test($string1) = true) {
             return(true);
         }
         return(false);
@@ -53,7 +63,7 @@ switch_int (chat_gethistorytype($int0)) {
         if (%varplayer_1772 = 0) {
             return(true);
         }
-        if (%varplayer_1772 = 1 & friend_test(unknown_command_5019($int0)) = true) {
+        if (%varplayer_1772 = 1 & friend_test($string1) = true) {
             return(true);
         }
         return(false);
@@ -61,7 +71,7 @@ switch_int (chat_gethistorytype($int0)) {
         if (%varplayer_1773 = 0) {
             return(true);
         }
-        if (%varplayer_1773 = 1 & friend_test(unknown_command_5019($int0)) = true) {
+        if (%varplayer_1773 = 1 & friend_test($string1) = true) {
             return(true);
         }
         return(false);
@@ -69,7 +79,7 @@ switch_int (chat_gethistorytype($int0)) {
         if (%varplayer_1774 = 0) {
             return(true);
         }
-        if (%varplayer_1774 = 1 & friend_test(unknown_command_5019($int0)) = true) {
+        if (%varplayer_1774 = 1 & friend_test($string1) = true) {
             return(true);
         }
         return(false);
@@ -89,7 +99,7 @@ switch_int (chat_gethistorytype($int0)) {
         }
         return(false);
     case ^chattype_ignorable_trade_notification :
-        if (chat_getfilter_trade >= 2 | ignore_test(chat_gethistoryname($int0)) = true) {
+        if (chat_getfilter_trade >= 2 | ignore_test($string0) = true) {
             return(false);
         }
     case ^chattype_assist_notification :
@@ -113,6 +123,14 @@ switch_int (chat_gethistorytype($int0)) {
         }
     case ^chattype_raid_dnd :
         if (%varplayerbit_9784 = 1) {
+            return(false);
+        } else if (%varplayerbit_5999 = 1) {
+            return(false);
+        } else {
+            return(true);
+        }
+    case 124 :
+        if (%varplayerbit_18271 = 1 | %varplayerbit_3617 = 1) {
             return(false);
         } else if (%varplayerbit_5999 = 1) {
             return(false);
