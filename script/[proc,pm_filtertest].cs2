@@ -1,13 +1,23 @@
 // 91
 [proc,pm_filtertest](int $int0)(boolean)
-switch_int (chat_gethistorytype($int0)) {
+def_int $chattype1 = ^chattype_gamemessage;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
+def_chatphrase $chatphrase4 = null;
+def_string $string4 = "";
+$chattype1, $int2, $int3, $string0, $string1, $string2, $string3, $chatphrase4, $string4 = chat_gethistory_byuid($int0);
+switch_int ($chattype1) {
     case ^chattype_modprivatechat :
         return(true);
     case ^chattype_privatechat, ^chattype_quickchat_private_incoming :
         if (chat_getfilter_private = ^chatfilter_on) {
             return(true);
         }
-        if (chat_getfilter_private = ^chatfilter_friends & friend_test(unknown_command_5019($int0)) = true) {
+        if (chat_getfilter_private = ^chatfilter_friends & friend_test($string1) = true) {
             return(true);
         }
         return(false);
