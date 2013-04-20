@@ -12,14 +12,20 @@ switch_struct ($struct0) {
     case struct_836 :
         return(~bool_to_int(detailget_spotshadows_on));
     case struct_837 :
+        if (detailget_texturing = false | detailget_groundblending = false) {
+            return(-1);
+        }
         return(detailget_hardshadows);
     case struct_838 :
         return(~bool_to_int(detailget_lightdetail_high));
-    case struct_839 :
+    case struct_839, struct_19590 :
+        if (detailget_fog_on = false) {
+            return(-1);
+        }
         return(~bool_to_int(detailget_waterdetail_high));
     case struct_840 :
         return(~bool_to_int(detailget_fog_on));
-    case struct_841 :
+    case struct_841, struct_19593 :
         return(detailget_antialiasing);
     case struct_842 :
         return(detailget_particles);
@@ -32,6 +38,9 @@ switch_struct ($struct0) {
     case struct_908 :
         return(detailget_cpuusage);
     case struct_963 :
+        if (detailget_groundblending = false) {
+            return(-1);
+        }
         return(~bool_to_int(detailget_texturing));
     case struct_1009 :
         return(detailget_maxscreensize);
@@ -41,6 +50,9 @@ switch_struct ($struct0) {
         }
         return(-1);
     case struct_2858 :
+        if (detailget_texturing = false | detailget_groundblending = false | detailget_lightdetail_high = false) {
+            return(-1);
+        }
         return(detailget_bloom);
     case struct_2840 :
         return(~bool_to_int(%varclient_1686));
@@ -54,6 +66,12 @@ switch_struct ($struct0) {
             %varclient_2010 = 1;
         }
         return(%varclient_2010);
+    case struct_19591 :
+        return(detailget_bloom);
+    case struct_19592 :
+        return(detailget_drawdistance);
+    case struct_19589 :
+        return(detailget_hardshadows);
     case default :
         return(-1);
 }

@@ -1,8 +1,17 @@
 // 6771
-[proc,challenge_reqs_herblore](int $int0)(int)
-def_int $int1 = struct_param(enum(int, struct, enum_5525, $int0), param_2236);
-if (stat_base(herblore) < $int1) {
+[proc,challenge_reqs_herblore](int $int0, int $int1)(int)
+def_int $int2 = struct_param(enum(int, struct, enum_5525, $int0), param_2236);
+if (stat_base(herblore) < $int2) {
     return(0);
+}
+if (map_members = false & $int1 = 0) {
+    switch_int ($int0) {
+        case 1, 2, 5 :
+            return(1);
+        case default :
+            return(0);
+    }
+    return(1);
 }
 switch_int ($int0) {
     case 33 :

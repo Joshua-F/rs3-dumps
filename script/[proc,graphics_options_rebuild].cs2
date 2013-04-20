@@ -53,55 +53,62 @@ switch_int ($int4) {
         if_setonresize("script2919(false, $int4)", interface_906:com_0);
         ~lobby_resize;
 }
-if_setonclick("autosetup($int4)", interface_978:com_1);
-~script1149(1, $int1, interface_978:com_12, interface_978:com_21, interface_978:com_22, $int2, $int3, $int0, $int4);
-~script1149(2, $int1, interface_978:com_13, interface_978:com_19, interface_978:com_20, $int2, $int3, $int0, $int4);
-~script1149(3, $int1, interface_978:com_14, interface_978:com_17, interface_978:com_18, $int2, $int3, $int0, $int4);
-if_sethide(true, $component6);
-if_setonclick(null, $component5);
-def_int $int7 = 0;
-if (%varclient_178 < 0) {
-    %varclient_178 = max(fullscreen_lastmode, 0);
-}
-if (%varclient_178 >= fullscreen_modecount) {
-    %varclient_178 = calc(fullscreen_modecount - 1);
-}
-def_component $component8 = interface_978:com_16;
-cc_deleteall($component8);
-cc_create($component8, ^iftype_rectangle, if_getnextsubid($component8));
-cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
-cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-cc_setfill(true);
-cc_setcolour(0x2e2b26);
-.cc_create($component8, ^iftype_rectangle, if_getnextsubid($component8));
-.cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
-.cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
-.cc_setfill(false);
-.cc_setcolour(0x5f5b52);
-def_int $int9 = .cc_getid;
-.cc_create($component8, ^iftype_text, if_getnextsubid($component8));
-.cc_settextfont(p11_full);
-.cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-if (fullscreen_modecount <= 0) {
-    .cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
-    .cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-    .cc_setcolour(0xebe0bc);
-    .cc_settext("N/A");
-} else {
-    .cc_setsize(21, 0, ^setsize_minus, ^setsize_minus);
-    .cc_setposition(2, 0, ^setpos_abs_left, ^setpos_abs_centre);
-    if (%varclient_178 < calc(fullscreen_modecount - 1)) {
-        .cc_setcolour(0xebe0bc);
-    } else {
-        .cc_setcolour(0x00b1e1);
+def_component $component7 = interface_978:com_16;
+def_int $int8 = 0;
+if (has_html5 = false) {
+    if_setonclick("autosetup($int4)", interface_978:com_1);
+    ~script1149(1, $int1, interface_978:com_12, interface_978:com_21, interface_978:com_22, $int2, $int3, $int0, $int4);
+    ~script1149(2, $int1, interface_978:com_13, interface_978:com_19, interface_978:com_20, $int2, $int3, $int0, $int4);
+    ~script1149(3, $int1, interface_978:com_14, interface_978:com_17, interface_978:com_18, $int2, $int3, $int0, $int4);
+    if_sethide(true, $component6);
+    if_setonclick(null, $component5);
+    if (%varclient_178 < 0) {
+        %varclient_178 = max(fullscreen_lastmode, 0);
     }
-    .cc_settext(~graphics_options_resolutions(%varclient_178));
-    .cc_create($component8, ^iftype_graphic, if_getnextsubid($component8));
-    .cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
-    .cc_setposition(1, 0, ^setpos_abs_right, ^setpos_abs_centre);
-    .cc_setgraphic(graphic_2554);
-    cc_setonmouseover("script2691(event_com, .cc_getid, true, $int9, 0x80786d, true)");
-    cc_setonmouseleave("script2691(event_com, .cc_getid, false, $int9, 0x5f5b52, true)");
-    cc_setonclick("script2695(event_com, event_comsubid, .cc_getid, $int9, -1, struct_845, $int2, $int3, $int0, $int1, $int4)");
+    if (%varclient_178 >= fullscreen_modecount) {
+        %varclient_178 = 0;
+    }
+    cc_deleteall($component7);
+    cc_create($component7, ^iftype_rectangle, if_getnextsubid($component7));
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setfill(true);
+    cc_setcolour(0x2e2b26);
+    .cc_create($component7, ^iftype_rectangle, if_getnextsubid($component7));
+    .cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    .cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+    .cc_setfill(false);
+    .cc_setcolour(0x5f5b52);
+    $int8 = .cc_getid;
+    .cc_create($component7, ^iftype_text, if_getnextsubid($component7));
+    .cc_settextfont(p11_full);
+    .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    if (fullscreen_modecount <= 0) {
+        .cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+        .cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+        .cc_setcolour(0xebe0bc);
+        .cc_settext("N/A");
+    } else {
+        .cc_setsize(21, 0, ^setsize_minus, ^setsize_minus);
+        .cc_setposition(2, 0, ^setpos_abs_left, ^setpos_abs_centre);
+        if (%varclient_178 < calc(fullscreen_modecount - 1)) {
+            .cc_setcolour(0xebe0bc);
+        } else {
+            .cc_setcolour(0x00b1e1);
+        }
+        .cc_settext(~graphics_options_resolutions(%varclient_178));
+        .cc_create($component7, ^iftype_graphic, if_getnextsubid($component7));
+        .cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
+        .cc_setposition(1, 0, ^setpos_abs_right, ^setpos_abs_centre);
+        .cc_setgraphic(graphic_2554);
+        cc_setonmouseover("script2691(event_com, .cc_getid, true, $int8, 0x80786d, true)");
+        cc_setonmouseleave("script2691(event_com, .cc_getid, false, $int8, 0x5f5b52, true)");
+        cc_setonclick("script2695(event_com, event_comsubid, .cc_getid, $int8, -1, struct_845, $int2, $int3, $int0, $int1, $int4)");
+    }
+} else {
+    if_sethide(true, interface_978:com_4);
+    if_setposition(0, 45, ^setpos_abs_centre, ^setpos_abs_top, interface_978:com_1);
+    if_setposition(0, 50, ^setpos_abs_centre, ^setpos_abs_bottom, interface_978:com_3);
+    if_sethide(true, interface_978:com_1);
 }
 ~script3451($int4, false);

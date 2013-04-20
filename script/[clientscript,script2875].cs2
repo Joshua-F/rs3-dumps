@@ -1,8 +1,15 @@
 // 2875
-[clientscript,script2875]
-if (%varplayerbit_188 = 0) {
-    if_setgraphic(graphic_2437, interface_187:com_14);
-} else {
-    if_setgraphic(graphic_2436, interface_187:com_14);
+[clientscript,script2875](component $component0)
+def_int $int1 = 494;
+def_int $int2 = if_getheight($component0);
+if ($int2 = 75) {
+    if_setontimer(null, $component0);
+    return;
 }
-%varclient_2 = 0;
+if ($int2 < 72) {
+    $int2 = calc($int2 + 3);
+    if_setsize($int1, $int2, ^setsize_abs, ^setsize_abs, $component0);
+} else {
+    if_sethide(false, interface_1405:com_29);
+    if_setsize($int1, 75, ^setsize_abs, ^setsize_abs, $component0);
+}

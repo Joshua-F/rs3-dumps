@@ -1,14 +1,23 @@
 // 506
 [proc,partnercheck](int $int0)(boolean)
-def_int $chattype1 = chat_gethistorytype($int0);
+def_int $chattype1 = ^chattype_gamemessage;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
+def_chatphrase $chatphrase4 = null;
+def_string $string4 = "";
+$chattype1, $int2, $int3, $string0, $string1, $string2, $string3, $chatphrase4, $string4 = chat_gethistory_byuid($int0);
 if (%varclient_41 = 5 & string_length(%varclient_2504) > 0) {
     switch_int ($chattype1) {
         case ^chattype_publicchat, ^chattype_modchat, ^chattype_privatechat, ^chattype_privatechatout, ^chattype_modprivatechat, ^chattype_clanchat, ^chattype_quickchat_private_incoming, ^chattype_quickchat_private_outgoing, ^chattype_quickchat_clanchat :
-            if (compare(removetags(unknown_command_5019($int0)), removetags(%varclient_2504)) = 0 | compare(removetags(unknown_command_5019($int0)), removetags(chat_playername_unfiltered)) = 0) {
+            if (compare(removetags($string1), removetags(%varclient_2504)) = 0 | compare(removetags($string1), removetags(chat_playername_unfiltered)) = 0) {
                 if (chat_getfilter_trade = ^chatfilter_on) {
                     return(true);
                 }
-                if (chat_getfilter_trade = ^chatfilter_friends & friend_test(unknown_command_5019($int0)) = true) {
+                if (chat_getfilter_trade = ^chatfilter_friends & friend_test($string1) = true) {
                     return(true);
                 }
                 if ($chattype1 = ^chattype_modchat | $chattype1 = ^chattype_modprivatechat) {

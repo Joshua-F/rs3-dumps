@@ -11,26 +11,15 @@ switch_struct ($struct0) {
         detail_flickering_on(~int_to_bool($int1));
     case struct_836 :
         detail_spotshadows_on(~int_to_bool($int1));
-    case struct_837 :
-        if ($int1 > 0 & detailget_texturing = false) {
-            detail_texturing(true);
-        }
+    case struct_837, struct_19589 :
         detail_hardshadows($int1);
     case struct_838 :
         detail_lightdetail_high(~int_to_bool($int1));
-    case struct_839 :
+    case struct_839, struct_19590 :
         detail_waterdetail_high(~int_to_bool($int1));
     case struct_840 :
-        if ($int1 = 0 & (detailget_toolkit = 0 | detailget_toolkit = 2)) {
-            detail_waterdetail_high(false);
-            detail_fog_on(false);
-        } else {
-            if (detailget_groundblending = false) {
-                detail_groundblending(true);
-            }
-            detail_fog_on(~int_to_bool($int1));
-        }
-    case struct_841 :
+        detail_fog_on(~int_to_bool($int1));
+    case struct_841, struct_19593 :
         detail_antialiasing($int1);
         if ($int1 > 0 & detailget_toolkit ! 0 & detailget_toolkit ! 2) {
             ~script2700(4, $int2, false, true);
@@ -42,16 +31,8 @@ switch_struct ($struct0) {
             return(0);
         }
         detail_particles($int1);
-        return(1);
     case struct_843 :
-        if ($int1 = 0 & (detailget_toolkit = 0 | detailget_toolkit = 2)) {
-            detail_waterdetail_high(false);
-            detail_fog_on(false);
-            detail_texturing(false);
-            detail_groundblending(false);
-        } else {
-            detail_groundblending(~int_to_bool($int1));
-        }
+        detail_groundblending(~int_to_bool($int1));
     case struct_844 :
         %varclient_987 = ~int_to_bool($int1);
         detail_customcursors(%varclient_987);
@@ -67,32 +48,27 @@ switch_struct ($struct0) {
     case struct_908 :
         detail_cpuusage($int1);
     case struct_963 :
-        if ($int1 = 0) {
-            detail_hardshadows(0);
-        } else if (detailget_groundblending = false) {
-            detail_groundblending(true);
-        }
         detail_texturing(~int_to_bool($int1));
     case struct_1009 :
         if (detailcanmod_maxscreensize = true & detailcanset_maxscreensize($int1) = 1) {
             detail_maxscreensize($int1);
-            return(1);
         } else {
             return(0);
         }
     case struct_2430 :
-        if (detailcanmod_skydetail = true) {
-            if (detailcanset_skydetail($int1) = 3) {
-                return(0);
-            }
-            detail_skydetail($int1);
-        } else {
+        if (detailcanmod_skydetail = false) {
             return(0);
         }
-    case struct_2858 :
+        if (detailcanset_skydetail($int1) = 3) {
+            return(0);
+        }
+        detail_skydetail($int1);
+    case struct_2858, struct_19591 :
         detail_bloom($int1);
     case struct_2840 :
         %varclient_1686 = ~int_to_bool($int1);
+    case struct_19592 :
+        detail_drawdistance($int1);
     case struct_2841 :
         %varclient_1701 = $int1;
         if ($int1 = 1) {
@@ -103,8 +79,8 @@ switch_struct ($struct0) {
     case struct_11452 :
         %varclient_2010 = $int1;
         ~script6382;
-        return(1);
     case default :
         return(0);
 }
+~script2593(detailget_toolkit, $struct0);
 return(1);

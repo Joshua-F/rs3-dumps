@@ -1,7 +1,9 @@
 // 3680
 [proc,music_v3_refresh]
-~deltooltip_action(interface_187:com_17);
-%varclient_1 = 0;
+if (if_getgraphic(interface_187:com_19) ! "aif_shuffle_button,1" & if_getgraphic(interface_187:com_19) ! "aif_shuffle_button,3") {
+    ~deltooltip_action(interface_187:com_17);
+    %varclient_1 = 0;
+}
 if_setontimer(null, interface_187:com_18);
 def_int $int0 = -1;
 if (if_find(interface_187:com_4) = true) {
@@ -11,8 +13,8 @@ def_int $int1 = 0;
 def_int $int2 = 0;
 def_string $string0 = "";
 def_int $int3 = string_length(%varclient_2249);
-if ($int3 <= 0 & %varclient_5 ! 14) {
-    if_setgraphic(graphic_3245, interface_187:com_18);
+if ($int3 <= 0 & %varclient_5 ! 14 & if_getgraphic(interface_187:com_18) ! "aif_music_header_buttons,14" & if_getgraphic(interface_187:com_18) ! "aif_music_header_buttons,12") {
+    if_setgraphic("aif_music_header_buttons,11", interface_187:com_18);
 }
 def_int $int4 = 5;
 while ($int0 ! -1) {
@@ -61,7 +63,7 @@ if_setscrollsize(167, calc(5 + $int4), interface_187:com_1);
 ~scrollbar_resize(interface_187:com_2, interface_187:com_1, %varclient_88);
 if_settext("Unlocked:<br><tostring($int1)> / <tostring($int2)>", interface_187:com_5);
 if ($int4 = 5) {
-    if_sethide(false, interface_187:com_19);
+    if_sethide(false, interface_187:com_21);
 } else {
-    if_sethide(true, interface_187:com_19);
+    if_sethide(true, interface_187:com_21);
 }

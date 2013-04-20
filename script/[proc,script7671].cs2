@@ -1,0 +1,31 @@
+// 7671
+[proc,script7671](component $component0, component $component1, string $string0)
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 12;
+if (%varclient_2753 = 1) {
+    $int2, $int3 = if_getcharposatindex(%varclient_2749, $component0);
+    if (calc($int3 - $int4) > 60) {
+        if_setscrollpos(0, calc($int3 - $int4 - 60), interface_1405:com_32);
+        ~scrollbar_vertical(interface_1405:com_33, interface_1405:com_32, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
+    } else {
+        if_setscrollpos(0, 0, interface_1405:com_32);
+        ~scrollbar_vertical(interface_1405:com_33, interface_1405:com_32, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
+    }
+} else if (%varclient_2753 = 2) {
+    $int2, $int3 = if_getcharposatindex(%varclient_2750, $component0);
+    if (calc($int3 - $int4) > 60) {
+        if_setscrollpos(0, calc($int3 - $int4 - 60), interface_1405:com_24);
+        ~scrollbar_vertical(interface_1405:com_25, interface_1405:com_24, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
+    } else {
+        if_setscrollpos(0, 0, interface_1405:com_24);
+        ~scrollbar_vertical(interface_1405:com_25, interface_1405:com_24, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
+    }
+}
+if_setposition(calc($int2 + 4), calc($int3 - $int4 + 4), ^setpos_abs_left, ^setpos_abs_top, $component1);
+if (applet_hasfocus = true) {
+    if_sethide(false, $component1);
+} else {
+    if_sethide(true, $component1);
+}
+if_setontimer("script7672(clientclock, $component1)", $component0);

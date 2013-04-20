@@ -3,22 +3,27 @@
 if (%varplayer_1295 < 1000) {
     return;
 }
-def_int $int0 = chat_gethistorylength;
-def_int $chattype1 = ^chattype_gamemessage;
-if ($int0 > %varclient_43) {
+def_int $chattype0 = ^chattype_gamemessage;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
+def_chatphrase $chatphrase3 = null;
+def_string $string4 = "";
+def_int $int4 = %varclient_43;
+def_int $int5 = ~script1960;
+if ($int4 < $int5) {
     if (%varclient_41 = 0) {
-        %varclient_43 = $int0;
         return;
     }
-    $int0 = calc($int0 - %varclient_43 - 1);
-    if ($int0 >= 100) {
-        $int0 = 99;
-    }
-    while ($int0 >= 0) {
-        $chattype1 = chat_gethistorytype($int0);
-        if (~filtertest($int0, 0) = true & ~partnercheck($int0) = false) {
-            switch_int ($chattype1) {
-                case ^chattype_gamemessage, ^chattype_engine, ^chattype_obj_examine, ^chattype_npc_examine, ^chattype_loc_examine, ^chattype_spam, 110, ^chattype_snapshotfeedback, ^chattype_clan_join, 121, ^chattype_raid_high, ^chattype_raid_dnd :
+    $int4 = calc($int4 + 1);
+    while ($int4 <= $int5) {
+        $chattype0, $int1, $int2, $string0, $string1, $string2, $string3, $chatphrase3, $string4 = chat_gethistory_byuid($int4);
+        if (~filtertest($int4, 0) = true & ~partnercheck($int4) = false) {
+            switch_int ($chattype0) {
+                case ^chattype_gamemessage, ^chattype_engine, ^chattype_obj_examine, ^chattype_npc_examine, ^chattype_loc_examine, ^chattype_spam, 110, ^chattype_snapshotfeedback, ^chattype_clan_join, 121, ^chattype_raid_high, ^chattype_raid_dnd, 124 :
                     ~chat_alert_enable(1);
                 case ^chattype_modchat, ^chattype_publicchat, ^chattype_quickchat_public, ^chattype_npc_chat :
                     ~chat_alert_enable(2);
@@ -35,7 +40,7 @@ if ($int0 > %varclient_43) {
                 case ^chattype_clanguestchat, ^chattype_clanguestmessage, ^chattype_quickchat_clanguestchat :
                     ~chat_alert_enable(7);
                 case ^chattype_system_broadcast :
-                    if (string_length(chat_gethistorymessage($int0)) > 1) {
+                    if (string_length($string4) > 1) {
                         ~chat_alert_enable(1);
                     }
                 case ^chattype_all_panes :
@@ -44,7 +49,6 @@ if ($int0 > %varclient_43) {
                     }
             }
         }
-        $int0 = calc($int0 - 1);
+        $int4 = calc($int4 + 1);
     }
-    %varclient_43 = chat_gethistorylength;
 }
