@@ -15667,3 +15667,23 @@ readyanim=seq_20099,seq_20106
 runanim=seq_20111
 readyanim=seq_20104,seq_20110
 
+// 2850
+[bas_2850]
+readyanim_l=seq_19949
+readyanim_r=seq_19949
+walkturn_l=seq_19949
+walkturn_r=seq_19949
+readyanim=seq_19949,seq_19949
+
+// 2851
+[bas_2851]
+readyanim_l=seq_10419
+readyanim_r=seq_10419
+walkturn_l=seq_10419
+walkturn_r=seq_10419
+readyanim=seq_10419,seq_10419
+
+// 2852
+[bas_2852]
+readyanim=seq_20159,seq_20159
+

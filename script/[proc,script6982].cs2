@@ -1,37 +1,24 @@
 // 6982
 [proc,script6982]
-def_int $int0 = calc(~script2915 - stat(hitpoints) * 40);
-if_settext(tostring(%varplayer_711), interface_667:com_104);
-if_settext("+<tostring($int0)>", interface_667:com_110);
-if_settext(tostring(inv_totalparam(inv_94, param_2946)), interface_667:com_116);
-def_obj $obj1 = inv_getobj(inv_94, 3);
-def_int $int2 = ~script7244($obj1);
-switch_int (~script7241($obj1)) {
-    case 3 :
-        if_setsize(scale(15571, 100, scale(50, 100, %varplayer_1039)), 0, ^setsize_rel, ^setsize_minus, interface_667:com_148);
-        if_setsize(scale(15571, 100, scale(20, 100, %varplayer_1039)), 0, ^setsize_rel, ^setsize_minus, interface_667:com_157);
-        if_setsize(scale(15571, 100, scale(100, 100, %varplayer_1039)), 0, ^setsize_rel, ^setsize_minus, interface_667:com_139);
-        if_settext(tostring(scale($int2, 100, scale(50, 100, %varplayer_1039))), interface_667:com_149);
-        if_settext(tostring(scale($int2, 100, scale(20, 100, %varplayer_1039))), interface_667:com_158);
-        if_settext(tostring(scale($int2, 100, scale(100, 100, %varplayer_1039))), interface_667:com_140);
-    case 2 :
-        if_setsize(scale(15571, 100, scale(50, 100, %varplayer_1038)), 0, ^setsize_rel, ^setsize_minus, interface_667:com_157);
-        if_setsize(scale(15571, 100, scale(20, 100, %varplayer_1038)), 0, ^setsize_rel, ^setsize_minus, interface_667:com_139);
-        if_setsize(scale(15571, 100, scale(100, 100, %varplayer_1038)), 0, ^setsize_rel, ^setsize_minus, interface_667:com_148);
-        if_settext(tostring(scale($int2, 100, scale(50, 100, %varplayer_1038))), interface_667:com_158);
-        if_settext(tostring(scale($int2, 100, scale(20, 100, %varplayer_1038))), interface_667:com_140);
-        if_settext(tostring(scale($int2, 100, scale(100, 100, %varplayer_1038))), interface_667:com_149);
-    case default :
-        if_setsize(scale(15571, 100, scale(50, 100, %varplayer_1037)), 0, ^setsize_rel, ^setsize_minus, interface_667:com_139);
-        if_setsize(scale(15571, 100, scale(20, 100, %varplayer_1037)), 0, ^setsize_rel, ^setsize_minus, interface_667:com_148);
-        if_setsize(scale(15571, 100, scale(100, 100, %varplayer_1037)), 0, ^setsize_rel, ^setsize_minus, interface_667:com_157);
-        if_settext(tostring(scale($int2, 100, scale(50, 100, %varplayer_1037))), interface_667:com_140);
-        if_settext(tostring(scale($int2, 100, scale(20, 100, %varplayer_1037))), interface_667:com_149);
-        if_settext(tostring(scale($int2, 100, scale(100, 100, %varplayer_1037))), interface_667:com_158);
-}
-if_setsize(scale(15571, 800, %varplayer_712), 0, ^setsize_rel, ^setsize_minus, interface_667:com_166);
-if_setsize(scale(15571, 800, %varplayer_713), 0, ^setsize_rel, ^setsize_minus, interface_667:com_184);
-if_setsize(scale(15571, 800, %varplayer_714), 0, ^setsize_rel, ^setsize_minus, interface_667:com_175);
-if_settext(tostring(scale(%varplayer_711, 800, %varplayer_712)), interface_667:com_167);
-if_settext(tostring(scale(%varplayer_711, 800, %varplayer_713)), interface_667:com_186);
-if_settext(tostring(scale(%varplayer_711, 800, %varplayer_714)), interface_667:com_176);
+def_int $int0 = scale(%varclient_2760, 100, 50);
+def_int $int1 = scale(enum(int, int, enum_7339, $int0), 100, calc(100 + 40));
+def_int $int2 = calc(%varplayer_711 + %varplayer_3563);
+def_int $int3 = max(0, min(10000, calc(10000 - scale($int1, $int2, 100) * %varplayer_712)));
+def_int $int4 = max(0, min(10000, calc(10000 - scale($int1, $int2, 100) * %varplayer_713)));
+def_int $int5 = max(0, min(10000, calc(10000 - scale($int1, $int2, 100) * %varplayer_714)));
+def_int $int6 = inv_totalparam(inv_94, param_2946);
+def_int $int7 = calc(stat(hitpoints) * 40);
+def_int $int8 = %varplayer_3596;
+if_settext(tostring($int2), interface_667:com_63);
+if_settext("<tostring(scale($int3, 1000, 10))>%", interface_667:com_207);
+if_settext("<tostring(scale($int4, 1000, 10))>%", interface_667:com_210);
+if_settext("<tostring(scale($int5, 1000, 10))>%", interface_667:com_213);
+if_settext(tostring(~script2915), interface_667:com_59);
+if_settext(tostring($int6), interface_667:com_61);
+def_int $int9 = 200;
+def_string $string0 = "Armour : <col=00ff00><tostring(%varplayer_711)></col><br>Skill Bonus : <col=00ff00><tostring(%varplayer_3563)></col>";
+if_setonmouserepeat("script4538(interface_667:com_154, event_com, -1, $string0, $int9, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 2, event_mousex, event_mousey)", interface_667:com_63);
+if_setonmouseleave("deltooltip(interface_667:com_154)", interface_667:com_63);
+$string0 = "Base : <col=00ff00><tostring($int7)></col><br>Armour Bonus : <col=00ff00><tostring($int8)></col>";
+if_setonmouserepeat("script4538(interface_667:com_154, event_com, -1, $string0, $int9, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 2, event_mousex, event_mousey)", interface_667:com_59);
+if_setonmouseleave("deltooltip(interface_667:com_154)", interface_667:com_59);

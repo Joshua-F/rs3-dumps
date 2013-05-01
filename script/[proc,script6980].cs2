@@ -2,37 +2,89 @@
 [proc,script6980]
 def_obj $obj0 = inv_getobj(inv_94, 5);
 def_int $int1 = scale(%varplayer_716, 100, 50);
-def_int $int2 = ~script7244($obj0);
+def_int $int2 = calc(~script7244($obj0) + %varplayer_3562);
 def_int $int3 = 0;
+def_int $int4 = calc(100 + 5);
 def_string $string0 = enum(int, string, enum_6744, %varplayer_718);
 def_string $string1 = enum(int, string, enum_6741, oc_param($obj0, param_14));
-def_struct $struct4 = enum(int, struct, enum_6740, %varplayerbit_18050);
+def_struct $struct5 = enum(int, struct, enum_6740, %varplayerbit_18050);
+def_int $int6 = scale(%varclient_2760, 100, 50);
+def_int $int7 = scale(enum(int, int, enum_7339, $int6), 100, calc(100 + 40));
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
 if ($obj0 = null | oc_param($obj0, param_2832) = 1) {
-    if_settext("-", interface_667:com_76);
-    if_settext("-", interface_667:com_81);
-    if_settext("-", interface_667:com_86);
-    if_settext("-", interface_667:com_91);
-    if_settext("-", interface_667:com_96);
+    if_sethide(false, interface_667:com_8);
+    if_sethide(true, interface_667:com_5);
+    if_sethide(true, interface_667:com_4);
+    if_sethide(false, interface_667:com_17);
+    if_sethide(true, interface_667:com_6);
+    if_sethide(true, interface_667:com_0);
+    if (%varclient_2761 = 1) {
+        ~script7693(0);
+    }
+    if (%varclient_2762 = 1) {
+        ~script7695(0);
+    }
     return;
 } else {
+    if_sethide(true, interface_667:com_8);
+    if (%varclient_2762 = 1) {
+        if_sethide(true, interface_667:com_5);
+        if_sethide(false, interface_667:com_4);
+    } else {
+        if_sethide(false, interface_667:com_5);
+        if_sethide(true, interface_667:com_4);
+    }
+    if_sethide(true, interface_667:com_17);
+    if (%varclient_2761 = 1) {
+        if_sethide(true, interface_667:com_6);
+        if_sethide(false, interface_667:com_0);
+    } else {
+        if_sethide(false, interface_667:com_6);
+        if_sethide(true, interface_667:com_0);
+    }
     switch_int (~script7241($obj0)) {
         case 1 :
             $int3 = %varplayer_724;
+            $int4 = calc($int4 + %varplayer_3597);
+            $int8 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 50), 100, %varplayer_1037)));
+            $int9 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 75), 100, %varplayer_1037)));
+            $int10 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 20), 100, %varplayer_1037)));
         case 2 :
             $int3 = %varplayer_725;
+            $int4 = calc($int4 + %varplayer_3598);
+            $int8 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 20), 100, %varplayer_1038)));
+            $int9 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 50), 100, %varplayer_1038)));
+            $int10 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 75), 100, %varplayer_1038)));
         case 3 :
-            if ($struct4 ! null) {
-                $string0 = enum(int, string, enum_6744, struct_param($struct4, param_2873));
+            if ($struct5 ! null) {
+                $string0 = enum(int, string, enum_6744, struct_param($struct5, param_2873));
             } else {
                 $string0 = "-";
             }
             $int3 = %varplayer_726;
+            $int4 = calc($int4 + %varplayer_3599);
+            $int8 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 75), 100, %varplayer_1039)));
+            $int9 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 20), 100, %varplayer_1039)));
+            $int10 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 50), 100, %varplayer_1039)));
         case default :
             $int3 = %varplayer_724;
+            $int4 = calc($int4 + %varplayer_3597);
+            $int8 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 50), 100, %varplayer_1037)));
+            $int9 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 75), 100, %varplayer_1037)));
+            $int10 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 20), 100, %varplayer_1037)));
     }
 }
-if_settext(tostring($int1), interface_667:com_76);
-if_settext(tostring($int2), interface_667:com_81);
-if_settext("<~script7247($int3)>%", interface_667:com_86);
-if_settext($string0, interface_667:com_91);
-if_settext($string1, interface_667:com_96);
+if_settext(tostring($int1), interface_667:com_164);
+if_settext(tostring($int2), interface_667:com_170);
+if_settext("<~script7247($int3)>%", interface_667:com_176);
+if_settext($string0, interface_667:com_182);
+if_settext($string1, interface_667:com_189);
+if_settext("<tostring(scale($int8, 1000, 10))>%", interface_667:com_198);
+if_settext("<tostring(scale($int9, 1000, 10))>%", interface_667:com_201);
+if_settext("<tostring(scale($int10, 1000, 10))>%", interface_667:com_204);
+def_int $int11 = 200;
+def_string $string2 = "Weapon : <col=00ff00><tostring(~script7244($obj0))></col><br>Skill Bonus : <col=00ff00><tostring(%varplayer_3562)></col>";
+if_setonmouserepeat("script4538(interface_667:com_154, event_com, -1, $string2, $int11, verdana_11pt_regular, verdana_11pt_regular, ^white, 13, 4, 2, event_mousex, event_mousey)", interface_667:com_162);
+if_setonmouseleave("deltooltip(interface_667:com_154)", interface_667:com_162);
