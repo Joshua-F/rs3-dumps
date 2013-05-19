@@ -6547,7 +6547,7 @@ readyanim=seq_12478,seq_12478
 readyanim_r=seq_18016
 readyanim_l=seq_18016
 runanim=seq_18017
-readyanim=seq_18015,seq_18016
+readyanim=seq_20161,seq_18016
 
 [bas_1639]
 readyanim=seq_12498,null
@@ -12833,4 +12833,10 @@ readyanim=seq_10419,seq_10419
 
 [bas_2852]
 readyanim=seq_20159,seq_20159
+
+[bas_2853]
+readyanim=seq_20170,null
+
+[bas_2854]
+readyanim=seq_20188,null
 
