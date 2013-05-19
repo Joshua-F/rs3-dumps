@@ -1,15 +1,12 @@
 // 6940
 [clientscript,hundred_quest_init](component $component0, obj $obj1)
 cc_deleteall($component0);
-cc_create($component0, ^iftype_model, 0);
-def_int $int2 = if_getheight($component0);
-cc_setsize($int2, 0, ^setsize_abs, ^setsize_minus);
-cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
-cc_setmodelzoom(288);
-cc_setmodelorigin(0, 0);
-cc_setobject($obj1, 1);
+cc_create($component0, ^iftype_graphic, 0);
+cc_setsize(50, 50, ^setsize_abs, ^setsize_abs);
+def_int $int2 = calc((if_getheight($component0) - cc_getheight) / 2);
+cc_setposition($int2, 0, ^setpos_abs_left, ^setpos_abs_centre);
 .cc_create($component0, ^iftype_text, 1);
-.cc_setsize($int2, 0, ^setsize_minus, ^setsize_minus);
+.cc_setsize(calc($int2 + cc_getwidth), 0, ^setsize_minus, ^setsize_minus);
 .cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
 .cc_settextfont(p12_full);
 .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
@@ -19,26 +16,34 @@ if_setonmouseover("cc_text_colour_swapper($component0, .cc_getid, ^white)", $com
 switch_obj ($obj1) {
     case obj_7500 :
         .cc_settext("Dwarf");
+        cc_setgraphic("aif_recipe_for_disaster_icons,0");
         if_setonvartransmit("hundred_quest_setcolour($component0, $obj1, .cc_getid){varplayer_2582}", $component0);
     case obj_7501 :
         .cc_settext("Wartface & Bentnoze");
+        cc_setgraphic("aif_recipe_for_disaster_icons,9");
         if_setonvartransmit("hundred_quest_setcolour($component0, $obj1, .cc_getid){varplayer_2580}", $component0);
     case obj_7505 :
         .cc_settext("Pirate Pete");
+        cc_setgraphic("aif_recipe_for_disaster_icons,8");
         if_setonvartransmit("hundred_quest_setcolour($component0, $obj1, .cc_getid){varplayer_2584}", $component0);
     case obj_7502 :
         .cc_settext("Lumbridge Sage");
+        cc_setgraphic("aif_recipe_for_disaster_icons,3");
         if_setonvartransmit("hundred_quest_setcolour($component0, $obj1, .cc_getid){varplayer_2584}", $component0);
     case obj_7499 :
         .cc_settext("Evil Dave");
+        cc_setgraphic("aif_recipe_for_disaster_icons,4");
         if_setonvartransmit("hundred_quest_setcolour($component0, $obj1, .cc_getid){varplayer_2581}", $component0);
     case obj_7503 :
         .cc_settext("Monkey Ambassador");
+        cc_setgraphic("aif_recipe_for_disaster_icons,6");
         if_setonvartransmit("hundred_quest_setcolour($component0, $obj1, .cc_getid){varplayer_2586}", $component0);
     case obj_7506 :
         .cc_settext("Sir Amik Varze");
+        cc_setgraphic("aif_recipe_for_disaster_icons,5");
         if_setonvartransmit("hundred_quest_setcolour($component0, $obj1, .cc_getid){varplayer_2585}", $component0);
     case obj_7507 :
         .cc_settext("Skrach Uglogwee");
+        cc_setgraphic("aif_recipe_for_disaster_icons,7");
         if_setonvartransmit("hundred_quest_setcolour($component0, $obj1, .cc_getid){varplayer_2585}", $component0);
 }
