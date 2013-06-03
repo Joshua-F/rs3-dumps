@@ -12840,3 +12840,27 @@ readyanim=seq_20170,null
 [bas_2854]
 readyanim=seq_20188,null
 
+[bas_2855]
+readyanim=seq_20216,null
+
+[bas_2856]
+readyanim=seq_20209,null
+
+[bas_2857]
+readyanim=seq_20213,null
+
+[bas_2858]
+readyanim=seq_20214,null
+
+[bas_2859]
+readyanim=seq_20210,null
+
+[bas_2860]
+readyanim=seq_20211,null
+
+[bas_2861]
+readyanim=seq_20215,null
+
+[bas_2862]
+readyanim=seq_20212,null
+
