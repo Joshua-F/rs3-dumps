@@ -15695,3 +15695,35 @@ readyanim=seq_20170,null
 [bas_2854]
 readyanim=seq_20188,null
 
+// 2855
+[bas_2855]
+readyanim=seq_20216,null
+
+// 2856
+[bas_2856]
+readyanim=seq_20209,null
+
+// 2857
+[bas_2857]
+readyanim=seq_20213,null
+
+// 2858
+[bas_2858]
+readyanim=seq_20214,null
+
+// 2859
+[bas_2859]
+readyanim=seq_20210,null
+
+// 2860
+[bas_2860]
+readyanim=seq_20211,null
+
+// 2861
+[bas_2861]
+readyanim=seq_20215,null
+
+// 2862
+[bas_2862]
+readyanim=seq_20212,null
+
