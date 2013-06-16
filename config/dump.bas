@@ -15781,3 +15781,11 @@ readyanim=seq_20244,seq_20272
 [bas_2868]
 readyanim=seq_20238,null
 
+// 2869
+[bas_2869]
+readyanim=seq_20305,seq_819
+
+// 2870
+[bas_2870]
+readyanim=seq_20287,seq_819
+
