@@ -4,18 +4,22 @@ def_int $int4 = 0;
 if (%varclient_1725 = 1) {
     if (map_members = false & (%varclient_1724 = 7 | %varclient_1724 = 8 | %varclient_1724 = 9 | %varclient_1724 = 10 | %varclient_1724 = 11 | %varclient_1724 = 13)) {
         if_settext("Members Item", interface_1178:com_81);
+    } else if (%varclient_1808 = 1) {
+        if_settext(oc_name(enum(int, obj, enum_7501, %varplayerbit_18521)), interface_1178:com_81);
+    } else if (%varclient_1808 = 4) {
+        if_settext(oc_name(enum(int, obj, enum_7503, %varplayerbit_18522)), interface_1178:com_81);
     } else {
         if_settext(oc_name(enum(int, obj, enum_5350, %varclient_1724)), interface_1178:com_81);
     }
     switch_int ($int0) {
         case 1 :
-            $int4 = %varplayerbit_2983;
+            $int4 = max(%varplayerbit_2983, %varplayerbit_18521);
         case 2 :
             $int4 = %varplayerbit_2984;
         case 3 :
             $int4 = %varplayerbit_2971;
         case 4 :
-            $int4 = %varplayerbit_2985;
+            $int4 = max(%varplayerbit_2985, %varplayerbit_18522);
         case 5 :
             $int4 = %varplayerbit_2968;
         case 6 :
@@ -61,9 +65,17 @@ if (%varclient_1725 = 1) {
         case default :
             $int4 = -1;
     }
-    if ($int4 = 1) {
-        if_setgraphic(enum(int, graphic, enum_5348, $int0), $component2);
-        if_setobject(null, -1, $component3);
+    if ($int4 >= 1) {
+        if ($int0 = 1) {
+            if_setgraphic(enum(int, graphic, enum_7502, calc(%varplayerbit_18521 + %varplayerbit_2983)), $component2);
+            if_setobject(null, -1, $component3);
+        } else if ($int0 = 4) {
+            if_setgraphic(enum(int, graphic, enum_7504, calc(%varplayerbit_18522 + %varplayerbit_2985)), $component2);
+            if_setobject(null, -1, $component3);
+        } else {
+            if_setgraphic(enum(int, graphic, enum_5348, $int0), $component2);
+            if_setobject(null, -1, $component3);
+        }
     } else if ($int4 = 0) {
         if_setgraphic(enum(int, graphic, enum_5349, $int0), $component2);
         if_setobject(null, -1, $component3);
