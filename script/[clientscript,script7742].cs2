@@ -1,0 +1,54 @@
+// 7742
+[clientscript,script7742](struct $struct0)
+def_int $int1 = 0;
+def_int $int2 = 16;
+def_int $int3 = 3;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 4;
+def_int $int7 = -1;
+cc_deleteall(interface_1311:com_390);
+if (struct_param($struct0, param_2532) = 1) {
+    while ($int1 < $int6) {
+        cc_create(interface_1311:com_390, ^iftype_text, $int1);
+        $int5 = calc($int1 * ($int2 + $int3));
+        cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(5, $int2, ^setsize_minus, ^setsize_abs);
+        if ($int1 = 0) {
+            cc_settext("Actual Growth Stage");
+        }
+        if ($int1 = 1) {
+            cc_settext("Baby");
+            switch_npc (%varclient_2692) {
+                case npc_16660, npc_16663, npc_16666, npc_4664 :
+                    cc_setcolour(0x00dce0);
+                case default :
+                    cc_setcolour(^white);
+            }
+        } else if ($int1 = 2) {
+            cc_settext("Adolescent");
+            switch_npc (%varclient_2692) {
+                case npc_16661, npc_16664, npc_16667, npc_16734 :
+                    cc_setcolour(0x00dce0);
+                case default :
+                    cc_setcolour(^white);
+            }
+        } else if ($int1 = 3) {
+            cc_settext("Adult");
+            switch_npc (%varclient_2692) {
+                case npc_16662, npc_16665, npc_16668, npc_16735 :
+                    cc_setcolour(0x00dce0);
+                case default :
+                    cc_setcolour(^white);
+            }
+        }
+        cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+        cc_settextfont(p11_full);
+        cc_setop(1, "Select");
+        cc_setopcursor(1, cursor_46);
+        cc_setonclick("script7437($int1, $int6)");
+        $int1 = calc($int1 + 1);
+    }
+}
+if_setscrollsize(if_getwidth(interface_1311:com_390), calc($int5 + $int2), interface_1311:com_390);
+~scrollbar_vertical(interface_1311:com_391, interface_1311:com_390, "task_scrollbar_dragger,3", "task_scrollbar_dragger,0", "task_scrollbar_dragger,1", "task_scrollbar_dragger,2", "task_scrollbar,1", "task_scrollbar,0");
