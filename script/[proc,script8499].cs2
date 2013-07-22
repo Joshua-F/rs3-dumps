@@ -1,0 +1,68 @@
+// 8499
+[proc,script8499](component $component0, component $component1, int $int2, int $int3, string $string0, int $int4)(int, int)
+def_component $component5 = null;
+def_component $component6 = null;
+switch_int ($int3) {
+    case 0 :
+        $component5, $component6 = ~script8563;
+    case 1 :
+        $component5, $component6 = ~script8565;
+    case 2 :
+        $component5, $component6 = ~script8567;
+    case 3 :
+        $component5, $component6 = ~script8569;
+    case 4 :
+        $component5, $component6 = ~script8571;
+    case 5 :
+        $component5, $component6 = ~script8573;
+    case 6 :
+        $component5, $component6 = ~script8575;
+    case 7 :
+        $component5, $component6 = ~script8577;
+    case 8 :
+        $component5, $component6 = ~script8579;
+    case default :
+        return($int4, 0);
+}
+if (if_gethide($component0) = true) {
+    if_sethide(true, $component5);
+    return($int4, 0);
+}
+if_sethide(false, $component5);
+if_setgraphic(if_getgraphic($component1), $component6);
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
+def_string $string4 = "ffffff";
+if (if_getgraphic($component1) = ~script8497($int3, 2)) {
+    $string1 = "On";
+    $string4 = "<col=ffcb05>";
+} else if (if_getgraphic($component1) = ~script8497($int3, 1)) {
+    $string1 = $string0;
+    $string4 = "<col=aed0e0>";
+} else if (if_getgraphic($component1) = ~script8497($int3, 0)) {
+    $string1 = "Off";
+    $string4 = "<col=7592a0>";
+}
+$string2 = "<col=aed0e0><if_getopbase($component0)>:</col> <$string4><$string1></col>";
+$string3 = "<col=ffffff><if_getopbase($component0)>: <$string1></col>";
+def_int $int7 = calc(20 + stringwidth(append("<if_getopbase($component0)>: ", $string0), graphic_17813));
+if (cc_find($component5, 0) = true) {
+    cc_settext($string2);
+    cc_setonmouseover("cc_text_swapper(event_com, event_comsubid, $string3)");
+    cc_setonmouseleave("cc_text_swapper(event_com, event_comsubid, $string2)");
+} else {
+    cc_create($component5, ^iftype_text, 0);
+    cc_setposition(20, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(20, 0, ^setsize_minus, ^setsize_minus);
+    cc_settextfont(graphic_17813);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settext($string2);
+    cc_setonmouseover("cc_text_swapper(event_com, event_comsubid, $string3)");
+    cc_setonmouseleave("cc_text_swapper(event_com, event_comsubid, $string2)");
+}
+if_setop(1, if_getop(1, $component0), $component5);
+if_setopbase(if_getopbase($component0), $component5);
+if_setonop("script8494($int2, $int3, $component0, $component1, if_getx($component0), if_getopbase($component0), $string0)", $component5);
+if_setposition(0, $int4, ^setpos_abs_left, ^setpos_abs_top, $component5);
+return(calc($int4 + if_getheight($component5)), $int7);

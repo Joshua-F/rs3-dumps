@@ -1,0 +1,58 @@
+// 7872
+[clientscript,script7872](int $int0, int $int1, string $string0, int $int2)
+if (clientclock < $int0) {
+    return;
+}
+def_component $component3 = null;
+def_component $component4 = null;
+if ($int2 = 0) {
+    $component4 = interface_1420:com_193;
+    $component3 = interface_1420:com_203;
+    if (if_getgraphic(interface_1420:com_347) = "rs3_character_interface_register_tool_tip,11") {
+        if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, interface_1420:com_339);
+        if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom, interface_1420:com_340);
+        if_setgraphic("rs3_character_interface_register_tool_tip,9", interface_1420:com_347);
+        if_setgraphic("rs3_character_interface_register_tool_tip,11", interface_1420:com_349);
+        if_sethflip(false, interface_1420:com_347);
+        if_sethflip(false, interface_1420:com_349);
+        if_sethflip(false, interface_1420:com_339);
+    }
+} else {
+    $component4 = interface_1420:com_180;
+    $component3 = interface_1420:com_181;
+    if (if_getgraphic(interface_1420:com_347) = "rs3_character_interface_register_tool_tip,9") {
+        if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom, interface_1420:com_339);
+        if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, interface_1420:com_340);
+        if_setgraphic("rs3_character_interface_register_tool_tip,11", interface_1420:com_347);
+        if_setgraphic("rs3_character_interface_register_tool_tip,9", interface_1420:com_349);
+        if_sethflip(true, interface_1420:com_347);
+        if_sethflip(true, interface_1420:com_349);
+        if_sethflip(true, interface_1420:com_339);
+    }
+}
+def_int $int5 = calc(if_getwidth(interface_1420:com_235) - 277);
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+if (cc_find($component3, $int1) = true) {
+    if_settext($string0, interface_1420:com_350);
+    if (string_indexof_string($string0, " ", 0) ! -1 & stringwidth($string0, verdana_11pt_regular) > 60) {
+        $int6 = min(calc(parawidth($string0, calc(stringwidth($string0, verdana_11pt_regular) / 4 * 3), verdana_11pt_regular) + 15 + 10 * 2), $int5);
+    } else {
+        $int6 = calc(stringwidth($string0, verdana_11pt_regular) + 15 + 10 * 2);
+    }
+    $int7 = calc(paraheight($string0, calc($int6 - (10 * 2 + 15)), verdana_11pt_regular) * 13 + 10 * 2);
+    if_setsize($int6, $int7, ^setsize_abs, ^setsize_abs, interface_1420:com_338);
+    if ($int2 = 0) {
+        $int8 = calc(if_getx($component4) + if_getx($component3) + cc_getx + cc_getwidth);
+    } else {
+        $int8 = calc(if_getx($component4) + if_getx($component3) + cc_getx);
+        $int8 = calc($int8 - $int6);
+    }
+    $int9 = calc(cc_gety + cc_getheight / 2 + if_gety($component4) + if_gety($component3) - if_getscrolly($component3));
+    $int9 = calc($int9 - $int7);
+    if_setposition($int8, $int9, ^setpos_abs_left, ^setpos_abs_top, interface_1420:com_338);
+    if_sethide(false, interface_1420:com_338);
+}
+if_setontimer(null, interface_1420:com_193);

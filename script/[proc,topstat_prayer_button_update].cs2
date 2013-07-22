@@ -1,43 +1,23 @@
 // 2303
 [proc,topstat_prayer_button_update]
-def_int $int0 = 1245;
-def_graphic $graphic1 = "topstat_fill_full,1";
-def_graphic $graphic2 = "topstat_fill_full,5";
-def_graphic $graphic3 = "topstat_icon,1";
-if (getwindowmode >= 2) {
-    $int0 = 8645;
-    $graphic1 = "aif_topstat_fill_full,1";
-    $graphic2 = "aif_topstat_fill_full,5";
-    $graphic3 = "aif_topstat_icon,1";
-    if (if_getgraphic(interface_749:com_4) ! graphic_8625 & if_getgraphic(interface_749:com_4) ! graphic_8624) {
-        if_setgraphic(graphic_8625, interface_749:com_4);
-    }
-    if_setsize(67, 34, ^setsize_abs, ^setsize_abs, interface_749:com_3);
-    if_setposition(2, 1, ^setpos_abs_right, ^setpos_abs_top, interface_749:com_5);
-    if_setposition(3, 15, ^setpos_abs_left, ^setpos_abs_top, interface_749:com_6);
-    if_setsize(34, 14, ^setsize_abs, ^setsize_abs, interface_749:com_6);
-} else {
-    if (if_getgraphic(interface_749:com_4) ! graphic_1206 & if_getgraphic(interface_749:com_4) ! graphic_784) {
-        if_setgraphic(graphic_1206, interface_749:com_4);
-    }
-    if_setsize(57, 34, ^setsize_abs, ^setsize_abs, interface_749:com_3);
-    if_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top, interface_749:com_5);
-    if_setposition(31, 15, ^setpos_abs_left, ^setpos_abs_top, interface_749:com_6);
-    if_setsize(24, 14, ^setsize_abs, ^setsize_abs, interface_749:com_6);
-}
-if_setgraphic($graphic3, interface_749:com_2);
-if (~bool_to_int(%varclient_182) = 1) {
-    if_setgraphic($graphic2, interface_749:com_0);
+def_string $string0 = "Turn quick prayers off";
+if (%varplayerbit_5941 = 1) {
+    if_setgraphic("rs3_btn_combat_bar_prayer,1", interface_1430:com_85);
     if (%varplayerbit_16789 = 1) {
-        if_setop(1, "Turn curses off", interface_749:com_4);
+        $string0 = "Turn quick curses off";
+        if_setop(1, "Turn curses off", interface_1430:com_168);
     } else {
-        if_setop(1, "Turn prayers off", interface_749:com_4);
+        if_setop(1, "Turn prayers off", interface_1430:com_168);
     }
 } else {
-    if_setgraphic($graphic1, interface_749:com_0);
+    $string0 = "Turn quick prayers on";
+    if_setgraphic("rs3_btn_combat_bar_prayer,0", interface_1430:com_85);
     if (%varplayerbit_16789 = 1) {
-        if_setop(1, "Turn quick curses on", interface_749:com_4);
+        $string0 = "Turn quick curses on";
+        if_setop(1, "Turn quick curses on", interface_1430:com_168);
     } else {
-        if_setop(1, "Turn quick prayers on", interface_749:com_4);
+        if_setop(1, "Turn quick prayers on", interface_1430:com_168);
     }
 }
+if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", interface_1430:com_168);
+if_setonmouseleave("script8805", interface_1430:com_168);

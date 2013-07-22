@@ -1,0 +1,128 @@
+// 8117
+[proc,script8117](component $component0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6)
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_string $string0 = "";
+def_int $int10 = 0;
+if ($int6 = 1) {
+    $int7 = 49152;
+}
+def_graphic $graphic11 = null;
+switch_int ($int5) {
+    case 16711680 :
+        $graphic11 = rs3_hud_combat_progress_bar_health;
+        $string0 = "Health Points";
+    case 16776960 :
+        $graphic11 = rs3_hud_combat_progress_bar_adrenaline;
+        $string0 = "Adrenaline";
+    case 65280 :
+        $graphic11 = rs3_hud_combat_progress_bar_summoning;
+        $string0 = "Summoning Points";
+    case 255 :
+        $graphic11 = rs3_hud_combat_progress_bar_prayer;
+        $string0 = "Prayer Points";
+    case default :
+        return;
+}
+cc_deleteall($component0);
+cc_create($component0, ^iftype_graphic, $int8);
+cc_setgraphic(rs3_hud_combat_progress_bar_backing_left);
+$int9 = 16;
+if ($int6 = 0) {
+    cc_setposition(0, $int10, ^setpos_abs_left, ^setpos_abs_bottom);
+} else {
+    cc_setposition(0, calc((0 - if_getheight($component0)) / 2 + $int9 / 2), ^setpos_abs_centre, ^setpos_abs_centre);
+}
+cc_setsize($int9, 8, ^setsize_abs, ^setsize_abs);
+cc_set2dangle($int7);
+$int8 = calc($int8 + 1);
+cc_create($component0, ^iftype_graphic, $int8);
+cc_setgraphic(rs3_hud_combat_progress_bar_backing_tile);
+if ($int6 = 0) {
+    $int9 = calc(if_getwidth($component0) - 2 * 16);
+    cc_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_bottom);
+} else {
+    $int9 = calc(if_getheight($component0) - 2 * 16);
+    if (calc($int9 % 2) ! 0) {
+        $int9 = calc($int9 + 1);
+    }
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+}
+cc_setsize($int9, 8, ^setsize_abs, ^setsize_abs);
+cc_set2dangle($int7);
+cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
+cc_setonmouseleave("script8805");
+$int8 = calc($int8 + 1);
+cc_create($component0, ^iftype_graphic, $int8);
+cc_setgraphic(rs3_hud_combat_progress_bar_backing_right);
+$int9 = 16;
+if ($int6 = 0) {
+    cc_setposition(0, $int10, ^setpos_abs_right, ^setpos_abs_bottom);
+} else {
+    cc_setposition(0, calc(if_getheight($component0) / 2 - $int9 / 2), ^setpos_abs_centre, ^setpos_abs_centre);
+}
+cc_setsize($int9, 8, ^setsize_abs, ^setsize_abs);
+cc_set2dangle($int7);
+$int8 = calc($int8 + 1);
+cc_create($component0, ^iftype_graphic, $int8);
+cc_setgraphic($graphic11);
+if ($int6 = 0) {
+    $int9 = calc(if_getwidth($component0) - 4);
+    cc_setposition(2, calc((8 - 4) / 2 + $int10), ^setpos_abs_left, ^setpos_abs_bottom);
+} else {
+    $int9 = calc(if_getheight($component0) - 4);
+    if (calc($int9 % 2) ! 0) {
+        $int9 = calc($int9 + 1);
+    }
+    cc_setposition(0, 2, ^setpos_abs_centre, ^setpos_abs_centre);
+}
+cc_setsize($int9, 4, ^setsize_abs, ^setsize_abs);
+cc_set2dangle($int7);
+$int8 = calc($int8 + 1);
+cc_create($component0, ^iftype_graphic, $int8);
+cc_setgraphic(rs3_hud_combat_progress_bar_facing_left);
+$int9 = 16;
+if ($int6 = 0) {
+    cc_setposition(0, $int10, ^setpos_abs_left, ^setpos_abs_bottom);
+} else {
+    cc_setposition(0, calc((0 - if_getheight($component0)) / 2 + $int9 / 2), ^setpos_abs_centre, ^setpos_abs_centre);
+}
+cc_setsize($int9, 8, ^setsize_abs, ^setsize_abs);
+cc_set2dangle($int7);
+$int8 = calc($int8 + 1);
+cc_create($component0, ^iftype_graphic, $int8);
+cc_setgraphic(rs3_hud_combat_progress_bar_facing_tile);
+if ($int6 = 0) {
+    $int9 = calc(if_getwidth($component0) - 2 * 16);
+    cc_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_bottom);
+} else {
+    $int9 = calc(if_getheight($component0) - 2 * 16);
+    if (calc($int9 % 2) ! 0) {
+        $int9 = calc($int9 + 1);
+    }
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+}
+cc_setsize($int9, 8, ^setsize_abs, ^setsize_abs);
+cc_set2dangle($int7);
+$int8 = calc($int8 + 1);
+cc_create($component0, ^iftype_graphic, $int8);
+cc_setgraphic(rs3_hud_combat_progress_bar_facing_right);
+$int9 = 16;
+if ($int6 = 0) {
+    cc_setposition(0, $int10, ^setpos_abs_right, ^setpos_abs_bottom);
+} else {
+    cc_setposition(0, calc(if_getheight($component0) / 2 - $int9 / 2), ^setpos_abs_centre, ^setpos_abs_centre);
+}
+cc_setsize($int9, 8, ^setsize_abs, ^setsize_abs);
+cc_set2dangle($int7);
+$int8 = calc($int8 + 1);
+cc_create($component0, ^iftype_text, $int8);
+cc_setposition(30, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(0, 18, ^setsize_minus, ^setsize_abs);
+cc_settextfont(graphic_17813);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_settextshadow(true);
+cc_setcolour(^white);
+cc_settext("0");
+$int8 = calc($int8 + 1);

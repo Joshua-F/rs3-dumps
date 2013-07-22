@@ -1,28 +1,7 @@
 // 1704
-[proc,prayer_refresh_scrollbar]
-def_int $int0 = 0;
-if (%varplayerbit_16789 = 0) {
-    if (%varclient_1052 = 1) {
-        if (%varclient_181 = true) {
-            cc_deleteall(interface_271:com_8);
-            if_setscrollpos(0, 0, interface_271:com_6);
-            $int0 = 1;
-        } else if (if_getnextsubid(interface_271:com_8) = 0) {
-            ~scrollbar_vertical(interface_271:com_8, interface_271:com_6, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-            $int0 = 1;
-        }
-    } else if (if_getnextsubid(interface_271:com_8) ! 0) {
-        cc_deleteall(interface_271:com_8);
-        if_setscrollpos(0, 0, interface_271:com_6);
-        $int0 = 1;
-    }
-} else if (if_getnextsubid(interface_271:com_8) ! 0) {
-    cc_deleteall(interface_271:com_8);
-    if_setscrollpos(0, 0, interface_271:com_6);
-    if_setsize(16384, calc(19 + if_getheight(interface_271:com_0)), ^setsize_rel, ^setsize_minus, interface_271:com_6);
-    $int0 = 1;
-}
-if ($int0 = 1) {
-    ~prayer_load_buttons(interface_271:com_10);
-    ~script1293(interface_271:com_9);
+[proc,prayer_refresh_scrollbar](component $component0, component $component1)
+if (if_getscrollheight($component1) <= if_getheight($component1)) {
+    cc_deleteall($component0);
+} else {
+    ~scrollbar_vertical($component0, $component1, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 }

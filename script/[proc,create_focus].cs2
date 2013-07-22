@@ -13,66 +13,49 @@ def_int $int2 = %varclient_174;
 %varclient_174 = $int0;
 %varclient_175 = clientclock;
 switch_int ($int0) {
+    case 16 :
+        if ($int1 = 1) {
+            %varclient_1099 = string_length(%varclient_2563);
+            ~script3218(interface_1420:com_282, interface_1420:com_283, interface_1420:com_284, %varclient_2563, 16);
+        }
     case 6 :
         if ($int1 = 1) {
             %varclient_1099 = string_length(%varclient_2555);
-            ~script3218(interface_673:com_100, interface_673:com_43, interface_673:com_101, %varclient_2555, 6);
-        }
-    case 14 :
-        if ($int1 = 1) {
-            %varclient_1099 = string_length(%varclient_2556);
-            ~script3218(interface_673:com_119, interface_673:com_120, interface_673:com_121, %varclient_2556, 14);
+            ~script3218(interface_1420:com_262, interface_1420:com_0, interface_1420:com_263, %varclient_2555, 6);
         }
     case 7 :
         if ($int1 = 1) {
             %varclient_1099 = string_length(%varclient_2559);
-            ~script3218(interface_673:com_90, interface_673:com_91, interface_673:com_92, ~script2949(%varclient_2559), 7);
-        }
-    case 8 :
-        if ($int1 = 1) {
-            %varclient_1099 = string_length(%varclient_2560);
-            ~script3218(interface_673:com_80, interface_673:com_81, interface_673:com_82, ~script2949(%varclient_2560), 8);
+            if (if_gethide(interface_1420:com_215) = false) {
+                ~script3218(interface_1420:com_268, interface_1420:com_269, interface_1420:com_270, %varclient_2559, 7);
+            } else {
+                ~script3218(interface_1420:com_268, interface_1420:com_269, interface_1420:com_270, ~script2949(%varclient_2559), 7);
+            }
         }
     case 15 :
         if ($int1 = 1) {
             if (%varclient_1407 < 1) {
                 %varclient_1099 = 0;
-                if_settext("Email Address (Login)", interface_673:com_93);
-                if_settext("Retype Email Address", interface_673:com_112);
-                ~script3218(interface_673:com_126, interface_673:com_42, interface_673:com_127, "", 15);
-            } else if (%varclient_1407 < 13) {
-                if_settext("Parent's Email Address (Login)", interface_673:com_93);
-                if_settext("Retype Parent's Email Address", interface_673:com_112);
-                %varclient_174 = 6;
-                %varclient_1099 = string_length(%varclient_2555);
-                ~script3218(interface_673:com_100, interface_673:com_43, interface_673:com_101, %varclient_2555, 6);
+                ~script3218(interface_1420:com_275, interface_1420:com_276, interface_1420:com_277, "", 15);
             } else {
-                if_settext("Email Address (Login)", interface_673:com_93);
-                if_settext("Retype Email Address", interface_673:com_112);
                 %varclient_1099 = string_length(tostring(%varclient_1407));
-                ~script3218(interface_673:com_126, interface_673:com_42, interface_673:com_127, tostring(%varclient_1407), 15);
+                ~script3218(interface_1420:com_275, interface_1420:com_276, interface_1420:com_277, tostring(%varclient_1407), 15);
             }
         }
 }
-if ($int2 = 6 & $int0 ! 6) {
+if ($int2 = 16 & $int0 ! 16) {
+    if (compare(%varclient_3685, %varclient_2563) ! 0) {
+        ~create_validate_displayname(false, true);
+    }
+} else if ($int2 = 6 & $int0 ! 6) {
     if (compare(%varclient_2557, %varclient_2555) ! 0) {
         ~script2283(false, true);
     }
-} else if ($int2 = 14 & $int0 ! 14) {
-    if (compare(%varclient_2558, %varclient_2556) ! 0) {
-        ~script3953(0);
-    }
 } else if ($int2 = 7 & $int0 ! 7) {
     if (compare(%varclient_2561, %varclient_2559) ! 0) {
-        ~script3228(7, 0, 0);
-        if (string_length(%varclient_2560) > 0) {
-            ~script3228(8, 1, 0);
-        }
-    }
-} else if ($int2 = 8 & $int0 ! 8) {
-    if (compare(%varclient_2562, %varclient_2560) ! 0) {
-        ~script3228(8, 1, 0);
+        ~script3228(0, true);
     }
 } else if ($int2 = 15 & $int0 ! 15 & %varclient_1408 ! %varclient_1407) {
-    ~script3954(0);
+    ~script3954(0, 1);
 }
+~script7858;

@@ -1,0 +1,28 @@
+// 8889
+[proc,script8889]
+if (compare(substring(chat_playername_unfiltered, 0, 1), "#") = 0 & userdetail_lobby_playage < 1) {
+    ~script1208;
+    return;
+}
+if (%varplayerbit_16467 ! 0) {
+    if_setonvartransmit(null, interface_906:com_238);
+    return;
+}
+switch_int (%varplayer_3185) {
+    case 0 :
+        return;
+    case 1 :
+        ~script5940;
+    case 2 :
+        ~script6190;
+    case 3, 6 :
+        if_setonvartransmit("script6204{varplayer_3184}", interface_906:com_238);
+        ~script5940;
+    case 4 :
+        if_setonvarctransmit(null, interface_906:com_238);
+        ~script6192;
+    case 5 :
+        ~script5940;
+    case default :
+        ~script6190;
+}

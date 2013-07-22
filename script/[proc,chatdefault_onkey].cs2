@@ -1,0 +1,198 @@
+// 8509
+[proc,chatdefault_onkey](int $key0, char $char1)
+def_string $string0 = "";
+def_int $int2 = %varclient_2231;
+if (%varplayerbit_4921 > 0) {
+    return;
+}
+if (%varclient_2235 ! null) {
+    if (if_gethide(%varclient_2235) = true) {
+        ~script7208("");
+    } else if (%varclient_2873 = 11) {
+        return;
+    }
+}
+if ($int2 = -1) {
+    return;
+}
+if (if_gethide(~script8585($int2)) = true) {
+    return;
+}
+if (~script2709 = 0) {
+    if ($key0 = ^key_return) {
+        mes_typed(~script8526($int2), 0, "Chat is not available until your Date of Birth is recorded. Please enter your DOB above.");
+    }
+    return;
+}
+if (%varclient_2873 ! 8 & $key0 ! ^key_return & $key0 ! ^key_tab) {
+    return;
+}
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = -1;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = -1;
+def_int $int10 = -1;
+def_int $int11 = -1;
+def_int $int12 = -1;
+def_int $int13 = -1;
+def_int $int14 = -1;
+switch_int ($key0) {
+    case ^key_f9 :
+        if (~script8627($int2) ! null) {
+            ~quickchat_respond(~script8629($int2), ~script8609($int2), ~script8627($int2), $int2);
+        }
+    case ^key_f10 :
+        if (~script1036 ! null) {
+            ~quickchat_open_context(0, "", $int2);
+        }
+    case ^key_f11 :
+        $int3 = 150;
+        $int4 = calc(clientclock - ~script8673($int2));
+        if ($int4 > 1500) {
+            ~script8676($int2, 0);
+        }
+        if (~script8675($int2) >= 7) {
+            $int3 = 600;
+        } else if (~script8675($int2) >= 5) {
+            $int3 = 450;
+        } else if (~script8675($int2) >= 3) {
+            $int3 = 300;
+        }
+        if ($int4 >= $int3) {
+            ~script8674($int2, clientclock);
+            ~script8676($int2, calc(~script8675($int2) + 1));
+            if (~script8623($int2) ! null) {
+                ~quickchat_phrase_resend($int2);
+            }
+            return;
+        }
+    case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
+        if (keyheld_shift = true) {
+            %varclient_1028 = ~script1553($key0, %varclient_1028, ~script8521($int2));
+        }
+    case ^key_escape :
+        if (%varclient_1652 = true) {
+            %varclient_1652 = false;
+            return;
+        }
+        if (string_length(~script8521($int2)) < 1) {
+            ~script8518;
+        } else {
+            if (%varclient_1650 = true) {
+                %varclient_1650 = false;
+            }
+            ~script8522($int2, "");
+            %varclient_1028 = 0;
+        }
+    case ^key_tab :
+        ~script8511($int2);
+    case ^key_return :
+        if (%varclient_2873 ! 8) {
+            ~script8516($int2);
+            return;
+        }
+        $int9, $int10, $int11, $int12, $int13, $int14 = ~script4590;
+        if (string_length(~script8521($int2)) <= 0) {
+            ~script8517($int2);
+            switch_int ($int2) {
+                case 18 :
+                    ~quickchat_open(0, "", $int2);
+                case 19 :
+                    return;
+                case 20 :
+                    ~quickchat_open(2, "", $int2);
+                case 21 :
+                    ~quickchat_open(8, "", $int2);
+                case 22 :
+                    ~quickchat_open(10, "", $int2);
+                case default :
+                    return;
+            }
+        } else {
+            if (compare(~script8521($int2), "/?") = 0) {
+                ~script8527($int2);
+                ~script8522($int2, "");
+                ~script8517($int2);
+                return;
+            }
+            if (compare(~script8521($int2), "/") = 0) {
+                ~quickchat_open(2, "", $int2);
+            } else if (compare(~script8521($int2), "//") = 0) {
+                ~quickchat_open(8, "", $int2);
+            } else if (compare(~script8521($int2), "///") = 0) {
+                ~quickchat_open(10, "", $int2);
+            }
+            $int5 = ~script8519(~script8521($int2));
+            if ($int5 ! -1) {
+                ~script8522($int2, "");
+                ~script8514($int2, $int5);
+                if ($int5 = 18) {
+                    ~script8551($int5, 0);
+                    ~script1558($int5, false);
+                }
+                return;
+            } else {
+                $int6 = ~script8520($int2);
+                switch_int ($int6) {
+                    case 0 :
+                        if (if_hassuboverlay(~script8875(4), interface_37) = true) {
+                            $int6 = -1;
+                            mes("Public chat is not available in Mobilising Armies.");
+                        }
+                    case 1 :
+                        if (compare("", clan_getchatdisplayname) = 0) {
+                            $int6 = -1;
+                            ~script7171($int2, "You aren't in a Friends Chat channel.");
+                        }
+                    case 2 :
+                        if ($int9 < 0) {
+                            $int6 = -1;
+                            ~script7171($int2, "You aren't in a Clan Chat channel.");
+                        } else if ($int10 < $int11) {
+                            $int6 = -1;
+                            mes_typed(^chattype_clanmessage, 0, "Your rank is not high enough to talk in your Clan Chat.");
+                        }
+                    case 3 :
+                        if ($int12 < 0) {
+                            $int6 = -1;
+                            ~script7171($int2, "You aren't a guest in a visited Clan Chat channel.");
+                        } else if ($int13 < $int14) {
+                            $int6 = -1;
+                            mes_typed(^chattype_clanguestmessage, 0, "Guests cannot chat in this Clan Chat channel.");
+                        }
+                }
+                if ($int6 ! -1 & string_length(~script8521($int2)) > 0) {
+                    if ($int6 = 4) {
+                        chat_sendprivate(%varclient_2367, ~script8521($int2));
+                    } else {
+                        chat_setmode($int6);
+                        chat_sendpublic(~script8521($int2));
+                    }
+                }
+                ~script8517($int2);
+            }
+        }
+    case ^key_space :
+        $int5 = ~script8519(~script8521($int2));
+        if ($int5 ! -1) {
+            ~script8522($int2, "");
+            ~script8514($int2, $int5);
+            if ($int5 = 18) {
+                ~script8551($int5, 0);
+                ~script1558($int5, false);
+            }
+            return;
+        } else {
+            ~script8510($int2, $key0, $char1);
+        }
+    case default :
+        if (%varclient_1652 = true) {
+            %varclient_1652 = false;
+            return;
+        }
+        ~script8510($int2, $key0, $char1);
+}
+~script1558($int2, false);

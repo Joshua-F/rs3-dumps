@@ -1,0 +1,15 @@
+// 8201
+[clientscript,script8201](int $int0, int $int1, component $component2, component $component3)
+def_int $int4 = if_getscrolly($component3);
+if ($int0 > $int4) {
+    $int4 = min(calc($int4 + $int1), $int0);
+} else {
+    $int4 = max(calc($int4 - $int1), $int0);
+}
+if_setscrollpos(0, $int4, $component3);
+~rs3_scrollbar_vertical($component2, $component3);
+if ($int0 = $int4) {
+    if_setontimer(null, $component3);
+} else {
+    if_setontimer("script8201($int0, max(15, calc($int1 - 2)), $component2, $component3)", $component3);
+}

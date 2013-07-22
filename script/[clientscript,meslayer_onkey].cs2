@@ -1,11 +1,14 @@
 // 112
 [clientscript,meslayer_onkey](int $key0, char $char1)
+if (%varclient_2873 ! 10) {
+    return;
+}
 switch_int ($key0) {
     case ^key_return :
+        ~script8841(10, 0);
         if (%varclient_5 = 7 & string_length(%varclient_2506) <= 0) {
             return;
         }
-        ~script6999(1, 0);
         if (%varclient_5 = 12) {
             ~script1806(%varclient_2506);
             return;
@@ -28,10 +31,13 @@ switch_int ($key0) {
                         mes("That player is not on your ignore list.");
                     }
                 }
+                ~meslayer_close(%varclient_5);
             } else if (%varclient_5 < 7) {
                 if (friend_count < 0) {
                     mes("Unable to complete action - system busy");
+                    ~meslayer_close(%varclient_5);
                 } else if (%varclient_5 = 2) {
+                    ~meslayer_close(2);
                     friend_add(%varclient_2506);
                 } else if (%varclient_5 = 3) {
                     if (friend_test(~displayname_simplify(%varclient_2506)) = true) {
@@ -39,14 +45,13 @@ switch_int ($key0) {
                     } else {
                         mes("That player is not on your friends list.");
                     }
+                    ~meslayer_close(3);
                 } else if (%varclient_5 = 6) {
                     if (chat_getfilter_private = ^chatfilter_off) {
                         chat_setfilter(chat_getfilter_public, ^chatfilter_friends, chat_getfilter_trade);
-                        ~redraw_chat_buttons;
-                        ~rebuildchatbox;
-                        ~rebuildpmbox;
                     }
                     chat_sendprivate(%varclient_2367, %varclient_2506);
+                    ~meslayer_close(6);
                 }
             } else if (%varclient_5 = 11) {
                 ~script1478;
@@ -80,23 +85,20 @@ switch_int ($key0) {
                 ~clan_chat_kick_find(%varclient_2506);
             }
         } else if (%varclient_5 = 14) {
-            ~music_search_close;
+            ~music_search_close_both;
             return;
         }
-        if_sethide(true, interface_752:com_3);
-        if_sethide(true, interface_752:com_7);
-        if_sethide(false, interface_752:com_8);
-        %varclient_5 = 0;
-        if (getwindowmode >= 2) {
-            ~subchanged;
-        }
+        ~meslayer_close(0);
+        ~subchanged;
         return;
     case ^key_escape :
         if (%varclient_5 = 12) {
             ~script1806(%varclient_2409);
             ~meslayer_close(0);
         } else if (%varclient_5 = 14) {
-            ~music_search_close;
+            ~music_search_close_both;
+        } else {
+            ~meslayer_close(%varclient_5);
         }
         return;
     case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
@@ -123,12 +125,12 @@ switch_int ($key0) {
                 %varclient_2506, %varclient_1029 = ~script802(%varclient_1029, %varclient_2506, 2, $key0, $char1);
         }
 }
-if_settext(escape(%varclient_2506), interface_752:com_5);
+if_settext(escape(%varclient_2506), interface_1469:com_3);
 ~script1557;
 if (%varclient_5 = 11) {
     ~script1475;
 } else if (%varclient_5 = 14) {
     %varclient_2249 = lowercase(%varclient_2506);
     %varclient_89 = true;
-    ~music_v3_refresh;
+    ~music_v3_refresh_both;
 }

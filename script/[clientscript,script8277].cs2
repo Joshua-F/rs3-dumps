@@ -1,0 +1,27 @@
+// 8277
+[clientscript,script8277](component $component0, component $component1, component $component2, component $component3, component $component4)
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+while ($int9 < enum_getoutputcount(enum_2252)) {
+    if (enum(int, struct, enum_2252, $int8) ! null) {
+        switch_int (~ql4_getprogress($int8)) {
+            case 2 :
+                $int7 = calc(1 + $int7);
+            case 1 :
+                $int6 = calc(1 + $int6);
+            case 0 :
+                $int5 = calc(1 + $int5);
+        }
+        $int9 = calc(1 + $int9);
+    }
+    $int8 = calc(1 + $int8);
+}
+def_int $int10 = enum_getoutputcount(enum_2252);
+if_settext("<tostring($int5)> / <tostring($int10)>", $component0);
+if_settext("<tostring($int6)> / <tostring($int10)>", $component1);
+if_settext("<tostring($int7)> / <tostring($int10)>", $component3);
+if_setsize(scale($int7, $int10, 16384), 0, ^setsize_rel, ^setsize_minus, $component4);
+if_setsize(scale(calc($int7 + $int6), $int10, 16384), 0, ^setsize_rel, ^setsize_minus, $component2);

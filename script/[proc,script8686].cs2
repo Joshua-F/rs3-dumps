@@ -1,0 +1,82 @@
+// 8686
+[proc,script8686]
+def_graphic $graphic0 = "rs3_quick_inventory_slot_icons,0";
+def_component $component1 = interface_1430:com_175;
+def_component $component2 = interface_1430:com_182;
+def_string $string0 = "Assign an inventory slot to this through<br>right-click options in the inventory screen.";
+def_obj $obj3 = inv_getobj(inv_93, %varplayerbit_18784);
+def_int $int4 = 0;
+if (if_find($component1) = true) {
+    if ($obj3 ! null) {
+        $int4 = inv_total(inv_93, $obj3);
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        if (%varplayerbit_1892 = 0) {
+            cc_setonmouserepeat("script5495($obj3)");
+            cc_setonmouseleave("script5495(null)");
+        } else {
+            cc_setonmouserepeat(null);
+            cc_setonmouseleave(null);
+        }
+    } else {
+        cc_setsize(30, 30, ^setsize_abs, ^setsize_abs);
+        cc_setgraphic($graphic0);
+        if (%varplayerbit_1892 = 0) {
+            cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
+            cc_setonmouseleave("script8805");
+        } else {
+            cc_setonmouserepeat(null);
+            cc_setonmouseleave(null);
+        }
+    }
+    cc_setobject($obj3, $int4);
+    cc_clearops;
+    ~inventory_setophelds($obj3, false);
+    cc_setop(10, "Customise-keybind");
+    cc_setonop("script7023(event_com, event_op)");
+    if ($obj3 ! null) {
+        cc_setopbase(oc_name($obj3));
+    } else {
+        cc_setopbase("quick-inventory A");
+    }
+    ~script7033;
+    ~script8844(max(1, ~script8687(interface_1430:com_175)), ~script8825(5, 31), interface_1430:com_175, -1);
+    if_settext(~script8213(~script8825(5, 31), 1, 1), interface_1430:com_178);
+}
+def_obj $obj5 = inv_getobj(inv_93, %varplayerbit_18785);
+def_int $int6 = 0;
+if (if_find($component2) = true) {
+    if ($obj5 ! null) {
+        $int6 = inv_total(inv_93, $obj5);
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        if (%varplayerbit_1892 = 0) {
+            cc_setonmouserepeat("script5495($obj5)");
+            cc_setonmouseleave("script5495(null)");
+        } else {
+            cc_setonmouserepeat(null);
+            cc_setonmouseleave(null);
+        }
+    } else {
+        cc_setsize(30, 30, ^setsize_abs, ^setsize_abs);
+        cc_setgraphic($graphic0);
+        if (%varplayerbit_1892 = 0) {
+            cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
+            cc_setonmouseleave("script8805");
+        } else {
+            cc_setonmouserepeat(null);
+            cc_setonmouseleave(null);
+        }
+    }
+    cc_setobject($obj5, $int6);
+    cc_clearops;
+    ~inventory_setophelds($obj5, false);
+    cc_setop(10, "Customise-keybind");
+    cc_setonop("script7023(event_com, event_op)");
+    if ($obj5 ! null) {
+        cc_setopbase(oc_name($obj5));
+    } else {
+        cc_setopbase("quick-inventory B");
+    }
+    ~script7033;
+    ~script8844(max(1, ~script8687(interface_1430:com_182)), ~script8825(5, 32), interface_1430:com_182, -1);
+    if_settext(~script8213(~script8825(5, 32), 1, 1), interface_1430:com_185);
+}

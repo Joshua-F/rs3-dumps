@@ -9,13 +9,17 @@ $wma1 = ~script2785($wma1);
 if ($wma1 = null) {
     return;
 }
-~worldmap_overlay_clear(interface_755:com_29);
+~worldmap_overlay_clear(interface_1422:com_4);
 %varclient_2545 = "";
-~script308(interface_755:com_25);
-if_settext(worldmap_getmapname($wma1), interface_755:com_20);
-~deltooltip_action(interface_755:com_60);
+~script308(interface_1422:com_51);
+if_settext(worldmap_getmapname($wma1), interface_1422:com_58);
+~deltooltip_action(interface_1422:com_42);
 worldmap_setmap_coord_override($wma1, $coord0);
-worldmap_jumptosourcecoord($coord0);
-%varclient_172 = worldmap_getconfigzoom($wma1);
-~worldmap_setzoom;
+if (has_html5 = true) {
+    ~script8102($wma1);
+    ~script7954($coord0);
+} else {
+    worldmap_jumptosourcecoord($coord0);
+}
+~worldmap_setzoom(worldmap_getconfigzoom($wma1));
 ~script307;

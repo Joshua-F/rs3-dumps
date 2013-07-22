@@ -1,0 +1,89 @@
+// 8502
+[proc,script8502](int $int0, int $int1, int $int2)
+def_component $component3 = ~script8552($int0);
+def_component $component4 = ~script8553($int0);
+if ($component3 = null | $component4 = null) {
+    return;
+}
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
+def_chatphrase $chatphrase8 = null;
+def_string $string4 = "";
+def_int $int9 = calc($int1 + 1);
+def_int $int10 = 0;
+$int5, $int6, $int7, $string0, $string1, $string2, $string3, $chatphrase8, $string4 = chat_gethistory_byuid($int9);
+while ($int9 <= $int2) {
+    if ($int5 ! -1 & ~script8507($int0, $int5) = 1 & ~script8508($int0, $int5, $string1) = 1) {
+        $int10 = calc($int10 + 1);
+    }
+    $int5, $int6, $int7, $string0, $string1, $string2, $string3, $chatphrase8, $string4 = chat_gethistory_byuid(++$int9);
+}
+if ($int10 = 0) {
+    return;
+}
+$int9 = calc($int9 - 1);
+def_int $int11 = if_getnextsubid($component3);
+def_int $int12 = min(100, calc($int11 + $int10));
+while ($int11 < $int12) {
+    cc_create($component3, ^iftype_text, $int11);
+    cc_settextfont(p12_full);
+    cc_settextalign(^settextalign_left, ^settextalign_top, 14);
+    cc_settextshadow(true);
+    $int11 = calc($int11 + 1);
+}
+$int11 = min(100, calc($int11 - 1));
+while ($int11 >= $int10) {
+    if (.cc_find($component3, $int11) = true & cc_find($component3, calc($int11 - $int10)) = true) {
+        .cc_settext(cc_gettext);
+        .cc_setcolour(cc_getcolour);
+        .cc_setopbase(cc_getopbase);
+        .cc_setop(1, cc_getop(1));
+        .cc_setop(2, cc_getop(2));
+        .cc_setop(3, cc_getop(3));
+        .cc_setop(4, cc_getop(4));
+        .cc_setop(5, cc_getop(5));
+        .cc_setop(6, cc_getop(6));
+        .cc_setop(7, cc_getop(7));
+        .cc_setop(8, cc_getop(8));
+        .cc_setop(9, cc_getop(9));
+        .cc_setop(10, cc_getop(10));
+        .cc_setparam(param_3443, cc_param(param_3443));
+    }
+    $int11 = calc($int11 - 1);
+}
+def_int $int13 = ~script4467;
+def_int $int14 = ~script1891;
+def_int $int15 = 2;
+def_int $int16 = 0;
+def_int $int17 = if_getwidth($component3);
+$int11 = 0;
+def_int $intarray0(125);
+$int5, $int6, $int7, $string0, $string1, $string2, $string3, $chatphrase8, $string4 = chat_gethistory_byuid($int9);
+while ($int11 < $int10 & $int9 <= $int2) {
+    if ($int5 ! -1 & ~script8507($int0, $int5) = 1 & ~script8508($int0, $int5, $string1) = 1) {
+        if (cc_find($component3, $int11) = true) {
+            ~script8505($int5, $string4, $string0, $string3, $chatphrase8, $int6, $int15);
+            ~script8506($int0, $int5, $string4, $string0, $string1, $chatphrase8, $int13, $int14);
+            cc_setparam(param_3443, $int9);
+            $int16 = max(paraheight(cc_gettext, $int17, cc_getfontmetrics), 1);
+            cc_setsize(0, calc(14 * $int16), ^setsize_minus, ^setsize_abs);
+            $int15 = calc($int15 + cc_getheight);
+            if ($int5 = 3 | $int5 = 7 | $int5 = 18) {
+                %varclient_2505 = removetags($string1);
+            }
+            if ($intarray0($int5) ! 1) {
+                ~script8538($int0, $int5);
+                $intarray0($int5) = 1;
+            }
+        }
+        $int11 = calc($int11 + 1);
+    }
+    $int5, $int6, $int7, $string0, $string1, $string2, $string3, $chatphrase8, $string4 = chat_gethistory_byuid(--$int9);
+}
+$int15 = ~script8503($component3, $int11, $int15);
+~script8504($int0, $int15);

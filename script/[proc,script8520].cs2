@@ -1,0 +1,29 @@
+// 8520
+[proc,script8520](int $int0)(int)
+def_string $string0 = ~script8521($int0);
+def_int $int1 = string_length($string0);
+def_int $int2 = -1;
+if ($int1 = 0) {
+    return(-1);
+}
+if (%varclient_1650 = true) {
+    while (string_length($string0) > 0 & compare(substring($string0, 0, 1), "/") = 0) {
+        $string0 = substring($string0, 1, $int1);
+    }
+    $int2 = 4;
+} else if (compare(substring($string0, 0, min(4, $int1)), "////") = 0) {
+    mes_typed(~script8526($int0), 0, "Unrecognised Command: type /? for a list.");
+} else if (compare(substring($string0, 0, min(3, $int1)), "///") = 0) {
+    $string0 = substring($string0, 3, $int1);
+    $int2 = 3;
+} else if (compare(substring($string0, 0, min(2, $int1)), "//") = 0) {
+    $string0 = substring($string0, 2, $int1);
+    $int2 = 2;
+} else if (compare(substring($string0, 0, min(1, $int1)), "/") = 0) {
+    $string0 = substring($string0, 1, $int1);
+    $int2 = 1;
+} else {
+    $int2 = ~script8550($int0);
+}
+~script8522($int0, $string0);
+return($int2);

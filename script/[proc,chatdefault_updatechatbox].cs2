@@ -1,21 +1,7 @@
 // 1560
-[proc,chatdefault_updatechatbox](boolean $boolean0)
-def_int $chattype1 = ^chattype_gamemessage;
-def_int $int2 = 0;
-def_int $int3 = 0;
-def_string $string0 = "";
-def_string $string1 = "";
-def_string $string2 = "";
-def_string $string3 = "";
-def_chatphrase $chatphrase4 = null;
-def_string $string4 = "";
-def_int $int5 = ~script1960;
-$chattype1, $int2, $int3, $string0, $string1, $string2, $string3, $chatphrase4, $string4 = chat_gethistory_byuid($int5);
-if ($boolean0 = true & (if_hassub(interface_752:com_10) = true | if_hassub(interface_752:com_11) = true) & enum(int, boolean, enum_370, $chattype1) = true) {
-    ~script1561;
+[proc,chatdefault_updatechatbox](int $int0, int $int1, int $int2)
+if (minimenuopen(struct_param(enum(int, struct, enum_7716, $int0), param_3505), -1) = true) {
+    if_setontimer("script1559($int0)", struct_param(enum(int, struct, enum_7716, $int0), param_3505));
+    return;
 }
-~rebuildchatbox;
-~rebuildpmbox;
-~chatalerts;
-~redraw_chat_buttons;
-%varclient_43 = $int5;
+~script8502($int0, $int1, $int2);

@@ -1,27 +1,27 @@
 // 1072
-[proc,quickchat_phrase_setup](component $component0, chatphrase $chatphrase1)
-def_int $int2 = chatphrase_getdynamiccommandcount($chatphrase1);
-def_int $int3 = 0;
-if ($int2 > 0) {
-    while (%varclient_134 < $int2 & %varclient_134 < 10) {
-        $int3 = chatphrase_getdynamiccommand($chatphrase1, %varclient_134);
-        if ($int3 = 0) {
-            ~script1044($chatphrase1);
+[proc,quickchat_phrase_setup](component $component0, chatphrase $chatphrase1, int $int2)
+def_int $int3 = chatphrase_getdynamiccommandcount($chatphrase1);
+def_int $int4 = 0;
+if ($int3 > 0) {
+    while (~script8631($int2) < $int3 & ~script8631($int2) < 10) {
+        $int4 = chatphrase_getdynamiccommand($chatphrase1, ~script8631($int2));
+        if ($int4 = 0) {
+            ~script1044($chatphrase1, $int2);
             return;
         }
-        if ($int3 = 1) {
-            ~quickchat_phrase_objdialog($chatphrase1, false);
+        if ($int4 = 1) {
+            ~quickchat_phrase_objdialog($chatphrase1, false, $int2);
             return;
         }
-        if ($int3 = 10) {
-            ~quickchat_phrase_objdialog($chatphrase1, true);
+        if ($int4 = 10) {
+            ~quickchat_phrase_objdialog($chatphrase1, true, $int2);
             return;
         }
-        if ($int3 = 2) {
-            ~quickchat_phrase_countdialog($chatphrase1);
+        if ($int4 = 2) {
+            ~quickchat_phrase_countdialog($chatphrase1, $int2);
             return;
         }
-        %varclient_134 = calc(%varclient_134 + 1);
+        ~script8632($int2, calc(~script8631($int2) + 1));
     }
 }
-~quickchat_phrase_send($chatphrase1);
+~quickchat_phrase_send($chatphrase1, $int2);

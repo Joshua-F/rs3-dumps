@@ -1,87 +1,190 @@
 // 1237
-[proc,prayer_load_buttons](component $component0)
+[proc,prayer_load_buttons](component $component0, component $component1, component $component2)
 if_setonstattransmit("script7082(event_com){prayer}", $component0);
 cc_deleteall($component0);
-def_int $int1 = 5;
-def_int $int2 = 30;
-def_int $int3 = 30;
-def_int $int4 = 0;
-def_int $int5 = 8;
-def_int $int6 = $int5;
-def_int $int7 = 6;
-def_int $int8 = calc(30 + 7);
-if (%varclient_1052 = 1 & %varplayerbit_16789 = 0) {
-    $int5 = 5;
-    $int6 = $int5;
-    $int8 = calc(30 + 4);
+cc_deleteall($component2);
+def_component $component3 = interface_1458:com_19;
+def_component $component4 = interface_1458:com_20;
+def_int $int5 = 95551511;
+def_int $int6 = 95551512;
+def_component $component7 = interface_1458:com_16;
+def_component $component8 = interface_1458:com_13;
+def_component $component9 = interface_1458:com_25;
+def_component $component10 = if_getparentlayer($component0);
+def_component $component11 = interface_1458:com_12;
+def_component $component12 = interface_1458:com_9;
+def_int $int13 = 34;
+def_int $int14 = 34;
+if ($component0 = interface_1457:com_9) {
+    $component3 = interface_1457:com_7;
+    $component4 = interface_1457:com_11;
+    $int5 = 95485960;
+    $int6 = 95485961;
+    $component7 = interface_1457:com_4;
+    $component8 = interface_1457:com_1;
+    $component9 = interface_1457:com_10;
+    $component11 = interface_1457:com_24;
+    $component12 = interface_1457:com_14;
+    $component10 = if_getparentlayer($component0);
 }
-def_int $int9 = calc(30 + 6);
-if (%varclient_181 = true) {
-    $int5 = 8;
-    $int6 = $int5;
-    $int7 = 30;
-    $int8 = calc(30 + 7);
-    $int9 = calc(30 + 5);
-}
-def_struct $struct10 = null;
-def_graphic $graphic11 = null;
-def_graphic $graphic12 = null;
+def_struct $struct15 = null;
+def_graphic $graphic16 = null;
+def_graphic $graphic17 = null;
 def_string $string0 = "";
-def_int $int13 = 0;
-def_enum $enum14 = null;
+def_int $int18 = 0;
+def_enum $enum19 = null;
 if (%varplayerbit_16789 = 1) {
-    $enum14 = enum_6760;
+    $enum19 = enum_6760;
 } else {
-    $enum14 = enum_6759;
+    $enum19 = enum_6759;
 }
-def_int $int15 = enum_getoutputcount($enum14);
-def_int $int16 = 1;
-while ($int4 < $int15) {
-    $struct10 = enum(int, struct, $enum14, $int4);
-    if (struct_param($struct10, param_2961) = 1) {
-        if (stat_base(prayer) >= struct_param($struct10, param_2965)) {
-            $int16 = 2;
-        }
-        if (stat_base(prayer) >= struct_param($struct10, param_2967)) {
-            $int16 = 3;
-        }
-        switch_int ($int16) {
-            case 1 :
-                $struct10 = struct_param($struct10, param_2964);
-            case 2 :
-                $struct10 = struct_param($struct10, param_2966);
-            case 3 :
-                $struct10 = struct_param($struct10, param_2968);
-        }
-        $int16 = 1;
-    }
-    $graphic12 = struct_param($struct10, param_736);
-    $graphic11 = struct_param($struct10, param_735);
-    $string0 = "Level <tostring(struct_param($struct10, param_2807))><br><struct_param($struct10, param_2794)><br><struct_param($struct10, param_2795)>";
-    $int13 = struct_param($struct10, param_2807);
-    cc_create($component0, ^iftype_graphic, $int4);
-    cc_setsize($int2, $int3, ^setsize_abs, ^setsize_abs);
-    cc_setposition($int6, $int7, ^setpos_abs_left, ^setpos_abs_top);
-    if (stat_base(prayer) < struct_param($struct10, param_2807)) {
-        cc_setgraphic($graphic12);
+def_int $int20 = 1;
+def_int $int21 = enum_getoutputcount($enum19);
+def_int $int22 = 30;
+def_int $int23 = 30;
+def_int $int24 = 0;
+if (if_find($component8) = true) {
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+}
+if (if_find($component7) = true) {
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+    cc_setsize(0, 33, ^setsize_minus, ^setsize_abs);
+}
+if (if_find($component4) = true) {
+    cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
+    cc_setsize(16, 33, ^setsize_abs, ^setsize_minus);
+}
+if (if_find($component3) = true) {
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(16, 33, ^setsize_minus, ^setsize_minus);
+}
+def_int $int25 = calc(if_getheight($component8) - 33);
+def_int $int26 = 0;
+def_int $int27 = 0;
+def_int $int28 = calc(if_getheight(if_getlayer($component3)) - if_getheight($component3));
+if_setsize(0, $int28, ^setsize_minus, ^setsize_minus, $component3);
+if_setsize(0, if_getheight($component3), ^setsize_minus, ^setsize_abs, $component4);
+def_int $int29 = if_getwidth($component3);
+def_int $int30 = if_getheight($component3);
+def_int $int31 = calc($int30 - (12 + 4));
+def_int $int32 = calc(36 + 2);
+def_int $int33 = 0;
+def_int $int34 = 0;
+def_int $int35 = calc(32 + 2 + 5);
+$int35 = max($int35, 1);
+def_int $int36 = 0;
+$int36, $int33, $int34 = ~script8107($int29, $int32);
+def_int $int37 = calc($int21 / $int36);
+$int37 = max($int37, 1);
+if (calc($int21 % $int36) > 0) {
+    $int37 = calc($int37 + 1);
+}
+$int37 = max(1, $int37);
+if (calc($int37 * $int35 - 5) > $int31) {
+    $int26 = 1;
+    if_setsize(16, $int28, ^setsize_minus, ^setsize_minus, $component3);
+    if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, $component4);
+    if_setsize(16, if_getheight($component3), ^setsize_abs, ^setsize_abs, $component4);
+} else {
+    cc_deleteall($component4);
+}
+if ($int26 = 1) {
+    ~prayer_refresh_scrollbar($component4, $component3);
+}
+$int29 = if_getwidth($component3);
+$int30 = if_getheight($component3);
+$int31 = calc($int30 - (12 + 4));
+$int36, $int33, $int34 = ~script8107($int29, $int32);
+$int37 = calc($int21 / $int36);
+$int37 = max($int37, 1);
+if (calc($int21 % $int36) > 0) {
+    $int37 = calc($int37 + 1);
+}
+$int37 = max(1, $int37);
+def_int $int38 = calc($int36 * $int32 + 8 + 4);
+def_int $int39 = calc($int37 * $int35 + (12 + 4));
+$int27 = calc($int39 - $int30);
+if_setscrollsize(0, $int39, $component3);
+def_int $int40 = 0;
+def_int $int41 = -1;
+def_int $int42 = 0;
+def_int $int43 = calc(%varclient_1031 - 1);
+def_int $intarray0($int36);
+def_int $int44 = 0;
+while ($int44 < $int36) {
+    $intarray0($int44) = ~script8108($int32, $int33, $int34, $int44);
+    $int44 = calc($int44 + 1);
+}
+def_int $int45 = 0;
+def_string $string1 = "Activate";
+def_int $int46 = 0;
+def_graphic $graphic47 = null;
+while ($int24 < $int21) {
+    $struct15 = enum(int, struct, $enum19, $int24);
+    if (~script7083($struct15) = 1) {
+        $string1 = "Deactivate";
+        $graphic47 = combatv2_prayerglow;
     } else {
-        cc_setgraphic($graphic11);
+        $string1 = "Activate";
+        $graphic47 = null;
+    }
+    if (struct_param($struct15, param_2961) = 1) {
+        if (stat_base(prayer) >= struct_param($struct15, param_2965)) {
+            $int20 = 2;
+        }
+        if (stat_base(prayer) >= struct_param($struct15, param_2967)) {
+            $int20 = 3;
+        }
+        switch_int ($int20) {
+            case 1 :
+                $struct15 = struct_param($struct15, param_2964);
+            case 2 :
+                $struct15 = struct_param($struct15, param_2966);
+            case 3 :
+                $struct15 = struct_param($struct15, param_2968);
+        }
+        $int20 = 1;
+    }
+    $graphic17 = struct_param($struct15, param_736);
+    $graphic16 = struct_param($struct15, param_735);
+    $string0 = "Level <tostring(struct_param($struct15, param_2807))><br><struct_param($struct15, param_2794)><br><struct_param($struct15, param_2795)>";
+    $int18 = struct_param($struct15, param_2807);
+    cc_create($component0, ^iftype_graphic, $int24);
+    cc_setsize($int22, $int23, ^setsize_abs, ^setsize_abs);
+    cc_setposition($intarray0(calc($int24 % $int36)), calc($int24 / $int36 * $int35 + 8), ^setpos_abs_left, ^setpos_abs_top);
+    if (stat_base(prayer) < struct_param($struct15, param_2807)) {
+        cc_setgraphic($graphic17);
+    } else {
+        cc_setgraphic($graphic16);
     }
     cc_setdragdeadzone(5);
     cc_setdragdeadtime(5);
     cc_setclickmask(false);
     if (%varclient_181 = false) {
-        cc_setop(1, "Activate<col=ff9040>");
+        cc_setop(1, "<$string1><col=ff9040>");
         cc_setondragcomplete("script7001(event_com, event_comsubid, event_com2)");
-        cc_setonmouseover("script7084(event_com, event_comsubid, $struct10, event_mousey)");
+        cc_setonmouserepeat("script8448($struct15, event_com, event_comsubid)");
     }
-    cc_setonstattransmit("prayer_statupdate($int13, $graphic12, $graphic11, event_com, event_comsubid){prayer}");
-    cc_setonmouseleave("script7085");
-    cc_setonvartransmit("prayer_varupdate($component0, interface_271:com_9, $int4, $struct10){varplayer_3272, varplayer_3275}");
-    if (calc(++$int4 % $int1) = 0) {
-        $int6 = $int5;
-        $int7 = calc($int7 + $int9);
-    } else {
-        $int6 = calc($int6 + $int8);
-    }
+    cc_setonstattransmit("prayer_statupdate($int18, $graphic17, $graphic16, event_com, event_comsubid){prayer}");
+    cc_setonmouseleave("script8805");
+    cc_setonvartransmit("prayer_varupdate($component0, $component2, $int24, $struct15){varplayer_3272, varplayer_3275}");
+    cc_create($component2, ^iftype_graphic, $int24);
+    cc_setsize($int13, $int14, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($intarray0(calc($int24 % $int36)) - 2), calc($int24 / $int36 * $int35 + 8 - 2), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic($graphic47);
+    $int24 = calc($int24 + 1);
 }
+if (%varclient_181 = true) {
+    ~script1388($component9, $component4);
+    if_sethide(false, $component11);
+    if_sethide(true, $component12);
+} else {
+    cc_deleteall($component9);
+    if_sethide(true, $component9);
+    if_sethide(true, $component11);
+    if_sethide(false, $component12);
+}
+%varclient_1063 = -1;
+if_setonvartransmit("script1716{varplayer_3277}", $component0);
+~script9100($component0);

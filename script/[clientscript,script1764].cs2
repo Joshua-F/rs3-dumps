@@ -1,19 +1,34 @@
 // 1764
-[clientscript,script1764](component $component0, component $component1, int $int2, int $int3)
-def_int $int4 = calc(if_getwidth($component0) - if_getwidth($component1));
+[clientscript,script1764](component $component0, component $component1, int $int2, int $int3, int $int4)
+def_int $int5 = calc(if_getwidth($component0) - if_getwidth($component1));
+if ($int2 = -1) {
+    $int2 = $int5;
+}
 $int2 = max($int2, 0);
-$int2 = min($int2, $int4);
+$int2 = min($int2, $int5);
 switch_int ($int3) {
     case 0 :
-        detail_musicvol(scale($int2, $int4, 255));
-        ~script1159;
+        %varclient_3514 = scale($int2, $int5, 255);
+        if (%varclient_3513 ! 1) {
+            detail_musicvol(%varclient_3514);
+        }
+        ~script1159($int4);
     case 1 :
-        detail_soundvol(scale($int2, $int4, 127));
-        ~script1165;
+        %varclient_3515 = scale($int2, $int5, 127);
+        if (%varclient_3513 ! 1) {
+            detail_soundvol(%varclient_3515);
+        }
+        ~script1165($int4);
     case 2 :
-        detail_bgsoundvol(scale($int2, $int4, 127));
-        ~script1162;
+        %varclient_3516 = scale($int2, $int5, 127);
+        if (%varclient_3513 ! 1) {
+            detail_bgsoundvol(%varclient_3516);
+        }
+        ~script1162($int4);
     case 3 :
-        detail_speechvol(scale($int2, $int4, 127));
-        ~script5873;
+        %varclient_3517 = scale($int2, $int5, 127);
+        if (%varclient_3513 ! 1) {
+            detail_speechvol(%varclient_3517);
+        }
+        ~script5873($int4);
 }

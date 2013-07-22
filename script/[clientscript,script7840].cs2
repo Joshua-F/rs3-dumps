@@ -1,0 +1,33 @@
+// 7840
+[clientscript,script7840]
+def_int $int0 = 0;
+def_string $string0 = "";
+$int0, $string0 = create_suggest_name_reply;
+if ($int0 = -3) {
+    return;
+}
+if_setontimer("script7841(calc(clientclock + 60))", interface_1420:com_225);
+if ($int0 = 2) {
+    %varclient_2563 = $string0;
+    if_settext(%varclient_2563, interface_1420:com_283);
+    if_settext(%varclient_2563, interface_1420:com_373);
+    if_settext(%varclient_2563, interface_1420:com_373);
+    if_setcolour(0x7592a0, interface_1420:com_373);
+    if_setsize(0, 0, ^setsize_abs, ^setsize_abs, interface_1420:com_371);
+    if_setsize(300, 68, ^setsize_abs, ^setsize_abs, interface_1420:com_370);
+    if_setgraphic(graphic_19483, interface_1420:com_374);
+    ~create_focus(16, 1);
+    ~create_validate_displayname(false, true);
+} else {
+    switch_int ($int0) {
+        case -2 :
+            ~create_error("Unexpected error.", 93061190);
+        case 3 :
+            ~create_error("Unexpected server error.", 93061190);
+        case 4 :
+            ~create_error("There were no suggestions available.", 93061190);
+    }
+    ~script7847;
+    ~script7846(interface_1420:com_70);
+    if_setontimer(null, interface_1420:com_225);
+}

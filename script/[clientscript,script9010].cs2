@@ -1,0 +1,29 @@
+// 9010
+[clientscript,script9010](int $int0)
+if (%varplayerbit_18708 = 0) {
+    return;
+}
+def_int $int1 = %varplayer_3664;
+def_int $int2 = %varplayer_3664;
+switch_int ($int0) {
+    case 1 :
+        $int1 = min(%varplayerbit_18708, calc(%varplayer_3664 + 1));
+    case -1 :
+        $int1 = max(1, calc(%varplayer_3664 - 1));
+}
+def_vorbis $vorbis3 = null;
+if ($int2 ! $int1) {
+    if (%varplayerbit_18708 > 150) {
+        $int1 = scale($int1, %varplayerbit_18708, 100);
+    }
+    ~script9008($int1);
+    switch_int (random(3)) {
+        case 0 :
+            $vorbis3 = sound_21248;
+        case 1 :
+            $vorbis3 = sound_21256;
+        case 2 :
+            $vorbis3 = sound_21256;
+    }
+    sound_vorbis_rate($vorbis3, 1, 0, 20, random_sound_pitch(5, 10));
+}

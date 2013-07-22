@@ -1,55 +1,60 @@
 // 129
-[proc,ignore_update]
-cc_deleteall(interface_550:com_4);
-def_int $int0 = ignore_count;
-if ($int0 < 0) {
-    if_settext("Loading Ignore List.<br>Please wait.", interface_550:com_46);
-    if_sethide(false, interface_550:com_46);
-    if_settext("", interface_550:com_35);
+[proc,ignore_update](component $component0)
+def_component $component1 = interface_550:com_17;
+def_component $component2 = interface_550:com_42;
+def_component $component3 = interface_550:com_18;
+def_component $component4 = interface_550:com_16;
+def_component $component5 = interface_550:com_7;
+def_component $component6 = interface_550:com_51;
+def_component $component7 = interface_550:com_57;
+def_int $int8 = 36044822;
+$component1, $component2, $component3, $component4, $component5, $component6, $component7, $int8 = ~script7959($component0);
+cc_deleteall($component3);
+def_int $int9 = ignore_count;
+if ($int9 < 0) {
+    if_settext("Loading Ignore List.<br>Please wait.", $component6);
+    if_sethide(false, $component6);
+    if_settext("", $component5);
     return;
 }
-if_settext("<tostring($int0)> / <tostring(100)>", interface_550:com_35);
-if_settext("", interface_550:com_46);
-if_sethide(true, interface_550:com_46);
-def_component $component1 = interface_550:com_4;
-def_component $component2 = interface_550:com_2;
-def_component $component3 = interface_550:com_3;
-def_component $component4 = interface_550:com_31;
-def_int $int5 = 0;
+if_settext("<tostring($int9)> / <tostring(100)>", $component5);
+if_settext("", $component6);
+if_sethide(true, $component6);
+def_int $int10 = 0;
 def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
-def_int $int6 = 0;
-def_int $int7 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
 def_string $string3 = "";
-def_int $int8 = 0;
-def_int $int9 = 0;
-def_int $int10 = 15;
-def_int $int11 = calc(if_getheight($component3) / $int10);
-cc_deleteall($component1);
-cc_deleteall($component2);
-while ($int5 < $int0) {
-    $int8 = calc($int5 * 2);
-    $int9 = calc($int5 * $int10);
-    $string0, $string1 = ignore_getname($int5);
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 15;
+def_int $int16 = calc(if_getheight($component1) / $int15);
+cc_deleteall($component3);
+cc_deleteall($component4);
+while ($int10 < $int9) {
+    $int13 = calc($int10 * 2);
+    $int14 = calc($int10 * $int15);
+    $string0, $string1 = ignore_getname($int10);
     if (compare($string1, "") ! 0) {
-        $int6 = 1;
+        $int11 = 1;
     } else {
-        $int6 = 0;
+        $int11 = 0;
     }
-    if ($int6 = 1) {
+    if ($int11 = 1) {
         $string2 = "      <$string0>";
     } else {
         $string2 = $string0;
     }
-    cc_create(interface_550:com_4, ^iftype_text, $int8);
-    cc_setsize(168, $int10, ^setsize_abs, ^setsize_abs);
-    cc_setposition(0, $int9, ^setpos_abs_left, ^setpos_abs_top);
+    cc_create($component3, ^iftype_text, $int13);
+    cc_setsize(168, $int15, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, $int14, ^setpos_abs_left, ^setpos_abs_top);
     cc_setcolour(0xa4997d);
     cc_settextfont(verdana_11pt_regular);
     cc_settextshadow(true);
     cc_settextalign(^settextalign_left, ^settextalign_top, 0);
-    if ($int6 = 1) {
+    if ($int11 = 1) {
         cc_settext("      <$string2>");
     } else {
         cc_settext($string2);
@@ -57,52 +62,64 @@ while ($int5 < $int0) {
     cc_settext($string2);
     cc_setopbase("<col=ffffff><$string0>");
     cc_setop(1, "Remove");
-    cc_setonop("ignore_op(ignore_getname_unfiltered($int5))");
-    if ($int6 = 1) {
-        $int7 = calc(stringwidth("Last known as: <$string1>", verdana_11pt_regular) + 8);
-        if ($int7 > if_getwidth(interface_550:com_4)) {
+    cc_setonop("ignore_op(ignore_getname_unfiltered($int10))");
+    if ($int11 = 1) {
+        $int12 = calc(stringwidth("Last known as: <$string1>", verdana_11pt_regular) + 8);
+        if ($int12 > if_getwidth($component3)) {
             $string3 = "Last known as:<br><$string1>";
         } else {
             $string3 = "Last known as: <$string1>";
         }
-        cc_setonmouserepeat("script1594(interface_550:com_52, event_com, event_comsubid, $string3, event_mousex, event_mousey)");
-        cc_setonmouseleave("deltooltip(interface_550:com_52)");
+        cc_setonmouserepeat("script1594($component7, event_com, event_comsubid, $string3, event_mousex, event_mousey)");
+        cc_setonmouseleave("deltooltip($component7)");
     }
-    cc_create(interface_550:com_4, ^iftype_graphic, calc($int8 + 1));
+    cc_create($component3, ^iftype_graphic, calc($int13 + 1));
     cc_setgraphic(friends_changed_name);
     cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
-    cc_setposition(0, $int9, ^setpos_abs_left, ^setpos_abs_top);
-    if ($int6 = 0) {
+    cc_setposition(0, $int14, ^setpos_abs_left, ^setpos_abs_top);
+    if ($int11 = 0) {
         cc_sethide(true);
     }
-    if (calc($int5 % 2) ! 0) {
-        cc_create(interface_550:com_2, ^iftype_rectangle, if_getnextsubid($component2));
-        cc_setsize(16384, $int10, ^setsize_rel, ^setsize_abs);
-        cc_setposition(0, $int9, ^setpos_abs_left, ^setpos_abs_top);
+    if (calc($int10 % 2) ! 0) {
+        cc_create($component4, ^iftype_rectangle, if_getnextsubid($component4));
+        cc_setsize(16384, $int15, ^setsize_rel, ^setsize_abs);
+        cc_setposition(0, $int14, ^setpos_abs_left, ^setpos_abs_top);
         cc_setcolour(0x232220);
         cc_setfill(true);
         cc_settrans(128);
     }
-    $int5 = calc($int5 + 1);
+    $int10 = calc($int10 + 1);
 }
-while ($int5 < $int11) {
-    $int9 = calc($int5 * $int10);
-    if (calc($int5 % 2) ! 0) {
-        cc_create(interface_550:com_2, ^iftype_rectangle, if_getnextsubid($component2));
-        cc_setsize(16384, $int10, ^setsize_rel, ^setsize_abs);
-        cc_setposition(0, $int9, ^setpos_abs_left, ^setpos_abs_top);
+while ($int10 < $int16) {
+    $int14 = calc($int10 * $int15);
+    if (calc($int10 % 2) ! 0) {
+        cc_create($component4, ^iftype_rectangle, if_getnextsubid($component4));
+        cc_setsize(16384, $int15, ^setsize_rel, ^setsize_abs);
+        cc_setposition(0, $int14, ^setpos_abs_left, ^setpos_abs_top);
         cc_setcolour(0x232220);
         cc_setfill(true);
         cc_settrans(128);
     }
-    $int5 = calc($int5 + 1);
+    $int10 = calc($int10 + 1);
 }
-def_int $int12 = 0;
-def_int $int13 = 0;
-$int12 = if_getscrolly($component3);
-$int13 = calc($int5 * $int10);
-if_setscrollsize(if_getwidth($component3), $int13, $component3);
-if ($int12 > $int13) {
-    $int12 = $int13;
+def_int $int17 = 0;
+def_int $int18 = 0;
+$int17 = if_getscrolly($component1);
+$int18 = calc($int10 * $int15);
+if ($int17 > $int18) {
+    $int17 = $int18;
 }
-~scrollbar_resize($component4, $component3, $int12);
+if ($int18 > if_getheight($component1)) {
+    if_sethide(false, $component2);
+    if_setsize(16, 71, ^setsize_minus, ^setsize_minus, $component1);
+    $int17 = min(if_getscrolly($component1), $int14);
+    if_setscrollsize(if_getwidth($component1), $int18, $component1);
+    ~scrollbar_resize($component2, $component1, $int17);
+} else {
+    if_sethide(true, $component2);
+    if_setsize(0, 71, ^setsize_minus, ^setsize_minus, $component1);
+    if_setscrollsize(0, 0, $component1);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component4);
+    if_setscrollpos(0, 0, $component1);
+    ~scrollbar_resize($component2, $component1, 0);
+}

@@ -1,0 +1,90 @@
+// 8463
+[proc,script8463]
+def_obj $obj0 = inv_getobj(inv_94, 5);
+def_int $int1 = scale(%varplayer_716, 100, 50);
+def_int $int2 = calc(~script7244($obj0) + %varplayer_3562);
+def_int $int3 = 0;
+def_int $int4 = calc(100 + 5);
+def_string $string0 = enum(int, string, enum_6744, %varplayer_718);
+def_string $string1 = enum(int, string, enum_6741, oc_param($obj0, param_14));
+def_struct $struct5 = enum(int, struct, enum_6740, %varplayerbit_18050);
+def_int $int6 = scale(%varclient_2760, 100, 50);
+def_int $int7 = scale(enum(int, int, enum_7339, $int6), 100, calc(100 + 40 / 2));
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+if ($obj0 = null | oc_param($obj0, param_2832) = 1) {
+    if_sethide(false, interface_1463:com_81);
+    if_sethide(true, interface_1463:com_78);
+    if_sethide(true, interface_1463:com_75);
+    if_sethide(false, interface_1463:com_153);
+    if_sethide(true, interface_1463:com_150);
+    if_sethide(true, interface_1463:com_147);
+    if (%varclient_2761 = 1) {
+        ~script8459(0);
+    }
+    if (%varclient_2762 = 1) {
+        ~script8467(0);
+    }
+    return;
+} else {
+    if_sethide(true, interface_1463:com_81);
+    if (%varclient_2762 = 1) {
+        if_sethide(true, interface_1463:com_78);
+        if_sethide(false, interface_1463:com_75);
+    } else {
+        if_sethide(false, interface_1463:com_78);
+        if_sethide(true, interface_1463:com_75);
+    }
+    if_sethide(true, interface_1463:com_153);
+    if (%varclient_2761 = 1) {
+        if_sethide(true, interface_1463:com_150);
+        if_sethide(false, interface_1463:com_147);
+    } else {
+        if_sethide(false, interface_1463:com_150);
+        if_sethide(true, interface_1463:com_147);
+    }
+    switch_int (~script7241($obj0)) {
+        case 1 :
+            $int3 = %varplayer_724;
+            $int4 = calc($int4 + %varplayer_3597);
+            $int8 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 55), 100, %varplayer_1037)));
+            $int9 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 75), 100, %varplayer_1037)));
+            $int10 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 40), 100, %varplayer_1037)));
+        case 2 :
+            $int3 = %varplayer_725;
+            $int4 = calc($int4 + %varplayer_3598);
+            $int8 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 40), 100, %varplayer_1038)));
+            $int9 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 55), 100, %varplayer_1038)));
+            $int10 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 75), 100, %varplayer_1038)));
+        case 3 :
+            if ($struct5 ! null) {
+                $string0 = enum(int, string, enum_6744, struct_param($struct5, param_2873));
+            } else {
+                $string0 = "-";
+            }
+            $int3 = %varplayer_726;
+            $int4 = calc($int4 + %varplayer_3599);
+            $int8 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 75), 100, %varplayer_1039)));
+            $int9 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 40), 100, %varplayer_1039)));
+            $int10 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 55), 100, %varplayer_1039)));
+        case default :
+            $int3 = %varplayer_724;
+            $int4 = calc($int4 + %varplayer_3597);
+            $int8 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 55), 100, %varplayer_1037)));
+            $int9 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 75), 100, %varplayer_1037)));
+            $int10 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 40), 100, %varplayer_1037)));
+    }
+}
+if_settext(tostring($int1), interface_1463:com_90);
+if_settext(tostring($int2), interface_1463:com_96);
+if_settext("<~script7247($int3)>%", interface_1463:com_102);
+if_settext($string0, interface_1463:com_108);
+if_settext($string1, interface_1463:com_114);
+if_settext("<tostring(scale($int8, 1000, 10))>%", interface_1463:com_160);
+if_settext("<tostring(scale($int9, 1000, 10))>%", interface_1463:com_164);
+if_settext("<tostring(scale($int10, 1000, 10))>%", interface_1463:com_168);
+def_int $int11 = 200;
+def_string $string2 = "Weapon : <col=00ff00><tostring(~script7244($obj0))></col><br>Skill Bonus : <col=00ff00><tostring(%varplayer_3562)></col>";
+if_setonmouserepeat("script8799($string2, event_com, event_comsubid)", interface_1463:com_88);
+if_setonmouseleave("script8805", interface_1463:com_88);

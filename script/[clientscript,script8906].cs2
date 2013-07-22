@@ -1,0 +1,33 @@
+// 8906
+[clientscript,script8906]
+if (%varclient_2796 = 300) {
+    return;
+}
+def_int $int0 = if_gettrans(interface_1494:com_1);
+if (%varclient_2796 = 0) {
+    if (if_gety(interface_1494:com_28) < 90) {
+        if_setposition(if_getx(interface_1494:com_28), calc(if_gety(interface_1494:com_28) + 1), ^setpos_abs_left, ^setpos_abs_top, interface_1494:com_28);
+    }
+    if (if_gety(interface_1494:com_28) > 80 & $int0 > 0) {
+        if_settrans(max(0, calc($int0 - 45)), interface_1494:com_1);
+        if (if_gettrans(interface_1494:com_1) < 80) {
+            if_sethide(false, interface_1494:com_29);
+        }
+    } else if ($int0 <= 0 & if_gety(interface_1494:com_28) >= 90) {
+        %varclient_2796 = 1;
+        if_settrans(0, interface_1494:com_1);
+    }
+} else if (%varclient_2796 < 250) {
+    %varclient_2796 = calc(%varclient_2796 + 1);
+    if_settrans(0, interface_1494:com_1);
+    return;
+} else if ($int0 < 255) {
+    if_settrans(min(255, calc($int0 + 45)), interface_1494:com_1);
+    if ($int0 > 200) {
+        if_sethide(true, interface_1494:com_29);
+        if_setposition(if_getx(interface_1494:com_28), 35, ^setpos_abs_left, ^setpos_abs_top, interface_1494:com_28);
+    }
+    return;
+} else if ($int0 >= 255) {
+    %varclient_2796 = 300;
+}

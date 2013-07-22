@@ -1,0 +1,19 @@
+// 8018
+[proc,text_settings](component $component0, string $string0, fontmetrics $fontmetrics1, int $rgb2, int $int3)
+def_string $string1 = "<u=0xffffff>";
+if ($rgb2 ! null) {
+    if_setcolour($rgb2, $component0);
+    $string1 = "<u=$target>";
+}
+if (string_length($string0) ! 0) {
+    if ($int3 = 1) {
+        $string0 = append($string1, $string0);
+    }
+    if_settext($string0, $component0);
+} else if ($int3 = 1) {
+    $string0 = append($string1, if_gettext($component0));
+    if_settext($string0, $component0);
+}
+if ($fontmetrics1 ! null) {
+    if_settextfont($fontmetrics1, $component0);
+}
