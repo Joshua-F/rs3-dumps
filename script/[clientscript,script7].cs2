@@ -1,15 +1,14 @@
 // 7
-[clientscript,script7]
-def_int $int0 = calc(%varclient_10 - 100);
-%varclient_10 = 0;
-if ($int0 < -1 | $int0 = ~script1305) {
-    return;
+[clientscript,script7](component $component0)
+def_boolean $boolean1 = if_hassuboverlay(interface_1488:com_2, interface_1491);
+if (if_find(interface_1488:com_2) = true) {
+    if (clientclock >= cc_param(param_3431)) {
+        if_sethide(true, interface_1488:com_2);
+        cc_setparam_int(param_3431, 0);
+        ~script8;
+        if_closesubclient(interface_1488:com_3);
+        if_setontimer(null, $component0);
+    } else {
+        if_setontimer("script7(event_com)", $component0);
+    }
 }
-def_component $component1 = ~script8($int0);
-if ($component1 = null) {
-    return;
-}
-if (if_hassub($component1) = false) {
-    return;
-}
-~script71($int0);

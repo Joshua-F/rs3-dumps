@@ -1,12 +1,12 @@
 // 6203
 [proc,script6203]
-if (compare(%varclient_2552, %varclient_2553) ! 0 & (string_length(%varclient_2552) > 0 | string_length(%varclient_2553) > 0)) {
-    ~lobby_popup(-5, 1, "Please ensure both email addresses are the same.", 0, "loadingwheel,9", 0, -1, "", "", 1, "Back", "Back");
+if (string_length(%varclient_2552) < 1) {
+    ~lobby_popup(-5, 1, "Please enter your email address.", 0, "loadingwheel,9", 0, -1, "", "", 1, "Back", "Back");
     return;
 }
-if_setonvartransmit("script6204{varplayer_3184}", interface_906:com_235);
+if_setonvartransmit("script6204{varplayer_3184}", interface_906:com_238);
 ~script5522;
-if_settext("Please wait...", interface_906:com_254);
+if_settext("Please wait...", interface_906:com_561);
 def_boolean $boolean0 = false;
 def_boolean $boolean1 = false;
 if (%varclient_1411 = true) {
@@ -14,3 +14,4 @@ if (%varclient_1411 = true) {
     $boolean1 = true;
 }
 email_validation_add_new_address(%varclient_2552, true, $boolean0, $boolean1);
+~lobby_popup(-5, 1, "Email sent.", 0, "loadingwheel,9", 0, -1, "", "", 1, "Back", "Back");

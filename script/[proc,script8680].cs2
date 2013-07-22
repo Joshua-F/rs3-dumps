@@ -1,0 +1,117 @@
+// 8680
+[proc,script8680](component $component0)
+def_component $component1 = null;
+def_component $component2 = null;
+def_component $component3 = null;
+def_component $component4 = null;
+def_component $component5 = null;
+def_component $component6 = null;
+$component1, $component2, $component3, $component4, $component5, $component6 = ~script8682($component0);
+def_component $component7 = if_getparentlayer($component0);
+def_int $int8 = inv_size(inv_93);
+def_int $int9 = calc(if_getheight($component0) - 32);
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = calc(if_getheight(if_getlayer($component1)) - if_getheight($component1));
+if_setsize(0, $int12, ^setsize_minus, ^setsize_minus, $component1);
+if_setsize(0, if_getheight($component1), ^setsize_minus, ^setsize_abs, $component2);
+def_int $int13 = if_getwidth($component1);
+def_int $int14 = if_getheight($component1);
+def_int $int15 = calc($int14 - (12 + 4));
+def_int $int16 = calc(36 + 2);
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_int $int19 = calc(32 + 2 + 5);
+$int19 = max($int19, 1);
+def_int $int20 = 0;
+$int20, $int17, $int18 = ~script8107($int13, $int16);
+def_int $int21 = calc($int8 / $int20);
+$int21 = max($int21, 1);
+if (calc($int8 % $int20) > 0) {
+    $int21 = calc($int21 + 1);
+}
+$int21 = max(1, $int21);
+if (calc($int21 * $int19) > $int15) {
+    $int10 = 1;
+    if_setsize(16, $int12, ^setsize_minus, ^setsize_minus, $component1);
+    if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, $component2);
+    if_setsize(16, if_getheight($component1), ^setsize_abs, ^setsize_abs, $component2);
+}
+$int13 = if_getwidth($component1);
+$int14 = if_getheight($component1);
+$int15 = calc($int14 - (12 + 4));
+$int20, $int17, $int18 = ~script8107($int13, $int16);
+$int21 = calc($int8 / $int20);
+$int21 = max($int21, 1);
+if (calc($int8 % $int20) > 0) {
+    $int21 = calc($int21 + 1);
+}
+$int21 = max(1, $int21);
+def_int $int22 = calc($int20 * $int16 + 8 + 4);
+def_int $int23 = calc($int21 * $int19 + (12 + 4));
+$int11 = calc($int23 - $int14);
+if_setscrollsize(0, $int11, $component1);
+def_int $int24 = 0;
+def_int $int25 = 0;
+def_obj $obj26 = null;
+def_int $int27 = 0;
+def_int $int28 = calc(%varclient_1031 - 1);
+def_int $intarray0($int20);
+def_int $int29 = 0;
+while ($int29 < $int20) {
+    $intarray0($int29) = ~script8108($int16, $int17, $int18, $int29);
+    $int29 = calc($int29 + 1);
+}
+while ($int24 < $int8) {
+    if (.cc_find($component3, $int24) = true & cc_find($component4, $int24) = true) {
+        $obj26 = inv_getobj(inv_93, $int24);
+        $int27 = inv_getnum(inv_93, $int24);
+        .cc_setposition(calc($intarray0(calc($int24 % $int20)) - 1), calc($int24 / $int20 * $int19 + 12 - 1), ^setpos_abs_left, ^setpos_abs_top);
+        if (.cc_find($component6, $int24) = true) {
+            .cc_setposition(calc($intarray0(calc($int24 % $int20)) - 1), calc($int24 / $int20 * $int19 + 12 - 1), ^setpos_abs_left, ^setpos_abs_top);
+        }
+        cc_setposition(calc($intarray0(calc($int24 % $int20)) + 3), calc($int24 / $int20 * $int19 + 1 + 12), ^setpos_abs_left, ^setpos_abs_top);
+        if ($obj26 ! null) {
+            cc_clearops;
+            cc_setobject($obj26, $int27);
+            cc_sethide(false);
+            cc_setonmouserepeat("script5495($obj26)");
+            cc_setonmouseleave("script5495(null)");
+            ~inventory_setophelds($obj26, true);
+            if ($int24 = $int28) {
+                cc_setoutline(2);
+            } else {
+                cc_setoutline(1);
+            }
+        } else {
+            cc_setobject(null, 0);
+            cc_setoutline(1);
+            cc_settargetverb("");
+            cc_sethide(true);
+            cc_clearops;
+        }
+    }
+    $int24 = calc($int24 + 1);
+}
+if (cc_find($component6, %varplayerbit_18784) = true & .cc_find($component6, $int8) = true) {
+    .cc_setposition(calc(cc_getx - 1), calc(cc_gety - 1), ^setpos_abs_left, ^setpos_abs_top);
+}
+if (cc_find($component6, %varplayerbit_18785) = true & .cc_find($component6, calc($int8 + 1)) = true) {
+    .cc_setposition(calc(cc_getx - 1), calc(cc_gety - 1), ^setpos_abs_left, ^setpos_abs_top);
+}
+~money_pouch_update_amount(-1);
+def_component $component30 = interface_1473:com_2;
+if ($component5 = interface_1474:com_9) {
+    $component30 = interface_1474:com_19;
+}
+if (if_getwidth($component5) < 125) {
+    if_settrans(255, $component30);
+} else {
+    if_settrans(0, $component30);
+}
+def_int $int31 = calc($int21 * $int19 + 12 + 4);
+cc_deleteall($component2);
+if_setscrollsize(0, $int31, $component1);
+if ($int31 > if_getheight($component1)) {
+    ~rs3_scrollbar_vertical($component2, $component1);
+}

@@ -1,3 +1,39 @@
 // 288
-[clientscript,worldmap_flashelementcategory](category $category0)
-worldmap_flashelementcategory($category0);
+[clientscript,worldmap_flashelementcategory](category $category0, int $int1, component $component2, int $int3)
+def_struct $struct4 = enum(int, struct, enum_1805, %varclient_3519);
+def_category $category5 = null;
+if (%varplayerbit_18782 = 1) {
+    if ($category0 ! null) {
+        worldmap_flashelementcategory($category0);
+    }
+} else {
+    if ($struct4 ! null) {
+        $category5 = struct_param($struct4, param_477);
+    }
+    if ($category5 ! null & $category5 ! $category0) {
+        if (%varclient_172 < struct_param($struct4, param_3429)) {
+            worldmap_disableelementcategory($category5, true);
+            if (cc_find($component2, %varclient_3520) = true & .cc_find($component2, calc(%varclient_3520 + 1)) = true) {
+                .cc_setcolour(^black);
+                cc_setonmouseleave("cc_text_colour_swapper($component2, .cc_getid, ^black)");
+                .cc_setonmouseleave("cc_text_colour_swapper($component2, .cc_getid, ^black)");
+            }
+        } else if (cc_find($component2, %varclient_3520) = true & .cc_find($component2, calc(%varclient_3520 + 1)) = true) {
+            .cc_setcolour(0xafafaf);
+            cc_setonmouseleave("cc_text_colour_swapper($component2, .cc_getid, 0xafafaf)");
+            .cc_setonmouseleave("cc_text_colour_swapper($component2, .cc_getid, 0xafafaf)");
+        }
+        %varclient_3520 = -1;
+    }
+    %varclient_3519 = $int1;
+    if ($category0 ! null) {
+        worldmap_disableelementcategory($category0, false);
+        worldmap_flashelementcategory($category0);
+        if (cc_find($component2, $int3) = true & .cc_find($component2, calc($int3 + 1)) = true) {
+            .cc_setcolour(0xff9900);
+            cc_setonmouseleave("cc_text_colour_swapper($component2, .cc_getid, 0xff9900)");
+            .cc_setonmouseleave("cc_text_colour_swapper($component2, .cc_getid, 0xff9900)");
+            %varclient_3520 = $int3;
+        }
+    }
+}

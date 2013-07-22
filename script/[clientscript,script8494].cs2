@@ -1,0 +1,122 @@
+// 8494
+[clientscript,script8494](int $int0, int $int1, component $component2, component $component3, int $int4, string $string0, string $string1)
+if (%varplayer_1295 < 1000) {
+    mes("You can't do this while in the tutorial.");
+    return;
+}
+if (%varplayerbit_3617 = 1) {
+    mes("You cannot change your chat filters while you are in the tutorial as you might miss important messages that will help with your progress.");
+    return;
+}
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = 0;
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_int $int19 = 0;
+def_int $int20 = 0;
+def_int $int21 = 0;
+$int5, $int6, $int7, $int8, $int9, $int10, $int11, $int12 = ~script8546($int0);
+$int13, $int14, $int15, $int16, $int17, $int18, $int19 = ~script8547($int0);
+switch_int ($int1) {
+    case 0 :
+        $int20 = $int5;
+        $int21 = $int13;
+    case 1 :
+        $int20 = $int8;
+        $int21 = $int16;
+    case 2 :
+        $int20 = $int9;
+        $int21 = $int17;
+    case 3 :
+        $int20 = $int10;
+        $int21 = $int18;
+    case 4 :
+        $int20 = $int11;
+        $int21 = $int19;
+    case 5 :
+        $int20 = $int12;
+        $int21 = $int19;
+    case 6 :
+        $int20 = $int6;
+        $int21 = $int14;
+    case 7 :
+        $int20 = $int7;
+        $int21 = $int15;
+}
+if ($int20 = 0) {
+    $int20 = 1;
+} else if ($int21 = 1) {
+    $int20 = 0;
+    $int21 = 0;
+} else {
+    $int21 = 1;
+}
+switch_int ($int1) {
+    case 0 :
+        ~script8528($int0, $int20, $int21);
+    case 1 :
+        ~script8529($int0, $int20, $int21);
+    case 2 :
+        ~script8530($int0, $int20, $int21);
+    case 3 :
+        ~script8531($int0, $int20, $int21);
+    case 4 :
+        ~script8532($int0, $int20, $int21);
+    case 5 :
+        ~script8533($int0, $int20, $int21);
+    case 6 :
+        ~script8534($int0, $int20, $int21);
+    case 7 :
+        ~script8535($int0, $int20, $int21);
+    case 8 :
+        %varclient_2834 = calc(1 - max(0, %varclient_2834));
+        $int20 = %varclient_2834;
+        $int21 = 0;
+    case 9 :
+        $int20 = chat_getfilter_private;
+        if ($int20 = 0) {
+            $int20 = 2;
+            chat_setfilter(chat_getfilter_public, $int20, chat_getfilter_trade);
+        } else {
+            $int20 = calc($int20 - 1);
+            chat_setfilter(chat_getfilter_public, $int20, chat_getfilter_trade);
+        }
+        if ($int20 = 2) {
+            $int20 = 0;
+            $int21 = 0;
+        } else if ($int20 = 1) {
+            $int20 = 1;
+            $int21 = 0;
+        } else {
+            $int20 = 1;
+            $int21 = 1;
+        }
+}
+~script8808;
+def_int $int22 = 18;
+if ($int1 = 8 | $int1 = 9) {
+    while ($int22 <= 22) {
+        if ($int1 = 8) {
+            $component2, $component3 = ~script8578($int22);
+        } else {
+            $component2, $component3 = ~script8580($int22);
+        }
+        ~script8495($int22, $int1, $component2, $component3, if_getx($component2), $int20, $int21, $string0, $string1);
+        ~rebuildchatbox($int0);
+        $int22 = calc($int22 + 1);
+    }
+} else {
+    ~script8495($int0, $int1, $component2, $component3, if_getx($component2), $int20, $int21, $string0, $string1);
+    ~rebuildchatbox($int0);
+}
+~script8499($component2, $component3, $int0, $int1, $string1, if_getx($component2));

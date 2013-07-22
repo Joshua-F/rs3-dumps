@@ -1,0 +1,23 @@
+// 8025
+[proc,script8025](int $int0)
+def_int $int1 = if_getheight(interface_1224:com_4);
+def_struct $struct2 = ~task_get_data($int0);
+if ($struct2 = null) {
+    return;
+}
+~script5796($int0, 0, interface_1224:com_8, interface_1224:com_7, interface_1224:com_3, null, null, null);
+def_string $string0 = struct_param($struct2, param_2225);
+def_int $int3 = calc(15 * paraheight($string0, if_getwidth(interface_1224:com_5), verdana_11pt_regular));
+if_settext($string0, interface_1224:com_2);
+if ($int3 < $int1) {
+    if_sethide(true, interface_1224:com_6);
+    if_setsize(3, 0, ^setsize_minus, ^setsize_minus, interface_1224:com_5);
+} else {
+    $int3 = calc($int3 + 5);
+    if_setscrollsize(0, max($int3, if_getheight(interface_1224:com_5)), interface_1224:com_5);
+    if_setscrollpos(0, 0, interface_1224:com_5);
+    if_setsize(calc(if_getwidth(interface_1224:com_6) + 4), 0, ^setsize_minus, ^setsize_minus, interface_1224:com_5);
+    if_sethide(false, interface_1224:com_6);
+    ~rs3_scrollbar_vertical(interface_1224:com_6, interface_1224:com_5);
+}
+if_setontimer("script8026($int0, if_getwidth(interface_1224:com_4), if_getheight(interface_1224:com_4), event_com)", interface_1224:com_4);

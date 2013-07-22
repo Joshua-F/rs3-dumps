@@ -1,0 +1,71 @@
+// 8678
+[proc,script8678](component $component0)
+def_component $component1 = null;
+def_component $component2 = null;
+def_component $component3 = null;
+def_component $component4 = null;
+def_component $component5 = null;
+def_component $component6 = null;
+$component1, $component2, $component3, $component4, $component5, $component6 = ~script8682($component0);
+cc_deleteall($component0);
+cc_deleteall($component1);
+cc_deleteall($component2);
+cc_deleteall($component3);
+cc_deleteall($component4);
+cc_deleteall($component5);
+if (if_find($component0) = true) {
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setnoclickthrough(false);
+}
+if (if_find($component5) = true) {
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+    cc_setsize(0, 32, ^setsize_minus, ^setsize_abs);
+}
+if (if_find($component2) = true) {
+    cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
+    cc_setsize(16, 32, ^setsize_abs, ^setsize_minus);
+}
+if (if_find($component1) = true) {
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(16, 32, ^setsize_minus, ^setsize_minus);
+}
+def_int $int7 = inv_size(inv_93);
+def_int $int8 = 0;
+while ($int8 < $int7) {
+    cc_create($component3, ^iftype_graphic, $int8);
+    cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic(rs3_inventory_slot);
+    cc_create($component6, ^iftype_rectangle, $int8);
+    cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
+    cc_settrans(255);
+    cc_setop(9, "Set quick-inventory A");
+    cc_setop(10, "Set quick-inventory B");
+    $int8 = calc($int8 + 1);
+}
+cc_create($component6, ^iftype_graphic, $int8);
+cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
+cc_setgraphic(graphic_18272);
+cc_setonvartransmit("script8683(event_com, event_comsubid, 0){varplayer_3704, varplayer_682}");
+$int8 = calc($int8 + 1);
+cc_create($component6, ^iftype_graphic, $int8);
+cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
+cc_setgraphic(graphic_18273);
+cc_setonvartransmit("script8683(event_com, event_comsubid, 1){varplayer_3704}");
+$int8 = 0;
+while ($int8 < $int7) {
+    cc_create($component4, ^iftype_graphic, $int8);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_setontargetenter("inventory_targetmode(true, event_com, event_comsubid)");
+    cc_setontargetleave("inventory_targetmode(false, event_com, event_comsubid)");
+    cc_setdragrenderbehaviour(2);
+    cc_setdragdeadzone(5);
+    cc_setdragdeadtime(5);
+    cc_setondragcomplete("inventory_drag(event_com, event_comsubid, event_com2, event_comsubid2)");
+    cc_setonop("script1620(event_com, event_comsubid, 100, 0, 8)");
+    $int8 = calc($int8 + 1);
+}
+if_setonresize("script8679(event_com)", $component0);
+if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component0);
+if_setoninvtransmit("script8679(event_com){inv_93}", $component0);
+~script8680($component0);

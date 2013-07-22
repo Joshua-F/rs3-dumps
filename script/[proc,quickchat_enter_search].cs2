@@ -1,60 +1,63 @@
 // 1900
-[proc,quickchat_enter_search](component $component0, component $component1, int $int2, int $int3)
-%varclient_159 = 0;
-%varclient_158 = 0;
-def_int $int4 = 0;
-while (cc_find($component0, $int4) = true) {
-    if ($int4 = $int2) {
+[proc,quickchat_enter_search](component $component0, component $component1, int $int2, int $int3, int $int4)
+~quickchat_focus($int4);
+~script8676($int4, 0);
+~script8674($int4, 0);
+def_int $int5 = 0;
+while (cc_find($component0, $int5) = true) {
+    if ($int5 = $int2) {
         cc_setonmouseover(null);
         cc_setonmouseleave(null);
-        if (.cc_find($component1, $int4) = true) {
+        if (.cc_find($component1, $int5) = true) {
             .cc_sethide(false);
             .cc_setcolour(0x969777);
         }
     } else {
-        cc_setonmouseover("script1082(calc($int3 - 1), $component1, $int4)");
-        cc_setonmouseleave("script1083(calc($int3 - 1), $component1, $int4)");
-        if (.cc_find($component1, $int4) = true) {
+        cc_setonmouseover("script1082(calc($int3 - 1), $component1, $int5, $int4)");
+        cc_setonmouseleave("script1083(calc($int3 - 1), $component1, $int5, $int4)");
+        if (.cc_find($component1, $int5) = true) {
             .cc_sethide(true);
         }
     }
-    $int4 = calc($int4 + 1);
+    $int5 = calc($int5 + 1);
 }
-%varclient_128 = -1;
-%varclient_129 = 0;
-%varclient_2515 = "";
+~script8618($int4, -1);
+~script8622($int4, 0);
+~script8612($int4, "");
 def_string $string0 = "Search phrases...";
-if (%varclient_126 = 1) {
-    $string0 = "To <%varclient_2512>: <col=800000><$string0>";
-} else if (%varclient_126 = 2) {
-    $string0 = "[<col=0000ff><clan_getchatdisplayname><col=000000>]: <col=800000><$string0>";
-} else if (%varclient_126 = 8) {
+if (~script8613($int4) = 1) {
+    $string0 = "To <~script8605($int4)>: <col=10f010><$string0>";
+} else if (~script8613($int4) = 2) {
+    $string0 = "[<col=6464a0><clan_getchatdisplayname><col=ffffff>]: <col=10f010><$string0>";
+} else if (~script8613($int4) = 8) {
     if (activeclanchannel_find_affined = true) {
-        $string0 = "[<col=0000ff><activeclanchannel_getclanname><col=000000>]: <col=800000><$string0>";
+        $string0 = "[<col=6464a0><activeclanchannel_getclanname><col=ffffff>]: <col=10f010><$string0>";
     }
-} else if (%varclient_126 = 10) {
+} else if (~script8613($int4) = 10) {
     if (activeclanchannel_find_listened = true) {
-        $string0 = "[<col=0000ff><activeclanchannel_getclanname><col=000000>]: <col=800000><$string0>";
+        $string0 = "[<col=6464a0><activeclanchannel_getclanname><col=ffffff>]: <col=10f010><$string0>";
     }
 } else {
-    $string0 = "<col=0000ff><$string0>";
+    $string0 = $string0;
 }
-if_sethide(true, interface_137:com_50);
-if_setonkey(null, interface_137:com_56);
-if_sethide(false, interface_137:com_0);
-if_sethide(true, interface_137:com_7);
-if_sethide(true, interface_137:com_9);
-if_sethide(false, interface_137:com_13);
-if_sethide(true, interface_137:com_17);
-if_sethide(true, interface_137:com_1);
-if_sethide(false, interface_137:com_3);
-if_setcolour(^black, interface_137:com_3);
-if_settextfont(p12_full, interface_137:com_3);
-if_settextalign(^settextalign_left, ^settextalign_centre, 0, interface_137:com_3);
-if_settext($string0, interface_137:com_3);
-if_settextshadow(false, interface_137:com_3);
-cc_deleteall(interface_137:com_16);
-if_settext("Search for: *", interface_137:com_14);
-if_setonkey("script1901(event_keycode, event_keychar, interface_137:com_1, interface_137:com_14, interface_137:com_16, interface_137:com_15, 0)", interface_137:com_13);
-if_setscrollsize(0, 0, interface_137:com_16);
-~scrollbar_resize(interface_137:com_15, interface_137:com_16, 0);
+if_sethide(true, ~script8585($int4));
+if_setonkey(null, ~script8556($int4));
+if_sethide(false, ~script8586($int4));
+if_sethide(true, ~script8588($int4));
+if_sethide(true, ~script8590($int4));
+if_sethide(false, ~script8594($int4));
+if_sethide(true, ~script8598($int4));
+if_sethide(true, ~script8599($int4));
+if_sethide(false, ~script8600($int4));
+if_setcolour(^white, ~script8600($int4));
+if_settextfont(p12_full, ~script8600($int4));
+if_settextalign(^settextalign_left, ^settextalign_centre, 0, ~script8600($int4));
+if_settext($string0, ~script8600($int4));
+if_settextshadow(true, ~script8600($int4));
+cc_deleteall(~script8595($int4));
+if_setcolour(0xf01010, ~script8596($int4));
+if_settext("Search for: *", ~script8596($int4));
+if_settextshadow(true, ~script8596($int4));
+if_setonkey("script1901(event_keycode, event_keychar, ~script8599($int4), ~script8596($int4), ~script8595($int4), ~script8597($int4), 0, $int4)", ~script8594($int4));
+if_setscrollsize(0, 0, ~script8595($int4));
+cc_deleteall(~script8597($int4));

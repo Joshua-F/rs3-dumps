@@ -1,20 +1,44 @@
 // 2698
 [clientscript,graphics_options_setwindowmode](int $int0, int $int1, int $int2, int $int3, int $int4)
-if ($int0 = getwindowmode) {
+def_int $int5 = detailget_maxscreensize;
+def_int $int6 = 0;
+if ($int0 = 1) {
+    $int6 = 2;
+} else if ($int0 = 2) {
+    $int6 = 0;
+} else {
+    $int6 = $int5;
+}
+if ($int0 = getwindowmode & $int6 = $int5) {
     return;
 }
-def_int $int5 = -1;
+def_int $int7 = -1;
 if ($int0 ! 3) {
-    setwindowmode($int0);
-    $int5 = getwindowmode;
-    setdefaultwindowmode($int5);
-    if ($int0 ! $int5) {
+    $int0 = $int6;
+    setwindowmode(^windowmode_resizable);
+    setdefaultwindowmode(2);
+    ~script709(7, $int6);
+    ~script8885(7);
+    $int7 = detailget_maxscreensize;
+    if ($int0 ! $int7) {
         ~graphics_options_message($int4, 0, "RuneScape was unable to enter that display mode.<br><br>Please visit our website for more information.", "", "");
-        ~graphics_options_rebuild($int3, $int5, $int1, $int2, $int4);
+        ~graphics_options_rebuild($int3, $int7, $int1, $int2, $int4);
         return;
     }
-    ~graphics_options_rebuild($int3, $int5, $int1, $int2, $int4);
-    if ($int0 >= 2 & $int5 >= 2) {
+    switch_int (autosetup_getlevel) {
+        case 1 :
+            autosetup_setmin;
+        case 2 :
+            autosetup_setlow;
+        case 3 :
+            autosetup_setmedium;
+        case 4 :
+            autosetup_sethigh;
+        case 0 :
+            autosetup_setcustom;
+    }
+    ~graphics_options_rebuild($int3, $int7, $int1, $int2, $int4);
+    if ($int7 = 2) {
         %varclient_994 = 2;
     }
     return;
@@ -24,12 +48,14 @@ if (playermember = false) {
     return;
 }
 if (fullscreen_modecount > %varclient_178 & fullscreen_enter(fullscreen_getmode(%varclient_178)) = true) {
+    if ($int4 = 4) {
+        ~script7932;
+    }
     ~graphics_options_rebuild($int3, $int0, $int1, $int2, $int4);
     ~script2700(2, $int4, false, false);
     return;
 }
-$int0 = getdefaultwindowmode;
-setwindowmode($int0);
+setwindowmode(^windowmode_resizable);
 if ($int4 = 1) {
     mes("Unable to enter fullscreen mode at that resolution.");
 }

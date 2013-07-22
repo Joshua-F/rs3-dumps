@@ -1,35 +1,35 @@
 // 2450
-[clientscript,notes_drag](component $component0, int $int1, int $int2)
-def_int $int3 = 0;
+[clientscript,notes_drag](overlayinterface $overlayinterface0, component $component1, int $int2, int $int3)
 def_int $int4 = 0;
-if (cc_find($component0, $int1) = true) {
-    if_sethide(true, interface_34:com_14);
-    if_sethide(false, interface_34:com_10);
-    $int4 = cc_getheight;
-    if_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top, interface_34:com_10);
-    if_setsize(cc_getwidth, $int4, ^setsize_abs, ^setsize_abs, interface_34:com_10);
-    $int3 = calc($int2 + $int4 / 2);
+def_int $int5 = 0;
+if (cc_find($component1, $int2) = true) {
+    if_sethide(true, ~script7799($overlayinterface0, interface_34:com_23));
+    if_sethide(false, ~script7799($overlayinterface0, interface_34:com_19));
+    $int5 = cc_getheight;
+    if_setposition(cc_getx, $int3, ^setpos_abs_left, ^setpos_abs_top, ~script7799($overlayinterface0, interface_34:com_19));
+    if_setsize(cc_getwidth, $int5, ^setsize_abs, ^setsize_abs, ~script7799($overlayinterface0, interface_34:com_19));
+    $int4 = calc($int3 + $int5 / 2);
 }
-def_int $int5 = if_gety(interface_34:com_11);
-def_int $int6 = calc($int5 + if_getheight(interface_34:com_11));
-if ($int3 >= $int5 & $int3 <= $int6) {
-    if_setgraphic("notes_add_delete_icons,4", interface_34:com_8);
+def_int $int6 = if_gety(~script7799($overlayinterface0, interface_34:com_20));
+def_int $int7 = calc($int6 + if_getheight(~script7799($overlayinterface0, interface_34:com_20)));
+if ($int4 >= $int6 & $int4 <= $int7) {
+    if_setgraphic("notes_add_delete_icons,4", ~script7799($overlayinterface0, interface_34:com_12));
 } else {
-    if_setgraphic("notes_add_delete_icons,3", interface_34:com_8);
+    if_setgraphic("notes_add_delete_icons,3", ~script7799($overlayinterface0, interface_34:com_12));
 }
-def_int $int7 = 0;
-def_int $int8 = if_gety(interface_34:com_9);
-def_int $int9 = calc($int8 + $int4);
-def_int $int10 = calc($int8 + if_getheight(interface_34:com_9));
-def_int $int11 = calc($int10 - $int4);
-if ($int3 >= $int8 & $int3 <= $int9) {
-    $int7 = -4;
-} else if ($int3 >= $int11 & $int3 <= $int10) {
-    $int7 = 4;
+def_int $int8 = 0;
+def_int $int9 = if_gety(~script7799($overlayinterface0, interface_34:com_18));
+def_int $int10 = calc($int9 + $int5);
+def_int $int11 = calc($int9 + if_getheight(~script7799($overlayinterface0, interface_34:com_18)));
+def_int $int12 = calc($int11 - $int5);
+if ($int4 >= $int9 & $int4 <= $int10) {
+    $int8 = -4;
+} else if ($int4 >= $int12 & $int4 <= $int11) {
+    $int8 = 4;
 } else {
     %varclient_821 = 0;
     return;
 }
 if (++%varclient_821 > 5) {
-    ~scrollbar_ondrag_doscroll(interface_34:com_15, interface_34:com_9, calc(if_getscrolly(interface_34:com_9) + $int7), 1);
+    ~scrollbar_ondrag_doscroll(~script7799($overlayinterface0, interface_34:com_13), ~script7799($overlayinterface0, interface_34:com_18), calc(if_getscrolly(~script7799($overlayinterface0, interface_34:com_18)) + $int8), 1);
 }

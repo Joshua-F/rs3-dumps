@@ -1,17 +1,10 @@
 // 1362
-[clientscript,chatdefault_init]
-def_int $int0 = 0;
-if_setonkey("chatdefault_onkey(event_keycode, event_keychar)", interface_137:com_56);
-if_setonchattransmit("chatdefault_updatechatbox(true)", interface_751:com_3);
-if_setonclantransmit("chatdefault_updatechatbox(true)", interface_751:com_3);
-if_setonfriendtransmit("chatdefault_updatechatbox(false)", interface_751:com_3);
-if_setonmisctransmit("script82", interface_751:com_3);
-if_setonvarcstrtransmit("script710{varclient_2504}", interface_751:com_3);
+[clientscript,chatdefault_init](int $int0)
+def_int $int1 = 0;
 %varclient_2483 = "";
 %varclient_1028 = 0;
 %varclient_42 = -1;
 %varclient_41 = 0;
-%varclient_43 = ~script1960;
 %varclient_3 = -1;
 %varclient_4 = 0;
 %varclient_2484 = "";
@@ -35,30 +28,67 @@ if_setonvarcstrtransmit("script710{varclient_2504}", interface_751:com_3);
 %varclient_2502 = "";
 %varclient_2503 = "";
 %varclient_2505 = "";
-~script1558(true);
-if_sethide(false, interface_137:com_56);
-if (getwindowmode >= 2) {
-    cc_deleteall(interface_752:com_2);
-    ~script5392(interface_752:com_2, 22, 0);
-    if_setgraphic(graphic_1247, interface_752:com_1);
-    if_setalpha(true, interface_752:com_1);
-    if_sethide(false, interface_752:com_1);
-    if_sethide(true, interface_137:com_51);
-    if_sethide(false, interface_137:com_52);
-    if_setcolour(^white, interface_137:com_57);
-    if_settextshadow(true, interface_137:com_56);
-    if_setcolour(^white, interface_137:com_56);
-} else {
-    if_setgraphic(chat_background, interface_752:com_1);
-    if_sethide(false, interface_752:com_1);
-    cc_deleteall(interface_752:com_2);
-    ~script1088(interface_752:com_2, 0);
-    if_sethide(false, interface_137:com_51);
-    if_sethide(true, interface_137:com_52);
-    if_setcolour(^black, interface_137:com_57);
-    if_settextshadow(false, interface_137:com_56);
-    if_setcolour(^black, interface_137:com_56);
+~script1558($int0, true);
+~script8549($int0, if_getheight(~script8552($int0)), if_getheight(~script8552($int0)));
+~script8492($int0);
+switch_int ($int0) {
+    case 18 :
+        if_setonvartransmit("chat_v2_rebuildchatbox($int0){varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1775}", ~script8552($int0));
+        if_setonvarctransmit("chat_v2_rebuildchatbox($int0){varclient_2834}", ~script8552($int0));
+    case 19 :
+        if_setonvartransmit("chat_v2_rebuildchatbox($int0){varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1772, varplayer_1775}", ~script8552($int0));
+        if_setonvarctransmit("chat_v2_rebuildchatbox($int0){varclient_2834}", ~script8552($int0));
+    case 20 :
+        if_setonvartransmit("chat_v2_rebuildchatbox($int0){varplayer_1772, varplayer_1772, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1775}", ~script8552($int0));
+        if_setonvarctransmit("chat_v2_rebuildchatbox($int0){varclient_2834}", ~script8552($int0));
+    case 21 :
+        if_setonvartransmit("chat_v2_rebuildchatbox($int0){varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1775}", ~script8552($int0));
+        if_setonvarctransmit("chat_v2_rebuildchatbox($int0){varclient_2834}", ~script8552($int0));
+    case 22 :
+        if_setonvartransmit("chat_v2_rebuildchatbox($int0){varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1773, varplayer_1774, varplayer_1774, varplayer_1774, varplayer_1774, varplayer_1774, varplayer_1774, varplayer_1774, varplayer_1774, varplayer_1774, varplayer_1774, varplayer_1774, varplayer_1775}", ~script8552($int0));
+        if_setonvarctransmit("chat_v2_rebuildchatbox($int0){varclient_2834}", ~script8552($int0));
 }
-%varclient_7 = if_getheight(interface_137:com_58);
-~redraw_chat_buttons;
 %varclient_2504 = "";
+def_int $int2 = 0;
+def_component $component3 = enum(int, component, ~script8604($int0), $int2);
+while ($component3 ! null) {
+    if_setcolour(0x696969, $component3);
+    $int2 = calc($int2 + 1);
+    $component3 = enum(int, component, ~script8604($int0), $int2);
+}
+switch_int ($int0) {
+    case 18 :
+    case 19 :
+        if_setop(1, "", ~script8554(19));
+        if_setop(2, "", ~script8554(19));
+        if_setop(3, "", ~script8554(19));
+        if_setop(4, "", ~script8554(19));
+        if_setop(5, "", ~script8554(19));
+        if_setop(6, "", ~script8554(19));
+        if_setop(7, "", ~script8554(19));
+        if_setop(8, "", ~script8554(19));
+    case 20 :
+        if_setop(1, "", ~script8554(20));
+        if_setop(2, "", ~script8554(20));
+        if_setop(3, "", ~script8554(20));
+        if_setop(5, "", ~script8554(20));
+        if_setop(6, "", ~script8554(20));
+        if_setop(7, "", ~script8554(20));
+        if_setop(8, "", ~script8554(20));
+    case 21 :
+        if_setop(1, "", ~script8554(21));
+        if_setop(2, "", ~script8554(21));
+        if_setop(3, "", ~script8554(21));
+        if_setop(4, "", ~script8554(21));
+        if_setop(5, "", ~script8554(21));
+        if_setop(7, "", ~script8554(21));
+        if_setop(8, "", ~script8554(21));
+    case 22 :
+        if_setop(1, "", ~script8554(22));
+        if_setop(2, "", ~script8554(22));
+        if_setop(3, "", ~script8554(22));
+        if_setop(4, "", ~script8554(22));
+        if_setop(5, "", ~script8554(22));
+        if_setop(6, "", ~script8554(22));
+        if_setop(7, "", ~script8554(22));
+}

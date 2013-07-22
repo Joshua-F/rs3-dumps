@@ -1,0 +1,39 @@
+// 8482
+[clientscript,script8482](component $component0, component $component1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7)
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = get_mousex;
+def_int $int12 = 5;
+def_int $int13 = 2047;
+if (cc_find($component1, $int2) = true | $int2 = -1 & if_find($component1) = true) {
+    $int8 = cc_getmodelangle_z;
+    $int9 = cc_getmodelxof;
+    $int10 = cc_getmodelyof;
+    $int6 = cc_getmodelzoom;
+    if ($int3 = 1) {
+        $int4 = cc_getmodelangle_x;
+        $int5 = cc_getmodelangle_y;
+        $int7 = get_mousex;
+        if_setonmouseover(null, $component0);
+        $int3 = 0;
+    }
+    $int11 = calc($int11 - $int7);
+    $int11 = calc($int11 * $int12);
+    $int11 = calc($int11 % $int13 * -1);
+    $int11 = calc($int11 + $int5);
+    if ($int11 >= $int13) {
+        $int11 = calc($int11 - $int13);
+    }
+    if (%varclient_1968 = 1) {
+        if ($int11 < -500) {
+            $int11 = max($int11, -500);
+        } else {
+            $int11 = min($int11, 512);
+        }
+    }
+    cc_setmodelangle($int9, $int10, $int4, $int11, $int8, $int6);
+    if_setondrag("script8482($component0, $component1, $int2, 0, $int4, $int5, $int6, $int7)", $component0);
+} else {
+    ~script8481($component0, $component1, $int2);
+}

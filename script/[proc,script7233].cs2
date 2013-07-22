@@ -10,6 +10,10 @@ def_int $int2 = 0;
 def_boolean $boolean3 = false;
 def_string $string4 = "";
 def_string $string5 = "";
+def_int $int4 = 0;
+def_string $string6 = "";
+def_string $string7 = "";
+def_string $string8 = "";
 if (%varclient_1686 = false) {
     return;
 }
@@ -39,16 +43,39 @@ if (compare($string3, "") = 0) {
     $string2 = "<$string2> <$string0> <$string3>";
 }
 switch_int ($int0) {
-    case 4, 3, 2, 7 :
+    case 4 :
+        if (compare($string1, "Attack") = 0 & npc_find_active_minimenu_entry = true) {
+            if (is_targeted_entity = false) {
+                ~script8876(removetags($string0), nc_param(npc_type, param_2848));
+                ~script7234($string1);
+            } else {
+                ~script8880;
+            }
+        } else {
+            ~script8880;
+            ~script7234($string2);
+        }
+    case 3, 2 :
+        ~script8880;
         ~script7234($string2);
+    case 7 :
+        if (compare($string1, "Attack") = 0 & player_find_active_minimenu_entry = true) {
+            ~script8877(removetags($string0));
+            ~script7234($string1);
+        } else {
+            ~script8880;
+            ~script7234($string2);
+        }
     case 1 :
         if (%varclient_1691 ! null) {
             ~script7234($string2);
         } else {
             ~script5487;
         }
+        ~script8880;
     case default :
         if (%varclient_1688 = true) {
             ~script5487;
         }
+        ~script8880;
 }

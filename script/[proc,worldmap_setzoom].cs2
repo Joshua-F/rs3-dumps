@@ -1,4 +1,13 @@
 // 1372
-[proc,worldmap_setzoom]
-worldmap_setzoom(%varclient_172);
-if_settext("<tostring(%varclient_172)>%", interface_755:com_14);
+[proc,worldmap_setzoom](int $int0)
+def_int $int1 = %varclient_172;
+if (has_html5 = true) {
+    ~worldmap_v2_setzoom($int0, 0);
+} else {
+    %varclient_172 = $int0;
+    worldmap_setzoom(%varclient_172);
+}
+if_settext("<tostring(%varclient_172)>%", interface_1422:com_65);
+if ($int1 ! $int0) {
+    ~script8103;
+}

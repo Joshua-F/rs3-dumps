@@ -1,68 +1,72 @@
 // 86
-[clientscript,chat_op](int $int0, int $int1)
-def_int $chattype2 = ^chattype_gamemessage;
-def_int $int3 = 0;
-def_int $int4 = 0;
+[clientscript,chat_op](int $int0, int $int1, int $int2)
+def_int $int3 = -1;
+def_component $component4 = ~script8552($int0);
+if (cc_find($component4, $int2) = true) {
+    $int3 = cc_param(param_3443);
+} else {
+    return;
+}
+def_int $chattype5 = ^chattype_gamemessage;
+def_int $int6 = 0;
+def_int $int7 = 0;
 def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
 def_string $string3 = "";
-def_chatphrase $chatphrase5 = null;
+def_chatphrase $chatphrase8 = null;
 def_string $string4 = "";
-$chattype2, $int3, $int4, $string0, $string1, $string2, $string3, $chatphrase5, $string4 = chat_gethistory_byuid($int1);
-$string1 = removetags($string1);
+$chattype5, $int6, $int7, $string0, $string1, $string2, $string3, $chatphrase8, $string4 = chat_gethistory_byuid($int3);
+if ($chattype5 = null) {
+    return;
+}
 $string0 = removetags($string0);
-switch_int ($int0) {
+switch_int ($int1) {
     case 1 :
-        opplayer(4, $string1);
+        opplayer(4, $string0);
     case 2 :
-        opplayer(1, $string1);
+        opplayer(1, $string0);
     case 3 :
-        opplayer(7, $string1);
+        opplayer(7, $string0);
     case 4 :
-        opplayer(1, $string1);
+        opplayer(1, $string0);
     case 5 :
-        opplayer(9, $string1);
+        opplayer(9, $string0);
     case 6 :
         if (~script2709 = 0) {
             mes("You cannot add a friend until you have entered your date of birth");
             return;
         }
-        if (friend_test($string1) = true) {
+        if (friend_test($string0) = true) {
             if (map_quickchat = false & userdetail_quickchat = false) {
-                %varclient_1650 = true;
-                %varclient_2367 = $string1;
-                %varclient_2231 = 1;
-                ~script7172;
-                ~script6999(0, 0);
-                ~script1558(false);
+                ~script8512($int0, $string0);
                 return;
             }
         } else {
-            friend_add($string1);
+            friend_add($string0);
         }
     case 7 :
-        ignore_add($string1);
+        ignore_add($string0);
     case 8 :
-        %varclient_2578 = $string1;
+        %varclient_2578 = $string0;
     case 9 :
-        if ($chattype2 = ^chattype_quickchat_public) {
-            ~quickchat_respond(4, $string0, $chatphrase5);
-        } else if ($chattype2 = ^chattype_quickchat_private_incoming) {
-            ~quickchat_respond(5, $string0, $chatphrase5);
-        } else if ($chattype2 = ^chattype_quickchat_friend_chat) {
-            ~quickchat_respond(6, $string0, $chatphrase5);
-        } else if ($chattype2 = ^chattype_quickchat_clanchat) {
-            ~quickchat_respond(9, $string0, $chatphrase5);
-        } else if ($chattype2 = ^chattype_quickchat_clanguestchat) {
-            ~quickchat_respond(11, $string0, $chatphrase5);
+        if ($chattype5 = ^chattype_quickchat_public) {
+            ~quickchat_respond(4, $string0, $chatphrase8, $int0);
+        } else if ($chattype5 = ^chattype_quickchat_private_incoming) {
+            ~quickchat_respond(5, $string0, $chatphrase8, $int0);
+        } else if ($chattype5 = ^chattype_quickchat_friend_chat) {
+            ~quickchat_respond(6, $string0, $chatphrase8, $int0);
+        } else if ($chattype5 = ^chattype_quickchat_clanchat) {
+            ~quickchat_respond(9, $string0, $chatphrase8, $int0);
+        } else if ($chattype5 = ^chattype_quickchat_clanguestchat) {
+            ~quickchat_respond(11, $string0, $chatphrase8, $int0);
         }
     case 10 :
-        if ($chattype2 = ^chattype_clanchat | $chattype2 = ^chattype_quickchat_clanchat) {
-            ~clan_chat_kick_find($string1);
-        } else if ($chattype2 = ^chattype_friendschat | $chattype2 = ^chattype_quickchat_friend_chat) {
-            ~friendschat_kick($string1);
+        if ($chattype5 = ^chattype_clanchat | $chattype5 = ^chattype_quickchat_clanchat) {
+            ~clan_chat_kick_find($string0);
+        } else if ($chattype5 = ^chattype_friendschat | $chattype5 = ^chattype_quickchat_friend_chat) {
+            ~friendschat_kick($string0);
         } else {
-            opplayer(5, $string1);
+            opplayer(5, $string0);
         }
 }

@@ -1,117 +1,118 @@
 // 548
-[clientscript,stats_update](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, stat $stat8, component $component9, component $component10)
+[clientscript,stats_update](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, stat $stat8, component $component9, component $component10, int $int11)
+$component10 = interface_1477:com_60;
 if (%varclient_80 = 0) {
     return;
 }
-def_int $int11 = 0;
 def_int $int12 = 0;
-def_int $intbool13 = ^false;
-def_int $int14 = 0;
+def_int $int13 = 0;
+def_int $intbool14 = ^false;
 def_int $int15 = 0;
 def_int $int16 = 0;
 def_int $int17 = 0;
 def_int $int18 = 0;
 def_int $int19 = 0;
+def_int $int20 = 0;
 def_string $string0 = "";
 def_string $string1 = "<enum(stat, string, enum_680, $stat8)>: <tostring(stat($stat8))>/<tostring(stat_base_actual($stat8))>";
-def_int $int20 = 0;
+def_int $int21 = 0;
 switch_stat ($stat8) {
     case attack :
-        $int20 = %varplayer_3304;
+        $int21 = %varplayer_3304;
     case strength :
-        $int20 = %varplayer_3305;
+        $int21 = %varplayer_3305;
     case defence :
-        $int20 = %varplayer_3306;
+        $int21 = %varplayer_3306;
     case magic :
-        $int20 = %varplayer_3307;
+        $int21 = %varplayer_3307;
     case ranged :
-        $int20 = %varplayer_3308;
+        $int21 = %varplayer_3308;
     case prayer :
-        $int20 = %varplayer_2850;
+        $int21 = %varplayer_2850;
     case summoning :
-        $int20 = %varplayer_3309;
+        $int21 = %varplayer_3309;
     case mining :
-        $int20 = %varplayer_3310;
+        $int21 = %varplayer_3310;
     case smithing :
-        $int20 = %varplayer_3311;
+        $int21 = %varplayer_3311;
     case crafting :
-        $int20 = %varplayer_3312;
+        $int21 = %varplayer_3312;
     case woodcutting :
-        $int20 = %varplayer_3313;
+        $int21 = %varplayer_3313;
     case farming :
-        $int20 = %varplayer_3314;
+        $int21 = %varplayer_3314;
     case firemaking :
-        $int20 = %varplayer_3315;
+        $int21 = %varplayer_3315;
     case fishing :
-        $int20 = %varplayer_3316;
+        $int21 = %varplayer_3316;
     case cooking :
-        $int20 = %varplayer_3317;
+        $int21 = %varplayer_3317;
     case dungeoneering :
-        $int20 = %varplayer_3318;
+        $int21 = %varplayer_3318;
     case slayer :
-        $int20 = %varplayer_3319;
+        $int21 = %varplayer_3319;
     case runecraft :
-        $int20 = %varplayer_3320;
+        $int21 = %varplayer_3320;
     case hunter :
-        $int20 = %varplayer_3321;
+        $int21 = %varplayer_3321;
     case thieving :
-        $int20 = %varplayer_3322;
+        $int21 = %varplayer_3322;
     case construction :
-        $int20 = %varplayer_3323;
+        $int21 = %varplayer_3323;
     case hitpoints :
-        $int20 = %varplayer_3324;
+        $int21 = %varplayer_3324;
     case agility :
-        $int20 = %varplayer_3325;
+        $int21 = %varplayer_3325;
     case fletching :
-        $int20 = %varplayer_3326;
+        $int21 = %varplayer_3326;
     case herblore :
-        $int20 = %varplayer_3327;
+        $int21 = %varplayer_3327;
 }
 if (cc_find($component10, $int0) = true & parawidth($string1, 190, p12_full) < cc_getwidth & %varclient_80 = stat_base_actual($stat8)) {
     cc_settext($string1);
     if (cc_find($component10, $int1) = true) {
-        cc_settext(~tostring_spacer(stat_visible_xp_actual($stat8), ","));
+        cc_settext(~tostring_spacer_local(stat_visible_xp_actual($stat8)));
     }
     if (stat_base_actual($stat8) < 99 & cc_find($component10, $int2) = true) {
-        cc_settext(~tostring_spacer(calc(enum(int, int, enum_716, calc(stat_base_actual($stat8) + 1)) - stat_visible_xp_actual($stat8)), ","));
+        cc_settext(~tostring_spacer_local(calc(enum(int, int, enum_716, calc(stat_base_actual($stat8) + 1)) - stat_visible_xp_actual($stat8))));
     }
-    if ($int20 > 0 & cc_find($component10, $int3) = true) {
-        cc_settext(~tostring_spacer(calc($int20 / 10), ","));
+    if ($int21 > 0 & cc_find($component10, $int3) = true) {
+        cc_settext(~tostring_spacer_local(calc($int21 / 10)));
     }
     if (~script4036(enum(stat, int, enum_1482, $stat8)) = ^true) {
-        $intbool13, $int11, $int12 = ~script4037(enum(stat, int, enum_1482, $stat8));
-        $int18 = $int11;
-        if ($intbool13 = ^true) {
-            $int18 = enum(int, int, enum_716, $int11);
+        $intbool14, $int12, $int13 = ~script4037(enum(stat, int, enum_1482, $stat8));
+        $int19 = $int12;
+        if ($intbool14 = ^true) {
+            $int19 = enum(int, int, enum_716, $int12);
         }
-        $int19 = max(0, calc($int18 - stat_visible_xp_actual($stat8)));
-        $string0 = ~tostring_spacer($int19, ",");
+        $int20 = max(0, calc($int19 - stat_visible_xp_actual($stat8)));
+        $string0 = ~tostring_spacer_local($int20);
         if (cc_find($component10, $int6) = true) {
-            if ($intbool13 = ^true) {
-                $int16 = enum(int, int, enum_716, $int12);
-                $int17 = enum(int, int, enum_716, $int11);
-                if (calc($int17 - $int16) ! 0) {
-                    $int14 = scale(calc(stat_visible_xp_actual($stat8) - $int16), calc($int17 - $int16), 100);
+            if ($intbool14 = ^true) {
+                $int17 = enum(int, int, enum_716, $int13);
+                $int18 = enum(int, int, enum_716, $int12);
+                if (calc($int18 - $int17) ! 0) {
+                    $int15 = scale(calc(stat_visible_xp_actual($stat8) - $int17), calc($int18 - $int17), 100);
                 } else {
-                    $int14 = -1;
+                    $int15 = -1;
                 }
-            } else if (calc($int11 - $int12) ! 0) {
-                $int14 = scale(calc(stat_visible_xp_actual($stat8) - $int12), calc($int11 - $int12), 100);
+            } else if (calc($int12 - $int13) ! 0) {
+                $int15 = scale(calc(stat_visible_xp_actual($stat8) - $int13), calc($int12 - $int13), 100);
             } else {
-                $int14 = -1;
+                $int15 = -1;
             }
-            if ($int14 > 100) {
-                $int14 = 100;
+            if ($int15 > 100) {
+                $int15 = 100;
             }
-            $int14 = max($int14, 0);
-            $int15 = calc($int14 * ($int7 - 4));
-            $int15 = calc($int15 / 100);
-            cc_setsize($int15, 16, ^setsize_abs, ^setsize_abs);
+            $int15 = max($int15, 0);
+            $int16 = calc($int15 * ($int7 - 4));
+            $int16 = calc($int16 / 100);
+            cc_setsize($int16, 16, ^setsize_abs, ^setsize_abs);
             if (cc_find($component10, $int5) = true) {
-                if ($int14 > 47) {
+                if ($int15 > 47) {
                     cc_setcolour(^black);
                 }
-                cc_settext("<tostring($int14)>%");
+                cc_settext("<tostring($int15)>%");
             }
             if (cc_find($component10, $int4) = true) {
                 cc_settext($string0);
@@ -122,4 +123,4 @@ if (cc_find($component10, $int0) = true & parawidth($string1, 190, p12_full) < c
 }
 cc_deleteall($component10);
 %varclient_80 = stat_base_actual($stat8);
-~stats_mouseover_create($component9, $stat8, $component10);
+~stats_mouseover_create($component9, $int11, $stat8, $component10);
