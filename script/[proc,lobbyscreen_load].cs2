@@ -1,11 +1,5 @@
 // 1299
 [proc,lobbyscreen_load](boolean $boolean0)
-if (%varclient_3496 = true | compare(substring(chat_playername_unfiltered, 0, 1), "#") = 0) {
-    %varclient_3496 = false;
-    ~script8046;
-    if_setontimer(null, interface_906:com_9);
-    return;
-}
 %varclient_43 = -1;
 if_setonvartransmit("script2354{varplayer_3184}", interface_906:com_9);
 if_setonvartransmit("lobbyscreen_launch_billing{varplayer_1745}", interface_906:com_239);
@@ -52,3 +46,8 @@ if (string_length($string0) > 0) {
 if_setontimer("script1868(interface_906:com_37)", interface_906:com_37);
 ~lobby_resize;
 if_setontimer("lobbyscreen_blackout_timer(interface_906:com_250)", interface_906:com_249);
+if (%varclient_3496 = true | compare(substring(chat_playername_unfiltered, 0, 1), "#") = 0 & %varplayerbit_16464 ! 2) {
+    %varclient_3496 = false;
+    ~script8046;
+    if_setontimer(null, interface_906:com_9);
+}
