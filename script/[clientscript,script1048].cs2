@@ -1,46 +1,5 @@
 // 1048
-[clientscript,script1048](int $key0, char $char1, component $component2, component $component3, chatphrase $chatphrase4, int $int5)
-if (%varclient_2231 ! $int5) {
-    return;
-}
-if ($key0 = ^key_escape) {
-    ~quickchat_close($int5);
-    return;
-}
-if ($key0 = ^key_home) {
-    ~quickchat_open(~script8613($int5), ~script8605($int5), $int5);
-    return;
-}
-def_int $int6 = string_length(tostring(~script8621($int5)));
-def_int $int7 = string_indexof_char("0123456789", $char1, 0);
-if ($key0 = ^key_return) {
-    if ($int6 > 0) {
-        ~quickchat_phrase_int($component2, $chatphrase4, ~script8621($int5), $int5);
-    } else {
-        ~quickchat_close($int5);
-    }
-    return;
-}
-if ($key0 = ^key_backspace) {
-    if ($int6 > 0) {
-        ~script8622($int5, calc(~script8621($int5) / 10));
-    } else if (~script8615($int5) = false) {
-        ~quickchat_close($int5);
-    } else {
-        if_sethide(true, ~script8588($int5));
-        if_sethide(true, ~script8590($int5));
-        if_sethide(true, ~script8594($int5));
-        if_sethide(false, ~script8598($int5));
-        if_sethide(false, ~script8599($int5));
-        if_sethide(true, ~script8600($int5));
-        return;
-    }
-} else if ($int7 >= 0 & $int6 < 10 & calc(~script8621($int5) * 10 + $int7) > 0) {
-    ~script8622($int5, calc(~script8621($int5) * 10 + $int7));
-}
-if (~script8621($int5) > 0) {
-    if_settext("Please enter a value: <tostring(~script8621($int5))>*", $component3);
-} else {
-    if_settext("Please enter a value: *", $component3);
-}
-if_settextshadow(true, $component3);
+[clientscript,script1048]
+if_setgraphic("aif_pop_green_button,0", interface_68:com_62);
+if_setgraphic("aif_pop_green_button,1", interface_68:com_64);
+if_setgraphic("aif_pop_green_button,2", interface_68:com_63);

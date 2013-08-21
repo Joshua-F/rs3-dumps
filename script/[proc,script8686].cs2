@@ -1,8 +1,8 @@
 // 8686
 [proc,script8686]
 def_graphic $graphic0 = "rs3_quick_inventory_slot_icons,0";
-def_component $component1 = interface_1430:com_175;
-def_component $component2 = interface_1430:com_182;
+def_component $component1 = interface_1430:com_188;
+def_component $component2 = interface_1430:com_195;
 def_string $string0 = "Assign an inventory slot to this through<br>right-click options in the inventory screen.";
 def_obj $obj3 = inv_getobj(inv_93, %varplayerbit_18784);
 def_int $int4 = 0;
@@ -40,9 +40,18 @@ if (if_find($component1) = true) {
     }
     ~script7033;
     if (~script8839(5) = true) {
-        ~script8844(max(1, ~script8687(interface_1430:com_175)), ~script8825(5, 31), interface_1430:com_175, -1);
+        switch_obj ($obj3) {
+            case obj_4045, obj_14644 :
+                ~script8845(~script8825(5, 31), interface_1430:com_188, -1);
+                cc_settargetverb("Use");
+                cc_setontargetenter("script375(0)");
+                cc_setontargetleave("script376");
+                cc_settargetcursors(cursor_157, cursor_158);
+            case default :
+                ~script8844(max(1, ~script8687(interface_1430:com_188)), ~script8825(5, 31), interface_1430:com_188, -1);
+        }
     }
-    if_settext(~script8213(~script8825(5, 31), 1, 1), interface_1430:com_178);
+    if_settext(~script8213(~script8825(5, 31), 1, 1), interface_1430:com_191);
 }
 def_obj $obj5 = inv_getobj(inv_93, %varplayerbit_18785);
 def_int $int6 = 0;
@@ -80,7 +89,16 @@ if (if_find($component2) = true) {
     }
     ~script7033;
     if (~script8839(5) = true) {
-        ~script8844(max(1, ~script8687(interface_1430:com_182)), ~script8825(5, 32), interface_1430:com_182, -1);
+        switch_obj ($obj5) {
+            case obj_4045, obj_14644 :
+                ~script8845(~script8825(5, 32), interface_1430:com_195, -1);
+                cc_settargetverb("Use");
+                cc_setontargetenter("script375(1)");
+                cc_setontargetleave("script376");
+                cc_settargetcursors(cursor_157, cursor_158);
+            case default :
+                ~script8844(max(1, ~script8687(interface_1430:com_195)), ~script8825(5, 32), interface_1430:com_195, -1);
+        }
     }
-    if_settext(~script8213(~script8825(5, 32), 1, 1), interface_1430:com_185);
+    if_settext(~script8213(~script8825(5, 32), 1, 1), interface_1430:com_198);
 }

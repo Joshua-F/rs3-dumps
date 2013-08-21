@@ -1,6 +1,6 @@
 // 8411
 [proc,script8411](int $int0, boolean $boolean1)
-if (%varclientbit_19930 <= -1) {
+if (~script8699(7) ! 1) {
     %varclientbit_19930 = 127;
 }
 def_struct $struct2 = enum(int, struct, enum_7716, $int0);
@@ -37,23 +37,6 @@ def_int $int25 = struct_param($struct3, param_3553);
 def_int $int26 = struct_param($struct3, param_3555);
 def_int $int27 = struct_param($struct3, param_3566);
 def_boolean $boolean28 = ~script1186;
-if (%varplayerbit_19924 = 1 & $boolean1 = false & %varplayerbit_19928 = 1 & $boolean28 = true) {
-    if (struct_param($struct3, param_3633) ! -1) {
-        $int23 = struct_param($struct3, param_3633);
-    }
-    if (struct_param($struct3, param_3634) ! -1) {
-        $int24 = struct_param($struct3, param_3634);
-    }
-    if (struct_param($struct3, param_3635) ! -1) {
-        $int25 = struct_param($struct3, param_3635);
-    }
-    if (struct_param($struct3, param_3636) ! -1) {
-        $int26 = struct_param($struct3, param_3636);
-    }
-    if (struct_param($struct3, param_3637) ! -1) {
-        $int27 = struct_param($struct3, param_3637);
-    }
-}
 if ($boolean1 = false) {
     $component4 = struct_param($struct2, param_3503);
     $component5 = struct_param($struct2, param_3504);
@@ -87,7 +70,11 @@ def_int $int30 = $int23;
 def_int $int31 = calc($int29 + struct_param($struct3, param_3551));
 def_int $int32 = calc($int30 + struct_param($struct3, param_3549));
 if_setonmouserepeat("script8415($int0)", $component7);
-if_setnoclickthrough(struct_param($struct2, param_3532), $component4);
+if ($int0 ! 1000 | if_hassuboverlay(interface_1477:com_80, interface_1421) = false) {
+    if_setnoclickthrough(struct_param($struct2, param_3532), $component4);
+} else {
+    if_setnoclickthrough(false, $component4);
+}
 if ($component5 ! null) {
     if_setposition($int29, $int30, ^setpos_abs_left, ^setpos_abs_top, $component5);
     if_setsize($int31, $int32, ^setsize_minus, ^setsize_minus, $component5);
@@ -348,6 +335,7 @@ if ($component8 ! null) {
             $string0 = "Close";
             cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
             cc_setonmouseleave("script8806(event_com, event_comsubid, struct_param($struct3, param_3602))");
+            cc_setmouseovercursor(cursor_36);
         } else if ($boolean19 = true) {
             if (struct_param($struct2, param_3524) = true) {
                 ~script8319($int0);
@@ -359,6 +347,7 @@ if ($component8 ! null) {
                 $string0 = "Settings";
                 cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
                 cc_setonmouseleave("script8806(event_com, event_comsubid, struct_param($struct3, param_3605))");
+                cc_setmouseovercursor(cursor_36);
             }
         }
     }
