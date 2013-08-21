@@ -1,10 +1,18 @@
 // 5562
-[clientscript,money_pouch_anim_move](int $int0)
-def_int $int1 = stringwidth(if_gettext(interface_1473:com_2), verdana_11pt_regular);
-$int1 = min($int1, calc(if_getwidth(interface_1473:com_12) - stringwidth(if_gettext(interface_1473:com_14), verdana_11pt_bold)));
-if_setposition($int1, if_gety(interface_1473:com_13), ^setpos_abs_right, ^setpos_abs_top, interface_1473:com_13);
-if_setposition($int1, if_gety(interface_1474:com_21), ^setpos_abs_right, ^setpos_abs_top, interface_1474:com_21);
-if (clientclock < calc($int0 + 150)) {
+[clientscript,money_pouch_anim_move](int $int0, component $component1, component $component2)
+def_int $int3 = stringwidth(if_gettext(interface_1473:com_2), verdana_11pt_regular);
+def_int $int4 = stringwidth(if_gettext(interface_1473:com_14), verdana_11pt_bold);
+def_int $int5 = 0;
+if (calc(($int3 + $int4 + 5) * 2) > if_getwidth($component1)) {
+    $int5 = 10;
+}
+def_int $int6 = 1;
+def_int $int7 = calc(clientclock - $int0);
+if ($int7 < 25) {
+    $int6 = calc(1 - $int4 * (25 - $int7) / 25);
+}
+if_setposition($int6, $int5, ^setpos_abs_right, ^setpos_abs_top, $component2);
+if ($int7 < 150) {
     return;
 }
 if_sethide(true, interface_1474:com_21);

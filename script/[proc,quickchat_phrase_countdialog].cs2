@@ -1,5 +1,6 @@
 // 1047
 [proc,quickchat_phrase_countdialog](chatphrase $chatphrase0, int $int1)
+~quickchat_focus($int1);
 ~script8622($int1, 0);
 def_string $string0 = chatphrase_gettext($chatphrase0);
 if (~script8613($int1) = 1) {
@@ -35,4 +36,9 @@ cc_deleteall(~script8588($int1));
 if_setcolour(0xf01010, ~script8589($int1));
 if_settext("Please enter a value: *", ~script8589($int1));
 if_settextshadow(true, ~script8589($int1));
-if_setonkey("script1048(event_keycode, event_keychar, ~script8599($int1), ~script8589($int1), $chatphrase0, $int1)", ~script8588($int1));
+if (if_find(~script8589($int1)) = true) {
+    cc_setparam(param_3648, $chatphrase0);
+}
+if (if_find(~script8586($int1)) = true) {
+    cc_setparam(param_3651, 1);
+}

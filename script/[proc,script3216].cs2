@@ -9,11 +9,14 @@ if (create_reply = -3) {
 if (create_email_validate_reply = -3) {
     return;
 }
+if (if_gethide(interface_1420:com_232) = false) {
+    return;
+}
 if ($key0 = ^key_escape) {
     ~script7879;
     return;
 }
-if (if_gethide(interface_1420:com_205) = true | if_gethide(interface_1420:com_481) = false) {
+if (if_gethide(interface_1420:com_205) = true | if_gethide(interface_1420:com_482) = false) {
     return;
 }
 def_string $string0 = "";
@@ -46,7 +49,7 @@ switch_int (%varclient_174) {
             case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
                 if (string_indexof_char("124678", $char1, 0) = -1) {
                     %varclient_1099 = ~script1553($key0, %varclient_1099, %varclient_2563);
-                    ~script3218(interface_1420:com_282, interface_1420:com_283, interface_1420:com_284, %varclient_2563, 16);
+                    ~script3218(interface_1420:com_283, interface_1420:com_284, interface_1420:com_285, %varclient_2563, 16);
                     return;
                 }
         }
@@ -55,17 +58,18 @@ switch_int (%varclient_174) {
         }
         if (string_indexof_char("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789  _-", $char1, 0) ! -1 | $key0 = ^key_backspace | $key0 = ^key_del) {
             %varclient_2563, %varclient_1099 = ~script802(%varclient_1099, %varclient_2563, 3, $key0, $char1);
-            if_settext(%varclient_2563, interface_1420:com_283);
-            ~script3218(interface_1420:com_282, interface_1420:com_283, interface_1420:com_284, %varclient_2563, 16);
+            if_settext(%varclient_2563, interface_1420:com_284);
+            ~script3218(interface_1420:com_283, interface_1420:com_284, interface_1420:com_285, %varclient_2563, 16);
             if (compare(%varclient_2563, %varclient_3685) ! 0) {
                 ~script7922;
                 ~script7845(3, "", 93061190);
                 ~script7847;
-                if_sethide(true, interface_1420:com_314);
+                ~script7858;
+                if_sethide(true, interface_1420:com_315);
                 if (%varclient_3488 = 0) {
                     if_setontimer("script7834(clientclock, interface_1420:com_231)", interface_1420:com_231);
                 } else {
-                    if_sethide(true, interface_1420:com_233);
+                    if_sethide(true, interface_1420:com_234);
                     %varclient_3685 = %varclient_2563;
                 }
             }
@@ -83,13 +87,8 @@ switch_int (%varclient_174) {
                 if_setontimer(null, interface_1420:com_231);
                 ~script7836(2, 0);
                 if ($key0 = ^key_tab & keyheld_shift = true) {
-                    if (%varclient_1407 > 1 & %varclient_1407 < 13) {
-                        ~create_focus(16, 1);
-                        ~script7836(0, 1);
-                    } else {
-                        ~create_focus(15, 1);
-                        ~script7836(1, 1);
-                    }
+                    ~create_focus(15, 1);
+                    ~script7836(1, 1);
                 } else {
                     ~create_focus(7, 1);
                     ~script7836(3, 1);
@@ -98,7 +97,7 @@ switch_int (%varclient_174) {
             case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
                 if (string_indexof_char("124678", $char1, 0) = -1) {
                     %varclient_1099 = ~script1553($key0, %varclient_1099, %varclient_2555);
-                    ~script3218(interface_1420:com_262, interface_1420:com_0, interface_1420:com_263, %varclient_2555, 6);
+                    ~script3218(interface_1420:com_263, interface_1420:com_0, interface_1420:com_264, %varclient_2555, 6);
                     return;
                 }
         }
@@ -106,13 +105,17 @@ switch_int (%varclient_174) {
             return;
         }
         if (string_indexof_char("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&'*+-/=?^_.{}~@", $char1, 0) ! -1 | $key0 = ^key_backspace | $key0 = ^key_del) {
+            if (if_gethide(interface_1420:com_232) = false) {
+                return;
+            }
             %varclient_2555, %varclient_1099 = ~script802(%varclient_1099, %varclient_2555, 3, $key0, $char1);
             if_settext(%varclient_2555, interface_1420:com_0);
-            ~script3218(interface_1420:com_262, interface_1420:com_0, interface_1420:com_263, %varclient_2555, 6);
+            ~script3218(interface_1420:com_263, interface_1420:com_0, interface_1420:com_264, %varclient_2555, 6);
             if (compare(%varclient_2555, %varclient_2557) ! 0) {
                 ~script7845(3, "", 93061186);
                 ~script7847;
-                if_sethide(true, interface_1420:com_314);
+                ~script7858;
+                if_sethide(true, interface_1420:com_315);
                 if_setontimer("script7834(clientclock, interface_1420:com_231)", interface_1420:com_231);
             }
         }
@@ -120,7 +123,9 @@ switch_int (%varclient_174) {
     case 7 :
         switch_int ($key0) {
             case ^key_return :
-                ~script7885;
+                if (if_gethide(interface_1420:com_477) = true) {
+                    ~script7885;
+                }
             case ^key_tab :
                 if (%varclient_175 >= clientclock) {
                     return;
@@ -142,9 +147,9 @@ switch_int (%varclient_174) {
                 if (string_indexof_char("124678", $char1, 0) = -1) {
                     %varclient_1099 = ~script1553($key0, %varclient_1099, %varclient_2559);
                     if (if_gethide(interface_1420:com_215) = true) {
-                        ~script3218(interface_1420:com_268, interface_1420:com_269, interface_1420:com_270, ~script2949(%varclient_2559), 7);
+                        ~script3218(interface_1420:com_269, interface_1420:com_270, interface_1420:com_271, ~script2949(%varclient_2559), 7);
                     } else {
-                        ~script3218(interface_1420:com_268, interface_1420:com_269, interface_1420:com_270, %varclient_2559, 7);
+                        ~script3218(interface_1420:com_269, interface_1420:com_270, interface_1420:com_271, %varclient_2559, 7);
                     }
                     return;
                 }
@@ -154,16 +159,17 @@ switch_int (%varclient_174) {
         }
         %varclient_2559, %varclient_1099 = ~script802(%varclient_1099, %varclient_2559, 0, $key0, $char1);
         if (if_gethide(interface_1420:com_215) = true) {
-            if_settext(~script2949(%varclient_2559), interface_1420:com_269);
-            ~script3218(interface_1420:com_268, interface_1420:com_269, interface_1420:com_270, ~script2949(%varclient_2559), 7);
+            if_settext(~script2949(%varclient_2559), interface_1420:com_270);
+            ~script3218(interface_1420:com_269, interface_1420:com_270, interface_1420:com_271, ~script2949(%varclient_2559), 7);
         } else {
-            if_settext(%varclient_2559, interface_1420:com_269);
-            ~script3218(interface_1420:com_268, interface_1420:com_269, interface_1420:com_270, %varclient_2559, 7);
+            if_settext(%varclient_2559, interface_1420:com_270);
+            ~script3218(interface_1420:com_269, interface_1420:com_270, interface_1420:com_271, %varclient_2559, 7);
         }
         if (compare(%varclient_2559, %varclient_2561) ! 0) {
             ~script7845(3, "", 93061184);
             ~script7847;
-            if_sethide(true, interface_1420:com_314);
+            ~script7858;
+            if_sethide(true, interface_1420:com_315);
             if_setontimer("script7834(clientclock, interface_1420:com_231)", interface_1420:com_231);
         }
         return;
@@ -189,7 +195,7 @@ switch_int (%varclient_174) {
             case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
                 if (string_indexof_char("124678", $char1, 0) = -1) {
                     %varclient_1099 = ~script1553($key0, %varclient_1099, tostring(%varclient_1407));
-                    ~script3218(interface_1420:com_275, interface_1420:com_276, interface_1420:com_277, tostring(%varclient_1407), 15);
+                    ~script3218(interface_1420:com_276, interface_1420:com_277, interface_1420:com_278, tostring(%varclient_1407), 15);
                     return;
                 }
         }
@@ -263,17 +269,18 @@ switch_int (%varclient_174) {
             }
         }
         if (%varclient_1407 < 1) {
-            if_settext("", interface_1420:com_276);
-            ~script3218(interface_1420:com_275, interface_1420:com_276, interface_1420:com_277, "", 15);
+            if_settext("", interface_1420:com_277);
+            ~script3218(interface_1420:com_276, interface_1420:com_277, interface_1420:com_278, "", 15);
         } else {
-            if_settext(tostring(%varclient_1407), interface_1420:com_276);
-            ~script3218(interface_1420:com_275, interface_1420:com_276, interface_1420:com_277, tostring(%varclient_1407), 15);
+            if_settext(tostring(%varclient_1407), interface_1420:com_277);
+            ~script3218(interface_1420:com_276, interface_1420:com_277, interface_1420:com_278, tostring(%varclient_1407), 15);
         }
         if (%varclient_1407 ! %varclient_1408) {
             ~script7845(3, "", 93061188);
             ~script7847;
+            ~script7858;
             if_setgraphic("rs3_character_interface_register_ticks,3", interface_1420:com_68);
-            if_sethide(true, interface_1420:com_314);
+            if_sethide(true, interface_1420:com_315);
             if_setontimer("script7834(clientclock, interface_1420:com_231)", interface_1420:com_231);
         }
         return;

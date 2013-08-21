@@ -5,15 +5,6 @@ def_int $int11 = calc(32 * $int2 / $int3);
 def_int $int12 = calc(36 * $int2 / $int3);
 def_int $int13 = $int9;
 $int9 = ~script7132($component8, $int9);
-~script7134($component8, oc_name($obj4), verdana_11pt_regular, 0xc7a242, $int1, calc($int0 + $int12 + 3), 170, $int9);
-$int10 = max($int10, calc(cc_gety + cc_getheight));
-$int9 = calc($int9 + 1);
-.cc_create($component8, ^iftype_graphic, $int9);
-.cc_setsize($int12, $int11, ^setsize_abs, ^setsize_abs);
-.cc_setposition($int0, max($int1, calc(cc_gety + cc_getheight / 2 - .cc_getheight / 2)), ^setpos_abs_left, ^setpos_abs_top);
-.cc_setobject_nonum($obj4, 5);
-$int10 = max($int10, calc(.cc_gety + .cc_getheight));
-$int9 = calc($int9 + 1);
 def_string $string0 = "";
 def_int $rgb14 = 0xc7a242;
 if ($boolean7 = true) {
@@ -23,7 +14,16 @@ if ($boolean7 = true) {
     $string0 = tostring($int5);
     $rgb14 = ^red;
 }
-~script7134($component8, $string0, verdana_11pt_regular, $rgb14, 0, 0, 60, $int9);
+~script7134($component8, oc_name($obj4), verdana_11pt_regular, 0xc7a242, $int1, calc($int0 + $int12 + 3), calc(if_getwidth($component8) - ($int0 + $int12 + 3) - (20 + 5 + stringwidth($string0, verdana_11pt_regular) + 5)), $int9);
+$int10 = max($int10, calc(cc_gety + cc_getheight));
+$int9 = calc($int9 + 1);
+.cc_create($component8, ^iftype_graphic, $int9);
+.cc_setsize($int12, $int11, ^setsize_abs, ^setsize_abs);
+.cc_setposition($int0, max($int1, calc(cc_gety + cc_getheight / 2 - .cc_getheight / 2)), ^setpos_abs_left, ^setpos_abs_top);
+.cc_setobject_nonum($obj4, 5);
+$int10 = max($int10, calc(.cc_gety + .cc_getheight));
+$int9 = calc($int9 + 1);
+~script7134($component8, $string0, verdana_11pt_regular, $rgb14, 0, 0, stringwidth($string0, verdana_11pt_regular), $int9);
 cc_setposition(calc(if_getwidth($component8) - 20 - 5 - cc_getwidth), max($int1, calc(.cc_gety + .cc_getheight / 2 - cc_getheight / 2)), ^setpos_abs_left, ^setpos_abs_top);
 $int10 = max($int10, calc(cc_gety + cc_getheight));
 $int9 = calc($int9 + 1);

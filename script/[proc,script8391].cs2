@@ -46,10 +46,6 @@ if (if_gethide($component7) = false) {
     $int11 = struct_param($struct4, param_3547);
     $int12 = calc($int10 + struct_param($struct4, param_3551));
     $int13 = calc($int11 + struct_param($struct4, param_3549));
-    if (%varplayerbit_19924 = 1 & $boolean1 = false & %varplayerbit_19928 = 1 & ~script8874 = false & struct_param($struct4, param_3633) ! -1) {
-        $int11 = struct_param($struct4, param_3633);
-        $int13 = calc($int11 + struct_param($struct4, param_3549));
-    }
 }
 if ($component8 ! null & if_gethide($component8) = false) {
     $int11 = calc($int11 + struct_param($struct4, param_3577));
@@ -87,7 +83,11 @@ switch_int ($int0) {
     case 3 :
         ~script8471(interface_1464:com_13);
     case 4 :
-        ~prayer_load_buttons(interface_1458:com_24, interface_1458:com_22, interface_1458:com_23);
+        if ($boolean1 = false) {
+            ~prayer_load_buttons(interface_1458:com_24, interface_1458:com_22, interface_1458:com_23);
+        } else {
+            ~prayer_load_buttons(interface_1457:com_9, interface_1457:com_0, interface_1457:com_8);
+        }
     case 1 :
         ~script6790;
     case 0 :
@@ -143,5 +143,11 @@ switch_int ($int0) {
             ~script8035;
         } else if (if_hassuboverlay($component6, interface_1429) = true) {
             ~clan_theatre_resize;
+        } else if (if_hassuboverlay($component6, interface_936) = true) {
+            ~script1387;
+        } else if (if_hassuboverlay($component6, interface_953) = true) {
+            ~script1649;
+        } else if (if_hassuboverlay($component6, interface_946) = true) {
+            ~script1651;
         }
 }

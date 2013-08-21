@@ -22,7 +22,8 @@ def_int $int7 = max(0, calc($int1 - 100));
 def_int $int8 = 0;
 def_int $int9 = 1;
 def_int $int10 = 0;
-def_int $int11 = 0;
+def_int $int11 = -1;
+def_int $int12 = 0;
 cc_deleteall(interface_594:com_59);
 cc_deleteall(interface_594:com_58);
 cc_deleteall(interface_594:com_57);
@@ -50,7 +51,7 @@ while ($int7 <= $int1) {
                 }
                 $int9 = paraheight($string7, calc(if_getwidth(interface_594:com_59) - 5), p12_full);
                 if (compare(removetags($string2), chat_playername) ! 0 & $chattype3 ! ^chattype_privatechatout & $chattype3 ! ^chattype_quickchat_private_outgoing) {
-                    $int11 = 1;
+                    $int12 = 1;
                     cc_create(interface_594:com_58, ^iftype_rectangle, if_getnextsubid(interface_594:com_58));
                     cc_setposition(0, calc($int8 * 15 + 2), ^setpos_abs_left, ^setpos_abs_top);
                     cc_setsize(448, calc($int9 * 15), ^setsize_abs, ^setsize_abs);
@@ -59,13 +60,15 @@ while ($int7 <= $int1) {
                     cc_setfill(true);
                     cc_setonmouseover("script237(event_comsubid)");
                     cc_setonmouseleave("script238(event_comsubid)");
-                    cc_create(interface_594:com_57, ^iftype_rectangle, if_getnextsubid(interface_594:com_57));
+                    $int11 = if_getnextsubid(interface_594:com_57);
+                    cc_create(interface_594:com_57, ^iftype_rectangle, $int11);
                     cc_setposition(0, calc($int8 * 15 + 2), ^setpos_abs_left, ^setpos_abs_top);
                     cc_setsize(448, calc($int9 * 15), ^setsize_abs, ^setsize_abs);
                     cc_setcolour(^black);
                     cc_settrans(255);
                     cc_setfill(true);
-                    cc_setonmouseover("snapshot_selected_highlight(event_comsubid)");
+                } else {
+                    $int11 = -1;
                 }
                 cc_create(interface_594:com_59, ^iftype_text, if_getnextsubid(interface_594:com_59));
                 cc_setposition(5, calc($int8 * 15), ^setpos_abs_left, ^setpos_abs_top);
@@ -76,7 +79,7 @@ while ($int7 <= $int1) {
                 if (compare($string0, $string1) ! 0 & $chattype3 ! ^chattype_privatechatout & $chattype3 ! ^chattype_quickchat_private_outgoing) {
                     cc_setopbase($string1);
                     cc_setop(1, "Report");
-                    cc_setonop("script234(event_comsubid)");
+                    cc_setonop("script234(event_comsubid, $int11)");
                     cc_setcolour(^black);
                 }
                 cc_settextfont(p12_full);
@@ -86,7 +89,7 @@ while ($int7 <= $int1) {
     }
     $int7 = calc($int7 + 1);
 }
-if ($int11 = 0) {
+if ($int12 = 0) {
     cc_create(interface_594:com_59, ^iftype_text, if_getnextsubid(interface_594:com_59));
     cc_setposition(5, calc($int8 * 15), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(16384, 15, ^setsize_rel, ^setsize_abs);
