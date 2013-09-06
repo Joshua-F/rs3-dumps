@@ -2,20 +2,20 @@
 [proc,script5351](struct $struct0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, graphic $graphic8, graphic $graphic9, graphic $graphic10)(int, int, int, int, int)
 def_int $int11 = 0;
 def_int $int12 = 0;
-def_int $int13 = 74907653;
-def_component $component14 = interface_1143:com_76;
-def_component $component15 = interface_1143:com_66;
-def_component $component16 = interface_1143:com_67;
-def_component $component17 = interface_1143:com_68;
-def_component $component18 = interface_1143:com_69;
-def_component $component19 = interface_1143:com_70;
-def_component $component20 = interface_1143:com_71;
-def_component $component21 = interface_1143:com_60;
-def_component $component22 = interface_1143:com_61;
-def_component $component23 = interface_1143:com_62;
-def_component $component24 = interface_1143:com_63;
-def_component $component25 = interface_1143:com_64;
-def_component $component26 = interface_1143:com_65;
+def_int $int13 = 74907661;
+def_component $component14 = interface_1143:com_87;
+def_component $component15 = interface_1143:com_77;
+def_component $component16 = interface_1143:com_78;
+def_component $component17 = interface_1143:com_79;
+def_component $component18 = interface_1143:com_80;
+def_component $component19 = interface_1143:com_81;
+def_component $component20 = interface_1143:com_82;
+def_component $component21 = interface_1143:com_71;
+def_component $component22 = interface_1143:com_72;
+def_component $component23 = interface_1143:com_73;
+def_component $component24 = interface_1143:com_74;
+def_component $component25 = interface_1143:com_75;
+def_component $component26 = interface_1143:com_76;
 def_component $component27 = null;
 def_int $int28 = 0;
 def_enum $enum29 = null;
@@ -24,13 +24,13 @@ def_graphic $graphic31 = null;
 def_graphic $graphic32 = null;
 def_string $string0 = "";
 def_int $int33 = 0;
-def_graphic $graphic34 = "aif_fav_button_1,0";
-def_graphic $graphic35 = "aif_fav_button_1,1";
-def_graphic $graphic36 = "aif_fav_button_1,3";
-def_graphic $graphic37 = "aif_fav_button_1,3";
-def_graphic $graphic38 = "aif_fav_button_1,1";
-def_graphic $graphic39 = "aif_fav_button_1,3";
-def_graphic $graphic40 = "aif_fav_button_1,0";
+def_graphic $graphic34 = "aif_loyalty_favorite_button_stars,0";
+def_graphic $graphic35 = "aif_loyalty_favorite_button_stars,0";
+def_graphic $graphic36 = "aif_loyalty_favorite_button_stars,1";
+def_graphic $graphic37 = "aif_loyalty_favorite_button_stars,1";
+def_graphic $graphic38 = "aif_loyalty_favorite_button_stars,0";
+def_graphic $graphic39 = "aif_loyalty_favorite_button_stars,1";
+def_graphic $graphic40 = "aif_loyalty_favorite_button_stars,0";
 def_int $rgb41 = 0xe6be78;
 def_int $int42 = 0;
 def_string $string1 = "Over";
@@ -123,16 +123,29 @@ if ($struct0 ! null) {
             }
         case 5 :
             $int30 = testbit(%varplayer_1247, calc($int33 + 16));
-            $int42 = 1;
     }
     if ($int30 = 0) {
-        $graphic31 = "aif_buy_button_group_3,0";
-        $graphic32 = "aif_buy_button_group_3,2";
+        $graphic31 = "aif_buy_button_group_3,1";
+        $graphic32 = "aif_buy_button_group_3,4";
         $string0 = "Buy";
     } else {
-        $graphic31 = "aif_buy_button_group_3,1";
-        $graphic32 = "aif_buy_button_group_3,3";
-        $string0 = "Reclaim";
+        if (struct_param($struct0, param_1937) = 1) {
+            if (inv_total(inv_93, struct_param($struct0, param_1935)) > 0 | inv_total(inv_94, struct_param($struct0, param_1935)) > 0 | inv_total(inv_95, struct_param($struct0, param_1935)) > 0) {
+                $graphic31 = "aif_buy_button_group_3,2";
+                $graphic32 = "aif_buy_button_group_3,5";
+            } else {
+                $graphic31 = "aif_buy_button_group_3,0";
+                $graphic32 = "aif_buy_button_group_3,3";
+            }
+        } else {
+            $graphic31 = "aif_buy_button_group_3,0";
+            $graphic32 = "aif_buy_button_group_3,3";
+        }
+        if (struct_param($struct0, param_1937) = 5) {
+            $string0 = "Re-colour";
+        } else {
+            $string0 = "Reclaim";
+        }
         if ($int42 = 1) {
             $string0 = "Unlocked";
         }
@@ -158,7 +171,7 @@ if ($struct0 ! null) {
     cc_create($component27, ^iftype_text, $int33);
     cc_setposition(calc($int2 - 103), calc($int3 + 50), ^setpos_abs_left, ^setpos_abs_top);
     cc_settext($string0);
-    cc_settextfont(verdana_11pt_regular);
+    cc_settextfont(graphic_17813);
     cc_settextshadow(true);
     cc_setcolour($rgb41);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
@@ -181,7 +194,7 @@ if ($struct0 ! null) {
     } else {
         cc_settext(struct_param($struct0, param_1930));
     }
-    cc_settextfont(verdana_11pt_regular);
+    cc_settextfont(graphic_17813);
     cc_settextshadow(true);
     cc_setcolour($rgb41);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 12);
@@ -191,20 +204,22 @@ if ($struct0 ! null) {
     } else {
         $int7 = -5;
     }
-    cc_create($component14, ^iftype_text, $int6);
-    $int6 = calc($int6 + 1);
-    cc_setposition(calc($int2 - 117), calc($int3 + 34 + $int7), ^setpos_abs_left, ^setpos_abs_top);
-    cc_settextfont(verdana_13pt_regular);
-    cc_settextshadow(true);
-    if (struct_param($struct0, param_1933) > 0) {
-        cc_settext(append(tostring_localised(struct_param($struct0, param_1933), true), " Points"));
-        cc_setcolour(0x56a5cc);
-    } else {
-        cc_settext(append(tostring_localised(struct_param($struct0, param_1932), true), " Points"));
-        cc_setcolour(0xdb9000);
+    if ($int30 = 0) {
+        cc_create($component14, ^iftype_text, $int6);
+        $int6 = calc($int6 + 1);
+        cc_setposition(calc($int2 - 117), calc($int3 + 34 + $int7), ^setpos_abs_left, ^setpos_abs_top);
+        cc_settextfont(graphic_17814);
+        cc_settextshadow(true);
+        if (struct_param($struct0, param_1933) > 0) {
+            cc_settext(append(tostring_localised(struct_param($struct0, param_1933), true), " Points"));
+            cc_setcolour(0x56a5cc);
+        } else {
+            cc_settext(append(tostring_localised(struct_param($struct0, param_1932), true), " Points"));
+            cc_setcolour(0xdb9000);
+        }
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
+        cc_setsize(79, 19, ^setsize_abs, ^setsize_abs);
     }
-    cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
-    cc_setsize(79, 19, ^setsize_abs, ^setsize_abs);
     switch_int (struct_param($struct0, param_1937)) {
         case 1 :
             $component27 = $component21;

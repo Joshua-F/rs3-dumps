@@ -1,0 +1,81 @@
+// 3379
+[proc,script3379](int $int0, int $int1)
+if (~script8785 = true) {
+    return;
+}
+def_struct $struct2 = null;
+def_component $component3 = null;
+def_int $int4 = -1;
+def_struct $struct5 = null;
+def_component $component6 = null;
+def_int $int7 = -1;
+def_int $int8 = -1;
+def_int $int9 = -1;
+def_int $int10 = enum_getoutputcount(enum_7718);
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_boolean $boolean16 = false;
+def_int $int17 = 0;
+def_int $int18 = 0;
+~script8306;
+if (~script8314($int0) = -1) {
+    $struct2 = enum(int, struct, enum_7716, $int0);
+    if ($struct2 = null) {
+        return;
+    }
+    $int17 = struct_param(struct_param($struct2, param_3494), param_3541);
+    $int18 = struct_param(struct_param($struct2, param_3494), param_3542);
+    $component3 = struct_param($struct2, param_3503);
+    if ($component3 = null) {
+        return;
+    }
+    if_sethide(false, $component3);
+    if (%varclient_3477 = true) {
+        $int12, $int13, $int14, $int15 = ~script8725(8, $int0);
+    } else {
+        $int12, $int13, $int14, $int15 = ~script8725(7, $int0);
+        $int12 = ~script8711($int12, $int14, if_getwidth(interface_1477:com_61));
+        $int13 = ~script8711($int13, $int15, if_getheight(interface_1477:com_61));
+    }
+    if (struct_param($struct2, param_3521) = true) {
+        if_setposition($int12, $int13, ^setpos_abs_left, ^setpos_abs_top, $component3);
+        if_setsize($int14, $int15, ^setsize_abs, ^setsize_abs, $component3);
+        ~script8361($int0);
+        while ($int11 < $int10) {
+            $int4 = enum(int, int, enum_7718, $int11);
+            if ($int4 ! -1 & $int4 ! $int0) {
+                $struct5 = enum(int, struct, enum_7716, $int4);
+                if (struct_param($struct5, param_3521) = true) {
+                    $component6 = struct_param($struct5, param_3503);
+                    if ($component6 ! null & if_gethide($component6) = false) {
+                        $int8 = ~script8396($component3, $component6);
+                        if ($int8 > $int9 & if_getwidth($component6) >= $int17 & if_getheight($component6) >= $int18) {
+                            $int9 = $int8;
+                            $int7 = $int4;
+                        }
+                    }
+                }
+            }
+            $int11 = calc($int11 + 1);
+        }
+    }
+    if ($int7 ! -1 & $int9 >= calc($int14 * $int15 / 3)) {
+        ~script8356($int7, $int0, 1000, $int1, 1);
+    } else {
+        $int12, $int13, $int14, $int15, $boolean16 = ~script8382($int12, $int13, $int14, $int15, $int0, 0, 1);
+        if ($boolean16 = true | struct_param($struct2, param_3521) = false) {
+            ~script8387($int12, $int13, $int14, $int15, $int0);
+            ~script173($int0);
+        } else if ($int7 ! -1) {
+            ~script8356($int7, $int0, 1000, 0, 1);
+        } else {
+            ~script8786($int0, 1);
+        }
+    }
+    ~script8705($int0);
+} else if ($int1 = 1) {
+    ~script8313($int0);
+}
