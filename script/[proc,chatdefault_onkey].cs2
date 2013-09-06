@@ -1,7 +1,5 @@
 // 8509
 [proc,chatdefault_onkey](int $key0, char $char1)
-def_string $string0 = "";
-def_int $int2 = %varclient_2231;
 if (%varplayerbit_4921 > 0) {
     return;
 }
@@ -12,10 +10,12 @@ if (%varclient_2235 ! null) {
         return;
     }
 }
-if ($int2 = -1) {
+def_string $string0 = "";
+def_int $int2 = %varclient_2231;
+if ($int2 = -1 & $key0 ! ^key_tab) {
     return;
 }
-if (if_gethide(~script8585($int2)) = true) {
+if (~script8585($int2) = null | if_gethide(~script8585($int2)) = true) {
     return;
 }
 if (~script2709 = 0) {
@@ -81,9 +81,6 @@ switch_int ($key0) {
         if (string_length(~script8521($int2)) < 1) {
             ~script8518;
         } else {
-            if (%varclient_1650 = true) {
-                %varclient_1650 = false;
-            }
             ~script8522($int2, "");
             %varclient_1028 = 0;
         }
@@ -92,7 +89,11 @@ switch_int ($key0) {
     case ^key_return :
         %varclient_1028 = string_length(escape(~script8521($int2)));
         if (%varclient_2873 ! 8) {
-            ~script8516($int2);
+            if ($int2 ! 19) {
+                ~script8516($int2);
+            } else {
+                ~script8512($int2, %varclient_2367);
+            }
             return;
         }
         $int9, $int10, $int11, $int12, $int13, $int14 = ~script4590;

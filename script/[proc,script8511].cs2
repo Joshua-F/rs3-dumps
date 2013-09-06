@@ -1,22 +1,26 @@
 // 8511
 [proc,script8511](int $int0)
 def_int $int1 = 0;
-if (string_length(%varclient_2505) > 0) {
-    $int1 = friend_getslotfromname(%varclient_2505);
-    if ($int1 ! -1) {
-        if (map_quickchat = false & userdetail_quickchat = false) {
-            ~script8512($int0, %varclient_2505);
+if (string_length(%varclient_2505) <= 0) {
+    if (string_length(%varclient_2367) <= 0) {
+        if (%varclient_183 > calc(clientclock - 100)) {
             return;
-        } else if (friend_platform($int1) = 0) {
-            ~quickchat_open(1, %varclient_2505, $int0);
-        } else {
-            ~quickchat_open(3, %varclient_2505, $int0);
         }
+        mes_typed(~script8526($int0), 0, "You have no messages to reply to.");
+        %varclient_183 = clientclock;
         return;
     }
+    %varclient_2505 = %varclient_2367;
 }
-if (%varclient_183 > calc(clientclock - 100)) {
+$int1 = friend_getslotfromname(%varclient_2505);
+if ($int1 ! -1) {
+    if (map_quickchat = false & userdetail_quickchat = false) {
+        ~script8512($int0, %varclient_2505);
+        return;
+    } else if (friend_platform($int1) = 0) {
+        ~quickchat_open(1, %varclient_2505, $int0);
+    } else {
+        ~quickchat_open(3, %varclient_2505, $int0);
+    }
     return;
 }
-mes("You haven't received any messages to which you can reply.");
-%varclient_183 = clientclock;

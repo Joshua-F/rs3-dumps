@@ -1,11 +1,18 @@
 // 8258
 [proc,script8258](struct $struct0)
 if (struct_param($struct0, param_3539) = 1) {
-    if (cc_param(param_3540) = 2) {
-        cc_settrans(calc(%varclientbit_19930 / 2));
-    } else if (cc_param(param_3540) = 3) {
-        cc_settrans(min(calc(%varclientbit_19930 * 3 / 2), 127));
-    } else if (cc_param(param_3540) = 1) {
-        cc_settrans(%varclientbit_19930);
+    switch_int (cc_param(param_3540)) {
+        case 2 :
+            cc_settrans(calc(%varclientbit_19930 / 2));
+        case 3 :
+            cc_settrans(min(calc(%varclientbit_19930 * 3 / 2), 127));
+        case 1 :
+            cc_settrans(%varclientbit_19930);
+        case 4 :
+            if (%varplayerbit_19928 = 1 & %varclientbit_19930 > 226 & ~script1186 = true) {
+                cc_settrans(calc(255 - 5 * (255 - %varclientbit_19930)));
+            } else {
+                cc_settrans(calc(%varclientbit_19930 / 2));
+            }
     }
 }

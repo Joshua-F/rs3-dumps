@@ -1,18 +1,9 @@
 // 7064
 [clientscript,script7064](component $component0)
-def_component $component1 = interface_464:com_94;
-def_component $component2 = interface_464:com_101;
-def_component $component3 = interface_464:com_93;
-def_component $component4 = interface_464:com_92;
-if_sethide(false, $component1);
 def_string $string0 = "0";
-def_int $int5 = 0;
-def_int $int6 = 0;
-def_int $int7 = 0;
-def_int $int8 = 20;
 switch_graphic (if_getgraphic($component0)) {
     case default :
-        if_sethide(true, $component1);
+        ~script8808;
         return;
     case "staticons,0" :
         $string0 = "Weakness: Melee";
@@ -43,24 +34,4 @@ switch_graphic (if_getgraphic($component0)) {
     case "combaticons,18" :
         $string0 = "Weakness: Thrown";
 }
-if_settext($string0, $component2);
-$int7 = stringwidth($string0, if_getfontmetrics($component2));
-$int7 = calc($int7 + 8);
-if_setsize($int7, $int8, ^setsize_abs, ^setsize_abs, $component1);
-if ($component0 = interface_464:com_100) {
-    $int5 = if_getx($component4);
-    $int5 = calc($int5 - if_getwidth($component1));
-    $int6 = if_gety($component4);
-} else {
-    $int5 = if_getx($component3);
-    $int5 = calc($int5 + if_getwidth($component3));
-    $int6 = if_gety($component3);
-}
-if_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top, $component1);
-if (if_getx($component1) < 0) {
-    if ($component0 = interface_464:com_100) {
-        if_setposition(0, calc(if_gety($component4) + if_getheight($component4)), ^setpos_abs_left, ^setpos_abs_top, $component1);
-    } else {
-        if_setposition(0, calc(if_gety($component3) + if_getheight($component3)), ^setpos_abs_left, ^setpos_abs_top, $component1);
-    }
-}
+~script8800($string0, $component0, -1);
