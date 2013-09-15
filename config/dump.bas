@@ -4659,7 +4659,7 @@ readyanim=seq_440,seq_9738
 walkanim_b=seq_820
 walkanim_l=seq_821
 walkanim_r=seq_822
-readyanim=seq_875,seq_819
+readyanim=seq_21189,seq_819
 
 // 946
 [bas_946]

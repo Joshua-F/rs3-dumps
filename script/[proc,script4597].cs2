@@ -1,20 +1,32 @@
 // 4597
 [proc,script4597]
+def_component $component0 = interface_17:com_28;
+def_component $component1 = interface_17:com_30;
+if_setsize(10, if_getheight($component0), ^setsize_minus, ^setsize_abs, $component1);
+def_int $int2 = if_getwidth($component0);
+if_setsize(12, 0, ^setsize_minus, ^setsize_minus, $component1);
+def_int $int3 = if_getwidth($component1);
 def_string $string0 = "What if I entered the Wilderness?";
+def_int $int4 = paraheight($string0, $int3, graphic_20452);
 def_string $string1 = "Back";
-def_int $int0 = 0;
+def_int $int5 = paraheight($string0, $int3, graphic_20452);
+def_int $int6 = max($int4, $int5);
+def_int $int7 = 12;
+def_int $int8 = calc($int6 * $int7);
+def_int $int9 = 8;
+def_int $int10 = calc($int8 + $int9);
+def_int $int11 = 0;
+def_int $int12 = $int2;
+def_int $int13 = 0;
 if (%varplayerbit_1675 >= 2) {
     if_sethide(true, interface_17:com_28);
     if_setsize(16, 0, ^setsize_minus, ^setsize_minus, interface_17:com_26);
     if_setsize(16, 0, ^setsize_abs, ^setsize_minus, interface_17:com_27);
 } else {
-    $int0 = max(paraheight($string0, if_getwidth(interface_17:com_30), p12_full), paraheight($string1, if_getwidth(interface_17:com_30), p12_full));
-    $int0 = calc($int0 * 12 + 10);
-    if_setsize(10, $int0, ^setsize_minus, ^setsize_abs, interface_17:com_28);
     if_sethide(false, interface_17:com_28);
-    $int0 = calc($int0 + 5);
-    if_setsize(16, $int0, ^setsize_minus, ^setsize_minus, interface_17:com_26);
-    if_setsize(16, $int0, ^setsize_abs, ^setsize_minus, interface_17:com_27);
+    if_setsize($int2, $int10, ^setsize_abs, ^setsize_abs, interface_17:com_28);
+    if_setsize(16, $int10, ^setsize_minus, ^setsize_minus, interface_17:com_26);
+    if_setsize(16, $int10, ^setsize_abs, ^setsize_minus, interface_17:com_27);
     ~v2_stone_button_filled(interface_17:com_29);
     if_setonmouseover("v2_stone_button_in_filled(interface_17:com_29)", interface_17:com_28);
     if_setonmouseleave("v2_stone_button_filled(interface_17:com_29)", interface_17:com_28);
@@ -25,20 +37,21 @@ if (%varplayerbit_1675 >= 2) {
     }
 }
 cc_deleteall(interface_17:com_26);
-$int0 = calc(paraheight(%varclient_2369, if_getwidth(interface_17:com_26), p11_full) * 10 + 2);
+$int11 = paraheight(%varclient_2369, $int12, graphic_20452);
+$int13 = calc($int11 * $int7);
 cc_create(interface_17:com_26, ^iftype_text, 0);
-cc_setsize(0, $int0, ^setsize_minus, ^setsize_abs);
+cc_setsize(0, $int13, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
-cc_settextfont(p11_full);
+cc_settextfont(graphic_20452);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_setcolour(0xff981f);
 cc_settextshadow(true);
 cc_settext(%varclient_2369);
-if ($int0 > if_getheight(interface_17:com_26)) {
-    if_setscrollsize(0, $int0, interface_17:com_26);
+if ($int13 > if_getheight(interface_17:com_26)) {
+    if_setscrollsize(0, $int13, interface_17:com_26);
     ~scrollbar_vertical(interface_17:com_27, interface_17:com_26, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
     if_sethide(false, interface_17:com_27);
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, interface_17:com_26);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, interface_17:com_26);
 } else {
     if_setscrollsize(0, 0, interface_17:com_26);
     if_sethide(true, interface_17:com_27);
