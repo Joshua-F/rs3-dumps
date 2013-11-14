@@ -1,12 +1,5 @@
 // 6035
 [proc,xp_reward_checkskill](stat $stat0, int $int1, obj $obj2, int $int3)(boolean)
-if ($stat0 = divination) {
-    if ($int3 = 1) {
-        mes("You cannot increase your Divination XP in this way.");
-        sound_vorbis_volume(sound_10046, 1, 0, 150);
-    }
-    return(false);
-}
 if (map_members = false & enum_hasoutput(stat, enum_5472, $stat0) = true & stat_base($stat0) >= 5) {
     if ($int3 = 1) {
         if (playermember = false) {
@@ -138,6 +131,10 @@ switch_obj ($obj2) {
                 if (~obj_gettotal(obj_24761) > 0 | %varplayerbit_4345 = 294) {
                     return(false);
                 }
+            case divination :
+                if (~obj_gettotal(obj_29553) > 0 | %varplayerbit_4345 = 590) {
+                    return(false);
+                }
         }
     case obj_25469 :
         switch_stat ($stat0) {
@@ -241,6 +238,10 @@ switch_obj ($obj2) {
                 if (~obj_gettotal(obj_24762) > 0 | %varplayerbit_4345 = 295) {
                     return(false);
                 }
+            case divination :
+                if (~obj_gettotal(obj_29554) > 0 | %varplayerbit_4345 = 591) {
+                    return(false);
+                }
         }
     case obj_25977, obj_27601 :
         switch_stat ($stat0) {
@@ -263,6 +264,16 @@ switch_obj ($obj2) {
                 return(false);
         }
     case obj_28928 :
+        switch_stat ($stat0) {
+            case attack, strength, defence, hitpoints, ranged, magic :
+            case default :
+                if ($int3 = 1) {
+                    mes("You may only use this to increase basic combat skills.");
+                    sound_vorbis_volume(sound_10046, 1, 0, 150);
+                }
+                return(false);
+        }
+    case obj_29752 :
         switch_stat ($stat0) {
             case attack, strength, defence, hitpoints, ranged, magic :
             case default :
@@ -374,6 +385,10 @@ switch_obj ($obj2) {
                 if (%varplayerbit_18013 = 0) {
                     return(false);
                 }
+            case divination :
+                if (%varplayerbit_20590 = 0) {
+                    return(false);
+                }
         }
     case obj_27362 :
         switch_stat ($stat0) {
@@ -397,7 +412,7 @@ switch_obj ($obj2) {
         }
     case obj_28320 :
         switch_stat ($stat0) {
-            case smithing, fishing, mining, runecraft, crafting, woodcutting, firemaking, fletching, construction, hunter, thieving, cooking, herblore, farming :
+            case smithing, fishing, mining, runecraft, crafting, woodcutting, firemaking, fletching, construction, hunter, thieving, cooking, herblore, farming, divination :
             case default :
                 if ($int3 = 1) {
                     mes("You can only boost certain non-combat skills with the banner.");

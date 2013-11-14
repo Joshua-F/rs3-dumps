@@ -1,15 +1,21 @@
 // 4504
-[proc,script4504](component $component0)
-def_component $component1 = if_getlayer($component0);
-if ($component1 = null) {
-    return;
+[proc,script4504](component $component0, int $int1)(boolean)
+def_component $component2 = if_getlayer($component0);
+if ($component2 = null) {
+    return(false);
 }
-def_int $int2 = calc(if_getnextsubid($component1) - 1);
-while ($int2 >= 0) {
-    if (cc_find($component1, $int2) = true) {
+def_int $int3 = ~script8403($component2);
+def_int $int4 = ~script8404($component2);
+if ($int1 ! 1 & $int3 >= 0 & $int3 <= if_getwidth($component2) & $int4 >= 0 & $int4 <= if_getheight($component2)) {
+    return(false);
+}
+def_int $int5 = calc(if_getnextsubid($component2) - 1);
+while ($int5 >= 0) {
+    if (cc_find($component2, $int5) = true) {
         cc_clearops;
     }
-    $int2 = calc($int2 - 1);
+    $int5 = calc($int5 - 1);
 }
-if_sethide(true, $component1);
-~script6364($component1);
+if_sethide(true, $component2);
+~script6364($component2);
+return(true);
