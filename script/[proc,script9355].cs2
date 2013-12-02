@@ -1,0 +1,46 @@
+// 9355
+[proc,script9355](component $component0, struct $struct1, struct $struct2)
+if ($component0 = null | $struct1 = null | $struct2 = null) {
+    return;
+}
+def_int $int3 = struct_param($struct1, param_3797);
+def_graphic $graphic4 = struct_param($struct1, param_3909);
+def_int $int5 = struct_param($struct1, param_3808);
+def_int $int6 = struct_param($struct1, param_3807);
+def_graphic $graphic7 = struct_param($struct2, param_3910);
+def_int $int8 = struct_param($struct2, param_3915);
+def_int $int9 = struct_param($struct2, param_3916);
+def_boolean $boolean10 = false;
+def_boolean $boolean11 = false;
+switch_int ($int3) {
+    case 2 :
+        if_setonmouseover("script8087(false, event_com)", $component0);
+        if_setonmouseleave("script8087(true, event_com)", $component0);
+        $boolean10 = true;
+        $graphic7 = struct_param($struct2, param_3911);
+    case 3 :
+        if_setonclick("script8087(false, event_com)", $component0);
+        if_setonrelease("script8087(true, event_com)", $component0);
+        if_setonmouseleave("script8087(true, event_com)", $component0);
+        $boolean10 = true;
+        $graphic7 = struct_param($struct2, param_3912);
+    case 4 :
+        $boolean11 = true;
+        $graphic7 = struct_param($struct2, param_3913);
+    case 5 :
+        if_setnoclickthrough(true, $component0);
+        $boolean11 = true;
+        $graphic7 = struct_param($struct2, param_3914);
+}
+cc_deleteall($component0);
+cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setsize($int5, $int6, ^setsize_abs, ^setsize_abs);
+cc_setgraphic($graphic4);
+cc_sethide($boolean10);
+cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setsize($int8, $int9, ^setsize_abs, ^setsize_abs);
+cc_setgraphic($graphic7);
+cc_sethide($boolean10);
+if_sethide($boolean11, $component0);

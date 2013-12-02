@@ -6,7 +6,7 @@ if ($boolean1 = false & ($int3 = -3 | $int3 = 21 | $int3 = 1)) {
 }
 sound_vorbis_volume(sound_36961, 1, 0, 100);
 %varclient_175 = clientclock;
-~deltooltip_action(interface_744:com_132);
+~deltooltip_action(interface_744:com_108);
 %varclient_1 = 0;
 %varclient_174 = 1;
 if (%varclient_1090 ! 6) {
@@ -16,23 +16,24 @@ if (%varclient_1090 ! 6) {
 if ($int0 = 0) {
     %varclient_174 = 0;
     ~firstrun;
-    if_sethide(false, interface_744:com_51);
+    if_sethide(false, interface_744:com_27);
 } else {
-    if_sethide(true, interface_744:com_51);
-    if_closesubclient(interface_744:com_51);
+    if_sethide(true, interface_744:com_27);
+    if_closesubclient(interface_744:com_27);
 }
 if ($int0 = 5) {
-    if_opensubclient(interface_744:com_54, interface_975);
+    if_opensubclient(interface_744:com_30, interface_975);
     if_sethide(true, interface_744:com_19);
-    if_sethide(false, interface_744:com_54);
+    if_sethide(false, interface_744:com_30);
 } else {
-    if_closesubclient(interface_744:com_54);
+    if_closesubclient(interface_744:com_30);
     if_sethide(false, interface_744:com_19);
-    if_sethide(true, interface_744:com_54);
+    if_sethide(true, interface_744:com_30);
 }
 if ($int0 = 11) {
     %varclient_547 = 0;
-    if_opensubclient(interface_744:com_53, interface_596);
+    if_opensubclient(interface_744:com_29, interface_596);
+    if_sethide(true, interface_596:com_36);
     ~script2937;
     ~login_open($int0);
     if (%varclient_3706 = 1) {
@@ -46,7 +47,8 @@ if ($int0 = 11) {
         ~script2792;
     }
 } else if ($int0 = 12) {
-    if_opensubclient(interface_744:com_53, interface_596);
+    if_opensubclient(interface_744:com_29, interface_596);
+    if_sethide(true, interface_596:com_36);
     %varclient_2576 = %varclient_2555;
     %varclient_2577 = %varclient_2559;
     %varclient_2555 = "";
@@ -54,18 +56,18 @@ if ($int0 = 11) {
     ~login_dologin(1);
 } else {
     ~login_close;
-    if_closesubclient(interface_744:com_53);
-    if_sethide(true, interface_744:com_53);
+    if_closesubclient(interface_744:com_29);
+    if_sethide(true, interface_744:com_29);
 }
 if ($int0 = 7) {
     ~script2213;
 }
 if ($int0 = 8) {
     %varclient_174 = 10;
-    if_sethide(false, interface_744:com_76);
+    if_sethide(false, interface_744:com_52);
 } else {
-    if_closesubclient(interface_744:com_76);
-    if_sethide(true, interface_744:com_76);
+    if_closesubclient(interface_744:com_52);
+    if_sethide(true, interface_744:com_52);
 }
 if_sethide(false, interface_744:com_19);
 def_graphic $graphic4 = "rs3_audio_option_icons,0";
@@ -86,14 +88,14 @@ if ($int0 = 6) {
     if ($boolean2 = true) {
         ~script3387(detailget_toolkit, getwindowmode, ~graphics_options_reviewoptions(detailget_toolkit), 0);
     }
-    if_sethide(false, interface_744:com_77);
+    if_sethide(false, interface_744:com_53);
     %varclient_174 = 13;
 } else {
     if (%varclient_1090 = 6 & $int0 ! 5) {
         if_sethide(false, interface_744:com_19);
     }
-    if_sethide(true, interface_744:com_77);
-    if_setonresize(null, interface_744:com_77);
+    if_sethide(true, interface_744:com_53);
+    if_setonresize(null, interface_744:com_53);
     if_setonresize(null, interface_882:com_18);
 }
 def_int $int6 = 0;
@@ -101,48 +103,51 @@ def_int $int7 = 0;
 def_string $string0 = "";
 def_fontmetrics $fontmetrics8 = graphic_17813;
 if ($int0 = 9) {
-    $int6 = if_getwidth(interface_744:com_128);
-    $int7 = calc(paraheight(if_gettext(interface_744:com_128), $int6, graphic_17813) * 14 + 5);
-    if_setsize($int6, $int7, ^setsize_abs, ^setsize_abs, interface_744:com_128);
-    $string0 = if_gettext(interface_744:com_130);
-    $int7 = calc(if_gety(interface_744:com_128) + $int7 + 6);
+    $int6 = if_getwidth(interface_744:com_104);
+    $int7 = calc(paraheight(if_gettext(interface_744:com_104), $int6, graphic_17813) * 14 + 5);
+    if_setsize($int6, $int7, ^setsize_abs, ^setsize_abs, interface_744:com_104);
+    $string0 = if_gettext(interface_744:com_106);
+    $int7 = calc(if_gety(interface_744:com_104) + $int7 + 6);
     if (string_length($string0) > 0) {
-        if_setposition(0, $int7, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_129);
-        if_setsize(stringwidth($string0, $fontmetrics8), if_getheight(interface_744:com_129), ^setsize_abs, ^setsize_abs, interface_744:com_129);
-        if_settext("<u=c8c8c8><$string0></u>", interface_744:com_130);
-        if_setonmouseover("loginscreen_link_highlight(interface_744:com_129, interface_744:com_130, $string0, $fontmetrics8, true)", interface_744:com_129);
-        if_setonmouseleave("loginscreen_link_highlight(interface_744:com_129, interface_744:com_130, $string0, $fontmetrics8, false)", interface_744:com_129);
-        if_sethide(false, interface_744:com_129);
-        $int7 = calc($int7 + if_getheight(interface_744:com_129) + 6);
+        if_setposition(0, $int7, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_105);
+        if_setsize(stringwidth($string0, $fontmetrics8), if_getheight(interface_744:com_105), ^setsize_abs, ^setsize_abs, interface_744:com_105);
+        if_settext("<u=c8c8c8><$string0></u>", interface_744:com_106);
+        if_setonmouseover("loginscreen_link_highlight(interface_744:com_105, interface_744:com_106, $string0, $fontmetrics8, true)", interface_744:com_105);
+        if_setonmouseleave("loginscreen_link_highlight(interface_744:com_105, interface_744:com_106, $string0, $fontmetrics8, false)", interface_744:com_105);
+        if_sethide(false, interface_744:com_105);
+        $int7 = calc($int7 + if_getheight(interface_744:com_105) + 6);
     } else {
-        if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_129);
-        if_setonmouseover(null, interface_744:com_129);
-        if_setonmouseleave(null, interface_744:com_129);
-        if_setonclick(null, interface_744:com_129);
-        if_sethide(true, interface_744:com_129);
-        if_settext("", interface_744:com_130);
+        if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_105);
+        if_setonmouseover(null, interface_744:com_105);
+        if_setonmouseleave(null, interface_744:com_105);
+        if_setonclick(null, interface_744:com_105);
+        if_sethide(true, interface_744:com_105);
+        if_settext("", interface_744:com_106);
     }
-    if_setsize(stringwidth(if_gettext(interface_744:com_131), verdana_15pt_regular), if_getheight(interface_744:com_131), ^setsize_abs, ^setsize_abs, interface_744:com_131);
-    if_setsize(if_getwidth(interface_744:com_78), calc($int7 + if_getheight(interface_744:com_131) + 11), ^setsize_abs, ^setsize_abs, interface_744:com_78);
-    if_sethide(false, interface_744:com_78);
+    if_setsize(stringwidth(if_gettext(interface_744:com_107), verdana_15pt_regular), if_getheight(interface_744:com_107), ^setsize_abs, ^setsize_abs, interface_744:com_107);
+    if_setsize(if_getwidth(interface_744:com_54), calc($int7 + if_getheight(interface_744:com_107) + 11), ^setsize_abs, ^setsize_abs, interface_744:com_54);
+    if_sethide(false, interface_744:com_54);
 } else {
-    if_sethide(true, interface_744:com_78);
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_129);
-    if_setonmouseover(null, interface_744:com_129);
-    if_setonmouseleave(null, interface_744:com_129);
-    if_setonclick(null, interface_744:com_129);
-    if_sethide(true, interface_744:com_129);
-    if_settext("", interface_744:com_130);
-    if_settext("", interface_744:com_128);
-    if_setonclick(null, interface_744:com_131);
+    if_sethide(true, interface_744:com_54);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_105);
+    if_setonmouseover(null, interface_744:com_105);
+    if_setonmouseleave(null, interface_744:com_105);
+    if_setonclick(null, interface_744:com_105);
+    if_sethide(true, interface_744:com_105);
+    if_settext("", interface_744:com_106);
+    if_settext("", interface_744:com_104);
+    if_setonclick(null, interface_744:com_107);
 }
 if ($int0 = 10) {
     %varclient_174 = 11;
-    if_sethide(false, interface_744:com_85);
+    if_sethide(false, interface_744:com_63);
+    if (has_html5 = false) {
+        if_setposition(0, 200, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_63);
+    }
 } else {
-    if_sethide(true, interface_744:com_85);
-    if_setonclick(null, interface_744:com_82);
-    if_setonclick(null, interface_744:com_81);
+    if_sethide(true, interface_744:com_63);
+    if_setonclick(null, interface_744:com_60);
+    if_setonclick(null, interface_744:com_59);
 }
 if ($int0 ! 9 & $int0 ! 10) {
     %varclient_1090 = $int0;

@@ -1,0 +1,128 @@
+// 758
+[proc,script758](int $int0, int $int1, int $int2, int $int3, int $int4)
+def_component $component5 = interface_669:com_5;
+def_component $component6 = interface_669:com_6;
+def_component $component7 = interface_669:com_20;
+def_component $component8 = interface_669:com_23;
+def_component $component9 = interface_669:com_22;
+def_component $component10 = interface_669:com_25;
+def_component $component11 = interface_669:com_21;
+if ($int0 = 2) {
+    $component5 = interface_695:com_1;
+    $component6 = interface_695:com_2;
+    $component7 = interface_695:com_20;
+    $component8 = interface_695:com_23;
+    $component9 = interface_695:com_22;
+    $component10 = interface_695:com_25;
+    $component11 = interface_695:com_21;
+}
+if (%varplayer_3928 = null | $int0 = 2) {
+    if_setontimer(null, $component5);
+    return;
+}
+if_sethide(true, $component7);
+if_sethide(true, $component8);
+if (~script6352(%varplayer_3928) = false) {
+    return;
+}
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+if (%varplayer_3929 = -1 & if_find(%varplayer_3928) = true | cc_find(%varplayer_3928, %varplayer_3929) = true) {
+    if (~script6353 = false | ~script6375 = false) {
+        return;
+    }
+    $int12 = ~script6355;
+    $int13 = ~script6356;
+    $int14 = cc_getheight;
+    $int15 = cc_getwidth;
+} else {
+    return;
+}
+def_struct $struct16 = enum(int, struct, enum_8079, $int1);
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_int $int19 = 0;
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_int $int22 = 0;
+def_int $int23 = if_getwidth(interface_669:com_4);
+def_int $int24 = if_getheight(interface_669:com_4);
+def_int $int25 = 0;
+def_int $int26 = struct_param($struct16, param_3830);
+def_int $int27 = 0;
+def_component $component28 = interface_669:com_20;
+if ($int0 = 1 & %varclient_3840 ! 0 & $int26 = 0) {
+    $int26 = max(0, %varclient_3840);
+}
+if ($int0 = 2 & %varclient_3841 ! 0 & $int26 = 0) {
+    $int26 = max(0, %varclient_3841);
+}
+while ($int25 = 0 & $int27 < 3) {
+    if ($int25 = 0 & $int26 = 0 | $int26 = 1) {
+        $int17 = $int12;
+        $int18 = $int13;
+        if ($int1 ! 4) {
+            if ($int27 = 0) {
+                $int17 = calc($int17 + ($int15 / 2 - 20));
+            } else if ($int27 = 2) {
+                $int17 = calc($int17 + $int15);
+            }
+        }
+        $component28 = $component8;
+        if ($int26 = 1 | calc($int18 - $int3 - 72) > 0) {
+            $int22 = calc($int18 - $int3 - 73);
+            $int20 = calc($int18 - 85);
+            $int19 = $int17;
+            $int21 = calc($int17 + 20 - $int2 / 2);
+            $int25 = 1;
+            if (%varclient_3840 = 0 & $int25 = 1) {
+                %varclient_3840 = 1;
+            }
+        }
+    }
+    if ($int25 = 0 & $int26 = 0 | $int26 = 2) {
+        $int17 = $int12;
+        $int18 = calc($int13 + $int14);
+        if ($int27 = 0) {
+            $int17 = calc($int17 + ($int15 / 2 - 20));
+        } else if ($int27 = 2) {
+            $int17 = calc($int17 + $int15);
+        }
+        $component28 = $component7;
+        if ($int26 = 2 | calc($int18 + $int3 + 69) < $int24) {
+            $int22 = calc($int18 + 63);
+            $int20 = $int18;
+            $int19 = $int17;
+            $int21 = calc($int17 + 20 - $int2 / 2);
+            $int25 = 1;
+            if (%varclient_3840 = 0) {
+                %varclient_3840 = 2;
+            }
+            if_sethide(true, $component11);
+        }
+    }
+    $int27 = calc($int27 + 1);
+}
+if ($int25 = 1) {
+    if ($int1 = 4) {
+        if ($component28 = $component8) {
+            $int22 = calc($int22 - 40);
+            $int20 = calc($int20 - 40);
+        } else {
+            $int22 = calc($int22 + 40);
+            $int20 = calc($int20 + 40);
+        }
+    }
+    if (struct_param($struct16, param_3832) = 0) {
+        if_sethide(false, $component28);
+        if ($component28 = $component8) {
+            if_setontimer("script759($component10, 10, 0)", $component10);
+        } else {
+            if_setontimer("script759($component9, 20, 20)", $component9);
+        }
+    }
+    if_setposition(min(max(0, $int21), calc($int23 - $int2)), $int22, ^setpos_abs_left, ^setpos_abs_top, $component6);
+    if_setposition(min(max(15, $int19), calc($int23 - 56)), $int20, ^setpos_abs_left, ^setpos_abs_top, $component28);
+}

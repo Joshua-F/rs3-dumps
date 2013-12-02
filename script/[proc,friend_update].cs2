@@ -65,11 +65,12 @@ def_int $int24 = calc($int22 - ($int23 + $int18));
 def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
-def_int $int25 = 0;
 def_string $string3 = "";
+def_int $int25 = 0;
+def_string $string4 = "";
 def_int $int26 = 0;
 def_int $int27 = 0;
-def_string $string4 = "";
+def_string $string5 = "";
 def_int $int28 = 0;
 def_int $int29 = 0;
 def_int $int30 = 15;
@@ -79,11 +80,11 @@ def_int $int33 = 0;
 def_int $int34 = 0;
 def_int $int35 = 0;
 def_int $int36 = 0;
-def_string $string5 = "";
+def_string $string6 = "";
 while ($int21 < $int20) {
     $int28 = calc($int21 * $int30 + $int31);
-    $string0, $string3 = friend_getname($int21);
-    if (compare($string3, "") ! 0) {
+    $string0, $string4 = friend_getname($int21);
+    if (compare($string4, "") ! 0) {
         $int26 = 1;
     } else {
         $int26 = 0;
@@ -95,11 +96,8 @@ while ($int21 < $int20) {
     }
     $int27 = friend_getworld($int21);
     if (friend_is_referrer($int21) = true | friend_is_referred($int21) = true) {
+        $string1 = "     <$string0>";
         $rgb32 = 0x88bcf3;
-        cc_create($component5, ^iftype_graphic, if_getnextsubid($component5));
-        cc_setsize(9, 9, ^setsize_abs, ^setsize_abs);
-        cc_setposition(93, calc($int28 + 3), ^setpos_abs_left, ^setpos_abs_top);
-        cc_setgraphic(aif_friends_list_icons);
     } else {
         $rgb32 = 0xa4997d;
     }
@@ -119,6 +117,11 @@ while ($int21 < $int20) {
         cc_setop(2, "Quick Message");
         cc_setop(3, "Trail");
         cc_setop(6, "Join");
+        if (compare(friend_getnotes($int21), "") ! 0) {
+            cc_setop(7, "Edit Note");
+        } else {
+            cc_setop(7, "Add Note");
+        }
     } else {
         if (map_quickchat = false & userdetail_quickchat = false) {
             cc_setop(4, "Message");
@@ -126,8 +129,13 @@ while ($int21 < $int20) {
         cc_setop(5, "Quick Message");
         cc_setop(3, "Trail");
         cc_setop(6, "Join");
+        if (compare(friend_getnotes($int21), "") ! 0) {
+            cc_setop(7, "Edit Note");
+        } else {
+            cc_setop(7, "Add Note");
+        }
     }
-    cc_setop(7, "Delete");
+    cc_setop(8, "Delete");
     cc_setonop("friend_op(event_op, event_opbase, $int21)");
     if (stringwidth($string1, graphic_20452) > $int23) {
         while (stringwidth("<$string1>...", graphic_20452) > $int23 & string_length($string1) > 0) {
@@ -135,51 +143,77 @@ while ($int21 < $int20) {
         }
         cc_settext("<$string1>...");
         if ($int26 = 1) {
-            if (paraheight("Last known as: <$string3>", calc($int22 - 8), graphic_20452) > 1) {
-                $string2 = "<$string0><br>Last known as:<br><$string3>";
+            if (paraheight("Last known as: <$string4>", calc($int22 - 8), graphic_20452) > 1) {
+                $string2 = "<$string0><br>Last known as:<br><$string4>";
             } else {
-                $string2 = "<$string0><br>Last known as: <$string3>";
+                $string2 = "<$string0><br>Last known as: <$string4>";
             }
         } else {
             $string2 = $string0;
+        }
+        if (compare(friend_getnotes($int21), "") ! 0) {
+            $string3 = friend_getnotes($int21);
+            $string2 = "<$string2><br><$string3>";
+        } else {
+            $string3 = "";
         }
         cc_setonmouserepeat("script1594($component16, event_com, event_comsubid, $string2, event_mousex, event_mousey)");
         cc_setonmouseleave("deltooltip($component16)");
     } else {
         cc_settext($string1);
+        $string2 = "";
         if ($int26 = 1) {
-            if (paraheight("Last known as: <$string3>", calc($int22 - 8), graphic_20452) > 1) {
-                $string2 = "Last known as:<br><$string3>";
+            if (paraheight("Last known as: <$string4>", calc($int22 - 8), graphic_20452) > 1) {
+                $string2 = "Last known as:<br><$string4>";
             } else {
-                $string2 = "Last known as: <$string3>";
+                $string2 = "Last known as: <$string4>";
             }
+        }
+        if (compare(friend_getnotes($int21), "") ! 0) {
+            $string3 = friend_getnotes($int21);
+            if (compare($string2, "") ! 0) {
+                $string2 = "<$string2><br><$string3>";
+            } else {
+                $string2 = $string3;
+            }
+        } else {
+            $string3 = "";
+        }
+        if (compare($string2, "") ! 0) {
             cc_setonmouserepeat("script1594($component16, event_com, event_comsubid, $string2, event_mousex, event_mousey)");
             cc_setonmouseleave("deltooltip($component16)");
         }
     }
-    cc_create($component11, ^iftype_graphic, if_getnextsubid($component11));
-    cc_setgraphic(friends_changed_name);
-    cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
-    cc_setposition(0, $int28, ^setpos_abs_left, ^setpos_abs_top);
-    if ($int26 = 0) {
-        cc_sethide(true);
+    if (friend_is_referrer($int21) = true | friend_is_referred($int21) = true) {
+        cc_create($component11, ^iftype_graphic, if_getnextsubid($component11));
+        cc_setgraphic(aif_friends_list_icons);
+        cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
+        cc_setposition(0, $int28, ^setpos_abs_left, ^setpos_abs_top);
+    } else {
+        cc_create($component11, ^iftype_graphic, if_getnextsubid($component11));
+        cc_setgraphic(friends_changed_name);
+        cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
+        cc_setposition(0, $int28, ^setpos_abs_left, ^setpos_abs_top);
+        if ($int26 = 0) {
+            cc_sethide(true);
+        }
     }
     if_setsize($int24, 0, ^setsize_abs, ^setsize_minus, $component12);
     if_setsize($int24, 0, ^setsize_abs, ^setsize_minus, $component13);
     if ($int27 = 0) {
-        $string4 = "Offline";
         $string5 = "Offline";
+        $string6 = "Offline";
         $int36 = 0;
     } else if (string_indexof_string(friend_getworldname($int21), "RuneScape", 0) ! -1) {
-        $string4 = tostring($int27);
-        $string5 = friend_getworldname($int21);
+        $string5 = tostring($int27);
+        $string6 = friend_getworldname($int21);
         $int36 = calc(2 + 24 + 2);
     } else {
-        $string4 = friend_getworldname($int21);
-        $string5 = $string4;
+        $string5 = friend_getworldname($int21);
+        $string6 = $string5;
         $int36 = 0;
     }
-    $int33 = stringwidth($string4, graphic_20452);
+    $int33 = stringwidth($string5, graphic_20452);
     if ($int24 >= calc($int33 + $int36)) {
         if ($int36 > 0) {
             cc_create($component13, ^iftype_graphic, if_getnextsubid($component13));
@@ -198,9 +232,9 @@ while ($int21 < $int20) {
     }
     if ($int24 >= $int33) {
     } else {
-        cc_setonmouserepeat("script1594($component16, event_com, event_comsubid, $string5, event_mousex, event_mousey)");
+        cc_setonmouserepeat("script1594($component16, event_com, event_comsubid, $string6, event_mousex, event_mousey)");
         cc_setonmouseleave("deltooltip($component16)");
-        $string4 = "...";
+        $string5 = "...";
     }
     cc_create($component12, ^iftype_text, if_getnextsubid($component12));
     cc_setsize($int24, $int30, ^setsize_abs, ^setsize_abs);
@@ -208,7 +242,7 @@ while ($int21 < $int20) {
     cc_settextfont(graphic_20452);
     cc_settextshadow(true);
     cc_settextalign(^settextalign_left, ^settextalign_top, 0);
-    cc_settext($string4);
+    cc_settext($string5);
     if ($int27 = 0) {
         cc_setcolour(0xdd5c3e);
     } else if ($int27 = map_world) {
@@ -216,7 +250,7 @@ while ($int21 < $int20) {
     } else {
         cc_setcolour(0xffff64);
     }
-    cc_setonmouserepeat("script1594($component16, event_com, event_comsubid, $string5, event_mousex, event_mousey)");
+    cc_setonmouserepeat("script1594($component16, event_com, event_comsubid, $string6, event_mousex, event_mousey)");
     cc_setonmouseleave("deltooltip($component16)");
     $int21 = calc($int21 + 1);
 }
