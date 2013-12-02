@@ -1,0 +1,58 @@
+// 9326
+[proc,script9326]
+if (~script5767 = 1) {
+    return;
+}
+def_struct $struct0 = enum(int, struct, enum_8081, %varplayerbit_20967);
+if (%varplayerbit_20966 = 0 | %varplayerbit_20967 = 0 | $struct0 = null) {
+    ~script3374(1021);
+    if_sethide(true, interface_557:com_8);
+    return;
+}
+if_sethide(false, interface_557:com_8);
+if_sethide(false, interface_557:com_12);
+if_sethide(false, interface_557:com_1);
+if (%varplayerbit_3561 = 3531) {
+    if_setgraphic(graphic_21363, interface_557:com_1);
+} else {
+    if_setgraphic(graphic_21362, interface_557:com_1);
+}
+if (if_find(interface_557:com_8) = true) {
+    ~script8412(1021);
+}
+def_string $string0 = "";
+switch_int (%varplayerbit_20968) {
+    case default :
+        $string0 = struct_param($struct0, param_1274);
+    case 1 :
+        $string0 = struct_param($struct0, param_1274);
+    case 2 :
+        $string0 = struct_param($struct0, param_1275);
+    case 3 :
+        $string0 = struct_param($struct0, param_1276);
+    case 4 :
+        $string0 = struct_param($struct0, param_1277);
+    case 5 :
+        $string0 = struct_param($struct0, param_1278);
+    case 6 :
+        $string0 = struct_param($struct0, param_1279);
+    case 7 :
+        $string0 = struct_param($struct0, param_1280);
+    case 8 :
+        $string0 = struct_param($struct0, param_1281);
+}
+if (compare($string0, "") = 0) {
+    $string0 = struct_param($struct0, param_1274);
+}
+def_int $int1 = 0;
+def_int $int2 = 0;
+$int1, $int2 = ~script9323(%varplayerbit_20967, %varplayerbit_20968);
+if ($int1 ! -1 & $int2 ! -1) {
+    $string0 = append($string0, " (<tostring($int1)>/<tostring($int2)>)");
+}
+def_int $int3 = paraheight($string0, if_getwidth(interface_557:com_23), graphic_17813);
+if_settext(struct_param($struct0, param_1266), interface_557:com_24);
+if_settext($string0, interface_557:com_23);
+if_setposition(20, 20, ^setpos_abs_left, ^setpos_abs_top, interface_557:com_11);
+if_setsize(40, 42, ^setsize_minus, ^setsize_minus, interface_557:com_11);
+if_setsize(if_getwidth(interface_557:com_8), max(60, min(160, calc($int3 * 17 + 20 + 27 + 15))), ^setsize_abs, ^setsize_abs, interface_557:com_8);

@@ -1,0 +1,29 @@
+// 9205
+[clientscript,script9205](int $key0, char $char1, component $component2, component $component3, int $int4)
+def_string $string0 = if_gettext($component2);
+def_string $string1 = $string0;
+def_string $string2 = "";
+switch_int ($key0) {
+    case ^key_left :
+        if (%varclient_3782 > 0) {
+            %varclient_3782 = calc(%varclient_3782 - 1);
+        }
+    case ^key_right :
+        if (%varclient_3782 < string_length($string0)) {
+            %varclient_3782 = calc(%varclient_3782 + 1);
+        }
+    case ^key_home :
+        %varclient_3782 = 0;
+    case ^key_end :
+        %varclient_3782 = string_length($string0);
+    case default :
+        $string1, %varclient_3782 = ~script802(%varclient_3782, $string0, $int4, $key0, $char1);
+}
+if_settext(~script1602($string1), $component2);
+def_int $int5 = stringwidth(substring($string1, 0, %varclient_3782), if_getfontmetrics($component2));
+def_int $int6 = 4;
+if (calc($int5 + 4) > if_getwidth(if_getlayer($component2))) {
+    $int6 = calc(-4 - ($int5 - if_getwidth(if_getlayer($component2))));
+}
+if_setposition($int6, if_gety($component2), ^setpos_abs_left, ^setpos_abs_top, $component2);
+if_setposition(~script1551(%varclient_3782, $string1, if_getfontmetrics($component2), $int6), if_gety($component3), ^setpos_abs_left, ^setpos_abs_top, $component3);

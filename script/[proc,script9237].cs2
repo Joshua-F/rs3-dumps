@@ -1,0 +1,117 @@
+// 9237
+[proc,script9237](component $component0, component $component1, component $component2, component $component3, inv $inv4, boolean $boolean5, int $int6, int $int7, int $int8)
+if ($component1 = null | $inv4 = null) {
+    return;
+}
+$int7 = max($int6, min($int7, calc(inv_size($inv4) - 1)));
+if ($component2 ! null) {
+    if_sethide(true, $component2);
+}
+def_component $component9 = if_getlayer($component1);
+def_int $int10 = 36;
+def_int $int11 = 32;
+def_int $int12 = $int10;
+def_int $int13 = $int11;
+if ($component0 ! null) {
+    cc_deleteall($component0);
+    $int12 = 40;
+    $int13 = 36;
+}
+cc_deleteall($component1);
+if (if_find($component1) = true) {
+    cc_setparam(param_3818, $inv4);
+    cc_setparam(param_3819, $component3);
+    cc_setparam(param_3820, $boolean5);
+}
+def_int $int14 = min(calc($int7 - $int6 + 1), inv_size($inv4));
+def_int $int15 = 0;
+def_int $int16 = 0;
+if ($component9 ! null) {
+    $int15 = if_getwidth($component9);
+    $int16 = if_getheight($component9);
+} else {
+    $int15 = if_getwidth($component1);
+    $int16 = if_getheight($component1);
+}
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_int $int19 = 0;
+$int17, $int18, $int19 = ~script8107($int15, $int12);
+$int17 = min($int17, $int14);
+def_int $int20 = 0;
+def_int $int21 = calc($int13 + 2);
+$int20 = max(1, calc($int14 / $int17));
+if (calc($int14 % $int17) > 0) {
+    $int20 = calc($int20 + 1);
+}
+def_int $int22 = 0;
+def_int $int23 = 0;
+if ($component9 ! null & $component3 ! null) {
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component9);
+    if (calc($int20 * $int21) > calc($int16 + 5)) {
+        $int22 = 1;
+        if_setsize(16, 0, ^setsize_minus, ^setsize_minus, $component9);
+        if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, $component3);
+        if_setsize(16, if_getheight($component9), ^setsize_abs, ^setsize_abs, $component3);
+        if_sethide(false, $component3);
+        $int15 = if_getwidth($component9);
+        $int17, $int18, $int19 = ~script8107($int15, $int12);
+        $int17 = min($int17, $int14);
+        $int20 = max(1, calc($int14 / $int17));
+        if (calc($int14 % $int17) > 0) {
+            $int20 = calc($int20 + 1);
+        }
+        $int23 = calc($int20 * $int21);
+        if_setscrollsize(0, $int23, $component9);
+        ~rs3_scrollbar_vertical($component3, $component9);
+    } else {
+        if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component9);
+        if_sethide(true, $component3);
+    }
+}
+def_int $int24 = 0;
+def_int $int25 = 0;
+def_int $int26 = -1;
+def_int $int27 = 0;
+if ($component0 ! null) {
+    while ($int24 <= $int7) {
+        cc_create($component0, ^iftype_graphic, $int24);
+        .cc_create($component1, ^iftype_graphic, $int24);
+        if ($int24 >= $int6) {
+            cc_setsize($int12, $int13, ^setsize_abs, ^setsize_abs);
+            cc_setgraphic(rs3_inventory_slot);
+            $int25 = calc($int24 % $int17);
+            if ($int25 = 0) {
+                $int26 = calc($int26 + 1);
+                $int27 = calc(2 + $int26 * $int21);
+            }
+            cc_setposition(~script8108($int12, $int18, $int19, $int25), $int27, ^setpos_abs_left, ^setpos_abs_top);
+            .cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+            .cc_setposition(calc(cc_getx + cc_getwidth / 2 - .cc_getwidth / 2 + 1), calc(cc_gety + cc_getheight / 2 - .cc_getheight / 2 + 1), ^setpos_abs_left, ^setpos_abs_top);
+        } else {
+            cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
+            cc_sethide(true);
+            .cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
+            .cc_sethide(true);
+        }
+        $int24 = calc($int24 + 1);
+    }
+} else {
+    while ($int24 <= $int7) {
+        cc_create($component1, ^iftype_graphic, $int24);
+        if ($int24 >= $int6) {
+            cc_setsize($int12, $int13, ^setsize_abs, ^setsize_abs);
+            cc_setnoclickthrough(true);
+            $int25 = calc($int24 % $int17);
+            if ($int25 = 0) {
+                $int26 = calc($int26 + 1);
+                $int27 = calc(2 + $int26 * $int21);
+            }
+            cc_setposition(~script8108($int12, $int18, $int19, $int25), $int27, ^setpos_abs_left, ^setpos_abs_top);
+        } else {
+            cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
+            cc_sethide(true);
+        }
+        $int24 = calc($int24 + 1);
+    }
+}

@@ -63,14 +63,72 @@ switch_component ($component0) {
 }
 def_string $string0 = "";
 def_int $int3 = 0;
-def_int $int4 = calc(%varclient_2695 / 10);
+def_int $int4 = 0;
+def_int $int5 = calc(%varclient_2695 / 10);
 if ($int2 = 0) {
     $string0 = append(enum(stat, string, enum_680, $stat1), ": <tostring(stat($stat1))>/<tostring(stat_base($stat1))><br>");
     $string0 = append($string0, "Current XP: <tostring_localised(stat_visible_xp($stat1), true)><br>");
     $string0 = append($string0, "Next level: <tostring_localised(enum(int, int, enum_716, calc(stat_base($stat1) + 1)), true)><br>");
     $string0 = append($string0, "Remainder: <tostring_localised(calc(enum(int, int, enum_716, calc(stat_base($stat1) + 1)) - stat_visible_xp($stat1)), true)>");
+    switch_stat ($stat1) {
+        case attack :
+            $int4 = %varplayer_3304;
+        case strength :
+            $int4 = %varplayer_3305;
+        case defence :
+            $int4 = %varplayer_3306;
+        case magic :
+            $int4 = %varplayer_3307;
+        case ranged :
+            $int4 = %varplayer_3308;
+        case prayer :
+            $int4 = %varplayer_2850;
+        case summoning :
+            $int4 = %varplayer_3309;
+        case mining :
+            $int4 = %varplayer_3310;
+        case smithing :
+            $int4 = %varplayer_3311;
+        case crafting :
+            $int4 = %varplayer_3312;
+        case woodcutting :
+            $int4 = %varplayer_3313;
+        case farming :
+            $int4 = %varplayer_3314;
+        case firemaking :
+            $int4 = %varplayer_3315;
+        case fishing :
+            $int4 = %varplayer_3316;
+        case cooking :
+            $int4 = %varplayer_3317;
+        case dungeoneering :
+            $int4 = %varplayer_3318;
+        case slayer :
+            $int4 = %varplayer_3319;
+        case runecraft :
+            $int4 = %varplayer_3320;
+        case hunter :
+            $int4 = %varplayer_3321;
+        case thieving :
+            $int4 = %varplayer_3322;
+        case construction :
+            $int4 = %varplayer_3323;
+        case hitpoints :
+            $int4 = %varplayer_3324;
+        case agility :
+            $int4 = %varplayer_3325;
+        case fletching :
+            $int4 = %varplayer_3326;
+        case herblore :
+            $int4 = %varplayer_3327;
+        case divination :
+            $int4 = %varplayer_3836;
+    }
+    if ($int4 > 0) {
+        $string0 = append($string0, "<br>Bonus XP: <col=00ff00><tostring_localised(calc($int4 / 10), true)>");
+    }
 } else {
-    $string0 = append("Current XP", " : <tostring($int4)><br>");
+    $string0 = append("Current XP", " : <tostring($int5)><br>");
     if (%varclient_2695 < 9000) {
         $int3 = calc(9000 - %varclient_2695);
         $int3 = calc($int3 / 10);
@@ -81,9 +139,9 @@ if ($int2 = 0) {
         $string0 = append($string0, "Remainder until adult : <tostring($int3)>");
     }
 }
-def_int $int5 = calc(parawidth($string0, 512, if_getfontmetrics(interface_1213:com_6)) + 8);
-def_int $int6 = calc(paraheight($string0, 512, if_getfontmetrics(interface_1213:com_6)) * 12 + 8);
-if_setsize($int5, $int6, ^setsize_abs, ^setsize_abs, interface_1213:com_4);
+def_int $int6 = calc(parawidth($string0, 512, if_getfontmetrics(interface_1213:com_6)) + 8);
+def_int $int7 = calc(paraheight($string0, 512, if_getfontmetrics(interface_1213:com_6)) * 12 + 8);
+if_setsize($int6, $int7, ^setsize_abs, ^setsize_abs, interface_1213:com_4);
 if_settext($string0, interface_1213:com_6);
 if_sethide(false, interface_1213:com_4);
 if_setposition(calc(if_getx(interface_1213:com_2) + if_getx($component0) + if_getwidth($component0)), calc(if_gety($component0) + if_getheight($component0)), ^setpos_abs_left, ^setpos_abs_top, interface_1213:com_4);

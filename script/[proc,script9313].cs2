@@ -1,0 +1,113 @@
+// 9313
+[proc,script9313]
+if (%varplayerbit_20972 <= 0) {
+    %varplayerbit_20972 = %varplayerbit_20966;
+}
+if (%varplayerbit_20972 <= 0) {
+    %varplayerbit_20972 = 1;
+}
+def_enum $enum0 = ~script9320(%varplayerbit_20972);
+if ($enum0 = null) {
+    return;
+}
+cc_deleteall(interface_639:com_35);
+cc_deleteall(interface_639:com_34);
+if (%varclient_3852 < 0) {
+    %varclient_3852 = 0;
+}
+def_int $int1 = enum(int, int, $enum0, %varclient_3852);
+def_struct $struct2 = ~script9324($int1);
+if ($struct2 = null) {
+    return;
+}
+def_graphic $graphic3 = struct_param($struct2, param_1271);
+def_int $int4 = if_getwidth(interface_639:com_35);
+cc_create(interface_639:com_35, ^iftype_graphic, if_getnextsubid(interface_639:com_35));
+cc_setsize(50, 50, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setgraphic($graphic3);
+cc_create(interface_639:com_35, ^iftype_text, if_getnextsubid(interface_639:com_35));
+cc_setsize(calc($int4 - 55), 25, ^setsize_abs, ^setsize_abs);
+cc_setposition(55, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext(struct_param($struct2, param_1266));
+cc_setcolour(0xaed0e0);
+cc_settextfont(graphic_17814);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 15);
+cc_create(interface_639:com_35, ^iftype_text, if_getnextsubid(interface_639:com_35));
+cc_setsize(calc($int4 - 55), 25, ^setsize_abs, ^setsize_abs);
+cc_setposition(55, 25, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext(struct_param($struct2, param_1273));
+cc_setmaxlines(2);
+cc_setcolour(0x7592a0);
+cc_settextfont(graphic_17813);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 12);
+def_string $string0 = "";
+def_string $string1 = "";
+def_int $int5 = 1;
+def_int $int6 = -1;
+def_int $int7 = -1;
+def_int $int8 = 1;
+def_int $int9 = 55;
+while ($int5 <= 8) {
+    switch_int ($int5) {
+        case 1 :
+            $string0 = struct_param($struct2, param_1274);
+            $string1 = "Objective 1";
+        case 2 :
+            $string0 = struct_param($struct2, param_1275);
+            $string1 = "Objective 2";
+        case 3 :
+            $string0 = struct_param($struct2, param_1276);
+            $string1 = "Objective 3";
+        case 4 :
+            $string0 = struct_param($struct2, param_1277);
+            $string1 = "Objective 4";
+        case 5 :
+            $string0 = struct_param($struct2, param_1278);
+            $string1 = "Objective 5";
+        case 6 :
+            $string0 = struct_param($struct2, param_1279);
+            $string1 = "Objective 6";
+        case 7 :
+            $string0 = struct_param($struct2, param_1280);
+            $string1 = "Objective 7";
+        case 8 :
+            $string0 = struct_param($struct2, param_1281);
+            $string1 = "Objective 8";
+    }
+    if ($int1 = %varplayerbit_20967) {
+        $int6, $int7 = ~script9323($int1, $int5);
+    }
+    if ($int6 ! -1 & $int7 ! -1) {
+        $string0 = append($string0, " (<tostring($int6)>/<tostring($int7)>)");
+    }
+    $int8 = max(1, paraheight($string0, calc($int4 - 50), graphic_17813));
+    if (compare($string0, "") ! 0) {
+        cc_create(interface_639:com_35, ^iftype_graphic, if_getnextsubid(interface_639:com_35));
+        cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
+        cc_setposition(0, $int9, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphic(~script9319($int1, $int5));
+        cc_create(interface_639:com_35, ^iftype_text, if_getnextsubid(interface_639:com_35));
+        cc_setsize(24, 24, ^setsize_minus, ^setsize_abs);
+        cc_setposition(24, $int9, ^setpos_abs_left, ^setpos_abs_top);
+        cc_settext($string1);
+        cc_setmaxlines(1);
+        cc_setcolour(0xaed0e0);
+        cc_settextfont(graphic_17814);
+        cc_settextalign(^settextalign_left, ^settextalign_centre, 24);
+        cc_create(interface_639:com_35, ^iftype_text, if_getnextsubid(interface_639:com_35));
+        cc_setsize(50, calc($int8 * 17), ^setsize_minus, ^setsize_abs);
+        cc_setposition(50, calc($int9 + 24), ^setpos_abs_left, ^setpos_abs_top);
+        cc_settext($string0);
+        cc_setmaxlines(0);
+        cc_setcolour(0x7592a0);
+        cc_settextfont(graphic_17813);
+        cc_settextalign(^settextalign_left, ^settextalign_centre, 17);
+        $int9 = calc($int8 * 17 + 24 + $int9);
+    }
+    $int5 = calc($int5 + 1);
+}
+if ($int9 > if_getheight(interface_639:com_35)) {
+    if_setscrollsize(0, $int9, interface_639:com_35);
+}
+~scrollbar_vertical(interface_639:com_34, interface_639:com_35, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

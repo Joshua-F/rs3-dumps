@@ -1,0 +1,96 @@
+// 9256
+[proc,script9256](component $component0, int $int1, component $component2, inv $inv3, component $component4, int $int5, component $component6, inv $inv7)
+if (%varplayer_1784 = null) {
+    return;
+}
+if ($inv3 = null | $inv7 = null) {
+    return;
+}
+if ($int1 < 0 | $int1 >= inv_size($inv3)) {
+    return;
+}
+def_obj $obj8 = null;
+def_int $int9 = -1;
+if (cc_find($component0, $int1) = true) {
+    $obj8 = cc_getinvobject;
+    $int9 = cc_getinvcount;
+}
+if ($obj8 = null) {
+    return;
+}
+def_obj $obj10 = null;
+def_int $int11 = -1;
+if ($component4 ! null & $int5 ! -1 & cc_find($component4, $int5) = true) {
+    $obj10 = cc_getinvobject;
+    $int11 = cc_getinvcount;
+}
+if ($obj10 ! null) {
+    if (oc_stackable($obj8) = true & ($obj8 = $obj10 | inv_total($inv7, $obj8) > 0)) {
+        $obj10 = null;
+        $int11 = 0;
+    } else {
+        $int11 = min($int11, inv_total($inv7, $obj10));
+        if ($int11 <= 0) {
+            return;
+        }
+    }
+}
+def_int $int12 = 0;
+def_int $int13 = 0;
+if ($inv7 = inv_530) {
+    if (~script9257($obj8, 1) = true | ~script9225($obj8, 1) = true) {
+        return;
+    }
+} else if ($obj10 ! null & (~script9257($obj10, 1) = true | ~script9225($obj10, 1) = true)) {
+    return;
+}
+$int13 = min(nc_param(%varplayer_1784, param_379), inv_size(inv_530));
+switch_npc (%varplayer_1784) {
+    case npc_17399, npc_17400, npc_17401, npc_17402, npc_17406, npc_17407, npc_17405, npc_17403, npc_17404 :
+        switch_int (%varplayerbit_18580) {
+            case 12, 13, 14 :
+                $int13 = calc($int13 + 4);
+            case 15, 16, 17 :
+                $int13 = calc($int13 + 18);
+        }
+}
+def_int $int14 = 0;
+def_int $int15 = 0;
+if (oc_stackable($obj8) = true) {
+    $int15 = inv_total($inv7, $obj8);
+    if ($int15 > 0) {
+        if (calc(^max_32bit_int - $int9) < inv_total($inv7, $obj8)) {
+            $int9 = ^max_32bit_int;
+        } else {
+            $int9 = calc($int9 + inv_total($inv7, $obj8));
+        }
+        $int5 = ~script9250($inv7, $obj8);
+        if (cc_find($component4, $int5) = true) {
+            cc_setobject($obj8, $int9);
+        }
+        if (cc_find($component0, $int1) = true) {
+            cc_setobject(null, 0);
+            cc_clearops;
+        }
+        return;
+    }
+}
+if ($obj10 ! null & oc_stackable($obj10) = true) {
+    $int15 = inv_total($inv3, $obj10);
+    if ($int15 > 0) {
+        if (calc(^max_32bit_int - $int11) < inv_total($inv3, $obj10)) {
+            $int11 = ^max_32bit_int;
+        } else {
+            $int11 = calc($int11 + inv_total($inv3, $obj10));
+        }
+        $int14 = ~script9250($inv3, $obj10);
+        if (cc_find($component0, $int14) = true) {
+            cc_setobject($obj10, $int11);
+        }
+        if (cc_find($component4, $int5) = true) {
+            cc_clearops;
+            cc_setobject(null, 0);
+        }
+    }
+}
+~script9245($component0, $int1, $component2, $inv3, $component4, $int5, $component6, $inv7);

@@ -1,39 +1,28 @@
 // 1616
 [clientscript,inventory_drag](component $component0, int $int1, component $component2, int $int3)
-~script7002($component0, $int1, $component2);
-if ($component0 ! $component2) {
+~script9228;
+if ($component0 ! interface_1473:com_8 & $component0 ! interface_1474:com_13) {
     return;
 }
-if ($component0 = interface_1473:com_8 | $component0 = interface_1474:com_13) {
-    switch($component2, 96534536 => 20, 96534533 => 20, 96600077 => 20, 96600076 => 20);
+if (~script7980($component2) ! -1) {
+    ~script7002($component0, $int1, $component2);
     return;
-} else {
 }
-def_int $int4 = inv_size(inv_93);
-$int1 = calc($int1 % $int4);
-$int3 = calc($int3 % $int4);
-def_obj $obj5 = null;
-def_int $int6 = 0;
-if (cc_find($component0, $int1) = true & .cc_find($component2, $int3) = true) {
-    $obj5, $int6 = cc_getinvobject, cc_getinvcount;
-    cc_setobject(.cc_getinvobject, .cc_getinvcount);
-    .cc_setobject($obj5, $int6);
-    cc_clearops;
-    .cc_clearops;
-    if (cc_getinvobject ! null) {
-        cc_sethide(false);
-        ~inventory_setophelds(cc_getinvobject, true);
-    } else {
-        cc_setonvartransmit(null);
-        cc_sethide(true);
-    }
-    if (cc_find($component2, $int3) = true) {
-        if (cc_getinvobject ! null) {
-            cc_sethide(false);
-            ~inventory_setophelds(cc_getinvobject, true);
-        } else {
-            cc_setonvartransmit(null);
-            cc_sethide(true);
+def_obj $obj4 = null;
+def_int $int5 = 0;
+switch_component ($component2) {
+    case default :
+        return;
+    case interface_1473:com_8, interface_1474:com_13 :
+        if (cc_find($component0, $int1) = true & .cc_find($component2, $int3) = true) {
+            $obj4, $int5 = cc_getinvobject, cc_getinvcount;
+            ~script9230(.cc_getinvobject, .cc_getinvcount);
+            if (cc_find($component2, $int3) = true) {
+                ~script9230($obj4, $int5);
+            }
         }
-    }
+    case interface_1464:com_14, interface_1462:com_13, interface_1464:com_11, interface_1462:com_16 :
+        if (cc_find($component0, $int1) = true) {
+            ~wearobj(cc_getinvobject, $int1);
+        }
 }

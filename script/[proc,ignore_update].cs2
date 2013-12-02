@@ -67,8 +67,14 @@ while ($int11 < $int10) {
     }
     cc_settext($string2);
     cc_setopbase("<col=ffffff><$string0>");
-    cc_setop(1, "Remove");
-    cc_setonop("ignore_op(ignore_getname_unfiltered($int11))");
+    if (compare(ignore_getnotes($int11), "") ! 0) {
+        cc_setop(1, "Edit Note");
+    } else {
+        cc_setop(1, "Add Note");
+    }
+    cc_setop(2, "Remove");
+    cc_setonop("ignore_op(event_op, ignore_getname_unfiltered($int11))");
+    $string3 = "";
     if ($int12 = 1) {
         $int13 = calc(stringwidth("Last known as: <$string1>", verdana_11pt_regular) + 8);
         if ($int13 > if_getwidth($component4)) {
@@ -76,6 +82,15 @@ while ($int11 < $int10) {
         } else {
             $string3 = "Last known as: <$string1>";
         }
+    }
+    if (compare(ignore_getnotes($int11), "") ! 0) {
+        if (compare($string3, "") ! 0) {
+            $string3 = "<$string3><br><ignore_getnotes($int11)>";
+        } else {
+            $string3 = ignore_getnotes($int11);
+        }
+    }
+    if (compare($string3, "") ! 0) {
         cc_setonmouserepeat("script1594($component8, event_com, event_comsubid, $string3, event_mousex, event_mousey)");
         cc_setonmouseleave("deltooltip($component8)");
     }

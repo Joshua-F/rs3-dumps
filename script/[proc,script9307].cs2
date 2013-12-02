@@ -1,0 +1,27 @@
+// 9307
+[proc,script9307](obj $obj0, int $int1, int $int2, int $int3)(int, int)
+def_int $int4 = if_getwidth(interface_639:com_17);
+def_string $string0 = oc_name($obj0);
+switch_obj ($obj0) {
+    case obj_996, obj_997, obj_998, obj_999, obj_1000, obj_1001, obj_1002, obj_1003, obj_1004 :
+        $string0 = "Coins";
+}
+if ($int1 > 1) {
+    $string0 = append($string0, " (<tostring($int1)>)");
+}
+if (calc($int2 + 45) > $int4) {
+    $int2 = 0;
+    $int3 = calc($int3 + 41);
+}
+cc_create(interface_639:com_17, ^iftype_graphic, if_getnextsubid(interface_639:com_17));
+cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
+cc_setgraphic(rs3_inventory_slot);
+cc_setposition($int2, $int3, ^setpos_abs_left, ^setpos_abs_top);
+cc_create(interface_639:com_17, ^iftype_graphic, if_getnextsubid(interface_639:com_17));
+cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+cc_setobject($obj0, -1);
+cc_setposition(calc($int2 + 2), calc($int3 + 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setonmouserepeat("script8799($string0, interface_639:com_17, calc(if_getnextsubid(interface_639:com_17) - 1))");
+cc_setonmouseleave("script8805");
+$int2 = calc($int2 + 45);
+return($int2, $int3);

@@ -1,0 +1,49 @@
+// 9214
+[proc,wearobj](obj $obj0, int $int1)
+if (~wearprevent($obj0) = 1) {
+    return;
+}
+if (~script925($obj0) = false) {
+    return;
+}
+def_int $int2 = oc_wearpos($obj0);
+if ($int2 = -1) {
+    mes("You can't wear this item.");
+    return;
+}
+if ($int2 = 17) {
+    $int2 = 15;
+}
+def_obj $obj3 = inv_getobj(inv_94, $int2);
+if ($obj3 ! null & ~script9224($obj3, $obj0) = 1) {
+    return;
+}
+def_int $int4 = 0;
+def_obj $obj5 = null;
+if (oc_wearpos($obj0) = 5) {
+    $obj5 = inv_getobj(inv_94, 3);
+    if ($obj5 ! null & oc_wearpos2($obj5) = 5) {
+        if (inv_freespace(inv_93) = 0 & $obj3 ! null) {
+            return;
+        }
+        $int4 = 3;
+    }
+} else if (oc_wearpos2($obj0) = 5) {
+    $obj5 = inv_getobj(inv_94, 5);
+    if ($obj5 ! null) {
+        if (inv_freespace(inv_93) = 0 & $obj3 ! null) {
+            return;
+        }
+        $int4 = 5;
+    }
+}
+~script9215($int2, $int1);
+def_int $int6 = -1;
+if ($int4 > 0) {
+    if ($obj3 ! null) {
+        $int6 = ~script9249(inv_93);
+    } else {
+        $int6 = $int1;
+    }
+    ~script9215($int4, $int6);
+}
