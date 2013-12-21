@@ -1,0 +1,31 @@
+// 9441
+[proc,script9441](component $component0)
+def_int $int1 = 0;
+def_int $int2 = 0;
+switch_component ($component0) {
+    case interface_718:com_22 :
+        $int1 = %varclient_3860;
+    case interface_718:com_18 :
+        $int1 = %varclient_3861;
+    case interface_718:com_20 :
+        $int1 = %varclient_3862;
+    case default :
+        return;
+}
+if ($int1 <= 0) {
+    if_sethide(true, $component0);
+} else {
+    if ($int1 >= %varclient_3867) {
+        $int2 = 80;
+    } else {
+        $int2 = calc(scale($int1, %varclient_3867, 73) + 7);
+    }
+    if_sethide(false, $component0);
+    if ($int2 > 80) {
+        $int2 = 80;
+    }
+    if ($int2 < 7) {
+        $int2 = 7;
+    }
+    if_setsize($int2, if_getheight($component0), ^setsize_abs, ^setsize_abs, $component0);
+}

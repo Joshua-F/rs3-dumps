@@ -1,0 +1,57 @@
+// 9566
+[proc,script9566](string $string0, obj $obj0, int $int1, int $int2, component $component3, int $int4, fontmetrics $fontmetrics5, int $rgb6, int $int7)
+if (~tooltip_time(25) = false) {
+    return;
+}
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+~script6211($component3, $int4);
+if (%varclient_2 ! 1 | $int7 = 1) {
+    if_opensubclient(interface_1477:com_66, interface_1486);
+    if_setsize(0, 0, ^setsize_abs, ^setsize_abs, interface_1486:com_1);
+    if_sethide(true, interface_1486:com_10);
+    if_sethide(true, interface_1486:com_11);
+    if ($obj0 ! null) {
+        if_sethide(false, interface_1486:com_10);
+        ~script9568($string0, $obj0, interface_1486:com_1, interface_1486:com_10);
+        if_setsize(if_getwidth(interface_1486:com_1), calc(if_getheight(interface_1486:com_1) - 16), ^setsize_abs, ^setsize_abs, interface_1486:com_1);
+        if (if_find(interface_1486:com_10) = true) {
+            cc_setparam(param_4009, $obj0);
+        }
+    } else if (compare($string0, "") ! 0) {
+        if_sethide(false, interface_1486:com_11);
+        ~script9567($string0, $fontmetrics5, $rgb6, $int1, interface_1486:com_1, interface_1486:com_11);
+    } else {
+        ~script8808;
+        return;
+    }
+    $int10 = if_getwidth(interface_1486:com_1);
+    $int11 = if_getheight(interface_1486:com_1);
+    $int1 = calc($int10 + 7 * 2);
+    if ($int4 = -1) {
+        $int8, $int9 = ~script8405($component3);
+    } else {
+        $int8, $int9 = ~script8406($component3, $int4);
+    }
+    if (calc($int9 - ($int11 + 2)) >= 0) {
+        $int9 = calc($int9 - ($int11 + 5 * 2 + 2));
+    } else {
+        $int9 = calc($int9 + ($int11 + 5 * 2 + 2));
+    }
+    if ($int4 = -1) {
+        $int12 = if_getwidth($component3);
+    } else if (cc_find($component3, $int4) = true) {
+        $int12 = cc_getwidth;
+    } else {
+        $int12 = 25;
+    }
+    $int8 = calc($int8 + $int12 / 2 - $int1 / 2);
+    $int8 = max($int8, 0);
+    $int8 = min($int8, calc(if_getwidth(interface_1477:com_63) - $int1));
+    if_setsize(calc($int10 + 7 * 2), calc($int11 + 5 * 2), ^setsize_abs, ^setsize_abs, interface_1486:com_1);
+    if_setposition($int8, $int9, ^setpos_abs_left, ^setpos_abs_top, interface_1486:com_1);
+    %varclient_2 = 1;
+}

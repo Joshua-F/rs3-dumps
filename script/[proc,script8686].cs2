@@ -4,14 +4,15 @@ def_graphic $graphic0 = "rs3_quick_inventory_slot_icons,0";
 def_component $component1 = interface_1430:com_188;
 def_component $component2 = interface_1430:com_195;
 def_string $string0 = "Assign an inventory slot to this through<br>right-click options in the inventory screen.";
-def_obj $obj3 = inv_getobj(inv_93, %varplayerbit_18784);
-def_int $int4 = 0;
+def_int $int3 = 0;
+def_obj $obj4 = inv_getobj(inv_93, %varplayerbit_18784);
+def_int $int5 = 0;
 if (if_find($component1) = true) {
-    if ($obj3 ! null) {
-        $int4 = inv_total(inv_93, $obj3);
+    if ($obj4 ! null) {
+        $int5 = inv_total(inv_93, $obj4);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         if (%varplayerbit_1892 = 0) {
-            cc_setonmouserepeat("script5495($obj3)");
+            cc_setonmouserepeat("script5495($obj4)");
             cc_setonmouseleave("script5495(null)");
         } else {
             cc_setonmouserepeat(null);
@@ -28,39 +29,35 @@ if (if_find($component1) = true) {
             cc_setonmouseleave(null);
         }
     }
-    cc_setobject($obj3, $int4);
+    cc_setobject($obj4, $int5);
     cc_clearops;
-    ~inventory_setophelds($obj3, false);
+    ~inventory_setophelds($obj4, false);
     cc_setop(10, "Customise-keybind");
     cc_setonop("script7023(event_com, event_op)");
-    if ($obj3 ! null) {
-        cc_setopbase(oc_name($obj3));
+    if ($obj4 ! null) {
+        cc_setopbase(oc_name($obj4));
     } else {
         cc_setopbase("quick-inventory A");
     }
     ~script7033;
     if (~script8839(5) = true) {
-        switch_obj ($obj3) {
-            case obj_4045, obj_14644 :
-                ~script8845(~script8825(5, 31), interface_1430:com_188, -1);
-                cc_settargetverb("Use");
-                cc_setontargetenter("script375(0)");
-                cc_setontargetleave("script376");
-                cc_settargetcursors(cursor_157, cursor_158);
-            case default :
-                ~script8844(max(1, ~script8687(interface_1430:com_188)), ~script8825(5, 31), interface_1430:com_188, -1);
+        $int3 = max(1, ~script8687(interface_1430:com_188));
+        if (oc_param($obj4, param_3921) = 1 & $int3 > 3) {
+            ~script8845(~script8825(5, 31), interface_1430:com_188, -1);
+        } else {
+            ~script8844($int3, ~script8825(5, 31), interface_1430:com_188, -1);
         }
     }
     if_settext(~script8213(~script8825(5, 31), 1, 1), interface_1430:com_191);
 }
-def_obj $obj5 = inv_getobj(inv_93, %varplayerbit_18785);
-def_int $int6 = 0;
+def_obj $obj6 = inv_getobj(inv_93, %varplayerbit_18785);
+def_int $int7 = 0;
 if (if_find($component2) = true) {
-    if ($obj5 ! null) {
-        $int6 = inv_total(inv_93, $obj5);
+    if ($obj6 ! null) {
+        $int7 = inv_total(inv_93, $obj6);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         if (%varplayerbit_1892 = 0) {
-            cc_setonmouserepeat("script5495($obj5)");
+            cc_setonmouserepeat("script5495($obj6)");
             cc_setonmouseleave("script5495(null)");
         } else {
             cc_setonmouserepeat(null);
@@ -77,27 +74,23 @@ if (if_find($component2) = true) {
             cc_setonmouseleave(null);
         }
     }
-    cc_setobject($obj5, $int6);
+    cc_setobject($obj6, $int7);
     cc_clearops;
-    ~inventory_setophelds($obj5, false);
+    ~inventory_setophelds($obj6, false);
     cc_setop(10, "Customise-keybind");
     cc_setonop("script7023(event_com, event_op)");
-    if ($obj5 ! null) {
-        cc_setopbase(oc_name($obj5));
+    if ($obj6 ! null) {
+        cc_setopbase(oc_name($obj6));
     } else {
         cc_setopbase("quick-inventory B");
     }
     ~script7033;
     if (~script8839(5) = true) {
-        switch_obj ($obj5) {
-            case obj_4045, obj_14644 :
-                ~script8845(~script8825(5, 32), interface_1430:com_195, -1);
-                cc_settargetverb("Use");
-                cc_setontargetenter("script375(1)");
-                cc_setontargetleave("script376");
-                cc_settargetcursors(cursor_157, cursor_158);
-            case default :
-                ~script8844(max(1, ~script8687(interface_1430:com_195)), ~script8825(5, 32), interface_1430:com_195, -1);
+        $int3 = max(1, ~script8687(interface_1430:com_195));
+        if (oc_param($obj6, param_3921) = 1 & $int3 > 3) {
+            ~script8845(~script8825(5, 32), interface_1430:com_195, -1);
+        } else {
+            ~script8844($int3, ~script8825(5, 32), interface_1430:com_195, -1);
         }
     }
     if_settext(~script8213(~script8825(5, 32), 1, 1), interface_1430:com_198);

@@ -21,9 +21,10 @@ def_component $component22 = null;
 def_int $int23 = 0;
 def_int $int24 = 0;
 def_string $string2 = "";
-def_component $component25 = ~script7974($overlayinterface0, $int1);
-def_component $component26 = ~script313($overlayinterface0, $int1);
-if_sethide(true, $component26);
+def_int $int25 = 0;
+def_component $component26 = ~script7974($overlayinterface0, $int1);
+def_component $component27 = ~script313($overlayinterface0, $int1);
+if_sethide(true, $component27);
 $component22 = ~script7975($overlayinterface0, $int1);
 $component16 = ~script7977($overlayinterface0, $int1);
 $component19 = ~script7979($overlayinterface0, $int1);
@@ -40,19 +41,19 @@ if ($int4 = 0) {
 }
 if_settrans(255, $component21);
 if_setonvartransmit(null, $component21);
-def_int $int27 = 1;
+def_int $int28 = 1;
 if ($int2 = 0) {
     if ($int8 ! 0) {
-        $int27 = 0;
+        $int28 = 0;
     }
     if ($obj7 ! null) {
-        $int27 = 0;
+        $int28 = 0;
     }
 } else {
-    $int27 = 1;
+    $int28 = 1;
 }
 if (if_find(~script7974($overlayinterface0, $int1)) = true) {
-    if ($int27 = 1) {
+    if ($int28 = 1) {
         cc_setgraphic(combatv2_blank_ability);
         cc_setobject(null, -1);
         cc_clearscripthooks;
@@ -82,62 +83,27 @@ if (if_find(~script7974($overlayinterface0, $int1)) = true) {
             $string0 = struct_param($struct15, param_2524);
             $obj7 = ~script7019($obj7);
             cc_setobject($obj7, -1);
-            cc_setoninvtransmit("script7020($component25, $obj7){inv_93, inv_94}");
+            cc_setoninvtransmit("script7020($component26, $obj7){inv_93, inv_94}");
         }
         if (string_length($string0) < 1) {
             $string0 = oc_name($obj7);
-            cc_setoninvtransmit("script6996($component25, $obj7){inv_93, inv_94}");
-            ~script6997($component25, $obj7);
+            cc_setoninvtransmit("script6996($component26, $obj7){inv_93, inv_94}");
+            ~script6997($component26, $obj7);
             cc_setobject($obj7, -1);
         }
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition(3, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-        if (inv_total(inv_93, $obj7) > 0 | inv_total(inv_94, $obj7) < 1) {
-            ~inventory_setophelds($obj7, false);
-        } else if (inv_total(inv_94, $obj7) > 0) {
-            if (oc_param($obj7, param_2281) ! null) {
-                cc_setop(1, "Operate");
-                $int20 = 1;
-            } else {
-                if (string_length(oc_param($obj7, param_528)) > 0) {
-                    cc_setop(1, oc_param($obj7, param_528));
-                    $int20 = 1;
-                }
-                if (string_length(oc_param($obj7, param_529)) > 0) {
-                    cc_setop(2, oc_param($obj7, param_529));
-                    $int20 = 1;
-                }
-                if (string_length(oc_param($obj7, param_530)) > 0) {
-                    cc_setop(3, oc_param($obj7, param_530));
-                    $int20 = 1;
-                }
-                if (string_length(oc_param($obj7, param_531)) > 0) {
-                    cc_setop(4, oc_param($obj7, param_531));
-                    $int20 = 1;
-                }
-                if (string_length(oc_param($obj7, param_1211)) > 0) {
-                    cc_setop(5, oc_param($obj7, param_1211));
-                    $int20 = 1;
-                }
-            }
-            if ($int20 = 0) {
-                cc_setop(1, "Remove");
-            }
-        }
+        ~script9380($obj7);
         cc_setop(10, "Customise-keybind");
         cc_setonop("script7023(event_com, event_op)");
         cc_setopbase("<~script4033($obj7)><$string0>");
         ~script7033;
         if ($int3 = 0 & ~script792 = false) {
-            switch_obj ($obj7) {
-                case obj_4045, obj_14644 :
-                    ~script8845($int17, $int18, ~script7974($overlayinterface0, $int1), -1);
-                    cc_settargetverb("Use");
-                    cc_setontargetenter("script7006(event_com)");
-                    cc_setontargetleave("script7007(event_com)");
-                    cc_settargetcursors(cursor_157, cursor_158);
-                case default :
-                    ~script8844(~script7000($obj7), $int17, $int18, ~script7974($overlayinterface0, $int1), -1);
+            $int25 = ~script7000($obj7);
+            if (oc_param($obj7, param_3921) = 1 & $int25 > 3) {
+                ~script8845($int17, $int18, ~script7974($overlayinterface0, $int1), -1);
+            } else {
+                ~script8844(~script7000($obj7), $int17, $int18, ~script7974($overlayinterface0, $int1), -1);
             }
         }
         cc_sethide(false);
@@ -254,8 +220,8 @@ if (if_find(~script7974($overlayinterface0, $int1)) = true) {
                 cc_clearops;
                 cc_clearscripthooks;
                 cc_setoptkey(null, 0);
-                if_setoptkey(null, 0, $component26);
-                if_sethide(true, $component26);
+                if_setoptkey(null, 0, $component27);
+                if_sethide(true, $component27);
                 if ($int5 ! -1) {
                     %varplayerbit_6068 = $int5;
                     $int23 = $int5;
@@ -309,19 +275,19 @@ if (if_find(~script7974($overlayinterface0, $int1)) = true) {
                     $int24 = 1;
                     if ($int23 = 1) {
                         if ($int3 = 0 & ~script792 = false) {
-                            if_setoptkey($int17, $int18, $component26);
+                            if_setoptkey($int17, $int18, $component27);
                         }
-                        if_sethide(false, $component26);
-                        if_settargetverb(%varclient_2516, $component26);
-                        if_setontargetenter("script7006(event_com)", $component26);
-                        if_setontargetleave("script7007(event_com)", $component26);
+                        if_sethide(false, $component27);
+                        if_settargetverb(%varclient_2516, $component27);
+                        if_setontargetenter("script7006(event_com)", $component27);
+                        if_setontargetleave("script7007(event_com)", $component27);
                         cc_setopbase("<col=00ff00><$string0>");
-                        if_setopbase("<col=00ff00><$string0>", $component26);
+                        if_setopbase("<col=00ff00><$string0>", $component27);
                         cc_setop(2, "");
                         cc_settargetverb("");
                     } else {
-                        if_sethide(true, $component26);
-                        if_setoptkey(null, -1, $component26);
+                        if_sethide(true, $component27);
+                        if_setoptkey(null, -1, $component27);
                         cc_settargetverb(%varclient_2516);
                         cc_setontargetenter("script7006(event_com)");
                         cc_setontargetleave("script7007(event_com)");
@@ -375,10 +341,10 @@ if (if_find(~script7974($overlayinterface0, $int1)) = true) {
             cc_setonvartransmit("script7017(event_com){varplayer_463}");
             cc_setoninvtransmit(null);
         } else if ($int8 ! 7 & $int8 ! 9 & $int8 ! 12 & $int8 ! 13) {
-            cc_setonvartransmit("script7003($component25, -1, struct_param($struct10, param_2799), $struct10){varplayer_679, varplayer_1180, varplayer_1185}");
-            ~script7004($component25, -1, struct_param($struct10, param_2799), $struct10);
-            cc_setoninvtransmit("script7003($component25, -1, struct_param($struct10, param_2799), $struct10){inv_94, inv_93}");
-            cc_setonstattransmit("script7003($component25, -1, struct_param($struct10, param_2799), $struct10){attack, strength, defence, ranged, magic, hitpoints}");
+            cc_setonvartransmit("script7003($component26, -1, struct_param($struct10, param_2799), $struct10){varplayer_679, varplayer_1180, varplayer_1185}");
+            ~script7004($component26, -1, struct_param($struct10, param_2799), $struct10);
+            cc_setoninvtransmit("script7003($component26, -1, struct_param($struct10, param_2799), $struct10){inv_94, inv_93}");
+            cc_setonstattransmit("script7003($component26, -1, struct_param($struct10, param_2799), $struct10){attack, strength, defence, ranged, magic, hitpoints}");
         }
         if (%varplayerbit_1892 = 0) {
             switch_int ($int8) {
