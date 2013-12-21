@@ -1,0 +1,24 @@
+// 9491
+[clientscript,script9491](component $component0, component $component1, component $component2, component $component3)
+def_int $int4 = %varplayer_3973;
+def_vorbis $vorbis5 = null;
+def_int $int6 = 0;
+if (%varplayer_3981 > 150) {
+    $int6 = max(1, min(calc(1 + ~script7231($component0, $component2, $component3)), 100));
+    %varplayer_3973 = scale($int6, 100, %varplayer_3981);
+} else {
+    %varplayer_3973 = max(1, min(calc(1 + ~script7231($component0, $component2, $component3)), %varplayer_3981));
+}
+if (%varplayer_3973 ! $int4) {
+    if_setontimer("script9492($component0, $component1)", $component0);
+    ~script9488(%varplayer_3973);
+    switch_int (random(3)) {
+        case 0 :
+            $vorbis5 = sound_21248;
+        case 1 :
+            $vorbis5 = sound_21256;
+        case 2 :
+            $vorbis5 = sound_21256;
+    }
+    sound_vorbis_rate($vorbis5, 1, 0, 20, random_sound_pitch(5, 10));
+}
