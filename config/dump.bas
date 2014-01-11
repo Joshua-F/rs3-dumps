@@ -12371,7 +12371,8 @@ walkturn_l=seq_19147
 walkturn_r=seq_19147
 walkanim_l=seq_19147
 walkanim_r=seq_19147
-readyanim=seq_16807,seq_19147
+runanim=seq_22530
+readyanim=seq_22529,seq_19147
 
 [bas_2762]
 readyanim=seq_19214,seq_6819
@@ -14015,4 +14016,18 @@ randomreadyanim=seq_22485,10
 
 [bas_3042]
 readyanim=seq_16878,null
+
+[bas_3043]
+readyanim=null,null
+randomreadyanim=seq_22525,90
+randomreadyanim=seq_22526,10
+
+[bas_3044]
+readyanim=seq_22527,null
+
+[bas_3045]
+readyanim=seq_22531,null
+
+[bas_3046]
+readyanim=seq_22524,null
 
