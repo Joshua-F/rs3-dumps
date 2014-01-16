@@ -1,0 +1,58 @@
+// 9611
+[clientscript,script9611](int $int0, string $string0, string $string1, string $string2, graphic $graphic1, int $int2)
+def_int $int3 = max(if_getnextsubid(interface_1029:com_23), if_getnextsubid(interface_1029:com_16));
+def_int $int4 = 0;
+while ($int4 < $int3) {
+    if (cc_find(interface_1029:com_25, $int4) = true & .cc_find(interface_1029:com_24, $int4) = true) {
+        if ($int4 = $int0) {
+            cc_setgraphic(rs3_btn_radio_on);
+            .cc_setcolour(0xffcb05);
+        } else {
+            .cc_setcolour(^white);
+            cc_setgraphic(rs3_btn_radio_off);
+        }
+    }
+    if (cc_find(interface_1029:com_23, $int4) = true) {
+        if ($int4 = $int0) {
+            cc_settrans(200);
+            cc_setonmouseleave(null);
+        } else {
+            cc_settrans(255);
+            cc_setonmouseleave("script9612(interface_1029:com_23, $int0, $string0, $string1, $string2, $graphic1)");
+        }
+    }
+    if (cc_find(interface_1029:com_16, $int4) = true) {
+        if ($int4 = $int0) {
+            cc_settrans(200);
+            cc_setonmouseleave(null);
+        } else {
+            cc_settrans(255);
+            cc_setonmouseleave("script9612(interface_1029:com_16, $int0, $string0, $string1, $string2, $graphic1)");
+        }
+    }
+    $int4 = calc($int4 + 1);
+}
+def_int $int5 = $int2;
+if ($int2 = -1) {
+    switch_int (%varplayerbit_21343) {
+        case 0 :
+            $int5 = calc(%varplayer_4046 - 1);
+        case 1 :
+            $int5 = calc(%varplayer_4047 - 1);
+        case 2 :
+            $int5 = calc(%varplayer_4048 - 1);
+    }
+}
+if ($int0 = $int5) {
+    if_sethide(false, interface_1029:com_136);
+    if_settext("voted", interface_1029:com_133);
+    if_sethide(false, interface_1029:com_125);
+} else {
+    if_sethide(true, interface_1029:com_136);
+    if (if_gethide(interface_1029:com_34) = false) {
+        if_settext("vote", interface_1029:com_133);
+    } else {
+        if_settext("change vote", interface_1029:com_133);
+    }
+    if_sethide(true, interface_1029:com_125);
+}
