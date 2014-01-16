@@ -6850,23 +6850,30 @@ readyanim=seq_12883,seq_12862
 
 [bas_1704]
 readyanim=null,seq_12860
-randomreadyanim=seq_12858,80
-randomreadyanim=seq_12859,20
+randomreadyanim=seq_12858,150
+randomreadyanim=seq_12859,40
 
 [bas_1705]
 readyanim=seq_12871,seq_12872
 
 [bas_1706]
-readyanim=seq_12849,seq_12850
+readyanim=null,seq_12850
+randomreadyanim=seq_22537,150
+randomreadyanim=seq_12849,200
 
 [bas_1707]
-readyanim=seq_12879,seq_12879
+readyanim=null,seq_12879
+randomreadyanim=seq_12879,80
+randomreadyanim=seq_22538,50
+randomreadyanim=seq_22538,40
 
 [bas_1708]
 readyanim=seq_12881,seq_12881
 
 [bas_1709]
-readyanim=seq_12877,seq_12877
+readyanim=null,seq_12877
+randomreadyanim=seq_12877,90
+randomreadyanim=seq_22540,50
 
 [bas_1710]
 readyanim=seq_12876,null
@@ -11331,11 +11338,11 @@ runanim=seq_7039
 readyanim=seq_7047,seq_7046
 
 [bas_2575]
-readyanim_l=seq_823
-readyanim_r=seq_823
-walkanim_b=seq_820
-walkanim_l=seq_821
-walkanim_r=seq_822
+readyanim_l=seq_17207
+readyanim_r=seq_17207
+walkanim_b=seq_17207
+walkanim_l=seq_17207
+walkanim_r=seq_17207
 runanim=seq_17206
 readyanim=seq_17205,seq_17207
 
@@ -13928,18 +13935,6 @@ walkturn_l=seq_17510
 walkturn_r=seq_17510
 readyanim=seq_22317,seq_17510
 
-[bas_3033]
-readyanim=null,null
-randomreadyanim=seq_22416,220
-randomreadyanim=seq_22423,220
-randomreadyanim=seq_22424,150
-randomreadyanim=seq_22417,80
-randomreadyanim=seq_22418,110
-randomreadyanim=seq_22419,110
-randomreadyanim=seq_22420,100
-randomreadyanim=seq_22421,110
-randomreadyanim=seq_22422,60
-
 [bas_3034]
 readyanim_l=seq_22448
 readyanim_r=seq_22448
@@ -14030,4 +14025,48 @@ readyanim=seq_22531,null
 
 [bas_3046]
 readyanim=seq_22524,null
+
+[bas_3047]
+readyanim_r=seq_22553
+readyanim_l=seq_22552
+runanim=seq_22551
+readyanim=seq_22550,seq_22551
+
+[bas_3048]
+readyanim_r=seq_22553
+readyanim_l=seq_22552
+runanim=seq_22551
+readyanim=null,seq_22551
+randomreadyanim=seq_22550,180
+randomreadyanim=seq_22562,90
+
+[bas_3049]
+readyanim_r=seq_22553
+readyanim_l=seq_22552
+runanim=seq_22556
+readyanim=null,seq_22556
+randomreadyanim=seq_22554,200
+randomreadyanim=seq_22555,80
+
+[bas_3050]
+readyanim=null,null
+randomreadyanim=seq_22416,220
+randomreadyanim=seq_22423,220
+randomreadyanim=seq_22424,150
+randomreadyanim=seq_22417,80
+randomreadyanim=seq_22418,110
+randomreadyanim=seq_22419,110
+randomreadyanim=seq_22420,100
+randomreadyanim=seq_22421,110
+randomreadyanim=seq_22422,60
+
+[bas_3051]
+readyanim=null,null
+randomreadyanim=seq_18015,250
+randomreadyanim=seq_18015,200
+randomreadyanim=seq_22564,10
+randomreadyanim=seq_22565,10
+randomreadyanim=seq_22566,10
+randomreadyanim=seq_22567,10
+randomreadyanim=seq_22568,10
 
