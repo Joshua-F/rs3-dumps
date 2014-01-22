@@ -12,41 +12,48 @@ cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(0, 23, ^setsize_minus, ^setsize_abs);
 cc_settiling(true);
 cc_setgraphic(rs3_key_selection_highlight);
-def_string $string0 = "Select/deselect all";
-def_string $string1 = "Select/deselect all";
 .cc_create($component1, ^iftype_graphic, 1);
-.cc_setposition(0, calc($int8 + 6), ^setpos_abs_left, ^setpos_abs_top);
+.cc_setposition(calc(3 / 2), calc($int8 + 18 / 2 - 14 / 2), ^setpos_abs_left, ^setpos_abs_top);
+.cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
+.cc_setgraphic(rs3_btn_select_all_small);
 cc_create($component1, ^iftype_text, 2);
+cc_settext("Select/deselect all");
 cc_setposition(calc(.cc_getx + .cc_getwidth + 3), $int8, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(calc(cc_getx + 3 / 2), 18, ^setsize_minus, ^setsize_abs);
+cc_setsize(calc(cc_getx + 16 + 3 / 2), 18, ^setsize_minus, ^setsize_abs);
 cc_setcolour(0xffcb05);
 cc_settextfont(graphic_17814);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-cc_settext($string0);
-.cc_setop(1, $string1);
-cc_setop(1, $string1);
-$string0 = "Selects/deselects all key checkboxes.";
-.cc_setonmouseover("cc_text_colour_swapper($component1, cc_getid, ^white)");
-cc_setonmouseover("cc_text_colour_swapper($component1, cc_getid, ^white)");
-.cc_setonmouserepeat("script310($string0, $component1, cc_getid)");
-cc_setonmouserepeat("script310($string0, $component1, cc_getid)");
-.cc_setonmouseleave("script289($component1, cc_getid, 0xffcb05)");
-cc_setonmouseleave("script289($component1, cc_getid, 0xffcb05)");
-.cc_setonop("worldmap_key_toggle_all($component1, $component2, $component3, 5)");
-cc_setonop("worldmap_key_toggle_all($component1, $component2, $component3, 5)");
-$int8 = calc($int8 + cc_getheight + 5);
-cc_create($component1, ^iftype_line, 3);
+.cc_create($component1, ^iftype_rectangle, 3);
+.cc_sendtoback;
+.cc_setposition(0, $int8, ^setpos_abs_left, ^setpos_abs_top);
+.cc_setsize(0, 18, ^setsize_minus, ^setsize_abs);
+.cc_setfill(true);
+.cc_setcolour(0x1b2c34);
+.cc_create($component1, ^iftype_rectangle, 4);
+.cc_sendtoback;
+.cc_setposition(0, $int8, ^setpos_abs_left, ^setpos_abs_top);
+.cc_setsize(0, 18, ^setsize_minus, ^setsize_abs);
+.cc_settrans(255);
+.cc_setonmouseleave("worldmap_key_onmouseleave($component1, cc_getid, 0xffcb05)");
+.cc_setopbase("<col=ff9040><cc_gettext></col>");
+.cc_setop(1, "Highlight");
+.cc_setonmouseover("worldmap_key_onmouseover($component1, cc_getid, ^white)");
+.cc_setonmouseleave("worldmap_key_onmouseleave($component1, cc_getid, 0xffcb05)");
+.cc_setonop("worldmap_key_toggle_all($component1, $component2, $component3, 7)");
+$int8 = calc($int8 + 18 + 5);
+cc_create($component1, ^iftype_line, 5);
 cc_setposition(0, $int8, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_abs);
 cc_setcolour(0x41555f);
-cc_create($component1, ^iftype_line, 4);
+cc_create($component1, ^iftype_line, 6);
 cc_setposition(0, calc($int8 - 1), ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_abs);
 cc_setcolour(^black);
 $int8 = calc($int8 + 5);
 def_int $intarray0(calc(140 + 1));
 def_struct $struct9 = null;
+def_int $intarray1(calc(140 + 1));
 def_int $int10 = -1;
 def_int $int11 = -1;
 def_enum $enum12 = null;
@@ -63,13 +70,25 @@ def_int $int22 = 0;
 def_int $int23 = 0;
 def_int $int24 = 0;
 def_int $int25 = -1;
-while ($int4 <= 140) {
-    $struct9 = enum(int, struct, enum_1805, $int4);
-    if ($struct9 ! null & (map_members = true | struct_param($struct9, param_478) = false)) {
-        $intarray0($int7) = $int4;
-        $int7 = calc($int7 + 1);
+if ($int0 = 0) {
+    while ($int4 <= 140) {
+        $struct9 = enum(int, struct, enum_1805, $int4);
+        if ($struct9 ! null & (map_members = true | struct_param($struct9, param_478) = false)) {
+            $intarray0($int7) = $int4;
+            $intarray1($int7) = calc((struct_param($struct9, param_597) + 1) * 100 + struct_param($struct9, param_4031) + 1);
+            $int7 = calc($int7 + 1);
+        }
+        $int4 = calc($int4 + 1);
     }
-    $int4 = calc($int4 + 1);
+} else {
+    while ($int4 <= 140) {
+        $struct9 = enum(int, struct, enum_1805, $int4);
+        if ($struct9 ! null & (map_members = true | struct_param($struct9, param_478) = false)) {
+            $intarray0($int7) = $int4;
+            $int7 = calc($int7 + 1);
+        }
+        $int4 = calc($int4 + 1);
+    }
 }
 $int7 = calc($int7 - 1);
 $int4 = 0;
@@ -81,7 +100,7 @@ if ($int0 = 1) {
     }
     if_settext("Key order:<br>Alphabetical", $component3);
 } else if ($int0 = 0) {
-    ~worldmap_quicksort_category(intarray0, 0, $int7);
+    array_sort(calc($int7 + 1), 1, 0);
     while ($int10 < enum_getoutputcount(enum_1806)) {
         $int17 = if_getnextsubid($component1);
         $int18 = 0;
@@ -96,9 +115,6 @@ if ($int0 = 1) {
         $int11 = -1;
         $enum12 = enum(int, enum, enum_8351, $int10);
         if ($enum12 ! null) {
-            if (calc($int4 + 1) < $int5) {
-                ~script9627(intarray0, $int4, calc($int5 - 1));
-            }
             while ($int11 < enum_getoutputcount($enum12)) {
                 $int21 = if_getnextsubid($component1);
                 $int22 = 0;

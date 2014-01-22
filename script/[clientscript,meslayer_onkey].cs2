@@ -41,7 +41,8 @@ switch_int ($key0) {
                     friend_add(%varclient_2506);
                 } else if (%varclient_5 = 3) {
                     if (friend_test(~displayname_simplify(%varclient_2506)) = true) {
-                        friend_del(~displayname_simplify(%varclient_2506));
+                        %varclient_3936 = ~displayname_simplify(%varclient_2506);
+                        ~script8755("Delete Friend?", "Are you sure you want to delete <%varclient_2506>?", "Accept", 9);
                     } else {
                         mes("That player is not on your friends list.");
                     }
@@ -92,6 +93,9 @@ switch_int ($key0) {
         ~subchanged;
         return;
     case ^key_escape :
+        if (~cancel_targetmode = true) {
+            return;
+        }
         if (%varclient_5 = 12) {
             ~script1806(%varclient_2409);
             ~meslayer_close(0);

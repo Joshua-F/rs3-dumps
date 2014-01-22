@@ -16968,6 +16968,16 @@ walkturn_l=seq_17510
 walkturn_r=seq_17510
 readyanim=seq_22317,seq_17510
 
+// 3033
+[bas_3033]
+readyanim_l=seq_22603
+readyanim_r=seq_22603
+walkanim_l=seq_22603
+walkanim_r=seq_22603
+walkanim_b=seq_22603
+runanim=seq_22604
+readyanim=seq_22250,seq_22603
+
 // 3034
 [bas_3034]
 readyanim_l=seq_22448

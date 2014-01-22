@@ -2,7 +2,12 @@
 [clientscript,clan_qfc_text_input](component $component0, char $char1, int $key2, component $component3)
 %varclient_2539 = if_gettext($component0);
 switch_int ($key2) {
-    case ^key_return, ^key_escape :
+    case ^key_return :
+        ~clan_qfc_return(1);
+    case ^key_escape :
+        if (~cancel_targetmode = true) {
+            return;
+        }
         ~clan_qfc_return(1);
     case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
         if (keyheld_shift = false) {
