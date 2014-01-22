@@ -51,7 +51,24 @@ while ($int20 < 127) {
     }
     $int20 = calc($int20 + 1);
 }
+%varclient_2835 = max(0, ~script1960);
 def_int $int21 = %varclient_2835;
+switch_int ($int0) {
+    case 18 :
+        %varclient_3937 = %varclient_2835;
+    case 19 :
+        %varclient_3938 = %varclient_2835;
+    case 20 :
+        %varclient_3939 = %varclient_2835;
+    case 21 :
+        %varclient_3940 = %varclient_2835;
+    case 22 :
+        %varclient_3941 = %varclient_2835;
+    case 23 :
+        %varclient_3942 = %varclient_2835;
+    case 1020 :
+        %varclient_3943 = %varclient_2835;
+}
 def_int $int22 = 0;
 def_int $int23 = 0;
 def_int $int24 = 0;
@@ -87,7 +104,12 @@ while ($int7 < 100 & $int22 < 500) {
             }
         }
     }
-    $int24, $int25, $int26, $string0, $string1, $string2, $string3, $chatphrase27, $string4 = chat_gethistory_byuid(--$int21);
-    $int22 = calc($int22 + 1);
+    $int21 = chat_getprevuid($int21);
+    if ($int21 ! -1) {
+        $int24, $int25, $int26, $string0, $string1, $string2, $string3, $chatphrase27, $string4 = chat_gethistory_byuid($int21);
+        $int22 = calc($int22 + 1);
+    } else {
+        $int22 = 500;
+    }
 }
 ~script8504($int0, $int10);

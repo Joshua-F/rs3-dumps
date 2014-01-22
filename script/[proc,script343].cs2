@@ -1,0 +1,75 @@
+// 343
+[proc,script343](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10)
+if ($component10 = null) {
+    $component10 = ~script8101;
+}
+def_wma $wma11 = null;
+if (%varclient_622 ! null) {
+    $wma11 = worldmap_getmap(%varclient_622);
+    if ($wma11 = null) {
+        $wma11 = main;
+    }
+}
+$wma11 = ~script2785($wma11);
+if (has_html5 = false) {
+    if_setnoclickthrough(false, struct_param(enum(int, struct, enum_7716, 1000), param_3503));
+    if (worldmap_coordinmap(%varclient_622, $wma11) = true) {
+        worldmap_setmap_coord_override($wma11, %varclient_622);
+    } else {
+        worldmap_setmap($wma11);
+    }
+} else {
+    worldmap_3dview_settextfont(0, 17993);
+    worldmap_3dview_settextfont(1, 17994);
+    worldmap_3dview_settextfont(2, 17995);
+    ~script8102($wma11);
+    worldmap_setcategorypriority(949, 1);
+    worldmap_setcategorypriority(948, 1);
+    worldmap_setcategorypriority(950, 2);
+}
+~worldmap_setzoom(worldmap_getconfigzoom($wma11));
+~worldmap_showmenu(false, $component7, $component8, $component9, $component5, $component6);
+if (%varclientbit_21368 = 1) {
+    ~worldmap_showoverview(0);
+} else {
+    ~worldmap_showoverview(1);
+}
+if (%varclientbit_21369 = 1) {
+    ~script1376(0, $component6, $component10);
+} else {
+    ~script1376(1, $component6, $component10);
+}
+~worldmap_key_defaults;
+if (%varplayerbit_20967 = 12 & %varplayerbit_11870 = 70 & %varplayerbit_11885 = 0 & ~worldmap_key_get_selected_bit(23) = 0) {
+    ~worldmap_key_toggle_selected_bit(23);
+}
+~script285($component1);
+~worldmap_key_build(%varplayerbit_14108, $component2, $component3, $component4);
+if_setonvarctransmit("worldmap_varctransmit($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10){varclient_622}", $component0);
+if_setonvartransmit("worldmap_vartransmit($component1, $component2, $component3, $component4, $component6, $component0, %varplayerbit_14110){varplayer_2805, varplayer_2807}", $component0);
+%varclient_3703 = null;
+~script8841(31, 1);
+%varclient_2545 = "";
+if_setop(1, "Search", $component5);
+if_setonop("worldmap_search_start", $component5);
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_coord $coord14 = %varclient_622;
+if (%varplayerbit_3617 = 1 & $wma11 = main & map_members = true) {
+    $coord14 = 0_45_54_29_38;
+}
+if ($coord14 ! null) {
+    $int12, $int13 = worldmap_getdisplaycoord($coord14);
+    if ($int12 < 0 | $int13 < 0) {
+        $coord14 = movecoord(0_0_0_0_0, coordx($coord14), ~script686(calc(coordy($coord14) - 1), 4), coordz($coord14));
+        $int12, $int13 = worldmap_getdisplaycoord($coord14);
+        if ($int12 < 0 | $int13 < 0) {
+            $coord14 = movecoord(0_0_0_0_0, coordx($coord14), ~script686(calc(coordy($coord14) - 1), 4), coordz($coord14));
+            $int12, $int13 = worldmap_getdisplaycoord($coord14);
+            if ($int12 < 0 | $int13 < 0) {
+                return;
+            }
+        }
+    }
+    if_setontimer("script2054(calc(clientclock + 4), $component0, $coord14)", $component0);
+}

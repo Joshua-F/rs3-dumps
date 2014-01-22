@@ -2,21 +2,15 @@
 [proc,worldmap_showoverview](int $int0)
 if ($int0 = 1) {
     if_sethide(false, interface_1422:com_79);
+    %varclientbit_21368 = 0;
     if_setop(1, "Hide overview", interface_1422:com_125);
     if_setsize(if_getwidth(interface_1422:com_83), if_getheight(interface_1422:com_79), ^setsize_abs, ^setsize_minus, interface_1422:com_83);
 } else {
     if_sethide(true, interface_1422:com_79);
+    %varclientbit_21368 = 1;
     if_setop(1, "Show overview", interface_1422:com_125);
     if_setsize(if_getwidth(interface_1422:com_83), 0, ^setsize_abs, ^setsize_minus, interface_1422:com_83);
 }
 if_setonop("worldmap_toggleoverview", interface_1422:com_125);
 ~script9581(interface_1422:com_87);
-if (if_getscrollheight(interface_1422:com_7) < if_getheight(interface_1422:com_7)) {
-    if_setscrollpos(0, 0, interface_1422:com_7);
-    cc_deleteall(interface_1422:com_8);
-} else {
-    ~scrollbar_vertical(interface_1422:com_8, interface_1422:com_7, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-}
-if (cc_find(interface_1422:com_8, 1) = true) {
-    ~scrollbar_vertical_doscroll(interface_1422:com_8, interface_1422:com_7, if_getscrolly(interface_1422:com_7), true);
-}
+~worldmap_key_build_scrollbar(interface_1422:com_7, interface_1422:com_8);

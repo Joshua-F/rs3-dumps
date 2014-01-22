@@ -1,6 +1,10 @@
 // 6738
 [proc,script6738](int $int0, struct $struct1, int $int2)
-if_settext(struct_param($struct1, param_1266), interface_1343:com_25);
+if ($int2 = 6) {
+    if_settext("Lucky Challenge: <struct_param($struct1, param_1266)>", interface_1343:com_25);
+} else {
+    if_settext(struct_param($struct1, param_1266), interface_1343:com_25);
+}
 if_settext(struct_param($struct1, param_1273), interface_1343:com_19);
 switch_int ($int0) {
     case 8 :
@@ -45,16 +49,35 @@ switch_int ($int0) {
         if_setgraphic("challenge_skill_icons_35px,8", interface_1343:com_26);
     case 18 :
         if_setgraphic("challenge_skill_icons_35px,14", interface_1343:com_26);
+    case 63 :
+        if_setgraphic("rs3_dnd_mini_games_icons,10", interface_1343:com_26);
+    case 62 :
+        if_setgraphic("rs3_dnd_mini_games_icons,0", interface_1343:com_26);
 }
 if_settext(struct_param($struct1, param_1274), interface_1343:com_11);
-if (~script6783(1) = $struct1 | ~script6783(2) = $struct1 | ~script6783(3) = $struct1 | ~script6783(4) = $struct1 | ~script6783(5) = $struct1) {
+if (~script6783(1) = $struct1 | ~script6783(2) = $struct1 | ~script6783(3) = $struct1 | ~script6783(4) = $struct1 | ~script6783(5) = $struct1 | ~script345 = $struct1) {
     if_settext(struct_param($struct1, param_1275), interface_1343:com_85);
 } else {
     if_settext("Only daily challenges need to be handed in.", interface_1343:com_85);
 }
 if_sethide(false, interface_1343:com_6);
 def_string $string0 = "";
-if ($int0 = 1) {
+if ($int2 = 6) {
+    if (struct_param($struct1, param_4057) = 63) {
+        switch_int (struct_param(struct_param($struct1, param_4062), param_848)) {
+            case 0, 1 :
+                $string0 = append($string0, "A medium XP lamp");
+            case 2, 3, 5 :
+                $string0 = append($string0, "A large XP lamp");
+            case 4 :
+                $string0 = append($string0, "A huge XP lamp");
+        }
+    } else if (struct_param($struct1, param_4057) = 62) {
+        $string0 = append($string0, "A medium XP lamp");
+    } else {
+        $string0 = append($string0, "<enum(int, string, enum_108, $int0)> XP");
+    }
+} else if ($int0 = 1) {
     $string0 = append($string0, "1 spin on the Squeal of Fortune, a Combat XP Lamp");
 } else {
     $string0 = append($string0, "1 spin on the Squeal of Fortune, <enum(int, string, enum_108, $int0)> XP");
@@ -76,6 +99,7 @@ switch_int ($int2) {
             if_setgraphic(graphic_13901, interface_1343:com_27);
         }
         if_sethide(false, interface_1343:com_5);
+        if_settext("Days left:", interface_1343:com_42);
         if_settext(~script3944(5), interface_1343:com_41);
         if_settext($string0, interface_1343:com_13);
     case 2 :
@@ -87,6 +111,7 @@ switch_int ($int2) {
             if_setgraphic(graphic_13901, interface_1343:com_27);
         }
         if_sethide(false, interface_1343:com_5);
+        if_settext("Days left:", interface_1343:com_42);
         if_settext(~script3944(4), interface_1343:com_41);
         if_settext($string0, interface_1343:com_13);
     case 3 :
@@ -98,6 +123,7 @@ switch_int ($int2) {
             if_setgraphic(graphic_13901, interface_1343:com_27);
         }
         if_sethide(false, interface_1343:com_5);
+        if_settext("Days left:", interface_1343:com_42);
         if_settext(~script3944(3), interface_1343:com_41);
         if_settext($string0, interface_1343:com_13);
     case 4 :
@@ -109,6 +135,7 @@ switch_int ($int2) {
             if_setgraphic(graphic_13901, interface_1343:com_27);
         }
         if_sethide(false, interface_1343:com_5);
+        if_settext("Days left:", interface_1343:com_42);
         if_settext(~script3944(2), interface_1343:com_41);
         if_settext($string0, interface_1343:com_13);
     case 5 :
@@ -120,7 +147,20 @@ switch_int ($int2) {
             if_setgraphic(graphic_13901, interface_1343:com_27);
         }
         if_sethide(false, interface_1343:com_5);
+        if_settext("Days left:", interface_1343:com_42);
         if_settext(~script3944(1), interface_1343:com_41);
+        if_settext($string0, interface_1343:com_13);
+    case 6 :
+        $int3 = %varplayerbit_21379;
+        if_sethide(false, interface_1343:com_27);
+        if ($int3 >= $int4) {
+            if_setgraphic(graphic_13902, interface_1343:com_27);
+        } else {
+            if_setgraphic(graphic_13901, interface_1343:com_27);
+        }
+        if_sethide(false, interface_1343:com_5);
+        if_settext("Hours left:", interface_1343:com_42);
+        if_settext(~script346, interface_1343:com_41);
         if_settext($string0, interface_1343:com_13);
     case default :
         if (~script6783(6) = $struct1) {
