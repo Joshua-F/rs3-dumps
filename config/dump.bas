@@ -14079,3 +14079,9 @@ randomreadyanim=seq_22566,10
 randomreadyanim=seq_22567,10
 randomreadyanim=seq_22568,10
 
+[bas_3052]
+readyanim=seq_22605,seq_22606
+
+[bas_3053]
+readyanim=seq_22607,seq_22608
+
