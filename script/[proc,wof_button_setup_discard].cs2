@@ -1,36 +1,59 @@
 // 6672
-[proc,wof_button_setup_discard](int $int0, obj $obj1, int $int2)
-def_graphic $graphic3 = graphic_15150;
-def_graphic $graphic4 = graphic_15153;
+[proc,wof_button_setup_discard](obj $obj0, int $int1)
 def_string $string0 = "Discard item";
-def_boolean $boolean5 = false;
+def_boolean $boolean2 = false;
 def_string $string1 = "Discard the prize.";
-def_string $string2 = "You do not have an unclaimed prize to discard";
-if (map_members = false & %varplayerbit_4347 = 1 | %varplayer_1454 <= 0) {
-    $graphic3 = graphic_15150;
-    $graphic4 = graphic_15153;
+def_string $string2 = "You cannot discard this item.";
+def_string $string3 = "Cash Out";
+def_int $int3 = 0;
+def_string $string4 = "The amount of coins that will be received if using 'Cash out' instead of claiming the item.";
+if (%varplayer_1454 < 0) {
+    return;
+}
+if (%varplayer_1454 = 0) {
     $string0 = "Discard item";
-    $boolean5 = true;
+    $boolean2 = true;
+    $string3 = "Discard";
+    $string4 = "This item has no coin value, but you may discard it if you don't want the item.";
+} else if (map_members = false & %varplayerbit_4347 = 1) {
+    $string0 = "Discard item";
+    $boolean2 = true;
+    $string3 = "Discard";
+    $string1 = "You can only cash out this item on a members' world, but you may discard this item instead.";
+    $int3 = 1;
+    $string4 = "The amount of coins recieved if you use 'Cash out' on a members' world. You can only cash out this item on a members' world, but you may discard it.";
+} else if (~pouch_itemspace(obj_995, %varplayer_1454) ! 1) {
+    $string0 = "Pouch Full";
+    $boolean2 = false;
+    $string3 = "Pouch Full";
+    $string2 = "You do not have enough space in your inventory or money pouch to cash out this item.";
+    $int3 = 1;
+    $string4 = "You do not have enough space in your inventory or money pouch to cash out this item.";
 } else {
-    $graphic3 = graphic_15008;
-    $graphic4 = graphic_15011;
     $string0 = "Convert to <~tostring_spacer(%varplayer_1454, ~script765)> coins";
-    $boolean5 = true;
-    $string1 = "Convert to coin. <~tostring_spacer(%varplayer_1454, ~script765)> coins.";
+    $boolean2 = true;
+    $string1 = "Convert to coins. <~tostring_spacer(%varplayer_1454, ~script765)> coins.";
+    $string3 = "Cash Out";
 }
 if (%varclient_1790 = 7) {
-    $string1 = "The Squeal of Fortune is not available at the moment. Please try later.";
-    $string2 = "The Squeal of Fortune is not available at the moment. Please try later.";
-    $boolean5 = false;
+    $string1 = "Treasure Hunter is not available at the moment. Please try later.";
+    $string2 = "Treasure Hunter is not available at the moment. Please try later.";
+    $int3 = 1;
+    $boolean2 = false;
 }
 if (%varclient_1790 = 10) {
     $string1 = "Loading...";
     $string2 = "Loading...";
-    $boolean5 = false;
+    $boolean2 = false;
 }
-if_setonmouserepeat("script7768(interface_1253:com_86, event_com, -1, $string1, 200, graphic_17813, graphic_17813, 16777215, 13, 4, 3, event_mousex, event_mousey)", interface_1253:com_209);
-if_setonmouserepeat("script7768(interface_1253:com_86, event_com, -1, $string2, 200, graphic_17813, graphic_17813, 16777215, 13, 4, 3, event_mousex, event_mousey)", interface_1253:com_210);
-if_setgraphic(~script2034($graphic3), interface_1253:com_208);
-if_setgraphic(~script2034($graphic4), interface_1253:com_211);
-if_setop(1, $string0, interface_1253:com_208);
-if_sethide($boolean5, interface_1253:com_210);
+if ($int3 = 1) {
+    if_setonmouserepeat("script7768(interface_1253:com_211, event_com, -1, $string1, 200, graphic_17813, graphic_17813, 16777215, 13, 4, 0, event_mousex, event_mousey)", interface_1253:com_389);
+    if_setonmouserepeat("script7768(interface_1253:com_211, event_com, -1, $string2, 200, graphic_17813, graphic_17813, 16777215, 13, 4, 0, event_mousex, event_mousey)", interface_1253:com_390);
+} else {
+    if_setonmouserepeat(null, interface_1253:com_389);
+    if_setonmouserepeat(null, interface_1253:com_390);
+}
+if_setop(1, $string0, interface_1253:com_389);
+if_sethide($boolean2, interface_1253:com_390);
+if_settext($string3, interface_1253:com_392);
+if_setonmouserepeat("script7768(interface_1253:com_211, event_com, -1, $string4, 180, graphic_17813, graphic_17813, 16777215, 13, 4, 0, event_mousex, event_mousey)", interface_1253:com_26);

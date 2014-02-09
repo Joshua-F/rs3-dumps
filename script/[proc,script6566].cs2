@@ -4,8 +4,8 @@ if (%varplayerbit_4322 > 0) {
     ~script6567;
     return;
 }
-if (%varclient_1781 < 0 | %varclient_1781 >= 13) {
-    if (if_gethide(interface_1253:com_50) = true) {
+if (%varclient_1781 <= 0 | %varclient_1781 > 5) {
+    if (if_gethide(interface_1253:com_131) = true) {
         ~script1541;
         ~script6978;
     }
@@ -18,7 +18,110 @@ if (%varclient_1781 < 0 | %varclient_1781 >= 13) {
 if (%varplayerbit_4345 <= 0) {
     return;
 }
-def_int $int0 = 0;
-def_int $int1 = 0;
-$int0, $int1 = ~script5886(%varclient_1781);
-if_setontimer("script5885($int0, $int1, 0)", interface_1253:com_87);
+~script9688(false);
+if (%varclient_4083 = 3) {
+    return;
+}
+%varclient_4083 = 3;
+def_component $component0 = null;
+def_component $component1 = null;
+def_seq $seq2 = null;
+def_seq $seq3 = seq_22668;
+def_int $int4 = 0;
+switch_int (%varclient_1781) {
+    case 1 :
+        $component0 = interface_1253:com_347;
+        $component1 = interface_1253:com_298;
+    case 2 :
+        $component0 = interface_1253:com_108;
+        $component1 = interface_1253:com_300;
+    case 3 :
+        $component0 = interface_1253:com_349;
+        $component1 = interface_1253:com_302;
+    case 4 :
+        $component0 = interface_1253:com_344;
+        $component1 = interface_1253:com_304;
+    case 5 :
+        $component0 = interface_1253:com_342;
+        $component1 = interface_1253:com_306;
+    case default :
+        $component0 = interface_1253:com_347;
+        $component1 = interface_1253:com_298;
+}
+switch_int (%varclient_4077) {
+    case 1 :
+        if (%varclient_4097 = 1) {
+            $seq2 = seq_22659;
+        } else {
+            $seq2 = seq_22647;
+        }
+        $seq3 = seq_22668;
+    case 2 :
+        if (%varclient_4097 = 1) {
+            $seq2 = seq_22660;
+        } else {
+            $seq2 = seq_22648;
+        }
+        $seq3 = seq_22668;
+    case 3 :
+        if (%varclient_4097 = 1) {
+            $seq2 = seq_22661;
+        } else {
+            $seq2 = seq_22649;
+        }
+        $seq3 = seq_22669;
+    case 4 :
+        if (%varclient_4097 = 1) {
+            $seq2 = seq_22662;
+        } else {
+            $seq2 = seq_22650;
+        }
+        $seq3 = seq_22669;
+    case 5 :
+        if (%varclient_4097 = 1) {
+            $seq2 = seq_22663;
+        } else {
+            $seq2 = seq_22651;
+        }
+        $seq3 = seq_22670;
+    case 6 :
+        if (%varclient_4097 = 1) {
+            $seq2 = seq_22663;
+        } else {
+            $seq2 = seq_22651;
+        }
+        $seq3 = seq_22670;
+    case default :
+        if (%varclient_4097 = 1) {
+            $seq2 = seq_22659;
+        } else {
+            $seq2 = seq_22647;
+        }
+        $seq3 = seq_22668;
+}
+$int4 = calc(300 - seqlength($seq2));
+if_setmodelanim(seq_22667, interface_1253:com_2);
+if_setmodelanim(seq_22645, interface_1253:com_347);
+if_setmodelanim(seq_22645, interface_1253:com_108);
+if_setmodelanim(seq_22645, interface_1253:com_349);
+if_setmodelanim(seq_22645, interface_1253:com_344);
+if_setmodelanim(seq_22645, interface_1253:com_342);
+if_setontimer(null, interface_1253:com_347);
+if_setontimer(null, interface_1253:com_108);
+if_setontimer(null, interface_1253:com_349);
+if_setontimer(null, interface_1253:com_344);
+if_setontimer(null, interface_1253:com_342);
+if_setonmouseover(null, $component1);
+if_setonmouseleave(null, $component1);
+if_setmodelanim($seq2, $component0);
+if_setontimer("script5898(event_com, $int4)", interface_1253:com_170);
+def_int $int5 = clientclock;
+if (if_gethide(interface_1253:com_131) = false) {
+    if (%varclient_4097 = 1) {
+        ~script9697($component1);
+        $int5 = calc($int5 + 200);
+        if_setontimer("script9693(event_com, $int5, $seq3)", interface_1253:com_2);
+    } else {
+        if_setontimer("script9693(event_com, $int5, $seq3)", interface_1253:com_2);
+    }
+}

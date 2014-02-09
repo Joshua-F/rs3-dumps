@@ -1,28 +1,17 @@
 // 5898
 [clientscript,script5898](component $component0, int $int1)
 def_int $int2 = calc($int1 + 1);
-def_int $int3 = ~script5939(%varclient_1781);
-if ($int2 >= 80) {
-    ~deltooltip(interface_1253:com_122);
-    if_setontimer(null, $component0);
+if (if_gethide(interface_1253:com_131) = true | if_gethide(interface_1253:com_153) = false | if_gethide(interface_1253:com_152) = false) {
+    if_setontimer(null, interface_1253:com_170);
+    return;
+}
+if ($int2 >= 300) {
+    ~deltooltip(interface_1253:com_219);
+    ~deltooltip(interface_1253:com_210);
+    if_setontimer(null, interface_1253:com_170);
     ~wof_show_reward;
-    ~script1544;
     %varclient_1784 = 0;
     ~script5906;
-    if ($int2 = 80) {
-        switch_int (~script5939(%varclient_1781)) {
-            case 0 :
-                sound_jingle(~script5995(15469));
-            case 1 :
-                sound_jingle(~script5995(17333));
-            case 2 :
-                sound_jingle(~script5995(24797));
-                sound_vorbis_volume(~script2337(5705));
-            case 3 :
-                sound_jingle(~script5995(22600));
-                sound_vorbis_volume(~script2337(5705));
-        }
-    }
 } else {
-    if_setontimer("script5898(event_com, $int2)", $component0);
+    if_setontimer("script5898(event_com, $int2)", interface_1253:com_170);
 }

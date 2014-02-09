@@ -1,0 +1,31 @@
+// 9687
+[clientscript,wof_chest_intro](component $component0, component $component1, int $int2, int $int3)
+def_int $int4 = calc($int2 + 1);
+if ($int3 = 1) {
+    if_setmodelanim(seq_22643, $component1);
+}
+if ($int2 = 25) {
+    switch_component ($component1) {
+        case interface_1253:com_347 :
+            if_setmodelanim(seq_22653, $component1);
+        case interface_1253:com_108 :
+            if_setmodelanim(seq_22653, $component1);
+        case interface_1253:com_349 :
+            if_setmodelanim(seq_22653, $component1);
+        case interface_1253:com_344 :
+            if_setmodelanim(seq_22653, $component1);
+        case interface_1253:com_342 :
+            if_setmodelanim(seq_22653, $component1);
+    }
+}
+def_int $int5 = 0;
+if ($int2 = calc(25 + seqlength(seq_22653))) {
+    if_setmodelanim(null, $component1);
+    if_setontimer(null, $component0);
+    $int5 = random(100);
+    if_setontimer("script9683($component1, $int5)", $component1);
+    if_setonmouseover("wof_chest_mouseover($component1)", $component0);
+    if_setonmouseleave("wof_chest_mouseleave($component1)", $component0);
+    return;
+}
+if_setontimer("wof_chest_intro($component0, $component1, $int4, 0)", $component0);
