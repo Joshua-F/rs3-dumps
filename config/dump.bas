@@ -14085,3 +14085,18 @@ readyanim=seq_22605,seq_22606
 [bas_3053]
 readyanim=seq_22607,seq_22608
 
+[bas_3054]
+readyanim=seq_22638,seq_22638
+
+[bas_3055]
+readyanim=seq_22635,seq_22635
+
+[bas_3056]
+readyanim=seq_22641,seq_22641
+
+[bas_3057]
+runanim=seq_22674
+readyanim=null,seq_22673
+randomreadyanim=seq_22676,95
+randomreadyanim=seq_22675,5
+
