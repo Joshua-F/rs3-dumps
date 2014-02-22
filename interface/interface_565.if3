@@ -1,26 +1,13 @@
 // 565:0
 [com_0]
 type=layer
-x=111
-y=266
-width=270
-height=20
-hide=yes
-pausebutton=yes
-pausetext=Toggle
-onmouseover=text_colour_swapper(interface_565:com_15, ^white)
-onmouseleave=text_colour_swapper(interface_565:com_15, 0xff981f)
-
-// 565:1
-[com_1]
-type=layer
 x=98
 y=34
 width=333
 height=263
 
-// 565:2
-[com_2]
+// 565:1
+[com_1]
 type=layer
 width=16384
 height=16384
@@ -28,11 +15,11 @@ widthmode=proportion
 heightmode=proportion
 xmode=abs_centre
 ymode=abs_centre
-layer=com_1
+layer=com_0
 onload=script4260(event_com)
 
-// 565:3
-[com_3]
+// 565:2
+[com_2]
 type=layer
 x=12
 y=33
@@ -40,10 +27,10 @@ width=23
 height=43
 widthmode=minus
 heightmode=minus
-layer=com_1
+layer=com_0
 
-// 565:4
-[com_4]
+// 565:3
+[com_3]
 type=layer
 width=8
 height=8
@@ -51,21 +38,21 @@ widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-layer=com_1
+layer=com_0
 onload=script4261(event_com)
 
-// 565:5
-[com_5]
+// 565:4
+[com_4]
 type=layer
 y=4
 width=8
 height=23
 widthmode=minus
 xmode=abs_centre
-layer=com_1
+layer=com_0
 
-// 565:6
-[com_6]
+// 565:5
+[com_5]
 type=text
 width=16391
 height=4
@@ -73,24 +60,39 @@ widthmode=proportion
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-layer=com_5
+layer=com_4
 textfont=palatino_linotype_18pt_regular
+fontmono=no
 text=Warning!
 textalignh=centre
 textalignv=centre
 colour=0xebe0bc
 onload=script4262(event_com)
 
-// 565:7
-[com_7]
+// 565:6
+[com_6]
 type=layer
 x=9
 y=9
 width=16
 height=15
 xmode=abs_right
-layer=com_1
+layer=com_0
 onload=script4256(event_com)
+
+// 565:7
+[com_7]
+type=graphic
+width=16384
+height=16384
+widthmode=proportion
+heightmode=proportion
+xmode=abs_centre
+ymode=abs_centre
+layer=com_6
+transmitop=1
+op1=Close
+onload=script4257(event_com)
 
 // 565:8
 [com_8]
@@ -101,22 +103,17 @@ widthmode=proportion
 heightmode=proportion
 xmode=abs_centre
 ymode=abs_centre
-layer=com_7
-transmitop=1
-op1=Close
-onload=script4257(event_com)
+layer=com_6
+onload=script4258(event_com)
 
 // 565:9
 [com_9]
-type=graphic
-width=16384
-height=16384
-widthmode=proportion
-heightmode=proportion
+type=layer
+x=9
+y=260
+width=270
+height=20
 xmode=abs_centre
-ymode=abs_centre
-layer=com_7
-onload=script4258(event_com)
 
 // 565:10
 [com_10]
@@ -126,13 +123,14 @@ y=84
 width=315
 height=87
 textfont=p12_full
+fontmono=no
 text=The desert is a VERY dangerous place. Do not<br> enter if you are afraid of dying. Beware of high temperatures, sandstorms, robbers and slavers.<br> No responsibility is taken by Shantay if anything<br> bad should happen to you, in any circumstances whatsoever.
 textalignh=centre
 textalignv=centre
 textshadow=yes
 colour=0xff7d1f
-onload=cws_setup(interface_565:com_0, interface_565:com_16, 10)
-onvartransmit=cws_setup(interface_565:com_0, interface_565:com_16, 10){varplayer_446}
+onload=cws_setup(interface_565:com_9, interface_565:com_16, 10)
+onvartransmit=cws_setup(interface_565:com_9, interface_565:com_16, 10){varplayer_446}
 
 // 565:11
 [com_11]
@@ -160,6 +158,7 @@ y=204
 width=315
 height=15
 textfont=p12_full
+fontmono=no
 text=Proceed regardless
 textalignh=centre
 textalignv=centre
@@ -178,6 +177,7 @@ y=236
 width=315
 height=15
 textfont=p12_full
+fontmono=no
 text=Stay out
 textalignh=centre
 textalignv=centre
@@ -191,12 +191,15 @@ onmouseleave=text_colour_swapper(event_com, ^red)
 // 565:15
 [com_15]
 type=text
-x=1
-y=2
-width=315
-height=15
-layer=com_0
+width=16384
+height=16391
+widthmode=proportion
+heightmode=proportion
+xmode=abs_centre
+ymode=abs_centre
+layer=com_9
 textfont=p12_full
+fontmono=no
 text=Don't ask me this again
 textalignh=centre
 textalignv=centre
@@ -205,10 +208,33 @@ colour=0xff981f
 
 // 565:16
 [com_16]
-type=graphic
+type=layer
 x=2
-width=19
-height=19
-layer=com_0
-graphic="warning_icons,1"
+width=16
+height=16
+layer=com_9
+transmitop=1
+op1=Toggle
+onvartransmit=script5886(interface_565:com_17, interface_565:com_18, 10){varplayer_446, varplayer_447, varplayer_448, varplayer_449}
+onop=script5885(interface_565:com_17, interface_565:com_18)
+
+// 565:17
+[com_17]
+type=layer
+width=16391
+height=16384
+widthmode=proportion
+heightmode=proportion
+layer=com_16
+onload=script7755(event_com)
+
+// 565:18
+[com_18]
+type=layer
+width=16391
+height=16391
+widthmode=proportion
+heightmode=proportion
+layer=com_16
+onload=script7756(event_com)
 
