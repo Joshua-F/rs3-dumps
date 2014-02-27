@@ -35,9 +35,10 @@ def_string $string3 = "";
 def_graphic $graphic25 = null;
 def_obj $obj26 = inv_getobj(inv_94, 3);
 def_int $int27 = 0;
-def_int $int28 = 252;
-def_int $int29 = 0;
+def_int $int28 = 0;
+def_int $int29 = 252;
 def_int $int30 = 0;
+def_int $int31 = 0;
 ~script6211($component1, $int2);
 if (%varclient_2 ! 1) {
     ~script8808;
@@ -77,9 +78,9 @@ if (%varclient_2 ! 1) {
     if_settext(struct_param($struct0, param_2795), $component9);
     $int22 = calc(paraheight(if_gettext($component9), if_getwidth($component9), verdana_11pt_regular) * $int24);
     if_setsize(if_getwidth($component9), $int22, ^setsize_abs, ^setsize_abs, $component9);
-    $int30 = max(0, calc($int22 - 57));
-    $int29 = calc($int30 + 186);
-    if_setsize(if_getwidth($component3), $int29, ^setsize_abs, ^setsize_abs, $component3);
+    $int31 = max(0, calc($int22 - 57));
+    $int30 = calc($int31 + 186);
+    if_setsize(if_getwidth($component3), $int30, ^setsize_abs, ^setsize_abs, $component3);
     if (struct_param($struct0, param_2796) > 0) {
         if_sethide(false, $component13);
         if_sethide(false, $component10);
@@ -247,6 +248,7 @@ if (%varclient_2 ! 1) {
             }
         }
     } else if (struct_param($struct0, param_2806) = 4) {
+        $int28 = ~script6572($struct0);
         while ($int20 < 15) {
             switch_int ($int20) {
                 case 0 :
@@ -311,7 +313,7 @@ if (%varclient_2 ! 1) {
                     $graphic25 = "combatv2_attribute_requirement_icons,18";
             }
             if ($int23 > 0) {
-                if ($int23 > 0 & ~script339($struct0, struct_param($struct0, param_2871)) <= 0 & ~magic_runecount($obj21, null) < $int23) {
+                if (~script339($struct0, struct_param($struct0, param_2871)) <= 0 & ~magic_runecount($obj21, null) < $int23 & $int28 = 0) {
                     $string1 = "<col=ff0000>";
                 } else {
                     $string1 = "<col=00ff00>";
@@ -394,8 +396,8 @@ if (%varclient_2 ! 1) {
     } else {
         $int4, $int5 = ~script8406($component1, $int2);
     }
-    if (calc($int5 - $int29) >= 0) {
-        $int5 = calc($int5 - $int29);
+    if (calc($int5 - $int30) >= 0) {
+        $int5 = calc($int5 - $int30);
     }
     if ($int2 = -1) {
         $int6 = if_getwidth($component1);
@@ -406,10 +408,10 @@ if (%varclient_2 ! 1) {
     }
     $int4 = calc($int4 + $int6 / 2);
     $int4 = max($int4, 0);
-    if (calc($int4 + $int28) > if_getwidth(interface_1477:com_67)) {
-        $int4 = calc(if_getwidth(interface_1477:com_67) - $int28);
+    if (calc($int4 + $int29) > if_getwidth(interface_1477:com_67)) {
+        $int4 = calc(if_getwidth(interface_1477:com_67) - $int29);
     }
-    if_setsize($int28, $int29, ^setsize_abs, ^setsize_abs, $component3);
+    if_setsize($int29, $int30, ^setsize_abs, ^setsize_abs, $component3);
     if_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top, $component3);
     if (~script7981($struct0) = 1) {
         if_sethide(false, interface_1451:com_21);
