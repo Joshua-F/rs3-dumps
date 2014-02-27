@@ -32,6 +32,7 @@ def_string $string3 = "";
 def_graphic $graphic23 = null;
 def_obj $obj24 = inv_getobj(inv_94, 3);
 def_int $int25 = 0;
+def_int $int26 = 0;
 if (struct_param($struct0, param_2799) = 0) {
     if (struct_param($struct0, param_2806) = 4 & struct_param($struct0, param_2880) ! 5) {
         switch_int (struct_param($struct0, param_2873)) {
@@ -130,9 +131,9 @@ if (struct_param($struct0, param_2809) = 1 & map_members = false) {
 }
 $int14 = struct_param($struct0, param_2807);
 $int15 = struct_param($struct0, param_2806);
-def_stat $stat26 = enum(int, stat, enum_681, $int15);
+def_stat $stat27 = enum(int, stat, enum_681, $int15);
 if ($int14 > 1) {
-    if (stat($stat26) < struct_param($struct0, param_2807)) {
+    if (stat($stat27) < struct_param($struct0, param_2807)) {
         $string1 = "<col=ff0000>";
     } else {
         $string1 = "<col=00ff00>";
@@ -303,6 +304,7 @@ if ($struct0 = %varplayer_3170 & %varplayerbit_0 = 2) {
         }
     }
 } else if (struct_param($struct0, param_2806) = 4) {
+    $int26 = ~script6572($struct0);
     while ($int18 < 15) {
         switch_int ($int18) {
             case 0 :
@@ -382,7 +384,7 @@ if ($struct0 = %varplayer_3170 & %varplayerbit_0 = 2) {
                 $string4 = "Armadyl rune.";
         }
         if ($int21 > 0) {
-            if ($int21 > 0 & ~magic_runecount($obj19, null) < $int21) {
+            if (~magic_runecount($obj19, null) < $int21 & $int26 = 0) {
                 $string1 = "<col=ff0000>";
             } else {
                 $string1 = "<col=00ff00>";

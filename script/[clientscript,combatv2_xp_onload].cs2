@@ -1,0 +1,39 @@
+// 5948
+[clientscript,combatv2_xp_onload](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, int $int12)
+def_int $int13 = 0;
+def_component $component14 = null;
+def_component $component15 = null;
+def_component $component16 = null;
+while ($int13 < 4) {
+    switch_int ($int13) {
+        case 0 :
+            $component14 = $component0;
+            $component15 = $component1;
+            $component16 = $component2;
+        case 1 :
+            $component14 = $component3;
+            $component15 = $component4;
+            $component16 = $component5;
+        case 2 :
+            $component14 = $component6;
+            $component15 = $component7;
+            $component16 = $component8;
+        case 3 :
+            $component14 = $component9;
+            $component15 = $component10;
+            $component16 = $component11;
+    }
+    if ($component14 ! null) {
+        if_setonop("combatv2_xp_onop($component1, $component2, $component4, $component5, $component7, $component8, $component10, $component11, $int12, $int13)", $component14);
+        if_setonvartransmit("combatv2_xp_entry_update($component15, $component16, $int12, $int13){varplayer_627}", $component14);
+    }
+    if ($component15 ! null) {
+        ~script6057($component15, $int12, $int13);
+    }
+    if ($component16 ! null) {
+        if_setonmouseover("combatv2_xp_text_mouseover(event_com)", $component16);
+        if_setonmouseleave("combatv2_xp_text_mouseleave(event_com, $int12, $int13)", $component16);
+        ~combatv2_xp_text_update($component16, $int12, $int13);
+    }
+    $int13 = calc($int13 + 1);
+}
