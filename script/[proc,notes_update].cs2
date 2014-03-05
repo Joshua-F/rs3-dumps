@@ -3,11 +3,11 @@
 if (%varplayer_97 = false) {
     return;
 }
-if (if_gethide(~script7799($overlayinterface0, interface_34:com_19)) = false) {
-    if_setontimer("notes_update($overlayinterface0)", ~script7799($overlayinterface0, interface_34:com_18));
+if (if_gethide(~script7799($overlayinterface0, interface_34:com_17)) = false) {
+    if_setontimer("notes_update($overlayinterface0)", ~script7799($overlayinterface0, interface_34:com_16));
     return;
 } else {
-    if_setontimer(null, ~script7799($overlayinterface0, interface_34:com_18));
+    if_setontimer(null, ~script7799($overlayinterface0, interface_34:com_16));
 }
 ~meslayer_close(13);
 if_sethide(true, ~script7799($overlayinterface0, interface_34:com_14));
@@ -16,14 +16,14 @@ def_int $int1 = 0;
 def_int $int2 = 0;
 def_int $int3 = 0;
 def_string $string0 = "";
-cc_deleteall(~script7799($overlayinterface0, interface_34:com_18));
+cc_deleteall(~script7799($overlayinterface0, interface_34:com_16));
 if (userdetail_quickchat = true) {
-    if_settext("The notes system is not available for users restricted to quick-chat.", ~script7799($overlayinterface0, interface_34:com_22));
-    if_sethide(false, ~script7799($overlayinterface0, interface_34:com_22));
+    if_settext("The notes system is not available for users restricted to quick-chat.", ~script7799($overlayinterface0, interface_34:com_20));
+    if_sethide(false, ~script7799($overlayinterface0, interface_34:com_20));
     return;
 } else {
-    if_settext("", ~script7799($overlayinterface0, interface_34:com_22));
-    if_sethide(true, ~script7799($overlayinterface0, interface_34:com_22));
+    if_settext("", ~script7799($overlayinterface0, interface_34:com_20));
+    if_sethide(true, ~script7799($overlayinterface0, interface_34:com_20));
 }
 while ($int2 < 30) {
     $string0 = ~notes_get_note($int2);
@@ -34,8 +34,8 @@ while ($int2 < 30) {
     $int2 = calc($int2 + 1);
 }
 if ($int3 <= 0) {
-    if_settext("No notes", ~script7799($overlayinterface0, interface_34:com_22));
-    if_sethide(false, ~script7799($overlayinterface0, interface_34:com_22));
+    if_settext("No notes", ~script7799($overlayinterface0, interface_34:com_20));
+    if_sethide(false, ~script7799($overlayinterface0, interface_34:com_20));
     if_settext("Notes", ~script7799($overlayinterface0, interface_34:com_5));
 } else if ($int3 > 0 & $int3 <= 30) {
     if_settext("Notes (<tostring($int3)>/<30>)", ~script7799($overlayinterface0, interface_34:com_5));
@@ -43,18 +43,13 @@ if ($int3 <= 0) {
     if_settext("Notes", ~script7799($overlayinterface0, interface_34:com_5));
 }
 if ($int1 > 0 & $int1 < 13) {
-    if (cc_find(~script7799($overlayinterface0, interface_34:com_18), calc($int3 - 1)) = true) {
-        if_setsize(cc_getwidth, calc(if_getheight(~script7799($overlayinterface0, interface_34:com_18)) - (cc_gety + cc_getheight)), ^setsize_abs, ^setsize_abs, ~script7799($overlayinterface0, interface_34:com_21));
-        if_setposition(cc_getx, calc(cc_gety + cc_getheight), ^setpos_abs_left, ^setpos_abs_top, ~script7799($overlayinterface0, interface_34:com_21));
-        if_sethide(false, ~script7799($overlayinterface0, interface_34:com_21));
+    if (cc_find(~script7799($overlayinterface0, interface_34:com_16), calc($int3 - 1)) = true) {
+        if_setsize(cc_getwidth, calc(if_getheight(~script7799($overlayinterface0, interface_34:com_16)) - (cc_gety + cc_getheight)), ^setsize_abs, ^setsize_abs, ~script7799($overlayinterface0, interface_34:com_19));
+        if_setposition(cc_getx, calc(cc_gety + cc_getheight), ^setpos_abs_left, ^setpos_abs_top, ~script7799($overlayinterface0, interface_34:com_19));
+        if_sethide(false, ~script7799($overlayinterface0, interface_34:com_19));
     }
 } else {
-    if_sethide(true, ~script7799($overlayinterface0, interface_34:com_21));
+    if_sethide(true, ~script7799($overlayinterface0, interface_34:com_19));
 }
-if ($int1 < 1) {
-    if_setscrollsize(0, 0, ~script7799($overlayinterface0, interface_34:com_18));
-} else {
-    if_setscrollsize(0, calc($int1 * 15 + 10), ~script7799($overlayinterface0, interface_34:com_18));
-}
-~scrollbar_resize(~script7799($overlayinterface0, interface_34:com_13), ~script7799($overlayinterface0, interface_34:com_18), if_getscrolly(~script7799($overlayinterface0, interface_34:com_18)));
-if_sethide(true, ~script7799($overlayinterface0, interface_34:com_17));
+~notes_scrollbar($overlayinterface0);
+if_sethide(true, ~script7799($overlayinterface0, interface_34:com_15));
