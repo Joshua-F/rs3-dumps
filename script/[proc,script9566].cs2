@@ -1,57 +1,83 @@
 // 9566
-[proc,script9566](string $string0, obj $obj0, int $int1, int $int2, component $component3, int $int4, fontmetrics $fontmetrics5, int $rgb6, int $int7)
+[proc,script9566](string $string0, obj $obj0, int $int1, int $int2, int $int3, component $component4, int $int5, fontmetrics $fontmetrics6, int $rgb7, int $int8)
 if (~tooltip_time(25) = false) {
     return;
 }
-def_int $int8 = 0;
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = 0;
-~script6211($component3, $int4);
-if (%varclient_2 ! 1 | $int7 = 1) {
+def_int $int13 = 0;
+def_int $int14 = 0;
+~script6211($component4, $int5);
+if (%varclient_2 ! 1 | $int8 = 1) {
     if_opensubclient(interface_1477:com_67, interface_1486);
     if_setsize(0, 0, ^setsize_abs, ^setsize_abs, interface_1486:com_1);
-    if_sethide(true, interface_1486:com_10);
-    if_sethide(true, interface_1486:com_11);
-    if ($obj0 ! null) {
-        if_sethide(false, interface_1486:com_10);
-        ~script9568($string0, $obj0, interface_1486:com_1, interface_1486:com_10);
+    if_sethide(true, interface_1486:com_25);
+    if_setparam_int(param_4145, -1, interface_1477:com_68);
+    if_sethide(true, interface_1486:com_25);
+    cc_deleteall(interface_1486:com_25);
+    if (if_find(interface_1486:com_25) = true) {
+        cc_setparam(param_4009, null);
+    }
+    if_sethide(true, interface_1486:com_26);
+    if_settext(null, interface_1486:com_26);
+    if ($int1 ! -1) {
+        if_setparam_int(param_4145, $int1, interface_1477:com_68);
+        if_sethide(false, interface_1486:com_25);
+        if_setsize(0, 0, ^setsize_abs, ^setsize_abs, interface_1486:com_25);
+        if (cc_find(interface_1477:com_68, 0) = true) {
+            switch_int ($int1) {
+                case 0 :
+                    ~worldmap_elements_quest_tooltip(interface_1486:com_25, cc_param(param_4146));
+            }
+        }
+        if (if_getwidth(interface_1486:com_25) = 0 | if_getheight(interface_1486:com_25) = 0) {
+            ~script8808;
+            return;
+        } else {
+            if_setsize(if_getwidth(interface_1486:com_25), if_getheight(interface_1486:com_25), ^setsize_abs, ^setsize_abs, interface_1486:com_1);
+        }
+    } else if ($obj0 ! null) {
+        if_sethide(false, interface_1486:com_25);
+        ~script9568($string0, $obj0, interface_1486:com_1, interface_1486:com_25);
         if_setsize(if_getwidth(interface_1486:com_1), calc(if_getheight(interface_1486:com_1) - 16), ^setsize_abs, ^setsize_abs, interface_1486:com_1);
-        if (if_find(interface_1486:com_10) = true) {
+        if (if_find(interface_1486:com_25) = true) {
             cc_setparam(param_4009, $obj0);
         }
     } else if (compare($string0, "") ! 0) {
-        if_sethide(false, interface_1486:com_11);
-        ~script9567($string0, $fontmetrics5, $rgb6, $int1, interface_1486:com_1, interface_1486:com_11);
+        if_sethide(false, interface_1486:com_26);
+        ~script9567($string0, $fontmetrics6, $rgb7, $int2, interface_1486:com_1, interface_1486:com_26);
     } else {
         ~script8808;
         return;
     }
-    $int10 = if_getwidth(interface_1486:com_1);
-    $int11 = if_getheight(interface_1486:com_1);
-    $int1 = calc($int10 + 7 * 2);
-    if ($int4 = -1) {
-        $int8, $int9 = ~script8405($component3);
+    $int11 = if_getwidth(interface_1486:com_1);
+    $int12 = if_getheight(interface_1486:com_1);
+    $int2 = calc($int11 + 7 * 2);
+    if ($int5 = -1) {
+        $int9, $int10 = ~script8405($component4);
+        $int13 = if_getwidth($component4);
+        $int14 = if_getheight($component4);
     } else {
-        $int8, $int9 = ~script8406($component3, $int4);
+        $int9, $int10 = ~script8406($component4, $int5);
+        if (cc_find($component4, $int5) = true) {
+            $int13 = cc_getwidth;
+            $int14 = cc_getheight;
+        } else {
+            $int13 = 25;
+            $int14 = 25;
+        }
     }
-    if (calc($int9 - ($int11 + 2)) >= 0) {
-        $int9 = calc($int9 - ($int11 + 5 * 2 + 2));
+    if (calc($int10 - ($int12 + 5 * 2 + 2)) >= 0) {
+        $int10 = calc($int10 - ($int12 + 5 * 2 + 2));
     } else {
-        $int9 = calc($int9 + ($int11 + 5 * 2 + 2));
+        $int10 = calc($int10 + $int14 + 2);
     }
-    if ($int4 = -1) {
-        $int12 = if_getwidth($component3);
-    } else if (cc_find($component3, $int4) = true) {
-        $int12 = cc_getwidth;
-    } else {
-        $int12 = 25;
-    }
-    $int8 = calc($int8 + $int12 / 2 - $int1 / 2);
-    $int8 = max($int8, 0);
-    $int8 = min($int8, calc(if_getwidth(interface_1477:com_63) - $int1));
-    if_setsize(calc($int10 + 7 * 2), calc($int11 + 5 * 2), ^setsize_abs, ^setsize_abs, interface_1486:com_1);
-    if_setposition($int8, $int9, ^setpos_abs_left, ^setpos_abs_top, interface_1486:com_1);
+    $int9 = calc($int9 + $int13 / 2 - $int2 / 2);
+    $int9 = max($int9, 0);
+    $int9 = min($int9, calc(if_getwidth(interface_1477:com_63) - $int2));
+    if_setsize(calc($int11 + 7 * 2), calc($int12 + 5 * 2), ^setsize_abs, ^setsize_abs, interface_1486:com_1);
+    if_setposition($int9, $int10, ^setpos_abs_left, ^setpos_abs_top, interface_1486:com_1);
     %varclient_2 = 1;
 }
