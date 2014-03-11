@@ -1,0 +1,33 @@
+// 7593
+[proc,script7593](string $string0, int $int0, fontmetrics $fontmetrics1, int $int2)(int)
+def_int $int3 = 1;
+def_int $int4 = paraheight($string0, $int0, $fontmetrics1);
+def_int $int5 = enum(fontmetrics, int, enum_8549, $fontmetrics1);
+if ($int5 < 0) {
+    return(0);
+}
+if ($int2 = -1 | $int2 = 0) {
+    $int2 = enum(fontmetrics, int, enum_8584, $fontmetrics1);
+    if ($int2 = -1) {
+        $int2 = $int5;
+        $int3 = 0;
+    }
+}
+def_int $int6 = enum(fontmetrics, int, enum_8585, $fontmetrics1);
+if ($int2 < $int6) {
+    $int6 = calc($int2 * 2);
+} else {
+    $int6 = calc($int2 + $int6);
+}
+if ($int4 > 1) {
+    $int4 = calc($int2 * ($int4 - 1) + $int5);
+    if ($int3 = 1) {
+        return(max($int4, $int6));
+    } else {
+        return($int4);
+    }
+} else if ($int4 = 1) {
+    return($int5);
+} else {
+    return(0);
+}

@@ -1,0 +1,417 @@
+// 7591
+[proc,worldmap_elements_quest_tooltip](component $component0, struct $struct1)
+def_int $int2 = struct_param($struct1, param_847);
+def_string $string0 = struct_param($struct1, param_845);
+def_graphic $graphic3 = struct_param($struct1, param_952);
+if ($graphic3 = "quest_rating_icon,5") {
+    $graphic3 = null;
+}
+def_string $string1 = struct_param($struct1, param_849);
+def_int $int4 = ~ql4_getprogress($int2);
+def_int $int5 = struct_param($struct1, param_848);
+def_int $intarray0(4);
+def_int $intarray1(4);
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_stat $stat8 = null;
+def_int $int9 = -1;
+def_string $string2 = null;
+while ($int7 < 12) {
+    switch_int ($int7) {
+        case 0 :
+            $stat8 = struct_param($struct1, param_871);
+            $int9 = struct_param($struct1, param_872);
+        case 1 :
+            $stat8 = struct_param($struct1, param_873);
+            $int9 = struct_param($struct1, param_874);
+        case 2 :
+            $stat8 = struct_param($struct1, param_875);
+            $int9 = struct_param($struct1, param_876);
+        case 3 :
+            $stat8 = struct_param($struct1, param_877);
+            $int9 = struct_param($struct1, param_878);
+        case 4 :
+            $stat8 = struct_param($struct1, param_879);
+            $int9 = struct_param($struct1, param_880);
+        case 5 :
+            $stat8 = struct_param($struct1, param_881);
+            $int9 = struct_param($struct1, param_882);
+        case 6 :
+            $stat8 = struct_param($struct1, param_883);
+            $int9 = struct_param($struct1, param_884);
+        case 7 :
+            $stat8 = struct_param($struct1, param_885);
+            $int9 = struct_param($struct1, param_886);
+        case 8 :
+            $stat8 = struct_param($struct1, param_887);
+            $int9 = struct_param($struct1, param_888);
+        case 9 :
+            $stat8 = struct_param($struct1, param_889);
+            $int9 = struct_param($struct1, param_890);
+        case 10 :
+            $stat8 = struct_param($struct1, param_891);
+            $int9 = struct_param($struct1, param_892);
+        case 11 :
+            $stat8 = struct_param($struct1, param_893);
+            $int9 = struct_param($struct1, param_894);
+        case default :
+            return;
+    }
+    if ($stat8 ! null & $int9 ! 0 & stat_base($stat8) < $int9) {
+        if (++$int6 < 5) {
+            if ($int6 = 1 & $int4 = 0) {
+                $int4 = -1;
+            }
+            $intarray0(calc($int6 - 1)) = enum(stat, int, enum_1482, $stat8);
+            $intarray1(calc($int6 - 1)) = $int9;
+        } else {
+            $intarray1(3) = calc($int6 - 3);
+        }
+    }
+    $int7 = calc($int7 + 1);
+}
+def_string $string3 = null;
+def_string $string4 = null;
+def_string $string5 = null;
+def_string $string6 = null;
+def_int $int10 = 0;
+$int7 = 0;
+def_int $int11 = -1;
+def_struct $struct12 = null;
+while ($int7 < 12) {
+    switch_int ($int7) {
+        case 0 :
+            $int11 = struct_param($struct1, param_859);
+        case 1 :
+            $int11 = struct_param($struct1, param_860);
+        case 2 :
+            $int11 = struct_param($struct1, param_861);
+        case 3 :
+            $int11 = struct_param($struct1, param_862);
+        case 4 :
+            $int11 = struct_param($struct1, param_863);
+        case 5 :
+            $int11 = struct_param($struct1, param_864);
+        case 6 :
+            $int11 = struct_param($struct1, param_865);
+        case 7 :
+            $int11 = struct_param($struct1, param_866);
+        case 8 :
+            $int11 = struct_param($struct1, param_867);
+        case 9 :
+            $int11 = struct_param($struct1, param_868);
+        case 10 :
+            $int11 = struct_param($struct1, param_869);
+        case 11 :
+            $int11 = struct_param($struct1, param_870);
+        case default :
+            return;
+    }
+    if ($int11 ! -1) {
+        $struct12 = enum(int, struct, enum_2252, $int11);
+        if ($struct12 ! null & ~ql4_getprogress(struct_param($struct12, param_847)) ! 2) {
+            if ($int4 = 0) {
+                $int4 = -1;
+            }
+            switch_int (++$int10) {
+                case 1 :
+                    $string3 = struct_param($struct12, param_845);
+                case 2 :
+                    $string4 = struct_param($struct12, param_845);
+                case 3 :
+                    $string5 = struct_param($struct12, param_845);
+                case 4 :
+                    $string6 = struct_param($struct12, param_845);
+                case default :
+                    $string6 = "<tostring(calc($int10 - 3))> More";
+            }
+        }
+    }
+    $int7 = calc($int7 + 1);
+}
+def_int $int13 = -1;
+if (struct_param($struct1, param_898) > 0 & ~ql4_special_requirements($int2) = false) {
+    $int13 = 1;
+}
+if (struct_param($struct1, param_895) > 0 & %varplayer_1297 < struct_param($struct1, param_895)) {
+    $int13 = 1;
+}
+if (struct_param($struct1, param_896) > 0 & ~comlevel < struct_param($struct1, param_896)) {
+    $int13 = 1;
+}
+if (struct_param($struct1, param_897) > 0 & calc(stat_base(attack) + stat_base(strength)) < 130) {
+    $int13 = 1;
+}
+def_int $int14 = 0;
+def_int $int15 = 200;
+def_int $int16 = 50;
+def_int $int17 = 50;
+def_int $int18 = 0;
+def_int $int19 = 0;
+def_int $int20 = 0;
+def_int $int21 = 1;
+if (compare($string0, null) ! 0 & compare($string0, "") ! 0) {
+    cc_create($component0, ^iftype_text, $int14);
+    cc_setposition(4, $int18, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(calc(2 * 4), ~script7593($string0, calc($int15 - 2 * 4), graphic_17811, 0), ^setsize_minus, ^setsize_abs);
+    cc_settext($string0);
+    cc_settextfont(graphic_17811);
+    cc_setcolour(0xaed0e0);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    $int14 = calc($int14 + 1);
+    $int18 = calc($int18 + cc_getheight + 2 * 2);
+    cc_create($component0, ^iftype_line, $int14);
+    cc_setposition(0, $int18, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_abs);
+    cc_setcolour(^black);
+    $int14 = calc($int14 + 1);
+    $int18 = calc($int18 + 1);
+    cc_create($component0, ^iftype_line, $int14);
+    cc_setposition(0, $int18, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_abs);
+    cc_setcolour(0x41555f);
+    $int14 = calc($int14 + 1);
+    $int18 = calc($int18 + 1 + 2 * 2);
+}
+if (compare($string1, null) ! 0 & compare($string1, "") ! 0 & $graphic3 ! null) {
+    cc_create($component0, ^iftype_graphic, $int14);
+    cc_setsize($int16, $int17, ^setsize_abs, ^setsize_abs);
+    cc_setposition(4, $int18, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic($graphic3);
+    $int19 = calc(cc_getx + cc_getwidth + 4);
+    $int14 = calc($int14 + 1);
+    .cc_create($component0, ^iftype_text, $int14);
+    .cc_setposition($int19, $int18, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_settext($string1);
+    $int20 = ~script7593(.cc_gettext, calc($int15 - $int19 - 4), graphic_17813, 0);
+    $int20 = max($int20, $int17);
+    .cc_setsize(calc($int19 + 4), $int20, ^setsize_minus, ^setsize_abs);
+    .cc_settextfont(graphic_17813);
+    .cc_setcolour(0x7592a0);
+    .cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+    $int14 = calc($int14 + 1);
+    $int18 = calc($int18 + .cc_getheight + 2 * 2);
+}
+cc_create($component0, ^iftype_text, $int14);
+cc_setposition(4, calc($int18 + 8), ^setpos_abs_left, ^setpos_abs_top);
+cc_settext("Status:");
+cc_settextfont(graphic_17813);
+cc_setcolour(0x7592a0);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+$int14 = calc($int14 + 1);
+.cc_create($component0, ^iftype_text, $int14);
+.cc_setposition(4, calc($int18 + 8), ^setpos_abs_right, ^setpos_abs_top);
+if (struct_param($struct1, param_856) = 1 & playermember = false) {
+    .cc_settext("Members-only");
+} else if ($int13 = 1 & $int4 < 1) {
+    .cc_settext("See Quest Log");
+} else {
+    switch_int ($int4) {
+        case 2 :
+            .cc_settext("Completed");
+        case 1 :
+            .cc_settext("In Progress");
+        case 0 :
+            .cc_settext("Ready to Start");
+        case default :
+            .cc_settext("Locked");
+    }
+}
+.cc_settextfont(graphic_17813);
+.cc_setcolour(^white);
+.cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+$int14 = calc($int14 + 1);
+$int20 = max(~script7593(cc_gettext, calc($int15 - 2 * 4), graphic_17813, 0), ~script7593(.cc_gettext, calc($int15 - 2 * 4), graphic_17813, 0));
+cc_setsize(calc(2 * 4), $int20, ^setsize_minus, ^setsize_abs);
+.cc_setsize(calc(2 * 4), $int20, ^setsize_minus, ^setsize_abs);
+if (struct_param($struct1, param_856) = 1 & playermember = false) {
+    cc_create($component0, ^iftype_graphic, $int14);
+    cc_setsize(40, 37, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc(parawidth(.cc_gettext, calc($int15 - 2 * 4), graphic_17813) + 4 + 4), calc($int18 + 8 + $int20 / 2 - cc_getheight / 2), ^setpos_abs_right, ^setpos_abs_top);
+    cc_setgraphic(rs3_icon_membership_upsell);
+    $int14 = calc($int14 + 1);
+}
+cc_create($component0, ^iftype_rectangle, $int14);
+cc_setposition(0, $int18, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(0, calc($int20 + 2 * 8), ^setsize_minus, ^setsize_abs);
+cc_sendtoback;
+cc_setfill(true);
+if ($int21 = 1) {
+    cc_setcolour(0x071820);
+} else {
+    cc_setcolour(0x1c2c34);
+}
+$int21 = calc(($int21 + 1) % 2);
+$int14 = calc($int14 + 1);
+$int18 = calc($int18 + cc_getheight + 2);
+cc_create($component0, ^iftype_text, $int14);
+cc_setposition(4, calc($int18 + 8), ^setpos_abs_left, ^setpos_abs_top);
+cc_settext("Difficulty:");
+cc_settextfont(graphic_17813);
+cc_setcolour(0x7592a0);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+$int14 = calc($int14 + 1);
+.cc_create($component0, ^iftype_text, $int14);
+.cc_setposition(4, calc($int18 + 8), ^setpos_abs_right, ^setpos_abs_top);
+switch_int ($int5) {
+    case 0 :
+        .cc_settext("Novice");
+    case 1 :
+        .cc_settext("Intermediate");
+    case 2 :
+        .cc_settext("Experienced");
+    case 3 :
+        .cc_settext("Master");
+    case 4 :
+        .cc_settext("Grandmaster");
+    case 5 :
+        .cc_settext("Multi-difficulty");
+}
+.cc_settextfont(graphic_17813);
+.cc_setcolour(^white);
+.cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+$int14 = calc($int14 + 1);
+$int20 = max(~script7593(cc_gettext, calc($int15 - 2 * 4), graphic_17813, 0), ~script7593(.cc_gettext, calc($int15 - 2 * 4), graphic_17813, 0));
+cc_setsize(calc(2 * 4), $int20, ^setsize_minus, ^setsize_abs);
+.cc_setsize(calc(2 * 4), $int20, ^setsize_minus, ^setsize_abs);
+cc_create($component0, ^iftype_rectangle, $int14);
+cc_setposition(0, $int18, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(0, calc($int20 + 2 * 8), ^setsize_minus, ^setsize_abs);
+cc_sendtoback;
+cc_setfill(true);
+if ($int21 = 1) {
+    cc_setcolour(0x071820);
+} else {
+    cc_setcolour(0x1c2c34);
+}
+$int21 = calc(($int21 + 1) % 2);
+$int14 = calc($int14 + 1);
+$int18 = calc($int18 + cc_getheight + 2);
+def_int $int22 = 0;
+if ($int6 > 0) {
+    $int7 = 0;
+    .cc_create($component0, ^iftype_rectangle, $int14);
+    .cc_setposition(0, $int18, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setfill(true);
+    if ($int21 = 1) {
+        .cc_setcolour(0x071820);
+    } else {
+        .cc_setcolour(0x1c2c34);
+    }
+    $int21 = calc(($int21 + 1) % 2);
+    $int14 = calc($int14 + 1);
+    $int18 = calc($int18 + 8);
+    cc_create($component0, ^iftype_text, $int14);
+    cc_setposition(4, $int18, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settext("Level Requirements:");
+    cc_setsize(calc(2 * 4), ~script7593(cc_gettext, calc($int15 - 2 * 4), graphic_17813, 0), ^setsize_minus, ^setsize_abs);
+    cc_settextfont(graphic_17813);
+    cc_setcolour(0x7592a0);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    $int14 = calc($int14 + 1);
+    $int18 = calc($int18 + cc_getheight + 8);
+    $int18 = calc($int18 + 1);
+    $int16 = 35;
+    $int17 = 35;
+    $int22 = calc(($int15 - 2 * 4 - 4 * ($int16 + 1)) / 3);
+    $int19 = 4;
+    while ($int7 < $int6 & $int7 < 4) {
+        if ($int7 < 3 | $int6 = 4) {
+            cc_create($component0, ^iftype_graphic, $int14);
+            cc_setposition($int19, calc($int18 - 1), ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize(calc($int16 + 1), calc($int17 + 1), ^setsize_abs, ^setsize_abs);
+            cc_setgraphic(rs3_icon_slot_standard);
+            $int14 = calc($int14 + 1);
+        }
+        cc_create($component0, ^iftype_graphic, $int14);
+        cc_setposition($int19, $int18, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize($int16, $int17, ^setsize_abs, ^setsize_abs);
+        if ($int7 = 3 & $int6 > 4) {
+            cc_setgraphic(rs3_icon_additional);
+        } else {
+            cc_setgraphic(enum(int, graphic, enum_8548, $intarray0($int7)));
+        }
+        $int14 = calc($int14 + 1);
+        cc_create($component0, ^iftype_text, $int14);
+        cc_setposition($int19, calc($int18 + $int17 + 2), ^setpos_abs_left, ^setpos_abs_top);
+        if ($int7 = 3 & $int6 > 4) {
+            cc_settext("<tostring($intarray1($int7))> More");
+        } else {
+            cc_settext("Lvl <tostring($intarray1($int7))>");
+        }
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        cc_setsize(calc($int16 + 1), enum(fontmetrics, int, enum_8549, graphic_17813), ^setsize_abs, ^setsize_abs);
+        cc_settextfont(graphic_17813);
+        cc_setcolour(^white);
+        $int14 = calc($int14 + 1);
+        $int19 = calc($int19 + $int16 + 1 + $int22);
+        $int7 = calc($int7 + 1);
+    }
+    $int18 = calc($int18 + $int17 + 2 + cc_getheight + 8 + 2);
+    .cc_setsize(0, calc($int18 - 2 - .cc_gety), ^setsize_minus, ^setsize_abs);
+}
+if ($int10 > 0) {
+    $int7 = 0;
+    .cc_create($component0, ^iftype_rectangle, $int14);
+    .cc_setposition(0, $int18, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setfill(true);
+    if ($int21 = 1) {
+        .cc_setcolour(0x071820);
+    } else {
+        .cc_setcolour(0x1c2c34);
+    }
+    $int21 = calc(($int21 + 1) % 2);
+    $int14 = calc($int14 + 1);
+    $int18 = calc($int18 + 8);
+    cc_create($component0, ^iftype_text, $int14);
+    cc_setposition(4, $int18, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settext("Prerequisites:");
+    cc_setsize(calc(2 * 4), ~script7593(cc_gettext, calc($int15 - 2 * 4), graphic_17813, 0), ^setsize_minus, ^setsize_abs);
+    cc_settextfont(graphic_17813);
+    cc_setcolour(0x7592a0);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    $int14 = calc($int14 + 1);
+    $int18 = calc($int18 + cc_getheight + 8);
+    $int16 = 16;
+    $int17 = 16;
+    $int19 = calc(4 + $int16 + 4);
+    while ($int7 < $int10 & $int7 < 4) {
+        cc_create($component0, ^iftype_graphic, $int14);
+        cc_setposition(4, $int18, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize($int16, $int17, ^setsize_abs, ^setsize_abs);
+        if ($int7 = 3 & $int10 > 4) {
+            cc_setgraphic(rs3_contextual_input_plus);
+        } else {
+            cc_setgraphic(rs3_contextual_input_hollow);
+        }
+        $int14 = calc($int14 + 1);
+        cc_create($component0, ^iftype_text, $int14);
+        cc_setposition($int19, $int18, ^setpos_abs_left, ^setpos_abs_top);
+        switch_int ($int7) {
+            case 0 :
+                cc_settext($string3);
+            case 1 :
+                cc_settext($string4);
+            case 2 :
+                cc_settext($string5);
+            case 3 :
+                cc_settext($string6);
+        }
+        $int20 = ~script7593(cc_gettext, calc($int15 - $int19 - 4), graphic_17813, 0);
+        if ($int20 < $int17) {
+            $int20 = $int17;
+            cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+        } else {
+            cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+        }
+        cc_setsize(calc($int19 + 4), $int20, ^setsize_minus, ^setsize_abs);
+        cc_settextfont(graphic_17813);
+        cc_setcolour(^white);
+        $int14 = calc($int14 + 1);
+        $int18 = calc($int18 + cc_getheight + 2);
+        $int7 = calc($int7 + 1);
+    }
+    $int18 = calc($int18 + 8);
+    .cc_setsize(0, calc($int18 - 2 - .cc_gety), ^setsize_minus, ^setsize_abs);
+}
+if_setsize($int15, calc($int18 - 2), ^setsize_abs, ^setsize_abs, $component0);
