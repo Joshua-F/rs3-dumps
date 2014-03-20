@@ -14276,3 +14276,6 @@ walkturn_r=seq_22803
 runanim=seq_22819
 readyanim=seq_22802,seq_22803
 
+[bas_3079]
+readyanim=seq_18723,null
+
