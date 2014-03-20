@@ -69,7 +69,7 @@ def_int $int29 = struct_param($struct3, param_3550);
 def_int $int30 = $int23;
 def_boolean $boolean31 = true;
 def_boolean $boolean32 = false;
-if (struct_param($struct2, param_3734) = 0 | $int0 = 1000 & if_hassuboverlay(interface_1477:com_86, interface_1421) = true) {
+if (struct_param($struct2, param_3734) = 0 | $int0 = 1000 & if_hassuboverlay(interface_1477:com_87, interface_1421) = true) {
     $boolean31 = false;
 } else if (struct_param($struct2, param_3734) = 1 & %varplayerbit_20188 = 1) {
     $boolean31 = false;
@@ -78,7 +78,9 @@ if (struct_param($struct2, param_3734) = 0 | $int0 = 1000 & if_hassuboverlay(int
 if_setnoclickthrough($boolean31, $component4);
 def_int $int33 = calc($int29 + struct_param($struct3, param_3551));
 def_int $int34 = calc($int30 + struct_param($struct3, param_3549));
-if_setonmouserepeat("script8415($int0)", $component7);
+if ($int0 ! 1000) {
+    if_setonmouserepeat("script8415($int0)", $component7);
+}
 if ($component5 ! null) {
     if_setposition($int29, $int30, ^setpos_abs_left, ^setpos_abs_top, $component5);
     if_setsize($int33, $int34, ^setsize_minus, ^setsize_minus, $component5);
@@ -440,28 +442,28 @@ if ($component11 ! null) {
     if_sethide(true, $component11);
 }
 if ($component12 ! null) {
-    if_setposition(calc(struct_param($struct3, param_3583) / 2), calc($int23 + struct_param($struct3, param_3586) + struct_param($struct3, param_3577) / 2 - 8), ^setpos_abs_left, ^setpos_abs_top, $component12);
-    if_setsize(struct_param($struct3, param_3583), 16, ^setsize_minus, ^setsize_abs, $component12);
+    if_setposition(struct_param($struct3, param_3583), calc($int23 + struct_param($struct3, param_3586)), ^setpos_abs_left, ^setpos_abs_top, $component12);
+    if_setsize(calc(2 * struct_param($struct3, param_3583)), struct_param($struct3, param_3577), ^setsize_minus, ^setsize_abs, $component12);
     if_sethide(true, $component12);
     cc_create($component12, ^iftype_graphic, 0);
     cc_setparam_int(param_3540, 0);
     ~script8258($struct2);
-    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
-    cc_setsize(struct_param($struct3, param_3581), 0, ^setsize_abs, ^setsize_minus);
+    cc_setposition(1, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    cc_setsize(struct_param($struct3, param_3581), struct_param($struct3, param_3582), ^setsize_abs, ^setsize_abs);
     cc_setgraphic(struct_param($struct3, param_3617));
-    cc_setonclick("script8360($component11, struct_param($struct3, param_3578), -1)");
-    cc_setonmouseover("graphic_swapper_dynamic($component12, 0, struct_param($struct3, param_3618))");
-    cc_setonmouseleave("graphic_swapper_dynamic($component12, 0, struct_param($struct3, param_3617))");
+    cc_setonclick("script8360($int0, event_com, event_comsubid, $component11, struct_param($struct3, param_3578), -1)");
+    cc_setonmouseover("script1845($int0)");
+    cc_setonmouseleave("script1845($int0)");
     cc_create($component12, ^iftype_graphic, 1);
     cc_setparam_int(param_3540, 0);
     ~script8258($struct2);
-    cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
-    cc_setsize(struct_param($struct3, param_3581), 0, ^setsize_abs, ^setsize_minus);
+    cc_setposition(1, 0, ^setpos_abs_right, ^setpos_abs_centre);
+    cc_setsize(struct_param($struct3, param_3581), struct_param($struct3, param_3582), ^setsize_abs, ^setsize_abs);
     cc_setgraphic(struct_param($struct3, param_3617));
     cc_sethflip(true);
-    cc_setonclick("script8360($component11, struct_param($struct3, param_3578), 1)");
-    cc_setonmouseover("graphic_swapper_dynamic($component12, 1, struct_param($struct3, param_3618))");
-    cc_setonmouseleave("graphic_swapper_dynamic($component12, 1, struct_param($struct3, param_3617))");
+    cc_setonclick("script8360($int0, event_com, event_comsubid, $component11, struct_param($struct3, param_3578), 1)");
+    cc_setonmouseover("script1845($int0)");
+    cc_setonmouseleave("script1845($int0)");
 }
 def_int $int35 = 0;
 if ($boolean20 = true) {
@@ -477,6 +479,7 @@ if ($boolean20 = true) {
     } else if ($int35 > 1) {
         ~script8378(0, $int0);
         ~script8359($int0, ~script8374($component11), ~script8372($component11, $int0));
+        ~script1847($int0);
     }
 }
 if ($component14 ! null & cc_find($component14, 0) = false) {

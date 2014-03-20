@@ -1,23 +1,49 @@
 // 8495
 [proc,script8495](int $int0, int $int1, component $component2, component $component3, int $int4, int $int5, int $int6, string $string0, string $string1)(int)
+def_graphic $graphic7 = null;
 def_string $string2 = "";
-$string2 = "<$string0>: ";
+def_string $string3 = "";
+$string3 = "<$string0>: ";
 if ($int5 = 0) {
-    if_setgraphic(~script8497($int1, 0), $component3);
-    if_setop(1, "Turn ON", $component2);
-    $string2 = append($string2, "Off");
+    $string2 = "Turn ON";
+    $string3 = append($string3, "Off");
+    $graphic7 = ~script8497($int1, 0);
 } else if ($int6 = 1) {
-    if_setgraphic(~script8497($int1, 1), $component3);
-    if_setop(1, "Turn OFF", $component2);
-    $string2 = append($string2, $string1);
+    $graphic7 = ~script8497($int1, 1);
+    $string2 = "Turn OFF";
+    switch_int ($int0) {
+        case 18 :
+            if ($int1 = 1) {
+                $string2 = "Turn ON";
+            }
+        case 19 :
+            if ($int1 = 2) {
+                $string2 = "Turn ON";
+            }
+        case 20 :
+            if ($int1 = 3) {
+                $string2 = "Turn ON";
+            }
+        case 21 :
+            if ($int1 = 4) {
+                $string2 = "Turn ON";
+            }
+        case 22 :
+            if ($int1 = 5) {
+                $string2 = "Turn ON";
+            }
+    }
+    $string3 = append($string3, $string1);
 } else {
-    if_setgraphic(~script8497($int1, 2), $component3);
-    if_setop(1, "Filter", $component2);
-    $string2 = append($string2, "On");
+    $graphic7 = ~script8497($int1, 2);
+    $string3 = append($string3, "On");
+    $string2 = "Filter";
 }
+if_setgraphic($graphic7, $component3);
+if_setop(1, $string2, $component2);
 if_setopbase($string0, $component2);
 if_setonop("script8494($int0, $int1, $component2, $component3, $int4, $string0, $string1)", $component2);
-if_setonmouserepeat("script8799($string2, $component2, -1)", $component2);
+if_setonmouserepeat("script8799($string3, $component2, -1)", $component2);
 if_setonmouseleave("script8805", $component2);
 if_setposition($int4, 0, ^setpos_abs_left, ^setpos_abs_centre, $component2);
 return(calc($int4 + if_getwidth($component2)));
