@@ -6,16 +6,38 @@ if ($component4 ! null) {
     if_setop(1, "Close", $component4);
     if_setonop("script1175($int6)", $component4);
 }
-~script1141($component7, $component8, $component9, $component10, $component11, $string2, struct_21351, struct_21352, struct_21353, ^black);
-if_setonop("script1176($int6)", $component10);
-~script1141($component12, $component13, $component14, $component15, $component16, $string3, struct_21356, struct_21357, struct_21358, ^white);
-if_setonop("script1175($int6)", $component15);
-def_struct $struct17 = struct_21255;
-def_int $int18 = calc(struct_param($struct17, param_3547) + struct_param($struct17, param_3549));
+def_component $component17 = if_getlayer($component7);
+if (compare("", $string2) ! 0) {
+    if_sethide(false, $component17);
+    if (compare("", $string3) ! 0) {
+        if_setposition(1, 0, ^setpos_abs_right, ^setpos_abs_centre, $component17);
+    } else {
+        if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component17);
+    }
+    ~script1141($component7, $component8, $component9, $component10, $component11, $string2, struct_21351, struct_21352, struct_21353, ^black);
+    if_setonop("script1176($int6)", $component10);
+} else {
+    if_sethide(true, $component17);
+}
+$component17 = if_getlayer($component12);
+if (compare("", $string3) ! 0) {
+    if_sethide(false, $component17);
+    if (compare("", $string2) ! 0) {
+        if_setposition(1, 0, ^setpos_abs_left, ^setpos_abs_centre, $component17);
+    } else {
+        if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component17);
+    }
+    ~script1141($component12, $component13, $component14, $component15, $component16, $string3, struct_21356, struct_21357, struct_21358, ^white);
+    if_setonop("script1175($int6)", $component15);
+} else {
+    if_sethide(true, $component17);
+}
+def_struct $struct18 = struct_21255;
+def_int $int19 = calc(struct_param($struct18, param_3547) + struct_param($struct18, param_3549));
 ~script7134($component3, $string1, graphic_17813, ^white, 5, 5, calc(if_getwidth($component3) - 10), 0);
 if (cc_find($component3, 0) = true) {
-    $int18 = calc($int18 + (2 * cc_gety + cc_getheight));
+    $int19 = calc($int19 + (2 * cc_gety + cc_getheight));
 }
-$int18 = calc($int18 + if_getheight($component5));
+$int19 = calc($int19 + if_getheight($component5));
 $string1 = "<br><$string1><br>";
-if_setsize(if_getwidth($component0), $int18, ^setsize_abs, ^setsize_abs, $component0);
+if_setsize(if_getwidth($component0), $int19, ^setsize_abs, ^setsize_abs, $component0);
