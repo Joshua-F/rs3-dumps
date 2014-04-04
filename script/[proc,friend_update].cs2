@@ -111,29 +111,36 @@ while ($int21 < $int20) {
     cc_settextalign(^settextalign_left, ^settextalign_top, 0);
     cc_setlinkfriend($int21);
     if ($int27 ! 0) {
-        if (map_quickchat = false & userdetail_quickchat = false) {
-            cc_setop(1, "Message");
-        }
-        cc_setop(2, "Quick Message");
-        cc_setop(3, "Trail");
-        cc_setop(6, "Join");
-        if (compare(friend_getnotes($int21), "") ! 0) {
-            cc_setop(7, "Edit Note");
+        if (%varclient_4126 = 1) {
+            cc_setop(1, "Share");
+            if (map_quickchat = false & userdetail_quickchat = false) {
+                cc_setop(4, "Message");
+            }
+            cc_setop(2, "Quick Message");
+            cc_setop(3, "Trail");
+            cc_setop(6, "Join");
+            if (compare(friend_getnotes($int21), "") ! 0) {
+                cc_setop(7, "Edit Note");
+            } else {
+                cc_setop(7, "Add Note");
+            }
         } else {
-            cc_setop(7, "Add Note");
+            if (map_quickchat = false & userdetail_quickchat = false) {
+                cc_setop(1, "Message");
+            }
+            cc_setop(2, "Quick Message");
+            cc_setop(3, "Trail");
+            cc_setop(6, "Join");
+            if (compare(friend_getnotes($int21), "") ! 0) {
+                cc_setop(7, "Edit Note");
+            } else {
+                cc_setop(7, "Add Note");
+            }
         }
+    } else if (compare(friend_getnotes($int21), "") ! 0) {
+        cc_setop(7, "Edit Note");
     } else {
-        if (map_quickchat = false & userdetail_quickchat = false) {
-            cc_setop(4, "Message");
-        }
-        cc_setop(5, "Quick Message");
-        cc_setop(3, "Trail");
-        cc_setop(6, "Join");
-        if (compare(friend_getnotes($int21), "") ! 0) {
-            cc_setop(7, "Edit Note");
-        } else {
-            cc_setop(7, "Add Note");
-        }
+        cc_setop(7, "Add Note");
     }
     cc_setop(8, "Delete");
     cc_setonop("friend_op(event_op, event_opbase, $int21)");
