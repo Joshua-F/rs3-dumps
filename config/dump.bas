@@ -17592,3 +17592,26 @@ readyanim=seq_20238,null
 [bas_3133]
 readyanim=seq_7008,null
 
+// 3134
+[bas_3134]
+walkturn_l=seq_23272
+walkturn_r=seq_23272
+walkanim_b=seq_23272
+runanim=seq_23273
+readyanim=seq_23269,seq_23272
+
+// 3135
+[bas_3135]
+readyanim=seq_479,null
+
+// 3136
+[bas_3136]
+walkturn_l=seq_23263
+walkturn_r=seq_23263
+walkanim_b=seq_23263
+readyanim=seq_23277,seq_23263
+
+// 3137
+[bas_3137]
+readyanim=seq_23281,null
+

@@ -1,9 +1,19 @@
 // 1444
-[clientscript,script1444]
-~script1447(0);
-~script1665(interface_767:com_50, interface_767:com_51, interface_767:com_52, interface_767:com_53);
-~script2957(interface_767:com_58);
-~rs3_background_panel(interface_767:com_9, struct_21362);
-if_setonvarctransmit("script1445(interface_767:com_50, interface_767:com_51, interface_767:com_52, interface_767:com_53){varclient_192, varclient_1038, varclient_1324}", interface_767:com_1);
-if_setonvartransmit("script1655{varplayer_2391}", interface_767:com_1);
-~script1656;
+[clientscript,script1444](component $component0)
+def_struct $struct1 = null;
+def_string $string0 = "-";
+def_int $int2 = 0;
+def_int $int3 = 0;
+switch_component ($component0) {
+    case interface_676:com_29 :
+        $int2, $int3 = %varplayerbit_22202, %varplayerbit_22238;
+    case interface_676:com_41 :
+        $int2, $int3 = %varplayerbit_22203, %varplayerbit_22239;
+}
+if ($int2 ! 0) {
+    $struct1 = enum(int, struct, enum_8677, $int2);
+    if ($struct1 ! null & struct_param($struct1, param_4213) ! 0) {
+        $string0 = tostring(max(0, calc(struct_param($struct1, param_4213) - $int3)));
+    }
+}
+if_settext($string0, $component0);

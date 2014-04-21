@@ -1,0 +1,40 @@
+// 3875
+[proc,script3875](int $int0, component $component1, int $int2)
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+switch_int ($int0) {
+    case 6 :
+        $int4 = %varplayer_4292;
+    case 7 :
+        $int4 = %varplayer_4293;
+    case 8 :
+        $int4 = %varplayer_4294;
+    case 9 :
+        $int4 = %varplayer_4295;
+    case 10 :
+        $int4 = %varplayer_4296;
+}
+$int3 = calc($int4 - date_minutes);
+if ($int3 <= 0) {
+    ~script8800("Rent or permanently unlock this preset slot.", $component1, $int2);
+} else if ($int3 > 1440) {
+    $int5 = calc($int3 / 1440);
+    if ($int5 > 7) {
+        if ($int5 > 365) {
+            ~script8800("Rental time remaining: <col=7ec100>> 1 year.</col>", $component1, $int2);
+        } else {
+            ~script8800("Rental time remaining: <col=7ec100><tostring($int5)> days.</col>", $component1, $int2);
+        }
+    } else if ($int5 > 1) {
+        ~script8800("Rental time remaining: <col=fecf28><tostring($int5)> days.</col>", $component1, $int2);
+    } else {
+        ~script8800("Rental time remaining: <col=fecf28>1 day.</col>", $component1, $int2);
+    }
+} else {
+    $int6 = calc($int3 / 60);
+    $int7 = calc($int3 % 60);
+    ~script8800("Rental time remaining: <col=d20000><tostring($int6)>h <tostring($int7)>m.</col>", $component1, $int2);
+}

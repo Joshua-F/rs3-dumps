@@ -1,6 +1,9 @@
 // 9720
-[proc,wof_button_setup_claim_inv](obj $obj0, int $int1)
+[proc,wof_button_setup_claim_inv](int $int0, int $int1)
 if (%varclient_4080 = -1) {
+    return;
+}
+if (%varclient_4141 = -1) {
     return;
 }
 def_string $string0 = "Claim to backpack";
@@ -12,38 +15,47 @@ if (%varplayerbit_4345 <= 0) {
     $string1 = "You do not have a prize to claim.";
     $string2 = "You do not have a prize to claim.";
     $boolean2 = false;
-} else if ((oc_members($obj0) = 1 | %varplayerbit_4347 = 1) & map_members = false) {
-    $string0 = "Subscribe";
-    $boolean2 = true;
-    $string2 = "This prize can only be claimed on a members' world.";
-    $string1 = "This prize can only be claimed on a members' world.";
-    $string3 = "Subscribe";
 } else {
     $string0 = "Claim to backpack";
     $string3 = "Backpack";
     switch_int (%varclient_1790) {
-        case 5, 8, 9 :
+        case 8, 9 :
+            if (%varclient_4141 = 3 & map_members = false) {
+                $string1 = "Claim your prize. This is a members-only prize, so you will need to subscribe to use it.";
+            } else {
+                $string1 = "Claim this prize.";
+            }
             $string3 = "Claim";
             $string0 = "Claim";
-            $string1 = "Claim this prize.";
             $boolean2 = true;
-        case 11 :
+        case 12 :
             $string3 = "Can't Claim";
             $string2 = "You cannot claim this prize at the moment.";
             $boolean2 = false;
-            if ($obj0 = obj_30824) {
+            if ($int0 = 30824) {
                 $string2 = "You have too many dungeoneering tokens and cannot claim this prize at the moment.";
             }
     }
     switch_int (%varclient_4080) {
         case 1 :
-            $string1 = "Claim your prize to your backpack.";
-            $string2 = "Your backpack doesn't have room for your prize at the moment.";
+            if (%varclient_4141 = 3 & map_members = false) {
+                $string1 = "Claim your prize. This is a members-only prize, so you will need to subscribe to use it.";
+            } else {
+                $string1 = "Claim your prize to your backpack.";
+            }
             $boolean2 = true;
         case 2 :
-            $string1 = "Claim your prize to your backpack.";
             $string2 = "Your backpack doesn't have room for your prize at the moment.";
             $string3 = "Backpack Full";
+        case 13 :
+            $string3 = "Subscribe";
+            $string0 = "Subscribe";
+            $string1 = "You must be a member to claim this prize. Click here to subscribe.";
+            $boolean2 = true;
+        case 12 :
+            $string3 = "Can't Claim";
+            $string2 = "You cannot claim this prize at the moment.";
+            $boolean2 = false;
         case 7 :
             $string1 = "Treasure Hunter is not available at the moment. Please try later.";
             $string2 = "Treasure Hunter is not available at the moment. Please try later.";
@@ -52,8 +64,8 @@ if (%varplayerbit_4345 <= 0) {
             $string2 = "Loading...";
     }
 }
-if_setop(1, $string0, interface_1253:com_373);
-if_settext($string3, interface_1253:com_376);
-if_setonmouserepeat("script7768(interface_1253:com_211, event_com, -1, $string1, 200, graphic_17813, graphic_17813, 16777215, 13, 4, 0, event_mousex, event_mousey)", interface_1253:com_373);
-if_setonmouserepeat("script7768(interface_1253:com_211, event_com, -1, $string2, 200, graphic_17813, graphic_17813, 16777215, 13, 4, 0, event_mousex, event_mousey)", interface_1253:com_374);
-if_sethide($boolean2, interface_1253:com_374);
+if_setop(1, $string0, interface_1253:com_451);
+if_settext($string3, interface_1253:com_454);
+if_setonmouserepeat("script3876($string1, event_com, -1)", interface_1253:com_451);
+if_setonmouserepeat("script3876($string2, event_com, -1)", interface_1253:com_452);
+if_sethide($boolean2, interface_1253:com_452);

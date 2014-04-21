@@ -1,0 +1,27 @@
+// 3806
+[proc,script3806](obj $obj0, int $int1, inv $inv2, int $int3, int $int4)(int, int)
+if ($obj0 = null | $int1 < 1) {
+    return($int1, $int1);
+}
+if (~script9225(oc_uncert($obj0), 1) = true) {
+    return($int1, $int1);
+}
+def_int $int5 = ~script3782($obj0, $int4);
+if (inv_total($inv2, $obj0) < $int1) {
+    $int1 = inv_total($inv2, $obj0);
+}
+def_int $int6 = 0;
+def_int $int7 = calc($int4 - ~script3784);
+if (~script3802($obj0) = false) {
+    if (inv_total(inv_95, oc_uncert($obj0)) = 0) {
+        $int7 = min(1, $int7);
+    } else {
+        $int7 = 0;
+    }
+}
+$int6 = ~script3791(oc_uncert($obj0), max(0, calc($int1 - $int7)), $int5);
+if ($int6 >= $int1) {
+    return($int1, $int1);
+} else {
+    return($int1, $int6);
+}

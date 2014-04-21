@@ -1,18 +1,31 @@
 // 8414
-[proc,script8414](int $int0, cursor $cursor1, int $int2)
+[proc,script8414](int $int0, int $int1)
+def_cursor $cursor2 = null;
+cc_setdragrenderbehaviour(3);
 if (~script1186 = true) {
     cc_setmouseovercursor(null);
-} else if ($int2 ! -1) {
-    cc_setmouseovercursor($cursor1);
+} else if ($int1 ! -1) {
+    switch_int ($int1) {
+        case 0, 7 :
+            $cursor2 = cursor_192;
+        case 2, 5 :
+            $cursor2 = cursor_193;
+        case 1, 6 :
+            $cursor2 = cursor_190;
+        case 3, 4 :
+            $cursor2 = cursor_191;
+        case default :
+            return;
+    }
+    cc_setmouseovercursor($cursor2);
     cc_setdraggable(interface_1477:com_64, -1);
     cc_setdragdeadtime(1);
     cc_setdragdeadzone(1);
     if (~script8137($int0) = true) {
-        cc_setondrag("script8173($int0, $int2, event_mousex, event_mousey)");
-        cc_setondragcomplete("script8174($int0, $int2)");
+        cc_setondrag("script8173($int0, $int1, event_mousex, event_mousey)");
+        cc_setondragcomplete("script8174($int0, $int1)");
     } else {
-        cc_setondrag("script8315($int0, $int2, event_mousex, event_mousey)");
-        cc_setondragcomplete("script8316($int0, $int2)");
+        cc_setondrag("script8315($int0, $int1, event_mousex, event_mousey)");
+        cc_setondragcomplete("script8316($int0, $int1)");
     }
 }
-cc_setdragrenderbehaviour(3);

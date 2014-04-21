@@ -1,0 +1,93 @@
+// 3839
+[proc,script3839](component $component0, int $int1, component $component2, int $int3, inv $inv4)
+~script3843;
+if ($inv4 = null) {
+    return;
+}
+if ($int3 < 0 | $int3 >= inv_size($inv4)) {
+    return;
+}
+def_obj $obj5 = null;
+def_int $int6 = -1;
+def_vorbis $vorbis7 = sound_2901;
+def_vorbis $vorbis8 = sound_2901;
+if (cc_find($component2, $int3) = true) {
+    $obj5 = cc_getinvobject;
+    $int6 = cc_getinvcount;
+    $vorbis7 = oc_param($obj5, param_537);
+    $vorbis8 = oc_param($obj5, param_118);
+}
+if ($obj5 = null | $int6 <= 0) {
+    return;
+}
+def_int $int9 = -1;
+switch_component ($component0) {
+    case interface_762:com_93 :
+        if (inv_total(inv_95, oc_uncert($obj5)) > 0 & ~script3802($obj5) = false) {
+            if ($inv4 = inv_94) {
+                ~script9217(inv_95, 0, $obj5, $int3, $component2, interface_762:com_35);
+                sound_vorbis_volume($vorbis8, 1, 0, 100);
+            } else {
+                ~script3805($obj5, $int6, $inv4, $int3, 1, 1, interface_762:com_35, $component2);
+                ~script3808($obj5, $vorbis7);
+            }
+        } else if ($inv4 = inv_94) {
+            ~script9218(inv_95, 0, $obj5, $int3, $int1, $component2, interface_762:com_35);
+            sound_vorbis_volume($vorbis8, 1, 0, 100);
+        } else {
+            ~script3807($obj5, $int6, $int1, $inv4, $int3, 1, 1, ~script3784, interface_762:com_35, $component2);
+            ~script3808($obj5, $vorbis7);
+        }
+    case interface_762:com_35 :
+        ~script3840($obj5, $int6, $int3, $inv4, $component2, $int1, $component0);
+        ~script3808($obj5, $vorbis7);
+        sound_vorbis_rate(sound_44026, 1, 0, 88, 512);
+    case interface_762:com_19, interface_762:com_74 :
+        $int9 = 1;
+    case interface_762:com_17, interface_762:com_75 :
+        $int9 = 2;
+    case interface_762:com_15, interface_762:com_76 :
+        $int9 = 3;
+    case interface_762:com_13, interface_762:com_77 :
+        $int9 = 4;
+    case interface_762:com_11, interface_762:com_78 :
+        $int9 = 5;
+    case interface_762:com_9, interface_762:com_79 :
+        $int9 = 6;
+    case interface_762:com_7, interface_762:com_80 :
+        $int9 = 7;
+    case interface_762:com_5, interface_762:com_81 :
+        $int9 = 8;
+    case interface_762:com_3, interface_762:com_82 :
+        $int9 = 9;
+    case default :
+        return;
+}
+def_int $int10 = 0;
+def_int $int11 = 0;
+if ($int9 ! -1) {
+    if (inv_total(inv_95, oc_uncert($obj5)) > 0 & ~script3802(oc_uncert($obj5)) = false) {
+        if ($inv4 = inv_94) {
+            ~script9217(inv_95, 0, $obj5, $int3, $component2, interface_762:com_35);
+        } else {
+            ~script3805($obj5, $int6, $inv4, $int3, 1, 1, interface_762:com_35, $component2);
+        }
+    } else {
+        if ($int9 > 1) {
+            $int10, $int11 = ~script1467($int9);
+        } else {
+            $int11 = ~script3784;
+        }
+        if ($inv4 = inv_94) {
+            ~script9218(inv_95, 0, $obj5, $int3, $int11, $component2, interface_762:com_35);
+            if (cc_find(interface_762:com_35, $int11) = true & cc_getinvobject = $obj5) {
+                ~script3838($int9, $int11, interface_762:com_35);
+            }
+        } else if (~script3807($obj5, $int6, $int11, $inv4, $int3, 1, 1, ~script3784, interface_762:com_35, $component2) = 1) {
+            ~script3838($int9, $int11, interface_762:com_35);
+        } else {
+            return;
+        }
+    }
+}
+~script3833;

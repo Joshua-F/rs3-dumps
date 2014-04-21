@@ -1,0 +1,96 @@
+// 5847
+[proc,script5847]
+%varplayer_4377 = min(%varplayer_4377, %varplayer_4376);
+def_string $string0 = tostring(%varplayer_4377);
+def_struct $struct0 = null;
+def_int $int1 = -1;
+def_int $int2 = 0;
+def_component $component3 = interface_1043:com_11;
+if_settext($string0, interface_1043:com_167);
+switch_int (%varplayer_4378) {
+    case 0 :
+        if (%varclient_4149 = -1) {
+            return;
+        }
+        switch_int (%varplayer_4379) {
+            case 0 :
+                if_settext("Exchanging <~tostring_spacer_local(calc(%varplayer_4380 * %varplayer_4377))> renown for <~tostring_spacer_local(calc(%varplayer_4377 * %varclient_4149 / 10))> x Bonus Farming XP", $component3);
+            case 1 :
+                if_settext("Exchanging <~tostring_spacer_local(calc(%varplayer_4380 * %varplayer_4377))> renown for <~tostring_spacer_local(calc(%varplayer_4377 * %varclient_4149 / 10))> x Bonus Mining XP", $component3);
+            case 2 :
+                if_settext("Exchanging <~tostring_spacer_local(calc(%varplayer_4380 * %varplayer_4377))> renown for <~tostring_spacer_local(calc(%varplayer_4377 * %varclient_4149 / 10))> x Bonus Slayer XP", $component3);
+            case default :
+                if_settext("Exchanging <~tostring_spacer_local(calc(%varplayer_4380 * %varplayer_4377))> renown for an unknown reward.", $component3);
+        }
+    case 1 :
+        switch_int (%varplayer_4379) {
+            case 0 :
+                if_settext("Exchanging <~tostring_spacer_local(calc(%varplayer_4380 * %varplayer_4377))> renown for <~tostring_spacer_local(%varplayer_4377)> x Seedicide", $component3);
+            case 1 :
+                if_settext("Exchanging <~tostring_spacer_local(calc(%varplayer_4380 * %varplayer_4377))> renown for <~tostring_spacer_local(%varplayer_4377)> x Slayer token", $component3);
+            case 2 :
+                if_settext("Exchanging <~tostring_spacer_local(calc(%varplayer_4380 * %varplayer_4377))> renown for <~tostring_spacer_local(%varplayer_4377)> x Farming token", $component3);
+            case default :
+                if_settext("Exchanging <~tostring_spacer_local(calc(%varplayer_4380 * %varplayer_4377))> renown for an unknown reward.", $component3);
+        }
+    case 2 :
+        $struct0 = enum(int, struct, enum_8677, %varplayer_4379);
+        if ($struct0 = null) {
+            if_settext("Exchanging <~tostring_spacer_local(calc(%varplayer_4380 * %varplayer_4377))> renown for an unknown reward.", $component3);
+        } else {
+            if_settext("Exchanging <~tostring_spacer_local(calc(%varplayer_4380 * %varplayer_4377))> renown for the ability: <struct_param($struct0, param_4206)>", $component3);
+        }
+    case 3 :
+        switch_int (%varplayer_4379) {
+            case 0 :
+                if (%varplayerbit_22215 = 6) {
+                    $int2, $int1 = %varplayerbit_22219, 31183;
+                } else if (%varplayerbit_22215 = 5) {
+                    $int2, $int1 = %varplayerbit_22218, 31182;
+                } else if (%varplayerbit_22215 = 7) {
+                    $int2, $int1 = %varplayerbit_22220, 31184;
+                }
+            case 1 :
+                if (%varplayerbit_22215 = 6) {
+                    $int2, $int1 = %varplayerbit_22218, 31182;
+                } else if (%varplayerbit_22215 = 5) {
+                    $int2, $int1 = %varplayerbit_22220, 31184;
+                } else if (%varplayerbit_22215 = 7) {
+                    $int2, $int1 = %varplayerbit_22219, 31183;
+                }
+            case 2 :
+                if (%varplayerbit_22215 = 6) {
+                    $int2, $int1 = %varplayerbit_22220, 31184;
+                } else if (%varplayerbit_22215 = 5) {
+                    $int2, $int1 = %varplayerbit_22219, 31183;
+                } else if (%varplayerbit_22215 = 7) {
+                    $int2, $int1 = %varplayerbit_22218, 31182;
+                }
+            case default :
+                if_settext("Exchanging <~tostring_spacer_local(calc(%varplayer_4380 * %varplayer_4377))> renown for an unknown reward.", $component3);
+                return;
+        }
+        if ($int2 = 1) {
+            if ($int1 = 31183) {
+                if_settext("Reclaiming Marimbo's faction cape.", $component3);
+            } else if ($int1 = 31182) {
+                if_settext("Reclaiming Brassica's faction cape.", $component3);
+            } else if ($int1 = 31184) {
+                if_settext("Reclaiming The Godless' faction cape.", $component3);
+            } else {
+                return;
+            }
+        } else if ($int1 = 31183) {
+            if_settext("Exchanging <~tostring_spacer_local(calc(%varplayer_4380 * %varplayer_4377))> renown for Marimbo's faction cape.", $component3);
+        } else if ($int1 = 31182) {
+            if_settext("Exchanging <~tostring_spacer_local(calc(%varplayer_4380 * %varplayer_4377))> renown for Brassica's faction cape.", $component3);
+        } else if ($int1 = 31184) {
+            if_settext("Exchanging <~tostring_spacer_local(calc(%varplayer_4380 * %varplayer_4377))> renown for The Godless' faction cape.", $component3);
+        } else {
+            return;
+        }
+    case default :
+        if_settext("Exchanging <~tostring_spacer_local(calc(%varplayer_4380 * %varplayer_4377))> renown for an unknown reward.", $component3);
+}
+if_setonvarctransmit("script7202(event_com, interface_1043:com_165, interface_1043:com_166, interface_1043:com_167, interface_1043:com_35){varclient_2235, varclient_2236}", interface_1043:com_164);
+if_setonclick("script7203(interface_1043:com_168, interface_1043:com_35)", interface_1043:com_167);
