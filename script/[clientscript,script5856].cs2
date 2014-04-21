@@ -1,0 +1,89 @@
+// 5856
+[clientscript,script5856]
+def_component $component0 = interface_1043:com_234;
+def_component $component1 = interface_1043:com_233;
+def_component $component2 = interface_1043:com_232;
+def_component $component3 = interface_1043:com_231;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = enum_getoutputcount(enum_8678);
+def_int $int7 = 5;
+def_int $int8 = 25;
+def_int $int9 = 0;
+def_int $int10 = if_getwidth($component0);
+def_struct $struct11 = null;
+cc_deleteall($component0);
+cc_deleteall($component1);
+cc_deleteall($component2);
+cc_deleteall($component3);
+while ($int4 < $int6) {
+    ~cc_add_graphic($component0, $int4, 32, 32, 0, 0, null, false, false, false, 0);
+    cc_sethide(true);
+    $int4 = calc($int4 + 1);
+}
+~cc_add_text($component1, 0, $int10, 17, 0, 0, "Passive abilities", 0xffcb05, graphic_17814, ^settextalign_centre, ^settextalign_centre, 11, false);
+~cc_add(^iftype_line, $component1, 1, $int10, 0, 0, 17);
+cc_setcolour(0xffcb05);
+$int4 = 0;
+while ($int4 < $int6) {
+    $int5 = enum(int, int, enum_8678, $int4);
+    $struct11 = enum(int, struct, enum_8677, $int5);
+    if (~script5857($struct11) = true & struct_param($struct11, param_4219) = 0 & cc_find($component0, $int4) = true) {
+        if (calc($int7 + 35) > $int10) {
+            $int7, $int8 = 5, calc($int8 + 40);
+        }
+        cc_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top);
+        cc_sethide(false);
+        if (~script5858($struct11) = true) {
+            cc_setgraphic(struct_param($struct11, param_4209));
+        } else {
+            cc_setgraphic(struct_param($struct11, param_4208));
+        }
+        cc_setondrag("script5859");
+        cc_setondragcomplete("script5911");
+        cc_setonmouseover("script6005($int4, $struct11)");
+        cc_setonmouseleave("script6025($int4, $struct11)");
+        cc_setop(1, "Select");
+        cc_setonop("script6227($int4)");
+        $int7 = calc($int7 + 40);
+    }
+    $int4 = calc($int4 + 1);
+}
+~cc_add_text($component1, 2, $int10, 17, 0, calc($int8 + 40), "Active abilities", 0xffcb05, graphic_17814, ^settextalign_centre, ^settextalign_centre, 11, false);
+~cc_add(^iftype_line, $component1, 3, $int10, 0, 0, calc($int8 + 57));
+cc_setcolour(0xffcb05);
+$int4 = 0;
+$int8 = calc($int8 + 65);
+$int7 = 5;
+while ($int4 < $int6) {
+    $int5 = enum(int, int, enum_8678, $int4);
+    $struct11 = enum(int, struct, enum_8677, $int5);
+    if (~script5857($struct11) = true & struct_param($struct11, param_4219) ! 0 & cc_find($component0, $int4) = true) {
+        if (calc($int7 + 35) > $int10) {
+            $int7, $int8 = 5, calc($int8 + 40);
+        }
+        cc_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top);
+        cc_sethide(false);
+        if (~script5858($struct11) = true) {
+            cc_setgraphic(struct_param($struct11, param_4209));
+        } else {
+            cc_setgraphic(struct_param($struct11, param_4208));
+        }
+        cc_setondrag("script5859");
+        cc_setondragcomplete("script5911");
+        cc_setonmouseover("script6005($int4, $struct11)");
+        cc_setonmouseleave("script6025($int4, $struct11)");
+        cc_setop(1, "Select");
+        cc_setonop("script6227($int4)");
+        $int7 = calc($int7 + 40);
+    }
+    $int4 = calc($int4 + 1);
+}
+$int8 = calc($int8 + 40);
+if ($int8 > if_getheight($component0)) {
+    if_setscrollsize(0, $int8, $component0);
+    if_setscrollsize(0, $int8, $component2);
+    if_setscrollsize(0, $int8, $component1);
+}
+~script6266($component3, enum_8679, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~script6228(%varplayer_4381);

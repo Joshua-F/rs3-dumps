@@ -1,0 +1,74 @@
+// 3807
+[proc,script3807](obj $obj0, int $int1, int $int2, inv $inv3, int $int4, int $int5, int $int6, int $int7, component $component8, component $component9)(int)
+def_vorbis $vorbis10 = oc_param($obj0, param_537);
+def_int $int11 = 0;
+$int1, $int11 = ~script3806($obj0, $int1, $inv3, $int5, $int7);
+if ($int11 >= $int1) {
+    return(0);
+}
+def_int $int12 = ~script3782($obj0, $int7);
+def_int $int13 = 0;
+def_int $int14 = 0;
+if ($int2 = -1) {
+    if (%varplayerbit_288 > 1) {
+        $int13, $int14 = ~script1467(%varplayerbit_288);
+    } else {
+        $int14 = ~script3784;
+    }
+    if ($int2 = -1) {
+        $int2 = $int14;
+    }
+}
+$int1 = calc($int1 - $int11);
+if (%varplayerbit_288 = 0) {
+    %varplayerbit_288 = 1;
+    %varclient_188 = true;
+}
+def_int $int15 = -1;
+def_int $int16 = 0;
+if (~script3802(oc_uncert($obj0)) = false) {
+    $int15 = ~script3796($component8, oc_uncert($obj0), $int13);
+    $int16 = inv_total(inv_95, oc_uncert($obj0));
+    if (cc_find($component8, $int15) = true) {
+        $int16 = max($int16, cc_getinvcount);
+    }
+}
+if ($int16 > 0) {
+    $int2 = $int15;
+    if (cc_find($component8, $int2) = true) {
+        ~script3815(cc_getinvobject, calc($int16 + $int1));
+    }
+    if ($int5 = 1 & %varplayerbit_288 ! 1) {
+        %varplayerbit_288 = ~script1468($int2);
+    }
+} else {
+    if ($int2 < calc($int12 - 1)) {
+        ~script3801(oc_uncert($obj0), $int1, $int2);
+    }
+    ~script3787(~script1468($int2), 1);
+}
+def_int $int17 = ~script3795($component9, $obj0);
+if ($int17 ! -1 & $int6 = 0) {
+    $int4 = min($int4, $int17);
+}
+~script3808($obj0, $vorbis10);
+if (cc_find($component9, $int4) = true & cc_getinvobject = $obj0) {
+    if (oc_uncert($obj0) ! $obj0 | oc_stackable($obj0) = true) {
+        $int1 = calc(cc_getinvcount - $int1);
+        if ($int1 <= 0) {
+            $obj0 = null;
+            $int1 = 0;
+        }
+    } else if ($int1 = 1) {
+        $obj0 = null;
+        $int1 = 0;
+    } else {
+        ~script3809($component9, $inv3, -1, $obj0, null, $int1);
+    }
+    if ($inv3 = inv_93) {
+        ~script9240($component9, cc_param(param_3819), inv_93, $obj0, $int1, 1, "Deposit-1", "Deposit-5", "Deposit-10", "Deposit-<tostring(%varplayer_3922)>", "Deposit-X", "Deposit-All", "", "", "", "Examine");
+    } else if ($inv3 = inv_94) {
+        ~script9222($obj0, $int1);
+    }
+}
+return(1);

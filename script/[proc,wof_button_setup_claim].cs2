@@ -1,5 +1,5 @@
 // 6671
-[proc,wof_button_setup_claim](obj $obj0, int $int1)
+[proc,wof_button_setup_claim](int $int0, int $int1)
 if (%varclient_1790 = -1) {
     return;
 }
@@ -11,16 +11,17 @@ if (%varplayerbit_4345 <= 0) {
     $string1 = "You do not have a prize to claim.";
     $string2 = "You do not have a prize to claim.";
     $boolean2 = false;
-} else if ((oc_members($obj0) = 1 | %varplayerbit_4347 = 1) & map_members = false) {
-    $string0 = "Subscribe";
-    $boolean2 = true;
-    $string2 = "This prize can only be claimed on a members' world.";
-    $string1 = "This prize can only be claimed on a members' world.";
 } else {
     $string0 = "Claim item";
     switch_int (%varclient_1790) {
-        case 1, 3, 5, 8, 9 :
+        case 1, 3, 8, 9 :
             $boolean2 = true;
+        case 5 :
+            if (map_members = false) {
+                $boolean2 = false;
+            } else {
+                $boolean2 = true;
+            }
         case default :
             $boolean2 = false;
     }
@@ -56,7 +57,7 @@ if (%varplayerbit_4345 <= 0) {
             $string2 = "Loading...";
     }
 }
-if_setop(1, $string0, interface_1253:com_365);
-if_setonmouserepeat("script7768(interface_1253:com_211, event_com, -1, $string1, 200, graphic_17813, graphic_17813, 16777215, 13, 4, 0, event_mousex, event_mousey)", interface_1253:com_365);
-if_setonmouserepeat("script7768(interface_1253:com_211, event_com, -1, $string2, 200, graphic_17813, graphic_17813, 16777215, 13, 4, 0, event_mousex, event_mousey)", interface_1253:com_366);
-if_sethide($boolean2, interface_1253:com_366);
+if_setop(1, $string0, interface_1253:com_443);
+if_setonmouserepeat("script3876($string1, event_com, -1)", interface_1253:com_443);
+if_setonmouserepeat("script3876($string2, event_com, -1)", interface_1253:com_444);
+if_sethide($boolean2, interface_1253:com_444);
