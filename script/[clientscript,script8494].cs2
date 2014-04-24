@@ -120,26 +120,33 @@ switch_int ($int1) {
             $int23 = 0;
         }
     case 11 :
-        $int22 = %varplayerbit_21020;
-        if ($int22 = 1) {
+        if (%varplayerbit_21020 = 1) {
             $int22 = 1;
             $int23 = 0;
         } else {
             $int22 = 0;
             $int23 = 0;
         }
+    case 13 :
+        %varplayerbit_22310 = calc(1 - %varplayerbit_22310);
+        $int22 = %varplayerbit_22310;
+        $int23 = 0;
+        ~script7436(%varplayerbit_22310);
 }
 ~script8808;
 def_component $component24 = $component2;
 def_int $int25 = 18;
-if ($int1 = 8 | $int1 = 9 | $int1 = 11) {
+if ($int1 = 8 | $int1 = 9 | $int1 = 11 | $int1 = 13) {
     while ($int25 <= 23) {
-        if ($int1 = 8) {
-            $component2, $component3 = ~script8578($int25);
-        } else if ($int1 = 11) {
-            $component2, $component3 = ~script9378($int25);
-        } else {
-            $component2, $component3 = ~script8580($int25);
+        switch_int ($int1) {
+            case 8 :
+                $component2, $component3 = ~script8578($int25);
+            case 9 :
+                $component2, $component3 = ~script8580($int25);
+            case 11 :
+                $component2, $component3 = ~script9378($int25);
+            case 13 :
+                $component2, $component3 = ~script6800($int25);
         }
         ~script8495($int25, $int1, $component2, $component3, if_getx($component2), $int22, $int23, $string0, $string1);
         ~rebuildchatbox($int0);
@@ -152,4 +159,4 @@ if ($int1 = 8 | $int1 = 9 | $int1 = 11) {
 if ($component24 ! $component2) {
     $component2 = $component24;
 }
-~script8499($component2, $component3, $int0, $int1, $string1, if_getx($component2));
+~script8499($int0, $int1, $component2, $component3, if_getx($component2), $string1);

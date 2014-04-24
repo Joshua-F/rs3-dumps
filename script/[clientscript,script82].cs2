@@ -1,3 +1,62 @@
 // 82
-[clientscript,script82]
-~script7962(interface_1490:com_44, interface_1490:com_47, interface_1490:com_50, interface_1490:com_53, interface_1490:com_56, interface_1490:com_59, interface_1490:com_62, interface_1490:com_65, interface_1490:com_68, interface_1490:com_71, interface_1490:com_74, interface_1490:com_77, interface_1490:com_45, interface_1490:com_48, interface_1490:com_51, interface_1490:com_54, interface_1490:com_57, interface_1490:com_60, interface_1490:com_63, interface_1490:com_66, interface_1490:com_69, interface_1490:com_72, interface_1490:com_75, interface_1490:com_78, interface_1490:com_46, interface_1490:com_49, interface_1490:com_52, interface_1490:com_55, interface_1490:com_58, interface_1490:com_61, interface_1490:com_64, interface_1490:com_67, interface_1490:com_70, interface_1490:com_73, interface_1490:com_76, interface_1490:com_79);
+[clientscript,script82](int $int0, graphic $graphic1, int $int2, int $int3, int $int4, string $string0)
+if_sethide(true, interface_1490:com_2);
+if ($int4 = 0) {
+}
+if ($graphic1 = null | $int2 = -1 | $int3 = -1) {
+    return;
+}
+$string0 = removetags($string0);
+if_settext($string0, interface_1490:com_3);
+if_setsize(calc(stringwidth(if_gettext(interface_1490:com_3), if_getfontmetrics(interface_1490:com_3)) + 10), 17, ^setsize_abs, ^setsize_abs, interface_1490:com_3);
+def_int $int5 = 0;
+if ($int0 > 0) {
+    if_settext(tostring($int0), interface_1490:com_25);
+    $int5 = calc(comlevel_active - $int0);
+} else {
+    if_settext("-", interface_1490:com_25);
+}
+if ($int5 >= 0) {
+    if_setcolour(~rgb_to_hex(calc(255 - scale($int5, comlevel_active, 255)), 255, 0), interface_1490:com_25);
+} else {
+    if_setcolour(~rgb_to_hex(255, calc(255 + max(scale($int5, max($int0, 200), 255), -255)), 0), interface_1490:com_25);
+}
+if_setgraphic($graphic1, interface_1490:com_13);
+def_string $string1 = "Weakness: ";
+switch_graphic ($graphic1) {
+    case "staticons,0" :
+        $string1 = append($string1, "Melee");
+    case "staticons,5" :
+        $string1 = append($string1, "Magic");
+    case "staticons,3" :
+        $string1 = append($string1, "Ranged");
+    case aif_combat_icon :
+        $string1 = append($string1, "None");
+    case "aif_magic_standard_icons,32" :
+        $string1 = append($string1, "Air Spells");
+    case "aif_magic_standard_icons,33" :
+        $string1 = append($string1, "Water Spells");
+    case "aif_magic_standard_icons,34" :
+        $string1 = append($string1, "Earth Spells");
+    case "aif_magic_standard_icons,35" :
+        $string1 = append($string1, "Fire Spells");
+    case "combaticons,7" :
+        $string1 = append($string1, "Stab");
+    case "combaticons,1" :
+        $string1 = append($string1, "Slash");
+    case "combaticons2,3" :
+        $string1 = append($string1, "Crush");
+    case "aif_magic_lunar_icons,3" :
+        $string1 = append($string1, "Arrows");
+    case "aif_magic_standard_icons,38" :
+        $string1 = append($string1, "Bolts");
+    case "combaticons,18" :
+        $string1 = append($string1, "Thrown");
+}
+if_setonmouserepeat("script8799($string1, event_com, event_comsubid)", interface_1490:com_13);
+~script91;
+def_int $int6 = 5;
+def_int $int7 = calc(if_getx(interface_1490:com_3) + if_getwidth(interface_1490:com_3) + $int6);
+if_setposition($int7, 7, ^setpos_abs_left, ^setpos_abs_top, interface_1490:com_4);
+def_int $int8 = calc(if_getx(interface_1490:com_4) + if_getwidth(interface_1490:com_4) + $int6);
+if_setposition($int8, 0, ^setpos_abs_left, ^setpos_abs_top, interface_1490:com_14);

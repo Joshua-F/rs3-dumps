@@ -10,9 +10,9 @@ def_enum $enum0 = ~script9320(%varplayerbit_20972);
 if ($enum0 = null) {
     return;
 }
-cc_deleteall(interface_639:com_35);
 cc_deleteall(interface_639:com_34);
-if (%varclient_3852 < 0) {
+cc_deleteall(interface_639:com_33);
+if (%varclient_3852 <= 0) {
     %varclient_3852 = 0;
 }
 def_int $int1 = enum(int, int, $enum0, %varclient_3852);
@@ -21,19 +21,19 @@ if ($struct2 = null) {
     return;
 }
 def_graphic $graphic3 = struct_param($struct2, param_1271);
-def_int $int4 = if_getwidth(interface_639:com_35);
-cc_create(interface_639:com_35, ^iftype_graphic, if_getnextsubid(interface_639:com_35));
+def_int $int4 = if_getwidth(interface_639:com_34);
+cc_create(interface_639:com_34, ^iftype_graphic, if_getnextsubid(interface_639:com_34));
 cc_setsize(50, 50, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setgraphic($graphic3);
-cc_create(interface_639:com_35, ^iftype_text, if_getnextsubid(interface_639:com_35));
+cc_create(interface_639:com_34, ^iftype_text, if_getnextsubid(interface_639:com_34));
 cc_setsize(calc($int4 - 55), 25, ^setsize_abs, ^setsize_abs);
 cc_setposition(55, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_settext(struct_param($struct2, param_1266));
 cc_setcolour(0xaed0e0);
-cc_settextfont(graphic_17814);
+cc_settextfont(graphic_17811);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 15);
-cc_create(interface_639:com_35, ^iftype_text, if_getnextsubid(interface_639:com_35));
+cc_create(interface_639:com_34, ^iftype_text, if_getnextsubid(interface_639:com_34));
 cc_setsize(calc($int4 - 55), 25, ^setsize_abs, ^setsize_abs);
 cc_setposition(55, 25, ^setpos_abs_left, ^setpos_abs_top);
 cc_settext(struct_param($struct2, param_1273));
@@ -48,6 +48,9 @@ def_int $int6 = -1;
 def_int $int7 = -1;
 def_int $int8 = 1;
 def_int $int9 = 55;
+def_int $rgb10 = ^black;
+def_int $rgb11 = ^black;
+def_graphic $graphic12 = null;
 while ($int5 <= 8) {
     switch_int ($int5) {
         case 1 :
@@ -83,31 +86,54 @@ while ($int5 <= 8) {
     }
     $int8 = max(1, paraheight($string0, calc($int4 - 50), graphic_17813));
     if (compare($string0, "") ! 0) {
-        cc_create(interface_639:com_35, ^iftype_graphic, if_getnextsubid(interface_639:com_35));
-        cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
+        cc_create(interface_639:com_34, ^iftype_rectangle, if_getnextsubid(interface_639:com_34));
+        cc_setsize($int4, calc($int8 * 17 + 24), ^setsize_abs, ^setsize_abs);
         cc_setposition(0, $int9, ^setpos_abs_left, ^setpos_abs_top);
-        cc_setgraphic(~script9319($int1, $int5));
-        cc_create(interface_639:com_35, ^iftype_text, if_getnextsubid(interface_639:com_35));
+        cc_setfill(true);
+        if (calc($int5 % 2) = 0) {
+            cc_setcolour(0x1c2c34);
+        } else {
+            cc_setcolour(0x071820);
+        }
+        if (~script9322($int1) = 1 | %varplayerbit_20967 = $int1 & $int5 < %varplayerbit_22299) {
+            $graphic12 = "rs3_dnd_mini_games_icons,2";
+            $rgb10 = 0xaed0e0;
+            $rgb11 = 0x7592a0;
+        } else if (%varplayerbit_20967 = $int1 & $int5 = %varplayerbit_22299) {
+            $graphic12 = "rs3_dnd_mini_games_icons,4";
+            $rgb10 = ^white;
+            $rgb11 = 0xaed0e0;
+        } else {
+            $graphic12 = "rs3_dnd_mini_games_icons,5";
+            $rgb10 = 0xa5a5a5;
+            $rgb11 = 0xa5a5a5;
+        }
+        cc_create(interface_639:com_34, ^iftype_graphic, if_getnextsubid(interface_639:com_34));
+        cc_setsize(22, 22, ^setsize_abs, ^setsize_abs);
+        cc_setposition(0, $int9, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphic($graphic12);
+        cc_create(interface_639:com_34, ^iftype_text, if_getnextsubid(interface_639:com_34));
         cc_setsize(24, 24, ^setsize_minus, ^setsize_abs);
         cc_setposition(24, $int9, ^setpos_abs_left, ^setpos_abs_top);
         cc_settext($string1);
         cc_setmaxlines(1);
-        cc_setcolour(0xaed0e0);
+        cc_setcolour($rgb10);
         cc_settextfont(graphic_17814);
         cc_settextalign(^settextalign_left, ^settextalign_centre, 24);
-        cc_create(interface_639:com_35, ^iftype_text, if_getnextsubid(interface_639:com_35));
+        cc_create(interface_639:com_34, ^iftype_text, if_getnextsubid(interface_639:com_34));
         cc_setsize(50, calc($int8 * 17), ^setsize_minus, ^setsize_abs);
-        cc_setposition(50, calc($int9 + 24), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition(24, calc($int9 + 24), ^setpos_abs_left, ^setpos_abs_top);
         cc_settext($string0);
         cc_setmaxlines(0);
-        cc_setcolour(0x7592a0);
+        cc_setcolour($rgb11);
         cc_settextfont(graphic_17813);
         cc_settextalign(^settextalign_left, ^settextalign_centre, 17);
         $int9 = calc($int8 * 17 + 24 + $int9);
     }
     $int5 = calc($int5 + 1);
 }
-if ($int9 > if_getheight(interface_639:com_35)) {
-    if_setscrollsize(0, $int9, interface_639:com_35);
+if_setscrollsize(0, $int9, interface_639:com_34);
+if_setscrollpos(0, 0, interface_639:com_34);
+if ($int9 > if_getheight(interface_639:com_34)) {
+    ~scrollbar_vertical(interface_639:com_33, interface_639:com_34, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 }
-~scrollbar_vertical(interface_639:com_34, interface_639:com_35, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

@@ -1,0 +1,25 @@
+// 7685
+[proc,script7685](component $component0, component $component1, string $string0, string $string1, int $int2)(int, int)
+def_string $string2 = "";
+def_string $string3 = "";
+$string2 = append("<col=aed0e0><$string0></col>", $string1);
+$string3 = "<col=ffffff><$string0><$string1></col>";
+if (cc_find($component1, 0) = true) {
+    cc_settext($string2);
+    cc_setonmouseover("cc_text_swapper(event_com, event_comsubid, $string3)");
+    cc_setonmouseleave("cc_text_swapper(event_com, event_comsubid, $string2)");
+} else {
+    cc_create($component1, ^iftype_text, 0);
+    cc_setposition(20, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(20, 0, ^setsize_minus, ^setsize_minus);
+    cc_settextfont(graphic_20452);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settext($string2);
+    cc_setonmouseover("cc_text_swapper(event_com, event_comsubid, $string3)");
+    cc_setonmouseleave("cc_text_swapper(event_com, event_comsubid, $string2)");
+}
+if_setop(1, if_getop(1, $component0), $component1);
+if_setopbase(if_getopbase($component0), $component1);
+if_setposition(0, $int2, ^setpos_abs_left, ^setpos_abs_top, $component1);
+def_int $int3 = stringwidth(removetags($string3), graphic_20452);
+return($int3, calc($int2 + if_getheight($component1)));
