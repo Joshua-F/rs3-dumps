@@ -3,22 +3,27 @@
 def_string $string0 = "";
 def_string $string1 = "this colour";
 def_int $int3 = 0;
-cc_create($component0, ^iftype_rectangle, $int3);
-cc_setposition(2, 2, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(2, 2, ^setsize_minus, ^setsize_minus);
-cc_setcolour(struct_param($struct2, param_2502));
-cc_setfill(true);
-$int3 = calc($int3 + 1);
-cc_create($component0, ^iftype_graphic, $int3);
-cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(20, 20, ^setsize_abs, ^setsize_abs);
-$int3 = calc($int3 + 1);
-if (%varclient_1967 = $int1) {
-    cc_setgraphic("km_colourpickerbox,1");
+if (struct_param($struct2, param_3840) = 0) {
+    if_sethide(false, $component0);
+    cc_create($component0, ^iftype_rectangle, $int3);
+    cc_setposition(2, 2, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(2, 2, ^setsize_minus, ^setsize_minus);
+    cc_setcolour(struct_param($struct2, param_2502));
+    cc_setfill(true);
+    $int3 = calc($int3 + 1);
+    cc_create($component0, ^iftype_graphic, $int3);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(20, 20, ^setsize_abs, ^setsize_abs);
+    $int3 = calc($int3 + 1);
+    if (%varclient_1967 = $int1) {
+        cc_setgraphic("km_colourpickerbox,1");
+    } else {
+        cc_setgraphic("km_colourpickerbox,0");
+    }
+    $string1 = struct_param($struct2, param_2548);
+    $string0 = "Recolour this item to <$string1>.";
+    cc_setonmouserepeat("script7768(interface_1311:com_82, event_com, event_comsubid, $string0, 350, verdana_11pt_regular, verdana_11pt_regular, 11974326, 12, 1, 1, event_mousex, event_mousey)");
+    cc_setonmouseleave("deltooltip(interface_1311:com_82)");
 } else {
-    cc_setgraphic("km_colourpickerbox,0");
+    if_sethide(true, $component0);
 }
-$string1 = struct_param($struct2, param_2548);
-$string0 = "Recolour this item to <$string1>.";
-cc_setonmouserepeat("script7768(interface_1311:com_82, event_com, event_comsubid, $string0, 350, verdana_11pt_regular, verdana_11pt_regular, 11974326, 12, 1, 1, event_mousex, event_mousey)");
-cc_setonmouseleave("deltooltip(interface_1311:com_82)");
