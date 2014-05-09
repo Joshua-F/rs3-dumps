@@ -14585,3 +14585,13 @@ readyanim=null,seq_23576
 randomreadyanim=seq_23577,100
 randomreadyanim=seq_23583,60
 
+[bas_3161]
+readyanim_l=seq_22975
+readyanim_r=seq_22975
+runanim=seq_23605
+runturn_l=seq_23605
+runturn_r=seq_23605
+walkturn_l=seq_22975
+walkturn_r=seq_22975
+readyanim=seq_22976,seq_22975
+
