@@ -14579,8 +14579,8 @@ walkanim_l=seq_23576
 walkanim_r=seq_23576
 walkturn_l=seq_23576
 walkturn_r=seq_23576
-hillrotate=0,16
-hillrotatelimit=64,64
+hillrotate=0,32
+hillrotatelimit=5,0
 readyanim=null,seq_23576
 randomreadyanim=seq_23577,100
 randomreadyanim=seq_23583,60
@@ -14594,4 +14594,15 @@ runturn_r=seq_23605
 walkturn_l=seq_22975
 walkturn_r=seq_22975
 readyanim=seq_22976,seq_22975
+
+[bas_3162]
+readyanim=seq_23621,seq_23622
+
+[bas_3163]
+runanim=seq_23636
+readyanim=seq_23634,seq_23635
+
+[bas_3164]
+hillrotate=48,48
+readyanim=seq_23630,seq_23632
 
