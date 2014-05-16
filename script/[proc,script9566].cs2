@@ -30,7 +30,9 @@ if (%varclient_2 ! 1 | $int8 = 1) {
         if (cc_find(interface_1477:com_70, 0) = true) {
             switch_int ($int1) {
                 case 0 :
-                    ~worldmap_elements_quest_tooltip(interface_1486:com_25, cc_param(param_4146));
+                    ~worldmap_elements_quest_tooltip;
+                case 1 :
+                    ~thas_lodestone_tooltip;
             }
         }
         if (if_getwidth(interface_1486:com_25) = 0 | if_getheight(interface_1486:com_25) = 0) {
@@ -55,30 +57,31 @@ if (%varclient_2 ! 1 | $int8 = 1) {
     }
     $int11 = if_getwidth(interface_1486:com_1);
     $int12 = if_getheight(interface_1486:com_1);
-    $int2 = calc($int11 + 5 * 2);
-    if ($int5 = -1) {
-        $int9, $int10 = ~script8405($component4);
-        $int13 = if_getwidth($component4);
-        $int14 = if_getheight($component4);
-    } else {
-        $int9, $int10 = ~script8406($component4, $int5);
-        if (cc_find($component4, $int5) = true) {
-            $int13 = cc_getwidth;
-            $int14 = cc_getheight;
-        } else {
-            $int13 = 25;
-            $int14 = 25;
-        }
-    }
-    if (calc($int10 - ($int12 + 5 * 2 + 2)) >= 0) {
-        $int10 = calc($int10 - ($int12 + 5 * 2 + 2));
-    } else {
-        $int10 = calc($int10 + $int14 + 2);
-    }
-    $int9 = calc($int9 + $int13 / 2 - $int2 / 2);
-    $int9 = max($int9, 0);
-    $int9 = min($int9, calc(if_getwidth(interface_1477:com_65) - $int2));
     if_setsize(calc($int11 + 5 * 2), calc($int12 + 5 * 2), ^setsize_abs, ^setsize_abs, interface_1486:com_1);
-    if_setposition($int9, $int10, ^setpos_abs_left, ^setpos_abs_top, interface_1486:com_1);
     %varclient_2 = 1;
 }
+$int11 = if_getwidth(interface_1486:com_1);
+$int12 = if_getheight(interface_1486:com_1);
+if ($int5 = -1) {
+    $int9, $int10 = ~script8405($component4);
+    $int13 = if_getwidth($component4);
+    $int14 = if_getheight($component4);
+} else {
+    $int9, $int10 = ~script8406($component4, $int5);
+    if (cc_find($component4, $int5) = true) {
+        $int13 = cc_getwidth;
+        $int14 = cc_getheight;
+    } else {
+        $int13 = 25;
+        $int14 = 25;
+    }
+}
+if (calc($int10 - ($int12 + 2)) >= 0) {
+    $int10 = calc($int10 - ($int12 + 2));
+} else {
+    $int10 = calc($int10 + $int14 + 2);
+}
+$int9 = calc($int9 + $int13 / 2 - $int11 / 2);
+$int9 = max($int9, 0);
+$int9 = min($int9, calc(if_getwidth(interface_1477:com_65) - $int11));
+if_setposition($int9, $int10, ^setpos_abs_left, ^setpos_abs_top, interface_1486:com_1);
