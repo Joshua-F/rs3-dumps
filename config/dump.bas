@@ -14606,3 +14606,7 @@ readyanim=seq_23634,seq_23635
 hillrotate=48,48
 readyanim=seq_23630,seq_23632
 
+[bas_3165]
+readyanim=null,null
+randomreadyanim=seq_23643,100
+
