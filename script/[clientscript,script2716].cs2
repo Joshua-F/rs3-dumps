@@ -6,10 +6,13 @@ def_model $model3 = null;
 def_seq $seq4 = null;
 def_model $model5 = null;
 def_component $component6 = interface_1311:com_51;
-def_int $int7 = 0;
+def_component $component7 = interface_1311:com_64;
 def_int $int8 = 0;
 def_int $int9 = 0;
 def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
 if ($struct0 ! null) {
     if (gender = 1 & struct_param($struct0, param_3752) ! null) {
         $seq1 = struct_param($struct0, param_3752);
@@ -24,12 +27,13 @@ if ($struct0 ! null) {
         $seq4 = struct_param($struct0, param_2538);
         $model5 = struct_param($struct0, param_2539);
     }
-    $int7 = struct_param($struct0, param_2540);
-    $int8 = struct_param($struct0, param_2541);
-    $int9 = struct_param($struct0, param_3363);
+    $int8 = struct_param($struct0, param_2540);
+    $int9 = struct_param($struct0, param_2541);
+    $int10 = struct_param($struct0, param_3363);
+    $int13 = struct_param($struct0, param_4267);
 }
-if ($int9 = 0) {
-    ~script6443($int7, $int8, 1, 1);
+if ($int10 = 0) {
+    ~script6443($int8, $int9, 1, 1);
     if ($seq1 = null) {
         if (%varclient_779 ! null) {
             $seq1 = bas_getanim_ready(%varclient_779);
@@ -47,19 +51,22 @@ if ($int9 = 0) {
         cc_setonvarctransmit(null);
         cc_setmodelanim($seq1);
     }
+    $int12 = calc($int12 + 1);
 } else {
     cc_deleteall(interface_1311:com_51);
 }
 if ($seq2 ! null & $model3 ! null) {
-    ~script6446($component6, 300, $int7, 200, $int8, $model3, $seq2);
-    $int10 = calc($int10 + 1);
+    ~script6446($component6, 300, $int8, 200, $int9, $model3, $seq2);
+    $int11 = calc($int11 + 1);
+    $int12 = calc($int12 + 1);
 }
 if ($seq4 ! null & $model5 ! null) {
-    ~script6446($component6, 300, $int7, 200, $int8, $model5, $seq4);
-    $int10 = calc($int10 + 1);
+    ~script6446($component6, 300, $int8, 200, $int9, $model5, $seq4);
+    $int11 = calc($int11 + 1);
+    $int12 = calc($int12 + 1);
 }
-if ($int9 = 1) {
-    ~script6443($int7, $int8, 1, 0);
+if ($int10 = 1) {
+    ~script6443($int8, $int9, 1, 0);
     if ($seq1 = null) {
         if (%varclient_779 ! null) {
             $seq1 = bas_getanim_ready(%varclient_779);
@@ -73,8 +80,21 @@ if ($int9 = 1) {
     } else {
         if_setontimer(null, interface_1311:com_132);
     }
-    if (cc_find($component6, $int10) = true) {
+    if (cc_find($component6, $int11) = true) {
         cc_setonvarctransmit(null);
         cc_setmodelanim($seq1);
+    }
+    $int12 = calc($int12 + 1);
+}
+if ($int13 = 1) {
+    if_setondrag(null, $component7);
+    if_setondragcomplete(null, $component7);
+    if_setmouseovercursor(null, $component7);
+} else {
+    if_setondrag("script9319(event_com, $component6, 0, $int12)", $component7);
+    if (has_html5 = true) {
+        if_setmouseovercursor(cursor_186, $component7);
+    } else {
+        if_setmouseovercursor(cursor_188, $component7);
     }
 }
