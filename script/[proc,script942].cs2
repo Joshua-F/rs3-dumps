@@ -1,36 +1,15 @@
 // 942
-[proc,script942](int $int0)(int, string)
-if (%varplayer_2662 = enum(int, coord, enum_2536, $int0)) {
-    return(0, null);
+[proc,script942](struct $struct0, component $component1, int $int2, int $int3, int $int4)
+if ($struct0 = null) {
+    return;
 }
-switch_int ($int0) {
-    case 0 :
-        return(1, enum(int, string, enum_2535, 0));
-    case 1 :
-        return(1, enum(int, string, enum_2535, 1));
-    case 2 :
-        return(1, enum(int, string, enum_2535, 2));
-    case 3 :
-        return(1, enum(int, string, enum_2535, 3));
-    case 4 :
-        return(1, enum(int, string, enum_2535, 4));
-    case 5 :
-        if (%varplayerbit_64 = 20) {
-            return(1, enum(int, string, enum_2535, 5));
-        }
-    case 6 :
-        if (%varplayerbit_66 = 20) {
-            return(1, enum(int, string, enum_2535, 6));
-        }
-    case 7 :
-        if (%varplayerbit_68 = 20) {
-            return(1, enum(int, string, enum_2535, 7));
-        }
-    case 8 :
-        if (%varplayerbit_10479 >= 3) {
-            return(1, enum(int, string, enum_2535, 8));
-        }
-    case default :
-        return(-1, null);
+if ($component1 = null) {
+    return;
 }
-return(0, null);
+if (cc_find($component1, $int2) = true) {
+    cc_sethide(false);
+    cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int3, $int4, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic("combatv2_cooldown_animation,138");
+    cc_setontimer("script6302($struct0, event_com, event_comsubid, 1, clientclock)");
+}

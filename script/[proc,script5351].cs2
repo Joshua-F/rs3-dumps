@@ -124,10 +124,14 @@ if ($struct0 ! null) {
         case 5 :
             $int30 = testbit(%varplayer_1247, calc($int33 + 16));
     }
-    if ($int30 = 0) {
+    if ($int30 = 0 & struct_param($struct0, param_4270) = 0) {
         $graphic31 = "aif_buy_button_group_3,1";
         $graphic32 = "aif_buy_button_group_3,4";
         $string0 = "Buy";
+    } else if ($int30 = 0) {
+        $graphic31 = "aif_buy_button_group_3,2";
+        $graphic32 = "aif_buy_button_group_3,5";
+        $string0 = "Locked";
     } else {
         if (struct_param($struct0, param_1937) = 1) {
             if (inv_total(inv_93, struct_param($struct0, param_1935)) > 0 | inv_total(inv_94, struct_param($struct0, param_1935)) > 0 | inv_total(inv_95, struct_param($struct0, param_1935)) > 0) {
@@ -213,7 +217,7 @@ if ($struct0 ! null) {
         if (struct_param($struct0, param_1933) > 0) {
             cc_settext(append(tostring_localised(struct_param($struct0, param_1933), true), " Points"));
             cc_setcolour(0x56a5cc);
-        } else {
+        } else if (struct_param($struct0, param_4270) = 0) {
             cc_settext(append(tostring_localised(struct_param($struct0, param_1932), true), " Points"));
             cc_setcolour(0xdb9000);
         }
