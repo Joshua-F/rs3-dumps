@@ -1,13 +1,11 @@
 // 6443
-[proc,script6443](int $int0, int $int1, int $int2, int $int3)
-def_int $int4 = 0;
+[proc,script6443](int $int0, int $int1, int $int2, int $int3, int $int4)
 def_int $int5 = 0;
 if (%varclient_1968 = 1) {
-    $int4 = 200;
+    $int2 = 200;
     $int5 = 850;
     $int1 = 80;
 } else {
-    $int4 = 200;
     $int5 = calc(300 + $int0);
     if (%varclient_1963 ! 5) {
         $int1 = calc(110 + $int1);
@@ -15,12 +13,12 @@ if (%varclient_1968 = 1) {
         $int1 = calc(60 + $int1);
     }
 }
-if (cc_find(interface_1311:com_51, 0) = true & $int2 = 0) {
-    $int4 = cc_getmodelangle_y;
+if (cc_find(interface_1311:com_51, 0) = true & $int3 = 0) {
+    $int2 = cc_getmodelangle_y;
     $int5 = cc_getmodelzoom;
     $int1 = cc_getmodelyof;
 }
-if ($int3 = 1) {
+if ($int4 = 1) {
     cc_deleteall(interface_1311:com_51);
 }
 cc_create(interface_1311:com_51, ^iftype_model, if_getnextsubid(interface_1311:com_51));
@@ -33,10 +31,10 @@ cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 if (%varclient_1963 ! 5) {
     if (%varclient_1968 = 1) {
         cc_setplayerhead_self;
-        if ($int4 > 1024) {
-            $int4 = max($int4, 1572);
+        if ($int2 > 1024) {
+            $int2 = max($int2, 1572);
         } else {
-            $int4 = min($int4, 512);
+            $int2 = min($int2, 512);
         }
     } else {
         cc_setplayermodel_self;
@@ -47,7 +45,7 @@ if (%varclient_1963 ! 5) {
         ~script7411(%varclient_3756);
     }
 }
-cc_setmodelangle(0, $int1, 10, $int4, 10, $int5);
+cc_setmodelangle(0, $int1, 10, $int2, 10, $int5);
 if (%varclient_1963 ! 5) {
     if (%varclient_1968 = 1) {
         cc_setmodelanim(seq_12287);

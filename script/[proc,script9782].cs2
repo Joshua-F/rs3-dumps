@@ -1,0 +1,18 @@
+// 9782
+[proc,script9782](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
+if_settext("Research Mode will break down selected item drops and reward you with bonus XP in the skill required to make the item.<br><br><col=ffcb05>Requirements:</col><br>- The spring cleaner must have at least 1 charge per item dropped<br>- The item must be selected from the config menu<br><br><col=ffcb05>Notes:</col><br>- You will not receive the dropped item. It will be broken down and changed to bonus XP<br>- For items that take multiple skills to make, bonus XP will be given in the skill used to make the final stage<br>- Will not affect ammo or noted items", $component1);
+if_settext("Dismantle Mode will break down selected item drops and return a portion of the base materials used to make them. It does not always return 100% of materials, there is a chance that no materials will be returned. This chance varies on what items are broken down.<br><br><col=ffcb05>Requirements:</col><br>- The spring cleaner must have at least 1 charge per item dropped<br>- The item must be selected from the configuration menu<br>- You must have space in your bank to receive the materials<br><br><col=ffcb05>Notes:</col><br>- You will not receive the dropped item. It will return materials instead, which will be sent to your bank<br>- The returned materials will be automatically sent to your bank<br>- The materials returned will be the lowest stage to make the dropped item, a rune platebody would return rune ore and coal<br>- Will not affect ammo or noted items", $component4);
+def_int $int6 = ~script7593(if_gettext($component1), if_getwidth($component1), graphic_20452, 0);
+def_int $int7 = ~script7593(if_gettext($component4), if_getwidth($component4), graphic_20452, 0);
+if (calc(if_getheight($component0) - 20) < $int6) {
+    if_setscrollsize(0, calc($int6 + 25), $component0);
+    ~rs3_scrollbar_vertical($component2, $component0);
+} else {
+    if_setscrollsize(0, 0, $component0);
+}
+if (calc(if_getheight($component3) - 20) < $int7) {
+    if_setscrollsize(0, calc($int7 + 25), $component3);
+    ~rs3_scrollbar_vertical($component5, $component3);
+} else {
+    if_setscrollsize(0, 0, $component0);
+}
