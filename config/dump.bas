@@ -3914,7 +3914,7 @@ walkanim_r=seq_1144
 readyanim=seq_1144,seq_1144
 
 [bas_1000]
-readyanim=seq_1445,seq_181
+readyanim=seq_23845,null
 
 [bas_1001]
 readyanim=seq_5543,seq_5543
@@ -14751,4 +14751,17 @@ walkturn_r=seq_23791
 walkanim_l=seq_23791
 walkanim_r=seq_23791
 readyanim=seq_23790,seq_23791
+
+[bas_3184]
+readyanim=seq_23832,seq_23831
+
+[bas_3185]
+hillrotate=24,24
+readyanim=seq_23852,seq_23854
+
+[bas_3186]
+readyanim=seq_23841,seq_23843
+
+[bas_3187]
+readyanim=seq_23838,seq_23837
 
