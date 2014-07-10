@@ -1,0 +1,22 @@
+// 9831
+[proc,diango_search_timer](string $string0, int $int0)
+def_int $int1 = 0;
+def_component $component2 = interface_1387:com_8;
+def_int $int3 = 6;
+if ($int0 <= clientclock) {
+    if (compare(%varclient_2250, $string0) ! 0) {
+        if (string_length(%varclient_2250) > 0) {
+            if_setontimer(null, interface_1387:com_0);
+            ~diango_search_item($component2, %varclient_4195, inv_468, $int3);
+            $int3 = 4;
+            $component2 = interface_1387:com_14;
+            ~diango_search_item($component2, %varclient_4195, inv_615, $int3);
+        } else {
+            ~diango_items(interface_1387:com_8, interface_1387:com_9, inv_468, 6);
+            ~diango_items(interface_1387:com_14, interface_1387:com_15, inv_615, 4);
+        }
+    }
+    $string0 = %varclient_2250;
+    $int0 = calc(clientclock + 25);
+}
+if_setontimer("diango_search_timer($string0, $int0)", interface_1387:com_0);

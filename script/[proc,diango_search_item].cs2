@@ -1,0 +1,40 @@
+// 9832
+[proc,diango_search_item](component $component0, int $int1, inv $inv2, int $int3)
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = calc((if_getwidth($component0) - $int3 * 36) / ($int3 - 1));
+def_int $int7 = calc(36 + $int6);
+def_int $int8 = calc(32 + $int6);
+while ($int4 < $int1) {
+    if (cc_find($component0, $int4) = true) {
+        if (string_indexof_string(lowercase(oc_name(inv_getobj($inv2, $int4))), lowercase(%varclient_2250), 0) > -1) {
+            cc_setposition(calc($int5 % $int3 * $int7), calc($int5 / $int3 * $int8), ^setpos_abs_left, ^setpos_abs_top);
+            cc_sethide(false);
+            $int5 = calc($int5 + 1);
+        } else {
+            cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+            cc_sethide(true);
+        }
+    }
+    $int4 = calc($int4 + 1);
+}
+def_int $int9 = calc($int5 % $int3);
+def_int $int10 = calc($int5 / $int3);
+def_int $int11 = 0;
+def_component $component12 = interface_1387:com_9;
+if ($inv2 = inv_615) {
+    $component12 = interface_1387:com_15;
+}
+if ($int9 > 0) {
+    $int10 = calc($int10 + 1);
+}
+if ($int10 > 0) {
+    $int11 = calc($int10 * $int8 - $int6);
+}
+if ($int11 > if_getheight($component0)) {
+    if_setscrollsize(0, $int11, $component0);
+    ~scrollbar_resize($component12, $component0, if_getscrolly($component0));
+} else {
+    if_setscrollsize(0, 0, $component0);
+    ~scrollbar_resize($component12, $component0, 0);
+}
