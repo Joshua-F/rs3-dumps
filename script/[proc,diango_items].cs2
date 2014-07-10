@@ -8,7 +8,7 @@ def_int $int6 = calc(32 + $int4);
 def_int $int7 = inv_size($inv2);
 def_int $int8 = 0;
 def_obj $obj9 = null;
-def_string $string0 = "";
+def_int $int10 = 0;
 while ($int8 < $int7) {
     $obj9 = inv_getobj($inv2, $int8);
     if ($obj9 ! null) {
@@ -17,7 +17,6 @@ while ($int8 < $int7) {
         cc_setposition(calc($int8 % $int3 * $int5), calc($int8 / $int3 * $int6), ^setpos_abs_left, ^setpos_abs_top);
         cc_setobject($obj9, inv_getnum($inv2, $int8));
         cc_setopbase(append("<col=ff9040>", oc_name($obj9)));
-        $string0 = oc_name($obj9);
         cc_setop(1, "Retrieve");
         cc_setop(10, "Examine");
         cc_setonop("script1620(event_com, event_comsubid, 75, 0, 10)");
@@ -26,26 +25,31 @@ while ($int8 < $int7) {
         cc_setonmouserepeat("script5495($obj9)");
         cc_setonmouseleave("script5495(null)");
         $int8 = calc($int8 + 1);
+        if ($inv2 = inv_468) {
+            %varclient_4195 = $int8;
+        } else {
+            %varclient_4196 = $int8;
+        }
     } else {
         $int8 = $int7;
     }
 }
-def_int $int10 = calc((if_getnextsubid($component0) + $int3 - 1) / $int3);
-def_int $int11 = 0;
-if ($int10 > 0) {
-    $int11 = calc($int10 * $int6 - $int4);
+def_int $int11 = calc((if_getnextsubid($component0) + $int3 - 1) / $int3);
+def_int $int12 = 0;
+if ($int11 > 0) {
+    $int12 = calc($int11 * $int6 - $int4);
 } else {
     cc_create($component0, ^iftype_text, if_getnextsubid($component0));
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
-    cc_settextfont(p11_full);
+    cc_settextfont(graphic_17813);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_setcolour(^white);
     cc_settextshadow(true);
     cc_settext("Nothing to retrieve.");
 }
-if ($int11 > if_getheight($component0)) {
-    if_setscrollsize(0, $int11, $component0);
+if ($int12 > if_getheight($component0)) {
+    if_setscrollsize(0, $int12, $component0);
     ~scrollbar_resize($component1, $component0, if_getscrolly($component0));
 } else {
     if_setscrollsize(0, 0, $component0);
