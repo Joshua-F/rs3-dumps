@@ -2,15 +2,29 @@
 [proc,script8538](int $int0, int $int1)
 def_int $int2 = -1;
 def_int $int3 = 18;
-while ($int3 <= 23) {
-    if (~script8507($int3, $int1) = 1) {
-        if (if_gethide(struct_param(enum(int, struct, enum_7716, $int3), param_3503)) = false) {
-            return;
-        } else if ($int2 = -1) {
-            $int2 = $int3;
+if (%varplayerbit_22872 = 0) {
+    while ($int3 <= 23) {
+        if (~script8507($int3, $int1, 0) = 1) {
+            if (if_gethide(struct_param(enum(int, struct, enum_7716, $int3), param_3503)) = false) {
+                return;
+            } else if ($int2 = -1) {
+                $int2 = $int3;
+            }
         }
+        $int3 = calc($int3 + 1);
     }
-    $int3 = calc($int3 + 1);
+} else if (~script8507($int3, $int1, 1) = 1 | $int1 = 1) {
+    if ($int1 = 1) {
+        if (%varplayerbit_22846 ! 2 & %varplayerbit_22846 ! 0) {
+            $int2 = 18;
+        } else {
+            return;
+        }
+    } else if (%varplayerbit_22846 ! 0 & ~script9918($int1) = 1) {
+        $int2 = 18;
+    } else {
+        return;
+    }
 }
 def_int $int4 = -1;
 def_int $int5 = -1;
@@ -19,7 +33,22 @@ switch_int ($int2) {
         if (%varclient_44 > 0) {
             return;
         } else {
-            %varclient_44 = 100;
+            if (%varplayerbit_22872 = 0) {
+                %varclient_44 = 100;
+            } else {
+                switch_int (~script9919($int1)) {
+                    case 0 :
+                        %varclient_44 = 200;
+                    case 1 :
+                        %varclient_45 = 200;
+                    case 2 :
+                        %varclient_46 = 200;
+                    case 3 :
+                        %varclient_1511 = 200;
+                    case 4 :
+                        %varclient_47 = 200;
+                }
+            }
             $int4 = 18;
             $int5 = 8;
         }
@@ -66,5 +95,7 @@ switch_int ($int2) {
     case default :
         return;
 }
-~script8057($int4, null, $int5);
-if_setontimer("script8539", interface_1477:com_0);
+if (%varplayerbit_22872 = 0) {
+    ~script8057($int4, null, $int5);
+}
+if_setontimer("script8539", interface_1477:com_1);

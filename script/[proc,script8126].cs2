@@ -4,8 +4,13 @@ $int1 = max(0, $int1);
 $int2 = max(1, $int2);
 def_string $string0 = "";
 if (cc_find($component0, 7) = true) {
-    if ($boolean3 = true) {
-        cc_settext("");
+    if ($boolean3 = true | %varplayerbit_22872 = 1) {
+        if (%varplayerbit_22872 = 0) {
+            cc_settext("");
+        } else {
+            cc_settext(tostring($int1));
+            cc_setcolour(~script805(scale($int1, $int2, 100)));
+        }
         if ($int4 = 1) {
             $string0 = "<tostring($int1)>%";
         } else {
@@ -24,12 +29,19 @@ if (cc_find($component0, 7) = true) {
         if_setonmouseleave(null, $component0);
     }
 }
+if (%varplayerbit_22872 = 1) {
+    $int1 = calc($int2 - $int1);
+}
 $int1 = min($int1, $int2);
 if (cc_find($component0, 3) = true) {
-    if ($boolean3 = true) {
-        $int1 = max(1, scale($int1, $int2, calc(if_getheight($component0) - 4)));
-        if (calc($int1 % 2) ! 0) {
-            $int1 = calc($int1 + 1);
+    if ($boolean3 = true | %varplayerbit_22872 = 1) {
+        if (%varplayerbit_22872 ! 1) {
+            $int1 = max(1, scale($int1, $int2, calc(if_getheight($component0) - 4)));
+            if (calc($int1 % 2) ! 0) {
+                $int1 = calc($int1 + 1);
+            }
+        } else {
+            $int1 = max(1, scale($int1, $int2, if_getheight($component0)));
         }
     } else {
         $int1 = max(1, scale($int1, $int2, calc(if_getwidth($component0) - 4)));

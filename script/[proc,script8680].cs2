@@ -19,7 +19,13 @@ def_int $int11 = 0;
 def_int $int12 = 0;
 def_int $int13 = -1;
 if ($component5 ! null) {
-    $int13 = if_getheight($component5);
+    if (%varplayerbit_22872 = 1) {
+        $int13 = 0;
+        if_sethide(true, $component5);
+    } else {
+        $int13 = if_getheight($component5);
+        if_sethide(false, $component5);
+    }
 }
 if ($component1 ! null) {
     if_setsize(0, $int13, ^setsize_minus, ^setsize_minus, $component1);
@@ -27,75 +33,89 @@ if ($component1 ! null) {
 if ($component2 ! null) {
     if_setsize(0, $int13, ^setsize_minus, ^setsize_minus, $component2);
 }
+if ($component3 ! null) {
+    if (%varplayerbit_22872 = 0) {
+        if_sethide(false, $component3);
+    } else {
+        if_sethide(true, $component3);
+    }
+}
 def_int $int14 = -1;
 def_int $int15 = -1;
 if ($component1 ! null) {
     $int14 = if_getwidth($component1);
     $int15 = if_getheight($component1);
 }
-def_int $int16 = calc($int15 - (2 + 2));
-def_int $int17 = calc(36 + 2);
-def_int $int18 = 0;
-def_int $int19 = 0;
-def_int $int20 = calc(32 + 2 + 2);
-$int20 = max($int20, 1);
-def_int $int21 = 0;
-$int21, $int18, $int19 = ~script8107($int14, $int17);
-$int21 = min($int21, $int9);
-def_int $int22 = calc($int9 / $int21);
-$int22 = max($int22, 1);
-if (calc($int9 % $int21) > 0) {
-    $int22 = calc($int22 + 1);
+def_int $int16 = 2;
+def_int $int17 = 2;
+def_int $int18 = 2;
+def_int $int19 = 2;
+def_int $int20 = 2;
+def_int $int21 = 2;
+def_int $int22 = calc(36 + $int18);
+def_int $int23 = calc(32 + 2 + $int19);
+if (%varplayerbit_22872 = 1) {
+    $int16 = min(15, calc(($int15 - $int9 / 4 * $int23) / 2));
+    $int20 = max($int20, calc(($int14 - 5 * ($int22 + $int18)) / 2));
+    $int21 = $int20;
 }
-$int22 = max(1, $int22);
-if ($component1 ! null & $component2 ! null) {
-    if (calc($int22 * $int20) > $int16) {
-        $int11 = 1;
-        if_setsize(16, $int13, ^setsize_minus, ^setsize_minus, $component1);
-        if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, $component2);
-        if_setsize(16, if_getheight($component1), ^setsize_abs, ^setsize_abs, $component2);
-    }
-    $int14 = if_getwidth($component1);
-    $int15 = if_getheight($component1);
-}
-$int16 = calc($int15 - (2 + 2));
-$int21, $int18, $int19 = ~script8107($int14, $int17);
-$int21 = min($int21, $int9);
-$int22 = calc($int9 / $int21);
-$int22 = max($int22, 1);
-if (calc($int9 % $int21) > 0) {
-    $int22 = calc($int22 + 1);
-}
-$int22 = max(1, $int22);
-def_int $int23 = calc($int21 * $int17 + 2 + 2);
-def_int $int24 = calc($int22 * $int20 + (2 + 2));
-if ($component1 ! null) {
-    $int12 = max(if_getheight($component1), calc($int24 - $int15));
-    if_setscrollsize(0, $int12, $component1);
-}
+def_int $int24 = calc($int15 - ($int16 + $int17));
 def_int $int25 = 0;
 def_int $int26 = 0;
-def_obj $obj27 = null;
-def_int $int28 = 0;
-def_int $int29 = calc(%varclient_1031 - 1);
-def_int $intarray0($int21);
-def_int $int30 = 0;
-while ($int30 < $int21) {
-    $intarray0($int30) = ~script8108($int17, $int18, $int19, $int30);
-    $int30 = calc($int30 + 1);
+def_int $int27 = 0;
+$int27, $int25, $int26 = ~script9856(calc($int14 - $int21), $int22, calc($int20 + $int21), $int18);
+$int27 = min($int27, $int9);
+def_int $int28 = calc($int9 / $int27);
+$int28 = max($int28, 1);
+if (calc($int9 % $int27) > 0) {
+    $int28 = calc($int28 + 1);
 }
-while ($int25 < $int9) {
-    if ($component3 ! null & $component4 ! null & .cc_find($component3, $int25) = true & cc_find($component4, $int25) = true) {
-        $obj27 = inv_getobj(inv_93, $int25);
-        $int28 = inv_getnum(inv_93, $int25);
-        .cc_setposition(calc($intarray0(calc($int25 % $int21)) - 1), calc($int25 / $int21 * $int20 + 2 - 1), ^setpos_abs_left, ^setpos_abs_top);
-        if ($component6 ! null & .cc_find($component6, $int25) = true) {
-            .cc_setposition(calc($intarray0(calc($int25 % $int21)) - 1), calc($int25 / $int21 * $int20 + 2 - 1), ^setpos_abs_left, ^setpos_abs_top);
+$int28 = max(1, $int28);
+if ($component1 ! null & $component2 ! null & calc($int28 * $int23) > $int24) {
+    $int11 = 1;
+    if_setsize(16, $int13, ^setsize_minus, ^setsize_minus, $component1);
+    if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, $component2);
+    if_setsize(16, if_getheight($component1), ^setsize_abs, ^setsize_abs, $component2);
+    $int14 = if_getwidth($component1);
+    $int15 = if_getheight($component1);
+    $int27, $int25, $int26 = ~script9856(calc($int14 - $int21), $int22, calc($int20 + $int21), $int18);
+}
+$int27 = min($int27, $int9);
+$int28 = calc($int9 / $int27);
+$int28 = max($int28, 1);
+if (calc($int9 % $int27) > 0) {
+    $int28 = calc($int28 + 1);
+}
+$int28 = max(1, $int28);
+def_int $int29 = calc($int27 * $int22 + $int20 + $int21);
+def_int $int30 = calc($int28 * $int23 + ($int16 + $int17));
+if ($component1 ! null) {
+    $int12 = max(if_getheight($component1), calc($int30 - $int15));
+    if_setscrollsize(0, $int12, $component1);
+}
+def_int $int31 = 0;
+def_int $int32 = 0;
+def_obj $obj33 = null;
+def_int $int34 = 0;
+def_int $int35 = calc(%varclient_1031 - 1);
+def_int $intarray0($int27);
+def_int $int36 = 0;
+while ($int36 < $int27) {
+    $intarray0($int36) = ~script9857($int25, $int20, $int26, $int36);
+    $int36 = calc($int36 + 1);
+}
+while ($int31 < $int9) {
+    if ($component3 ! null & $component4 ! null & .cc_find($component3, $int31) = true & cc_find($component4, $int31) = true) {
+        $obj33 = inv_getobj(inv_93, $int31);
+        $int34 = inv_getnum(inv_93, $int31);
+        .cc_setposition(calc($intarray0(calc($int31 % $int27)) - 1), calc($int31 / $int27 * $int23 + $int16 - 1), ^setpos_abs_left, ^setpos_abs_top);
+        if ($component6 ! null & .cc_find($component6, $int31) = true) {
+            .cc_setposition(calc($intarray0(calc($int31 % $int27)) - 1), calc($int31 / $int27 * $int23 + $int16 - 1), ^setpos_abs_left, ^setpos_abs_top);
         }
-        cc_setposition(calc($intarray0(calc($int25 % $int21)) + 3), calc($int25 / $int21 * $int20 + 1 + 2), ^setpos_abs_left, ^setpos_abs_top);
-        if ($obj27 ! null) {
-            ~script9230($obj27, $int28);
-            if ($int25 = $int29) {
+        cc_setposition(calc($intarray0(calc($int31 % $int27)) + 3), calc($int31 / $int27 * $int23 + 1 + $int16), ^setpos_abs_left, ^setpos_abs_top);
+        if ($obj33 ! null) {
+            ~script9230($obj33, $int34);
+            if ($int31 = $int35) {
                 cc_setoutline(2);
             } else {
                 cc_setoutline(1);
@@ -104,15 +124,15 @@ while ($int25 < $int9) {
             ~script9230(null, 0);
         }
     }
-    $int25 = calc($int25 + 1);
+    $int31 = calc($int31 + 1);
 }
 ~money_pouch_update_amount(-1);
-def_int $int31 = calc($int22 * $int20 + 2 + 2);
+def_int $int37 = calc($int28 * $int23 + $int16 + $int17);
 if ($component1 ! null) {
-    $int31 = max(if_getheight($component1), $int31);
+    $int37 = max(if_getheight($component1), $int37);
     cc_deleteall($component2);
-    if_setscrollsize(0, $int31, $component1);
-    if ($int31 > if_getheight($component1)) {
+    if_setscrollsize(0, $int37, $component1);
+    if ($int37 > if_getheight($component1)) {
         ~rs3_scrollbar_vertical($component2, $component1);
     }
 }

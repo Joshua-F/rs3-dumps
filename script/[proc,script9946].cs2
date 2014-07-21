@@ -1,0 +1,43 @@
+// 9946
+[proc,script9946]
+def_struct $struct0 = enum(int, struct, enum_7716, 18);
+def_struct $struct1 = enum(int, struct, enum_7716, 1019);
+def_int $int2 = calc(if_getheight(interface_1477:com_7) - %varclient_1037);
+$int2 = max($int2, if_getheight(struct_param($struct1, param_3503)));
+def_int $setsize3 = ^setsize_minus;
+if (detailget_maxscreensize = 2) {
+    $int2 = 189;
+    $setsize3 = ^setsize_abs;
+} else if (~script9947 = true) {
+    $int2 = calc(28 + 3);
+    $setsize3 = ^setsize_abs;
+}
+if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, struct_param($struct0, param_3503));
+if_setsize(552, $int2, ^setsize_abs, $setsize3, struct_param($struct0, param_3503));
+if (~script9947 = true) {
+    if_sethide(true, struct_param($struct1, param_3503));
+} else if (%varplayerbit_20187 = 1) {
+    if_setposition(0, if_getheight(struct_param($struct0, param_3503)), ^setpos_abs_left, ^setpos_abs_bottom, struct_param($struct1, param_3503));
+    if_setsize(552, 103, ^setsize_abs, ^setsize_abs, struct_param($struct1, param_3503));
+    if_sethide(false, struct_param($struct1, param_3503));
+} else {
+    if_sethide(true, struct_param($struct1, param_3503));
+}
+def_component $component4 = struct_param($struct0, param_3506);
+if (cc_find($component4, 9) = true) {
+    if (detailget_maxscreensize ! 2) {
+        cc_setdragrenderbehaviour(3);
+        cc_setmouseovercursor(cursor_190);
+        cc_setdraggable(interface_1477:com_7, -1);
+        cc_setdragdeadtime(1);
+        cc_setdragdeadzone(1);
+        cc_setondrag("script9948(18, event_mousey, false)");
+        cc_setondragcomplete("script9948(18, event_mousey, true)");
+    } else {
+        cc_setmouseovercursor(null);
+        cc_setdraggable(null, -1);
+        cc_setondrag(null);
+        cc_setondragcomplete(null);
+    }
+}
+~script8390(18);

@@ -21,7 +21,11 @@ def_int $int16 = 0;
 def_int $int17 = 0;
 def_int $int18 = 0;
 def_int $int19 = 0;
-$int11, $int12, $int13, $int14, $int15, $int16, $int17, $int18, $int19 = ~script8546($int0);
+if (%varplayerbit_22872 = 0 | $int0 = 1019) {
+    $int11, $int12, $int13, $int14, $int15, $int16, $int17, $int18, $int19 = ~script8546($int0);
+} else {
+    $int11, $int12, $int13, $int14, $int15, $int16, $int17, $int18, $int19 = ~script9910;
+}
 def_int $intarray0(128);
 def_int $int20 = 0;
 while ($int20 < 128) {
@@ -31,10 +35,16 @@ while ($int20 < 128) {
         case 125 :
             $intarray0($int20) = $int19;
         case 1 :
-            if ($int0 = 18) {
+            if (%varplayerbit_22872 = 0) {
+                if ($int0 = 18) {
+                    $intarray0($int20) = 1;
+                } else {
+                    $intarray0($int20) = $int11;
+                }
+            } else if ($int0 ! 1019 & (%varplayerbit_22846 = 2 | %varplayerbit_22846 = 0)) {
                 $intarray0($int20) = 1;
             } else {
-                $intarray0($int20) = $int11;
+                $intarray0($int20) = $int14;
             }
         case 0, 4, 27, 28, 29, 109, 110, 26, 117, 121, 122, 123, 124, 126 :
             $intarray0($int20) = $int11;
@@ -42,13 +52,25 @@ while ($int20 < 128) {
             $intarray0($int20) = $int14;
         case 7 :
             switch_int ($int0) {
+                case 18 :
+                    if (%varplayerbit_22872 = 0) {
+                        $intarray0($int20) = 1;
+                    } else if (%varplayerbit_22846 = 2 | %varplayerbit_22846 = 0 | %varplayerbit_22846 = 3) {
+                        $intarray0($int20) = 1;
+                    } else {
+                        $intarray0($int20) = $int15;
+                    }
                 case 19, 1019 :
                     $intarray0($int20) = 1;
                 case default :
                     $intarray0($int20) = $int15;
             }
         case 3, 6, 5, 18, 19, 30, 31 :
-            $intarray0($int20) = $int15;
+            if (%varplayerbit_22872 = 1 & $int0 = 18 & %varplayerbit_22846 = 0 & %varplayerbit_20187 = 1) {
+                $intarray0($int20) = 0;
+            } else {
+                $intarray0($int20) = $int15;
+            }
         case 9, 11, 20 :
             $intarray0($int20) = $int16;
         case 100, 101, 103, 105, 106, 108, 111, 112, 113, 114, 118, 119 :

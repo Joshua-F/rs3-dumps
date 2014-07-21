@@ -1,6 +1,6 @@
 // 8411
 [proc,script8411](int $int0, boolean $boolean1)
-if (~script8699(7) ! 1) {
+if (~script8699(8) ! 1) {
     %varclientbit_19930 = 127;
 }
 def_struct $struct2 = enum(int, struct, enum_7716, $int0);
@@ -69,7 +69,7 @@ def_int $int29 = struct_param($struct3, param_3550);
 def_int $int30 = $int23;
 def_boolean $boolean31 = true;
 def_boolean $boolean32 = false;
-if (struct_param($struct2, param_3734) = 0 | $int0 = 1000 & if_hassuboverlay(interface_1477:com_89, interface_1421) = true) {
+if (struct_param($struct2, param_3734) = 0 | $int0 = 1000 & if_hassuboverlay(interface_1477:com_12, interface_1421) = true | $int0 = 1004 & %varplayerbit_22872 = 1) {
     $boolean31 = false;
 } else if (struct_param($struct2, param_3734) = 1 & %varplayerbit_20188 = 1) {
     $boolean31 = false;
@@ -97,9 +97,6 @@ if ($component5 ! null) {
         } else if ($boolean1 = true) {
             ~script8413($component4, $int0);
         }
-    }
-    if (struct_param($struct2, param_3539) = 1) {
-        cc_settrans(%varclientbit_19930);
     }
     cc_create($component5, ^iftype_graphic, 1);
     ~script8258($struct2);
@@ -165,9 +162,9 @@ if ($component7 ! null) {
     }
     cc_create($component7, ^iftype_graphic, 3);
     ~script8258($struct2);
-    cc_setposition(struct_param($struct3, param_3552), 0, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setsize(struct_param($struct3, param_3557), $int25, ^setsize_abs, ^setsize_abs);
-    cc_setgraphic(struct_param($struct3, param_3599));
+    cc_setposition(struct_param($struct3, param_3552), struct_param($struct3, param_3556), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(struct_param($struct3, param_3557), calc($int23 - struct_param($struct3, param_3556)), ^setsize_abs, ^setsize_abs);
+    cc_setgraphic(~script8419($struct3, 3, $int22));
     cc_settiling(true);
     cc_setnoclickthrough($boolean32);
     if ($int21 = 1) {
@@ -180,9 +177,12 @@ if ($component7 ! null) {
     cc_create($component7, ^iftype_graphic, 4);
     ~script8258($struct2);
     cc_setposition(struct_param($struct3, param_3554), struct_param($struct3, param_3556), ^setpos_abs_right, ^setpos_abs_top);
-    cc_setsize(struct_param($struct3, param_3558), calc($int26 - struct_param($struct3, param_3556)), ^setsize_abs, ^setsize_abs);
+    cc_setsize(struct_param($struct3, param_3558), calc($int23 - struct_param($struct3, param_3556)), ^setsize_abs, ^setsize_abs);
     cc_setgraphic(~script8419($struct3, 4, $int22));
     cc_settiling(true);
+    if (struct_param($struct3, param_3600) = struct_param($struct3, param_3599)) {
+        cc_sethflip(true);
+    }
     cc_setnoclickthrough($boolean32);
     if ($int21 = 1) {
         if ($boolean16 = true) {
@@ -223,7 +223,9 @@ if ($component7 ! null) {
     cc_setsize(struct_param($struct3, param_3551), calc(struct_param($struct3, param_3562) + $int26 + struct_param($struct3, param_3586)), ^setsize_abs, ^setsize_minus);
     cc_setgraphic(struct_param($struct3, param_3597));
     cc_settiling(true);
-    cc_sethflip(true);
+    if (struct_param($struct3, param_3597) = struct_param($struct3, param_3596)) {
+        cc_sethflip(true);
+    }
     cc_setnoclickthrough($boolean32);
     if ($int15 = 3 | $int15 = 1) {
         ~script8414($int0, 4);
@@ -334,10 +336,14 @@ if ($component7 ! null) {
 if ($component8 ! null) {
     if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component8);
     if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component8);
-    if ($boolean28 = true & $boolean18 = true & $int0 ! 1001 & $int0 ! 1008 & enum_getreversecount(int, enum_7717, $int0) ! 0) {
+    if ($boolean28 = true & $boolean18 = true & $int0 ! 1001 & $int0 ! 1008 & $int0 ! 17 & enum_getreversecount(int, enum_7717, $int0) ! 0) {
         if_sethide(true, $component8);
     } else {
-        if_sethide(false, $component8);
+        if ($int0 = 17 & %varplayer_3871 = 0) {
+            if_sethide(true, $component8);
+        } else {
+            if_sethide(false, $component8);
+        }
         cc_create($component8, ^iftype_graphic, 0);
         cc_setposition(struct_param($struct3, param_3575), struct_param($struct3, param_3576), ^setpos_abs_right, ^setpos_abs_top);
         cc_setsize(struct_param($struct3, param_3563), struct_param($struct3, param_3564), ^setsize_abs, ^setsize_abs);
@@ -475,7 +481,7 @@ if ($boolean20 = true) {
             ~script8378(1, $int0);
         }
     } else if (~script8785 = false) {
-        ~script8350(8, $int0, 0);
+        ~script8350(9, $int0, 0);
     } else if ($int35 > 1) {
         ~script8378(0, $int0);
         ~script8359($int0, ~script8374($component11), ~script8372($component11, $int0));
@@ -508,4 +514,20 @@ if ($component13 ! null) {
 ~script8391($int0, $boolean1);
 if (~script8137($int0) = true) {
     ~script8140($int0, ~script8721($int0));
+}
+if ($int0 = 18 & %varplayerbit_22872 = 1 & cc_find($component7, 9) = true) {
+    if (detailget_maxscreensize ! 2) {
+        cc_setdragrenderbehaviour(3);
+        cc_setmouseovercursor(cursor_190);
+        cc_setdraggable(interface_1477:com_7, -1);
+        cc_setdragdeadtime(1);
+        cc_setdragdeadzone(1);
+        cc_setondrag("script9948($int0, event_mousey, false)");
+        cc_setondragcomplete("script9948($int0, event_mousey, true)");
+    } else {
+        cc_setmouseovercursor(null);
+        cc_setdraggable(null, -1);
+        cc_setondrag(null);
+        cc_setondragcomplete(null);
+    }
 }

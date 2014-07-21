@@ -27,47 +27,59 @@ if ($component4 ! null) {
 if ($component6 ! null) {
     cc_deleteall($component6);
 }
+def_int $int8 = 32;
+if (%varplayerbit_22872 = 1) {
+    $int8 = 0;
+}
 if ($component0 ! null & if_find($component0) = true) {
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
     cc_setnoclickthrough(false);
 }
-if ($component6 ! null & if_find($component6) = true) {
-    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
-    cc_setsize(0, 32, ^setsize_minus, ^setsize_abs);
+if ($component6 ! null) {
+    if ($int8 <= 0) {
+        if_sethide(true, $component6);
+    } else if (if_find($component6) = true) {
+        if_sethide(false, $component6);
+        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+        cc_setsize(0, 32, ^setsize_minus, ^setsize_abs);
+    }
 }
 if ($component2 ! null & if_find($component2) = true) {
     cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
-    cc_setsize(16, 32, ^setsize_abs, ^setsize_minus);
+    cc_setsize(16, $int8, ^setsize_abs, ^setsize_minus);
 }
 if ($component1 ! null & if_find($component1) = true) {
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setsize(16, 32, ^setsize_minus, ^setsize_minus);
+    cc_setsize(16, $int8, ^setsize_minus, ^setsize_minus);
 }
-def_int $int8 = inv_size(inv_93);
-def_int $int9 = 0;
-while ($int9 < $int8) {
+def_int $int9 = inv_size(inv_93);
+def_int $int10 = 0;
+while ($int10 < $int9) {
     if ($component3 ! null) {
-        cc_create($component3, ^iftype_graphic, $int9);
+        cc_create($component3, ^iftype_graphic, $int10);
         cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
         cc_setgraphic(rs3_inventory_slot);
         cc_setonmouseover("inventory_slot_highlight(inv_93, event_com, event_comsubid, $component5, true)");
         cc_setonmouseleave("inventory_slot_highlight(inv_93, event_com, event_comsubid, $component5, false)");
     }
     if ($component5 ! null) {
-        ~script9229($component5, $int9, 40, 36);
+        ~script9229($component5, $int10, 40, 36);
     }
-    $int9 = calc($int9 + 1);
-}
-$int9 = 0;
-while ($int9 < $int8) {
     if ($component4 ! null) {
-        cc_create($component4, ^iftype_graphic, $int9);
+        cc_create($component4, ^iftype_graphic, $int10);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setontargetenter("inventory_targetmode(true, event_com, event_comsubid)");
         cc_setontargetleave("inventory_targetmode(false, event_com, event_comsubid)");
     }
-    $int9 = calc($int9 + 1);
+    $int10 = calc($int10 + 1);
+}
+if ($component3 ! null) {
+    if (%varplayerbit_22872 = 0) {
+        if_sethide(false, $component3);
+    } else {
+        if_sethide(true, $component3);
+    }
 }
 if_setonresize("script8679(event_com)", $component0);
 if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component0);

@@ -8,8 +8,14 @@ if ($int5 = 0) {
     $string2 = "Turn ON";
     $string3 = append($string3, "Off");
     $graphic7 = ~script8497($int1, 0);
+    if (%varplayerbit_22872 = 1) {
+        ~script9917($int1, 0);
+    }
 } else if ($int6 = 1) {
     $graphic7 = ~script8497($int1, 1);
+    if (%varplayerbit_22872 = 1) {
+        ~script9917($int1, 1);
+    }
     $string2 = "Turn OFF";
     switch_int ($int0) {
         case 18 :
@@ -36,14 +42,21 @@ if ($int5 = 0) {
     $string3 = append($string3, $string1);
 } else {
     $graphic7 = ~script8497($int1, 2);
+    if (%varplayerbit_22872 = 1) {
+        ~script9917($int1, 2);
+    }
     $string3 = append($string3, "On");
     $string2 = "Filter";
 }
 if_setgraphic($graphic7, $component3);
-if_setop(1, $string2, $component2);
-if_setopbase($string0, $component2);
-if_setonop("script8494($int0, $int1, $component2, $component3, $int4, $string0, $string1)", $component2);
-if_setonmouserepeat("script8799($string3, $component2, -1)", $component2);
-if_setonmouseleave("script8805", $component2);
-if_setposition($int4, 0, ^setpos_abs_left, ^setpos_abs_centre, $component2);
+if (%varplayerbit_22872 = 0) {
+    if_setop(1, $string2, $component2);
+    if_setopbase($string0, $component2);
+    if_setonop("script8494($int0, $int1, $component2, $component3, $int4, $string0, $string1)", $component2);
+    if_setonmouserepeat("script8799($string3, $component2, -1)", $component2);
+    if_setonmouseleave("script8805", $component2);
+    if_setposition($int4, 0, ^setpos_abs_left, ^setpos_abs_centre, $component2);
+} else {
+    if_setonop("script9915(event_op, $int0, $int1, $component2, $component3, $int4, $string0, $string1)", $component2);
+}
 return(calc($int4 + if_getwidth($component2)));

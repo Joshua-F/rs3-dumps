@@ -1,59 +1,138 @@
 // 8461
 [proc,script8461]
 def_obj $obj0 = inv_getobj(inv_94, 3);
-def_int $int1 = %varplayer_715;
-def_int $int2 = calc(~script7244($obj0) + %varplayer_3561);
-def_int $int3 = 0;
-def_int $int4 = calc(100 + 5);
+def_obj $obj1 = inv_getobj(inv_94, 5);
+def_obj $obj2 = inv_getobj(inv_94, 13);
+def_int $int3 = %varplayer_715;
+def_int $int4 = %varplayer_3531;
+def_int $int5 = 0;
+if (oc_param($obj0, param_2827) = 1) {
+    $int5 = %varplayer_1039;
+} else if (oc_param($obj0, param_2825) = 1) {
+    $int5 = %varplayer_1037;
+} else if (oc_param($obj0, param_2826) = 1) {
+    $int5 = %varplayer_1038;
+}
+def_int $int6 = calc(~script7244($obj0) + %varplayer_3561 - $int5);
+def_int $int7 = max(4, oc_param($obj0, param_14));
 def_string $string0 = enum(int, string, enum_6744, %varplayer_717);
-def_string $string1 = enum(int, string, enum_6741, oc_param($obj0, param_14));
-def_struct $struct5 = enum(int, struct, enum_6740, %varplayerbit_43);
-def_int $int6 = scale(%varclient_2760, 100, 50);
-def_int $int7 = scale(enum(int, int, enum_7339, $int6), 100, calc(100 + 40 / 2));
-def_int $int8 = 0;
-def_int $int9 = 0;
-def_int $int10 = 0;
+def_string $string1 = "Weapon";
+def_string $string2 = enum(int, string, enum_6741, oc_param($obj0, param_14));
+def_struct $struct8 = enum(int, struct, enum_6740, %varplayerbit_43);
+def_int $int9 = scale(%varclient_2760, 100, 50);
+def_int $int10 = scale(enum(int, int, enum_7339, $int9), 100, calc(100 + 40 / 2));
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = 0;
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_int $int19 = 0;
 switch_int (~script7241($obj0)) {
     case 1 :
-        $int3 = %varplayer_724;
-        $int4 = calc($int4 + %varplayer_3597);
-        $int8 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 55), 100, %varplayer_1037)));
-        $int9 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 75), 100, %varplayer_1037)));
-        $int10 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 40), 100, %varplayer_1037)));
+        $int11 = max(0, min(10000, scale(calc(scale($int6, $int10, 100) * 55), 100, %varplayer_1037)));
+        $int12 = max(0, min(10000, scale(calc(scale($int6, $int10, 100) * 65), 100, %varplayer_1037)));
+        $int13 = max(0, min(10000, scale(calc(scale($int6, $int10, 100) * 45), 100, %varplayer_1037)));
+        $int15 = scale(calc(100 + ($int7 - 4) * 25), 100, scale(stat(strength), 100, 250));
+        $int17 = enum(int, int, enum_7338, oc_param($obj0, param_3267));
+        if (oc_wearpos($obj0) > 0 & oc_wearpos2($obj0) > 0) {
+            $int14 = calc(scale(oc_param($obj0, param_641), 100, calc(100 - 25 + scale(min(stat(strength), $int17), $int17, 25))) / 10);
+            $int15 = scale($int15, 100, 150);
+        } else {
+            $int14 = calc(scale(oc_param($obj0, param_641), 100, calc(100 - 25 + scale(min(stat(strength), $int17), $int17, 25))) / 10);
+        }
+        $int16 = calc(%varplayer_715 - $int14 - $int15);
+        if (oc_param(inv_getobj(inv_94, 3), param_2825) = 1 & oc_param(inv_getobj(inv_94, 5), param_2825) = 1) {
+            $int4 = calc(%varplayer_3531 + scale(%varplayer_3532, 100, 50));
+        } else {
+            $int4 = %varplayer_3531;
+        }
     case 2 :
-        $int3 = %varplayer_725;
-        $int4 = calc($int4 + %varplayer_3598);
-        $int8 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 40), 100, %varplayer_1038)));
-        $int9 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 55), 100, %varplayer_1038)));
-        $int10 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 75), 100, %varplayer_1038)));
+        $int11 = max(0, min(10000, scale(calc(scale($int6, $int10, 100) * 45), 100, %varplayer_1038)));
+        $int12 = max(0, min(10000, scale(calc(scale($int6, $int10, 100) * 55), 100, %varplayer_1038)));
+        $int13 = max(0, min(10000, scale(calc(scale($int6, $int10, 100) * 65), 100, %varplayer_1038)));
+        $int15 = scale(calc(100 + (min($int7, 6) - 4) * 25), 100, scale(stat(ranged), 100, 250));
+        if (oc_wearpos($obj0) > 0 & oc_wearpos2($obj0) > 0 & oc_param($obj0, param_2832) ! 1) {
+            $int15 = scale($int15, 100, 150);
+        }
+        $int17 = enum(int, int, enum_7338, oc_param($obj0, param_4));
+        $int18 = oc_param($obj2, param_643);
+        if (oc_param($obj0, param_1047) ! 1) {
+            $int18 = min(enum(int, int, enum_7443, oc_param($obj0, param_23)), $int18);
+        } else {
+            $int18 = min(enum(int, int, enum_7443, oc_param($obj0, param_750)), $int18);
+        }
+        if (%varplayer_717 = 10 | oc_param($obj0, param_21) ! oc_category($obj2)) {
+            $int18 = 0;
+        }
+        $int14 = calc((oc_param($obj0, param_643) + $int18) / 10);
+        $int16 = calc(%varplayer_715 - $int14 - $int15);
+        if (oc_param(inv_getobj(inv_94, 3), param_2826) = 1 & oc_param(inv_getobj(inv_94, 5), param_2826) = 1) {
+            $int4 = calc(%varplayer_3531 + scale(%varplayer_3532, 100, 50));
+        } else {
+            $int4 = %varplayer_3531;
+        }
     case 3 :
-        if ($struct5 ! null) {
-            $string0 = enum(int, string, enum_6744, struct_param($struct5, param_2873));
+        $string1 = "Spell";
+        if ($struct8 ! null) {
+            $string0 = enum(int, string, enum_6744, struct_param($struct8, param_2873));
         } else {
             $string0 = "-";
-            $int2 = 0;
+            $int6 = 0;
         }
-        $int3 = %varplayer_726;
-        $int4 = calc($int4 + %varplayer_3599);
-        $int8 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 75), 100, %varplayer_1039)));
-        $int9 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 40), 100, %varplayer_1039)));
-        $int10 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 55), 100, %varplayer_1039)));
+        $int11 = max(0, min(10000, scale(calc(scale($int6, $int10, 100) * 65), 100, %varplayer_1039)));
+        $int12 = max(0, min(10000, scale(calc(scale($int6, $int10, 100) * 45), 100, %varplayer_1039)));
+        $int13 = max(0, min(10000, scale(calc(scale($int6, $int10, 100) * 55), 100, %varplayer_1039)));
+        $int15 = scale(calc(100 + ($int7 - 4) * 25), 100, scale(stat(magic), 100, 250));
+        $int17 = enum(int, int, enum_7338, oc_param($obj0, param_3));
+        if ($struct8 ! null) {
+            $int19 = max(0, calc((min($int17, struct_param($struct8, param_2879)) - struct_param($struct8, param_2807)) * struct_param($struct8, param_2878)));
+            if (oc_wearpos($obj0) > 0 & oc_wearpos2($obj0) > 0) {
+                $int14 = calc((scale(min(enum(int, int, enum_7443, $int17), struct_param($struct8, param_2877)), 100, 150) + 2 * (39 * $int17) + $int19) / 10);
+                $int15 = scale($int15, 100, 150);
+            } else {
+                $int14 = calc((min(enum(int, int, enum_7443, $int17), struct_param($struct8, param_2877)) + $int19) / 10);
+            }
+        }
+        $int16 = calc(%varplayer_715 - $int14 - $int15);
+        if (oc_param(inv_getobj(inv_94, 3), param_2827) = 1 & oc_param(inv_getobj(inv_94, 5), param_2827) = 1) {
+            $int4 = calc(%varplayer_3531 + scale(%varplayer_3532, 100, 50));
+        } else {
+            $int4 = %varplayer_3531;
+        }
     case default :
-        $int3 = %varplayer_724;
-        $int4 = calc($int4 + %varplayer_3597);
-        $int8 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 55), 100, %varplayer_1037)));
-        $int9 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 75), 100, %varplayer_1037)));
-        $int10 = max(0, min(10000, scale(calc(scale($int2, $int7, 100) * 40), 100, %varplayer_1037)));
+        $int11 = max(0, min(10000, scale(calc(scale($int6, $int10, 100) * 55), 100, %varplayer_1037)));
+        $int12 = max(0, min(10000, scale(calc(scale($int6, $int10, 100) * 65), 100, %varplayer_1037)));
+        $int13 = max(0, min(10000, scale(calc(scale($int6, $int10, 100) * 45), 100, %varplayer_1037)));
+        $int15 = scale(calc(100 + ($int7 - 4) * 25), 100, scale(stat(strength), 100, 250));
+        $int16 = calc(%varplayer_715 - $int14 - $int15);
 }
-if_settext(tostring($int1), interface_1463:com_48);
-if_settext(tostring($int2), interface_1463:com_54);
-if_settext("<~script7247($int3)>%", interface_1463:com_60);
-if_settext($string0, interface_1463:com_66);
-if_settext($string1, interface_1463:com_72);
-if_settext("<tostring(scale($int8, 1000, 10))>%", interface_1463:com_136);
-if_settext("<tostring(scale($int9, 1000, 10))>%", interface_1463:com_140);
-if_settext("<tostring(scale($int10, 1000, 10))>%", interface_1463:com_144);
-def_int $int11 = 200;
-def_string $string2 = "Weapon : <col=00ff00><tostring(~script7244($obj0))></col><br>Skill Bonus : <col=00ff00><tostring(%varplayer_3561)></col>";
-if_setonmouserepeat("script8799($string2, event_com, event_comsubid)", interface_1463:com_52);
-if_setonmouseleave("script8805", interface_1463:com_52);
+if (%varplayerbit_22872 = 1) {
+    $int3 = calc($int3 / 10);
+    $int14 = calc($int14 / 10);
+    $int15 = calc($int15 / 10);
+    $int16 = calc($int16 / 10);
+}
+if_settext(tostring($int3), interface_1463:com_36);
+if_settext(tostring($int6), interface_1463:com_41);
+if_settext($string0, interface_1463:com_46);
+if_settext($string2, interface_1463:com_50);
+if_settext(tostring($int4), interface_1463:com_203);
+if_settext(tostring($int6), interface_1463:com_208);
+if_settext($string0, interface_1463:com_213);
+if_settext("N/A", interface_1463:com_218);
+if_settext("<tostring(scale($int11, 1000, 10))>%", interface_1463:com_92);
+if_settext("<tostring(scale($int12, 1000, 10))>%", interface_1463:com_96);
+if_settext("<tostring(scale($int13, 1000, 10))>%", interface_1463:com_100);
+def_int $int20 = 200;
+def_string $string3 = "Weapon : <col=00ff00><tostring(~script7244($obj0))></col><br>Skill Bonus : <col=00ff00><tostring(%varplayer_3561)></col>";
+if ($int5 > 0) {
+    $string3 = "Weapon : <col=00ff00><tostring(~script7244($obj0))></col><br>Skill Bonus : <col=00ff00><tostring(%varplayer_3561)></col><br>Hybrid Nerf : <col=00ff00>-<tostring($int5)></col>";
+}
+if_setonmouserepeat("script8799($string3, event_com, event_comsubid)", interface_1463:com_39);
+if_setonmouseleave("script8805", interface_1463:com_39);
+$string3 = "<$string1> : <col=00ff00><tostring($int14)></col><br>Skill Bonus : <col=00ff00><tostring($int15)></col><br>Strength Bonus : <col=00ff00><tostring($int16)></col>";
+if_setonmouserepeat("script8799($string3, event_com, event_comsubid)", interface_1463:com_34);
+if_setonmouseleave("script8805", interface_1463:com_34);

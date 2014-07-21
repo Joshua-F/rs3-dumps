@@ -3,6 +3,15 @@
 if ($int5 = -1) {
     $int5 = ~script3934($component1);
 }
+if ($int6 = 0) {
+    if_setonvartransmit("script3938($component0, $component1, $component2, $component3, \"\", $struct4, $int5){varplayer_3814}", $component1);
+} else {
+    if_setonvartransmit("script8420($component0, $component1, $component2, $component3, \"\", $struct4, $int5){varplayer_3814}", $component1);
+}
+$struct4 = ~script9952($struct4);
+if (compare($string0, "") = 0 & cc_find($component1, 14) = true) {
+    $string0 = cc_gettext;
+}
 if ($component1 ! null) {
     if ($int6 = 1 & if_getlayer($component1) ! null) {
         if_setnoclickthrough(true, if_getlayer($component1));
@@ -34,13 +43,16 @@ if ($component1 ! null) {
     }
     cc_create($component1, ^iftype_graphic, 3);
     cc_setsize(struct_param($struct4, param_3557), struct_param($struct4, param_3553), ^setsize_abs, ^setsize_abs);
-    cc_setgraphic(struct_param($struct4, param_3599));
+    cc_setgraphic(~script8419($struct4, 3, 0));
     cc_settiling(true);
     if ($int5 ! -1) {
         ~script3927($int5);
     }
     cc_create($component1, ^iftype_graphic, 4);
     cc_setgraphic(~script8419($struct4, 4, 0));
+    if (struct_param($struct4, param_3600) = struct_param($struct4, param_3599)) {
+        cc_sethflip(true);
+    }
     cc_settiling(true);
     if ($int5 ! -1) {
         ~script3927($int5);
@@ -63,7 +75,9 @@ if ($component1 ! null) {
     cc_setsize(struct_param($struct4, param_3551), calc(struct_param($struct4, param_3562) + struct_param($struct4, param_3555) + struct_param($struct4, param_3586)), ^setsize_abs, ^setsize_minus);
     cc_setgraphic(struct_param($struct4, param_3597));
     cc_settiling(true);
-    cc_sethflip(true);
+    if (struct_param($struct4, param_3597) = struct_param($struct4, param_3596)) {
+        cc_sethflip(true);
+    }
     cc_create($component1, ^iftype_graphic, 8);
     cc_setposition(0, struct_param($struct4, param_3547), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(struct_param($struct4, param_3587), struct_param($struct4, param_3586), ^setsize_abs, ^setsize_abs);
@@ -121,19 +135,20 @@ if ($component3 ! null) {
     ~script4408($component3);
     if_sethide(false, $component3);
     if_setnoclickthrough(true, $component3);
-    if (struct_param($struct4, param_3601) ! null) {
-        if_setposition(struct_param($struct4, param_3575), struct_param($struct4, param_3576), ^setpos_abs_right, ^setpos_abs_top, $component3);
-        if_setsize(struct_param($struct4, param_3563), struct_param($struct4, param_3564), ^setsize_abs, ^setsize_abs, $component3);
-    } else {
-        if_setposition(struct_param($struct4, param_3573), struct_param($struct4, param_3574), ^setpos_abs_right, ^setpos_abs_top, $component3);
-        if_setsize(struct_param($struct4, param_3565), struct_param($struct4, param_3566), ^setsize_abs, ^setsize_abs, $component3);
-    }
     cc_create($component3, ^iftype_graphic, 0);
     cc_setposition(struct_param($struct4, param_3575), struct_param($struct4, param_3576), ^setpos_abs_right, ^setpos_abs_top);
     cc_setsize(struct_param($struct4, param_3563), struct_param($struct4, param_3564), ^setsize_abs, ^setsize_abs);
     cc_setgraphic(struct_param($struct4, param_3601));
     cc_create($component3, ^iftype_graphic, 1);
-    cc_setposition(calc(struct_param($struct4, param_3573) - struct_param($struct4, param_3575)), calc(struct_param($struct4, param_3574) - struct_param($struct4, param_3576)), ^setpos_abs_right, ^setpos_abs_top);
+    if (struct_param($struct4, param_3601) ! null) {
+        if_setposition(struct_param($struct4, param_3575), struct_param($struct4, param_3576), ^setpos_abs_right, ^setpos_abs_top, $component3);
+        if_setsize(struct_param($struct4, param_3563), struct_param($struct4, param_3564), ^setsize_abs, ^setsize_abs, $component3);
+        cc_setposition(calc(struct_param($struct4, param_3573) - struct_param($struct4, param_3575)), calc(struct_param($struct4, param_3574) - struct_param($struct4, param_3576)), ^setpos_abs_right, ^setpos_abs_top);
+    } else {
+        if_setposition(struct_param($struct4, param_3573), struct_param($struct4, param_3574), ^setpos_abs_right, ^setpos_abs_top, $component3);
+        if_setsize(struct_param($struct4, param_3565), struct_param($struct4, param_3566), ^setsize_abs, ^setsize_abs, $component3);
+        cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
+    }
     cc_setsize(struct_param($struct4, param_3565), struct_param($struct4, param_3566), ^setsize_abs, ^setsize_abs);
     cc_setgraphic(struct_param($struct4, param_3602));
     cc_setonmouseover("graphic_swapper_dynamic($component3, 1, struct_param($struct4, param_3603))");

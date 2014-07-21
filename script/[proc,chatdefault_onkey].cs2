@@ -1,8 +1,5 @@
 // 8509
 [proc,chatdefault_onkey](int $key0, char $char1)
-if (%varplayerbit_4921 > 0) {
-    return;
-}
 if (%varclient_2235 ! null) {
     if (if_gethide(%varclient_2235) = true) {
         ~script7208("");
@@ -85,12 +82,17 @@ switch_int ($key0) {
         if (string_length(~script8521($int2)) < 1) {
             if (~script7460 = false) {
                 ~script8518;
-            } else {
+            } else if (~script8853 > 1) {
+                ~script9958(8, 0);
+            } else if (~script8846(1) = true) {
                 ~script8182;
             }
         } else {
             ~script8522($int2, "");
             %varclient_1028 = 0;
+            if (~script8853 > 1) {
+                ~script9958(8, 0);
+            }
         }
     case ^key_tab :
         ~script8511($int2);
@@ -137,7 +139,7 @@ switch_int ($key0) {
                 %varclient_1028 = string_length(~script8521($int2));
                 ~script8522($int2, "");
                 ~script8514($int2, $int5);
-                if ($int5 = 18) {
+                if ($int5 = 18 & %varplayerbit_22872 = 0) {
                     ~script8551($int5, 0);
                     ~script1558($int5, false);
                 }
