@@ -17,30 +17,23 @@ if ($int0 ! 3) {
     $int0 = $int6;
     setwindowmode(^windowmode_resizable);
     setdefaultwindowmode(2);
-    ~script709(7, $int6);
-    ~script8885(7);
+    if (%varclient_4108 ! 5) {
+        ~script709(%varclient_4108, $int0);
+        ~script8885(%varclient_4108);
+    } else {
+        detail_maxscreensize($int0);
+    }
     $int7 = detailget_maxscreensize;
     if ($int0 ! $int7) {
         ~graphics_options_message($int4, 0, "RuneScape was unable to enter that display mode.<br><br>Please visit our website for more information.", "", "");
         ~graphics_options_rebuild($int3, $int7, $int1, $int2, $int4);
         return;
     }
-    switch_int (autosetup_getlevel) {
-        case 1 :
-            autosetup_setmin;
-        case 2 :
-            autosetup_setlow;
-        case 3 :
-            autosetup_setmedium;
-        case 4 :
-            autosetup_sethigh;
-        case 0 :
-            autosetup_setcustom;
-    }
     ~graphics_options_rebuild($int3, $int7, $int1, $int2, $int4);
     if ($int7 = 2) {
         %varclient_994 = 2;
     }
+    autosetup_setcustom;
     return;
 }
 if (playermember = false) {
@@ -55,7 +48,6 @@ if (fullscreen_modecount > %varclient_178 & fullscreen_enter(fullscreen_getmode(
     ~script2700(2, $int4, false, false);
     return;
 }
-setwindowmode(^windowmode_resizable);
 if ($int4 = 1) {
     mes("Unable to enter fullscreen mode at that resolution.");
 }

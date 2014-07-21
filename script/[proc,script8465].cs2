@@ -12,18 +12,43 @@ if ($int2 > 0) {
     $int5 = max(0, min(10000, calc(10000 - scale($int1, $int2, 100) * %varplayer_714)));
 }
 def_int $int6 = inv_totalparam(inv_94, param_2946);
-def_int $int7 = calc(stat(hitpoints) * 40);
+def_int $int7 = calc(stat(hitpoints) * 100);
 def_int $int8 = %varplayer_3596;
-if_settext(tostring($int2), interface_1463:com_27);
-if_settext("<tostring(scale($int3, 1000, 10))>%", interface_1463:com_181);
-if_settext("<tostring(scale($int4, 1000, 10))>%", interface_1463:com_185);
-if_settext("<tostring(scale($int5, 1000, 10))>%", interface_1463:com_189);
-if_settext(tostring(~script2915), interface_1463:com_33);
-if_settext(tostring($int6), interface_1463:com_30);
-def_int $int9 = 200;
-def_string $string0 = "Armour : <col=00ff00><tostring(%varplayer_711)></col><br>Skill Bonus : <col=00ff00><tostring(%varplayer_3563)></col>";
-if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", interface_1463:com_27);
-if_setonmouseleave("script8805", interface_1463:com_27);
-$string0 = "Base : <col=00ff00><tostring($int7)></col><br>Armour Bonus : <col=00ff00><tostring($int8)></col>";
-if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", interface_1463:com_33);
-if_setonmouseleave("script8805", interface_1463:com_33);
+if_settext(tostring($int2), interface_1463:com_185);
+def_int $int9 = calc(scale($int2, 100, calc(100 - %varplayer_712)) - scale($int2, 100, 45));
+def_string $string0 = tostring($int9);
+if ($int9 > 0) {
+    $string0 = "+<$string0>";
+}
+if_settext($string0, interface_1463:com_183);
+$int9 = calc(scale($int2, 100, calc(100 - %varplayer_713)) - scale($int2, 100, 45));
+$string0 = tostring($int9);
+if ($int9 > 0) {
+    $string0 = "+<$string0>";
+}
+if_settext($string0, interface_1463:com_187);
+$int9 = calc(scale($int2, 100, calc(100 - %varplayer_714)) - scale($int2, 100, 45));
+$string0 = tostring($int9);
+if ($int9 > 0) {
+    $string0 = "+<$string0>";
+}
+if_settext($string0, interface_1463:com_189);
+if_settext("<tostring(scale($int3, 1000, 10))>%", interface_1463:com_137);
+if_settext("<tostring(scale($int4, 1000, 10))>%", interface_1463:com_141);
+if_settext("<tostring(scale($int5, 1000, 10))>%", interface_1463:com_145);
+if_settext("<~script10006(calc(10 * (%varplayerbit_22841 + %varplayerbit_22842 + min(99, stat(defence)))))>%", interface_1463:com_149);
+def_string $string1 = "Defence level : <col=00ff00><~script10006(min(990, calc(10 * stat(defence))))>%</col><br>Tank armour : <col=00ff00><~script10006(calc(10 * %varplayerbit_22841))>%</col><br>Shield : <col=00ff00><~script10006(calc(10 * %varplayerbit_22842))>%</col>";
+if_setonmouserepeat("script8799($string1, event_com, event_comsubid)", interface_1463:com_149);
+if_setonmouseleave("script8805", interface_1463:com_149);
+if_settext("<~script10006(calc(%varplayer_4500 + min(990, calc(10 * stat(defence)))))>%", interface_1463:com_151);
+$string1 = "Defence level : <col=00ff00><~script10006(min(990, calc(10 * stat(defence))))>%</col><br>PvP armour : <col=00ff00><~script10006(%varplayer_4500)>%</col>";
+if_setonmouserepeat("script8799($string1, event_com, event_comsubid)", interface_1463:com_151);
+if_setonmouseleave("script8805", interface_1463:com_151);
+if_settext(tostring($int6), interface_1463:com_170);
+def_int $int10 = 200;
+$string1 = "Armour : <col=00ff00><tostring(%varplayer_711)></col><br>Skill Bonus : <col=00ff00><tostring(%varplayer_3563)></col>";
+if_setonmouserepeat("script8799($string1, event_com, event_comsubid)", interface_1463:com_185);
+if_setonmouseleave("script8805", interface_1463:com_185);
+$string1 = "Base : <col=00ff00><tostring($int7)></col><br>Armour Bonus : <col=00ff00><tostring($int8)></col>";
+if_setonmouserepeat("script8799($string1, event_com, event_comsubid)", interface_1463:com_13);
+if_setonmouseleave("script8805", interface_1463:com_13);

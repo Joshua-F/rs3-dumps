@@ -32,55 +32,71 @@ def_string $string1 = "";
 def_int $int24 = 14;
 def_string $string2 = "";
 def_string $string3 = "";
-def_graphic $graphic25 = null;
-def_obj $obj26 = inv_getobj(inv_94, 3);
-def_int $int27 = 0;
-def_int $int28 = 0;
-def_int $int29 = 252;
+def_string $string4 = "";
+def_string $string5 = "";
+def_int $int25 = 0;
+def_int $int26 = 0;
+def_graphic $graphic27 = null;
+def_obj $obj28 = inv_getobj(inv_94, 3);
+def_obj $obj29 = inv_getobj(inv_94, 5);
 def_int $int30 = 0;
 def_int $int31 = 0;
+def_int $int32 = 252;
+def_int $int33 = 0;
+def_int $int34 = 0;
 ~script6211($component1, $int2);
 if (%varclient_2 ! 1) {
     ~script8808;
-    if_opensubclient(interface_1477:com_70, interface_1451);
+    if_opensubclient(interface_1477:com_727, interface_1451);
     %varclient_2 = 1;
+    $string2 = struct_param($struct0, param_2794);
+    $string3 = struct_param($struct0, param_2795);
+    $int25 = struct_param($struct0, param_2809);
     if (struct_param($struct0, param_2799) = 0) {
         if (struct_param($struct0, param_2806) = 4 & struct_param($struct0, param_2880) ! 5) {
             switch_int (struct_param($struct0, param_2873)) {
                 case 1 :
-                    $string2 = "Air Spell<br>";
+                    $string4 = "Air Spell<br>";
                 case 2 :
-                    $string2 = "Water Spell<br>";
+                    $string4 = "Water Spell<br>";
                 case 3 :
-                    $string2 = "Earth Spell<br>";
+                    $string4 = "Earth Spell<br>";
                 case 4 :
-                    $string2 = "Fire Spell<br>";
+                    $string4 = "Fire Spell<br>";
                 case default :
-                    $string2 = "Spell<br>";
+                    $string4 = "Spell<br>";
             }
         } else if (struct_param($struct0, param_2806) = 7) {
             if (struct_param($struct0, param_2947) = 1) {
-                $string2 = "Curse<br>";
+                $string4 = "Curse<br>";
             } else {
-                $string2 = "Prayer<br>";
+                $string4 = "Prayer<br>";
             }
         } else if (struct_param($struct0, param_2806) ! 1 & struct_param($struct0, param_2806) ! 2 & struct_param($struct0, param_2806) ! 5 & struct_param($struct0, param_2806) ! 6 & struct_param($struct0, param_2806) ! 3 & struct_param($struct0, param_2806) ! 4) {
         } else {
-            $string2 = "Basic Ability<br>";
+            $string4 = "Basic Ability<br>";
         }
     } else if (struct_param($struct0, param_2799) = 1) {
-        $string2 = "Threshold Ability<br>";
+        $string4 = "Threshold Ability<br>";
+        $int26 = 500;
     } else if (struct_param($struct0, param_2799) = 2) {
-        $string2 = "Ultimate Ability<br>";
+        $string4 = "Ultimate Ability<br>";
+        $int26 = 1000;
+    } else if (struct_param($struct0, param_2799) = 3) {
+        $string4 = "Special Attack<br>";
+        $string2 = ~script9866($obj28, $obj29);
+        $string3 = ~script9867($obj28, $obj29);
+        $int25 = 1;
+        $int26 = ~script9868($obj28, $obj29);
     }
     if_setgraphic(struct_param($struct0, param_2802), $component11);
-    if_settext("<u=b37a2f><struct_param($struct0, param_2794)></u><br><$string2>", $component8);
-    if_settext(struct_param($struct0, param_2795), $component9);
+    if_settext("<u=b37a2f><$string2></u><br><$string4>", $component8);
+    if_settext($string3, $component9);
     $int22 = calc(paraheight(if_gettext($component9), if_getwidth($component9), verdana_11pt_regular) * $int24);
     if_setsize(if_getwidth($component9), $int22, ^setsize_abs, ^setsize_abs, $component9);
-    $int31 = max(0, calc($int22 - 57));
-    $int30 = calc($int31 + 186);
-    if_setsize(if_getwidth($component3), $int30, ^setsize_abs, ^setsize_abs, $component3);
+    $int34 = max(0, calc($int22 - 57));
+    $int33 = calc($int34 + 186);
+    if_setsize(if_getwidth($component3), $int33, ^setsize_abs, ^setsize_abs, $component3);
     if (struct_param($struct0, param_2796) > 0) {
         if_sethide(false, $component13);
         if_sethide(false, $component10);
@@ -100,7 +116,7 @@ if (%varclient_2 ! 1) {
     if_setobject(null, -1, interface_638:com_53);
     if_setobject(null, -1, interface_638:com_57);
     if_setobject(null, -1, interface_638:com_61);
-    if (struct_param($struct0, param_2809) = 1 & map_members = false) {
+    if ($int25 = 1 & map_members = false) {
         $component12, $component15, $component16, $int17 = ~script8450($int17);
         if ($component12 ! null) {
             if_sethide(false, $component12);
@@ -148,28 +164,28 @@ if (%varclient_2 ! 1) {
         } else {
             $string1 = "<col=ff0000>";
         }
-        $string3 = "<$string1>2x</col>";
+        $string5 = "<$string1>2x</col>";
         if (struct_param($struct0, param_2806) = 3) {
-            $graphic25 = "combatv2_attribute_requirement_icons,4";
+            $graphic27 = "combatv2_attribute_requirement_icons,4";
         } else {
-            $graphic25 = "combatv2_attribute_requirement_icons,2";
+            $graphic27 = "combatv2_attribute_requirement_icons,2";
         }
     } else if (struct_param($struct0, param_2812) = 1) {
         $int19 = 1;
-        if (oc_wearpos($obj26) > 0 & oc_wearpos2($obj26) > 0 & struct_param($struct0, param_2806) = 3 & oc_param($obj26, param_2826) = 1) {
+        if (oc_wearpos($obj28) > 0 & oc_wearpos2($obj28) > 0 & struct_param($struct0, param_2806) = 3 & oc_param($obj28, param_2826) = 1) {
             $string1 = "<col=00ff00>";
-        } else if (oc_wearpos($obj26) > 0 & oc_wearpos2($obj26) > 0 & struct_param($struct0, param_2806) = 4 & oc_param($obj26, param_2827) = 1) {
+        } else if (oc_wearpos($obj28) > 0 & oc_wearpos2($obj28) > 0 & struct_param($struct0, param_2806) = 4 & oc_param($obj28, param_2827) = 1) {
             $string1 = "<col=00ff00>";
-        } else if (oc_wearpos($obj26) > 0 & oc_wearpos2($obj26) > 0 & struct_param($struct0, param_2806) ! 3 & struct_param($struct0, param_2806) ! 4 & oc_param($obj26, param_2825) = 1) {
+        } else if (oc_wearpos($obj28) > 0 & oc_wearpos2($obj28) > 0 & struct_param($struct0, param_2806) ! 3 & struct_param($struct0, param_2806) ! 4 & oc_param($obj28, param_2825) = 1) {
             $string1 = "<col=00ff00>";
         } else {
             $string1 = "<col=ff0000>";
         }
-        $string3 = "<$string1>2h</col>";
+        $string5 = "<$string1>2h</col>";
         if (struct_param($struct0, param_2806) = 3) {
-            $graphic25 = "combatv2_attribute_requirement_icons,3";
+            $graphic27 = "combatv2_attribute_requirement_icons,3";
         } else {
-            $graphic25 = "combatv2_attribute_requirement_icons,1";
+            $graphic27 = "combatv2_attribute_requirement_icons,1";
         }
     } else if (struct_param($struct0, param_2813) = 1) {
         $int19 = 1;
@@ -178,44 +194,30 @@ if (%varclient_2 ! 1) {
         } else {
             $string1 = "<col=ff0000>";
         }
-        $string3 = "<$string1>Shield</col>";
-        $graphic25 = "combatv2_attribute_requirement_icons,0";
+        $string5 = "<$string1>Shield</col>";
+        $graphic27 = "combatv2_attribute_requirement_icons,0";
     }
     if ($int19 = 1) {
         $component12, $component15, $component16, $int17 = ~script8450($int17);
         if ($component12 ! null) {
             if_sethide(false, $component12);
-            if_settext($string3, $component16);
-            if_setgraphic($graphic25, $component15);
+            if_settext($string5, $component16);
+            if_setgraphic($graphic27, $component15);
         }
     }
-    if (struct_param($struct0, param_2799) = 1) {
-        if (%varplayer_679 < 500) {
+    if ($int26 > 0) {
+        if (%varplayer_679 < $int26) {
             $string1 = "<col=ff0000>";
         } else {
             $string1 = "<col=00ff00>";
         }
-        $string3 = "<$string1>50%</col>";
-        $graphic25 = "combatv2_attribute_requirement_icons,5";
+        $string5 = "<$string1><tostring(calc($int26 / 10))>%</col>";
+        $graphic27 = "combatv2_attribute_requirement_icons,5";
         $component12, $component15, $component16, $int17 = ~script8450($int17);
         if ($component12 ! null) {
             if_sethide(false, $component12);
-            if_settext($string3, $component16);
-            if_setgraphic($graphic25, $component15);
-        }
-    } else if (struct_param($struct0, param_2799) = 2) {
-        if (%varplayer_679 < 1000) {
-            $string1 = "<col=ff0000>";
-        } else {
-            $string1 = "<col=00ff00>";
-        }
-        $string3 = "<$string1>100%</col>";
-        $graphic25 = "combatv2_attribute_requirement_icons,5";
-        $component12, $component15, $component16, $int17 = ~script8450($int17);
-        if ($component12 ! null) {
-            if_sethide(false, $component12);
-            if_settext($string3, $component16);
-            if_setgraphic($graphic25, $component15);
+            if_settext($string5, $component16);
+            if_setgraphic($graphic27, $component15);
         }
     }
     if (($struct0 = %varplayer_3170 | $struct0 = struct_14874) & %varplayerbit_0 = 2) {
@@ -227,12 +229,12 @@ if (%varclient_2 ! 1) {
                 $string1 = "<col=00ff00>";
             }
             $string0 = "<$string1><tostring($int23)></col>";
-            $graphic25 = "combatv2_attribute_requirement_icons,13";
+            $graphic27 = "combatv2_attribute_requirement_icons,13";
             $component12, $component15, $component16, $int17 = ~script8450($int17);
             if ($component12 ! null) {
                 if_sethide(false, $component12);
                 if_settext($string0, $component16);
-                if_setgraphic($graphic25, $component15);
+                if_setgraphic($graphic27, $component15);
             }
         }
         if (inv_total(inv_94, obj_21514) < 1) {
@@ -248,72 +250,72 @@ if (%varclient_2 ! 1) {
             if_setobject(obj_21514, -1, $component15);
         }
     } else if (struct_param($struct0, param_2806) = 4) {
-        $int28 = ~script6572($struct0);
+        $int31 = ~script6572($struct0);
         while ($int20 < 15) {
             switch_int ($int20) {
                 case 0 :
                     $int23 = struct_param($struct0, param_2898);
                     $obj21 = obj_556;
-                    $graphic25 = "combatv2_attribute_requirement_icons,7";
+                    $graphic27 = "combatv2_attribute_requirement_icons,7";
                 case 1 :
                     $int23 = struct_param($struct0, param_2902);
                     $obj21 = obj_558;
-                    $graphic25 = "combatv2_attribute_requirement_icons,11";
+                    $graphic27 = "combatv2_attribute_requirement_icons,11";
                 case 2 :
                     $int23 = struct_param($struct0, param_2900);
                     $obj21 = obj_555;
-                    $graphic25 = "combatv2_attribute_requirement_icons,10";
+                    $graphic27 = "combatv2_attribute_requirement_icons,10";
                 case 3 :
                     $int23 = struct_param($struct0, param_2899);
                     $obj21 = obj_557;
-                    $graphic25 = "combatv2_attribute_requirement_icons,8";
+                    $graphic27 = "combatv2_attribute_requirement_icons,8";
                 case 4 :
                     $int23 = struct_param($struct0, param_2901);
                     $obj21 = obj_554;
-                    $graphic25 = "combatv2_attribute_requirement_icons,9";
+                    $graphic27 = "combatv2_attribute_requirement_icons,9";
                 case 5 :
                     $int23 = struct_param($struct0, param_2903);
                     $obj21 = obj_559;
-                    $graphic25 = "combatv2_attribute_requirement_icons,12";
+                    $graphic27 = "combatv2_attribute_requirement_icons,12";
                 case 6 :
                     $int23 = struct_param($struct0, param_2910);
                     $obj21 = obj_564;
-                    $graphic25 = "combatv2_attribute_requirement_icons,16";
+                    $graphic27 = "combatv2_attribute_requirement_icons,16";
                 case 7 :
                     $int23 = struct_param($struct0, param_2904);
                     $obj21 = obj_562;
-                    $graphic25 = "combatv2_attribute_requirement_icons,17";
+                    $graphic27 = "combatv2_attribute_requirement_icons,17";
                 case 8 :
                     $int23 = struct_param($struct0, param_2908);
                     $obj21 = obj_9075;
-                    $graphic25 = "combatv2_attribute_requirement_icons,13";
+                    $graphic27 = "combatv2_attribute_requirement_icons,13";
                 case 9 :
                     $int23 = struct_param($struct0, param_2909);
                     $obj21 = obj_561;
-                    $graphic25 = "combatv2_attribute_requirement_icons,19";
+                    $graphic27 = "combatv2_attribute_requirement_icons,19";
                 case 10 :
                     $int23 = struct_param($struct0, param_2911);
                     $obj21 = obj_563;
-                    $graphic25 = "combatv2_attribute_requirement_icons,20";
+                    $graphic27 = "combatv2_attribute_requirement_icons,20";
                 case 11 :
                     $int23 = struct_param($struct0, param_2905);
                     $obj21 = obj_560;
-                    $graphic25 = "combatv2_attribute_requirement_icons,14";
+                    $graphic27 = "combatv2_attribute_requirement_icons,14";
                 case 12 :
                     $int23 = struct_param($struct0, param_2906);
                     $obj21 = obj_565;
-                    $graphic25 = "combatv2_attribute_requirement_icons,15";
+                    $graphic27 = "combatv2_attribute_requirement_icons,15";
                 case 13 :
                     $int23 = struct_param($struct0, param_2907);
                     $obj21 = obj_566;
-                    $graphic25 = "combatv2_attribute_requirement_icons,21";
+                    $graphic27 = "combatv2_attribute_requirement_icons,21";
                 case 14 :
                     $int23 = struct_param($struct0, param_2912);
                     $obj21 = obj_21773;
-                    $graphic25 = "combatv2_attribute_requirement_icons,18";
+                    $graphic27 = "combatv2_attribute_requirement_icons,18";
             }
             if ($int23 > 0) {
-                if (~script339($struct0, struct_param($struct0, param_2871)) <= 0 & ~magic_runecount($obj21, null) < $int23 & $int28 = 0) {
+                if (~script339($struct0, struct_param($struct0, param_2871)) <= 0 & ~magic_runecount($obj21, null) < $int23 & $int31 = 0) {
                     $string1 = "<col=ff0000>";
                 } else {
                     $string1 = "<col=00ff00>";
@@ -323,7 +325,7 @@ if (%varclient_2 ! 1) {
                 if ($component12 ! null) {
                     if_sethide(false, $component12);
                     if_settext($string0, $component16);
-                    if_setgraphic($graphic25, $component15);
+                    if_setgraphic($graphic27, $component15);
                 }
             }
             $int20 = calc($int20 + 1);
@@ -396,8 +398,8 @@ if (%varclient_2 ! 1) {
     } else {
         $int4, $int5 = ~script8406($component1, $int2);
     }
-    if (calc($int5 - $int30) >= 0) {
-        $int5 = calc($int5 - $int30);
+    if (calc($int5 - $int33) >= 0) {
+        $int5 = calc($int5 - $int33);
     }
     if ($int2 = -1) {
         $int6 = if_getwidth($component1);
@@ -408,10 +410,10 @@ if (%varclient_2 ! 1) {
     }
     $int4 = calc($int4 + $int6 / 2);
     $int4 = max($int4, 0);
-    if (calc($int4 + $int29) > if_getwidth(interface_1477:com_70)) {
-        $int4 = calc(if_getwidth(interface_1477:com_70) - $int29);
+    if (calc($int4 + $int32) > if_getwidth(interface_1477:com_727)) {
+        $int4 = calc(if_getwidth(interface_1477:com_727) - $int32);
     }
-    if_setsize($int29, $int30, ^setsize_abs, ^setsize_abs, $component3);
+    if_setsize($int32, $int33, ^setsize_abs, ^setsize_abs, $component3);
     if_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top, $component3);
     if (~script7981($struct0) = 1) {
         if_sethide(false, interface_1451:com_21);
