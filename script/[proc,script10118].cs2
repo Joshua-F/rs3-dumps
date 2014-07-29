@@ -1,0 +1,81 @@
+// 10118
+[proc,script10118]
+def_int $int0 = ttv_library_getstate;
+if_sethide(true, interface_232:com_77);
+if_sethide(true, interface_232:com_73);
+if_sethide(true, interface_232:com_74);
+if_sethide(true, interface_232:com_70);
+if_sethide(true, interface_232:com_65);
+if_sethide(true, interface_232:com_67);
+if_sethide(true, interface_232:com_18);
+if_sethide(true, interface_232:com_23);
+if (has_html5 = true) {
+    if_settext("Twitch integration won't work in HTML5.", interface_232:com_20);
+    if_sethide(false, interface_232:com_18);
+    if_sethide(false, interface_232:com_20);
+    if_sethide(true, interface_232:com_21);
+    if_sethide(true, interface_232:com_22);
+    if_sethide(true, interface_232:com_77);
+    return;
+}
+if (userdetail_quickchat = true) {
+    if_settext("You can't access this feature.", interface_232:com_20);
+    if_sethide(false, interface_232:com_18);
+    if_sethide(false, interface_232:com_20);
+    if_sethide(true, interface_232:com_21);
+    if_sethide(true, interface_232:com_22);
+    if_sethide(true, interface_232:com_77);
+    return;
+}
+if (ttv_hasprerequisites = false & %varclientbit_23076 = 0) {
+    if (os_iswindows = true) {
+        if_sethide(false, interface_232:com_21);
+        if_sethide(true, interface_232:com_22);
+        if_settext("Before you can use Twitch features you must install additional software. Once you have done this, please restart your browser/client.", interface_232:com_20);
+        if_sethide(false, interface_232:com_77);
+    } else if (os_ismac = true) {
+        if_sethide(true, interface_232:com_21);
+        if_sethide(false, interface_232:com_22);
+        if_settext("Before you can use Twitch features you must install additional software. Once you have done this, please restart your browser/client.", interface_232:com_20);
+        if_sethide(false, interface_232:com_77);
+    } else if (os_islinux = true) {
+        if_sethide(true, interface_232:com_21);
+        if_sethide(true, interface_232:com_22);
+        if_settext("Twitch integration requires additional software that is not available on Linux.", interface_232:com_20);
+        if_sethide(true, interface_232:com_77);
+        return;
+    }
+    if_sethide(false, interface_232:com_77);
+    if_settext("Before you begin:", interface_232:com_24);
+    if_sethide(false, interface_232:com_18);
+    return;
+}
+if ($int0 ! 2) {
+    if_setontimer("script3106", interface_232:com_37);
+    if_sethide(false, interface_232:com_65);
+    return;
+}
+if_settext("Watch current broadcasts", interface_232:com_24);
+if_sethide(true, interface_232:com_18);
+if_sethide(false, interface_232:com_23);
+def_int $int1 = ttv_login_getstate;
+def_int $int2 = 0;
+if ($int1 = 0) {
+    if_sethide(true, interface_232:com_74);
+    if_sethide(false, interface_232:com_73);
+    if (string_length(%varclient_4285) > 0) {
+        if_settext(%varclient_4285, interface_232:com_88);
+    }
+    %varclient_4287 = "";
+    ~script10121(interface_232:com_88, null, null, interface_232:com_87);
+    if_settext("", interface_232:com_94);
+    if_sethide(false, interface_232:com_39);
+    if_sethide(true, interface_232:com_38);
+} else {
+    if_sethide(false, interface_232:com_74);
+    if_sethide(true, interface_232:com_73);
+    ~script10130;
+    if_sethide(true, interface_232:com_39);
+    if_sethide(false, interface_232:com_38);
+}
+$int2 = ttv_livestreams_update;

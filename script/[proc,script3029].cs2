@@ -1,7 +1,7 @@
 // 3029
-[proc,script3029](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
+[proc,script3029](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
 if (minimenuopen($component3, -1) = true) {
-    if_setontimer("script3028($component0, $component1, $component2, $component3, $component4, $component5)", $component4);
+    if_setontimer("script3028($component0, $component1, $component2, $component3, $component4, $component5, $component6)", $component4);
     return;
 } else {
     if_setontimer(null, $component4);
@@ -10,58 +10,67 @@ cc_deleteall($component0);
 cc_deleteall($component1);
 cc_deleteall($component2);
 cc_deleteall($component3);
-def_int $int6 = friend_count;
-def_int $int7 = 0;
+cc_deleteall($component6);
+def_int $int7 = friend_count;
 def_int $int8 = 0;
+def_int $int9 = 0;
 def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
-def_int $int9 = 0;
 def_int $int10 = 0;
-def_int $int11 = 15;
-def_int $int12 = 0;
-def_int $int13 = 5;
-def_int $rgb14 = ^black;
-def_int $int15 = 0;
+def_int $int11 = 0;
+def_int $int12 = 15;
+def_int $int13 = 0;
+def_int $int14 = 5;
+def_int $rgb15 = ^black;
 def_int $int16 = 0;
+def_int $int17 = 0;
 def_string $string3 = "";
-def_int $int17 = 200;
+def_int $int18 = 200;
 if (playermember = true) {
-    $int17 = 400;
+    $int18 = 400;
 }
-if ($int6 = -2) {
-    if_settext("Name", interface_909:com_38);
+if ($int7 = -2) {
+    ~rs3_background_panel($component6, struct_21362);
+    if_settext("Name", interface_909:com_22);
     ~script3038("Loading Friends List.<br><br>Please wait.", $component3);
-    if_setsize(if_getwidth(interface_909:com_31), if_getheight(interface_909:com_36), ^setsize_abs, ^setsize_abs, interface_909:com_31);
-} else if ($int6 = -1) {
-    if_settext("Name", interface_909:com_38);
+    if_setsize(if_getwidth(interface_909:com_30), 0, ^setsize_abs, ^setsize_abs, interface_909:com_30);
+    if_setscrollsize(0, 0, interface_909:com_24);
+    if_setscrollpos(0, 0, interface_909:com_24);
+    ~scrollbar_resize(interface_909:com_31, interface_909:com_24, 0);
+} else if ($int7 = -1) {
+    ~rs3_background_panel($component6, struct_21362);
+    if_settext("Name", interface_909:com_22);
     ~script3038("Connecting to server.<br><br>Please wait.", $component3);
-    if_setsize(if_getwidth(interface_909:com_31), if_getheight(interface_909:com_36), ^setsize_abs, ^setsize_abs, interface_909:com_31);
-} else if ($int6 > 0) {
-    if_settext("Name (<tostring($int6)>/<tostring($int17)>)", interface_909:com_38);
-    if_setsize(if_getwidth(interface_909:com_31), 4, ^setsize_abs, ^setsize_minus, interface_909:com_31);
-    while ($int7 < $int6) {
-        $string0, $string1 = friend_getname($int7);
-        $int9 = friend_getworld($int7);
-        ~cc_add_rect($component3, $int7, if_getwidth($component3), $int11, 0, $int8, ^black, true, 0);
-        if (calc($int7 % 2) = 0) {
-            cc_setcolour(0x201911);
+    if_setsize(if_getwidth(interface_909:com_30), 0, ^setsize_abs, ^setsize_abs, interface_909:com_30);
+    if_setscrollsize(0, 0, interface_909:com_24);
+    if_setscrollpos(0, 0, interface_909:com_24);
+    ~scrollbar_resize(interface_909:com_31, interface_909:com_24, 0);
+} else if ($int7 > 0) {
+    if_settext("Name (<tostring($int7)>/<tostring($int18)>)", interface_909:com_22);
+    if_setsize(if_getwidth(interface_909:com_30), 0, ^setsize_abs, ^setsize_minus, interface_909:com_30);
+    while ($int8 < $int7) {
+        $string0, $string1 = friend_getname($int8);
+        $int10 = friend_getworld($int8);
+        ~cc_add_rect($component3, $int8, if_getwidth($component3), $int12, 0, $int9, ^black, true, 0);
+        if (calc($int8 % 2) = 0) {
+            cc_setcolour(0x071820);
         } else {
-            cc_setcolour(0x292016);
+            cc_setcolour(0x1c2c34);
         }
-        cc_setonmouseover("script3030($component3, $int7)");
+        cc_setonmouseover("script3030($component3, $int8)");
         cc_setonmouseleave("script3035");
         if (string_length($string1) > 0) {
-            $int16 = calc(stringwidth("Last known as: <$string1>", p11_full) + 8);
-            if ($int16 > if_getwidth(interface_909:com_19)) {
+            $int17 = calc(stringwidth("Last known as: <$string1>", p11_full) + 8);
+            if ($int17 > if_getwidth(interface_909:com_8)) {
                 $string3 = "Last known as:<br><$string1>";
             } else {
                 $string3 = "Last known as: <$string1>";
             }
-            cc_setonmouserepeat("script2467(event_com, event_comsubid, $string3, event_mousex, event_mousey, interface_909:com_41, interface_909:com_32, interface_909:com_35, p11_full)");
+            cc_setonmouserepeat("script8799($string3, event_com, -1)");
         }
         cc_setopbase($string0);
-        if ($int9 > 0) {
+        if ($int10 > 0) {
             cc_setop(1, "Message");
             cc_setop(2, "Join");
         } else {
@@ -69,73 +78,77 @@ if ($int6 = -2) {
             cc_setop(4, "Join");
         }
         cc_setop(10, "Delete");
-        cc_setonop("lobby_friends_friendop(event_op, $int9, $string0, $int7)");
-        ~cc_add_graphic($component1, $int7, 14, 14, 5, calc($int8 + 1), null, false, false, false, 0);
+        cc_setonop("lobby_friends_friendop(event_op, $int10, $string0, $int8)");
+        ~cc_add_graphic($component1, $int8, 14, 14, 5, calc($int9 + 1), null, false, false, false, 0);
         if (compare($string1, "") ! 0) {
             cc_setgraphic(friends_changed_name);
-            $int13 = 20;
+            $int14 = 20;
         } else {
             cc_setgraphic(null);
-            $int13 = 5;
+            $int14 = 5;
         }
         $string2 = $string0;
-        ~cc_add_text($component0, $int7, 0, $int11, $int13, $int8, $string2, ^white, p11_full, ^settextalign_left, ^settextalign_centre, 0, true);
-        cc_setsize($int13, $int11, ^setsize_minus, ^setsize_abs);
+        ~cc_add_text($component0, $int8, 0, $int12, $int14, $int9, $string2, ^white, graphic_20452, ^settextalign_left, ^settextalign_centre, 0, true);
+        cc_setsize($int14, $int12, ^setsize_minus, ^setsize_abs);
         cc_setmaxlines(1);
-        if ($int9 = 0) {
+        if ($int10 = 0) {
             $string2 = "Offline";
-            $rgb14 = ^red;
-        } else if ($int9 >= 1149 & $int9 < 1200) {
+            $rgb15 = ^red;
+        } else if ($int10 >= 1149 & $int10 < 1200) {
             $string2 = "Beta lobby";
-        } else if ($int9 >= 200 & $int9 < 300) {
-            $string2 = "Beta <tostring($int9)>";
+        } else if ($int10 >= 200 & $int10 < 300) {
+            $string2 = "Beta <tostring($int10)>";
         } else {
-            $string2 = friend_getworldname($int7);
+            $string2 = friend_getworldname($int8);
         }
-        if ($int9 > 0) {
-            if ($int9 = map_world) {
-                $rgb14 = ^green;
+        if ($int10 > 0) {
+            if ($int10 = map_world) {
+                $rgb15 = ^green;
             } else {
-                $rgb14 = ^yellow;
+                $rgb15 = ^yellow;
             }
         }
-        ~cc_add_text($component2, $int7, 0, $int11, 5, $int8, $string2, $rgb14, p11_full, ^settextalign_left, ^settextalign_centre, 0, true);
-        cc_setsize(5, $int11, ^setsize_minus, ^setsize_abs);
+        ~cc_add_text($component2, $int8, 0, $int12, 5, $int9, $string2, $rgb15, graphic_20452, ^settextalign_left, ^settextalign_centre, 0, true);
+        cc_setsize(5, $int12, ^setsize_minus, ^setsize_abs);
         cc_setmaxlines(1);
-        $int8 = calc($int8 + $int11);
-        $int7 = calc($int7 + 1);
+        $int9 = calc($int9 + $int12);
+        $int8 = calc($int8 + 1);
     }
-    $int10 = calc(if_getheight($component4) / $int11 + 1);
-    if ($int10 > $int6) {
-        while ($int7 < $int10) {
-            ~cc_add_rect($component3, $int7, if_getwidth($component3), $int11, 0, $int8, ^black, true, 0);
-            if (calc($int7 % 2) = 0) {
-                cc_setcolour(0x201911);
+    $int11 = calc(if_getheight($component4) / $int12 + 1);
+    if ($int11 > $int7) {
+        while ($int8 < $int11) {
+            ~cc_add_rect($component3, $int8, if_getwidth($component3), $int12, 0, $int9, ^black, true, 0);
+            if (calc($int8 % 2) = 0) {
+                cc_setcolour(0x071820);
             } else {
-                cc_setcolour(0x292016);
+                cc_setcolour(0x1c2c34);
             }
-            $int8 = calc($int8 + $int11);
-            $int7 = calc($int7 + 1);
+            $int9 = calc($int9 + $int12);
+            $int8 = calc($int8 + 1);
         }
-        $int12 = if_getheight($component4);
+        $int13 = if_getheight($component4);
     } else {
-        $int12 = $int8;
+        $int13 = $int9;
     }
-    if ($int10 <= $int6) {
-        $int15 = if_getscrolly(interface_909:com_41);
-        if_setscrollsize(0, $int12, interface_909:com_41);
-        if ($int15 > $int12) {
-            $int15 = $int12;
+    if ($int11 <= $int7) {
+        $int16 = if_getscrolly(interface_909:com_24);
+        if_setscrollsize(0, $int13, interface_909:com_24);
+        if ($int16 > $int13) {
+            $int16 = $int13;
         }
-        ~scrollbar_resize(interface_909:com_47, interface_909:com_41, $int15);
+        ~scrollbar_resize(interface_909:com_31, interface_909:com_24, $int16);
     } else {
-        if_setscrollsize(0, 0, interface_909:com_41);
-        if_setscrollpos(0, 0, interface_909:com_41);
-        ~scrollbar_resize(interface_909:com_47, interface_909:com_41, 0);
+        if_setscrollsize(0, 0, interface_909:com_24);
+        if_setscrollpos(0, 0, interface_909:com_24);
+        ~scrollbar_resize(interface_909:com_31, interface_909:com_24, 0);
     }
-} else if ($int6 = 0) {
-    if_settext("Name", interface_909:com_38);
+} else if ($int7 = 0) {
+    ~rs3_background_panel($component6, struct_21362);
+    if_settext("Name", interface_909:com_22);
     ~script3038("You have not added any friends to your list.", $component3);
-    if_setsize(if_getwidth(interface_909:com_31), if_getheight(interface_909:com_36), ^setsize_abs, ^setsize_abs, interface_909:com_31);
+    if_setsize(if_getwidth(interface_909:com_30), 0, ^setsize_abs, ^setsize_abs, interface_909:com_30);
+    if_setscrollsize(0, 0, interface_909:com_24);
+    if_setscrollpos(0, 0, interface_909:com_24);
+    ~scrollbar_resize(interface_909:com_31, interface_909:com_24, 0);
 }
 return;

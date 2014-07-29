@@ -1,4 +1,14 @@
 // 3106
-[clientscript,script3106](component $component0)
-if_setcolour(0xfafafa, $component0);
-return;
+[clientscript,script3106]
+def_int $int0 = ttv_library_request;
+def_int $int1 = 0;
+if ($int0 = 3) {
+    if_settext("Oops! Something went wrong. Please close the interface and try again in 5 minutes.", interface_232:com_69);
+    ~script3147;
+} else if ($int0 = 100) {
+    if_setontimer(null, interface_232:com_37);
+    ~script10118;
+} else {
+    if_settext("Fetching streaming updates...", interface_232:com_69);
+    ~script9528(interface_232:com_66, $int0);
+}

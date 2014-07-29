@@ -1,0 +1,51 @@
+// 10144
+[proc,script10144]
+def_boolean $boolean0 = ttv_webcam_supported;
+def_int $int1 = 0;
+def_int $int2 = -1;
+def_int $int3 = -1;
+def_string $string0 = "";
+def_string $string1 = "";
+def_int $int4 = -1;
+def_int $int5 = -1;
+def_int $int6 = -1;
+def_int $int7 = -1;
+def_int $int8 = -1;
+if ($boolean0 = false) {
+    mes("No supported webcam detected.");
+    if_sethide(false, interface_232:com_139);
+    if_sethide(true, interface_232:com_130);
+    ~script10145;
+    return;
+}
+$int1 = ttv_webcam_getdevice_count;
+if ($int1 = 0) {
+    mes("No webcam detected. If you connect a webcam you must log out and back in to Twitch to detect it.");
+    if_sethide(false, interface_232:com_139);
+    ~script10145;
+    return;
+} else {
+    mes("Webcam detected.");
+    if ($int1 > 1) {
+        if_sethide(false, interface_232:com_133);
+        if_sethide(false, interface_232:com_134);
+    } else {
+        if_sethide(true, interface_232:com_133);
+        if_sethide(true, interface_232:com_134);
+    }
+    $int2, $string0, $string1 = ttv_webcam_getdevice_byindex(0);
+    if ($int2 = -1) {
+        ~script10145;
+    } else {
+        $int4, $int5, $int6, $int7, $int8 = ttv_webcam_getcap_byindex($int2, 0);
+        if ($int4 = -1) {
+            ~script10145;
+            return;
+        }
+        %varclient_4291 = $string0;
+        %varclient_4292 = $int5;
+        if_settext($string1, interface_232:com_132);
+        if_sethide(true, interface_232:com_139);
+        if_settext("<tostring($int6)> x <tostring($int7)>, framerate: <tostring($int8)>", interface_232:com_136);
+    }
+}

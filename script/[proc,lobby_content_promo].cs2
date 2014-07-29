@@ -1,0 +1,50 @@
+// 10044
+[proc,lobby_content_promo](component $component0, component $component1, component $component2, component $component3)
+if_settext("Latest Content", $component1);
+if_sethide(false, $component3);
+if_setop(1, "Click", $component0);
+if_setonop("script10042", $component0);
+if_setonclick("script10052", $component0);
+def_int $int4 = -1;
+def_string $string0 = "";
+def_string $string1 = "";
+def_graphic $graphic5 = struct_param(struct_11515, param_4446);
+switch_int ($int4) {
+    case -1 :
+        $string0 = struct_param(struct_11515, param_1266);
+        switch_int (map_lang) {
+            case 1 :
+                if (struct_param(struct_11515, param_4454) ! null) {
+                    $graphic5 = struct_param(struct_11515, param_4454);
+                }
+            case 2 :
+                if (struct_param(struct_11515, param_4455) ! null) {
+                    $graphic5 = struct_param(struct_11515, param_4455);
+                }
+            case 3 :
+                if (struct_param(struct_11515, param_4456) ! null) {
+                    $graphic5 = struct_param(struct_11515, param_4456);
+                }
+            case 6 :
+                if (struct_param(struct_11515, param_4457) ! null) {
+                    $graphic5 = struct_param(struct_11515, param_4457);
+                }
+        }
+        if_setgraphic($graphic5, $component0);
+        $string1 = struct_param(struct_11515, param_1273);
+}
+if (compare($string1, "") ! 0) {
+    if_setonmouserepeat("script10070($string1, 400, event_com, event_comsubid)", $component0);
+}
+cc_deleteall($component2);
+def_int $int6 = 0;
+~script10047($component2, $int6);
+$int6 = calc($int6 + 1);
+cc_create($component2, ^iftype_text, $int6);
+cc_settext($string0);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+cc_setsize(0, 32, ^setsize_minus, ^setsize_abs);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextfont(graphic_17814);
+cc_setcolour(0xffcb05);
+cc_settextshadow(true);

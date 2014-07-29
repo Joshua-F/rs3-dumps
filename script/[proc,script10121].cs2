@@ -1,0 +1,100 @@
+// 10121
+[proc,script10121](component $component0, char $char1, int $key2, component $component3)
+def_string $string0 = "";
+def_int $int4 = 0;
+if ($component0 = interface_232:com_88) {
+    %varclient_4285 = if_gettext($component0);
+    $string0 = %varclient_4285;
+    $int4 = %varclient_4286;
+} else if ($component0 = interface_232:com_94) {
+    $string0 = %varclient_4287;
+    $int4 = %varclient_4288;
+} else if ($component0 = interface_232:com_117) {
+    %varclient_4289 = if_gettext($component0);
+    $string0 = %varclient_4289;
+    $int4 = %varclient_4290;
+}
+switch_int ($key2) {
+    case ^key_return :
+        if ($component0 = interface_232:com_94) {
+            ~twitch_login;
+            return;
+        } else {
+            %varclientbit_23065 = 2;
+            ~script10119(1);
+            return;
+        }
+    case ^key_tab :
+        if ($component0 = interface_232:com_88) {
+            %varclientbit_23065 = 2;
+            ~script10119(1);
+            return;
+        } else if ($component0 = interface_232:com_94) {
+            %varclientbit_23065 = 1;
+            ~script10119(1);
+            return;
+        }
+    case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
+        if (keyheld_shift = false) {
+            return;
+        }
+        $int4 = ~script1553($key2, $int4, $string0);
+    case ^key_escape :
+        if (~cancel_targetmode = true) {
+            return;
+        }
+        if (string_length($string0) < 1) {
+            ~script8841(52, 0);
+        } else {
+            $string0 = "";
+            $int4 = 0;
+        }
+    case default :
+        $string0, $int4 = ~script802($int4, $string0, 0, $key2, $char1);
+}
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_string $string1 = "";
+def_string $string2 = "";
+def_int $int7 = 0;
+def_component $component8 = null;
+if ($component0 = interface_232:com_88) {
+    $component8 = interface_232:com_80;
+    %varclient_4286 = $int4;
+    %varclient_4285 = $string0;
+    if_setposition(~script1551(%varclient_4286, %varclient_4285, graphic_17813, 6), if_gety($component3), ^setpos_abs_left, ^setpos_abs_top, $component3);
+    if_settext(%varclient_4285, $component0);
+    %varclientbit_23065 = 1;
+} else if ($component0 = interface_232:com_94) {
+    $component8 = interface_232:com_82;
+    %varclient_4288 = $int4;
+    %varclient_4287 = $string0;
+    if_setposition(~script1551(%varclient_4288, ~script2949(%varclient_4287), graphic_17813, 6), if_gety($component3), ^setpos_abs_left, ^setpos_abs_top, $component3);
+    if_settext(~script2949(%varclient_4287), $component0);
+    %varclientbit_23065 = 2;
+} else if ($component0 = interface_232:com_117) {
+    $component8 = interface_232:com_110;
+    %varclient_4290 = $int4;
+    %varclient_4289 = $string0;
+    if_setposition(~script1551(%varclient_4290, %varclient_4289, graphic_17813, 6), if_gety($component3), ^setpos_abs_left, ^setpos_abs_top, $component3);
+    if_settext(%varclient_4289, $component0);
+    %varclientbit_23065 = 3;
+    if_setonmouserepeat("script8799($string0, $component0, -1)", $component0);
+}
+$int5 = calc(if_getwidth($component8) - 11);
+$int6 = string_length($string0);
+$string1 = "";
+if ($int4 > 0) {
+    $string1 = substring($string0, 0, $int4);
+}
+$string2 = "";
+if ($int4 < $int6) {
+    $string2 = substring($string0, $int4, $int6);
+}
+$int7 = calc(stringwidth($string1, graphic_17813) - $int5);
+if_setposition(6, if_gety($component0), ^setpos_abs_left, ^setpos_abs_top, $component0);
+if_setsize(max(stringwidth($string0, graphic_17813), $int5), if_getheight($component0), ^setsize_abs, ^setsize_abs, $component0);
+if ($int7 > 0) {
+    if_setposition(calc(if_getx($component0) - $int7), if_gety($component0), ^setpos_abs_left, ^setpos_abs_top, $component0);
+    if_setposition(calc(if_getx($component3) - $int7), if_gety($component3), ^setpos_abs_left, ^setpos_abs_top, $component3);
+}

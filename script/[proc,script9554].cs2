@@ -7,14 +7,23 @@ def_int $int7 = 0;
 def_int $int8 = 0;
 def_int $int9 = 0;
 def_int $int10 = 0;
+def_int $int11 = 0;
+def_fontmetrics $fontmetrics12 = null;
 if ($component1 = null) {
     return;
 }
 $struct3 = ~script9952($struct3);
+def_int $int13 = 0;
+def_int $int14 = struct_param($struct3, param_3572);
+if ($int14 < 0) {
+    $int13 = calc(0 - $int14);
+}
 $int4 = struct_param($struct3, param_3550);
-$int5 = calc(struct_param($struct3, param_3547) + struct_param($struct3, param_3586));
+$int5 = calc(struct_param($struct3, param_3547) + struct_param($struct3, param_3586) + $int13);
 $int6 = $int5;
 $int10 = struct_param($struct3, param_3796);
+$int11 = calc(struct_param($struct3, param_3652) + $int13);
+$fontmetrics12 = struct_param($struct3, param_3823);
 if (cc_find($component1, 0) = true) {
     if_setontimer(null, $component1);
     if ($int10 = 1) {
@@ -22,10 +31,10 @@ if (cc_find($component1, 0) = true) {
         cc_setsize(calc(struct_param($struct3, param_3552) + struct_param($struct3, param_3554) + struct_param($struct3, param_3557) + struct_param($struct3, param_3558)), calc(struct_param($struct3, param_3547) - struct_param($struct3, param_3548)), ^setsize_minus, ^setsize_abs);
     } else if ($int10 = 0) {
         cc_setposition(struct_param($struct3, param_3552), struct_param($struct3, param_3548), ^setpos_abs_left, ^setpos_abs_top);
-        cc_setsize(stringwidth($string0, graphic_17809), calc(struct_param($struct3, param_3547) - struct_param($struct3, param_3548)), ^setsize_abs, ^setsize_abs);
+        cc_setsize(stringwidth($string0, $fontmetrics12), calc(struct_param($struct3, param_3547) - struct_param($struct3, param_3548)), ^setsize_abs, ^setsize_abs);
     } else if ($int10 = 2) {
         cc_setposition(struct_param($struct3, param_3554), struct_param($struct3, param_3548), ^setpos_abs_right, ^setpos_abs_top);
-        cc_setsize(stringwidth($string0, graphic_17809), calc(struct_param($struct3, param_3547) - struct_param($struct3, param_3548)), ^setsize_abs, ^setsize_abs);
+        cc_setsize(stringwidth($string0, $fontmetrics12), calc(struct_param($struct3, param_3547) - struct_param($struct3, param_3548)), ^setsize_abs, ^setsize_abs);
     }
 } else {
     if_setontimer("script9553($component0, $component1, $component2, $string0, $struct3)", $component1);
@@ -35,9 +44,9 @@ if (cc_find($component1, 3) = true) {
     if ($int10 = 1) {
         cc_setposition(struct_param($struct3, param_3552), struct_param($struct3, param_3556), ^setpos_abs_left, ^setpos_abs_top);
     } else if ($int10 = 0) {
-        cc_setposition(calc(struct_param($struct3, param_3552) + stringwidth($string0, graphic_17809)), struct_param($struct3, param_3556), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition(calc(struct_param($struct3, param_3552) + stringwidth($string0, $fontmetrics12)), struct_param($struct3, param_3556), ^setpos_abs_left, ^setpos_abs_top);
     } else if ($int10 = 2) {
-        cc_setposition(calc(struct_param($struct3, param_3554) + stringwidth($string0, graphic_17809)), struct_param($struct3, param_3556), ^setpos_abs_right, ^setpos_abs_top);
+        cc_setposition(calc(struct_param($struct3, param_3554) + stringwidth($string0, $fontmetrics12)), struct_param($struct3, param_3556), ^setpos_abs_right, ^setpos_abs_top);
     }
     cc_setsize(struct_param($struct3, param_3557), calc(struct_param($struct3, param_3547) - struct_param($struct3, param_3556)), ^setsize_abs, ^setsize_abs);
 }
@@ -47,24 +56,27 @@ if (cc_find($component1, 4) = true) {
         cc_setsize(struct_param($struct3, param_3558), calc(struct_param($struct3, param_3547) - struct_param($struct3, param_3556)), ^setsize_abs, ^setsize_abs);
     } else if ($int10 = 0) {
         cc_setposition(struct_param($struct3, param_3554), struct_param($struct3, param_3556), ^setpos_abs_right, ^setpos_abs_top);
-        cc_setsize(calc(struct_param($struct3, param_3557) + stringwidth($string0, graphic_17809) + struct_param($struct3, param_3552) + struct_param($struct3, param_3554)), calc(struct_param($struct3, param_3547) - struct_param($struct3, param_3556)), ^setsize_minus, ^setsize_abs);
+        cc_setsize(calc(struct_param($struct3, param_3557) + stringwidth($string0, $fontmetrics12) + struct_param($struct3, param_3552) + struct_param($struct3, param_3554)), calc(struct_param($struct3, param_3547) - struct_param($struct3, param_3556)), ^setsize_minus, ^setsize_abs);
     } else if ($int10 = 2) {
         cc_setposition(struct_param($struct3, param_3554), struct_param($struct3, param_3556), ^setpos_abs_right, ^setpos_abs_top);
-        cc_setsize(calc(struct_param($struct3, param_3557) + stringwidth($string0, graphic_17809) + struct_param($struct3, param_3552) + struct_param($struct3, param_3554)), calc(struct_param($struct3, param_3547) - struct_param($struct3, param_3556)), ^setsize_minus, ^setsize_abs);
+        cc_setsize(calc(struct_param($struct3, param_3557) + stringwidth($string0, $fontmetrics12) + struct_param($struct3, param_3552) + struct_param($struct3, param_3554)), calc(struct_param($struct3, param_3547) - struct_param($struct3, param_3556)), ^setsize_minus, ^setsize_abs);
     }
 }
 if (cc_find($component1, 14) = true) {
     if (compare($string0, "") = 0) {
         cc_sethide(true);
+        if ($int13 > 0) {
+            $int6 = $int11;
+        }
     } else {
         if ($int10 = 1) {
-            cc_setposition(0, struct_param($struct3, param_3652), ^setpos_abs_centre, ^setpos_abs_top);
+            cc_setposition(0, $int11, ^setpos_abs_centre, ^setpos_abs_top);
             cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
         } else if ($int10 = 0) {
-            cc_setposition(struct_param($struct3, param_3552), struct_param($struct3, param_3652), ^setpos_abs_left, ^setpos_abs_top);
+            cc_setposition(struct_param($struct3, param_3552), $int11, ^setpos_abs_left, ^setpos_abs_top);
             cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         } else if ($int10 = 2) {
-            cc_setposition(struct_param($struct3, param_3554), struct_param($struct3, param_3652), ^setpos_abs_right, ^setpos_abs_top);
+            cc_setposition(struct_param($struct3, param_3554), $int11, ^setpos_abs_right, ^setpos_abs_top);
             cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
         }
         cc_settext($string0);

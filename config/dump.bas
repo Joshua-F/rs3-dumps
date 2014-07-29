@@ -18028,3 +18028,26 @@ runanim_b=seq_24068
 hillrotate=32,32
 readyanim=seq_24063,seq_24064
 
+// 3197
+[bas_3197]
+readyanim=null,null
+randomreadyanim=seq_24058,100
+randomreadyanim=seq_24059,20
+
+// 3198
+[bas_3198]
+walkanim_b=seq_24097
+walkanim_l=seq_24093
+walkanim_r=seq_24093
+walkturn_l=seq_24093
+walkturn_r=seq_24093
+runanim=seq_24091
+runanim_b=seq_24098
+hillrotate=32,32
+readyanim=seq_24089,seq_24090
+
+// 3199
+[bas_3199]
+walkanim_b=seq_24116
+readyanim=seq_24116,seq_24116
+

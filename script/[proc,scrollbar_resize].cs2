@@ -5,19 +5,20 @@ if ($struct3 = null) {
     $struct3 = struct_28551;
 }
 def_int $int4 = if_getscrollheight($component1);
-def_int $int5 = if_getheight($component0);
-def_int $int6 = calc($int5 - 32);
-def_int $int7 = 0;
+def_int $int5 = if_getheight($component1);
+def_int $int6 = if_getheight($component0);
+def_int $int7 = calc($int6 - 32);
+def_int $int8 = 0;
 if ($int4 > 0) {
-    $int7 = calc($int6 * $int5 / $int4);
+    $int8 = min(scale($int5, $int4, $int7), $int7);
 } else {
-    $int7 = $int6;
+    $int8 = $int7;
 }
-$int7 = max($int7, struct_param($struct3, param_4406));
+$int8 = max($int8, struct_param($struct3, param_4406));
 if (struct_param($struct3, param_4407) ! -1) {
-    $int7 = min($int7, struct_param($struct3, param_4407));
+    $int8 = min($int8, struct_param($struct3, param_4407));
 }
 if (cc_find($component0, 1) = true) {
-    cc_setsize(16, $int7, ^setsize_abs, ^setsize_abs);
+    cc_setsize(16, $int8, ^setsize_abs, ^setsize_abs);
     ~scrollbar_vertical_doscroll($component0, $component1, $int2, true);
 }

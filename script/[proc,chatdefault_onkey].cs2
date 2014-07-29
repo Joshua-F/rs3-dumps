@@ -36,6 +36,7 @@ def_int $int11 = -1;
 def_int $int12 = -1;
 def_int $int13 = -1;
 def_int $int14 = -1;
+def_int $int15 = -1;
 switch_int ($key0) {
     case ^key_f9 :
         if (~script8627($int2) ! null) {
@@ -135,7 +136,7 @@ switch_int ($key0) {
                 ~quickchat_open(10, "", $int2);
             }
             $int5 = ~script8519(~script8521($int2));
-            if ($int5 ! -1) {
+            if ($int5 ! -1 & $int2 ! 25) {
                 %varclient_1028 = string_length(~script8521($int2));
                 ~script8522($int2, "");
                 ~script8514($int2, $int5);
@@ -177,6 +178,8 @@ switch_int ($key0) {
                 if ($int6 ! -1 & string_length(~script8521($int2)) > 0) {
                     if ($int6 = 4) {
                         chat_sendprivate(%varclient_2367, ~script8521($int2));
+                    } else if ($int6 = 6) {
+                        $int15 = ttv_chat_sendmessage(~script8521($int2));
                     } else {
                         chat_setmode($int6);
                         chat_sendpublic(~script8521($int2));
