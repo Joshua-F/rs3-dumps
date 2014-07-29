@@ -1,0 +1,69 @@
+// 10130
+[proc,script10130]
+def_int $int0 = -1;
+def_string $string0 = "";
+def_string $string1 = "";
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = -1;
+def_int $int4 = -1;
+def_int $int5 = -1;
+def_int $int6 = -1;
+def_int $int7 = -1;
+if (string_length(%varclient_4289) < 1) {
+    %varclient_4289 = "Broadcast Title";
+}
+if_settext(%varclient_4289, interface_232:com_117);
+%varclient_4290 = string_length(%varclient_4289);
+~script10121(interface_232:com_117, null, null, interface_232:com_116);
+~script10132(interface_232:com_153);
+~script10132(interface_232:com_193);
+if (%varclientbit_23068 > 0) {
+    if_sethide(false, interface_232:com_124);
+    if_sethide(true, interface_232:com_126);
+    if (%varclientbit_23079 > 0) {
+        if_sethide(false, interface_232:com_125);
+    } else {
+        if_sethide(true, interface_232:com_125);
+    }
+} else {
+    if_sethide(true, interface_232:com_124);
+    if_sethide(false, interface_232:com_126);
+    if (%varclientbit_23079 > 0) {
+        if_sethide(false, interface_232:com_127);
+    } else {
+        if_sethide(true, interface_232:com_127);
+    }
+}
+if (string_length(%varclient_4291) > 0) {
+    if_sethide(false, interface_232:com_138);
+    $int0, $string0, $string1 = ttv_webcam_getdevice_byuniquename(%varclient_4291);
+    if ($int0 ! -1) {
+        $int3, $int4, $int5, $int6, $int7 = ttv_webcam_getcap_byuniqueid($int0, %varclient_4292);
+        if_settext($string1, interface_232:com_132);
+        if_sethide(true, interface_232:com_139);
+        if_sethide(false, interface_232:com_130);
+        if_settext("<tostring($int5)> x <tostring($int6)>, framerate: <tostring($int7)>", interface_232:com_136);
+        $int2 = ttv_webcam_getdevice_count;
+        if ($int2 > 1) {
+            if_sethide(false, interface_232:com_133);
+            if_sethide(false, interface_232:com_134);
+        } else {
+            if_sethide(true, interface_232:com_133);
+            if_sethide(true, interface_232:com_134);
+        }
+    }
+}
+if (%varclientbit_23069 > 0) {
+    if_sethide(false, interface_232:com_130);
+    if_sethide(true, interface_232:com_140);
+    if_sethide(false, interface_232:com_138);
+} else {
+    if_sethide(true, interface_232:com_130);
+    if_sethide(false, interface_232:com_140);
+    if_sethide(true, interface_232:com_138);
+}
+if (%varclientbit_23079 > 0) {
+    if_settext("Stop Broadcast", interface_232:com_152);
+}
+~script7698;

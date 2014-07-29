@@ -1,23 +1,26 @@
 // 3066
-[proc,script3066](int $int0, int $int1, component $component2, component $component3, int $int4)
+[proc,script3066](int $int0, int $int1, component $component2, component $component3, component $component4, int $int5)
+def_string $string0 = "";
 if ($int0 > 0) {
-    if_setgraphic(graphic_4661, $component2);
-    if_settext(tostring($int0), $component3);
-    if ($int4 = 1) {
+    $string0 = "Click here to login to your favourite world";
+    if_sethide(true, $component3);
+    if_setonmouserepeat(null, $component3);
+    if_settext(tostring($int0), $component4);
+    if ($int5 = 1) {
         if_setop(1, "Click Here To Play", $component2);
-        if_setonop("script3067($int1)", $component2);
+        if_setop(2, "Remove", $component2);
+        if_setonop("script3067(event_op, $int1)", $component2);
     } else {
         if_clearops($component2);
         if_setonop(null, $component2);
     }
-    if_setonmouseover("script3068($component2)", $component2);
-    if_setonmouseleave("script3069($component2)", $component2);
+    if_setonmouserepeat("script8799($string0, event_com, -1)", $component2);
 } else {
-    if_setgraphic(graphic_4660, $component2);
-    if_settext("", $component3);
-    if_setonmouseover(null, $component2);
-    if_setonmouseleave(null, $component2);
+    $string0 = "Your selected favourite worlds";
+    if_sethide(false, $component3);
+    if_setonmouserepeat("script8799($string0, event_com, -1)", $component3);
+    if_settext("-", $component4);
+    if_setonmouserepeat(null, $component2);
     if_setonop(null, $component2);
     if_clearops($component2);
 }
-return;

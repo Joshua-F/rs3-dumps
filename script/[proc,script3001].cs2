@@ -1,40 +1,47 @@
 // 3001
 [proc,script3001]
+def_string $string0 = "Membership";
+def_string $string1 = "";
+def_string $string2 = "";
 def_boolean $boolean0 = false;
 def_int $int1 = 0;
 def_int $int2 = 0;
-def_string $string0 = "";
+def_string $string3 = "";
 def_int $int3 = 0;
 def_int $int4 = 0;
 def_int $int5 = 0;
-def_string $string1 = "";
-def_string $string2 = "";
-def_string $string3 = "";
+def_string $string4 = "";
+def_string $string5 = "";
+def_string $string6 = "";
 $int1, $int2, $boolean0 = userdetail_lobby_membership;
 if ($boolean0 = false & playermember = true) {
-    $string0 = format_datetime_from_minutes($int1);
+    $string3 = format_datetime_from_minutes($int1);
     $int3 = calc($int2 / 1440);
     $int4 = calc($int2 % 1440 / 60);
     $int5 = calc($int2 % 60);
     if (calc($int3 + $int4 + $int5) ! 0) {
-        $string1 = " (in <~date_tostring($int3, $int4, $int5)>)";
+        $string4 = " (in <~date_tostring($int3, $int4, $int5)>)";
     }
-    $string2 = "Your membership will expire on <$string0><$string1>. Renew now to avoid losing member status. Click <col=0166ff><u=0166ff>here</u></col> to renew.";
-    $string3 = "Your membership will expire on <$string0><$string1>. Renew now to avoid losing member status. Click <col=0296fe><u=0296fe>here</u></col> to renew.";
-    if_settext($string2, interface_907:com_55);
-    if_setonmouseover("text_swapper(event_com, $string3)", interface_907:com_55);
-    if_setonmouseleave("text_swapper(event_com, $string2)", interface_907:com_55);
+    $string1 = "Expires <$string3>";
+    if_settext("Expires <$string3>", interface_907:com_95);
+    $string2 = "Your membership will expire on <$string3><$string4>. Renew now to avoid losing member status. Click here to renew.";
+    $string5 = "Your membership will expire on <$string3><$string4>. Renew now to avoid losing member status. Click <col=0166ff><u=0166ff>here</u></col> to renew.";
+    $string6 = "Your membership will expire on <$string3><$string4>. Renew now to avoid losing member status. Click <col=0296fe><u=0296fe>here</u></col> to renew.";
+    if_settext($string5, interface_907:com_96);
+    if_setonmouseover("text_swapper(event_com, $string6)", interface_907:com_96);
+    if_setonmouseleave("text_swapper(event_com, $string5)", interface_907:com_96);
+    ~script10059($string0, $string1, $string2, interface_907:com_150);
 }
 def_int $int6 = userdetail_lobby_lastloginday;
 if ($int6 = 0) {
-    if_settext("Welcome to RuneScape!", interface_907:com_1);
+    if_settext("Welcome to RuneScape!", interface_907:com_22);
     return;
 }
 def_int $int7 = calc(date_runeday - $int6);
 if ($int7 < 1) {
-    if_settext("You last logged in earlier today.", interface_907:com_1);
+    if_settext("You last logged in earlier today.", interface_907:com_22);
 } else if ($int7 = 1) {
-    if_settext("You last logged in yesterday.", interface_907:com_1);
+    if_settext("You last logged in yesterday.", interface_907:com_22);
 } else {
-    if_settext("You last logged in <tostring($int7)> days ago.", interface_907:com_1);
+    if_settext("You last logged in <tostring($int7)> days ago.", interface_907:com_22);
 }

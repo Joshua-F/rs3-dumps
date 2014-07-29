@@ -9,16 +9,27 @@ def_int $int8 = 0;
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
+def_int $int12 = 0;
 if (%varplayerbit_22872 = 0 | $int2 = 1 | $int0 = 1019) {
-    $int3, $int4, $int5, $int6, $int7, $int8, $int9, $int10, $int11 = ~script8546($int0);
+    $int3, $int4, $int5, $int6, $int7, $int8, $int9, $int10, $int11, $int12 = ~script8546($int0);
 } else {
-    $int3, $int4, $int5, $int6, $int7, $int8, $int9, $int10, $int11 = ~script9910;
+    $int3, $int4, $int5, $int6, $int7, $int8, $int9, $int10, $int11, $int12 = ~script9910;
 }
 switch_int ($int1) {
-    case 120, 115, 127 :
+    case 120 :
         return(1);
-    case 125 :
-        return($int11);
+    case 115 :
+        if ($int0 ! 1019) {
+            return(1);
+        } else {
+            return(0);
+        }
+    case 125, 127 :
+        if ($int0 ! 1019) {
+            return($int11);
+        } else {
+            return(0);
+        }
     case 0, 4, 27, 28, 29, 109, 110, 26, 117, 126, 124, 123, 122, 121 :
         return($int3);
     case 1 :
@@ -49,6 +60,14 @@ switch_int ($int1) {
                 return(1);
             case default :
                 return($int7);
+        }
+    case 32 :
+        if (%varplayerbit_22872 = 0 & $int0 = 25) {
+            return($int12);
+        } else if (%varplayerbit_22872 = 1 & %varplayerbit_22846 = 14 & $int0 ! 1019) {
+            return($int12);
+        } else {
+            return(0);
         }
     case 3, 5, 18, 6, 19, 30, 31 :
         if (%varplayerbit_22872 = 1 & $int0 = 18 & %varplayerbit_22846 = 0 & %varplayerbit_20187 = 1) {

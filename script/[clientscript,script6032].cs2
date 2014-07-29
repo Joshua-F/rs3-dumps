@@ -1,11 +1,16 @@
 // 6032
-[clientscript,script6032]
+[clientscript,script6032](int $int0)
 if (clientclock < calc(%varclient_1795 + 200)) {
     return;
 } else {
-    if_setontimer(null, interface_906:com_241);
-    if_setonvartransmit("script5951{varplayer_1751}", interface_906:com_241);
+    if_setontimer(null, interface_906:com_171);
+    if_setonvartransmit("script5951{varplayer_1751}", interface_906:com_171);
     ~lobby_popup_close;
-    ~lobby_popup(-3, 0, "After you have completed your transaction, click continue to return to the game.", 0, "loadingwheel,14", 0, -1, "", "", 1, "Continue", "Continue");
-    if_setonop("lobbyscreen_billing_login", interface_906:com_545);
+    if ($int0 = 1) {
+        ~lobby_popup(-3, 0, "After you have completed your transaction, click continue to return to the game.", 0, "loadingwheel,14", 0, -1, "", "", 1, "Continue", "Continue");
+        if_setonop("lobbyscreen_billing_login", interface_906:com_472);
+    } else {
+        ~lobby_popup(-3, 0, "Click continue when you have completed your transaction.", 0, "loadingwheel,14", 0, -1, "", "", 1, "Continue", "Continue");
+        if_setonop("lobby_popup_close", interface_906:com_472);
+    }
 }

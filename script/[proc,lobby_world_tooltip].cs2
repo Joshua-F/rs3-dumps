@@ -1,0 +1,44 @@
+// 10064
+[proc,lobby_world_tooltip]
+if (%varclient_4271 ! 1) {
+    if (worldlist_fetch = false) {
+        return;
+    } else {
+        %varclient_4271 = 1;
+    }
+}
+def_component $component0 = interface_1486:com_25;
+def_int $int1 = cc_param(param_4261);
+def_int $int2 = 0;
+def_string $string0 = "";
+def_int $int3 = 0;
+def_string $string1 = "";
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_string $string2 = "";
+$int2, $string0, $int3, $string1, $int4, $int5, $string2 = worldlist_specific($int1);
+def_graphic $graphic6 = null;
+def_string $string3 = "";
+def_int $int7 = -1;
+def_int $rgb8 = null;
+def_graphic $graphic9 = null;
+def_int $rgb10 = null;
+def_graphic $graphic11 = null;
+def_string $string4 = "";
+def_string $string5 = "";
+$graphic6, $string3, $int7, $rgb8, $graphic9, $rgb10, $graphic11, $string4, $string5 = ~script3117($int1, $int2, 0, $string0, $string1, $int4, $int3);
+def_int $int12 = 0;
+def_int $int13 = 490;
+cc_create($component0, ^iftype_graphic, $int12);
+cc_setsize(24, 12, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_setgraphic($graphic6);
+$int12 = calc($int12 + 1);
+.cc_create($component0, ^iftype_text, $int12);
+.cc_setposition(calc(cc_getwidth + 2), 0, ^setpos_abs_left, ^setpos_abs_centre);
+.cc_setsize(parawidth($string3, $int13, graphic_20452), ~script7593($string3, $int13, graphic_20452, 0), ^setsize_abs, ^setsize_abs);
+.cc_settext($string3);
+.cc_settextfont(graphic_20452);
+.cc_setcolour($rgb8);
+.cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+if_setsize(calc(.cc_getx + .cc_getwidth), max(cc_getheight, .cc_getheight), ^setsize_abs, ^setsize_abs, $component0);
