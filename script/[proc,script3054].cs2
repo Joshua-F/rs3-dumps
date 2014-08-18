@@ -54,26 +54,31 @@ while ($int4 < 100 & $chattype5 ! null) {
 }
 %varclient_2835 = $int3;
 def_int $int10 = calc(if_getheight(interface_909:com_36) / 15);
+def_int $int11 = calc(if_getheight(interface_909:com_36) % 15);
 $int4 = 0;
-def_int $int11 = 0;
-if ($int1 < $int10) {
-    $int11 = calc($int10 - $int1);
-    while ($int4 < $int11) {
+def_int $int12 = 0;
+if ($int1 <= $int10) {
+    $int12 = calc($int10 - $int1);
+    while ($int4 < $int12) {
         $int1 = ~script3055($int1, "", 0, "", "", ^chattype_gamemessage);
         $int4 = calc($int4 + 1);
     }
-}
-def_int $int12 = 0;
-def_int $int13 = 0;
-while ($int13 <= $int1) {
-    if (.cc_find(interface_909:com_36, $int13) = true) {
-        $int12 = calc($int12 + .cc_getheight);
+    if ($int11 > 0) {
+        $int1 = ~script3055($int1, "", 0, "", "", ^chattype_gamemessage);
+        cc_setsize(0, $int11, ^setsize_minus, ^setsize_abs);
     }
-    $int13 = calc($int13 + 1);
 }
-def_int $int14 = max($int12, calc($int10 * 15));
-if ($int14 > if_getheight(interface_909:com_36)) {
-    if_setscrollsize(0, $int14, interface_909:com_36);
+def_int $int13 = 0;
+def_int $int14 = 0;
+while ($int14 <= $int1) {
+    if (.cc_find(interface_909:com_36, $int14) = true) {
+        $int13 = calc($int13 + .cc_getheight);
+    }
+    $int14 = calc($int14 + 1);
+}
+def_int $int15 = max($int13, calc($int10 * 15));
+if ($int15 > if_getheight(interface_909:com_36)) {
+    if_setscrollsize(0, $int15, interface_909:com_36);
     ~scrollbar_resize(interface_909:com_37, interface_909:com_36, calc(%varclient_1122 + if_getscrollheight(interface_909:com_36) - %varclient_1123));
 } else {
     if_setscrollsize(0, 0, interface_909:com_36);

@@ -1,6 +1,8 @@
 // 10135
 [clientscript,twitch_checkbox_toggle](component $component0, component $component1)
-if (%varclientbit_23079 = 1 & $component0 ! interface_232:com_138) {
+def_boolean $boolean2 = false;
+def_boolean $boolean3 = false;
+if (%varclientbit_23079 = 1 & $component0 ! interface_232:com_138 & $component0 ! interface_232:com_210 & $component0 ! interface_232:com_214) {
     mes("You can't change that while your broadcast is active");
     sound_vorbis_volume(sound_10046, 1, 0, 150);
     return;
@@ -25,6 +27,18 @@ if (if_gethide($component0) = true) {
             mes("No webcam detected. If you connect a webcam you must log out and back in to Twitch to detect it.");
             if_sethide(false, interface_232:com_139);
         }
+    } else if ($component0 = interface_232:com_210) {
+        %varclientbit_23249 = 1;
+        if (%varclientbit_23250 > 0) {
+            $boolean3 = true;
+        }
+        ttv_webcam_flip($boolean3, true);
+    } else if ($component0 = interface_232:com_214) {
+        %varclientbit_23250 = 1;
+        if (%varclientbit_23249 > 0) {
+            $boolean2 = true;
+        }
+        ttv_webcam_flip(true, $boolean2);
     }
 } else {
     sound_vorbis_volume(sound_36961, 1, 0, 100);
@@ -36,6 +50,18 @@ if (if_gethide($component0) = true) {
         %varclientbit_23069 = 0;
         if_sethide(true, interface_232:com_130);
         ~script10150(0);
+    } else if ($component0 = interface_232:com_210) {
+        %varclientbit_23249 = 0;
+        if (%varclientbit_23250 > 0) {
+            $boolean3 = true;
+        }
+        ttv_webcam_flip($boolean3, false);
+    } else if ($component0 = interface_232:com_214) {
+        %varclientbit_23250 = 0;
+        if (%varclientbit_23249 > 0) {
+            $boolean2 = true;
+        }
+        ttv_webcam_flip(false, $boolean2);
     }
 }
 ~script7698;

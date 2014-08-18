@@ -1,0 +1,40 @@
+// 10198
+[proc,script10198](component $component0, component $component1, component $component2, int $int3, string $string0, string $string1, graphic $graphic4)
+if_setsize(20, 39, ^setsize_minus, ^setsize_abs, $component0);
+if_setposition(10, calc(10 + $int3 * 40), ^setpos_abs_left, ^setpos_abs_top, $component0);
+if_sethide(false, $component0);
+if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component1);
+if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component1);
+if_sethide(false, $component1);
+cc_deleteall($component1);
+def_int $int5 = 0;
+cc_create($component1, ^iftype_rectangle, $int5);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setfill(true);
+if (calc($int3 % 2) = 1) {
+    ~script10009(struct_28680);
+} else {
+    ~script10009(struct_28679);
+}
+$int5 = calc($int5 + 1);
+def_int $int6 = 0;
+def_int $int7 = 0;
+if ($graphic4 ! null) {
+    cc_create($component1, ^iftype_graphic, $int5);
+    cc_setgraphic($graphic4);
+    $int6, $int7 = cc_getgraphicdimensions;
+    cc_setsize($int6, $int7, ^setsize_abs, ^setsize_abs);
+    cc_setposition(5, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    $int5 = calc($int5 + 1);
+    $int6 = calc($int6 + 10);
+}
+cc_create($component1, ^iftype_text, $int5);
+cc_settext($string0);
+cc_settextfont(graphic_20452);
+cc_setcolour(^white);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 13);
+cc_setsize(calc(if_getwidth($component2) + $int6 + 20), 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(calc($int6 + 5), 0, ^setpos_abs_left, ^setpos_abs_centre);
+$int5 = calc($int5 + 1);
+if_settext($string1, $component2);

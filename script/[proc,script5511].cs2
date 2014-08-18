@@ -1,0 +1,113 @@
+// 5511
+[proc,script5511]
+def_int $int0 = 0;
+def_string $string0 = "";
+def_int $int1 = 0;
+def_component $component2 = null;
+def_int $int3 = 0;
+def_int $int4 = 0;
+while ($int0 < 25) {
+    switch_int ($int0) {
+        case 0 :
+            $string0 = "Aberrant spectres";
+            $int1 = %varplayerbit_22924;
+        case 1 :
+            $string0 = "Abyssal demons";
+            $int1 = %varplayerbit_22935;
+        case 2 :
+            $string0 = "Airut";
+            $int1 = %varplayerbit_22937;
+        case 3 :
+            $string0 = "Aquanites";
+            $int1 = %varplayerbit_22929;
+        case 4 :
+            $string0 = "Ascension creatures";
+            $int1 = %varplayerbit_22932;
+        case 5 :
+            $string0 = "Automatons";
+            $int1 = %varplayerbit_22926;
+        case 6 :
+            $string0 = "Bloodvelds";
+            $int1 = %varplayerbit_22922;
+        case 7 :
+            $string0 = "Dark beasts";
+            $int1 = %varplayerbit_22936;
+        case 8 :
+            $string0 = "Desert strykewyrms";
+            $int1 = %varplayerbit_22945;
+        case 9 :
+            $string0 = "Dust devils";
+            $int1 = %varplayerbit_22925;
+        case 10 :
+            $string0 = "Jungle strykewyrms";
+            $int1 = %varplayerbit_22928;
+        case 11 :
+            $string0 = "Gargoyles";
+            $int1 = %varplayerbit_22942;
+        case 12 :
+            $string0 = "Glacors";
+            $int1 = %varplayerbit_22940;
+        case 13 :
+            $string0 = "Ice strykewyrms";
+            $int1 = %varplayerbit_22938;
+        case 14 :
+            $string0 = "Kal'gerion demons";
+            $int1 = %varplayerbit_22939;
+        case 15 :
+            $string0 = "Muspah";
+            $int1 = %varplayerbit_22943;
+        case 16 :
+            $string0 = "Mutated jadinkos";
+            $int1 = %varplayerbit_22931;
+        case 17 :
+            $string0 = "Nechryael";
+            $int1 = %varplayerbit_22930;
+        case 18 :
+            $string0 = "Nihil";
+            $int1 = %varplayerbit_22944;
+        case 19 :
+            $string0 = "Polypore creatures";
+            $int1 = %varplayerbit_22933;
+        case 20 :
+            $string0 = "Skeletal wyverns";
+            $int1 = %varplayerbit_22927;
+        case 21 :
+            $string0 = "Spiritual mages";
+            $int1 = %varplayerbit_22934;
+        case 22 :
+            $string0 = "Terror dogs";
+            $int1 = %varplayerbit_22921;
+        case 23 :
+            $string0 = "Tormented demons";
+            $int1 = %varplayerbit_22941;
+        case 24 :
+            $string0 = "Warped tortoises";
+            $int1 = %varplayerbit_22923;
+    }
+    switch_int (calc($int0 % 2)) {
+        case 0 :
+            $component2 = interface_753:com_30;
+        case 1 :
+            $component2 = interface_753:com_32;
+    }
+    if ($int0 > 0 & calc($int0 % 2) = 0) {
+        $int3 = calc($int3 + 25 + 4);
+        $int4 = calc($int4 + 1);
+    }
+    ~script5512($component2, $int3, calc($int4 % 2));
+    cc_create($component2, ^iftype_text, if_getnextsubid($component2));
+    cc_setsize(10, 25, ^setsize_minus, ^setsize_abs);
+    cc_setposition(5, $int3, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settext($string0);
+    cc_settextfont(graphic_17813);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_setcolour(~rgb_to_hex(117, 146, 160));
+    cc_create($component2, ^iftype_text, if_getnextsubid($component2));
+    cc_setsize(10, 25, ^setsize_minus, ^setsize_abs);
+    cc_setposition(5, $int3, ^setpos_abs_right, ^setpos_abs_top);
+    cc_settext(tostring($int1));
+    cc_settextfont(graphic_17813);
+    cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+    cc_setcolour(~rgb_to_hex(117, 146, 160));
+    $int0 = calc($int0 + 1);
+}

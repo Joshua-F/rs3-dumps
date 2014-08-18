@@ -1,0 +1,278 @@
+// 3869
+[clientscript,script3869]
+if_settext(struct_param(%varclient_4485, param_1348), interface_753:com_21);
+if_settext("Recommended Combat Level: <col=ffffff><tostring(struct_param(%varclient_4485, param_1353))></col>", interface_753:com_23);
+if_settext("Recommended Group Size: <col=ffffff><tostring(struct_param(%varclient_4485, param_2237))></col>", interface_753:com_36);
+if_settext(struct_param(%varclient_4485, param_1349), interface_753:com_37);
+cc_deleteall(interface_753:com_10);
+def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_struct $struct6 = null;
+def_graphic $graphic7 = null;
+def_string $string0 = "";
+def_int $int8 = 1;
+def_obj $obj9 = null;
+while ($int2 < 12) {
+    $int8, $graphic7, $struct6 = 1, null, null;
+    switch_int ($int2) {
+        case 0 :
+            $int3, $int4 = struct_param(%varclient_4485, param_1294), struct_param(%varclient_4485, param_1295);
+        case 1 :
+            $int3, $int4 = struct_param(%varclient_4485, param_1296), struct_param(%varclient_4485, param_1297);
+        case 2 :
+            $int3, $int4 = struct_param(%varclient_4485, param_1298), struct_param(%varclient_4485, param_1299);
+        case 3 :
+            $int3, $int4 = struct_param(%varclient_4485, param_1300), struct_param(%varclient_4485, param_1301);
+        case 4 :
+            $int3, $int4 = struct_param(%varclient_4485, param_1302), struct_param(%varclient_4485, param_1303);
+        case 5 :
+            $int3, $int4 = struct_param(%varclient_4485, param_1304), struct_param(%varclient_4485, param_1305);
+        case 6 :
+            $int3, $int4 = struct_param(%varclient_4485, param_1306), struct_param(%varclient_4485, param_1307);
+        case 7 :
+            $int3, $int4 = struct_param(%varclient_4485, param_1308), struct_param(%varclient_4485, param_1309);
+        case 8 :
+            $int3, $int4 = struct_param(%varclient_4485, param_1310), struct_param(%varclient_4485, param_1311);
+        case 9 :
+            $int3, $int4 = struct_param(%varclient_4485, param_1312), struct_param(%varclient_4485, param_1313);
+        case 10 :
+            $int3, $int4 = struct_param(%varclient_4485, param_2227), struct_param(%varclient_4485, param_2228);
+        case 11 :
+            $int3, $int4 = struct_param(%varclient_4485, param_2229), struct_param(%varclient_4485, param_2230);
+    }
+    if ($int3 > 0 & $int3 < 60) {
+        $graphic7, $string0 = enum(int, graphic, enum_8548, $int3), "You need level <tostring($int4)> <enum(int, string, enum_108, $int3)>.";
+        if (stat_base(enum(int, stat, enum_681, $int3)) < $int4) {
+            $int8 = 0;
+        }
+    } else if ($int3 = 60) {
+        $struct6 = ~task_get_data($int4);
+        if ($struct6 ! null) {
+            if (struct_param($struct6, param_1270) ! 4094) {
+                $graphic7 = struct_param(enum(int, struct, enum_2252, struct_param($struct6, param_1270)), param_952);
+            } else {
+                $graphic7 = struct_param($struct6, param_1271);
+            }
+            $string0 = "You must have completed the task: '<struct_param($struct6, param_1266)>'.";
+            if (~task_get_progress(struct_param($struct6, param_1268)) ! 2) {
+                $int8 = 0;
+            }
+            $struct6 = null;
+        }
+    } else if ($int3 = 61) {
+        $graphic7 = struct_param(enum(int, struct, enum_2252, $int4), param_952);
+        $string0 = "You must have completed the quest: '<struct_param(enum(int, struct, enum_2252, $int4), param_845)>'";
+        if (%varclient_4485 = struct_28641) {
+            $string0 = append(append("Optional requirement: ", $string0), " to face Akrisae.");
+        } else {
+            $string0 = append($string0, ".");
+        }
+        if (~ql4_getquestcomplete($int4) = false) {
+            $int8 = 0;
+        }
+    } else if ($int3 = 62) {
+        switch_int ($int4) {
+            case 1 :
+                $graphic7 = rs3_highscores_wilderness_pvp_icon;
+                $string0 = "This boss is located in the Wilderness.";
+            case 2 :
+                $graphic7, $string0 = "challenge_skill_icons_35px,26", "You need level <tostring(60)> in Strength or Agility to enter the Godwars Dungeon.";
+                if (stat_base(strength) < 60 & stat_base(agility) < 60) {
+                    $int8 = 0;
+                }
+        }
+    }
+    if ($int3 = 0) {
+        $int2 = 12;
+    } else {
+        $int2 = calc($int2 + 1);
+    }
+    if ($graphic7 ! null) {
+        $int0, $int1 = ~bslay_req_add($int8, $obj9, $graphic7, $string0, $int0, $int1);
+    }
+}
+if (%varclient_4485 = struct_28656) {
+    $obj9, $string0 = obj_20120, "You must own a frozen key which has charges remaining.";
+} else if (%varclient_4485 = struct_28642) {
+    $obj9, $string0 = obj_30004, "You must own a Barrows totem.";
+} else if (%varclient_4485 = struct_28655) {
+    $string0 = "You must own an Ascension Keystone Primus to enter Laboratory Primus.";
+    $string0 = append($string0, "<br>You must own an Ascension Keystone Secundus to enter Laboratory Secundus.");
+    $string0 = append($string0, "<br>You must own an Ascension Keystone Tertius to enter Laboratory Tertius.");
+    $string0 = append($string0, "<br>You must own an Ascension Keystone Quartus to enter Laboratory Quartus.");
+    $string0 = append($string0, "<br>You must own an Ascension Keystone Quintus to enter Laboratory Quintus.");
+    $string0 = append($string0, "<br>You must own an Ascension Keystone Sextus to enter Laboratory Sextus.");
+    if (~obj_gettotal(obj_28445) > 0 | ~obj_gettotal(obj_28447) > 0 | ~obj_gettotal(obj_28449) > 0 | ~obj_gettotal(obj_28451) > 0 | ~obj_gettotal(obj_28453) > 0 | ~obj_gettotal(obj_28455) > 0) {
+        $int8 = 1;
+    } else {
+        $int8 = 0;
+    }
+    $int0, $int1 = ~bslay_req_add($int8, obj_28445, null, $string0, $int0, $int1);
+    $obj9 = null;
+} else if (%varclient_4485 = struct_28649) {
+    $obj9, $string0 = obj_6570, "You must have previously sacrificed a fire cape.";
+}
+if ($obj9 ! null) {
+    if (~obj_gettotal($obj9) > 0 | %varclient_4485 = struct_28649 & %varplayerbit_3910 = 1) {
+        $int8 = 1;
+    } else {
+        $int8 = 0;
+    }
+    $int0, $int1 = ~bslay_req_add($int8, $obj9, null, $string0, $int0, $int1);
+}
+cc_deleteall(interface_753:com_11);
+if_setscrollpos(0, 0, interface_753:com_10);
+if ($int1 > 0) {
+    if_setscrollsize(0, calc($int1 + 36), interface_753:com_10);
+    ~scrollbar_vertical(interface_753:com_11, interface_753:com_10, "task_scrollbar_dragger,3", "task_scrollbar_dragger,0", "task_scrollbar_dragger,1", "task_scrollbar_dragger,2", "task_scrollbar,1", "task_scrollbar,0");
+}
+if (if_getnextsubid(interface_753:com_10) = 0) {
+    cc_create(interface_753:com_10, ^iftype_text, if_getnextsubid(interface_753:com_10));
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_settext("NONE");
+    cc_settextfont(graphic_17813);
+    cc_setcolour(~rgb_to_hex(117, 146, 160));
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+}
+if (struct_param(%varclient_4485, param_3038) ! null) {
+    if_setgraphic(struct_param(%varclient_4485, param_3038), interface_753:com_39);
+} else {
+    if_setgraphic(null, interface_753:com_39);
+}
+if_setnpcmodel(struct_param(%varclient_4485, param_1347), interface_753:com_40);
+if_setmodelanim(bas_getanim_ready(%varclient_4484), interface_753:com_40);
+if_setmodelangle(0, struct_param(%varclient_4485, param_3041), 0, 0, 0, struct_param(%varclient_4485, param_3040), interface_753:com_40);
+if_settext("Combat Level: <col=ffffff><tostring(struct_param(%varclient_4485, param_2238))></col>", interface_753:com_38);
+def_string $string1 = "You have not set a fastest time for this boss.";
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+$int10, $int11, $int12 = ~script4705(%varclient_4488);
+def_string $string2 = tostring($int10);
+def_string $string3 = tostring($int11);
+def_string $string4 = tostring($int12);
+if ($int10 < 10) {
+    $string2 = "0<tostring($int10)>";
+}
+if ($int11 < 10) {
+    $string3 = "0<tostring($int11)>";
+}
+if ($int12 < 10) {
+    $string4 = "0<tostring($int12)>";
+}
+if (%varclient_4488 > 0) {
+    $string1 = "Fastest kill: <$string2>:<$string3>:<$string4>";
+}
+$int10, $int11, $int12 = ~script4705(%varclient_4489);
+if ($int10 < 10) {
+    $string2 = "0<tostring($int10)>";
+}
+if ($int11 < 10) {
+    $string3 = "0<tostring($int11)>";
+}
+if ($int12 < 10) {
+    $string4 = "0<tostring($int12)>";
+}
+if (%varclient_4489 > -1 & %varclient_4489 > 0) {
+    $string1 = append($string1, "<br>Fastest hardmode kill: <$string2>:<$string3>:<$string4>");
+} else if (%varclient_4489 > -1) {
+    $string1 = append($string1, "<br>You have not set a fastest time for this boss in hard mode.");
+}
+if_setonmouserepeat("script8799($string1, interface_753:com_43, -1)", interface_753:com_22);
+if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_753:com_22);
+if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre, interface_753:com_43);
+if_sethide(true, interface_753:com_44);
+if (%varclient_4486 = 60000) {
+    $string1 = "Total kills: <col=ff0000>Lots!</col>";
+} else {
+    $string1 = "Total kills: <tostring(%varclient_4486)>";
+}
+if_setonmouserepeat("script8799($string1, interface_753:com_43, -1)", interface_753:com_43);
+if (%varclient_4487 ! -1) {
+    if (%varclient_4487 = 60000) {
+        $string1 = "Total hard mode kills: <col=ff0000>Lots</col>";
+    } else {
+        $string1 = "Total hard mode kills: <tostring(%varclient_4487)>";
+    }
+    if_setonmouserepeat("script8799($string1, interface_753:com_43, -1)", interface_753:com_44);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre, interface_753:com_22);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_753:com_43);
+    if_sethide(false, interface_753:com_44);
+}
+def_component $component13 = interface_753:com_46;
+def_component $component14 = interface_753:com_47;
+def_int $int15 = 0;
+def_enum $enum16 = struct_param(%varclient_4485, param_3039);
+def_int $int17 = 0;
+cc_deleteall($component13);
+def_int $int18 = 0;
+$int0, $int1 = 0, 0;
+while ($int15 < enum_getoutputcount($enum16)) {
+    $obj9 = enum(int, obj, $enum16, $int15);
+    if ($obj9 ! null) {
+        if (calc($int0 + 40) >= if_getwidth($component13)) {
+            $int17 = 0;
+            $int0 = $int17;
+            $int1 = calc($int1 + 36 + 4);
+        }
+        $int18 = if_getnextsubid($component13);
+        cc_create($component13, ^iftype_graphic, $int18);
+        cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int0, $int1, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphic(rs3_inventory_slot);
+        $int18 = if_getnextsubid($component13);
+        cc_create($component13, ^iftype_graphic, $int18);
+        cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int0 + (40 - 32) / 2 + 1), calc($int1 + (36 - 32) / 2), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setobject_nonum($obj9, 1);
+        cc_setonmouserepeat("script9564($obj9, event_com, $int18)");
+        $int0 = calc(++$int17 * (40 + 4));
+    }
+    $int15 = calc($int15 + 1);
+}
+def_struct $struct19 = null;
+def_string $string5 = "";
+if (%varclient_4485 = struct_28644 | %varclient_4485 = struct_28647 | %varclient_4485 = struct_28653 | %varclient_4485 = struct_28654) {
+    $int15 = 0;
+    while ($int15 < 3) {
+        switch_int ($int15) {
+            case 0 :
+                $struct19 = struct_24188;
+            case 1 :
+                $struct19 = struct_25028;
+            case 2 :
+                $struct19 = struct_24189;
+        }
+        if (calc($int0 + 40) >= if_getwidth($component13)) {
+            $int17 = 0;
+            $int0 = $int17;
+            $int1 = calc($int1 + 36 + 4);
+        }
+        $int18 = if_getnextsubid($component13);
+        cc_create($component13, ^iftype_graphic, $int18);
+        cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int0, $int1, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphic(rs3_inventory_slot);
+        $int18 = if_getnextsubid($component13);
+        cc_create($component13, ^iftype_graphic, $int18);
+        cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int0 + (40 - 32) / 2 + 1), calc($int1 + (36 - 32) / 2), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphic(struct_param($struct19, param_2802));
+        $string5 = struct_param($struct19, param_2794);
+        cc_setonmouserepeat("script8799($string5, event_com, $int18)");
+        $int0 = calc(++$int17 * (40 + 4));
+        $int15 = calc($int15 + 1);
+    }
+}
+cc_deleteall($component14);
+if_setscrollpos(0, 0, $component13);
+if (calc($int1 + 36) > if_getheight(interface_753:com_45)) {
+    if_setscrollsize(0, calc($int1 + 36), $component13);
+    ~scrollbar_vertical($component14, $component13, "task_scrollbar_dragger,3", "task_scrollbar_dragger,0", "task_scrollbar_dragger,1", "task_scrollbar_dragger,2", "task_scrollbar,1", "task_scrollbar,0");
+}
+if_sethide(false, interface_753:com_17);
