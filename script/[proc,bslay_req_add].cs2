@@ -1,0 +1,32 @@
+// 3870
+[proc,bslay_req_add](int $int0, obj $obj1, graphic $graphic2, string $string0, int $int3, int $int4)(int, int)
+def_component $component5 = interface_753:com_10;
+if ($int0 = 0) {
+    $string0 = append($string0, "<br><br>You do not meet this requirement.");
+}
+if (calc($int3 + 40) > if_getwidth($component5)) {
+    $int3 = 0;
+    $int4 = calc($int4 + 36);
+}
+if ($graphic2 ! "aif_omge_quest_icons_05,8") {
+    cc_create($component5, ^iftype_graphic, if_getnextsubid($component5));
+    cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int3, $int4, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic(rs3_inventory_slot);
+}
+cc_create($component5, ^iftype_graphic, if_getnextsubid($component5));
+cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
+if ($obj1 ! null) {
+    cc_setobject_nonum($obj1, 1);
+} else {
+    cc_setgraphic($graphic2);
+}
+cc_setposition($int3, $int4, ^setpos_abs_left, ^setpos_abs_top);
+cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
+if ($int0 = 0) {
+    cc_create($component5, ^iftype_graphic, if_getnextsubid($component5));
+    cc_setsize(15, 15, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int3 + 40 - 15), calc($int4 + 36 - 15), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic("aif_tick_cross_icon,1");
+}
+return(calc($int3 + 40 + 4), $int4);

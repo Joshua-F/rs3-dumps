@@ -1,8 +1,15 @@
 // 1615
 [clientscript,inventory_targetmode](boolean $boolean0, component $component1, int $int2)
 if ($boolean0 = true) {
+    if (inv_getobj(inv_93, $int2) = null) {
+        if (cc_find($component1, $int2) = true) {
+            cc_setontimer("script791($component1, $int2, calc(clientclock + 5))");
+        }
+        return;
+    }
     if (cc_find($component1, $int2) = true) {
         cc_setoutline(2);
+        cc_setontimer(null);
     }
     %varclient_1031 = calc(1 + $int2);
     if (%varplayer_3926 = 9 | %varplayer_3926 = 16 | %varplayer_3926 = 19) {
@@ -11,6 +18,7 @@ if ($boolean0 = true) {
 } else {
     if (cc_find($component1, $int2) = true) {
         cc_setoutline(1);
+        cc_setontimer(null);
     }
     %varclient_1031 = 0;
 }
