@@ -1,5 +1,6 @@
 // 8497
 [proc,script8497](int $int0, int $int1)(graphic)
+def_int $int2 = -1;
 if (%varplayerbit_22872 = 0) {
     switch_int ($int0) {
         case 0 :
@@ -105,9 +106,12 @@ if (%varplayerbit_22872 = 0) {
     }
 } else if (%varclient_41 ! -1 & ~script9913($int0) = 1) {
     return(small_button_pressed);
-} else if (calc(~script9921($int0) / 25 % 2) = 1) {
-    return(small_button_blue);
 } else {
-    return(small_button);
+    $int2 = ~script9921($int0);
+    if (calc($int2 / 25 % 2) = 1 | $int2 = 0) {
+        return(small_button_blue);
+    } else {
+        return(small_button);
+    }
 }
 return(null);
