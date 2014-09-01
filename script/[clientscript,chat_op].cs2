@@ -28,7 +28,6 @@ switch_int ($int1) {
     case 3 :
         opplayer(7, $string2);
     case 4 :
-        opplayer(1, $string2);
     case 5 :
         opplayer(9, $string2);
     case 6 :
@@ -49,23 +48,32 @@ switch_int ($int1) {
     case 8 :
         %varclient_2578 = $string2;
     case 9 :
-        if ($chattype5 = ^chattype_quickchat_public) {
-            ~quickchat_respond(4, $string2, $chatphrase8, $int0);
-        } else if ($chattype5 = ^chattype_quickchat_private_incoming) {
-            ~quickchat_respond(5, $string2, $chatphrase8, $int0);
-        } else if ($chattype5 = ^chattype_quickchat_friend_chat) {
-            ~quickchat_respond(6, $string2, $chatphrase8, $int0);
-        } else if ($chattype5 = ^chattype_quickchat_clanchat) {
-            ~quickchat_respond(9, $string2, $chatphrase8, $int0);
-        } else if ($chattype5 = ^chattype_quickchat_clanguestchat) {
-            ~quickchat_respond(11, $string2, $chatphrase8, $int0);
+        switch_int ($chattype5) {
+            case ^chattype_quickchat_public :
+                ~quickchat_respond(4, $string2, $chatphrase8, $int0);
+            case ^chattype_quickchat_private_incoming :
+                ~quickchat_respond(5, $string2, $chatphrase8, $int0);
+            case ^chattype_quickchat_friend_chat :
+                ~quickchat_respond(6, $string2, $chatphrase8, $int0);
+            case ^chattype_quickchat_clanchat :
+                ~quickchat_respond(9, $string2, $chatphrase8, $int0);
+            case ^chattype_quickchat_clanguestchat :
+                ~quickchat_respond(11, $string2, $chatphrase8, $int0);
+            case ^chattype_quickchat_group_all :
+                ~quickchat_respond(14, $string2, $chatphrase8, $int0);
+            case ^chattype_quickchat_group_same_team :
+                ~quickchat_respond(16, $string2, $chatphrase8, $int0);
+            case ^chattype_publicchat, ^chattype_modchat :
+                opplayer(10, $string2);
         }
     case 10 :
-        if ($chattype5 = ^chattype_clanchat | $chattype5 = ^chattype_quickchat_clanchat) {
-            ~clan_chat_kick_find($string2);
-        } else if ($chattype5 = ^chattype_friendschat | $chattype5 = ^chattype_quickchat_friend_chat) {
-            ~friendschat_kick($string2);
-        } else {
-            opplayer(5, $string2);
+        switch_int ($chattype5) {
+            case ^chattype_clanchat, ^chattype_quickchat_clanchat :
+                ~clan_chat_kick_find($string2);
+            case ^chattype_friendschat, ^chattype_quickchat_friend_chat :
+                ~friendschat_kick($string2);
+            case ^chattype_group_all, ^chattype_quickchat_group_all, ^chattype_group_same_team, ^chattype_quickchat_group_same_team :
+            case default :
+                opplayer(5, $string2);
         }
 }

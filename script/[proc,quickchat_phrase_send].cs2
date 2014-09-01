@@ -25,32 +25,40 @@ while ($int3 < $int4 & $int3 < 10) {
     }
     $int3 = calc($int3 + 1);
 }
-if (~script8613($int1) = 0 | ~script8613($int1) = 4) {
-    activechatphrase_send(0);
-} else if (~script8613($int1) = 1) {
-    $int5 = ~quickchat_friend_status(~script8605($int1));
-    if ($int5 = 1) {
+switch_int (~script8613($int1)) {
+    case 0, 4 :
+        activechatphrase_send(0);
+    case 1 :
+        $int5 = ~quickchat_friend_status(~script8605($int1));
+        if ($int5 = 1) {
+            activechatphrase_sendprivate(removetags(~script8605($int1)));
+            ~script1089;
+        } else if ($int5 = -1) {
+            mes("Sorry, this user is not on your Friends List.");
+        } else {
+            mes("Sorry, your friend is no longer playing RuneScape.");
+        }
+    case 5, 3, 7 :
         activechatphrase_sendprivate(removetags(~script8605($int1)));
         ~script1089;
-    } else if ($int5 = -1) {
-        mes("Sorry, this user is not on your Friends List.");
-    } else {
-        mes("Sorry, your friend is no longer playing RuneScape.");
-    }
-} else if (~script8613($int1) = 5) {
-    activechatphrase_sendprivate(removetags(~script8605($int1)));
-    ~script1089;
-} else if (~script8613($int1) = 3 | ~script8613($int1) = 7) {
-    activechatphrase_sendprivate(removetags(~script8605($int1)));
-    ~script1089;
-} else if (~script8613($int1) = 2 | ~script8613($int1) = 6) {
-    activechatphrase_send(1);
-} else if (~script8613($int1) = 8 | ~script8613($int1) = 9) {
-    if (activeclanchannel_find_affined = true) {
-        activechatphrase_send(2);
-    }
-} else if ((~script8613($int1) = 10 | ~script8613($int1) = 11) & activeclanchannel_find_listened = true) {
-    activechatphrase_send(3);
+    case 2, 6 :
+        activechatphrase_send(1);
+    case 8, 9 :
+        if (activeclanchannel_find_affined = true) {
+            activechatphrase_send(2);
+        }
+    case 10, 11 :
+        if (activeclanchannel_find_listened = true) {
+            activechatphrase_send(3);
+        }
+    case 13, 14 :
+        if (player_group_find = true) {
+            activechatphrase_send(4);
+        }
+    case 15, 16 :
+        if (player_group_find = true) {
+            activechatphrase_send(5);
+        }
 }
 ~script8624($int1, $chatphrase2);
 ~script8626($int1, ~script8613($int1));

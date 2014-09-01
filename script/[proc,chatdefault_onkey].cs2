@@ -118,6 +118,12 @@ switch_int ($key0) {
                     ~quickchat_open(10, "", $int2);
                 case 23 :
                     ~quickchat_open(0, "", $int2);
+                case 25 :
+                    if (%varclient_4505 = 0) {
+                        ~quickchat_open(13, "", $int2);
+                    } else {
+                        ~quickchat_open(15, "", $int2);
+                    }
                 case default :
                     return;
             }
@@ -134,9 +140,13 @@ switch_int ($key0) {
                 ~quickchat_open(8, "", $int2);
             } else if (compare(~script8521($int2), "///") = 0) {
                 ~quickchat_open(10, "", $int2);
+            } else if (compare(~script8521($int2), "////") = 0) {
+                ~quickchat_open(13, "", $int2);
+            } else if (compare(~script8521($int2), "/////") = 0) {
+                ~quickchat_open(15, "", $int2);
             }
             $int5 = ~script8519(~script8521($int2));
-            if ($int5 ! -1 & $int2 ! 25) {
+            if ($int5 ! -1 & $int2 ! 24) {
                 %varclient_1028 = string_length(~script8521($int2));
                 ~script8522($int2, "");
                 ~script8514($int2, $int5);
@@ -174,9 +184,14 @@ switch_int ($key0) {
                             $int6 = -1;
                             mes_typed(^chattype_clanguestmessage, 0, "Guests cannot chat in this Clan Chat channel.");
                         }
+                    case 4, 5 :
+                        if (player_group_find = false) {
+                            $int6 = -1;
+                            mes("You aren't in a group. You can create one using the button on this window.");
+                        }
                 }
                 if ($int6 ! -1 & string_length(~script8521($int2)) > 0) {
-                    if ($int6 = 4) {
+                    if ($int6 = 100) {
                         chat_sendprivate(%varclient_2367, ~script8521($int2));
                     } else if ($int6 = 6) {
                         $int15 = ttv_chat_sendmessage(~script8521($int2));
