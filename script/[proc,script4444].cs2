@@ -72,6 +72,8 @@ if_setop(1, "Leave Clan Chat channel", interface_1110:com_59);
 if_setonmouserepeat("script8799($string4, event_com, event_comsubid)", interface_1440:com_41);
 if_setonmouseleave("script8805", interface_1440:com_41);
 if_setop(1, "Leave Clan Chat channel", interface_1440:com_41);
+if_setonplayergrouptransmit("script4443(-1, $component1)", interface_1110:com_38);
+def_int $int37 = -1;
 while ($int24 < $int25) {
     $string1 = activeclanchannel_getuserdisplayname($int24);
     $int33 = activeclanchannel_getuserrank($int24);
@@ -83,6 +85,7 @@ while ($int24 < $int25) {
     cc_settextfont(graphic_17813);
     cc_settextshadow(true);
     cc_settext($string1);
+    cc_setlinkactiveclanchannel($int24);
     if (compare($string1, removetags(chat_playername_unfiltered)) ! 0) {
         if (friend_test($string1) = true) {
             cc_setop(1, "Message");
@@ -92,6 +95,12 @@ while ($int24 < $int25) {
         } else {
             cc_setop(5, "Add friend <$string1>");
             cc_setop(6, "Add ignore <$string1>");
+        }
+    }
+    if (player_group_find = true) {
+        $int37 = ~script10275;
+        if ($int37 ! -1 & ~script10281($int37) = true) {
+            cc_setop(4, "Invite to group");
         }
     }
     cc_setonop("clan_chat_list_op($string1, event_op, $int24)");
@@ -171,19 +180,19 @@ while ($int24 < $int25) {
     $int24 = calc($int24 + 1);
 }
 $int24 = 0;
-def_int $int37 = 0;
+def_int $int38 = 0;
 while ($int24 < $int25) {
-    $int37 = activeclanchannel_getsorteduserslot($int24);
-    if (cc_find($component6, $int37) = true & compare(cc_gettext, "") ! 0) {
+    $int38 = activeclanchannel_getsorteduserslot($int24);
+    if (cc_find($component6, $int38) = true & compare(cc_gettext, "") ! 0) {
         $int27 = calc($int24 * $int28);
         cc_setposition(cc_getx, $int27, ^setpos_abs_left, ^setpos_abs_top);
-        if (cc_find($component7, $int37) = true) {
+        if (cc_find($component7, $int38) = true) {
             cc_setposition(cc_getx, calc(cc_gety + $int27 + 3), ^setpos_abs_left, ^setpos_abs_top);
         }
-        if (cc_find($component8, $int37) = true) {
+        if (cc_find($component8, $int38) = true) {
             cc_setposition(cc_getx, $int27, ^setpos_abs_left, ^setpos_abs_top);
         }
-        if (cc_find($component9, $int37) = true) {
+        if (cc_find($component9, $int38) = true) {
             cc_setposition(cc_getx, calc($int27 + 2), ^setpos_abs_left, ^setpos_abs_top);
         }
     }
@@ -194,21 +203,21 @@ if (calc($int24 * 19) > if_getheight($component13)) {
 } else {
     if_setscrollsize(0, 0, $component13);
 }
-def_int $int38 = if_getscrolly($component13);
+def_int $int39 = if_getscrolly($component13);
 if_setscrollsize(calc(if_getwidth(if_getparentlayer($component13)) - 16), calc($int28 * $int25), $component13);
-$int38 = min($int38, if_getscrollheight($component13));
-if_setscrollpos(0, $int38, $component13);
+$int39 = min($int39, if_getscrollheight($component13));
+if_setscrollpos(0, $int39, $component13);
 ~scrollbar_vertical($component14, $component13, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
 if_setonclanchanneltransmit("script4443(-1, $component1)", $component6);
 if_setonclansettingstransmit("script4443(-1, $component1)", $component6);
-def_int $int39 = calc($int28 * max($int25, $int29));
+def_int $int40 = calc($int28 * max($int25, $int29));
 if_setscrollsize(calc(if_getwidth(if_getparentlayer($component13)) - 16), calc($int28 * $int25), $component13);
 ~scrollbar_vertical($component14, $component13, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
-if ($int39 > if_getheight($component13)) {
+if ($int40 > if_getheight($component13)) {
     if_sethide(false, $component14);
     if_setsize(16, 53, ^setsize_minus, ^setsize_minus, $component13);
-    $int38 = min(if_getscrolly($component13), $int27);
-    ~scrollbar_resize($component14, $component13, $int38);
+    $int39 = min(if_getscrolly($component13), $int27);
+    ~scrollbar_resize($component14, $component13, $int39);
 } else {
     if_sethide(true, $component14);
     if_setsize(0, 53, ^setsize_minus, ^setsize_minus, $component13);

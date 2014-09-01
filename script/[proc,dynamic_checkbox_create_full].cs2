@@ -1,0 +1,67 @@
+// 10419
+[proc,dynamic_checkbox_create_full](component $component0, component $component1, int $int2, int $int3, int $int4, int $int5, string $string0, string $string1, string $string2, int $int6, boolean $boolean7, int $int8)(int, int)
+def_string $string3 = $string1;
+def_boolean $boolean9 = true;
+def_int $int10 = 0;
+def_int $int11 = -1;
+if ($int6 < 1) {
+    $string3, $boolean9 = $string2, false;
+}
+if (compare($string0, "") ! 0) {
+    $int10 = ~script7593($string0, calc($int4 - 20), graphic_17813, -1);
+    if ($int4 >= 50 & $int10 < 40 & $int10 > 0) {
+        cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+        cc_setsize(calc($int4 - 20), $int10, ^setsize_abs, ^setsize_abs);
+        if ($int10 < 18) {
+            cc_setposition(calc($int2 + 20), calc($int3 + (18 - $int10) / 2), ^setpos_abs_left, ^setpos_abs_top);
+        } else {
+            cc_setposition(calc($int2 + 20), $int3, ^setpos_abs_left, ^setpos_abs_top);
+        }
+        cc_settext($string0);
+        cc_settextfont(graphic_17813);
+        cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+        cc_settextshadow(true);
+        cc_setcolour(~script10495(0x00000c));
+    } else {
+        $int10 = 0;
+    }
+}
+$int11 = if_getnextsubid($component0);
+cc_create($component0, ^iftype_graphic, $int11);
+cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
+if ($int10 > 18) {
+    cc_setposition($int2, calc($int3 + $int10 / 2 - 18 / 2), ^setpos_abs_left, ^setpos_abs_top);
+} else {
+    cc_setposition($int2, $int3, ^setpos_abs_left, ^setpos_abs_top);
+}
+cc_setparam(param_4513, $boolean7);
+cc_setparam(param_4512, $boolean9);
+if ($boolean7 = true) {
+    if ($boolean9 = true) {
+        cc_setgraphic("rs3_btn_checkbox,5");
+    } else {
+        cc_setgraphic("rs3_btn_checkbox,4");
+    }
+} else {
+    cc_setonmouseover("script10420(event_com, event_comsubid)");
+    cc_setonmouseleave("script10421(event_com, event_comsubid)");
+    cc_setonmouserepeat("script8799($string3, event_com, event_comsubid)");
+    if ($boolean9 = true) {
+        cc_setgraphic("rs3_btn_checkbox,2");
+    } else {
+        cc_setgraphic("rs3_btn_checkbox,0");
+    }
+}
+if ($int8 = 1) {
+    cc_create($component1, ^iftype_text, $int5);
+    cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int2, calc($int3 + $int10 / 2 - 18 / 2), ^setpos_abs_left, ^setpos_abs_top);
+    if ($boolean7 = false) {
+        cc_setonop("dynamic_checkbox_onop($component0, $int11, $string1, $string2)");
+        cc_setop(1, "Toggle");
+    }
+} else {
+    if_setop(1, "Select", $component1);
+    if_setonop("dynamic_checkbox_onop($component0, $int11, $string1, $string2)", $component1);
+}
+return(calc($int3 + max(18, $int10)), calc($int5 + 1));

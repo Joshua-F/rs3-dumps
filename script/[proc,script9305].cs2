@@ -1,13 +1,20 @@
 // 9305
-[proc,script9305](string $string0, int $int0)(int)
-def_int $int1 = if_getwidth(interface_639:com_15);
-def_int $int2 = max(15, calc(15 * paraheight($string0, $int1, graphic_17813)));
-cc_create(interface_639:com_15, ^iftype_text, if_getnextsubid(interface_639:com_15));
-cc_setsize(0, $int2, ^setsize_minus, ^setsize_abs);
-cc_setposition(0, $int0, ^setpos_abs_left, ^setpos_abs_top);
+[proc,script9305](component $component0, string $string0, int $int1, int $int2, int $int3)(int)
+def_int $rgb4 = 0x00000c;
+if ($int3 = 1) {
+    $rgb4 = 0x00002e;
+}
+def_int $int5 = calc(if_getwidth($component0) - $int1);
+def_int $int6 = ~script7593($string0, $int5, graphic_17813, -1);
+cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+cc_setsize($int1, $int6, ^setsize_minus, ^setsize_abs);
+cc_setposition($int1, $int2, ^setpos_abs_left, ^setpos_abs_top);
 cc_settext($string0);
 cc_setmaxlines(0);
-cc_setcolour(0x7592a0);
+cc_setcolour(~script10495($rgb4));
+if ($int3 = 1) {
+    cc_settextshadow(true);
+}
 cc_settextfont(graphic_17813);
-cc_settextalign(^settextalign_left, ^settextalign_top, 15);
-return(calc($int0 + $int2));
+cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+return(calc($int2 + $int6 + 5));

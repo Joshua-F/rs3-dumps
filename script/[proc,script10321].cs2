@@ -1,0 +1,171 @@
+// 10321
+[proc,script10321](component $component0)
+def_struct $struct1 = ~script10285(%varplayergroup_16);
+def_enum $enum2 = null;
+if ($struct1 ! null) {
+    $enum2 = struct_param($struct1, param_4508);
+    if ($enum2 = null) {
+        $enum2 = struct_param($struct1, param_4509);
+    }
+}
+def_component $component3 = ~script10293($component0);
+def_component $component4 = ~script10304($component0);
+def_component $component5 = ~script10305($component0);
+def_component $component6 = ~script10310($component0);
+def_component $component7 = ~script10309($component0);
+def_component $component8 = ~script10306($component0);
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_graphic $graphic11 = null;
+def_graphic $graphic12 = null;
+def_graphic $graphic13 = null;
+def_graphic $graphic14 = null;
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
+def_string $string4 = "";
+def_player_group_status $player_group_status15 = playergroupstatus_0;
+def_int $int16 = player_group_member_count;
+def_int $int17 = ~script10275;
+def_int $int18 = if_getheight($component6);
+def_int $int19 = if_getwidth($component6);
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_int $int22 = 0;
+def_int $int23 = 17;
+def_int $int24 = 0;
+def_int $int25 = 0;
+def_int $rgb26 = ~script10495(0x00001d);
+def_int $rgb27 = ~script10495(0x00001e);
+cc_deleteall($component3);
+cc_deleteall($component4);
+cc_deleteall($component7);
+if_sethide(false, $component4);
+if_sethide(true, $component5);
+~cc_add_text($component3, if_getnextsubid($component3), $int19, 15, 0, 0, player_group_get_displayname, 0xffcb05, graphic_17814, ^settextalign_centre, ^settextalign_centre, 13, true);
+cc_setmaxlines(1);
+if (calc($int23 + $int16 * 43) < $int18) {
+    if_setsize(0, 33, ^setsize_minus, ^setsize_minus, $component6);
+    $int10 = 1;
+    $int19 = if_getwidth($component3);
+} else {
+    if_setsize(20, 33, ^setsize_minus, ^setsize_minus, $component6);
+}
+while ($int20 < $int16) {
+    $string4 = player_group_member_get_displayname($int20);
+    if (player_group_member_is_owner($int20) = true) {
+        $graphic12, $string1 = graphic_21775, "Group Leader";
+    } else {
+        switch_int (player_group_member_get_rank($int20)) {
+            case default :
+                $graphic12, $string1 = null, "";
+            case 10 :
+                $graphic12, $string1 = graphic_21778, "Recruiter";
+            case 20 :
+                $graphic12, $string1 = graphic_21777, "Organiser";
+            case 50 :
+                $graphic12, $string1 = graphic_21776, "Admin";
+            case 100 :
+                $graphic12, $string1 = graphic_21775, "Group Leader";
+        }
+    }
+    $player_group_status15 = player_group_member_get_status($int20);
+    switch_player_group_status ($player_group_status15) {
+        case playergroupstatus_0 :
+            $graphic11, $string0 = graphic_21862, "Not Ready";
+        case playergroupstatus_1 :
+            $graphic11, $string0 = graphic_21861, "Ready";
+        case playergroupstatus_2 :
+            $graphic11, $string0 = graphic_21863, "Waiting for Start";
+        case playergroupstatus_3 :
+            $graphic11, $string0 = graphic_21864, "Teleported";
+        case default :
+            $graphic11, $string0 = null, "";
+    }
+    if ($int17 = $int20) {
+        ~script10335($player_group_status15);
+        ~script10338;
+        if ($player_group_status15 = playergroupstatus_0 & if_getheight($component0) >= 120) {
+            if_sethide(false, $component8);
+            if ($int10 = 1) {
+                if_setsize(0, 63, ^setsize_minus, ^setsize_minus, $component6);
+            } else {
+                if_setsize(20, 63, ^setsize_minus, ^setsize_minus, $component6);
+            }
+            if_setsize(if_getwidth($component7), 63, ^setsize_abs, ^setsize_minus, $component7);
+            $int18 = if_getheight($component6);
+        } else {
+            if_sethide(true, $component8);
+            if ($int10 = 1) {
+                if_setsize(0, 33, ^setsize_minus, ^setsize_minus, $component6);
+            } else {
+                if_setsize(20, 33, ^setsize_minus, ^setsize_minus, $component6);
+            }
+            if_setsize(if_getwidth($component7), 33, ^setsize_abs, ^setsize_minus, $component7);
+            $int18 = if_getheight($component6);
+        }
+    }
+    $graphic13, $string2 = graphic_24052, "<$string4> is offline";
+    if (player_group_member_is_online($int20) = true) {
+        $int22, $graphic13 = player_group_member_get_last_seen_node_id($int20), graphic_24051;
+        $string2 = "<$string4> is on world: <tostring($int22)>";
+        if ($int22 = map_world) {
+            $int25 = player_group_member_get_same_world_var($int20, varplayerbit_1668);
+            $int24 = max(1, player_group_member_get_same_world_var($int20, varplayerbit_24595));
+            $graphic13, $string2 = graphic_24050, "<$string4> is on your world.";
+            if ($int17 = $int20) {
+                $string2 = "You are on world <tostring($int22)>.";
+            }
+        }
+    } else {
+        $int22 = -1;
+    }
+    ~cc_add_rect($component4, $int20, calc($int19 - 10), 38, 5, $int23, $rgb26, true, 0);
+    ~script10324($int17, $int20, $string4, $int22);
+    cc_setonmouseover("script10322(event_com, event_comsubid, $component3, if_getnextsubid($component3), $rgb27)");
+    cc_setonmouseleave("script10323(event_com, event_comsubid, $component3, if_getnextsubid($component3), $rgb26)");
+    cc_setlinkplayergroup($int20, 1);
+    ~cc_add_text($component3, if_getnextsubid($component3), calc($int19 - 60), 13, 60, calc($int23 + 4), $string4, ~script10495(0x00000f), graphic_17813, ^settextalign_left, ^settextalign_centre, 13, true);
+    cc_setmaxlines(1);
+    ~script10456($component3, null, $graphic13, $string2, 8, calc($int23 + 2), 34);
+    ~cc_add_graphic($component3, if_getnextsubid($component3), 15, 15, 40, calc($int23 + 19), $graphic11, false, false, false, 0);
+    if (string_length($string0) > 0) {
+        cc_setonmouserepeat("script3876($string0, event_com, event_comsubid)");
+    }
+    ~cc_add_graphic($component3, if_getnextsubid($component3), 15, 15, 40, calc($int23 + 4), $graphic12, false, false, false, 0);
+    if (string_length($string1) > 0) {
+        cc_setonmouserepeat("script3876($string1, event_com, event_comsubid)");
+    }
+    if ($enum2 ! null & $int19 >= 170) {
+        $int21 = player_group_member_get_team($int20);
+        $graphic14 = ~script10274($enum2, $int21);
+        if ($int21 > 0 & $graphic14 ! null) {
+            $string3 = ~script10273($int21);
+            if ($graphic14 = "aif_display_number,1") {
+                ~cc_add_graphic($component3, if_getnextsubid($component3), 37, 36, calc($int19 - 40), calc($int23 - 4), $graphic14, false, false, false, 0);
+                ~cc_add_text($component3, if_getnextsubid($component3), 37, 36, calc($int19 - 40), calc($int23 - 4), tostring($int21), ~script10495(0x00000a), graphic_17813, ^settextalign_centre, ^settextalign_centre, 11, true);
+            } else {
+                ~cc_add_graphic($component3, if_getnextsubid($component3), 20, 20, calc($int19 - 25), calc($int23 + 2), $graphic14, false, false, false, 0);
+            }
+            cc_setonmouserepeat("script3876($string3, event_com, event_comsubid)");
+        }
+    }
+    if ($int22 = -1) {
+        ~cc_add_text($component3, if_getnextsubid($component3), calc($int19 - 60), 15, 60, calc($int23 + 15), "Offline. Last world: <tostring(player_group_member_get_last_seen_node_id($int20))>", ~script10495(0x00000c), graphic_17813, ^settextalign_left, ^settextalign_centre, 13, true);
+        cc_setmaxlines(1);
+    } else if ($int22 = map_world) {
+        ~script10469($component3, if_getnextsubid($component3), 55, calc($int23 + 15), calc($int19 - 65), 20, $int25, $int24, 16711680);
+    } else {
+        ~cc_add_text($component3, if_getnextsubid($component3), calc($int19 - 60), 15, 60, calc($int23 + 15), "On world: <tostring($int22)>", ~script10495(0x00000c), graphic_17813, ^settextalign_left, ^settextalign_centre, 13, true);
+        cc_setmaxlines(1);
+    }
+    $int23 = calc($int23 + 43);
+    $int20 = calc($int20 + 1);
+}
+if ($int23 > $int18) {
+    if_setscrollsize(0, $int23, $component6);
+    ~scrollbar_vertical($component7, $component6, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+} else {
+    if_setscrollsize(0, 0, $component6);
+}

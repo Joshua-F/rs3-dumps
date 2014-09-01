@@ -59,6 +59,7 @@ if_setop(1, "Leave Clan Chat channel", interface_1110:com_118);
 if_setonmouserepeat("script8799($string2, event_com, event_comsubid)", interface_1440:com_109);
 if_setonmouseleave("script8805", interface_1440:com_109);
 if_setop(1, "Leave Clan Chat channel", interface_1440:com_109);
+if_setonplayergrouptransmit("clan_chat_list_refresh(-1, $component2)", interface_1110:com_62);
 def_int $int29 = 0;
 def_int $int30 = 0;
 def_int $int31 = 0;
@@ -92,6 +93,7 @@ if ($int41 = -1) {
     return;
 }
 def_int $int42 = activeclanchannel_getuserrank($int41);
+def_int $int43 = -1;
 $int31 = activeclanchannel_getusercount;
 $int29 = 0;
 while ($int29 < $int31) {
@@ -105,6 +107,7 @@ while ($int29 < $int31) {
     cc_setcolour(0xa4997d);
     cc_settextfont(graphic_17813);
     cc_settextshadow(true);
+    cc_setlinkactiveclanchannel($int29);
     if (compare($string4, removetags(chat_playername_unfiltered)) ! 0) {
         cc_setopbase($string4);
         if (friend_test($string4) = true) {
@@ -118,6 +121,12 @@ while ($int29 < $int31) {
         }
         if ($int42 >= activeclanchannel_getrankkick) {
             cc_setop(9, "Temp-ban");
+        }
+        if (player_group_find = true) {
+            $int43 = ~script10275;
+            if ($int43 ! -1 & ~script10281($int43) = true) {
+                cc_setop(4, "Invite to group");
+            }
         }
         cc_setonop("clan_chat_list_op($string4, event_op, $int29)");
     }
@@ -209,37 +218,37 @@ while ($int29 < $int31) {
     $int29 = calc($int29 + 1);
 }
 $int29 = 0;
-def_int $int43 = 0;
+def_int $int44 = 0;
 while ($int29 < $int31) {
-    $int43 = activeclanchannel_getsorteduserslot($int29);
-    if (cc_find($component11, $int43) = true & compare(cc_gettext, "") ! 0) {
+    $int44 = activeclanchannel_getsorteduserslot($int29);
+    if (cc_find($component11, $int44) = true & compare(cc_gettext, "") ! 0) {
         $int30 = calc($int29 * $int32);
         cc_setposition(cc_getx, $int30, ^setpos_abs_left, ^setpos_abs_top);
-        if (cc_find($component12, $int43) = true) {
+        if (cc_find($component12, $int44) = true) {
             cc_setposition(cc_getx, calc(cc_gety + $int30 + 3), ^setpos_abs_left, ^setpos_abs_top);
         }
-        if (cc_find($component13, $int43) = true) {
+        if (cc_find($component13, $int44) = true) {
             cc_setposition(cc_getx, $int30, ^setpos_abs_left, ^setpos_abs_top);
         }
-        if (cc_find($component14, $int43) = true) {
+        if (cc_find($component14, $int44) = true) {
             cc_setposition(cc_getx, calc($int30 + 5), ^setpos_abs_left, ^setpos_abs_top);
         }
-        if (cc_find($component15, $int43) = true) {
+        if (cc_find($component15, $int44) = true) {
             cc_setposition(cc_getx, calc($int30 + 2), ^setpos_abs_left, ^setpos_abs_top);
         }
     }
     $int29 = calc($int29 + 1);
 }
-def_int $int44 = 0;
-def_int $int45 = -1;
+def_int $int45 = 0;
+def_int $int46 = -1;
 if (%varclient_1518 >= 0) {
-    $int45 = activeclanchannel_getuserslot(%varclient_2353);
-    if ($int45 >= 0) {
-        %varclient_1518 = $int45;
+    $int46 = activeclanchannel_getuserslot(%varclient_2353);
+    if ($int46 >= 0) {
+        %varclient_1518 = $int46;
         if (cc_find($component15, %varclient_1518) = true) {
-            $int44 = cc_gety;
-            if_setposition(0, $int44, ^setpos_abs_right, ^setpos_abs_top, $component22);
-            if_setposition(0, $int44, ^setpos_abs_right, ^setpos_abs_top, $component21);
+            $int45 = cc_gety;
+            if_setposition(0, $int45, ^setpos_abs_right, ^setpos_abs_top, $component22);
+            if_setposition(0, $int45, ^setpos_abs_right, ^setpos_abs_top, $component21);
         }
     } else {
         %varclient_1518 = -1;
@@ -248,16 +257,16 @@ if (%varclient_1518 >= 0) {
         ~script4628($component2);
     }
 }
-def_int $int46 = if_getscrolly($component18);
-def_int $int47 = calc($int32 * max($int31, $int33));
-if_setscrollsize(calc(if_getwidth(if_getparentlayer($component18)) - 16), max(if_getheight($component18), $int47), $component18);
-$int46 = min($int46, if_getscrollheight($component18));
-if_setscrollpos(0, $int46, $component18);
-if ($int47 > if_getheight($component18)) {
+def_int $int47 = if_getscrolly($component18);
+def_int $int48 = calc($int32 * max($int31, $int33));
+if_setscrollsize(calc(if_getwidth(if_getparentlayer($component18)) - 16), max(if_getheight($component18), $int48), $component18);
+$int47 = min($int47, if_getscrollheight($component18));
+if_setscrollpos(0, $int47, $component18);
+if ($int48 > if_getheight($component18)) {
     if_sethide(false, $component19);
     if_setsize(16, 53, ^setsize_minus, ^setsize_minus, $component18);
-    $int46 = min(if_getscrolly($component18), $int30);
-    ~scrollbar_resize($component19, $component18, $int46);
+    $int47 = min(if_getscrolly($component18), $int30);
+    ~scrollbar_resize($component19, $component18, $int47);
 } else {
     if_sethide(true, $component19);
     if_setsize(0, 53, ^setsize_minus, ^setsize_minus, $component18);

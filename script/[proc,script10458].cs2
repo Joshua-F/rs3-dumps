@@ -1,0 +1,34 @@
+// 10458
+[proc,script10458](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, int $int7)
+def_int $int8 = max(50, min($int7, calc(if_getheight($component0) - 19)));
+if ($int7 <= $int8) {
+    if_setscrollsize(0, 0, $component3);
+} else {
+    if_setscrollsize(0, $int7, $component3);
+}
+~scrollbar_vertical($component4, $component3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+def_int $int9 = min($int7, 25);
+def_int $int10 = ~script10460($component2);
+if (if_find($component1) = true) {
+    if (if_gethide($component1) = true) {
+        if_sethide(false, $component1);
+        if_sethide(false, $component4);
+        if_setsize(if_getwidth($component1), 1, ^setsize_abs, ^setsize_abs, $component1);
+        cc_setparam(param_4522, false);
+        cc_setparam(param_4520, 1);
+        if (cc_param(param_4521) <= 0 | cc_param(param_4521) >= $int9) {
+            cc_setparam(param_4521, 0);
+        }
+    } else if (cc_param(param_4520) <= 0) {
+        cc_setparam(param_4520, 1);
+        if (cc_param(param_4521) <= 0 | cc_param(param_4521) >= $int9) {
+            cc_setparam(param_4521, 0);
+        }
+    } else {
+        cc_setparam(param_4520, 0);
+        if (cc_param(param_4521) <= 0) {
+            cc_setparam(param_4521, min($int9, $int8));
+        }
+    }
+    if_setontimer("script10467($component0, $component1, $component2, $component3, $component4, $component5, $component6, $int8, $int9, $int10)", $component0);
+}

@@ -1,0 +1,70 @@
+// 10354
+[proc,script10354](enum $enum0, int $int1, int $int2)(int)
+if ($enum0 = null) {
+    return($int1);
+}
+def_int $int3 = 0;
+def_int $rgb4 = ^black;
+def_int $int5 = 0;
+def_int $int6 = enum_getoutputcount($enum0);
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $rgb9 = ~script10495(0x00001b);
+def_int $rgb10 = ~script10495(0x00001d);
+def_string $string0 = "";
+def_struct $struct11 = null;
+while ($int3 < $int6) {
+    if (calc($int3 % 2) = 0) {
+        $rgb4 = $rgb9;
+    } else {
+        $rgb4 = $rgb10;
+    }
+    $int5 = enum(int, int, $enum0, $int3);
+    $struct11 = enum(int, struct, enum_888, $int5);
+    $int5 = enum_getreverseindex(int, int, enum_887, $int5, 0);
+    if ($struct11 ! null & .cc_find(interface_1524:com_26, $int5) = true) {
+        cc_create(interface_1524:com_25, ^iftype_rectangle, if_getnextsubid(interface_1524:com_25));
+        cc_setsize($int2, 19, ^setsize_abs, ^setsize_abs);
+        cc_setposition(0, $int1, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setcolour($rgb4);
+        cc_setfill(true);
+        $int7 = ~script10292($int5);
+        cc_create(interface_1524:com_25, ^iftype_text, if_getnextsubid(interface_1524:com_25));
+        cc_setsize(50, 19, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int2 - 52), $int1, ^setpos_abs_left, ^setpos_abs_top);
+        if ($int7 >= 250) {
+            cc_settext("250+");
+            $string0 = "250+ groups exist.";
+        } else {
+            cc_settext(tostring($int7));
+            if ($int7 = 1) {
+                $string0 = "1 group exists.";
+            } else {
+                $string0 = "<tostring($int7)> groups exist.";
+            }
+        }
+        cc_settextfont(graphic_17813);
+        cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+        cc_setmaxlines(1);
+        cc_setcolour(~script10351($int5));
+        cc_settextshadow(true);
+        cc_setonmouserepeat("script10355($string0, event_com, event_comsubid)");
+        cc_setonmouseleave("script10356");
+        cc_create(interface_1524:com_25, ^iftype_text, if_getnextsubid(interface_1524:com_25));
+        cc_setsize(37, 20, ^setsize_minus, ^setsize_abs);
+        cc_setposition(7, $int1, ^setpos_abs_left, ^setpos_abs_top);
+        cc_settext(struct_param($struct11, param_1266));
+        cc_settextfont(graphic_17813);
+        cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+        cc_settextshadow(true);
+        cc_setmaxlines(1);
+        cc_setcolour(~script10351($int5));
+        cc_setonmouseover("script10352(event_com, event_comsubid)");
+        cc_setonmouseleave("script10353(event_com, event_comsubid)");
+        .cc_setposition(0, $int1, ^setpos_abs_left, ^setpos_abs_top);
+        .cc_sethide(false);
+        $int1 = calc($int1 + 19);
+    }
+    $int3 = calc($int3 + 1);
+}
+return($int1);

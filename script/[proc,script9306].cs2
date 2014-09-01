@@ -1,30 +1,31 @@
 // 9306
-[proc,script9306](stat $stat0, int $int1, int $int2, int $int3)(int, int)
-def_int $int4 = if_getwidth(interface_639:com_15);
-def_graphic $graphic5 = ~script9308($stat0);
-def_string $string0 = "<tostring($int1)> XP";
-def_string $string1 = "<tostring($int1)> <enum(stat, string, enum_680, $stat0)> XP";
-if (calc($int2 + 45) > $int4) {
-    $int2 = 0;
-    $int3 = calc($int3 + 50);
+[proc,script9306](component $component0, stat $stat1, int $int2, int $int3, int $int4, int $int5)(int, int)
+def_int $int6 = if_getwidth($component0);
+def_graphic $graphic7 = ~script9308($stat1);
+def_string $string0 = "";
+def_string $string1 = "<enum(stat, string, enum_680, $stat1)> XP";
+if ($int2 ! -1) {
+    $string0 = "<tostring($int2)> XP";
+    $string1 = "<tostring($int2)> <enum(stat, string, enum_680, $stat1)> XP";
 }
-cc_create(interface_639:com_15, ^iftype_graphic, if_getnextsubid(interface_639:com_15));
-cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
-cc_setgraphic(rs3_inventory_slot);
-cc_setposition($int2, $int3, ^setpos_abs_left, ^setpos_abs_top);
-cc_create(interface_639:com_15, ^iftype_graphic, if_getnextsubid(interface_639:com_15));
-cc_setsize(35, 35, ^setsize_abs, ^setsize_abs);
-cc_setgraphic($graphic5);
-cc_setposition(calc($int2 + 3), $int3, ^setpos_abs_left, ^setpos_abs_top);
-cc_setonmouserepeat("script8799($string1, interface_639:com_15, calc(if_getnextsubid(interface_639:com_15) - 1))");
-cc_setonmouseleave("script8805");
-cc_create(interface_639:com_15, ^iftype_text, if_getnextsubid(interface_639:com_15));
-cc_setsize(40, 15, ^setsize_abs, ^setsize_abs);
-cc_setposition($int2, calc($int3 + 35), ^setpos_abs_left, ^setpos_abs_top);
-cc_settext($string0);
-cc_setmaxlines(1);
-cc_setcolour(^white);
-cc_settextfont(graphic_17813);
-cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
-$int2 = calc($int2 + 45);
-return($int2, $int3);
+if (calc($int3 + 45) > $int6) {
+    $int3 = $int5;
+    if (compare($string0, "") ! 0) {
+        $int4 = calc($int4 + 55);
+    } else {
+        $int4 = calc($int4 + 40);
+    }
+}
+~script10456($component0, null, $graphic7, $string1, $int3, $int4, 40);
+if (compare($string0, "") ! 0) {
+    cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+    cc_setsize(40, 15, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int3, calc($int4 + 40), ^setpos_abs_left, ^setpos_abs_top);
+    cc_settext($string0);
+    cc_setmaxlines(1);
+    cc_setcolour(^white);
+    cc_settextfont(graphic_17813);
+    cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
+}
+$int3 = calc($int3 + 44);
+return($int3, $int4);
