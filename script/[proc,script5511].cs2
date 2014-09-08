@@ -3,9 +3,10 @@
 def_int $int0 = 0;
 def_string $string0 = "";
 def_int $int1 = 0;
-def_component $component2 = null;
-def_int $int3 = 0;
+def_int $int2 = 0;
+def_component $component3 = null;
 def_int $int4 = 0;
+def_int $int5 = 0;
 while ($int0 < 25) {
     switch_int ($int0) {
         case 0 :
@@ -86,28 +87,41 @@ while ($int0 < 25) {
     }
     switch_int (calc($int0 % 2)) {
         case 0 :
-            $component2 = interface_753:com_30;
+            $component3 = interface_753:com_0;
         case 1 :
-            $component2 = interface_753:com_32;
+            $component3 = interface_753:com_2;
     }
     if ($int0 > 0 & calc($int0 % 2) = 0) {
-        $int3 = calc($int3 + 25 + 4);
-        $int4 = calc($int4 + 1);
+        $int4 = calc($int4 + 25 + 4);
+        $int5 = calc($int5 + 1);
     }
-    ~script5512($component2, $int3, calc($int4 % 2));
-    cc_create($component2, ^iftype_text, if_getnextsubid($component2));
+    ~script5512($component3, $int4, calc($int5 % 2));
+    cc_create($component3, ^iftype_text, if_getnextsubid($component3));
     cc_setsize(10, 25, ^setsize_minus, ^setsize_abs);
-    cc_setposition(5, $int3, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition(5, $int4, ^setpos_abs_left, ^setpos_abs_top);
     cc_settext($string0);
     cc_settextfont(graphic_17813);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     cc_setcolour(~rgb_to_hex(117, 146, 160));
-    cc_create($component2, ^iftype_text, if_getnextsubid($component2));
+    cc_create($component3, ^iftype_text, if_getnextsubid($component3));
     cc_setsize(10, 25, ^setsize_minus, ^setsize_abs);
-    cc_setposition(5, $int3, ^setpos_abs_right, ^setpos_abs_top);
+    cc_setposition(5, $int4, ^setpos_abs_right, ^setpos_abs_top);
     cc_settext(tostring($int1));
     cc_settextfont(graphic_17813);
     cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
     cc_setcolour(~rgb_to_hex(117, 146, 160));
+    if ($int2 ! -1) {
+        $int2 = ~script7687($int2, $int1);
+    }
+    if ($int2 ! -1) {
+        if_settext("Total: <tostring($int2)>", interface_753:com_40);
+    } else {
+        if_settext("Total: <col=ff0000>LOTS</col>", interface_753:com_40);
+    }
     $int0 = calc($int0 + 1);
+}
+if (calc($int4 + 25) > if_getheight(interface_753:com_41)) {
+    if_setscrollpos(0, 0, interface_753:com_41);
+    if_setscrollsize(0, calc($int4 + 25), interface_753:com_41);
+    ~scrollbar_vertical(interface_753:com_42, interface_753:com_41, "task_scrollbar_dragger,3", "task_scrollbar_dragger,0", "task_scrollbar_dragger,1", "task_scrollbar_dragger,2", "task_scrollbar,1", "task_scrollbar,0");
 }
