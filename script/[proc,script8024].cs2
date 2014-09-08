@@ -9,8 +9,12 @@ if ($int0 = 79953920) {
     $component3 = interface_1220:com_30;
 }
 def_int $int4 = 0;
-def_int $int5 = struct_param(~task_get_struct(%varplayerbit_3561), param_2235);
-if ($int5 = 0) {
+def_struct $struct5 = ~task_get_struct(%varplayerbit_3561);
+if ($struct5 = null) {
+    return;
+}
+def_int $int6 = struct_param($struct5, param_2235);
+if ($int6 = 0) {
     return;
 }
 switch_int (%varplayerbit_3561) {
@@ -28,12 +32,15 @@ switch_int (%varplayerbit_3561) {
         $int4 = %varplayerbit_16596;
     case 3060 :
         $int4 = %varplayerbit_21379;
+    case 3064 :
+        $int4 = %varplayerbit_24210;
+        $int6 = ~script3058($struct5);
     case default :
         return;
 }
 if_sethide(false, $component1);
-~aif_progressbar_set(scale($int4, $int5, 100), $component2, $component3);
-~script4212($component3, "<tostring($int4)> / <tostring($int5)>", p11_full, 0xebe0bc, ^black);
-def_string $string0 = "Challenge progress: <tostring($int4)> / <tostring($int5)>";
+~aif_progressbar_set(scale($int4, $int6, 100), $component2, $component3);
+~script4212($component3, "<tostring($int4)> / <tostring($int6)>", p11_full, 0xebe0bc, ^black);
+def_string $string0 = "Challenge progress: <tostring($int4)> / <tostring($int6)>";
 if_setonmouserepeat("script8799($string0, event_com, -1)", $component1);
 if_setonmouseleave("script8805", $component1);

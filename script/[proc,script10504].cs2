@@ -1,0 +1,111 @@
+// 10504
+[proc,script10504]
+if_settext("Captain Haskell's Rival Challenges", interface_1343:com_22);
+if_sethide(false, interface_1343:com_3);
+if_sethide(true, interface_1343:com_24);
+if_setsize(400, 70, ^setsize_abs, ^setsize_abs, interface_1343:com_3);
+if_setposition(0, 20, ^setpos_abs_centre, ^setpos_abs_top, interface_1343:com_3);
+def_struct $struct0 = ~script10509(%varplayerbit_24208, %varplayerbit_24209);
+def_string $string0 = "";
+if ($struct0 ! null) {
+    if_settext("You currently have an active challenge: <struct_param($struct0, param_1266)>", interface_1343:com_21);
+    if_sethide(false, interface_1343:com_8);
+    if_sethide(true, interface_1343:com_93);
+    if_setposition(0, 100, ^setpos_abs_centre, ^setpos_abs_top, interface_1343:com_8);
+    $string0 = "Click here to check your current active challenge.";
+    if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1343:com_8);
+    if_settext("Check", interface_1343:com_95);
+} else {
+    if_settext("Select challenge from the list to the left to view its details, or change category to look at other challenges.", interface_1343:com_21);
+    if_sethide(true, interface_1343:com_8);
+}
+def_int $int1 = 0;
+def_int $int2 = 10;
+def_component $component3 = interface_1343:com_10;
+if_sethide(false, interface_1343:com_10);
+if_setposition(0, 150, ^setpos_abs_centre, ^setpos_abs_top, interface_1343:com_10);
+if_setsize(20, 180, ^setsize_minus, ^setsize_abs, interface_1343:com_10);
+cc_create($component3, ^iftype_rectangle, $int1);
+cc_setcolour(0x0c1a03);
+cc_setfill(true);
+cc_setsize(330, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
+$int1 = calc($int1 + 1);
+def_int $int4 = cc_getx;
+def_int $int5 = cc_getwidth;
+$int4 = calc($int4 + 10);
+$int5 = calc($int5 - 20);
+cc_create($component3, ^iftype_text, $int1);
+cc_settextfont(graphic_17993);
+cc_setcolour(^white);
+cc_settext("Tokens");
+cc_setposition($int4, 10, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize($int5, 40, ^setsize_abs, ^setsize_abs);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 16);
+$int1 = calc($int1 + 1);
+def_int $int6 = enum_getoutputcount(enum_9193);
+def_int $intarray0($int6);
+def_int $int7 = 0;
+def_obj $obj8 = null;
+def_int $int9 = 0;
+def_int $int10 = 0;
+while ($int7 < inv_size(inv_93)) {
+    $obj8 = inv_getobj(inv_93, $int7);
+    if ($obj8 ! null & oc_param($obj8, param_4540) > 0 & oc_param($obj8, param_4542) ! null) {
+        $int10 = oc_param($obj8, param_4540);
+        if (enum_hasoutput(int, enum_9193, $int10) = true) {
+            $int9 = enum_getreverseindex(int, int, enum_9193, $int10, 0);
+            if ($int9 >= 0) {
+                $intarray0($int9) = calc($intarray0($int9) + inv_getnum(inv_93, $int7));
+            }
+        }
+    }
+    $int7 = calc($int7 + 1);
+}
+$int9 = 0;
+def_string $string1 = "";
+def_int $int11 = 0;
+$int2 = 40;
+$int5 = calc($int5 - 10);
+while ($int9 < $int6) {
+    $int10 = enum(int, int, enum_9193, $int9);
+    if ($int10 > 0) {
+        $int2 = calc($int2 + 5);
+        $int11 = $int2;
+        $int1, $int2 = ~script176($component3, $int1, $int4, $int2, $int5, enum(int, graphic, enum_8548, $int10), tostring($intarray0($int9)), struct_28935);
+        cc_settextalign(^settextalign_right, ^settextalign_centre, 16);
+        $string1 = "<enum(int, string, enum_9192, $int9)> - <tostring($intarray0($int9))>";
+        cc_create($component3, ^iftype_rectangle, $int1);
+        cc_settrans(255);
+        cc_setfill(true);
+        cc_setsize($int5, calc($int2 - $int11), ^setsize_abs, ^setsize_abs);
+        cc_setposition($int4, $int11, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setonmouserepeat("script3876($string1, $component3, $int1)");
+        $int1 = calc($int1 + 1);
+    }
+    $int9 = calc($int9 + 1);
+}
+cc_create($component3, ^iftype_rectangle, $int1);
+cc_setcolour(0x0c1a03);
+cc_setfill(true);
+cc_setsize(320, 0, ^setsize_abs, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+$int1 = calc($int1 + 1);
+$int5 = 300;
+cc_create($component3, ^iftype_text, $int1);
+cc_settextfont(graphic_17993);
+cc_setcolour(^white);
+cc_settext("About Rival Challenges");
+cc_setsize($int5, 40, ^setsize_abs, ^setsize_abs);
+cc_setposition(10, 10, ^setpos_abs_left, ^setpos_abs_top);
+$int1 = calc($int1 + 1);
+$int2 = 40;
+def_graphic $graphic12 = aif_bullet_graphic;
+$int1, $int2 = ~script176($component3, $int1, 10, $int2, $int5, $graphic12, "Complete Rival Challenges for an extra XP reward.", struct_28933);
+$int2 = calc($int2 + 6);
+$int1, $int2 = ~script176($component3, $int1, 10, $int2, $int5, $graphic12, "Rival Challenges tokens can be won on Treasure Hunter.", struct_28933);
+$int2 = calc($int2 + 6);
+$int1, $int2 = ~script176($component3, $int1, 10, $int2, $int5, $graphic12, "You can swap challenge tokens with your friends.", struct_28933);
+$int2 = calc($int2 + 6);
+$int1, $int2 = ~script176($component3, $int1, 10, $int2, $int5, $graphic12, "Speak to Captain Haskell in Burthorpe for more information.", struct_28933);
+$int2 = calc($int2 + 6);
