@@ -1,5 +1,23 @@
 // 1430:0
 [com_0]
+type=graphic
+width=26
+height=26
+xmode=abs_centre
+ymode=abs_centre
+layer=com_6
+graphic=rs3_hud_combat_bar_icon_health
+colour=0xffffff
+clickmask=no
+op1=Regenerate
+op2=Heal Poison
+onmouseover=script73(event_com, rs3_hud_combat_bar_icon_health_over, rs3_hud_combat_bar_icon_poisoned_over, interface_1430:com_4, "rs3_btn_combat_bar_health,0", "rs3_btn_combat_bar_poisoned,0")
+onmouseleave=script73(event_com, rs3_hud_combat_bar_icon_health, rs3_hud_combat_bar_icon_poisoned, interface_1430:com_4, "rs3_btn_combat_bar_health,0", "rs3_btn_combat_bar_poisoned,0")
+onvartransmit=script73(event_com, rs3_hud_combat_bar_icon_health, rs3_hud_combat_bar_icon_poisoned, interface_1430:com_4, "rs3_btn_combat_bar_health,0", "rs3_btn_combat_bar_poisoned,0")
+onvartransmitlist=varplayer_722
+
+// 1430:1
+[com_1]
 type=layer
 widthmode=minus
 heightmode=minus
@@ -7,231 +25,216 @@ xmode=abs_centre
 ymode=abs_centre
 onload=script8109
 
-// 1430:1
-[com_1]
-type=layer
-height=50
-widthmode=minus
-layer=com_0
-
 // 1430:2
 [com_2]
 type=layer
-width=143
-height=30
+height=50
+widthmode=minus
 layer=com_1
 
 // 1430:3
 [com_3]
+type=layer
+width=143
+height=30
+layer=com_2
+
+// 1430:4
+[com_4]
 type=graphic
 x=2
 y=2
 width=26
 height=26
-layer=com_2
+layer=com_3
 graphic="rs3_btn_combat_bar_health,0"
 colour=0xffffff
 clickmask=no
 
-// 1430:4
-[com_4]
+// 1430:5
+[com_5]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_2
+layer=com_3
 onvartransmit=script8118(event_com)
 onstattransmit=script8118(event_com)
 onvartransmitlist=varplayer_659
 onstattransmitlist=hitpoints
 
-// 1430:5
-[com_5]
+// 1430:6
+[com_6]
 type=layer
 x=2
 y=2
 width=26
 height=26
-layer=com_2
+layer=com_3
 noclickthrough=yes
 onmouseleave=script8805
+onvartransmit=script10590(interface_1430:com_7)
 onmouserepeat=script8799("Regenerate", event_com, event_comsubid)
-
-// 1430:6
-[com_6]
-type=graphic
-width=26
-height=26
-xmode=abs_centre
-ymode=abs_centre
-layer=com_5
-graphic=rs3_hud_combat_bar_icon_health
-colour=0xffffff
-clickmask=no
-op1=Regenerate
-op2=Heal Poison
-onmouseover=script73(event_com, rs3_hud_combat_bar_icon_health_over, rs3_hud_combat_bar_icon_poisoned_over, interface_1430:com_3, "rs3_btn_combat_bar_health,0", "rs3_btn_combat_bar_poisoned,0")
-onmouseleave=script73(event_com, rs3_hud_combat_bar_icon_health, rs3_hud_combat_bar_icon_poisoned, interface_1430:com_3, "rs3_btn_combat_bar_health,0", "rs3_btn_combat_bar_poisoned,0")
-onvartransmit=script73(event_com, rs3_hud_combat_bar_icon_health, rs3_hud_combat_bar_icon_poisoned, interface_1430:com_3, "rs3_btn_combat_bar_health,0", "rs3_btn_combat_bar_poisoned,0")
-onvartransmitlist=varplayer_722
+onvartransmitlist=varplayer_2937
 
 // 1430:7
 [com_7]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_6
+onload=script10584(event_com, 2, -1)
+
+// 1430:8
+[com_8]
 type=layer
 x=26
 width=143
 height=30
 xmode=abs_right
-layer=com_1
+layer=com_2
 
-// 1430:8
-[com_8]
+// 1430:9
+[com_9]
 type=graphic
 x=2
 y=2
 width=26
 height=26
-layer=com_7
+layer=com_8
 graphic="rs3_btn_combat_bar_prayer,0"
 colour=0xffffff
 clickmask=no
 
-// 1430:9
-[com_9]
+// 1430:10
+[com_10]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_7
+layer=com_8
 onvartransmit=script8119(event_com)
 onstattransmit=script8119(event_com)
 onvartransmitlist=varplayer_3274
 onstattransmitlist=prayer
 
-// 1430:10
-[com_10]
+// 1430:11
+[com_11]
 type=layer
 x=2
 y=2
 width=26
 height=26
-layer=com_7
+layer=com_8
 noclickthrough=yes
 onmouseleave=script8805
 
-// 1430:11
-[com_11]
+// 1430:12
+[com_12]
 type=layer
 widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-layer=com_10
+layer=com_11
 op1=Turn Quick Prayers On
 op2=Select Quick Prayers
-onvartransmit=topstat_prayer_custom(interface_1430:com_8, event_com, "rs3_btn_combat_bar_prayer,1", "rs3_btn_combat_bar_prayer,0")
-onop=topstat_prayer_button_op(event_op, interface_1430:com_8, event_com, "rs3_btn_combat_bar_prayer,1", "rs3_btn_combat_bar_prayer,0")
-onvarctransmit=topstat_prayer_custom(interface_1430:com_8, event_com, "rs3_btn_combat_bar_prayer,1", "rs3_btn_combat_bar_prayer,0")
+onvartransmit=topstat_prayer_custom(interface_1430:com_9, event_com, "rs3_btn_combat_bar_prayer,1", "rs3_btn_combat_bar_prayer,0")
+onop=topstat_prayer_button_op(event_op, interface_1430:com_9, event_com, "rs3_btn_combat_bar_prayer,1", "rs3_btn_combat_bar_prayer,0")
+onvarctransmit=topstat_prayer_custom(interface_1430:com_9, event_com, "rs3_btn_combat_bar_prayer,1", "rs3_btn_combat_bar_prayer,0")
 onvartransmitlist=varplayer_3277,varplayer_3274,varplayer_1769
 onvarctransmitlist=varclient_181
 
-// 1430:12
-[com_12]
+// 1430:13
+[com_13]
 type=graphic
 width=26
 height=26
 xmode=abs_centre
 ymode=abs_centre
-layer=com_11
+layer=com_12
 graphic=rs3_hud_combat_bar_icon_prayer
 colour=0xffffff
 clickmask=no
 onmouseover=graphic_swapper(event_com, rs3_hud_combat_bar_icon_prayer_over)
 onmouseleave=graphic_swapper(event_com, rs3_hud_combat_bar_icon_prayer)
 
-// 1430:13
-[com_13]
+// 1430:14
+[com_14]
 type=layer
 x=16
 width=143
 height=30
 ymode=abs_bottom
-layer=com_1
+layer=com_2
 
-// 1430:14
-[com_14]
+// 1430:15
+[com_15]
 type=graphic
 x=2
 y=2
 width=26
 height=26
-layer=com_13
+layer=com_14
 graphic="rs3_btn_combat_bar_summoning,0"
 colour=0xffffff
 clickmask=no
 
-// 1430:15
-[com_15]
+// 1430:16
+[com_16]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_13
+layer=com_14
 onstattransmit=script8120(event_com)
 onstattransmitlist=summoning
 
-// 1430:16
-[com_16]
+// 1430:17
+[com_17]
 type=layer
 x=2
 y=2
 width=26
 height=26
-layer=com_13
+layer=com_14
 noclickthrough=yes
 onmouseleave=script8805
 onvartransmit=lore_head_update
 onmouserepeat=script8799("Familiar Options", event_com, event_comsubid)
 onvartransmitlist=varplayer_1784,varplayer_1831,varplayer_4053
 
-// 1430:17
-[com_17]
+// 1430:18
+[com_18]
 type=graphic
 width=26
 height=26
 xmode=abs_centre
 ymode=abs_centre
-layer=com_16
+layer=com_17
 graphic=rs3_hud_combat_bar_icon_summoning
 colour=0xffffff
 clickmask=no
 onmouseover=graphic_swapper(event_com, rs3_hud_combat_bar_icon_summoning_over)
 onmouseleave=graphic_swapper(event_com, rs3_hud_combat_bar_icon_summoning)
 
-// 1430:18
-[com_18]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_16
-op10=Select left-click option
-onvartransmit=lore_head_update
-onvartransmitlist=varplayer_1789
-
 // 1430:19
 [com_19]
 type=layer
 widthmode=minus
 heightmode=minus
+xmode=abs_centre
 ymode=abs_centre
-layer=com_16
-hide=yes
+layer=com_17
+op10=Select left-click option
+onvartransmit=lore_head_update
+onvartransmitlist=varplayer_1789
 
 // 1430:20
 [com_20]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_19
+ymode=abs_centre
+layer=com_17
+hide=yes
 
 // 1430:21
 [com_21]
@@ -239,136 +242,133 @@ type=layer
 widthmode=minus
 heightmode=minus
 layer=com_20
-op6=Take BoB
 
 // 1430:22
 [com_22]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_20
-op6=Renew Familiar
+layer=com_21
+op6=Take BoB
 
 // 1430:23
 [com_23]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_20
-targetverb=Attack
-ontargetleave=magic_leavetargetmode(interface_1430:com_17)
-ontargetenter=magic_entertargetmode(interface_1430:com_17)
+layer=com_21
+op6=Renew Familiar
 
 // 1430:24
 [com_24]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_20
-op6=Interact
+layer=com_21
+targetverb=Attack
+ontargetleave=magic_leavetargetmode(interface_1430:com_18)
+ontargetenter=magic_entertargetmode(interface_1430:com_18)
 
 // 1430:25
 [com_25]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_20
+layer=com_21
+op6=Interact
 
 // 1430:26
 [com_26]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_25
-hide=yes
+layer=com_21
 
 // 1430:27
 [com_27]
-type=graphic
+type=layer
 widthmode=minus
 heightmode=minus
 layer=com_26
+hide=yes
+
+// 1430:28
+[com_28]
+type=graphic
+widthmode=minus
+heightmode=minus
+layer=com_27
 colour=0xffffff
 clickmask=no
 opbase=Spell
 op1=Cast
-
-// 1430:28
-[com_28]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_20
-onload=script211
-onvartransmit=script211
-onvarcstrtransmit=script211
-onvartransmitlist=varplayer_1831
-onvarcstrtransmitlist=varclientstring_2517
 
 // 1430:29
 [com_29]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_20
-hide=yes
-op1=Cast
+layer=com_21
+onload=script211
+onvartransmit=script211
+onvarcstrtransmit=script211
+onvartransmitlist=varplayer_1831
+onvarcstrtransmitlist=varclientstring_2517
 
 // 1430:30
 [com_30]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_20
+layer=com_21
 hide=yes
-op1=Take BoB
+op1=Cast
 
 // 1430:31
 [com_31]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_20
+layer=com_21
 hide=yes
-op1=Renew Familiar
+op1=Take BoB
 
 // 1430:32
 [com_32]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_20
+layer=com_21
 hide=yes
-targetverb=Attack
-ontargetleave=magic_leavetargetmode(interface_1430:com_17)
-ontargetenter=magic_entertargetmode(interface_1430:com_17)
+op1=Renew Familiar
 
 // 1430:33
 [com_33]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_20
+layer=com_21
 hide=yes
-op1=Interact
+targetverb=Attack
+ontargetleave=magic_leavetargetmode(interface_1430:com_18)
+ontargetenter=magic_entertargetmode(interface_1430:com_18)
 
 // 1430:34
 [com_34]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_20
-op6=Follower Details
-onop=script8310(12)
+layer=com_21
+hide=yes
+op1=Interact
 
 // 1430:35
 [com_35]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_20
-hide=yes
-op1=Follower Details
+layer=com_21
+op6=Follower Details
 onop=script8310(12)
 
 // 1430:36
@@ -376,50 +376,51 @@ onop=script8310(12)
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_19
+layer=com_21
+hide=yes
+op1=Follower Details
+onop=script8310(12)
 
 // 1430:37
 [com_37]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_36
-op6=Call Follower
+layer=com_20
 
 // 1430:38
 [com_38]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_36
-op6=Dismiss
+layer=com_37
+op6=Call Follower
 
 // 1430:39
 [com_39]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_36
-hide=yes
-op1=Call Follower
+layer=com_37
+op6=Dismiss
 
 // 1430:40
 [com_40]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_36
+layer=com_37
 hide=yes
-op1=Dismiss
+op1=Call Follower
 
 // 1430:41
 [com_41]
 type=layer
 widthmode=minus
 heightmode=minus
-ymode=abs_centre
-layer=com_16
-op9=Open Pet Interface
+layer=com_37
+hide=yes
+op1=Dismiss
 
 // 1430:42
 [com_42]
@@ -427,8 +428,8 @@ type=layer
 widthmode=minus
 heightmode=minus
 ymode=abs_centre
-layer=com_16
-op7=Summon Pet
+layer=com_17
+op9=Open Pet Interface
 
 // 1430:43
 [com_43]
@@ -436,139 +437,133 @@ type=layer
 widthmode=minus
 heightmode=minus
 ymode=abs_centre
-layer=com_16
-hide=yes
-op9=Call Pet
+layer=com_17
+op7=Summon Pet
 
 // 1430:44
 [com_44]
+type=layer
+widthmode=minus
+heightmode=minus
+ymode=abs_centre
+layer=com_17
+hide=yes
+op9=Call Pet
+
+// 1430:45
+[com_45]
 type=layer
 width=143
 height=30
 xmode=abs_right
 ymode=abs_bottom
-layer=com_1
+layer=com_2
 
-// 1430:45
-[com_45]
+// 1430:46
+[com_46]
 type=graphic
 x=2
 y=2
 width=26
 height=26
-layer=com_44
+layer=com_45
 graphic="rs3_btn_combat_bar_adrenaline,0"
 colour=0xffffff
 clickmask=no
 onvartransmit=script8130(event_com)
 onvartransmitlist=varplayer_462
 
-// 1430:46
-[com_46]
+// 1430:47
+[com_47]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_44
+layer=com_45
 onvartransmit=script8121(event_com)
 onvartransmitlist=varplayer_679
 
-// 1430:47
-[com_47]
+// 1430:48
+[com_48]
 type=layer
 x=2
 y=2
 width=26
 height=26
-layer=com_44
+layer=com_45
 noclickthrough=yes
 onmouseleave=script8805
 onmouserepeat=script8799("Toggle Auto-Retaliate", event_com, event_comsubid)
 
-// 1430:48
-[com_48]
+// 1430:49
+[com_49]
 type=graphic
 width=26
 height=26
 xmode=abs_centre
 ymode=abs_centre
-layer=com_47
+layer=com_48
 graphic=rs3_hud_combat_bar_icon_adrenaline
 colour=0xffffff
 clickmask=no
 op1=Toggle
 onmouseover=graphic_swapper(event_com, rs3_hud_combat_bar_icon_adrenaline_over)
 onmouseleave=graphic_swapper(event_com, rs3_hud_combat_bar_icon_adrenaline)
-onop=script8129(interface_1430:com_45)
+onop=script8129(interface_1430:com_46)
 
-// 1430:49
-[com_49]
+// 1430:50
+[com_50]
 type=layer
 width=264
 height=72
 ymode=abs_bottom
-layer=com_0
+layer=com_1
 onload=script6986
-onvartransmit=script164(interface_1430:com_232)
+onvartransmit=script164(interface_1430:com_233)
 onvartransmitlist=varplayer_682
 
-// 1430:50
-[com_50]
+// 1430:51
+[com_51]
 type=layer
 y=-17
 width=36
 height=36
 ymode=abs_centre
-layer=com_49
+layer=com_50
 noclickthrough=yes
 
-// 1430:51
-[com_51]
+// 1430:52
+[com_52]
 type=layer
 widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-layer=com_50
+layer=com_51
 onload=rs3_background_panel(event_com, struct_21363)
 
-// 1430:52
-[com_52]
+// 1430:53
+[com_53]
 type=graphic
 width=32
 height=32
 xmode=abs_centre
 ymode=abs_centre
-layer=com_50
+layer=com_51
 graphic=combatv2_prayerglow
 trans=255
 colour=0xffffff
 clickmask=no
 
-// 1430:53
-[com_53]
+// 1430:54
+[com_54]
 type=layer
 width=30
 height=30
 xmode=abs_centre
 ymode=abs_centre
-layer=com_50
+layer=com_51
 onvartransmit=script6994(1)
 onvartransmitlist=varplayer_727,varplayer_811
-
-// 1430:54
-[com_54]
-type=graphic
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_53
-graphic=combatv2_blank_ability
-colour=0xffffff
-clickmask=no
-op1=Use
-opcursor0=cursor_46
-ondragcomplete=script7001(event_com, event_comsubid, event_com2)
 
 // 1430:55
 [com_55]
@@ -577,149 +572,149 @@ width=30
 height=30
 xmode=abs_centre
 ymode=abs_centre
-layer=com_53
-hide=yes
-graphic="combatv2_cooldown_animation,0"
-trans=45
-colour=0x010101
-clickmask=no
-
-// 1430:56
-[com_56]
-type=rectangle
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_53
-colour=0xffffff
-fill=yes
-trans=255
-
-// 1430:57
-[com_57]
-type=text
-x=2
-widthmode=minus
-heightmode=minus
-ymode=abs_bottom
-layer=com_53
-textfont=verdana_11pt_regular
-text=1
-textalignv=2
-textshadow=yes
-colour=0xb37a2f
-
-// 1430:58
-[com_58]
-type=text
-widthmode=minus
-heightmode=minus
-layer=com_53
-textfont=p11_full
-textalignh=2
-textshadow=yes
-colour=0xced587
-
-// 1430:59
-[com_59]
-type=layer
-width=20
-height=20
-xmode=abs_centre
-ymode=abs_centre
-layer=com_53
-
-// 1430:60
-[com_60]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_50
-onvartransmit=script5899(1, interface_1430:com_61)
-onvartransmitlist=varplayer_4164
-
-// 1430:61
-[com_61]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_60
-hide=yes
-onload=spinner_create(event_com, 2, -1)
-
-// 1430:62
-[com_62]
-type=rectangle
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_50
-colour=0xc8c8c8
-trans=255
-onmouseover=script7016(event_com, true)
-onmouseleave=script7016(event_com, false)
-
-// 1430:63
-[com_63]
-type=layer
-x=38
-y=-17
-width=36
-height=36
-ymode=abs_centre
-layer=com_49
-noclickthrough=yes
-
-// 1430:64
-[com_64]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_63
-onload=rs3_background_panel(event_com, struct_21363)
-
-// 1430:65
-[com_65]
-type=graphic
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_63
-graphic=combatv2_prayerglow
-trans=255
-colour=0xffffff
-clickmask=no
-
-// 1430:66
-[com_66]
-type=layer
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_63
-onvartransmit=script6994(2)
-onvartransmitlist=varplayer_728,varplayer_812
-
-// 1430:67
-[com_67]
-type=graphic
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_66
+layer=com_54
 graphic=combatv2_blank_ability
 colour=0xffffff
 clickmask=no
 op1=Use
 opcursor0=cursor_46
 ondragcomplete=script7001(event_com, event_comsubid, event_com2)
+
+// 1430:56
+[com_56]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_54
+hide=yes
+graphic="combatv2_cooldown_animation,0"
+trans=45
+colour=0x010101
+clickmask=no
+
+// 1430:57
+[com_57]
+type=rectangle
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_54
+colour=0xffffff
+fill=yes
+trans=255
+
+// 1430:58
+[com_58]
+type=text
+x=2
+widthmode=minus
+heightmode=minus
+ymode=abs_bottom
+layer=com_54
+textfont=verdana_11pt_regular
+text=1
+textalignv=2
+textshadow=yes
+colour=0xb37a2f
+
+// 1430:59
+[com_59]
+type=text
+widthmode=minus
+heightmode=minus
+layer=com_54
+textfont=p11_full
+textalignh=2
+textshadow=yes
+colour=0xced587
+
+// 1430:60
+[com_60]
+type=layer
+width=20
+height=20
+xmode=abs_centre
+ymode=abs_centre
+layer=com_54
+
+// 1430:61
+[com_61]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_51
+onvartransmit=script5899(1, interface_1430:com_62)
+onvartransmitlist=varplayer_4164
+
+// 1430:62
+[com_62]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_61
+hide=yes
+onload=spinner_create(event_com, 2, -1)
+
+// 1430:63
+[com_63]
+type=rectangle
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_51
+colour=0xc8c8c8
+trans=255
+onmouseover=script7016(event_com, true)
+onmouseleave=script7016(event_com, false)
+
+// 1430:64
+[com_64]
+type=layer
+x=38
+y=-17
+width=36
+height=36
+ymode=abs_centre
+layer=com_50
+noclickthrough=yes
+
+// 1430:65
+[com_65]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_64
+onload=rs3_background_panel(event_com, struct_21363)
+
+// 1430:66
+[com_66]
+type=graphic
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_64
+graphic=combatv2_prayerglow
+trans=255
+colour=0xffffff
+clickmask=no
+
+// 1430:67
+[com_67]
+type=layer
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_64
+onvartransmit=script6994(2)
+onvartransmitlist=varplayer_728,varplayer_812
 
 // 1430:68
 [com_68]
@@ -728,149 +723,149 @@ width=30
 height=30
 xmode=abs_centre
 ymode=abs_centre
-layer=com_66
-hide=yes
-graphic="combatv2_cooldown_animation,0"
-trans=45
-colour=0x010101
-clickmask=no
-
-// 1430:69
-[com_69]
-type=rectangle
-width=40
-height=40
-xmode=abs_centre
-ymode=abs_centre
-layer=com_66
-colour=0xffffff
-fill=yes
-trans=255
-
-// 1430:70
-[com_70]
-type=text
-x=2
-widthmode=minus
-heightmode=minus
-ymode=abs_bottom
-layer=com_66
-textfont=verdana_11pt_regular
-text=2
-textalignv=2
-textshadow=yes
-colour=0xb37a2f
-
-// 1430:71
-[com_71]
-type=text
-widthmode=minus
-heightmode=minus
-layer=com_66
-textfont=p11_full
-textalignh=2
-textshadow=yes
-colour=0xced587
-
-// 1430:72
-[com_72]
-type=layer
-width=20
-height=20
-xmode=abs_centre
-ymode=abs_centre
-layer=com_66
-
-// 1430:73
-[com_73]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_63
-onvartransmit=script5899(2, interface_1430:com_74)
-onvartransmitlist=varplayer_4164
-
-// 1430:74
-[com_74]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_73
-hide=yes
-onload=spinner_create(event_com, 2, -1)
-
-// 1430:75
-[com_75]
-type=rectangle
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_63
-colour=0xc8c8c8
-trans=255
-onmouseover=script7016(event_com, true)
-onmouseleave=script7016(event_com, false)
-
-// 1430:76
-[com_76]
-type=layer
-x=76
-y=-17
-width=36
-height=36
-ymode=abs_centre
-layer=com_49
-noclickthrough=yes
-
-// 1430:77
-[com_77]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_76
-onload=rs3_background_panel(event_com, struct_21363)
-
-// 1430:78
-[com_78]
-type=graphic
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_76
-graphic=combatv2_prayerglow
-trans=255
-colour=0xffffff
-clickmask=no
-
-// 1430:79
-[com_79]
-type=layer
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_76
-onvartransmit=script6994(3)
-onvartransmitlist=varplayer_729,varplayer_813
-
-// 1430:80
-[com_80]
-type=graphic
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_79
+layer=com_67
 graphic=combatv2_blank_ability
 colour=0xffffff
 clickmask=no
 op1=Use
 opcursor0=cursor_46
 ondragcomplete=script7001(event_com, event_comsubid, event_com2)
+
+// 1430:69
+[com_69]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_67
+hide=yes
+graphic="combatv2_cooldown_animation,0"
+trans=45
+colour=0x010101
+clickmask=no
+
+// 1430:70
+[com_70]
+type=rectangle
+width=40
+height=40
+xmode=abs_centre
+ymode=abs_centre
+layer=com_67
+colour=0xffffff
+fill=yes
+trans=255
+
+// 1430:71
+[com_71]
+type=text
+x=2
+widthmode=minus
+heightmode=minus
+ymode=abs_bottom
+layer=com_67
+textfont=verdana_11pt_regular
+text=2
+textalignv=2
+textshadow=yes
+colour=0xb37a2f
+
+// 1430:72
+[com_72]
+type=text
+widthmode=minus
+heightmode=minus
+layer=com_67
+textfont=p11_full
+textalignh=2
+textshadow=yes
+colour=0xced587
+
+// 1430:73
+[com_73]
+type=layer
+width=20
+height=20
+xmode=abs_centre
+ymode=abs_centre
+layer=com_67
+
+// 1430:74
+[com_74]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_64
+onvartransmit=script5899(2, interface_1430:com_75)
+onvartransmitlist=varplayer_4164
+
+// 1430:75
+[com_75]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_74
+hide=yes
+onload=spinner_create(event_com, 2, -1)
+
+// 1430:76
+[com_76]
+type=rectangle
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_64
+colour=0xc8c8c8
+trans=255
+onmouseover=script7016(event_com, true)
+onmouseleave=script7016(event_com, false)
+
+// 1430:77
+[com_77]
+type=layer
+x=76
+y=-17
+width=36
+height=36
+ymode=abs_centre
+layer=com_50
+noclickthrough=yes
+
+// 1430:78
+[com_78]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_77
+onload=rs3_background_panel(event_com, struct_21363)
+
+// 1430:79
+[com_79]
+type=graphic
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_77
+graphic=combatv2_prayerglow
+trans=255
+colour=0xffffff
+clickmask=no
+
+// 1430:80
+[com_80]
+type=layer
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_77
+onvartransmit=script6994(3)
+onvartransmitlist=varplayer_729,varplayer_813
 
 // 1430:81
 [com_81]
@@ -879,149 +874,149 @@ width=30
 height=30
 xmode=abs_centre
 ymode=abs_centre
-layer=com_79
-hide=yes
-graphic="combatv2_cooldown_animation,0"
-trans=45
-colour=0x010101
-clickmask=no
-
-// 1430:82
-[com_82]
-type=rectangle
-width=40
-height=40
-xmode=abs_centre
-ymode=abs_centre
-layer=com_79
-colour=0xffffff
-fill=yes
-trans=255
-
-// 1430:83
-[com_83]
-type=text
-x=2
-widthmode=minus
-heightmode=minus
-ymode=abs_bottom
-layer=com_79
-textfont=verdana_11pt_regular
-text=3
-textalignv=2
-textshadow=yes
-colour=0xb37a2f
-
-// 1430:84
-[com_84]
-type=text
-widthmode=minus
-heightmode=minus
-layer=com_79
-textfont=p11_full
-textalignh=2
-textshadow=yes
-colour=0xced587
-
-// 1430:85
-[com_85]
-type=layer
-width=20
-height=20
-xmode=abs_centre
-ymode=abs_centre
-layer=com_79
-
-// 1430:86
-[com_86]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_76
-onvartransmit=script5899(3, interface_1430:com_87)
-onvartransmitlist=varplayer_4164
-
-// 1430:87
-[com_87]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_86
-hide=yes
-onload=spinner_create(event_com, 2, -1)
-
-// 1430:88
-[com_88]
-type=rectangle
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_76
-colour=0xc8c8c8
-trans=255
-onmouseover=script7016(event_com, true)
-onmouseleave=script7016(event_com, false)
-
-// 1430:89
-[com_89]
-type=layer
-x=114
-y=-17
-width=36
-height=36
-ymode=abs_centre
-layer=com_49
-noclickthrough=yes
-
-// 1430:90
-[com_90]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_89
-onload=rs3_background_panel(event_com, struct_21363)
-
-// 1430:91
-[com_91]
-type=graphic
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_89
-graphic=combatv2_prayerglow
-trans=255
-colour=0xffffff
-clickmask=no
-
-// 1430:92
-[com_92]
-type=layer
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_89
-onvartransmit=script6994(4)
-onvartransmitlist=varplayer_730,varplayer_814
-
-// 1430:93
-[com_93]
-type=graphic
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_92
+layer=com_80
 graphic=combatv2_blank_ability
 colour=0xffffff
 clickmask=no
 op1=Use
 opcursor0=cursor_46
 ondragcomplete=script7001(event_com, event_comsubid, event_com2)
+
+// 1430:82
+[com_82]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_80
+hide=yes
+graphic="combatv2_cooldown_animation,0"
+trans=45
+colour=0x010101
+clickmask=no
+
+// 1430:83
+[com_83]
+type=rectangle
+width=40
+height=40
+xmode=abs_centre
+ymode=abs_centre
+layer=com_80
+colour=0xffffff
+fill=yes
+trans=255
+
+// 1430:84
+[com_84]
+type=text
+x=2
+widthmode=minus
+heightmode=minus
+ymode=abs_bottom
+layer=com_80
+textfont=verdana_11pt_regular
+text=3
+textalignv=2
+textshadow=yes
+colour=0xb37a2f
+
+// 1430:85
+[com_85]
+type=text
+widthmode=minus
+heightmode=minus
+layer=com_80
+textfont=p11_full
+textalignh=2
+textshadow=yes
+colour=0xced587
+
+// 1430:86
+[com_86]
+type=layer
+width=20
+height=20
+xmode=abs_centre
+ymode=abs_centre
+layer=com_80
+
+// 1430:87
+[com_87]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_77
+onvartransmit=script5899(3, interface_1430:com_88)
+onvartransmitlist=varplayer_4164
+
+// 1430:88
+[com_88]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_87
+hide=yes
+onload=spinner_create(event_com, 2, -1)
+
+// 1430:89
+[com_89]
+type=rectangle
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_77
+colour=0xc8c8c8
+trans=255
+onmouseover=script7016(event_com, true)
+onmouseleave=script7016(event_com, false)
+
+// 1430:90
+[com_90]
+type=layer
+x=114
+y=-17
+width=36
+height=36
+ymode=abs_centre
+layer=com_50
+noclickthrough=yes
+
+// 1430:91
+[com_91]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_90
+onload=rs3_background_panel(event_com, struct_21363)
+
+// 1430:92
+[com_92]
+type=graphic
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_90
+graphic=combatv2_prayerglow
+trans=255
+colour=0xffffff
+clickmask=no
+
+// 1430:93
+[com_93]
+type=layer
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_90
+onvartransmit=script6994(4)
+onvartransmitlist=varplayer_730,varplayer_814
 
 // 1430:94
 [com_94]
@@ -1030,149 +1025,149 @@ width=30
 height=30
 xmode=abs_centre
 ymode=abs_centre
-layer=com_92
-hide=yes
-graphic="combatv2_cooldown_animation,0"
-trans=45
-colour=0x010101
-clickmask=no
-
-// 1430:95
-[com_95]
-type=rectangle
-width=40
-height=40
-xmode=abs_centre
-ymode=abs_centre
-layer=com_92
-colour=0xffffff
-fill=yes
-trans=255
-
-// 1430:96
-[com_96]
-type=text
-x=2
-widthmode=minus
-heightmode=minus
-ymode=abs_bottom
-layer=com_92
-textfont=verdana_11pt_regular
-text=4
-textalignv=2
-textshadow=yes
-colour=0xb37a2f
-
-// 1430:97
-[com_97]
-type=text
-widthmode=minus
-heightmode=minus
-layer=com_92
-textfont=p11_full
-textalignh=2
-textshadow=yes
-colour=0xced587
-
-// 1430:98
-[com_98]
-type=layer
-width=20
-height=20
-xmode=abs_centre
-ymode=abs_centre
-layer=com_92
-
-// 1430:99
-[com_99]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_89
-onvartransmit=script5899(4, interface_1430:com_100)
-onvartransmitlist=varplayer_4164
-
-// 1430:100
-[com_100]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_99
-hide=yes
-onload=spinner_create(event_com, 2, -1)
-
-// 1430:101
-[com_101]
-type=rectangle
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_89
-colour=0xc8c8c8
-trans=255
-onmouseover=script7016(event_com, true)
-onmouseleave=script7016(event_com, false)
-
-// 1430:102
-[com_102]
-type=layer
-x=152
-y=-17
-width=36
-height=36
-ymode=abs_centre
-layer=com_49
-noclickthrough=yes
-
-// 1430:103
-[com_103]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_102
-onload=rs3_background_panel(event_com, struct_21363)
-
-// 1430:104
-[com_104]
-type=graphic
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_102
-graphic=combatv2_prayerglow
-trans=255
-colour=0xffffff
-clickmask=no
-
-// 1430:105
-[com_105]
-type=layer
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_102
-onvartransmit=script6994(5)
-onvartransmitlist=varplayer_731,varplayer_815
-
-// 1430:106
-[com_106]
-type=graphic
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_105
+layer=com_93
 graphic=combatv2_blank_ability
 colour=0xffffff
 clickmask=no
 op1=Use
 opcursor0=cursor_46
 ondragcomplete=script7001(event_com, event_comsubid, event_com2)
+
+// 1430:95
+[com_95]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_93
+hide=yes
+graphic="combatv2_cooldown_animation,0"
+trans=45
+colour=0x010101
+clickmask=no
+
+// 1430:96
+[com_96]
+type=rectangle
+width=40
+height=40
+xmode=abs_centre
+ymode=abs_centre
+layer=com_93
+colour=0xffffff
+fill=yes
+trans=255
+
+// 1430:97
+[com_97]
+type=text
+x=2
+widthmode=minus
+heightmode=minus
+ymode=abs_bottom
+layer=com_93
+textfont=verdana_11pt_regular
+text=4
+textalignv=2
+textshadow=yes
+colour=0xb37a2f
+
+// 1430:98
+[com_98]
+type=text
+widthmode=minus
+heightmode=minus
+layer=com_93
+textfont=p11_full
+textalignh=2
+textshadow=yes
+colour=0xced587
+
+// 1430:99
+[com_99]
+type=layer
+width=20
+height=20
+xmode=abs_centre
+ymode=abs_centre
+layer=com_93
+
+// 1430:100
+[com_100]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_90
+onvartransmit=script5899(4, interface_1430:com_101)
+onvartransmitlist=varplayer_4164
+
+// 1430:101
+[com_101]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_100
+hide=yes
+onload=spinner_create(event_com, 2, -1)
+
+// 1430:102
+[com_102]
+type=rectangle
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_90
+colour=0xc8c8c8
+trans=255
+onmouseover=script7016(event_com, true)
+onmouseleave=script7016(event_com, false)
+
+// 1430:103
+[com_103]
+type=layer
+x=152
+y=-17
+width=36
+height=36
+ymode=abs_centre
+layer=com_50
+noclickthrough=yes
+
+// 1430:104
+[com_104]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_103
+onload=rs3_background_panel(event_com, struct_21363)
+
+// 1430:105
+[com_105]
+type=graphic
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_103
+graphic=combatv2_prayerglow
+trans=255
+colour=0xffffff
+clickmask=no
+
+// 1430:106
+[com_106]
+type=layer
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_103
+onvartransmit=script6994(5)
+onvartransmitlist=varplayer_731,varplayer_815
 
 // 1430:107
 [com_107]
@@ -1181,149 +1176,149 @@ width=30
 height=30
 xmode=abs_centre
 ymode=abs_centre
-layer=com_105
-hide=yes
-graphic="combatv2_cooldown_animation,0"
-trans=45
-colour=0x010101
-clickmask=no
-
-// 1430:108
-[com_108]
-type=rectangle
-width=40
-height=40
-xmode=abs_centre
-ymode=abs_centre
-layer=com_105
-colour=0xffffff
-fill=yes
-trans=255
-
-// 1430:109
-[com_109]
-type=text
-x=2
-widthmode=minus
-heightmode=minus
-ymode=abs_bottom
-layer=com_105
-textfont=verdana_11pt_regular
-text=5
-textalignv=2
-textshadow=yes
-colour=0xb37a2f
-
-// 1430:110
-[com_110]
-type=text
-widthmode=minus
-heightmode=minus
-layer=com_105
-textfont=p11_full
-textalignh=2
-textshadow=yes
-colour=0xced587
-
-// 1430:111
-[com_111]
-type=layer
-width=20
-height=20
-xmode=abs_centre
-ymode=abs_centre
-layer=com_105
-
-// 1430:112
-[com_112]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_102
-onvartransmit=script5899(5, interface_1430:com_113)
-onvartransmitlist=varplayer_4164
-
-// 1430:113
-[com_113]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_112
-hide=yes
-onload=spinner_create(event_com, 2, -1)
-
-// 1430:114
-[com_114]
-type=rectangle
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_102
-colour=0xc8c8c8
-trans=255
-onmouseover=script7016(event_com, true)
-onmouseleave=script7016(event_com, false)
-
-// 1430:115
-[com_115]
-type=layer
-x=190
-y=-17
-width=36
-height=36
-ymode=abs_centre
-layer=com_49
-noclickthrough=yes
-
-// 1430:116
-[com_116]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_115
-onload=rs3_background_panel(event_com, struct_21363)
-
-// 1430:117
-[com_117]
-type=graphic
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_115
-graphic=combatv2_prayerglow
-trans=255
-colour=0xffffff
-clickmask=no
-
-// 1430:118
-[com_118]
-type=layer
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_115
-onvartransmit=script6994(6)
-onvartransmitlist=varplayer_732,varplayer_816
-
-// 1430:119
-[com_119]
-type=graphic
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_118
+layer=com_106
 graphic=combatv2_blank_ability
 colour=0xffffff
 clickmask=no
 op1=Use
 opcursor0=cursor_46
 ondragcomplete=script7001(event_com, event_comsubid, event_com2)
+
+// 1430:108
+[com_108]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_106
+hide=yes
+graphic="combatv2_cooldown_animation,0"
+trans=45
+colour=0x010101
+clickmask=no
+
+// 1430:109
+[com_109]
+type=rectangle
+width=40
+height=40
+xmode=abs_centre
+ymode=abs_centre
+layer=com_106
+colour=0xffffff
+fill=yes
+trans=255
+
+// 1430:110
+[com_110]
+type=text
+x=2
+widthmode=minus
+heightmode=minus
+ymode=abs_bottom
+layer=com_106
+textfont=verdana_11pt_regular
+text=5
+textalignv=2
+textshadow=yes
+colour=0xb37a2f
+
+// 1430:111
+[com_111]
+type=text
+widthmode=minus
+heightmode=minus
+layer=com_106
+textfont=p11_full
+textalignh=2
+textshadow=yes
+colour=0xced587
+
+// 1430:112
+[com_112]
+type=layer
+width=20
+height=20
+xmode=abs_centre
+ymode=abs_centre
+layer=com_106
+
+// 1430:113
+[com_113]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_103
+onvartransmit=script5899(5, interface_1430:com_114)
+onvartransmitlist=varplayer_4164
+
+// 1430:114
+[com_114]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_113
+hide=yes
+onload=spinner_create(event_com, 2, -1)
+
+// 1430:115
+[com_115]
+type=rectangle
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_103
+colour=0xc8c8c8
+trans=255
+onmouseover=script7016(event_com, true)
+onmouseleave=script7016(event_com, false)
+
+// 1430:116
+[com_116]
+type=layer
+x=190
+y=-17
+width=36
+height=36
+ymode=abs_centre
+layer=com_50
+noclickthrough=yes
+
+// 1430:117
+[com_117]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_116
+onload=rs3_background_panel(event_com, struct_21363)
+
+// 1430:118
+[com_118]
+type=graphic
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_116
+graphic=combatv2_prayerglow
+trans=255
+colour=0xffffff
+clickmask=no
+
+// 1430:119
+[com_119]
+type=layer
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_116
+onvartransmit=script6994(6)
+onvartransmitlist=varplayer_732,varplayer_816
 
 // 1430:120
 [com_120]
@@ -1332,149 +1327,149 @@ width=30
 height=30
 xmode=abs_centre
 ymode=abs_centre
-layer=com_118
-hide=yes
-graphic="combatv2_cooldown_animation,0"
-trans=45
-colour=0x010101
-clickmask=no
-
-// 1430:121
-[com_121]
-type=rectangle
-width=40
-height=40
-xmode=abs_centre
-ymode=abs_centre
-layer=com_118
-colour=0xffffff
-fill=yes
-trans=255
-
-// 1430:122
-[com_122]
-type=text
-x=2
-widthmode=minus
-heightmode=minus
-ymode=abs_bottom
-layer=com_118
-textfont=verdana_11pt_regular
-text=6
-textalignv=2
-textshadow=yes
-colour=0xb37a2f
-
-// 1430:123
-[com_123]
-type=text
-widthmode=minus
-heightmode=minus
-layer=com_118
-textfont=p11_full
-textalignh=2
-textshadow=yes
-colour=0xced587
-
-// 1430:124
-[com_124]
-type=layer
-width=20
-height=20
-xmode=abs_centre
-ymode=abs_centre
-layer=com_118
-
-// 1430:125
-[com_125]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_115
-onvartransmit=script5899(6, interface_1430:com_126)
-onvartransmitlist=varplayer_4164
-
-// 1430:126
-[com_126]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_125
-hide=yes
-onload=spinner_create(event_com, 2, -1)
-
-// 1430:127
-[com_127]
-type=rectangle
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_115
-colour=0xc8c8c8
-trans=255
-onmouseover=script7016(event_com, true)
-onmouseleave=script7016(event_com, false)
-
-// 1430:128
-[com_128]
-type=layer
-x=228
-y=-17
-width=36
-height=36
-ymode=abs_centre
-layer=com_49
-noclickthrough=yes
-
-// 1430:129
-[com_129]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_128
-onload=rs3_background_panel(event_com, struct_21363)
-
-// 1430:130
-[com_130]
-type=graphic
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_128
-graphic=combatv2_prayerglow
-trans=255
-colour=0xffffff
-clickmask=no
-
-// 1430:131
-[com_131]
-type=layer
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_128
-onvartransmit=script6994(7)
-onvartransmitlist=varplayer_733,varplayer_817
-
-// 1430:132
-[com_132]
-type=graphic
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_131
+layer=com_119
 graphic=combatv2_blank_ability
 colour=0xffffff
 clickmask=no
 op1=Use
 opcursor0=cursor_46
 ondragcomplete=script7001(event_com, event_comsubid, event_com2)
+
+// 1430:121
+[com_121]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_119
+hide=yes
+graphic="combatv2_cooldown_animation,0"
+trans=45
+colour=0x010101
+clickmask=no
+
+// 1430:122
+[com_122]
+type=rectangle
+width=40
+height=40
+xmode=abs_centre
+ymode=abs_centre
+layer=com_119
+colour=0xffffff
+fill=yes
+trans=255
+
+// 1430:123
+[com_123]
+type=text
+x=2
+widthmode=minus
+heightmode=minus
+ymode=abs_bottom
+layer=com_119
+textfont=verdana_11pt_regular
+text=6
+textalignv=2
+textshadow=yes
+colour=0xb37a2f
+
+// 1430:124
+[com_124]
+type=text
+widthmode=minus
+heightmode=minus
+layer=com_119
+textfont=p11_full
+textalignh=2
+textshadow=yes
+colour=0xced587
+
+// 1430:125
+[com_125]
+type=layer
+width=20
+height=20
+xmode=abs_centre
+ymode=abs_centre
+layer=com_119
+
+// 1430:126
+[com_126]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_116
+onvartransmit=script5899(6, interface_1430:com_127)
+onvartransmitlist=varplayer_4164
+
+// 1430:127
+[com_127]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_126
+hide=yes
+onload=spinner_create(event_com, 2, -1)
+
+// 1430:128
+[com_128]
+type=rectangle
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_116
+colour=0xc8c8c8
+trans=255
+onmouseover=script7016(event_com, true)
+onmouseleave=script7016(event_com, false)
+
+// 1430:129
+[com_129]
+type=layer
+x=228
+y=-17
+width=36
+height=36
+ymode=abs_centre
+layer=com_50
+noclickthrough=yes
+
+// 1430:130
+[com_130]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_129
+onload=rs3_background_panel(event_com, struct_21363)
+
+// 1430:131
+[com_131]
+type=graphic
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_129
+graphic=combatv2_prayerglow
+trans=255
+colour=0xffffff
+clickmask=no
+
+// 1430:132
+[com_132]
+type=layer
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_129
+onvartransmit=script6994(7)
+onvartransmitlist=varplayer_733,varplayer_817
 
 // 1430:133
 [com_133]
@@ -1483,148 +1478,148 @@ width=30
 height=30
 xmode=abs_centre
 ymode=abs_centre
-layer=com_131
-hide=yes
-graphic="combatv2_cooldown_animation,0"
-trans=45
-colour=0x010101
-clickmask=no
-
-// 1430:134
-[com_134]
-type=rectangle
-width=40
-height=40
-xmode=abs_centre
-ymode=abs_centre
-layer=com_131
-colour=0xffffff
-fill=yes
-trans=255
-
-// 1430:135
-[com_135]
-type=text
-x=2
-widthmode=minus
-heightmode=minus
-ymode=abs_bottom
-layer=com_131
-textfont=verdana_11pt_regular
-text=7
-textalignv=2
-textshadow=yes
-colour=0xb37a2f
-
-// 1430:136
-[com_136]
-type=text
-widthmode=minus
-heightmode=minus
-layer=com_131
-textfont=p11_full
-textalignh=2
-textshadow=yes
-colour=0xced587
-
-// 1430:137
-[com_137]
-type=layer
-width=20
-height=20
-xmode=abs_centre
-ymode=abs_centre
-layer=com_131
-
-// 1430:138
-[com_138]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_128
-onvartransmit=script5899(7, interface_1430:com_139)
-onvartransmitlist=varplayer_4164
-
-// 1430:139
-[com_139]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_138
-hide=yes
-onload=spinner_create(event_com, 2, -1)
-
-// 1430:140
-[com_140]
-type=rectangle
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_128
-colour=0xc8c8c8
-trans=255
-onmouseover=script7016(event_com, true)
-onmouseleave=script7016(event_com, false)
-
-// 1430:141
-[com_141]
-type=layer
-y=17
-width=36
-height=36
-ymode=abs_centre
-layer=com_49
-noclickthrough=yes
-
-// 1430:142
-[com_142]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_141
-onload=rs3_background_panel(event_com, struct_21363)
-
-// 1430:143
-[com_143]
-type=graphic
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_141
-graphic=combatv2_prayerglow
-trans=255
-colour=0xffffff
-clickmask=no
-
-// 1430:144
-[com_144]
-type=layer
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_141
-onvartransmit=script6994(8)
-onvartransmitlist=varplayer_734,varplayer_818
-
-// 1430:145
-[com_145]
-type=graphic
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_144
+layer=com_132
 graphic=combatv2_blank_ability
 colour=0xffffff
 clickmask=no
 op1=Use
 opcursor0=cursor_46
 ondragcomplete=script7001(event_com, event_comsubid, event_com2)
+
+// 1430:134
+[com_134]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_132
+hide=yes
+graphic="combatv2_cooldown_animation,0"
+trans=45
+colour=0x010101
+clickmask=no
+
+// 1430:135
+[com_135]
+type=rectangle
+width=40
+height=40
+xmode=abs_centre
+ymode=abs_centre
+layer=com_132
+colour=0xffffff
+fill=yes
+trans=255
+
+// 1430:136
+[com_136]
+type=text
+x=2
+widthmode=minus
+heightmode=minus
+ymode=abs_bottom
+layer=com_132
+textfont=verdana_11pt_regular
+text=7
+textalignv=2
+textshadow=yes
+colour=0xb37a2f
+
+// 1430:137
+[com_137]
+type=text
+widthmode=minus
+heightmode=minus
+layer=com_132
+textfont=p11_full
+textalignh=2
+textshadow=yes
+colour=0xced587
+
+// 1430:138
+[com_138]
+type=layer
+width=20
+height=20
+xmode=abs_centre
+ymode=abs_centre
+layer=com_132
+
+// 1430:139
+[com_139]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_129
+onvartransmit=script5899(7, interface_1430:com_140)
+onvartransmitlist=varplayer_4164
+
+// 1430:140
+[com_140]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_139
+hide=yes
+onload=spinner_create(event_com, 2, -1)
+
+// 1430:141
+[com_141]
+type=rectangle
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_129
+colour=0xc8c8c8
+trans=255
+onmouseover=script7016(event_com, true)
+onmouseleave=script7016(event_com, false)
+
+// 1430:142
+[com_142]
+type=layer
+y=17
+width=36
+height=36
+ymode=abs_centre
+layer=com_50
+noclickthrough=yes
+
+// 1430:143
+[com_143]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_142
+onload=rs3_background_panel(event_com, struct_21363)
+
+// 1430:144
+[com_144]
+type=graphic
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_142
+graphic=combatv2_prayerglow
+trans=255
+colour=0xffffff
+clickmask=no
+
+// 1430:145
+[com_145]
+type=layer
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_142
+onvartransmit=script6994(8)
+onvartransmitlist=varplayer_734,varplayer_818
 
 // 1430:146
 [com_146]
@@ -1633,149 +1628,149 @@ width=30
 height=30
 xmode=abs_centre
 ymode=abs_centre
-layer=com_144
-hide=yes
-graphic="combatv2_cooldown_animation,0"
-trans=45
-colour=0x010101
-clickmask=no
-
-// 1430:147
-[com_147]
-type=rectangle
-width=40
-height=40
-xmode=abs_centre
-ymode=abs_centre
-layer=com_144
-colour=0xffffff
-fill=yes
-trans=255
-
-// 1430:148
-[com_148]
-type=text
-x=2
-widthmode=minus
-heightmode=minus
-ymode=abs_bottom
-layer=com_144
-textfont=verdana_11pt_regular
-text=8
-textalignv=2
-textshadow=yes
-colour=0xb37a2f
-
-// 1430:149
-[com_149]
-type=text
-widthmode=minus
-heightmode=minus
-layer=com_144
-textfont=p11_full
-textalignh=2
-textshadow=yes
-colour=0xced587
-
-// 1430:150
-[com_150]
-type=layer
-width=20
-height=20
-xmode=abs_centre
-ymode=abs_centre
-layer=com_144
-
-// 1430:151
-[com_151]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_141
-onvartransmit=script5899(8, interface_1430:com_152)
-onvartransmitlist=varplayer_4164
-
-// 1430:152
-[com_152]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_151
-hide=yes
-onload=spinner_create(event_com, 2, -1)
-
-// 1430:153
-[com_153]
-type=rectangle
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_141
-colour=0xc8c8c8
-trans=255
-onmouseover=script7016(event_com, true)
-onmouseleave=script7016(event_com, false)
-
-// 1430:154
-[com_154]
-type=layer
-x=38
-y=17
-width=36
-height=36
-ymode=abs_centre
-layer=com_49
-noclickthrough=yes
-
-// 1430:155
-[com_155]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_154
-onload=rs3_background_panel(event_com, struct_21363)
-
-// 1430:156
-[com_156]
-type=graphic
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_154
-graphic=combatv2_prayerglow
-trans=255
-colour=0xffffff
-clickmask=no
-
-// 1430:157
-[com_157]
-type=layer
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_154
-onvartransmit=script6994(9)
-onvartransmitlist=varplayer_735,varplayer_819
-
-// 1430:158
-[com_158]
-type=graphic
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_157
+layer=com_145
 graphic=combatv2_blank_ability
 colour=0xffffff
 clickmask=no
 op1=Use
 opcursor0=cursor_46
 ondragcomplete=script7001(event_com, event_comsubid, event_com2)
+
+// 1430:147
+[com_147]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_145
+hide=yes
+graphic="combatv2_cooldown_animation,0"
+trans=45
+colour=0x010101
+clickmask=no
+
+// 1430:148
+[com_148]
+type=rectangle
+width=40
+height=40
+xmode=abs_centre
+ymode=abs_centre
+layer=com_145
+colour=0xffffff
+fill=yes
+trans=255
+
+// 1430:149
+[com_149]
+type=text
+x=2
+widthmode=minus
+heightmode=minus
+ymode=abs_bottom
+layer=com_145
+textfont=verdana_11pt_regular
+text=8
+textalignv=2
+textshadow=yes
+colour=0xb37a2f
+
+// 1430:150
+[com_150]
+type=text
+widthmode=minus
+heightmode=minus
+layer=com_145
+textfont=p11_full
+textalignh=2
+textshadow=yes
+colour=0xced587
+
+// 1430:151
+[com_151]
+type=layer
+width=20
+height=20
+xmode=abs_centre
+ymode=abs_centre
+layer=com_145
+
+// 1430:152
+[com_152]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_142
+onvartransmit=script5899(8, interface_1430:com_153)
+onvartransmitlist=varplayer_4164
+
+// 1430:153
+[com_153]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_152
+hide=yes
+onload=spinner_create(event_com, 2, -1)
+
+// 1430:154
+[com_154]
+type=rectangle
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_142
+colour=0xc8c8c8
+trans=255
+onmouseover=script7016(event_com, true)
+onmouseleave=script7016(event_com, false)
+
+// 1430:155
+[com_155]
+type=layer
+x=38
+y=17
+width=36
+height=36
+ymode=abs_centre
+layer=com_50
+noclickthrough=yes
+
+// 1430:156
+[com_156]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_155
+onload=rs3_background_panel(event_com, struct_21363)
+
+// 1430:157
+[com_157]
+type=graphic
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_155
+graphic=combatv2_prayerglow
+trans=255
+colour=0xffffff
+clickmask=no
+
+// 1430:158
+[com_158]
+type=layer
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_155
+onvartransmit=script6994(9)
+onvartransmitlist=varplayer_735,varplayer_819
 
 // 1430:159
 [com_159]
@@ -1784,149 +1779,149 @@ width=30
 height=30
 xmode=abs_centre
 ymode=abs_centre
-layer=com_157
-hide=yes
-graphic="combatv2_cooldown_animation,0"
-trans=45
-colour=0x010101
-clickmask=no
-
-// 1430:160
-[com_160]
-type=rectangle
-width=40
-height=40
-xmode=abs_centre
-ymode=abs_centre
-layer=com_157
-colour=0xffffff
-fill=yes
-trans=255
-
-// 1430:161
-[com_161]
-type=text
-x=2
-widthmode=minus
-heightmode=minus
-ymode=abs_bottom
-layer=com_157
-textfont=verdana_11pt_regular
-text=9
-textalignv=2
-textshadow=yes
-colour=0xb37a2f
-
-// 1430:162
-[com_162]
-type=text
-widthmode=minus
-heightmode=minus
-layer=com_157
-textfont=p11_full
-textalignh=2
-textshadow=yes
-colour=0xced587
-
-// 1430:163
-[com_163]
-type=layer
-width=20
-height=20
-xmode=abs_centre
-ymode=abs_centre
-layer=com_157
-
-// 1430:164
-[com_164]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_154
-onvartransmit=script5899(9, interface_1430:com_165)
-onvartransmitlist=varplayer_4164
-
-// 1430:165
-[com_165]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_164
-hide=yes
-onload=spinner_create(event_com, 2, -1)
-
-// 1430:166
-[com_166]
-type=rectangle
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_154
-colour=0xc8c8c8
-trans=255
-onmouseover=script7016(event_com, true)
-onmouseleave=script7016(event_com, false)
-
-// 1430:167
-[com_167]
-type=layer
-x=76
-y=17
-width=36
-height=36
-ymode=abs_centre
-layer=com_49
-noclickthrough=yes
-
-// 1430:168
-[com_168]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_167
-onload=rs3_background_panel(event_com, struct_21363)
-
-// 1430:169
-[com_169]
-type=graphic
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_167
-graphic=combatv2_prayerglow
-trans=255
-colour=0xffffff
-clickmask=no
-
-// 1430:170
-[com_170]
-type=layer
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_167
-onvartransmit=script6994(10)
-onvartransmitlist=varplayer_736,varplayer_820
-
-// 1430:171
-[com_171]
-type=graphic
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_170
+layer=com_158
 graphic=combatv2_blank_ability
 colour=0xffffff
 clickmask=no
 op1=Use
 opcursor0=cursor_46
 ondragcomplete=script7001(event_com, event_comsubid, event_com2)
+
+// 1430:160
+[com_160]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_158
+hide=yes
+graphic="combatv2_cooldown_animation,0"
+trans=45
+colour=0x010101
+clickmask=no
+
+// 1430:161
+[com_161]
+type=rectangle
+width=40
+height=40
+xmode=abs_centre
+ymode=abs_centre
+layer=com_158
+colour=0xffffff
+fill=yes
+trans=255
+
+// 1430:162
+[com_162]
+type=text
+x=2
+widthmode=minus
+heightmode=minus
+ymode=abs_bottom
+layer=com_158
+textfont=verdana_11pt_regular
+text=9
+textalignv=2
+textshadow=yes
+colour=0xb37a2f
+
+// 1430:163
+[com_163]
+type=text
+widthmode=minus
+heightmode=minus
+layer=com_158
+textfont=p11_full
+textalignh=2
+textshadow=yes
+colour=0xced587
+
+// 1430:164
+[com_164]
+type=layer
+width=20
+height=20
+xmode=abs_centre
+ymode=abs_centre
+layer=com_158
+
+// 1430:165
+[com_165]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_155
+onvartransmit=script5899(9, interface_1430:com_166)
+onvartransmitlist=varplayer_4164
+
+// 1430:166
+[com_166]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_165
+hide=yes
+onload=spinner_create(event_com, 2, -1)
+
+// 1430:167
+[com_167]
+type=rectangle
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_155
+colour=0xc8c8c8
+trans=255
+onmouseover=script7016(event_com, true)
+onmouseleave=script7016(event_com, false)
+
+// 1430:168
+[com_168]
+type=layer
+x=76
+y=17
+width=36
+height=36
+ymode=abs_centre
+layer=com_50
+noclickthrough=yes
+
+// 1430:169
+[com_169]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_168
+onload=rs3_background_panel(event_com, struct_21363)
+
+// 1430:170
+[com_170]
+type=graphic
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_168
+graphic=combatv2_prayerglow
+trans=255
+colour=0xffffff
+clickmask=no
+
+// 1430:171
+[com_171]
+type=layer
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_168
+onvartransmit=script6994(10)
+onvartransmitlist=varplayer_736,varplayer_820
 
 // 1430:172
 [com_172]
@@ -1935,149 +1930,149 @@ width=30
 height=30
 xmode=abs_centre
 ymode=abs_centre
-layer=com_170
-hide=yes
-graphic="combatv2_cooldown_animation,0"
-trans=45
-colour=0x010101
-clickmask=no
-
-// 1430:173
-[com_173]
-type=rectangle
-width=40
-height=40
-xmode=abs_centre
-ymode=abs_centre
-layer=com_170
-colour=0xffffff
-fill=yes
-trans=255
-
-// 1430:174
-[com_174]
-type=text
-x=2
-widthmode=minus
-heightmode=minus
-ymode=abs_bottom
-layer=com_170
-textfont=verdana_11pt_regular
-text=0
-textalignv=2
-textshadow=yes
-colour=0xb37a2f
-
-// 1430:175
-[com_175]
-type=text
-widthmode=minus
-heightmode=minus
-layer=com_170
-textfont=p11_full
-textalignh=2
-textshadow=yes
-colour=0xced587
-
-// 1430:176
-[com_176]
-type=layer
-width=20
-height=20
-xmode=abs_centre
-ymode=abs_centre
-layer=com_170
-
-// 1430:177
-[com_177]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_167
-onvartransmit=script5899(10, interface_1430:com_178)
-onvartransmitlist=varplayer_4164
-
-// 1430:178
-[com_178]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_177
-hide=yes
-onload=spinner_create(event_com, 2, -1)
-
-// 1430:179
-[com_179]
-type=rectangle
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_167
-colour=0xc8c8c8
-trans=255
-onmouseover=script7016(event_com, true)
-onmouseleave=script7016(event_com, false)
-
-// 1430:180
-[com_180]
-type=layer
-x=114
-y=17
-width=36
-height=36
-ymode=abs_centre
-layer=com_49
-noclickthrough=yes
-
-// 1430:181
-[com_181]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_180
-onload=rs3_background_panel(event_com, struct_21363)
-
-// 1430:182
-[com_182]
-type=graphic
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_180
-graphic=combatv2_prayerglow
-trans=255
-colour=0xffffff
-clickmask=no
-
-// 1430:183
-[com_183]
-type=layer
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_180
-onvartransmit=script6994(11)
-onvartransmitlist=varplayer_737,varplayer_821
-
-// 1430:184
-[com_184]
-type=graphic
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_183
+layer=com_171
 graphic=combatv2_blank_ability
 colour=0xffffff
 clickmask=no
 op1=Use
 opcursor0=cursor_46
 ondragcomplete=script7001(event_com, event_comsubid, event_com2)
+
+// 1430:173
+[com_173]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_171
+hide=yes
+graphic="combatv2_cooldown_animation,0"
+trans=45
+colour=0x010101
+clickmask=no
+
+// 1430:174
+[com_174]
+type=rectangle
+width=40
+height=40
+xmode=abs_centre
+ymode=abs_centre
+layer=com_171
+colour=0xffffff
+fill=yes
+trans=255
+
+// 1430:175
+[com_175]
+type=text
+x=2
+widthmode=minus
+heightmode=minus
+ymode=abs_bottom
+layer=com_171
+textfont=verdana_11pt_regular
+text=0
+textalignv=2
+textshadow=yes
+colour=0xb37a2f
+
+// 1430:176
+[com_176]
+type=text
+widthmode=minus
+heightmode=minus
+layer=com_171
+textfont=p11_full
+textalignh=2
+textshadow=yes
+colour=0xced587
+
+// 1430:177
+[com_177]
+type=layer
+width=20
+height=20
+xmode=abs_centre
+ymode=abs_centre
+layer=com_171
+
+// 1430:178
+[com_178]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_168
+onvartransmit=script5899(10, interface_1430:com_179)
+onvartransmitlist=varplayer_4164
+
+// 1430:179
+[com_179]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_178
+hide=yes
+onload=spinner_create(event_com, 2, -1)
+
+// 1430:180
+[com_180]
+type=rectangle
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_168
+colour=0xc8c8c8
+trans=255
+onmouseover=script7016(event_com, true)
+onmouseleave=script7016(event_com, false)
+
+// 1430:181
+[com_181]
+type=layer
+x=114
+y=17
+width=36
+height=36
+ymode=abs_centre
+layer=com_50
+noclickthrough=yes
+
+// 1430:182
+[com_182]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_181
+onload=rs3_background_panel(event_com, struct_21363)
+
+// 1430:183
+[com_183]
+type=graphic
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_181
+graphic=combatv2_prayerglow
+trans=255
+colour=0xffffff
+clickmask=no
+
+// 1430:184
+[com_184]
+type=layer
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_181
+onvartransmit=script6994(11)
+onvartransmitlist=varplayer_737,varplayer_821
 
 // 1430:185
 [com_185]
@@ -2086,149 +2081,149 @@ width=30
 height=30
 xmode=abs_centre
 ymode=abs_centre
-layer=com_183
-hide=yes
-graphic="combatv2_cooldown_animation,0"
-trans=45
-colour=0x010101
-clickmask=no
-
-// 1430:186
-[com_186]
-type=rectangle
-width=40
-height=40
-xmode=abs_centre
-ymode=abs_centre
-layer=com_183
-colour=0xffffff
-fill=yes
-trans=255
-
-// 1430:187
-[com_187]
-type=text
-x=2
-widthmode=minus
-heightmode=minus
-ymode=abs_bottom
-layer=com_183
-textfont=verdana_11pt_regular
-text=-
-textalignv=2
-textshadow=yes
-colour=0xb37a2f
-
-// 1430:188
-[com_188]
-type=text
-widthmode=minus
-heightmode=minus
-layer=com_183
-textfont=p11_full
-textalignh=2
-textshadow=yes
-colour=0xced587
-
-// 1430:189
-[com_189]
-type=layer
-width=20
-height=20
-xmode=abs_centre
-ymode=abs_centre
-layer=com_183
-
-// 1430:190
-[com_190]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_180
-onvartransmit=script5899(11, interface_1430:com_191)
-onvartransmitlist=varplayer_4164
-
-// 1430:191
-[com_191]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_190
-hide=yes
-onload=spinner_create(event_com, 2, -1)
-
-// 1430:192
-[com_192]
-type=rectangle
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_180
-colour=0xc8c8c8
-trans=255
-onmouseover=script7016(event_com, true)
-onmouseleave=script7016(event_com, false)
-
-// 1430:193
-[com_193]
-type=layer
-x=152
-y=17
-width=36
-height=36
-ymode=abs_centre
-layer=com_49
-noclickthrough=yes
-
-// 1430:194
-[com_194]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_193
-onload=rs3_background_panel(event_com, struct_21363)
-
-// 1430:195
-[com_195]
-type=graphic
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_193
-graphic=combatv2_prayerglow
-trans=255
-colour=0xffffff
-clickmask=no
-
-// 1430:196
-[com_196]
-type=layer
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_193
-onvartransmit=script6994(12)
-onvartransmitlist=varplayer_738,varplayer_822
-
-// 1430:197
-[com_197]
-type=graphic
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_196
+layer=com_184
 graphic=combatv2_blank_ability
 colour=0xffffff
 clickmask=no
 op1=Use
 opcursor0=cursor_46
 ondragcomplete=script7001(event_com, event_comsubid, event_com2)
+
+// 1430:186
+[com_186]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_184
+hide=yes
+graphic="combatv2_cooldown_animation,0"
+trans=45
+colour=0x010101
+clickmask=no
+
+// 1430:187
+[com_187]
+type=rectangle
+width=40
+height=40
+xmode=abs_centre
+ymode=abs_centre
+layer=com_184
+colour=0xffffff
+fill=yes
+trans=255
+
+// 1430:188
+[com_188]
+type=text
+x=2
+widthmode=minus
+heightmode=minus
+ymode=abs_bottom
+layer=com_184
+textfont=verdana_11pt_regular
+text=-
+textalignv=2
+textshadow=yes
+colour=0xb37a2f
+
+// 1430:189
+[com_189]
+type=text
+widthmode=minus
+heightmode=minus
+layer=com_184
+textfont=p11_full
+textalignh=2
+textshadow=yes
+colour=0xced587
+
+// 1430:190
+[com_190]
+type=layer
+width=20
+height=20
+xmode=abs_centre
+ymode=abs_centre
+layer=com_184
+
+// 1430:191
+[com_191]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_181
+onvartransmit=script5899(11, interface_1430:com_192)
+onvartransmitlist=varplayer_4164
+
+// 1430:192
+[com_192]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_191
+hide=yes
+onload=spinner_create(event_com, 2, -1)
+
+// 1430:193
+[com_193]
+type=rectangle
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_181
+colour=0xc8c8c8
+trans=255
+onmouseover=script7016(event_com, true)
+onmouseleave=script7016(event_com, false)
+
+// 1430:194
+[com_194]
+type=layer
+x=152
+y=17
+width=36
+height=36
+ymode=abs_centre
+layer=com_50
+noclickthrough=yes
+
+// 1430:195
+[com_195]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_194
+onload=rs3_background_panel(event_com, struct_21363)
+
+// 1430:196
+[com_196]
+type=graphic
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_194
+graphic=combatv2_prayerglow
+trans=255
+colour=0xffffff
+clickmask=no
+
+// 1430:197
+[com_197]
+type=layer
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_194
+onvartransmit=script6994(12)
+onvartransmitlist=varplayer_738,varplayer_822
 
 // 1430:198
 [com_198]
@@ -2237,149 +2232,149 @@ width=30
 height=30
 xmode=abs_centre
 ymode=abs_centre
-layer=com_196
-hide=yes
-graphic="combatv2_cooldown_animation,0"
-trans=45
-colour=0x010101
-clickmask=no
-
-// 1430:199
-[com_199]
-type=rectangle
-width=40
-height=40
-xmode=abs_centre
-ymode=abs_centre
-layer=com_196
-colour=0xffffff
-fill=yes
-trans=255
-
-// 1430:200
-[com_200]
-type=text
-x=2
-widthmode=minus
-heightmode=minus
-ymode=abs_bottom
-layer=com_196
-textfont=verdana_11pt_regular
-text==
-textalignv=2
-textshadow=yes
-colour=0xb37a2f
-
-// 1430:201
-[com_201]
-type=text
-widthmode=minus
-heightmode=minus
-layer=com_196
-textfont=p11_full
-textalignh=2
-textshadow=yes
-colour=0xced587
-
-// 1430:202
-[com_202]
-type=layer
-width=20
-height=20
-xmode=abs_centre
-ymode=abs_centre
-layer=com_196
-
-// 1430:203
-[com_203]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_193
-onvartransmit=script5899(12, interface_1430:com_204)
-onvartransmitlist=varplayer_4164
-
-// 1430:204
-[com_204]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_203
-hide=yes
-onload=spinner_create(event_com, 2, -1)
-
-// 1430:205
-[com_205]
-type=rectangle
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_193
-colour=0xc8c8c8
-trans=255
-onmouseover=script7016(event_com, true)
-onmouseleave=script7016(event_com, false)
-
-// 1430:206
-[com_206]
-type=layer
-x=190
-y=17
-width=36
-height=36
-ymode=abs_centre
-layer=com_49
-noclickthrough=yes
-
-// 1430:207
-[com_207]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_206
-onload=rs3_background_panel(event_com, struct_21363)
-
-// 1430:208
-[com_208]
-type=graphic
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_206
-graphic=combatv2_prayerglow
-trans=255
-colour=0xffffff
-clickmask=no
-
-// 1430:209
-[com_209]
-type=layer
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_206
-onvartransmit=script6994(13)
-onvartransmitlist=varplayer_4413,varplayer_4427
-
-// 1430:210
-[com_210]
-type=graphic
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_209
+layer=com_197
 graphic=combatv2_blank_ability
 colour=0xffffff
 clickmask=no
 op1=Use
 opcursor0=cursor_46
 ondragcomplete=script7001(event_com, event_comsubid, event_com2)
+
+// 1430:199
+[com_199]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_197
+hide=yes
+graphic="combatv2_cooldown_animation,0"
+trans=45
+colour=0x010101
+clickmask=no
+
+// 1430:200
+[com_200]
+type=rectangle
+width=40
+height=40
+xmode=abs_centre
+ymode=abs_centre
+layer=com_197
+colour=0xffffff
+fill=yes
+trans=255
+
+// 1430:201
+[com_201]
+type=text
+x=2
+widthmode=minus
+heightmode=minus
+ymode=abs_bottom
+layer=com_197
+textfont=verdana_11pt_regular
+text==
+textalignv=2
+textshadow=yes
+colour=0xb37a2f
+
+// 1430:202
+[com_202]
+type=text
+widthmode=minus
+heightmode=minus
+layer=com_197
+textfont=p11_full
+textalignh=2
+textshadow=yes
+colour=0xced587
+
+// 1430:203
+[com_203]
+type=layer
+width=20
+height=20
+xmode=abs_centre
+ymode=abs_centre
+layer=com_197
+
+// 1430:204
+[com_204]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_194
+onvartransmit=script5899(12, interface_1430:com_205)
+onvartransmitlist=varplayer_4164
+
+// 1430:205
+[com_205]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_204
+hide=yes
+onload=spinner_create(event_com, 2, -1)
+
+// 1430:206
+[com_206]
+type=rectangle
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_194
+colour=0xc8c8c8
+trans=255
+onmouseover=script7016(event_com, true)
+onmouseleave=script7016(event_com, false)
+
+// 1430:207
+[com_207]
+type=layer
+x=190
+y=17
+width=36
+height=36
+ymode=abs_centre
+layer=com_50
+noclickthrough=yes
+
+// 1430:208
+[com_208]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_207
+onload=rs3_background_panel(event_com, struct_21363)
+
+// 1430:209
+[com_209]
+type=graphic
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_207
+graphic=combatv2_prayerglow
+trans=255
+colour=0xffffff
+clickmask=no
+
+// 1430:210
+[com_210]
+type=layer
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_207
+onvartransmit=script6994(13)
+onvartransmitlist=varplayer_4413,varplayer_4427
 
 // 1430:211
 [com_211]
@@ -2388,149 +2383,149 @@ width=30
 height=30
 xmode=abs_centre
 ymode=abs_centre
-layer=com_209
-hide=yes
-graphic="combatv2_cooldown_animation,0"
-trans=45
-colour=0x010101
-clickmask=no
-
-// 1430:212
-[com_212]
-type=rectangle
-width=40
-height=40
-xmode=abs_centre
-ymode=abs_centre
-layer=com_209
-colour=0xffffff
-fill=yes
-trans=255
-
-// 1430:213
-[com_213]
-type=text
-x=2
-widthmode=minus
-heightmode=minus
-ymode=abs_bottom
-layer=com_209
-textfont=verdana_11pt_regular
-text=Z
-textalignv=2
-textshadow=yes
-colour=0xb37a2f
-
-// 1430:214
-[com_214]
-type=text
-widthmode=minus
-heightmode=minus
-layer=com_209
-textfont=p11_full
-textalignh=2
-textshadow=yes
-colour=0xced587
-
-// 1430:215
-[com_215]
-type=layer
-width=20
-height=20
-xmode=abs_centre
-ymode=abs_centre
-layer=com_209
-
-// 1430:216
-[com_216]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_206
-onvartransmit=script5899(13, interface_1430:com_217)
-onvartransmitlist=varplayer_4164
-
-// 1430:217
-[com_217]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_216
-hide=yes
-onload=spinner_create(event_com, 2, -1)
-
-// 1430:218
-[com_218]
-type=rectangle
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_206
-colour=0xc8c8c8
-trans=255
-onmouseover=script7016(event_com, true)
-onmouseleave=script7016(event_com, false)
-
-// 1430:219
-[com_219]
-type=layer
-x=228
-y=17
-width=36
-height=36
-ymode=abs_centre
-layer=com_49
-noclickthrough=yes
-
-// 1430:220
-[com_220]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_219
-onload=rs3_background_panel(event_com, struct_21363)
-
-// 1430:221
-[com_221]
-type=graphic
-width=32
-height=32
-xmode=abs_centre
-ymode=abs_centre
-layer=com_219
-graphic=combatv2_prayerglow
-trans=255
-colour=0xffffff
-clickmask=no
-
-// 1430:222
-[com_222]
-type=layer
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_219
-onvartransmit=script6994(14)
-onvartransmitlist=varplayer_4414,varplayer_4428
-
-// 1430:223
-[com_223]
-type=graphic
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_222
+layer=com_210
 graphic=combatv2_blank_ability
 colour=0xffffff
 clickmask=no
 op1=Use
 opcursor0=cursor_46
 ondragcomplete=script7001(event_com, event_comsubid, event_com2)
+
+// 1430:212
+[com_212]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_210
+hide=yes
+graphic="combatv2_cooldown_animation,0"
+trans=45
+colour=0x010101
+clickmask=no
+
+// 1430:213
+[com_213]
+type=rectangle
+width=40
+height=40
+xmode=abs_centre
+ymode=abs_centre
+layer=com_210
+colour=0xffffff
+fill=yes
+trans=255
+
+// 1430:214
+[com_214]
+type=text
+x=2
+widthmode=minus
+heightmode=minus
+ymode=abs_bottom
+layer=com_210
+textfont=verdana_11pt_regular
+text=Z
+textalignv=2
+textshadow=yes
+colour=0xb37a2f
+
+// 1430:215
+[com_215]
+type=text
+widthmode=minus
+heightmode=minus
+layer=com_210
+textfont=p11_full
+textalignh=2
+textshadow=yes
+colour=0xced587
+
+// 1430:216
+[com_216]
+type=layer
+width=20
+height=20
+xmode=abs_centre
+ymode=abs_centre
+layer=com_210
+
+// 1430:217
+[com_217]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_207
+onvartransmit=script5899(13, interface_1430:com_218)
+onvartransmitlist=varplayer_4164
+
+// 1430:218
+[com_218]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_217
+hide=yes
+onload=spinner_create(event_com, 2, -1)
+
+// 1430:219
+[com_219]
+type=rectangle
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_207
+colour=0xc8c8c8
+trans=255
+onmouseover=script7016(event_com, true)
+onmouseleave=script7016(event_com, false)
+
+// 1430:220
+[com_220]
+type=layer
+x=228
+y=17
+width=36
+height=36
+ymode=abs_centre
+layer=com_50
+noclickthrough=yes
+
+// 1430:221
+[com_221]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_220
+onload=rs3_background_panel(event_com, struct_21363)
+
+// 1430:222
+[com_222]
+type=graphic
+width=32
+height=32
+xmode=abs_centre
+ymode=abs_centre
+layer=com_220
+graphic=combatv2_prayerglow
+trans=255
+colour=0xffffff
+clickmask=no
+
+// 1430:223
+[com_223]
+type=layer
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_220
+onvartransmit=script6994(14)
+onvartransmitlist=varplayer_4414,varplayer_4428
 
 // 1430:224
 [com_224]
@@ -2539,132 +2534,147 @@ width=30
 height=30
 xmode=abs_centre
 ymode=abs_centre
-layer=com_222
+layer=com_223
+graphic=combatv2_blank_ability
+colour=0xffffff
+clickmask=no
+op1=Use
+opcursor0=cursor_46
+ondragcomplete=script7001(event_com, event_comsubid, event_com2)
+
+// 1430:225
+[com_225]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_223
 hide=yes
 graphic="combatv2_cooldown_animation,0"
 trans=45
 colour=0x010101
 clickmask=no
 
-// 1430:225
-[com_225]
+// 1430:226
+[com_226]
 type=rectangle
 width=40
 height=40
 xmode=abs_centre
 ymode=abs_centre
-layer=com_222
+layer=com_223
 colour=0xffffff
 fill=yes
 trans=255
 
-// 1430:226
-[com_226]
+// 1430:227
+[com_227]
 type=text
 x=2
 widthmode=minus
 heightmode=minus
 ymode=abs_bottom
-layer=com_222
+layer=com_223
 textfont=verdana_11pt_regular
 text=X
 textalignv=2
 textshadow=yes
 colour=0xb37a2f
 
-// 1430:227
-[com_227]
+// 1430:228
+[com_228]
 type=text
 widthmode=minus
 heightmode=minus
-layer=com_222
+layer=com_223
 textfont=p11_full
 textalignh=2
 textshadow=yes
 colour=0xced587
 
-// 1430:228
-[com_228]
+// 1430:229
+[com_229]
 type=layer
 width=20
 height=20
 xmode=abs_centre
 ymode=abs_centre
-layer=com_222
-
-// 1430:229
-[com_229]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_219
-onvartransmit=script5899(14, interface_1430:com_230)
-onvartransmitlist=varplayer_4164
+layer=com_223
 
 // 1430:230
 [com_230]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_229
-hide=yes
-onload=spinner_create(event_com, 2, -1)
+layer=com_220
+onvartransmit=script5899(14, interface_1430:com_231)
+onvartransmitlist=varplayer_4164
 
 // 1430:231
 [com_231]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_230
+hide=yes
+onload=spinner_create(event_com, 2, -1)
+
+// 1430:232
+[com_232]
 type=rectangle
 width=32
 height=32
 xmode=abs_centre
 ymode=abs_centre
-layer=com_219
+layer=com_220
 colour=0xc8c8c8
 trans=255
 onmouseover=script7016(event_com, true)
 onmouseleave=script7016(event_com, false)
 
-// 1430:232
-[com_232]
+// 1430:233
+[com_233]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_49
+layer=com_50
 onvarctransmit=script5889
 onvarctransmitlist=varclient_4098
-
-// 1430:233
-[com_233]
-type=rectangle
-width=2
-heightmode=minus
-layer=com_232
-colour=0xffcb05
-fill=yes
 
 // 1430:234
 [com_234]
 type=rectangle
-width=186
-height=2
-widthmode=minus
-ymode=abs_bottom
-layer=com_232
+width=2
+heightmode=minus
+layer=com_233
 colour=0xffcb05
 fill=yes
 
 // 1430:235
 [com_235]
 type=rectangle
-width=2
-height=37
-heightmode=minus
-xmode=abs_right
-layer=com_232
+width=186
+height=2
+widthmode=minus
+ymode=abs_bottom
+layer=com_233
 colour=0xffcb05
 fill=yes
 
 // 1430:236
 [com_236]
+type=rectangle
+width=2
+height=37
+heightmode=minus
+xmode=abs_right
+layer=com_233
+colour=0xffcb05
+fill=yes
+
+// 1430:237
+[com_237]
 type=rectangle
 x=-55
 width=2
@@ -2672,61 +2682,61 @@ height=36
 heightmode=minus
 xmode=abs_centre
 ymode=abs_bottom
-layer=com_232
-colour=0xffcb05
-fill=yes
-
-// 1430:237
-[com_237]
-type=rectangle
-width=76
-height=2
-widthmode=minus
-xmode=abs_right
-ymode=abs_centre
-layer=com_232
+layer=com_233
 colour=0xffcb05
 fill=yes
 
 // 1430:238
 [com_238]
 type=rectangle
+width=76
 height=2
 widthmode=minus
-layer=com_232
+xmode=abs_right
+ymode=abs_centre
+layer=com_233
 colour=0xffcb05
 fill=yes
 
 // 1430:239
 [com_239]
+type=rectangle
+height=2
+widthmode=minus
+layer=com_233
+colour=0xffcb05
+fill=yes
+
+// 1430:240
+[com_240]
 type=layer
 x=-1
 y=-1
 width=38
 height=38
-layer=com_232
+layer=com_233
 hide=yes
 onload=if_highlight_create(event_com, 0x0055ff)
 
-// 1430:240
-[com_240]
+// 1430:241
+[com_241]
 type=layer
 y=38
 width=40
 height=32
 xmode=abs_right
 ymode=abs_bottom
-layer=com_0
+layer=com_1
 noclickthrough=yes
 
-// 1430:241
-[com_241]
+// 1430:242
+[com_242]
 type=graphic
 width=16
 height=24
 xmode=abs_centre
 ymode=abs_centre
-layer=com_240
+layer=com_241
 graphic=rs3_hud_combat_set_display
 colour=0xffffff
 clickmask=no
@@ -2741,8 +2751,8 @@ onmouseleave=script8805
 onop=script7024(event_com, event_op)
 onmouserepeat=script8799("Switch the action bar", event_com, event_comsubid)
 
-// 1430:242
-[com_242]
+// 1430:243
+[com_243]
 type=text
 x=2
 y=-1
@@ -2750,7 +2760,7 @@ width=16
 height=15
 xmode=abs_centre
 ymode=abs_centre
-layer=com_240
+layer=com_241
 textfont=verdana_11pt_regular
 text=1
 textalignh=1
@@ -2761,15 +2771,15 @@ onload=script7009(event_com)
 onvartransmit=script7009(event_com)
 onvartransmitlist=varplayer_682
 
-// 1430:243
-[com_243]
+// 1430:244
+[com_244]
 type=graphic
 x=-13
 width=12
 height=12
 xmode=abs_centre
 ymode=abs_centre
-layer=com_240
+layer=com_241
 graphic="rs3_btn_set_selection,1"
 colour=0xffffff
 clickmask=no
@@ -2778,15 +2788,15 @@ onmouseover=graphic_swapper(event_com, "rs3_btn_set_selection,3")
 onmouseleave=graphic_swapper(event_com, "rs3_btn_set_selection,1")
 onmouserepeat=script8799("Switch to the previous action bar", event_com, event_comsubid)
 
-// 1430:244
-[com_244]
+// 1430:245
+[com_245]
 type=graphic
 x=13
 width=12
 height=12
 xmode=abs_centre
 ymode=abs_centre
-layer=com_240
+layer=com_241
 graphic="rs3_btn_set_selection,1"
 hflip=yes
 colour=0xffffff
@@ -2796,8 +2806,8 @@ onmouseover=graphic_swapper(event_com, "rs3_btn_set_selection,3")
 onmouseleave=graphic_swapper(event_com, "rs3_btn_set_selection,1")
 onmouserepeat=script8799("Switch to the next action bar", event_com, event_comsubid)
 
-// 1430:245
-[com_245]
+// 1430:246
+[com_246]
 type=layer
 x=2
 y=2
@@ -2805,26 +2815,26 @@ width=36
 height=32
 xmode=abs_right
 ymode=abs_bottom
-layer=com_0
+layer=com_1
 
-// 1430:246
-[com_246]
+// 1430:247
+[com_247]
 type=layer
 width=16
 height=16
 xmode=abs_right
 ymode=abs_centre
-layer=com_245
+layer=com_246
 noclickthrough=yes
 
-// 1430:247
-[com_247]
+// 1430:248
+[com_248]
 type=graphic
 width=16
 height=16
 xmode=abs_centre
 ymode=abs_centre
-layer=com_246
+layer=com_247
 graphic=hud_combat_btn_locked
 colour=0xffffff
 clickmask=no
@@ -2833,23 +2843,23 @@ op1=Toggle
 onmouseover=script7035(1, event_com)
 onmouseleave=script7035(0, event_com)
 
-// 1430:248
-[com_248]
+// 1430:249
+[com_249]
 type=layer
 width=16
 height=16
 ymode=abs_centre
-layer=com_245
+layer=com_246
 noclickthrough=yes
 
-// 1430:249
-[com_249]
+// 1430:250
+[com_250]
 type=graphic
 width=16
 height=16
 xmode=abs_centre
 ymode=abs_centre
-layer=com_248
+layer=com_249
 graphic=hud_combat_btn_settings
 colour=0xffffff
 clickmask=no

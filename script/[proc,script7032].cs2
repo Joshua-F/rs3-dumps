@@ -90,33 +90,55 @@ def_int $intbool7 = ^false;
 def_int $int8 = 0;
 def_struct $struct9 = null;
 def_int $int10 = 0;
+def_int $int11 = 0;
 while ($int4 < enum_getoutputcount($enum2)) {
     $struct9 = enum(int, struct, $enum2, $int4);
     if ($struct9 = null) {
         return;
     }
     $int8 = 0;
+    $int11 = struct_param($struct9, param_4485);
     $int5 = calc($int5 + 1);
     switch_int ($int1) {
         case 1 :
             $intbool7 = testbit(%varplayer_3378, $int4);
-            if (struct_param($struct9, param_4485) ! -1 & testbit(%varplayer_3378, struct_param($struct9, param_4485)) = ^true) {
-                $int8 = 1;
+            while ($int11 > 0) {
+                if (testbit(%varplayer_3378, $int11) = ^true) {
+                    $int8 = 1;
+                    $int11 = -2;
+                } else {
+                    $int11 = struct_param(enum(int, struct, enum_1010, $int11), param_4485);
+                }
             }
         case 2, 3 :
             $intbool7 = testbit(%varplayer_3379, $int4);
-            if (struct_param($struct9, param_4485) ! -1 & testbit(%varplayer_3379, struct_param($struct9, param_4485)) = ^true) {
-                $int8 = 1;
+            while ($int11 > 0) {
+                if (testbit(%varplayer_3379, $int11) = ^true) {
+                    $int8 = 1;
+                    $int11 = -2;
+                } else {
+                    $int11 = struct_param(enum(int, struct, enum_1011, $int11), param_4485);
+                }
             }
         case 4 :
             $intbool7 = testbit(%varplayerbit_17033, $int4);
-            if (struct_param($struct9, param_4485) ! -1 & testbit(%varplayerbit_17033, struct_param($struct9, param_4485)) = ^true) {
-                $int8 = 1;
+            while ($int11 > 0) {
+                if (testbit(%varplayerbit_17033, $int11) = ^true) {
+                    $int8 = 1;
+                    $int11 = -2;
+                } else {
+                    $int11 = struct_param(enum(int, struct, enum_1012, $int11), param_4485);
+                }
             }
         case 5 :
             $intbool7 = testbit(%varplayerbit_17034, $int4);
-            if (struct_param($struct9, param_4485) ! -1 & testbit(%varplayerbit_17034, struct_param($struct9, param_4485)) = ^true) {
-                $int8 = 1;
+            while ($int11 > 0) {
+                if (testbit(%varplayerbit_17034, $int11) = ^true) {
+                    $int8 = 1;
+                    $int11 = -2;
+                } else {
+                    $int11 = struct_param(enum(int, struct, enum_1013, $int11), param_4485);
+                }
             }
     }
     if ($int4 = $int3 | %varplayerbit_23248 = 0) {
@@ -159,7 +181,7 @@ while ($int4 < enum_getoutputcount($enum2)) {
     if_setcolour(0xfaf2d6, interface_916:com_100);
     if_setcolour(0xfaf2d6, interface_916:com_102);
     cc_create(interface_916:com_302, ^iftype_graphic, $int4);
-    if ($intbool7 = ^false) {
+    if ($intbool7 = ^false & $int8 = 0) {
         $int10 = 1;
         cc_setsize(12, 15, ^setsize_abs, ^setsize_abs);
         cc_setposition(6, calc($int6 + (32 - 15) / 2), ^setpos_abs_right, ^setpos_abs_top);
@@ -262,8 +284,10 @@ while ($int4 < enum_getoutputcount($enum2)) {
         } else {
             cc_setgraphic("aif_clan_loyalty_lock,0");
         }
-    } else if ($int4 = $int3) {
-        cc_setgraphic("aif_tick_cross_icon,0");
+    } else {
+        if ($int4 = $int3) {
+            cc_setgraphic("aif_tick_cross_icon,0");
+        }
         if ($int8 = 0) {
             cc_setsize(15, 15, ^setsize_abs, ^setsize_abs);
         } else {
