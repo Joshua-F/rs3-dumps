@@ -18386,3 +18386,21 @@ readyanim=seq_24439,seq_24440
 [bas_3251]
 readyanim=seq_24483,seq_24480
 
+// 3252
+[bas_3252]
+readyanim=seq_24506,null
+
+// 3253
+[bas_3253]
+readyanim_l=seq_24510
+readyanim_r=seq_24510
+walkturn_l=seq_24510
+walkturn_r=seq_24510
+walkanim_l=seq_24510
+walkanim_r=seq_24510
+readyanim=seq_24509,seq_24510
+
+// 3254
+[bas_3254]
+readyanim=seq_24516,seq_24517
+
