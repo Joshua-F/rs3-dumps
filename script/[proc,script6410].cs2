@@ -1,24 +1,48 @@
 // 6410
 [proc,script6410]
 if (%varplayerbit_9072 = 0) {
-    ~ss_disable_button(85721548, 0);
-    ~ss_disable_button(85721567, 0);
-    if_settext("You must complete one assignment.", interface_1308:com_472);
-    if_settext("You must complete one assignment.", interface_1308:com_491);
+    ~ss_disable_button(85721147, 0);
+    ~ss_disable_button(85721149, 0);
+    ~ss_disable_button(85721151, 0);
+    ~ss_disable_button(85721153, 0);
+    if_settext("Complete one task", interface_1308:com_528);
+    if_settext("Complete one task", interface_1308:com_553);
+    if_settext("Complete one task", interface_1308:com_968);
+    if_settext("Complete one task", interface_1308:com_984);
     return;
-} else if (%varplayerbit_9071 < 100) {
-    ~ss_disable_button(85721567, 0);
-    if (%varplayer_183 > 0) {
-        if_settext("100 points", interface_1308:com_491);
+} else {
+    if (%varplayerbit_9071 < 100) {
+        ~ss_disable_button(85721149, 0);
+        ~ss_disable_button(85721153, 0);
+    }
+    if (~script10608(%varplayer_185) = true) {
+        ~ss_disable_button(85721153, 0);
     } else {
-        if_settext("You must have an assignment.", interface_1308:com_491);
+        if_setcolour(0xfbf5e6, interface_1308:com_984);
+        if_setgraphic("aif_button_standard_text_blue,0", interface_1308:com_986);
+        if_setgraphic("aif_button_standard_text_blue,1", interface_1308:com_987);
+        if_setgraphic("aif_button_standard_text_blue,2", interface_1308:com_988);
+        if_setcolour(0xfbf5e6, interface_1308:com_989);
+        if_sethide(true, interface_1308:com_66);
+    }
+    if (%varplayer_183 > 0) {
+        if_settext("Block task (100pts)", interface_1308:com_553);
+        if_settext("Prefer task (100pts)", interface_1308:com_984);
+    } else {
+        if_settext("Not on task", interface_1308:com_553);
+        if_settext("Not on task", interface_1308:com_984);
+        ~ss_disable_button(85721149, 0);
+        ~ss_disable_button(85721153, 0);
     }
     if (%varplayerbit_9071 < 30) {
-        ~ss_disable_button(85721548, 0);
+        ~ss_disable_button(85721147, 0);
+        ~ss_disable_button(85721151, 0);
     }
     if (%varplayer_183 > 0) {
-        if_settext("30 points.", interface_1308:com_472);
+        if_settext("Cancel task (30pts)", interface_1308:com_528);
+        if_settext("Extend task (30pts)", interface_1308:com_968);
     } else {
-        if_settext("You must have an assignment.", interface_1308:com_472);
+        if_settext("Not on task", interface_1308:com_528);
+        if_settext("Not on task", interface_1308:com_968);
     }
 }
