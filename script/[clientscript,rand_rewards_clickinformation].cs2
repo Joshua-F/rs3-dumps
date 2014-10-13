@@ -22,6 +22,7 @@ if (paraheight($string0, if_getwidth(interface_940:com_94), $fontmetrics3) ! 1) 
 }
 if_settextfont($fontmetrics3, interface_940:com_94);
 def_struct $struct4 = enum(int, struct, $enum2, $int1);
+def_int $int5 = ~script10664($struct4);
 if (map_members = true & $struct4 = struct_1004 | map_members = false & $struct4 = struct_1004) {
     if_sethide(true, interface_940:com_93);
     if_settext(struct_param($struct4, param_1078), interface_940:com_91);
@@ -64,7 +65,7 @@ if (map_members = true & $struct4 = struct_1004 | map_members = false & $struct4
     if_sethide(false, interface_940:com_104);
     if_sethide(false, interface_940:com_105);
     if_settext("You already have 1 reset available to you", interface_940:com_105);
-} else if (map_members = true & enum(int, struct, $enum2, $int1) = struct_28317 & %varplayerbit_22586 = 1 | enum(int, struct, $enum2, $int1) = struct_28318 & %varplayerbit_22588 = 1 | enum(int, struct, $enum2, $int1) = struct_28319 & %varplayerbit_22590 = 1) {
+} else if (map_members = true & enum(int, struct, $enum2, $int1) = struct_28317 & %varplayerbit_22586 = 1 | enum(int, struct, $enum2, $int1) = struct_28318 & %varplayerbit_22588 = 1 | enum(int, struct, $enum2, $int1) = struct_28319 & %varplayerbit_22590 = 1 | enum(int, struct, $enum2, $int1) = struct_1159 & testbit(%varplayer_1777, 19) = ^true) {
     if_sethide(true, interface_940:com_93);
     if_settext(struct_param($struct4, param_1078), interface_940:com_91);
     if_sethide(false, interface_940:com_94);
@@ -95,6 +96,27 @@ if (map_members = true & $struct4 = struct_1004 | map_members = false & $struct4
         $struct4 = struct_982;
     }
     if_settext("You need to have a <oc_name(struct_param($struct4, param_1070))> in your inventory.", interface_940:com_105);
+} else if ($int5 > 0) {
+    if_sethide(true, interface_940:com_93);
+    if_settext(struct_param($struct4, param_1078), interface_940:com_91);
+    if_sethide(false, interface_940:com_94);
+    if_settext(oc_name(struct_param($struct4, param_1070)), interface_940:com_94);
+    if_sethide(false, interface_940:com_95);
+    if_setobject(struct_param($struct4, param_1070), -1, interface_940:com_95);
+    if_sethide(false, interface_940:com_92);
+    if_sethide(true, interface_940:com_103);
+    if_sethide(true, interface_940:com_101);
+    if_sethide(true, interface_940:com_102);
+    if_sethide(false, interface_940:com_104);
+    if_sethide(false, interface_940:com_105);
+    if ($struct4 = struct_28316) {
+        $struct4 = struct_982;
+    }
+    if ($int5 = 1) {
+        if_settext("You have already unlocked: <oc_name(struct_param($struct4, param_1070))>.", interface_940:com_105);
+    } else {
+        if_settext("You can only have one: <oc_name(struct_param($struct4, param_1070))>.", interface_940:com_105);
+    }
 } else {
     if_sethide(true, interface_940:com_93);
     if_settext(struct_param($struct4, param_1078), interface_940:com_91);

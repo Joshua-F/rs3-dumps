@@ -1,28 +1,28 @@
 // 4592
 [proc,script4592]
-cc_deleteall(interface_17:com_18);
-cc_deleteall(interface_17:com_21);
-cc_deleteall(interface_17:com_23);
-cc_deleteall(interface_17:com_16);
+cc_deleteall(interface_17:com_17);
+cc_deleteall(interface_17:com_20);
+cc_deleteall(interface_17:com_22);
+cc_deleteall(interface_17:com_15);
 if (%varplayerbit_1675 = 1) {
     ~script9554(interface_17:com_2, interface_17:com_4, interface_17:com_3, "If you die in the Wilderness...", struct_21218);
 } else {
     ~script9554(interface_17:com_2, interface_17:com_4, interface_17:com_3, "Items kept on death", struct_21218);
 }
 if (%varplayerbit_1675 = 2) {
-    cc_create(interface_17:com_16, ^iftype_text, 0);
+    cc_create(interface_17:com_15, ^iftype_text, 0);
     ~script4595;
     cc_settext(%varclient_2368);
     cc_setonvarcstrtransmit("script4596(event_com, event_comsubid){varclient_2368}");
     return;
 }
 if (inv_freespace(inv_93) >= inv_size(inv_93) & inv_freespace(inv_94) >= inv_size(inv_94) & (inv_freespace(inv_530) >= inv_size(inv_530) | map_members = false)) {
-    cc_create(interface_17:com_16, ^iftype_text, 0);
+    cc_create(interface_17:com_15, ^iftype_text, 0);
     ~script4595;
     cc_settext("You have no items to lose.");
     return;
 }
-def_int $int0 = if_getwidth(interface_17:com_16);
+def_int $int0 = if_getwidth(interface_17:com_15);
 def_int $int1 = max(calc($int0 / 36), 1);
 def_int $int2 = max(calc(($int0 - 36 * $int1) / max(calc($int1 - 1), 1)), 2);
 def_int $int3 = max(calc($int2 / 2), calc(36 - 32 + 1));
@@ -32,19 +32,19 @@ def_int $intarray2(3);
 def_int $intarray3(3);
 if (%varplayerbit_1676 > 0) {
     if (%varplayerbit_1675 = 0) {
-        $intarray0(0) = ~script4593("You may choose <tostring(%varplayerbit_1676)> of the following items to keep, and all others will be dropped.<br>The <col=bebe00>highlighted</col> items will be chosen by default.", interface_17:com_17);
+        $intarray0(0) = ~script4593("You may choose <tostring(%varplayerbit_1676)> of the following items to keep, and all others will be dropped.<br>The <col=bebe00>highlighted</col> items will be chosen by default.", interface_17:com_16);
     } else {
-        $intarray0(0) = ~script4593("You will keep the following items:", interface_17:com_17);
+        $intarray0(0) = ~script4593("You will keep the following items:", interface_17:com_16);
     }
 } else {
-    $intarray0(0) = ~script4593("You will drop the following items:", interface_17:com_17);
+    $intarray0(0) = ~script4593("You will drop the following items:", interface_17:com_16);
 }
 if (%varplayerbit_1675 = 0) {
-    $intarray0(1) = ~script4593("You will keep the following items automatically:", interface_17:com_20);
+    $intarray0(1) = ~script4593("You will keep the following items automatically:", interface_17:com_19);
 } else {
-    $intarray0(1) = ~script4593("You will drop the following items:", interface_17:com_20);
+    $intarray0(1) = ~script4593("You will drop the following items:", interface_17:com_19);
 }
-$intarray0(2) = ~script4593("The following items are always lost:", interface_17:com_22);
+$intarray0(2) = ~script4593("The following items are always lost:", interface_17:com_21);
 def_obj $objarray4(5);
 $objarray4(0) = ~script750(%varplayerbit_1671);
 $objarray4(1) = ~script750(%varplayerbit_1672);
@@ -52,12 +52,12 @@ $objarray4(2) = ~script750(%varplayerbit_1673);
 $objarray4(3) = ~script750(%varplayerbit_1674);
 $objarray4(4) = ~script750(%varplayerbit_20111);
 def_int $int4 = calc(inv_size(inv_93) + inv_size(inv_94));
-cc_deleteall(interface_17:com_19);
+cc_deleteall(interface_17:com_18);
 def_int $int5 = 0;
 while ($int5 < %varplayerbit_1676 & $int5 < 5) {
     if ($objarray4($int5) ! null) {
-        cc_create(interface_17:com_19, ^iftype_rectangle, if_getnextsubid(interface_17:com_19));
-        .cc_create(interface_17:com_19, ^iftype_rectangle, if_getnextsubid(interface_17:com_19));
+        cc_create(interface_17:com_18, ^iftype_rectangle, if_getnextsubid(interface_17:com_18));
+        .cc_create(interface_17:com_18, ^iftype_rectangle, if_getnextsubid(interface_17:com_18));
         cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
         .cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($intarray1(0) + 1), calc($intarray2(0) + 1), ^setpos_abs_left, ^setpos_abs_top);
@@ -68,7 +68,7 @@ while ($int5 < %varplayerbit_1676 & $int5 < 5) {
         .cc_setfill(false);
         cc_settrans(150);
         .cc_settrans(0);
-        ~script4594($objarray4($int5), -1, $intarray1(0), $intarray2(0), interface_17:com_19);
+        ~script4594($objarray4($int5), -1, $intarray1(0), $intarray2(0), interface_17:com_18);
         $intarray1(0) = calc($intarray1(0) + 36 + $int2);
         if (calc($intarray1(0) + 36) >= $int0) {
             $intarray1(0) = 0;
@@ -76,11 +76,11 @@ while ($int5 < %varplayerbit_1676 & $int5 < 5) {
         }
         $intarray3(0) = calc($intarray3(0) + 1);
     } else {
-        cc_create(interface_17:com_19, ^iftype_rectangle, if_getnextsubid(interface_17:com_19));
+        cc_create(interface_17:com_18, ^iftype_rectangle, if_getnextsubid(interface_17:com_18));
         cc_sethide(true);
-        cc_create(interface_17:com_19, ^iftype_rectangle, if_getnextsubid(interface_17:com_19));
+        cc_create(interface_17:com_18, ^iftype_rectangle, if_getnextsubid(interface_17:com_18));
         cc_sethide(true);
-        cc_create(interface_17:com_19, ^iftype_rectangle, if_getnextsubid(interface_17:com_19));
+        cc_create(interface_17:com_18, ^iftype_rectangle, if_getnextsubid(interface_17:com_18));
         cc_sethide(true);
     }
     $int5 = calc($int5 + 1);
@@ -105,9 +105,9 @@ while ($int5 <= $int4) {
         if ($int7 > 0) {
             $int9 = oc_param(oc_uncert($obj6), param_1397);
             if ($int9 = -1) {
-                ~script4594(null, -1, -1, -1, interface_17:com_18);
-                ~script4594(null, -1, -1, -1, interface_17:com_21);
-                ~script4594($obj6, $int7, $intarray1(2), $intarray2(2), interface_17:com_23);
+                ~script4594(null, -1, -1, -1, interface_17:com_17);
+                ~script4594(null, -1, -1, -1, interface_17:com_20);
+                ~script4594($obj6, $int7, $intarray1(2), $intarray2(2), interface_17:com_22);
                 $intarray1(2) = calc($intarray1(2) + 36 + $int2);
                 if (calc($intarray1(2) + 36) >= $int0) {
                     $intarray1(2) = 0;
@@ -116,39 +116,50 @@ while ($int5 <= $int4) {
                 $intarray3(2) = calc($intarray3(2) + 1);
             } else if ($int9 = 2) {
                 if (%varplayerbit_1675 = 0) {
-                    ~script4594(null, -1, -1, -1, interface_17:com_18);
-                    ~script4594($obj6, $int7, $intarray1(1), $intarray2(1), interface_17:com_21);
-                    ~script4594(null, -1, -1, -1, interface_17:com_23);
+                    ~script4594(null, -1, -1, -1, interface_17:com_17);
+                    ~script4594($obj6, $int7, $intarray1(1), $intarray2(1), interface_17:com_20);
+                    ~script4594(null, -1, -1, -1, interface_17:com_22);
                     $intarray1(1) = calc($intarray1(1) + 36 + $int2);
                     if (calc($intarray1(1) + 36) >= $int0) {
                         $intarray1(1) = 0;
                         $intarray2(1) = calc($intarray2(1) + 32 + $int3);
                     }
+                    $intarray3(1) = calc($intarray3(1) + 1);
                 } else {
-                    ~script4594($obj6, $int7, $intarray1(0), $intarray2(0), interface_17:com_18);
-                    ~script4594(null, -1, -1, -1, interface_17:com_21);
-                    ~script4594(null, -1, -1, -1, interface_17:com_23);
+                    ~script4594($obj6, $int7, $intarray1(0), $intarray2(0), interface_17:com_17);
+                    ~script4594(null, -1, -1, -1, interface_17:com_20);
+                    ~script4594(null, -1, -1, -1, interface_17:com_22);
                     $intarray1(0) = calc($intarray1(0) + 36 + $int2);
                     if (calc($intarray1(0) + 36) >= $int0) {
                         $intarray1(0) = 0;
                         $intarray2(0) = calc($intarray2(0) + 32 + $int3);
                     }
+                    $intarray3(1) = calc($intarray3(1) + 1);
                 }
-                $intarray3(1) = calc($intarray3(1) + 1);
             } else if ($int9 = 1 | %varplayerbit_1675 ! 0) {
-                ~script4594(null, -1, -1, -1, interface_17:com_18);
-                ~script4594($obj6, $int7, $intarray1(1), $intarray2(1), interface_17:com_21);
-                ~script4594(null, -1, -1, -1, interface_17:com_23);
+                ~script4594(null, -1, -1, -1, interface_17:com_17);
+                ~script4594($obj6, $int7, $intarray1(1), $intarray2(1), interface_17:com_20);
+                ~script4594(null, -1, -1, -1, interface_17:com_22);
                 $intarray1(1) = calc($intarray1(1) + 36 + $int2);
                 if (calc($intarray1(1) + 36) >= $int0) {
                     $intarray1(1) = 0;
                     $intarray2(1) = calc($intarray2(1) + 32 + $int3);
                 }
                 $intarray3(1) = calc($intarray3(1) + 1);
+            } else if (oc_param(oc_uncert($obj6), param_31) = 1 & oc_param(oc_uncert($obj6), param_3324) = 0) {
+                ~script4594(null, -1, -1, -1, interface_17:com_17);
+                ~script4594(null, -1, -1, -1, interface_17:com_20);
+                ~script4594($obj6, $int7, $intarray1(2), $intarray2(2), interface_17:com_22);
+                $intarray1(2) = calc($intarray1(2) + 36 + $int2);
+                if (calc($intarray1(2) + 36) >= $int0) {
+                    $intarray1(2) = 0;
+                    $intarray2(2) = calc($intarray2(2) + 32 + $int3);
+                }
+                $intarray3(2) = calc($intarray3(2) + 1);
             } else {
-                ~script4594($obj6, $int7, $intarray1(0), $intarray2(0), interface_17:com_18);
-                ~script4594(null, -1, -1, -1, interface_17:com_21);
-                ~script4594(null, -1, -1, -1, interface_17:com_23);
+                ~script4594($obj6, $int7, $intarray1(0), $intarray2(0), interface_17:com_17);
+                ~script4594(null, -1, -1, -1, interface_17:com_20);
+                ~script4594(null, -1, -1, -1, interface_17:com_22);
                 $intarray1(0) = calc($intarray1(0) + 36 + $int2);
                 if (calc($intarray1(0) + 36) >= $int0) {
                     $intarray1(0) = 0;
@@ -157,14 +168,14 @@ while ($int5 <= $int4) {
                 $intarray3(0) = calc($intarray3(0) + 1);
             }
         } else {
-            ~script4594(null, -1, -1, -1, interface_17:com_18);
-            ~script4594(null, -1, -1, -1, interface_17:com_21);
-            ~script4594(null, -1, -1, -1, interface_17:com_23);
+            ~script4594(null, -1, -1, -1, interface_17:com_17);
+            ~script4594(null, -1, -1, -1, interface_17:com_20);
+            ~script4594(null, -1, -1, -1, interface_17:com_22);
         }
     } else {
-        ~script4594(null, -1, -1, -1, interface_17:com_18);
-        ~script4594(null, -1, -1, -1, interface_17:com_21);
-        ~script4594(null, -1, -1, -1, interface_17:com_23);
+        ~script4594(null, -1, -1, -1, interface_17:com_17);
+        ~script4594(null, -1, -1, -1, interface_17:com_20);
+        ~script4594(null, -1, -1, -1, interface_17:com_22);
     }
     $int5 = calc($int5 + 1);
 }
@@ -187,39 +198,37 @@ if ($intarray1(2) > 0) {
     $intarray2(2) = 0;
 }
 def_int $int10 = 0;
-if_setsize(0, $intarray0(0), ^setsize_minus, ^setsize_abs, interface_17:com_17);
-if_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_top, interface_17:com_17);
+if_setsize(0, $intarray0(0), ^setsize_minus, ^setsize_abs, interface_17:com_16);
+if_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_top, interface_17:com_16);
 $int10 = calc($int10 + $intarray0(0));
-if_setsize(0, $intarray2(0), ^setsize_minus, ^setsize_abs, interface_17:com_18);
-if_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_top, interface_17:com_18);
+if_setsize(0, $intarray2(0), ^setsize_minus, ^setsize_abs, interface_17:com_17);
+if_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_top, interface_17:com_17);
 $int10 = calc($int10 + $intarray2(0) + 5);
-if_setsize(0, $intarray0(1), ^setsize_minus, ^setsize_abs, interface_17:com_20);
-if_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_top, interface_17:com_20);
-if_setsize(0, $int10, ^setsize_minus, ^setsize_abs, interface_17:com_13);
-if_setsize(0, calc($int10 + 4), ^setsize_minus, ^setsize_minus, interface_17:com_14);
+if_setsize(0, $intarray0(1), ^setsize_minus, ^setsize_abs, interface_17:com_19);
+if_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_top, interface_17:com_19);
 $int10 = calc($int10 + $intarray0(1));
-if_setsize(0, $intarray2(1), ^setsize_minus, ^setsize_abs, interface_17:com_21);
-if_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_top, interface_17:com_21);
+if_setsize(0, $intarray2(1), ^setsize_minus, ^setsize_abs, interface_17:com_20);
+if_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_top, interface_17:com_20);
 $int10 = calc($int10 + $intarray2(1) + 5);
-if_setsize(0, $intarray0(2), ^setsize_minus, ^setsize_abs, interface_17:com_22);
-if_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_top, interface_17:com_22);
+if_setsize(0, $intarray0(2), ^setsize_minus, ^setsize_abs, interface_17:com_21);
+if_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_top, interface_17:com_21);
 $int10 = calc($int10 + $intarray0(2));
-if_setsize(0, $intarray2(2), ^setsize_minus, ^setsize_abs, interface_17:com_23);
-if_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_top, interface_17:com_23);
+if_setsize(0, $intarray2(2), ^setsize_minus, ^setsize_abs, interface_17:com_22);
+if_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_top, interface_17:com_22);
 $int10 = calc($int10 + $intarray2(2));
 if (inv_freespace(inv_530) < inv_size(inv_530) & map_members = true) {
-    $intarray0(3) = ~script4593("You have items stored on your <col=ffff00>beast of burden</col> that will be dropped if either of you dies.", interface_17:com_24);
+    $intarray0(3) = ~script4593("You have items stored on your <col=ffff00>beast of burden</col> that will be dropped if either of you dies.", interface_17:com_23);
 }
-if_setsize(0, $intarray0(3), ^setsize_minus, ^setsize_abs, interface_17:com_24);
-if_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_top, interface_17:com_24);
+if_setsize(0, $intarray0(3), ^setsize_minus, ^setsize_abs, interface_17:com_23);
+if_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_top, interface_17:com_23);
 $int10 = calc($int10 + $intarray0(3));
-if_setscrollsize(0, $int10, interface_17:com_16);
-if ($int10 > if_getheight(interface_17:com_16)) {
-    ~rs3_scrollbar_vertical(interface_17:com_25, interface_17:com_16);
-    if_sethide(false, interface_17:com_25);
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre, interface_17:com_16);
+if_setscrollsize(0, $int10, interface_17:com_15);
+if ($int10 > if_getheight(interface_17:com_15)) {
+    ~rs3_scrollbar_vertical(interface_17:com_24, interface_17:com_15);
+    if_sethide(false, interface_17:com_24);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre, interface_17:com_15);
 } else {
-    if_sethide(true, interface_17:com_25);
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_17:com_16);
-    if_setscrollpos(0, 0, interface_17:com_16);
+    if_sethide(true, interface_17:com_24);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_17:com_15);
+    if_setscrollpos(0, 0, interface_17:com_15);
 }

@@ -21,57 +21,72 @@ def_int $int10 = calc($int6 - $int5);
 def_int $int11 = calc(clientclock - $int5);
 def_component $component12 = null;
 def_component $component13 = null;
+def_component $component14 = null;
 switch_component ($component1) {
     case interface_1450:com_4 :
-        $component13 = interface_1450:com_5;
+        $component13 = interface_1450:com_6;
+        $component14 = interface_1450:com_5;
     case interface_1456:com_2 :
-        $component13 = interface_1456:com_9;
+        $component13 = interface_1456:com_10;
+        $component14 = interface_1456:com_9;
     case interface_1459:com_2 :
-        $component13 = interface_1459:com_9;
+        $component13 = interface_1459:com_10;
+        $component14 = interface_1459:com_9;
     case interface_1453:com_2 :
-        $component13 = interface_1453:com_9;
+        $component13 = interface_1453:com_10;
+        $component14 = interface_1453:com_9;
     case interface_1460:com_2 :
-        $component13 = interface_1460:com_3;
+        $component13 = interface_1460:com_4;
+        $component14 = interface_1460:com_3;
     case interface_1452:com_2 :
-        $component13 = interface_1452:com_9;
+        $component13 = interface_1452:com_10;
+        $component14 = interface_1452:com_9;
     case interface_1461:com_2 :
-        $component13 = interface_1461:com_9;
+        $component13 = interface_1461:com_10;
+        $component14 = interface_1461:com_9;
     case interface_1449:com_2 :
-        $component13 = interface_1449:com_9;
+        $component13 = interface_1449:com_10;
+        $component14 = interface_1449:com_9;
 }
-def_int $int14 = 0;
-def_graphic $graphic15 = "combatv2_cooldown_animation,0";
-def_graphic $graphic16 = "combatv2_cooldown_animation,138";
-def_graphic $graphic17 = null;
-def_int $int18 = 0;
-def_int $int19 = 138;
-def_component $component20 = null;
-def_int $int21 = $int2;
+def_int $int15 = 0;
+def_graphic $graphic16 = "combatv2_cooldown_animation,0";
+def_graphic $graphic17 = "combatv2_cooldown_animation,138";
+def_graphic $graphic18 = null;
+def_int $int19 = 0;
+def_int $int20 = 138;
+def_component $component21 = null;
+def_int $int22 = $int2;
+def_component $component23 = ~script10627($component1, $int9);
 if ($int9 = -1) {
-    $int14 = 1;
+    $int15 = 1;
 } else if (~script8292(2, -1) = true) {
-    $component20 = ~script7979(interface_1436, $int9);
+    $component21 = ~script7979(interface_1436, $int9);
 }
 if ($int3 = 1) {
     if ($int11 >= $int10) {
-        if ($int14 = 1) {
+        if ($int15 = 1) {
             if (cc_find($component1, $int2) = true) {
-                cc_setgraphic($graphic15);
+                cc_setgraphic($graphic16);
                 cc_sethide(true);
                 cc_setontimer(null);
             }
         } else {
-            if_setgraphic($graphic15, $component1);
+            if_setgraphic($graphic16, $component1);
             if_sethide(true, $component1);
             if_setontimer(null, $component1);
+            if_settext("", $component23);
         }
-        ~script7987($component1, $int2, $component20, $int21);
+        ~script7987($component1, $int2, $component21, $int22);
         return;
     } else {
         $int3 = 0;
-        if ($int14 = 1) {
+        if ($int15 = 1) {
             if (cc_find($component1, $int2) = true) {
-                cc_setgraphic($graphic15);
+                cc_setgraphic($graphic16);
+                cc_sethide(false);
+            }
+            if (cc_find($component14, $int2) = true) {
+                cc_settext("");
                 cc_sethide(false);
             }
             if (cc_find($component13, $int2) = true) {
@@ -79,7 +94,7 @@ if ($int3 = 1) {
                 cc_sethide(false);
             }
         } else {
-            if_setgraphic($graphic15, $component1);
+            if_setgraphic($graphic16, $component1);
             if_sethide(false, $component1);
             if ($component12 ! null) {
                 if_settrans(255, $component12);
@@ -87,46 +102,78 @@ if ($int3 = 1) {
         }
     }
 }
-def_int $int22 = 0;
+def_int $int24 = 0;
 if ($int11 >= $int10) {
-    $int22 = $int19;
+    $int24 = $int20;
 } else {
-    $int22 = scale($int11, $int10, $int19);
-    $int22 = max($int22, 0);
-    $int22 = min($int22, $int19);
+    $int24 = scale($int11, $int10, $int20);
+    $int24 = max($int24, 0);
+    $int24 = min($int24, $int20);
 }
-$graphic17 = ~script7988($int22);
-if ($int14 = 1) {
+$graphic18 = ~script7988($int24);
+$int10 = calc($int10 + 50);
+$int10 = calc($int10 - $int11);
+$int10 = calc($int10 / 50);
+if ($int15 = 1) {
     if (cc_find($component1, $int2) = true) {
-        cc_setgraphic($graphic17);
+        cc_setgraphic($graphic18);
+    }
+    if (cc_find($component14, $int2) = true) {
+        if (%varplayerbit_25401 = 1) {
+            if ($int10 > 59) {
+                $int10 = calc($int10 / 60);
+                cc_settext("<tostring($int10)>m");
+            } else {
+                cc_settext(tostring($int10));
+            }
+            cc_sethide(false);
+        } else {
+            cc_sethide(true);
+        }
     }
 } else {
-    if_setgraphic($graphic17, $component1);
+    if_setgraphic($graphic18, $component1);
+    if (%varplayerbit_25401 = 1) {
+        if ($int10 > 59) {
+            $int10 = calc($int10 / 60);
+            if_settext("<tostring($int10)>m", $component23);
+        } else {
+            if_settext(tostring($int10), $component23);
+        }
+        if_sethide(false, $component23);
+    } else {
+        if_sethide(true, $component23);
+    }
 }
-if ($graphic17 = $graphic16) {
-    if ($int14 = 1) {
+if ($graphic18 = $graphic17) {
+    if ($int15 = 1) {
         if (cc_find($component1, $int2) = true) {
-            cc_setgraphic($graphic15);
+            cc_setgraphic($graphic16);
             cc_sethide(true);
             cc_setontimer(null);
         }
+        if (cc_find($component14, $int2) = true) {
+            cc_settext("");
+            cc_sethide(true);
+        }
     } else {
-        if_setgraphic($graphic15, $component1);
+        if_setgraphic($graphic16, $component1);
         if_sethide(true, $component1);
         if_setontimer(null, $component1);
+        if_settext("", $component23);
     }
-    ~script7987($component1, $int2, $component20, $int21);
+    ~script7987($component1, $int2, $component21, $int22);
     if ($int9 ! -1) {
         $component12 = ~script7978(1430, $int9);
         if_settrans(255, $component12);
         if_setontimer("script6298($int9, true)", $component12);
-    } else if ($int14 = 1 & cc_find($component13, $int2) = true) {
+    } else if ($int15 = 1 & cc_find($component13, $int2) = true) {
         cc_setfill(true);
         cc_sethide(false);
         cc_settrans(255);
         cc_setontimer("combatv2_cooldown_flash_dynamic(event_com, event_comsubid, true)");
     }
-} else if ($int14 = 1) {
+} else if ($int15 = 1) {
     if (cc_find($component1, $int2) = true) {
         cc_setontimer("script6302($struct0, $component1, $int2, $int3, $int4)");
     }
