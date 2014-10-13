@@ -1,5 +1,5 @@
 // 8421
-[proc,script8421](component $component0, component $component1, component $component2, component $component3, string $string0, struct $struct4, int $int5, int $int6, graphic $graphic7)
+[proc,script8421](component $component0, component $component1, component $component2, component $component3, string $string0, struct $struct4, int $int5, boolean $boolean6, graphic $graphic7)
 if ($int5 = -1) {
     $int5 = ~script3934($component1);
 }
@@ -7,20 +7,20 @@ def_component $component8 = $component1;
 if ($component1 ! null) {
     if ($component0 ! null) {
         if_setonvartransmit(null, $component0);
+        if (if_find($component0) = true) {
+            cc_setparam(param_3518, null);
+        }
     }
 } else if ($component0 ! null) {
     $component8 = $component0;
 } else {
     return;
 }
-if ($graphic7 ! null) {
-    if_setonvartransmit("script10069($component0, $component1, $component2, $component3, \"\", $struct4, $int5, $graphic7){varplayer_3814}", $component8);
-} else if ($int6 = 0) {
-    if_setonvartransmit("script3938($component0, $component1, $component2, $component3, \"\", $struct4, $int5){varplayer_3814}", $component8);
-} else {
-    if_setonvartransmit("script8420($component0, $component1, $component2, $component3, \"\", $struct4, $int5){varplayer_3814}", $component8);
-}
+if_setonvartransmit("script1228($component0, $component1, $component2, $component3, $string0, $struct4, $int5, $boolean6, $graphic7){varplayer_3814}", $component8);
 $struct4 = ~script9952($struct4);
+if (if_find($component8) = true) {
+    cc_setparam(param_3518, $struct4);
+}
 def_int $int9 = 0;
 def_int $int10 = struct_param($struct4, param_3572);
 if ($int10 < 0) {
@@ -31,7 +31,7 @@ if ($component1 ! null) {
     if (compare($string0, "") = 0 & cc_find($component1, 14) = true) {
         $string0 = cc_gettext;
     }
-    if ($int6 = 1 & if_getlayer($component1) ! null) {
+    if ($boolean6 = true & if_getlayer($component1) ! null) {
         if_setnoclickthrough(true, if_getlayer($component1));
     }
     if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component1);

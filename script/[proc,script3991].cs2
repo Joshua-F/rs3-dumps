@@ -63,6 +63,9 @@ def_int $int8 = calc((struct_param($struct1, param_1293) - 1) * 5 + struct_param
 def_string $string3 = "";
 if (struct_param($struct1, param_1270) ! 4094) {
     $string3 = struct_param(enum(int, struct, enum_2252, struct_param($struct1, param_1270)), param_951);
+    if (struct_param(%varclient_699, param_4061) = 1 & ~ironman_mode = false) {
+        $string3 = append($string3, " 2 Treasure Hunter keys.");
+    }
 } else {
     $string3 = struct_param($struct1, param_1292);
 }
@@ -79,7 +82,11 @@ cc_deleteall(interface_917:com_83);
 $int5 = ~script5798(4094, $struct9, 0, $string3, 5, interface_917:com_83, null, 60096692);
 if_setscrollpos(0, 0, interface_917:com_82);
 if ($struct9 ! null & $struct9 ! struct_1645) {
-    $int5 = ~script5798(4094, $struct9, 0, struct_param($struct9, param_1273), $int5, interface_917:com_83, null, 60096692);
+    if (~ironman_mode = true & string_length(struct_param($struct1, param_4586)) > 0) {
+        $int5 = ~script5798(4094, $struct9, 0, struct_param($struct9, param_4586), $int5, interface_917:com_83, null, 60096692);
+    } else {
+        $int5 = ~script5798(4094, $struct9, 0, struct_param($struct9, param_1273), $int5, interface_917:com_83, null, 60096692);
+    }
     $int5 = ~script5798(4094, $struct9, 0, struct_param($struct9, param_1292), $int5, interface_917:com_83, null, 60096692);
     ~script5797(4094, $struct9, 8, 1, $int5, 104, interface_917:com_84, null, interface_917:com_85, interface_917:com_82, 60096692);
 }

@@ -5317,7 +5317,7 @@ readyanim=seq_10465,seq_10464
 
 // 1086
 [bas_1086]
-readyanim=seq_10428,seq_10429
+readyanim=seq_24664,seq_24665
 
 // 1087
 [bas_1087]
@@ -18493,4 +18493,20 @@ readyanim_r=seq_17974
 readyanim_l=seq_17974
 runanim=seq_17974
 readyanim=seq_24215,seq_17974
+
+// 3274
+[bas_3274]
+readyanim=seq_24655,seq_24656
+
+// 3275
+[bas_3275]
+readyanim=seq_24688,seq_819
+
+// 3276
+[bas_3276]
+readyanim=seq_24682,seq_819
+
+// 3277
+[bas_3277]
+readyanim=seq_24649,seq_819
 

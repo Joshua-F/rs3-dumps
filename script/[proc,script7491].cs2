@@ -1,10 +1,45 @@
 // 7491
 [proc,script7491](int $int0, int $int1, int $int2)
+if ($int0 = -1) {
+    return;
+}
 def_enum $enum3 = enum(int, enum, enum_5958, %varplayerbit_673);
+if (%varplayerbit_673 = 2) {
+    switch_int ($int0) {
+        case 0 :
+            $enum3 = enum_8471;
+        case 1 :
+            $enum3 = enum_8465;
+        case 2 :
+            $enum3 = enum_8857;
+        case 3 :
+            $enum3 = enum_8861;
+        case 4 :
+            $enum3 = enum_9344;
+        case 5 :
+            $enum3 = enum_8474;
+        case 7 :
+            $enum3 = enum_8473;
+        case 9 :
+            $enum3 = enum_8470;
+        case 10 :
+            $enum3 = enum_8468;
+        case 14 :
+            $enum3 = enum_8467;
+        case 18 :
+            $enum3 = enum_9345;
+        case 20 :
+            $enum3 = enum_8469;
+        case 19 :
+            $enum3 = enum_8472;
+        case 21 :
+            $enum3 = enum_8466;
+    }
+}
 if ($enum3 = null) {
     return;
 }
-def_int $int4 = ~script6456(%varplayerbit_673);
+def_int $int4 = enum_getoutputcount($enum3);
 if ($int4 = 0) {
     return;
 }
@@ -13,43 +48,48 @@ def_struct $struct6 = null;
 def_int $int7 = 0;
 def_int $int8 = 0;
 def_int $int9 = 0;
+def_boolean $boolean10 = false;
 while ($int5 < $int4) {
+    $boolean10 = false;
     $struct6 = enum(int, struct, $enum3, $int5);
     if (struct_param($struct6, param_2532) = $int0 & ($int1 = 1 & struct_param($struct6, param_2547) = false | ~script6488($struct6) = 1 | map_members = false & struct_param($struct6, param_2546) = 1 & ~script6214($struct6) = 1)) {
-        $int7, $int8 = ~script6466($struct6, $int7, $int8);
+        $boolean10 = enum_hasoutput(int, struct_param($struct6, param_4591), %varclient_4618);
+    }
+    $int7, $int8 = ~script6466($struct6, $int7, $int8, $boolean10);
+    if ($boolean10 = true) {
         $int9 = calc(1 + $int9);
     }
     $int5 = calc($int5 + 1);
 }
-if_setscrollsize(0, max($int7, if_getheight(interface_1311:com_82)), interface_1311:com_82);
+if_setscrollsize(0, max($int7, if_getheight(interface_1311:com_207)), interface_1311:com_207);
 if ($int2 = 0) {
-    if_setscrollpos(if_getscrollx(interface_1311:com_82), 0, interface_1311:com_82);
+    if_setscrollpos(if_getscrollx(interface_1311:com_207), 0, interface_1311:com_207);
 }
-def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = 0;
 def_int $int13 = 0;
-if ($int9 < 12) {
-    if_sethide(true, interface_1311:com_84);
+def_int $int14 = 0;
+if ($int9 < 14) {
+    if_sethide(true, interface_1311:com_218);
 } else if ($int2 = 0) {
-    if_sethide(false, interface_1311:com_84);
-    ~scrollbar_vertical(interface_1311:com_84, interface_1311:com_82, "task_scrollbar_dragger,3", "task_scrollbar_dragger,0", "task_scrollbar_dragger,1", "task_scrollbar_dragger,2", "task_scrollbar,1", "task_scrollbar,0");
-    if (cc_find(interface_1311:com_84, 1) = true) {
+    if_sethide(false, interface_1311:com_218);
+    ~scrollbar_vertical(interface_1311:com_218, interface_1311:com_207, "task_scrollbar_dragger,3", "task_scrollbar_dragger,0", "task_scrollbar_dragger,1", "task_scrollbar_dragger,2", "task_scrollbar,1", "task_scrollbar,0");
+    if (cc_find(interface_1311:com_218, 1) = true) {
         cc_setposition(0, 16, ^setpos_abs_left, ^setpos_abs_top);
-        $int10 = if_getscrollheight(interface_1311:com_82);
-        $int11 = if_getheight(interface_1311:com_84);
-        $int12 = calc($int11 - 32);
-        if ($int10 > 0) {
-            $int13 = scale($int11, $int10, $int12);
+        $int11 = if_getscrollheight(interface_1311:com_207);
+        $int12 = if_getheight(interface_1311:com_218);
+        $int13 = calc($int12 - 32);
+        if ($int11 > 0) {
+            $int14 = scale($int12, $int11, $int13);
         } else {
-            $int13 = $int12;
+            $int14 = $int13;
         }
-        $int13 = max($int13, 10);
-        if (cc_find(interface_1311:com_84, 2) = true) {
+        $int14 = max($int14, 10);
+        if (cc_find(interface_1311:com_218, 2) = true) {
             cc_setposition(0, 16, ^setpos_abs_left, ^setpos_abs_top);
         }
-        if (cc_find(interface_1311:com_84, 3) = true) {
-            cc_setposition(0, calc(16 + $int13 - 5), ^setpos_abs_left, ^setpos_abs_top);
+        if (cc_find(interface_1311:com_218, 3) = true) {
+            cc_setposition(0, calc(16 + $int14 - 5), ^setpos_abs_left, ^setpos_abs_top);
         }
     }
 }
