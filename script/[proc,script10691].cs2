@@ -1,0 +1,37 @@
+[proc,script10691](component $component0)
+def_int $int1 = 0;
+def_string $string0 = "";
+def_component $component2 = null;
+switch_component ($component0) {
+    case interface_1545:com_1 :
+        $int1 = %varplayerbit_25553;
+        $string0 = "Activate double points.";
+        $component2 = interface_1545:com_33;
+    case interface_1545:com_3 :
+        $int1 = %varplayerbit_25554;
+        $string0 = "Activate immunity.";
+        $component2 = interface_1545:com_42;
+    case interface_1545:com_5 :
+        $int1 = %varplayerbit_25555;
+        $string0 = "Activate double points.";
+        $component2 = interface_1545:com_52;
+    case interface_1545:com_7 :
+        $int1 = %varplayerbit_25556;
+        $string0 = "Subdue all automatons.";
+        $component2 = interface_1545:com_61;
+}
+if ($component2 = null) {
+    return;
+}
+if ($int1 = 0) {
+    $string0 = append($string0, "<br>0 charges.");
+    ~script10692($component0, 0);
+} else {
+    ~script10692($component0, 1);
+    if ($int1 = 1) {
+        $string0 = append($string0, "<br>1 charge.");
+    } else {
+        $string0 = append($string0, "<br><tostring($int1)> charges.");
+    }
+}
+if_settext($string0, $component2);
