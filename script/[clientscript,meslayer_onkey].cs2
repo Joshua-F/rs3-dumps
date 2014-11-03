@@ -5,18 +5,23 @@ if (%varclient_2873 ! 10) {
 }
 switch_int ($key0) {
     case ^key_return :
+        if (%varclient_5 = 11) {
+            ~script1478;
+            return;
+        }
         ~script8841(10, 0);
-        if (%varclient_5 = 7 & string_length(%varclient_2506) <= 0) {
-            return;
-        }
-        if (%varclient_5 = 12) {
-            ~script1806(%varclient_2506);
-            return;
-        }
-        if (%varclient_5 = 13) {
-            resume_stringdialog(%varclient_2506);
-            ~meslayer_close(13);
-            return;
+        switch_int (%varclient_5) {
+            case 7 :
+                if (string_length(%varclient_2506) <= 0) {
+                    return;
+                }
+            case 12 :
+                ~script1806(%varclient_2506);
+                return;
+            case 13 :
+                resume_stringdialog(%varclient_2506);
+                ~meslayer_close(13);
+                return;
         }
         if (string_length(%varclient_2506) > 0) {
             if (%varclient_5 = 4 | %varclient_5 = 5) {
@@ -54,8 +59,6 @@ switch_int ($key0) {
                     chat_sendprivate(%varclient_2367, %varclient_2506);
                     ~meslayer_close(6);
                 }
-            } else if (%varclient_5 = 11) {
-                ~script1478;
             } else if (%varclient_5 = 7) {
                 %varclient_2506 = ~script2332(%varclient_2506, "K", "000");
                 %varclient_2506 = ~script2332(%varclient_2506, "k", "000");
@@ -95,13 +98,16 @@ switch_int ($key0) {
         if (~cancel_targetmode = true) {
             return;
         }
-        if (%varclient_5 = 12) {
-            ~script1806(%varclient_2409);
-            ~script1750(0);
-        } else if (%varclient_5 = 14) {
-            ~music_search_close_both;
-        } else {
-            ~script1750(%varclient_5);
+        switch_int (%varclient_5) {
+            case 11 :
+                mes("To exit search mode, click the 'search' button a second time.");
+            case 12 :
+                ~script1806(%varclient_2409);
+                ~script1750(0);
+            case 14 :
+                ~music_search_close_both;
+            case default :
+                ~script1750(%varclient_5);
         }
         return;
     case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :

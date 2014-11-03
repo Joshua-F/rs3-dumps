@@ -2,6 +2,7 @@
 [clientscript,script9848](component $component0, int $int1)
 def_obj $obj2 = null;
 def_int $int3 = 0;
+def_string $string0 = "";
 if (cc_find($component0, $int1) = true) {
     cc_setontimer(null);
     $obj2 = cc_getinvobject;
@@ -34,8 +35,13 @@ if (cc_find($component0, $int1) = true) {
         cc_setdragdeadtime(0);
         cc_setondrag("script1454(event_com, event_comsubid, event_mousey)");
         cc_setondragcomplete("script3832(event_com, event_comsubid, event_com2, event_comsubid2)");
-        cc_setonmouseover("script3823(event_com, event_comsubid, true)");
-        cc_setonmouserepeat("script5495($obj2)");
-        cc_setonmouseleave("script3822(event_com, event_comsubid)");
+        if (%varclient_188 = false) {
+            cc_setonmouseover("script3823(event_com, event_comsubid, true)");
+            cc_setonmouserepeat("script5495($obj2)");
+            cc_setonmouseleave("script3822(event_com, event_comsubid)");
+        } else {
+            $string0 = "Item is in tab <tostring(~script1468($int1))>";
+            cc_setonmouserepeat("script8799($string0, $component0, $int1)");
+        }
     }
 }

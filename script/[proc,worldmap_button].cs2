@@ -1,21 +1,17 @@
 // 1331
 [proc,worldmap_button](component $component0)
 def_string $string0 = "World Map";
-def_graphic $graphic1 = navigation_icon_worldmap_on;
+def_graphic $graphic1 = null;
+def_graphic $graphic2 = null;
+$graphic1, $graphic2 = ~script789(%varplayerbit_11297);
+if_setgraphic($graphic1, $component0);
+if_setonmouseover("graphic_swapper(event_com, $graphic2)", $component0);
+if_setonmouseleave("graphic_swapper(event_com, $graphic1)", $component0);
+if_clearops($component0);
 if (%varplayerbit_11297 = 2) {
-    if_setgraphic("aif_minimap_citadel_icon,0", $component0);
-    if_setonmouseover("script5115(event_com, 1)", $component0);
-    if_setonmouseleave("script5115(event_com, 0)", $component0);
-    if_clearops($component0);
     if_setop(1, "Citadel Information", $component0);
     $string0 = "Citadel Information";
 } else if (%varplayerbit_11297 = 1) {
-    $graphic1 = "aif_toplevel_worldmap_btn,3";
-    if_setonmouseover("graphic_swapper(event_com, $graphic1)", $component0);
-    $graphic1 = "aif_toplevel_worldmap_btn,2";
-    if_setgraphic($graphic1, $component0);
-    if_setonmouseleave("graphic_swapper(event_com, $graphic1)", $component0);
-    if_clearops($component0);
     if (%varplayerbit_5548 > 0) {
         if_setop(1, "Factory Layout", $component0);
         $string0 = "Factory Layout";
@@ -27,12 +23,6 @@ if (%varplayerbit_11297 = 2) {
         $string0 = "Daemonheim Map";
     }
 } else {
-    $graphic1 = navigation_icon_worldmap_on;
-    if_setgraphic($graphic1, $component0);
-    if_setonmouseleave("graphic_swapper(event_com, $graphic1)", $component0);
-    $graphic1 = navigation_icon_worldmap_over;
-    if_setonmouseover("graphic_swapper(event_com, $graphic1)", $component0);
-    if_clearops($component0);
     if_setop(1, "World Map", $component0);
     if (%varplayer_2807 ! null & %varplayer_2807 ! 0_0_0_0_0) {
         if_setop(2, "Clear your marker", $component0);

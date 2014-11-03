@@ -6,9 +6,6 @@ sound_vorbis_volume(sound_36961, 1, 0, 100);
 if (%varplayerbit_4323 > 0) {
     return;
 }
-if (%varplayerbit_4322 > 0 & ~script6950 > 0) {
-    return;
-}
 if (%varplayerbit_4322 > 0) {
     return;
 }
@@ -16,10 +13,20 @@ if (~script6950 > 0) {
     ~wof_show_wheel;
     return;
 }
-if_sethide(true, interface_1253:com_183);
-if_sethide(true, interface_1253:com_205);
-if_sethide(true, interface_1253:com_203);
-if_sethide(false, interface_1253:com_200);
+if_sethide(true, interface_1253:com_186);
+if_sethide(true, interface_1253:com_208);
+if_sethide(true, interface_1253:com_206);
+if_sethide(false, interface_1253:com_203);
 ~script9688(false);
 %varclient_4083 = 5;
-if_sethide(false, interface_1253:com_698);
+def_int $int0 = calc(~script4173 + ~script4174);
+if ($int0 = 1) {
+    if_settext("You have 1 Bond available.", interface_1253:com_667);
+} else {
+    if_settext("You have <tostring($int0)> Bonds available.", interface_1253:com_667);
+}
+if ($int0 > 0) {
+    if_sethide(true, interface_1253:com_701);
+} else {
+    if_sethide(false, interface_1253:com_701);
+}
