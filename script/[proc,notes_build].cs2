@@ -1,8 +1,8 @@
 // 2445
-[proc,notes_build](overlayinterface $overlayinterface0, string $string0, int $int1, int $int2, int $rgb3)(int)
-def_int $int4 = if_getwidth(~script7799($overlayinterface0, interface_34:com_16));
+[proc,notes_build](int $int0, string $string0, int $int1, int $int2, int $rgb3)(int)
+def_int $int4 = if_getwidth(~script7799($int0, interface_34:com_16));
 $string0 = escape(~script2446($string0));
-cc_create(~script7799($overlayinterface0, interface_34:com_16), ^iftype_text, $int2);
+cc_create(~script7799($int0, interface_34:com_16), ^iftype_text, $int2);
 cc_setposition(0, calc($int1 * 15 + 5), ^setpos_abs_left, ^setpos_abs_top);
 def_int $int5 = paraheight($string0, $int4, p11_full);
 cc_setsize(0, calc($int5 * 14), ^setsize_minus, ^setsize_abs);
@@ -11,8 +11,8 @@ cc_settext($string0);
 cc_settextfont(p11_full);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 14);
 cc_settextshadow(true);
-cc_setondrag("notes_drag($overlayinterface0, event_com, event_comsubid, event_mousey)");
-cc_setondragcomplete("notes_drag_end($overlayinterface0, event_com2)");
+cc_setondrag("notes_drag($int0, event_com, event_comsubid, event_mousey)");
+cc_setondragcomplete("notes_drag_end($int0, event_com2)");
 if (%varplayer_98 = $int2) {
     cc_setop(1, "Unselect");
 } else {
@@ -21,6 +21,6 @@ if (%varplayer_98 = $int2) {
 cc_setop(2, "Edit");
 cc_setop(3, "Colour");
 cc_setop(4, "Delete");
-cc_setonop("notes_click($overlayinterface0, event_op, $int2)");
+cc_setonop("notes_click($int0, event_op, $int2)");
 cc_setdragdeadzone(14);
 return(calc($int1 + $int5));

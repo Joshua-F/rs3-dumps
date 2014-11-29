@@ -1,60 +1,82 @@
 // 10017
-[proc,script10017](component $component0, int $int1, int $int2, string $string0)
-if ($component0 = null | $int2 = -1) {
+[proc,script10017](component $component0, int $int1, int $int2, int $int3, string $string0, component $component4)
+if ($component0 = null | $int3 = -1) {
     return;
 }
-def_component $component3 = if_getlayer($component0);
-if ($component3 = null) {
-    return;
-}
-def_int $int4 = if_getx($component0);
-def_int $int5 = if_gety($component0);
-def_int $int6 = 2;
-def_int $int7 = if_getwidth($component0);
-def_int $int8 = if_getheight($component0);
+def_int $int5 = -1;
+def_int $int6 = -1;
+def_int $int7 = 2;
+def_int $int8 = -1;
 def_int $int9 = -1;
 def_int $int10 = -1;
-switch_int ($int1) {
-    case 7 :
-        $int4 = calc($int4 + $int6);
-        $int5 = calc($int5 + $int6);
-    case 8 :
-        $int4 = calc($int4 + $int7 / 2);
-    case 9 :
-        $int4 = calc($int4 + $int7 - $int6);
-        $int5 = calc($int5 + $int6);
-    case 4 :
-        $int5 = calc($int5 + $int8 / 2);
-    case 5 :
-        $int4 = calc($int4 + $int7 / 2);
-        $int5 = calc($int5 + $int8 / 2);
-    case 6 :
-        $int4 = calc($int4 + $int7);
-        $int5 = calc($int5 + $int8 / 2);
-    case 1 :
-        $int4 = calc($int4 + $int6);
-        $int5 = calc($int5 + $int8 - $int6);
-    case 3 :
-        $int4 = calc($int4 + $int7 - $int6);
-        $int5 = calc($int5 + $int8 - $int6);
-    case default :
-        $int4 = calc($int4 + $int7 / 2);
-        $int5 = calc($int5 + $int8);
+def_int $int11 = -1;
+def_int $int12 = -1;
+def_int $int13 = -1;
+def_struct $struct14 = null;
+def_graphic $graphic15 = null;
+def_graphic $graphic16 = null;
+def_graphic $graphic17 = null;
+def_graphic $graphic18 = null;
+def_graphic $graphic19 = null;
+def_graphic $graphic20 = null;
+def_graphic $graphic21 = null;
+def_graphic $graphic22 = null;
+def_int $rgb23 = ^white;
+if (cc_find($component0, $int1) = true | $int1 = -1 & if_find($component0) = true) {
+    $int5 = cc_getx;
+    $int6 = cc_gety;
+    $int8 = cc_getwidth;
+    $int9 = cc_getheight;
+} else {
+    return;
 }
-def_int $int11 = if_getnextsubid($component3);
-if ($int2 = 0) {
-    $int9 = 20;
+if ($component4 = null) {
+    $component4 = if_getlayer($component0);
+}
+if ($component4 = null) {
+    return;
+}
+switch_int ($int2) {
+    case 7 :
+        $int5 = calc($int5 + $int7);
+        $int6 = calc($int6 + $int7);
+    case 8 :
+        $int5 = calc($int5 + $int8 / 2);
+    case 9 :
+        $int5 = calc($int5 + $int8 - $int7);
+        $int6 = calc($int6 + $int7);
+    case 4 :
+        $int6 = calc($int6 + $int9 / 2);
+    case 5 :
+        $int5 = calc($int5 + $int8 / 2);
+        $int6 = calc($int6 + $int9 / 2);
+    case 6 :
+        $int5 = calc($int5 + $int8);
+        $int6 = calc($int6 + $int9 / 2);
+    case 1 :
+        $int5 = calc($int5 + $int7);
+        $int6 = calc($int6 + $int9 - $int7);
+    case 3 :
+        $int5 = calc($int5 + $int8 - $int7);
+        $int6 = calc($int6 + $int9 - $int7);
+    case 2 :
+        $int5 = calc($int5 + $int8 / 2);
+        $int6 = calc($int6 + $int9);
+}
+def_int $int24 = if_getnextsubid($component4);
+if ($int3 = 0) {
     $int10 = 20;
-    cc_create($component3, ^iftype_graphic, $int11);
-    cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
+    $int11 = 20;
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
     cc_setgraphic("rs3_icon_lobby_notification,0");
-    cc_setparam(param_4421, $int4);
-    cc_setparam(param_4422, $int5);
+    cc_setparam(param_4421, $int5);
+    cc_setparam(param_4422, $int6);
     cc_setontimer("script10018(event_com, event_comsubid)");
-    ~script10019($component3, $int11);
-    $int11 = calc($int11 + 1);
-    .cc_create($component3, ^iftype_text, $int11);
-    .cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
+    ~script10019($component4, $int24);
+    $int24 = calc($int24 + 1);
+    .cc_create($component4, ^iftype_text, $int24);
+    .cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
     .cc_settext($string0);
     .cc_setcolour(^white);
     .cc_settextfont(graphic_17813);
@@ -63,39 +85,258 @@ if ($int2 = 0) {
     .cc_setparam(param_4423, cc_getid);
     .cc_setontimer("script10018(event_com, event_comsubid)");
     .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
-    $int11 = calc($int11 + 1);
-} else if ($int2 = 1) {
-    $int9 = 20;
+    $int24 = calc($int24 + 1);
+} else if ($int3 = 1) {
     $int10 = 20;
-    cc_create($component3, ^iftype_graphic, $int11);
-    cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc($int4 - $int9 / 2), calc($int5 - $int10 / 2), ^setpos_abs_left, ^setpos_abs_top);
+    $int11 = 20;
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int5 - $int10 / 2), calc($int6 - $int11 / 2), ^setpos_abs_left, ^setpos_abs_top);
     cc_setgraphic("rs3_icon_lobby_take_action,0");
-    ~script10019($component3, $int11);
-    $int11 = calc($int11 + 1);
-    .cc_create($component3, ^iftype_graphic, $int11);
-    .cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
+    ~script10019($component4, $int24);
+    $int24 = calc($int24 + 1);
+    .cc_create($component4, ^iftype_graphic, $int24);
+    .cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
     .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
     .cc_setgraphic("rs3_icon_lobby_take_action,1");
     .cc_setparam(param_4424, 1);
     .cc_setontimer("script10018(event_com, event_comsubid)");
-    ~script10019($component3, $int11);
-    $int11 = calc($int11 + 1);
-} else if ($int2 = 2) {
-    $int9 = 20;
+    ~script10019($component4, $int24);
+    $int24 = calc($int24 + 1);
+} else if ($int3 = 2) {
     $int10 = 20;
-    cc_create($component3, ^iftype_graphic, $int11);
-    cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc($int4 - $int9 / 2), calc($int5 - $int10 / 2), ^setpos_abs_left, ^setpos_abs_top);
+    $int11 = 20;
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int5 - $int10 / 2), calc($int6 - $int11 / 2), ^setpos_abs_left, ^setpos_abs_top);
     cc_setgraphic("rs3_icon_lobby_take_action,2");
-    ~script10019($component3, $int11);
-    $int11 = calc($int11 + 1);
-    .cc_create($component3, ^iftype_graphic, $int11);
-    .cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
+    ~script10019($component4, $int24);
+    $int24 = calc($int24 + 1);
+    .cc_create($component4, ^iftype_graphic, $int24);
+    .cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
     .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
     .cc_setgraphic("rs3_icon_lobby_take_action,3");
     .cc_setparam(param_4424, 1);
     .cc_setontimer("script10018(event_com, event_comsubid)");
-    ~script10019($component3, $int11);
-    $int11 = calc($int11 + 1);
+    ~script10019($component4, $int24);
+    $int24 = calc($int24 + 1);
+} else if ($int3 = 3 | $int3 = 4) {
+    $struct14 = struct_28689;
+    $graphic15 = struct_param($struct14, param_3799);
+    $graphic16 = struct_param($struct14, param_3798);
+    $graphic17 = struct_param($struct14, param_3800);
+    $graphic18 = struct_param($struct14, param_3801);
+    $graphic19 = struct_param($struct14, param_3803);
+    $graphic20 = struct_param($struct14, param_3805);
+    $graphic21 = struct_param($struct14, param_3804);
+    $graphic22 = struct_param($struct14, param_3806);
+    $int10 = struct_param($struct14, param_3808);
+    $int11 = $int10;
+    $int12 = max(0, calc($int8 - 2 * $int10));
+    $int13 = max(0, calc($int9 - 2 * $int11));
+    if ($int3 = 3) {
+        $rgb23 = ^green;
+    }
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic($graphic20);
+    cc_setvflip(true);
+    cc_setcolour($rgb23);
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int12, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int5 + $int10), $int6, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic($graphic21);
+    cc_setvflip(true);
+    cc_setcolour($rgb23);
+    cc_settiling(true);
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int5 + $int10 + $int12), $int6, ^setpos_abs_left, ^setpos_abs_top);
+    if ($graphic22 = null) {
+        cc_setgraphic($graphic20);
+        cc_sethflip(true);
+    } else {
+        cc_setgraphic($graphic22);
+    }
+    cc_setvflip(true);
+    cc_setcolour($rgb23);
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int13, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int5, calc($int6 + $int11), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic($graphic18);
+    cc_setcolour($rgb23);
+    cc_settiling(true);
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int13, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int5 + $int10 + $int12), calc($int6 + $int11), ^setpos_abs_left, ^setpos_abs_top);
+    if ($graphic19 = null) {
+        cc_setgraphic($graphic18);
+        cc_sethflip(true);
+    } else {
+        cc_setgraphic($graphic19);
+    }
+    cc_setcolour($rgb23);
+    cc_settiling(true);
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int5, calc($int6 + $int11 + $int13), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic($graphic15);
+    cc_setvflip(true);
+    cc_setcolour($rgb23);
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int12, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int5 + $int10 + $int12), calc($int6 + $int11 + $int13), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic($graphic16);
+    cc_setvflip(true);
+    cc_setcolour($rgb23);
+    cc_settiling(true);
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int5 + $int10 + $int12), calc($int6 + $int11 + $int13), ^setpos_abs_left, ^setpos_abs_top);
+    if ($graphic17 = null) {
+        cc_setgraphic($graphic15);
+        cc_sethflip(true);
+    } else {
+        cc_setgraphic($graphic17);
+    }
+    cc_setvflip(true);
+    cc_setcolour($rgb23);
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic($graphic15);
+    cc_setcolour($rgb23);
+    cc_setparam(param_4424, 1);
+    ~script10019($component4, $int24);
+    cc_setontimer("script10018(event_com, event_comsubid)");
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int12, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int5 + $int10), $int6, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic($graphic16);
+    cc_setcolour($rgb23);
+    cc_settiling(true);
+    cc_setparam(param_4424, 1);
+    cc_setontimer("script10018(event_com, event_comsubid)");
+    ~script10019($component4, $int24);
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int5 + $int10 + $int12), $int6, ^setpos_abs_left, ^setpos_abs_top);
+    if ($graphic17 = null) {
+        cc_setgraphic($graphic15);
+        cc_sethflip(true);
+    } else {
+        cc_setgraphic($graphic17);
+    }
+    cc_setcolour($rgb23);
+    cc_setparam(param_4424, 1);
+    cc_setontimer("script10018(event_com, event_comsubid)");
+    ~script10019($component4, $int24);
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int13, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int5, calc($int6 + $int11), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic($graphic18);
+    cc_setcolour($rgb23);
+    cc_settiling(true);
+    cc_setparam(param_4424, 1);
+    cc_setontimer("script10018(event_com, event_comsubid)");
+    ~script10019($component4, $int24);
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int13, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int5 + $int10 + $int12), calc($int6 + $int11), ^setpos_abs_left, ^setpos_abs_top);
+    if ($graphic19 = null) {
+        cc_setgraphic($graphic18);
+        cc_sethflip(true);
+    } else {
+        cc_setgraphic($graphic19);
+    }
+    cc_setcolour($rgb23);
+    cc_settiling(true);
+    cc_setparam(param_4424, 1);
+    cc_setontimer("script10018(event_com, event_comsubid)");
+    ~script10019($component4, $int24);
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int5, calc($int6 + $int11 + $int13), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic($graphic20);
+    cc_setcolour($rgb23);
+    cc_setparam(param_4424, 1);
+    cc_setontimer("script10018(event_com, event_comsubid)");
+    ~script10019($component4, $int24);
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int12, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int5 + $int10 + $int12), calc($int6 + $int11 + $int13), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic($graphic21);
+    cc_setcolour($rgb23);
+    cc_settiling(true);
+    cc_setparam(param_4424, 1);
+    cc_setontimer("script10018(event_com, event_comsubid)");
+    ~script10019($component4, $int24);
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int5 + $int10 + $int12), calc($int6 + $int11 + $int13), ^setpos_abs_left, ^setpos_abs_top);
+    if ($graphic22 = null) {
+        cc_setgraphic($graphic20);
+        cc_sethflip(true);
+    } else {
+        cc_setgraphic($graphic22);
+    }
+    cc_setcolour($rgb23);
+    cc_setparam(param_4424, 1);
+    cc_setontimer("script10018(event_com, event_comsubid)");
+    ~script10019($component4, $int24);
+    $int24 = calc($int24 + 1);
+} else if ($int3 = 5) {
+    $int10 = 36;
+    $int11 = 36;
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic(rs3_btn_icon_highlighted);
+    cc_set2dangle(calc(3 * 65536 / 4));
+    cc_setparam(param_4562, 0);
+    cc_setontimer("script10018(event_com, event_comsubid)");
+    ~script10019($component4, $int24);
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic(rs3_btn_icon_highlighted);
+    cc_set2dangle(calc(65536 / 2));
+    cc_setparam(param_4562, 1);
+    cc_setontimer("script10018(event_com, event_comsubid)");
+    ~script10019($component4, $int24);
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic(rs3_btn_icon_highlighted);
+    cc_set2dangle(calc(65536 / 4));
+    cc_setparam(param_4562, 2);
+    cc_setontimer("script10018(event_com, event_comsubid)");
+    ~script10019($component4, $int24);
+    $int24 = calc($int24 + 1);
+    cc_create($component4, ^iftype_graphic, $int24);
+    cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic(rs3_btn_icon_highlighted);
+    cc_setparam(param_4562, 3);
+    cc_setontimer("script10018(event_com, event_comsubid)");
+    ~script10019($component4, $int24);
+    $int24 = calc($int24 + 1);
 }

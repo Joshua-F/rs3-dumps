@@ -1,0 +1,88 @@
+// 10806
+[clientscript,script10806](int $int0)
+if_sethide(true, interface_1562:com_10);
+if_sethide(true, interface_1562:com_11);
+if_sethide(true, interface_1562:com_12);
+def_component $component1 = interface_1562:com_8;
+cc_deleteall($component1);
+if (%varplayer_5006 = null) {
+    return;
+}
+def_int $int2 = ~script10813(%varplayerbit_26175);
+def_int $int3 = ~script10814(%varplayerbit_26176);
+def_string $string0 = "";
+if ($int0 = 0 & $int2 > -1) {
+    if_sethide(false, interface_1562:com_10);
+    $string0 = "<~tostring_spacer_local($int2)> RuneCoins";
+} else if ($int0 = 1 & $int3 > -1) {
+    if_sethide(false, interface_1562:com_11);
+    $string0 = "<~tostring_spacer_local($int3)> Loyalty Points";
+} else {
+    if (%varclient_4661 = 1) {
+        %varclient_4661 = 0;
+    }
+    ~script10804;
+    return;
+}
+%varclient_4661 = 1;
+~script10804;
+def_struct $struct4 = struct_param(%varplayer_5006, param_4419);
+if ($struct4 = null) {
+    $struct4 = %varplayer_5006;
+}
+def_int $int5 = 0;
+def_int $int6 = 8;
+def_int $int7 = 0;
+def_int $int8 = if_getwidth($component1);
+def_fontmetrics $fontmetrics9 = graphic_17810;
+def_fontmetrics $fontmetrics10 = graphic_20280;
+def_fontmetrics $fontmetrics11 = graphic_17813;
+def_int $rgb12 = ~script10495(0x000008);
+def_int $rgb13 = ~script10495(0x00000c);
+def_int $rgb14 = ~script10495(0x00000a);
+def_int $rgb15 = ~script10495(0x00000e);
+cc_create($component1, ^iftype_text, $int5);
+cc_settextfont($fontmetrics9);
+cc_setcolour($rgb12);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_setposition(0, $int7, ^setpos_abs_centre, ^setpos_abs_top);
+cc_settext("Confirm Purchase");
+cc_setsize(0, ~script7593(cc_gettext, $int8, cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
+$int5 = calc($int5 + 1);
+$int7 = calc($int7 + cc_getheight + 2 * $int6);
+cc_create($component1, ^iftype_text, $int5);
+cc_settextfont($fontmetrics11);
+cc_setcolour($rgb13);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_setposition(0, $int7, ^setpos_abs_centre, ^setpos_abs_top);
+cc_settext("Are you sure your wish to buy");
+cc_setsize(0, ~script7593(cc_gettext, $int8, cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
+$int5 = calc($int5 + 1);
+$int7 = calc($int7 + cc_getheight + $int6);
+cc_create($component1, ^iftype_text, $int5);
+cc_settextfont($fontmetrics10);
+cc_setcolour($rgb14);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_setposition(0, $int7, ^setpos_abs_centre, ^setpos_abs_top);
+cc_settext(struct_param($struct4, param_2533));
+cc_setsize(0, ~script7593(cc_gettext, $int8, cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
+$int5 = calc($int5 + 1);
+$int7 = calc($int7 + cc_getheight + $int6);
+cc_create($component1, ^iftype_text, $int5);
+cc_settextfont($fontmetrics11);
+cc_setcolour($rgb13);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_setposition(0, $int7, ^setpos_abs_centre, ^setpos_abs_top);
+cc_settext("for");
+cc_setsize(0, ~script7593(cc_gettext, $int8, cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
+$int5 = calc($int5 + 1);
+$int7 = calc($int7 + cc_getheight + $int6);
+cc_create($component1, ^iftype_text, $int5);
+cc_settextfont($fontmetrics10);
+cc_setcolour($rgb15);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_setposition(0, $int7, ^setpos_abs_centre, ^setpos_abs_top);
+cc_settext($string0);
+cc_setsize(0, ~script7593(cc_gettext, $int8, cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
+$int5 = calc($int5 + 1);
+$int7 = calc($int7 + cc_getheight + $int6);

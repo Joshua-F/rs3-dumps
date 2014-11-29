@@ -1,8 +1,8 @@
 // 1613
-[clientscript,inventory_init](component $component0, boolean $boolean1)
-if ($boolean1 = true) {
+[clientscript,inventory_init](component $component0, int $int1)
+if ($int1 = 1) {
     %varclient_1031 = 0;
-    if_setonvartransmit("inventory_init(event_com, false){varplayer_1293}", $component0);
+    if_setonvartransmit("inventory_init(event_com, 0){varplayer_1293}", $component0);
 }
 def_int $int2 = inv_size(inv_93);
 def_int $int3 = calc($int2 * 2 - 1);
@@ -13,8 +13,8 @@ while ($int4 <= $int3) {
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         if ($int4 < $int2) {
             cc_setgraphicshadow(0x302020);
-            cc_setontargetenter("inventory_targetmode(true, event_com, event_comsubid)");
-            cc_setontargetleave("inventory_targetmode(false, event_com, event_comsubid)");
+            cc_setontargetenter("inventory_targetmode(1, event_com, event_comsubid)");
+            cc_setontargetleave("inventory_targetmode(0, event_com, event_comsubid)");
             cc_setdragrenderbehaviour(2);
             cc_setdragdeadzone(5);
             cc_setdragdeadtime(5);
@@ -47,7 +47,7 @@ while ($int4 < $int2) {
             } else {
                 cc_setoutline(1);
             }
-            ~inventory_setophelds($obj8, true);
+            ~inventory_setophelds($obj8, 1);
             cc_setdraggable($component0, -1);
             cc_setonmouserepeat("script5495($obj8)");
             cc_setonmouseleave("script5495(null)");
