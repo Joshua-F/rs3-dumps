@@ -1,36 +1,48 @@
 // 7238
-[proc,script7238](string $string0, struct $struct0, component $component1, component $component2, int $int3)(int)
-def_int $int4 = struct_param($struct0, param_4205);
-def_fontmetrics $fontmetrics5 = struct_param($struct0, param_4202);
-def_int $int6 = calc($int3 * $int4);
-def_int $int7 = if_getwidth($component1);
-cc_create($component2, ^iftype_text, $int3);
-cc_setsize(0, $int4, ^setsize_minus, ^setsize_abs);
-cc_setposition(0, $int6, ^setpos_abs_centre, ^setpos_abs_top);
-cc_settextfont($fontmetrics5);
-cc_setcolour(0xebe0bc);
-cc_settextalign(struct_param($struct0, param_4203), struct_param($struct0, param_4204), $int4);
-cc_settextshadow(false);
-cc_settext($string0);
-if ($int7 < min(stringwidth($string0, $fontmetrics5), 150)) {
-    $int7 = calc(min(stringwidth($string0, $fontmetrics5), 150) + 16 * 2);
+[proc,script7238](string $string0, int $rgb0, struct $struct1, component $component2, component $component3, int $int4)(int)
+def_int $int5 = struct_param($struct1, param_4205);
+def_fontmetrics $fontmetrics6 = struct_param($struct1, param_4202);
+def_int $int7 = 0;
+if ($int4 > 0 & cc_find($component3, calc($int4 - 1)) = true) {
+    $int7 = calc(cc_gety + cc_getheight);
 }
-if_setsize($int7, calc($int6 + $int4 + 16), ^setsize_abs, ^setsize_abs, $component1);
-def_int $int8 = paraheight($string0, cc_getwidth, $fontmetrics5);
-def_int $int9 = 0;
-def_int $int10 = 0;
-def_int $int11 = calc($int3 + 1);
-if ($int8 > 1) {
-    cc_setsize(cc_getwidth, calc($int8 * $int4), ^setsize_abs, ^setsize_abs);
-    $int9 = calc($int8 * $int4);
-    $int9 = calc($int9 + $int6 + 16);
-    if_setsize($int7, $int9, ^setsize_abs, ^setsize_abs, $component1);
-    $int10 = calc($int8 - 1);
-    while ($int10 > 0) {
-        cc_create($component2, ^iftype_text, $int11);
+def_int $int8 = if_getwidth($component2);
+def_int $int9 = 150;
+def_int $int10 = 16;
+if ($component3 = interface_1486:com_25) {
+    $int9 = 250;
+    $int10 = 0;
+    if ($int8 < min(stringwidth($string0, $fontmetrics6), $int9)) {
+        $int8 = min(parawidth($string0, $int9, $fontmetrics6), $int9);
+    }
+} else if ($int8 < min(stringwidth($string0, $fontmetrics6), $int9)) {
+    $int8 = calc(min(stringwidth($string0, $fontmetrics6), $int9) + $int10 * 2);
+}
+if_setsize($int8, calc($int7 + $int5 + $int10), ^setsize_abs, ^setsize_abs, $component2);
+cc_create($component3, ^iftype_text, $int4);
+cc_setsize(0, $int5, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, $int7, ^setpos_abs_centre, ^setpos_abs_top);
+cc_settextfont($fontmetrics6);
+cc_setcolour($rgb0);
+cc_settextalign(struct_param($struct1, param_4203), struct_param($struct1, param_4204), $int5);
+cc_settextshadow(true);
+cc_settext($string0);
+def_int $int11 = paraheight($string0, cc_getwidth, $fontmetrics6);
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = calc($int4 + 1);
+if ($int11 > 1) {
+    cc_setsize(cc_getwidth, calc($int11 * $int5), ^setsize_abs, ^setsize_abs);
+    $int12 = calc($int11 * $int5);
+    $int12 = calc($int12 + $int7 + $int10);
+    if_setsize($int8, $int12, ^setsize_abs, ^setsize_abs, $component2);
+    $int13 = calc($int11 - 1);
+    while ($int13 > 0) {
+        cc_create($component3, ^iftype_text, $int14);
         cc_sethide(true);
-        $int11 = calc($int11 + 1);
-        $int10 = calc($int10 - 1);
+        $int14 = calc($int14 + 1);
+        $int13 = calc($int13 - 1);
+        cc_setposition(0, calc($int7 + $int11 * $int5), ^setpos_abs_centre, ^setpos_abs_top);
     }
 }
-return(calc($int3 + $int8));
+return(calc($int4 + $int11));

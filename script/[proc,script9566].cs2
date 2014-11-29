@@ -1,6 +1,6 @@
 // 9566
-[proc,script9566](string $string0, obj $obj0, int $int1, int $int2, int $int3, component $component4, int $int5, fontmetrics $fontmetrics6, int $rgb7, int $int8)
-if (~tooltip_time(25) = false) {
+[proc,script9566](string $string0, int $int0, int $int1, int $int2, int $int3, component $component4, int $int5, fontmetrics $fontmetrics6, int $rgb7, int $int8)
+if (~tooltip_time($int3) = false) {
     return;
 }
 def_int $int9 = 0;
@@ -17,13 +17,9 @@ if (%varclient_2 ! 1 | $int8 = 1) {
     $int2 = min($int2, if_getwidth($component15));
     if_opensubclient($component16, interface_1486);
     if_setsize(0, 0, ^setsize_abs, ^setsize_abs, interface_1486:com_1);
-    if_sethide(true, interface_1486:com_25);
     if_setparam_int(param_4145, -1, $component17);
     if_sethide(true, interface_1486:com_25);
     cc_deleteall(interface_1486:com_25);
-    if (if_find(interface_1486:com_25) = true) {
-        cc_setparam(param_4009, null);
-    }
     if_sethide(true, interface_1486:com_26);
     if_settext(null, interface_1486:com_26);
     if ($int1 ! -1) {
@@ -38,6 +34,8 @@ if (%varclient_2 ! 1 | $int8 = 1) {
                     ~thas_lodestone_tooltip;
                 case 2 :
                     ~lobby_world_tooltip;
+                case 3 :
+                    ~rs3_item_tooltip;
             }
         }
         if (if_getwidth(interface_1486:com_25) = 0 | if_getheight(interface_1486:com_25) = 0) {
@@ -45,13 +43,6 @@ if (%varclient_2 ! 1 | $int8 = 1) {
             return;
         } else {
             if_setsize(if_getwidth(interface_1486:com_25), if_getheight(interface_1486:com_25), ^setsize_abs, ^setsize_abs, interface_1486:com_1);
-        }
-    } else if ($obj0 ! null) {
-        if_sethide(false, interface_1486:com_25);
-        ~script9568($string0, $obj0, interface_1486:com_1, interface_1486:com_25);
-        if_setsize(if_getwidth(interface_1486:com_1), calc(if_getheight(interface_1486:com_1) - 16), ^setsize_abs, ^setsize_abs, interface_1486:com_1);
-        if (if_find(interface_1486:com_25) = true) {
-            cc_setparam(param_4009, $obj0);
         }
     } else if (compare($string0, "") ! 0) {
         if_sethide(false, interface_1486:com_26);

@@ -1,6 +1,5 @@
 // 8471
-[proc,script8471](component $component0)
-def_component $component1 = null;
+[proc,script8471](component $component0, inv $inv1)
 def_component $component2 = null;
 def_component $component3 = null;
 def_component $component4 = null;
@@ -8,39 +7,42 @@ def_component $component5 = null;
 def_component $component6 = null;
 def_component $component7 = null;
 def_component $component8 = null;
-$component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8 = ~script8472($component0);
+def_component $component9 = null;
+$component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9 = ~script8472($component0);
+def_component $component10 = null;
 if ($component0 = interface_577:com_3) {
     ~script3865;
     return;
+} else if ($component0 = interface_1558:com_1) {
+    $component10 = interface_1558:com_15;
+    cc_deleteall($component10);
 }
-if ($component5 = null | $component6 = null | $component7 = null | $component2 = null) {
+if ($component6 = null | $component7 = null | $component8 = null | $component3 = null) {
     return;
 }
-if (cc_find($component5, 0) = false) {
-    ~script8469($component0);
+if (cc_find($component6, 0) = false) {
+    ~script8469($component0, $inv1);
 }
-if_setonresize("script8470(event_com)", $component0);
-def_int $int9 = 0;
-def_int $int10 = 0;
+if_setonresize("script8470(event_com, $inv1)", $component0);
 def_int $int11 = 0;
 def_int $int12 = 0;
-def_obj $obj13 = null;
+def_int $int13 = 0;
 def_int $int14 = 0;
-def_int $int15 = calc(%varclient_1031 - 1);
+def_obj $obj15 = null;
 def_int $int16 = 0;
-def_int $int17 = 0;
+def_int $int17 = calc(%varclient_1031 - 1);
 def_int $int18 = 0;
 def_int $int19 = 0;
 def_int $int20 = 0;
 def_int $int21 = 0;
 def_int $int22 = 0;
 def_int $int23 = 0;
-def_int $int24 = calc((36 - 36) / 2 + 2);
-def_int $int25 = calc((36 - 32) / 2);
-def_int $int26 = 36;
-def_int $int27 = 0;
-def_int $int28 = 0;
-def_int $int29 = inv_size(inv_94);
+def_int $int24 = 0;
+def_int $int25 = 0;
+def_int $int26 = calc((36 - 36) / 2 + 2);
+def_int $int27 = calc((36 - 32) / 2);
+def_int $int28 = 36;
+def_int $int29 = 0;
 def_int $int30 = 0;
 def_int $int31 = 0;
 def_int $int32 = 0;
@@ -49,357 +51,407 @@ def_int $int34 = 0;
 def_int $int35 = 0;
 def_int $int36 = 0;
 def_int $int37 = 0;
-def_int $int38 = -1;
-def_int $int39 = 0;
-def_int $int40 = -1;
-def_int $int41 = 0;
+def_int $int38 = 0;
+def_int $int39 = -1;
+def_int $int40 = 0;
+def_int $int41 = -1;
 def_int $int42 = 0;
 def_int $int43 = 0;
 def_int $int44 = 0;
+def_int $int45 = 0;
 def_string $string0 = "";
 def_string $string1 = "";
-$int12 = 0;
-$int30 = 0;
-while ($int12 < $int29) {
-    if (~script8477($int12) = 1) {
-        $int30 = calc($int30 + 1);
+$int14 = 0;
+$int31 = 0;
+while ($int14 < inv_size($inv1)) {
+    if (~script8477($inv1, $int14) = 1) {
+        $int31 = calc($int31 + 1);
     }
-    $int12 = calc($int12 + 1);
+    $int14 = calc($int14 + 1);
 }
-if_setsize(0, 32, ^setsize_minus, ^setsize_minus, $component0);
-$int9 = if_getwidth($component0);
-$int10 = if_getheight($component0);
-$int11 = calc($int10 - (2 + 2));
-$int26 = 36;
-$int26 = max(1, $int26);
-$int21 = calc(36 + 2);
-$int21 = max(1, $int21);
-def_int $intarray0($int30);
-if ($component1 ! null) {
-    if ($int9 >= 200 & $int10 >= 320) {
-        $int33 = 1;
-    } else if ($int9 >= 160 & $int10 >= 200) {
-        $int33 = 2;
-    }
+def_int $int46 = 0;
+if ($component5 ! null) {
+    $int46 = 33;
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, $component5);
+    if_setsize(0, $int46, ^setsize_minus, ^setsize_abs, $component5);
 }
-if ($component4 ! null) {
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, $component4);
-    if_setsize(0, 33, ^setsize_minus, ^setsize_abs, $component4);
+$int11 = if_getwidth($component0);
+$int12 = max(calc(if_getheight($component0) - $int46), 0);
+$int13 = calc($int12 - (2 + 2));
+$int28 = 36;
+$int28 = max(1, $int28);
+$int23 = calc(36 + 2);
+$int23 = max(1, $int23);
+def_int $intarray0($int31);
+if ($component2 ! null & $int11 >= 200 & $int12 >= 320) {
+    $int34 = 1;
+} else if ($component9 ! null & $int11 >= 160 & $int12 >= 200) {
+    $int34 = 2;
 }
-if ($int33 = 1) {
+if ($int34 = 1) {
     if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component0);
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component2);
-    if_setsize(0, 33, ^setsize_minus, ^setsize_minus, $component2);
-    if ($component3 ! null) {
-        if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, $component3);
-        if_setsize(0, 33, ^setsize_abs, ^setsize_minus, $component3);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component3);
+    if_setsize(0, $int46, ^setsize_minus, ^setsize_minus, $component3);
+    if ($component4 ! null) {
+        if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, $component4);
+        if_setsize(0, $int46, ^setsize_abs, ^setsize_minus, $component4);
+    }
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component7);
+    if_setsize(200, 320, ^setsize_abs, ^setsize_abs, $component7);
+    if ($component10 ! null) {
+        if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component10);
+        if_setsize(200, 320, ^setsize_abs, ^setsize_abs, $component10);
     }
     if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component6);
     if_setsize(200, 320, ^setsize_abs, ^setsize_abs, $component6);
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component5);
-    if_setsize(200, 320, ^setsize_abs, ^setsize_abs, $component5);
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component7);
-    if_setsize(200, 320, ^setsize_abs, ^setsize_abs, $component7);
-    if ($component1 ! null) {
-        if_sethide(false, $component1);
-    }
-    if_sethide(true, $component8);
-    $int39 = 0;
-    $int34 = 85;
-    $int35 = 5;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
-    }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 2;
-    $int34 = 30;
-    $int35 = 33;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
-    }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 1;
-    $int34 = 137;
-    $int35 = 33;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
-    }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 13;
-    $int34 = 5;
-    $int35 = 83;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
-    }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 4;
-    $int34 = 157;
-    $int35 = 83;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
-    }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 3;
-    $int34 = 5;
-    $int35 = 132;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
-    }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 5;
-    $int34 = 157;
-    $int35 = 132;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
-    }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 9;
-    $int34 = 5;
-    $int35 = 183;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
-    }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 7;
-    $int34 = 157;
-    $int35 = 183;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
-    }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 12;
-    $int34 = 5;
-    $int35 = 233;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
-    }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 10;
-    $int34 = 157;
-    $int35 = 233;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
-    }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 14;
-    $int34 = 38;
-    $int35 = 283;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
-    }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 15;
-    $int34 = 131;
-    $int35 = 283;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
-    }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-} else if ($int33 = 2) {
-    if_sethide(false, $component8);
-    if_sethide(true, $component1);
-    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component0);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component8);
+    if_setsize(200, 320, ^setsize_abs, ^setsize_abs, $component8);
     if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component2);
-    if_setsize(0, 33, ^setsize_minus, ^setsize_minus, $component2);
-    if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, $component3);
-    if_setsize(0, 33, ^setsize_abs, ^setsize_minus, $component3);
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component6);
-    if_setsize(160, 200, ^setsize_abs, ^setsize_abs, $component6);
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component5);
-    if_setsize(160, 200, ^setsize_abs, ^setsize_abs, $component5);
+    if_setsize(0, $int46, ^setsize_minus, ^setsize_minus, $component2);
+    if_sethide(false, $component2);
+    if ($component9 ! null) {
+        if_sethide(true, $component9);
+    }
+    if ($inv1 = inv_742) {
+        $int40 = 18;
+        $int35 = 59;
+        $int36 = 5;
+        ~script8474($component6, $int40, $int35, $int36, 36, 36);
+        if (cc_find($component8, $int40) = true) {
+            cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
+        }
+        ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    }
+    $int40 = 0;
+    if ($inv1 = inv_742) {
+        $int35 = 105;
+    } else {
+        $int35 = 82;
+    }
+    $int36 = 5;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 2;
+    if ($inv1 = inv_742) {
+        $int35 = 13;
+    } else {
+        $int35 = 30;
+    }
+    $int36 = 33;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 1;
+    if ($inv1 = inv_742) {
+        $int35 = 153;
+    } else {
+        $int35 = 134;
+    }
+    $int36 = 33;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 13;
+    $int35 = 3;
+    $int36 = 83;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 4;
+    $int35 = 161;
+    $int36 = 83;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 3;
+    $int35 = 3;
+    $int36 = 133;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 5;
+    $int35 = 161;
+    $int36 = 133;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 9;
+    $int35 = 3;
+    $int36 = 183;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 7;
+    $int35 = 161;
+    $int36 = 183;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 12;
+    $int35 = 3;
+    $int36 = 233;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 10;
+    $int35 = 161;
+    $int36 = 233;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 14;
+    $int35 = 42;
+    $int36 = 283;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 15;
+    $int35 = 122;
+    $int36 = 283;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+} else if ($int34 = 2) {
+    if_sethide(false, $component9);
+    if ($component2 ! null) {
+        if_sethide(true, $component2);
+    }
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component0);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component3);
+    if_setsize(0, $int46, ^setsize_minus, ^setsize_minus, $component3);
+    if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, $component4);
+    if_setsize(0, $int46, ^setsize_abs, ^setsize_minus, $component4);
     if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component7);
     if_setsize(160, 200, ^setsize_abs, ^setsize_abs, $component7);
+    if ($component10 ! null) {
+        if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component10);
+        if_setsize(160, 200, ^setsize_abs, ^setsize_abs, $component10);
+    }
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component6);
+    if_setsize(160, 200, ^setsize_abs, ^setsize_abs, $component6);
     if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component8);
     if_setsize(160, 200, ^setsize_abs, ^setsize_abs, $component8);
-    $int39 = 0;
-    $int34 = 60;
-    $int35 = 5;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component9);
+    if_setsize(160, 200, ^setsize_abs, ^setsize_abs, $component9);
+    $int40 = 0;
+    $int35 = 60;
+    $int36 = 5;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
     }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 2;
-    $int34 = 60;
-    $int35 = 44;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 2;
+    $int35 = 60;
+    $int36 = 44;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
     }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 1;
-    $int34 = 19;
-    $int35 = 44;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 1;
+    $int35 = 19;
+    $int36 = 44;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
     }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 13;
-    $int34 = 101;
-    $int35 = 44;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 13;
+    $int35 = 101;
+    $int36 = 44;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
     }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 4;
-    $int34 = 60;
-    $int35 = 83;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 4;
+    $int35 = 60;
+    $int36 = 83;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
     }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 3;
-    $int34 = 4;
-    $int35 = 83;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 3;
+    $int35 = 4;
+    $int36 = 83;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
     }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 5;
-    $int34 = 117;
-    $int35 = 83;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 5;
+    $int35 = 117;
+    $int36 = 83;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
     }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 9;
-    $int34 = 4;
-    $int35 = 163;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 9;
+    $int35 = 4;
+    $int36 = 163;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
     }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 7;
-    $int34 = 60;
-    $int35 = 123;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 7;
+    $int35 = 60;
+    $int36 = 123;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
     }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 12;
-    $int34 = 117;
-    $int35 = 163;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 12;
+    $int35 = 117;
+    $int36 = 163;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
     }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 10;
-    $int34 = 60;
-    $int35 = 163;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 10;
+    $int35 = 60;
+    $int36 = 163;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
     }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 14;
-    $int34 = 19;
-    $int35 = 5;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 14;
+    $int35 = 19;
+    $int36 = 5;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
     }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
-    $int39 = 15;
-    $int34 = 101;
-    $int35 = 5;
-    ~script8474($component5, $int39, $int34, $int35, 36, 36);
-    if (cc_find($component7, $int39) = true) {
-        cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    $int40 = 15;
+    $int35 = 101;
+    $int36 = 5;
+    ~script8474($component6, $int40, $int35, $int36, 36, 36);
+    if (cc_find($component8, $int40) = true) {
+        cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
     }
-    ~script8474($component6, $int39, calc($int34 + $int24), calc($int35 + $int25), 36, 32);
+    ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    if ($inv1 = inv_742) {
+        $int40 = 18;
+        $int35 = calc(-2 * 36);
+        $int36 = calc(-2 * 36);
+        ~script8474($component6, $int40, $int35, $int36, 36, 36);
+        if (cc_find($component8, $int40) = true) {
+            cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
+        }
+        ~script8474($component7, $int40, calc($int35 + $int26), calc($int36 + $int27), 36, 32);
+    }
 } else {
-    if ($component1 ! null) {
-        if_sethide(true, $component1);
-        if_sethide(true, $component8);
+    if ($component2 ! null) {
+        if_sethide(true, $component2);
+    }
+    if ($component9 ! null) {
+        if_sethide(true, $component9);
     }
     if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component0);
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component2);
-    if ($component4 ! null) {
-        if_setsize(0, 33, ^setsize_minus, ^setsize_minus, $component2);
-    } else {
-        if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component2);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component3);
+    if_setsize(0, $int46, ^setsize_minus, ^setsize_minus, $component3);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component7);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component7);
+    if ($component10 ! null) {
+        if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component10);
+        if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component10);
     }
     if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component6);
     if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component6);
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component5);
-    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component5);
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component7);
-    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component7);
-    $int9 = if_getwidth($component2);
-    $int10 = if_getheight($component2);
-    $int11 = calc($int10 - (2 + 2));
-    $int26 = 36;
-    $int26 = max(1, $int26);
-    $int21 = calc(36 + 2);
-    $int21 = max(1, $int21);
-    $int22, $int27, $int28 = ~script8107($int9, $int26);
-    $int22 = min($int22, $int30);
-    $int23 = calc($int30 / $int22);
-    if (calc($int30 % $int22) > 0) {
-        $int23 = calc($int23 + 1);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component8);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component8);
+    $int11 = if_getwidth($component3);
+    $int12 = if_getheight($component3);
+    $int13 = calc($int12 - (2 + 2));
+    $int28 = 36;
+    $int28 = max(1, $int28);
+    $int23 = calc(36 + 2);
+    $int23 = max(1, $int23);
+    $int24, $int29, $int30 = ~script8107($int11, $int28);
+    $int24 = min($int24, $int31);
+    $int25 = calc($int31 / $int24);
+    if (calc($int31 % $int24) > 0) {
+        $int25 = calc($int25 + 1);
     }
-    if (calc($int23 * $int21 - 2) > $int11) {
-        $int31 = 1;
-        if_setsize(16, 33, ^setsize_minus, ^setsize_minus, $component2);
-        if ($component3 ! null) {
-            if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, $component3);
-            if_setsize(16, if_getheight($component2), ^setsize_abs, ^setsize_minus, $component3);
+    if (calc($int25 * $int23 - 2) > $int13) {
+        $int32 = 1;
+        if_setsize(16, $int46, ^setsize_minus, ^setsize_minus, $component3);
+        if ($component4 ! null) {
+            if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, $component4);
+            if_setsize(16, $int46, ^setsize_abs, ^setsize_minus, $component4);
         }
-    } else if ($component3 ! null) {
-        if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, $component3);
-        if_setsize(0, if_getheight($component2), ^setsize_abs, ^setsize_minus, $component3);
+    } else if ($component4 ! null) {
+        if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, $component4);
+        if_setsize(0, $int46, ^setsize_abs, ^setsize_minus, $component4);
     }
-    $int9 = if_getwidth($component2);
-    $int10 = if_getheight($component2);
-    $int11 = calc($int10 - (2 + 2));
-    $int22, $int27, $int28 = ~script8107($int9, $int26);
-    $int22 = min($int22, $int30);
-    $int23 = calc($int30 / $int22);
-    if (calc($int30 % $int22) > 0) {
-        $int23 = calc($int23 + 1);
+    $int11 = if_getwidth($component3);
+    $int12 = if_getheight($component3);
+    $int13 = calc($int12 - (2 + 2));
+    $int24, $int29, $int30 = ~script8107($int11, $int28);
+    $int24 = min($int24, $int31);
+    $int25 = calc($int31 / $int24);
+    if (calc($int31 % $int24) > 0) {
+        $int25 = calc($int25 + 1);
     }
-    $int20 = 0;
-    while ($int20 < $int22) {
-        $intarray0($int20) = ~script8108($int27, $int28, $int20);
-        $int20 = calc($int20 + 1);
+    $int22 = 0;
+    while ($int22 < $int24) {
+        $intarray0($int22) = ~script8108($int29, $int30, $int22);
+        $int22 = calc($int22 + 1);
     }
 }
-if ($component4 ! null) {
-    ~script9963($component4);
+if ($component5 ! null) {
+    ~script9963($component5);
 }
-$int12 = 0;
-def_int $int45 = 0;
-$obj13 = null;
 $int14 = 0;
-$int15 = calc(%varclient_1031 - 1);
-while ($int12 < $int29) {
-    if (.cc_find($component5, $int12) = true & cc_find($component6, $int12) = true) {
-        if (~script8477($int12) = 0) {
+def_int $int47 = 0;
+$obj15 = null;
+$int16 = 0;
+$int17 = calc(%varclient_1031 - 1);
+def_obj $obj48 = null;
+def_struct $struct49 = null;
+while ($int14 < inv_size($inv1)) {
+    $obj48 = null;
+    $struct49 = null;
+    if (.cc_find($component6, $int14) = true & cc_find($component7, $int14) = true) {
+        if (~script8477($inv1, $int14) = 0) {
             .cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
             .cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
             .cc_sethide(true);
-            if (.cc_find($component7, $int12) = true) {
+            if (.cc_find($component8, $int14) = true) {
                 .cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
                 .cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
                 .cc_sethide(true);
@@ -408,82 +460,124 @@ while ($int12 < $int29) {
             cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
             cc_sethide(true);
         } else {
-            $obj13 = inv_getobj(inv_94, $int12);
-            $int14 = inv_getnum(inv_94, $int12);
-            if ($int33 = 0) {
-                if (~script8477($int12) = 1) {
-                    .cc_setposition($intarray0(calc($int45 % $int22)), calc($int45 / $int22 * $int21 + 2), ^setpos_abs_left, ^setpos_abs_top);
-                    if (.cc_find($component7, $int12) = true) {
-                        .cc_setposition($intarray0(calc($int45 % $int22)), calc($int45 / $int22 * $int21 + 2), ^setpos_abs_left, ^setpos_abs_top);
+            $obj15 = inv_getobj($inv1, $int14);
+            $int16 = inv_getnum($inv1, $int14);
+            if ($int34 = 0) {
+                if (~script8477($inv1, $int14) = 1) {
+                    .cc_setposition($intarray0(calc($int47 % $int24)), calc($int47 / $int24 * $int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
+                    if (.cc_find($component8, $int14) = true) {
+                        .cc_setposition($intarray0(calc($int47 % $int24)), calc($int47 / $int24 * $int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
                     }
-                    cc_setposition(calc($intarray0(calc($int45 % $int22)) + $int24), calc($int45 / $int22 * $int21 + $int25 + 2), ^setpos_abs_left, ^setpos_abs_top);
-                    $int45 = calc($int45 + 1);
+                    cc_setposition(calc($intarray0(calc($int47 % $int24)) + $int26), calc($int47 / $int24 * $int23 + $int27 + 2), ^setpos_abs_left, ^setpos_abs_top);
+                    $int47 = calc($int47 + 1);
                 } else {
                     .cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-                    if (.cc_find($component7, $int12) = true) {
+                    if (.cc_find($component8, $int14) = true) {
                         .cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
                     }
                     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
                 }
             }
-            if ($obj13 ! null) {
-                ~script9222($obj13, inv_getnum(inv_94, $int12));
-                if ($component6 = interface_762:com_128) {
-                    if (oc_param($obj13, param_2091) = false | compare(oc_param($obj13, param_528), "Remove") = 0 | compare(oc_param($obj13, param_529), "Remove") = 0 | compare(oc_param($obj13, param_530), "Remove") = 0 | compare(oc_param($obj13, param_531), "Remove") = 0 | compare(oc_param($obj13, param_1211), "Remove") = 0) {
+            if ($obj15 ! null) {
+                ~script9222($obj15, inv_getnum($inv1, $int14));
+                if ($component7 = interface_762:com_128) {
+                    if (oc_param($obj15, param_2091) = false | compare(oc_param($obj15, param_528), "Remove") = 0 | compare(oc_param($obj15, param_529), "Remove") = 0 | compare(oc_param($obj15, param_530), "Remove") = 0 | compare(oc_param($obj15, param_531), "Remove") = 0 | compare(oc_param($obj15, param_1211), "Remove") = 0) {
                         cc_setop(1, "Remove to bank");
                         cc_setop(7, "Remove to inventory");
                     }
-                    if (oc_param($obj13, param_4594) = 1) {
+                    if (oc_param($obj15, param_4594) = 1) {
                         cc_setop(2, "Fill from bank");
                         cc_setop(3, "Empty to bank");
                     }
+                } else if ($inv1 = inv_742) {
+                    $obj48 = inv_getobj(inv_743, $int14);
+                    cc_setonmouserepeat("script10767($obj15, $obj48, event_com, event_comsubid)");
+                    cc_setop(1, "Cancel");
+                    cc_setopbase("");
+                    cc_setonop(null);
+                    cc_setdraggable(null, -1);
+                    cc_setondrag(null);
+                    cc_setondragcomplete(null);
                 } else {
-                    if (oc_param($obj13, param_2091) = false) {
+                    if (oc_param($obj15, param_2091) = false) {
                         cc_setop(1, "Remove");
                     }
-                    $string1 = oc_param($obj13, param_528);
+                    $string1 = oc_param($obj15, param_528);
                     if (string_length($string1) > 0) {
                         cc_setop(2, $string1);
                     }
-                    $string1 = oc_param($obj13, param_529);
+                    $string1 = oc_param($obj15, param_529);
                     if (string_length($string1) > 0) {
                         cc_setop(3, $string1);
                     }
-                    $string1 = oc_param($obj13, param_530);
+                    $string1 = oc_param($obj15, param_530);
                     if (string_length($string1) > 0) {
                         cc_setop(4, $string1);
                     }
-                    $string1 = oc_param($obj13, param_531);
+                    $string1 = oc_param($obj15, param_531);
                     if (string_length($string1) > 0) {
                         cc_setop(5, $string1);
                     }
-                    $string1 = oc_param($obj13, param_1211);
+                    $string1 = oc_param($obj15, param_1211);
                     if (string_length($string1) > 0) {
                         cc_setop(6, $string1);
                     }
                 }
                 cc_setop(10, "Examine");
             } else {
-                $int34 = cc_getx;
-                $int35 = cc_gety;
-                cc_create($component6, ^iftype_graphic, $int12);
-                ~script9222($obj13, -1);
-                cc_setgraphic(~script8478($int12));
-                cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
+                $int35 = cc_getx;
+                $int36 = cc_gety;
+                cc_create($component7, ^iftype_graphic, $int14);
+                ~script9222($obj15, -1);
+                cc_setgraphic(~script8478($int14));
+                cc_setposition($int35, $int36, ^setpos_abs_left, ^setpos_abs_top);
                 cc_setnoclickthrough(true);
+                if ($inv1 = inv_742) {
+                    $obj48 = inv_getobj(inv_743, $int14);
+                    if ($obj48 ! null) {
+                        cc_setonmouserepeat("script10767($obj15, $obj48, event_com, event_comsubid)");
+                    }
+                }
+            }
+            if ($inv1 = inv_742 & $obj48 ! null & $obj48 ! $obj15) {
+                $struct49 = oc_param($obj48, param_4414);
+                if ($struct49 ! null & struct_param($struct49, param_4419) ! null) {
+                    $struct49 = struct_param($struct49, param_4419);
+                }
+                if (~script10779($int14) = true) {
+                    if (.cc_find($component6, $int14) = true) {
+                        ~script10017($component6, .cc_getid, -1, 5, null, $component10);
+                    }
+                    if (cc_find($component7, $int14) = true) {
+                        cc_setop(1, "Purchase");
+                        cc_setonop("script1620(event_com, event_comsubid, 100, 0, 8)");
+                    }
+                } else if ($struct49 ! null & ~script6488($struct49) = 1) {
+                    if (.cc_find($component6, $int14) = true) {
+                        cc_create($component10, ^iftype_graphic, if_getnextsubid($component10));
+                        cc_setsize(.cc_getwidth, .cc_getheight, ^setsize_abs, ^setsize_abs);
+                        cc_setposition(.cc_getx, .cc_gety, ^setpos_abs_left, ^setpos_abs_top);
+                        cc_setgraphic(rs3_icon_slot_owned);
+                    }
+                } else if (.cc_find($component6, $int14) = true) {
+                    cc_create($component10, ^iftype_graphic, if_getnextsubid($component10));
+                    cc_setsize(.cc_getwidth, .cc_getheight, ^setsize_abs, ^setsize_abs);
+                    cc_setposition(.cc_getx, .cc_gety, ^setpos_abs_left, ^setpos_abs_top);
+                    cc_setgraphic(rs3_icon_slot_highlight);
+                }
             }
         }
     }
-    $int12 = calc($int12 + 1);
+    $int14 = calc($int14 + 1);
 }
-if ($int33 = 1 | $int33 = 2) {
-    if_setscrollsize(0, 0, $component2);
-    if_setscrollpos(0, 0, $component2);
-} else if ($component3 ! null) {
-    cc_deleteall($component3);
-    $int32 = calc($int23 * $int21 + 2);
-    if_setscrollsize(if_getscrollwidth($component2), $int32, $component2);
-    if ($int31 = 1) {
-        ~rs3_scrollbar_vertical($component3, $component2);
+if ($int34 = 1 | $int34 = 2) {
+    if_setscrollsize(0, 0, $component3);
+    if_setscrollpos(0, 0, $component3);
+} else if ($component4 ! null) {
+    cc_deleteall($component4);
+    $int33 = calc($int25 * $int23 + 2);
+    if_setscrollsize(if_getscrollwidth($component3), $int33, $component3);
+    if ($int32 = 1) {
+        ~rs3_scrollbar_vertical($component4, $component3);
     }
 }

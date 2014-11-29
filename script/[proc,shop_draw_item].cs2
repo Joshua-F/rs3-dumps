@@ -28,7 +28,11 @@ def_int $int15 = 0;
 def_graphic $graphic16 = null;
 def_graphic $graphic17 = null;
 def_obj $obj18 = inv_getobj($inv0, $int1);
-def_string $string0 = ~script2706($obj18);
+def_string $string0 = oc_name($obj18);
+if (string_length($string0) > 20) {
+    $string0 = append(substring($string0, 0, 21), "...");
+}
+def_string $string1 = ~script2706($obj18);
 if ($int3 = 0) {
     $int15 = 48;
     $graphic16 = graphic_10448;
@@ -87,10 +91,10 @@ if ($inv0 = %varplayer_305) {
     cc_setop(7, "Buy All");
 }
 if ($int3 = 0) {
-    if (compare($string0, "") ! 0) {
-        $string0 = "<oc_name($obj18)><br>(Requirements not met)";
+    if (compare($string1, "") ! 0) {
+        $string1 = "<oc_name($obj18)><br>(Requirements not met)";
     } else {
-        $string0 = oc_name($obj18);
+        $string1 = oc_name($obj18);
     }
     cc_create($component5, ^iftype_text, $int1);
 } else {
@@ -100,7 +104,7 @@ if ($int3 = 0) {
     cc_setposition(calc($int13 + 47), calc($int14 + 3), ^setpos_abs_left, ^setpos_abs_top);
     cc_settextfont(graphic_17813);
     cc_settextalign(^settextalign_right, ^settextalign_centre, 13);
-    cc_settext(oc_name($obj18));
+    cc_settext($string0);
 }
 cc_create($component6, ^iftype_graphic, $int1);
 cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
@@ -165,7 +169,7 @@ cc_setsize(12, 12, ^setsize_abs, ^setsize_abs);
 cc_setposition(calc($int13 + 36), calc($int14 + 6), ^setpos_abs_left, ^setpos_abs_top);
 cc_setgraphic("km_shopitems,0");
 ~script812($obj18);
-$string0 = ~script2706($obj18);
+$string1 = ~script2706($obj18);
 cc_setonmouserepeat("script5495($obj18)");
 cc_setonmouseleave("script5495(null)");
 return;

@@ -1,85 +1,230 @@
 // 8454
-[proc,script8454]
-if (%varplayerbit_22872 = 1) {
-    if_sethide(false, interface_1463:com_195);
-} else {
-    if_sethide(true, interface_1463:com_195);
+[proc,script8454](component $component0)
+def_int $int1 = 0;
+if ($component0 = interface_1559:com_25) {
+    $int1 = 1;
 }
-~script8461;
-~script8463;
-~script8465;
 if (%varclient_2760 < 0) {
     %varclient_2760 = calc(comlevel_active - 2);
 }
-if (%varclient_2761 < 0) {
-    ~script8459(0);
-}
-if (%varclient_2762 < 0) {
-    ~script8467(0);
-}
-def_int $int0 = 300;
-def_string $string0 = "";
-def_component $component1 = null;
-$string0 = "<col=f3b13f>Attack type</col> determines the style of weapon or spell you're using. Some enemies are weak to specific attack styles. Exploit your enemies' weaknesses to hit more often.";
-$component1 = interface_1463:com_42;
-if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", $component1);
-if_setonmouseleave("script8805", $component1);
-$component1 = interface_1463:com_63;
-if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", $component1);
-if_setonmouseleave("script8805", $component1);
-$string0 = "<col=f3b13f>Attack speed</col> determines how quickly you strike with your main-hand/off-hand weapon or spell.";
-$component1 = interface_1463:com_47;
-if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", $component1);
-if_setonmouseleave("script8805", $component1);
-$component1 = interface_1463:com_68;
-if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", $component1);
-if_setonmouseleave("script8805", $component1);
-$string0 = "<col=f3b13f>Damage</col> determines the maximum amount of life points you can remove from an enemy in a single strike with your main-hand/off-hand weapon or spell. Using abilities can modify your damage.";
-$component1 = interface_1463:com_32;
-if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", $component1);
-if_setonmouseleave("script8805", $component1);
-$component1 = interface_1463:com_53;
-if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", $component1);
-if_setonmouseleave("script8805", $component1);
-$string0 = "<col=f3b13f>Accuracy</col> affects how likely you are to damage your opponent with your main-hand/off-hand weapon or spell. The higher the accuracy, the more likely you are to damage an enemy.";
-$component1 = interface_1463:com_37;
-if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", $component1);
-if_setonmouseleave("script8805", $component1);
-$component1 = interface_1463:com_58;
-if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", $component1);
-if_setonmouseleave("script8805", $component1);
-$string0 = "<col=f3b13f>Armour</col> affects how likely an enemy is to hit you. The higher your armour rating, the more likely you are to block an enemy hit. The class of your armour also affects how likely you are to block.";
-$component1 = interface_1463:com_172;
-if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", $component1);
-if_setonmouseleave("script8805", $component1);
-$string0 = "<col=f3b13f>Lifepoints</col> determine how many points of damage you can take before you die.";
-$component1 = interface_1463:com_19;
-if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", $component1);
-if_setonmouseleave("script8805", $component1);
-$string0 = "<col=f3b13f>Prayer Bonus</col> affects how quickly your prayers drain your prayer points. Having a higher prayer modifier means your prayer points will drain slower.";
-$component1 = interface_1463:com_25;
-if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", $component1);
-if_setonmouseleave("script8805", $component1);
-$string0 = "The hit and block chances shown are as a guide. Values will not be accurate for all opponents.";
-$component1 = interface_1463:com_73;
-if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", $component1);
-if_setonmouseleave("script8805", $component1);
-if_settext(tostring(%varclient_2760), interface_1463:com_80);
-def_string $string1 = "";
-def_int $int2 = 0;
-if (%varplayerbit_22872 = 0) {
-    $string1 = "<tostring(%varplayerbit_1668)>/<tostring(~script2915)>";
+if ($int1 = 1) {
+    if_setsize(if_getwidth(interface_1559:com_10), if_getheight(interface_1559:com_13), ^setsize_abs, ^setsize_abs, interface_1559:com_13);
+    if_setsize(if_getwidth(interface_1559:com_7), if_getheight(interface_1559:com_11), ^setsize_abs, ^setsize_abs, interface_1559:com_11);
+    ~script8467($component0, %varclient_4664);
 } else {
-    $string1 = "<tostring(calc(%varplayerbit_1668 / 10))>/<tostring(calc(~script2915 / 10))>";
+    if (%varclient_2761 < 0) {
+        ~script8459($component0, 0);
+    }
+    ~script8467($component0, %varclient_2762);
 }
-if_settext($string1, interface_1463:com_13);
-if (if_find(interface_1463:com_6) = true & .if_find(cc_getparentlayer) = true) {
-    $int2 = ~scale_round(%varplayerbit_1668, ~script2915, .cc_getwidth);
-    cc_setsize($int2, cc_getheight, ^setsize_abs, ^setsize_abs);
+if ($int1 = 1) {
+    if_settext("", interface_1559:com_18);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1559:com_19);
+    if_settext("", interface_1559:com_8);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1559:com_20);
 }
-$string1 = "<tostring(~prayer_points_level)>/<tostring(~script7081)>";
-if_settext($string1, interface_1463:com_14);
-if (if_find(interface_1463:com_147) = true & .if_find(cc_getparentlayer) = true) {
-    $int2 = ~scale_round(~prayer_points_level, ~script7081, .cc_getwidth);
-    cc_setsize($int2, cc_getheight, ^setsize_abs, ^setsize_abs);
+~script8461($component0);
+~script8463($component0);
+~script8465($component0);
+def_string $string0 = "";
+def_component $component2 = null;
+if (if_getheight(interface_1559:com_90) >= if_getheight(interface_1559:com_89) & $int1 = 1) {
+    if_settext("MH", interface_1559:com_90);
+    $string0 = "Main Hand";
+    $component2 = interface_1559:com_89;
+    if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+    if_setonmouseleave("script8805", $component2);
+    if_settext("OH", interface_1559:com_98);
+    $string0 = "Off Hand";
+    $component2 = interface_1559:com_97;
+    if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+    if_setonmouseleave("script8805", $component2);
+    if_settext("A", interface_1559:com_130);
+    $string0 = "Abilities";
+    $component2 = interface_1559:com_129;
+    if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+    if_setonmouseleave("script8805", $component2);
+}
+$string0 = "<col=f3b13f>Attack type</col> determines the style of weapon or spell you're using. Some enemies are weak to specific attack styles. Exploit your enemies' weaknesses to hit more often.";
+if ($int1 = 1) {
+    $component2 = interface_1559:com_47;
+} else {
+    $component2 = interface_1463:com_51;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+if ($int1 = 1) {
+    $component2 = interface_1559:com_69;
+} else {
+    $component2 = interface_1463:com_73;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+if ($int1 = 1) {
+    $component2 = interface_1559:com_144;
+} else {
+    $component2 = interface_1463:com_218;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+$string0 = "<col=f3b13f>Attack speed</col> determines how quickly you strike with your main-hand/off-hand weapon or spell.";
+if ($int1 = 1) {
+    $component2 = interface_1559:com_52;
+} else {
+    $component2 = interface_1463:com_56;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+if ($int1 = 1) {
+    $component2 = interface_1559:com_74;
+} else {
+    $component2 = interface_1463:com_78;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+$string0 = "<col=f3b13f>Damage</col> determines the maximum amount of life points you can remove from an enemy in a single strike with your main-hand/off-hand weapon or spell. Using abilities can modify your damage.";
+if ($int1 = 1) {
+    $component2 = interface_1559:com_37;
+} else {
+    $component2 = interface_1463:com_41;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+if ($int1 = 1) {
+    $component2 = interface_1559:com_59;
+} else {
+    $component2 = interface_1463:com_63;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+$string0 = "<col=f3b13f>Damage</col> determines the maximum amount of life points you can remove from an enemy with a single ability. This is a modification of you normal damage.";
+if ($int1 = 1) {
+    $component2 = interface_1559:com_134;
+} else {
+    $component2 = interface_1463:com_208;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+$string0 = "<col=f3b13f>Accuracy</col> affects how likely you are to damage your opponent with your main-hand/off-hand weapon or spell. The higher the accuracy, the more likely you are to damage an enemy.";
+if ($int1 = 1) {
+    $component2 = interface_1559:com_42;
+} else {
+    $component2 = interface_1463:com_46;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+if ($int1 = 1) {
+    $component2 = interface_1559:com_64;
+} else {
+    $component2 = interface_1463:com_68;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+$string0 = "<col=f3b13f>Accuracy</col> affects how likely you are to damage your opponent with your abilities. The higher the accuracy, the more likely you are to damage an enemy.";
+if ($int1 = 1) {
+    $component2 = interface_1559:com_139;
+} else {
+    $component2 = interface_1463:com_213;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+$string0 = "<col=f3b13f>Lifepoints</col> determine how many points of damage you can take before you die.";
+if ($int1 = 1) {
+    $component2 = interface_1559:com_22;
+} else {
+    $component2 = interface_1463:com_23;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+$string0 = "<col=f3b13f>Payer Points</col> determine how long prayers can run for.";
+if ($int1 = 1) {
+    $component2 = interface_1559:com_24;
+} else {
+    $component2 = interface_1463:com_27;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+$string0 = "<col=f3b13f>Prayer Bonus</col> affects how quickly your prayers drain your prayer points. Having a higher prayer modifier means your prayer points will drain slower.";
+if ($int1 = 1) {
+    $component2 = interface_1559:com_29;
+} else {
+    $component2 = interface_1463:com_33;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+$string0 = "<col=f3b13f>Armour</col> affects how likely an enemy is to hit you. The higher your armour rating, the more likely you are to block an enemy hit. The class of your armour also affects how likely you are to block.";
+if ($int1 = 1) {
+    $component2 = interface_1559:com_103;
+} else {
+    $component2 = interface_1463:com_182;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+$string0 = "<col=f3b13f>Style Bonus</col> is you ability to damage certain enemy types. This is effected by your equipped armour and weapons. The higher the number, the more damage you do.";
+if ($int1 = 1) {
+    $component2 = interface_1559:com_107;
+} else {
+    $component2 = interface_1463:com_186;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+$string0 = "<col=f3b13f>Damage Reduction (PvE)</col> is the amount by which incoming damage from enemy NPC attacks is reduced.";
+if ($int1 = 1) {
+    $component2 = interface_1559:com_112;
+} else {
+    $component2 = interface_1463:com_192;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+$string0 = "<col=f3b13f>Damage Reduction (PvP)</col> is the amount by which incoming damage from enemy player attacks is reduced.";
+if ($int1 = 1) {
+    $component2 = interface_1559:com_114;
+} else {
+    $component2 = interface_1463:com_194;
+}
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+if_setonmouseleave("script8805", $component2);
+if ($int1 = 0) {
+    $string0 = "The hit and block chances shown are as a guide. Values will not be accurate for all opponents.";
+    $component2 = interface_1463:com_83;
+    if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component2);
+    if_setonmouseleave("script8805", $component2);
+    if_settext(tostring(%varclient_2760), interface_1463:com_90);
+}
+def_string $string1 = "";
+def_int $int3 = 0;
+if ($int1 = 1) {
+    if (%varplayerbit_22872 = 0) {
+        $string1 = "<tostring(%varplayerbit_26128)>/<tostring(~script10825)>";
+    } else {
+        $string1 = "<tostring(calc(%varplayerbit_26128 / 10))>/<tostring(calc(~script10825 / 10))>";
+    }
+    if_settext($string1, interface_1559:com_19);
+    if (if_find(interface_1559:com_12) = true & .if_find(cc_getparentlayer) = true) {
+        $int3 = ~scale_round(%varplayerbit_26128, ~script10825, .cc_getwidth);
+        cc_setsize($int3, cc_getheight, ^setsize_abs, ^setsize_abs);
+    }
+    $string1 = "<tostring(~script10827)>/<tostring(~script10826)>";
+    if_settext($string1, interface_1559:com_20);
+    if (if_find(interface_1559:com_78) = true & .if_find(cc_getparentlayer) = true) {
+        $int3 = ~scale_round(~script10827, ~script10826, .cc_getwidth);
+        cc_setsize($int3, cc_getheight, ^setsize_abs, ^setsize_abs);
+    }
+} else {
+    if (%varplayerbit_22872 = 0) {
+        $string1 = "<tostring(%varplayerbit_1668)>/<tostring(~script2915)>";
+    } else {
+        $string1 = "<tostring(calc(%varplayerbit_1668 / 10))>/<tostring(calc(~script2915 / 10))>";
+    }
+    if_settext($string1, interface_1463:com_24);
+    if (if_find(interface_1463:com_16) = true & .if_find(cc_getparentlayer) = true) {
+        $int3 = ~scale_round(%varplayerbit_1668, ~script2915, .cc_getwidth);
+        cc_setsize($int3, cc_getheight, ^setsize_abs, ^setsize_abs);
+    }
+    $string1 = "<tostring(~prayer_points_level)>/<tostring(~script7081)>";
+    if_settext($string1, interface_1463:com_28);
+    if (if_find(interface_1463:com_157) = true & .if_find(cc_getparentlayer) = true) {
+        $int3 = ~scale_round(~prayer_points_level, ~script7081, .cc_getwidth);
+        cc_setsize($int3, cc_getheight, ^setsize_abs, ^setsize_abs);
+    }
 }
