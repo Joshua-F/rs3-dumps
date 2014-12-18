@@ -25,7 +25,12 @@ def_string $string0 = "";
 ~aif_progressbar_set(calc((%varclient_2228 - %varclient_2229) * 100 / %varclient_2228), interface_1251:com_29, null);
 $string0 = "<tostring(calc(%varclient_2228 - %varclient_2229))>/<tostring(%varclient_2228)>";
 ~script4212(interface_1251:com_33, $string0, verdana_11pt_regular, 0xd5d9d3, ^black);
-def_int $int1 = calc(%varclient_2227 * 30 * %varclient_2229 / 50);
+def_int $int1 = calc(%varclient_2227 * 30 * %varclient_2229);
+def_int $int2 = calc($int1 % 50);
+if ($int2 = 0) {
+    $int2 = 50;
+}
+$int1 = calc($int1 / 50);
 if (%varclient_2229 > 0) {
     $string0 = "<tostring(max(1, $int1))>s";
 } else {
@@ -33,6 +38,6 @@ if (%varclient_2229 > 0) {
     return;
 }
 if_settext($string0, interface_1251:com_5);
-if_setontimer("script7099(interface_1251:com_5, calc($int1 - 1), calc(clientclock + 50))", interface_1251:com_11);
-def_int $int2 = calc(clientclock + %varclient_2227 * 30 * 2);
-if_setontimer("script7097($int2)", interface_1251:com_19);
+if_setontimer("script7099(interface_1251:com_5, calc($int1 - 1), calc(clientclock + $int2))", interface_1251:com_11);
+def_int $int3 = calc(clientclock + %varclient_2227 * 30 * 2);
+if_setontimer("script7097($int3)", interface_1251:com_19);
