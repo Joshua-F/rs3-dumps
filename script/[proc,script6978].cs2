@@ -13,20 +13,25 @@ if (~script6950 > 0) {
     ~wof_show_wheel;
     return;
 }
-if_sethide(true, interface_1253:com_186);
-if_sethide(true, interface_1253:com_208);
-if_sethide(true, interface_1253:com_206);
-if_sethide(false, interface_1253:com_203);
+if_sethide(false, interface_1253:com_201);
+if_sethide(true, interface_1253:com_224);
+if_sethide(false, interface_1253:com_210);
+if_sethide(true, interface_1253:com_222);
+if_sethide(false, interface_1253:com_219);
+~script10877;
 ~script9688(false);
 %varclient_4083 = 5;
 def_int $int0 = calc(~script4173 + ~script4174);
-if ($int0 = 1) {
-    if_settext("You have 1 Bond available.", interface_1253:com_667);
-} else {
-    if_settext("You have <tostring($int0)> Bonds available.", interface_1253:com_667);
-}
+def_string $string0 = "";
 if ($int0 > 0) {
-    if_sethide(true, interface_1253:com_701);
+    if_sethide(true, interface_1253:com_700);
+    if ($int0 = 1) {
+        $string0 = "You have 1 Bond available.";
+    } else {
+        $string0 = "You have <tostring($int0)> Bonds available.";
+    }
 } else {
-    if_sethide(false, interface_1253:com_701);
+    $string0 = "You have no Bonds available.";
+    if_sethide(false, interface_1253:com_700);
 }
+if_setonmouserepeat("script8799($string0, event_com, -1)", interface_1253:com_10);
