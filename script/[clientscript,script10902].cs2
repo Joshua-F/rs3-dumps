@@ -1,0 +1,18 @@
+// 10902
+[clientscript,script10902](int $int0, int $int1, component $component2)
+if (calc(clientclock % 3000) = 0) {
+    if (++$int1 >= 60) {
+        $int1 = 0;
+        if (++$int0 >= 24) {
+            $int0 = 0;
+        }
+    }
+    if_settext(~script10901($int0, $int1, 1), $component2);
+    if_setontimer("script10902($int0, $int1, $component2)", $component2);
+} else if (calc(clientclock % 50) = 0) {
+    if (calc(clientclock % 100) = 0) {
+        if_settext(~script10901($int0, $int1, 1), $component2);
+    } else {
+        if_settext(~script10901($int0, $int1, 0), $component2);
+    }
+}
