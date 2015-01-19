@@ -1,0 +1,40 @@
+// 10947
+[clientscript,script10947](int $int0, int $int1)
+def_component $component2 = null;
+def_component $component3 = null;
+def_component $component4 = null;
+def_component $component5 = null;
+if ($int0 < 50) {
+    switch_int (calc($int1 % 2)) {
+        case 0 :
+            $component2 = interface_907:com_10;
+            $component3 = interface_907:com_66;
+            $component4 = interface_907:com_12;
+            $component5 = interface_907:com_21;
+        case 1 :
+            $component2 = interface_907:com_12;
+            $component3 = interface_907:com_21;
+            $component4 = interface_907:com_10;
+            $component5 = interface_907:com_66;
+    }
+    if_settrans(calc(255 - scale($int0, 50, 255)), $component5);
+    if_settrans(scale($int0, 50, 255), $component3);
+    if (if_gettrans($component5) > 127) {
+        if_sethide(true, $component2);
+        if_sethide(false, $component4);
+        switch_int (calc($int1 % 2)) {
+            case 0 :
+                if_setgraphic("rs3_icon_lobby_pagination,1", interface_907:com_1);
+                if_setgraphic("rs3_icon_lobby_pagination,0", interface_907:com_0);
+            case 1 :
+                if_setgraphic("rs3_icon_lobby_pagination,0", interface_907:com_1);
+                if_setgraphic("rs3_icon_lobby_pagination,1", interface_907:com_0);
+        }
+    }
+    if_setontimer("script10947(calc($int0 + 1), $int1)", interface_907:com_14);
+} else {
+    if_sethide(true, interface_907:com_34);
+    if_sethide(true, interface_907:com_36);
+    if_setontimer(null, interface_907:com_14);
+    if_setontimer("script10946(calc($int1 + 1), 0)", interface_907:com_31);
+}
