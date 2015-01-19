@@ -1,0 +1,25 @@
+// 10938
+[clientscript,script10938]
+~script10447(interface_907:com_104, enum(int, string, enum_9480, 0), "Select a Category", 0, 0, if_getwidth(interface_907:com_104), 0);
+def_component $component0 = interface_907:com_106;
+def_component $component1 = interface_907:com_107;
+def_component $component2 = interface_907:com_108;
+def_int $int3 = 0;
+def_int $int4 = enum_getoutputcount(enum_9480);
+def_int $int5 = 0;
+while ($int3 < $int4) {
+    cc_create($component2, ^iftype_text, if_getnextsubid($component2));
+    cc_settext(enum(int, string, enum_9480, $int3));
+    cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
+    cc_setposition(5, calc($int3 * 20), ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextfont(graphic_17813);
+    cc_setcolour(0x7592a0);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_setonmouseover("cc_text_colour_swapper(event_com, event_comsubid, 0xaed0e0)");
+    cc_setonmouseleave("cc_text_colour_swapper(event_com, event_comsubid, 0x7592a0)");
+    cc_setonclick("script10940($int3)");
+    $int5 = calc(cc_gety + cc_getheight);
+    $int3 = calc($int3 + 1);
+}
+~script10020($component0, struct_21336, false);
+~script10944($int5, $component2, $component1);

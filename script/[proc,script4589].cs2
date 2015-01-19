@@ -25,6 +25,7 @@ def_int $int22 = -1;
 def_component $component23 = null;
 def_int $int24 = -1;
 def_component $component25 = null;
+def_int $int26 = 0;
 $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $component17, $component18, $component19, $component20, $component21, $int22, $component23, $int24, $component25 = ~script7814($component0);
 cc_deleteall($component9);
 cc_deleteall($component7);
@@ -34,9 +35,21 @@ cc_deleteall($component12);
 cc_deleteall($component13);
 if_sethide(true, $component2);
 if_sethide(false, $component14);
-if_settext("You are not currently in a Clan Chat channel.<br><br>If you are not a member of a clan already, click the link below to visit the recruitment forums.<br><br>", $component15);
-if_settext("Recruitment Forums", $component25);
-if_setonclick("script10183", $component25);
+if (~script10920 = 1) {
+    $int26 = ~script10921;
+    if ($int26 = 1) {
+        if_settext("You are currently on cool down from a previous clan and have to wait until tomorrow to join or start a clan.", $component15);
+    } else {
+        if_settext("You are currently on cool down from a previous clan and have to wait <tostring($int26)> days to join or start a clan.", $component15);
+    }
+    if_settext("", $component25);
+    if_sethide(true, $component25);
+} else {
+    if_settext("You are not currently in a Clan Chat channel.<br><br>If you are not a member of a clan already, click the link below to visit the recruitment forums.<br><br>", $component15);
+    if_settext("Recruitment Forums", $component25);
+    if_setonclick("script10183", $component25);
+    if_sethide(false, $component25);
+}
 if_sethide(true, $component17);
 if_sethide(false, $component3);
 if_sethide(false, $component5);
