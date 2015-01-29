@@ -7,16 +7,35 @@ def_int $int5 = max(20, calc(2 + cc_getheight));
 def_int $int6 = 0;
 def_int $int7 = 0;
 def_int $int8 = 0;
+def_string $string0 = "There are new Player Power Polls to vote on.";
 if (~script6375 = true) {
     $int2 = calc(~script6355 + cc_getwidth / 2);
     $int3 = calc(~script6356 + cc_getheight / 2);
     if (if_find(~script6358($component0)) = true) {
-        cc_sethide(false);
-        $int6, $int7, $int8 = ~script6373($int4, $int5);
-        cc_setsize($int6, $int7, ^setsize_abs, ^setsize_abs);
-        ~if_highlight_settrans($int8, $component0);
-        cc_setposition(calc($int2 - cc_getwidth / 2), calc($int3 - cc_getheight / 2), ^setpos_abs_left, ^setpos_abs_top);
+        if ($int1 = 184 & ~script8292(4, -1) = false) {
+            if (if_getnextsubid(if_getparentlayer($component0)) = 0) {
+                .cc_create(if_getparentlayer($component0), ^iftype_graphic, 0);
+                .cc_setgraphic(rs3_icon_info);
+                .cc_setsize(20, 20, ^setsize_abs, ^setsize_abs);
+                .cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
+            }
+            if (.cc_find(if_getparentlayer($component0), 0) = true) {
+                .cc_setposition(calc($int2 - .cc_getwidth), $int3, ^setpos_abs_left, ^setpos_abs_top);
+            }
+        } else {
+            cc_sethide(false);
+            $int6, $int7, $int8 = ~script6373($int4, $int5);
+            cc_setsize($int6, $int7, ^setsize_abs, ^setsize_abs);
+            ~if_highlight_settrans($int8, $component0);
+            cc_setposition(calc($int2 - cc_getwidth / 2), calc($int3 - cc_getheight / 2), ^setpos_abs_left, ^setpos_abs_top);
+            if (.cc_find(if_getparentlayer($component0), 0) = true) {
+                .cc_delete;
+            }
+        }
     }
 } else {
+    if (.cc_find(if_getparentlayer($component0), 0) = true) {
+        .cc_delete;
+    }
     if_sethide(true, ~script6358($component0));
 }
