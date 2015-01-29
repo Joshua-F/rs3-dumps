@@ -15920,3 +15920,24 @@ randomreadyanim=seq_25590,170
 [bas_3375]
 readyanim=seq_25593,null
 
+[bas_3376]
+runanim=seq_25611
+readyanim=seq_25621,seq_25622
+
+[bas_3377]
+readyanim=seq_25609,null
+
+[bas_3378]
+runanim=seq_25625
+readyanim=seq_25623,seq_25624
+
+[bas_3379]
+readyanim=seq_25635,null
+
+[bas_3380]
+runanim=seq_25638
+readyanim=seq_25636,seq_25637
+
+[bas_3381]
+readyanim=seq_25647,null
+
