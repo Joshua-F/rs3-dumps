@@ -16,40 +16,6 @@ if (%varclient_4667 < 64) {
 if (%varclient_4668 < 1) {
     %varclient_4668 = calc(1 + (50 - 1) / 2);
 }
-def_coord $coord0 = coord;
-def_coord $coord1 = movecoord(coord, 0, 0, -1);
-switch_int (facing_fine) {
-    case 0 :
-        $coord1 = movecoord(coord, 0, 0, -1);
-    case 2048 :
-        $coord1 = movecoord(coord, -1, 0, -1);
-    case 4096 :
-        $coord1 = movecoord(coord, -1, 0, 0);
-    case 6144 :
-        $coord1 = movecoord(coord, -1, 0, 1);
-    case 8192 :
-        $coord1 = movecoord(coord, 0, 0, 1);
-    case 10240 :
-        $coord1 = movecoord(coord, 1, 0, 1);
-    case 12288 :
-        $coord1 = movecoord(coord, 1, 0, 0);
-    case 14336 :
-        $coord1 = movecoord(coord, 1, 0, -1);
-}
-def_int $int2 = coordx_fine(coord_gridtofine($coord0, true));
-def_int $int3 = coordy_fine(coord_gridtofine($coord0, true));
-def_int $int4 = coordz_fine(coord_gridtofine($coord0, true));
-def_int $int5 = coordx_fine(coord_gridtofine($coord1, true));
-def_int $int6 = coordy_fine(coord_gridtofine($coord1, true));
-def_int $int7 = coordz_fine(coord_gridtofine($coord1, true));
-def_int $int8 = calc($int2 - $int5);
-def_int $int9 = calc($int3 - $int6);
-def_int $int10 = calc($int4 - $int7);
-cam2_setpositionmode(0);
-cam2_setlookatmode(3);
 ~script8776;
-cam2_setpositionpoint_point(coord_gridtofine($coord1, true));
-cam2_setpositionpointcollision(true);
-cam2_setlookatorientation_maxdistanceclamping(coord_gridtofine($coord0, true), 20, 20, 20, 20, 20, -1);
-cam2_setlookatorientation_vector($int8, $int9, $int10);
 ~script8836(enum_7693);
+if_setonvarctransmit("machinima_setup_state(coord){varclient_4718}", interface_1477:com_13);

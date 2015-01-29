@@ -1,7 +1,9 @@
 // 3014
 [proc,script3014]
 def_int $int0 = 0;
-if (date_runeday < 4710) {
+def_string $string0 = "news";
+def_string $string1 = "";
+if (date_runeday >= 4720 & date_runeday <= 4723) {
     $int0 = 1;
 }
 ~script10592(0);
@@ -13,7 +15,7 @@ def_int $int2 = 0;
 def_boolean $boolean3 = false;
 $int1, $int2, $boolean3 = userdetail_lobby_membership;
 def_int $int4 = calc(date_runeday - %varplayer_1749);
-def_string $string0 = "";
+def_string $string2 = "";
 if (%varplayer_3185 ! 4 & $int4 <= 5 & %varplayerbit_16464 = 2) {
     $int4 = calc(5 - $int4);
     if ($int4 > 1) {
@@ -33,6 +35,19 @@ if (%varclient_3905 = true) {
     ~script10592(1);
     ~script10593(1);
 } else {
+    if ((playermember = false | $boolean3 = false & $int2 < 2880) & randominc(1) = 0) {
+        switch_int (map_lang) {
+            case 0 :
+                if_setgraphic(rs3_lobby_primary_default_bonds_banner_en, interface_907:com_66);
+            case 1 :
+                if_setgraphic(rs3_lobby_primary_default_bonds_banner_de, interface_907:com_66);
+            case 2 :
+                if_setgraphic(rs3_lobby_primary_default_bonds_banner_fr, interface_907:com_66);
+            case 3 :
+                if_setgraphic(rs3_lobby_primary_default_bonds_banner_pt, interface_907:com_66);
+        }
+        return;
+    }
     switch_int ($int0) {
         case -1 :
             if_setgraphic(rs3_lobby_primary_default_banner, interface_907:com_66);
@@ -47,16 +62,20 @@ if (%varclient_3905 = true) {
                 case 3 :
                     if_setgraphic(graphic_159, interface_907:com_66);
             }
+            ~script10593(1);
+            $string0 = "player-proposal";
+            $string1 = "overview";
+            if_setonclick("script3434($string0, $string1)", interface_907:com_66);
         case 1 :
             switch_int (map_lang) {
                 case 0 :
-                    if_setgraphic(graphic_19230, interface_907:com_66);
+                    if_setgraphic(graphic_17251, interface_907:com_66);
                 case 1 :
-                    if_setgraphic(graphic_19226, interface_907:com_66);
+                    if_setgraphic(graphic_17252, interface_907:com_66);
                 case 2 :
-                    if_setgraphic(graphic_19227, interface_907:com_66);
+                    if_setgraphic(graphic_17253, interface_907:com_66);
                 case 3 :
-                    if_setgraphic(graphic_19228, interface_907:com_66);
+                    if_setgraphic(graphic_17254, interface_907:com_66);
             }
     }
 }
@@ -69,5 +88,3 @@ if_settext("", interface_907:com_68);
 if_setposition(231, 46, ^setpos_abs_left, ^setpos_abs_top, interface_907:com_68);
 if_setsize(345, 70, ^setsize_abs, ^setsize_abs, interface_907:com_68);
 if_setcolour(0x0e1903, interface_907:com_68);
-def_string $string1 = "news";
-def_string $string2 = "";
