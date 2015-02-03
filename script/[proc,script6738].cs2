@@ -6,6 +6,7 @@ def_component $component3 = interface_1343:com_4;
 if_setsize(0, if_gety($component3), ^setsize_minus, ^setsize_minus, $component3);
 if_sethide(true, interface_1343:com_10);
 if_setscrollpos(0, 0, $component3);
+def_struct $struct4 = $struct1;
 if_settext("Objectives", interface_1343:com_32);
 if_sethide(false, interface_1343:com_13);
 if_sethide(false, interface_1343:com_20);
@@ -15,11 +16,19 @@ if_sethide(false, interface_1343:com_3);
 if_sethide(true, interface_1343:com_21);
 if_sethide(true, interface_1343:com_50);
 if ($int2 = 6) {
-    if_settext("Lucky Challenge: <struct_param($struct1, param_1266)>", interface_1343:com_35);
+    if (struct_param($struct1, param_4797) ! null) {
+        $struct4 = struct_param($struct1, param_4797);
+    }
+    if (struct_param($struct1, param_4798) ! 0) {
+        if_settext("Lucky Slayer Assignment: <struct_param($struct4, param_1266)>", interface_1343:com_35);
+    } else {
+        if_settext("Lucky Challenge: <struct_param($struct4, param_1266)>", interface_1343:com_35);
+    }
 } else {
-    if_settext(struct_param($struct1, param_1266), interface_1343:com_35);
+    if_settext(struct_param($struct4, param_1266), interface_1343:com_35);
 }
-if_settext(struct_param($struct1, param_1273), interface_1343:com_31);
+if_settext(struct_param($struct4, param_1273), interface_1343:com_31);
+if_setsize(35, 35, ^setsize_abs, ^setsize_abs, interface_1343:com_36);
 switch_int ($int0) {
     case 8 :
         if_setgraphic("challenge_skill_icons_35px,24", interface_1343:com_36);
@@ -63,6 +72,9 @@ switch_int ($int0) {
         if_setgraphic("challenge_skill_icons_35px,8", interface_1343:com_36);
     case 18 :
         if_setgraphic("challenge_skill_icons_35px,14", interface_1343:com_36);
+    case 61 :
+        if_setgraphic(rs3_menu_icon_active_task_normal, interface_1343:com_36);
+        if_setsize(32, 32, ^setsize_abs, ^setsize_abs, interface_1343:com_36);
     case 63 :
         if_setgraphic("rs3_dnd_mini_games_icons,10", interface_1343:com_36);
     case 62 :
@@ -83,18 +95,29 @@ $string0 = "Click here to pin this challenge as your active task.";
 if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1343:com_18);
 if_setposition(0, 202, ^setpos_abs_centre, ^setpos_abs_top, interface_1343:com_18);
 def_string $string1 = "";
+def_struct $struct5 = null;
 if ($int2 = 6) {
     if (struct_param($struct1, param_4057) = 63) {
-        switch_int (struct_param(struct_param($struct1, param_4062), param_848)) {
+        $struct5 = struct_param($struct1, param_4062);
+        switch_int (struct_param($struct5, param_848)) {
             case 0, 1 :
                 $string1 = append($string1, "A medium XP lamp");
             case 2, 3, 5 :
-                $string1 = append($string1, "A large XP lamp");
+                switch_int (struct_param($struct5, param_847)) {
+                    case 73 :
+                        $string1 = append($string1, "A huge XP lamp");
+                    case 4 :
+                        $string1 = append($string1, "A medium XP lamp");
+                    case default :
+                        $string1 = append($string1, "A large XP lamp");
+                }
             case 4 :
                 $string1 = append($string1, "A huge XP lamp");
         }
     } else if (struct_param($struct1, param_4057) = 62) {
         $string1 = append($string1, "A medium XP lamp");
+    } else if (struct_param($struct1, param_4057) = 61) {
+        $string1 = append($string1, "A small XP lamp");
     } else if ($int0 = 1) {
         $string1 = append($string1, "A Combat XP Lamp");
     } else {
@@ -116,66 +139,66 @@ if (struct_param($struct1, param_2705) ! null) {
 } else {
     $string1 = append($string1, ".");
 }
-def_int $int4 = struct_param($struct1, param_2235);
-def_int $int5 = 0;
-def_int $int6 = 0;
+def_int $int6 = struct_param($struct1, param_2235);
 def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
 if (%varplayerbit_24212 = 1) {
-    $int4 = ~script3058($struct1);
-    $int5 = %varplayerbit_24210;
+    $int6 = ~script3058($struct1);
+    $int7 = %varplayerbit_24210;
 } else {
     switch_int ($int2) {
         case 1 :
-            $int5 = %varplayerbit_16576;
+            $int7 = %varplayerbit_16576;
         case 2 :
-            $int5 = %varplayerbit_16580;
+            $int7 = %varplayerbit_16580;
         case 3 :
-            $int5 = %varplayerbit_16584;
+            $int7 = %varplayerbit_16584;
         case 4 :
-            $int5 = %varplayerbit_16588;
+            $int7 = %varplayerbit_16588;
         case 5 :
-            $int5 = %varplayerbit_16592;
+            $int7 = %varplayerbit_16592;
         case 6 :
-            $int5 = %varplayerbit_21379;
+            $int7 = %varplayerbit_21379;
     }
 }
-def_graphic $graphic8 = null;
+def_graphic $graphic10 = null;
 switch_int ($int2) {
     case 1, 2, 3, 4, 5 :
-        if ($int5 >= $int4 & ~script10583($int2) = 1) {
-            $graphic8 = graphic_13902;
+        if ($int7 >= $int6 & ~script10583($int2) = 1) {
+            $graphic10 = "rs3_icon_daily_challenge,1";
         } else {
-            $graphic8 = graphic_13901;
+            $graphic10 = "rs3_icon_daily_challenge,0";
         }
-        $int6, $int7 = ~script10580($int2);
+        $int8, $int9 = ~script10580($int2);
         if_sethide(false, interface_1343:com_17);
         if_settext("Days left:", interface_1343:com_54);
         if_settext(~script3944(calc(6 - $int2)), interface_1343:com_53);
     case 6 :
-        if ($int5 >= $int4) {
-            $graphic8 = graphic_13902;
+        if ($int7 >= $int6) {
+            $graphic10 = "rs3_icon_lucky_challenge,1";
         } else {
-            $graphic8 = graphic_13901;
+            $graphic10 = "rs3_icon_lucky_challenge,0";
         }
         if_sethide(false, interface_1343:com_17);
         if_settext("Hours left:", interface_1343:com_54);
         if_settext(~script346, interface_1343:com_53);
     case default :
         if (~script6783(6) = $struct1) {
-            $int5 = %varplayerbit_16596;
+            $int7 = %varplayerbit_16596;
         }
-        $graphic8 = null;
+        $graphic10 = null;
         if_sethide(true, interface_1343:com_17);
         $string1 = "You will earn XP as you complete the Challenge, but only Daily Challenges give additional rewards.";
 }
 if_settext($string1, interface_1343:com_26);
-if ($graphic8 ! null) {
+if ($graphic10 ! null) {
     if_sethide(false, interface_1343:com_37);
-    if_setgraphic($graphic8, interface_1343:com_37);
-    switch_graphic ($graphic8) {
-        case graphic_13901 :
+    if_setgraphic($graphic10, interface_1343:com_37);
+    switch_graphic ($graphic10) {
+        case "rs3_icon_daily_challenge,0" :
             $string0 = "This challenge can be handed in to the Challenge Mistress when complete for a reward.";
-        case graphic_13902 :
+        case "rs3_icon_daily_challenge,1" :
             $string0 = "This challenge is complete and can be handed in to the Challenge Mistress for a reward.";
         case default :
             $string0 = "";
@@ -188,17 +211,17 @@ if ($graphic8 ! null) {
 } else {
     if_sethide(true, interface_1343:com_37);
 }
-if ($int7 = 1) {
-    $int5 = calc($int4 + $int5);
+if ($int9 = 1) {
+    $int7 = calc($int6 + $int7);
 }
-if ($int6 = 1) {
-    if_settext(~script10524(struct_param($struct1, param_1273), $int4), interface_1343:com_31);
-    $int4 = calc($int4 * 2);
+if ($int8 = 1) {
+    if_settext(~script10524(struct_param($struct1, param_1273), $int6), interface_1343:com_31);
+    $int6 = calc($int6 * 2);
 }
 if_sethide(false, interface_1343:com_34);
-if_settext("<tostring($int5)> / <tostring($int4)>", interface_1343:com_88);
-if ($int4 ! 0) {
-    if_setsize(scale($int5, $int4, 16384), 16384, ^setsize_rel, ^setsize_rel, interface_1343:com_83);
+if_settext("<tostring($int7)> / <tostring($int6)>", interface_1343:com_88);
+if ($int6 ! 0) {
+    if_setsize(scale($int7, $int6, 16384), 16384, ^setsize_rel, ^setsize_rel, interface_1343:com_83);
 } else {
     if_setsize(16384, 16384, ^setsize_rel, ^setsize_rel, interface_1343:com_83);
 }

@@ -18,11 +18,12 @@ def_int $rgb15 = 0xa5a5a5;
 def_fontmetrics $fontmetrics16 = graphic_17813;
 def_fontmetrics $fontmetrics17 = graphic_17813;
 def_int $int18 = 0;
+def_string $string0 = "";
 $fontmetrics16, $rgb14 = ~script10433(0);
 $fontmetrics17, $rgb15 = ~script10433(1);
 while ($int10 <= $int5) {
     $int13 = ~script10455($component0, $enum4, $int10);
-    cc_create(interface_1477:com_793, ^iftype_text, $int10);
+    cc_create(interface_1477:com_793, ^iftype_text, if_getnextsubid(interface_1477:com_793));
     cc_setparam(param_4519, $int13);
     if ($int13 = 1) {
         $int12 = ~dynamic_dropdown_active_check($component0, $enum4, $int10);
@@ -34,7 +35,18 @@ while ($int10 <= $int5) {
         cc_setparam(param_3646, $int12);
         cc_setmaxlines(1);
         cc_setonmouseover("dynamic_dropdown_highlight(event_com, event_comsubid)");
-        cc_setonmouserepeat("dynamic_dropdown_mouserepeat($component0, -1, enum(int, string, $enum4, $int10))");
+        if ($enum4 ! enum_9665) {
+            $string0 = enum(int, string, $enum4, $int10);
+        } else if ($int10 = 0) {
+            $string0 = "x1.5 to pet points";
+        } else if ($int10 = 1) {
+            $string0 = "x2 to pet points";
+        } else if ($int10 = 2) {
+            $string0 = "Instantly update your pet to its next level";
+        } else {
+            $string0 = "Open the store to buy treats";
+        }
+        cc_setonmouserepeat("dynamic_dropdown_mouserepeat($component0, -1, $string0)");
         if ($int12 = 1) {
             cc_settextfont($fontmetrics16);
             cc_setcolour($rgb14);
@@ -43,6 +55,9 @@ while ($int10 <= $int5) {
         } else {
             cc_settextfont($fontmetrics17);
             cc_setcolour($rgb15);
+        }
+        if ($enum4 = enum_9665) {
+            ~script4164($int10, $int11, $int12, $fontmetrics16, $fontmetrics17, $rgb14, $rgb15);
         }
         $int11 = calc($int11 + 15);
         if ($int18 < calc(15 * 20)) {

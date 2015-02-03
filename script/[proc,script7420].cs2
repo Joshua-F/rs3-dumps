@@ -1,0 +1,138 @@
+// 7420
+[proc,script7420](component $component0, component $component1, component $component2, component $component3, component $component4)(boolean)
+~lobby_worldswitcher_sort;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_string $string0 = "";
+def_int $int7 = 0;
+def_string $string1 = "";
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_string $string2 = "";
+$int5, $int6, $string0, $int7, $string1, $int8, $int9, $string2 = worldlist_start;
+if ($int5 = -1) {
+    return(false);
+}
+def_int $rgb10 = ^black;
+def_int $rgb11 = ^black;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = if_getwidth($component0);
+def_int $int16 = 0;
+def_string $string3 = "";
+def_graphic $graphic17 = null;
+def_int $int18 = 0;
+if (~script7421(%varclient_998) = true) {
+    $int14 = calc($int14 + 22);
+}
+if (~script7421(%varclient_999) = true) {
+    $int14 = calc($int14 + 22);
+}
+if (~script7421(%varclient_4272) = true) {
+    $int14 = calc($int14 + 22);
+}
+while ($int5 ! -1) {
+    if (~script7421($int5) = true) {
+        if ($int5 = %varclient_998) {
+            $int16, $rgb10, $int18, $graphic17 = 0, 0x000036, 1, "rs3_icon_lobby_favorite_small,0";
+        } else if ($int5 = %varclient_999) {
+            $int16, $rgb10, $int18, $graphic17 = 22, 0x000037, 1, "rs3_icon_lobby_favorite_small,0";
+        } else if ($int5 = %varclient_4272) {
+            $int16, $rgb10, $int18, $graphic17 = calc(22 * 2), 0x000036, 1, "rs3_icon_lobby_favorite_small,0";
+        } else {
+            $int16, $int18, $graphic17 = $int14, 0, "rs3_icon_lobby_favorite_small,2";
+            if (calc($int12 % 2) = 0) {
+                $rgb10 = 0x000034;
+            } else {
+                $rgb10 = 0x000033;
+            }
+        }
+        if (testbit($int6, 0) = ^false) {
+            $rgb11 = 0x00000e;
+        } else {
+            $rgb11 = 0x00000a;
+        }
+        ~script11015($component1, $rgb10, 0, $int16, $int15);
+        cc_setonmouseover("script7427(event_com, event_comsubid)");
+        cc_setonmouseleave("script7429(event_com, event_comsubid, $rgb10)");
+        ~script7742($component1, $graphic17, 2, $int16, 21, 21);
+        cc_setop(1, "Toggle favourite");
+        cc_setonop("script7426(event_com, event_comsubid, $int18, $component0, $component1, $component2, $component3, $component4, $int5)");
+        cc_setonmouseover("script7437(event_com, event_comsubid, $int5)");
+        cc_setonmouseleave("script7438(event_com, event_comsubid, $int5)");
+        ~script11014($component1, tostring($int5), $rgb11, 30, $int16, 60);
+        if ($int8 >= 1980) {
+            $string3 = "FULL";
+        } else if ($int8 >= 0) {
+            $string3 = tostring($int8);
+        } else {
+            $string3 = "OFFLINE";
+        }
+        ~script11014($component1, $string3, $rgb11, 95, $int16, 60);
+        if (testbit($int6, 4) = ^true | string_length($string0) > 0) {
+            $graphic17 = enum(int, graphic, enum_730, 1);
+        } else {
+            switch_int (map_lang) {
+                case default :
+                    $graphic17 = enum(int, graphic, enum_1810, $int7);
+                case 1 :
+                    $graphic17 = "rs3_icon_world_select_country_flags,7";
+                case 2 :
+                    $graphic17 = enum(int, graphic, enum_1810, 74);
+                case 3 :
+                    $graphic17 = enum(int, graphic, enum_1810, 31);
+                case 6 :
+                    $graphic17 = enum(int, graphic, enum_1810, 67);
+            }
+        }
+        if (string_length($string0) = 0) {
+            switch_int (map_lang) {
+                case default :
+                    $string0 = $string1;
+                case 1 :
+                    $string0 = "German";
+                case 2 :
+                    $string0 = "French";
+                case 3 :
+                    $string0 = "Portuguese";
+                case 6 :
+                    $string0 = "Spanish (Latin American)";
+            }
+        }
+        if (testbit($int6, 20) = ^true) {
+            $graphic17 = "rs3_icon_world_select_game_flags,2";
+        }
+        ~script7742($component1, $graphic17, 160, calc($int16 + (22 - 12) / 2), 12, 24);
+        ~script11014($component1, $string0, $rgb11, 186, $int16, 184);
+        if (testbit($int6, 0) = ^false) {
+            ~script11014($component1, "Free", $rgb11, 375, $int16, 55);
+        } else {
+            ~script11014($component1, "Members", $rgb11, 375, $int16, 55);
+        }
+        if (testbit($int6, 3) = ^true) {
+            ~script7742($component1, rs3_contextual_input_accept, 445, calc($int16 + (22 - 16) / 2), 16, 16);
+        } else {
+            ~script7742($component1, rs3_contextual_input_minus, 445, calc($int16 + (22 - 16) / 2), 16, 16);
+        }
+        if (cc_find($component2, $int5) = true) {
+            cc_setop(1, "Select");
+            cc_setop(2, "Quick-hop");
+            cc_setposition(30, $int16, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize(calc($int15 - 30), 22, ^setsize_abs, ^setsize_abs);
+            cc_sethide(false);
+        }
+        if ($int18 = 0) {
+            $int14 = calc($int14 + 22);
+        }
+        $int12 = calc($int12 + 1);
+    }
+    $int5, $int6, $string0, $int7, $string1, $int8, $int9, $string2 = worldlist_next;
+}
+if ($int14 > if_getheight($component0)) {
+    if_setscrollsize(0, $int14, $component0);
+} else {
+    if_setscrollsize(0, 0, $component0);
+}
+~scrollbar_vertical($component3, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+return(true);

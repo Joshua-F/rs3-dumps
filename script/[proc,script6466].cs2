@@ -24,7 +24,6 @@ def_bas $bas15 = bas_1426;
 def_int $int16 = 0;
 def_int $int17 = 0;
 def_enum $enum18 = null;
-def_string $string0 = "";
 if (~script6488($struct0) = 0) {
     if (~script7388($struct0) = 1) {
         $graphic8 = "rs3_btn_wardrobe_selection,6";
@@ -34,14 +33,6 @@ if (~script6488($struct0) = 0) {
         $graphic8 = "rs3_btn_wardrobe_selection,0";
         $graphic9 = "rs3_btn_wardrobe_selection,1";
         $rgb10 = 0xaed0e0;
-    }
-    if ($int4 = 5) {
-        if ($int5 = 2) {
-            $string0 = "You do not have this pet unlocked.";
-        } else {
-            $string0 = "Familiar override is not available for Follower or Companion pet types.";
-        }
-        if_setonmouserepeat("script7768(interface_1311:com_221, interface_1311:com_721, -1, $string0, 120, graphic_17813, graphic_17813, 16777215, 13, 4, 0, event_mousex, event_mousey)", interface_1311:com_721);
     }
 } else if (~script6489($struct0) = 1 | ~script7609($struct0) = 1) {
     $graphic8 = "rs3_btn_wardrobe_selection,4";
@@ -94,8 +85,10 @@ if (~script6488($struct0) = 0) {
     }
 }
 def_int $int19 = 0;
-if ($int4 = 1 | $int4 = 5) {
+if ($int4 = 1) {
     $int19 = 155;
+} else if ($int4 = 5) {
+    $int19 = 205;
 } else if ($int4 = 2) {
     $int19 = 285;
 } else {
@@ -127,8 +120,8 @@ if ($int4 = 2 & $int5 = 19) {
         cc_setop(3, "");
     }
 }
+def_string $string0 = "";
 def_string $string1 = "";
-def_string $string2 = "";
 def_enum $enum20 = null;
 if ($int4 = 1) {
     if ($int5 = 1 | $int5 = 3 | $int5 = 4) {
@@ -137,25 +130,25 @@ if ($int4 = 1) {
         } else {
             $enum20 = enum_2338;
         }
-        $string1 = struct_param(enum(int, struct, $enum20, struct_param($struct0, param_2772)), param_792);
+        $string0 = struct_param(enum(int, struct, $enum20, struct_param($struct0, param_2772)), param_792);
     } else if ($int5 = 2 | $int5 = 5) {
-        $string1 = enum(int, string, enum_2340, struct_param($struct0, param_2772));
+        $string0 = enum(int, string, enum_2340, struct_param($struct0, param_2772));
     }
 } else if ($int5 = 19) {
     if (~script9964($struct0) = null) {
-        $string1 = struct_param($struct0, param_2533);
+        $string0 = struct_param($struct0, param_2533);
     } else {
-        $string1 = "Cosmetic <lowercase(oc_name(~script9964($struct0)))>";
-        if (string_length($string1) > 27) {
-            $string2 = $string1;
-            $string1 = "<substring($string1, 0, 24)>...";
+        $string0 = "Cosmetic <lowercase(oc_name(~script9964($struct0)))>";
+        if (string_length($string0) > 27) {
+            $string1 = $string0;
+            $string0 = "<substring($string0, 0, 24)>...";
         }
     }
 } else {
-    $string1 = struct_param($struct0, param_2533);
+    $string0 = struct_param($struct0, param_2533);
 }
 cc_create($component6, ^iftype_text, calc($int7 + 1));
-cc_settext($string1);
+cc_settext($string0);
 cc_settextfont(graphic_17813);
 cc_setcolour($rgb10);
 if ($boolean3 = true) {
@@ -165,8 +158,8 @@ if ($boolean3 = true) {
 }
 cc_setposition(calc($int2 * $int19 + ($int19 - cc_getwidth) / 2), calc($int1 + (26 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
-if (string_length($string2) > 1) {
-    cc_setonmouserepeat("script8799($string2, event_com, event_comsubid)");
+if (string_length($string1) > 1) {
+    cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
 }
 cc_create($component6, ^iftype_graphic, calc($int7 + 2));
 cc_setgraphic(struct_param($struct0, param_2534));
