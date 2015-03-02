@@ -15,7 +15,7 @@ cc_setsize(0, 25, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, $int7, ^setpos_abs_centre, ^setpos_abs_top);
 ~script10009($struct6);
 switch_int ($int5) {
-    case 3, 12, 14, 16 :
+    case 3, 12, 14, 16, 32, 20 :
         cc_setop(1, "Reset");
 }
 cc_create(interface_1588:com_3, ^iftype_graphic, if_getnextsubid(interface_1588:com_3));
@@ -39,7 +39,11 @@ if ($int3 = ^max_32bit_int) {
                 $int3 = calc($int3 / 10);
         }
     }
-    cc_settext(tostring_localised($int3, true));
+    if ($int5 = 19 | $int5 = 20) {
+        cc_settext("<tostring_localised($int3, true)>%");
+    } else {
+        cc_settext(tostring_localised($int3, true));
+    }
 }
 cc_setsize(90, 25, ^setsize_abs, ^setsize_abs);
 cc_setposition(30, $int7, ^setpos_abs_left, ^setpos_abs_top);

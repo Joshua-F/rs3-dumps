@@ -19,16 +19,17 @@ def_string $string3 = "";
 def_string $string4 = "";
 def_chatphrase $chatphrase8 = null;
 def_string $string5 = "";
-$chattype5, $int6, $int7, $string1, $string2, $string3, $string4, $chatphrase8, $string5 = chat_gethistory_byuid($int2);
-def_int $int9 = 1;
+def_int $int9 = -1;
+$chattype5, $int6, $int7, $string1, $string2, $string3, $string4, $chatphrase8, $string5, $int9 = chat_gethistory_byuid($int2);
+def_int $int10 = 1;
 while ($int4 < 100 & $chattype5 ! null) {
     switch_int ($chattype5) {
         case ^chattype_gamemessage, ^chattype_engine, ^chattype_obj_examine, ^chattype_npc_examine, ^chattype_loc_examine, ^chattype_snapshotfeedback, ^chattype_friendnotification, ^chattype_ignorenotification :
             $int1 = ~script3055($int1, $string5, 0, "", "", $chattype5);
         case ^chattype_privatechat :
             $int1 = ~script3055($int1, "From <$string1>: <$string0><$string5>", 1, $string1, $string2, $chattype5);
-            if ($int9 = 1) {
-                %varclient_2505, $int9 = $string2, 0;
+            if ($int10 = 1) {
+                %varclient_2505, $int10 = $string2, 0;
             }
         case ^chattype_loginlogoutnotification :
             $int1 = ~script3055($int1, "<$string0><$string5>", 0, $string1, $string2, $chattype5);
@@ -36,13 +37,13 @@ while ($int4 < 100 & $chattype5 ! null) {
             $int1 = ~script3055($int1, "To <$string1>: <$string0><$string5>", 1, $string1, $string2, $chattype5);
         case ^chattype_modprivatechat :
             $int1 = ~script3055($int1, "From <$string1>: <$string0><$string5>", 1, $string1, $string2, $chattype5);
-            if ($int9 = 1) {
-                %varclient_2505, $int9 = $string2, 0;
+            if ($int10 = 1) {
+                %varclient_2505, $int10 = $string2, 0;
             }
         case ^chattype_quickchat_private_incoming :
             $int1 = ~script3055($int1, "From <$string1>: <$string0><$string5>", 1, $string1, $string2, $chattype5);
-            if ($int9 = 1) {
-                %varclient_2505, $int9 = $string2, 0;
+            if ($int10 = 1) {
+                %varclient_2505, $int10 = $string2, 0;
             }
         case ^chattype_quickchat_private_outgoing :
             $int1 = ~script3055($int1, "To <$string1>: <$string0><$string5>", 1, $string1, $string2, $chattype5);
@@ -50,35 +51,35 @@ while ($int4 < 100 & $chattype5 ! null) {
             $int1 = ~script3055($int1, "<col=ff0000><$string5></col>", 0, "", "", $chattype5);
     }
     $int4 = calc($int4 + 1);
-    $chattype5, $int6, $int7, $string1, $string2, $string3, $string4, $chatphrase8, $string5 = chat_gethistory_byuid(--$int2);
+    $chattype5, $int6, $int7, $string1, $string2, $string3, $string4, $chatphrase8, $string5, $int9 = chat_gethistory_byuid(--$int2);
 }
 %varclient_2835 = $int3;
-def_int $int10 = calc(if_getheight(interface_909:com_36) / 15);
-def_int $int11 = calc(if_getheight(interface_909:com_36) % 15);
+def_int $int11 = calc(if_getheight(interface_909:com_36) / 15);
+def_int $int12 = calc(if_getheight(interface_909:com_36) % 15);
 $int4 = 0;
-def_int $int12 = 0;
-if ($int1 <= $int10) {
-    $int12 = calc($int10 - $int1);
-    while ($int4 < $int12) {
+def_int $int13 = 0;
+if ($int1 <= $int11) {
+    $int13 = calc($int11 - $int1);
+    while ($int4 < $int13) {
         $int1 = ~script3055($int1, "", 0, "", "", ^chattype_gamemessage);
         $int4 = calc($int4 + 1);
     }
-    if ($int11 > 0) {
+    if ($int12 > 0) {
         $int1 = ~script3055($int1, "", 0, "", "", ^chattype_gamemessage);
-        cc_setsize(0, $int11, ^setsize_minus, ^setsize_abs);
+        cc_setsize(0, $int12, ^setsize_minus, ^setsize_abs);
     }
 }
-def_int $int13 = 0;
 def_int $int14 = 0;
-while ($int14 <= $int1) {
-    if (.cc_find(interface_909:com_36, $int14) = true) {
-        $int13 = calc($int13 + .cc_getheight);
+def_int $int15 = 0;
+while ($int15 <= $int1) {
+    if (.cc_find(interface_909:com_36, $int15) = true) {
+        $int14 = calc($int14 + .cc_getheight);
     }
-    $int14 = calc($int14 + 1);
+    $int15 = calc($int15 + 1);
 }
-def_int $int15 = max($int13, calc($int10 * 15));
-if ($int15 > if_getheight(interface_909:com_36)) {
-    if_setscrollsize(0, $int15, interface_909:com_36);
+def_int $int16 = max($int14, calc($int11 * 15));
+if ($int16 > if_getheight(interface_909:com_36)) {
+    if_setscrollsize(0, $int16, interface_909:com_36);
     ~scrollbar_resize(interface_909:com_37, interface_909:com_36, calc(%varclient_1122 + if_getscrollheight(interface_909:com_36) - %varclient_1123));
 } else {
     if_setscrollsize(0, 0, interface_909:com_36);
