@@ -1,0 +1,73 @@
+// 11074
+[proc,script11074]
+def_string $string0 = struct_param(%varclient_4485, param_1349);
+def_string $string1 = "";
+def_string $string2 = "";
+def_int $int0 = 0;
+if (struct_param(%varclient_4485, param_4830) = 1) {
+    switch_struct (%varclient_4485) {
+        case struct_24975 :
+            $int0 = calc(date_runeday % 12);
+            if ($int0 <= 3) {
+                $string0 = append($string0, "<br><br><col=ffffff>This encounter has mechanics that may change based on what day it is.<br><br><col=aed0e0>Current blocked tunnel: <col=ffffff>spider minions");
+            } else if ($int0 <= 7 & $int0 > 3) {
+                $string0 = append($string0, "<br><br><col=ffffff>This encounter has mechanics that may change based on what day it is.<br><br><col=aed0e0>Current blocked tunnel: <col=ffffff>acid pool");
+            } else {
+                $string0 = append($string0, "<br><br><col=ffffff>This encounter has mechanics that may change based on what day it is.<br><br><col=aed0e0>Current blocked tunnel: <col=ffffff>darkness");
+            }
+        case struct_28642 :
+            $int0 = enum(int, int, enum_7655, calc(date_runeday % 20));
+            $string0 = append($string0, "<br><br><col=ffffff>This boss has mechanics that may change based on what day it is.<br><col=aed0e0>Current brother positions:</col>");
+            $string1 = "<col=ffffff><br>West side: ";
+            $string2 = "<col=ffffff><br>East side: ";
+            if (testbit($int0, 0) = ^true) {
+                $string1 = append($string1, "<col=aed0e0>Ahrim ");
+            } else {
+                $string2 = append($string2, "<col=aed0e0>Ahrim ");
+            }
+            if (testbit($int0, 1) = ^true) {
+                $string1 = append($string1, "<col=aed0e0>Dharok ");
+            } else {
+                $string2 = append($string2, "<col=aed0e0>Dharok ");
+            }
+            if (testbit($int0, 2) = ^true) {
+                $string1 = append($string1, "<col=aed0e0>Guthan ");
+            } else {
+                $string2 = append($string2, "<col=aed0e0>Guthan ");
+            }
+            if (testbit($int0, 3) = ^true) {
+                $string1 = append($string1, "<col=aed0e0>Karil ");
+            } else {
+                $string2 = append($string2, "<col=aed0e0>Karil ");
+            }
+            if (testbit($int0, 4) = ^true) {
+                $string1 = append($string1, "<col=aed0e0>Torag ");
+            } else {
+                $string2 = append($string2, "<col=aed0e0>Torag ");
+            }
+            if (testbit($int0, 5) = ^true) {
+                $string1 = append($string1, "<col=aed0e0>Verac ");
+            } else {
+                $string2 = append($string2, "<col=aed0e0>Verac ");
+            }
+            $string1 = append($string1, $string2);
+            $string0 = append($string0, $string1);
+        case struct_28659 :
+            $int0 = calc((date_runeday + 21) / 7 % 6);
+            switch_int ($int0) {
+                case 0 :
+                    $string0 = append($string0, "<br><br><col=ffffff>This boss has mechanics that may change based on what day it is.<br><br><col=aed0e0>Current rotation: <col=ffffff>Ceiling Collapse");
+                case 1 :
+                    $string0 = append($string0, "<br><br><col=ffffff>This boss has mechanics that may change based on what day it is.<br><br><col=aed0e0>Current rotation: <col=ffffff>Scopulus");
+                case 2 :
+                    $string0 = append($string0, "<br><br><col=ffffff>This boss has mechanics that may change based on what day it is.<br><br><col=aed0e0>Current rotation: <col=ffffff>Vitalis");
+                case 3 :
+                    $string0 = append($string0, "<br><br><col=ffffff>This boss has mechanics that may change based on what day it is.<br><br><col=aed0e0>Current rotation: <col=ffffff>Green Bomb");
+                case 4 :
+                    $string0 = append($string0, "<br><br><col=ffffff>This boss has mechanics that may change based on what day it is.<br><br><col=aed0e0>Current rotation: <col=ffffff>Team Split");
+                case 5 :
+                    $string0 = append($string0, "<br><br><col=ffffff>This boss has mechanics that may change based on what day it is.<br><br><col=aed0e0>Current rotation: <col=ffffff>The End");
+            }
+    }
+}
+if_settext($string0, interface_753:com_50);

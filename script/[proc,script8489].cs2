@@ -1,5 +1,5 @@
 // 8489
-[proc,script8489](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11)
+[proc,script8489](int $int0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12)
 $component1 = interface_1477:com_803;
 cc_deleteall($component3);
 cc_deleteall($component4);
@@ -8,17 +8,9 @@ cc_deleteall($component7);
 cc_deleteall($component8);
 cc_deleteall($component9);
 cc_deleteall($component10);
-def_int $int12 = 140;
-if ($component11 ! null) {
-    if (%varplayerbit_26927 = 1) {
-        if_sethide(false, $component11);
-        $int12 = 180;
-    } else {
-        if_sethide(true, $component11);
-    }
-}
+cc_deleteall($component12);
 def_int $int13 = 0;
-if ($component0 = interface_1557:com_3) {
+if ($int0 = 102039554) {
     $int13 = 1;
 }
 def_int $int14 = if_getheight($component9);
@@ -26,19 +18,6 @@ if_setsize(0, $int14, ^setsize_minus, ^setsize_minus, $component2);
 def_int $int15 = enum_getoutputcount(enum_7674);
 def_int $int16 = if_getwidth($component2);
 def_int $int17 = if_getheight($component2);
-if ($int16 < $int12 & $int16 > 0) {
-    if (%varplayerbit_26927 = 1 & $component11 ! null) {
-        if_setsize(calc($int16 - 30), 33, ^setsize_abs, ^setsize_abs, $component9);
-        if_setsize(30, 33, ^setsize_abs, ^setsize_abs, $component11);
-    } else {
-        if_setsize($int16, 33, ^setsize_abs, ^setsize_abs, $component9);
-    }
-} else if (%varplayerbit_26927 = 1 & $component11 ! null) {
-    if_setsize(calc(if_getwidth($component0) / 2 - 30), 33, ^setsize_abs, ^setsize_abs, $component9);
-    if_setsize(if_getwidth($component0), 33, ^setsize_abs, ^setsize_abs, $component11);
-} else {
-    if_setsize(calc(if_getwidth($component0) / 2), 33, ^setsize_abs, ^setsize_abs, $component9);
-}
 def_int $int18 = 60;
 def_int $int19 = 27;
 def_int $int20 = 0;
@@ -145,19 +124,33 @@ while ($int29 < $int15) {
     cc_setonmouseleave("script546($component1)");
     $int29 = calc($int29 + 1);
 }
+def_int $int36 = 0;
+if ($component11 ! null) {
+    if (%varplayerbit_26927 = 1) {
+        if_sethide(false, $component11);
+        $int36 = 26;
+    } else {
+        if_sethide(true, $component11);
+    }
+}
+$int16 = calc($int16 - $int36);
+def_int $int37 = min(3, max(1, calc($int16 / 60)));
+$int37 = calc($int16 / $int37);
 def_string $string0 = "";
+if_setsize($int37, 0, ^setsize_abs, ^setsize_minus, $component9);
+if_setposition($int36, 0, ^setpos_abs_left, ^setpos_abs_top, $component9);
 cc_create($component9, ^iftype_graphic, 0);
 cc_setgraphic(child_header_icon_stats);
 cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
-cc_setposition(-18, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setposition(2, 0, ^setpos_abs_left, ^setpos_abs_centre);
 $string0 = "The total number of levels gained across all skills.";
 cc_setonmouserepeat("script8801($string0, event_com, event_comsubid, ^settextalign_left, ^settextalign_centre, 12)");
 cc_setonmouseleave("script8805");
 cc_create($component9, ^iftype_text, 1);
 cc_setsize(40, 0, ^setsize_abs, ^setsize_minus);
-cc_setposition(15, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setposition(30, 0, ^setpos_abs_left, ^setpos_abs_centre);
 cc_settextfont(graphic_17813);
-cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_setcolour(^white);
 if ($int13 = 0) {
     cc_settext(tostring(~skilltotal));
@@ -166,23 +159,47 @@ if ($int13 = 0) {
     cc_settext(tostring(~player_inspect_skilltotal_actual));
     cc_setonmouserepeat("script5864(event_com, event_comsubid, $int13)");
 }
-if ($int16 >= $int12) {
+if ($int16 >= 120) {
+    if_setsize($int37, 0, ^setsize_abs, ^setsize_minus, $component10);
+    if_setposition(calc($int36 + $int37), 0, ^setpos_abs_left, ^setpos_abs_top, $component10);
     cc_create($component10, ^iftype_graphic, 0);
     cc_setgraphic(aif_combat_icon);
     cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
-    cc_setposition(-18, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setposition(2, 0, ^setpos_abs_left, ^setpos_abs_centre);
     $string0 = "Combat level is calculated from levels achieved in combat related skills.";
     cc_setonmouserepeat("script8801($string0, event_com, event_comsubid, ^settextalign_left, ^settextalign_centre, 12)");
     cc_setonmouseleave("script8805");
     cc_create($component10, ^iftype_text, 1);
     cc_setsize(40, 0, ^setsize_abs, ^setsize_minus);
-    cc_setposition(15, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setposition(30, 0, ^setpos_abs_left, ^setpos_abs_centre);
     cc_settextfont(graphic_17813);
-    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     cc_setcolour(^white);
     if ($int13 = 0) {
         cc_settext(tostring(~comlevel));
     } else {
         cc_settext(tostring(~player_inspect_comlevel));
+    }
+}
+if ($int16 >= 180 & $int0 ! 61341708) {
+    if_setsize($int37, 0, ^setsize_abs, ^setsize_minus, $component12);
+    if_setposition(calc($int36 + $int37 * 2), 0, ^setpos_abs_left, ^setpos_abs_top, $component12);
+    cc_create($component12, ^iftype_graphic, 0);
+    cc_setgraphic(rs3_icon_worldmap_key_quest_start);
+    cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
+    cc_setposition(2, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    $string0 = "Total quest points earned.";
+    cc_setonmouserepeat("script8801($string0, event_com, event_comsubid, ^settextalign_left, ^settextalign_centre, 12)");
+    cc_setonmouseleave("script8805");
+    cc_create($component12, ^iftype_text, 1);
+    cc_setsize(40, 0, ^setsize_abs, ^setsize_minus);
+    cc_setposition(30, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    cc_settextfont(graphic_17813);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_setcolour(^white);
+    if ($int13 = 0) {
+        cc_settext(tostring(%varplayer_1297));
+    } else {
+        cc_settext(tostring(%varplayer_5145));
     }
 }
