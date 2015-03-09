@@ -21,9 +21,10 @@ def_int $int14 = 0;
 def_int $int15 = if_getwidth($component0);
 def_int $int16 = 0;
 def_int $int17 = 0;
+def_int $int18 = 0;
 def_string $string3 = "";
-def_graphic $graphic18 = null;
-def_int $int19 = 0;
+def_graphic $graphic19 = null;
+def_int $int20 = 0;
 if (~script7421(%varclient_998) = true) {
     $int14 = calc($int14 + 22);
 }
@@ -36,18 +37,21 @@ if (~script7421(%varclient_4272) = true) {
 while ($int5 ! -1) {
     if (~script7421($int5) = true) {
         if ($int5 = %varclient_998) {
-            $int16, $rgb10, $int19, $graphic18 = ~script11037($int17), 1, "rs3_icon_lobby_favorite_small,0";
+            $int16, $rgb10, $int20, $graphic19 = ~script11037($int17), 1, "rs3_icon_lobby_favorite_small,0";
         } else if ($int5 = %varclient_999) {
-            $int16, $rgb10, $int19, $graphic18 = ~script11037($int17), 1, "rs3_icon_lobby_favorite_small,0";
+            $int16, $rgb10, $int20, $graphic19 = ~script11037($int17), 1, "rs3_icon_lobby_favorite_small,0";
         } else if ($int5 = %varclient_4272) {
-            $int16, $rgb10, $int19, $graphic18 = ~script11037($int17), 1, "rs3_icon_lobby_favorite_small,0";
+            $int16, $rgb10, $int20, $graphic19 = ~script11037($int17), 1, "rs3_icon_lobby_favorite_small,0";
         } else {
-            $int16, $int19, $graphic18 = $int14, 0, "rs3_icon_lobby_favorite_small,2";
+            $int16, $int20, $graphic19 = $int14, 0, "rs3_icon_lobby_favorite_small,2";
             if (calc($int12 % 2) = 0) {
                 $rgb10 = 0x000034;
             } else {
                 $rgb10 = 0x000033;
             }
+        }
+        if (map_world = $int5) {
+            $int18 = $int16;
         }
         if (testbit($int6, 0) = ^false) {
             $rgb11 = 0x00000e;
@@ -57,9 +61,9 @@ while ($int5 ! -1) {
         ~script11015($component1, $rgb10, 0, $int16, $int15);
         cc_setonmouseover("script7427(event_com, event_comsubid)");
         cc_setonmouseleave("script7429(event_com, event_comsubid, $rgb10)");
-        ~script7742($component1, $graphic18, 2, $int16, 21, 21);
+        ~script7742($component1, $graphic19, 2, $int16, 21, 21);
         cc_setop(1, "Toggle favourite");
-        cc_setonop("script7426(event_com, event_comsubid, $int19, $component0, $component1, $component2, $component3, $component4, $int5)");
+        cc_setonop("script7426(event_com, event_comsubid, $int20, $component0, $component1, $component2, $component3, $component4, $int5)");
         cc_setonmouseover("script7437(event_com, event_comsubid, $int5)");
         cc_setonmouseleave("script7438(event_com, event_comsubid, $int5)");
         ~script11014($component1, tostring($int5), $rgb11, 30, $int16, 60);
@@ -72,19 +76,19 @@ while ($int5 ! -1) {
         }
         ~script11014($component1, $string3, $rgb11, 95, $int16, 60);
         if (testbit($int6, 4) = ^true | string_length($string0) < 2) {
-            $graphic18 = enum(int, graphic, enum_730, 1);
+            $graphic19 = enum(int, graphic, enum_730, 1);
         } else {
             switch_int (map_lang) {
                 case default :
-                    $graphic18 = enum(int, graphic, enum_1810, $int7);
+                    $graphic19 = enum(int, graphic, enum_1810, $int7);
                 case 1 :
-                    $graphic18 = "rs3_icon_world_select_country_flags,7";
+                    $graphic19 = "rs3_icon_world_select_country_flags,7";
                 case 2 :
-                    $graphic18 = enum(int, graphic, enum_1810, 74);
+                    $graphic19 = enum(int, graphic, enum_1810, 74);
                 case 3 :
-                    $graphic18 = enum(int, graphic, enum_1810, 31);
+                    $graphic19 = enum(int, graphic, enum_1810, 31);
                 case 6 :
-                    $graphic18 = enum(int, graphic, enum_1810, 67);
+                    $graphic19 = enum(int, graphic, enum_1810, 67);
             }
         }
         if (string_length($string0) < 2) {
@@ -102,9 +106,9 @@ while ($int5 ! -1) {
             }
         }
         if (testbit($int6, 20) = ^true) {
-            $graphic18 = "rs3_icon_world_select_game_flags,2";
+            $graphic19 = "rs3_icon_world_select_game_flags,2";
         }
-        ~script7742($component1, $graphic18, 160, calc($int16 + (22 - 12) / 2), 12, 24);
+        ~script7742($component1, $graphic19, 160, calc($int16 + (22 - 12) / 2), 12, 24);
         ~script11014($component1, $string0, $rgb11, 186, $int16, 184);
         if (testbit($int6, 0) = ^false) {
             ~script11014($component1, "Free", $rgb11, 375, $int16, 55);
@@ -123,7 +127,7 @@ while ($int5 ! -1) {
             cc_setsize(calc($int15 - 30), 22, ^setsize_abs, ^setsize_abs);
             cc_sethide(false);
         }
-        if ($int19 = 0) {
+        if ($int20 = 0) {
             $int14 = calc($int14 + 22);
         } else {
             $int17 = calc($int17 + 1);
@@ -132,8 +136,12 @@ while ($int5 ! -1) {
     }
     $int5, $int6, $string0, $int7, $string1, $int8, $int9, $string2 = worldlist_next;
 }
-if ($int14 > if_getheight($component0)) {
+def_int $int21 = if_getheight($component0);
+if ($int14 > $int21) {
     if_setscrollsize(0, $int14, $component0);
+    if ($int18 ! 0) {
+        if_setscrollpos(0, max(0, min($int14, calc($int18 - $int21 / 2))), $component0);
+    }
 } else {
     if_setscrollsize(0, 0, $component0);
 }

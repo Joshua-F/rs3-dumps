@@ -19594,3 +19594,23 @@ readyanim=seq_26072,seq_26073
 [bas_3412]
 readyanim=seq_26068,null
 
+// 3413
+[bas_3413]
+walkanim_b=seq_26083
+walkanim_l=seq_26083
+walkanim_r=seq_26083
+walkturn_l=seq_26083
+walkturn_r=seq_26083
+runanim=seq_26084
+runanim_b=seq_26084
+readyanim=seq_26082,seq_26083
+
+// 3414
+[bas_3414]
+readyanim_l=seq_26082
+readyanim_r=seq_26082
+walkanim_l=seq_26083
+walkanim_r=seq_26083
+runanim=seq_26084
+readyanim=seq_26082,seq_26083
+
