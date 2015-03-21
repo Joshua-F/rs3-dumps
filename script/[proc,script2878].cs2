@@ -1,37 +1,44 @@
 // 2878
-[proc,script2878](component $component0, component $component1, component $component2, component $component3)
+[proc,script2878](component $component0, component $component1, component $component2, component $component3, component $component4)
 if (if_getgraphic($component2) ! "aif_music_header_buttons,5" & if_getgraphic($component2) ! "aif_music_header_buttons,7" & if_getgraphic($component3) ! "aif_shuffle_button,1" & if_getgraphic($component3) ! "aif_shuffle_button,3") {
     ~script8808;
     %varclient_1 = 0;
 }
 cc_deleteall($component0);
-def_int $int4 = 0;
-while ($int4 < 12) {
-    cc_create($component0, ^iftype_text, $int4);
-    $int4 = calc($int4 + 1);
+cc_deleteall($component4);
+def_int $int5 = 0;
+while ($int5 < 12) {
+    cc_create($component0, ^iftype_text, $int5);
+    $int5 = calc($int5 + 1);
 }
-while ($int4 < 24) {
-    cc_create($component0, ^iftype_graphic, $int4);
-    $int4 = calc($int4 + 1);
+while ($int5 < 24) {
+    cc_create($component0, ^iftype_graphic, $int5);
+    $int5 = calc($int5 + 1);
 }
-def_int $int5 = 5;
-$int5 = ~script2879($component0, 0, %varplayerbit_190, $int5);
-$int5 = ~script2879($component0, 1, %varplayerbit_191, $int5);
-$int5 = ~script2879($component0, 2, %varplayerbit_192, $int5);
-$int5 = ~script2879($component0, 3, %varplayerbit_193, $int5);
-$int5 = ~script2879($component0, 4, %varplayerbit_194, $int5);
-$int5 = ~script2879($component0, 5, %varplayerbit_195, $int5);
-$int5 = ~script2879($component0, 6, %varplayerbit_196, $int5);
-$int5 = ~script2879($component0, 7, %varplayerbit_197, $int5);
-$int5 = ~script2879($component0, 8, %varplayerbit_198, $int5);
-$int5 = ~script2879($component0, 9, %varplayerbit_199, $int5);
-$int5 = ~script2879($component0, 10, %varplayerbit_200, $int5);
-$int5 = ~script2879($component0, 11, %varplayerbit_201, $int5);
+def_int $int6 = 5;
+$int6 = ~script2879($component0, 0, %varplayerbit_190, $int6);
+$int6 = ~script2879($component0, 1, %varplayerbit_191, $int6);
+$int6 = ~script2879($component0, 2, %varplayerbit_192, $int6);
+$int6 = ~script2879($component0, 3, %varplayerbit_193, $int6);
+$int6 = ~script2879($component0, 4, %varplayerbit_194, $int6);
+$int6 = ~script2879($component0, 5, %varplayerbit_195, $int6);
+$int6 = ~script2879($component0, 6, %varplayerbit_196, $int6);
+$int6 = ~script2879($component0, 7, %varplayerbit_197, $int6);
+$int6 = ~script2879($component0, 8, %varplayerbit_198, $int6);
+$int6 = ~script2879($component0, 9, %varplayerbit_199, $int6);
+$int6 = ~script2879($component0, 10, %varplayerbit_200, $int6);
+$int6 = ~script2879($component0, 11, %varplayerbit_201, $int6);
 if (%varplayerbit_190 = 32767 & %varclient_1077 = true) {
     if_sethide(false, $component1);
 } else {
     if_sethide(true, $component1);
 }
 cc_create($component0, ^iftype_text, if_getnextsubid($component0));
-cc_setposition(15, $int5, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(150, $int5, ^setsize_abs, ^setsize_minus);
+cc_setposition(15, $int6, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(150, $int6, ^setsize_abs, ^setsize_minus);
+if (calc($int6 + 15) > if_getheight($component0)) {
+    ~scrollbar_vertical($component4, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    if_setscrollsize(0, calc($int6 + 15), $component0);
+} else {
+    if_setscrollsize(0, 0, $component0);
+}
