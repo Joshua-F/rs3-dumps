@@ -16199,3 +16199,16 @@ walkanim_r=seq_26083
 runanim=seq_26084
 readyanim=seq_26082,seq_26083
 
+[bas_3415]
+readyanim=seq_26106,seq_26107
+
+[bas_3416]
+readyanim_l=seq_26100
+readyanim_r=seq_26100
+walkturn_l=seq_26100
+walkturn_r=seq_26100
+readyanim=seq_26099,null
+
+[bas_3417]
+readyanim=seq_26094,seq_26095
+
