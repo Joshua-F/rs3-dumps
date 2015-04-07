@@ -1,0 +1,27 @@
+// 11180
+[proc,script11180](component $component0)
+def_inv $inv1 = ~script11187($component0);
+if ($component0 = null | $inv1 = null) {
+    return;
+}
+def_int $int2 = calc(inv_size($inv1) - inv_freespace($inv1));
+if ($int2 = 0) {
+    return;
+}
+def_int $int3 = -1;
+def_int $int4 = -1;
+def_int $int5 = -1;
+def_int $int6 = -1;
+$int3, $int4, $int5, $int6 = ~script11161(if_getwidth($component0));
+def_int $int7 = 0;
+while ($int7 < $int2) {
+    if (cc_find($component0, $int7) = true) {
+        ~script11162($int7, $int3, $int4, $int5, $int6);
+        cc_sethide(false);
+    }
+    $int7 = calc($int7 + 1);
+}
+def_int $int8 = calc($int7 / $int3 + 1);
+def_int $int9 = calc($int8 * $int6 + $int4);
+if_setsize(0, $int9, ^setsize_minus, ^setsize_abs, $component0);
+~script11168($component0);

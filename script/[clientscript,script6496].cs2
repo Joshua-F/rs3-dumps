@@ -1,7 +1,11 @@
 // 6496
-[clientscript,script6496](component $component0)
-def_int $int1 = if_gettrans($component0);
-if ($int1 < 255) {
-    $int1 = min(255, calc($int1 + 10));
-    if_settrans($int1, $component0);
+[clientscript,script6496](component $component0, int $int1, int $int2)
+if (if_getheight($component0) = $int2) {
+    if_setontimer(null, $component0);
+    ~script4903;
+    return;
+} else if (if_getheight($component0) > $int2) {
+    if_setsize(0, max($int2, calc(if_getheight($component0) - $int1)), ^setsize_minus, ^setsize_abs, $component0);
+} else if (if_getheight($component0) < $int2) {
+    if_setsize(0, min($int2, calc(if_getheight($component0) + $int1)), ^setsize_minus, ^setsize_abs, $component0);
 }

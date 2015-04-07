@@ -1,0 +1,58 @@
+// 5808
+[proc,script5808](component $component0, int $int1)
+def_component $component2 = interface_1457:com_51;
+def_component $component3 = interface_1457:com_52;
+def_component $component4 = interface_1457:com_50;
+def_component $component5 = interface_1457:com_53;
+if ($component0 = interface_1458:com_27) {
+    $component2 = interface_1458:com_43;
+    $component3 = interface_1458:com_44;
+    $component4 = interface_1458:com_42;
+    $component5 = interface_1458:com_45;
+}
+cc_deleteall($component2);
+cc_deleteall($component3);
+cc_deleteall($component4);
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+if (%varplayer_1029 ! 0) {
+    $int7, $int8 = ~script5817($component2, $component3, ~script6494(%varplayer_1029), "Melee Accuracy", $int7, $int8);
+}
+if (%varplayer_1030 ! 0) {
+    $int7, $int8 = ~script5817($component2, $component3, ~script6493(%varplayer_1030), "Melee Strength", $int7, $int8);
+}
+if (%varplayer_1031 ! 0) {
+    $int7, $int8 = ~script5817($component2, $component3, ~script6494(%varplayer_1031), "Ranged Accuracy", $int7, $int8);
+}
+if (%varplayer_1032 ! 0) {
+    $int7, $int8 = ~script5817($component2, $component3, ~script6493(%varplayer_1032), "Ranged Strength", $int7, $int8);
+}
+if (%varplayer_1033 ! 0) {
+    $int7, $int8 = ~script5817($component2, $component3, ~script6494(%varplayer_1033), "Magic Accuracy", $int7, $int8);
+}
+if (%varplayer_1034 ! 0) {
+    $int7, $int8 = ~script5817($component2, $component3, ~script6493(%varplayer_1034), "Magic Strength", $int7, $int8);
+}
+if (%varplayer_1035 ! 0) {
+    $int7, $int8 = ~script5817($component2, $component3, ~script6494(%varplayer_1035), "Defence", $int7, $int8);
+}
+if ($int7 = 0) {
+    if_sethide(true, $component5);
+    cc_create($component4, ^iftype_text, $int8);
+    cc_setposition(0, $int7, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setsize(if_getwidth($component4), 16, ^setsize_abs, ^setsize_abs);
+    cc_setmaxlines(1);
+    cc_settextfont(graphic_17813);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    ~script2731($component4, $int8, 0x00000a);
+    cc_settext("No stat changes!");
+    $int7 = calc($int7 + 16);
+    $int8 = calc($int8 + 1);
+} else {
+    if_sethide(false, $component5);
+}
+$int7 = calc(25 + $int7);
+if ($int7 > 25 & (if_getheight($component0) > 25 | $int1 = 1)) {
+    if_setontimer("script6496($component0, 5, $int7)", $component0);
+}
