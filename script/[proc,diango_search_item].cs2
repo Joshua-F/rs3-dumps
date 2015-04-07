@@ -2,15 +2,19 @@
 [proc,diango_search_item](component $component0, int $int1, inv $inv2, int $int3)
 def_int $int4 = 0;
 def_int $int5 = 0;
-def_int $int6 = calc((if_getwidth($component0) - $int3 * 36) / ($int3 - 1));
-def_int $int7 = calc(36 + $int6);
-def_int $int8 = calc(32 + $int6);
+def_obj $obj6 = null;
+def_int $int7 = calc((if_getwidth($component0) - $int3 * 36) / ($int3 - 1));
+def_int $int8 = calc(36 + $int7);
+def_int $int9 = calc(32 + $int7);
 while ($int4 < $int1) {
     if (cc_find($component0, $int4) = true) {
-        if (string_indexof_string(lowercase(oc_name(inv_getobj($inv2, $int4))), lowercase(%varclient_2250), 0) > -1) {
-            cc_setposition(calc($int5 % $int3 * $int7), calc($int5 / $int3 * $int8), ^setpos_abs_left, ^setpos_abs_top);
-            cc_sethide(false);
-            $int5 = calc($int5 + 1);
+        $obj6 = inv_getobj($inv2, $int4);
+        if (string_indexof_string(lowercase(oc_name($obj6)), lowercase(%varclient_2250), 0) > -1) {
+            if (%varclient_4741 = 0 | oc_param($obj6, param_4901) = 1 & %varclient_4741 = 1 | (oc_param($obj6, param_4905) = 1 | oc_param($obj6, param_2825) = 1 | oc_param($obj6, param_2826) = 1 | oc_param($obj6, param_2827) = 1) & %varclient_4741 = 2 | (oc_param($obj6, param_4906) = 1 | oc_param($obj6, param_2870) > 0) & %varclient_4741 = 3 | oc_param($obj6, param_4903) = 1 & %varclient_4741 = 4 | oc_param($obj6, param_4904) = 1 & %varclient_4741 = 5) {
+                cc_setposition(calc($int5 % $int3 * $int8), calc($int5 / $int3 * $int9), ^setpos_abs_left, ^setpos_abs_top);
+                cc_sethide(false);
+                $int5 = calc($int5 + 1);
+            }
         } else {
             cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
             cc_sethide(true);
@@ -18,23 +22,20 @@ while ($int4 < $int1) {
     }
     $int4 = calc($int4 + 1);
 }
-def_int $int9 = calc($int5 % $int3);
-def_int $int10 = calc($int5 / $int3);
-def_int $int11 = 0;
-def_component $component12 = interface_1387:com_9;
-if ($inv2 = inv_615) {
-    $component12 = interface_1387:com_15;
-}
-if ($int9 > 0) {
-    $int10 = calc($int10 + 1);
-}
+def_int $int10 = calc($int5 % $int3);
+def_int $int11 = calc($int5 / $int3);
+def_int $int12 = 0;
+def_component $component13 = interface_1387:com_14;
 if ($int10 > 0) {
-    $int11 = calc($int10 * $int8 - $int6);
+    $int11 = calc($int11 + 1);
 }
-if ($int11 > if_getheight($component0)) {
-    if_setscrollsize(0, $int11, $component0);
-    ~scrollbar_resize($component12, $component0, if_getscrolly($component0));
+if ($int11 > 0) {
+    $int12 = calc($int11 * $int9 - $int7);
+}
+if ($int12 > if_getheight($component0)) {
+    if_setscrollsize(0, $int12, $component0);
+    ~scrollbar_resize($component13, $component0, if_getscrolly($component0));
 } else {
     if_setscrollsize(0, 0, $component0);
-    ~scrollbar_resize($component12, $component0, 0);
+    ~scrollbar_resize($component13, $component0, 0);
 }
