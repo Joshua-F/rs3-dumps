@@ -5334,11 +5334,12 @@ hillrotate=32,16
 readyanim=seq_7575,seq_8334
 
 [bas_1356]
-hillrotate=32,16
+hillrotate=0,32
+hillrotatelimit=5,0
 readyanim=seq_7575,seq_8335
 
 [bas_1357]
-hillrotate=32,16
+hillrotate=32,32
 readyanim=seq_8338,seq_8334
 
 [bas_1358]
@@ -16351,4 +16352,20 @@ readyanim=seq_26204,null
 
 [bas_3442]
 readyanim=seq_26211,null
+
+[bas_3443]
+readyanim_l=seq_168
+readyanim_r=seq_168
+walkanim_b=seq_168
+walkanim_l=seq_168
+walkanim_r=seq_168
+readyanim=seq_26233,seq_168
+
+[bas_3444]
+readyanim_l=seq_26235
+readyanim_r=seq_26235
+walkanim_b=seq_26235
+walkanim_l=seq_26235
+walkanim_r=seq_26235
+readyanim=seq_26234,seq_26235
 
