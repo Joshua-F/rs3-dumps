@@ -203,8 +203,10 @@ if (%varclient_1725 = 1) {
         if_setobject(null, -1, $component3);
     }
 } else if (%varclient_1725 = 4) {
-    if (map_members = false & (%varclient_1724 = 1 | %varclient_1724 = 2 | %varclient_1724 = 4 | %varclient_1724 = 5)) {
+    if (map_members = false & (%varclient_1724 = 1 | %varclient_1724 = 2 | %varclient_1724 = 4 | %varclient_1724 = 5 | %varclient_1724 = 6)) {
         if_settext("Members Item", interface_1178:com_81);
+    } else if (%varclient_1724 = 5 & %varplayerbit_27430 = 1) {
+        if_settext(oc_name(obj_7409), interface_1178:com_81);
     } else {
         if_settext(oc_name(enum(int, obj, enum_5359, %varclient_1724)), interface_1178:com_81);
     }
@@ -233,12 +235,21 @@ if (%varclient_1725 = 1) {
             if (map_members = false) {
                 $int4 = 0;
             } else {
-                $int4 = %varplayerbit_2998;
+                $int4 = calc(%varplayerbit_2998 + %varplayerbit_27430);
+            }
+        case 6 :
+            if (map_members = false) {
+                $int4 = 0;
+            } else {
+                $int4 = %varplayerbit_27431;
             }
         case default :
             $int4 = -1;
     }
-    if ($int4 = 1) {
+    if ($int4 = 2) {
+        if_setgraphic(graphic_8936, $component2);
+        if_setobject(null, -1, $component3);
+    } else if ($int4 = 1) {
         if_setgraphic(enum(int, graphic, enum_5357, $int0), $component2);
         if_setobject(null, -1, $component3);
     } else if ($int4 = 0) {
