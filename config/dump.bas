@@ -19814,3 +19814,26 @@ walkanim_l=seq_26235
 walkanim_r=seq_26235
 readyanim=seq_26234,seq_26235
 
+// 3445
+[bas_3445]
+readyanim=seq_26320,seq_26319
+
+// 3446
+[bas_3446]
+walkturn_l=seq_26314
+walkturn_r=seq_26314
+readyanim_l=seq_26314
+readyanim_r=seq_26314
+readyanim=seq_26313,seq_26314
+
+// 3447
+[bas_3447]
+readyanim_l=seq_26333
+readyanim_r=seq_26333
+crawlanim_l=seq_26333
+crawlanim_r=seq_26333
+crawlturn_r=seq_26333
+crawlanim=seq_26333
+hillrotate=24,24
+readyanim=seq_8116,null
+

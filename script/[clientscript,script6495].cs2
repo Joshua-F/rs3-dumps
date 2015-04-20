@@ -1,21 +1,26 @@
 // 6495
-[clientscript,script6495](component $component0, component $component1, component $component2, component $component3, component $component4)
-if (if_getheight($component1) > 25) {
-    if_setontimer("script6496($component1, 5, 25)", $component1);
-    if_setgraphic("aif_crucible_overlay_dropdown_arrow,4", $component2);
-    if_setgraphic("aif_crucible_overlay_dropdown_arrow,4", $component3);
-    if_settext("Show stat adjustments.", $component4);
+[clientscript,script6495](component $component0, component $component1, component $component2)
+def_string $string0 = "Click here to show more detailed information about prayers.";
+if (if_getheight($component1) > 1) {
+    if_setontimer("script6496($component1, 5, 1)", $component1);
     if_setop(1, "Show", $component0);
-} else if (if_getheight($component1) = 25) {
+    if ($component2 ! null) {
+        if_sethide(true, $component2);
+    }
+} else if (if_getheight($component1) = 1) {
     ~script5808($component1, 1);
-    if_setgraphic("aif_crucible_overlay_dropdown_arrow,1", $component2);
-    if_setgraphic("aif_crucible_overlay_dropdown_arrow,1", $component3);
-    if_settext("Hide stat adjustments.", $component4);
     if_setop(1, "Hide", $component0);
+    $string0 = "Click here to hide more detailed information about prayers.";
+    if ($component2 ! null) {
+        if_sethide(false, $component2);
+    }
 } else {
-    if_setsize(0, 25, ^setsize_minus, ^setsize_abs, $component1);
-    if_setgraphic("aif_crucible_overlay_dropdown_arrow,4", $component2);
-    if_setgraphic("aif_crucible_overlay_dropdown_arrow,4", $component3);
-    if_settext("Show stat adjustments.", $component4);
+    if_setsize(0, 1, ^setsize_minus, ^setsize_abs, $component1);
     if_setop(1, "Show", $component0);
+    if ($component2 ! null) {
+        if_sethide(true, $component2);
+    }
+}
+if ($component2 ! null) {
+    if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", $component0);
 }
