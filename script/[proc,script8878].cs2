@@ -30,9 +30,12 @@ if (cc_find(interface_1488:com_0, %varclient_2825) = true) {
         $int10 = 1;
         cc_setparam(param_3433, calc(cc_param(param_3433) - 1));
     }
-    if (cc_param(param_3436) ! %varclientbit_19930) {
+    if (cc_param(param_3436) ! %varclientbit_19930 | cc_param(param_5032) ! %varplayerbit_27170) {
         cc_setparam_int(param_3436, %varclientbit_19930);
+        cc_setparam_int(param_5032, %varplayerbit_27170);
         ~script8411(2006, 0);
+        ~rs3_background_panel(interface_1489:com_0, struct_21361);
+        ~rs3_background_panel(interface_1489:com_17, struct_21361);
     }
 } else {
     %varclient_2825 = if_getnextsubid(interface_1488:com_0);
@@ -43,7 +46,10 @@ if (cc_find(interface_1488:com_0, %varclient_2825) = true) {
     cc_setposition($int1, $int8, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc($int3 - $int1), $int9, ^setsize_abs, ^setsize_abs);
     cc_setparam_int(param_3436, %varclientbit_19930);
+    cc_setparam_int(param_5032, %varplayerbit_27170);
     ~script8411(2006, 0);
+    ~rs3_background_panel(interface_1489:com_0, struct_21361);
+    ~rs3_background_panel(interface_1489:com_17, struct_21361);
 }
 if (if_hassub(interface_1488:com_5) = false) {
     if_opensubclient(interface_1488:com_5, interface_1489);
@@ -54,5 +60,5 @@ if ($int10 = 1) {
     ~script8881;
     return(-1, 0);
 }
-if_sethide(false, interface_1489:com_15);
+if_sethide(false, interface_1489:com_16);
 return($int6, $int8);

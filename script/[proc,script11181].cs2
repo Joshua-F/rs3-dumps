@@ -1,7 +1,10 @@
 // 11181
 [proc,script11181](component $component0)
+if ($component0 = null) {
+    return;
+}
 def_inv $inv1 = ~script11187($component0);
-if ($component0 = null | $inv1 = null) {
+if ($inv1 = null) {
     return;
 }
 def_int $int2 = calc(inv_size($inv1) - inv_freespace($inv1));
@@ -19,13 +22,15 @@ def_obj $obj9 = null;
 while ($int7 < $int2) {
     if (cc_find($component0, $int7) = true) {
         $obj9 = inv_getobj($inv1, $int7);
-        if (string_indexof_string(lowercase(oc_name($obj9)), lowercase(%varclient_2250), 0) > -1) {
-            ~script11162($int8, $int3, $int4, $int5, $int6);
-            cc_sethide(false);
-            $int8 = calc($int8 + 1);
-        } else {
-            cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-            cc_sethide(true);
+        if ($obj9 ! null) {
+            if (string_indexof_string(lowercase(oc_name($obj9)), lowercase(%varclient_2250), 0) > -1) {
+                ~script11162($int8, $int3, $int4, $int5, $int6);
+                cc_sethide(false);
+                $int8 = calc($int8 + 1);
+            } else {
+                cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+                cc_sethide(true);
+            }
         }
     }
     $int7 = calc($int7 + 1);

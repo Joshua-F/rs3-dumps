@@ -1,15 +1,50 @@
 // 9935
-[clientscript,script9935](component $component0)
+[clientscript,script9935](component $component0, int $int1, int $int2)
+if ($int1 < 0 & $int2 < 0) {
+    return;
+}
 if ($component0 = null) {
     return;
 }
-def_component $component1 = if_getlayer($component0);
-if ($component1 = null) {
+def_component $component3 = if_getlayer($component0);
+if ($component3 = null) {
     return;
 }
-if_setonvartransmit("script9935($component0){varplayer_3680}", $component1);
+if_setonvartransmit("script9935($component0, $int1, $int2){varplayer_3680}", $component3);
 if_setnoclickthrough(true, $component0);
-if (%varplayerbit_22872 = 1) {
+def_int $int4 = 0;
+if ($int1 >= 0) {
+    switch_int ($int1) {
+        case 0, 1, 2, 3 :
+            if (%varplayerbit_27170 = $int1) {
+                $int4 = 1;
+            }
+        case 4 :
+            if (%varplayerbit_27168 = 1) {
+                $int4 = 1;
+            }
+        case 5 :
+            if (%varplayerbit_27169 = 1) {
+                $int4 = 1;
+            }
+    }
+} else if ($int2 >= 0) {
+    switch_int ($int2) {
+        case 0, 1, 2, 3 :
+            if (%varplayerbit_27170 ! $int2) {
+                $int4 = 1;
+            }
+        case 4 :
+            if (%varplayerbit_27168 = 0) {
+                $int4 = 1;
+            }
+        case 5 :
+            if (%varplayerbit_27169 = 0) {
+                $int4 = 1;
+            }
+    }
+}
+if ($int4 = 1) {
     if_sethide(false, $component0);
 } else {
     if_sethide(true, $component0);

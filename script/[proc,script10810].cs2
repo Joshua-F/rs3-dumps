@@ -3,23 +3,29 @@
 def_component $component0 = interface_1562:com_28;
 def_component $component1 = interface_1562:com_18;
 def_component $component2 = interface_1562:com_19;
-def_component $component3 = interface_1562:com_37;
-def_component $component4 = interface_1562:com_16;
+def_component $component3 = interface_1562:com_39;
+def_component $component4 = interface_1562:com_37;
+def_component $component5 = interface_1562:com_16;
 cc_deleteall($component2);
-def_int $rgb5 = ~script10495(0x000028);
-def_int $int6 = -1;
+def_int $rgb6 = ~script10495(0x000028);
+def_int $int7 = -1;
 if (%varplayer_5006 ! null) {
-    $int6 = ~script10814(%varplayerbit_26176);
+    $int7 = ~script10814(%varplayerbit_26176);
 }
-if ($int6 ! -1) {
-    ~script10812($component2, $component4, rs3_icon_general_store_loyalty, 34, 35, "Loyalty Points", $int6, %varclient_4660);
-    if (%varclient_4660 < $int6) {
-        cc_setcolour($rgb5);
+if ($int7 ! -1) {
+    ~script10812($component2, $component5, rs3_icon_general_store_loyalty, 34, 35, "Loyalty Points", $int7, %varclient_4660);
+    if (%varclient_4660 < $int7) {
+        cc_setcolour($rgb6);
         ~rs3_background_panel($component1, struct_21362);
-        if_sethide(false, $component3);
+        if_sethide(false, $component4);
     } else {
         ~rs3_background_panel($component1, struct_21361);
-        if_sethide(true, $component3);
+        if_sethide(true, $component4);
+        if ($int7 = 0) {
+            if_settext("Claim", $component3);
+        } else {
+            if_settext("Buy", $component3);
+        }
     }
     if_sethide(false, $component0);
     if_setonvarctransmit("script10808{varclient_4660}", $component0);
