@@ -1,0 +1,87 @@
+// 11379
+[clientscript,script11379]
+def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $rgb2 = ~script10495(^black);
+def_int $rgb3 = ~script10495(0x000001);
+def_int $rgb4 = ~script10495(0xfbd6a9);
+def_int $int5 = calc(if_getwidth(interface_1619:com_4) / 2);
+if_setcolour($rgb4, interface_1619:com_5);
+cc_deleteall(interface_1619:com_4);
+cc_deleteall(interface_1619:com_3);
+while ($int0 < enum_getoutputcount(enum_10000)) {
+    $int1 = enum(int, int, enum_9999, $int0);
+    cc_create(interface_1619:com_4, ^iftype_text, if_getnextsubid(interface_1619:com_4));
+    cc_setposition(calc($int5 * ($int0 % 2)), calc(20 * ($int0 / 2)), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize($int5, 20, ^setsize_abs, ^setsize_abs);
+    cc_settextfont(graphic_17813);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    if (testbit(%varplayerbit_27603, $int1) = ^true) {
+        cc_setcolour(^white);
+    } else {
+        cc_setcolour(0x707070);
+    }
+    cc_settextshadow(true);
+    cc_settext(enum(int, string, enum_10000, $int1));
+    $int0 = calc($int0 + 1);
+}
+cc_create(interface_1619:com_4, ^iftype_line, if_getnextsubid(interface_1619:com_4));
+cc_setposition(0, calc(20 * (($int0 + $int0 % 2) / 2) - 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb3);
+cc_setsize(1, 0, ^setsize_minus, ^setsize_abs);
+cc_create(interface_1619:com_4, ^iftype_line, if_getnextsubid(interface_1619:com_4));
+cc_setposition(0, calc(20 * (($int0 + $int0 % 2) / 2) - 1), ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb2);
+cc_setsize(1, 0, ^setsize_minus, ^setsize_abs);
+$int0 = 0;
+while ($int0 < 4) {
+    cc_create(interface_1619:com_3, ^iftype_text, $int0);
+    cc_setposition(calc($int5 * ($int0 % 2)), calc(20 * ($int0 / 2)), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize($int5, 20, ^setsize_abs, ^setsize_abs);
+    cc_settextfont(graphic_17813);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settextshadow(true);
+    switch_int ($int0) {
+        case 0 :
+            cc_settext("Found 1 prawn ball");
+            if (%varplayerbit_27660 >= 1) {
+                cc_setcolour(^white);
+            } else {
+                cc_setcolour(0x707070);
+            }
+        case 1 :
+            cc_settext("Found 20 prawn balls");
+            if (%varplayerbit_27660 >= 20) {
+                cc_setcolour(^white);
+            } else {
+                cc_setcolour(0x707070);
+            }
+        case 2 :
+            cc_settext("Found 100 prawn balls");
+            if (%varplayerbit_27660 >= 100) {
+                cc_setcolour(^white);
+            } else {
+                cc_setcolour(0x707070);
+            }
+        case 3 :
+            cc_settext("Found 200 prawn balls");
+            if (%varplayerbit_27660 >= 200) {
+                cc_setcolour(^white);
+            } else {
+                cc_setcolour(0x707070);
+            }
+    }
+    $int0 = calc($int0 + 1);
+}
+cc_create(interface_1619:com_3, ^iftype_text, if_getnextsubid(interface_1619:com_3));
+cc_setposition(0, calc(20 * (($int0 + $int0 % 2) / 2)), ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
+cc_settextfont(graphic_17813);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_setcolour(^white);
+cc_settextshadow(true);
+if (%varplayerbit_27660 >= 200) {
+    cc_settext("Prawn balls found: 200+");
+} else {
+    cc_settext("Prawn balls found: <tostring(%varplayerbit_27660)>");
+}

@@ -1,0 +1,28 @@
+// 11361
+[clientscript,script11361](int $int0, int $int1, component $component2, int $int3, int $int4)
+def_struct $struct5 = enum(int, struct, enum_9013, $int1);
+def_struct $struct6 = null;
+if ($int3 > 0) {
+    $struct6 = enum(int, struct, enum_9013, ~mtx_pet_ability_get_active(calc($int3 - 9 + 1)));
+}
+if (~script11359($struct5) = 1 | ~script11359($struct6) = 1) {
+    return;
+}
+def_int $int7 = ~script11357;
+if ($int4 = 1) {
+    if ($int3 <= 0 & $int7 = -1) {
+        return;
+    } else if (%varplayerbit_27734 = $int1 | %varplayerbit_27735 = $int1 | %varplayerbit_27736 = $int1) {
+        return;
+    } else if (~mtx_pet_ability_ironman_check($int1) = 0) {
+        return;
+    } else if (cc_find(interface_1311:com_560, calc(9 + $int7)) = true) {
+        if ($component2 = null) {
+            cc_setgraphic(struct_param($struct5, param_5060));
+        } else if (cc_find($component2, $int3) = true) {
+            cc_setgraphic(struct_param($struct5, param_5060));
+        }
+    }
+} else if (cc_find(interface_1311:com_560, $int0) = true & cc_getgraphic ! rs3_icon_slot_standard) {
+    cc_setgraphic(rs3_icon_slot_standard);
+}

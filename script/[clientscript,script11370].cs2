@@ -1,0 +1,54 @@
+// 11370
+[clientscript,script11370]
+if (oc_param(%varplayer_1831, param_5048) = 0) {
+    if_sethide(true, interface_662:com_15);
+    return;
+} else {
+    if_sethide(false, interface_662:com_15);
+}
+def_int $int0 = 1;
+def_struct $struct1 = null;
+def_component $component2 = interface_662:com_15;
+def_component $component3 = null;
+def_component $component4 = null;
+def_int $int5 = 1;
+def_int $int6 = 0;
+while ($int5 <= 3) {
+    $int0 = ~mtx_pet_ability_get_active($int5);
+    $struct1 = enum(int, struct, enum_9013, $int0);
+    switch_int ($int5) {
+        case 1 :
+            $component3 = interface_662:com_103;
+            $component4 = interface_662:com_104;
+        case 2 :
+            $component3 = interface_662:com_100;
+            $component4 = interface_662:com_101;
+        case 3 :
+            $component3 = interface_662:com_97;
+            $component4 = interface_662:com_98;
+    }
+    if (if_find($component3) = true) {
+        cc_setsize(37, 37, ^setsize_abs, ^setsize_abs);
+        cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+        if ($struct1 ! null) {
+            if (~script11359($struct1) = 0 | $struct1 = struct_31332) {
+                cc_setgraphic(struct_param($struct1, param_5060));
+            } else {
+                cc_setgraphic(struct_param($struct1, param_5061));
+            }
+            cc_setonmouserepeat("mtx_pet_ability_tooltip($struct1, event_com, -1)");
+            cc_setonmouseleave("script8805");
+        } else {
+            if ($int5 > %varclient_4787) {
+                cc_setonmouserepeat("script11362($component2, -1)");
+                cc_setgraphic(rs3_icon_slot_standard_locked);
+            } else {
+                cc_setonmouserepeat("mtx_pet_ability_tooltip(null, event_com, -1)");
+                cc_setgraphic(rs3_icon_slot_standard);
+            }
+            cc_setonmouseleave("script8805");
+        }
+    }
+    ~script11371($struct1, $component4);
+    $int5 = calc($int5 + 1);
+}

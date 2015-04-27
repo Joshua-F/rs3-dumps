@@ -29,41 +29,37 @@ cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
 cc_setcolour(~script10495(0x00000a));
 cc_settext(struct_param($struct3, param_2533));
-cc_setsize(calc($int5 * 2), ~script7593(cc_gettext, $int7, $fontmetrics8, 0), ^setsize_minus, ^setsize_abs);
+cc_setsize(calc($int5 * 2), ~script7593(cc_gettext, $int7, cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
 $int6 = calc($int6 + cc_getheight + $int5);
 $int4 = calc($int4 + 1);
 def_fontmetrics $fontmetrics9 = graphic_17813;
 cc_create($component0, ^iftype_text, $int4);
+def_int $int10 = $int4;
 cc_settextfont($fontmetrics9);
 cc_settextalign(^settextalign_left, ^settextalign_top, 0);
 cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
 cc_setcolour(~script10495(0x00000c));
-cc_settext("This outfit contains the cosmetic overrides listed below. Please note that the package may be subject to restrictions, and contain additional items such as other outfits, emotes, etc. For detailed information <u=aed0e0>visit Solomon's Store</u>.");
-cc_setsize(calc($int5 * 2), ~script7593(cc_gettext, $int7, $fontmetrics8, 0), ^setsize_minus, ^setsize_abs);
 cc_setop(1, "Visit Solomon's Store");
-cc_setonop("script10794");
+cc_setonop("script11368");
 $int6 = calc($int6 + cc_getheight + $int5);
 $int4 = calc($int4 + 1);
 cc_create($component0, ^iftype_text, $int4);
+def_int $int11 = $int4;
 cc_settextfont($fontmetrics8);
 cc_settextalign(^settextalign_left, ^settextalign_bottom, 0);
 cc_setposition($int5, $int5, ^setpos_abs_left, ^setpos_abs_bottom);
 cc_setcolour(~script10495(0x00000b));
-cc_settext("Outfit:");
-cc_setsize(calc($int5 * 2), ~script7593(cc_gettext, $int7, $fontmetrics8, 0), ^setsize_minus, ^setsize_abs);
 $int4 = calc($int4 + 1);
 $int4 = 0;
 $int5 = 2;
 $int6 = 0;
-def_int $int10 = 0;
-def_enum $enum11 = null;
 def_int $int12 = 0;
-def_struct $struct13 = null;
-def_enum $enum14 = null;
-def_obj $obj15 = null;
-def_struct $struct16 = null;
-def_int $rgb17 = ~script10495(0x00000c);
-def_int $rgb18 = ~script10495(0x00000d);
+def_enum $enum13 = null;
+def_int $int14 = 0;
+def_struct $struct15 = null;
+def_enum $enum16 = null;
+def_obj $obj17 = null;
+def_struct $struct18 = null;
 def_int $rgb19 = ~script10495(0x00001b);
 def_int $rgb20 = ~script10495(0x00001d);
 def_int $int21 = enum(fontmetrics, int, enum_8549, $fontmetrics9);
@@ -72,77 +68,48 @@ def_int $int23 = 0;
 if ($int21 > $int22) {
     $int23 = calc($int21 / 2 - $int22 / 2);
 }
-$int7 = max(0, calc(if_getwidth($component1) - 3 * $int5 - $int22));
-def_int $int24 = 0;
-$enum11 = struct_param($struct3, param_4717);
-if ($enum11 = null) {
-    $struct13 = $struct3;
+$enum13 = struct_param($struct3, param_4717);
+if ($enum13 = null) {
+    $struct15 = $struct3;
 } else {
-    $struct13 = enum(int, struct, $enum11, $int12);
+    $struct15 = enum(int, struct, $enum13, $int14);
 }
-while ($struct13 ! null) {
-    $int10 = -1;
-    $enum14 = struct_param($struct13, param_2542);
-    if ($enum14 ! null) {
-        while ($int10 < 19) {
-            $obj15 = enum(int, obj, $enum14, $int10);
-            if ($obj15 ! null) {
-                $struct16 = oc_param($obj15, param_4414);
-                if ($struct16 ! null) {
-                    $int24 = calc($int24 + 1);
-                    .cc_create($component1, ^iftype_graphic, $int4);
-                    .cc_setposition($int5, calc($int6 + $int23), ^setpos_abs_left, ^setpos_abs_top);
-                    .cc_setsize($int22, $int22, ^setsize_abs, ^setsize_abs);
-                    .cc_setgraphic(~script8478($int10));
-                    $int4 = calc($int4 + 1);
-                    cc_create($component1, ^iftype_text, $int4);
-                    cc_settextfont($fontmetrics9);
-                    cc_setposition(calc(.cc_getx + .cc_getwidth + $int5), $int6, ^setpos_abs_left, ^setpos_abs_top);
-                    cc_settext(struct_param($struct16, param_2533));
-                    cc_setsize(calc(cc_getx + $int5), max(~script7593(cc_gettext, $int7, $fontmetrics9, 0), $int22), ^setsize_minus, ^setsize_abs);
-                    if ($int23 = 0) {
-                        cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-                    } else {
-                        cc_settextalign(^settextalign_left, ^settextalign_top, 0);
-                    }
-                    if ($struct16 = %varplayer_5006) {
-                        cc_setcolour($rgb18);
-                    } else {
-                        cc_setcolour($rgb17);
-                    }
-                    $int4 = calc($int4 + 1);
-                    .cc_create($component1, ^iftype_rectangle, $int4);
-                    .cc_setposition(0, $int6, ^setpos_abs_left, ^setpos_abs_top);
-                    .cc_setsize(0, cc_getheight, ^setsize_minus, ^setsize_abs);
-                    if (calc($int24 % 2) = 1) {
-                        .cc_setcolour($rgb19);
-                    } else {
-                        .cc_setcolour($rgb20);
-                    }
-                    .cc_setfill(true);
-                    .cc_sendtoback;
-                    $int4 = calc($int4 + 1);
-                    $int6 = calc($int6 + cc_getheight + $int5);
+def_int $int24 = 0;
+while ($struct15 ! null) {
+    $int12 = -1;
+    $enum16 = struct_param($struct15, param_2542);
+    if ($enum16 ! null) {
+        while ($int12 < 19) {
+            $obj17 = enum(int, obj, $enum16, $int12);
+            if ($obj17 ! null) {
+                $struct18 = oc_param($obj17, param_4414);
+                if ($struct18 ! null) {
+                    $int4, $int6 = ~script11369($struct18, $component1, $int4, $int6, enum(int, graphic, enum_9995, $int12));
+                    $int24 = 1;
                 }
             }
-            $int10 = calc($int10 + 1);
+            $int12 = calc($int12 + 1);
         }
-    }
-    if ($enum11 = null) {
-        $struct13 = null;
     } else {
-        $int12 = calc($int12 + 1);
-        $struct13 = enum(int, struct, $enum11, $int12);
+        $int4, $int6 = ~script11369($struct15, $component1, $int4, $int6, enum(int, graphic, enum_9996, struct_param($struct15, param_2531)));
+    }
+    if ($enum13 = null) {
+        $struct15 = null;
+    } else {
+        $int14 = calc($int14 + 1);
+        $struct15 = enum(int, struct, $enum13, $int14);
     }
 }
+def_int $int25 = 0;
 if ($int6 < if_getheight($component1)) {
     if_setscrollsize(0, 0, $component1);
+    $int25 = calc($int4 / 3);
     while ($int6 < if_getheight($component1)) {
-        $int24 = calc($int24 + 1);
+        $int25 = calc($int25 + 1);
         .cc_create($component1, ^iftype_rectangle, $int4);
         .cc_setposition(0, $int6, ^setpos_abs_left, ^setpos_abs_top);
         .cc_setsize(0, max($int21, $int22), ^setsize_minus, ^setsize_abs);
-        if (calc($int24 % 2) = 1) {
+        if (calc($int25 % 2) = 1) {
             .cc_setcolour($rgb19);
         } else {
             .cc_setcolour($rgb20);
@@ -156,11 +123,24 @@ if ($int6 < if_getheight($component1)) {
     if_setscrollpos(0, 0, $component1);
     ~rs3_scrollbar_vertical($component2, $component1);
 }
-def_string $string0 = "No recolour available.";
+$int5 = 0;
+$int7 = calc(if_getwidth($component0) - 2 * $int5);
+def_string $string0 = "This package contains the items listed below. Please note that the package may be subject to restrictions and it may contain additional items such as titles, emotes, etc. For detailed information <u=aed0e0>visit Solomon's Store</u>.";
+if ($int24 = 0) {
+    $string0 = "This package contains the items listed below. Please note that the package may be subject to restrictions. For detailed information <u=aed0e0>visit Solomon's Store</u>.";
+}
+def_string $string1 = "Contents:";
+if (cc_find($component0, $int10) = true & .cc_find($component0, $int11) = true) {
+    cc_settext($string0);
+    cc_setsize(calc($int5 * 2), ~script7593(cc_gettext, $int7, cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
+    .cc_settext($string1);
+    .cc_setsize(calc($int5 * 2), ~script7593(cc_gettext, $int7, cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
+}
+def_string $string2 = "No recolour available.";
 if (%varplayer_5008 = 1) {
     cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
     cc_setgraphic("rs3_icon_colour_palette,2");
     cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
     cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
-    cc_setonmouserepeat("script3876($string0, event_com, event_comsubid)");
+    cc_setonmouserepeat("script3876($string2, event_com, event_comsubid)");
 }

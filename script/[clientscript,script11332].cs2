@@ -1,0 +1,51 @@
+// 11332
+[clientscript,script11332]
+def_int $int0 = 0;
+switch_int (%varclient_4786) {
+    case 0 :
+        $int0 = 200;
+    case 1 :
+        $int0 = 600;
+    case 2 :
+        $int0 = 1800;
+    case 3 :
+        $int0 = 4000;
+    case 4 :
+        $int0 = 10000;
+    case 5 :
+        $int0 = 10000;
+    case default :
+        return;
+}
+def_int $int1 = if_getwidth(interface_1615:com_384);
+def_int $int2 = 0;
+if ($int1 >= 438) {
+    if (%varclient_4786 < 4) {
+        %varclient_4786 = calc(%varclient_4786 + 1);
+        %varclient_4785 = 1;
+        ~script9554(interface_1615:com_230, interface_1615:com_250, interface_1615:com_231, ~script11327(%varclient_4786), struct_21218);
+        if_setsize(1, 19, ^setsize_abs, ^setsize_abs, interface_1615:com_384);
+        ~script11330;
+        return;
+    } else {
+        $int2 = 1;
+    }
+}
+def_int $int3 = min(scale(438, $int0, %varclient_4784), 500);
+if ($int1 >= $int3 | $int2 = 1) {
+    if (%varclient_4784 = 10000) {
+        %varclient_4786 = 5;
+        ~script9554(interface_1615:com_230, interface_1615:com_250, interface_1615:com_231, ~script11327(%varclient_4786), struct_21218);
+        if_settext("Fully Upgraded!", interface_1615:com_117);
+        ~script11330;
+    } else {
+        if_settext("<tostring_localised(%varclient_4784, true)> / <tostring_localised($int0, true)>", interface_1615:com_117);
+    }
+    if_setontimer(null, interface_1615:com_384);
+    return;
+}
+$int3 = calc($int1 + max(calc(($int3 - $int1) / 20), 1));
+if_setsize($int3, 19, ^setsize_abs, ^setsize_abs, interface_1615:com_384);
+%varclient_4785 = scale($int0, 438, $int3);
+if_settext("<tostring_localised(%varclient_4785, true)> / <tostring_localised($int0, true)>", interface_1615:com_117);
+return;

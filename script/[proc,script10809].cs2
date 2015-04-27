@@ -4,25 +4,31 @@ def_component $component0 = interface_1562:com_27;
 def_component $component1 = interface_1562:com_50;
 def_component $component2 = interface_1562:com_51;
 def_component $component3 = interface_1562:com_15;
-def_component $component4 = interface_1562:com_16;
-def_component $component5 = interface_1562:com_17;
+def_component $component4 = interface_1562:com_59;
+def_component $component5 = interface_1562:com_16;
+def_component $component6 = interface_1562:com_17;
 cc_deleteall($component2);
-def_int $rgb6 = ~script10495(0x000028);
-def_int $int7 = -1;
+def_int $rgb7 = ~script10495(0x000028);
+def_int $int8 = -1;
 if (%varplayer_5006 ! null) {
-    $int7 = ~script10813(%varplayerbit_26175);
+    $int8 = ~script10813(%varplayerbit_26175);
 }
-if ($int7 ! -1) {
-    ~script10812($component2, $component4, rs3_icon_general_store_runecoin, 34, 35, "RuneCoins", $int7, %varclient_4659);
-    if (%varclient_4659 < $int7) {
-        cc_setcolour($rgb6);
-        if_sethide(false, $component4);
+if ($int8 ! -1) {
+    ~script10812($component2, $component5, rs3_icon_general_store_runecoin, 34, 35, "RuneCoins", $int8, %varclient_4659);
+    if (%varclient_4659 < $int8) {
+        cc_setcolour($rgb7);
         if_sethide(false, $component5);
+        if_sethide(false, $component6);
         if_sethide(true, $component3);
     } else {
-        if_sethide(true, $component4);
         if_sethide(true, $component5);
+        if_sethide(true, $component6);
         if_sethide(false, $component3);
+        if ($int8 = 0) {
+            if_settext("Claim", $component4);
+        } else {
+            if_settext("Buy", $component4);
+        }
     }
     ~rs3_background_panel($component1, struct_21361);
     if_sethide(false, $component0);

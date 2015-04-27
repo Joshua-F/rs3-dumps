@@ -1,0 +1,77 @@
+// 11341
+[proc,script11341](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
+def_int $int6 = calc(4 * 4);
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+if_sethide(true, $component2);
+if_sethide(true, $component3);
+if_sethide(true, $component4);
+if_sethide(true, $component5);
+def_int $int10 = calc(%varplayerbit_27697 * 4);
+switch_int (%varplayerbit_27697) {
+    case 0 :
+        if_sethide(false, $component2);
+        $int10 = calc($int10 + min(3, %varplayerbit_18787));
+    case 1 :
+        if_sethide(false, $component3);
+        $int10 = calc($int10 + min(3, %varplayerbit_18789));
+    case 2 :
+        if_sethide(false, $component4);
+        if (%varplayerbit_27168 = 1) {
+            $int10 = calc($int10 + min(2, %varplayerbit_18791));
+        } else {
+            $int10 = calc($int10 + min(3, %varplayerbit_18791));
+        }
+    case 3 :
+        if_sethide(false, $component5);
+        $int10 = calc($int10 + min(3, %varplayerbit_18793));
+}
+cc_deleteall($component0);
+def_int $int11 = 20;
+def_int $int12 = 20;
+def_int $int13 = 3;
+def_int $int14 = 3;
+def_int $int15 = 22;
+def_graphic $graphic16 = null;
+def_string $string0 = "";
+def_int $int17 = 0;
+def_component $component18 = null;
+def_component $component19 = null;
+def_component $component20 = null;
+def_component $component21 = null;
+def_component $component22 = null;
+def_component $component23 = null;
+while ($int7 < $int6) {
+    $int8 = calc($int7 / 4 + 1);
+    $graphic16, $string0 = ~script11343($int8, calc($int7 % 4));
+    if ($graphic16 ! null) {
+        ~script8441($component0, $int17, $int13, $int14, $int11, $int12, $graphic16);
+        if ($int9 ! $int8) {
+            $component18, $component19, $component20, $component21, $component22, $component23 = ~script11342($int17);
+            $int9 = $int8;
+        }
+        cc_setonop("script8432($component0, $component18, $component19, $component20, $component21, $component22, $component23, $int17)");
+        if (compare("", $string0) ! 0) {
+            cc_setop(1, $string0);
+            cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
+            cc_setonmouseleave("script8805");
+        }
+        $int17 = calc($int17 + 1);
+        cc_create($component0, ^iftype_rectangle, $int17);
+        cc_setcolour(^white);
+        cc_setsize($int11, $int12, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int13, $int14, ^setpos_abs_left, ^setpos_abs_top);
+        if ($int7 ! $int10) {
+            cc_sethide(true);
+        }
+        $int17 = calc($int17 + 1);
+        $int13 = calc($int13 + $int15);
+    } else {
+        cc_create($component0, ^iftype_graphic, $int17);
+        $int17 = calc($int17 + 1);
+        cc_create($component0, ^iftype_rectangle, $int17);
+        $int17 = calc($int17 + 1);
+    }
+    $int7 = calc($int7 + 1);
+}

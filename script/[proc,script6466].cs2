@@ -13,106 +13,120 @@ if ($component6 = null) {
     return($int1, $int2);
 }
 def_int $int7 = if_getnextsubid($component6);
-def_graphic $graphic8 = "rs3_btn_wardrobe_selection,2";
-def_graphic $graphic9 = "rs3_btn_wardrobe_selection,3";
-def_int $rgb10 = 0xffcb05;
-def_obj $obj11 = null;
-def_obj $obj12 = null;
+def_enum $enum8 = null;
+def_int $int9 = -1;
+if ($int4 ! 2) {
+    $enum8 = enum(int, enum, enum_5958, $int4);
+    if ($enum8 ! null & enum_getreversecount(struct, $enum8, $struct0) > 0) {
+        $int9 = calc(enum_getreverseindex(struct, int, $enum8, $struct0, 0) * 3);
+        while ($int7 < $int9) {
+            cc_create($component6, ^iftype_graphic, $int7);
+            cc_create($component6, ^iftype_text, calc($int7 + 1));
+            cc_create($component6, ^iftype_graphic, calc($int7 + 2));
+            $int7 = calc($int7 + 3);
+        }
+    }
+}
+def_graphic $graphic10 = "rs3_btn_wardrobe_selection,2";
+def_graphic $graphic11 = "rs3_btn_wardrobe_selection,3";
+def_int $rgb12 = 0xffcb05;
 def_obj $obj13 = null;
 def_obj $obj14 = null;
-def_bas $bas15 = bas_1426;
-def_int $int16 = 0;
-def_int $int17 = 0;
-def_enum $enum18 = null;
+def_obj $obj15 = null;
+def_obj $obj16 = null;
+def_bas $bas17 = bas_1426;
+def_int $int18 = 0;
+def_int $int19 = 0;
+def_enum $enum20 = null;
 if (~script6488($struct0) = 0) {
     if (~script7388($struct0) = 1) {
-        $graphic8 = "rs3_btn_wardrobe_selection,6";
-        $graphic9 = "rs3_btn_wardrobe_selection,7";
-        $rgb10 = 0xaed0e0;
+        $graphic10 = "rs3_btn_wardrobe_selection,6";
+        $graphic11 = "rs3_btn_wardrobe_selection,7";
+        $rgb12 = 0xaed0e0;
     } else {
-        $graphic8 = "rs3_btn_wardrobe_selection,0";
-        $graphic9 = "rs3_btn_wardrobe_selection,1";
-        $rgb10 = 0xaed0e0;
+        $graphic10 = "rs3_btn_wardrobe_selection,0";
+        $graphic11 = "rs3_btn_wardrobe_selection,1";
+        $rgb12 = 0xaed0e0;
     }
 } else if (~script6489($struct0) = 1 | ~script7609($struct0) = 1) {
-    $graphic8 = "rs3_btn_wardrobe_selection,4";
-    $graphic9 = "rs3_btn_wardrobe_selection,5";
-    $rgb10 = ^white;
+    $graphic10 = "rs3_btn_wardrobe_selection,4";
+    $graphic11 = "rs3_btn_wardrobe_selection,5";
+    $rgb12 = ^white;
 } else if (~script7388($struct0) = 1) {
-    $graphic8 = "rs3_btn_wardrobe_selection,7";
-    $graphic9 = "rs3_btn_wardrobe_selection,8";
-    $rgb10 = ^white;
+    $graphic10 = "rs3_btn_wardrobe_selection,7";
+    $graphic11 = "rs3_btn_wardrobe_selection,8";
+    $rgb12 = ^white;
 } else if ($int4 = 2 & $int5 = 3) {
-    $enum18 = struct_param($struct0, param_2542);
-    if ($enum18 ! null) {
-        $obj11 = enum(int, obj, struct_param($struct0, param_2542), 3);
-        $obj12 = inv_getobj(inv_670, 3);
-        if ($obj12 ! null) {
-            $bas15 = oc_param($obj12, param_644);
+    $enum20 = struct_param($struct0, param_2542);
+    if ($enum20 ! null) {
+        $obj13 = enum(int, obj, struct_param($struct0, param_2542), 3);
+        $obj14 = inv_getobj(inv_670, 3);
+        if ($obj14 ! null) {
+            $bas17 = oc_param($obj14, param_644);
         }
-        if ($obj11 ! null & $obj11 = ~script7602(oc_param($obj11, param_686))) {
-            $graphic8 = "rs3_btn_wardrobe_selection,4";
-            $graphic9 = "rs3_btn_wardrobe_selection,5";
-            $rgb10 = ^white;
+        if ($obj13 ! null & $obj13 = ~script7602(oc_param($obj13, param_686))) {
+            $graphic10 = "rs3_btn_wardrobe_selection,4";
+            $graphic11 = "rs3_btn_wardrobe_selection,5";
+            $rgb12 = ^white;
         }
     }
 } else if ($int4 = 2 & $int5 = 5) {
-    $enum18 = struct_param($struct0, param_2542);
-    if ($enum18 ! null) {
-        $obj14 = enum(int, obj, struct_param($struct0, param_2542), 5);
-        $obj13 = inv_getobj(inv_670, 5);
-        if ($obj14 ! null & $obj14 = ~script7603(~ontolobby_hop_abort($obj14))) {
-            $graphic8 = "rs3_btn_wardrobe_selection,4";
-            $graphic9 = "rs3_btn_wardrobe_selection,5";
-            $rgb10 = ^white;
+    $enum20 = struct_param($struct0, param_2542);
+    if ($enum20 ! null) {
+        $obj16 = enum(int, obj, struct_param($struct0, param_2542), 5);
+        $obj15 = inv_getobj(inv_670, 5);
+        if ($obj16 ! null & $obj16 = ~script7603(~ontolobby_hop_abort($obj16))) {
+            $graphic10 = "rs3_btn_wardrobe_selection,4";
+            $graphic11 = "rs3_btn_wardrobe_selection,5";
+            $rgb12 = ^white;
         }
     }
 } else if ($int4 = 2 & $int5 = 19) {
     if (struct_param($struct0, param_4397) ! -1 & oc_wearpos(~script9964($struct0)) = 3) {
-        $obj11 = ~script9964($struct0);
-        if ($obj11 ! null & $obj11 = ~script7602(oc_param($obj11, param_686))) {
-            $graphic8 = "rs3_btn_wardrobe_selection,4";
-            $graphic9 = "rs3_btn_wardrobe_selection,5";
-            $rgb10 = ^white;
+        $obj13 = ~script9964($struct0);
+        if ($obj13 ! null & $obj13 = ~script7602(oc_param($obj13, param_686))) {
+            $graphic10 = "rs3_btn_wardrobe_selection,4";
+            $graphic11 = "rs3_btn_wardrobe_selection,5";
+            $rgb12 = ^white;
         }
     } else if (struct_param($struct0, param_4397) ! -1 & oc_wearpos(~script9964($struct0)) = 5) {
-        $obj14 = ~script9964($struct0);
-        if ($obj14 ! null & $obj14 = ~script7603(~ontolobby_hop_abort($obj14))) {
-            $graphic8 = "rs3_btn_wardrobe_selection,4";
-            $graphic9 = "rs3_btn_wardrobe_selection,5";
-            $rgb10 = ^white;
+        $obj16 = ~script9964($struct0);
+        if ($obj16 ! null & $obj16 = ~script7603(~ontolobby_hop_abort($obj16))) {
+            $graphic10 = "rs3_btn_wardrobe_selection,4";
+            $graphic11 = "rs3_btn_wardrobe_selection,5";
+            $rgb12 = ^white;
         }
     }
 }
-def_int $int19 = 0;
+def_int $int21 = 0;
 if ($int4 = 1) {
-    $int19 = 155;
+    $int21 = 155;
 } else if ($int4 = 5) {
-    $int19 = 205;
+    $int21 = 205;
 } else if ($int4 = 2) {
-    $int19 = 285;
+    $int21 = 285;
 } else {
-    $int19 = 225;
+    $int21 = 225;
 }
 cc_create($component6, ^iftype_graphic, $int7);
-cc_setgraphic($graphic8);
+cc_setgraphic($graphic10);
 if ($boolean3 = true) {
-    cc_setsize(calc($int19 - 10), calc(26 - 0), ^setsize_abs, ^setsize_abs);
+    cc_setsize(calc($int21 - 10), calc(26 - 0), ^setsize_abs, ^setsize_abs);
 } else {
     cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
 }
-cc_setposition(calc($int2 * $int19 + ($int19 - cc_getwidth) / 2), calc($int1 + (26 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setposition(calc($int2 * $int21 + ($int21 - cc_getwidth) / 2), calc($int1 + (26 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
 cc_setop(1, "Preview");
-if ($graphic8 = "rs3_btn_wardrobe_selection,4" & $int4 ! 1 & $int4 ! 5) {
+if ($graphic10 = "rs3_btn_wardrobe_selection,4" & $int4 ! 1 & $int4 ! 5) {
     cc_setop(2, "Deactivate");
-} else if ($int16 = 0 & $int17 = 0 & ($graphic8 = "rs3_btn_wardrobe_selection,2" | $graphic8 = "rs3_btn_wardrobe_selection,7") & $int4 ! 5) {
+} else if ($int18 = 0 & $int19 = 0 & ($graphic10 = "rs3_btn_wardrobe_selection,2" | $graphic10 = "rs3_btn_wardrobe_selection,7") & $int4 ! 5) {
     cc_setop(2, "Activate");
 } else {
     cc_setop(2, "");
 }
 cc_setonop("script6480(event_com, event_comsubid)");
-cc_setonmouseover("cc_graphic_swapper(event_com, cc_getid, $graphic9)");
-cc_setonmouseleave("cc_graphic_swapper(event_com, cc_getid, $graphic8)");
+cc_setonmouseover("cc_graphic_swapper(event_com, cc_getid, $graphic11)");
+cc_setonmouseleave("cc_graphic_swapper(event_com, cc_getid, $graphic10)");
 if ($int4 = 2 & $int5 = 19) {
     if (inv_getobj(inv_675, struct_param($struct0, param_4397)) ! null) {
         cc_setop(3, "Reclaim-item");
@@ -122,15 +136,15 @@ if ($int4 = 2 & $int5 = 19) {
 }
 def_string $string0 = "";
 def_string $string1 = "";
-def_enum $enum20 = null;
+def_enum $enum22 = null;
 if ($int4 = 1) {
     if ($int5 = 1 | $int5 = 3 | $int5 = 4) {
         if (gender = 1) {
-            $enum20 = enum_2341;
+            $enum22 = enum_2341;
         } else {
-            $enum20 = enum_2338;
+            $enum22 = enum_2338;
         }
-        $string0 = struct_param(enum(int, struct, $enum20, struct_param($struct0, param_2772)), param_792);
+        $string0 = struct_param(enum(int, struct, $enum22, struct_param($struct0, param_2772)), param_792);
     } else if ($int5 = 2 | $int5 = 5) {
         $string0 = enum(int, string, enum_2340, struct_param($struct0, param_2772));
     }
@@ -150,13 +164,13 @@ if ($int4 = 1) {
 cc_create($component6, ^iftype_text, calc($int7 + 1));
 cc_settext($string0);
 cc_settextfont(graphic_17813);
-cc_setcolour($rgb10);
+cc_setcolour($rgb12);
 if ($boolean3 = true) {
-    cc_setsize(calc($int19 - 10), calc(26 - 0), ^setsize_abs, ^setsize_abs);
+    cc_setsize(calc($int21 - 10), calc(26 - 0), ^setsize_abs, ^setsize_abs);
 } else {
     cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
 }
-cc_setposition(calc($int2 * $int19 + ($int19 - cc_getwidth) / 2), calc($int1 + (26 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setposition(calc($int2 * $int21 + ($int21 - cc_getwidth) / 2), calc($int1 + (26 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
 if (string_length($string1) > 1) {
     cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
@@ -168,7 +182,7 @@ if ($boolean3 = true) {
 } else {
     cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
 }
-cc_setposition(calc($int2 * $int19 + ($int19 - cc_getwidth) / 2), calc($int1 + (26 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setposition(calc($int2 * $int21 + ($int21 - cc_getwidth) / 2), calc($int1 + (26 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
 if ($boolean3 = true) {
     if_setsize(0, calc($int1 + 26), ^setsize_minus, ^setsize_abs, $component6);
     $int1 = calc($int1 + 26);
