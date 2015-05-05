@@ -1,0 +1,47 @@
+// 11391
+[proc,script11391]
+def_enum $enum0 = ~script11401;
+if ($enum0 = null) {
+    if_sethide(false, interface_1621:com_14);
+    return;
+}
+if_sethide(true, interface_1621:com_14);
+def_int $int1 = 0;
+def_int $int2 = enum_getoutputcount($enum0);
+def_int $intbool3 = ^false;
+def_int $int4 = if_getwidth(interface_1621:com_5);
+def_int $int5 = 8;
+def_int $int6 = 5;
+def_obj $obj7 = null;
+while ($int1 < $int2) {
+    if (cc_find(interface_1621:com_22, $int1) = true & .cc_find(interface_1621:com_17, $int1) = true) {
+        $obj7 = enum(int, obj, $enum0, $int1);
+        if ($obj7 ! null) {
+            if (calc($int5 + 36) > $int4) {
+                $int5, $int6 = 8, calc($int6 + 36 + 2);
+            }
+            cc_setposition(calc($int5 + 3), calc($int6 + 1), ^setpos_abs_left, ^setpos_abs_top);
+            $intbool3 = ~script11400($int1);
+            if ($intbool3 = ^true) {
+                ~script11393($obj7, $int1);
+            } else {
+                cc_setontimer("script11392(event_com, event_comsubid, $obj7, $int1)");
+            }
+            cc_sethide(false);
+            .cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
+            .cc_sethide(false);
+            $int5 = calc($int5 + 40 + 2);
+        } else {
+            cc_sethide(true);
+            .cc_sethide(true);
+        }
+    }
+    $int1 = calc($int1 + 1);
+}
+$int6 = calc($int6 + 36 + 5);
+if ($int6 >= if_getheight(interface_1621:com_5)) {
+    if_setscrollsize(0, $int6, interface_1621:com_5);
+} else {
+    if_setscrollsize(0, 0, interface_1621:com_5);
+}
+~rs3_scrollbar_vertical(interface_1621:com_6, interface_1621:com_5);
