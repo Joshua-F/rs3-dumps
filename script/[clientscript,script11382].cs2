@@ -1,0 +1,20 @@
+// 11382
+[clientscript,script11382]
+def_int $int0 = if_getwidth(interface_1620:com_25);
+def_int $int1 = if_getwidth(interface_1620:com_21);
+def_int $int2 = 0;
+def_int $int3 = calc($int1 / 24);
+def_int $int4 = calc(%varplayerbit_27908 * $int3);
+if ($int0 < $int4) {
+    $int2 = min(calc($int0 + 1), $int4);
+} else if ($int0 > $int4) {
+    $int2 = max(calc($int0 - 2), $int4);
+} else {
+    if_setontimer(null, interface_1620:com_25);
+    return;
+}
+if ($int2 = 0) {
+    $int2 = 1;
+    if_setontimer(null, interface_1620:com_25);
+}
+if_setsize($int2, 0, ^setsize_abs, ^setsize_minus, interface_1620:com_25);

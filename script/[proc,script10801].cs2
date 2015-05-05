@@ -125,22 +125,33 @@ if ($int6 < if_getheight($component1)) {
 }
 $int5 = 0;
 $int7 = calc(if_getwidth($component0) - 2 * $int5);
-def_string $string0 = "This package contains the items listed below. Please note that the package may be subject to restrictions and it may contain additional items such as titles, emotes, etc. For detailed information <u=aed0e0>visit Solomon's Store</u>.";
+def_string $string0 = get_col_tag(~script10495(0x00003a));
+$string0 = append_char($string0, '<');
+$string0 = "<$string0>u<substring($string0, 4, calc(string_length($string0) - 1))>";
+def_string $string1 = get_col_tag(~script10495(0x00003b));
+$string1 = append_char($string1, '<');
+$string1 = "<$string1>u<substring($string1, 4, calc(string_length($string1) - 1))>";
 if ($int24 = 0) {
-    $string0 = "This package contains the items listed below. Please note that the package may be subject to restrictions. For detailed information <u=aed0e0>visit Solomon's Store</u>.";
+    $string0 = "This package contains the items listed below. Please note that the package may be subject to restrictions. For detailed information <$string0>visit Solomon's Store</u></col>.";
+    $string1 = "This package contains the items listed below. Please note that the package may be subject to restrictions. For detailed information <$string1>visit Solomon's Store</u></col>.";
+} else {
+    $string0 = "This package contains the items listed below. Please note that the package may be subject to restrictions and it may contain additional items such as titles, emotes, etc. For detailed information <$string0>visit Solomon's Store</u></col>.";
+    $string1 = "This package contains the items listed below. Please note that the package may be subject to restrictions and it may contain additional items such as titles, emotes, etc. For detailed information <$string1>visit Solomon's Store</u></col>.";
 }
-def_string $string1 = "Contents:";
+def_string $string2 = "Contents:";
 if (cc_find($component0, $int10) = true & .cc_find($component0, $int11) = true) {
     cc_settext($string0);
+    cc_setonmouseover("cc_text_swapper(event_com, event_comsubid, $string1)");
+    cc_setonmouseleave("cc_text_swapper(event_com, event_comsubid, $string0)");
     cc_setsize(calc($int5 * 2), ~script7593(cc_gettext, $int7, cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
-    .cc_settext($string1);
+    .cc_settext($string2);
     .cc_setsize(calc($int5 * 2), ~script7593(cc_gettext, $int7, cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
 }
-def_string $string2 = "No recolour available.";
+def_string $string3 = "No recolour available.";
 if (%varplayer_5008 = 1) {
     cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
     cc_setgraphic("rs3_icon_colour_palette,2");
     cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
     cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
-    cc_setonmouserepeat("script3876($string2, event_com, event_comsubid)");
+    cc_setonmouserepeat("script3876($string3, event_com, event_comsubid)");
 }
