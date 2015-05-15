@@ -1,0 +1,52 @@
+// 11407
+[proc,script11407](component $component0)
+if_sethide(false, interface_1477:com_413);
+cc_deleteall($component0);
+cc_deleteall(interface_1622:com_1);
+cc_deleteall(interface_1622:com_0);
+cc_deleteall(interface_1622:com_8);
+cc_deleteall(interface_1622:com_10);
+cc_deleteall(interface_1622:com_9);
+cc_deleteall(interface_1622:com_2);
+def_int $int1 = 32;
+if (if_find(interface_1622:com_2) = true) {
+    if_sethide(false, interface_1622:com_2);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+    cc_setsize(0, $int1, ^setsize_minus, ^setsize_abs);
+}
+if (if_find(interface_1622:com_0) = true) {
+    cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
+    cc_setsize(16, $int1, ^setsize_abs, ^setsize_minus);
+}
+if (if_find(interface_1622:com_1) = true) {
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(0, $int1, ^setsize_minus, ^setsize_minus);
+}
+def_int $int2 = inv_size(inv_773);
+def_int $int3 = 0;
+while ($int3 < $int2) {
+    cc_create(interface_1622:com_8, ^iftype_graphic, $int3);
+    cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic(rs3_inventory_slot);
+    cc_setonmouseover("inventory_slot_highlight(773, event_com, event_comsubid, interface_1622:com_10, 1)");
+    cc_setonmouseleave("inventory_slot_highlight(773, event_com, event_comsubid, interface_1622:com_10, 0)");
+    ~script9229(interface_1622:com_10, $int3, 40, 36);
+    cc_create(interface_1622:com_9, ^iftype_graphic, $int3);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_setontargetenter("inventory_targetmode(1, event_com, event_comsubid)");
+    cc_setontargetleave("inventory_targetmode(0, event_com, event_comsubid)");
+    $int3 = calc($int3 + 1);
+}
+if (%varplayerbit_27169 = 0) {
+    if_sethide(false, interface_1622:com_8);
+} else {
+    if_sethide(true, interface_1622:com_8);
+}
+if (playermember = false | %varplayerbit_27945 = 0 & %varplayerbit_27947 = 0 & %varplayerbit_27948 = 0 & %varplayerbit_27949 = 0 & %varplayerbit_27950 = 0 & %varplayerbit_27951 = 0 & %varplayerbit_27952 = 0 & %varplayerbit_27953 = 0 & %varplayerbit_27954 = 0 & %varplayerbit_27955 = 0 & %varplayerbit_27956 = 0) {
+    if_sethide(true, interface_1622:com_12);
+} else {
+    if_sethide(false, interface_1622:com_12);
+}
+if_setonresize("script11408(event_com)", $component0);
+if_setoninvtransmit("script11408(event_com){inv_773}", $component0);
+~script11409($component0);
