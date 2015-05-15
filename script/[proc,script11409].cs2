@@ -1,0 +1,87 @@
+// 11409
+[proc,script11409](component $component0)
+def_int $int1 = inv_size(inv_773);
+def_int $int2 = calc(if_getheight($component0) - 32);
+def_int $int3 = 0;
+def_int $int4 = 0;
+if_sethide(false, interface_1622:com_2);
+if_setsize(0, 32, ^setsize_minus, ^setsize_minus, interface_1622:com_1);
+if_setsize(16, 32, ^setsize_abs, ^setsize_minus, interface_1622:com_0);
+if (%varplayerbit_27169 = 0) {
+    if_sethide(false, interface_1622:com_8);
+} else {
+    if_sethide(true, interface_1622:com_8);
+}
+def_int $int5 = -1;
+def_int $int6 = -1;
+$int5 = if_getwidth(interface_1622:com_1);
+$int6 = if_getheight(interface_1622:com_1);
+def_int $int7 = calc(36 + 2);
+def_int $int8 = calc(32 + 2 + 2);
+def_int $int9 = calc($int6 - (2 + 2));
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+$int12, $int10, $int11 = ~script9856(calc($int5 - 2), $int7, calc(2 + 2), 2);
+$int12 = min($int12, $int1);
+def_int $int13 = calc($int1 / $int12);
+$int13 = max($int13, 1);
+if (calc($int1 % $int12) > 0) {
+    $int13 = calc($int13 + 1);
+}
+$int13 = max(1, $int13);
+if (calc($int13 * $int8) > $int9) {
+    $int3 = 1;
+    if_setsize(16, 32, ^setsize_minus, ^setsize_minus, interface_1622:com_1);
+    if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, interface_1622:com_0);
+    if_setsize(16, 32, ^setsize_abs, ^setsize_minus, interface_1622:com_0);
+    $int5 = if_getwidth(interface_1622:com_1);
+    $int6 = if_getheight(interface_1622:com_1);
+    $int12, $int10, $int11 = ~script9856(calc($int5 - 2), $int7, calc(2 + 2), 2);
+}
+$int12 = min($int12, $int1);
+$int13 = calc($int1 / $int12);
+$int13 = max($int13, 1);
+if (calc($int1 % $int12) > 0) {
+    $int13 = calc($int13 + 1);
+}
+$int13 = max(1, $int13);
+def_int $int14 = calc($int12 * $int7 + 2 + 2);
+def_int $int15 = calc($int13 * $int8 + (2 + 2));
+$int4 = max(if_getheight(interface_1622:com_1), calc($int15 - $int6));
+if_setscrollsize(0, $int4, interface_1622:com_1);
+def_int $int16 = 0;
+def_int $int17 = 0;
+def_obj $obj18 = null;
+def_int $int19 = 0;
+def_int $int20 = calc(%varclient_1031 - 1);
+def_int $intarray0($int12);
+def_int $int21 = 0;
+while ($int21 < $int12) {
+    $intarray0($int21) = ~script9857($int10, 2, $int11, $int21);
+    $int21 = calc($int21 + 1);
+}
+while ($int16 < $int1) {
+    if (.cc_find(interface_1622:com_8, $int16) = true & cc_find(interface_1622:com_9, $int16) = true) {
+        $obj18 = inv_getobj(inv_773, $int16);
+        $int19 = inv_getnum(inv_773, $int16);
+        .cc_setposition(calc($intarray0(calc($int16 % $int12)) - 1), calc($int16 / $int12 * $int8 + 2 - 1), ^setpos_abs_left, ^setpos_abs_top);
+        if (.cc_find(interface_1622:com_10, $int16) = true) {
+            .cc_setposition(calc($intarray0(calc($int16 % $int12)) - 1), calc($int16 / $int12 * $int8 + 2 - 1), ^setpos_abs_left, ^setpos_abs_top);
+        }
+        cc_setposition(calc($intarray0(calc($int16 % $int12)) + 3), calc($int16 / $int12 * $int8 + 1 + 2), ^setpos_abs_left, ^setpos_abs_top);
+        if ($obj18 ! null) {
+            ~script11410($obj18, $int19);
+        } else {
+            ~script9230(null, 0);
+        }
+    }
+    $int16 = calc($int16 + 1);
+}
+def_int $int22 = calc($int13 * $int8 + 2 + 2);
+$int22 = max(if_getheight(interface_1622:com_1), $int22);
+cc_deleteall(interface_1622:com_0);
+if_setscrollsize(0, $int22, interface_1622:com_1);
+if ($int22 > if_getheight(interface_1622:com_1)) {
+    ~rs3_scrollbar_vertical(interface_1622:com_0, interface_1622:com_1);
+}
