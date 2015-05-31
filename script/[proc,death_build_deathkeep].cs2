@@ -1,0 +1,87 @@
+// 11473
+[proc,death_build_deathkeep]()(boolean)
+def_string $string0 = "If you die in the wilderness...";
+if (%varplayerbit_1675 ! 1) {
+    $string0 = "Items kept on death";
+}
+~script9554(interface_1626:com_25, interface_1626:com_42, interface_1626:com_26, $string0, struct_21218);
+if (%varplayerbit_1675 = 2) {
+    if_sethide(false, interface_1626:com_31);
+    if_sethide(true, interface_1626:com_37);
+    if_settext(%varclient_2368, interface_1626:com_109);
+    return(true);
+}
+if (inv_freespace(inv_676) >= inv_size(inv_676) & (inv_freespace(inv_530) >= inv_size(inv_530) | map_members = false)) {
+    if_sethide(false, interface_1626:com_31);
+    if_sethide(true, interface_1626:com_37);
+    if_settext("You have no items to lose.", interface_1626:com_109);
+    return(true);
+}
+cc_deleteall(interface_1626:com_97);
+cc_deleteall(interface_1626:com_98);
+def_string $string1 = "";
+def_int $int0 = 5;
+if (compare(%varclient_2369, "") ! 0) {
+    $int0 = ~script10367(interface_1626:com_97, %varclient_2369, $int0);
+}
+def_int $int1 = 0;
+def_int $int2 = %varclient_4876;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+while ($int5 < %varplayerbit_28114) {
+    $int3 = ~script11472($int5);
+    $int4 = inv_getnum(inv_676, $int5);
+    if ($int3 > 0 & $int4 > 0) {
+        $int3 = ~script11468($int3, $int4);
+        if (calc(^max_32bit_int - $int1 - $int3) < 0) {
+            $int1 = ^max_32bit_int;
+        } else {
+            $int1 = calc($int1 + $int3);
+        }
+    }
+    $int5 = calc($int5 + 1);
+}
+if (calc(^max_32bit_int - $int2 - $int1) < 0) {
+    $int2 = ^max_32bit_int;
+} else {
+    $int2 = calc($int2 + $int1);
+    while ($int5 < %varplayerbit_28116) {
+        $int3 = ~script11472($int5);
+        $int4 = inv_getnum(inv_676, $int5);
+        if ($int3 > 0 & $int4 > 0) {
+            $int3 = ~script11468($int3, $int4);
+            if (calc(^max_32bit_int - $int2 - $int3) < 0) {
+                $int2, $int5 = ^max_32bit_int, %varplayerbit_28116;
+            } else {
+                $int2 = calc($int2 + $int3);
+            }
+        }
+        $int5 = calc($int5 + 1);
+    }
+}
+if ($int2 = ^max_32bit_int) {
+    $string1 = "Unknown";
+} else {
+    $string1 = tostring_localised($int2, true);
+}
+$int0 = ~script10367(interface_1626:com_97, "Carried wealth:<br><$string1>", $int0);
+if ($int2 = ^max_32bit_int) {
+    $string1 = "Unknown";
+} else {
+    $string1 = tostring_localised(calc($int2 - $int1), true);
+}
+$int0 = ~script10367(interface_1626:com_97, "Risked wealth:<br><$string1>", $int0);
+if (%varplayerbit_1675 ! 1) {
+    $int0 = ~script10367(interface_1626:com_97, if_gettext(interface_1626:com_41), $int0);
+}
+if (%varplayerbit_1675 < 2) {
+    $string1 = "What if I entered the wilderness?";
+    if (%varplayerbit_1675 = 1) {
+        $string1 = "What if I wasn't in the wilderness?";
+    }
+    ~script10410(interface_1626:com_97, interface_1626:com_98, struct_28556, 10, $int0, calc(if_getwidth(interface_1626:com_97) - 20), 20, 0, false, $string1);
+    $int0 = calc($int0 + 25);
+}
+~script10464(interface_1626:com_37, interface_1626:com_94, interface_1626:com_100, interface_1626:com_96, interface_1626:com_99, $int0);
+return(false);

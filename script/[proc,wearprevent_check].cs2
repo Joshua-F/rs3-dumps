@@ -7,6 +7,86 @@ if (%varplayerbit_15102 = 1 & %varplayer_1295 < 400) {
     return(2, "0");
 }
 switch_obj ($obj0) {
+    case obj_8839, obj_8840, obj_8842, obj_11663, obj_11664, obj_11665, obj_31641, obj_31642, obj_31643, obj_31644, obj_31645, obj_31646, obj_8841, obj_31647, obj_31648, obj_31649, obj_31650, obj_31651, obj_31652, obj_19785, obj_19786, obj_19787, obj_19788, obj_19789, obj_19790 :
+        if (~script11500 = 0) {
+            return(1, "You need Constitution, Attack, Defence, Strength, Ranged and Magic levels of 42 as well as Prayer level of 22 to wear this.");
+        }
+    case obj_2412 :
+        if (inv_total(inv_94, obj_2416) > 0 | inv_total(inv_94, obj_2417) > 0) {
+            return(1, "You may not wear this cape while wielding the staff of another god.<br>The conflicting powers of staff and cape drive them apart.");
+        }
+    case obj_2413 :
+        if (inv_total(inv_94, obj_2415) > 0 | inv_total(inv_94, obj_2417) > 0) {
+            return(1, "You may not wear this cape while wielding the staff of another god.<br>The conflicting powers of staff and cape drive them apart.");
+        }
+    case obj_2414 :
+        if (inv_total(inv_94, obj_2416) > 0 | inv_total(inv_94, obj_2415) > 0) {
+            return(1, "You may not wear this cape while wielding the staff of another god.<br>The conflicting powers of staff and cape drive them apart.");
+        }
+    case obj_2415 :
+        if (inv_total(inv_94, obj_2413) > 0 | inv_total(inv_94, obj_2414) > 0) {
+            return(1, "You may not wear this staff while wielding the cape of another god.<br>The conflicting powers of staff and cape drive them apart.");
+        }
+    case obj_2416 :
+        if (inv_total(inv_94, obj_2412) > 0 | inv_total(inv_94, obj_2414) > 0) {
+            return(1, "You may not wear this staff while wielding the cape of another god.<br>The conflicting powers of staff and cape drive them apart.");
+        }
+    case obj_2417 :
+        if (inv_total(inv_94, obj_2413) > 0 | inv_total(inv_94, obj_2412) > 0) {
+            return(1, "You may not wear this staff while wielding the cape of another god.<br>The conflicting powers of staff and cape drive them apart.");
+        }
+    case obj_30053, obj_23048, obj_23052, obj_23050 :
+        if (map_members = false) {
+            return(1, "You can only equip this item on a members' world.");
+        }
+    case obj_6082 :
+        if (%varplayerbit_13897 < 1) {
+            return(1, "You need to load ammo into the device before you can use it.");
+        }
+    case obj_32052 :
+        if (~script11501(1) = 0) {
+            return(1, "You do not meet the requirements to wear this cape.");
+        }
+    case obj_32053 :
+        if (~script11501(2) = 0) {
+            return(1, "You do not meet the requirements to wear this cape.");
+        }
+    case obj_32054 :
+        if (~script11501(3) = 0) {
+            return(1, "You do not meet the requirements to wear this cape.");
+        }
+    case obj_32055 :
+        if (~script11501(4) = 0) {
+            return(1, "You do not meet the requirements to wear this cape.");
+        }
+    case obj_32056 :
+        if (~script11501(1) = 0) {
+            return(1, "You do not meet the requirements to wear this hood.");
+        }
+    case obj_32057 :
+        if (~script11501(2) = 0) {
+            return(1, "You do not meet the requirements to wear this hood.");
+        }
+    case obj_32058 :
+        if (~script11501(3) = 0) {
+            return(1, "You do not meet the requirements to wear this helmet.");
+        }
+    case obj_32059 :
+        if (~script11501(4) = 0) {
+            return(1, "You do not meet the requirements to wear this hood.");
+        }
+    case obj_9813 :
+        if (%varplayer_1297 < %varplayer_423) {
+            return(1, "You need to have completed all of the quests to wear this cape.");
+        }
+    case obj_9814 :
+        if (%varplayer_1297 < %varplayer_423) {
+            return(1, "You need to have completed all of the quests to wear this hood.");
+        }
+    case obj_3107 :
+        if (~inzone(0_44_59_0_0, 3_44_59_63_63, coord) = false) {
+            return(1, "Trying to walk in these would be difficult. I'll carry them for now.");
+        }
     case obj_3105, obj_18788 :
         if (%varplayer_2339 < 80) {
             return(1, "The sherpa's feet must be very small. I can't get them on.");
@@ -27,6 +107,20 @@ switch_obj ($obj0) {
         if (inv_totalcat(inv_94, category_65) > 0) {
             return(1, "You need to remove your claws first.");
         }
+    case obj_7671, obj_7673 :
+        if (inv_getobj(inv_94, 9) ! null) {
+            return(1, "You cannot wear the boxing gloves over other gloves.");
+        }
+    case obj_6583 :
+        if (%varplayerbit_10443 = 1) {
+            return(1, "You can't turn into a stone while controlling the penguin suit.");
+        }
+    case obj_24863, obj_24864 :
+        if (%varplayerbit_10443 = 0) {
+            return(1, "You can only wear that while in the penguin suit.");
+        }
+    case obj_11809, obj_11810, obj_11811, obj_11812 :
+        return(2, "");
 }
 switch_category (oc_category($obj0)) {
     case category_71 :
@@ -39,20 +133,20 @@ switch_category (oc_category($obj0)) {
         if (inv_total(inv_94, obj_7537) > 0) {
             return(1, "You need to remove your claw first.");
         }
-}
-if (%varplayerbit_10443 = 1) {
-    if (oc_wearpos($obj0) = 3 | oc_wearpos($obj0) = 5) {
-        return(1, "You can't hold anything in your hands while in the penguin suit.");
-    }
-    if ($obj0 = obj_6583) {
-        return(1, "You can't turn into a stone while controlling the penguin suit.");
-    }
-}
-if (%varplayerbit_10443 = 0 & ($obj0 = obj_24863 | $obj0 = obj_24864)) {
-    return(1, "You can only wear that while in the penguin suit.");
-}
-if (($obj0 = obj_7671 | $obj0 = obj_7673) & inv_getobj(inv_94, 9) ! null) {
-    return(1, "You cannot wear the boxing gloves over other gloves.");
+    case category_3456 :
+        return(1, "You can't equip that.");
+    case category_626 :
+        if (%varplayerbit_10443 = 0) {
+            return(1, "You need someone to shrink you before you can control the penguin suit.");
+        }
+    case category_2759 :
+        if (stat_base(ranged) < oc_param($obj0, param_23)) {
+            return(1, "You need at least level <tostring(oc_param($obj0, param_23))> Ranged to wield this crossbow.");
+        }
+    case category_63 :
+        if (stat_base(ranged) < oc_param($obj0, param_23)) {
+            return(1, "You need at least level <tostring(oc_param($obj0, param_23))> Ranged to wield these bolts.");
+        }
 }
 if (oc_wearpos($obj0) = 9 & (inv_getobj(inv_94, 3) = obj_7671 | inv_getobj(inv_94, 3) = obj_7673)) {
     return(1, "You cannot wear any other gloves under boxing gloves.");
