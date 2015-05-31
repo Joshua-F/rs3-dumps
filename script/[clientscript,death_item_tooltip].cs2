@@ -1,0 +1,63 @@
+// 11465
+[clientscript,death_item_tooltip](obj $obj0, int $int1)
+if (%varclient_4827 ! null & %varclient_4828 ! -1) {
+    return;
+}
+if ($obj0 = null) {
+    return;
+}
+def_int $int2 = ~script11472($int1);
+~script9252($obj0);
+switch_int ($int2) {
+    case -4 :
+        %varclient_4645 = "<col=00ff00>Always free to protect, unless in the wilderness!";
+        return;
+    case -6 :
+        %varclient_4645 = "<col=00ff00>Always free to protect!";
+        return;
+    case -3 :
+        %varclient_4645 = "<col=ff0000>This is a members' only item. As you died on a members' world you must be on a members' world to save this item.";
+        return;
+    case -5 :
+        if (%varplayerbit_28118 = 2) {
+            %varclient_4645 = "<col=00ff00>This is a members' only item. If you died on a free world, it would be free to reclaim.";
+            return;
+        } else {
+            %varclient_4645 = "<col=00ff00>This is a members' only item. As you died on a free world, it is free to reclaim.";
+            return;
+        }
+    case -2 :
+        %varclient_4645 = "<col=ff0000>This item is always lost on death.";
+        return;
+    case -7 :
+        return;
+    case default :
+        if ($int1 >= inv_size(inv_676)) {
+            %varclient_4645 = "<col=ff0000>Your beast of burden is carrying this item. It will be lost on death.";
+            return;
+        }
+}
+def_int $int3 = inv_getnum(inv_676, $int1);
+def_int $int4 = ~script11466($obj0, $int2, $int3, 1);
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_string $string0 = "";
+if (oc_param($obj0, param_5089) = -1) {
+    $string0 = "<col=00ff00>Item value: <tostring_localised($int2, true)>";
+    if ($int4 > $int2) {
+        $string0 = append($string0, "<col=00ff00> (<tostring_localised($int4, true)>)");
+    }
+} else {
+    $string0 = "<col=00ff00>Item has fixed reclaim value.";
+}
+$int5, $int6, $int7 = ~script11467($obj0, $int2, $int3, 2);
+$string0 = append($string0, "<br><col=00ff00>Cost to save: <~tostring_spacer_local($int5)>");
+if ($int1 < %varplayerbit_28114) {
+    $string0 = append($string0, " (Protected for free)");
+} else if ($int6 = 1) {
+    $string0 = append($string0, "<br><col=00ff00>Death's Deal saves: <~tostring_spacer_local($int7)>");
+}
+$int5, $int6, $int7 = ~script11467($obj0, $int2, $int3, 3);
+$string0 = append($string0, "<br><col=00ff00>Sacrifice value: <~tostring_spacer_local($int5)>");
+%varclient_4645 = $string0;

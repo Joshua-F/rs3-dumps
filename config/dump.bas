@@ -19879,3 +19879,14 @@ walkturn_r=seq_26337
 runanim=seq_26338
 readyanim=seq_26337,seq_26336
 
+// 3453
+[bas_3453]
+readyanim_l=seq_19476
+readyanim_r=seq_19476
+walkanim_l=seq_19490
+walkanim_r=seq_19490
+walkanim_b=seq_19490
+runanim=seq_19477
+hillrotate=32,32
+readyanim=seq_19476,seq_19490
+

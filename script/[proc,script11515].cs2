@@ -1,0 +1,52 @@
+// 11515
+[proc,script11515](component $component0, component $component1, int $int2, struct $struct3, int $int4, int $int5)(int)
+cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+def_int $int6 = calc(10 + 40 * ($int2 % 8));
+def_int $int7 = calc(10 + $int4 * ($int2 / 8));
+cc_setposition($int6, $int7, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(20, 20, ^setsize_abs, ^setsize_abs);
+def_int $int8 = if_getnextsubid($component1);
+def_int $int9 = struct_param($struct3, param_5101);
+if ($int9 = 0) {
+    $int9 = cc_getid;
+}
+def_int $int10 = 0;
+def_struct $struct11 = struct_21363;
+def_string $string0 = "";
+if ($struct3 ! null & struct_param($struct3, param_3840) = 0) {
+    cc_setop(1, "Select");
+    if ($int9 = %varclient_4888) {
+        $int10 = 1;
+        $struct11 = struct_28303;
+    } else {
+        cc_setonmouserepeat("script11516($component1, $int8, $int9, struct_29006)");
+        cc_setonmouseleave("script11516($component1, $int8, $int9, struct_21363)");
+    }
+    cc_setonvarctransmit("script11518($component0, cc_getid, $component1, $int8, $int9, $int10, 0){varclient_4888}");
+    $int2 = calc($int2 + 1);
+    ~rs3_background_panel_dynamic($component1, $struct11, calc($int6 - 4), calc($int7 - 4), 28, 28, null);
+    $int8 = if_getnextsubid($component1);
+    cc_create($component1, ^iftype_rectangle, $int8);
+    cc_setposition($int6, $int7, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(20, 20, ^setsize_abs, ^setsize_abs);
+    cc_setcolour(struct_param($struct3, param_2502));
+    cc_setfill(true);
+    $string0 = struct_param($struct3, param_2548);
+    if (string_length($string0) > 0) {
+        cc_setonmouserepeat("script8799($string0, $component1, $int8)");
+    }
+    $int8 = calc($int8 + 1);
+    if ($int5 >= 0) {
+        cc_create($component1, ^iftype_text, $int8);
+        cc_settext(tostring($int5));
+        ~script2731($component1, $int8, ^white);
+        cc_setposition(calc($int6 - 5), calc($int7 + 25), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(30, 15, ^setsize_abs, ^setsize_abs);
+        cc_settextfont(graphic_20452);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 12);
+        $int8 = calc($int8 + 1);
+    }
+} else {
+    cc_sethide(true);
+}
+return($int2);

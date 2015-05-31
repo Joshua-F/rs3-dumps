@@ -1,137 +1,184 @@
 // 6747
 [proc,script6747](struct $struct0)
-def_int $int1 = struct_param($struct0, param_1268);
-if_sethide(false, interface_1344:com_10);
-if_sethide(true, interface_1344:com_18);
-if_sethide(false, interface_1344:com_8);
-if_sethide(false, interface_1344:com_9);
-if (~script9178($int1) = 1) {
-    if_setgraphic("rs3_dnd_mini_games_icons,7", interface_1344:com_9);
-    if_setop(1, "Remove Favourite", interface_1344:com_9);
-} else {
-    if_setgraphic("rs3_dnd_mini_games_icons,6", interface_1344:com_9);
-    if_setop(1, "Add Favourite", interface_1344:com_9);
+if_sethide(true, interface_1344:com_50);
+if_setonmouserepeat(null, interface_1344:com_49);
+if_setonmouserepeat(null, interface_1344:com_50);
+def_string $string0 = "";
+def_int $int1 = struct_param(enum(int, struct, enum_10016, %varplayer_5420), param_1268);
+def_int $int2 = struct_param(enum(int, struct, enum_10016, %varplayer_5421), param_1268);
+def_int $int3 = struct_param(enum(int, struct, enum_10016, %varplayer_5422), param_1268);
+def_int $int4 = struct_param(enum(int, struct, enum_10016, %varplayer_5423), param_1268);
+def_int $int5 = 0;
+def_int $int6 = struct_param($struct0, param_1268);
+if ($int1 = $int6) {
+    if_sethide(false, interface_1344:com_50);
+    if (%varplayer_5419 ! 1) {
+        if_settext("<tostring(%varplayer_5419)> days left", interface_1344:com_50);
+    } else {
+        if_settext("<tostring(%varplayer_5419)> day left", interface_1344:com_50);
+    }
+    $string0 = "This minigame is currently in the Spotlight and will give thaler at 500% of the normal rate.<br>Find Stanley Limelight near the minigame to learn about thaler.";
+    $int5 = 1;
+} else if ($int2 = $int6) {
+    if (%varplayer_5419 ! 1) {
+        $string0 = "This minigame will enter the Spotlight in <tostring(%varplayer_5419)> days.";
+    } else {
+        $string0 = "This minigame will enter the Spotlight in <tostring(%varplayer_5419)> day.";
+    }
+    $int5 = 1;
+} else if ($int3 = $int6) {
+    $string0 = "This minigame will enter the Spotlight in <tostring(calc(%varplayer_5419 + 3))> days.";
+    $int5 = 1;
+} else if ($int4 = $int6) {
+    $string0 = "This minigame will enter the Spotlight in <tostring(calc(%varplayer_5419 + 3 * 2))> days.";
+    $int5 = 1;
 }
-if_settext(struct_param($struct0, param_1266), interface_1344:com_62);
-if (struct_param($struct0, param_3629) = 0) {
-    if_setgraphic("rs3_dnd_mini_games_icons,0", interface_1344:com_63);
+if ($int5 = 1) {
+    if_setonmouserepeat("script8799($string0, interface_1344:com_49, -1)", interface_1344:com_49);
+    if_setonmouserepeat("script8799($string0, interface_1344:com_49, -1)", interface_1344:com_50);
+}
+def_int $int7 = struct_param($struct0, param_1268);
+if_sethide(false, interface_1344:com_51);
+if_sethide(true, interface_1344:com_113);
+if_sethide(false, interface_1344:com_46);
+if_sethide(false, interface_1344:com_47);
+if (~script9178($int7) = 1) {
+    if_setgraphic("rs3_dnd_mini_games_icons,7", interface_1344:com_47);
+    if_setop(1, "Remove Favourite", interface_1344:com_47);
 } else {
-    if_setgraphic("rs3_dnd_mini_games_icons,1", interface_1344:com_63);
+    if_setgraphic("rs3_dnd_mini_games_icons,6", interface_1344:com_47);
+    if_setop(1, "Add Favourite", interface_1344:com_47);
+}
+if_settext(struct_param($struct0, param_1266), interface_1344:com_48);
+if (struct_param($struct0, param_3629) = 0) {
+    if ($int1 = struct_param($struct0, param_1268)) {
+        if_setgraphic("rs3_minigame_spotlight_icons,0", interface_1344:com_49);
+    } else if ($int2 = struct_param($struct0, param_1268)) {
+        if_setgraphic("rs3_minigame_spotlight_icons,1", interface_1344:com_49);
+    } else if ($int3 = struct_param($struct0, param_1268)) {
+        if_setgraphic("rs3_minigame_spotlight_icons,2", interface_1344:com_49);
+    } else if ($int4 = struct_param($struct0, param_1268)) {
+        if_setgraphic("rs3_minigame_spotlight_icons,3", interface_1344:com_49);
+    } else {
+        if_setgraphic("rs3_dnd_mini_games_icons,0", interface_1344:com_49);
+    }
+} else {
+    if_setgraphic("rs3_dnd_mini_games_icons,1", interface_1344:com_49);
 }
 if (compare(struct_param($struct0, param_3631), "") ! 0) {
-    if_settext(struct_param($struct0, param_3631), interface_1344:com_67);
+    if_settext(struct_param($struct0, param_3631), interface_1344:com_107);
 } else {
-    if_settext(struct_param($struct0, param_1273), interface_1344:com_67);
+    if_settext(struct_param($struct0, param_1273), interface_1344:com_107);
 }
 if (compare(struct_param($struct0, param_1292), "") ! 0) {
-    if_settext(struct_param($struct0, param_1292), interface_1344:com_80);
+    if_settext(struct_param($struct0, param_1292), interface_1344:com_111);
 } else {
-    if_settext("There are no rewards for this minigame.", interface_1344:com_80);
+    if_settext("There are no rewards for this minigame.", interface_1344:com_111);
 }
 ~script9181;
-def_int $int2 = 80;
+def_int $int8 = 80;
 if (map_members = false & struct_param($struct0, param_1290) = 2) {
-    if_sethide(true, interface_1344:com_3);
-    if_sethide(true, interface_1344:com_53);
-    if_sethide(true, interface_1344:com_122);
-    if_sethide(true, interface_1344:com_123);
-    if_settext("Options", interface_1344:com_52);
+    if_sethide(true, interface_1344:com_65);
+    if_sethide(true, interface_1344:com_82);
+    if_sethide(true, interface_1344:com_99);
+    if_sethide(true, interface_1344:com_102);
+    if_settext("Options", interface_1344:com_81);
     if (playermember = true) {
-        if_settext("This activity is a members only feature. Please log into a members' world to play", interface_1344:com_46);
+        if_settext("This activity is a members only feature. Please log into a members' world to play", interface_1344:com_75);
     } else {
-        if_settext("This activity is a members only feature.", interface_1344:com_46);
-        if_sethide(false, interface_1344:com_71);
+        if_settext("This activity is a members only feature.", interface_1344:com_75);
+        if_sethide(false, interface_1344:com_90);
     }
 } else if (~task_requirements_fulfilled(struct_param($struct0, param_1268)) = false) {
-    if_settext("Requirements", interface_1344:com_52);
-    $int2 = ~script9182($struct0);
-    if_sethide(true, interface_1344:com_3);
-    if_sethide(true, interface_1344:com_53);
-    if_settext("", interface_1344:com_46);
-    if_sethide(true, interface_1344:com_71);
-    if_sethide(true, interface_1344:com_122);
-    if_sethide(true, interface_1344:com_123);
+    if_settext("Requirements", interface_1344:com_81);
+    $int8 = ~script9182($struct0);
+    if_sethide(true, interface_1344:com_65);
+    if_sethide(true, interface_1344:com_82);
+    if_settext("", interface_1344:com_75);
+    if_sethide(true, interface_1344:com_90);
+    if_sethide(true, interface_1344:com_99);
+    if_sethide(true, interface_1344:com_102);
 } else {
-    if_settext("Options", interface_1344:com_52);
-    if_sethide(false, interface_1344:com_3);
-    if (%varplayerbit_3561 = $int1) {
-        if_setop(1, "Unset Active", interface_1344:com_93);
-        if_settext("Unset Active Task", interface_1344:com_91);
+    if_settext("Options", interface_1344:com_81);
+    if_sethide(false, interface_1344:com_65);
+    if (%varplayerbit_3561 = $int7) {
+        if_setop(1, "Unset Active", interface_1344:com_69);
+        if_settext("Unset Active Task", interface_1344:com_72);
     } else {
-        if_setop(1, "Set Active", interface_1344:com_93);
-        if_settext("Set as Active Task", interface_1344:com_91);
+        if_setop(1, "Set Active", interface_1344:com_69);
+        if_settext("Set as Active Task", interface_1344:com_72);
     }
     if (struct_param($struct0, param_2700) = null & struct_param($struct0, param_2701) = -1) {
-        if_sethide(true, interface_1344:com_53);
+        if_sethide(true, interface_1344:com_82);
     } else {
-        if_sethide(false, interface_1344:com_53);
+        if_sethide(false, interface_1344:com_82);
         if (%varplayerbit_20797 = 1 & struct_param($struct0, param_2701) > 0) {
-            if_sethide(false, interface_1344:com_122);
-            if_sethide(true, interface_1344:com_125);
-            if_sethide(false, interface_1344:com_124);
-            if_sethide(false, interface_1344:com_123);
+            if_sethide(false, interface_1344:com_99);
+            if_sethide(true, interface_1344:com_101);
+            if_sethide(false, interface_1344:com_100);
+            if_sethide(false, interface_1344:com_102);
         } else {
-            if_sethide(true, interface_1344:com_122);
-            if_sethide(true, interface_1344:com_123);
+            if_sethide(true, interface_1344:com_99);
+            if_sethide(true, interface_1344:com_102);
         }
     }
-    if_settext("", interface_1344:com_46);
-    if_sethide(true, interface_1344:com_71);
+    if_settext("", interface_1344:com_75);
+    if_sethide(true, interface_1344:com_90);
 }
-def_int $int3 = calc(155 + $int2);
-if_setsize(0, calc($int2 + 5), ^setsize_minus, ^setsize_abs, interface_1344:com_2);
-if_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_top, interface_1344:com_0);
-def_int $int4 = 0;
-def_int $int5 = 4094;
-def_string $string0 = ~script9133($int1);
-if (compare($string0, "") ! 0) {
-    $int4 = ~script9180(1, $int4, $string0, interface_1344:com_54, interface_1344:com_70);
-} else {
-    if_settext("", interface_1344:com_54);
-}
-if (compare(struct_param($struct0, param_1274), "") ! 0) {
-    $int4 = ~script9180(1, $int4, struct_param($struct0, param_1274), interface_1344:com_55, interface_1344:com_70);
-} else {
-    if_settext("There are no hints available for this task. Good luck!", interface_1344:com_55);
-    if_sethide(false, interface_1344:com_55);
-    if_settextfont(graphic_17813, interface_1344:com_55);
-    if_settextalign(^settextalign_left, ^settextalign_centre, 12, interface_1344:com_55);
-    if_setposition(0, $int4, ^setpos_abs_left, ^setpos_abs_top, interface_1344:com_55);
-}
-if (compare(struct_param($struct0, param_1275), "") ! 0) {
-    $int4 = ~script9180(2, $int4, struct_param($struct0, param_1275), interface_1344:com_56, interface_1344:com_70);
+def_int $int9 = calc(155 + $int8);
+if_setsize(0, calc($int8 + 5), ^setsize_minus, ^setsize_abs, interface_1344:com_64);
+if_setposition(0, $int9, ^setpos_abs_centre, ^setpos_abs_top, interface_1344:com_52);
+def_int $int10 = 0;
+def_int $int11 = 4094;
+def_string $string1 = ~script9133($int7);
+if (compare($string1, "") ! 0) {
+    $int10 = ~script9180(1, $int10, $string1, interface_1344:com_56, interface_1344:com_55);
 } else {
     if_settext("", interface_1344:com_56);
 }
-if (compare(struct_param($struct0, param_1276), "") ! 0) {
-    $int4 = ~script9180(3, $int4, struct_param($struct0, param_1276), interface_1344:com_57, interface_1344:com_70);
+if (compare(struct_param($struct0, param_1274), "") ! 0) {
+    $int10 = ~script9180(1, $int10, struct_param($struct0, param_1274), interface_1344:com_57, interface_1344:com_55);
 } else {
-    if_settext("", interface_1344:com_57);
+    if_settext("There are no hints available for this task. Good luck!", interface_1344:com_57);
+    if_sethide(false, interface_1344:com_57);
+    if_settextfont(graphic_17813, interface_1344:com_57);
+    if_settextalign(^settextalign_left, ^settextalign_centre, 12, interface_1344:com_57);
+    if_setposition(0, $int10, ^setpos_abs_left, ^setpos_abs_top, interface_1344:com_57);
 }
-if (compare(struct_param($struct0, param_1277), "") ! 0) {
-    $int4 = ~script9180(4, $int4, struct_param($struct0, param_1277), interface_1344:com_58, interface_1344:com_70);
+if (compare(struct_param($struct0, param_1275), "") ! 0) {
+    $int10 = ~script9180(2, $int10, struct_param($struct0, param_1275), interface_1344:com_58, interface_1344:com_55);
 } else {
     if_settext("", interface_1344:com_58);
 }
-if (compare(struct_param($struct0, param_1278), "") ! 0) {
-    $int4 = ~script9180(5, $int4, struct_param($struct0, param_1278), interface_1344:com_59, interface_1344:com_70);
+if (compare(struct_param($struct0, param_1276), "") ! 0) {
+    $int10 = ~script9180(3, $int10, struct_param($struct0, param_1276), interface_1344:com_59, interface_1344:com_55);
 } else {
     if_settext("", interface_1344:com_59);
 }
-if (compare(struct_param($struct0, param_1279), "") ! 0) {
-    $int4 = ~script9180(6, $int4, struct_param($struct0, param_1279), interface_1344:com_60, interface_1344:com_70);
+if (compare(struct_param($struct0, param_1277), "") ! 0) {
+    $int10 = ~script9180(4, $int10, struct_param($struct0, param_1277), interface_1344:com_60, interface_1344:com_55);
 } else {
     if_settext("", interface_1344:com_60);
 }
-if (compare(struct_param($struct0, param_1280), "") ! 0) {
-    $int4 = ~script9180(7, $int4, struct_param($struct0, param_1280), interface_1344:com_61, interface_1344:com_70);
+if (compare(struct_param($struct0, param_1278), "") ! 0) {
+    $int10 = ~script9180(5, $int10, struct_param($struct0, param_1278), interface_1344:com_61, interface_1344:com_55);
 } else {
     if_settext("", interface_1344:com_61);
 }
-if_setsize(0, calc($int4 + 30), ^setsize_minus, ^setsize_abs, interface_1344:com_0);
-cc_deleteall(interface_1344:com_19);
-if_setscrollsize(0, calc($int3 + $int4 + 30), interface_1344:com_10);
-if_setscrollpos(0, 0, interface_1344:com_10);
-if (if_getscrollheight(interface_1344:com_10) > if_getheight(interface_1344:com_10)) {
-    ~rs3_scrollbar_vertical(interface_1344:com_19, interface_1344:com_10);
+if (compare(struct_param($struct0, param_1279), "") ! 0) {
+    $int10 = ~script9180(6, $int10, struct_param($struct0, param_1279), interface_1344:com_62, interface_1344:com_55);
+} else {
+    if_settext("", interface_1344:com_62);
+}
+if (compare(struct_param($struct0, param_1280), "") ! 0) {
+    $int10 = ~script9180(7, $int10, struct_param($struct0, param_1280), interface_1344:com_63, interface_1344:com_55);
+} else {
+    if_settext("", interface_1344:com_63);
+}
+if_setsize(0, calc($int10 + 30), ^setsize_minus, ^setsize_abs, interface_1344:com_52);
+cc_deleteall(interface_1344:com_114);
+if_setscrollsize(0, calc($int9 + $int10 + 30), interface_1344:com_51);
+if_setscrollpos(0, 0, interface_1344:com_51);
+if (if_getscrollheight(interface_1344:com_51) > if_getheight(interface_1344:com_51)) {
+    ~rs3_scrollbar_vertical(interface_1344:com_114, interface_1344:com_51);
 }

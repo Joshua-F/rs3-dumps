@@ -1,0 +1,47 @@
+// 11461
+[proc,script11461](component $component0, int $int1, int $int2)
+if ($int2 = 0 | %varclient_4827 = null | %varclient_4828 = -1) {
+    if_sethide(true, interface_1626:com_24);
+    return;
+}
+if ($int1 = -1) {
+    switch_component ($component0) {
+        case interface_1626:com_15 :
+            if (%varclient_4827 = interface_1626:com_16) {
+                return;
+            }
+            $int1 = calc(if_getnextsubid($component0) - 1);
+        case interface_1626:com_51 :
+            if (%varclient_4827 = interface_1626:com_15) {
+                return;
+            }
+            $int1 = calc(if_getnextsubid($component0) - 1);
+        case interface_1626:com_3 :
+            if (%varclient_4827 = interface_1626:com_3) {
+                return;
+            }
+            $int1 = calc(if_getnextsubid($component0) - 1);
+    }
+}
+if (cc_find($component0, $int1) = true) {
+    if_setsize(calc(cc_getwidth + 2), calc(cc_getheight + 2), ^setsize_abs, ^setsize_abs, interface_1626:com_24);
+    if_setposition(calc(~script1743 - 1), calc(~script1744 - 1), ^setpos_abs_left, ^setpos_abs_top, interface_1626:com_24);
+    if_sethide(false, interface_1626:com_24);
+    switch_component ($component0) {
+        case interface_1626:com_16, interface_1626:com_52, interface_1626:com_4, interface_1626:com_56 :
+            if_sethide(true, interface_1626:com_88);
+            if_sethide(true, interface_1626:com_91);
+        case interface_1626:com_15, interface_1626:com_51, interface_1626:com_3, interface_1626:com_55 :
+            if ($component0 = interface_1626:com_15 & $int1 = %varplayerbit_28114 | %varclient_4828 < $int1 & %varclient_4827 ! ~script11462($component0)) {
+                if_sethide(true, interface_1626:com_88);
+                if_sethide(false, interface_1626:com_91);
+            } else {
+                if_sethide(false, interface_1626:com_88);
+                if_sethide(true, interface_1626:com_91);
+            }
+        case default :
+            if_sethide(true, interface_1626:com_24);
+    }
+} else {
+    if_sethide(true, interface_1626:com_24);
+}

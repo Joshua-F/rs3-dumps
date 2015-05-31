@@ -1,0 +1,83 @@
+// 11464
+[proc,script11464]
+if (%varplayerbit_28118 = 2 & %varplayerbit_1675 = 1) {
+    if_setonmouserepeat(null, interface_1626:com_41);
+    if_settext("Saved item value:<br>0", interface_1626:com_39);
+    if_settext("Sacrificed item value:<br>0", interface_1626:com_40);
+    if_settext("Total cost to save:<br>0", interface_1626:com_41);
+    ~death_build_deathkeep;
+    return;
+}
+def_int $int0 = %varplayerbit_28114;
+def_int $int1 = inv_size(inv_676);
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_obj $obj12 = null;
+def_string $string0 = "";
+while ($int0 < $int1) {
+    if ($int0 >= %varplayerbit_28114) {
+        $int5 = ~script11472($int0);
+        if ($int5 > 0) {
+            if ($int0 < %varplayerbit_28115) {
+                $obj12 = inv_getobj(inv_676, $int0);
+                $int6, $int8, $int9 = ~script11467($obj12, $int5, inv_getnum(inv_676, $int0), 2);
+                if ($int8 = 1) {
+                    $int7 = calc($int7 + $int9);
+                }
+                $int2 = calc($int2 + $int6);
+            } else if ($int0 < %varplayerbit_28116) {
+                $int3 = calc($int3 + ~script11466(inv_getobj(inv_676, $int0), $int5, inv_getnum(inv_676, $int0), 3));
+            }
+        }
+    }
+    $int0 = calc($int0 + 1);
+}
+switch_int (%varplayerbit_1669) {
+    case 1, 2 :
+        $int10 = 1;
+    case 3 :
+        $int10 = 2;
+    case 4, 5, 6, 7, 8, 9, 10, 11 :
+        $int10 = 3;
+    case 12 :
+        $int10 = 4;
+    case 13 :
+        $int10 = 5;
+}
+$int4 = calc($int2 - $int3);
+if ($int7 > 0 & $int4 > 0) {
+    $int4 = calc($int4 - $int7);
+}
+if ($int10 > 0 & $int4 > 0) {
+    $int11 = max(0, scale($int4, 100, $int10));
+    $int4 = calc($int4 - $int11);
+}
+$int4 = max(0, $int4);
+$string0 = "<~tostring_spacer_local($int2)> cost to save the selected items.";
+$string0 = append($string0, "<br><~tostring_spacer_local($int3)> reduced by sacrificing items.");
+if ($int7 > 0) {
+    $string0 = append($string0, "<br><col=00ff00><~tostring_spacer_local($int7)> saved by Death's Deal.");
+}
+if ($int11 > 0) {
+    $string0 = append($string0, "<br><col=00ff00><~tostring_spacer_local($int11)> saved by your gravestone.</col>");
+}
+if ($int4 <= 0) {
+    $string0 = append($string0, "<br><br><col=00ff00><~tostring_spacer_local($int4)> to pay.</col>");
+} else {
+    $string0 = append($string0, "<br><br><~tostring_spacer_local($int4)> to pay.");
+}
+if_setonmouserepeat("script8799($string0, interface_1626:com_41, -1)", interface_1626:com_41);
+if_settext("Saved item value:<br><~tostring_spacer_local($int2)>", interface_1626:com_39);
+if_settext("Sacrificed item value:<br><~tostring_spacer_local($int3)>", interface_1626:com_40);
+if_settext("Total cost to save:<br><~tostring_spacer_local($int4)>", interface_1626:com_41);
+if (%varplayerbit_28118 = 2) {
+    ~death_build_deathkeep;
+}

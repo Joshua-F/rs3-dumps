@@ -1,6 +1,9 @@
 // 6937
 [proc,grave_generate_proc]
-~script6938;
+if_setscrollsize(if_getheight(interface_636:com_7), if_getwidth(interface_636:com_7), interface_636:com_7);
+cc_deleteall(interface_636:com_0);
+cc_deleteall(interface_636:com_8);
+cc_deleteall(interface_636:com_9);
 def_int $int0 = 0;
 def_int $int1 = 0;
 def_obj $obj2 = null;
@@ -12,7 +15,7 @@ def_int $int7 = 0;
 while ($int0 < 47) {
     $obj2 = inv_getobj(inv_676, $int0);
     $int3 = inv_getnum(inv_676, $int0);
-    cc_create(interface_636:com_3, ^iftype_graphic, $int0);
+    cc_create(interface_636:com_8, ^iftype_graphic, $int0);
     if ($obj2 ! null & $int3 > 0) {
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setobject($obj2, $int3);
@@ -21,8 +24,18 @@ while ($int0 < 47) {
         $int6 = calc($int5 * 40 + 2);
         $int7 = calc($int4 * 40 + 4);
         cc_setposition($int6, $int7, ^setpos_abs_left, ^setpos_abs_top);
-        cc_setop(1, "Take");
+        cc_setop(1, "Protect");
+        cc_setop(2, "Examine");
         cc_setopbase(oc_name($obj2));
+        cc_setonmouserepeat("grave_item_tooltip($obj2, $int0)");
+        if ($int0 < %varplayerbit_28114) {
+            cc_setop(1, "Deprotect");
+            cc_create(interface_636:com_0, ^iftype_rectangle, $int0);
+            cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+            cc_setposition($int6, $int7, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setfill(false);
+            ~script11024(0x00000a);
+        }
         $int1 = calc($int1 + 1);
     } else {
         cc_sethide(true);
@@ -30,9 +43,9 @@ while ($int0 < 47) {
     $int0 = calc($int0 + 1);
 }
 def_int $int8 = calc(($int1 / 4 + 1) * 40);
-if ($int8 < if_getheight(interface_636:com_3)) {
-    $int8 = if_getheight(interface_636:com_3);
+if ($int8 < if_getheight(interface_636:com_7)) {
+    $int8 = if_getheight(interface_636:com_7);
 }
-if_setscrollsize(0, $int8, interface_636:com_3);
-if_setscrollpos(0, 0, interface_636:com_3);
-~scrollbar_vertical(interface_636:com_8, interface_636:com_3, "task_scrollbar_dragger,3", "task_scrollbar_dragger,0", "task_scrollbar_dragger,1", "task_scrollbar_dragger,2", "task_scrollbar,1", "task_scrollbar,0");
+if_setscrollsize(0, $int8, interface_636:com_7);
+if_setscrollpos(0, 0, interface_636:com_7);
+~scrollbar_vertical(interface_636:com_9, interface_636:com_7, "task_scrollbar_dragger,3", "task_scrollbar_dragger,0", "task_scrollbar_dragger,1", "task_scrollbar_dragger,2", "task_scrollbar,1", "task_scrollbar,0");
