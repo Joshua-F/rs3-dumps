@@ -8,7 +8,7 @@ if ($int0 = 1) {
 } else {
     %varclient_3496 = false;
 }
-if (has_signonkey = false & (string_length(%varclient_2576) = 0 | string_length(%varclient_2577) = 0)) {
+if (string_length(%varclient_2576) = 0 | string_length(%varclient_2577) = 0) {
     ~login_open(11);
     return;
 }
@@ -20,10 +20,6 @@ def_int $int4 = 0;
 %varclient_201 = 0;
 def_int $int5 = 39059527;
 def_component $component6 = interface_596:com_67;
-if (has_signonkey = true) {
-    $int5 = 63897626;
-    $component6 = interface_975:com_21;
-}
 if_setonclick(null, $component6);
 ~login_popup(-3, 0, "Logging In - Please Wait", 1, null, 0, -1, "", 0, "");
 %varclient_1100 = -3;
@@ -32,15 +28,7 @@ if (%varclient_3681 = 1 & string_length(%varclient_2576) ! 0) {
 }
 def_string $string0 = %varclient_2576;
 def_string $string1 = %varclient_2577;
-if (has_signonkey = true) {
-    $string0 = "";
-    $string1 = "";
-}
 lobby_enterlobby($string0, $string1, %varclient_4192, %varclient_4193);
 %varclient_4192 = "";
-if (has_signonkey = true) {
-    if_setontimer("login_reply(0)", interface_975:com_3);
-} else {
-    if_setontimer("login_reply(0)", interface_596:com_125);
-}
+if_setontimer("login_reply(0)", interface_596:com_125);
 if_setontimer(null, interface_744:com_210);
