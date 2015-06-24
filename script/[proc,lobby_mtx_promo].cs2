@@ -7,61 +7,77 @@ def_string $string0 = "mtxn_rs_shop";
 def_string $string1 = "index";
 def_string $string2 = "index";
 def_int $int5 = -1;
-if (date_runeday <= 4778) {
+if (date_runeday <= 4862) {
     $int5 = 0;
 }
+def_int $int6 = 0;
 if ($int4 = 0) {
     switch_int ($int5) {
         case -1 :
             if_setgraphic(rs3_lobby_secondary_mtx_default_promotion, $component0);
         case 0 :
-            if_setgraphic(graphic_25092, $component0);
+            switch_int (map_lang) {
+                case 0 :
+                    if_setgraphic(graphic_25233, $component0);
+                    $string1 = "index#category/SolomonsSale";
+                    $string2 = "index#category/SolomonsSale";
+                    $int6 = 1;
+                case 1 :
+                    if_setgraphic(rs3_lobby_secondary_mtx_default_promotion, $component0);
+                case 2 :
+                    if_setgraphic(rs3_lobby_secondary_mtx_default_promotion, $component0);
+                case 3 :
+                    if_setgraphic(rs3_lobby_secondary_mtx_default_promotion, $component0);
+            }
     }
 }
 if_setonop("script10029($string0, $string1, $string2, true)", $component0);
 if_setonclick("script10052", $component0);
 cc_deleteall($component2);
-def_int $int6 = 0;
-def_int $int7 = if_getwidth($component2);
-def_int $int8 = 50;
+if ($int6 = 1) {
+    return;
+}
+def_int $int7 = 0;
+def_int $int8 = if_getwidth($component2);
+def_int $int9 = 50;
 def_string $string3 = "";
-~script10047($component2, $int6);
-$int6 = calc($int6 + 1);
+~script10047($component2, $int7);
+$int7 = calc($int7 + 1);
 $string3 = "Loyalty Points";
-cc_create($component2, ^iftype_text, $int6);
+cc_create($component2, ^iftype_text, $int7);
 if (%varclient_4660 > -1) {
     cc_settext(tostring(%varclient_4660));
 }
 cc_setonvarctransmit("script10050(event_com, event_comsubid, 2){varclient_4660}");
-cc_setposition($int8, 0, ^setpos_abs_left, ^setpos_abs_bottom);
-cc_setsize(calc($int7 / 2 - $int8), 32, ^setsize_abs, ^setsize_abs);
+cc_setposition($int9, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+cc_setsize(calc($int8 / 2 - $int9), 32, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_settextfont(graphic_17814);
 cc_setcolour(^white);
 cc_settextshadow(true);
-$int6 = calc($int6 + 1);
-.cc_create($component2, ^iftype_graphic, $int6);
+$int7 = calc($int7 + 1);
+.cc_create($component2, ^iftype_graphic, $int7);
 .cc_setgraphic(rs3_icon_general_store_loyalty);
 .cc_setsize(34, 35, ^setsize_abs, ^setsize_abs);
 .cc_setposition(calc(cc_getx - 20 - .cc_getwidth / 2), -1, ^setpos_abs_left, ^setpos_abs_bottom);
-$int6 = calc($int6 + 1);
+$int7 = calc($int7 + 1);
 .cc_setonmouserepeat("script8799($string3, event_com, event_comsubid)");
 $string3 = "RuneCoins";
-cc_create($component2, ^iftype_text, $int6);
+cc_create($component2, ^iftype_text, $int7);
 if (%varclient_4659 > -1) {
     cc_settext(tostring(%varclient_4659));
 }
 cc_setonvarctransmit("script10050(event_com, event_comsubid, 3){varclient_4659}");
-cc_setposition(calc($int7 / 2 + $int8), 0, ^setpos_abs_left, ^setpos_abs_bottom);
-cc_setsize(calc($int7 / 2 - $int8), 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int8 / 2 + $int9), 0, ^setpos_abs_left, ^setpos_abs_bottom);
+cc_setsize(calc($int8 / 2 - $int9), 32, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_settextfont(graphic_17814);
 cc_setcolour(^white);
 cc_settextshadow(true);
-$int6 = calc($int6 + 1);
-.cc_create($component2, ^iftype_graphic, $int6);
+$int7 = calc($int7 + 1);
+.cc_create($component2, ^iftype_graphic, $int7);
 .cc_setgraphic(rs3_icon_general_store_runecoin);
 .cc_setsize(34, 35, ^setsize_abs, ^setsize_abs);
 .cc_setposition(calc(cc_getx - 20 - .cc_getwidth / 2), -1, ^setpos_abs_left, ^setpos_abs_bottom);
-$int6 = calc($int6 + 1);
+$int7 = calc($int7 + 1);
 .cc_setonmouserepeat("script8799($string3, event_com, event_comsubid)");

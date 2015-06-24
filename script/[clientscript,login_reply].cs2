@@ -4,11 +4,6 @@ def_int $int1 = ~login_getreply;
 def_component $component2 = interface_596:com_71;
 def_component $component3 = interface_596:com_67;
 def_component $component4 = interface_596:com_125;
-if (has_signonkey = true) {
-    $component2 = interface_975:com_26;
-    $component3 = interface_975:com_21;
-    $component4 = interface_975:com_3;
-}
 if ($int1 = 49) {
     if (%varclient_1100 ! 49) {
         ~script9804;
@@ -130,17 +125,9 @@ if ($int1 = 1) {
     return;
 }
 ~login_popup_close;
-if (has_signonkey = true) {
-    if_settext("Play Game", $component2);
-} else {
-    if_settext("Login", $component2);
-}
+if_settext("Login", $component2);
 if_setonclick("login_dologin", $component3);
-if (has_signonkey = true) {
-    if_setontimer(null, interface_975:com_3);
-} else {
-    if_setontimer(null, interface_596:com_125);
-}
+if_setontimer(null, interface_596:com_125);
 def_string $string2 = "";
 def_int $int7 = 1;
 def_int $int8 = 0;
@@ -157,11 +144,7 @@ def_int $int16 = 0;
 switch_int ($int1) {
     case -2 :
         ~login_popup_close;
-        if (has_signonkey = true) {
-            return;
-        } else {
-            ~login_open(11);
-        }
+        ~login_open(11);
         return;
     case 29 :
         switch_int (login_disallowresult) {

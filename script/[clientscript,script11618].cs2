@@ -1,0 +1,23 @@
+// 11618
+[clientscript,script11618]
+def_int $int0 = 1;
+def_int $int1 = 0;
+def_int $int2 = 0;
+while ($int0 < 16) {
+    if (inv_total(inv_93, enum(int, obj, enum_3622, $int0)) > 0) {
+        $int2 = $int0;
+        $int1 = calc($int1 + 1);
+    }
+    $int0 = calc($int0 + 1);
+}
+def_obj $obj3 = enum(int, obj, enum_3622, $int2);
+cc_deleteall(interface_1640:com_47);
+if_clearops(interface_1640:com_47);
+switch_int ($int1) {
+    case 0 :
+        ~script10447(interface_1640:com_46, "No ingots available.", "When you have multiple types of ingot in your inventory which can be used for burial armour you will be able to select them from this menu.", 0, 0, if_getwidth(interface_1640:com_46), 1);
+    case 1 :
+        ~script10447(interface_1640:com_46, oc_name($obj3), "When you have multiple types of ingot in your inventory which can be used for burial armour you will be able to select them from this menu.", 0, 0, if_getwidth(interface_1640:com_46), 0);
+    case default :
+        ~script10428(interface_1640:com_46, interface_1640:com_47, enum_10123, -1, "Select the type of ingot to use.", %varplayerbit_28417, 0);
+}

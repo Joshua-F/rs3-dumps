@@ -1,5 +1,8 @@
 // 11206
 [clientscript,script11206](component $component0, component $component1)
+if ($component0 = null | $component1 = null) {
+    return;
+}
 def_int $int2 = if_getmodelxof($component1);
 def_int $int3 = if_getmodelyof($component1);
 def_int $int4 = if_getmodelangle_x($component1);
@@ -8,12 +11,12 @@ def_int $int6 = if_getmodelangle_z($component1);
 def_int $int7 = if_getmodelzoom($component1);
 def_obj $obj8 = enum(int, obj, %varclient_4748, ~script11209($component0));
 def_int $int9 = oc_param($obj8, param_4915);
-if ($int9 = 0) {
-    $int5 = calc(($int5 + 5) % 2047);
-} else if ($int9 = 1) {
-    $int4 = calc(($int4 + 5) % 2047);
-} else if ($int9 = 2) {
-    $int6 = calc(($int6 + 5) % 2047);
+switch_int ($int9) {
+    case 0 :
+        $int5 = calc(($int5 + 5) % 2047);
+    case 1 :
+        $int4 = calc(($int4 + 5) % 2047);
+    case 2 :
+        $int6 = calc(($int6 + 5) % 2047);
 }
 if_setmodelangle($int2, $int3, $int4, $int5, $int6, $int7, $component1);
-return;
