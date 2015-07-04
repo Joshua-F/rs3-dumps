@@ -1,0 +1,29 @@
+// 11663
+[proc,script11663]
+def_component $component0 = interface_1562:com_32;
+def_component $component1 = interface_1562:com_43;
+def_component $component2 = interface_1562:com_44;
+def_component $component3 = interface_1562:com_15;
+def_component $component4 = interface_1562:com_16;
+def_component $component5 = interface_1562:com_45;
+def_component $component6 = interface_1562:com_18;
+cc_deleteall($component2);
+def_int $int7 = -1;
+def_int $int8 = calc(%varclient_4968 + %varclient_4969);
+if ($int7 ! -1) {
+    ~script10812($component2, $component6, rs3_icon_bonds_tradeable, rs3_icon_bonds_untradeable, 34, 35, "Bonds", $int7, $int8);
+    if_sethide(true, $component5);
+    if ($int8 < $int7) {
+        if_sethide(false, $component4);
+        if_sethide(true, $component3);
+    } else {
+        if_sethide(true, $component4);
+        if_sethide(false, $component3);
+    }
+    ~rs3_background_panel($component1, struct_21361);
+    if_sethide(false, $component0);
+    if_setonvarctransmit("script11662{varclient_4968, varclient_4969}", $component0);
+} else {
+    if_sethide(true, $component0);
+    if_setonvarctransmit(null, $component0);
+}

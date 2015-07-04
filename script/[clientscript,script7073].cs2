@@ -51,9 +51,10 @@ def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 1;
 def_string $string0 = "";
+def_string $string1 = "";
 def_obj $obj12 = null;
 def_graphic $graphic13 = null;
-while ($int5 < 150 & $int8 < 12) {
+while ($int5 < 151 & $int8 < 12) {
     $int10 = 0;
     $int3 = 0;
     $int6 = 0;
@@ -1027,6 +1028,26 @@ while ($int5 < 150 & $int8 < 12) {
                 $struct7 = struct_31332;
                 $int3 = %varclient_4793;
             }
+        case 150 :
+            if (%varplayerbit_28482 > 0) {
+                $int9 = 1;
+                $int6 = 1;
+                $struct7 = struct_31901;
+                $int3 = %varclient_4970;
+                if (%varplayerbit_28446 > 0) {
+                    $string1 = " - <tostring(calc(%varplayerbit_28446 * 2))>% Combat XP Boost";
+                    $obj12 = obj_35051;
+                } else if (%varplayerbit_28447 > 0) {
+                    $string1 = " - <tostring(calc(%varplayerbit_28447 * 2))>% Artisan XP Boost";
+                    $obj12 = obj_35052;
+                } else if (%varplayerbit_28448 > 0) {
+                    $string1 = " - <tostring(calc(%varplayerbit_28448 * 2))>% Gatherer XP Boost";
+                    $obj12 = obj_35053;
+                } else if (%varplayerbit_28449 > 0) {
+                    $string1 = " - <tostring(calc(%varplayerbit_28449 * 2))>% Support XP Boost";
+                    $obj12 = obj_35054;
+                }
+            }
     }
     if ($int6 = 1) {
         $component0, $component1, $component2 = ~script7072;
@@ -1052,8 +1073,12 @@ while ($int5 < 150 & $int8 < 12) {
             }
         }
         if_sethide(false, $component0);
-        $graphic13 = struct_param($struct7, param_2802);
-        $obj12 = struct_param($struct7, param_4677);
+        if ($graphic13 = null) {
+            $graphic13 = struct_param($struct7, param_2802);
+        }
+        if ($obj12 = null) {
+            $obj12 = struct_param($struct7, param_4677);
+        }
         if ($graphic13 ! null) {
             if_setgraphic($graphic13, $component0);
         } else if ($obj12 ! null) {
@@ -1062,6 +1087,9 @@ while ($int5 < 150 & $int8 < 12) {
         $string0 = struct_param($struct7, param_2794);
         if (compare(struct_param($struct7, param_2795), "") ! 0) {
             $string0 = append($string0, "<br><struct_param($struct7, param_2795)>");
+        }
+        if (compare($string1, "") ! 0) {
+            $string0 = append($string0, $string1);
         }
         if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component0);
         if ($struct7 = struct_14718 & %varplayerbit_1898 > 0) {
@@ -1088,5 +1116,7 @@ while ($int5 < 150 & $int8 < 12) {
         }
         $int8 = calc($int8 + 1);
     }
+    $graphic13 = null;
+    $obj12 = null;
     $int5 = calc($int5 + 1);
 }
