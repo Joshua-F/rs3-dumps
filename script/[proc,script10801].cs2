@@ -1,12 +1,12 @@
 // 10801
 [proc,script10801]
-~script10804;
+~script11661(%varplayer_5739, 0);
 def_component $component0 = interface_1562:com_2;
 def_component $component1 = interface_1562:com_0;
 def_component $component2 = interface_1562:com_1;
 ~script10809;
 ~script10810;
-if_sethide(true, interface_1562:com_29);
+~script11663;
 ~script10811;
 cc_deleteall($component0);
 cc_deleteall($component1);
@@ -28,7 +28,7 @@ cc_settextfont($fontmetrics8);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
 cc_setcolour(~script10495(0x00000a));
-cc_settext(struct_param($struct3, param_2533));
+cc_settext(~script11659($struct3, 0));
 cc_setsize(calc($int5 * 2), ~script7593(cc_gettext, $int7, cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
 $int6 = calc($int6 + cc_getheight + $int5);
 $int4 = calc($int4 + 1);
@@ -75,6 +75,7 @@ if ($enum13 = null) {
     $struct15 = enum(int, struct, $enum13, $int14);
 }
 def_int $int24 = 0;
+def_struct $struct25 = null;
 while ($struct15 ! null) {
     $int12 = -1;
     $enum16 = struct_param($struct15, param_2542);
@@ -91,7 +92,16 @@ while ($struct15 ! null) {
             $int12 = calc($int12 + 1);
         }
     } else {
-        $int4, $int6 = ~script11369($struct15, $component1, $int4, $int6, enum(int, graphic, enum_9996, struct_param($struct15, param_2531)));
+        $struct25 = struct_param($struct15, param_5153);
+        if ($struct25 ! null) {
+            if (struct_param($struct25, param_2531) ! 2 | struct_param($struct25, param_2532) >= 19) {
+                $int4, $int6 = ~script11369($struct15, $component1, $int4, $int6, enum(int, graphic, enum_9996, struct_param($struct25, param_2531)));
+            } else {
+                $int4, $int6 = ~script11369($struct15, $component1, $int4, $int6, enum(int, graphic, enum_9995, struct_param($struct25, param_2532)));
+            }
+        } else {
+            $int4, $int6 = ~script11369($struct15, $component1, $int4, $int6, enum(int, graphic, enum_9996, struct_param($struct15, param_2531)));
+        }
     }
     if ($enum13 = null) {
         $struct15 = null;
@@ -100,16 +110,16 @@ while ($struct15 ! null) {
         $struct15 = enum(int, struct, $enum13, $int14);
     }
 }
-def_int $int25 = 0;
+def_int $int26 = 0;
 if ($int6 < if_getheight($component1)) {
     if_setscrollsize(0, 0, $component1);
-    $int25 = calc($int4 / 3);
+    $int26 = calc($int4 / 3);
     while ($int6 < if_getheight($component1)) {
-        $int25 = calc($int25 + 1);
+        $int26 = calc($int26 + 1);
         .cc_create($component1, ^iftype_rectangle, $int4);
         .cc_setposition(0, $int6, ^setpos_abs_left, ^setpos_abs_top);
         .cc_setsize(0, max($int21, $int22), ^setsize_minus, ^setsize_abs);
-        if (calc($int25 % 2) = 1) {
+        if (calc($int26 % 2) = 1) {
             .cc_setcolour($rgb19);
         } else {
             .cc_setcolour($rgb20);
@@ -135,8 +145,8 @@ if ($int24 = 0) {
     $string0 = "This package contains the items listed below. Please note that the package may be subject to restrictions. For detailed information <$string0>visit Solomon's Store</u></col>.";
     $string1 = "This package contains the items listed below. Please note that the package may be subject to restrictions. For detailed information <$string1>visit Solomon's Store</u></col>.";
 } else {
-    $string0 = "This package contains the items listed below. Please note that the package may be subject to restrictions and it may contain additional items such as titles, emotes, etc. For detailed information <$string0>visit Solomon's Store</u></col>.";
-    $string1 = "This package contains the items listed below. Please note that the package may be subject to restrictions and it may contain additional items such as titles, emotes, etc. For detailed information <$string1>visit Solomon's Store</u></col>.";
+    $string0 = "This package contains the items listed below. Please note that the package may be subject to restrictions and it may contain additional items such as emotes, etc. For detailed information <$string0>visit Solomon's Store</u></col>.";
+    $string1 = "This package contains the items listed below. Please note that the package may be subject to restrictions and it may contain additional items such as emotes, etc. For detailed information <$string1>visit Solomon's Store</u></col>.";
 }
 def_string $string2 = "Contents:";
 if (cc_find($component0, $int10) = true & .cc_find($component0, $int11) = true) {
