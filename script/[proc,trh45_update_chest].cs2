@@ -1,40 +1,51 @@
 // 10992
-[proc,trh45_update_chest](int $int0, obj $obj1, int $int2)
-if (%varplayerbit_26873 < 5) {
+[proc,trh45_update_chest](int $int0, obj $obj1, int $int2, int $int3)
+if ($int3 < 5) {
     if_sethide(true, interface_1585:com_15);
     return;
 }
-def_obj $obj3 = null;
-def_int $int4 = -1;
+def_obj $obj4 = null;
 def_int $int5 = -1;
-def_int $int6 = 0;
+def_int $int6 = -1;
+def_int $int7 = 0;
 def_string $string0 = "";
-def_component $component7 = interface_1253:com_706;
-def_component $component8 = interface_1585:com_3;
-def_component $component9 = interface_1585:com_35;
-def_component $component10 = interface_1585:com_4;
-def_component $component11 = interface_1585:com_36;
-$obj3, $int4, $int5 = ~script9712($int0);
+def_component $component8 = interface_1253:com_706;
+def_component $component9 = interface_1585:com_3;
+def_component $component10 = interface_1585:com_35;
+def_component $component11 = interface_1585:com_4;
+def_component $component12 = interface_1585:com_36;
+$obj4, $int5, $int6 = ~script9712($int0);
 $string0 = ~script9674($int0);
-$int6 = ~script9675($int0);
+$int7 = ~script9675($int0);
 if ($obj1 = null) {
-    $obj1 = $obj3;
-    $int2 = $int4;
+    $obj1 = $obj4;
+    $int2 = $int5;
 }
+if_sethide(true, interface_1585:com_33);
+if_sethide(false, interface_1585:com_32);
 if_sethide(false, interface_1585:com_1);
 if_sethide(false, interface_1585:com_0);
-if_setobject($obj3, $int4, $component8);
-if_setobject($obj1, $int2, $component9);
-if_setgraphic(~script9718($int5), interface_1585:com_2);
-if_setgraphic(~script9718($int5), interface_1585:com_34);
-if (~script9681($int0) = true) {
-    if_sethide(false, $component10);
-    if_sethide(false, $component11);
+if_setobject($obj4, $int5, $component9);
+if_setobject($obj1, $int2, $component10);
+if ($int0 >= 33) {
+    if_setgraphic(~script11746($int6), interface_1585:com_2);
+    if_setgraphic(~script11746($int6), interface_1585:com_34);
 } else {
-    if_sethide(true, $component10);
-    if_sethide(true, $component11);
+    if_setgraphic(~script9718($int6), interface_1585:com_2);
+    if_setgraphic(~script9718($int6), interface_1585:com_34);
 }
-if_setonmouserepeat("wof_item_tooltip($component7, interface_1585:com_1, -1, $obj3, $int4, $int5, $string0, $int0, $int6, event_mousex, event_mousey)", $component8);
-if_setonmouserepeat("wof_item_tooltip($component7, interface_1585:com_0, -1, $obj1, $int2, $int5, $string0, $int0, $int6, event_mousex, event_mousey)", $component9);
-if_setonmouseleave("script3914", $component8);
+if (~script9681($int0) = true) {
+    if_sethide(false, $component11);
+    if_sethide(false, $component12);
+} else {
+    if_sethide(true, $component11);
+    if_sethide(true, $component12);
+}
+if_setonmouserepeat("wof_item_tooltip($component8, interface_1585:com_1, -1, $obj4, $int5, $int6, $string0, $int0, $int7, event_mousex, event_mousey)", $component9);
+if ($obj1 = obj_995) {
+    $string0 = "Lovely money!";
+}
+if_setonmouserepeat("wof_item_tooltip($component8, interface_1585:com_0, -1, $obj1, $int2, $int6, $string0, $int0, $int7, event_mousex, event_mousey)", $component10);
 if_setonmouseleave("script3914", $component9);
+if_setonmouseleave("script3914", $component10);
+if_setonvarcstrtransmit("trh45_update_chest($int0, $obj1, $int2, $int3){varclient_3947}", $component9);

@@ -8,7 +8,7 @@ if (if_gethide($component3) = true) {
 }
 switch_int ($key0) {
     case ^key_return :
-        if (%varclient_2236 = 8) {
+        if (%varclient_2236 = 8 | %varclient_2236 = 10) {
             return;
         }
         if (string_length(%varclient_2250) > 0) {
@@ -31,15 +31,17 @@ switch_int ($key0) {
         %varclient_1029 = ~script1553($key0, %varclient_1029, %varclient_2250);
     case default :
         $char1 = ~script10523($component3, $char1);
-        if (%varclient_2236 = 7) {
-            %varclient_2250, %varclient_1029 = ~script7170(%varclient_1029, %varclient_2250, 6, $key0, $char1, %varclient_2237);
-        }
-        if (%varclient_2236 = 8) {
-            %varclient_2250, %varclient_1029 = ~script7170(%varclient_1029, %varclient_2250, 0, $key0, $char1, %varclient_2237);
-        }
-        if (%varclient_2236 = 9) {
-            %varclient_2250, %varclient_1029 = ~script7170(%varclient_1029, %varclient_2250, 8, $key0, $char1, %varclient_2237);
+        switch_int (%varclient_2236) {
+            case 7 :
+                %varclient_2250, %varclient_1029 = ~script7170(%varclient_1029, %varclient_2250, 6, $key0, $char1, %varclient_2237);
+            case 8, 10 :
+                %varclient_2250, %varclient_1029 = ~script7170(%varclient_1029, %varclient_2250, 0, $key0, $char1, %varclient_2237);
+            case 9 :
+                %varclient_2250, %varclient_1029 = ~script7170(%varclient_1029, %varclient_2250, 8, $key0, $char1, %varclient_2237);
         }
 }
 if_settext(escape(%varclient_2250), $component3);
 ~script7213($component3, $component4);
+if (%varclient_2236 = 10) {
+    ~script11698($component3);
+}

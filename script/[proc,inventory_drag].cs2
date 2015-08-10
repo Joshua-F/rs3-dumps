@@ -1,28 +1,34 @@
 // 3902
 [proc,inventory_drag](component $component0, int $int1, component $component2, int $int3)
 ~script3843;
-if ($component0 ! interface_1473:com_34 & $component0 ! interface_1474:com_15 & $component0 ! interface_762:com_7) {
+if ($component0 ! interface_1473:com_34 & $component0 ! interface_1474:com_15 & $component0 ! interface_762:com_10) {
     return;
 }
 if (~script7980($component2) ! -1) {
     ~script7002($component0, $int1, $component2);
     return;
 }
-def_obj $obj4 = null;
-def_int $int5 = 0;
+def_inv $inv4 = inv_93;
+if (%varclient_4619 > 0 & %varplayerbit_28627 = 1) {
+    $inv4 = inv_530;
+}
+def_obj $obj5 = null;
+def_int $int6 = 0;
 switch_component ($component2) {
     case interface_1473:com_34, interface_1474:com_15 :
         if (cc_find($component0, $int1) = true & .cc_find($component2, $int3) = true) {
-            $obj4, $int5 = cc_getinvobject, cc_getinvcount;
+            $obj5, $int6 = cc_getinvobject, cc_getinvcount;
             ~script9230(.cc_getinvobject, .cc_getinvcount);
             if (cc_find($component2, $int3) = true) {
-                ~script9230($obj4, $int5);
+                ~script9230($obj5, $int6);
             }
         }
-    case interface_1464:com_15, interface_1462:com_14, interface_1464:com_12, interface_1462:com_17, interface_762:com_132, interface_762:com_325 :
-        if (cc_find($component0, $int1) = true & ($component0 ! interface_762:com_7 | ~script3779(1, cc_getinvobject) = true)) {
-            ~wearobj(cc_getinvobject, inv_93, $int1, $component2, $component0);
+    case interface_662:com_160 :
+        ~script11679(inv_93, $component0, $int1, inv_530, $component2, $int3);
+    case interface_1464:com_15, interface_1462:com_14, interface_1464:com_12, interface_1462:com_17, interface_762:com_135, interface_762:com_328 :
+        if (cc_find($component0, $int1) = true & ($component0 ! interface_762:com_10 | ~script3779(1, cc_getinvobject) = true)) {
+            ~wearobj(cc_getinvobject, $inv4, $int1, $component2, $component0);
         }
     case default :
-        ~script3839($component2, $int3, $component0, $int1, inv_93);
+        ~script3839($component2, $int3, $component0, $int1, $inv4);
 }

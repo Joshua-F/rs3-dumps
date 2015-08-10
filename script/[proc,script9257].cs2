@@ -1,28 +1,42 @@
 // 9257
-[proc,script9257](obj $obj0, int $int1)(boolean)
+[proc,script9257](obj $obj0)(boolean)
 if (%varplayer_1784 = null) {
     return(true);
 }
 switch_npc (%varplayer_1784) {
     case npc_6818, npc_6819, npc_6820, npc_6821, npc_7349, npc_7350 :
         if ($obj0 ! obj_1436 & $obj0 ! obj_7936) {
-            if ($int1 = 1) {
-                mes("This familiar can only carry blank and pure rune essence that are uncerted.");
-            }
             return(true);
         }
     case default :
         if ($obj0 = obj_1436 | $obj0 = obj_7936) {
-            if ($int1 = 1) {
-                mes("Only an abyssal familiar can carry blank rune essence.");
-            }
             return(true);
         }
 }
-if ($obj0 = obj_29492 | $obj0 = obj_29494) {
-    if ($int1 = 1) {
-        mes("The familiar cannot hold bonds.");
+if (nc_param(%varplayer_1784, param_1323) = 0 & (nc_param(%varplayer_1784, param_5048) = 0 | (nc_param(%varplayer_1784, param_5048) = 1 | nc_param(%varplayer_1784, param_5205) = 1) & %varplayerbit_27747 = 0)) {
+    switch_npc (%varplayer_1784) {
+        case npc_11186, npc_11188, npc_11190, npc_11192, npc_11194, npc_11196, npc_11198, npc_11200, npc_11202, npc_11204, npc_11187, npc_11189, npc_11191, npc_11193, npc_11195, npc_11197, npc_11199, npc_11201, npc_11203, npc_11205 :
+        case default :
+            return(true);
     }
+}
+if ($obj0 = obj_29492 | $obj0 = obj_29494) {
     return(true);
+}
+if (oc_param($obj0, param_3741) ! 0) {
+    return(true);
+}
+if (oc_category($obj0) = category_43) {
+    return(true);
+}
+if (oc_param($obj0, param_226) = 1) {
+    return(true);
+}
+if (oc_category($obj0) = category_2941) {
+    return(true);
+}
+switch_obj ($obj0) {
+    case obj_32817, obj_32818, obj_32819, obj_32820, obj_32821 :
+        return(true);
 }
 return(false);

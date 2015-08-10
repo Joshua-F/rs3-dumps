@@ -54,7 +54,8 @@ def_string $string0 = "";
 def_string $string1 = "";
 def_obj $obj12 = null;
 def_graphic $graphic13 = null;
-while ($int5 < 151 & $int8 < 12) {
+def_int $int14 = 0;
+while ($int5 < 159 & $int8 < 12) {
     $int10 = 0;
     $int3 = 0;
     $int6 = 0;
@@ -1048,6 +1049,33 @@ while ($int5 < 151 & $int8 < 12) {
                     $obj12 = obj_35054;
                 }
             }
+        case 151 :
+            $int9, $int6, $struct7, $int3 = 1, %varplayerbit_28800, struct_31989, %varclient_4982;
+        case 152 :
+            $int9, $int6, $struct7, $int3 = 1, %varplayerbit_28801, struct_31990, %varclient_4983;
+        case 153 :
+            $int9, $int6, $struct7, $int3 = 1, %varplayerbit_28802, struct_31991, %varclient_4984;
+        case 154 :
+            $int9, $int6, $struct7, $int3 = 1, %varplayerbit_28803, struct_31992, %varclient_4985;
+        case 155 :
+            $int9 = 0;
+            $int6 = %varplayerbit_28641;
+            $struct7 = struct_31986;
+        case 156 :
+            $int9 = 0;
+            $int6 = %varplayerbit_28642;
+            $struct7 = struct_31985;
+        case 157 :
+            $int9 = 0;
+            $int6 = %varplayerbit_28639;
+            $struct7 = struct_31982;
+        case 158 :
+            if (%varclient_4989 > clientclock) {
+                $int9 = 1;
+                $int6 = 1;
+                $struct7 = struct_32116;
+                $int3 = %varclient_4989;
+            }
     }
     if ($int6 = 1) {
         $component0, $component1, $component2 = ~script7072;
@@ -1092,10 +1120,16 @@ while ($int5 < 151 & $int8 < 12) {
             $string0 = append($string0, $string1);
         }
         if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component0);
-        if ($struct7 = struct_14718 & %varplayerbit_1898 > 0) {
-            if_settext(tostring(%varplayerbit_1898), $component1);
-        } else if ($struct7 = struct_24333) {
-            if_settext(tostring(%varplayer_4678), $component1);
+        switch_struct ($struct7) {
+            case struct_14718 :
+                $int14 = %varplayerbit_1901;
+            case struct_24333 :
+                $int14 = %varplayer_4678;
+            case struct_31982 :
+                $int14 = %varplayerbit_28640;
+        }
+        if ($int14 > 0) {
+            if_settext(tostring($int14), $component1);
         } else if ($int3 > clientclock) {
             $int4 = calc(($int3 - clientclock) / 50);
             if_setcolour(^white, $component1);

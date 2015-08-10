@@ -47,9 +47,10 @@ def_struct $struct41 = null;
 def_int $int42 = 0;
 def_int $int43 = 0;
 def_string $string0 = "";
-def_obj $obj44 = null;
-def_graphic $graphic45 = null;
-while ($int39 < 103 & $int42 < 12) {
+def_int $int44 = 0;
+def_obj $obj45 = null;
+def_graphic $graphic46 = null;
+while ($int39 < 106 & $int42 < 12) {
     switch_int ($int39) {
         case default :
             return;
@@ -754,27 +755,45 @@ while ($int39 < 103 & $int42 < 12) {
             $int43 = 1;
             $int40 = %varplayerbit_26431;
             $struct41 = struct_14865;
+        case 103 :
+            $int43 = 0;
+            $int40 = %varplayerbit_28637;
+            $struct41 = struct_31986;
+        case 104 :
+            $int43 = 0;
+            $int40 = %varplayerbit_28638;
+            $struct41 = struct_31985;
+        case 105 :
+            $int43 = 0;
+            $int40 = %varplayerbit_28639;
+            $struct41 = struct_31982;
     }
-    if ($int40 = 1) {
+    if ($int40 = 1 & $struct41 ! null) {
         $component36, $component37, $component38 = ~script7071($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $component17, $component18, $component19, $component20, $component21, $component22, $component23, $component24, $component25, $component26, $component27, $component28, $component29, $component30, $component31, $component32, $component33, $component34, $component35);
         if ($component36 = null) {
             return;
         }
         if_sethide(false, $component36);
-        $graphic45 = struct_param($struct41, param_2802);
-        $obj44 = struct_param($struct41, param_4677);
-        if ($graphic45 ! null) {
-            if_setgraphic($graphic45, $component36);
-        } else if ($obj44 ! null) {
-            if_setobject_nonum($obj44, 1, $component36);
+        $graphic46 = struct_param($struct41, param_2802);
+        $obj45 = struct_param($struct41, param_4677);
+        if ($graphic46 ! null) {
+            if_setgraphic($graphic46, $component36);
+        } else if ($obj45 ! null) {
+            if_setobject_nonum($obj45, 1, $component36);
         }
         $string0 = struct_param($struct41, param_2794);
         if (compare(struct_param($struct41, param_2795), "") ! 0) {
             $string0 = append($string0, "<br><struct_param($struct41, param_2795)>");
         }
         if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component36);
-        if ($struct41 = struct_14718 & %varplayerbit_1901 > 0) {
-            if_settext(tostring(%varplayerbit_1901), $component37);
+        switch_struct ($struct41) {
+            case struct_14718 :
+                $int44 = %varplayerbit_1901;
+            case struct_31982 :
+                $int44 = %varplayerbit_28640;
+        }
+        if ($int44 > 0) {
+            if_settext(tostring($int44), $component37);
         } else {
             if_settext("", $component37);
         }

@@ -4,14 +4,14 @@ def_int $int0 = 0;
 def_string $string0 = null;
 ~script622;
 if (%varplayer_138 = -1 | stockmarket_isofferempty(%varplayer_138) = true & %varplayer_139 = -1) {
-    if_sethide(false, interface_105:com_26);
+    if_sethide(false, interface_105:com_32);
     ~script628;
-    if_setoninvtransmit(null, interface_105:com_24);
+    if_setoninvtransmit(null, interface_105:com_34);
     %varclient_83 = 0;
     %varclient_82 = 0;
 } else if (stockmarket_isofferempty(%varplayer_138) = false) {
-    if_sethide(false, interface_105:com_20);
-    if_sethide(false, interface_105:com_24);
+    if_sethide(false, interface_105:com_33);
+    if_sethide(false, interface_105:com_34);
     ~script594(stockmarket_getoffertype(%varplayer_138), stockmarket_getofferitem(%varplayer_138), stockmarket_getoffercount(%varplayer_138), stockmarket_getofferprice(%varplayer_138));
     ~script593(%varplayer_138);
     if (stockmarket_getoffertype(%varplayer_138) = 0) {
@@ -19,33 +19,30 @@ if (%varplayer_138 = -1 | stockmarket_isofferempty(%varplayer_138) = true & %var
     } else {
         $string0 = "Minimum total value of sale";
     }
-    if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", interface_105:com_68);
+    if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", interface_105:com_67);
     $string0 = tostring_localised(calc(stockmarket_getoffercount(%varplayer_138) * stockmarket_getofferprice(%varplayer_138)), true);
-    if_settext("<$string0> gp", interface_105:com_68);
+    if_settext("<$string0> gp", interface_105:com_67);
 } else {
-    if_sethide(false, interface_105:com_20);
-    if_sethide(false, interface_105:com_21);
+    if_sethide(false, interface_105:com_33);
+    if_sethide(false, interface_105:com_26);
+    if_sethide(false, interface_105:com_73);
+    if_sethide(false, interface_105:com_75);
     if (%varplayer_139 = 0) {
-        if (%varplayer_135 ! null) {
-            if_sethide(true, interface_105:com_13);
-        } else {
-            if_sethide(false, interface_105:com_13);
-        }
+        if_sethide(false, interface_105:com_49);
         $string0 = "Maximum total cost of purchase";
     } else {
-        if_sethide(true, interface_105:com_13);
         $string0 = "Minimum total value of sale";
     }
-    if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", interface_105:com_68);
+    if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", interface_105:com_67);
     if (%varplayer_137 > 0) {
         if (%varplayer_136 > calc(^max_32bit_int / %varplayer_137)) {
-            if_settext("Too high!", interface_105:com_68);
+            if_settext("Too high!", interface_105:com_67);
         } else {
             $string0 = tostring_localised(calc(%varplayer_136 * %varplayer_137), true);
-            if_settext("<$string0> gp", interface_105:com_68);
+            if_settext("<$string0> gp", interface_105:com_67);
         }
     } else {
-        if_settext("0 gp", interface_105:com_68);
+        if_settext("0 gp", interface_105:com_67);
     }
     ~script594(%varplayer_139, %varplayer_135, %varplayer_136, %varplayer_137);
 }

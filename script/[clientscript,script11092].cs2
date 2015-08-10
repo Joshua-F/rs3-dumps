@@ -2,13 +2,20 @@
 [clientscript,script11092](struct $struct0, int $int1)
 cc_deleteall(interface_1594:com_1);
 cc_create(interface_1594:com_1, ^iftype_graphic, 0);
-def_int $int2 = calc($int1 / struct_param($struct0, param_4850) * struct_param($struct0, param_4448));
+def_int $int2 = struct_param($struct0, param_4850);
+if ($int2 < 1) {
+    $int2 = 1;
+}
+def_int $int3 = calc($int1 / $int2 * struct_param($struct0, param_4448));
+if ($int3 < 1) {
+    $int3 = 1;
+}
 if (struct_param($struct0, param_4852) ! null) {
     cc_setsize(min(struct_param($struct0, param_4860), 48), min(struct_param($struct0, param_4861), 48), ^setsize_abs, ^setsize_abs);
     cc_setgraphic(struct_param($struct0, param_4852));
 } else if (struct_param($struct0, param_4851) ! null) {
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    cc_setobject(struct_param($struct0, param_4851), $int2);
+    cc_setobject(struct_param($struct0, param_4851), $int3);
 }
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 if_settext(struct_param($struct0, param_4849), interface_1594:com_95);
