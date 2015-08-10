@@ -1,0 +1,49 @@
+// 11707
+[clientscript,script11707](int $int0, int $int1)
+def_int $int2 = scale(calc(clientclock - $int0), 500, 500);
+def_int $int3 = -1;
+if ($int2 < 10) {
+    if_sethide(false, interface_1648:com_6);
+    if_sethide(false, interface_1648:com_5);
+    if_setmodelanim(seq_23101, interface_1648:com_6);
+    if_setmodelanim(seq_23101, interface_1648:com_5);
+} else if ($int2 = 125) {
+    if_sethide(false, interface_1648:com_3);
+    if_sethide(false, interface_1648:com_4);
+} else if ($int2 = 200) {
+    if_sethide(true, interface_1648:com_6);
+    if_sethide(true, interface_1648:com_5);
+    if (%varplayer_5776 ! null) {
+        if_settext(struct_param(%varplayer_5776, param_5165), interface_1648:com_20);
+        if_setsize(min(400, calc(stringwidth(if_gettext(interface_1648:com_20), graphic_17992) + 60)), 22, ^setsize_abs, ^setsize_abs, interface_1648:com_2);
+    }
+} else if ($int2 > 200 & $int2 <= 300) {
+    $int2 = calc(255 - scale(255, 100, calc($int2 - 200)));
+    if_settrans($int2, interface_1648:com_15);
+    if_settrans($int2, interface_1648:com_20);
+} else if ($int2 > 300 & $int2 < 400) {
+    $int2 = calc(255 - scale(255, 100, calc($int2 - 300)));
+    if_settrans($int2, interface_1648:com_7);
+    if_settrans($int2, interface_1648:com_10);
+    if_settrans($int2, interface_1648:com_11);
+    if_settrans($int2, interface_1648:com_12);
+    if_settrans($int2, interface_1648:com_13);
+    if_settrans($int2, interface_1648:com_18);
+    if_settrans($int2, interface_1648:com_19);
+} else if ($int2 > 400 & $int2 < 500) {
+    $int2 = calc($int2 - 400);
+    if_setmodelzoom(calc(2000 + scale(1500, 100, $int2)), interface_1648:com_3);
+    if_setmodelzoom(calc(2000 + scale(1500, 100, $int2)), interface_1648:com_4);
+    $int2 = calc(255 - scale(255, 100, $int2));
+    if_settrans(calc(255 - $int2), interface_1648:com_15);
+    if_settrans(calc(255 - $int2), interface_1648:com_20);
+    if_sethide(false, interface_1648:com_14);
+} else if ($int2 >= 500) {
+    if_sethide(true, interface_1648:com_3);
+    if_sethide(true, interface_1648:com_4);
+    if_sethide(false, interface_1648:com_8);
+    if (%varplayer_5776 ! null) {
+        if_setonvartransmit("script11708(struct_param(%varplayer_5776, param_5166)){varplayer_5775}", interface_1648:com_12);
+    }
+    if_setontimer(null, interface_1648:com_16);
+}

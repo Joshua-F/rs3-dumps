@@ -1,12 +1,12 @@
 // 10390
-[proc,script10390](struct $struct0, int $int1)
-cc_deleteall(interface_1524:com_90);
+[proc,script10390](struct $struct0, int $int1)(int)
+cc_deleteall(interface_1524:com_3);
 if ($struct0 = null) {
-    return;
+    return(0);
 }
-def_int $int2 = 6;
-def_int $int3 = 10;
-def_int $int4 = if_getwidth(interface_1524:com_90);
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = if_getwidth(interface_1524:com_3);
 def_int $int5 = 40;
 def_int $int6 = 0;
 def_int $int7 = 0;
@@ -24,7 +24,7 @@ def_int $int16 = -1;
 if (map_members = false & struct_param($struct0, param_1290) = 2) {
     %varclient_4502 = false;
     $int2, $int3 = ~script10391(0, null, rs3_icon_membership_upsell, "This content is only available on members' worlds.", $int2, $int3, $int4, $int5);
-    $int2, $int3 = 6, calc($int3 + $int5);
+    $int2, $int3 = 0, calc($int3 + $int5);
 }
 while ($int6 < 12) {
     $int15, $graphic13, $obj14, $struct12 = 1, null, null, null;
@@ -126,13 +126,13 @@ if ($int10 ! -1 | $int11 ! -1) {
         %varclient_4502 = true;
     }
 }
-if ($int2 > 6) {
+if ($int2 > 0) {
     $int3 = calc($int3 + $int5);
 }
 $string0 = struct_param($struct0, param_4505);
 if (compare("", $string0) ! 0) {
     $int15 = 1;
-    $int3 = ~script9305(interface_1524:com_90, $string0, 6, $int3, 0);
+    $int3 = ~script9305(interface_1524:com_3, $string0, 0, $int3, 0);
     switch_int ($int1) {
         case 0 :
             if (%varplayerbit_2366 < 6) {
@@ -171,24 +171,14 @@ if (compare("", $string0) ! 0) {
     }
     if ($int15 = 0) {
         %varclient_4502 = false;
-        $int3 = ~script9305(interface_1524:com_90, "<br>You do not meet this requirement.", 6, $int3, 1);
+        $int3 = ~script9305(interface_1524:com_3, "<br>You do not meet this requirement.", 0, $int3, 1);
     }
 }
 if (struct_param($struct0, param_4511) = true & map_lang ! 0) {
     %varclient_4502 = false;
-    $int3 = ~script9305(interface_1524:com_90, "This content is only available on English worlds.", 6, $int3, 1);
+    $int3 = ~script9305(interface_1524:com_3, "This content is only available on English worlds.", 0, $int3, 1);
 }
-if (calc($int3 + $int5) = 50) {
-    $int3 = ~script9305(interface_1524:com_90, "This content has no requirements.", 6, $int3, 0);
+if ($int3 = 0) {
+    $int3 = ~script9305(interface_1524:com_3, "This content has no requirements.", 0, $int3, 0);
 }
-$int3 = max(calc($int3 + 10), 50);
-if_setonop("script10370(99876916, $int3)", interface_1524:com_96);
-if (%varclientbit_24652 = 1) {
-    ~script10466(interface_1524:com_52, interface_1524:com_87, interface_1524:com_96, interface_1524:com_90, interface_1524:com_91, $int3);
-} else if (%varclient_4502 = false) {
-    ~script10466(interface_1524:com_52, interface_1524:com_87, interface_1524:com_96, interface_1524:com_90, interface_1524:com_91, $int3);
-    ~script10461(interface_1524:com_53, interface_1524:com_100, interface_1524:com_109, interface_1524:com_104, interface_1524:com_111, interface_1524:com_112);
-    ~script10461(interface_1524:com_56, interface_1524:com_21, interface_1524:com_117, interface_1524:com_20, interface_1524:com_119, interface_1524:com_120);
-} else {
-    ~script10461(interface_1524:com_52, interface_1524:com_87, interface_1524:com_96, interface_1524:com_91, interface_1524:com_98, interface_1524:com_99);
-}
+return(max($int3, 40));

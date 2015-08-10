@@ -3,9 +3,14 @@
 if (~tooltip_time(25) = false) {
     return;
 }
-def_string $string0 = "";
+def_string $string0 = "Drag a pet ability on to this slot to start using it.";
 if ($struct0 = null) {
-    $string0 = "Drag a pet ability on to this slot to start using it.";
+    switch_component ($component1) {
+        case interface_662:com_109, interface_662:com_106, interface_662:com_103 :
+            $string0 = "No ability set.<br>To set an ability, select the 'abilities' button from the 'Pets' tab in the 'Hero' window.";
+        case null :
+            return;
+    }
     ~script8800($string0, $component1, $int2);
     return;
 }

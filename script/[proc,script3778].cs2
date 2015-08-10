@@ -9,8 +9,15 @@ if ($int1 < 1) {
     return(false);
 }
 def_int $int9 = %varplayer_160;
-if ($inv3 = inv_94 | oc_cert($obj0) = $obj0) {
-    $int9 = 0;
+if ($int9 = 1) {
+    switch_inv ($inv3) {
+        case inv_94, inv_530 :
+            $int9 = 0;
+        case default :
+            if (oc_cert($obj0) = $obj0) {
+                $int9 = 0;
+            }
+    }
 }
 if (inv_total(inv_95, $obj0) < $int1) {
     $int1 = inv_total(inv_95, $obj0);
@@ -31,6 +38,12 @@ if ($obj0 = obj_995) {
         $int10 = ~inv_itemspace2($inv3, $obj0, $int1, inv_size($inv3));
     } else {
         $int10 = ~inv_itemspace2($inv3, oc_cert($obj0), $int1, inv_size($inv3));
+    }
+} else if ($inv3 = inv_530) {
+    if (%varplayer_1831 = null) {
+        $int10 = 0;
+    } else {
+        $int10 = ~inv_itemspace2($inv3, $obj0, $int1, ~script11682(%varplayer_1784));
     }
 } else {
     $int10 = ~inv_itemspace2($inv3, $obj0, $int1, inv_size($inv3));
@@ -66,10 +79,11 @@ if ($obj0 ! obj_995) {
             return(false);
         }
         if (cc_find($component6, $int4) = true) {
-            if ($inv3 = inv_93) {
-                ~script9240($component6, cc_param(param_3819), inv_93, $obj0, calc(cc_getinvcount + $int1), 1, "Deposit-1", "Deposit-5", "Deposit-10", "Deposit-<tostring(%varplayer_3922)>", "Deposit-X", "Deposit-All", "", "", "", "Examine");
-            } else if ($inv3 = inv_94) {
-                ~script9222($obj0, calc(cc_getinvcount + $int1));
+            switch_inv ($inv3) {
+                case inv_93, inv_530 :
+                    ~script9240($component6, cc_param(param_3819), $inv3, $obj0, calc(cc_getinvcount + $int1), 1, "Deposit-1", "Deposit-5", "Deposit-10", "Deposit-<tostring(%varplayer_3922)>", "Deposit-X", "Deposit-All", "", "", "", "Examine");
+                case inv_94 :
+                    ~script9222($obj0, calc(cc_getinvcount + $int1));
             }
         }
     } else {

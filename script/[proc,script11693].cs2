@@ -1,0 +1,40 @@
+// 11693
+[proc,script11693](component $component0, graphic $graphic1, graphic $graphic2, int $int3, string $string0, string $string1, obj $obj4, int $int5)
+def_string $string2 = "";
+if ($component0 ! null & cc_find($component0, 0) = true) {
+    ~lore_updateicon_v2($component0, $graphic1, $graphic2, $int3, $obj4, $int5);
+    if (nc_param(%varplayer_1784, param_5048) = 1) {
+        $string2 = "Legendary pets can not use Summoning scrolls.";
+    } else if (nc_param(%varplayer_1784, param_5205) = 1) {
+        $string2 = "Big cat cubs can not use Summoning scrolls.";
+    } else {
+        switch_obj ($obj4) {
+            case obj_18027 :
+                $int3, $string0, $obj4 = ~script3357;
+            case obj_18037 :
+                $int3, $string0, $obj4 = ~script3358;
+            case obj_18047 :
+                $int3, $string0, $obj4 = ~script3359;
+            case obj_18057 :
+                $int3, $string0, $obj4 = ~script3360;
+            case obj_18067 :
+                $int3, $string0, $obj4 = ~script3361;
+            case obj_18077 :
+                $int3, $string0, $obj4 = ~script3362;
+            case obj_12461 :
+                $int3, $string0, $obj4 = ~script775;
+        }
+        $string0 = append($string0, " (<tostring(%varplayerbit_6051)> Special Move points)");
+        $string2 = "<$string0><br>Level: <tostring($int3)>";
+        if ($obj4 ! null) {
+            $string2 = append($string2, "<br>");
+            if (~magic_runecount($obj4, null) >= $int5) {
+                $string2 = append($string2, "<col=00ff00>");
+            } else {
+                $string2 = append($string2, "<col=ff0000>");
+            }
+            $string2 = append($string2, "Scrolls available: <~magic_tostring(~magic_runecount($obj4, null))>/<tostring($int5)>");
+        }
+    }
+    cc_setonmouserepeat("script8799($string2, event_com, event_comsubid)");
+}

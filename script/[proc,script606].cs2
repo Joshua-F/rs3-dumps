@@ -1,9 +1,16 @@
 // 606
-[proc,script606]
-cc_create(interface_662:com_41, ^iftype_graphic, 0);
-cc_setsize(32, 36, ^setsize_abs, ^setsize_abs);
-cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-def_graphic $graphic0 = "lore_stats_side_icons,0";
-def_graphic $graphic1 = "lore_stats_side_icons,1";
-~lore_magic_init_v2(43384872, $graphic0, $graphic1, oc_param(%varplayer_1831, param_394), %varclient_2516, %varclient_2517, enum(obj, obj, enum_1283, %varplayer_1831), 1, null, 0, null, 0, null, 0);
-~script608;
+[proc,script606](component $component0)
+if ($component0 ! null) {
+    cc_create($component0, ^iftype_graphic, 0);
+    if ($component0 = interface_662:com_12) {
+        cc_setsize(4, 4, ^setsize_minus, ^setsize_minus);
+        cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    } else {
+        cc_setsize(32, 36, ^setsize_abs, ^setsize_abs);
+        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    }
+}
+def_graphic $graphic1 = "lore_stats_side_icons,0";
+def_graphic $graphic2 = "lore_stats_side_icons,1";
+~lore_magic_init_v2($component0, $graphic1, $graphic2, oc_param(%varplayer_1831, param_394), %varclient_2516, %varclient_2517, enum(obj, obj, enum_1283, %varplayer_1831), 1);
+~script608($component0);

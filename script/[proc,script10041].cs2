@@ -1,13 +1,15 @@
 // 10041
 [proc,script10041](component $component0, component $component1, component $component2, component $component3, int $int4)
-if_settext("Treasure Hunter", $component1);
+def_string $string0 = "Treasure Hunter";
 if_sethide(false, $component3);
 if_setop(1, "Click", $component0);
 if_setonop("script10039", $component0);
 if_setonclick("script10052", $component0);
 def_int $int5 = -1;
-if (date_runeday >= 4860 & date_runeday <= 4863) {
+if (date_runeday >= 4901 & date_runeday <= 4905) {
     $int5 = 0;
+} else if (date_runeday >= 4908 & date_runeday <= 4912) {
+    $int5 = 1;
 }
 if ($int4 = 0) {
     switch_int ($int5) {
@@ -16,7 +18,7 @@ if ($int4 = 0) {
         case 0 :
             switch_int (map_lang) {
                 case 0 :
-                    if_setgraphic(graphic_25234, $component0);
+                    if_setgraphic(graphic_18766, $component0);
                 case 1 :
                     if_setgraphic(rs3_lobby_secondary_th_default_promotion, $component0);
                 case 2 :
@@ -24,16 +26,20 @@ if ($int4 = 0) {
                 case 3 :
                     if_setgraphic(rs3_lobby_secondary_th_default_promotion, $component0);
             }
+        case 1 :
+            if_setgraphic(graphic_25892, $component0);
+            $string0 = "Bonus chest!";
     }
 }
+if_settext($string0, $component1);
 cc_deleteall($component2);
 def_int $int6 = 0;
 def_int $int7 = if_getwidth($component2);
 def_int $int8 = 50;
-def_string $string0 = "";
+def_string $string1 = "";
 ~script10047($component2, $int6);
 $int6 = calc($int6 + 1);
-$string0 = "Keys";
+$string1 = "Keys";
 cc_create($component2, ^iftype_text, $int6);
 if (%varclient_4266 > -1) {
     cc_settext(tostring(%varclient_4266));
@@ -51,8 +57,8 @@ $int6 = calc($int6 + 1);
 .cc_setsize(40, 35, ^setsize_abs, ^setsize_abs);
 .cc_setposition(calc(cc_getx - 20 - .cc_getwidth / 2), -1, ^setpos_abs_left, ^setpos_abs_bottom);
 $int6 = calc($int6 + 1);
-.cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
-$string0 = "Hearts of Ice";
+.cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
+$string1 = "Hearts of Ice";
 cc_create($component2, ^iftype_text, $int6);
 if (%varclient_4267 > -1) {
     cc_settext(tostring(%varclient_4267));
@@ -70,4 +76,4 @@ $int6 = calc($int6 + 1);
 .cc_setsize(30, 35, ^setsize_abs, ^setsize_abs);
 .cc_setposition(calc(cc_getx - 20 - .cc_getwidth / 2), -1, ^setpos_abs_left, ^setpos_abs_bottom);
 $int6 = calc($int6 + 1);
-.cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
+.cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");

@@ -35,12 +35,21 @@ if (%varplayerbit_9072 = 0) {
         ~ss_disable_button(85721149, 0);
     }
     if (%varplayerbit_9071 < 30) {
-        ~ss_disable_button(85721143, 0);
+        if (%varplayerbit_24968 = 0) {
+            ~ss_disable_button(85721143, 0);
+        }
         ~ss_disable_button(85721147, 0);
     }
     if (%varplayer_183 > 0) {
         if_settext("Cancel task (30pts)", interface_1308:com_482);
         if_settext("Extend task (30pts)", interface_1308:com_902);
+    } else if (%varplayerbit_525 ! 0 | %varplayerbit_24968 = 1) {
+        if (%varplayerbit_24968 = 1) {
+            if_settext("Cancel challenge (free)", interface_1308:com_482);
+        } else {
+            if_settext("Cancel challenge (30pts)", interface_1308:com_482);
+        }
+        ~ss_disable_button(85721147, 0);
     } else {
         if_settext("Not on task", interface_1308:com_482);
         if_settext("Not on task", interface_1308:com_902);
