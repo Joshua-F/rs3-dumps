@@ -6,15 +6,15 @@ cc_setsize($int2, $int3, ^setsize_abs, ^setsize_abs);
 cc_setcolour(^black);
 cc_setfill(false);
 def_string $string0 = null;
-if (stockmarket_isofferempty($int4) = false) {
-    if (stockmarket_isofferfinished($int4) = true) {
-        if (stockmarket_getoffercompletedcount($int4) = stockmarket_getoffercount($int4)) {
+if (stockmarket_isofferempty($int4, 0) = false) {
+    if (stockmarket_isofferfinished($int4, 0) = true) {
+        if (stockmarket_getoffercompletedcount($int4, 0) = stockmarket_getoffercount($int4, 0)) {
             $string0 = "Completed";
         } else {
             $string0 = "Aborted";
         }
     } else {
-        $string0 = "In progress (<tostring(stockmarket_getoffercompletedcount($int4))> / <tostring(stockmarket_getoffercount($int4))>)";
+        $string0 = "In progress (<tostring(stockmarket_getoffercompletedcount($int4, 0))> / <tostring(stockmarket_getoffercount($int4, 0))>)";
     }
     if ($int7 = 1) {
         if ($int8 = 1) {
@@ -37,19 +37,19 @@ cc_setcolour(0x302520);
 cc_settrans(100);
 cc_setfill(true);
 cc_create($component5, ^iftype_rectangle, calc($int6 + 2));
-if (stockmarket_isofferempty($int4) = false) {
+if (stockmarket_isofferempty($int4, 0) = false) {
     cc_setposition(calc($int0 + 1), calc($int1 + 1), ^setpos_abs_left, ^setpos_abs_top);
     cc_settrans(0);
     cc_setfill(true);
-    if (stockmarket_isofferfinished($int4) = true) {
+    if (stockmarket_isofferfinished($int4, 0) = true) {
         cc_setsize($int11, $int12, ^setsize_abs, ^setsize_abs);
-        if (stockmarket_getoffercompletedcount($int4) = stockmarket_getoffercount($int4)) {
+        if (stockmarket_getoffercompletedcount($int4, 0) = stockmarket_getoffercount($int4, 0)) {
             cc_setcolour(0x3f821e);
         } else {
             cc_setcolour(0x8a0010);
         }
     } else {
-        cc_setsize(scale(stockmarket_getoffercompletedcount($int4), stockmarket_getoffercount($int4), $int11), $int12, ^setsize_abs, ^setsize_abs);
+        cc_setsize(scale(stockmarket_getoffercompletedcount($int4, 0), stockmarket_getoffercount($int4, 0), $int11), $int12, ^setsize_abs, ^setsize_abs);
         cc_setcolour(0xc68b01);
     }
 }

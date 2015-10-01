@@ -1,0 +1,37 @@
+// 11819
+[proc,script11819](component $component0, component $component1, component $component2, int $int3, int $int4, string $string0, graphic $graphic5)
+if ($component0 = null | $component1 = null | $component2 = null) {
+    return;
+}
+if ($int3 = -1 & if_find($component0) = true | cc_find($component0, $int3) = true) {
+    cc_setgraphic($graphic5);
+    switch_int ($int4) {
+        case 1, 3 :
+            cc_sethide(false);
+        case 2 :
+            cc_sethide(true);
+    }
+}
+if ($int3 = -1 & if_find($component1) = true | cc_find($component1, $int3) = true) {
+    cc_settext($string0);
+    if ($int4 = 1) {
+        if (%varplayerbit_25401 = 1) {
+            cc_sethide(false);
+        } else {
+            cc_sethide(true);
+        }
+    }
+}
+if ($int4 > 0 & ($int3 = -1 & if_find($component2) = true | cc_find($component2, $int3) = true)) {
+    if ($int4 = 1 | $int4 = 3) {
+        cc_settrans(0);
+        cc_sethide(true);
+        cc_setfill(false);
+        cc_setontimer(null);
+    } else {
+        cc_settrans(255);
+        cc_sethide(false);
+        cc_setfill(true);
+        cc_setontimer("combatv2_cooldown_flash_dynamic(event_com, event_comsubid, 1)");
+    }
+}

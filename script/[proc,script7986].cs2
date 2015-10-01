@@ -1,98 +1,27 @@
 // 7986
-[proc,script7986](int $int0, struct $struct1)
-def_component $component2 = null;
-def_int $int3 = 0;
-def_int $int4 = 0;
-def_enum $enum5 = null;
-def_int $int6 = 1;
-def_int $int7 = 0;
-def_int $int8 = 0;
-def_int $int9 = 0;
-while ($int6 <= 14) {
-    $component2 = ~script7979($int0, $int6);
-    switch_int ($int6) {
-        case 1 :
-            $int3 = %varplayerbit_1724;
-            $int4 = %varplayerbit_1723;
-        case 2 :
-            $int3 = %varplayerbit_1726;
-            $int4 = %varplayerbit_1725;
-        case 3 :
-            $int3 = %varplayerbit_1728;
-            $int4 = %varplayerbit_1727;
-        case 4 :
-            $int3 = %varplayerbit_1730;
-            $int4 = %varplayerbit_1729;
-        case 5 :
-            $int3 = %varplayerbit_1732;
-            $int4 = %varplayerbit_1731;
-        case 6 :
-            $int3 = %varplayerbit_1734;
-            $int4 = %varplayerbit_1733;
-        case 7 :
-            $int3 = %varplayerbit_1736;
-            $int4 = %varplayerbit_1735;
-        case 8 :
-            $int3 = %varplayerbit_1738;
-            $int4 = %varplayerbit_1737;
-        case 9 :
-            $int3 = %varplayerbit_1740;
-            $int4 = %varplayerbit_1739;
-        case 10 :
-            $int3 = %varplayerbit_1742;
-            $int4 = %varplayerbit_1741;
-        case 11 :
-            $int3 = %varplayerbit_1744;
-            $int4 = %varplayerbit_1743;
-        case 12 :
-            $int3 = %varplayerbit_1746;
-            $int4 = %varplayerbit_1745;
-        case 13 :
-            $int3 = %varplayerbit_22334;
-            $int4 = %varplayerbit_22333;
-        case 14 :
-            $int3 = %varplayerbit_22336;
-            $int4 = %varplayerbit_22335;
-    }
-    $enum5 = null;
-    $int7 = 0;
-    switch_int ($int4) {
-        case 1 :
-            $enum5 = enum_6734;
-        case 2 :
-            $enum5 = enum_6735;
-        case 3 :
-            if ($int3 = 2 & %varclient_4617 > clientclock & $struct1 = struct_14881) {
-                $int7 = 1;
-            } else {
-                $enum5 = enum_6736;
-            }
-        case 5 :
-            $enum5 = enum_6738;
-        case 4 :
-            $enum5 = enum_6737;
-        case 6 :
-            $enum5 = enum_6740;
-        case default :
-            $int7 = 1;
-    }
-    if ($int7 = 0) {
-        $int8, $int9 = ~script6506(enum(int, struct, $enum5, $int3), 0);
-    }
-    if ($struct1 = struct_14881 | $struct1 = struct_14882) {
-        if ($int7 = 0 & $component2 ! null & $int9 < clientclock) {
-            if_sethide(false, $component2);
-            if_setgraphic("combatv2_cooldown_animation,138", $component2);
-            if ($int0 = 1430 | $int0 = 1436) {
-                if_setontimer("script6302($struct1, event_com, event_comsubid, 1, clientclock)", $component2);
-            }
-        }
-    } else if ($enum5 ! null & enum(int, struct, $enum5, $int3) = $struct1 & $struct1 ! struct_29145 & $component2 ! null) {
-        if_sethide(false, $component2);
-        if_setgraphic("combatv2_cooldown_animation,138", $component2);
-        if ($int0 = 1430 | $int0 = 1436) {
-            if_setontimer("script6302($struct1, event_com, event_comsubid, 1, clientclock)", $component2);
-        }
-    }
-    $int6 = calc($int6 + 1);
+[proc,script7986](component $component0, int $int1)
+if ($component0 = null) {
+    return;
 }
+def_component $component2 = if_getlayer($component0);
+if ($component2 = null) {
+    return;
+}
+def_int $setposh3 = ^setpos_abs_left;
+def_int $int4 = 40;
+def_struct $struct5 = struct_21361;
+if (calc($int1 % 2) = 0) {
+    $setposh3 = ^setpos_abs_right;
+}
+if (calc($int1 % 4) = 0 | calc(($int1 - 1) % 4) = 0) {
+    $struct5 = struct_21362;
+}
+$int4 = calc($int4 + ($int1 - 1) / 2 * 35);
+if_setposition(0, $int4, $setposh3, ^setpos_abs_top, $component2);
+if_setsize(346, 32, ^setsize_abs, ^setsize_abs, $component2);
+def_component $component6 = if_getlayer($component2);
+if ($component6 ! null & if_find($component6) = true & .if_find($component2) = true & .cc_gethide = false & cc_getheight < calc(.cc_gety + .cc_getheight + 2)) {
+    cc_setsize(0, calc(.cc_gety + .cc_getheight), ^setsize_minus, ^setsize_abs);
+    ~script7987($component6);
+}
+~rs3_background_panel($component0, $struct5);

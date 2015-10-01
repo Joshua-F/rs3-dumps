@@ -1,7 +1,22 @@
 // 11028
-[clientscript,script11028](component $component0, int $int1)
-def_string $string0 = "Open telemetry suite.";
-if (if_hassuboverlay(interface_1477:com_338, interface_1588) = true) {
-    $string0 = "Close telemetry suite.";
+[clientscript,script11028](component $component0)
+if (%varplayerbit_26927 = 0 | %varplayerbit_29531 = 0) {
+    return;
 }
-~script3877($string0, $component0, $int1);
+def_int $int1 = 0;
+def_int $int2 = ~script2915;
+def_int $int3 = 5;
+def_int $int4 = calc($int3 * 20 + 20);
+if (%varplayerbit_1668 >= $int2) {
+    if_settrans(255, $component0);
+    if_sethide(true, $component0);
+} else {
+    $int1 = scale(%varplayerbit_1668, $int2, 100);
+    if ($int1 <= 20) {
+        if_settrans(calc(255 - ($int4 - $int1 * $int3)), $component0);
+        if_sethide(false, $component0);
+    } else {
+        if_settrans(255, $component0);
+        if_sethide(true, $component0);
+    }
+}

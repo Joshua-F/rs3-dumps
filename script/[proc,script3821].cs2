@@ -35,9 +35,34 @@ if_setonmouserepeat("script8799($string1, event_com, event_comsubid)", interface
 if_settext(tostring($int0), interface_762:com_73);
 if_settext(tostring($int1), interface_762:com_77);
 def_string $string2 = "Click here to increase your bank capacity";
-if_setonmouserepeat("script8799($string2, event_com, event_comsubid)", interface_762:com_83);
 if (calc(13 - ~script9850) > 0) {
     if_sethide(true, interface_762:com_84);
+    if (%varclient_5095 = true) {
+        if (~script11847 = true) {
+            $string2 = "Click here to claim your free members bank booster";
+            if_sethide(false, interface_762:com_85);
+        } else if (calc($int0 + $int1 - %varclient_192) <= 20) {
+            $string2 = "You are running low on bank space.<br><$string2>.";
+            if_sethide(false, interface_762:com_85);
+        } else {
+            if_sethide(true, interface_762:com_85);
+        }
+    } else {
+        if (~script11847 = true) {
+            $string2 = "As a member you would be entitled to claim free bank boosters.<br>Click here to subscribe";
+        }
+        if (calc($int0 - $int2) <= 20) {
+            if_sethide(false, interface_762:com_85);
+            $string2 = "You are running low on bank space.<br><$string2>.";
+        } else {
+            if_sethide(true, interface_762:com_85);
+            if (string_indexof_char($string2, '.', 0) > -1) {
+                $string2 = "<$string2>.";
+            }
+        }
+    }
 } else {
     if_sethide(false, interface_762:com_84);
+    if_sethide(true, interface_762:com_85);
 }
+if_setonmouserepeat("script8799($string2, event_com, event_comsubid)", interface_762:com_83);
