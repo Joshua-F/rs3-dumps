@@ -1,25 +1,26 @@
 // 7987
-[proc,script7987](component $component0, int $int1, component $component2, int $int3)
-if ($component0 = null | $component2 = null) {
+[proc,script7987](component $component0)
+if ($component0 = null) {
+    $component0 = enum(int, component, enum_10364, 0);
+}
+if ($component0 = null) {
     return;
 }
-def_graphic $graphic4 = null;
-def_int $int5 = 0;
-if ($int1 ! -1) {
-    if (cc_find($component0, $int1) = true) {
-        $graphic4 = cc_getgraphic;
-        $int5 = cc_gettrans;
-    }
-} else {
-    $graphic4 = if_getgraphic($component0);
-    $int5 = if_gettrans($component0);
+def_component $component1 = if_getlayer($component0);
+if ($component1 = null) {
+    return;
 }
-if ($int3 ! -1) {
-    if (cc_find($component2, $int3) = true) {
-        cc_setgraphic($graphic4);
-        cc_settrans($int5);
+def_int $int2 = -1;
+def_int $int3 = 0;
+if (enum_getreversecount(component, enum_10364, $component0) = 1) {
+    $int2 = enum_getreverseindex(component, int, enum_10364, $component0, 0);
+    $int3 = calc(if_gety($component0) + if_getheight($component0));
+    while (++$int2 < enum_getoutputcount(enum_10364)) {
+        $component0 = enum(int, component, enum_10364, $int2);
+        if ($component0 ! null) {
+            if_setposition(0, $int3, ^setpos_abs_left, ^setpos_abs_top, $component0);
+            $int3 = calc($int3 + if_getheight($component0));
+        }
     }
-} else {
-    if_setgraphic($graphic4, $component2);
-    if_settrans($int5, $component2);
+    if_callonresize($component1);
 }

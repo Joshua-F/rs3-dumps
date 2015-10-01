@@ -31,12 +31,19 @@ if ($int0 = 0) {
 }
 def_int $int3 = 1;
 def_int $int4 = 0;
-def_obj $obj5 = oc_findnext;
+def_int $int5 = 0;
+def_obj $obj6 = oc_findnext;
 cc_create(interface_389:com_4, ^iftype_rectangle, 0);
-while ($obj5 ! null) {
+while ($obj6 ! null) {
     $int4 = 0;
-    if (oc_param($obj5, param_4749) ! null & %varplayer_3079 < struct_param(oc_param($obj5, param_4749), param_4630)) {
-        $obj5 = oc_findnext;
+    $int5 = 0;
+    if (oc_param($obj6, param_4749) ! null) {
+        $int5 = struct_param(oc_param($obj6, param_4749), param_4630);
+    } else {
+        $int5 = oc_param($obj6, param_4742);
+    }
+    if (%varplayer_3079 < $int5) {
+        $obj6 = oc_findnext;
         $int4 = 1;
     }
     if ($int4 = 0) {
@@ -44,12 +51,12 @@ while ($obj5 ! null) {
         cc_setposition(4, calc(15 * ($int3 - 1)), ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize($int2, 15, ^setsize_abs, ^setsize_abs);
         cc_setcolour(0xa05a00);
-        cc_settext(oc_name($obj5));
+        cc_settext(oc_name($obj6));
         cc_settextfont(graphic_20452);
         cc_settextshadow(false);
-        cc_setonmouseover("objdialog_highlight($int3, $obj5)");
-        cc_setonclick("objdialog_select($obj5)");
-        $obj5 = oc_findnext;
+        cc_setonmouseover("objdialog_highlight($int3, $obj6)");
+        cc_setonclick("objdialog_select($obj6)");
+        $obj6 = oc_findnext;
         $int3 = calc($int3 + 1);
     }
 }

@@ -6,15 +6,15 @@ def_obj $obj2 = inv_getobj($inv1, 0);
 def_obj $obj3 = inv_getobj($inv1, 1);
 ~script9263(interface_105:com_65, $obj3, inv_getnum($inv1, 1));
 if_setoninvtransmit("stockmarket_oninvtransmit{$inv1}", interface_105:com_34);
-def_int $int4 = stockmarket_getoffertype($int0);
-def_int $int5 = stockmarket_getoffercount($int0);
-def_int $int6 = stockmarket_getoffercompletedcount($int0);
-def_int $int7 = stockmarket_getoffercompletedgold($int0);
+def_int $int4 = stockmarket_getoffertype($int0, 0);
+def_int $int5 = stockmarket_getoffercount($int0, 0);
+def_int $int6 = stockmarket_getoffercompletedcount($int0, 0);
+def_int $int7 = stockmarket_getoffercompletedgold($int0, 0);
 def_string $string0 = tostring_localised($int6, true);
 def_string $string1 = tostring_localised($int7, true);
 cc_deleteall(interface_105:com_60);
 if (if_find(interface_105:com_60) = true) {
-    if (stockmarket_isofferadding($int0) = true) {
+    if (stockmarket_isofferadding($int0, 0) = true) {
         .cc_create(interface_105:com_60, ^iftype_text, 0);
         .cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
         .cc_setsize(cc_getwidth, cc_getheight, ^setsize_abs, ^setsize_abs);
@@ -26,7 +26,7 @@ if (if_find(interface_105:com_60) = true) {
         ~script652(0, 0, cc_getwidth, cc_getheight, $int0, interface_105:com_60, 0, 1, 2);
     }
 }
-if (stockmarket_isofferfinished($int0) = true) {
+if (stockmarket_isofferfinished($int0, 0) = true) {
     if ($int4 = 0) {
         if_settext("You bought a total of <col=cc9900><$string0></col><br>for a total price of <col=cc9900><$string1></col> gp.", interface_105:com_59);
     } else {

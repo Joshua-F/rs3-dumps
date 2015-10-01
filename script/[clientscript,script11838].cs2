@@ -1,0 +1,53 @@
+// 11838
+[clientscript,script11838]
+cc_deleteall(interface_1682:com_4);
+cc_deleteall(interface_1682:com_5);
+cc_deleteall(interface_1682:com_6);
+cc_deleteall(interface_1682:com_7);
+if (%varplayerbit_26927 = 0) {
+    return;
+}
+if_settext("Settings", interface_1682:com_1);
+def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $int2 = enum_getoutputcount(enum_10372);
+def_string $string0 = "";
+def_string $string1 = "";
+def_int $int3 = 0;
+while ($int1 < $int2) {
+    $string0, $string1, $int3 = ~script11839($int1);
+    $int0, $int1 = ~dynamic_checkbox_create_full(interface_1682:com_4, interface_1682:com_5, 0, $int0, 250, $int1, $string0, $string1, $string1, $int3, false, 1);
+}
+cc_create(interface_1682:com_3, ^iftype_text, if_getnextsubid(interface_1682:com_3));
+cc_settext("Choose data interval:");
+cc_setsize(200, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, calc($int0 + 5), ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(graphic_17813);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_setcolour(~script10495(0x00000c));
+$int0 = calc($int0 + 25);
+def_int $int4 = 0;
+if (%varplayer_5884 = telemetryinterval_2) {
+    $int4 = 1;
+} else if (%varplayer_5884 = telemetryinterval_1) {
+    $int4 = 2;
+}
+$int0, $int1 = ~dynamic_dropdown_create(interface_1682:com_6, interface_1682:com_7, 0, $int0, 200, if_getnextsubid(interface_1682:com_6), enum_10373, "Select which time interval you wish to show data for.", $int4, 0);
+cc_create(interface_1682:com_3, ^iftype_text, if_getnextsubid(interface_1682:com_3));
+cc_settext("Remove rows after period of inactivity:");
+cc_setsize(200, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, calc($int0 + 5), ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(graphic_17813);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_setcolour(~script10495(0x00000c));
+$int0 = calc($int0 + 25);
+$int0, $int1 = ~dynamic_dropdown_create(interface_1682:com_6, interface_1682:com_7, 0, $int0, 200, $int1, enum_10374, "Select the inactivity period for which to automatically remove rows from the tracker.", %varplayerbit_29532, 0);
+cc_create(interface_1682:com_3, ^iftype_text, if_getnextsubid(interface_1682:com_3));
+cc_settext("Drop log mode:");
+cc_setsize(200, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, calc($int0 + 5), ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(graphic_17813);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_setcolour(~script10495(0x00000c));
+$int0 = calc($int0 + 25);
+$int0, $int1 = ~dynamic_dropdown_create(interface_1682:com_6, interface_1682:com_7, 0, $int0, 200, $int1, enum_10375, "Select the mode for the drop log.", %varplayerbit_29537, 0);
