@@ -5,70 +5,88 @@ if_sethide(false, $component3);
 if_setop(1, "Click", $component0);
 if_setonop("script10039", $component0);
 if_setonclick("script10052", $component0);
-def_int $int5 = -1;
-if (date_runeday >= 4943 & date_runeday <= 4948) {
-    $int5 = 0;
+def_int $int5 = 0;
+def_int $int6 = -1;
+if (date_runeday >= 4964 & date_runeday <= 4968) {
+    $int6 = 0;
+} else if (date_runeday >= 4971 & date_runeday <= 4976) {
+    $int6 = 1;
 }
 if ($int4 = 0) {
-    switch_int ($int5) {
+    switch_int ($int6) {
         case -1 :
             if_setgraphic(rs3_lobby_secondary_th_default_promotion, $component0);
         case 0 :
             switch_int (map_lang) {
                 case 0 :
-                    if_setgraphic(graphic_7914, $component0);
+                    if_setgraphic(graphic_14853, $component0);
                 case 1 :
-                    if_setgraphic(graphic_7915, $component0);
+                    if_setgraphic(rs3_lobby_secondary_th_default_promotion, $component0);
                 case 2 :
-                    if_setgraphic(graphic_7916, $component0);
+                    if_setgraphic(rs3_lobby_secondary_th_default_promotion, $component0);
                 case 3 :
-                    if_setgraphic(graphic_7917, $component0);
+                    if_setgraphic(rs3_lobby_secondary_th_default_promotion, $component0);
+            }
+        case 1 :
+            switch_int (map_lang) {
+                case 0 :
+                    if_setgraphic(graphic_14854, $component0);
+                    $int5 = 1;
+                case 1 :
+                    if_setgraphic(rs3_lobby_secondary_th_default_promotion, $component0);
+                case 2 :
+                    if_setgraphic(rs3_lobby_secondary_th_default_promotion, $component0);
+                case 3 :
+                    if_setgraphic(rs3_lobby_secondary_th_default_promotion, $component0);
             }
     }
 }
 if_settext($string0, $component1);
 cc_deleteall($component2);
-def_int $int6 = 0;
-def_int $int7 = if_getwidth($component2);
-def_int $int8 = 50;
+if ($int5 = 1) {
+    return;
+}
+def_int $int7 = 0;
+def_int $int8 = if_getwidth($component2);
+def_int $int9 = 50;
 def_string $string1 = "";
-~script10047($component2, $int6);
-$int6 = calc($int6 + 1);
+~script10047($component2, $int7);
+$int7 = calc($int7 + 1);
 $string1 = "Keys";
-cc_create($component2, ^iftype_text, $int6);
+cc_create($component2, ^iftype_text, $int7);
 if (%varclient_4266 > -1) {
     cc_settext(tostring(%varclient_4266));
 }
 cc_setonvarctransmit("script10050(event_com, event_comsubid, 0){varclient_4266}");
-cc_setposition($int8, 0, ^setpos_abs_left, ^setpos_abs_bottom);
-cc_setsize(calc($int7 / 2 - $int8), 32, ^setsize_abs, ^setsize_abs);
+cc_setposition($int9, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+cc_setsize(calc($int8 / 2 - $int9), 32, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_settextfont(graphic_17814);
 cc_setcolour(^white);
 cc_settextshadow(true);
-$int6 = calc($int6 + 1);
-.cc_create($component2, ^iftype_graphic, $int6);
+$int7 = calc($int7 + 1);
+.cc_create($component2, ^iftype_graphic, $int7);
 .cc_setgraphic(rs3_icon_th_keys);
 .cc_setsize(40, 35, ^setsize_abs, ^setsize_abs);
 .cc_setposition(calc(cc_getx - 20 - .cc_getwidth / 2), -1, ^setpos_abs_left, ^setpos_abs_bottom);
-$int6 = calc($int6 + 1);
+$int7 = calc($int7 + 1);
 .cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
 $string1 = "Hearts of Ice";
-cc_create($component2, ^iftype_text, $int6);
+cc_create($component2, ^iftype_text, $int7);
 if (%varclient_4267 > -1) {
     cc_settext(tostring(%varclient_4267));
 }
 cc_setonvarctransmit("script10050(event_com, event_comsubid, 1){varclient_4267}");
-cc_setposition(calc($int7 / 2 + $int8), 0, ^setpos_abs_left, ^setpos_abs_bottom);
-cc_setsize(calc($int7 / 2 - $int8), 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int8 / 2 + $int9), 0, ^setpos_abs_left, ^setpos_abs_bottom);
+cc_setsize(calc($int8 / 2 - $int9), 32, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_settextfont(graphic_17814);
 cc_setcolour(^white);
 cc_settextshadow(true);
-$int6 = calc($int6 + 1);
-.cc_create($component2, ^iftype_graphic, $int6);
+$int7 = calc($int7 + 1);
+.cc_create($component2, ^iftype_graphic, $int7);
 .cc_setgraphic(rs3_icon_th_frozen_hearts);
 .cc_setsize(30, 35, ^setsize_abs, ^setsize_abs);
 .cc_setposition(calc(cc_getx - 20 - .cc_getwidth / 2), -1, ^setpos_abs_left, ^setpos_abs_bottom);
-$int6 = calc($int6 + 1);
+$int7 = calc($int7 + 1);
 .cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
