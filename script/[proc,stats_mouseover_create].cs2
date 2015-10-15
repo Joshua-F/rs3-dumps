@@ -3,21 +3,25 @@
 $component3 = interface_1477:com_869;
 def_int $int5 = if_getx($component0);
 def_int $int6 = if_gety($component0);
-def_int $int7 = 1;
+def_int $int7 = 2;
 def_string $string0 = "";
 def_string $string1 = "";
 if ($int4 = 0) {
-    $int7 = 2;
-    $string0 = "<enum(stat, string, enum_680, $stat2)>: <tostring(stat($stat2))>/<tostring(stat_base_actual($stat2))>";
+    $string0 = "<enum(stat, string, enum_680, $stat2)>: <tostring(~script11861($stat2))>/<tostring(~script11860($stat2))>";
     $string1 = ~tostring_spacer_local(stat_visible_xp_actual($stat2));
 } else {
-    $int7 = 2;
-    $string0 = "<enum(stat, string, enum_680, $stat2)>: <tostring(~player_inspect_get_stat($stat2))>/<tostring(~script10782($stat2))>";
+    $string0 = "<enum(stat, string, enum_680, $stat2)>: <tostring(~script11865($stat2))>/<tostring(~script11864($stat2))>";
     $string1 = ~tostring_spacer_local(~player_inspect_get_xp($stat2));
 }
 def_string $string2 = "";
 def_string $string3 = "";
-if ($int4 = 0 & (stat_base_actual($stat2) < 99 | $stat2 = dungeoneering & stat_base_actual($stat2) < 120)) {
+if (%varplayerbit_19007 = 1) {
+    if ($int4 = 0 & ~script11862($stat2) < 120) {
+        $string2 = ~tostring_spacer_local(enum(int, int, enum_716, calc(~script11862($stat2) + 1)));
+        $string3 = ~tostring_spacer_local(calc(enum(int, int, enum_716, calc(~script11862($stat2) + 1)) - stat_visible_xp_actual($stat2)));
+        $int7 = 4;
+    }
+} else if ($int4 = 0 & (stat_base_actual($stat2) < 99 | $stat2 = dungeoneering & stat_base_actual($stat2) < 120)) {
     $string2 = ~tostring_spacer_local(enum(int, int, enum_716, calc(stat_base_actual($stat2) + 1)));
     $string3 = ~tostring_spacer_local(calc(enum(int, int, enum_716, calc(stat_base($stat2) + 1)) - stat_visible_xp_actual($stat2)));
     $int7 = 4;
@@ -136,13 +140,13 @@ if ($int16 = 1) {
     $int21 = max($int21, calc(parawidth($string8, 190, p12_full) + 10));
     $int17 = max($int17, $int21);
 }
-if ($int4 = 0 & (stat_base_actual($stat2) < 99 | $stat2 = dungeoneering & stat_base_actual($stat2) < 120)) {
+if ($int4 = 0 & (stat_base_actual($stat2) < 99 | ($stat2 = dungeoneering | ~script11868($stat2) = 1) & ~script11862($stat2) < 120)) {
     $int19 = parawidth("Next level:", 190, p12_full);
     $int20 = parawidth($string2, 190, p12_full);
     $int21 = calc($int19 + 3 + $int20);
     $int17 = max($int17, $int21);
 }
-if ($int4 = 0 & (stat_base_actual($stat2) < 99 | $stat2 = dungeoneering & stat_base_actual($stat2) < 120)) {
+if ($int4 = 0 & (stat_base_actual($stat2) < 99 | ($stat2 = dungeoneering | ~script11868($stat2) = 1) & ~script11862($stat2) < 120)) {
     $int19 = parawidth("Remainder:", 190, p12_full);
     $int20 = parawidth($string3, 190, p12_full);
     $int21 = calc($int19 + 3 + $int20);
@@ -305,7 +309,7 @@ $int25 = calc($int25 + 1);
 $int26 = calc($int26 + 14);
 def_int $int34 = 0;
 def_int $int35 = 0;
-if ($int4 = 0 & (stat_base_actual($stat2) < 99 | $stat2 = dungeoneering & stat_base_actual($stat2) < 120)) {
+if ($int4 = 0 & (stat_base_actual($stat2) < 99 | ($stat2 = dungeoneering | ~script11868($stat2) = 1) & ~script11862($stat2) < 120)) {
     cc_create($component3, ^iftype_text, $int25);
     cc_setposition(calc($int19 + $int33), calc($int20 + $int26), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize($int17, 16, ^setsize_abs, ^setsize_abs);

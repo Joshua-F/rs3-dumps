@@ -15,6 +15,9 @@ def_int $int19 = 0;
 def_int $int20 = 0;
 def_string $string0 = "";
 def_string $string1 = "<enum(stat, string, enum_680, $stat8)>: <tostring(stat($stat8))>/<tostring(stat_base_actual($stat8))>";
+if (~script11868($stat8) = 1) {
+    $string1 = "<enum(stat, string, enum_680, $stat8)>: <tostring(~script11863($stat8))>/<tostring(~script11862($stat8))>";
+}
 def_int $int21 = 0;
 switch_stat ($stat8) {
     case attack :
@@ -70,13 +73,13 @@ switch_stat ($stat8) {
     case divination :
         $int21 = %varplayer_3836;
 }
-if (cc_find($component10, $int0) = true & parawidth($string1, 190, p12_full) < cc_getwidth & %varclient_80 = stat_base_actual($stat8)) {
+if (cc_find($component10, $int0) = true & parawidth($string1, 190, p12_full) < cc_getwidth & %varclient_80 = ~script11860($stat8)) {
     cc_settext($string1);
     if (cc_find($component10, $int1) = true) {
         cc_settext(~tostring_spacer_local(stat_visible_xp_actual($stat8)));
     }
-    if (stat_base_actual($stat8) < 99 & cc_find($component10, $int2) = true) {
-        cc_settext(~tostring_spacer_local(calc(enum(int, int, enum_716, calc(stat_base_actual($stat8) + 1)) - stat_visible_xp_actual($stat8))));
+    if (~script11860($stat8) < 99 & cc_find($component10, $int2) = true) {
+        cc_settext(~tostring_spacer_local(calc(enum(int, int, enum_716, calc(~script11860($stat8) + 1)) - stat_visible_xp_actual($stat8))));
     }
     if ($int21 > 0 & cc_find($component10, $int3) = true) {
         cc_settext(~tostring_spacer_local(calc($int21 / 10)));
