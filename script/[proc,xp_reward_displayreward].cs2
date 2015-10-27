@@ -35,7 +35,7 @@ if (oc_category($obj2) = category_3636) {
 switch_obj ($obj2) {
     case default :
         $int3 = calc($int1 / 10);
-    case obj_13732, obj_20935, obj_20936, obj_23713, obj_23714, obj_23715, obj_23716, obj_24151, obj_28743, obj_28744, obj_28745, obj_28746, obj_28747, obj_28748, obj_28749, obj_28750, obj_28751, obj_28752, obj_28753, obj_28754, obj_29933, obj_29934, obj_29935, obj_30324, obj_30325, obj_30326, obj_30327, obj_30407, obj_30408, obj_30637, obj_30638, obj_30639, obj_30640, obj_25070, obj_31260, obj_31371, obj_32404, obj_33527, obj_33528, obj_33529, obj_33530, obj_33616, obj_33617, obj_33856, obj_34768, obj_34882, obj_34883, obj_34884, obj_34885, obj_35762, obj_35763, obj_35764, obj_35765 :
+    case obj_13732, obj_20935, obj_20936, obj_23713, obj_23714, obj_23715, obj_23716, obj_24151, obj_28743, obj_28744, obj_28745, obj_28746, obj_28747, obj_28748, obj_28749, obj_28750, obj_28751, obj_28752, obj_28753, obj_28754, obj_29933, obj_29934, obj_29935, obj_30324, obj_30325, obj_30326, obj_30327, obj_30407, obj_30408, obj_30637, obj_30638, obj_30639, obj_30640, obj_25070, obj_31260, obj_31371, obj_32404, obj_33527, obj_33528, obj_33529, obj_33530, obj_33616, obj_33617, obj_33856, obj_34768, obj_34882, obj_34883, obj_34884, obj_34885, obj_35762, obj_35763, obj_35764, obj_35765, obj_35914 :
         return("<enum(stat, string, enum_680, $stat0)> XP");
     case obj_28904, obj_28905, obj_28906, obj_28907 :
         return("<enum(stat, string, enum_680, $stat0)> XP");
@@ -157,5 +157,15 @@ switch_obj ($obj2) {
         return("<enum(stat, string, enum_680, $stat0)>: 1,500 XP");
     case obj_34187, obj_34188, obj_34189 :
         return("<enum(stat, string, enum_680, $stat0)> XP");
+    case obj_35919 :
+        if (stat_base($stat0) < 50) {
+            $int3 = calc((~obj_gettotal(obj_35919) * 100 + min(500000, ~obj_gettotal(obj_35920)) * 1250) / 10);
+        } else {
+            $int3 = calc((~obj_gettotal(obj_35919) * 100 + min(50000, ~obj_gettotal(obj_35920)) * 2500) / 10);
+        }
 }
-return("<enum(stat, string, enum_680, $stat0)>: <tostring_localised($int3, true)> XP");
+if ($int3 > 0) {
+    return("<enum(stat, string, enum_680, $stat0)>: <tostring_localised($int3, true)> XP");
+} else {
+    return("<enum(stat, string, enum_680, $stat0)> XP");
+}
