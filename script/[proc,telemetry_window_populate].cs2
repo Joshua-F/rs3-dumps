@@ -106,6 +106,14 @@ while ($int2 < $int1) {
                     }
                     cc_create($component15, ^iftype_text, if_getnextsubid($component15));
                     $int14 = telemetry_get_grid_value($int2, $int8, $int5);
+                    $int14 = ~script11853($int14, $int9, $int6);
+                    if (%varclient_5100 = 0 & %varclient_5101 = 0) {
+                        if ($int3 = 2 & $int9 = 0 & $int6 = 18) {
+                            %varclient_5102 = $int14;
+                        }
+                    } else if ($int3 = %varclient_5100 & $int9 = %varclient_5101 & ($int3 = 1 & $int6 = 2 | $int3 = 2 & $int6 = 18 | $int3 = 3 & $int6 = 35)) {
+                        %varclient_5102 = $int14;
+                    }
                     $string0 = ~telemetry_get_text($int14, $int9, $int6);
                     cc_settext($string0);
                     cc_setsize($int20, 25, ^setsize_abs, ^setsize_abs);
@@ -131,6 +139,8 @@ while ($int2 < $int1) {
                             cc_setop(3, "Reset row");
                         }
                         cc_setop(4, "Hide row");
+                        cc_setop(5, "Send to Graph");
+                        cc_setonop("script11858(event_op, 5, $int3, $int9)");
                         if (telemetry_is_row_pinned($int2, $int8) = true) {
                             cc_setop(1, "Unpin row");
                             cc_create($component15, ^iftype_rectangle, if_getnextsubid($component15));
@@ -217,8 +227,8 @@ if ($int0 = 1 | if_hassuboverlay(interface_1477:com_354, interface_1588) = true)
 }
 ~script9887;
 if (%varplayer_5884 = telemetryinterval_1) {
-    if_sethide(false, interface_1588:com_29);
+    if_sethide(false, interface_1588:com_30);
     ~script11823;
 } else {
-    if_sethide(true, interface_1588:com_29);
+    if_sethide(true, interface_1588:com_30);
 }
