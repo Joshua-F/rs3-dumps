@@ -1,0 +1,61 @@
+// 11933
+[clientscript,script11933]
+def_int $int0 = calc(date_minutes % 1440);
+$int0 = calc($int0 / 60);
+def_int $int1 = 0;
+if ($int0 >= 12) {
+    $int1 = %varplayer_3079;
+} else {
+    $int1 = calc(%varplayer_3079 - 1);
+}
+if_settext(enum(int, string, enum_10578, $int1), interface_1699:com_14);
+if_settext(enum(int, string, enum_10579, $int1), interface_1699:com_15);
+def_string $string0 = enum(int, string, enum_10580, $int1);
+if_settext($string0, interface_1699:com_35);
+if_setscrollsize(if_getwidth(interface_1699:com_20), calc(~script7593($string0, if_getwidth(interface_1699:com_35), if_getfontmetrics(interface_1699:com_35), 0) + 10), interface_1699:com_20);
+~rs3_scrollbar_vertical(interface_1699:com_21, interface_1699:com_20);
+if (if_getscrollheight(interface_1699:com_20) <= if_getheight(interface_1699:com_20)) {
+    cc_deleteall(interface_1699:com_21);
+}
+$string0 = enum(int, string, enum_10581, $int1);
+if_settext($string0, interface_1699:com_0);
+if_setscrollsize(if_getwidth(interface_1699:com_26), calc(~script7593($string0, if_getwidth(interface_1699:com_0), if_getfontmetrics(interface_1699:com_0), 0) + 10), interface_1699:com_26);
+~rs3_scrollbar_vertical(interface_1699:com_27, interface_1699:com_26);
+if (if_getscrollheight(interface_1699:com_26) <= if_getheight(interface_1699:com_26)) {
+    cc_deleteall(interface_1699:com_27);
+}
+if_settext(enum(int, string, enum_10582, $int1), interface_1699:com_31);
+if ($int1 < 5025 | $int1 > 5048) {
+    if_settextalign(^settextalign_centre, ^settextalign_centre, 0, interface_1699:com_15);
+}
+if ($int1 < 5025 | $int1 > 5049) {
+    if_settextalign(^settextalign_centre, ^settextalign_centre, 0, interface_1699:com_35);
+}
+if ($int1 < 5025 | $int1 > 5046) {
+    if_setposition(5, 20, ^setpos_abs_left, ^setpos_abs_top, interface_1699:com_0);
+    if_settextalign(^settextalign_centre, ^settextalign_centre, 0, interface_1699:com_0);
+}
+if ($int1 < 5025 | $int1 > 5048) {
+    if_settextalign(^settextalign_centre, ^settextalign_centre, 0, interface_1699:com_31);
+}
+switch_int ($int1) {
+    case 5032, 5033, 5035, 5044 :
+        if_sethide(true, interface_1699:com_22);
+    case 5025 :
+        if_sethide(true, interface_1699:com_28);
+    case 5026, 5029, 5034, 5047 :
+        if_sethide(true, interface_1699:com_32);
+    case 5038, 5040, 5042 :
+        if_sethide(true, interface_1699:com_22);
+        if_sethide(true, interface_1699:com_32);
+    case 5050 :
+        if_sethide(true, interface_1699:com_16);
+        if_sethide(true, interface_1699:com_28);
+        if_sethide(true, interface_1699:com_32);
+    case 5030, 5031, 5039, 5046, 5027, 5028, 5036, 5037, 5041, 5043, 5045, 5048, 5049 :
+    case default :
+        if_sethide(true, interface_1699:com_16);
+        if_sethide(true, interface_1699:com_22);
+        if_sethide(true, interface_1699:com_28);
+        if_sethide(true, interface_1699:com_32);
+}

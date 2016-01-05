@@ -1,0 +1,35 @@
+// 11972
+[clientscript,script11972](component $component0)
+if (%varclientbit_30112 > 0) {
+    %varclientbit_30112 = calc((%varclientbit_30112 + 1) % 31);
+}
+def_int $int1 = if_getmodelangle_z($component0);
+if ($int1 = %varplayerbit_30096) {
+    return;
+}
+def_int $int2 = calc($int1 + 7);
+if ($int2 > 2047) {
+    $int2 = calc($int2 % 2048);
+    if ($int2 > %varplayerbit_30096) {
+        $int2 = %varplayerbit_30096;
+    }
+} else if ($int1 < %varplayerbit_30096) {
+    $int2 = min($int2, %varplayerbit_30096);
+}
+def_int $int3 = min(~script5565(calc(%varplayerbit_30096 - $int2)), ~script5565(calc(%varplayerbit_30096 + 2048 - $int2)));
+def_int $int4 = calc($int1 - 7);
+if ($int4 < 0) {
+    $int4 = calc(2047 - ~script5565($int4));
+    if ($int4 < %varplayerbit_30096) {
+        $int4 = %varplayerbit_30096;
+    }
+} else if ($int1 > %varplayerbit_30096) {
+    $int4 = max($int4, %varplayerbit_30096);
+}
+def_int $int5 = min(~script5565(calc(%varplayerbit_30096 - $int4)), ~script5565(calc(%varplayerbit_30096 - 2048 - $int4)));
+if ($int3 < $int5) {
+    $int1 = $int2;
+} else {
+    $int1 = $int4;
+}
+if_setmodelangle(if_getmodelxof($component0), if_getmodelyof($component0), if_getmodelangle_x($component0), if_getmodelangle_y($component0), $int1, if_getmodelzoom($component0), $component0);
