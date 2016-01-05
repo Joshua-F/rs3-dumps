@@ -21344,3 +21344,135 @@ walkturn_l=seq_27786
 walkturn_r=seq_27786
 readyanim=seq_27785,seq_27786
 
+// 3645
+[bas_3645]
+readyanim_l=seq_27815
+readyanim_r=seq_27815
+walkturn_l=seq_27815
+walkturn_r=seq_27815
+readyanim=seq_27814,seq_27815
+
+// 3646
+[bas_3646]
+readyanim_l=seq_27834
+readyanim_r=seq_27834
+walkturn_l=seq_27834
+walkturn_r=seq_27834
+runanim=seq_27835
+readyanim=seq_27831,seq_27834
+
+// 3647
+[bas_3647]
+readyanim_l=seq_27845
+readyanim_r=seq_27845
+walkanim_b=seq_27845
+walkanim_l=seq_27845
+walkanim_r=seq_27845
+readyanim=seq_27845,seq_27845
+
+// 3648
+[bas_3648]
+readyanim=seq_27850,null
+
+// 3649
+[bas_3649]
+readyanim_r=seq_27861
+readyanim_l=seq_27861
+runanim=seq_27863
+readyanim=seq_27859,seq_27861
+
+// 3650
+[bas_3650]
+readyanim_r=seq_27860
+readyanim_l=seq_27860
+runanim=seq_27862
+readyanim=seq_27858,seq_27860
+
+// 3651
+[bas_3651]
+runanim=seq_27872
+readyanim=seq_27870,seq_27871
+
+// 3652
+[bas_3652]
+readyanim=seq_27888,null
+
+// 3653
+[bas_3653]
+readyanim_l=seq_27893
+readyanim_r=seq_27893
+walkturn_l=seq_27892
+walkturn_r=seq_27892
+walkanim_l=seq_27892
+walkanim_r=seq_27892
+runanim=seq_27894
+readyanim=seq_27893,seq_27892
+
+// 3654
+[bas_3654]
+walkturn_l=seq_18040
+walkturn_r=seq_18040
+walkanim_b=seq_18040
+runanim=seq_18039
+readyanim=seq_27899,seq_18040
+
+// 3655
+[bas_3655]
+readyanim=seq_27906,null
+
+// 3656
+[bas_3656]
+walkturn_l=seq_27908
+walkturn_r=seq_27908
+walkanim_b=seq_27908
+readyanim=seq_27907,seq_27908
+
+// 3657
+[bas_3657]
+readyanim_l=seq_18015
+readyanim_r=seq_18015
+walkturn_l=seq_27904
+walkturn_r=seq_27904
+walkanim_l=seq_27904
+walkanim_r=seq_27904
+runanim=seq_27909
+readyanim=seq_18015,seq_27904
+
+// 3658
+[bas_3658]
+readyanim=seq_27916,seq_27916
+
+// 3659
+[bas_3659]
+readyanim=seq_27944,seq_27944
+
+// 3660
+[bas_3660]
+readyanim=seq_27923,null
+
+// 3661
+[bas_3661]
+readyanim=seq_27926,seq_27926
+
+// 3662
+[bas_3662]
+readyanim=seq_27935,null
+
+// 3663
+[bas_3663]
+readyanim=seq_27929,null
+
+// 3664
+[bas_3664]
+readyanim=null,seq_27930
+randomreadyanim=seq_23327,120
+randomreadyanim=seq_23328,60
+randomreadyanim=seq_23329,60
+
+// 3665
+[bas_3665]
+crawlanim=seq_24183
+readyanim=null,null
+randomreadyanim=seq_3824,80
+randomreadyanim=seq_27953,20
+

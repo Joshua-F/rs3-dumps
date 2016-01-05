@@ -26,10 +26,31 @@ while ($int5 < inv_size($inv0)) {
             }
             if ($int9 = 1) {
                 cc_setobject_nonum($obj8, inv_getnum($inv0, $int5));
-            } else if ($inv0 = inv_600 & $obj8 = obj_1391) {
-                cc_setobject_alwaysnum($obj8, ~battlestaff_number);
-            } else if ($inv0 = inv_744 & $obj8 = obj_1391) {
-                cc_setobject_alwaysnum($obj8, calc(16 - %varplayerbit_26602));
+            } else if (oc_uncert($obj8) = obj_1391) {
+                switch_inv ($inv0) {
+                    case inv_600 :
+                        cc_setobject_alwaysnum($obj8, ~battlestaff_number);
+                    case inv_744 :
+                        if (~script11925 = true) {
+                            cc_setobject_alwaysnum($obj8, calc(31 - %varplayerbit_26602));
+                        } else {
+                            cc_setobject_alwaysnum($obj8, calc(16 - %varplayerbit_26602));
+                        }
+                    case inv_734 :
+                        if (~script11925 = true) {
+                            cc_setobject_alwaysnum($obj8, calc(31 - %varplayerbit_30004));
+                        } else {
+                            cc_setobject_alwaysnum($obj8, calc(16 - %varplayerbit_30004));
+                        }
+                    case inv_418, inv_419 :
+                        if (~script11925 = true) {
+                            cc_setobject_alwaysnum($obj8, calc(40 - %varplayerbit_30113));
+                        } else {
+                            cc_setobject_alwaysnum($obj8, calc(20 - %varplayerbit_30113));
+                        }
+                    case default :
+                        cc_setobject_alwaysnum($obj8, inv_getnum($inv0, $int5));
+                }
             } else {
                 cc_setobject_alwaysnum($obj8, inv_getnum($inv0, $int5));
             }

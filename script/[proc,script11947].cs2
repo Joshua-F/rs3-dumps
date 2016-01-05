@@ -1,0 +1,27 @@
+// 11947
+[proc,script11947](int $int0, int $int1)
+if_sethide(true, interface_219:com_115);
+if_sethide(false, interface_219:com_15);
+def_string $string0 = "";
+switch_int ($int0) {
+    case 122 :
+        $string0 = "You have purchased the Bronze Premier package.";
+    case 123, 125 :
+        $string0 = "You have purchased the Silver Premier package.";
+    case 124, 126, 127 :
+        $string0 = "You have purchased the Gold Premier package.";
+}
+switch_int ($int1) {
+    case 1, 4, 5 :
+        if_sethide(true, interface_219:com_0);
+        ~script9554(interface_219:com_12, interface_219:com_123, interface_219:com_13, "Sorry", struct_21218);
+        if_settext("We were unable to process your request.", interface_219:com_153);
+        mes("Sorry, we were unable to process your request. Please try again later.");
+        return;
+    case 2 :
+        if_settext($string0, interface_219:com_153);
+        mes($string0);
+    case 3 :
+        if_settext($string0, interface_219:com_153);
+        mes("<$string0> Please be patient while we process your request, your account will be credited shortly.");
+}
