@@ -1,6 +1,86 @@
 // 2470
-[proc,script2470](component $component0, component $component1)
-if_settext("", $component1);
-if_sethide(true, $component0);
-%varclient_2 = 0;
-%varclient_1 = 0;
+[proc,script2470](component $component0, int $int1, string $string0)
+def_component $component2 = ~script12020($component0);
+def_int $int3 = 0;
+if (if_find($component0) = true) {
+    if (cc_param(param_5433) = -1) {
+        return;
+    }
+    if (cc_param(param_5433) = $int1 & compare(%varclient_5113, $string0) = 0) {
+        return;
+    }
+    %varclient_5113 = $string0;
+    cc_setparam(param_5433, $int1);
+    switch_int ($int1) {
+        case 0 :
+            $int3 = 0;
+            if_setgraphic("rs3_icon_sort,4", $component2);
+        case 1 :
+            $int3 = cc_param(param_5434);
+            if_setgraphic("rs3_icon_sort,1", $component2);
+        case 2 :
+            $int3 = cc_param(param_5435);
+            if_setgraphic("rs3_icon_sort,6", $component2);
+        case default :
+            return;
+    }
+} else {
+    return;
+}
+def_int $int4 = 5;
+def_int $int5 = friend_count;
+def_boolean $boolean6 = false;
+def_component $component7 = ~script2968($component0);
+def_component $component8 = ~script3098($component0);
+def_component $component9 = ~script3099($component0);
+def_component $component10 = ~script10588($component0);
+def_component $component11 = ~friends_world_layer($component0);
+def_component $component12 = ~script11297($component0);
+def_int $int13 = 0;
+while ($int3 ! -1) {
+    $int13 = calc($int13 + 1);
+    if (cc_find($component10, $int3) = true) {
+        cc_setposition(0, $int4, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    if (cc_find($component11, $int3) = true) {
+        cc_setposition(cc_getx, $int4, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    if (cc_find($component12, $int3) = true) {
+        cc_setposition(2, calc($int4 + 1), ^setpos_abs_left, ^setpos_abs_top);
+    }
+    if (cc_find($component9, $int3) = true) {
+        cc_setposition(0, $int4, ^setpos_abs_left, ^setpos_abs_top);
+        switch_int ($int1) {
+            case 0 :
+                if (++$int3 >= $int5) {
+                    $int3 = -1;
+                }
+            case 1 :
+                $int3 = cc_param(param_5434);
+            case 2 :
+                $int3 = cc_param(param_5435);
+            case default :
+                return;
+        }
+        $boolean6 = cc_gethide;
+    } else {
+        return;
+    }
+    if ($boolean6 = false) {
+        $int4 = calc($int4 + 15);
+    }
+}
+if (if_getscrolly($component7) > $int4) {
+    if_setscrollpos(0, 0, $component7);
+}
+if (if_getscrolly($component7) > $int4) {
+    if_setscrollpos(0, 0, $component7);
+}
+if ($int4 > if_getheight($component7)) {
+    if_setscrollsize(0, $int4, $component7);
+    ~rs3_scrollbar_vertical($component8, $component7);
+} else {
+    if_setscrollpos(0, 0, $component7);
+    if_setscrollsize(0, 0, $component7);
+    cc_deleteall($component8);
+}

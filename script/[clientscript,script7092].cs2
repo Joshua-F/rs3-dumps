@@ -7,46 +7,65 @@ def_obj $obj0 = oc_param(%varplayer_1175, param_2989);
 if ($obj0 = null) {
     $obj0 = %varplayer_1175;
 }
-def_int $int1 = -1;
+def_int $int1 = oc_param(%varplayer_1175, param_2653);
+if (oc_param(%varplayer_1175, param_5445) = 1) {
+    $obj0 = %varclient_5123;
+    $int1 = %varclient_5124;
+}
 def_int $int2 = -1;
+def_int $int3 = -1;
 if (%varclient_2230 ! null) {
     if_setgraphic(%varclient_2230, interface_1251:com_13);
 }
-if (oc_param(%varplayer_1175, param_2653) > 1) {
-    if_setobject($obj0, oc_param(%varplayer_1175, param_2653), interface_1251:com_23);
+if (oc_param(%varplayer_1175, param_5491) ! null) {
+    if_setgraphic(oc_param(%varplayer_1175, param_5491), interface_1251:com_23);
+    if_setsize(32, 32, ^setsize_abs, ^setsize_abs, interface_1251:com_23);
 } else {
-    if_setobject_nonum($obj0, -1, interface_1251:com_23);
+    if ($int1 > 1) {
+        if_setobject($obj0, $int1, interface_1251:com_23);
+    } else {
+        if_setobject_nonum($obj0, -1, interface_1251:com_23);
+    }
+    if_setsize(36, 32, ^setsize_abs, ^setsize_abs, interface_1251:com_23);
 }
-def_int $int3 = ~script7124(interface_1251:com_8, oc_name($obj0), oc_param(%varplayer_1175, param_2653));
-if_setsize(if_getwidth(interface_1251:com_9), max(155, calc(155 + ($int3 - 20))), ^setsize_abs, ^setsize_abs, interface_1251:com_9);
-def_int $int4 = oc_param(%varplayer_1175, param_2696);
-def_int $int5 = oc_param(%varplayer_1175, param_2698);
-if ($int4 = 0) {
+def_int $int4 = ~script7124(interface_1251:com_8, oc_name($obj0), $int1);
+if_setsize(if_getwidth(interface_1251:com_9), max(155, calc(155 + ($int4 - 20))), ^setsize_abs, ^setsize_abs, interface_1251:com_9);
+def_graphic $graphic5 = rs3_child_content_tile;
+def_struct $struct6 = null;
+if (if_find(interface_1251:com_1) = true) {
+    $struct6 = cc_param(param_3518);
+    if ($struct6 ! null) {
+        $graphic5 = struct_param($struct6, param_3619);
+    }
+}
+def_int $int7 = oc_param(%varplayer_1175, param_2696);
+def_int $int8 = oc_param(%varplayer_1175, param_2698);
+if ($int7 = 0) {
     if_sethide(true, interface_1251:com_16);
 } else {
     if_sethide(false, interface_1251:com_16);
-    if ($int5 = 0) {
+    if ($int8 = 0) {
         if_setposition(170, 72, ^setpos_abs_left, ^setpos_abs_bottom, interface_1251:com_16);
     } else {
         if_setposition(135, 72, ^setpos_abs_left, ^setpos_abs_bottom, interface_1251:com_16);
     }
-    if_setgraphic(enum(int, graphic, enum_371, $int4), interface_1251:com_21);
-    ~script7093(interface_1251:com_3);
+    if_setgraphic(enum(int, graphic, enum_371, $int7), interface_1251:com_21);
+    ~script7093(interface_1251:com_3, $graphic5);
     if (%varplayer_1176 = 0 & %varplayer_1177 = 0) {
         ~script7102("0", interface_1251:com_22, interface_1251:com_3);
     }
 }
-if ($int5 = 0) {
+if ($int8 = 0) {
     if_sethide(true, interface_1251:com_17);
 } else {
     if_sethide(false, interface_1251:com_17);
-    if ($int4 = 0) {
+    if ($int7 = 0) {
         if_setposition(170, 72, ^setpos_abs_left, ^setpos_abs_bottom, interface_1251:com_17);
     } else {
         if_setposition(230, 72, ^setpos_abs_left, ^setpos_abs_bottom, interface_1251:com_17);
     }
-    if_setgraphic(enum(int, graphic, enum_371, $int5), interface_1251:com_34);
-    ~script7093(interface_1251:com_36);
+    if_setgraphic(enum(int, graphic, enum_371, $int8), interface_1251:com_34);
+    ~script7093(interface_1251:com_36, $graphic5);
     if (%varplayer_1176 = 0 & %varplayer_1177 = 0) {
         ~script7102("0", interface_1251:com_37, interface_1251:com_36);
     }

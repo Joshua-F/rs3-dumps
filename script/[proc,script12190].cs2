@@ -1,0 +1,38 @@
+// 12190
+[proc,script12190]
+def_int $int0 = 0;
+def_int $int1 = 0;
+while ($int1 < 9) {
+    if (cc_find(interface_1712:com_3, $int1) = true & cc_getgraphic ! null) {
+        $int0 = calc($int0 + 1);
+    }
+    $int1 = calc($int1 + 1);
+}
+def_string $string0 = null;
+if ($int0 > 5) {
+    if_sethide(false, interface_1712:com_25);
+    $string0 = "You can only fit up to five materials into the gizmo.";
+    if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1712:com_25);
+} else if ($int0 = 0) {
+    if_sethide(false, interface_1712:com_25);
+    $string0 = "You must have at lease one material in the gizmo.";
+    if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1712:com_25);
+} else if (~script12191 = 0) {
+    if_sethide(false, interface_1712:com_25);
+    $string0 = "You do not have enough materials in stock to make this gizmo.";
+    if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1712:com_25);
+} else {
+    if_sethide(true, interface_1712:com_25);
+}
+def_int $int2 = 0;
+def_component $component3 = interface_1712:com_19;
+if ($int0 = 0) {
+    cc_deleteall($component3);
+    $int2, $int2 = ~script12086($component3, 0, 5, 5, calc(if_getwidth($component3) - 10), "Drag or click on a material from the list to add it to the gizmo above.<br><br>You can put up to 5 materials into a gizmo, and you can put the same material in several times.<br><br>Common materials are used in stacks of five per slot.<br><br>Higher Invention skill will help you get higher rank positive perks.", struct_29166);
+    return;
+}
+$int1 = 0;
+while (cc_find(interface_1712:com_19, $int1) = true) {
+    cc_setcolour(0x808080);
+    $int1 = calc($int1 + 1);
+}

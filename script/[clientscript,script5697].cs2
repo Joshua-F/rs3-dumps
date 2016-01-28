@@ -1,23 +1,39 @@
 // 5697
-[clientscript,script5697](int $int0, struct $struct1, string $string0)
+[clientscript,script5697](int $int0, struct $struct1)
+def_string $string0 = ~skillguide_info($struct1);
+def_obj $obj2 = struct_param($struct1, param_2213);
+def_int $int3 = 0;
+if (%varclient_1753 = 27 & stat_base(invention) < ~skillguide_level($struct1)) {
+    $string0 = "You require level <tostring(~skillguide_level($struct1))> Invention to unlock this feature.";
+} else if (struct_param($struct1, param_5442) = 1 | struct_param($struct1, param_5444) ! null) {
+    if (struct_param($struct1, param_5444) ! null & ~script12058(struct_param($struct1, param_5444)) = 0) {
+        $int3 = db_getfield(struct_param($struct1, param_5444), dbtable_5:col6, 0);
+        if ($int3 > 0) {
+            $string0 = "<$string0><br>Inspiration required: <tostring($int3)>";
+        }
+    }
+    if ($obj2 ! null & struct_param($struct1, param_5443) = 1) {
+        $string0 = "<$string0><br>Ingredients: <~script12104($obj2)>.";
+    }
+}
 if (string_length($string0) <= 0) {
     return;
 }
-def_int $int2 = 0;
-def_int $int3 = 0;
-if (cc_find(interface_1218:com_14, $int0) = true) {
-    if (if_gethide(interface_1218:com_59) = true) {
-        $int3 = calc(cc_getheight + cc_gety - 5);
-        $int2 = calc(max(paraheight($string0, 500, verdana_11pt_regular), 1) * 12 + 30);
-        if_settext($string0, interface_1218:com_160);
-        if_setcolour(0xdb9000, interface_1218:com_160);
-        if_setsize(if_getwidth(interface_1218:com_59), $int2, ^setsize_abs, ^setsize_abs, interface_1218:com_59);
-        if (calc($int3 + $int2 - if_getscrolly(interface_1218:com_7)) > if_getheight(interface_1218:com_7)) {
-            $int3 = calc(cc_gety - ($int2 - 10));
+def_int $int4 = 0;
+def_int $int5 = 0;
+if (cc_find(interface_1218:com_15, $int0) = true) {
+    if (if_gethide(interface_1218:com_62) = true) {
+        $int5 = calc(cc_getheight + cc_gety - 5);
+        $int4 = calc(max(paraheight($string0, 500, verdana_11pt_regular), 1) * 12 + 30);
+        if_settext($string0, interface_1218:com_163);
+        if_setcolour(0xdb9000, interface_1218:com_163);
+        if_setsize(if_getwidth(interface_1218:com_62), $int4, ^setsize_abs, ^setsize_abs, interface_1218:com_62);
+        if (calc($int5 + $int4 - if_getscrolly(interface_1218:com_8)) > if_getheight(interface_1218:com_8)) {
+            $int5 = calc(cc_gety - ($int4 - 10));
         }
-        if_setposition(if_getx(interface_1218:com_59), $int3, ^setpos_abs_left, ^setpos_abs_top, interface_1218:com_59);
-        if_sethide(false, interface_1218:com_59);
+        if_setposition(if_getx(interface_1218:com_62), $int5, ^setpos_abs_left, ^setpos_abs_top, interface_1218:com_62);
+        if_sethide(false, interface_1218:com_62);
     } else {
-        if_sethide(true, interface_1218:com_59);
+        if_sethide(true, interface_1218:com_62);
     }
 }

@@ -1,0 +1,25 @@
+// 12095
+[proc,skillguide_name](struct $struct0)(string)
+def_string $string0 = "";
+if (struct_param($struct0, param_5444) ! null) {
+    switch_int (db_getfield(struct_param($struct0, param_5444), dbtable_5:col4, 0)) {
+        case 2 :
+            $string0 = "Device: ";
+        case 1 :
+            $string0 = "Material: ";
+        case 0 :
+            $string0 = "Research: ";
+    }
+    if (%varclient_1753 = 27 & stat_base(invention) < ~skillguide_level($struct0)) {
+        $string0 = "???";
+    } else if (string_length(struct_param($struct0, param_2210)) > 0) {
+        $string0 = "<$string0><struct_param($struct0, param_2210)>";
+    } else {
+        $string0 = "<$string0><db_getfield(struct_param($struct0, param_5444), dbtable_5:col1, 0)>";
+    }
+} else if (%varclient_1753 = 27 & stat_base(invention) < ~skillguide_level($struct0)) {
+    $string0 = "???";
+} else {
+    $string0 = struct_param($struct0, param_2210);
+}
+return($string0);

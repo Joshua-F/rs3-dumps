@@ -14,88 +14,92 @@ def_int $int18 = 0;
 def_int $int19 = 0;
 def_int $int20 = 0;
 def_string $string0 = "";
+def_enum $enum21 = ~script12040(enum(stat, int, enum_1482, $stat8));
+def_int $int22 = enum(stat, int, enum_10342, $stat8);
 def_string $string1 = "<enum(stat, string, enum_680, $stat8)>: <tostring(stat($stat8))>/<tostring(stat_base_actual($stat8))>";
 if (~script11868($stat8) = 1) {
     $string1 = "<enum(stat, string, enum_680, $stat8)>: <tostring(~script11863($stat8))>/<tostring(~script11862($stat8))>";
 }
-def_int $int21 = 0;
+def_int $int23 = 0;
 switch_stat ($stat8) {
     case attack :
-        $int21 = %varplayer_3304;
+        $int23 = %varplayer_3304;
     case strength :
-        $int21 = %varplayer_3305;
+        $int23 = %varplayer_3305;
     case defence :
-        $int21 = %varplayer_3306;
+        $int23 = %varplayer_3306;
     case magic :
-        $int21 = %varplayer_3307;
+        $int23 = %varplayer_3307;
     case ranged :
-        $int21 = %varplayer_3308;
+        $int23 = %varplayer_3308;
     case prayer :
-        $int21 = %varplayer_2850;
+        $int23 = %varplayer_2850;
     case summoning :
-        $int21 = %varplayer_3309;
+        $int23 = %varplayer_3309;
     case mining :
-        $int21 = %varplayer_3310;
+        $int23 = %varplayer_3310;
     case smithing :
-        $int21 = %varplayer_3311;
+        $int23 = %varplayer_3311;
     case crafting :
-        $int21 = %varplayer_3312;
+        $int23 = %varplayer_3312;
     case woodcutting :
-        $int21 = %varplayer_3313;
+        $int23 = %varplayer_3313;
     case farming :
-        $int21 = %varplayer_3314;
+        $int23 = %varplayer_3314;
     case firemaking :
-        $int21 = %varplayer_3315;
+        $int23 = %varplayer_3315;
     case fishing :
-        $int21 = %varplayer_3316;
+        $int23 = %varplayer_3316;
     case cooking :
-        $int21 = %varplayer_3317;
+        $int23 = %varplayer_3317;
     case dungeoneering :
-        $int21 = %varplayer_3318;
+        $int23 = %varplayer_3318;
     case slayer :
-        $int21 = %varplayer_3319;
+        $int23 = %varplayer_3319;
     case runecraft :
-        $int21 = %varplayer_3320;
+        $int23 = %varplayer_3320;
     case hunter :
-        $int21 = %varplayer_3321;
+        $int23 = %varplayer_3321;
     case thieving :
-        $int21 = %varplayer_3322;
+        $int23 = %varplayer_3322;
     case construction :
-        $int21 = %varplayer_3323;
+        $int23 = %varplayer_3323;
     case hitpoints :
-        $int21 = %varplayer_3324;
+        $int23 = %varplayer_3324;
     case agility :
-        $int21 = %varplayer_3325;
+        $int23 = %varplayer_3325;
     case fletching :
-        $int21 = %varplayer_3326;
+        $int23 = %varplayer_3326;
     case herblore :
-        $int21 = %varplayer_3327;
+        $int23 = %varplayer_3327;
     case divination :
-        $int21 = %varplayer_3836;
+        $int23 = %varplayer_3836;
+    case invention :
+        $int23 = %varplayer_6092;
 }
 if (cc_find($component10, $int0) = true & parawidth($string1, 190, p12_full) < cc_getwidth & %varclient_80 = ~script11860($stat8)) {
     cc_settext($string1);
     if (cc_find($component10, $int1) = true) {
         cc_settext(~tostring_spacer_local(stat_visible_xp_actual($stat8)));
     }
-    if (~script11860($stat8) < 99 & cc_find($component10, $int2) = true) {
-        cc_settext(~tostring_spacer_local(calc(enum(int, int, enum_716, calc(~script11860($stat8) + 1)) - stat_visible_xp_actual($stat8))));
+    if (~script11860($stat8) < $int22 & cc_find($component10, $int2) = true) {
+        cc_settext(~tostring_spacer_local(calc(enum(int, int, $enum21, calc(~script11860($stat8) + 1)) - stat_visible_xp_actual($stat8))));
     }
-    if ($int21 > 0 & cc_find($component10, $int3) = true) {
-        cc_settext(~tostring_spacer_local(calc($int21 / 10)));
+    if ($int23 > 0 & cc_find($component10, $int3) = true) {
+        cc_settext(~tostring_spacer_local(calc($int23 / 10)));
     }
     if (~script4036(enum(stat, int, enum_1482, $stat8)) = ^true) {
         $intbool14, $int12, $int13 = ~script4037(enum(stat, int, enum_1482, $stat8));
         $int19 = $int12;
         if ($intbool14 = ^true) {
-            $int19 = enum(int, int, enum_716, $int12);
+            $int19 = enum(int, int, $enum21, $int12);
         }
         $int20 = max(0, calc($int19 - stat_visible_xp_actual($stat8)));
         $string0 = ~tostring_spacer_local($int20);
         if (cc_find($component10, $int6) = true) {
             if ($intbool14 = ^true) {
-                $int17 = enum(int, int, enum_716, $int13);
-                $int18 = enum(int, int, enum_716, $int12);
+                $int17 = enum(int, int, $enum21, $int13);
+                $int18 = enum(int, int, $enum21, $int12);
                 if (calc($int18 - $int17) ! 0) {
                     $int15 = scale(calc(stat_visible_xp_actual($stat8) - $int17), calc($int18 - $int17), 100);
                 } else {

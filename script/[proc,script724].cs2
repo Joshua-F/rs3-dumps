@@ -1,5 +1,9 @@
 // 724
 [proc,script724]
+def_int $int0 = 0;
+if (%varclient_4677 = %varplayerbit_19949) {
+    $int0 = 1;
+}
 if (%varplayerbit_19949 = 1) {
     ~script188;
 } else {
@@ -13,4 +17,10 @@ if (has_html5 = false & has_nxt = false) {
     cam2_setdepthplanes(-1, -1);
 }
 ~script8000;
-~script8767(0, 0, 0);
+if ($int0 = 1) {
+    cam2_setpositionangularinterpolation(1000);
+    ~script8767(%varclient_5114, %varclient_5115, %varclient_1971);
+    if_setontimer("script12107(event_com)", interface_1477:com_22);
+} else {
+    ~script8767(0, 0, 0);
+}

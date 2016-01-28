@@ -1,0 +1,19 @@
+// 12047
+[proc,script12047](dbrow $dbrow0)(int)
+def_int $int1 = db_getfieldcount($dbrow0, dbtable_5:col11);
+if ($int1 = 0) {
+    return(0);
+}
+def_int $int2 = 0;
+def_int $int3 = 0;
+while ($int3 < $int1) {
+    switch_int (~script12048(db_getfield($dbrow0, dbtable_5:col11, $int3))) {
+        case 0 :
+            return(-1);
+        case 1 :
+        case 2 :
+            $int2 = calc($int2 + 20);
+    }
+    $int3 = calc($int3 + 1);
+}
+return($int2);
