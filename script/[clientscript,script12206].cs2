@@ -1,0 +1,40 @@
+[clientscript,script12206](component $component0)
+def_obj $obj1 = null;
+switch_component ($component0) {
+    case interface_1715:com_58 :
+        $obj1 = obj_36739;
+    case interface_1715:com_80 :
+        $obj1 = obj_36740;
+    case interface_1715:com_69 :
+        $obj1 = obj_36741;
+    case interface_1715:com_38 :
+        $obj1 = obj_36742;
+    case interface_1715:com_48 :
+        $obj1 = obj_36743;
+    case interface_1715:com_111 :
+        $obj1 = obj_36744;
+    case interface_1715:com_91 :
+        $obj1 = obj_36745;
+    case interface_1715:com_101 :
+        $obj1 = obj_36735;
+    case interface_1715:com_39, interface_1715:com_49, interface_1715:com_59, interface_1715:com_70, interface_1715:com_81, interface_1715:com_112, interface_1715:com_92 :
+        mes("You have already unlocked that reward.");
+        return;
+}
+if (~script12207($obj1) >= 1) {
+    mes("You have already unlocked that item.");
+    return;
+}
+def_int $int2 = enum(obj, int, enum_10765, $obj1);
+if (inv_total(inv_93, obj_36734) < $int2) {
+    mes("You don't have enough grotesque souls to create that item.");
+    return;
+}
+def_string $string0 = enum(obj, string, enum_10771, $obj1);
+if ($component0 = interface_1715:com_101) {
+    if_settext("Are you sure you want to create a <$string0> for <tostring_localised($int2, true)> grotesque souls?", interface_1715:com_123);
+} else {
+    if_settext("Are you sure you want to create the <$string0> for <tostring_localised($int2, true)> grotesque souls? You will receive <tostring(calc(3 * $int2))> Slayer XP.", interface_1715:com_123);
+}
+if_sethide(false, interface_1715:com_2);
+if_sethide(false, interface_1715:com_31);
