@@ -1,16 +1,16 @@
 // 5692
 [clientscript,script5692](int $int0, int $int1, struct $struct2)
-.cc_create(interface_1218:com_57, ^iftype_graphic, if_getnextsubid(interface_1218:com_57));
+.cc_create(interface_1218:com_60, ^iftype_graphic, if_getnextsubid(interface_1218:com_60));
 .cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
 .cc_setposition(10, calc($int1 + 5), ^setpos_abs_left, ^setpos_abs_top);
 if ($struct2 = null) {
     return;
 }
 def_obj $obj3 = struct_param($struct2, param_2213);
-def_stat $stat4 = enum(int, stat, enum_681, struct_param($struct2, param_2215));
-def_int $int5 = struct_param($struct2, param_2212);
+def_stat $stat4 = enum(int, stat, enum_681, ~skillguide_skill($struct2));
+def_int $int5 = ~skillguide_level($struct2);
 def_boolean $boolean6 = struct_param($struct2, param_2217);
-def_string $string0 = struct_param($struct2, param_2210);
+def_string $string0 = ~skillguide_name($struct2);
 if ($obj3 ! null) {
     if (string_length($string0) < 1) {
         $string0 = oc_name($obj3);
@@ -30,11 +30,12 @@ if (stat_base($stat4) < $int5) {
     .cc_setonmouseover("script5693(event_comsubid, 1)");
     .cc_setonmouseleave("script5694");
 } else if ($obj3 = null) {
-    .cc_setgraphic(struct_param($struct2, param_2214));
+    .cc_setgraphic(~skillguide_item_graphic($struct2));
+    .cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
 } else {
     .cc_setobject($obj3, -1);
 }
-.cc_create(interface_1218:com_57, ^iftype_text, if_getnextsubid(interface_1218:com_57));
+.cc_create(interface_1218:com_60, ^iftype_text, if_getnextsubid(interface_1218:com_60));
 .cc_setposition(45, calc($int1 + 5), ^setpos_abs_left, ^setpos_abs_top);
 .cc_settextfont(verdana_13pt_regular);
 .cc_settextshadow(true);
@@ -47,13 +48,13 @@ if ($int5 = 0) {
 .cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
 .cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
 if ($boolean6 = true) {
-    .cc_create(interface_1218:com_57, ^iftype_text, if_getnextsubid(interface_1218:com_57));
+    .cc_create(interface_1218:com_60, ^iftype_text, if_getnextsubid(interface_1218:com_60));
     .cc_setposition(74, calc($int1 + 9), ^setpos_abs_left, ^setpos_abs_top);
     .cc_setsize(25, 20, ^setsize_abs, ^setsize_abs);
     .cc_setonmouseover("script5693(event_comsubid, 0)");
     .cc_setonmouseleave("script5694");
 }
-.cc_create(interface_1218:com_57, ^iftype_text, if_getnextsubid(interface_1218:com_57));
+.cc_create(interface_1218:com_60, ^iftype_text, if_getnextsubid(interface_1218:com_60));
 .cc_setposition(106, calc($int1 + 8), ^setpos_abs_left, ^setpos_abs_top);
 .cc_settext($string0);
 .cc_settextfont(verdana_13pt_regular);
@@ -62,7 +63,7 @@ if ($boolean6 = true) {
 .cc_settextalign(^settextalign_centre, ^settextalign_centre, 12);
 .cc_setsize(134, 16, ^setsize_minus, ^setsize_abs);
 if (compare("", struct_param($struct2, param_2216)) ! 0) {
-    .cc_create(interface_1218:com_57, ^iftype_text, if_getnextsubid(interface_1218:com_57));
+    .cc_create(interface_1218:com_60, ^iftype_text, if_getnextsubid(interface_1218:com_60));
     .cc_setposition(106, calc($int1 + 23), ^setpos_abs_left, ^setpos_abs_top);
     .cc_settextfont(verdana_11pt_regular);
     .cc_settextshadow(true);
@@ -70,14 +71,34 @@ if (compare("", struct_param($struct2, param_2216)) ! 0) {
     .cc_setcolour(0xdb9000);
     .cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
     .cc_setsize(134, 16, ^setsize_minus, ^setsize_abs);
+} else if (struct_param($struct2, param_5444) ! null) {
+    if (~script12058(struct_param($struct2, param_5444)) = 1) {
+        .cc_create(interface_1218:com_60, ^iftype_text, if_getnextsubid(interface_1218:com_60));
+        .cc_setposition(106, calc($int1 + 23), ^setpos_abs_left, ^setpos_abs_top);
+        .cc_settextfont(verdana_11pt_regular);
+        .cc_settextshadow(true);
+        .cc_settext("Discovered");
+        .cc_setcolour(0xdb9000);
+        .cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
+        .cc_setsize(134, 16, ^setsize_minus, ^setsize_abs);
+    } else if (db_getfieldcount(struct_param($struct2, param_5444), dbtable_5:col11) > 0) {
+        .cc_create(interface_1218:com_60, ^iftype_text, if_getnextsubid(interface_1218:com_60));
+        .cc_setposition(106, calc($int1 + 23), ^setpos_abs_left, ^setpos_abs_top);
+        .cc_settextfont(verdana_11pt_regular);
+        .cc_settextshadow(true);
+        .cc_settext("Also requires: <~script12051(struct_param($struct2, param_5444), 0)> Tech Tree");
+        .cc_setcolour(0xdb9000);
+        .cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
+        .cc_setsize(134, 16, ^setsize_minus, ^setsize_abs);
+    }
 }
-if (string_length(struct_param($struct2, param_2211)) > 0) {
-    .cc_create(interface_1218:com_57, ^iftype_graphic, if_getnextsubid(interface_1218:com_57));
+if (string_length(struct_param($struct2, param_2211)) > 0 | struct_param($struct2, param_5442) = 1 | struct_param($struct2, param_5444) ! null) {
+    .cc_create(interface_1218:com_60, ^iftype_graphic, if_getnextsubid(interface_1218:com_60));
     .cc_setposition(15, calc($int1 + 10), ^setpos_abs_right, ^setpos_abs_top);
     .cc_setgraphic(graphic_8485);
     .cc_setsize(17, 19, ^setsize_abs, ^setsize_abs);
 }
-if (cc_find(interface_1218:com_14, $int0) = true) {
+if (cc_find(interface_1218:com_15, $int0) = true) {
     cc_setposition(5, $int1, ^setpos_abs_left, ^setpos_abs_top);
     cc_setontimer(null);
 }

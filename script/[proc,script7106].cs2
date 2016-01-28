@@ -9,10 +9,14 @@ if ($int0 > 0 & $int0 < 61) {
         return(true);
     }
     return(false);
-} else if ($int0 = 61) {
-    return(quest_finished(enum(int, quest, enum_812, $int1)));
-} else if ($int0 = 62) {
-    return(~script7163($int1));
-} else {
-    return(true);
+}
+switch_int ($int0) {
+    case 61 :
+        return(quest_finished(enum(int, quest, enum_812, $int1)));
+    case 62 :
+        return(~script7163($int1));
+    case 63 :
+        return(~int_to_bool(~invent_blueprint_unlocked($int1)));
+    case default :
+        return(true);
 }

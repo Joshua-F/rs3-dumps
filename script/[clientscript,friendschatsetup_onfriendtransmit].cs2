@@ -1,3 +1,62 @@
 // 1893
-[clientscript,friendschatsetup_onfriendtransmit](component $component0, component $component1)
-~script1895($component0, $component1);
+[clientscript,friendschatsetup_onfriendtransmit]
+cc_deleteall(interface_1108:com_6);
+cc_deleteall(interface_1108:com_7);
+cc_deleteall(interface_1108:com_5);
+cc_deleteall(interface_1108:com_3);
+def_int $int0 = friend_count;
+if ($int0 = -2) {
+    ~script11981("Connecting to Friend Server - Please wait...");
+    return;
+} else if ($int0 = -1) {
+    ~script11981("Loading Friends List - Please wait...");
+    return;
+}
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = if_getwidth(interface_1108:com_6);
+def_int $intarray0(calc($int0 + 1));
+def_int $intarray1(calc($int0 + 1));
+while ($int2 < $int0) {
+    $int1 = friend_getrank($int2);
+    cc_create(interface_1108:com_5, ^iftype_graphic, $int2);
+    cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
+    cc_create(interface_1108:com_6, ^iftype_text, $int2);
+    cc_setsize(0, 14, ^setsize_minus, ^setsize_abs);
+    cc_create(interface_1108:com_7, ^iftype_text, $int2);
+    cc_setsize(0, 14, ^setsize_minus, ^setsize_abs);
+    cc_setontimer("friendschatsetup_info($int2, $int1)");
+    $intarray0($int2) = $int2;
+    $intarray1($int2) = $int1;
+    $int2 = calc($int2 + 1);
+}
+$intarray0($int0) = -1;
+$intarray1($int0) = -1;
+array_sort($int0, 1, 0);
+if_setparam_int(param_5436, $intarray0(0), interface_1108:com_2);
+if_setparam_int(param_5437, $intarray0(calc($int0 - 1)), interface_1108:com_2);
+$int2 = 0;
+while ($int2 < $int0) {
+    if (cc_find(interface_1108:com_6, $intarray0($int2)) = true) {
+        cc_setparam(param_5436, $intarray0(calc($int2 + 1)));
+        if ($int2 > 0) {
+            cc_setparam(param_5437, $intarray0(calc($int2 - 1)));
+        }
+    }
+    $int2 = calc($int2 + 1);
+}
+~script11953(intarray0, 0, calc($int0 - 1));
+if_setparam_int(param_5434, $intarray0(0), interface_1108:com_2);
+if_setparam_int(param_5435, $intarray0(calc($int0 - 1)), interface_1108:com_2);
+if_setparam_int(param_5433, -2, interface_1108:com_2);
+$int2 = 0;
+while ($int2 < $int0) {
+    if (cc_find(interface_1108:com_6, $intarray0($int2)) = true) {
+        cc_setparam(param_5434, $intarray0(calc($int2 + 1)));
+        if ($int2 > 0) {
+            cc_setparam(param_5435, $intarray0(calc($int2 - 1)));
+        }
+    }
+    $int2 = calc($int2 + 1);
+}
+if_setontimer("script11955", interface_1108:com_2);

@@ -119,7 +119,7 @@ $int19 = ~script8438($int7, $int8);
 if ($enum18 = null) {
     return;
 }
-$int22 = 187;
+$int22 = 189;
 def_int $int33 = 0;
 def_int $intarray0($int22);
 def_int $intarray1($int22);
@@ -232,9 +232,13 @@ while ($int23 <= $int22) {
                         if (%varplayerbit_29077 < 120) {
                             $int34 = 0;
                         }
+                    case struct_32942, struct_32943 :
+                        if (~stat_available(invention) = 0 | ~invent_toolbelt_unlocked(1) = 0) {
+                            $int34 = 0;
+                        }
                 }
             }
-            if (struct_param($struct20, param_2806) = 4) {
+            if (struct_param($struct20, param_2806) = 4 | struct_param($struct20, param_2806) = 27) {
                 if ($int24 = 4) {
                     if (struct_param($struct20, param_2872) = 0) {
                         $int34 = 0;
@@ -348,7 +352,12 @@ while ($int21 < $int33) {
             cc_setopbase("<col=00ff00><struct_param($struct20, param_2794)>");
             cc_setonmouserepeat("script8448($struct20, $component3, $int28)");
             cc_setonmouseleave("script8805");
-            if (struct_param($struct20, param_2875) = 1 | $struct20 = struct_14874 & (%varplayer_3170 = struct_14770 | %varplayer_3170 = struct_14757)) {
+            if ($struct20 = struct_32942 | $struct20 = struct_14874 & %varplayer_3170 = struct_32942 | $struct20 = struct_32943 | $struct20 = struct_14874 & %varplayer_3170 = struct_32943) {
+                cc_settargetverb("Activate");
+                cc_setontargetenter("script7049(event_com, event_comsubid)");
+                cc_setontargetleave("script7050(event_com, event_comsubid)");
+                cc_settargetcursors(struct_param($struct20, param_2803), cursor_158);
+            } else if (struct_param($struct20, param_2875) = 1 | $struct20 = struct_14874 & (%varplayer_3170 = struct_14770 | %varplayer_3170 = struct_14757)) {
                 cc_settargetverb("Cast");
                 cc_setontargetenter("script7049(event_com, event_comsubid)");
                 cc_setontargetleave("script7050(event_com, event_comsubid)");

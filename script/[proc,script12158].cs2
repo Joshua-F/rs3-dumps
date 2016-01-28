@@ -1,0 +1,192 @@
+// 12158
+[proc,script12158](component $component0, component $component1)
+cc_deleteall($component0);
+def_dbrow $dbrow2 = null;
+def_int $int3 = 0;
+def_int $int4 = enum_getoutputcount(enum_10742);
+def_int $int5 = 0;
+def_int $intarray0($int4);
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 5;
+def_int $int11 = 5;
+while ($int5 < $int4) {
+    cc_create($component0, ^iftype_graphic, $int5);
+    cc_sethide(true);
+    $dbrow2 = enum(int, dbrow, enum_10742, $int5);
+    if (~invent_material_dbrow_count($dbrow2) > 0) {
+        $intarray0($int3) = $int5;
+        $int3 = calc($int3 + 1);
+        cc_setparam_string(param_5441, lowercase(db_getfield($dbrow2, dbtable_4:col1, 0)));
+        cc_setparam(param_5529, $dbrow2);
+        switch_int (db_getfield($dbrow2, dbtable_4:col7, 0)) {
+            case 2 :
+                cc_setparam(param_5535, 2);
+                $int6 = calc($int6 + 1);
+            case 5, 3 :
+                cc_setparam(param_5535, 3);
+                $int7 = calc($int7 + 1);
+            case 4 :
+                cc_setparam(param_5535, 4);
+                $int8 = calc($int8 + 1);
+            case default :
+                cc_setparam(param_5535, -1);
+                $int9 = calc($int9 + 1);
+        }
+    }
+    $int5 = calc($int5 + 1);
+}
+if ($int3 = 0) {
+    .cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+    .cc_setsize($int10, 30, ^setsize_minus, ^setsize_abs);
+    .cc_setposition($int10, 5, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    .cc_settext("No Materials");
+    ~script12108(0x00000a);
+    .cc_settextfont(graphic_17810);
+    .cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+    .cc_setsize($int10, 30, ^setsize_minus, ^setsize_abs);
+    .cc_setposition($int10, 40, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    .cc_settext("You do not have any materials at the moment.<br><br>Materials are gained by disassembling items.");
+    ~script12108(0x00000c);
+    .cc_settextfont(graphic_20452);
+    return;
+}
+~script12088(intarray0, $component0, 0, calc($int3 - 1));
+if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component0);
+def_int $int12 = 0;
+def_int $int13 = 40;
+def_int $int14 = 60;
+def_int $int15 = 0;
+def_int $int16 = 40;
+$int15, $int16, $int10 = ~script12087(if_getwidth($component0), $int13, 5, 5);
+def_int $int17 = calc(($int6 + $int15 - 1) / $int15 + ($int7 + $int15 - 1) / $int15 + ($int8 + $int15 - 1) / $int15 + ($int9 + $int15 - 1) / $int15);
+def_int $int18 = 0;
+if ($int6 > 0) {
+    $int18 = calc($int18 + 1);
+}
+if ($int7 > 0) {
+    $int18 = calc($int18 + 1);
+}
+if ($int8 > 0) {
+    $int18 = calc($int18 + 1);
+}
+if ($int9 > 0) {
+    $int18 = calc($int18 + 1);
+}
+$int18 = calc($int18 * 30);
+if (if_getheight($component0) < calc($int17 * ($int14 + $int11) + $int11 + $int18)) {
+    if_setsize(16, 0, ^setsize_minus, ^setsize_minus, $component0);
+    $int12 = 1;
+    $int15, $int16, $int10 = ~script12087(if_getwidth($component0), $int13, 5, 5);
+    $int17 = calc(($int6 + $int15 - 1) / $int15 + ($int7 + $int15 - 1) / $int15 + ($int8 + $int15 - 1) / $int15 + ($int9 + $int15 - 1) / $int15);
+    if_setscrollsize(0, calc($int17 * ($int14 + $int11) + $int11 + $int18), $component0);
+    ~rs3_scrollbar_vertical($component1, $component0);
+    if_sethide(false, $component1);
+} else {
+    if_sethide(true, $component1);
+}
+def_int $int19 = 0;
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_int $int22 = 0;
+def_int $int23 = 0;
+def_int $int24 = $int11;
+if ($int6 > 0) {
+    ~script12159($component0, $int10, $int24, "Common materials");
+    $int19 = calc($int24 + 30);
+    $int24 = calc($int24 + 30 + ($int6 + $int15 - 1) / $int15 * ($int14 + $int11));
+}
+if ($int7 > 0) {
+    ~script12159($component0, $int10, $int24, "Uncommon materials");
+    $int20 = calc($int24 + 30);
+    $int24 = calc($int24 + 30 + ($int7 + $int15 - 1) / $int15 * ($int14 + $int11));
+}
+if ($int8 > 0) {
+    ~script12159($component0, $int10, $int24, "Rare materials");
+    $int21 = calc($int24 + 30);
+    $int24 = calc($int24 + 30 + ($int8 + $int15 - 1) / $int15 * ($int14 + $int11));
+}
+if ($int9 > 0) {
+    ~script12159($component0, $int10, $int24, "Other materials");
+    $int22 = calc($int24 + 30);
+    $int24 = calc($int24 + 30 + ($int9 + $int15 - 1) / $int15 * ($int14 + $int11));
+}
+$int6 = 0;
+$int7 = 0;
+$int8 = 0;
+$int9 = 0;
+def_int $int25 = 0;
+def_int $int26 = 0;
+def_string $string0 = null;
+def_int $int27 = 0;
+$int5 = 0;
+while ($int5 < $int3) {
+    if (cc_find($component0, $intarray0($int5)) = true) {
+        $dbrow2 = cc_param(param_5529);
+        $int25 = ~invent_material_count(db_getfield($dbrow2, dbtable_4:col0, 0));
+        $int27 = ~invent_material_unlocked($dbrow2);
+        switch_int (cc_param(param_5535)) {
+            case 2 :
+                $int26, $int6 = $int6, calc($int6 + 1);
+                $int24 = $int19;
+            case 3 :
+                $int26, $int7 = $int7, calc($int7 + 1);
+                $int24 = $int20;
+            case 4 :
+                $int26, $int8 = $int8, calc($int8 + 1);
+                $int24 = $int21;
+            case default :
+                $int26, $int9 = $int9, calc($int9 + 1);
+                $int24 = $int22;
+        }
+        $int23 = calc($int10 + $int26 % $int15 * $int16);
+        $int24 = calc($int24 + $int26 / $int15 * ($int14 + $int11));
+        .cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+        .cc_setposition($int23, $int24, ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setgraphic("rs3_icon_slot_40px,0");
+        .cc_setsize(40, 40, ^setsize_abs, ^setsize_abs);
+        cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int23 + 4), calc($int24 + 4), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphic(db_getfield($dbrow2, dbtable_4:col4, 0));
+        if ($int27 = 1) {
+            cc_sethide(false);
+        } else {
+            cc_sethide(true);
+        }
+        .cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+        .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setgraphic(cc_getgraphic);
+        .cc_setsize(cc_getwidth, cc_getheight, ^setsize_abs, ^setsize_abs);
+        if ($int27 = 0) {
+            .cc_settrans(178);
+        }
+        $string0 = "<tostring_localised($int25, true)> x <db_getfield($dbrow2, dbtable_4:col1, 0)><br><br><db_getfield($dbrow2, dbtable_4:col2, 0)>";
+        if (db_getfieldcount($dbrow2, dbtable_4:col3) > 0) {
+            $string0 = "<$string0><br><br>Disassembly sources: <db_getfield($dbrow2, dbtable_4:col3, 0)>";
+        }
+        if ($int27 = 0) {
+            $string0 = "<$string0><br><br>You need to research this material before you can use it in a gizmo.";
+        }
+        .cc_setonmouserepeat("script3876($string0, event_com, .cc_getid)");
+        cc_sendtofront;
+        if ($int25 >= 10000000) {
+            $string0 = "<tostring(calc($int25 / 1000000))>M";
+        } else if ($int25 >= 10000) {
+            $string0 = "<tostring(calc($int25 / 1000))>K";
+        } else {
+            $string0 = tostring($int25);
+        }
+        .cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+        .cc_setsize(40, 15, ^setsize_abs, ^setsize_abs);
+        .cc_setposition($int23, calc($int24 + $int14 - 15), ^setpos_abs_left, ^setpos_abs_top);
+        .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        .cc_settext($string0);
+        ~script12108(0x00000e);
+        .cc_settextfont(graphic_20452);
+    }
+    $int5 = calc($int5 + 1);
+}

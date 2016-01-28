@@ -1,0 +1,102 @@
+// 12122
+[proc,invent_discovery_create_card](component $component0, int $int1, component $component2, int $int3, int $int4, int $int5, dbrow $dbrow6)(int)
+def_int $int7 = $int1;
+def_int $int8 = db_getfield($dbrow6, dbtable_5:col6, 0);
+cc_create($component0, ^iftype_graphic, $int1);
+cc_setsize(212, 166, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int4 - 8), calc($int5 - 8), ^setpos_abs_left, ^setpos_abs_top);
+if (%varplayer_5992 = $dbrow6) {
+    cc_setgraphic("invention_discovery_card_effects,1");
+} else {
+    cc_setgraphic("invention_discovery_card_effects,0");
+}
+$int1 = calc($int1 + 1);
+cc_create($component0, ^iftype_graphic, $int1);
+cc_setsize(196, 150, ^setsize_abs, ^setsize_abs);
+cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
+cc_setgraphic(invention_discovery_card);
+if ($int8 > %varplayer_5985) {
+    cc_setcolour(0xcccccc);
+}
+$int1 = calc($int1 + 1);
+cc_create($component0, ^iftype_graphic, $int1);
+cc_setgraphic(db_getfield($dbrow6, dbtable_5:col3, 0));
+cc_setsize(100, 100, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int4 + 48), calc($int5 + 40), ^setpos_abs_left, ^setpos_abs_top);
+if ($int8 > %varplayer_5985) {
+    cc_setcolour(0xcccccc);
+}
+$int1 = calc($int1 + 1);
+cc_create($component0, ^iftype_text, $int1);
+cc_settext(db_getfield($dbrow6, dbtable_5:col1, 0));
+cc_settextfont(graphic_17813);
+cc_settextalign(^settextalign_left, ^settextalign_top, 12);
+cc_setcolour(0x332200);
+cc_setsize(140, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int4 + 5), calc($int5 + 5), ^setpos_abs_left, ^setpos_abs_top);
+$int1 = calc($int1 + 1);
+def_string $string0 = tostring_localised($int8, true);
+cc_create($component0, ^iftype_text, $int1);
+cc_settextfont(graphic_17813);
+cc_settext($string0);
+cc_settextalign(^settextalign_right, ^settextalign_top, 12);
+if ($int8 <= %varplayer_5985) {
+    cc_setcolour(0x332200);
+} else {
+    cc_setcolour(^red);
+}
+cc_setsize(50, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int4 + 141), calc($int5 + 5), ^setpos_abs_left, ^setpos_abs_top);
+def_int $int9 = stringwidth($string0, cc_getfontmetrics);
+$int1 = calc($int1 + 1);
+cc_create($component0, ^iftype_graphic, $int1);
+cc_setgraphic(invention_icon_inspiration);
+cc_setsize(21, 21, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int4 + 172 - $int9), calc($int5 + 1), ^setpos_abs_left, ^setpos_abs_top);
+$int1 = calc($int1 + 1);
+$string0 = tostring(db_getfield($dbrow6, dbtable_5:col7, 0));
+cc_create($component0, ^iftype_text, $int1);
+cc_settextfont(graphic_17813);
+cc_settext($string0);
+cc_settextalign(^settextalign_right, ^settextalign_top, 12);
+cc_setcolour(0x332200);
+cc_setsize(50, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int4 + 141), calc($int5 + 130), ^setpos_abs_left, ^setpos_abs_top);
+$int9 = stringwidth($string0, cc_getfontmetrics);
+$int1 = calc($int1 + 1);
+cc_create($component0, ^iftype_graphic, $int1);
+cc_setgraphic(skill_icon_invention_16px);
+cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int4 + 170 - $int9), calc($int5 + 128), ^setpos_abs_left, ^setpos_abs_top);
+$int1 = calc($int1 + 1);
+def_int $int10 = db_getfieldcount($dbrow6, dbtable_5:col11);
+def_int $int11 = 0;
+while ($int11 < $int10) {
+    $string0 = ~script12051($dbrow6, $int11);
+    cc_create($component0, ^iftype_text, $int1);
+    cc_settextfont(graphic_17813);
+    cc_settext($string0);
+    cc_settextalign(^settextalign_left, ^settextalign_top, 12);
+    cc_setcolour(0x332200);
+    cc_setsize(50, 20, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int4 + 5), calc($int5 + 130 - 12 * $int11), ^setpos_abs_left, ^setpos_abs_top);
+    $int1 = calc($int1 + 1);
+    $int11 = calc($int11 + 1);
+}
+if ($component2 ! null & cc_find($component2, $int3) = true) {
+    cc_setsize(196, 132, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settrans(255);
+    cc_sethide(false);
+    cc_setparam(param_5530, $dbrow6);
+    cc_setparam(param_5531, $int7);
+    cc_setparam(param_5532, $int1);
+    cc_setonmouserepeat("script12123(event_com, event_comsubid, $dbrow6, $component0, $int7, $int1)");
+    cc_setop(1, "Select");
+    cc_setnoclickthrough(true);
+    cc_sendtofront;
+    if ($component2 = interface_1708:com_33) {
+        cc_setonscrollwheel("scrollbar_vertical_wheel(interface_1708:com_1, interface_1708:com_2, event_mousey)");
+    }
+}
+return($int1);

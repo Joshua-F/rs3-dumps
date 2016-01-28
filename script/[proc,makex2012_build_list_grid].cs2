@@ -1,16 +1,18 @@
 // 7120
 [proc,makex2012_build_list_grid](int $int0)(int)
 def_int $int1 = 0;
-def_int $int2 = 0;
+def_int $int2 = 1;
 def_int $int3 = 0;
 def_int $int4 = 0;
 def_int $int5 = 0;
-def_obj $obj6 = null;
-def_obj $obj7 = null;
-def_boolean $boolean8 = false;
-def_int $int9 = 0;
-def_int $int10 = 0;
-def_int $int11 = calc(46 - 6);
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_obj $obj8 = null;
+def_obj $obj9 = null;
+def_boolean $boolean10 = false;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = calc(46 - 6);
 def_string $string0 = "";
 def_graphic $graphicarray0(3);
 $graphicarray0(0) = "aif_make_x_unavailable,0";
@@ -20,40 +22,37 @@ def_graphic $graphicarray1(3);
 $graphicarray1(0) = "aif_make_x_available,0";
 $graphicarray1(1) = "aif_make_x_available,1";
 $graphicarray1(2) = "aif_make_x_available,2";
-def_int $int12 = 0;
-if (%varplayerbit_3033 = 0) {
-    if_sethide(false, interface_1371:com_45);
-    if_sethide(false, interface_1371:com_66);
-    $int12 = 5;
-} else {
-    if_sethide(true, interface_1371:com_45);
-    if_sethide(true, interface_1371:com_66);
-}
+def_int $int14 = 0;
+if_sethide(true, interface_1371:com_45);
+if_sethide(true, interface_1371:com_66);
 while ($int1 < $int0) {
     if (%varplayer_1169 ! null) {
-        $obj6 = enum(int, obj, %varplayer_1169, $int1);
+        $obj8 = enum(int, obj, %varplayer_1169, $int1);
     } else {
         return(0);
     }
-    $obj7 = oc_param($obj6, param_2989);
-    if ($obj7 = null) {
-        $obj7 = $obj6;
+    $obj9 = oc_param($obj8, param_2989);
+    if ($obj9 = null) {
+        $obj9 = $obj8;
     }
-    if (oc_param($obj6, param_3684) = true & ~script374($obj6) = false) {
+    $boolean10 = ~script7105($obj8);
+    $int11 = ~script7108($obj8);
+    $int2 = ~script374($obj8, $boolean10);
+    $int4 = calc($int3 % 4);
+    $int5 = calc($int3 / 4);
+    if ($int2 = 1) {
+        $int3 = calc($int3 + 1);
+    }
+    $int7 = calc(5 + ($int4 * 10 + $int4 * $int13));
+    $int6 = calc($int5 * 10 + $int5 * $int13 + $int14);
+    cc_create(interface_1371:com_44, ^iftype_graphic, $int12);
+    if ($int2 = 0) {
+        cc_sethide(true);
     } else {
-        $boolean8 = ~script7105($obj6);
-        $int9 = ~script7108($obj6);
-        $int2 = calc($int1 % 4);
-        if ($int2 = 0) {
-            $int3 = calc($int3 + 1);
-        }
-        $int5 = calc(5 + ($int2 * 10 + $int2 * $int11));
-        $int4 = calc($int3 * 10 + ($int3 - 1) * $int11 + $int12);
-        cc_create(interface_1371:com_44, ^iftype_graphic, $int10);
-        cc_setposition($int5, $int4, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition($int7, $int6, ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(46, 46, ^setsize_abs, ^setsize_abs);
         cc_setalpha(true);
-        if ($boolean8 = false | $int9 = 0) {
+        if ($boolean10 = false | $int11 = 0) {
             cc_setgraphic($graphicarray0(0));
             cc_setonmouseover("script7142(event_comsubid, $graphicarray0(1))");
             cc_setonmouseleave("script7142(event_comsubid, $graphicarray0(0))");
@@ -62,56 +61,81 @@ while ($int1 < $int0) {
             cc_setonmouseover("script7142(event_comsubid, $graphicarray1(1))");
             cc_setonmouseleave("script7142(event_comsubid, $graphicarray1(0))");
         }
-        $int10 = calc($int10 + 1);
-        cc_create(interface_1371:com_44, ^iftype_graphic, $int10);
-        cc_setposition($int5, $int4, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    $int12 = calc($int12 + 1);
+    cc_create(interface_1371:com_44, ^iftype_graphic, $int12);
+    if ($int2 = 0) {
+        cc_sethide(true);
+    } else {
+        cc_setposition($int7, $int6, ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(46, 46, ^setsize_abs, ^setsize_abs);
         cc_setalpha(true);
-        $string0 = oc_name($obj6);
-        if ($boolean8 = false | $int9 = 0) {
-            cc_setonop("script7121($obj6, event_comsubid, $graphicarray0(2))");
-            if ($obj6 = %varplayer_1170) {
+        $string0 = oc_name($obj8);
+        if ($boolean10 = false | $int11 = 0) {
+            cc_setonop("script7121($obj8, event_comsubid, $graphicarray0(2))");
+            if ($obj8 = %varplayer_1170) {
                 cc_setgraphic($graphicarray0(2));
             }
-            if (map_members = false & ~script7116($obj6) = true) {
-                $string0 = append($string0, "<br>Members Only");
-            } else if ($boolean8 = false) {
-                $string0 = append($string0, "<br>Requirements Not Met");
+            if (map_members = false & ~script7116($obj8) = true) {
+                $string0 = append($string0, "<br>Members only");
+            } else if ($boolean10 = false) {
+                $string0 = append($string0, "<br>Requirements not met");
+            } else if ($int11 = 0 & oc_param($obj8, param_5450) > 0 & inv_freespace(inv_93) = 0) {
+                $string0 = append($string0, "<br>No free space");
             } else {
-                $string0 = append($string0, "<br>Ingredients Missing");
+                $string0 = append($string0, "<br>Ingredients missing");
             }
         } else {
-            cc_setonop("script7121($obj6, event_comsubid, $graphicarray1(2))");
-            if ($obj6 = %varplayer_1170) {
+            cc_setonop("script7121($obj8, event_comsubid, $graphicarray1(2))");
+            if ($obj8 = %varplayer_1170) {
                 cc_setgraphic($graphicarray1(2));
             }
         }
         cc_setonmouserepeat("script7135($string0, event_mousex, 0, event_mousey, -100, event_com, event_comsubid)");
         cc_setonmouseleave("deltooltip(interface_1371:com_23)");
         cc_setop(1, "Select");
-        $int10 = calc($int10 + 1);
-        cc_create(interface_1371:com_44, ^iftype_graphic, $int10);
-        cc_setposition(calc($int5 + (46 - 36) / 2), calc($int4 + (46 - 32) / 2), ^setpos_abs_left, ^setpos_abs_top);
+    }
+    $int12 = calc($int12 + 1);
+    cc_create(interface_1371:com_44, ^iftype_graphic, $int12);
+    if ($int2 = 0) {
+        cc_sethide(true);
+    } else {
+        cc_setposition(calc($int7 + (46 - 36) / 2 + 2), calc($int6 + (46 - 32) / 2), ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-        if (oc_param($obj6, param_2653) > 1) {
-            cc_setobject($obj7, oc_param($obj6, param_2653));
+        if (oc_param($obj8, param_5491) ! null) {
+            cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+            cc_setgraphic(oc_param($obj8, param_5491));
+        } else if (oc_param($obj8, param_2653) > 1) {
+            cc_setobject($obj9, oc_param($obj8, param_2653));
         } else {
-            cc_setobject_nonum($obj7, -1);
+            cc_setobject_nonum($obj9, -1);
         }
-        if (map_members = false & ~script7116($obj6) = true | $boolean8 = false | $int9 = 0) {
+        if (map_members = false & ~script7116($obj8) = true | $boolean10 = false | $int11 = 0) {
             cc_settrans(175);
         }
-        $int10 = calc($int10 + 1);
-        cc_create(interface_1371:com_44, ^iftype_graphic, $int10);
-        cc_setposition(calc($int5 + 46 - 18), calc($int4 + 46 - 18), ^setpos_abs_left, ^setpos_abs_top);
+    }
+    $int12 = calc($int12 + 1);
+    cc_create(interface_1371:com_44, ^iftype_graphic, $int12);
+    if ($int2 = 0) {
+        cc_sethide(true);
+    } else {
+        cc_setposition(calc($int7 + 46 - 18), calc($int6 + 46 - 18), ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
-        if (map_members = false & ~script7116($obj6) = true) {
+        if (map_members = false & ~script7116($obj8) = true) {
             cc_setgraphic("aif_make_x_icons,2");
-        } else if ($boolean8 = false) {
+        } else if ($boolean10 = false) {
             cc_setgraphic("aif_make_x_icons,1");
         }
-        $int10 = calc($int10 + 1);
     }
+    $int12 = calc($int12 + 1);
     $int1 = calc($int1 + 1);
 }
-return(calc($int4 + $int11 + 5));
+if ($int3 = 0) {
+    cc_create(interface_1371:com_44, ^iftype_text, $int12);
+    cc_settext("You don't know how to make anything in this category.");
+    ~script11024(0x00000c);
+    cc_settextfont(graphic_17813);
+    cc_setposition(5, 5, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(10, 10, ^setsize_minus, ^setsize_minus);
+}
+return(calc($int6 + $int13 + 5));

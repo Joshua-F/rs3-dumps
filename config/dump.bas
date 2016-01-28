@@ -21476,3 +21476,25 @@ readyanim=null,null
 randomreadyanim=seq_3824,80
 randomreadyanim=seq_27953,20
 
+// 3666
+[bas_3666]
+readyanim_l=seq_27999
+readyanim_l=seq_27999
+walkanim_l=seq_27999
+walkanim_r=seq_27999
+runanim=seq_28000
+readyanim=seq_27998,seq_27999
+
+// 3667
+[bas_3667]
+readyanim_l=seq_28041
+readyanim_r=seq_28041
+walkanim_l=seq_28041
+walkanim_r=seq_28041
+runanim=seq_28042
+readyanim=seq_28040,seq_28041
+
+// 3668
+[bas_3668]
+readyanim=seq_28047,null
+

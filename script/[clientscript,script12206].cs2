@@ -1,0 +1,41 @@
+// 12206
+[clientscript,script12206](int $int0)
+def_obj $obj1 = null;
+switch_int ($int0) {
+    case 112394298 :
+        $obj1 = obj_36739;
+    case 112394320 :
+        $obj1 = obj_36740;
+    case 112394309 :
+        $obj1 = obj_36741;
+    case 112394278 :
+        $obj1 = obj_36742;
+    case 112394288 :
+        $obj1 = obj_36743;
+    case 112394351 :
+        $obj1 = obj_36744;
+    case 112394331 :
+        $obj1 = obj_36745;
+    case 112394341 :
+        $obj1 = obj_36735;
+    case 112394279, 112394289, 112394299, 112394310, 112394321, 112394352, 112394332 :
+        mes("You have already unlocked that reward.");
+        return;
+}
+if (~script12207($obj1) >= 1) {
+    mes("You have already unlocked that item.");
+    return;
+}
+def_int $int2 = enum(obj, int, enum_10765, $obj1);
+if (inv_total(inv_93, obj_36734) < $int2) {
+    mes("You don't have enough grotesque souls to create that item.");
+    return;
+}
+def_string $string0 = enum(obj, string, enum_10771, $obj1);
+if ($int0 = 112394341) {
+    if_settext("Are you sure you want to create a <$string0> for <tostring_localised($int2, true)> grotesque souls?", interface_1715:com_123);
+} else {
+    if_settext("Are you sure you want to create the <$string0> for <tostring_localised($int2, true)> grotesque souls? You will receive <tostring(calc(3 * $int2))> Slayer XP.", interface_1715:com_123);
+}
+if_sethide(false, interface_1715:com_2);
+if_sethide(false, interface_1715:com_31);

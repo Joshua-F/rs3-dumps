@@ -5,59 +5,61 @@ def_int $int2 = 0;
 switch_component ($component0) {
     case default :
         return;
-    case interface_1213:com_52 :
-        $stat1 = attack;
     case interface_1213:com_53 :
-        $stat1 = strength;
+        $stat1 = attack;
     case interface_1213:com_54 :
-        $stat1 = defence;
+        $stat1 = strength;
     case interface_1213:com_55 :
-        $stat1 = ranged;
+        $stat1 = defence;
     case interface_1213:com_56 :
-        $stat1 = prayer;
+        $stat1 = ranged;
     case interface_1213:com_57 :
-        $stat1 = magic;
+        $stat1 = prayer;
     case interface_1213:com_58 :
-        $stat1 = hitpoints;
+        $stat1 = magic;
     case interface_1213:com_59 :
-        $stat1 = agility;
+        $stat1 = hitpoints;
     case interface_1213:com_60 :
-        $stat1 = herblore;
+        $stat1 = agility;
     case interface_1213:com_61 :
-        $stat1 = thieving;
+        $stat1 = herblore;
     case interface_1213:com_62 :
-        $stat1 = crafting;
+        $stat1 = thieving;
     case interface_1213:com_63 :
-        $stat1 = fletching;
+        $stat1 = crafting;
     case interface_1213:com_64 :
-        $stat1 = mining;
+        $stat1 = fletching;
     case interface_1213:com_65 :
-        $stat1 = smithing;
+        $stat1 = mining;
     case interface_1213:com_66 :
-        $stat1 = fishing;
+        $stat1 = smithing;
     case interface_1213:com_67 :
-        $stat1 = cooking;
+        $stat1 = fishing;
     case interface_1213:com_68 :
-        $stat1 = firemaking;
+        $stat1 = cooking;
     case interface_1213:com_69 :
-        $stat1 = woodcutting;
+        $stat1 = firemaking;
     case interface_1213:com_70 :
-        $stat1 = runecraft;
+        $stat1 = woodcutting;
     case interface_1213:com_71 :
-        $stat1 = slayer;
+        $stat1 = runecraft;
     case interface_1213:com_72 :
-        $stat1 = farming;
+        $stat1 = slayer;
     case interface_1213:com_73 :
-        $stat1 = hunter;
+        $stat1 = farming;
     case interface_1213:com_74 :
-        $stat1 = construction;
+        $stat1 = hunter;
     case interface_1213:com_75 :
-        $stat1 = summoning;
+        $stat1 = construction;
     case interface_1213:com_76 :
-        $stat1 = dungeoneering;
+        $stat1 = summoning;
     case interface_1213:com_77 :
-        $stat1 = divination;
+        $stat1 = dungeoneering;
     case interface_1213:com_78 :
+        $stat1 = divination;
+    case interface_1213:com_79 :
+        $stat1 = invention;
+    case interface_1213:com_80 :
         $int2 = 1;
 }
 def_string $string0 = "";
@@ -68,6 +70,7 @@ def_int $int6 = enum(stat, int, enum_1482, $stat1);
 def_int $intbool7 = ^false;
 def_int $int8 = 0;
 def_int $int9 = 0;
+def_enum $enum10 = ~script12040($int6);
 if ($int2 = 0) {
     $string0 = append(enum(stat, string, enum_680, $stat1), ": <tostring(~script11861($stat1))>/<tostring(~script11890($stat1))><br>");
     $string0 = append($string0, "Current XP: <tostring_localised(stat_visible_xp($stat1), true)><br>");
@@ -77,12 +80,12 @@ if ($int2 = 0) {
             $string0 = append($string0, "Target XP: <tostring_localised($int8, true)><br>");
             $string0 = append($string0, "Remainder: <tostring_localised(calc($int8 - stat_visible_xp($stat1)), true)>");
         } else {
-            $string0 = append($string0, "XP for target level: <tostring_localised(enum(int, int, enum_716, $int8), true)><br>");
-            $string0 = append($string0, "Remainder: <tostring_localised(calc(enum(int, int, enum_716, $int8) - stat_visible_xp($stat1)), true)>");
+            $string0 = append($string0, "XP for target level: <tostring_localised(enum(int, int, $enum10, $int8), true)><br>");
+            $string0 = append($string0, "Remainder: <tostring_localised(calc(enum(int, int, $enum10, $int8) - stat_visible_xp($stat1)), true)>");
         }
     } else {
-        $string0 = append($string0, "Next level: <tostring_localised(enum(int, int, enum_716, calc(~script11889($stat1) + 1)), true)><br>");
-        $string0 = append($string0, "Remainder: <tostring_localised(calc(enum(int, int, enum_716, calc(~script11889($stat1) + 1)) - stat_visible_xp($stat1)), true)>");
+        $string0 = append($string0, "Next level: <tostring_localised(enum(int, int, $enum10, calc(~script11889($stat1) + 1)), true)><br>");
+        $string0 = append($string0, "Remainder: <tostring_localised(calc(enum(int, int, $enum10, calc(~script11889($stat1) + 1)) - stat_visible_xp($stat1)), true)>");
     }
     switch_stat ($stat1) {
         case attack :
@@ -137,6 +140,8 @@ if ($int2 = 0) {
             $int4 = %varplayer_3327;
         case divination :
             $int4 = %varplayer_3836;
+        case invention :
+            $int4 = %varplayer_6092;
     }
     if ($int4 > 0) {
         $string0 = append($string0, "<br>Bonus XP: <col=00ff00><tostring_localised(calc($int4 / 10), true)>");

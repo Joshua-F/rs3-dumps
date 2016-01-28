@@ -69,9 +69,10 @@ def_int $int33 = 0;
 def_int $int34 = 0;
 def_int $int35 = 0;
 def_stat $stat36 = null;
-def_int $int37 = -1;
-def_int $int38 = -1;
+def_graphic $graphic37 = null;
+def_graphic $graphic38 = null;
 def_int $rgb39 = 0xff8c00;
+def_int $int40 = -1;
 while ($int29 < $int15) {
     $int33 = calc($int29 % $int22);
     $int32 = calc($int29 / $int22);
@@ -79,32 +80,54 @@ while ($int29 < $int15) {
     $int35 = calc($int32 * $int19);
     $struct28 = enum(int, struct, enum_7674, $int29);
     $stat36 = struct_param($struct28, param_3440);
+    $int40 = ~script10395(enum(stat, int, enum_1482, $stat36));
     cc_create($component4, ^iftype_graphic, $int29);
     cc_setsize(60, 27, ^setsize_abs, ^setsize_abs);
     cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
-    if (%varplayerbit_19009 = 1) {
-        if ($int13 = 1 & ~script11849(~player_inspect_get_xp($stat36)) >= 120 | $int13 = 0 & ~script11849(stat_visible_xp_actual($stat36)) >= 120) {
-            cc_setgraphic("stats_background_button,4");
-            cc_setonmouseover("cc_graphic_swapper(event_com, $int29, \"stats_background_button,5\")");
-            cc_setonmouseleave("cc_graphic_swapper(event_com, $int29, \"stats_background_button,4\")");
-        } else if ($int13 = 1 & ~script10782($stat36) >= 99 | $int13 = 0 & stat_base_actual($stat36) >= 99) {
-            cc_setgraphic("stats_background_button,2");
-            cc_setonmouseover("cc_graphic_swapper(event_com, $int29, \"stats_background_button,3\")");
-            cc_setonmouseleave("cc_graphic_swapper(event_com, $int29, \"stats_background_button,2\")");
+    if (enum_hasoutput(stat, enum_10327, $stat36) = true) {
+        if ($int13 = 1 | ~stat_unlocked($stat36) = 1) {
+            $graphic37 = "stats_background_button_elite,0";
+            $graphic38 = "stats_background_button_elite,1";
+            $rgb39 = 0xffcb05;
         } else {
-            cc_setgraphic("stats_background_button,0");
-            cc_setonmouseover("cc_graphic_swapper(event_com, $int29, \"stats_background_button,1\")");
-            cc_setonmouseleave("cc_graphic_swapper(event_com, $int29, \"stats_background_button,0\")");
+            $graphic37 = "stats_background_button_elite,6";
+            $graphic38 = "stats_background_button_elite,6";
+            $rgb39 = 0x6f787c;
         }
     } else {
-        cc_setgraphic("stats_background_button,0");
-        cc_setonmouseover("cc_graphic_swapper(event_com, $int29, \"stats_background_button,1\")");
-        cc_setonmouseleave("cc_graphic_swapper(event_com, $int29, \"stats_background_button,0\")");
+        $graphic37 = "stats_background_button,0";
+        $graphic38 = "stats_background_button,1";
     }
+    if (%varplayerbit_19009 = 1) {
+        if ($int13 = 1 & ~script11849(~player_inspect_get_xp($stat36), $stat36) >= $int40 | $int13 = 0 & ~script11849(stat_visible_xp_actual($stat36), $stat36) >= $int40) {
+            if (enum_hasoutput(stat, enum_10327, $stat36) = true) {
+                $graphic37 = "stats_background_button_elite,4";
+                $graphic38 = "stats_background_button_elite,5";
+            } else {
+                $graphic37 = "stats_background_button,4";
+                $graphic38 = "stats_background_button,5";
+            }
+        } else if ($int13 = 1 & ~script10782($stat36) >= 99 | $int13 = 0 & stat_base_actual($stat36) >= 99) {
+            if (enum_hasoutput(stat, enum_10327, $stat36) = true) {
+                $graphic37 = "stats_background_button_elite,2";
+                $graphic38 = "stats_background_button_elite,3";
+            } else {
+                $graphic37 = "stats_background_button,2";
+                $graphic38 = "stats_background_button,3";
+            }
+        }
+    }
+    cc_setgraphic($graphic37);
+    cc_setonmouseover("cc_graphic_swapper(event_com, $int29, $graphic38)");
+    cc_setonmouseleave("cc_graphic_swapper(event_com, $int29, $graphic37)");
     cc_create($component5, ^iftype_graphic, $int29);
     cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
     cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setgraphic(struct_param($struct28, param_3442));
+    if ($int13 = 1 | ~stat_unlocked($stat36) = 1) {
+        cc_setgraphic(struct_param($struct28, param_3442));
+    } else {
+        cc_setgraphic(struct_param($struct28, param_5493));
+    }
     if ($int13 = 0) {
         cc_setonvartransmit("script968($component5, $int29){varplayer_1227}");
     }
@@ -141,7 +164,7 @@ while ($int29 < $int15) {
         } else {
             cc_setgraphic(enum(int, graphic, enum_10399, %varplayerbit_19011));
         }
-    } else if ($int13 = 1 & ~script11849(~player_inspect_get_xp($stat36)) >= 120 | $int13 = 0 & ~script11849(stat_visible_xp_actual($stat36)) >= 120) {
+    } else if ($int13 = 1 & ~script11849(~player_inspect_get_xp($stat36), $stat36) >= $int40 | $int13 = 0 & ~script11849(stat_visible_xp_actual($stat36), $stat36) >= $int40) {
         cc_setgraphic(enum(int, graphic, enum_10398, %varplayerbit_19010));
     }
     cc_create($component9, ^iftype_text, $int29);
@@ -158,13 +181,13 @@ while ($int29 < $int15) {
     cc_setonmouseleave("script546($component1)");
     $int29 = calc($int29 + 1);
 }
-def_int $int40 = 0;
-$int16 = calc($int16 - $int40);
-def_int $int41 = min(3, max(1, calc($int16 / 60)));
-$int41 = calc($int16 / $int41);
+def_int $int41 = 0;
+$int16 = calc($int16 - $int41);
+def_int $int42 = min(3, max(1, calc($int16 / 60)));
+$int42 = calc($int16 / $int42);
 def_string $string0 = "";
-if_setsize($int41, 0, ^setsize_abs, ^setsize_minus, $component10);
-if_setposition($int40, 0, ^setpos_abs_left, ^setpos_abs_top, $component10);
+if_setsize($int42, 0, ^setsize_abs, ^setsize_minus, $component10);
+if_setposition($int41, 0, ^setpos_abs_left, ^setpos_abs_top, $component10);
 cc_create($component10, ^iftype_graphic, 0);
 cc_setgraphic(child_header_icon_stats);
 cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
@@ -209,8 +232,8 @@ if (%varplayerbit_19007 = 1) {
     }
 }
 if ($int16 >= 120) {
-    if_setsize($int41, 0, ^setsize_abs, ^setsize_minus, $component11);
-    if_setposition(calc($int40 + $int41), 0, ^setpos_abs_left, ^setpos_abs_top, $component11);
+    if_setsize($int42, 0, ^setsize_abs, ^setsize_minus, $component11);
+    if_setposition(calc($int41 + $int42), 0, ^setpos_abs_left, ^setpos_abs_top, $component11);
     cc_create($component11, ^iftype_graphic, 0);
     cc_setgraphic(aif_combat_icon);
     cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
@@ -231,8 +254,8 @@ if ($int16 >= 120) {
     }
 }
 if ($int16 >= 180 & $int0 ! 61341699) {
-    if_setsize($int41, 0, ^setsize_abs, ^setsize_minus, $component12);
-    if_setposition(calc($int40 + $int41 * 2), 0, ^setpos_abs_left, ^setpos_abs_top, $component12);
+    if_setsize($int42, 0, ^setsize_abs, ^setsize_minus, $component12);
+    if_setposition(calc($int41 + $int42 * 2), 0, ^setpos_abs_left, ^setpos_abs_top, $component12);
     cc_create($component12, ^iftype_graphic, 0);
     cc_setgraphic(rs3_icon_worldmap_key_quest_start);
     cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);

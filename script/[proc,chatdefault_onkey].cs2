@@ -196,13 +196,16 @@ switch_int ($key0) {
                         }
                 }
                 if ($int6 ! -1 & string_length(~script8521($int2)) > 0) {
-                    if ($int6 = 100) {
-                        chat_sendprivate(%varclient_2367, ~script8521($int2));
-                    } else if ($int6 = 6) {
-                        $int15 = ttv_chat_sendmessage(~script8521($int2));
-                    } else {
-                        chat_setmode($int6);
-                        chat_sendpublic(~script8521($int2));
+                    switch_int ($int6) {
+                        case 101 :
+                            return;
+                        case 100 :
+                            chat_sendprivate(%varclient_2367, ~script8521($int2));
+                        case 6 :
+                            $int15 = ttv_chat_sendmessage(~script8521($int2));
+                        case default :
+                            chat_setmode($int6);
+                            chat_sendpublic(~script8521($int2));
                     }
                 }
                 ~script8517($int2);

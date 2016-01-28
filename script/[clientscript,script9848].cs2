@@ -1,13 +1,13 @@
 // 9848
-[clientscript,script9848](component $component0, int $int1)
-def_obj $obj2 = null;
-def_int $int3 = 0;
+[clientscript,script9848](component $component0, int $int1, int $int2)
+def_obj $obj3 = null;
+def_int $int4 = 0;
 if (cc_find($component0, $int1) = true) {
     cc_setontimer(null);
-    $obj2 = cc_getinvobject;
-    $int3 = cc_getinvcount;
-    if ($obj2 ! null & $int3 > 0) {
-        cc_setopbase("<col=ff981f><oc_name($obj2)>");
+    $obj3 = cc_getinvobject;
+    $int4 = cc_getinvcount;
+    if ($obj3 ! null & $int4 > 0) {
+        cc_setopbase("<col=ff981f><oc_name($obj3)>");
         cc_setop(1, "Withdraw-1");
         cc_setop(2, "Withdraw-5");
         cc_setop(3, "Withdraw-10");
@@ -15,11 +15,11 @@ if (cc_find($component0, $int1) = true) {
         cc_setop(5, "Withdraw-X");
         cc_setop(6, "Withdraw-All");
         cc_setop(7, "Withdraw-All but one");
-        if (oc_wearpos($obj2) ! -1 & enum(obj, boolean, enum_3446, $obj2) = false) {
-            if (compare(oc_param($obj2, param_1264), "") = 0) {
-                cc_setop(8, oc_iop($obj2, 2));
+        if (oc_wearpos($obj3) ! -1 & enum(obj, boolean, enum_3446, $obj3) = false) {
+            if (compare(oc_param($obj3, param_1264), "") = 0) {
+                cc_setop(8, oc_iop($obj3, 2));
             } else {
-                cc_setop(8, oc_param($obj2, param_1264));
+                cc_setop(8, oc_param($obj3, param_1264));
             }
         } else {
             cc_setop(8, "");
@@ -36,11 +36,15 @@ if (cc_find($component0, $int1) = true) {
         cc_setondragcomplete("script3832(event_com, event_comsubid, event_com2, event_comsubid2)");
         if (%varclient_188 = false) {
             cc_setonmouseover("script3823(event_com, event_comsubid, 1)");
-            cc_setonmouserepeat("script5495($obj2)");
+            if ($int2 >= 0) {
+                cc_setonmouserepeat("script12093($obj3, inv_95, $int2)");
+            } else {
+                cc_setonmouserepeat("script5495($obj3)");
+            }
             cc_setonmouseleave("script3822(event_com, event_comsubid)");
         } else {
             cc_setonmouseover("script3823(event_com, event_comsubid, 1)");
-            cc_setonmouserepeat("script6456($obj2, ~script1468($int1))");
+            cc_setonmouserepeat("script6456($obj3, ~script1468($int1), $int2)");
             cc_setonmouseleave("script3822(event_com, event_comsubid)");
         }
     }

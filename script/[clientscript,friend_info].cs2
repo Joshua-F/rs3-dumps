@@ -1,0 +1,189 @@
+// 1101
+[clientscript,friend_info](component $component0, int $int1, int $int2, int $int3)
+def_component $component4 = ~script3099($component0);
+def_component $component5 = ~script10588($component0);
+def_component $component6 = ~friends_world_layer($component0);
+def_component $component7 = ~script11297($component0);
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
+def_string $string4 = "";
+def_string $string5 = "";
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = friend_getworld($int1);
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $rgb14 = 0xa4997d;
+def_int $int15 = 0;
+def_int $int16 = 0;
+$string0, $string1 = friend_getname($int1);
+if (compare($string1, "") ! 0) {
+    $int8 = 1;
+}
+if (friend_is_referrer($int1) = true | friend_is_referred($int1) = true) {
+    $int9 = 1;
+}
+if ($int8 = 1) {
+    $string0 = "     <$string0>";
+}
+if ($int9 = 1) {
+    $string0 = "     <$string0>";
+    $rgb14 = 0x88bcf3;
+}
+if (cc_find($component4, $int1) = true) {
+    cc_setcolour($rgb14);
+    cc_setontimer(null);
+    cc_settextfont(graphic_20452);
+    cc_settextshadow(true);
+    cc_setopbase("<col=ffffff><$string0>");
+    cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+    cc_setlinkfriend($int1);
+    if ($int10 ! 0) {
+        if (%varclient_4126 = 1) {
+            cc_setop(1, "Share");
+            if (map_quickchat = false & userdetail_quickchat = false) {
+                cc_setop(4, "Message");
+            }
+        } else if (map_quickchat = false & userdetail_quickchat = false) {
+            cc_setop(1, "Message");
+        }
+        cc_setop(2, "Quick Message");
+        cc_setop(3, "Trail");
+        cc_setop(6, "Join");
+        if (compare(friend_getnotes($int1), "") ! 0) {
+            cc_setop(7, "Edit Note");
+        } else {
+            cc_setop(7, "Add Note");
+        }
+        if (player_group_find = true) {
+            cc_setop(9, "Invite to group");
+        }
+    } else if (compare(friend_getnotes($int1), "") ! 0) {
+        cc_setop(7, "Edit Note");
+    } else {
+        cc_setop(7, "Add Note");
+    }
+    cc_setop(8, "Delete");
+    cc_setonop("friend_op(event_op, event_opbase, $int1)");
+    $string4 = $string0;
+    if (stringwidth($string0, graphic_20452) > $int2) {
+        while (stringwidth("<$string0>...", graphic_20452) > $int2) {
+            $string0 = substring($string0, 0, calc(string_length($string0) - 1));
+        }
+        $string0 = "<$string0>...";
+    }
+    cc_settext($string0);
+    if ($int8 = 1) {
+        $string4 = "<$string4><br>Last known as: <$string1>";
+    }
+    $string5 = friend_getnotes($int1);
+    if (compare($string5, "") ! 0) {
+        $string4 = "<$string4><br><$string5>";
+    }
+    cc_setonmouserepeat("script3876($string4, event_com, event_comsubid)");
+    cc_sethide(false);
+}
+if (cc_find($component5, $int1) = true) {
+    cc_sethide(false);
+    if ($int9 = 1) {
+        cc_setgraphic(aif_friends_list_icons);
+    } else {
+        cc_setgraphic(friends_changed_name);
+        if ($int8 = 0) {
+            cc_setparam(param_5438, 0);
+            cc_sethide(true);
+        } else {
+            cc_setparam(param_5438, 1);
+        }
+    }
+}
+if ($int10 = 0) {
+    $string0 = "Offline";
+    $string4 = "Offline";
+} else if (string_indexof_string(friend_getworldname($int1), "RuneScape", 0) ! -1 | testbit(friend_getworldflags($int1), 16) = ^true | testbit(friend_getworldflags($int1), 20) = ^true) {
+    $string0 = tostring($int10);
+    $int15 = calc(2 + 24 + 2);
+    $int11, $string3, $int12, $string2, $int13, $int12, $string4 = worldlist_specific($int10);
+    $string4 = "<friend_getworldname($int1)><br><br>World details:";
+    $string4 = "<$string4><br><tostring($int13)> online.";
+    if (testbit($int11, 4) = ^true & string_length($string3) > 1 & map_lang = 0) {
+        $string4 = "<$string4><br>Activity: <$string3>";
+    } else {
+        switch_int (map_lang) {
+            case default :
+                $string4 = "<$string4><br>Location: <$string2>";
+            case 1 :
+                $string4 = "<$string4><br>Language: German";
+            case 2 :
+                $string4 = "<$string4><br>Language: French";
+            case 3 :
+                $string4 = "<$string4><br>Language: Portuguese";
+            case 6 :
+                $string4 = "<$string4><br>Language: Spanish (Latin American)";
+        }
+    }
+    if (testbit($int11, 0) = ^true) {
+        $string4 = "<$string4><br>Members only.";
+    } else {
+        $string4 = "<$string4><br>Free only.";
+    }
+    if (testbit($int11, 1) = ^true) {
+        $string4 = "<$string4><br>Quickchat only.";
+    }
+    if (testbit($int11, 3) = ^true) {
+        $string4 = "<$string4><br>Lootshare available.";
+    }
+    if (testbit($int11, 7) = ^true) {
+        $string4 = "<$string4><br>High level only (1500)";
+    } else if (testbit($int11, 8) = ^true) {
+        $string4 = "<$string4><br>Veterans world.";
+    } else if (testbit($int11, 18) = ^true) {
+        $string4 = "<$string4><br>High level only (2000).";
+    } else if (testbit($int11, 19) = ^true) {
+        $string4 = "<$string4><br>High level only (2400).";
+    } else if (testbit($int11, 20) = ^true) {
+        $string4 = "<$string4><br>VIP only.";
+    }
+    if (testbit($int11, 22) = ^true) {
+        $string4 = "<$string4><br>Legacy only.";
+    } else if (testbit($int11, 23) = ^true) {
+        $string4 = "<$string4><br>EoC only.";
+    }
+} else {
+    $string0 = friend_getworldname($int1);
+    $string4 = $string0;
+}
+$int16 = stringwidth($string0, graphic_20452);
+if (cc_find($component7, $int1) = true) {
+    if ($int15 > 0 & $int3 >= calc($int16 + $int15)) {
+        if (testbit(friend_getworldflags($int1), 16) = ^true) {
+            cc_setgraphic("rs3_icon_world_select_game_flags,1");
+        } else if (testbit(friend_getworldflags($int1), 20) = ^true) {
+            cc_setgraphic("rs3_icon_world_select_game_flags,2");
+        } else {
+            cc_setgraphic("rs3_icon_world_select_game_flags,0");
+        }
+        cc_sethide(false);
+    } else {
+        cc_sethide(true);
+    }
+}
+if (cc_find($component6, $int1) = true) {
+    cc_setposition(calc(2 + $int15), cc_gety, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextfont(graphic_20452);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+    cc_settext($string0);
+    if ($int10 = 0) {
+        cc_setcolour(0xdd5c3e);
+    } else if ($int10 = map_world) {
+        cc_setcolour(0x3cb71e);
+    } else {
+        cc_setcolour(0xffff64);
+    }
+    cc_setonmouserepeat("script3876($string4, event_com, event_comsubid)");
+    cc_sethide(false);
+}

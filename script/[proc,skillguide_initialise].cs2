@@ -7,8 +7,8 @@ if (%varclient_1753 <= 0) {
         %varclient_1753 = 8;
     }
 }
-cc_deleteall(interface_1218:com_14);
-cc_deleteall(interface_1218:com_57);
+cc_deleteall(interface_1218:com_15);
+cc_deleteall(interface_1218:com_60);
 def_int $int0 = 0;
 def_int $int1 = 0;
 def_string $string0 = "";
@@ -73,13 +73,16 @@ switch_int (%varclient_1753) {
         $int8 = %varclient_1493;
     case 26 :
         $int8 = %varclient_3715;
+    case 27 :
+        $int8 = %varclient_5125;
 }
 ~script5712(%varclient_1753);
 def_int $int9 = stat_base(enum(int, stat, enum_681, %varclient_1753));
 def_struct $struct10 = null;
 def_int $int11 = 0;
-def_obj $obj12 = null;
-def_boolean $boolean13 = false;
+def_int $int12 = 0;
+def_obj $obj13 = null;
+def_boolean $boolean14 = false;
 if ($int9 > $int8) {
     while ($int0 ! -1) {
         $int0 = 0;
@@ -91,18 +94,19 @@ if ($int9 > $int8) {
     }
     while ($int7 < $int6) {
         $struct10 = enum(int, struct, $enum5, $int7);
-        $int11 = struct_param($struct10, param_2212);
-        $boolean13 = struct_param($struct10, param_2217);
-        $obj12 = struct_param($struct10, param_2213);
-        if ($obj12 ! null & oc_param($obj12, param_2640) > 0 & oc_param($obj12, param_2640) ! 62 & oc_param($obj12, param_2641) = 0 & oc_param($obj12, param_2640) = %varclient_1753) {
-            $int11 = oc_param($obj12, param_2645);
-            if (oc_param($obj12, param_2639) = true | oc_members(oc_param($obj12, param_2655)) = 1 | oc_members(oc_param($obj12, param_2656)) = 1 | oc_members(oc_param($obj12, param_2650)) = 1 | oc_members($obj12) = 1) {
-                $boolean13 = true;
+        $int11 = ~skillguide_skill($struct10);
+        $int12 = ~skillguide_level($struct10);
+        $boolean14 = struct_param($struct10, param_2217);
+        $obj13 = struct_param($struct10, param_2213);
+        if ($obj13 ! null & oc_param($obj13, param_2640) > 0 & oc_param($obj13, param_2640) ! 62 & oc_param($obj13, param_2641) = 0 & oc_param($obj13, param_2640) = %varclient_1753) {
+            $int12 = oc_param($obj13, param_2645);
+            if (oc_param($obj13, param_2639) = true | oc_members(oc_param($obj13, param_2655)) = 1 | oc_members(oc_param($obj13, param_2656)) = 1 | oc_members(oc_param($obj13, param_2650)) = 1 | oc_members($obj13) = 1) {
+                $boolean14 = true;
             }
         }
-        if ($int11 > $int8 & $int11 <= $int9) {
-            cc_create(interface_1218:com_14, ^iftype_graphic, if_getnextsubid(interface_1218:com_14));
-            if ($boolean13 = true) {
+        if ($int12 > $int8 & $int12 <= $int9) {
+            cc_create(interface_1218:com_15, ^iftype_graphic, if_getnextsubid(interface_1218:com_15));
+            if ($boolean14 = true) {
                 cc_setgraphic("aif_skill_select_btn_1,2");
             } else {
                 cc_setgraphic("aif_skill_select_btn_1,0");
@@ -110,42 +114,42 @@ if ($int9 > $int8) {
             cc_setsize(6, 40, ^setsize_minus, ^setsize_abs);
             cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
             cc_setontimer("script5692(event_comsubid, $int3, $struct10)");
-            cc_setonclick("script5697(event_comsubid, $struct10, struct_param($struct10, param_2211))");
+            cc_setonclick("script5697(event_comsubid, $struct10)");
             $int3 = calc(cc_getheight + $int3);
         }
         $int7 = calc($int7 + 1);
     }
     if ($int3 > 0) {
-        if_sethide(true, interface_1218:com_9);
         if_sethide(true, interface_1218:com_10);
-        if_setsize(209, 260, ^setsize_minus, ^setsize_abs, interface_1218:com_7);
-        if_setsize(16, 260, ^setsize_abs, ^setsize_abs, interface_1218:com_8);
-        if_sethide(false, interface_1218:com_5);
-        if_sethide(true, interface_1218:com_6);
-        if_setscrollsize(0, $int3, interface_1218:com_7);
-        if_setscrollpos(0, 0, interface_1218:com_7);
-        if_setsize(0, $int3, ^setsize_minus, ^setsize_abs, interface_1218:com_14);
-        if_setsize(0, $int3, ^setsize_minus, ^setsize_abs, interface_1218:com_57);
-        ~scrollbar_vertical(interface_1218:com_8, interface_1218:com_7, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
+        if_sethide(true, interface_1218:com_11);
+        if_setsize(209, 260, ^setsize_minus, ^setsize_abs, interface_1218:com_8);
+        if_setsize(16, 260, ^setsize_abs, ^setsize_abs, interface_1218:com_9);
+        if_sethide(false, interface_1218:com_6);
+        if_sethide(true, interface_1218:com_7);
+        if_setscrollsize(0, $int3, interface_1218:com_8);
+        if_setscrollpos(0, 0, interface_1218:com_8);
+        if_setsize(0, $int3, ^setsize_minus, ^setsize_abs, interface_1218:com_15);
+        if_setsize(0, $int3, ^setsize_minus, ^setsize_abs, interface_1218:com_60);
+        ~scrollbar_vertical(interface_1218:com_9, interface_1218:com_8, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
         return;
     }
 }
 $int7 = 0;
-if_setsize(209, 355, ^setsize_minus, ^setsize_abs, interface_1218:com_7);
-if_setsize(16, 355, ^setsize_abs, ^setsize_abs, interface_1218:com_8);
-if_sethide(true, interface_1218:com_5);
+if_setsize(209, 355, ^setsize_minus, ^setsize_abs, interface_1218:com_8);
+if_setsize(16, 355, ^setsize_abs, ^setsize_abs, interface_1218:com_9);
+if_sethide(true, interface_1218:com_6);
 while ($int7 < $int6) {
-    cc_create(interface_1218:com_14, ^iftype_graphic, $int7);
+    cc_create(interface_1218:com_15, ^iftype_graphic, $int7);
     $struct10 = enum(int, struct, $enum5, $int7);
-    $boolean13 = struct_param($struct10, param_2217);
-    $obj12 = struct_param($struct10, param_2213);
-    if ($obj12 ! null & oc_param($obj12, param_2640) > 0 & oc_param($obj12, param_2640) ! 62 & oc_param($obj12, param_2641) = 0 & oc_param($obj12, param_2640) = %varclient_1753) {
-        $int11 = oc_param($obj12, param_2645);
-        if (oc_param($obj12, param_2639) = true | oc_members(oc_param($obj12, param_2655)) = 1 | oc_members(oc_param($obj12, param_2656)) = 1 | oc_members(oc_param($obj12, param_2650)) = 1 | oc_members($obj12) = 1) {
-            $boolean13 = true;
+    $boolean14 = struct_param($struct10, param_2217);
+    $obj13 = struct_param($struct10, param_2213);
+    if ($obj13 ! null & oc_param($obj13, param_2640) > 0 & oc_param($obj13, param_2640) ! 62 & oc_param($obj13, param_2641) = 0 & oc_param($obj13, param_2640) = %varclient_1753) {
+        $int12 = oc_param($obj13, param_2645);
+        if (oc_param($obj13, param_2639) = true | oc_members(oc_param($obj13, param_2655)) = 1 | oc_members(oc_param($obj13, param_2656)) = 1 | oc_members(oc_param($obj13, param_2650)) = 1 | oc_members($obj13) = 1) {
+            $boolean14 = true;
         }
     }
-    if ($boolean13 = true) {
+    if ($boolean14 = true) {
         cc_setgraphic("aif_skill_select_btn_1,2");
     } else {
         cc_setgraphic("aif_skill_select_btn_1,0");
@@ -154,7 +158,7 @@ while ($int7 < $int6) {
     cc_setposition(5, 5, ^setpos_abs_left, ^setpos_abs_top);
     cc_setonmouseover("script5695(event_comsubid)");
     cc_setonmouseleave("skillguide_entry_onmouseleave(event_comsubid)");
-    cc_setonclick("script5697(event_comsubid, $struct10, struct_param($struct10, param_2211))");
+    cc_setonclick("script5697(event_comsubid, $struct10)");
     $intarray0($int7) = $int7;
     $int7 = calc($int7 + 1);
 }
@@ -162,10 +166,10 @@ while ($int7 < $int6) {
 $intarray0($int6) = -1;
 ~script5698(intarray0, 0, calc($int6 - 1), $enum5);
 $int7 = 0;
-if_setparam_int(param_2221, $intarray0($int7), interface_1218:com_14);
-if_setparam_int(param_2222, $intarray0(calc($int6 - 1)), interface_1218:com_14);
+if_setparam_int(param_2221, $intarray0($int7), interface_1218:com_15);
+if_setparam_int(param_2222, $intarray0(calc($int6 - 1)), interface_1218:com_15);
 while ($int7 < $int6) {
-    if (cc_find(interface_1218:com_14, $intarray0($int7)) = true) {
+    if (cc_find(interface_1218:com_15, $intarray0($int7)) = true) {
         cc_setparam_int(param_2221, $intarray0(calc($int7 + 1)));
         if ($int7 > 0) {
             cc_setparam_int(param_2222, $intarray0(calc($int7 - 1)));
@@ -175,10 +179,10 @@ while ($int7 < $int6) {
 }
 $int7 = 0;
 ~script5699(intarray0, 0, calc($int6 - 1), $enum5);
-if_setparam_int(param_2223, $intarray0($int7), interface_1218:com_14);
-if_setparam_int(param_2224, $intarray0(calc($int6 - 1)), interface_1218:com_14);
+if_setparam_int(param_2223, $intarray0($int7), interface_1218:com_15);
+if_setparam_int(param_2224, $intarray0(calc($int6 - 1)), interface_1218:com_15);
 while ($int7 < $int6) {
-    if (cc_find(interface_1218:com_14, $intarray0($int7)) = true) {
+    if (cc_find(interface_1218:com_15, $intarray0($int7)) = true) {
         cc_setparam_int(param_2223, $intarray0(calc($int7 + 1)));
         if ($int7 > 0) {
             cc_setparam_int(param_2224, $intarray0(calc($int7 - 1)));
@@ -186,5 +190,5 @@ while ($int7 < $int6) {
     }
     $int7 = calc($int7 + 1);
 }
-if_setscrollpos(0, 0, interface_1218:com_7);
+if_setscrollpos(0, 0, interface_1218:com_8);
 ~skillguide_skill_refresh(%varclient_1753);
