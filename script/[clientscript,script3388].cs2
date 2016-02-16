@@ -1,50 +1,60 @@
 // 3388
-[clientscript,script3388](int $int0, int $int1, int $int2)
-def_int $int3 = 4;
-def_component $component4 = null;
+[clientscript,script3388](int $int0, int $int1)
+def_int $int2 = 4;
+if (has_nxt = true) {
+    $int2 = 5;
+}
+def_component $component3 = null;
 switch_int ($int1) {
     case 1 :
-        $component4 = null;
+        $component3 = null;
     case 4 :
-        $component4 = interface_1420:com_566;
+        $component3 = interface_1420:com_566;
     case 2 :
-        $component4 = interface_906:com_132;
+        $component3 = interface_906:com_133;
     case default :
-        $component4 = interface_744:com_141;
+        $component3 = interface_744:com_139;
 }
-if ($component4 ! null) {
-    if_settext("Your display has been changed. Do you want to keep this setting?", $component4);
+if ($component3 ! null) {
+    if_settext("Your display has been changed. Do you want to keep this setting?", $component3);
 }
-if (has_html5 = true | has_nxt = true) {
+if (has_nxt = true) {
     switch_int ($int0) {
-        case 2 :
-            ~graphics_options_detailset(struct_19589, 0, $int1);
-            ~graphics_options_detailset(struct_19590, 0, $int1);
-            ~graphics_options_detailset(struct_19591, 0, $int1);
-            ~graphics_options_detailset(struct_19592, 0, $int1);
-            ~graphics_options_detailset(struct_19593, 0, $int1);
-        case 3 :
-            ~graphics_options_detailset(struct_19589, 0, $int1);
-            ~graphics_options_detailset(struct_19590, 1, $int1);
-            ~graphics_options_detailset(struct_19591, 0, $int1);
-            ~graphics_options_detailset(struct_19592, 1, $int1);
-            ~graphics_options_detailset(struct_19593, 0, $int1);
-        case 4 :
-            if ($component4 ! null) {
-                if_settext("Anti-aliasing have been increased. Do you wish to keep this setting?", $component4);
+        case 1 :
+            if (autosetup_getlevel ! 1) {
+                autosetup_setmin;
+            } else {
+                return;
             }
-            ~graphics_options_detailset(struct_19589, 1, $int1);
-            ~graphics_options_detailset(struct_19590, 1, $int1);
-            ~graphics_options_detailset(struct_19591, 1, $int1);
-            ~graphics_options_detailset(struct_19592, 3, $int1);
-            ~graphics_options_detailset(struct_19593, 1, $int1);
+        case 2 :
+            if (autosetup_getlevel ! 2) {
+                autosetup_setlow;
+            } else {
+                return;
+            }
+        case 3 :
+            if (autosetup_getlevel ! 3) {
+                autosetup_setmedium;
+            } else {
+                return;
+            }
+        case 4 :
+            if (autosetup_getlevel ! 4) {
+                autosetup_sethigh;
+            } else {
+                return;
+            }
+        case 5 :
+            if (autosetup_getlevel ! 5) {
+                autosetup_setultra(0);
+            } else {
+                return;
+            }
         case 0 :
-            if ($int2 = 1) {
-                if (autosetup_getlevel ! 0) {
-                    autosetup_setcustom;
-                } else {
-                    return;
-                }
+            if (autosetup_getlevel ! 0) {
+                autosetup_setcustom;
+            } else {
+                return;
             }
         case -1 :
             ~autosetup($int1);
@@ -58,7 +68,7 @@ if (has_html5 = true | has_nxt = true) {
                 return;
             }
         case 2 :
-            if ($int3 >= 2) {
+            if ($int2 >= 2) {
                 if (autosetup_getlevel ! 2) {
                     autosetup_setlow;
                 } else {
@@ -68,7 +78,7 @@ if (has_html5 = true | has_nxt = true) {
                 ~script3413($int1);
             }
         case 3 :
-            if ($int3 >= 3) {
+            if ($int2 >= 3) {
                 if (autosetup_getlevel ! 3) {
                     autosetup_setmedium;
                 } else {
@@ -78,7 +88,7 @@ if (has_html5 = true | has_nxt = true) {
                 ~script3413($int1);
             }
         case 4 :
-            if ($int3 >= 4) {
+            if ($int2 >= 4) {
                 if (autosetup_getlevel ! 4) {
                     autosetup_sethigh;
                 } else {
@@ -88,12 +98,10 @@ if (has_html5 = true | has_nxt = true) {
                 ~script3413($int1);
             }
         case 0 :
-            if ($int2 = 1) {
-                if (autosetup_getlevel ! 0) {
-                    autosetup_setcustom;
-                } else {
-                    return;
-                }
+            if (autosetup_getlevel ! 0) {
+                autosetup_setcustom;
+            } else {
+                return;
             }
         case -1 :
             ~autosetup($int1);
@@ -109,9 +117,5 @@ if (has_html5 = true | has_nxt = true) {
         ~script5873(0);
     }
 }
-def_int $int5 = detailget_toolkit;
-if ($int0 = 0 | $int2 = 1) {
-    ~script3387($int5, getwindowmode, ~graphics_options_reviewoptions($int5), $int1);
-} else {
-    ~graphics_options_rebuild($int5, getwindowmode, ~graphics_options_reviewoptions($int5), $int1);
-}
+def_int $int4 = detailget_toolkit;
+~graphics_options_rebuild($int4, getwindowmode, ~graphics_options_reviewoptions($int4), $int1);

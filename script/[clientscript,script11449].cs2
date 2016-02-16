@@ -1,5 +1,5 @@
 // 11449
-[clientscript,script11449](struct $struct0, int $int1, int $int2)
+[clientscript,script11449](struct $struct0, int $int1, int $int2, int $int3)
 if_sethide(false, interface_1624:com_62);
 if_setposition(8, if_gety(interface_1624:com_63), ^setpos_abs_right, ^setpos_abs_top, interface_1624:com_63);
 if_setobject_nonum(struct_param($struct0, param_5067), 5, interface_1624:com_60);
@@ -8,47 +8,61 @@ if (compare("", struct_param($struct0, param_5066)) ! 0) {
 } else {
     if_settext(oc_name(struct_param($struct0, param_5067)), interface_1624:com_61);
 }
-def_int $int3 = struct_param($struct0, param_5069);
+def_int $int4 = struct_param($struct0, param_5069);
+def_int $int5 = $int1;
+def_int $int6 = struct_param(%varplayer_5426, param_5068);
+def_obj $obj7 = struct_param($struct0, param_5067);
 def_string $string0 = "Purchase";
+if (struct_param($struct0, param_5634) = 1) {
+    if ($int4 > 0) {
+        $int5 = min($int1, calc(%varplayer_5427 / $int4));
+    }
+    if (oc_stackable($obj7) = false) {
+        $int5 = min(calc($int6 * $int5), inv_freespace(inv_93));
+    } else if (inv_total(inv_93, $obj7) > 0) {
+        $int5 = min(calc($int6 * $int5), calc(^max_32bit_int - inv_total(inv_93, $obj7)));
+    }
+    $int5 = max($int5, 1);
+}
 switch_struct ($struct0) {
     case struct_31507 :
         if (%varplayerbit_4540 = 1) {
-            $int3 = 0;
+            $int4 = 0;
             $string0 = "Re-colour";
         }
     case struct_31508 :
         if (%varplayerbit_4538 = 1) {
-            $int3 = 0;
+            $int4 = 0;
             $string0 = "Re-colour";
         }
     case struct_31509 :
         if (%varplayerbit_4539 = 1) {
-            $int3 = 0;
+            $int4 = 0;
             $string0 = "Re-colour";
         }
     case struct_31510 :
         if (%varplayerbit_4541 = 1) {
-            $int3 = 0;
+            $int4 = 0;
             $string0 = "Re-Colour";
         }
 }
-if (%varplayer_5427 < $int3) {
+if (%varplayer_5427 < $int4) {
     if_settext("You do not have enough currency for the purchase of:", interface_1624:com_59);
     if_settext("OK", interface_1624:com_73);
     if_sethide(true, interface_1624:com_62);
     if_setposition(0, if_gety(interface_1624:com_63), ^setpos_abs_centre, ^setpos_abs_top, interface_1624:com_63);
-} else if ($int1 = 1 & $int2 = 1) {
+} else if ($int2 = 1 & $int3 = 1) {
     if_settext("You already have a Clue Scroll.", interface_1624:com_59);
     if_settext("OK", interface_1624:com_73);
     if_sethide(true, interface_1624:com_62);
     if_setposition(0, if_gety(interface_1624:com_63), ^setpos_abs_centre, ^setpos_abs_top, interface_1624:com_63);
-} else if (playermember = false & oc_members(struct_param($struct0, param_5067)) = 1) {
+} else if (playermember = false & oc_members($obj7) = 1) {
     if_settext("This item is for members only:", interface_1624:com_59);
     if_settext("OK", interface_1624:com_73);
     if_sethide(true, interface_1624:com_62);
     if_setposition(0, if_gety(interface_1624:com_63), ^setpos_abs_centre, ^setpos_abs_top, interface_1624:com_63);
 } else {
-    if_settext("Spend <tostring($int3)> on purchasing:", interface_1624:com_59);
+    if_settext("Spend <tostring_localised(calc($int4 * $int5), true)> on purchasing <tostring_localised($int5, true)>:", interface_1624:com_59);
     if_settext($string0, interface_1624:com_73);
 }
 if_sethide(false, interface_1624:com_11);

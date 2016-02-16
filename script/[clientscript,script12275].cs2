@@ -1,0 +1,180 @@
+// 12275
+[clientscript,script12275](int $int0, int $int1, int $int2, int $int3)
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = calc($int0 - date_minutes);
+cc_deleteall(interface_907:com_69);
+if ($int7 < 0) {
+    switch_int (map_lang) {
+        case 0 :
+            if_setgraphic(rs3_lobby_primary_update_bxp_incoming_en, interface_907:com_68);
+        case 1 :
+            if_setgraphic(rs3_lobby_primary_update_bxp_incoming_de, interface_907:com_68);
+        case 2 :
+            if_setgraphic(rs3_lobby_primary_update_bxp_incoming_fr, interface_907:com_68);
+        case 3 :
+            if_setgraphic(rs3_lobby_primary_update_bxp_incoming_pt, interface_907:com_68);
+    }
+    if_setontimer(null, interface_906:com_14);
+    return;
+}
+$int4 = calc($int7 / 1440);
+$int5 = calc($int7 / 60);
+$int7 = calc($int7 % 60);
+$int6 = $int7;
+def_int $int8 = calc($int5 / 100);
+def_int $int9 = calc($int5 % 100 / 10);
+def_int $int10 = calc($int5 % 10);
+def_int $int11 = calc($int6 / 10);
+def_int $int12 = calc($int6 % 10);
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+if ($int8 >= 1) {
+    $int15 = 1;
+}
+if ($int5 >= 108) {
+    if ($int3 ! 1) {
+        switch_int (map_lang) {
+            case 0 :
+                if_setgraphic(rs3_lobby_primary_update_bxp_days_en, interface_907:com_68);
+            case 1 :
+                if_setgraphic(rs3_lobby_primary_update_bxp_days_de, interface_907:com_68);
+            case 2 :
+                if_setgraphic(rs3_lobby_primary_update_bxp_days_fr, interface_907:com_68);
+            case 3 :
+                if_setgraphic(rs3_lobby_primary_update_bxp_days_pt, interface_907:com_68);
+        }
+        $int3 = 1;
+    }
+    cc_create(interface_907:com_69, ^iftype_graphic, 0);
+    cc_setsize(31, 36, ^setsize_abs, ^setsize_abs);
+    if (map_lang ! 2) {
+        cc_setposition(200, 94, ^setpos_abs_left, ^setpos_abs_top);
+    } else {
+        cc_setposition(190, 94, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    cc_setgraphic(~script12276(calc($int4 % 10)));
+    if ($int4 >= 10) {
+        cc_create(interface_907:com_69, ^iftype_graphic, 1);
+        cc_setsize(31, 36, ^setsize_abs, ^setsize_abs);
+        if (map_lang ! 2) {
+            cc_setposition(166, 94, ^setpos_abs_left, ^setpos_abs_top);
+        } else {
+            cc_setposition(156, 94, ^setpos_abs_left, ^setpos_abs_top);
+        }
+        cc_setgraphic(~script12276(calc($int4 / 10)));
+    }
+} else {
+    if ($int3 ! 0) {
+        switch_int (map_lang) {
+            case 0 :
+                if_setgraphic(rs3_lobby_primary_update_bxp_hours_en, interface_907:com_68);
+            case 1 :
+                if_setgraphic(rs3_lobby_primary_update_bxp_hours_de, interface_907:com_68);
+            case 2 :
+                if_setgraphic(rs3_lobby_primary_update_bxp_hours_fr, interface_907:com_68);
+            case 3 :
+                if_setgraphic(rs3_lobby_primary_update_bxp_hours_pt, interface_907:com_68);
+        }
+        $int3 = 0;
+    }
+    if ($int1 < date_minutes) {
+        $int2 = 5998;
+    }
+    if ($int2 < 0) {
+        switch_int ($int2) {
+            case -1 :
+                if (calc(clientclock % 50) = 0) {
+                    $int2 = calc($int2 - 1);
+                }
+                if ($int8 >= 1) {
+                    $int8 = random(2);
+                }
+                $int9 = random(10);
+                $int10 = random(10);
+                $int11 = random(6);
+                $int12 = random(10);
+                $int13 = random(6);
+                $int14 = random(10);
+            case -2 :
+                if (calc(clientclock % 50) = 0) {
+                    $int2 = calc($int2 - 1);
+                }
+                $int9 = random(10);
+                $int10 = random(10);
+                $int11 = random(6);
+                $int12 = random(10);
+                $int13 = random(6);
+                $int14 = random(10);
+            case -3 :
+                if (calc(clientclock % 100) = 0) {
+                    $int2 = calc($int2 - 1);
+                }
+                $int10 = random(10);
+                $int11 = random(6);
+                $int12 = random(10);
+                $int13 = random(6);
+                $int14 = random(10);
+            case -4 :
+                if (calc(clientclock % 200) = 0) {
+                    $int2 = calc($int2 - 1);
+                }
+                $int11 = random(6);
+                $int12 = random(10);
+                $int13 = random(6);
+                $int14 = random(10);
+            case -5 :
+                if (calc(clientclock % 400) = 0) {
+                    $int2 = calc($int2 - 1);
+                }
+                $int12 = random(10);
+                $int13 = random(6);
+                $int14 = random(10);
+            case -6 :
+                if (calc(clientclock % 800) = 0) {
+                    $int2 = calc($int2 - 1);
+                }
+                $int13 = random(6);
+                $int14 = random(10);
+            case default :
+                $int14 = random(10);
+        }
+    } else if ($int2 > 0) {
+        $int2 = calc($int2 - 2);
+        $int13 = calc($int2 / 1000);
+        $int14 = calc($int2 % 1000 / 100);
+    }
+    cc_create(interface_907:com_69, ^iftype_graphic, 0);
+    cc_setsize(31, 36, ^setsize_abs, ^setsize_abs);
+    cc_setposition(327, 95, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic(~script12276($int14));
+    cc_create(interface_907:com_69, ^iftype_graphic, 1);
+    cc_setsize(31, 36, ^setsize_abs, ^setsize_abs);
+    cc_setposition(292, 95, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic(~script12276($int13));
+    cc_create(interface_907:com_69, ^iftype_graphic, 2);
+    cc_setsize(31, 36, ^setsize_abs, ^setsize_abs);
+    cc_setposition(242, 95, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic(~script12276($int12));
+    cc_create(interface_907:com_69, ^iftype_graphic, 3);
+    cc_setsize(31, 36, ^setsize_abs, ^setsize_abs);
+    cc_setposition(207, 95, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic(~script12276($int11));
+    cc_create(interface_907:com_69, ^iftype_graphic, 4);
+    cc_setsize(31, 36, ^setsize_abs, ^setsize_abs);
+    cc_setposition(159, 95, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic(~script12276($int10));
+    cc_create(interface_907:com_69, ^iftype_graphic, 5);
+    cc_setsize(31, 36, ^setsize_abs, ^setsize_abs);
+    cc_setposition(124, 95, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic(~script12276($int9));
+    if ($int15 = 1) {
+        cc_create(interface_907:com_69, ^iftype_graphic, 6);
+        cc_setsize(31, 36, ^setsize_abs, ^setsize_abs);
+        cc_setposition(89, 95, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphic(~script12276($int8));
+    }
+}
+if_setontimer("script12275($int0, date_minutes, $int2, $int3)", interface_906:com_14);

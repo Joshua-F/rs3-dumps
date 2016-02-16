@@ -3,40 +3,54 @@
 def_string $string0 = "news";
 def_string $string1 = "";
 def_int $int0 = 0;
-if (~script11915 = 1) {
+def_int $int1 = 5112;
+def_int $int2 = 5115;
+if (date_runeday <= $int1 & calc((date_minutes - date_minutes_fromruneday($int1)) / 60) < 12) {
     $int0 = 1;
+} else if (date_runeday < $int2 | date_runeday = $int2 & calc((date_minutes - date_minutes_fromruneday($int2)) / 60) < 12) {
+    $int0 = 2;
 }
 ~script10592(interface_907:com_12, 0);
 ~script10592(interface_907:com_13, 0);
 ~script10593(0);
 if_setonclick(null, interface_907:com_67);
-if_settext("", interface_907:com_69);
-def_int $int1 = 0;
-def_int $int2 = 0;
-def_boolean $boolean3 = false;
-$int1, $int2, $boolean3 = userdetail_lobby_membership;
-def_int $int4 = calc(date_runeday - %varplayer_1749);
+if_settext("", interface_907:com_70);
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_boolean $boolean5 = false;
+$int3, $int4, $boolean5 = userdetail_lobby_membership;
+def_int $int6 = calc(date_runeday - %varplayer_1749);
 def_string $string2 = "";
-if (%varplayer_3185 ! 4 & $int4 <= 5 & %varplayerbit_16464 = 2) {
-    $int4 = calc(5 - $int4);
-    if ($int4 > 1) {
-        if_settext("You have <tostring($int4)> days until you need to validate your email address.", interface_907:com_69);
+if (%varplayer_3185 ! 4 & $int6 <= 5 & %varplayerbit_16464 = 2) {
+    $int6 = calc(5 - $int6);
+    if ($int6 > 1) {
+        if_settext("You have <tostring($int6)> days until you need to validate your email address.", interface_907:com_70);
     } else {
-        if_settext("You have one day until you need to validate your email address.", interface_907:com_69);
+        if_settext("You have one day until you need to validate your email address.", interface_907:com_70);
     }
-    if_settextfont(graphic_18943, interface_907:com_69);
-    if_setcolour(^black, interface_907:com_69);
-    if_settextalign(^settextalign_centre, ^settextalign_centre, 22, interface_907:com_69);
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_907:com_69);
-    if_setsize(200, 10, ^setsize_minus, ^setsize_minus, interface_907:com_69);
+    if_settextfont(graphic_18943, interface_907:com_70);
+    if_setcolour(^black, interface_907:com_70);
+    if_settextalign(^settextalign_centre, ^settextalign_centre, 22, interface_907:com_70);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_907:com_70);
+    if_setsize(200, 10, ^setsize_minus, ^setsize_minus, interface_907:com_70);
     if_setgraphic(rs3_lobby_primary_default_banner, interface_907:com_68);
     return;
 }
+if_setsize(345, 35, ^setsize_abs, ^setsize_abs, interface_907:com_70);
+if_setposition(231, 5, ^setpos_abs_left, ^setpos_abs_top, interface_907:com_70);
+if_setcolour(0x0e1903, interface_907:com_70);
+if_settextfont(welcome_font_large, interface_907:com_70);
+if_settextalign(^settextalign_centre, ^settextalign_bottom, 0, interface_907:com_70);
+if_settext("", interface_907:com_71);
+if_setposition(231, 46, ^setpos_abs_left, ^setpos_abs_top, interface_907:com_71);
+if_setsize(345, 70, ^setsize_abs, ^setsize_abs, interface_907:com_71);
+if_setcolour(0x0e1903, interface_907:com_71);
+def_int $int7 = 0;
 if (%varclient_3905 = true) {
     ~script10592(interface_907:com_12, 1);
     ~script10593(1);
 } else {
-    if ((playermember = false | $boolean3 = false & $int2 < 2880) & randominc(1) = 0) {
+    if ((playermember = false | $boolean5 = false & $int4 < 2880) & randominc(1) = 0) {
         switch_int (map_lang) {
             case 0 :
                 if_setgraphic(rs3_lobby_primary_default_bonds_banner_en, interface_907:com_68);
@@ -70,26 +84,26 @@ if (%varclient_3905 = true) {
         case 1 :
             switch_int (map_lang) {
                 case 0 :
-                    if_setgraphic(graphic_26151, interface_907:com_68);
+                    if_setgraphic(rs3_lobby_primary_update_bxp_incoming_en, interface_907:com_68);
                 case 1 :
-                    if_setgraphic(graphic_26152, interface_907:com_68);
+                    if_setgraphic(rs3_lobby_primary_update_bxp_incoming_de, interface_907:com_68);
                 case 2 :
-                    if_setgraphic(graphic_26153, interface_907:com_68);
+                    if_setgraphic(rs3_lobby_primary_update_bxp_incoming_fr, interface_907:com_68);
                 case 3 :
-                    if_setgraphic(graphic_26154, interface_907:com_68);
+                    if_setgraphic(rs3_lobby_primary_update_bxp_incoming_pt, interface_907:com_68);
             }
-            ~script10593(1);
-            $string0 = "www";
-            $string1 = "premier-club";
-            if_setonclick("script3434($string0, $string1)", interface_907:com_68);
+            $int7 = calc(date_minutes_fromruneday(5112) + 720 - 1);
+            if_setontimer("script12275($int7, date_minutes, -1, -1)", interface_906:com_14);
+        case 2 :
+            switch_int (map_lang) {
+                case 0 :
+                    if_setgraphic(rs3_lobby_primary_update_bxp_nowlive_en, interface_907:com_68);
+                case 1 :
+                    if_setgraphic(rs3_lobby_primary_update_bxp_nowlive_de, interface_907:com_68);
+                case 2 :
+                    if_setgraphic(rs3_lobby_primary_update_bxp_nowlive_fr, interface_907:com_68);
+                case 3 :
+                    if_setgraphic(rs3_lobby_primary_update_bxp_nowlive_pt, interface_907:com_68);
+            }
     }
 }
-if_setsize(345, 35, ^setsize_abs, ^setsize_abs, interface_907:com_69);
-if_setposition(231, 5, ^setpos_abs_left, ^setpos_abs_top, interface_907:com_69);
-if_setcolour(0x0e1903, interface_907:com_69);
-if_settextfont(welcome_font_large, interface_907:com_69);
-if_settextalign(^settextalign_centre, ^settextalign_bottom, 0, interface_907:com_69);
-if_settext("", interface_907:com_70);
-if_setposition(231, 46, ^setpos_abs_left, ^setpos_abs_top, interface_907:com_70);
-if_setsize(345, 70, ^setsize_abs, ^setsize_abs, interface_907:com_70);
-if_setcolour(0x0e1903, interface_907:com_70);
