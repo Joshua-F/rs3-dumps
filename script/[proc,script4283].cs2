@@ -1,7 +1,20 @@
 // 4283
 [proc,script4283]
-if_settext(activeclansettings_getclanname, interface_1095:com_28);
-~script4332(interface_1095:com_44, interface_1095:com_54);
-~script4334(interface_1095:com_64, interface_1095:com_65);
-~script4329(interface_1095:com_29);
-if_sethide(true, interface_1095:com_5);
+if_settext(activeclansettings_getclanname, interface_1095:com_4);
+~script4332(interface_1095:com_18, interface_1095:com_19);
+~script4334(interface_1095:com_21, interface_1095:com_22);
+~script4336(interface_1095:com_5);
+if (compare(if_gettext(interface_1095:com_5), "") ! 0) {
+    if_settext(append("'", append(if_gettext(interface_1095:com_5), "'")), interface_1095:com_5);
+}
+if_settext("Size: <tostring(activeclansettings_getaffinedcount)>", interface_1095:com_8);
+def_string $string0 = "Home World: Not Set";
+if (%varclansettingbit_8805 > 0) {
+    $string0 = "Home World: <enum(int, string, enum_3700, %varclansettingbit_8805)>";
+}
+if_settext($string0, interface_1095:com_9);
+~script12226(interface_1095:com_0);
+if_settext("<u=a0b6c0><if_gettext(interface_1095:com_0)>", interface_1095:com_0);
+~script4329(interface_1095:com_1);
+if_settext("<u=a0b6c0>Clan Thread", interface_1095:com_1);
+if_sethide(true, interface_1095:com_14);

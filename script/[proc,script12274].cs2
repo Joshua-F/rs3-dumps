@@ -1,0 +1,65 @@
+// 12274
+[proc,script12274]
+def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_string $string0 = tostring($int0);
+def_string $string1 = tostring($int1);
+def_string $string2 = tostring($int2);
+def_string $string3 = "You have not set a fastest time for this boss.";
+def_int $int3 = 0;
+if (%varclient_4488 ! -1) {
+    if (%varclient_4488 > 0) {
+        $int0, $int1, $int2 = ~script4705(%varclient_4488);
+        if ($int0 < 10) {
+            $string0 = "0<tostring($int0)>";
+        } else {
+            $string0 = tostring($int0);
+        }
+        if ($int1 < 10) {
+            $string1 = "0<tostring($int1)>";
+        } else {
+            $string1 = tostring($int1);
+        }
+        if ($int2 < 10) {
+            $string2 = "0<tostring($int2)>";
+        } else {
+            $string2 = tostring($int2);
+        }
+        $string3 = "Fastest kill: <$string0>:<$string1>:<$string2>";
+        $int3 = calc($int3 + 1);
+    }
+    if (%varclient_4489 > -1) {
+        if (%varclient_4489 > 0) {
+            $int0, $int1, $int2 = ~script4705(%varclient_4489);
+            if ($int0 < 10) {
+                $string0 = "0<tostring($int0)>";
+            } else {
+                $string0 = tostring($int0);
+            }
+            if ($int1 < 10) {
+                $string1 = "0<tostring($int1)>";
+            } else {
+                $string1 = tostring($int1);
+            }
+            if ($int2 < 10) {
+                $string2 = "0<tostring($int2)>";
+            } else {
+                $string2 = tostring($int2);
+            }
+            $string3 = append($string3, "<br>Fastest hardmode kill: <$string0>:<$string1>:<$string2>");
+            $int3 = calc($int3 + 1);
+        } else {
+            $string3 = append($string3, "<br>You have not set a fastest time for this boss in hard mode.");
+        }
+    }
+    if ($int3 = 0) {
+        if_setop(10, "", interface_753:com_29);
+    } else {
+        if_setop(10, "Reset time", interface_753:com_29);
+    }
+    if_setonmouserepeat("script8799($string3, interface_753:com_61, -1)", interface_753:com_29);
+    if_sethide(false, interface_753:com_29);
+} else {
+    if_sethide(true, interface_753:com_29);
+}

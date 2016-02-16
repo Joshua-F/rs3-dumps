@@ -68,7 +68,7 @@ if ($int7 = 21) {
     } else {
         $string0 = "You have only just left another world. Your profile will be transferred in<br><tostring($int9)> seconds.";
     }
-    if (if_gethide(interface_906:com_38) = true) {
+    if (if_gethide(interface_906:com_39) = true) {
         ~lobby_popup($int7, 0, $string0, 0, "loadingwheel,12", 1, 1, "Abort Login", "Abort Login", 0, "", "");
     } else {
         ~lobby_popup_text_update($string0);
@@ -77,16 +77,16 @@ if ($int7 = 21) {
 }
 if ($int7 = 42) {
     if_sethide(false, interface_906:com_3);
-    if_settext(tostring($int1), interface_906:com_18);
-    if_settext(tostring(login_queue_position), interface_906:com_19);
+    if_settext(tostring($int1), interface_906:com_19);
+    if_settext(tostring(login_queue_position), interface_906:com_20);
     if (%varclient_1100 ! 42) {
         ~lobby_popup($int7, 1, "Beta World <tostring($int1)> is currently full.<br>You have been added to the<br>queue for this world.<br>You can track your progress in the<br>queue from lower left corner of this<br>screen.<br>You can continue playing RuneScape<br> in a different browser tab<br> while queuing.", 0, "loadingwheel,12", 0, 0, "", "", 1, "OK", "OK");
     }
     %varclient_1100 = 42;
     return;
 } else if ($int7 = 43) {
-    if_settext(tostring($int1), interface_906:com_18);
-    if_settext(tostring(login_queue_position), interface_906:com_19);
+    if_settext(tostring($int1), interface_906:com_19);
+    if_settext(tostring(login_queue_position), interface_906:com_20);
     %varclient_1100 = 43;
     return;
 } else {
@@ -298,7 +298,7 @@ switch_int ($int7) {
         $int19 = 0;
     case 47, 51 :
         $string4 = "You need to validate your email address to log in.";
-        if_sethide(false, interface_906:com_30);
+        if_sethide(false, interface_906:com_31);
     case 48 :
         $string4 = "Your game session has now ended.<br><br>To play again, please close your browser tab/window and wait 5 minutes before reloading the game. ";
     case 50 :
@@ -323,6 +323,8 @@ switch_int ($int7) {
         $graphic16 = "loadingwheel,16";
     case 54 :
         $string4 = "Activity on this account has been exceeded.<br><br>Please try again tomorrow.";
+    case 38 :
+        $string4 = "Your account does not currently have access to the NXT Beta.";
     case default :
         $string4 = "Unexpected server response. Please try using a different world.";
 }
