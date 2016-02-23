@@ -1,5 +1,5 @@
 // 2705
-[proc,script2705](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5)
+[proc,script2705](int $int0, int $int1, int $int2, int $int3, int $int4)
 if ($int2 = 1) {
     if_closesubclient(interface_742:com_2);
     if_setontimer(null, interface_742:com_2);
@@ -10,7 +10,7 @@ if ($int2 = 1) {
 } else {
     if_setontimer(null, interface_744:com_0);
 }
-def_int $int6 = 0;
+def_int $int5 = 0;
 if ($int0 = 1) {
     detail_toolkit_default(detailget_toolkit, true);
     if (getwindowmode ! ^windowmode_fullscreen) {
@@ -26,12 +26,12 @@ if ($int0 = 1) {
     if (testbit($int1, 0) = ^true) {
         autosetup_blackflaglast;
         if ($int4 = 0) {
-            $int6 = detailget_toolkit_default;
-            detail_toolkit($int6);
-            ~script2593($int6, null);
+            $int5 = detailget_toolkit_default;
+            detail_toolkit($int5);
+            ~script2593($int5, null);
         }
     } else {
-        $int6 = detailget_toolkit;
+        $int5 = detailget_toolkit;
     }
     if (testbit($int1, 1) = ^true & getwindowmode ! getdefaultwindowmode) {
         setwindowmode(getdefaultwindowmode);
@@ -47,16 +47,16 @@ if ($int0 = 1) {
         ~autosetup($int2);
         return;
     }
-    ~graphics_options_rebuild($int6, getwindowmode, ~graphics_options_reviewoptions($int6), $int2);
+    ~graphics_options_rebuild($int5, getwindowmode, ~graphics_options_reviewoptions($int5), $int2);
     if ($int2 = 1 & $int3 = 1) {
         mes("The requested change has been cancelled.");
     }
 }
 if ($int2 ! 1) {
-    $int6 = detailget_toolkit;
+    $int5 = detailget_toolkit;
+    ~graphics_options_rebuild($int5, getwindowmode, ~graphics_options_reviewoptions($int5), $int2);
     if ($int2 = 2) {
         if_sethide(true, interface_906:com_52);
-        ~graphics_options_rebuild($int6, getwindowmode, ~graphics_options_reviewoptions($int6), $int2);
         if ($int4 = 0 & $int3 = 1) {
             ~lobbyscreen_input_full("", "The change of detail mode has been cancelled.<br><br>Perhaps different graphical settings would work better for you?", 0, -1, "", "", 0);
         }
@@ -68,28 +68,20 @@ if ($int2 ! 1) {
             ~loginscreen_setactivemenu(11);
         }
     } else if ($int2 = 4) {
-        ~graphics_options_rebuild($int6, getwindowmode, ~graphics_options_reviewoptions($int6), $int2);
         if_sethide(true, interface_1420:com_556);
         if_sethide(false, interface_1420:com_425);
-    } else {
-        ~graphics_options_rebuild($int6, getwindowmode, ~graphics_options_reviewoptions($int6), $int2);
-        if ($int4 = 0 & $int3 = 1) {
-            if_settext("The change of detail mode has been cancelled.<br><br>Perhaps different graphical settings would work better for you?", interface_744:com_89);
-            if ($int5 = 1) {
-                if_setonclick("loginscreen_setactivemenu_full(6, 0, 1)", interface_744:com_92);
-            } else if (testbit($int1, 1) = ^true | $int4 = 1) {
-                if_setonclick("loginscreen_setactivemenu(6)", interface_744:com_92);
-            } else {
-                if_setonclick("loginscreen_setactivemenu_full(6, 0, 1)", interface_744:com_92);
-            }
-            ~loginscreen_setactivemenu(9);
-        } else if ($int5 = 1) {
-            ~loginscreen_setactivemenu_full(6, 0, 1);
-        } else if (testbit($int1, 1) = ^true | $int4 = 1) {
-            ~loginscreen_setactivemenu(6);
+    } else if ($int4 = 0 & $int3 = 1) {
+        if_settext("The change of detail mode has been cancelled.<br><br>Perhaps different graphical settings would work better for you?", interface_744:com_89);
+        if (testbit($int1, 1) = ^true) {
+            if_setonclick("loginscreen_setactivemenu(6)", interface_744:com_92);
         } else {
-            ~loginscreen_setactivemenu_full(6, 0, 1);
+            if_setonclick("loginscreen_setactivemenu_full(6, 0, 1)", interface_744:com_92);
         }
+        ~loginscreen_setactivemenu(9);
+    } else if (testbit($int1, 1) = ^true | $int4 = 1) {
+        ~loginscreen_setactivemenu(6);
+    } else {
+        ~loginscreen_setactivemenu_full(6, 0, 1);
     }
 }
 if ($int0 = 0 & $int4 = 1) {

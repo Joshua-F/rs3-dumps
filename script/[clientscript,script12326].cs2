@@ -1,0 +1,37 @@
+// 12326
+[clientscript,script12326](component $component0, int $int1)
+if ($component0 = null) {
+    return;
+}
+if (%varclient_5156 ! 0) {
+    return;
+}
+def_int $int2 = 0;
+if (if_find($component0) = true) {
+    if (cc_param(param_5639) ! %varclientbit_30621 | cc_param(param_5640) ! %varclientbit_30622) {
+        return;
+    }
+    $int2 = cc_param(param_5643);
+}
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_string $string0 = "Value:";
+def_string $string1 = "";
+if (cc_find($component0, $int1) = true) {
+    if (cc_getcolour = 0x51ff57) {
+        cc_setcolour(0xfff200);
+    } else if (cc_getcolour = 0xff6051) {
+        cc_setcolour(0xfff200);
+    }
+    $int3 = cc_param(param_5355);
+    if ($int3 = ^max_32bit_int) {
+        $string0 = "<$string0> Max (";
+        $string1 = ")";
+    } else if ($int3 = ^min_32bit_int) {
+        $string0 = "<$string0> Min (";
+        $string1 = ")";
+    }
+    $int3 = ~script11853($int3, %varclientbit_30620);
+    $string0 = "<$string0> <~telemetry_get_text($int3, %varclientbit_30619, %varclientbit_30620, -1)><$string1>";
+    ~script8803($string0, 250, 0, $component0, $int1, graphic_20452, ^white);
+}

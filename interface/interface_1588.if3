@@ -12,8 +12,8 @@ widthmode=minus
 heightmode=minus
 layer=com_0
 onload=telemetry_window_init(1)
-onvartransmit=telemetry_window_refresh(1){varplayer_3680}
-ontimer=telemetry_window_refresh(1)
+onvartransmit=telemetry_window_refresh(1, 1){varplayer_3680}
+ontimer=telemetry_window_refresh(1, 0)
 
 // 1588:2
 [com_2]
@@ -46,7 +46,7 @@ textalignh=centre
 textalignv=centre
 textshadow=yes
 colour=0x7592a0
-onload=script10496(event_com, event_comsubid, 0x00000e)
+onload=script10496(event_com, event_comsubid, 0x00000c)
 
 // 1588:5
 [com_5]
@@ -250,12 +250,13 @@ width=24
 height=24
 ymode=abs_bottom
 layer=com_28
+onvartransmit=script12330(0, interface_1588:com_63, interface_1588:com_64, interface_1588:com_65, interface_1588:com_66, interface_1588:com_68){varplayer_5091}
 
 // 1588:30
 [com_30]
 type=layer
 x=4
-y=2
+y=3
 width=64
 height=25
 widthmode=minus
@@ -263,6 +264,7 @@ xmode=abs_right
 ymode=abs_bottom
 layer=com_28
 hide=yes
+onvartransmit=telemetry_stopwatch{varplayer_5883}
 
 // 1588:31
 [com_31]
@@ -270,7 +272,6 @@ type=layer
 width=24
 height=24
 xmode=abs_right
-ymode=abs_centre
 layer=com_30
 onmouserepeat=script3876("Reset stopwatch data", event_com, event_comsubid)
 
@@ -281,7 +282,6 @@ x=29
 width=24
 height=24
 xmode=abs_right
-ymode=abs_centre
 layer=com_30
 hide=yes
 onmouserepeat=script3876("Pause stopwatch", event_com, event_comsubid)
@@ -293,7 +293,6 @@ x=29
 width=24
 height=24
 xmode=abs_right
-ymode=abs_centre
 layer=com_30
 onmouserepeat=script3876("Start stopwatch", event_com, event_comsubid)
 
@@ -336,7 +335,6 @@ width=24
 height=24
 ymode=abs_bottom
 layer=com_28
-onmouserepeat=script3876("Add row/group", event_com, event_comsubid)
 
 // 1588:37
 [com_37]
@@ -365,7 +363,7 @@ heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
 layer=com_36
-onload=script9346(event_com, struct_30501)
+onload=script9346(event_com, struct_33112)
 
 // 1588:40
 [com_40]
@@ -375,7 +373,7 @@ heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
 layer=com_36
-onload=script9347(event_com, struct_30501)
+onload=script9347(event_com, struct_33112)
 
 // 1588:41
 [com_41]
@@ -385,7 +383,7 @@ heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
 layer=com_36
-onload=script9348(event_com, struct_30501)
+onload=script9348(event_com, struct_33112)
 
 // 1588:42
 [com_42]
@@ -396,7 +394,7 @@ xmode=abs_centre
 ymode=abs_centre
 layer=com_36
 hide=yes
-onload=script9351(event_com, struct_30501)
+onload=script9351(event_com, struct_33112)
 
 // 1588:43
 [com_43]
@@ -409,6 +407,7 @@ op1=Select
 opcursor0=cursor_46
 onload=script4213(event_com)
 onop=script11492
+onmouserepeat=script3876("Add row/group", event_com, event_comsubid)
 
 // 1588:44
 [com_44]
@@ -419,7 +418,8 @@ xmode=abs_centre
 ymode=abs_centre
 layer=com_36
 hide=yes
-onload=script9354(event_com, struct_30501)
+onload=script9354(event_com, struct_33112)
+onmouserepeat=script3876("Your Metrics window already contains every available row", event_com, event_comsubid)
 
 // 1588:45
 [com_45]
@@ -471,7 +471,6 @@ layer=com_33
 transmitop=1
 op1=Start stopwatch
 onload=script4213(event_com)
-onop=script10627
 
 // 1588:50
 [com_50]
@@ -534,7 +533,6 @@ layer=com_31
 transmitop=1
 op1=Reset stopwatch
 onload=script4213(event_com)
-onop=script11822
 
 // 1588:56
 [com_56]
@@ -597,7 +595,6 @@ layer=com_32
 transmitop=1
 op1=Pause stopwatch
 onload=script4213(event_com)
-onop=script11821
 
 // 1588:62
 [com_62]
@@ -661,7 +658,7 @@ transmitop=1
 op1=Select
 opcursor0=cursor_46
 onload=script4213(event_com)
-onop=telemetry_open_parent
+onop=telemetry_open_parent(2)
 
 // 1588:68
 [com_68]

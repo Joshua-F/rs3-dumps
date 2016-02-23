@@ -1,10 +1,10 @@
 // 10435
 [proc,dynamic_dropdown_open](component $component0, int $int1, component $component2, int $int3, enum $enum4, int $int5, int $int6, int $int7, int $int8)
-if (if_find(interface_1477:com_865) = true & cc_param(param_4515) = true & cc_param(param_4516) ! null & cc_param(param_4516) = $component0 & cc_param(param_4518) = $int1) {
+if (if_find(interface_1477:com_882) = true & cc_param(param_4515) = true & cc_param(param_4516) ! null & cc_param(param_4516) = $component0 & cc_param(param_4518) = $int1) {
     ~dynamic_dropdown_hide;
     return;
 }
-cc_deleteall(interface_1477:com_870);
+cc_deleteall(interface_1477:com_887);
 %varplayer_4734 = $enum4;
 %varplayer_4735 = $component0;
 %varplayer_4736 = $int1;
@@ -23,11 +23,16 @@ $fontmetrics16, $rgb14 = ~script10433(0);
 $fontmetrics17, $rgb15 = ~script10433(1);
 while ($int10 <= $int5) {
     $int13 = ~script10455($component0, $enum4, $int10);
-    cc_create(interface_1477:com_870, ^iftype_text, if_getnextsubid(interface_1477:com_870));
+    cc_create(interface_1477:com_887, ^iftype_text, if_getnextsubid(interface_1477:com_887));
     cc_setparam(param_4519, $int13);
     if ($int13 = 1) {
         $int12 = ~dynamic_dropdown_active_check($component0, $enum4, $int10);
-        cc_settext(enum(int, string, $enum4, $int10));
+        $string0 = enum(int, string, $enum4, $int10);
+        if ($int8 = 1) {
+            cc_setparam_string(param_5441, lowercase($string0));
+            $string0 = ~script12292($string0);
+        }
+        cc_settext($string0);
         cc_setposition(5, $int11, ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(5, 15, ^setsize_minus, ^setsize_abs);
         cc_settextshadow(true);
@@ -35,16 +40,22 @@ while ($int10 <= $int5) {
         cc_setparam(param_3646, $int12);
         cc_setmaxlines(1);
         cc_setonmouseover("dynamic_dropdown_highlight(event_com, event_comsubid)");
-        if ($enum4 ! enum_9665) {
-            $string0 = enum(int, string, $enum4, $int10);
-        } else if ($int10 = 0) {
-            $string0 = "x1.5 to pet points";
-        } else if ($int10 = 1) {
-            $string0 = "x2 to pet points";
-        } else if ($int10 = 2) {
-            $string0 = "Instantly update your pet to its next level";
-        } else {
-            $string0 = "Open the store to buy treats";
+        if ($enum4 = enum_9665) {
+            if ($int10 = 0) {
+                $string0 = "x1.5 to pet points";
+            } else if ($int10 = 1) {
+                $string0 = "x2 to pet points";
+            } else if ($int10 = 2) {
+                $string0 = "Instantly update your pet to its next level";
+            } else {
+                $string0 = "Open the store to buy treats";
+            }
+        } else if ($enum4 = enum_10375) {
+            if ($int10 = 0) {
+                $string0 = "Track all items that you pick up.";
+            } else if ($int10 = 1) {
+                $string0 = "Track items that are dropped by monsters when you kill them.";
+            }
         }
         cc_setonmouserepeat("dynamic_dropdown_mouserepeat($component0, $int1, $string0)");
         if ($int12 = 1) {
@@ -64,7 +75,7 @@ while ($int10 <= $int5) {
             $int18 = $int11;
         }
         if ($int10 = $int6) {
-            ~dynamic_dropdown_highlight(interface_1477:com_870, $int10);
+            ~dynamic_dropdown_highlight(interface_1477:com_887, $int10);
         }
     } else {
         cc_sethide(true);
@@ -74,18 +85,18 @@ while ($int10 <= $int5) {
 }
 $int9 = ~dynamic_dropdown_position($component0, $int1, $int18, $int7, $enum4, 0);
 if ($int9 = -1) {
-    cc_deleteall(interface_1477:com_870);
+    cc_deleteall(interface_1477:com_887);
     %varplayer_4734, %varplayer_4735, %varplayer_4736 = null, null, -1;
     return;
 }
-~script4762(interface_1477:com_867, struct_21336);
-~script10409(interface_1477:com_866, struct_21336);
+~script4762(interface_1477:com_884, struct_21336);
+~script10409(interface_1477:com_883, struct_21336);
 if ($int8 = 1) {
     ~dynamic_dropdown_sort($enum4, $int5, $int6);
 }
 if ($int11 > $int9) {
-    if_setscrollsize(0, $int11, interface_1477:com_868);
+    if_setscrollsize(0, $int11, interface_1477:com_885);
 } else {
-    if_setscrollsize(0, 0, interface_1477:com_868);
+    if_setscrollsize(0, 0, interface_1477:com_885);
 }
-~scrollbar_vertical(interface_1477:com_871, interface_1477:com_868, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical(interface_1477:com_888, interface_1477:com_885, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

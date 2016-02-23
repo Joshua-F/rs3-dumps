@@ -31,41 +31,55 @@ cc_setfill(true);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
 ~script10009(struct_28680);
+def_int $int9 = parawidth("888W", 1000, graphic_17813);
+def_int $int10 = 0;
+def_int $int11 = %varplayerbit_28120;
+if ($int11 = 1) {
+    $int10 = parawidth("2,088,888,888", 1000, graphic_17813);
+    if (if_getwidth($component1) < calc($int10 + 5 + 5 + 5 + parawidth("...", 1000, graphic_17813))) {
+        $int11 = 0;
+    } else {
+        $int9 = $int10;
+    }
+}
 cc_create($component1, ^iftype_text, if_getnextsubid($component1));
 cc_settextfont(graphic_17813);
-cc_setsize(10, 20, ^setsize_minus, ^setsize_abs);
+cc_setsize(calc(15 + $int9), 20, ^setsize_minus, ^setsize_abs);
 cc_setposition(5, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_setcolour(~script10495(0x00000c));
 cc_setonvartransmit("script8429(event_com, event_comsubid){varplayer_5091}");
 ~script11909($component1, cc_getid);
 cc_create($component1, ^iftype_text, if_getnextsubid($component1));
-cc_settext("Quantity");
-cc_settextfont(graphic_17813);
-def_int $int9 = 90;
-if (%varplayerbit_28120 = 0) {
-    $int9 = stringwidth(cc_gettext, cc_getfontmetrics);
-}
 cc_setsize($int9, 20, ^setsize_abs, ^setsize_abs);
+cc_settextfont(graphic_17813);
+cc_settext("Quantity");
+if (cc_getwidth < parawidth(cc_gettext, 1000, cc_getfontmetrics)) {
+    cc_setonmouserepeat("script3876(cc_gettext, event_com, event_comsubid)");
+    cc_settext(~script3930(cc_gettext, cc_getwidth, 1, cc_getfontmetrics));
+}
 cc_setposition(5, 0, ^setpos_abs_right, ^setpos_abs_top);
-def_int $int10 = cc_getx;
+def_int $int12 = cc_getx;
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_setcolour(~script10495(0x00000c));
-def_int $int11 = 0;
-def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
 def_string $string0 = "";
 while ($int7 >= 0) {
     $obj6 = inv_getobj(inv_787, $int7);
     if ($obj6 ! null) {
-        ~script9885($component1, oc_name($obj6), 5, $int5);
-        $int12 = inv_getnum(inv_787, $int7);
-        if (%varplayerbit_28120 = 1) {
-            $string0 = tostring_localised($int12, true);
-        } else {
-            $string0 = ~script11478($int12);
+        ~script9885($component1, ~script3930(oc_name($obj6), max(0, calc($int12 - 10)), 1, graphic_17813), 5, $int5, max(0, calc($int12 - 10)));
+        if (compare(oc_name($obj6), cc_gettext) ! 0) {
+            cc_setonmouserepeat("script3876(oc_name($obj6), event_com, event_comsubid)");
         }
-        ~script9885($component1, $string0, $int10, $int5);
-        $int11 = calc($int11 + 1);
+        $int14 = inv_getnum(inv_787, $int7);
+        if ($int11 = 1) {
+            $string0 = tostring_localised($int14, true);
+        } else {
+            $string0 = ~script11478($int14);
+        }
+        ~script9885($component1, $string0, $int12, $int5, $int9);
+        $int13 = calc($int13 + 1);
         $int5 = calc($int5 + 20 + 1);
     }
     $int7 = calc($int7 - 1);

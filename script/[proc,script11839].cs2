@@ -1,14 +1,33 @@
 // 11839
-[proc,script11839](int $int0)(string, string, int)
-switch_int (enum(int, int, enum_10372, $int0)) {
+[proc,script11839](enum $enum0, int $int1)(string, string, int, boolean)
+if ($enum0 = null) {
+    return("", "", 0, true);
+}
+def_boolean $boolean2 = false;
+if (~telemetry_member = 0) {
+    $boolean2 = true;
+}
+switch_int (enum(int, int, $enum0, $int1)) {
     case 0 :
-        return("Show precise values", "Show detailed values for XP gains, combat and wealth statistics.", %varplayerbit_28120);
+        return("Show precise values", "Show full (not abbreviated) values for XP gains, combat and wealth statistics.", %varplayerbit_28120, false);
+    case 11 :
+        return("Show stack value", "Show an info box above your most recent drop with the total value of all items in the stack.", %varplayerbit_20182, $boolean2);
     case 1 :
-        return("Give ping notifications", "Play a sound when your character finishes performing a skilling action.", %varplayerbit_29527);
+        return("Give ping notifications", "Play a sound when your character finishes performing a skilling action.", %varplayerbit_29527, $boolean2);
     case 2 :
-        return("Show health warning", "Show a red health overlay when your health falls below 20%.", %varplayerbit_29531);
+        return("Show health warning", "Show a red health overlay when your health falls below 20%.", %varplayerbit_29531, $boolean2);
     case 3 :
-        return("Only update XP/hr on XP gain", "Show more stable values for XP/hr by only updating XP/hr on XP again events.", calc(1 - %varplayerbit_29533));
+        return("Only update XP/h on XP gain", "Show more stable values for XP/h by only updating XP/h on XP again events.", calc(1 - %varplayerbit_29533), $boolean2);
+    case 4 :
+        return("Show average field", "", %varclientbit_30624, $boolean2);
+    case 6 :
+        return("Show min/max values", "", %varclientbit_30626, $boolean2);
+    case 7 :
+        return("Show guide lines", "", %varclientbit_30627, $boolean2);
+    case 8 :
+        return("Show average line over the graph", "", %varclientbit_30628, $boolean2);
+    case 9 :
+        return("Show options field", "", %varclientbit_30629, $boolean2);
     case default :
-        return("", "", 0);
+        return("", "", 0, true);
 }

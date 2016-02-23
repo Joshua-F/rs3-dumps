@@ -112,10 +112,15 @@ if (map_members = true & $struct4 = struct_1004 | map_members = false & $struct4
     if ($struct4 = struct_28316) {
         $struct4 = struct_982;
     }
-    if ($int5 = 1) {
-        if_settext("You have already unlocked: <oc_name(struct_param($struct4, param_1070))>.", interface_940:com_105);
-    } else {
-        if_settext("You can only have one: <oc_name(struct_param($struct4, param_1070))>.", interface_940:com_105);
+    switch_int ($int5) {
+        case 1 :
+            if_settext("You have already unlocked: <oc_name(struct_param($struct4, param_1070))>.", interface_940:com_105);
+        case 2 :
+            if_settext("You can only have one: <oc_name(struct_param($struct4, param_1070))>.", interface_940:com_105);
+        case 3 :
+            if_settext("You must have a gold accumulator in your inventory.", interface_940:com_105);
+        case 4 :
+            if_settext("You must reach the maximum gold accumulator price.", interface_940:com_105);
     }
 } else {
     if_sethide(true, interface_940:com_93);
