@@ -21579,3 +21579,19 @@ readyanim=seq_28151,null
 walkanim_b=seq_28112
 readyanim=seq_28113,seq_28111
 
+// 3682
+[bas_3682]
+walkanim_b=seq_28183
+readyanim_l=seq_28181
+readyanim_r=seq_28181
+runanim=seq_28182
+runanim_b=seq_28184
+readyanim=seq_28180,seq_28181
+
+// 3683
+[bas_3683]
+readyanim_l=seq_28188
+readyanim_r=seq_28188
+runanim=seq_28189
+readyanim=seq_28186,seq_28188
+

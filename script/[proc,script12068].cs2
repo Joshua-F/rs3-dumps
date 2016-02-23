@@ -4,7 +4,13 @@ if (oc_param($obj0, param_5528) ! -1) {
     return(oc_param($obj0, param_5528));
 }
 def_int $int1 = ~script7959($obj0);
-if ($int1 < 70) {
-    return(1750);
+def_int $int2 = 1750;
+if ($int1 >= 70) {
+    $int2 = calc(($int1 - 70) * 250 + 2500);
 }
-return(calc(($int1 - 70) * 250 + 2500));
+if (oc_wearpos($obj0) = 5) {
+    $int2 = scale($int2, 2, 1);
+} else if (oc_wearpos2($obj0) = 5) {
+    $int2 = scale($int2, 2, 3);
+}
+return($int2);

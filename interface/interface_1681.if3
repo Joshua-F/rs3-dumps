@@ -10,7 +10,7 @@ type=layer
 widthmode=minus
 heightmode=minus
 layer=com_0
-onload=script8410(29)
+onload=script8410(28)
 
 // 1681:2
 [com_2]
@@ -32,11 +32,10 @@ type=layer
 height=33
 widthmode=minus
 heightmode=minus
-xmode=abs_centre
 layer=com_2
 onload=telemetry_window_init(2)
-onvartransmit=telemetry_window_refresh(2)
-ontimer=telemetry_window_refresh(2)
+onvartransmit=telemetry_window_refresh(2, 1)
+ontimer=telemetry_window_refresh(2, 0)
 onvartransmitlist=varplayer_3680
 
 // 1681:5
@@ -69,7 +68,7 @@ textalignh=1
 textalignv=1
 textshadow=yes
 colour=0x7592a0
-onload=script10496(event_com, event_comsubid, 0x00000e)
+onload=script10496(event_com, event_comsubid, 0x00000c)
 
 // 1681:8
 [com_8]
@@ -263,9 +262,26 @@ width=24
 height=24
 ymode=abs_bottom
 layer=com_29
+onvartransmit=script12330(1, interface_1681:com_44, interface_1681:com_45, interface_1681:com_46, interface_1681:com_47, interface_1681:com_49)
+onvartransmitlist=varplayer_5091
 
 // 1681:31
 [com_31]
+type=layer
+x=4
+y=3
+width=64
+height=25
+widthmode=minus
+xmode=abs_right
+ymode=abs_bottom
+layer=com_29
+hide=yes
+onvartransmit=telemetry_stopwatch
+onvartransmitlist=varplayer_5883
+
+// 1681:32
+[com_32]
 type=layer
 x=4
 y=2
@@ -277,24 +293,24 @@ ymode=abs_bottom
 layer=com_29
 hide=yes
 
-// 1681:32
-[com_32]
-type=layer
-widthmode=minus
-heightmode=minus
-ymode=abs_centre
-layer=com_31
-
 // 1681:33
 [com_33]
 type=layer
 widthmode=minus
 heightmode=minus
 ymode=abs_centre
-layer=com_31
+layer=com_32
 
 // 1681:34
 [com_34]
+type=layer
+widthmode=minus
+heightmode=minus
+ymode=abs_centre
+layer=com_32
+
+// 1681:35
+[com_35]
 type=layer
 x=32
 y=4
@@ -303,16 +319,6 @@ height=24
 ymode=abs_bottom
 layer=com_29
 
-// 1681:35
-[com_35]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_34
-onload=script9346(event_com, struct_30501)
-
 // 1681:36
 [com_36]
 type=layer
@@ -320,8 +326,8 @@ widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-layer=com_34
-onload=script9347(event_com, struct_30501)
+layer=com_35
+onload=script9346(event_com, struct_33112)
 
 // 1681:37
 [com_37]
@@ -330,8 +336,8 @@ widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-layer=com_34
-onload=script9348(event_com, struct_30501)
+layer=com_35
+onload=script9347(event_com, struct_33112)
 
 // 1681:38
 [com_38]
@@ -340,34 +346,46 @@ widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-layer=com_34
-hide=yes
-onload=script9351(event_com, struct_30501)
+layer=com_35
+onload=script9348(event_com, struct_33112)
 
 // 1681:39
 [com_39]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_34
-op1=Select
-opcursor0=cursor_46
-onload=script4213(event_com)
-onop=script11492
+xmode=abs_centre
+ymode=abs_centre
+layer=com_35
+hide=yes
+onload=script9351(event_com, struct_33112)
 
 // 1681:40
 [com_40]
 type=layer
 widthmode=minus
 heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_34
-hide=yes
-onload=script9354(event_com, struct_30501)
+layer=com_35
+op1=Select
+opcursor0=cursor_46
+onload=script4213(event_com)
+onop=script11492
+onmouserepeat=script3876("Add row/group", event_com, event_comsubid)
 
 // 1681:41
 [com_41]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_35
+hide=yes
+onload=script9354(event_com, struct_33112)
+onmouserepeat=script3876("Your Metrics window already contains every available row", event_com, event_comsubid)
+
+// 1681:42
+[com_42]
 type=line
 widthmode=minus
 xmode=abs_centre
@@ -375,8 +393,8 @@ layer=com_29
 colour=0xffffff
 onload=script8194(event_com, struct_28687)
 
-// 1681:42
-[com_42]
+// 1681:43
+[com_43]
 type=line
 y=1
 widthmode=minus
@@ -384,16 +402,6 @@ xmode=abs_centre
 layer=com_29
 colour=0xffffff
 onload=script8194(event_com, struct_28688)
-
-// 1681:43
-[com_43]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_30
-onload=script9346(event_com, struct_5696)
 
 // 1681:44
 [com_44]
@@ -403,7 +411,7 @@ heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
 layer=com_30
-onload=script9347(event_com, struct_5696)
+onload=script9346(event_com, struct_5696)
 
 // 1681:45
 [com_45]
@@ -413,7 +421,7 @@ heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
 layer=com_30
-onload=script9348(event_com, struct_5696)
+onload=script9347(event_com, struct_5696)
 
 // 1681:46
 [com_46]
@@ -423,11 +431,21 @@ heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
 layer=com_30
-hide=yes
-onload=script9351(event_com, struct_5696)
+onload=script9348(event_com, struct_5696)
 
 // 1681:47
 [com_47]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_30
+hide=yes
+onload=script9351(event_com, struct_5696)
+
+// 1681:48
+[com_48]
 type=layer
 widthmode=minus
 heightmode=minus
@@ -435,10 +453,10 @@ layer=com_30
 op1=Select
 opcursor0=cursor_46
 onload=script4213(event_com)
-onop=telemetry_open_parent
+onop=telemetry_open_parent(4)
 
-// 1681:48
-[com_48]
+// 1681:49
+[com_49]
 type=layer
 widthmode=minus
 heightmode=minus
@@ -446,4 +464,234 @@ xmode=abs_centre
 ymode=abs_centre
 layer=com_30
 onload=script9354(event_com, struct_5696)
+
+// 1681:50
+[com_50]
+type=layer
+width=24
+height=24
+xmode=abs_right
+layer=com_31
+onmouserepeat=script3876("Reset stopwatch data", event_com, event_comsubid)
+
+// 1681:51
+[com_51]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_50
+onload=script9346(event_com, struct_32391)
+
+// 1681:52
+[com_52]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_50
+onload=script9347(event_com, struct_32391)
+
+// 1681:53
+[com_53]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_50
+onload=script9348(event_com, struct_32391)
+
+// 1681:54
+[com_54]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_50
+hide=yes
+onload=script9351(event_com, struct_32391)
+
+// 1681:55
+[com_55]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_50
+op1=Reset stopwatch
+onload=script4213(event_com)
+onop=script11822
+
+// 1681:56
+[com_56]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_50
+hide=yes
+onload=script9354(event_com, struct_32391)
+
+// 1681:57
+[com_57]
+type=layer
+x=29
+width=24
+height=24
+xmode=abs_right
+layer=com_31
+hide=yes
+onmouserepeat=script3876("Pause stopwatch", event_com, event_comsubid)
+
+// 1681:58
+[com_58]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_57
+onload=script9346(event_com, struct_32390)
+
+// 1681:59
+[com_59]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_57
+onload=script9347(event_com, struct_32390)
+
+// 1681:60
+[com_60]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_57
+onload=script9348(event_com, struct_32390)
+
+// 1681:61
+[com_61]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_57
+hide=yes
+onload=script9351(event_com, struct_32390)
+
+// 1681:62
+[com_62]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_57
+op1=Pause stopwatch
+onload=script4213(event_com)
+
+// 1681:63
+[com_63]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_57
+hide=yes
+onload=script9354(event_com, struct_32390)
+
+// 1681:64
+[com_64]
+type=layer
+x=29
+width=24
+height=24
+xmode=abs_right
+layer=com_31
+onmouserepeat=script3876("Start stopwatch", event_com, event_comsubid)
+
+// 1681:65
+[com_65]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_64
+onload=script9346(event_com, struct_32389)
+
+// 1681:66
+[com_66]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_64
+onload=script9347(event_com, struct_32389)
+
+// 1681:67
+[com_67]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_64
+onload=script9348(event_com, struct_32389)
+
+// 1681:68
+[com_68]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_64
+hide=yes
+onload=script9351(event_com, struct_32389)
+
+// 1681:69
+[com_69]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_64
+op1=Start stopwatch
+onload=script4213(event_com)
+
+// 1681:70
+[com_70]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_64
+hide=yes
+onload=script9354(event_com, struct_32389)
+
+// 1681:71
+[com_71]
+type=text
+width=60
+height=25
+widthmode=minus
+ymode=abs_centre
+layer=com_31
+textfont=graphic_17813
+text=00:00:00
+textalignh=1
+textalignv=1
+textshadow=yes
+colour=0x7592a0
+onload=script10496(event_com, event_comsubid, 0x00000e)
 

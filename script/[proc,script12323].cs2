@@ -1,0 +1,163 @@
+// 12323
+[proc,script12323](struct $struct0)
+if ($struct0 = null) {
+    return;
+}
+def_component $component1 = struct_param($struct0, param_5650);
+if ($component1 = null) {
+    return;
+}
+def_component $component2 = if_getlayer($component1);
+if ($component2 = null) {
+    return;
+}
+if (%varclient_5156 ! 0) {
+    return;
+}
+def_int $int3 = 0;
+def_int $int4 = 1;
+def_int $int5 = 0;
+def_int $int6 = clientclock;
+if (if_find($component1) = true & .if_find(interface_1477:com_8) = true) {
+    if (clientclock > calc(cc_param(param_5641) + 1) | cc_param(param_5639) ! %varclientbit_30621 | cc_param(param_5640) ! %varclientbit_30622) {
+        ~script12318($struct0);
+        return;
+    }
+    if (clientclock <= cc_param(param_5641)) {
+        return;
+    }
+    if (.cc_param(param_5641) > calc(cc_param(param_5641) - cc_param(param_5642))) {
+        cc_setparam(param_5641, clientclock);
+    } else {
+        cc_setparam(param_5641, clientclock);
+        cc_setparam(param_5642, 1);
+        return;
+    }
+    $int6 = calc(clientclock - cc_param(param_5642));
+    $int3 = cc_param(param_5643);
+    $int4 = cc_param(param_5644);
+    $int5 = cc_param(param_5645);
+}
+def_int $int7 = 2;
+if (%varclientbit_30621 = 1) {
+    $int7 = calc(16 - 1 * %varclientbit_30622);
+}
+def_int $int8 = if_getnextsubid($component1);
+if ($int8 = 0) {
+    return;
+}
+def_int $int9 = if_getheight($component1);
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+$int10, $int11, $int12 = ~script12324($int4, $int5);
+def_int $int13 = ~script12303;
+def_int $int14 = calc(($int6 - %varclient_5159) / %varclient_5157 % $int13);
+def_int $int15 = calc(($int6 - %varclient_5159) % (%varclient_5157 * $int13));
+def_int $int16 = 0;
+if ($int15 = 0) {
+    $int16 = $int13;
+} else if (%varclientbit_30621 = 1) {
+    $int16 = $int14;
+    $int14 = 0;
+}
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_boolean $boolean19 = false;
+if ($int16 ! 0) {
+    $boolean19, $int17, $int18 = ~script12310(interface_1477:com_8, $int14, $int16);
+    if ($boolean19 = false) {
+        ~script12318($struct0);
+        return;
+    }
+}
+def_int $int20 = scale(~script12311($int17, $int18), $int10, 50);
+def_int $int21 = 0;
+def_int $int22 = -1;
+def_int $int23 = 0;
+def_int $int24 = 0;
+def_int $int25 = 0;
+def_int $int26 = if_getheight($component1);
+def_int $int27 = 0;
+def_int $int28 = 0;
+if ($int15 ! 0) {
+    if (%varclientbit_30621 = 1) {
+        $boolean19, $int27, $int28 = ~script12310(interface_1477:com_9, 0, 1);
+        if ($boolean19 = false) {
+            ~script12318($struct0);
+            return;
+        }
+        $int17, $int18 = ~script12313($int17, $int18, $int27, $int28);
+        $int17 = ~script12311($int17, $int18);
+        $int20 = scale($int17, $int10, 50);
+        if (cc_find($component1, calc(($int8 + $int3 - 1) % $int8)) = true) {
+            if ($int20 > $int11) {
+                $int4 = $int17;
+                $int21 = 1;
+                $int10, $int11, $int12 = ~script12324($int4, $int5);
+                $int20 = scale($int9, 100, $int11);
+            } else if ($int20 < $int12) {
+                $int5 = $int17;
+                $int21 = 1;
+                $int10, $int11, $int12 = ~script12324($int4, $int5);
+                $int20 = scale($int9, 100, $int12);
+            } else {
+                $int20 = scale($int9, 100, $int20);
+            }
+            cc_setparam(param_5352, $int20);
+            cc_setparam(param_5355, $int17);
+            if ($int21 = 1) {
+                if_setparam_int(param_5644, $int4, $component1);
+                if_setparam_int(param_5645, $int5, $component1);
+            }
+        }
+    }
+    ~script12325($struct0, $int21, 0);
+} else {
+    if (%varclientbit_30621 = 0 & cc_find($component1, $int3) = true | %varclientbit_30621 = 1 & cc_find($component1, calc(($int8 + $int3 - 1) % $int8)) = true) {
+        $int17 = ~script12311($int17, $int18);
+        if ($int20 > $int11) {
+            $int4 = $int17;
+            $int21 = 1;
+            $int10, $int11, $int12 = ~script12324($int4, $int5);
+            $int20 = scale($int9, 100, $int11);
+        } else if ($int20 < $int12) {
+            $int5 = $int17;
+            $int21 = 1;
+            $int10, $int11, $int12 = ~script12324($int4, $int5);
+            $int20 = scale($int9, 100, $int12);
+        } else {
+            $int20 = scale($int9, 100, $int20);
+        }
+        cc_setparam(param_5352, $int20);
+        cc_setparam(param_5355, $int17);
+        if ($int21 = 1) {
+            if_setparam_int(param_5644, $int4, $component1);
+            if_setparam_int(param_5645, $int5, $component1);
+        }
+        if (%varclientbit_30621 = 0) {
+            $int24 = scale($int9, -100, $int12);
+            $int25 = calc($int9 - $int24);
+            if ($int20 < 0) {
+                $int20 = calc($int20 * -1);
+                cc_setparam(param_5659, 0);
+                $int23 = $int25;
+                cc_setcolour(0xff6051);
+            } else {
+                cc_setparam(param_5659, 2);
+                $int23 = $int24;
+                cc_setcolour(0x51ff57);
+            }
+            cc_setsize(cc_getwidth, $int20, ^setsize_abs, ^setsize_abs);
+            cc_setposition(cc_getx, $int23, ^setpos_abs_left, cc_param(param_5659));
+        } else if (cc_find($component1, $int3) = true) {
+            cc_setparam(param_5659, 2);
+            cc_setsize(cc_getwidth, 0, ^setsize_abs, ^setsize_abs);
+            cc_setparam(param_5352, 0);
+            cc_setposition(calc($int8 * $int7), 0, ^setpos_abs_left, cc_param(param_5659));
+        }
+    }
+    $int3 = calc(($int3 + 1) % $int8);
+    if_setparam_int(param_5643, $int3, $component1);
+    ~script12325($struct0, $int21, 0);
+}

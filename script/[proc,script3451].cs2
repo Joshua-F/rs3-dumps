@@ -2,6 +2,7 @@
 [proc,script3451](int $int0, int $int1, int $int2, int $int3, int $int4)
 def_int $int5 = 0;
 def_int $int6 = -1;
+def_component $component7 = interface_1513:com_21;
 if_setonclick("autosetup($int4)", interface_1513:com_78);
 if ($int4 ! 4 & $int4 ! 0) {
     ~script10014(interface_1513:com_122, interface_1513:com_123, interface_1513:com_124, interface_1513:com_125, interface_1513:com_126, interface_1513:com_127, interface_1513:com_130, struct_28706);
@@ -15,10 +16,34 @@ if ($int4 ! 4 & $int4 ! 0) {
     }
     ~script10014(interface_1513:com_142, interface_1513:com_143, interface_1513:com_144, interface_1513:com_145, interface_1513:com_146, interface_1513:com_147, interface_1513:com_150, struct_28707);
     ~script10083(3, -1, $int1, interface_1513:com_145, interface_1513:com_146, $int2, $int3, $int0, $int4);
+    if (%varclient_178 < 0) {
+        %varclient_178 = max(fullscreen_lastmode, 0);
+    }
+    if (%varclient_178 >= fullscreen_modecount) {
+        %varclient_178 = 0;
+    }
+    cc_deleteall($component7);
+    if (fullscreen_modecount <= 0) {
+        $int6 = ~script10082(0, $component7, 0, 0, if_getwidth($component7));
+        .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        .cc_setcolour(0xa5a5a5);
+        .cc_settext("N/A");
+    } else {
+        $int6 = ~script10082(1, $component7, 0, 0, if_getwidth($component7));
+        if ($int6 ! -1 & cc_find($component7, $int6) = true) {
+            cc_setonclick("script2695(event_com, event_comsubid, -1, -1, -1, struct_845, $int2, $int3, $int0, $int1, $int4)");
+        }
+        .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        if (%varclient_178 < calc(fullscreen_modecount - 1)) {
+            .cc_setcolour(0xaed0e0);
+        } else {
+            .cc_setcolour(0xaed0e0);
+        }
+        .cc_settext(~graphics_options_resolutions(%varclient_178));
+    }
 } else {
     if_sethide(true, interface_1513:com_19);
 }
-def_string $string0 = "";
 ~rs3_background_panel(interface_1513:com_10, struct_21361);
 if (has_nxt = true) {
     ~script10013(interface_1513:com_154, interface_1513:com_155, interface_1513:com_156, interface_1513:com_157, interface_1513:com_158, interface_1513:com_159, interface_1513:com_161);
