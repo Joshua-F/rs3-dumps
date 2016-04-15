@@ -2,39 +2,24 @@
 [proc,autosetup](int $int0)
 def_int $int1 = 0;
 def_int $int2 = 0;
-def_int $int3 = detailget_toolkit;
 ~script10081;
-$int1, $int2 = autosetup_dosetup;
-%varclient_4273 = $int1;
-~script2593($int1, null);
-if ($int1 = 1 | $int1 = 3) {
-    if (getwindowmode = ^windowmode_small) {
-        setwindowmode(^windowmode_resizable);
-        setdefaultwindowmode(2);
-        if ($int0 ! 3) {
-            ~graphics_options_rebuild($int1, getwindowmode, ~graphics_options_reviewoptions($int1), $int0);
-        }
-    }
-    ~script2700(1, $int0, 1);
-    return;
+def_component $component3 = null;
+if (has_nxt = false) {
+    $int1, $int2 = autosetup_dosetup;
+    ~script12435($int1, $int0);
 } else {
-    if ($int1 = 0) {
-        ~script10080;
+    unknown_command_8;
+    switch_int ($int0) {
+        case 0 :
+            $component3 = interface_882:com_15;
+        case 1 :
+            $component3 = interface_742:com_1;
+        case 2 :
+            $component3 = interface_911:com_0;
+        case 4 :
+            $component3 = interface_882:com_15;
+        case 3 :
+            $component3 = interface_744:com_51;
     }
-    %varclient_1240 = 4;
-    %varclient_1277 = false;
-    detail_toolkit_default($int1, true);
-    if ($int0 = 3) {
-        if (~userflowflags(1) = true) {
-            ~loginscreen_setactivemenu(11);
-        } else if (%varclient_3684 ! 1 & ~userflowflags(3) = true) {
-            ~loginscreen_setactivemenu(7);
-        } else {
-            %varclient_3684 = 0;
-            ~loginscreen_setactivemenu(11);
-        }
-    } else {
-        ~graphics_options_rebuild($int1, getwindowmode, ~graphics_options_reviewoptions($int1), $int0);
-    }
-    return;
+    if_setontimer("script3932($component3, $int0)", $component3);
 }

@@ -1,0 +1,44 @@
+// 12407
+[clientscript,script12407](component $component0)
+def_int $int1 = inv_size(inv_795);
+def_int $int2 = 0;
+def_component $component3 = null;
+def_component $component4 = null;
+def_component $component5 = null;
+def_component $component6 = null;
+$component3, $component4, $component5, $component6 = ~script12406($component0);
+def_int $int7 = 16;
+def_int $int8 = 5;
+while ($int2 < $int1) {
+    $int7 = calc(16 + $int2 % 4 * 45);
+    $int8 = calc(5 + $int2 / 4 * 41);
+    if ($component3 ! null) {
+        cc_create($component3, ^iftype_graphic, $int2);
+        cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphic(rs3_inventory_slot);
+        cc_setonmouseover("inventory_slot_highlight(93, event_com, event_comsubid, $component5, 1)");
+        cc_setonmouseleave("inventory_slot_highlight(93, event_com, event_comsubid, $component5, 0)");
+    }
+    if ($component5 ! null) {
+        ~script9229($component5, $int2, 40, 36);
+    }
+    if ($component4 ! null) {
+        cc_create($component4, ^iftype_graphic, $int2);
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int7 + 2), calc($int8 + 2), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setontargetenter("inventory_targetmode(1, event_com, event_comsubid)");
+        cc_setontargetleave("inventory_targetmode(0, event_com, event_comsubid)");
+    }
+    $int2 = calc($int2 + 1);
+}
+if ($component3 ! null) {
+    if (%varplayerbit_27169 = 0) {
+        if_sethide(false, $component3);
+    } else {
+        if_sethide(true, $component3);
+    }
+}
+if_setsize(16, 86, ^setsize_minus, ^setsize_abs, $component0);
+if_setoninvtransmit("script12408(event_com){inv_795}", $component0);
+~script12409($component0);

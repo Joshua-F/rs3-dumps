@@ -9,23 +9,28 @@ def_int $int5 = 0;
 def_int $int6 = -1;
 def_string $string1 = "";
 def_string $string2 = "";
-if (date_runeday >= 5111 & date_runeday <= 5115) {
+if (date_runeday >= 5151 & date_runeday <= 5152) {
     $int6 = 0;
 }
 if ($int4 = 0) {
-    if (map_lang ! 0) {
-        if_setgraphic(rs3_lobby_secondary_th_default_promotion, $component0);
-    } else {
-        switch_int ($int6) {
-            case -1 :
-                if_setgraphic(rs3_lobby_secondary_th_default_promotion, $component0);
-            case 0 :
-                if (map_lang = 0) {
-                    if_setgraphic(rs3_lobby_secondary_th_timetotrain_en, $component0);
-                } else {
-                    if_setgraphic(rs3_lobby_secondary_th_default_promotion, $component0);
-                }
-        }
+    switch_int ($int6) {
+        case -1 :
+            if_setgraphic(rs3_lobby_secondary_th_default_promotion, $component0);
+        case 0 :
+            switch_int (map_lang) {
+                case 0 :
+                    if_setgraphic(graphic_9455, $component0);
+                case 1 :
+                    if_setgraphic(graphic_9456, $component0);
+                case 2 :
+                    if_setgraphic(graphic_9457, $component0);
+                case 3 :
+                    if_setgraphic(graphic_17050, $component0);
+            }
+            $int5 = 1;
+            $string0 = "Play Chronicle!";
+            if_setonop("script12374(\"www\", \"rschronicle\", \"rschronicle\", false)", $component0);
+            if_setonclick("script10052", $component0);
     }
 }
 if_settext($string0, $component1);
