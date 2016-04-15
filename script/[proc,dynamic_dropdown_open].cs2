@@ -1,102 +1,113 @@
 // 10435
-[proc,dynamic_dropdown_open](component $component0, int $int1, component $component2, int $int3, enum $enum4, int $int5, int $int6, int $int7, int $int8)
-if (if_find(interface_1477:com_882) = true & cc_param(param_4515) = true & cc_param(param_4516) ! null & cc_param(param_4516) = $component0 & cc_param(param_4518) = $int1) {
+[proc,dynamic_dropdown_open](component $component0, int $int1, component $component2, int $int3, enum $enum4, enum $enum5, int $int6, int $int7, int $int8, int $int9)
+if (if_find(interface_1477:com_883) = true & cc_param(param_4515) = true & cc_param(param_4516) ! null & cc_param(param_4516) = $component0 & cc_param(param_4518) = $int1) {
     ~dynamic_dropdown_hide;
     return;
 }
-cc_deleteall(interface_1477:com_887);
+cc_deleteall(interface_1477:com_888);
 %varplayer_4734 = $enum4;
 %varplayer_4735 = $component0;
 %varplayer_4736 = $int1;
-def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
-def_int $int12 = 1;
+def_int $int12 = 0;
 def_int $int13 = 1;
-def_int $rgb14 = 0xaed0e0;
-def_int $rgb15 = 0xa5a5a5;
-def_fontmetrics $fontmetrics16 = graphic_17813;
+def_int $int14 = 1;
+def_int $rgb15 = 0xaed0e0;
+def_int $rgb16 = 0xa5a5a5;
 def_fontmetrics $fontmetrics17 = graphic_17813;
-def_int $int18 = 0;
+def_fontmetrics $fontmetrics18 = graphic_17813;
+def_int $int19 = 0;
 def_string $string0 = "";
-$fontmetrics16, $rgb14 = ~script10433(0);
-$fontmetrics17, $rgb15 = ~script10433(1);
-while ($int10 <= $int5) {
-    $int13 = ~script10455($component0, $enum4, $int10);
-    cc_create(interface_1477:com_887, ^iftype_text, if_getnextsubid(interface_1477:com_887));
-    cc_setparam(param_4519, $int13);
-    if ($int13 = 1) {
-        $int12 = ~dynamic_dropdown_active_check($component0, $enum4, $int10);
-        $string0 = enum(int, string, $enum4, $int10);
-        if ($int8 = 1) {
+def_string $string1 = "";
+$fontmetrics17, $rgb15 = ~script10433(0);
+$fontmetrics18, $rgb16 = ~script10433(1);
+while ($int11 <= $int6) {
+    $int14 = ~script10455($component0, $enum4, $int11);
+    cc_create(interface_1477:com_888, ^iftype_text, if_getnextsubid(interface_1477:com_888));
+    cc_setparam(param_4519, $int14);
+    if ($int14 = 1) {
+        $int13 = ~dynamic_dropdown_active_check($component0, $enum4, $int11);
+        $string0 = enum(int, string, $enum4, $int11);
+        if ($enum5 ! null & $int13 = 0) {
+            $string1 = enum(int, string, $enum5, $int11);
+            if (string_length($string1) > 0) {
+                if (compare(substring($string1, 0, 1), "*") = 0) {
+                    $string0 = "<$string0><substring($string1, 1, string_length($string1))>";
+                } else {
+                    $string0 = $string1;
+                }
+            }
+        }
+        if ($int9 = 1) {
             cc_setparam_string(param_5441, lowercase($string0));
             $string0 = ~script12292($string0);
         }
         cc_settext($string0);
-        cc_setposition(5, $int11, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition(5, $int12, ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(5, 15, ^setsize_minus, ^setsize_abs);
         cc_settextshadow(true);
         cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-        cc_setparam(param_3646, $int12);
+        cc_setparam(param_3646, $int13);
         cc_setmaxlines(1);
         cc_setonmouseover("dynamic_dropdown_highlight(event_com, event_comsubid)");
         if ($enum4 = enum_9665) {
-            if ($int10 = 0) {
+            if ($int11 = 0) {
                 $string0 = "x1.5 to pet points";
-            } else if ($int10 = 1) {
+            } else if ($int11 = 1) {
                 $string0 = "x2 to pet points";
-            } else if ($int10 = 2) {
+            } else if ($int11 = 2) {
                 $string0 = "Instantly update your pet to its next level";
             } else {
                 $string0 = "Open the store to buy treats";
             }
         } else if ($enum4 = enum_10375) {
-            if ($int10 = 0) {
+            if ($int11 = 0) {
                 $string0 = "Track all items that you pick up.";
-            } else if ($int10 = 1) {
+            } else if ($int11 = 1) {
                 $string0 = "Track items that are dropped by monsters when you kill them.";
             }
         }
         cc_setonmouserepeat("dynamic_dropdown_mouserepeat($component0, $int1, $string0)");
-        if ($int12 = 1) {
-            cc_settextfont($fontmetrics16);
-            cc_setcolour($rgb14);
+        if ($int13 = 1) {
+            cc_settextfont($fontmetrics17);
+            cc_setcolour($rgb15);
             cc_setop(1, "Select");
             cc_setonop("script10438(event_com, event_comsubid, $enum4, $component2, $int3)");
         } else {
-            cc_settextfont($fontmetrics17);
-            cc_setcolour($rgb15);
+            cc_settextfont($fontmetrics18);
+            cc_setcolour($rgb16);
         }
         if ($enum4 = enum_9665) {
-            ~script4164($int10, $int11, $int12, $fontmetrics16, $fontmetrics17, $rgb14, $rgb15);
+            ~script4164($int11, $int12, $int13, $fontmetrics17, $fontmetrics18, $rgb15, $rgb16);
         }
-        $int11 = calc($int11 + 15);
-        if ($int18 < calc(15 * 20)) {
-            $int18 = $int11;
+        $int12 = calc($int12 + 15);
+        if ($int19 < calc(15 * 20)) {
+            $int19 = $int12;
         }
-        if ($int10 = $int6) {
-            ~dynamic_dropdown_highlight(interface_1477:com_887, $int10);
+        if ($int11 = $int7) {
+            ~dynamic_dropdown_highlight(interface_1477:com_888, $int11);
         }
     } else {
         cc_sethide(true);
         cc_setparam(param_3646, 0);
     }
-    $int10 = calc($int10 + 1);
+    $int11 = calc($int11 + 1);
 }
-$int9 = ~dynamic_dropdown_position($component0, $int1, $int18, $int7, $enum4, 0);
-if ($int9 = -1) {
-    cc_deleteall(interface_1477:com_887);
+$int10 = ~dynamic_dropdown_position($component0, $int1, $int19, $int8, $enum4, 0);
+if ($int10 = -1) {
+    cc_deleteall(interface_1477:com_888);
     %varplayer_4734, %varplayer_4735, %varplayer_4736 = null, null, -1;
     return;
 }
-~script4762(interface_1477:com_884, struct_21336);
-~script10409(interface_1477:com_883, struct_21336);
-if ($int8 = 1) {
-    ~dynamic_dropdown_sort($enum4, $int5, $int6);
+~script4762(interface_1477:com_885, struct_21336);
+~script10409(interface_1477:com_884, struct_21336);
+if ($int9 = 1) {
+    ~dynamic_dropdown_sort($enum4, $int6, $int7);
 }
-if ($int11 > $int9) {
-    if_setscrollsize(0, $int11, interface_1477:com_885);
+if ($int12 > $int10) {
+    if_setscrollsize(0, $int12, interface_1477:com_886);
 } else {
-    if_setscrollsize(0, 0, interface_1477:com_885);
+    if_setscrollsize(0, 0, interface_1477:com_886);
 }
-~scrollbar_vertical(interface_1477:com_888, interface_1477:com_885, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical(interface_1477:com_889, interface_1477:com_886, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

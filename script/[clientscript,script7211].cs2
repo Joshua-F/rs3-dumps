@@ -1,5 +1,5 @@
 // 7211
-[clientscript,script7211](int $key0, char $char1, component $component2, component $component3, component $component4, component $component5, component $component6)
+[clientscript,script7211](int $key0, char $char1, component $component2, component $component3, component $component4, component $component5, component $component6, int $int7)
 if (%varclient_2873 ! 11) {
     return;
 }
@@ -15,14 +15,22 @@ switch_int ($key0) {
             ~script10519($component3, $component4, $component5, $component6, %varclient_2250);
             return;
         } else if (%varclient_2236 = 7) {
-            ~script7206($component2, $component3, $component4, $component5, $component6);
+            if ($int7 = 1) {
+                ~script12426($component2, $component3, $component4, $component5, $component6);
+            } else {
+                ~script7206($component2, $component3, $component4, $component5, $component6);
+            }
             return;
         }
     case ^key_escape :
         if (~cancel_targetmode = true) {
             return;
         }
-        ~script7206($component2, $component3, $component4, $component5, $component6);
+        if ($int7 = 1) {
+            ~script12426($component2, $component3, $component4, $component5, $component6);
+        } else {
+            ~script7206($component2, $component3, $component4, $component5, $component6);
+        }
         return;
     case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
         if (keyheld_shift = false) {

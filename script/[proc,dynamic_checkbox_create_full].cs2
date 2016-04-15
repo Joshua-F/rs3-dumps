@@ -1,11 +1,22 @@
 // 10419
-[proc,dynamic_checkbox_create_full](component $component0, component $component1, int $int2, int $int3, int $int4, int $int5, string $string0, string $string1, string $string2, int $int6, boolean $boolean7, int $int8)(int, int)
-def_string $string3 = $string1;
+[proc,dynamic_checkbox_create_full](component $component0, component $component1, int $int2, int $int3, int $int4, int $int5, string $string0, string $string1, string $string2, string $string3, int $int6, boolean $boolean7, int $int8)(int, int)
+def_string $string4 = $string1;
 def_boolean $boolean9 = true;
 def_int $int10 = 0;
 def_int $int11 = -1;
 if ($int6 < 1) {
-    $string3, $boolean9 = $string2, false;
+    $string4, $boolean9 = $string2, false;
+}
+if (compare($string3, "") ! 0 & $boolean7 = true) {
+    if (compare(substring($string3, 0, 1), "*") = 0) {
+        if (compare($string4, "") ! 0) {
+            $string4 = "<$string4><substring($string3, 1, string_length($string3))>";
+        } else {
+            $string3 = "";
+        }
+    } else {
+        $string4 = $string3;
+    }
 }
 if (compare($string0, "") ! 0) {
     $int10 = ~script7593($string0, calc($int4 - 20), graphic_17813, -1);
@@ -23,8 +34,12 @@ if (compare($string0, "") ! 0) {
         cc_settextshadow(true);
         if ($boolean7 = true) {
             cc_setcolour(~script10495(0x00003d));
+            if (compare($string3, "") ! 0) {
+                cc_setonmouserepeat("script3876($string4, event_com, event_comsubid)");
+            }
         } else {
             cc_setcolour(~script10495(0x00000c));
+            cc_setonmouserepeat("script3876($string4, event_com, event_comsubid)");
         }
     } else {
         $int10 = 0;
@@ -46,10 +61,13 @@ if ($boolean7 = true) {
     } else {
         cc_setgraphic("rs3_btn_checkbox,4");
     }
+    if (compare($string3, "") ! 0) {
+        cc_setonmouserepeat("script3876($string4, event_com, event_comsubid)");
+    }
 } else {
     cc_setonmouseover("script10420(event_com, event_comsubid)");
     cc_setonmouseleave("script10421(event_com, event_comsubid)");
-    cc_setonmouserepeat("script8799($string3, event_com, event_comsubid)");
+    cc_setonmouserepeat("script3876($string4, event_com, event_comsubid)");
     if ($boolean9 = true) {
         cc_setgraphic("rs3_btn_checkbox,2");
     } else {

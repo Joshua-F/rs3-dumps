@@ -16,6 +16,9 @@ switch_struct ($struct0) {
     case struct_838 :
         detail_lightdetail_high(~int_to_bool($int1));
     case struct_839, struct_33099 :
+        if (detailcanset_waterdetail($int1) = 3) {
+            return(0);
+        }
         detail_waterdetail_high(~int_to_bool($int1));
     case struct_840 :
         detail_fog_on(~int_to_bool($int1));
@@ -40,8 +43,12 @@ switch_struct ($struct0) {
         %varclient_178 = $int1;
         if (getwindowmode = ^windowmode_fullscreen) {
             if (fullscreen_enter(fullscreen_getmode($int1)) = true) {
-                ~script2700(2, $int2, 0);
-                return(2);
+                if (has_nxt = false) {
+                    ~script2700(2, $int2, 0);
+                    return(2);
+                } else {
+                    return(1);
+                }
             }
             return(0);
         }
@@ -74,31 +81,58 @@ switch_struct ($struct0) {
     case struct_2841 :
         %varclient_1701 = $int1;
     case struct_33100 :
+        if (detailcanset_bloom($int1) = 3) {
+            return(0);
+        }
         detail_bloom($int1);
     case struct_33101 :
         detail_drawdistance($int1);
     case struct_33102 :
         %varclient_3698 = $int1;
     case struct_33103 :
+        if (detailcanset_antialiasingmode($int1) = 3) {
+            return(0);
+        }
         detail_antialiasingmode($int1);
     case struct_33104 :
-        if (detailcanmod_antialiasing_quality = false | detailcanset_antialiasing_quality($int1) = 0) {
+        if (detailcanmod_antialiasing_quality = false | detailcanset_antialiasing_quality($int1) = 3) {
             return(0);
         }
         detail_antialiasing_quality($int1);
     case struct_33092 :
+        if (detailcanset_hardshadows($int1) = 3) {
+            return(0);
+        }
         detail_hardshadows($int1);
     case struct_33093 :
+        if (detailcanset_shadowquality($int1) = 3) {
+            return(0);
+        }
         detail_shadowquality($int1);
     case struct_33094 :
+        if (detailcanset_lightingquality($int1) = 3) {
+            return(0);
+        }
         detail_lightingquality($int1);
     case struct_33097 :
-        detail_ambientocclusion(~int_to_bool($int1));
+        if (detailcanset_ambientocclusion($int1) = 3) {
+            return(0);
+        }
+        detail_ambientocclusion($int1);
     case struct_33095 :
+        if (detailcanset_texturing($int1) = 3) {
+            return(0);
+        }
         detail_texturing(~int_to_bool($int1));
     case struct_33096 :
+        if (detailcanset_reflections($int1) = 3) {
+            return(0);
+        }
         detail_reflections($int1);
     case struct_33098 :
+        if (detailcanset_vsync($int1) = 3) {
+            return(0);
+        }
         detail_vsync($int1);
     case default :
         return(0);

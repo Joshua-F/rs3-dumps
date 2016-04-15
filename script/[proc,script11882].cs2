@@ -1,8 +1,16 @@
 // 11882
-[proc,script11882](int $int0)(string)
-def_string $string0 = "";
-switch_int ($int0) {
-    case 32550 :
-        $string0 = ~script11883;
+[proc,script11882](int $int0, int $int1)(int)
+if ($int1 > 0) {
+    if ($int0 <= calc(^max_32bit_int - $int1)) {
+        $int0 = calc($int0 + $int1);
+    } else {
+        $int0 = ^max_32bit_int;
+    }
+} else if ($int1 < 0) {
+    if ($int0 >= calc(^min_32bit_int - $int1)) {
+        $int0 = calc($int0 + $int1);
+    } else {
+        $int0 = ^min_32bit_int;
+    }
 }
-return($string0);
+return($int0);

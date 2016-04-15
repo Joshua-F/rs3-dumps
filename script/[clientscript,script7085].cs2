@@ -1,3 +1,18 @@
 // 7085
-[clientscript,script7085](component $component0)
-cc_deleteall($component0);
+[clientscript,script7085](component $component0, inv $inv1, int $int2)
+def_enum $enum3 = null;
+if (%varplayer_6168 ! null) {
+    $enum3 = struct_param(%varplayer_6168, param_5688);
+    if ($enum3 = null) {
+        %varclient_5183 = struct_param(%varplayer_6168, param_5689);
+        if_setontimer(null, $component0);
+    } else if (calc(clientclock % (struct_param(%varplayer_6168, param_5687) / enum_getoutputcount($enum3))) = 0) {
+        if ($int2 = 0) {
+            if (++%varclient_5182 > calc(enum_getoutputcount($enum3) - 1)) {
+                %varclient_5182 = 0;
+            }
+            %varclient_5183 = enum(int, enum, $enum3, %varclient_5182);
+        }
+        ~script7995($component0, $inv1);
+    }
+}
