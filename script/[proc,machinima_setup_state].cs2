@@ -9,40 +9,53 @@ def_int $int6 = 0;
 def_int $int7 = 0;
 def_int $int8 = 0;
 def_int $int9 = 0;
-def_int $int10 = 20;
-def_int $int11 = 20;
-def_int $int12 = 20;
-def_int $int13 = 20;
-def_int $int14 = 20;
+def_int $int10 = 25;
+def_int $int11 = 25;
+def_int $int12 = 25;
+def_int $int13 = 25;
+def_int $int14 = 25;
 def_int $int15 = -1;
+if (has_nxt = true) {
+    if (cam2_getcontrolmode = 1) {
+        cam2_setdepthplanes(50, 20000);
+    }
+    $int10 = max(25, calc(detailget_drawdistance * 25));
+    $int11 = $int10;
+    $int12 = $int10;
+    $int13 = $int10;
+    $int14 = $int10;
+}
 switch_int (%varclient_4718) {
     case 0, 2 :
         if_settext("<col=ffffff>Esc</col>: Exit<br><br><col=ffffff>F2</col>: Toggle Chat Window<br><col=ffffff>Spc</col>: Toggle Help Window<br><br><col=ffffff>W,S,A,D</col>: Move Camera Forwards/Backwards/Strafe Left/Strafe Right<br><br><col=ffffff>R,F</col>: Move Camera Up/Down<br><br><col=ffffff>Middle Click and DRAG</col> with the mouse to rotate the camera.", interface_475:com_12);
+        if (has_nxt = true) {
+            if_settext("In the New Client you can use an Xbox compatible controller.", interface_475:com_13);
+        }
         if_sethide(false, interface_475:com_0);
         cam2_setpositionmode(0);
         cam2_setlookatmode(3);
         cam2_setpositionpointcollision(true);
         switch_int (facing_fine) {
             case 0 :
-                $int9 = -1;
+                $int9 = -2;
             case 2048 :
-                $int9 = -1;
-                $int8 = -1;
+                $int9 = -2;
+                $int8 = -2;
             case 4096 :
-                $int8 = -1;
+                $int8 = -2;
             case 6144 :
-                $int9 = 1;
-                $int8 = -1;
+                $int9 = 2;
+                $int8 = -2;
             case 8192 :
-                $int9 = 1;
+                $int9 = 2;
             case 10240 :
-                $int9 = 1;
-                $int8 = 1;
+                $int9 = 2;
+                $int8 = 2;
             case 12288 :
-                $int8 = 1;
+                $int8 = 2;
             case 14336 :
-                $int9 = -1;
-                $int8 = 1;
+                $int9 = -2;
+                $int8 = 2;
         }
         $coord1 = movecoord(coord, $int8, 0, $int9);
         $int2 = coordx_fine(coord_gridtofine($coord0, true));

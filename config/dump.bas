@@ -21985,3 +21985,17 @@ walkturn_l=seq_28588
 walkturn_r=seq_28588
 readyanim=seq_28587,seq_28588
 
+// 3721
+[bas_3721]
+readyanim_l=seq_823
+readyanim_r=seq_823
+walkanim_b=seq_820
+walkanim_l=seq_821
+walkanim_r=seq_822
+runanim=seq_824
+readyanim=seq_23756,seq_819
+
+// 3722
+[bas_3722]
+readyanim=seq_28601,null
+

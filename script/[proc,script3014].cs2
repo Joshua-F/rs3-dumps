@@ -3,9 +3,6 @@
 def_string $string0 = "news";
 def_string $string1 = "";
 def_int $int0 = 1;
-if (map_lang ! 0) {
-    $int0 = 0;
-}
 ~script10592(interface_907:com_12, 0);
 ~script10592(interface_907:com_13, 0);
 ~script10593(0);
@@ -78,8 +75,19 @@ if (%varclient_3905 = true) {
             $string1 = "overview";
             if_setonclick("script3434($string0, $string1)", interface_907:com_68);
         case 1 :
-            if_setgraphic(graphic_1106, interface_907:com_68);
-            $int5 = calc(date_minutes_fromruneday(5165) - 1);
-            if_setontimer("script12275($int5, date_minutes, -1, -1)", interface_906:com_14);
+            switch_int (map_lang) {
+                case 0 :
+                    if_setgraphic(graphic_26206, interface_907:com_68);
+                case 1 :
+                    if_setgraphic(graphic_26207, interface_907:com_68);
+                case 2 :
+                    if_setgraphic(graphic_27107, interface_907:com_68);
+                case 3 :
+                    if_setgraphic(graphic_27108, interface_907:com_68);
+            }
+            ~script10593(1);
+            $string0 = "www";
+            $string1 = "downloads";
+            if_setonclick("script7397($string0, $string1)", interface_907:com_68);
     }
 }
