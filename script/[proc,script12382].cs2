@@ -1,25 +1,40 @@
 // 12382
 [proc,script12382]
-if_setgraphic(enum(int, graphic, enum_10948, %varplayerbit_30862), interface_1746:com_7);
-if_setgraphic(enum(int, graphic, enum_10949, %varplayerbit_30862), interface_1746:com_8);
+if (%varclient_5209 = true) {
+    if_sethide(true, interface_1746:com_38);
+    if_sethide(false, interface_1746:com_1);
+} else {
+    if_sethide(false, interface_1746:com_38);
+    if_sethide(true, interface_1746:com_1);
+}
+if_setgraphic(enum(int, graphic, enum_10948, %varplayerbit_30862), interface_1746:com_72);
+if_setgraphic(enum(int, graphic, enum_10949, %varplayerbit_30862), interface_1746:com_73);
 def_int $int0 = calc(92 + scale(92, 400, scale(100, 20, %varplayerbit_30862)));
 def_int $int1 = 36;
-if_setsize($int0, $int1, ^setsize_abs, ^setsize_abs, interface_1746:com_29);
-if_setontimer("script12383(0, 30, $int0, $int1, 16)", interface_1746:com_29);
 if (%varplayerbit_30862 > 0) {
-    if_sethide(false, interface_1746:com_28);
-    if_setontimer("script12384(0, calc(30 * 30))", interface_1746:com_28);
+    if (%varclient_5209 = true) {
+        if_sethide(false, interface_1746:com_32);
+        if_setontimer("script12384(0, calc(30 * 30))", interface_1746:com_32);
+    } else {
+        if_setsize($int0, $int1, ^setsize_abs, ^setsize_abs, interface_1746:com_71);
+        if_setontimer("script12383(0, 30, $int0, $int1, 16)", interface_1746:com_71);
+        if_sethide(false, interface_1746:com_69);
+        if_setontimer("script12384(0, calc(30 * 30))", interface_1746:com_69);
+    }
 } else {
-    if_sethide(true, interface_1746:com_28);
+    if_sethide(true, interface_1746:com_69);
+    if_sethide(true, interface_1746:com_32);
 }
 if (%varplayerbit_30862 = 20) {
-    if_setcolour(^red, interface_1746:com_7);
-    if_setcolour(^red, interface_1746:com_8);
-    if_setcolour(^red, interface_1746:com_9);
-    if_setcolour(^red, interface_1746:com_10);
+    if_setcolour(^red, interface_1746:com_72);
+    if_setcolour(^red, interface_1746:com_73);
+    if_setcolour(^red, interface_1746:com_74);
+    if_setcolour(^red, interface_1746:com_75);
+    if_settext("<col=ffffff>Multiplier: <col=ff0000><tostring(calc(100 + 10 * %varplayerbit_30862))>%</col>", interface_1746:com_35);
 } else {
-    if_setcolour(^white, interface_1746:com_7);
-    if_setcolour(^white, interface_1746:com_8);
-    if_setcolour(^white, interface_1746:com_9);
-    if_setcolour(^white, interface_1746:com_10);
+    if_setcolour(^white, interface_1746:com_72);
+    if_setcolour(^white, interface_1746:com_73);
+    if_setcolour(^white, interface_1746:com_74);
+    if_setcolour(^white, interface_1746:com_75);
+    if_settext("<col=ffffff>Multiplier: <col=ffffff><tostring(calc(100 + 10 * %varplayerbit_30862))>%</col>", interface_1746:com_35);
 }
