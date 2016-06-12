@@ -4709,7 +4709,11 @@ readyanim=seq_9169,seq_9157
 
 // 953
 [bas_953]
-readyanim=seq_21745,null
+readyanim_l=seq_28835
+readyanim_r=seq_28835
+walkturn_l=seq_28835
+walkturn_r=seq_28835
+readyanim=seq_21745,seq_28835
 
 // 954
 [bas_954]
@@ -22113,4 +22117,59 @@ readyanim_r=seq_28676
 readyanim_l=seq_28676
 runanim=seq_28677
 readyanim=seq_17978,seq_28676
+
+// 3741
+[bas_3741]
+readyanim_l=seq_28748
+readyanim_r=seq_28748
+walkturn_l=seq_28748
+walkturn_r=seq_28748
+readyanim=seq_28747,seq_28748
+
+// 3742
+[bas_3742]
+readyanim_l=seq_28759
+readyanim_r=seq_28759
+walkturn_l=seq_28759
+walkturn_r=seq_28759
+readyanim=seq_28758,seq_28759
+
+// 3743
+[bas_3743]
+readyanim_l=seq_28823
+readyanim_r=seq_28823
+walkturn_l=seq_28823
+walkturn_r=seq_28823
+readyanim=seq_28764,seq_28823
+
+// 3744
+[bas_3744]
+runanim=seq_17069
+readyanim=seq_19158,seq_15428
+
+// 3745
+[bas_3745]
+readyanim_l=seq_823
+readyanim_r=seq_823
+readyanim=seq_28813,seq_1919
+
+// 3746
+[bas_3746]
+readyanim=seq_28819,null
+
+// 3747
+[bas_3747]
+readyanim=seq_28822,null
+
+// 3748
+[bas_3748]
+readyanim=seq_28820,null
+
+// 3749
+[bas_3749]
+readyanim=seq_28756,null
+
+// 3750
+[bas_3750]
+readyanim=seq_28887,seq_28887
 
