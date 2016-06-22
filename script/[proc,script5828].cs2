@@ -519,7 +519,14 @@ if (oc_param($obj0, param_5553) ! 0 & %varclient_5121 ! null & %varclient_5122 >
     $int49 = ~script12197($obj0, %varclient_5121, %varclient_5122, $struct2, $component3, $component4, $int49);
 }
 if (~script12070($obj0) = 1 & %varclient_5121 ! null & %varclient_5122 >= 0) {
-    $int49 = ~script7236("Item Level", ~invent_item_level(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_30212)), $rgb7, "", $struct2, $component3, $component4, $int49);
+    $int38 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_30212);
+    $int18 = ~invent_item_level($int38);
+    $int49 = ~script7236("Item Level", $int18, $rgb7, "", $struct2, $component3, $component4, $int49);
+    if ($int18 < 20) {
+        $int49 = ~script7235("Item XP: <tostring_localised($int38, true)>/<tostring_localised(~script12074(calc($int18 + 1)), true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+    } else {
+        $int49 = ~script7235("Item XP: <tostring_localised($int38, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+    }
     if (~script12080(oc_param($obj0, param_5524)) = 1) {
         $int49 = ~script12197($obj0, %varclient_5121, %varclient_5122, $struct2, $component3, $component4, $int49);
     }
