@@ -20,62 +20,75 @@ def_obj $obj6 = oc_param($obj4, param_5527);
 if ($obj6 = null) {
     $obj6 = $obj4;
 }
-if_settext(oc_name($obj6), interface_1711:com_22);
-if_setobject($obj6, 1, interface_1711:com_24);
+if_settext(oc_name($obj6), interface_1711:com_28);
+if_setobject($obj6, 1, interface_1711:com_30);
 def_int $int7 = ~invent_item_level(inv_getvar($inv0, $int1, varobjectbit_30212));
 def_int $int8 = inv_getvar($inv0, $int1, varobjectbit_30212);
 def_int $int9 = 0;
 def_int $int10 = 0;
-if_settext(tostring($int7), interface_1711:com_49);
-if_settext(tostring_localised($int8, true), interface_1711:com_63);
+if_settext(tostring($int7), interface_1711:com_56);
+if_settext(tostring_localised($int8, true), interface_1711:com_70);
 $string0 = "Current XP: <tostring_localised($int8, true)>";
 if ($int7 < ~script12072) {
     $int9 = ~script12074(calc($int7 + 1));
     $int10 = ~script12074($int7);
     $string0 = "<$string0><br>Next level: <tostring_localised($int9, true)><br>Remainder: <tostring_localised(calc($int9 - $int8), true)>";
-    if_setonmouserepeat(null, interface_1711:com_35);
-    if_sethide(false, interface_1711:com_64);
-    if_sethide(true, interface_1711:com_65);
-    if_setsize(scale(calc(if_getwidth(interface_1711:com_64) - 2), calc($int9 - $int10), calc($int8 - $int10)), 0, ^setsize_abs, ^setsize_minus, interface_1711:com_39);
+    if_setonmouserepeat(null, interface_1711:com_41);
+    if_sethide(false, interface_1711:com_71);
+    if_sethide(true, interface_1711:com_72);
+    if_setsize(scale(calc(if_getwidth(interface_1711:com_71) - 2), calc($int9 - $int10), calc($int8 - $int10)), 0, ^setsize_abs, ^setsize_minus, interface_1711:com_48);
 } else {
-    if_settext("-", interface_1711:com_65);
-    if_sethide(true, interface_1711:com_64);
-    if_sethide(false, interface_1711:com_65);
+    if_settext("-", interface_1711:com_72);
+    if_sethide(true, interface_1711:com_71);
+    if_sethide(false, interface_1711:com_72);
     if ($int7 < 20) {
         $string0 = "<$string0><br>You do not know how to level a weapon above level <tostring(~script12072)>.";
     } else {
         $string0 = "<$string0><br>This item has reached the maximum level.";
     }
 }
-if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1711:com_35);
-if_settext("<~invent_charge_string(scale($int2, 6, 10), 2)>/s", interface_1711:com_66);
+if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1711:com_41);
 def_int $int11 = %varplayer_5991;
 if ($int3 = 0) {
     $int11 = $int2;
-    if_settext("Drain rate:<br>This item", interface_1711:com_20);
+    if_settext("Drain rate:<br>This item", interface_1711:com_26);
     if ($int5 = 1) {
         $string0 = "This section refers to drain rates when using this item for skilling.";
     } else {
         $string0 = "This section refers to drain rates when using this item alone.";
     }
 } else {
-    if_settext("Drain rate:<br>Equipped items", interface_1711:com_20);
+    if_settext("Drain rate:<br>Equipped items", interface_1711:com_26);
     $string0 = "This section refers to all currently equipped augmented equipment.";
 }
-if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1711:com_20);
-if_settext("<~invent_charge_string(scale($int11, 6, 10), 2)>/s", interface_1711:com_80);
-if_settext(~invent_charge_string(%varplayer_5984, 0), interface_1711:com_81);
+if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1711:com_26);
+if (oc_param($obj4, param_5772) = 1) {
+    if_settext("Charges used:", interface_1711:com_2);
+    if_settext(tostring_localised(~script670($inv0, $int1, $obj4), true), interface_1711:com_3);
+    if_settext(tostring_localised(oc_param($obj4, param_3385), true), interface_1711:com_45);
+    if_settext("n/a", interface_1711:com_86);
+    if_sethide(false, interface_1711:com_43);
+    $string0 = "Once this item runs out of charge it will become broken. It is not possible to repair, only disassemble to gain item experience and materials.<br><br>Once all charges are used up, the item will be able to level up to <tostring_localised(min(10, ~script12072), true)>.";
+    if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1711:com_42);
+    if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1711:com_43);
+} else {
+    if_settext("Charge drain:", interface_1711:com_2);
+    if_settext("<~invent_charge_string(scale($int2, 6, 10), 2)>/s", interface_1711:com_3);
+    if_settext("<~invent_charge_string(scale($int11, 6, 10), 2)>/s", interface_1711:com_86);
+    if_sethide(true, interface_1711:com_43);
+}
+if_settext(~invent_charge_string(%varplayer_5984, 0), interface_1711:com_87);
 def_int $int12 = 0;
 def_int $int13 = 0;
 def_int $int14 = 0;
 if ($int11 > 0) {
     $int12, $int13, $int14 = ~script4705(calc(%varplayer_5984 / $int11));
     if ($int12 > 0) {
-        if_settext(~text_plural($int12, "<tostring($int12)> hour", "<tostring($int12)> hours"), interface_1711:com_82);
+        if_settext(~text_plural($int12, "<tostring($int12)> hour", "<tostring($int12)> hours"), interface_1711:com_88);
     } else if ($int13 > 0) {
-        if_settext(~text_plural($int13, "<tostring($int13)> minute", "<tostring($int13)> minutes"), interface_1711:com_82);
+        if_settext(~text_plural($int13, "<tostring($int13)> minute", "<tostring($int13)> minutes"), interface_1711:com_88);
     } else if ($int14 > 0) {
-        if_settext(~text_plural($int14, "<tostring($int14)> second", "<tostring($int14)> seconds"), interface_1711:com_82);
+        if_settext(~text_plural($int14, "<tostring($int14)> second", "<tostring($int14)> seconds"), interface_1711:com_88);
     }
     $string0 = "Approximate time remaining: <tostring($int12)>:";
     if ($int13 < 10) {
@@ -86,18 +99,18 @@ if ($int11 > 0) {
         $string0 = "<$string0>0";
     }
     $string0 = "<$string0><tostring($int14)>";
-    if_setonmouserepeat("script8799($string0, event_com, -1)", interface_1711:com_70);
+    if_setonmouserepeat("script8799($string0, event_com, -1)", interface_1711:com_76);
 } else {
-    if_settext("n/a", interface_1711:com_82);
-    if_setonmouserepeat(null, interface_1711:com_70);
+    if_settext("n/a", interface_1711:com_88);
+    if_setonmouserepeat(null, interface_1711:com_76);
 }
 $string0 = "Maximum charge stored: <~invent_charge_string(~invent_max_charge, 0)>";
-if_setonmouserepeat("script8799($string0, event_com, -1)", interface_1711:com_69);
+if_setonmouserepeat("script8799($string0, event_com, -1)", interface_1711:com_75);
 def_int $int15 = 1;
 if ($int3 = 1) {
     $int15 = 0;
 }
-if_setonop("script12199($inv0, $int1, $int2, $int15)", interface_1711:com_88);
+if_setonop("script12199($inv0, $int1, $int2, $int15)", interface_1711:com_94);
 def_string $string1 = "<col=ffffff>";
 def_string $string2 = "<col=aaaaaa>";
 $string0 = "Item Level Effects<br>";
@@ -156,16 +169,16 @@ if ($int7 >= 10) {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 10: Disassembling this item gives the maximum extra Invention XP and may give you inspiration.</col><br>";
-if_setonmouserepeat("script8799($string0, event_com, -1)", interface_1711:com_67);
+if_setonmouserepeat("script8799($string0, event_com, -1)", interface_1711:com_73);
 def_int $int16 = ~script12066($obj6);
 if ($int16 = 1) {
-    if_setposition(83, 0, ^setpos_abs_left, ^setpos_abs_top, interface_1711:com_57);
-    if_sethide(true, interface_1711:com_58);
+    if_setposition(83, 0, ^setpos_abs_left, ^setpos_abs_top, interface_1711:com_64);
+    if_sethide(true, interface_1711:com_65);
 } else {
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, interface_1711:com_57);
-    if_sethide(false, interface_1711:com_58);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, interface_1711:com_64);
+    if_sethide(false, interface_1711:com_65);
 }
-~script12201(inv_getvar($inv0, $int1, varobjectbit_30215), inv_getvar($inv0, $int1, varobjectbit_30216), interface_1711:com_14, interface_1711:com_15, interface_1711:com_27);
-~script12201(inv_getvar($inv0, $int1, varobjectbit_30217), inv_getvar($inv0, $int1, varobjectbit_30218), interface_1711:com_11, interface_1711:com_12, interface_1711:com_29);
-~script12201(inv_getvar($inv0, $int1, varobjectbit_30219), inv_getvar($inv0, $int1, varobjectbit_30220), interface_1711:com_6, interface_1711:com_7, interface_1711:com_8);
-~script12201(inv_getvar($inv0, $int1, varobjectbit_30221), inv_getvar($inv0, $int1, varobjectbit_30222), interface_1711:com_2, interface_1711:com_3, interface_1711:com_4);
+~script12201(inv_getvar($inv0, $int1, varobjectbit_30215), inv_getvar($inv0, $int1, varobjectbit_30216), interface_1711:com_20, interface_1711:com_21, interface_1711:com_33);
+~script12201(inv_getvar($inv0, $int1, varobjectbit_30217), inv_getvar($inv0, $int1, varobjectbit_30218), interface_1711:com_17, interface_1711:com_18, interface_1711:com_35);
+~script12201(inv_getvar($inv0, $int1, varobjectbit_30219), inv_getvar($inv0, $int1, varobjectbit_30220), interface_1711:com_12, interface_1711:com_13, interface_1711:com_14);
+~script12201(inv_getvar($inv0, $int1, varobjectbit_30221), inv_getvar($inv0, $int1, varobjectbit_30222), interface_1711:com_8, interface_1711:com_9, interface_1711:com_10);
