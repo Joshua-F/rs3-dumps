@@ -1,35 +1,42 @@
 // 6317
-[clientscript,combatv2_xp_onop](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, int $int8, int $int9)
-def_int $int10 = 0;
-def_component $component11 = null;
-def_component $component12 = null;
-if ($int8 = 1) {
-    %varplayerbit_1906 = $int9;
-} else if ($int8 = 3) {
-    %varplayerbit_1907 = $int9;
+[clientscript,combatv2_xp_onop](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, int $int6, int $int7)
+def_int $int8 = 0;
+def_component $component9 = null;
+def_component $component10 = null;
+if ($int6 = 1) {
+    if (testbit(%varplayerbit_1906, $int7) = ^false) {
+        setbit(%varplayerbit_1906, $int7);
+    } else {
+        clearbit(%varplayerbit_1906, $int7);
+    }
+} else if ($int6 = 3) {
+    if (testbit(%varplayerbit_1907, $int7) = ^false) {
+        setbit(%varplayerbit_1907, $int7);
+    } else {
+        clearbit(%varplayerbit_1907, $int7);
+    }
+} else if (testbit(%varplayerbit_1908, $int7) = ^false) {
+    setbit(%varplayerbit_1908, $int7);
 } else {
-    %varplayerbit_1908 = $int9;
+    clearbit(%varplayerbit_1908, $int7);
 }
-while ($int10 < 4) {
-    switch_int ($int10) {
+while ($int8 < 3) {
+    switch_int ($int8) {
         case 0 :
-            $component11 = $component0;
-            $component12 = $component1;
+            $component9 = $component0;
+            $component10 = $component1;
         case 1 :
-            $component11 = $component2;
-            $component12 = $component3;
+            $component9 = $component2;
+            $component10 = $component3;
         case 2 :
-            $component11 = $component4;
-            $component12 = $component5;
-        case 3 :
-            $component11 = $component6;
-            $component12 = $component7;
+            $component9 = $component4;
+            $component10 = $component5;
     }
-    if ($component11 ! null) {
-        ~script6057($component11, $int8, $int10);
+    if ($component9 ! null) {
+        ~script6057($component9, $int6, $int8);
     }
-    if ($component12 ! null) {
-        ~combatv2_xp_text_update($component12, $int8, $int10);
+    if ($component10 ! null) {
+        ~combatv2_xp_text_update($component10, $int6, $int8);
     }
-    $int10 = calc($int10 + 1);
+    $int8 = calc($int8 + 1);
 }

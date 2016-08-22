@@ -11,10 +11,13 @@ switch_int ($int0) {
             ~script8512(%varclient_2231, $string1);
         }
     case 2 :
-        if (friend_platform($int1) = 0) {
-            ~quickchat_open(1, $string1, 19);
-        } else {
-            ~quickchat_open(3, $string1, 19);
+        switch_int (friend_platform($int1)) {
+            case 0 :
+                ~quickchat_open(1, $string1, 19);
+            case 8 :
+                mes("You cannot use Quick Chat to send a message to someone playing Old School RuneScape.");
+            case default :
+                ~quickchat_open(3, $string1, 19);
         }
     case 4, 5 :
         if (%varclient_4126 = 1 & $int0 = 4) {

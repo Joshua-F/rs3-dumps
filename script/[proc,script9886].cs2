@@ -1,59 +1,67 @@
 // 9886
-[proc,script9886](component $component0, component $component1, component $component2, component $component3)
-def_int $int4 = calc(if_getheight($component0) - if_getheight($component2));
-cc_deleteall($component1);
-def_int $int5 = 25;
-def_obj $obj6 = null;
-def_int $int7 = calc(100 - inv_freespace(inv_787));
-if_sethide(true, $component3);
-if_setscrollsize(0, 0, $component1);
-if_setscrollpos(0, 0, $component1);
-def_int $int8 = calc($int7 * (20 + 1) + 25);
-if ($int8 > if_getheight($component1)) {
-    if_setscrollsize(0, $int8, $component1);
-    ~rs3_scrollbar_vertical($component3, $component1);
-    if_sethide(false, $component3);
-    if_setsize(if_getwidth($component3), 0, ^setsize_minus, ^setsize_minus, $component1);
+[proc,script9886](int $int0)
+def_component $component1 = null;
+def_component $component2 = null;
+def_component $component3 = null;
+def_component $component4 = null;
+$component1, $component2, $component3, $component4 = ~script12594($int0);
+def_int $int5 = calc(if_getheight($component1) - if_getheight($component3));
+cc_deleteall($component2);
+def_int $int6 = calc(18 + 5);
+def_obj $obj7 = null;
+def_int $int8 = calc(100 - inv_freespace(inv_787));
+if_sethide(true, $component4);
+if_setscrollsize(0, 0, $component2);
+if_setscrollpos(0, 0, $component2);
+def_int $int9 = calc($int8 * (18 + 0) + 25);
+if ($int9 > if_getheight($component2)) {
+    if_setscrollsize(0, $int9, $component2);
+    ~rs3_scrollbar_vertical($component4, $component2);
+    if_sethide(false, $component4);
+    if_setsize(if_getwidth($component4), 0, ^setsize_minus, ^setsize_minus, $component2);
 } else {
-    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component1);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component2);
 }
-cc_create($component1, ^iftype_rectangle, if_getnextsubid($component1));
-~script8258(struct_30507);
-cc_setonvarctransmit("script11029(event_com, event_comsubid){varclient_3465}");
+cc_create($component2, ^iftype_rectangle, if_getnextsubid($component2));
+cc_setfill(true);
+cc_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_top);
+cc_setsize(0, calc(max($int9, $int5) - 18), ^setsize_minus, ^setsize_abs);
+~script10010(struct_28679);
+if ($int0 = 0) {
+    ~script12591(6, struct_32401, true);
+}
+cc_create($component2, ^iftype_rectangle, if_getnextsubid($component2));
 cc_setfill(true);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
-cc_setsize(0, max($int8, $int4), ^setsize_minus, ^setsize_abs);
-~script10009(struct_28679);
-cc_create($component1, ^iftype_rectangle, if_getnextsubid($component1));
-~script8258(struct_32401);
-cc_setonvarctransmit("script11029(event_com, event_comsubid){varclient_3465}");
-cc_setfill(true);
-cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
-cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
-~script10009(struct_28680);
-def_int $int9 = parawidth("888W", 1000, graphic_17813);
-def_int $int10 = 0;
-def_int $int11 = %varplayerbit_28120;
-if ($int11 = 1) {
-    $int10 = parawidth("2,088,888,888", 1000, graphic_17813);
-    if (if_getwidth($component1) < calc($int10 + 5 + 5 + 5 + parawidth("...", 1000, graphic_17813))) {
-        $int11 = 0;
+cc_setsize(0, 18, ^setsize_minus, ^setsize_abs);
+~script10010(struct_28680);
+if ($int0 = 0) {
+    ~script12591(6, struct_32401, true);
+}
+def_int $int10 = parawidth("888W", 1000, graphic_17813);
+def_int $int11 = 0;
+def_int $int12 = %varplayerbit_28120;
+if ($int12 = 1) {
+    $int11 = parawidth("2,088,888,888", 1000, graphic_17813);
+    if (if_getwidth($component2) < calc($int11 + 5 + 5 + 5 + parawidth("...", 1000, graphic_17813))) {
+        $int12 = 0;
     } else {
-        $int9 = $int10;
+        $int10 = $int11;
     }
 }
-cc_create($component1, ^iftype_text, if_getnextsubid($component1));
+cc_create($component2, ^iftype_text, if_getnextsubid($component2));
 cc_settextfont(graphic_17813);
-cc_setsize(calc(15 + $int9), 20, ^setsize_minus, ^setsize_abs);
+cc_setsize(calc(15 + $int10), 18, ^setsize_minus, ^setsize_abs);
 cc_setposition(5, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_setcolour(~script10495(0x00000c));
+cc_settextshadow(true);
 cc_setonvartransmit("script8429(event_com, event_comsubid){varplayer_5091}");
-~script11909($component1, cc_getid);
-cc_create($component1, ^iftype_text, if_getnextsubid($component1));
-cc_setsize($int9, 20, ^setsize_abs, ^setsize_abs);
+~script11909($component2, cc_getid);
+cc_create($component2, ^iftype_text, if_getnextsubid($component2));
+cc_setsize($int10, 18, ^setsize_abs, ^setsize_abs);
 cc_settextfont(graphic_17813);
-if ($int11 = 1) {
+if ($int12 = 1) {
     cc_settext("Quantity");
 } else {
     cc_settext("Qty");
@@ -63,28 +71,29 @@ if (cc_getwidth < parawidth(cc_gettext, 1000, cc_getfontmetrics)) {
     cc_settext(~script3930(cc_gettext, cc_getwidth, 1, cc_getfontmetrics));
 }
 cc_setposition(5, 0, ^setpos_abs_right, ^setpos_abs_top);
-def_int $int12 = cc_getx;
+def_int $int13 = cc_getx;
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_setcolour(~script10495(0x00000c));
-def_int $int13 = 0;
+cc_settextshadow(true);
 def_int $int14 = 0;
+def_int $int15 = 0;
 def_string $string0 = "";
-while ($int7 >= 0) {
-    $obj6 = inv_getobj(inv_787, $int7);
-    if ($obj6 ! null) {
-        ~script9885($component1, ~script3930(oc_name($obj6), max(0, calc($int12 - 10)), 1, graphic_17813), 5, $int5, max(0, calc($int12 - 10)));
-        if (compare(oc_name($obj6), cc_gettext) ! 0) {
-            cc_setonmouserepeat("script3876(oc_name($obj6), event_com, event_comsubid)");
+while ($int8 >= 0) {
+    $obj7 = inv_getobj(inv_787, $int8);
+    if ($obj7 ! null) {
+        ~script9885($component2, ~script3930(oc_name($obj7), max(0, calc($int13 - 10)), 1, graphic_17813), 5, $int6, max(0, calc($int13 - 10)));
+        if (compare(oc_name($obj7), cc_gettext) ! 0) {
+            cc_setonmouserepeat("script3876(oc_name($obj7), event_com, event_comsubid)");
         }
-        $int14 = inv_getnum(inv_787, $int7);
-        if ($int11 = 1) {
-            $string0 = tostring_localised($int14, true);
+        $int15 = inv_getnum(inv_787, $int8);
+        if ($int12 = 1) {
+            $string0 = tostring_localised($int15, true);
         } else {
-            $string0 = ~script11478($int14);
+            $string0 = ~script11478($int15);
         }
-        ~script9885($component1, $string0, $int12, $int5, $int9);
-        $int13 = calc($int13 + 1);
-        $int5 = calc($int5 + 20 + 1);
+        ~script9885($component2, $string0, $int13, $int6, $int10);
+        $int14 = calc($int14 + 1);
+        $int6 = calc($int6 + 18 + 0);
     }
-    $int7 = calc($int7 - 1);
+    $int8 = calc($int8 - 1);
 }

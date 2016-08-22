@@ -1,0 +1,49 @@
+// 12634
+[proc,script12634](int $setposh0, int $setposv1)
+def_int $int2 = cc_param(param_5351);
+def_int $int3 = cc_param(param_5352);
+def_int $int4 = $int2;
+def_int $int5 = $int3;
+def_int $int6 = -1;
+switch_int (cc_param(param_5835)) {
+    case 0 :
+        if ($int2 = -1 & $int3 = -1) {
+            return;
+        } else if ($int2 = -1) {
+            $int2 = cc_getwidth;
+        } else if ($int3 = -1) {
+            $int3 = cc_getheight;
+        }
+        cc_setsize($int2, $int3, ^setsize_abs, ^setsize_abs);
+    case 1 :
+        if ($int2 = -1 & $int3 = -1) {
+            return;
+        } else if ($int2 = -1) {
+            $int2 = cc_getwidth;
+        } else if ($int3 = -1) {
+            $int3 = cc_getheight;
+        }
+        cc_setsize(~script12327(cc_getwidth, $int2), ~script12327(cc_getheight, $int3), ^setsize_abs, ^setsize_abs);
+    case 2 :
+        if ($setposh0 = ^setpos_abs_centre & $setposv1 = ^setpos_abs_centre) {
+            if ($int4 = -1) {
+                $int4 = cc_getwidth;
+                cc_setparam(param_5351, $int4);
+            }
+            if ($int5 = -1) {
+                $int5 = cc_getheight;
+                cc_setparam(param_5352, $int5);
+            }
+            $int6 = enum(int, int, enum_9054, calc((clientclock * 6 + 90) % 360));
+            if ($int6 >= 0) {
+                $int6 = calc($int6 + 100);
+                $int2 = scale($int4, 100, $int6);
+                $int3 = scale($int5, 100, $int6);
+            } else {
+                $int6 = calc(100 - $int6);
+                $int2 = max(1, scale($int4, $int6, 100));
+                $int3 = max(1, scale($int5, $int6, 100));
+            }
+            cc_setsize($int2, $int3, ^setsize_abs, ^setsize_abs);
+        }
+}

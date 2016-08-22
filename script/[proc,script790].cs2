@@ -7,34 +7,16 @@ def_stat $stat3 = null;
 def_stat $stat4 = null;
 def_stat $stat5 = null;
 def_int $int6 = 1;
-while ($int6 <= enum_getoutputcount(enum_681)) {
-    if ($stat0 = null | stat_visible_xp_actual(enum(int, stat, enum_681, $int6)) <= stat_visible_xp_actual($stat0)) {
-        $stat5 = $stat4;
-        $stat4 = $stat3;
-        $stat3 = $stat2;
-        $stat2 = $stat1;
-        $stat1 = $stat0;
-        $stat0 = enum(int, stat, enum_681, $int6);
-    } else if ($stat1 = null | stat_visible_xp_actual(enum(int, stat, enum_681, $int6)) <= stat_visible_xp_actual($stat1)) {
-        $stat5 = $stat4;
-        $stat4 = $stat3;
-        $stat3 = $stat2;
-        $stat2 = $stat1;
-        $stat1 = enum(int, stat, enum_681, $int6);
-    } else if ($stat2 = null | stat_visible_xp_actual(enum(int, stat, enum_681, $int6)) <= stat_visible_xp_actual($stat2)) {
-        $stat5 = $stat4;
-        $stat4 = $stat3;
-        $stat3 = $stat2;
-        $stat2 = enum(int, stat, enum_681, $int6);
-    } else if ($stat3 = null | stat_visible_xp_actual(enum(int, stat, enum_681, $int6)) <= stat_visible_xp_actual($stat3)) {
-        $stat5 = $stat4;
-        $stat4 = $stat3;
-        $stat3 = enum(int, stat, enum_681, $int6);
-    } else if ($stat4 = null | stat_visible_xp_actual(enum(int, stat, enum_681, $int6)) <= stat_visible_xp_actual($stat4)) {
-        $stat5 = $stat4;
-        $stat4 = enum(int, stat, enum_681, $int6);
-    } else if ($stat5 = null | stat_visible_xp_actual(enum(int, stat, enum_681, $int6)) <= stat_visible_xp_actual($stat5)) {
-        $stat5 = enum(int, stat, enum_681, $int6);
+def_int $int7 = enum_getoutputcount(enum_681);
+def_stat $stat8 = null;
+while ($int6 <= $int7) {
+    $stat8 = enum(int, stat, enum_681, $int6);
+    if ($stat8 = invention) {
+        if (~invent_skill_unlocked = true) {
+            $stat0, $stat1, $stat2, $stat3, $stat4, $stat5 = ~script12669($stat0, $stat1, $stat2, $stat3, $stat4, $stat5, $stat8);
+        }
+    } else {
+        $stat0, $stat1, $stat2, $stat3, $stat4, $stat5 = ~script12668($stat0, $stat1, $stat2, $stat3, $stat4, $stat5, $stat8);
     }
     $int6 = calc($int6 + 1);
 }

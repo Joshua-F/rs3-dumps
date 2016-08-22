@@ -1,0 +1,32 @@
+// 12640
+[proc,script12640]
+def_int $int0 = -1;
+switch_int (cc_param(param_5837)) {
+    case 0 :
+        cc_settrans(scale(calc(enum(int, int, enum_9054, calc((clientclock * 6 + 270) % 360)) + 100), 200, 255));
+    case 1 :
+        if (cc_param(param_4562) ! -1) {
+            $int0 = calc((100 + clientclock - cc_param(param_4562) * 25) % 100);
+            if (calc($int0 / 25) = 0) {
+                cc_sendtofront;
+            } else if (calc($int0 / 25) = 1) {
+                $int0 = 25;
+            } else {
+                $int0 = 0;
+            }
+            cc_settrans(scale(calc(100 - scale($int0, 25, 100)), 100, 255));
+        }
+    case 2 :
+        if (cc_param(param_5839) > 0) {
+            cc_setparam(param_5839, calc(cc_param(param_5839) - 1));
+        } else {
+            $int0 = min(255, cc_param(param_5849));
+            if ($int0 > -1 & $int0 ! cc_gettrans) {
+                if ($int0 < cc_gettrans) {
+                    cc_settrans(max(calc(cc_gettrans - ~script5565(cc_param(param_5838))), $int0));
+                } else {
+                    cc_settrans(min(calc(cc_gettrans + ~script5565(cc_param(param_5838))), $int0));
+                }
+            }
+        }
+}

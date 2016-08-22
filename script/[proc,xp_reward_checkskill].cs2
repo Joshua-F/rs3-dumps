@@ -18,6 +18,9 @@ if (stat_base($stat0) < $int1) {
     }
     return(false);
 }
+if ($stat0 = invention & (stat_base(smithing) < 80 | stat_base(divination) < 80 | stat_base(crafting) < 80)) {
+    return(false);
+}
 switch_obj ($obj2) {
     case obj_13439 :
         switch_stat ($stat0) {
@@ -135,6 +138,10 @@ switch_obj ($obj2) {
                 if (~obj_gettotal(obj_29553) > 0 | %varplayerbit_4345 = 590) {
                     return(false);
                 }
+            case invention :
+                if (~obj_gettotal(obj_37837) > 0 | %varplayerbit_4345 = 776) {
+                    return(false);
+                }
         }
     case obj_25469 :
         switch_stat ($stat0) {
@@ -240,6 +247,10 @@ switch_obj ($obj2) {
                 }
             case divination :
                 if (~obj_gettotal(obj_29554) > 0 | %varplayerbit_4345 = 591) {
+                    return(false);
+                }
+            case invention :
+                if (~obj_gettotal(obj_37838) > 0 | %varplayerbit_4345 = 777) {
                     return(false);
                 }
         }
@@ -526,6 +537,12 @@ switch_obj ($obj2) {
     case obj_36921 :
         switch_stat ($stat0) {
             case farming, summoning, mining, hunter, prayer, construction, attack, ranged, defence, magic, strength :
+            case default :
+                return(false);
+        }
+    case obj_37682 :
+        switch_stat ($stat0) {
+            case mining, divination, smithing, construction, crafting, agility, prayer, herblore, woodcutting, slayer :
             case default :
                 return(false);
         }
@@ -836,6 +853,10 @@ if (oc_param($obj2, param_4762) = 1) {
             }
         case divination :
             if (~script10926(divination, oc_param($obj2, param_4788), $int3) = 0) {
+                return(false);
+            }
+        case invention :
+            if (~script10926(invention, oc_param($obj2, param_5883), $int3) = 0) {
                 return(false);
             }
     }
