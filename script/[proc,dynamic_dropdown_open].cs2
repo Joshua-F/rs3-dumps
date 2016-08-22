@@ -1,10 +1,10 @@
 // 10435
 [proc,dynamic_dropdown_open](component $component0, int $int1, component $component2, int $int3, enum $enum4, enum $enum5, int $int6, int $int7, int $int8, int $int9)
-if (if_find(interface_1477:com_889) = true & cc_param(param_4515) = true & cc_param(param_4516) ! null & cc_param(param_4516) = $component0 & cc_param(param_4518) = $int1) {
+if (if_find(interface_1477:com_892) = true & cc_param(param_4515) = true & cc_param(param_4516) ! null & cc_param(param_4516) = $component0 & cc_param(param_4518) = $int1) {
     ~dynamic_dropdown_hide;
     return;
 }
-cc_deleteall(interface_1477:com_894);
+cc_deleteall(interface_1477:com_897);
 %varplayer_4734 = $enum4;
 %varplayer_4735 = $component0;
 %varplayer_4736 = $int1;
@@ -20,11 +20,12 @@ def_fontmetrics $fontmetrics18 = graphic_17813;
 def_int $int19 = 0;
 def_string $string0 = "";
 def_string $string1 = "";
+def_int $int20 = -1;
 $fontmetrics17, $rgb15 = ~script10433(0);
 $fontmetrics18, $rgb16 = ~script10433(1);
 while ($int11 <= $int6) {
     $int14 = ~script10455($component0, $enum4, $int11);
-    cc_create(interface_1477:com_894, ^iftype_text, if_getnextsubid(interface_1477:com_894));
+    cc_create(interface_1477:com_897, ^iftype_text, if_getnextsubid(interface_1477:com_897));
     cc_setparam(param_4519, $int14);
     if ($int14 = 1) {
         $int13 = ~dynamic_dropdown_active_check($component0, $enum4, $int11);
@@ -78,6 +79,9 @@ while ($int11 <= $int6) {
             cc_settextfont($fontmetrics18);
             cc_setcolour($rgb16);
         }
+        if ($component2 = null) {
+            $int20 = max($int20, parawidth(cc_gettext, 1000, cc_getfontmetrics));
+        }
         if ($enum4 = enum_9665) {
             ~script4164($int11, $int12, $int13, $fontmetrics17, $fontmetrics18, $rgb15, $rgb16);
         }
@@ -86,7 +90,7 @@ while ($int11 <= $int6) {
             $int19 = $int12;
         }
         if ($int11 = $int7) {
-            ~dynamic_dropdown_highlight(interface_1477:com_894, $int11);
+            ~dynamic_dropdown_highlight(interface_1477:com_897, $int11);
         }
     } else {
         cc_sethide(true);
@@ -94,20 +98,23 @@ while ($int11 <= $int6) {
     }
     $int11 = calc($int11 + 1);
 }
-$int10 = ~dynamic_dropdown_position($component0, $int1, $int19, $int8, $enum4, 0);
+if ($int20 ! -1) {
+    $int20 = calc($int20 + 16 + 2 * 5);
+}
+$int10 = ~dynamic_dropdown_position($component0, $int1, $int19, $int20, $int8, $enum4, 0);
 if ($int10 = -1) {
-    cc_deleteall(interface_1477:com_894);
+    cc_deleteall(interface_1477:com_897);
     %varplayer_4734, %varplayer_4735, %varplayer_4736 = null, null, -1;
     return;
 }
-~script4762(interface_1477:com_891, struct_21336);
-~script10409(interface_1477:com_890, struct_21336);
+~script4762(interface_1477:com_894, struct_21336);
+~script10409(interface_1477:com_893, struct_21336);
 if ($int9 = 1) {
     ~dynamic_dropdown_sort($enum4, $int6, $int7);
 }
 if ($int12 > $int10) {
-    if_setscrollsize(0, $int12, interface_1477:com_892);
+    if_setscrollsize(0, $int12, interface_1477:com_895);
 } else {
-    if_setscrollsize(0, 0, interface_1477:com_892);
+    if_setscrollsize(0, 0, interface_1477:com_895);
 }
-~scrollbar_vertical(interface_1477:com_895, interface_1477:com_892, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical(interface_1477:com_898, interface_1477:com_895, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

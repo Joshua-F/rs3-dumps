@@ -1,26 +1,25 @@
 // 11092
-[clientscript,script11092](struct $struct0, int $int1)
-cc_deleteall(interface_1594:com_502);
-cc_create(interface_1594:com_502, ^iftype_graphic, 0);
-def_int $int2 = struct_param($struct0, param_4850);
-if ($int2 < 1) {
-    $int2 = 1;
+[clientscript,script11092](struct $struct0, struct $struct1, int $int2, int $int3)
+cc_deleteall(interface_1594:com_503);
+cc_create(interface_1594:com_503, ^iftype_graphic, 0);
+def_int $int4 = struct_param($struct1, param_4850);
+if ($int4 <= 0 & struct_param($struct1, param_5878) > 0) {
+    $int4 = struct_param($struct1, param_5878);
 }
-def_int $int3 = calc($int1 / $int2 * struct_param($struct0, param_4448));
-if ($int3 < 1) {
-    $int3 = 1;
+if ($int4 < 1) {
+    $int4 = 1;
 }
-if (struct_param($struct0, param_4852) ! null) {
-    cc_setsize(min(struct_param($struct0, param_4860), 48), min(struct_param($struct0, param_4861), 48), ^setsize_abs, ^setsize_abs);
-    cc_setgraphic(struct_param($struct0, param_4852));
-} else if (struct_param($struct0, param_4851) ! null) {
+def_int $int5 = calc($int2 / $int4 * struct_param($struct1, param_4448));
+if ($int5 < 1) {
+    $int5 = 1;
+}
+if (struct_param($struct1, param_4852) ! null) {
+    cc_setsize(min(struct_param($struct1, param_4860), 48), min(struct_param($struct1, param_4861), 48), ^setsize_abs, ^setsize_abs);
+    cc_setgraphic(struct_param($struct1, param_4852));
+} else if (struct_param($struct1, param_4851) ! null) {
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    cc_setobject(struct_param($struct0, param_4851), $int3);
+    cc_setobject(struct_param($struct1, param_4851), $int5);
 }
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-if_settext(struct_param($struct0, param_4849), interface_1594:com_499);
-if ($int1 = 1) {
-    if_settext("This will cost you <tostring($int1)> <lowercase(struct_param(%varplayer_5148, param_4900))>", interface_1594:com_521);
-} else {
-    if_settext("This will cost you <tostring($int1)> <lowercase(struct_param(%varplayer_5148, param_4844))>", interface_1594:com_521);
-}
+if_settext(struct_param($struct1, param_4849), interface_1594:com_500);
+if_settext("This will cost you <~script12658($struct0, $int2, $int3, 1)>", interface_1594:com_522);

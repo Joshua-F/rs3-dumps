@@ -117,10 +117,6 @@ switch_obj ($obj0) {
         }
     case obj_11809, obj_11810, obj_11811, obj_11812 :
         return(2, "");
-    case obj_37193 :
-        if (~trh_state(struct_31365) = 0) {
-            return(1, "You don't feel ready to wear this yet.");
-        }
 }
 switch_category (oc_category($obj0)) {
     case category_71 :
@@ -146,19 +142,27 @@ switch_category (oc_category($obj0)) {
             return(1, "You need at least level <tostring(oc_param($obj0, param_23))> Ranged to wield these bolts.");
         }
 }
-if (oc_wearpos($obj0) = 9 & (inv_getobj(inv_94, 3) = obj_7671 | inv_getobj(inv_94, 3) = obj_7673)) {
-    return(1, "You cannot wear any other gloves under boxing gloves.");
-}
-if (inv_getobj(inv_94, 4) = obj_284 & oc_wearpos($obj0) = 9) {
-    return(1, "You can't wear those on top of this protective jacket.");
-}
-if (inv_getobj(inv_94, 3) = obj_10023 | inv_getobj(inv_94, 3) = obj_10024) {
-    if (oc_wearpos($obj0) = 9) {
-        return(1, "You can't wear those on top of a falconry glove.");
-    }
-    if (oc_wearpos($obj0) = 5 | oc_wearpos($obj0) = 3) {
-        return(1, "You need both hands free when you are wearing a falconry glove.");
-    }
+switch_int (oc_wearpos($obj0)) {
+    case 9 :
+        switch_obj (inv_getobj(inv_94, 3)) {
+            case obj_7671, obj_7673 :
+                return(1, "You cannot wear any other gloves under boxing gloves.");
+            case obj_10023, obj_10024 :
+                return(1, "You can't wear those on top of a falconry glove.");
+        }
+        if (inv_getobj(inv_94, 4) = obj_284) {
+            return(1, "You can't wear those on top of this protective jacket.");
+        }
+    case 3 :
+        switch_obj (inv_getobj(inv_94, 3)) {
+            case obj_10023, obj_10024 :
+                return(1, "You need both hands free when you are wearing a falconry glove.");
+        }
+    case 5 :
+        switch_obj (inv_getobj(inv_94, 3)) {
+            case obj_10023, obj_10024 :
+                return(1, "You need both hands free when you are wearing a falconry glove.");
+        }
 }
 if (%varplayerbit_9644 = 1) {
     return(1, "There's not enough room inside the Barrelchest disguise to mess around with your equipment!");

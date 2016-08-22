@@ -1,44 +1,45 @@
 // 11094
-[clientscript,script11094](component $component0, struct $struct1)
-def_int $int2 = 0;
-cc_deleteall($component0);
-cc_create($component0, ^iftype_text, $int2);
+[clientscript,script11094](struct $struct0, component $component1, struct $struct2)
+def_int $int3 = 0;
+cc_deleteall($component1);
+cc_create($component1, ^iftype_text, $int3);
 cc_setsize(6, 24, ^setsize_minus, ^setsize_abs);
 cc_setposition(3, 3, ^setpos_abs_left, ^setpos_abs_top);
-cc_settext(struct_param($struct1, param_4849));
+cc_settext(struct_param($struct2, param_4849));
 cc_settextfont(graphic_17813);
 cc_setcolour(0x7592a0);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 11);
-$int2 = calc($int2 + 1);
-cc_create($component0, ^iftype_text, $int2);
+$int3 = calc($int3 + 1);
+cc_create($component1, ^iftype_text, $int3);
 cc_setsize(50, 50, ^setsize_abs, ^setsize_abs);
 cc_setposition(5, 30, ^setpos_abs_right, ^setpos_abs_top);
-cc_settext("Cost:<br><tostring(struct_param($struct1, param_4850))>");
-if (playermember = false & struct_param($struct1, param_5147) > 0) {
-    cc_settext("Cost:<br><tostring(struct_param($struct1, param_5147))>");
-} else if (struct_param($struct1, param_4850) = 0) {
-    cc_settext("Cost: Free!");
-} else {
-    cc_settext("Cost:<br><tostring(struct_param($struct1, param_4850))>");
+def_int $int4 = struct_param($struct2, param_4850);
+def_int $int5 = struct_param($struct2, param_5878);
+if (playermember = false & struct_param($struct2, param_5147) > 0) {
+    $int4 = struct_param($struct2, param_5147);
 }
+if (playermember = false & struct_param($struct2, param_5879) > 0) {
+    $int5 = struct_param($struct2, param_5879);
+}
+cc_settext(~script12658($struct0, $int4, $int5, 0));
 cc_settextfont(graphic_17813);
 cc_setcolour(^white);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 11);
-$int2 = calc($int2 + 1);
-cc_create($component0, ^iftype_graphic, $int2);
-if (struct_param($struct1, param_4852) ! null) {
-    cc_setsize(min(struct_param($struct1, param_4860), 48), min(struct_param($struct1, param_4861), 48), ^setsize_abs, ^setsize_abs);
-    cc_setgraphic(struct_param($struct1, param_4852));
-} else if (struct_param($struct1, param_4851) ! null) {
+$int3 = calc($int3 + 1);
+cc_create($component1, ^iftype_graphic, $int3);
+if (struct_param($struct2, param_4852) ! null) {
+    cc_setsize(min(struct_param($struct2, param_4860), 48), min(struct_param($struct2, param_4861), 48), ^setsize_abs, ^setsize_abs);
+    cc_setgraphic(struct_param($struct2, param_4852));
+} else if (struct_param($struct2, param_4851) ! null) {
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    cc_setobject(struct_param($struct1, param_4851), struct_param($struct1, param_4448));
+    cc_setobject(struct_param($struct2, param_4851), struct_param($struct2, param_4448));
 }
 cc_setposition(-26, -2, ^setpos_abs_centre, ^setpos_abs_centre);
-switch_int (struct_param($struct1, param_4862)) {
+switch_int (struct_param($struct2, param_4862)) {
     case 1 :
-        cc_setonmouserepeat("script8799(struct_param($struct1, param_4858), event_com, event_comsubid)");
+        cc_setonmouserepeat("script8799(struct_param($struct2, param_4858), event_com, event_comsubid)");
     case 2 :
-        cc_setonmouserepeat("script9564(struct_param($struct1, param_4851), event_com, event_comsubid)");
+        cc_setonmouserepeat("script9564(struct_param($struct2, param_4851), event_com, event_comsubid)");
     case default :
         cc_setonmouserepeat(null);
 }

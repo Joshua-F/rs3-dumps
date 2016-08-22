@@ -1,16 +1,20 @@
 // 6077
-[proc,sellprice](obj $obj0)(int)
-if ($obj0 = null) {
+[proc,sellprice](obj $obj0, obj $obj1)(int)
+if ($obj1 = null) {
     return(0);
 }
-$obj0 = oc_uncert($obj0);
-def_int $int1 = enum(obj, int, enum_732, $obj0);
-if (%varplayer_306 = obj_6529 & $int1 ! -1) {
-    return($int1);
+$obj1 = oc_uncert($obj1);
+def_int $int2 = enum(obj, int, enum_732, $obj1);
+if ($obj0 = obj_6529 & $int2 ! -1) {
+    return($int2);
 }
-$int1 = enum(obj, int, enum_1441, $obj0);
-if ($int1 ! -1 & $int1 > 0) {
-    return($int1);
+$int2 = enum(obj, int, enum_1441, $obj1);
+if ($int2 ! -1 & $int2 > 0) {
+    return($int2);
 }
-$int1 = max(1, scale(oc_cost($obj0), 100, 30));
-return($int1);
+def_int $int3 = 30;
+if (~elr1_currency($obj0) = true) {
+    $int3 = ~script12652($obj0, $obj1);
+}
+$int2 = max(1, scale(oc_cost($obj1), 100, $int3));
+return($int2);
