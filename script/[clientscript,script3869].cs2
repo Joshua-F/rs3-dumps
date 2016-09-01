@@ -1,10 +1,10 @@
 // 3869
 [clientscript,script3869]
-if_settext(struct_param(%varclient_4485, param_1348), interface_753:com_28);
-if_settext("Recommended Combat Level: <col=ffffff><tostring(struct_param(%varclient_4485, param_1353))></col>", interface_753:com_30);
-if_settext("Recommended Group Size: <col=ffffff><tostring(struct_param(%varclient_4485, param_2237))></col>", interface_753:com_53);
+if_settext(struct_param(%varclient_4485, param_1348), interface_753:com_42);
+if_settext("Recommended Combat Level: <col=ffffff><tostring(struct_param(%varclient_4485, param_1353))></col>", interface_753:com_44);
+if_settext("Recommended Group Size: <col=ffffff><tostring(struct_param(%varclient_4485, param_2237))></col>", interface_753:com_67);
 ~script11074;
-cc_deleteall(interface_753:com_17);
+cc_deleteall(interface_753:com_30);
 def_int $int0 = 0;
 def_int $int1 = 0;
 def_int $int2 = 0;
@@ -131,14 +131,14 @@ if ($obj9 ! null) {
     }
     $int0, $int1 = ~bslay_req_add($int8, $obj9, null, $string0, $int0, $int1);
 }
-cc_deleteall(interface_753:com_18);
-if_setscrollpos(0, 0, interface_753:com_17);
+cc_deleteall(interface_753:com_31);
+if_setscrollpos(0, 0, interface_753:com_30);
 if ($int1 > 0) {
-    if_setscrollsize(0, calc($int1 + 36), interface_753:com_17);
-    ~scrollbar_vertical(interface_753:com_18, interface_753:com_17, "task_scrollbar_dragger,3", "task_scrollbar_dragger,0", "task_scrollbar_dragger,1", "task_scrollbar_dragger,2", "task_scrollbar,1", "task_scrollbar,0");
+    if_setscrollsize(0, calc($int1 + 36), interface_753:com_30);
+    ~scrollbar_vertical(interface_753:com_31, interface_753:com_30, "task_scrollbar_dragger,3", "task_scrollbar_dragger,0", "task_scrollbar_dragger,1", "task_scrollbar_dragger,2", "task_scrollbar,1", "task_scrollbar,0");
 }
-if (if_getnextsubid(interface_753:com_17) = 0) {
-    cc_create(interface_753:com_17, ^iftype_text, if_getnextsubid(interface_753:com_17));
+if (if_getnextsubid(interface_753:com_30) = 0) {
+    cc_create(interface_753:com_30, ^iftype_text, if_getnextsubid(interface_753:com_30));
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
     cc_settext("NONE");
@@ -147,42 +147,51 @@ if (if_getnextsubid(interface_753:com_17) = 0) {
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 }
 if (struct_param(%varclient_4485, param_3038) ! null) {
-    if_setgraphic(struct_param(%varclient_4485, param_3038), interface_753:com_56);
+    if_setgraphic(struct_param(%varclient_4485, param_3038), interface_753:com_12);
 } else {
-    if_setgraphic(null, interface_753:com_56);
+    if_setgraphic(null, interface_753:com_12);
 }
-if_setnpcmodel(struct_param(%varclient_4485, param_1347), interface_753:com_57);
-if_setmodelanim(bas_getanim_ready(%varclient_4484), interface_753:com_57);
-if_setmodelangle(0, struct_param(%varclient_4485, param_3041), 0, 0, 0, struct_param(%varclient_4485, param_3040), interface_753:com_57);
-if_settext("Combat Level: <col=ffffff><tostring(struct_param(%varclient_4485, param_2238))></col>", interface_753:com_55);
+if_setnpcmodel(struct_param(%varclient_4485, param_1347), interface_753:com_70);
+if_setmodelanim(bas_getanim_ready(%varclient_4484), interface_753:com_70);
+if_setmodelangle(0, struct_param(%varclient_4485, param_3041), 0, 0, 0, struct_param(%varclient_4485, param_3040), interface_753:com_70);
+if_settext("Combat Level: <col=ffffff><tostring(struct_param(%varclient_4485, param_2238))></col>", interface_753:com_69);
 def_string $string1 = "";
+def_string $string2 = "";
 ~script12274;
-if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_753:com_29);
-if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre, interface_753:com_61);
-if_sethide(true, interface_753:com_62);
+if_setposition(75, 0, ^setpos_abs_right, ^setpos_abs_centre, interface_753:com_35);
+if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre, interface_753:com_43);
+if_sethide(true, interface_753:com_74);
 if (%varclient_4486 = 60000) {
     $string1 = "Total kills: <col=ff0000>Lots!</col>";
+    $string2 = "<col=ff0000>Lots!</col>";
 } else {
-    $string1 = "Total kills: <tostring(%varclient_4486)>";
+    $string1 = "Total kills: <tostring_localised(%varclient_4486, true)>";
+    $string2 = tostring_localised(%varclient_4486, true);
 }
-if_setonmouserepeat("script8799($string1, interface_753:com_61, -1)", interface_753:com_61);
+if_setonmouserepeat("script8799($string1, interface_753:com_8, -1)", interface_753:com_43);
+if_settext($string2, interface_753:com_7);
 if (%varclient_4487 ! -1) {
     if (struct_param(%varclient_4485, param_5704) = true) {
         if (%varclient_4487 = 60000) {
-            $string1 = "Total challenge mode kills: <col=ff0000>Lots</col>";
+            $string1 = "Total challenge mode kills: <col=ff0000>Lots!</col>";
+            $string2 = "<col=ff0000>Lots!</col>";
         } else {
-            $string1 = "Total challenge mode kills: <tostring(%varclient_4487)>";
+            $string1 = "Total challenge mode kills: <tostring_localised(%varclient_4487, true)>";
+            $string2 = tostring_localised(%varclient_4487, true);
         }
     } else if (%varclient_4487 = 60000) {
-        $string1 = "Total hard mode kills: <col=ff0000>Lots</col>";
+        $string1 = "Total hard mode kills: <col=ff0000>Lots!</col>";
+        $string2 = "<col=ff0000>Lots!</col>";
     } else {
-        $string1 = "Total hard mode kills: <tostring(%varclient_4487)>";
+        $string1 = "Total hard mode kills: <tostring_localised(%varclient_4487, true)>";
+        $string2 = tostring_localised(%varclient_4487, true);
     }
-    if_setonmouserepeat("script8799($string1, interface_753:com_61, -1)", interface_753:com_62);
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre, interface_753:com_29);
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_753:com_61);
-    if_sethide(false, interface_753:com_62);
+    if_setonmouserepeat("script8799($string1, interface_753:com_8, -1)", interface_753:com_74);
+    if_settext($string2, interface_753:com_4);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre, interface_753:com_35);
+    if_setposition(75, 0, ^setpos_abs_right, ^setpos_abs_centre, interface_753:com_43);
+    if_sethide(false, interface_753:com_74);
 }
-cc_deleteall(interface_753:com_64);
-~bslay_rewards_build(interface_753:com_64, interface_753:com_65, interface_753:com_63, %varclient_4485, 0, 0, 0);
-if_sethide(false, interface_753:com_24);
+cc_deleteall(interface_753:com_76);
+~bslay_rewards_build(interface_753:com_76, interface_753:com_77, interface_753:com_75, %varclient_4485, 0, 0, 0);
+if_sethide(false, interface_753:com_38);
