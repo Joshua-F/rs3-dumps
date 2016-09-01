@@ -82,6 +82,7 @@ if (if_find($component24) = true) {
         cc_setparam(param_3438, null);
         cc_setparam(param_5313, false);
         cc_setparam(param_5314, false);
+        ~script7968($component27, 0);
     } else if ($obj16 ! null) {
         cc_clearscripthooks;
         cc_clearops;
@@ -95,8 +96,8 @@ if (if_find($component24) = true) {
         }
         if (string_length($string0) < 1) {
             $string0 = oc_name($obj16);
-            cc_setoninvtransmit("script6996($component24, $obj16){inv_93, inv_94}");
-            ~script6997($component24, $obj16);
+            cc_setoninvtransmit("script6996($component24, $obj16, $component27){inv_93, inv_94}");
+            ~script6997($component24, $obj16, $component27);
             cc_setobject($obj16, -1);
         }
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
@@ -349,11 +350,14 @@ if (if_find($component24) = true) {
         if ($int7 = 8) {
             cc_setonvartransmit("script7017(event_com){varplayer_463}");
             cc_setoninvtransmit(null);
+            ~script7968($component27, 1);
         } else if ($int7 ! 7 & $int7 ! 9 & $int7 ! 12 & $int7 ! 13) {
-            cc_setonvartransmit("script7003($component24, -1, struct_param($struct20, param_2799), $struct20){varplayer_679, varplayer_1180, varplayer_1185}");
-            ~script7004($component24, -1, struct_param($struct20, param_2799), $struct20);
-            cc_setoninvtransmit("script7003($component24, -1, struct_param($struct20, param_2799), $struct20){inv_94, inv_93}");
-            cc_setonstattransmit("script7003($component24, -1, struct_param($struct20, param_2799), $struct20){attack, strength, defence, ranged, magic, hitpoints}");
+            cc_setonvartransmit("script7003($component24, -1, struct_param($struct20, param_2799), $struct20, $component27){varplayer_679, varplayer_1180, varplayer_1185}");
+            ~script7004($component24, -1, struct_param($struct20, param_2799), $struct20, $component27);
+            cc_setoninvtransmit("script7003($component24, -1, struct_param($struct20, param_2799), $struct20, $component27){inv_94, inv_93}");
+            cc_setonstattransmit("script7003($component24, -1, struct_param($struct20, param_2799), $struct20, $component27){attack, strength, defence, ranged, magic, hitpoints}");
+        } else {
+            ~script7968($component27, 1);
         }
         if (%varplayerbit_1892 = 0) {
             switch_int ($int7) {

@@ -1,5 +1,37 @@
 // 7004
-[proc,script7004](component $component0, int $int1, int $int2, struct $struct3)
+[proc,script7004](component $component0, int $int1, int $int2, struct $struct3, component $component4)
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_obj $obj7 = inv_getobj(inv_94, 3);
+def_obj $obj8 = inv_getobj(inv_94, 5);
 if ($int1 ! -1 & cc_find($component0, $int1) = true | if_find($component0) = true) {
-    ~script7005($component0, $int1, $int2, $struct3);
+    if (cc_getgraphic ! struct_param($struct3, param_2802)) {
+        return;
+    }
+    switch_int ($int2) {
+        case 2 :
+            $int5 = 1000;
+        case 1 :
+            $int5 = 500;
+        case 3 :
+            $int5 = ~script9868($obj7, $obj8);
+    }
+    if (%varplayer_679 < $int5) {
+        $int6 = 0;
+    } else if ($struct3 = struct_28430) {
+        if (~script9865($obj7, $obj8) > 0) {
+            $int6 = 1;
+        } else {
+            $int6 = 0;
+        }
+    } else {
+        $int6 = ~script2660($struct3);
+    }
+    if ($int6 = 1) {
+        cc_setcolour(^white);
+        ~script7968($component4, 1);
+    } else {
+        cc_setcolour(0x333333);
+        ~script7968($component4, 0);
+    }
 }

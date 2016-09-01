@@ -1,50 +1,11 @@
 // 10253
-[proc,script10253](int $int0, int $int1)(int)
-switch_int ($int0) {
-    case 0 :
-        switch_int ($int1) {
-            case 1 :
-                return(25);
-            case 2 :
-                return(50);
-            case 3 :
-                return(100);
-            case 4 :
-                return(200);
-        }
-    case 1 :
-        switch_int ($int1) {
-            case 0 :
-                return(50);
-            case 1 :
-                return(75);
-            case 2 :
-                return(100);
-            case 3 :
-                return(200);
-        }
-    case 2 :
-        switch_int ($int1) {
-            case 0 :
-                return(25);
-            case 1 :
-                return(50);
-            case 2 :
-                return(100);
-            case 3 :
-                return(200);
-            case 4 :
-                return(400);
-        }
-    case default :
-        switch_int ($int1) {
-            case 0 :
-                return(50);
-            case 1 :
-                return(75);
-            case 2 :
-                return(100);
-            case 3 :
-                return(200);
-        }
+[proc,script10253](int $int0)(int, int)
+def_int $int1 = calc($int0 % (360 * 7));
+def_int $int2 = 15;
+if ($int1 >= calc(360 * 3)) {
+    $int2 = calc($int2 / pow(2, calc(($int1 - 360 * 3) / 180 + 1)));
+    if ($int2 = 0) {
+        return(0, $int1);
+    }
 }
+return(~invert(scale(scale(65536, 360, $int2), 100, enum(int, int, enum_9054, calc($int1 % 360)))), $int1);

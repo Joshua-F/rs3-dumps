@@ -7,6 +7,7 @@ def_string $string0 = tostring($int0);
 def_string $string1 = tostring($int1);
 def_string $string2 = tostring($int2);
 def_string $string3 = "You have not set a fastest time for this boss.";
+def_string $string4 = "---";
 def_int $int3 = 0;
 if (%varclient_4488 ! -1) {
     if (%varclient_4488 > 0) {
@@ -27,6 +28,7 @@ if (%varclient_4488 ! -1) {
             $string2 = tostring($int2);
         }
         $string3 = "Fastest kill: <$string0>:<$string1>:<$string2>";
+        $string4 = "<$string0>:<$string1>:<$string2>";
         $int3 = calc($int3 + 1);
     }
     if (%varclient_4489 > -1) {
@@ -47,19 +49,22 @@ if (%varclient_4488 ! -1) {
             } else {
                 $string2 = tostring($int2);
             }
-            $string3 = append($string3, "<br>Fastest hardmode kill: <$string0>:<$string1>:<$string2>");
+            $string3 = append($string3, "<br><col=ff3030>Fastest hardmode kill: <$string0>:<$string1>:<$string2></col>");
+            $string4 = append($string4, "<br><col=ff3030><$string0>:<$string1>:<$string2></col>");
             $int3 = calc($int3 + 1);
         } else {
-            $string3 = append($string3, "<br>You have not set a fastest time for this boss in hard mode.");
+            $string3 = append($string3, "<br><col=ff3030>You have not set a fastest time for this boss in hard mode.</col>");
+            $string4 = append($string4, "<br><col=ff3030>---</col>");
         }
     }
     if ($int3 = 0) {
-        if_setop(10, "", interface_753:com_29);
+        if_setop(10, "", interface_753:com_35);
     } else {
-        if_setop(10, "Reset time", interface_753:com_29);
+        if_setop(10, "Reset time", interface_753:com_35);
     }
-    if_setonmouserepeat("script8799($string3, interface_753:com_61, -1)", interface_753:com_29);
-    if_sethide(false, interface_753:com_29);
+    if_setonmouserepeat("script8799($string3, interface_753:com_8, -1)", interface_753:com_35);
+    if_settext($string4, interface_753:com_3);
+    if_sethide(false, interface_753:com_35);
 } else {
-    if_sethide(true, interface_753:com_29);
+    if_sethide(true, interface_753:com_35);
 }
