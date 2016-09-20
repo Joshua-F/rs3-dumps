@@ -5,6 +5,14 @@ if ($int5 = 0) {
 }
 def_dbrow $dbrow6 = ~script12076(calc($int5 % 65536));
 def_string $string0 = ~invent_perk_get_name_range($dbrow6, calc($int5 % 16777216 / 65536), calc($int5 / 16777216));
+def_int $int7 = db_getfield($dbrow6, dbtable_8:col6, 0);
+if ($int7 > 1) {
+    $string0 = append($string0, " (Two slots)");
+}
 $int1, $int3 = ~script176($component0, $int1, $int2, $int3, $int4, rs3_contextual_input_bullet, 16, 16, $string0, struct_29166);
-cc_setonmouserepeat("script3876(db_getfield($dbrow6, dbtable_8:col3, 0), event_com, event_comsubid)");
+def_string $string1 = db_getfield($dbrow6, dbtable_8:col4, 0);
+if ($int7 > 1) {
+    $string1 = append($string1, " This perk will take up two slots in a gizmo.");
+}
+cc_setonmouserepeat("script3876($string1, event_com, event_comsubid)");
 return($int1, $int3);
