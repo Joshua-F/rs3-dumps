@@ -41,7 +41,7 @@ if (if_gethide(interface_1253:com_456) = false) {
     %varclient_1993 = 0;
     return;
 }
-if ((if_gethide(interface_1253:com_32) = false | ~trh_state(struct_33217) = 1) & if_gethide(interface_1253:com_197) = true) {
+if ((if_gethide(interface_1253:com_32) = false | ~trh_state(struct_33217) = 1 | ~trh_state(struct_34277) = 1) & if_gethide(interface_1253:com_197) = true) {
     if (if_gethide(interface_1253:com_61) = false) {
         if_setopkey(1, ^key_space, 0, interface_1253:com_61);
         %varclient_1993 = 0;
@@ -53,6 +53,13 @@ if ((if_gethide(interface_1253:com_32) = false | ~trh_state(struct_33217) = 1) &
         }
         if (~trh_state(struct_33919) = 1) {
             if_sethide(false, interface_1253:com_118);
+        }
+        %varclient_1993 = 0;
+        return;
+    } else if (~trh_state(struct_34277) = 1 & if_gethide(interface_1253:com_197) = true) {
+        ~script12747;
+        if (%varplayerbit_33726 = 1) {
+            if_setopkey(1, ^key_space, 0, ~script12746);
         }
         %varclient_1993 = 0;
         return;
@@ -114,6 +121,8 @@ if ((if_gethide(interface_1253:com_32) = false | ~trh_state(struct_33217) = 1) &
 } else if (if_gethide(interface_1253:com_197) = false) {
     if (~trh_state(struct_33217) = 1) {
         ~script12372;
+    } else if (~trh_state(struct_34277) = 1) {
+        ~script12747;
     }
     if (~script6950 = 0 & %varplayerbit_4323 = 0) {
         %varclient_1993 = 0;

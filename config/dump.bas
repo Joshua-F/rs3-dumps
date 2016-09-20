@@ -22706,3 +22706,33 @@ readyanim=seq_29325,seq_29326
 [bas_3824]
 readyanim=seq_842,seq_29354
 
+// 3825
+[bas_3825]
+readyanim_l=seq_29365
+readyanim_r=seq_29365
+walkturn_l=seq_29365
+walkturn_r=seq_29365
+walkanim_l=seq_29365
+walkanim_r=seq_29365
+readyanim=seq_29364,seq_29365
+
+// 3826
+[bas_3826]
+readyanim_l=seq_29370
+readyanim_r=seq_29370
+walkturn_l=seq_29370
+walkturn_r=seq_29370
+walkanim_l=seq_29370
+walkanim_r=seq_29370
+readyanim=seq_29369,seq_29370
+
+// 3827
+[bas_3827]
+readyanim_l=seq_29377
+readyanim_r=seq_29377
+walkturn_l=seq_29377
+walkturn_r=seq_29377
+walkanim_l=seq_29377
+walkanim_r=seq_29377
+readyanim=seq_29376,seq_29377
+
