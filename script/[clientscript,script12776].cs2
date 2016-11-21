@@ -1,0 +1,38 @@
+// 12776
+[clientscript,script12776](component $component0, component $component1, int $int2)
+cc_deleteall($component0);
+if_clearops($component0);
+if_settext("", $component1);
+if_setonmouserepeat(null, $component0);
+def_struct $struct3 = null;
+switch_int ($int2) {
+    case 0 :
+        if (%varplayerbit_33764 > 0) {
+            $struct3 = enum(int, struct, enum_11625, calc(%varplayerbit_33764 - 1));
+        }
+    case 1 :
+        if (%varplayerbit_33765 > 0) {
+            $struct3 = enum(int, struct, enum_11625, calc(%varplayerbit_33765 - 1));
+        }
+    case 2 :
+        if (%varplayerbit_33766 > 0) {
+            $struct3 = enum(int, struct, enum_11625, calc(%varplayerbit_33766 - 1));
+        }
+    case 3 :
+        if (%varplayerbit_33767 > 0) {
+            $struct3 = enum(int, struct, enum_11625, calc(%varplayerbit_33767 - 1));
+        }
+}
+if ($struct3 ! null) {
+    if_setop(1, "Clear", $component0);
+    cc_create($component0, ^iftype_graphic, 0);
+    cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, 4, ^setpos_abs_centre, ^setpos_abs_top);
+    if (struct_param($struct3, param_5980) ! null) {
+        cc_setobject_nonum(struct_param($struct3, param_5980), 1000);
+    } else if (struct_param($struct3, param_5981) ! null) {
+        cc_setgraphic(struct_param($struct3, param_5981));
+    }
+    if_settext(~script11601(~script12781($struct3), true), $component1);
+    if_setonmouserepeat("currency_draw_tooltip($struct3, event_com, -1)", $component0);
+}

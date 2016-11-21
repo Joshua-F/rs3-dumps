@@ -1,0 +1,97 @@
+// 12780
+[proc,script12780](component $component0, component $component1, component $component2, component $component3)
+cc_deleteall($component1);
+cc_deleteall($component2);
+cc_deleteall($component3);
+def_int $int4 = 36;
+def_int $int5 = 36;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+$int6, $int7, $int8 = ~script9856(if_getwidth($component1), $int4, 4, 2);
+$int6 = min(5, $int6);
+def_int $int9 = calc(5 / $int6);
+$int9 = max($int9, 1);
+if (calc(5 % $int6) > 0) {
+    $int9 = calc($int9 + 1);
+}
+if ($int9 > 1) {
+    if_setscrollsize(0, calc($int9 * $int4), $component0);
+    ~rs3_scrollbar_vertical($component3, $component0);
+} else {
+    if_setscrollpos(0, 0, $component0);
+}
+def_int $intarray0($int6);
+def_int $int10 = 0;
+while ($int10 < $int6) {
+    $intarray0($int10) = ~script9857($int7, 2, $int8, $int10);
+    $int10 = calc($int10 + 1);
+}
+$int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_struct $struct13 = null;
+def_string $string0 = "";
+def_string $string1 = "";
+while ($int10 < 4) {
+    $int11 = $intarray0(calc($int10 % $int6));
+    $int12 = calc($int10 / $int6 * $int5);
+    cc_create($component1, ^iftype_graphic, if_getnextsubid($component1));
+    cc_setsize($int4, $int5, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic(rs3_inventory_slot);
+    $struct13 = null;
+    switch_int ($int10) {
+        case 0 :
+            if (%varplayerbit_33764 > 0) {
+                $struct13 = enum(int, struct, enum_11625, calc(%varplayerbit_33764 - 1));
+            }
+        case 1 :
+            if (%varplayerbit_33765 > 0) {
+                $struct13 = enum(int, struct, enum_11625, calc(%varplayerbit_33765 - 1));
+            }
+        case 2 :
+            if (%varplayerbit_33766 > 0) {
+                $struct13 = enum(int, struct, enum_11625, calc(%varplayerbit_33766 - 1));
+            }
+        case 3 :
+            if (%varplayerbit_33767 > 0) {
+                $struct13 = enum(int, struct, enum_11625, calc(%varplayerbit_33767 - 1));
+            }
+    }
+    if ($struct13 ! null) {
+        cc_setonmouserepeat("currency_draw_tooltip($struct13, event_com, event_comsubid)");
+        .cc_create($component1, ^iftype_graphic, if_getnextsubid($component1));
+        .cc_setsize(calc($int4 - 4), calc($int5 - 4), ^setsize_abs, ^setsize_abs);
+        .cc_setposition(calc($int11 + 2), calc($int12 + 2), ^setpos_abs_left, ^setpos_abs_top);
+        if (struct_param($struct13, param_5980) ! null) {
+            .cc_setobject_nonum(struct_param($struct13, param_5980), 1000);
+        } else if (struct_param($struct13, param_5981) ! null) {
+            .cc_setgraphic(struct_param($struct13, param_5981));
+        }
+        $string0 = struct_param($struct13, param_5984);
+        $string1 = struct_param($struct13, param_5985);
+    }
+    cc_create($component2, ^iftype_text, if_getnextsubid($component2));
+    if (compare($string0, "") ! 0 | compare($string1, "") ! 0) {
+        cc_setsize($int4, $int5, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top);
+        if (compare($string0, "") ! 0) {
+            cc_setop(1, $string0);
+        }
+        if (compare($string1, "") ! 0) {
+            cc_setop(2, $string1);
+        }
+        ~script10407;
+    } else {
+        cc_sethide(true);
+    }
+    $int10 = calc($int10 + 1);
+}
+$int11 = $intarray0(calc($int10 % $int6));
+$int12 = calc($int10 / $int6 * $int5);
+~script11437($component1, $component2, struct_28556, $int11, calc($int12 + 2), calc($int4 - 4), calc($int5 - 4), if_getnextsubid($component2), false, "", "Open Currency Pouch");
+cc_create($component1, ^iftype_graphic, if_getnextsubid($component1));
+cc_setsize(calc($int4 - 4), calc($int5 - 4), ^setsize_abs, ^setsize_abs);
+cc_setposition($int11, calc($int12 + 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setgraphic(money_pouch_icon);
