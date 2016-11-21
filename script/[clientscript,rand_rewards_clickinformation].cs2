@@ -23,6 +23,7 @@ if (paraheight($string0, if_getwidth(interface_940:com_94), $fontmetrics3) ! 1) 
 if_settextfont($fontmetrics3, interface_940:com_94);
 def_struct $struct4 = enum(int, struct, $enum2, $int1);
 def_int $int5 = ~script10664($struct4);
+def_int $int6 = 1000;
 if (map_members = true & $struct4 = struct_1004 | map_members = false & $struct4 = struct_1004) {
     if_sethide(true, interface_940:com_93);
     if_settext(struct_param($struct4, param_1078), interface_940:com_91);
@@ -137,13 +138,21 @@ if (map_members = true & $struct4 = struct_1004 | map_members = false & $struct4
     if_sethide(true, interface_940:com_105);
     if (struct_param($struct4, param_4275) ! 0) {
         if (%varplayerbit_4290 = 0) {
-            if_settext(tostring(struct_param($struct4, param_4275)), interface_940:com_101);
+            $int6 = struct_param($struct4, param_4275);
         } else if (%varplayerbit_4290 = 1 & struct_param($struct4, param_4276) ! 0) {
-            if_settext(tostring(struct_param($struct4, param_4276)), interface_940:com_101);
+            $int6 = struct_param($struct4, param_4276);
         } else {
-            if_settext(tostring(struct_param($struct4, param_1072)), interface_940:com_101);
+            $int6 = struct_param($struct4, param_1072);
         }
+        if (~script12792 = 5) {
+            $int6 = addpercent($int6, -7);
+        }
+        if_settext(tostring($int6), interface_940:com_101);
     } else {
-        if_settext(tostring(struct_param($struct4, param_1072)), interface_940:com_101);
+        $int6 = struct_param($struct4, param_1072);
+        if (~script12792 = 5) {
+            $int6 = addpercent($int6, -7);
+        }
+        if_settext(tostring($int6), interface_940:com_101);
     }
 }

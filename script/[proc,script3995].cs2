@@ -6,8 +6,8 @@ if ($int0 >= 4091) {
 if ($int0 >= 4000 & $int0 <= 4027) {
     return(0, "", ^black);
 }
-if (struct_param(~task_get_struct($int0), param_1294) = 0) {
-    return(1, "There are no requirements for this Task.", ^green);
+if (map_members = false & struct_param(~task_get_struct($int0), param_1290) = 2) {
+    return(0, "This Task cannot be completed in the free game.", ^red);
 }
 if (~task_get_progress($int0) = 2) {
     return(2, "You have completed this Task.", ^green);
@@ -17,10 +17,10 @@ if (~task_get_progress($int0) = 2) {
     } else {
         return(1, "You currently have this Task pinned.", 0x8f572b);
     }
-} else if (map_members = false & struct_param(~task_get_struct($int0), param_1290) = 2) {
-    return(0, "This Task cannot be completed in the free game.", ^red);
 } else if (~task_requirements_fulfilled($int0) = false) {
     return(0, "You lack one or more prerequisites needed to complete this Task.", ^red);
+} else if (struct_param(~task_get_struct($int0), param_1294) = 0) {
+    return(1, "There are no requirements for this Task.", ^green);
 } else {
     return(1, "You have the requirements to complete this Task.", ^green);
 }

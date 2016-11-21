@@ -1,0 +1,22 @@
+// 12878
+[proc,script12878](struct $struct0)
+def_int $int1 = calc(%varplayerbit_34279 * struct_param($struct0, param_6144));
+def_int $int2 = calc(struct_param($struct0, param_6143) * struct_param($struct0, param_6144));
+def_string $string0 = "Inactive";
+def_string $string1 = "You can use an event extender token to increase your gathering limit per day. These are available for purchase from the event store.";
+if (%varplayerbit_34281 > 0) {
+    $int2 = calc($int2 * 2);
+    $string0 = "<col=00c800>Active";
+    if (%varplayerbit_34281 = 1) {
+        $string1 = "Your gathering limit extender will expire at the end of the day.";
+    } else {
+        $string1 = "Your gathering limit extender will expire in <tostring(%varplayerbit_34281)> days.";
+    }
+}
+if (cc_find(interface_1802:com_0, 1) = true) {
+    cc_settext("<~tostring_spacer_local($int1)>/<~tostring_spacer_local($int2)>");
+}
+if (cc_find(interface_1802:com_0, 3) = true) {
+    cc_setonmouserepeat("script3876($string1, event_com, event_comsubid)");
+    cc_settext($string0);
+}

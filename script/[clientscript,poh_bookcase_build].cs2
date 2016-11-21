@@ -1,40 +1,53 @@
 // 1691
 [clientscript,poh_bookcase_build](component $component0, component $component1)
-if (compare(%varclient_4153, "") = 0) {
-    ~script9554(interface_87:com_3, interface_87:com_5, interface_87:com_4, "Library", struct_21218);
+def_int $int2 = 0;
+if (compare(%varclient_5877, "") ! 0) {
+    $int2 = 1;
 } else {
-    ~script9554(interface_87:com_3, interface_87:com_5, interface_87:com_4, "Library of <%varclient_4153>", struct_21218);
+    if_settext("Click here to search for a book", interface_87:com_16);
+}
+if ($int2 = 1) {
+    ~script9554(interface_87:com_5, interface_87:com_7, interface_87:com_6, "Searching for: <%varclient_5877>", struct_21218);
+} else if (compare(%varclient_4153, "") = 0) {
+    ~script9554(interface_87:com_5, interface_87:com_7, interface_87:com_6, "Library", struct_21218);
+} else {
+    ~script9554(interface_87:com_5, interface_87:com_7, interface_87:com_6, "Library of <%varclient_4153>", struct_21218);
 }
 cc_deleteall($component0);
-def_int $int2 = 0;
-def_int $intarray0(224);
 def_int $int3 = 0;
+def_int $intarray0(224);
 def_int $int4 = 0;
 def_struct $struct5 = null;
-while ($int4 = 0 & $int2 < 224) {
-    $struct5 = enum(int, struct, enum_845, $int2);
-    if ($struct5 = struct_345) {
-        $int4 = 1;
-    } else {
-        cc_create($component0, ^iftype_rectangle, $int2);
-        if (~script1694($int2) = ^true & $struct5 ! null) {
-            $intarray0($int3) = $int2;
-            $int3 = calc($int3 + 1);
+while ($int3 < 224) {
+    $struct5 = enum(int, struct, enum_845, $int3);
+    cc_create($component0, ^iftype_rectangle, $int3);
+    if (~script1694($int3) = ^true & $struct5 ! null) {
+        if ($int2 = 0 | $int2 = 1 & string_indexof_string(lowercase(struct_param($struct5, param_924)), %varclient_5877, 0) ! -1) {
+            $intarray0($int4) = $int3;
+            $int4 = calc($int4 + 1);
         } else {
             cc_sethide(true);
         }
+    } else {
+        cc_sethide(true);
     }
-    $int2 = calc($int2 + 1);
+    $int3 = calc($int3 + 1);
 }
-~script1693(intarray0, 0, calc($int3 - 1));
+if ($int4 = 0) {
+    if (cc_find($component0, 0) = true) {
+        ~script1692($component0, 0, -1, 0);
+    }
+    return;
+}
+~script1693(intarray0, 0, calc($int4 - 1));
 def_int $int6 = 0;
 def_int $int7 = -1;
-$int2 = 0;
-while ($int2 < $int3) {
-    if (cc_find($component0, $intarray0($int2)) = true) {
-        $int6, $int7 = ~script1692($component0, $int6, $intarray0($int2), $int2);
+$int3 = 0;
+while ($int3 < $int4) {
+    if (cc_find($component0, $intarray0($int3)) = true) {
+        $int6, $int7 = ~script1692($component0, $int6, $intarray0($int3), $int3);
     }
-    $int2 = calc($int2 + 1);
+    $int3 = calc($int3 + 1);
 }
 if ($int6 <= if_getheight($component0)) {
     if_setscrollsize(0, 0, $component0);

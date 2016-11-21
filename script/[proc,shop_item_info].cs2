@@ -24,7 +24,7 @@ def_int $int3 = ~buyprice_total($obj2, %varplayer_302);
 if ($inv0 = inv_93) {
     if_settext("Value:", interface_1265:com_79);
     if_settext("Sell", interface_1265:com_208);
-    $int3 = ~sellprice_total($obj2, %varplayer_302);
+    $int3 = ~sellprice_total($obj2, %varplayer_302, %varplayer_304);
     if (testbit(%varclient_1879, $int1) = ^false) {
         $int3 = -1;
     }
@@ -35,16 +35,13 @@ if ($inv0 = inv_93) {
     if_settext("Price:", interface_1265:com_79);
     if_settext("Buy", interface_1265:com_208);
 }
-def_int $int4 = inv_total(inv_93, %varplayer_306);
-if (%varplayer_306 = obj_995) {
-    $int4 = calc($int4 + inv_total(inv_623, %varplayer_306));
-}
+def_int $int4 = ~script12750(%varplayer_306);
 if ($int4 = 0) {
     if_settext("None!", interface_1265:com_211);
     if_setgraphic("km_shopitems,0", interface_1265:com_210);
 } else {
     if_settext(~script940($int4), interface_1265:com_211);
-    if_setgraphic(enum(obj, graphic, enum_200, %varplayer_306), interface_1265:com_210);
+    if_setgraphic(enum(int, graphic, enum_200, %varplayer_306), interface_1265:com_210);
 }
 def_int $int5 = parawidth(if_gettext(interface_1265:com_211), if_getwidth(interface_1265:com_78), graphic_17813);
 $int5 = calc($int5 + 2 + if_getwidth(interface_1265:com_210));
@@ -57,7 +54,7 @@ if ($int3 = -1) {
     if_setgraphic(null, interface_1265:com_18);
 } else {
     if_settext(~script940($int3), interface_1265:com_209);
-    if_setgraphic(enum(obj, graphic, enum_200, %varplayer_306), interface_1265:com_18);
+    if_setgraphic(enum(int, graphic, enum_200, %varplayer_306), interface_1265:com_18);
 }
 $int5 = parawidth(if_gettext(interface_1265:com_209), if_getwidth(interface_1265:com_80), graphic_17813);
 if ($inv0 ! %varplayer_305) {

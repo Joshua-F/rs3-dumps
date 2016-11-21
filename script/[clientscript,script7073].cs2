@@ -74,7 +74,7 @@ def_obj $obj12 = null;
 def_graphic $graphic13 = null;
 def_int $int14 = 0;
 def_int $int15 = 0;
-while ($int5 < 202 & $int8 < 18) {
+while ($int5 < 206 & $int8 < 18) {
     $obj12 = null;
     $string1 = "";
     $int10 = 0;
@@ -1322,6 +1322,23 @@ while ($int5 < 202 & $int8 < 18) {
             $int9, $int6, $struct7, $int3 = 1, %varplayerbit_33703, struct_34189, %varclient_5869;
         case 201 :
             $int9, $int6, $struct7, $int3 = 1, min(%varplayerbit_33727, 1), struct_34169, %varclient_5870;
+        case 202 :
+            $int9, $int6, $struct7, $int3 = 1, min(%varplayerbit_34201, 1), struct_34878, %varclient_5878;
+        case 203 :
+            $int9 = 1;
+            $int6 = %varplayerbit_34311;
+            $struct7 = struct_34984;
+            $int3 = %varclient_5883;
+        case 204 :
+            $int9 = 1;
+            $int6 = %varplayerbit_34312;
+            $struct7 = struct_34985;
+            $int3 = %varclient_5884;
+        case 205 :
+            $int9 = 0;
+            $int6 = %varplayerbit_34313;
+            $struct7 = struct_34986;
+            $int3 = %varclient_5885;
     }
     if ($int6 = 1) {
         $component0, $component1, $component2 = ~script7072;
@@ -1384,9 +1401,22 @@ while ($int5 < 202 & $int8 < 18) {
                 $int14 = %varplayerbit_32623;
             case struct_33655, struct_33656, struct_33657 :
                 $int14 = %varplayerbit_32637;
+            case struct_34984 :
+                $int14 = %varplayerbit_34314;
         }
         if ($int14 > 0) {
-            if_settext(tostring($int14), $component1);
+            if ($int3 > clientclock) {
+                $int4 = calc(($int3 - clientclock) / 50);
+                if_setcolour(^white, $component1);
+                if ($int4 > 60) {
+                    if_settext("<tostring(calc($int4 / 60))>m<br>(<tostring($int14)>)", $component1);
+                } else {
+                    if_settext("<tostring($int4)><br>(<tostring($int14)>)", $component1);
+                }
+                if_setontimer("script12913($int3, $component1, $component0, $int14)", $component1);
+            } else {
+                if_settext(tostring($int14), $component1);
+            }
         } else if ($int15 = 1) {
             if_setcolour(^white, $component1);
             if_settext("<tostring(%varplayerbit_29113)>%", $component1);

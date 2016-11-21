@@ -1,43 +1,68 @@
 // 12670
-[proc,death_build_deathkeep_pvp]
+[proc,death_build_deathkeep_pvp](int $int0)(int, int)
 if_sethide(false, interface_1626:com_3);
 if_sethide(true, interface_1626:com_36);
-def_int $int0 = 0;
+cc_deleteall(interface_1626:com_4);
 def_int $int1 = 0;
 def_int $int2 = 0;
-def_int $int3 = inv_size(inv_676);
-def_int $int4 = 0;
+def_int $int3 = 0;
+def_int $int4 = inv_size(inv_676);
 def_int $int5 = 0;
 def_int $int6 = 0;
 def_int $int7 = 0;
-def_obj $obj8 = null;
-while ($int1 < %varplayerbit_28114 & $int2 < %varplayerbit_28114) {
-    $obj8 = inv_getobj(inv_676, $int0);
-    $int7 = inv_getnum(inv_676, $int0);
-    $int4 = ~script11472($int0);
-    if ($obj8 ! null & $int4 > -6) {
-        while ($int7 > 0 & $int2 < %varplayerbit_28114) {
-            $int5, $int6 = ~script12671($obj8, $int5, $int6);
-            $int2 = calc($int2 + 1);
-            $int7 = calc($int7 - 1);
+def_int $int8 = 0;
+def_obj $obj9 = null;
+def_int $int10 = 0;
+def_int $int11 = 0;
+while ($int2 < %varplayerbit_28114 & $int3 < %varplayerbit_28114) {
+    $obj9 = inv_getobj(inv_676, $int1);
+    $int8 = inv_getnum(inv_676, $int1);
+    $int5 = ~script11466($obj9, ~script11472($int2), 1, 0);
+    if ($obj9 ! null & $int5 > -6) {
+        while ($int8 > 0 & $int3 < %varplayerbit_28114) {
+            $int6, $int7 = ~script12671($obj9, $int6, $int7);
+            if (calc(^max_32bit_int - $int10 - $int5) < 0) {
+                $int10 = ^max_32bit_int;
+            } else {
+                $int10 = calc($int10 + $int5);
+            }
+            $int3 = calc($int3 + 1);
+            $int8 = calc($int8 - 1);
         }
-        $int0 = calc($int0 + 1);
+        $int1 = calc($int1 + 1);
     }
-    $int1 = calc($int1 + 1);
+    $int2 = calc($int2 + 1);
 }
-$int1 = 0;
-while ($int1 < $int3) {
-    $obj8 = inv_getobj(inv_676, $int1);
-    $int7 = inv_getnum(inv_676, $int1);
-    $int4 = ~script11472($int1);
-    if ($int4 <= -6) {
-        ~script12671($obj8, $int5, $int6);
-        $int2 = calc($int2 + 1);
+$int2 = 0;
+while ($int2 < %varplayerbit_28116) {
+    $obj9 = inv_getobj(inv_676, $int2);
+    $int8 = inv_getnum(inv_676, $int2);
+    $int5 = ~script11466($obj9, ~script11472($int2), $int8, 1);
+    if (calc(^max_32bit_int - $int0 - $int5) < 0) {
+        $int0, $int2 = ^max_32bit_int, %varplayerbit_28116;
+    } else {
+        $int0 = calc($int0 + $int5);
     }
-    $int1 = calc($int1 + 1);
+    $int2 = calc($int2 + 1);
 }
-if ($int2 = 0) {
+$int2 = 0;
+while ($int2 < $int4 & $int5 > -7) {
+    $obj9 = inv_getobj(inv_676, $int2);
+    $int8 = inv_getnum(inv_676, $int2);
+    $int5 = ~script11472($int2);
+    if ($int5 = -6) {
+        if ($int11 = 0) {
+            $int6, $int7 = ~script12837($int6, $int7);
+            $int11 = 1;
+        }
+        ~script12671($obj9, $int6, $int7);
+        $int3 = calc($int3 + 1);
+    }
+    $int2 = calc($int2 + 1);
+}
+if ($int3 = 0) {
     if_settext("If you die in the wilderness you will not protect any of your items.", interface_1626:com_115);
 } else {
     if_settext("In the wilderness you will protect the items shown below. All other items will be lost on death.", interface_1626:com_115);
 }
+return($int0, $int10);
