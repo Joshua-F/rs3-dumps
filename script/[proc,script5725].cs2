@@ -173,17 +173,26 @@ switch_struct ($struct0) {
             return(3);
         }
     case struct_33130 :
-        if (%varplayer_346 = 1) {
+        if (%varplayer_346 ! 0) {
             return(3);
         } else {
             return(0);
         }
     case struct_33131 :
-        if (%varplayer_346 = 1) {
-            if (max(%varplayer_6153, %varplayer_6154) > calc(date_minutes_fromruneday(5421) - date_minutes_fromruneday(0))) {
-                return(1);
+        if (%varplayer_346 ! 0) {
+            if (testbit(%varplayer_346, 1) = ^true) {
+                if (max(%varplayer_6153, %varplayer_6154) > calc(date_minutes_fromruneday(5786) - date_minutes_fromruneday(0))) {
+                    return(1);
+                }
+                return(0);
+            } else if (testbit(%varplayer_346, 0) = ^true) {
+                if (max(%varplayer_6153, %varplayer_6154) > calc(date_minutes_fromruneday(5421) - date_minutes_fromruneday(0))) {
+                    return(1);
+                }
+                return(0);
+            } else {
+                return(3);
             }
-            return(0);
         } else {
             return(3);
         }
@@ -193,6 +202,8 @@ switch_struct ($struct0) {
         } else {
             return(0);
         }
+    case struct_35067, struct_35061, struct_35062, struct_35063, struct_35064, struct_35065, struct_35066 :
+        return(~script12928($struct0));
     case default :
         return(0);
 }

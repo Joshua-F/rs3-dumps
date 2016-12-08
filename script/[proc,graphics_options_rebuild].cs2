@@ -130,12 +130,28 @@ def_int $int30 = 0;
 def_component $component31 = null;
 def_int $int32 = -1;
 def_int $int33 = enum_getoutputcount($enum17);
+def_int $int34 = 10;
+def_int $int35 = 0;
 while ($int29 < $int33) {
     $struct26 = enum(int, struct, $enum17, $int29);
     $enum27 = struct_param($struct26, param_683);
-    if ($enum27 = enum_1577 | $enum27 = enum_6121) {
+    if (has_nxt = false) {
+        if ($enum27 = enum_1577 | $enum27 = enum_6121) {
+            $int8 = 1;
+            $int11 = $int13;
+        } else {
+            $int8 = 0;
+            $int11 = $int12;
+        }
+    } else if ($int35 >= $int34) {
         $int8 = 1;
         $int11 = $int13;
+    } else {
+        $int8 = 0;
+        $int11 = $int12;
+        $int35 = calc($int35 + 1);
+    }
+    if ($enum27 = enum_1577 | $enum27 = enum_6121) {
         $int14 = ~script10084(struct_param($struct26, param_845), $int8, $int11, $component18);
         $int9 = calc(cc_getx - 6);
         $int10 = calc(cc_getwidth + 6);
@@ -206,10 +222,7 @@ while ($int29 < $int33) {
             }
         }
         $int11 = calc($int11 + 20 + 4);
-        $int13 = $int11;
     } else {
-        $int8 = 0;
-        $int11 = $int12;
         $int14 = ~script10084(struct_param($struct26, param_845), $int8, $int11, $component18);
         $int9 = calc(cc_getx - 6);
         $int10 = calc(cc_getwidth + 6);
@@ -253,15 +266,19 @@ while ($int29 < $int33) {
             }
         }
         $int11 = calc($int11 + 24 + 4);
+    }
+    if ($int8 = 1) {
+        $int13 = $int11;
+    } else {
         $int12 = $int11;
     }
     $int29 = calc($int29 + 1);
 }
-def_int $int34 = calc(if_gety(interface_1513:com_35) + if_gety(interface_1513:com_38) + max($int12, $int13));
+def_int $int36 = calc(if_gety(interface_1513:com_35) + if_gety(interface_1513:com_38) + max($int12, $int13));
 switch_int ($int4) {
     case 0, 4 :
-        $int34 = calc(if_gety(interface_882:com_72) + $int34 + 10);
-        if_setsize(if_getwidth(interface_882:com_20), $int34, ^setsize_abs, ^setsize_abs, interface_882:com_20);
+        $int36 = calc(if_gety(interface_882:com_72) + $int36 + 10);
+        if_setsize(if_getwidth(interface_882:com_20), $int36, ^setsize_abs, ^setsize_abs, interface_882:com_20);
         if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_882:com_20);
     case 2 :
         if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_911:com_1);

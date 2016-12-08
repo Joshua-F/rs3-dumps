@@ -2,14 +2,21 @@
 [proc,lobbyscreen_load](int $int0)
 %varclient_2835 = -1;
 if_setonvartransmit("script2354{varplayer_3184}", interface_906:com_0);
-if_setonvartransmit("lobbyscreen_launch_billing{varplayer_1745}", interface_906:com_710);
-if_setonvartransmit("script6270{varplayer_1305}", interface_906:com_711);
-if_setonvarctransmit("script7732{varclient_2771}", interface_906:com_680);
-if_setonvartransmit("script11090{varplayer_3184}", interface_906:com_679);
+if_setonvartransmit("lobbyscreen_launch_billing{varplayer_1745}", interface_906:com_711);
+if_setonvartransmit("script6270{varplayer_1305}", interface_906:com_714);
+if_setonvarctransmit("script7732{varclient_2771}", interface_906:com_681);
+if_setonvartransmit("script11090{varplayer_3184}", interface_906:com_680);
+if_setonvartransmit("script11925{varplayer_6679}", interface_906:com_712);
+if_setonvartransmit("script11926{varplayer_6681}", interface_906:com_713);
 if (%varplayerbit_16467 < 1 & userdetail_quickchat = false & %varclient_3708 = 0) {
-    if_setonvartransmit("script5937{varplayer_3185}", interface_906:com_709);
+    if_setonvartransmit("script5937{varplayer_3185}", interface_906:com_710);
 }
-if_settrans(0, interface_906:com_716);
+if_settrans(0, interface_906:com_719);
+if (has_nxt = false & %varplayer_3079 < date_runeday & ~script11975 <= 3) {
+    if_sethide(false, interface_906:com_327);
+} else {
+    if_sethide(true, interface_906:com_327);
+}
 def_component $component1 = null;
 if (has_nxt = true) {
     $component1 = interface_906:com_6;
@@ -65,7 +72,7 @@ if_setontimer("script1868(interface_906:com_320)", interface_906:com_320);
 if (login_reply ! 0 & login_reply ! 2 & login_reply ! 15) {
     ~script10210(interface_906:com_137, map_world, detailget_soundvol, detailget_musicvol, detailget_bgsoundvol, detailget_speechvol, detailget_loginvol, login_reply, 2);
 }
-if_setontimer("lobbyscreen_blackout_timer(interface_906:com_716)", interface_906:com_715);
+if_setontimer("lobbyscreen_blackout_timer(interface_906:com_719)", interface_906:com_718);
 if (%varclient_3496 = true | compare(substring(chat_playername_unfiltered, 0, 1), "#") = 0 & %varplayerbit_16464 ! 2) {
     %varclient_3496 = false;
     ~script8046;

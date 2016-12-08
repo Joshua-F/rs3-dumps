@@ -1,13 +1,29 @@
 // 11938
 [clientscript,script11938]
-def_int $int0 = 5025;
-while ($int0 <= 5048) {
+def_int $int0 = 5391;
+while ($int0 <= 5414) {
     if (~script11940($int0) = 1) {
-        if_setgraphic("trh78_xmas15_advent_door,2", ~script11941($int0));
-        if_sethide(false, ~script11942($int0));
         if (~script11939(~script11941($int0)) = 1) {
             if_setgraphic("trh78_xmas15_advent_door,4", ~script11942($int0));
+        } else {
+            if_setgraphic("trh78_xmas15_advent_door,2", ~script11941($int0));
         }
+        if_sethide(false, ~script11942($int0));
     }
     $int0 = calc($int0 + 1);
 }
+def_graphic $graphic1 = graphic_28956;
+def_graphic $graphic2 = graphic_28957;
+switch_int (map_lang) {
+    case 2 :
+        $graphic1 = graphic_28958;
+        $graphic2 = graphic_28959;
+    case 1 :
+        $graphic1 = graphic_28962;
+        $graphic2 = graphic_28963;
+    case 3 :
+        $graphic1 = graphic_28960;
+        $graphic2 = graphic_28961;
+}
+if_setonmouseover("graphic_swapper(interface_1700:com_131, $graphic2)", interface_1700:com_131);
+if_setonmouseleave("graphic_swapper(interface_1700:com_131, $graphic1)", interface_1700:com_131);
