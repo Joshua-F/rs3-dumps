@@ -23355,3 +23355,8 @@ readyanim=seq_29787,null
 [bas_3955]
 readyanim=seq_29788,null
 
+// 3956
+[bas_3956]
+runanim=seq_29854
+readyanim=seq_29852,seq_29853
+

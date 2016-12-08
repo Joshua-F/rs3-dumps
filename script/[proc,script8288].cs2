@@ -37,11 +37,19 @@ def_int $int16 = 387;
 def_int $int17 = 110;
 if_setsize(742, 404, ^setsize_abs, ^setsize_abs, $component7);
 if_setposition(0, calc($int11 - 8), ^setpos_abs_centre, ^setpos_abs_bottom, $component7);
-~script8289($int0);
+def_int $int18 = ~script441(%varplayerbit_18994);
+def_struct $struct19 = null;
+if (%varplayerbit_33661 = 1 & $int0 = 4 & $int18 = 6) {
+    $struct19 = struct_33515;
+}
+~script8289($int0, $struct19);
 if (cc_find($component6, 16) = true) {
     cc_setposition($int14, $int15, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize($int16, $int17, ^setsize_abs, ^setsize_abs);
     cc_setgraphic(struct_param($struct4, param_3445));
+    if ($struct19 ! null & struct_param($struct19, param_3445) ! null) {
+        cc_setgraphic(struct_param($struct19, param_3445));
+    }
 }
 if (cc_find($component6, 0) = true) {
     cc_sethide(true);
@@ -50,6 +58,9 @@ if (cc_find($component6, 17) = true) {
     cc_setposition(calc($int14 + $int16), $int15, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize($int16, $int17, ^setsize_abs, ^setsize_abs);
     cc_setgraphic(struct_param($struct4, param_3447));
+    if ($struct19 ! null & struct_param($struct19, param_3447) ! null) {
+        cc_setgraphic(struct_param($struct19, param_3447));
+    }
 }
 if_sethide(false, struct_param($struct2, param_3509));
 if_sethide(false, struct_param($struct2, param_3508));
@@ -71,7 +82,6 @@ if ($boolean1 = false) {
     ~script8311(1001);
     ~script6739(9);
 }
-def_int $int18 = ~script441(%varplayerbit_18994);
 if (~script8292($int0, $int18) = false & (%varclient_4241 ! $int0 | %varclient_4242 ! $int18)) {
     ~script189(%varclient_4241, %varclient_4242);
     %varclient_4241 = %varplayerbit_18994;

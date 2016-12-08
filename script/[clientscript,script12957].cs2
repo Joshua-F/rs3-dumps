@@ -1,0 +1,33 @@
+// 12957
+[clientscript,script12957]
+switch_int (map_lang) {
+    case 0 :
+        if_setgraphic(prem16_desertauraui_bg_en, interface_1812:com_10);
+        if_setgraphic(prem16_desertauraui_amasbroke_en, interface_1812:com_11);
+        if_setgraphic(graphic_28279, interface_1812:com_19);
+    case 2 :
+        if_setgraphic(prem16_desertauraui_bg_fr, interface_1812:com_10);
+        if_setgraphic(prem16_desertauraui_amasbroke_fr, interface_1812:com_11);
+        if_setgraphic(graphic_28281, interface_1812:com_19);
+    case 1 :
+        if_setgraphic(prem16_desertauraui_bg_de, interface_1812:com_10);
+        if_setgraphic(prem16_desertauraui_amasbroke_de, interface_1812:com_11);
+        if_setgraphic(graphic_28280, interface_1812:com_19);
+    case 3 :
+        if_setgraphic(prem16_desertauraui_bg_pt, interface_1812:com_10);
+        if_setgraphic(prem16_desertauraui_amasbroke_pt, interface_1812:com_11);
+        if_setgraphic(graphic_28282, interface_1812:com_19);
+}
+def_int $int0 = 1;
+def_int $int1 = enum_getoutputcount(enum_11932);
+while ($int0 <= $int1) {
+    if (%varplayerbit_34433 < enum(int, int, enum_11932, $int0)) {
+        if_sethide(false, enum(int, component, enum_11933, $int0));
+    } else if (%varplayerbit_20806 = 1 & ($int0 = 3 | $int0 = 5)) {
+        if_sethide(false, enum(int, component, enum_11933, $int0));
+    } else if (%varplayerbit_20807 = 1 & $int0 = 2) {
+        if_sethide(false, enum(int, component, enum_11933, $int0));
+    }
+    $int0 = calc($int0 + 1);
+}
+if_settext("Current Charges : <tostring(%varplayerbit_34433)>", interface_1812:com_20);

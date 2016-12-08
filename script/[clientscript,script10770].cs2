@@ -1,5 +1,5 @@
 // 10770
-[clientscript,script10770](int $int0)
+[clientscript,script10770](int $int0, int $int1)
 if_setsize(calc(120 * $int0), 32, ^setsize_abs, ^setsize_abs, interface_364:com_25);
 def_string $string0 = "";
 switch_int ($int0) {
@@ -12,8 +12,12 @@ switch_int ($int0) {
     case 3 :
         $string0 = "3/3";
 }
-if_settext("Reroll Progress - <$string0>", interface_364:com_15);
-if ($int0 < 3) {
+if ($int1 = 0) {
+    if_settext("Free reroll!", interface_364:com_15);
+} else {
+    if_settext("Reroll Progress - <$string0>", interface_364:com_15);
+}
+if ($int0 < 3 & $int1 = 1) {
     if_sethide(false, interface_364:com_10);
 } else {
     if_sethide(true, interface_364:com_10);

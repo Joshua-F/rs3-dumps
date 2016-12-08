@@ -3,13 +3,14 @@
 if (if_gethide(interface_1253:com_197) = true) {
     return;
 }
-if (~trh_state(struct_33522) ! 1) {
+if (~trh_state(struct_33522) = 1 | ~trh_state(struct_35060) = 1 & date_runeday = 5413) {
+    if_sethide(true, interface_1253:com_224);
+    if (%varplayerbit_32410 = 0) {
+        if_sethide(true, interface_1253:com_256);
+    } else {
+        if_sethide(false, interface_1253:com_256);
+    }
+} else {
     if_sethide(true, interface_1253:com_256);
     return;
-}
-if_sethide(true, interface_1253:com_224);
-if (%varplayerbit_32410 = 0) {
-    if_sethide(true, interface_1253:com_256);
-} else {
-    if_sethide(false, interface_1253:com_256);
 }
