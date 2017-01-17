@@ -1,5 +1,6 @@
 // 12382
 [proc,script12382](int $int0, int $int1)
+%varclient_5912 = $int0;
 if (%varclient_5209 = true) {
     if_sethide(true, interface_1746:com_38);
     if_sethide(false, interface_1746:com_1);
@@ -19,14 +20,16 @@ if ($int0 > 0) {
     if (%varclient_5209 = true) {
         if_sethide(false, interface_1746:com_32);
         if ($int1 = 1) {
-            if_setontimer("script12384(0, calc(30 * 30))", interface_1746:com_32);
+            %varclient_5916 = calc(clientclock + 30 * 30);
+            if_setontimer("script12384(clientclock, %varclient_5916)", interface_1746:com_0);
         }
     } else {
         if_setsize($int3, $int4, ^setsize_abs, ^setsize_abs, interface_1746:com_71);
         if_setontimer("script12383(0, 30, $int3, $int4, 16)", interface_1746:com_71);
         if_sethide(false, interface_1746:com_69);
         if ($int1 = 1) {
-            if_setontimer("script12384(0, calc(30 * 30))", interface_1746:com_69);
+            %varclient_5916 = calc(clientclock + 30 * 30);
+            if_setontimer("script12384(clientclock, %varclient_5916)", interface_1746:com_0);
         }
     }
 } else {
@@ -44,5 +47,5 @@ if ($int0 = $int2) {
     if_setcolour(^white, interface_1746:com_73);
     if_setcolour(^white, interface_1746:com_74);
     if_setcolour(^white, interface_1746:com_75);
-    if_settext("<col=ffffff>Multiplier: <col=ffffff><tostring(calc(100 + 10 * %varplayerbit_30862))>%</col>", interface_1746:com_35);
+    if_settext("<col=ffffff>Multiplier: <col=ffffff><tostring(calc(100 + 10 * $int0))>%</col>", interface_1746:com_35);
 }

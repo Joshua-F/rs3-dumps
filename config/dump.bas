@@ -23482,3 +23482,18 @@ readyanim=seq_30027,null
 [bas_3981]
 readyanim=seq_30028,null
 
+// 3982
+[bas_3982]
+readyanim=seq_30038,null
+
+// 3983
+[bas_3983]
+readyanim=seq_30040,null
+
+// 3984
+[bas_3984]
+readyanim_l=seq_30047
+readyanim_r=seq_30047
+runanim=seq_30048
+readyanim=seq_30046,seq_30047
+
