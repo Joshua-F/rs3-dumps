@@ -4,17 +4,20 @@
 ~script10083(2, 0, $int1, interface_1513:com_125, interface_1513:com_126, $int2, $int3, $int0, $int4);
 def_component $component5 = interface_1513:com_21;
 if_sethide(false, $component5);
-if (has_nxt = false) {
+if (detailcanmod_maxscreensize = true) {
     ~script10014(interface_1513:com_132, interface_1513:com_133, interface_1513:com_134, interface_1513:com_135, interface_1513:com_136, interface_1513:com_137, interface_1513:com_140, struct_28705);
     ~script10083(1, 2, $int1, interface_1513:com_135, interface_1513:com_136, $int2, $int3, $int0, $int4);
     if_setposition(0, 303, ^setpos_abs_left, ^setpos_abs_top, $component5);
 } else {
     if_sethide(true, interface_1513:com_7);
     if_setposition(0, 131, ^setpos_abs_left, ^setpos_abs_top, interface_1513:com_20);
-    if_setposition(0, calc(if_gety(interface_1513:com_20) + if_getheight(interface_1513:com_20) + 5), ^setpos_abs_left, ^setpos_abs_top, $component5);
 }
-~script10014(interface_1513:com_142, interface_1513:com_143, interface_1513:com_144, interface_1513:com_145, interface_1513:com_146, interface_1513:com_147, interface_1513:com_150, struct_28707);
-~script10083(3, -1, $int1, interface_1513:com_145, interface_1513:com_146, $int2, $int3, $int0, $int4);
+if (fullscreen_modecount > 0) {
+    ~script10014(interface_1513:com_142, interface_1513:com_143, interface_1513:com_144, interface_1513:com_145, interface_1513:com_146, interface_1513:com_147, interface_1513:com_150, struct_28707);
+    ~script10083(3, -1, $int1, interface_1513:com_145, interface_1513:com_146, $int2, $int3, $int0, $int4);
+} else {
+    if_sethide(true, interface_1513:com_20);
+}
 if (has_nxt = true | %varclient_178 < 0) {
     %varclient_178 = max(fullscreen_lastmode, 0);
 }

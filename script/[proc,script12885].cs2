@@ -10,41 +10,70 @@ def_int $int7 = if_getwidth($component1);
 def_graphic $graphic8 = rs3_contextual_input_green_check_mark;
 def_int $int9 = 18694;
 def_int $int10 = 21748;
-def_graphic $graphic11 = rs3_contextual_input_error;
-def_int $int12 = 3;
-def_int $intarray0($int12);
-def_int $intarray1($int12);
-def_int $int13 = 0;
+def_int $int11 = 18695;
+def_int $int12 = 8;
+def_int $int13 = $int12;
+def_int $intarray0($int13);
 def_int $int14 = 0;
 def_int $int15 = 0;
-def_int $int16 = 0;
-while ($int13 < $int12) {
-    switch_int ($int13) {
+while ($int14 < $int13) {
+    switch_int ($int14) {
         case 0 :
-            $int14 = struct_param($struct0, param_6161);
-            $int15 = struct_param($struct0, param_6162);
+            if (struct_param($struct0, param_6158) = 0) {
+                $intarray0($int15++) = $int14;
+            }
         case 1 :
-            $int14 = struct_param($struct0, param_6163);
-            $int15 = struct_param($struct0, param_6164);
+            if (struct_param($struct0, param_6159) = 0) {
+                $intarray0($int15++) = $int14;
+            }
         case 2 :
-            $int14 = struct_param($struct0, param_6165);
-            $int15 = struct_param($struct0, param_6166);
+            if (struct_param($struct0, param_6160) = 0) {
+                $intarray0($int15++) = $int14;
+            }
+        case 3 :
+            if (struct_param($struct0, param_6275) = 0) {
+                $intarray0($int15++) = $int14;
+            }
+        case default :
+            $int13 = $int15;
     }
-    if ($int14 = -1 | $int15 = -1) {
-        $int13 = $int12;
-    } else {
-        $intarray0($int13) = $int14;
-        $intarray1($int13) = $int15;
-        $int16 = calc($int16 + 1);
-        $int13 = calc($int13 + 1);
-    }
+    $int14 = calc($int14 + 1);
 }
-def_enum $enum17 = struct_param($struct0, param_6149);
+def_int $int16 = 3;
+def_int $intarray1($int16);
+def_int $intarray2($int16);
+def_int $int17 = 0;
 def_int $int18 = 0;
-if ($enum17 ! null) {
-    $int18 = min(12, enum_getoutputcount($enum17));
+$int14 = 0;
+$int15 = 0;
+while ($int14 < $int16) {
+    switch_int ($int14) {
+        case 0 :
+            $int15 = struct_param($struct0, param_6161);
+            $int17 = struct_param($struct0, param_6162);
+        case 1 :
+            $int15 = struct_param($struct0, param_6163);
+            $int17 = struct_param($struct0, param_6164);
+        case 2 :
+            $int15 = struct_param($struct0, param_6165);
+            $int17 = struct_param($struct0, param_6166);
+    }
+    if ($int15 = -1 | $int17 = -1) {
+        $int14 = $int16;
+    } else {
+        $intarray1($int14) = $int15;
+        $intarray2($int14) = $int17;
+        $int18 = calc($int18 + 1);
+        $int14 = calc($int14 + 1);
+    }
 }
-def_obj $obj19 = null;
+def_enum $enum19 = struct_param($struct0, param_6149);
+def_int $int20 = 0;
+if ($enum19 ! null) {
+    $int20 = min(12, enum_getoutputcount($enum19));
+}
+def_obj $obj21 = null;
+def_graphic $graphic22 = null;
 if (struct_param($struct0, param_6139) = 0 & struct_param($struct0, param_6140) ! null) {
     if ($int3 = 0) {
         cc_create($component1, ^iftype_text, $int3++);
@@ -79,49 +108,32 @@ if (struct_param($struct0, param_6139) = 0 & struct_param($struct0, param_6140) 
         cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         cc_setcolour(~script10495(0x00000c));
         $int6 = calc($int6 + (cc_getheight + 4));
-        if (struct_param($struct0, param_6158) = 0) {
+        $int14 = 0;
+        while ($int14 < $int13) {
             .cc_create($component1, ^iftype_graphic, $int3++);
             .cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
             .cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
             .cc_setgraphic($graphic8);
             cc_create($component1, ^iftype_text, $int3++);
             cc_settextfont(graphic_17813);
-            cc_settext("Skilling");
+            cc_settext(enum(int, string, enum_12071, $intarray0($int14)));
             cc_setposition(calc($int5 + .cc_getwidth + 4), $int6, ^setpos_abs_left, ^setpos_abs_top);
             cc_setsize(cc_getx, max(.cc_getheight, ~script7593(cc_gettext, calc($int7 - cc_getx), cc_getfontmetrics, 0)), ^setsize_minus, ^setsize_abs);
             cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
             cc_setcolour(~script10495(0x00000e));
             $int6 = calc($int6 + (max(cc_getheight, .cc_getheight) + 4));
+            if (++$int14 = calc($int12 / 2) & $int14 ! $int13) {
+                $int15 = $int5;
+                $int17 = $int6;
+                $int5 = calc($int5 + if_getwidth($component1) / 2);
+                $int6 = calc($int6 - (max(cc_getheight, .cc_getheight) + 4) * ($int12 / 2));
+            }
         }
-        if (struct_param($struct0, param_6159) = 0) {
-            .cc_create($component1, ^iftype_graphic, $int3++);
-            .cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
-            .cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
-            .cc_setgraphic($graphic11);
-            .cc_setgraphic($graphic8);
-            cc_create($component1, ^iftype_text, $int3++);
-            cc_settextfont(graphic_17813);
-            cc_settext("Combat");
-            cc_setposition(calc($int5 + .cc_getwidth + 4), $int6, ^setpos_abs_left, ^setpos_abs_top);
-            cc_setsize(cc_getx, max(.cc_getheight, ~script7593(cc_gettext, calc($int7 - cc_getx), cc_getfontmetrics, 0)), ^setsize_minus, ^setsize_abs);
-            cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-            cc_setcolour(~script10495(0x00000e));
-            $int6 = calc($int6 + (max(cc_getheight, .cc_getheight) + 4));
+        if ($int13 > calc($int12 / 2)) {
+            $int5 = $int15;
+            $int6 = $int17;
         }
-        if (struct_param($struct0, param_6160) = 0) {
-            .cc_create($component1, ^iftype_graphic, $int3++);
-            .cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
-            .cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
-            .cc_setgraphic($graphic8);
-            cc_create($component1, ^iftype_text, $int3++);
-            cc_settextfont(graphic_17813);
-            cc_settext("Daily challenges");
-            cc_setposition(calc($int5 + .cc_getwidth + 4), $int6, ^setpos_abs_left, ^setpos_abs_top);
-            cc_setsize(cc_getx, max(.cc_getheight, ~script7593(cc_gettext, calc($int7 - cc_getx), cc_getfontmetrics, 0)), ^setsize_minus, ^setsize_abs);
-            cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-            cc_setcolour(~script10495(0x00000e));
-            $int6 = calc($int6 + (max(cc_getheight, .cc_getheight) + 16));
-        }
+        $int6 = calc($int6 + 6);
         cc_create($component1, ^iftype_text, $int3++);
         cc_settextfont(cinzel_18pt_bold);
         cc_settextalign(^settextalign_left, ^settextalign_top, 0);
@@ -146,7 +158,7 @@ if (struct_param($struct0, param_6139) = 0 & struct_param($struct0, param_6140) 
         cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         cc_setcolour(~script10495(0x00000c));
         $int6 = calc($int6 + (cc_getheight + 8));
-        if ($int16 = 0) {
+        if ($int18 = 0) {
             .cc_create($component1, ^iftype_graphic, $int3++);
             .cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
             .cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
@@ -159,8 +171,8 @@ if (struct_param($struct0, param_6139) = 0 & struct_param($struct0, param_6140) 
             cc_settextfont(graphic_17813);
             cc_setcolour(~script10495(0x00000e));
         }
-        $int13 = 0;
-        while ($int13 < $int16) {
+        $int14 = 0;
+        while ($int14 < $int18) {
             .cc_create($component1, ^iftype_graphic, $int3++);
             .cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
             .cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
@@ -168,15 +180,15 @@ if (struct_param($struct0, param_6139) = 0 & struct_param($struct0, param_6140) 
             cc_create($component1, ^iftype_graphic, $int3++);
             cc_setposition($int5, calc($int6 + 1), ^setpos_abs_left, ^setpos_abs_top);
             cc_setsize(35, 35, ^setsize_abs, ^setsize_abs);
-            cc_setgraphic(enum(int, graphic, enum_8548, $intarray0($int13)));
+            cc_setgraphic(enum(int, graphic, enum_8548, $intarray1($int14)));
             cc_create($component1, ^iftype_text, $int3++);
             cc_setposition($int5, calc($int6 + 35 + 2), ^setpos_abs_left, ^setpos_abs_top);
-            cc_settext("+<tostring($intarray1($int13))>%");
+            cc_settext("+<tostring($intarray2($int14))>%");
             cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
             cc_setsize(36, enum(fontmetrics, int, enum_8549, graphic_17813), ^setsize_abs, ^setsize_abs);
             cc_settextfont(graphic_17813);
             cc_setcolour(~script10495(0x00000e));
-            $int13 = calc($int13 + 1);
+            $int14 = calc($int14 + 1);
             $int5 = calc($int5 + (.cc_getwidth + 6));
         }
     }
@@ -215,25 +227,32 @@ if (struct_param($struct0, param_6139) = 0 & struct_param($struct0, param_6140) 
         cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         cc_setcolour(~script10495(0x00000c));
         $int6 = calc($int6 + (cc_getheight + 8));
-        $int13 = 0;
-        while ($int13 < $int18) {
-            $obj19 = enum(int, obj, $enum17, $int13);
+        $int14 = 0;
+        while ($int14 < $int20) {
+            $obj21 = enum(int, obj, $enum19, $int14);
+            $graphic22 = oc_param($obj21, param_6276);
             .cc_create($component2, ^iftype_graphic, $int4++);
             .cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
             .cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
-            .cc_setgraphic(rs3_icon_slot_standard);
+            if ($graphic22 = null) {
+                .cc_setgraphic(rs3_icon_slot_standard);
+            } else {
+                .cc_setgraphic($graphic22);
+            }
             cc_create($component2, ^iftype_graphic, $int4++);
             cc_setposition(calc($int5 + 4), calc($int6 + 2), ^setpos_abs_left, ^setpos_abs_top);
             cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-            cc_setobject($obj19, -1);
+            if ($graphic22 = null) {
+                cc_setobject($obj21, -1);
+            }
             cc_setoutline(1);
-            cc_setonmouserepeat("script9564($obj19, event_com, cc_getid)");
+            cc_setonmouserepeat("script9564($obj21, event_com, cc_getid)");
             $int5 = calc($int5 + (.cc_getwidth + 6));
-            if (calc(($int13 + 1) % 6) = 0) {
+            if (calc(($int14 + 1) % 6) = 0) {
                 $int5 = 6;
                 $int6 = calc($int6 + (.cc_getheight + 6));
             }
-            $int13 = calc($int13 + 1);
+            $int14 = calc($int14 + 1);
         }
     }
 } else {

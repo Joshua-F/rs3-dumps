@@ -1,64 +1,70 @@
 // 4717
-[clientscript,script4717](component $component0, int $int1, int $int2, enum $enum3)
+[clientscript,script4717](component $component0, component $component1, enum $enum2)
 cc_deleteall($component0);
-def_int $int4 = 48;
-def_int $int5 = 48;
-def_int $int6 = 0;
-def_struct $struct7 = null;
-def_graphic $graphic8 = null;
-def_int $int9 = -1;
+def_int $int3 = -1;
+def_struct $struct4 = null;
+def_graphic $graphic5 = null;
+def_int $int6 = -1;
 def_string $string0 = "";
-def_string $string1 = "";
-def_boolean $boolean10 = true;
-def_int $int11 = -1;
-def_int $int12 = max(%varclient_2768, 0);
-if_settext("1", interface_590:com_20);
-if_settext("1", interface_1438:com_19);
-while ($int6 < enum_getoutputcount($enum3)) {
-    $struct7 = enum(int, struct, $enum3, $int6);
-    $graphic8 = struct_param($struct7, param_1420);
-    $boolean10 = ~emotes2_unlock_check($struct7);
-    $string0 = struct_param($struct7, param_1419);
-    cc_create($component0, ^iftype_graphic, $int6);
-    cc_setsize($int4, $int5, ^setsize_abs, ^setsize_abs);
-    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-    if ($boolean10 = false) {
-        $graphic8 = struct_param($struct7, param_1421);
+def_boolean $boolean7 = true;
+def_int $int8 = -1;
+def_int $int9 = max(%varclient_2768, 0);
+def_int $int10 = enum_getoutputcount($enum2);
+def_int $iftype11 = ^iftype_graphic;
+if (%varplayerbit_34815 = 1) {
+    $iftype11 = ^iftype_text;
+}
+while (++$int3 < $int10) {
+    $struct4 = enum(int, struct, $enum2, $int3);
+    $graphic5 = struct_param($struct4, param_1420);
+    $boolean7 = ~emotes2_unlock_check($struct4);
+    $string0 = struct_param($struct4, param_1419);
+    cc_create($component0, $iftype11, $int3);
+    if (%varplayerbit_34815 = 1) {
+        cc_setsize(107, 13, ^setsize_abs, ^setsize_abs);
+    } else {
+        cc_setsize(48, 48, ^setsize_abs, ^setsize_abs);
     }
-    if ($struct7 = struct_1783) {
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    if ($boolean7 = false) {
+        $graphic5 = struct_param($struct4, param_1421);
+    }
+    if ($struct4 = struct_1783) {
         if (gender > 0) {
-            $struct7 = struct_1789;
-            $graphic8 = struct_param($struct7, param_1420);
-            $string0 = struct_param($struct7, param_1419);
-            $string1 = "Curtsy";
+            $struct4 = struct_1789;
+            $graphic5 = struct_param($struct4, param_1420);
+            $string0 = struct_param($struct4, param_1419);
             cc_setop(1, "Curtsy");
             cc_setop(2, "Bow");
-            cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
         } else {
             cc_setop(1, "Bow");
             cc_setop(2, "Curtsy");
-            $string1 = "Bow";
-            cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
         }
-    } else if ($struct7 = struct_19557) {
+    } else if ($struct4 = struct_19557) {
         cc_setop(1, "Talk (A)");
         cc_setop(2, "Talk (B)");
-        $string1 = "Talk";
-        cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
     }
-    if ($boolean10 = true & struct_param($struct7, param_5430) = 1) {
+    if ($boolean7 = true & struct_param($struct4, param_5430) = 1) {
         cc_setop(1, $string0);
         cc_setop(2, "Choose");
-        $string1 = "Choose";
-        cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
     } else {
         cc_setop(1, $string0);
-        cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
     }
-    cc_setgraphic($graphic8);
+    cc_setparam(param_6277, $boolean7);
+    cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
+    if (%varplayerbit_34815 = 1) {
+        cc_settext($string0);
+        cc_settextfont(graphic_17813);
+        cc_setmaxlines(1);
+        if ($boolean7 = true) {
+            ~script11024(0x00000c);
+        } else {
+            ~script11024(0x00003d);
+        }
+    } else {
+        cc_setgraphic($graphic5);
+    }
     cc_setonmouseleave("script8805");
     cc_setondragcomplete("script7001(event_com, event_comsubid, event_com2)");
-    $int6 = calc($int6 + 1);
 }
-~emotes2_sort(interface_590:com_8, interface_590:com_7, $enum3, -5, 10, $int12);
-~emotes2_sort(interface_1438:com_13, interface_1438:com_12, $enum3, -5, 10, $int12);
+~emotes2_sort($component0, $component1, $enum2, $int9);
