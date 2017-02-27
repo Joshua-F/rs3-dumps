@@ -1,0 +1,28 @@
+// 13040
+[proc,script13040](int $int0)(boolean)
+if (~map_members = false) {
+    return(false);
+}
+def_obj $obj1 = inv_getobj(inv_94, 1);
+def_stat $stat2 = null;
+if ($obj1 = null) {
+    return(false);
+}
+if (($int0 <= 0 | $int0 > enum_getoutputcount(enum_681)) & $int0 ! 31) {
+    ~error("Invalid stat perk attempting to be activated! $stat = <tostring($int0)>");
+    return(false);
+}
+if (oc_param($obj1, param_258) = 0) {
+    return(false);
+}
+if (oc_param($obj1, param_4552) = 1 | oc_param($obj1, param_6295) = 1) {
+    return(~script13041($int0));
+}
+if ($int0 = 31 & oc_param($obj1, param_6296) = 1) {
+    return(true);
+}
+$stat2 = enum(int, stat, enum_681, $int0);
+if ($stat2 ! oc_param($obj1, param_277)) {
+    return(false);
+}
+return(~script13042($int0));

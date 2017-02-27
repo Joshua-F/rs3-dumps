@@ -1,94 +1,100 @@
 // 7420
-[proc,script7420](component $component0, component $component1, component $component2, component $component3, component $component4)(boolean)
+[proc,script7420](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7)(boolean)
 ~lobby_worldswitcher_sort;
-def_int $int5 = 0;
-def_int $int6 = 0;
-def_string $string0 = "";
-def_int $int7 = 0;
-def_string $string1 = "";
 def_int $int8 = 0;
 def_int $int9 = 0;
+def_string $string0 = "";
+def_int $int10 = 0;
+def_string $string1 = "";
+def_int $int11 = 0;
+def_int $int12 = 0;
 def_string $string2 = "";
-$int5, $int6, $string0, $int7, $string1, $int8, $int9, $string2 = worldlist_start;
-if ($int5 = -1) {
+$int8, $int9, $string0, $int10, $string1, $int11, $int12, $string2 = worldlist_start;
+if ($int8 = -1) {
     return(false);
 }
-def_int $rgb10 = ^black;
-def_int $rgb11 = ^black;
-def_int $int12 = 0;
-def_int $int13 = 0;
-def_int $int14 = 0;
-def_int $int15 = if_getwidth($component0);
+def_int $rgb13 = ^black;
+def_int $rgb14 = ^black;
+def_int $int15 = 0;
 def_int $int16 = 0;
 def_int $int17 = 0;
-def_int $int18 = 0;
-def_string $string3 = "";
-def_graphic $graphic19 = null;
+def_int $int18 = if_getwidth($component0);
+def_int $int19 = 0;
 def_int $int20 = 0;
+def_int $int21 = 0;
+def_string $string3 = "";
+def_graphic $graphic22 = null;
+def_int $int23 = 0;
+def_int $int24 = 0;
+def_component $component25 = $component1;
+def_component $component26 = $component2;
 if (~script7421(%varclient_998) = true) {
-    $int14 = calc($int14 + 22);
+    $int24 = calc($int24 + 22);
 }
 if (~script7421(%varclient_999) = true) {
-    $int14 = calc($int14 + 22);
+    $int24 = calc($int24 + 22);
 }
 if (~script7421(%varclient_4272) = true) {
-    $int14 = calc($int14 + 22);
+    $int24 = calc($int24 + 22);
 }
-while ($int5 ! -1) {
-    if (~script7421($int5) = true) {
-        if ($int5 = %varclient_998) {
-            $int16, $rgb10, $int20, $graphic19 = ~script11037($int17), 1, "rs3_icon_lobby_favorite_small,0";
-        } else if ($int5 = %varclient_999) {
-            $int16, $rgb10, $int20, $graphic19 = ~script11037($int17), 1, "rs3_icon_lobby_favorite_small,0";
-        } else if ($int5 = %varclient_4272) {
-            $int16, $rgb10, $int20, $graphic19 = ~script11037($int17), 1, "rs3_icon_lobby_favorite_small,0";
+if_setsize(if_getwidth($component4), $int24, ^setsize_abs, ^setsize_abs, $component4);
+if_setposition(0, calc(if_gety($component4) + $int24), ^setpos_abs_left, ^setpos_abs_top, $component0);
+if_setsize($int18, calc(55 + $int24), ^setsize_abs, ^setsize_minus, $component0);
+while ($int8 ! -1) {
+    if (~script7421($int8) = true) {
+        if ($int8 = %varclient_998 | $int8 = %varclient_999 | $int8 = %varclient_4272) {
+            $int19, $rgb13, $int23, $graphic22 = ~script11037($int20), 1, "rs3_icon_lobby_favorite_small,0";
+            $component25 = $component5;
+            $component26 = $component6;
         } else {
-            $int16, $int20, $graphic19 = $int14, 0, "rs3_icon_lobby_favorite_small,2";
-            if (calc($int12 % 2) = 0) {
-                $rgb10 = 0x000034;
+            $int19, $int23, $graphic22 = $int17, 0, "rs3_icon_lobby_favorite_small,2";
+            if (calc($int15 % 2) = 0) {
+                $rgb13 = 0x000034;
             } else {
-                $rgb10 = 0x000033;
+                $rgb13 = 0x000033;
             }
+            $component25 = $component1;
+            $component26 = $component2;
         }
-        if (map_world = $int5) {
-            $int18 = $int16;
+        if (map_world = $int8) {
+            $int21 = $int19;
         }
-        if (testbit($int6, 0) = ^false) {
-            $rgb11 = 0x00000e;
+        if (testbit($int9, 0) = ^false) {
+            $rgb14 = 0x00000e;
         } else {
-            $rgb11 = 0x00000a;
+            $rgb14 = 0x00000a;
         }
-        ~script11015($component1, $rgb10, 0, $int16, $int15);
+        ~script11015($component25, $rgb13, 0, $int19, $int18);
         cc_setonmouseover("script7427(event_com, event_comsubid)");
-        cc_setonmouseleave("script7429(event_com, event_comsubid, $rgb10)");
-        ~script7742($component1, $graphic19, 2, $int16, 21, 21);
+        cc_setonmouseleave("script7429(event_com, event_comsubid, $rgb13)");
+        ~script7742($component25, $graphic22, 2, $int19, 21, 21);
         cc_setop(1, "Toggle favourite");
-        cc_setonop("script7426(event_com, event_comsubid, $int20, $component0, $component1, $component2, $component3, $component4, $int5)");
-        cc_setonmouseover("script7437(event_com, event_comsubid, $int5)");
-        cc_setonmouseleave("script7438(event_com, event_comsubid, $int5)");
-        ~script11014($component1, tostring($int5), $rgb11, 30, $int16, 60);
-        if ($int8 >= 1980) {
+        cc_setonop("script7426(event_com, event_comsubid, $int23, $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $int8)");
+        cc_setonmouseover("script7437(event_com, event_comsubid, $int8)");
+        cc_setonmouseleave("script7438(event_com, event_comsubid, $int8)");
+        ~script11014($component25, tostring($int8), $rgb14, 30, $int19, 60);
+        if ($int11 >= 1980) {
             $string3 = "FULL";
-        } else if ($int8 >= 0) {
-            $string3 = tostring($int8);
+        } else if ($int11 >= 0) {
+            $string3 = tostring($int11);
         } else {
             $string3 = "OFFLINE";
         }
-        ~script11014($component1, $string3, $rgb11, 95, $int16, 60);
-        if (testbit($int6, 4) = ^true | string_length($string0) >= 2) {
-            $graphic19 = enum(int, graphic, enum_730, 1);
+        ~script11014($component25, $string3, $rgb14, 95, $int19, 60);
+        if (testbit($int9, 4) = ^true | string_length($string0) >= 2) {
+            $graphic22 = enum(int, graphic, enum_730, 1);
         } else {
             switch_int (map_lang) {
                 case default :
-                    $graphic19 = enum(int, graphic, enum_1810, $int7);
+                    $graphic22 = enum(int, graphic, enum_1810, $int10);
                 case 1 :
-                    $graphic19 = "rs3_icon_world_select_country_flags,7";
+                    $graphic22 = "rs3_icon_world_select_country_flags,7";
                 case 2 :
-                    $graphic19 = enum(int, graphic, enum_1810, 74);
+                    $graphic22 = enum(int, graphic, enum_1810, 74);
                 case 3 :
-                    $graphic19 = enum(int, graphic, enum_1810, 31);
+                    $graphic22 = enum(int, graphic, enum_1810, 31);
                 case 6 :
-                    $graphic19 = enum(int, graphic, enum_1810, 67);
+                    $graphic22 = enum(int, graphic, enum_1810, 67);
             }
         }
         if (string_length($string0) < 2) {
@@ -105,42 +111,42 @@ while ($int5 ! -1) {
                     $string0 = "Spanish (Latin American)";
             }
         }
-        if (testbit($int6, 20) = ^true) {
-            $graphic19 = "rs3_icon_world_select_game_flags,2";
+        if (testbit($int9, 20) = ^true) {
+            $graphic22 = "rs3_icon_world_select_game_flags,2";
         }
-        ~script7742($component1, $graphic19, 160, calc($int16 + (22 - 12) / 2), 12, 24);
-        ~script11014($component1, $string0, $rgb11, 186, $int16, 184);
-        if (testbit($int6, 0) = ^false) {
-            ~script11014($component1, "Free", $rgb11, 375, $int16, 55);
+        ~script7742($component25, $graphic22, 160, calc($int19 + (22 - 12) / 2), 12, 24);
+        ~script11014($component25, $string0, $rgb14, 186, $int19, 184);
+        if (testbit($int9, 0) = ^false) {
+            ~script11014($component25, "Free", $rgb14, 375, $int19, 55);
         } else {
-            ~script11014($component1, "Members", $rgb11, 375, $int16, 55);
+            ~script11014($component25, "Members", $rgb14, 375, $int19, 55);
         }
-        if (testbit($int6, 3) = ^true) {
-            ~script7742($component1, rs3_contextual_input_accept, 445, calc($int16 + (22 - 16) / 2), 16, 16);
+        if (testbit($int9, 3) = ^true) {
+            ~script7742($component25, rs3_contextual_input_accept, 445, calc($int19 + (22 - 16) / 2), 16, 16);
         } else {
-            ~script7742($component1, rs3_contextual_input_minus, 445, calc($int16 + (22 - 16) / 2), 16, 16);
+            ~script7742($component25, rs3_contextual_input_minus, 445, calc($int19 + (22 - 16) / 2), 16, 16);
         }
-        if (cc_find($component2, $int5) = true) {
+        if (cc_find($component26, $int8) = true) {
             cc_setop(1, "Select");
             cc_setop(2, "Quick-hop");
-            cc_setposition(30, $int16, ^setpos_abs_left, ^setpos_abs_top);
-            cc_setsize(calc($int15 - 30), 22, ^setsize_abs, ^setsize_abs);
+            cc_setposition(calc(30 - 5), $int19, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize(calc($int18 - 30 + 5), 22, ^setsize_abs, ^setsize_abs);
             cc_sethide(false);
         }
-        if ($int20 = 0) {
-            $int14 = calc($int14 + 22);
+        if ($int23 = 0) {
+            $int17 = calc($int17 + 22);
         } else {
-            $int17 = calc($int17 + 1);
+            $int20 = calc($int20 + 1);
         }
-        $int12 = calc($int12 + 1);
+        $int15 = calc($int15 + 1);
     }
-    $int5, $int6, $string0, $int7, $string1, $int8, $int9, $string2 = worldlist_next;
+    $int8, $int9, $string0, $int10, $string1, $int11, $int12, $string2 = worldlist_next;
 }
-def_int $int21 = if_getheight($component0);
-if ($int14 > $int21) {
-    if_setscrollsize(0, $int14, $component0);
-    if ($int18 ! 0) {
-        if_setscrollpos(0, max(0, min($int14, calc($int18 - $int21 / 2))), $component0);
+def_int $int27 = if_getheight($component0);
+if ($int17 > $int27) {
+    if_setscrollsize(0, $int17, $component0);
+    if ($int21 ! 0) {
+        if_setscrollpos(0, max(0, min($int17, calc($int21 - $int27 / 2))), $component0);
     }
 } else {
     if_setscrollsize(0, 0, $component0);
