@@ -17,26 +17,33 @@ def_int $int11 = 1;
 def_int $int12 = 104;
 def_int $int13 = 0;
 def_obj $obj14 = null;
-def_struct $struct15 = null;
-def_enum $enum16 = ~script11838($struct2);
-def_int $int17 = min(scale($int0, 1000, 100), scale($int1, 1000, 100));
+def_obj $obj15 = null;
+def_inv $inv16 = null;
+def_struct $struct17 = null;
+def_enum $enum18 = ~script11838($struct2);
+def_int $int19 = min(scale($int0, 1000, 100), scale($int1, 1000, 100));
 while ($int11 <= 10) {
     $int13 = calc($int12 + 60 * $int11);
     $int10 = if_getnextsubid($component5);
-    if ($int17 >= calc($int11 * 10)) {
-        $struct15 = struct_28303;
+    if ($int19 >= calc($int11 * 10)) {
+        $struct17 = struct_28303;
     } else {
-        $struct15 = struct_21363;
+        $struct17 = struct_21363;
     }
-    ~rs3_background_panel_dynamic($component5, $struct15, calc($int13 - 18), 131, 36, 36, null);
-    $obj14 = enum(int, obj, $enum16, calc($int11 - 1));
+    ~rs3_background_panel_dynamic($component5, $struct17, calc($int13 - 18), 131, 36, 36, null);
+    $obj14 = enum(int, obj, $enum18, calc($int11 - 1));
     cc_create($component5, ^iftype_model, if_getnextsubid($component5));
     cc_setobject($obj14, 1);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int13 - 18), 133, ^setpos_abs_left, ^setpos_abs_top);
-    $string0 = "<oc_name($obj14)><br><oc_param($obj14, param_4085)>";
-    cc_setonmouserepeat("script8799($string0, $component5, calc(if_getnextsubid($component5) - 1))");
-    if ($int17 < calc($int11 * 10)) {
+    $obj14, $obj15, $inv16 = ~script13265($obj14);
+    $inv16 = inv_819;
+    if ($obj15 ! null & $obj15 ! $obj14) {
+        cc_setonmouserepeat("script13254($obj14, $obj15, $inv16, event_com, event_comsubid)");
+    } else {
+        cc_setonmouserepeat("script10767($obj14, $obj15, $inv16, event_com, event_comsubid)");
+    }
+    if ($int19 < calc($int11 * 10)) {
         cc_create($component5, ^iftype_graphic, if_getnextsubid($component5));
         cc_setgraphic(rs3_icon_lock_33px);
         cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);

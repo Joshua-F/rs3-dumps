@@ -13,19 +13,21 @@ def_int $int14 = 0;
 def_component $component15 = ~script10074;
 def_component $component16 = ~script10075;
 def_component $component17 = ~script10076;
+def_int $int18 = 0;
 if (%varclient_2 ! 1 | $int8 = 1) {
     $int2 = min($int2, if_getwidth($component15));
     if_opensubclient($component16, interface_1486);
-    if_setsize(0, 0, ^setsize_abs, ^setsize_abs, interface_1486:com_1);
+    if_setsize(0, 0, ^setsize_abs, ^setsize_abs, interface_1486:com_9);
     if_setparam_int(param_4145, -1, $component17);
-    if_sethide(true, interface_1486:com_25);
-    cc_deleteall(interface_1486:com_25);
-    if_sethide(true, interface_1486:com_26);
-    if_settext(null, interface_1486:com_26);
+    if_sethide(true, interface_1486:com_22);
+    cc_deleteall(interface_1486:com_22);
+    if_sethide(true, interface_1486:com_23);
+    if_settext(null, interface_1486:com_23);
+    if_sethide(true, interface_1477:com_931);
     if ($int1 ! -1) {
         if_setparam_int(param_4145, $int1, $component17);
-        if_sethide(false, interface_1486:com_25);
-        if_setsize(0, 0, ^setsize_abs, ^setsize_abs, interface_1486:com_25);
+        if_sethide(false, interface_1486:com_22);
+        if_setsize(0, 0, ^setsize_abs, ^setsize_abs, interface_1486:com_22);
         if (cc_find($component17, 0) = true) {
             switch_int ($int1) {
                 case 0 :
@@ -34,32 +36,33 @@ if (%varclient_2 ! 1 | $int8 = 1) {
                     ~thas_lodestone_tooltip;
                 case 2 :
                     ~lobby_world_tooltip;
-                case 3 :
+                case 3, 4 :
                     ~rs3_item_tooltip;
-                case 4 :
-                    ~script12891;
+                    $int18 = 1;
+                case 5 :
+                    ~cheevo_tooltip;
             }
         }
-        if (if_getwidth(interface_1486:com_25) = 0 | if_getheight(interface_1486:com_25) = 0) {
+        if (if_getwidth(interface_1486:com_22) = 0 | if_getheight(interface_1486:com_22) = 0) {
             ~script8808;
             return;
         } else {
-            if_setsize(if_getwidth(interface_1486:com_25), if_getheight(interface_1486:com_25), ^setsize_abs, ^setsize_abs, interface_1486:com_1);
+            if_setsize(if_getwidth(interface_1486:com_22), if_getheight(interface_1486:com_22), ^setsize_abs, ^setsize_abs, interface_1486:com_9);
         }
     } else if (compare($string0, "") ! 0) {
-        if_sethide(false, interface_1486:com_26);
-        ~script9567($string0, $fontmetrics6, $rgb7, $int2, interface_1486:com_1, interface_1486:com_26);
+        if_sethide(false, interface_1486:com_23);
+        ~script9567($string0, $fontmetrics6, $rgb7, $int2, interface_1486:com_9, interface_1486:com_23);
     } else {
         ~script8808;
         return;
     }
-    $int11 = if_getwidth(interface_1486:com_1);
-    $int12 = if_getheight(interface_1486:com_1);
-    if_setsize(calc($int11 + 5 * 2), calc($int12 + 5 * 2), ^setsize_abs, ^setsize_abs, interface_1486:com_1);
+    $int11 = if_getwidth(interface_1486:com_9);
+    $int12 = if_getheight(interface_1486:com_9);
+    if_setsize(calc($int11 + 5 * 2), calc($int12 + 5 * 2), ^setsize_abs, ^setsize_abs, interface_1486:com_9);
     %varclient_2 = 1;
 }
-$int11 = if_getwidth(interface_1486:com_1);
-$int12 = if_getheight(interface_1486:com_1);
+$int11 = if_getwidth(interface_1486:com_9);
+$int12 = if_getheight(interface_1486:com_9);
 $int9, $int10, $int13, $int14 = ~script12613($component4, $int5);
 if (calc($int10 - ($int12 + 2)) >= 0) {
     $int10 = calc($int10 - ($int12 + 2));
@@ -69,4 +72,7 @@ if (calc($int10 - ($int12 + 2)) >= 0) {
 $int9 = calc($int9 + $int13 / 2 - $int11 / 2);
 $int9 = max($int9, 0);
 $int9 = min($int9, calc(if_getwidth($component15) - $int11));
-if_setposition($int9, $int10, ^setpos_abs_left, ^setpos_abs_top, interface_1486:com_1);
+if_setposition($int9, $int10, ^setpos_abs_left, ^setpos_abs_top, interface_1486:com_9);
+if ($int18 = 1 & if_find(interface_1486:com_9) = true & .if_find(interface_1477:com_931) = true) {
+    .cc_setposition(calc(cc_getx + cc_getwidth / 2 - .cc_getwidth / 2), calc(cc_gety + cc_getheight - .cc_getheight - 5), ^setpos_abs_left, ^setpos_abs_top);
+}

@@ -1,0 +1,29 @@
+// 13326
+[proc,script13326](int $int0)
+def_string $string0 = "Pin Achievement";
+def_string $string1 = "Pin";
+def_int $int1 = 1;
+def_graphic $graphic2 = graphic_30212;
+def_graphic $graphic3 = graphic_30213;
+def_graphic $graphic4 = graphic_30215;
+def_int $int5 = 0;
+if (calc(%varplayerbit_35411 - 1) = $int0 | calc(%varplayerbit_35412 - 1) = $int0 | calc(%varplayerbit_35413 - 1) = $int0) {
+    $string0 = "Unpin Achievement";
+    $string1 = "Unpin";
+    $int1 = 2;
+    $graphic2 = graphic_30214;
+    $int5 = 1;
+}
+cc_clearops;
+cc_setop($int1, $string1);
+cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
+cc_setgraphic($graphic2);
+cc_setonmouseover("graphic_swapper_dynamic(event_com, event_comsubid, $graphic3)");
+cc_setonmouseleave("graphic_swapper_dynamic(event_com, event_comsubid, $graphic2)");
+cc_setonclick("graphic_swapper_dynamic(event_com, event_comsubid, $graphic4)");
+cc_setonrelease("graphic_swapper_dynamic(event_com, event_comsubid, $graphic3)");
+if ($int5 = 1) {
+    cc_setonop("script13340");
+} else {
+    cc_setonop("script13341");
+}

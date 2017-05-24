@@ -1,0 +1,39 @@
+// 13178
+[proc,script13178]()(struct, struct, graphic)
+def_struct $struct0 = struct_35515;
+def_graphic $graphic1 = rs3_ragdoll_glow_unavailable;
+def_struct $struct2 = struct_35559;
+if (cc_param(param_2531) = 2 & cc_param(param_2532) = 19) {
+    $struct0 = struct_35508;
+    $graphic1 = rs3_ragdoll_glow_available;
+    $struct2 = struct_35554;
+} else if (testbit(cc_param(param_6371), 1) = ^true) {
+    $struct0 = struct_35508;
+    $graphic1 = rs3_ragdoll_glow_available;
+    if (cc_param(param_2546) = 12) {
+        $struct2 = struct_35558;
+    } else if (testbit(cc_param(param_6371), 2) = ^true) {
+        $struct2 = struct_35555;
+    }
+} else {
+    switch_int (cc_param(param_2546)) {
+        case 1, 2 :
+            $struct0 = struct_35522;
+            $graphic1 = rs3_ragdoll_glow_buyable;
+        case 3 :
+            $struct0 = struct_35529;
+            $graphic1 = rs3_ragdoll_glow_treasure_hunter;
+            $struct2 = struct_35557;
+        case 8, 9, 4 :
+            $struct0 = struct_35529;
+            $graphic1 = rs3_ragdoll_glow_treasure_hunter;
+        case 12 :
+            $struct0 = struct_35508;
+            $graphic1 = rs3_ragdoll_glow_available;
+            $struct2 = struct_35558;
+    }
+    if ($struct2 = struct_35559 & testbit(cc_param(param_6371), 4) = ^true) {
+        $struct2 = struct_35556;
+    }
+}
+return($struct0, $struct2, $graphic1);

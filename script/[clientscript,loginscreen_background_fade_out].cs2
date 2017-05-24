@@ -1,0 +1,22 @@
+// 13390
+[clientscript,loginscreen_background_fade_out](component $component0, component $component1, int $int2, int $int3)
+def_int $int4 = calc(255 - min(255, calc(max(0, calc(clientclock - $int2)) * 4)));
+def_int $int5 = -1;
+if_settrans($int4, $component1);
+if ($int4 = 0) {
+    if ($int3 = 15) {
+        %varclient_6042 = 1;
+        $int3 = ~script13386;
+        if_setontimer("script13387($component0, $component1, clientclock)", $component0);
+    } else {
+        %varclient_6042 = 0;
+    }
+    %varclient_6040 = $int3;
+    detail_loadingscreentype($int3);
+    if ($component1 = interface_744:com_14) {
+        ~loginscreen_set_background;
+    } else {
+        ~script13384;
+    }
+    if_setontimer("loginscreen_background_fade_in($component1, clientclock)", $component1);
+}

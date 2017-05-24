@@ -1,7 +1,16 @@
 // 1701
 [clientscript,scrollbar_horizontal_wheel](component $component0, component $component1, int $int2)
-def_int $int3 = if_getscrollx($component1);
-$int3 = calc($int3 + $int2 * 45);
+def_int $int3 = 0;
+def_int $int4 = 0;
+if (if_find($component0) = true) {
+    $int3 = cc_param(param_6315);
+    $int4 = cc_param(param_6316);
+    if ($int4 > 0) {
+        $int2 = max(min($int2, $int4), calc(0 - $int4));
+    }
+}
+def_int $int5 = if_getscrollx($component1);
+$int5 = calc($int5 + $int2 * $int3);
 if (cc_find($component0, 1) = true) {
-    ~scrollbar_horizontal_doscroll($component0, $component1, $int3, 1);
+    ~scrollbar_horizontal_doscroll($component0, $component1, $int5, 1);
 }

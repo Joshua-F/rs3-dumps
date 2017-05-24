@@ -1,0 +1,26 @@
+// 13343
+[proc,script13343](int $int0, int $int1, string $string0, struct $struct2)(int)
+def_int $int3 = calc(if_getwidth(interface_1851:com_49) / 2 - 6);
+cc_create(interface_1851:com_49, ^iftype_text, if_getnextsubid(interface_1851:com_49));
+if (calc($int0 % 2) = 0) {
+    cc_setposition(3, $int1, ^setpos_abs_left, ^setpos_abs_top);
+} else {
+    cc_setposition(3, $int1, ^setpos_abs_right, ^setpos_abs_top);
+}
+def_int $int4 = calc(paraheight($string0, $int3, graphic_17813) * 16);
+cc_setsize($int3, $int4, ^setsize_abs, ^setsize_abs);
+cc_settext($string0);
+cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+cc_settextfont(graphic_17813);
+if ($struct2 ! null) {
+    cc_setop(1, "Go To");
+    cc_setonop("cheevo_find_achievement($struct2)");
+}
+if (calc($int0 % 2) = 1) {
+    if (.cc_find(interface_1851:com_49, calc(cc_getid - 1)) = true) {
+        $int1 = calc($int1 + max(cc_getheight, .cc_getheight));
+    } else {
+        $int1 = calc($int1 + cc_getheight);
+    }
+}
+return($int1);

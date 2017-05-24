@@ -1,0 +1,87 @@
+// 5758
+[proc,script5758](int $int0, int $int1)
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_component $component4 = null;
+def_component $component5 = null;
+if ($int0 = 122290227) {
+    $int2 = %varclientbit_35729;
+    $int3 = 1;
+    $component4 = interface_1866:com_40;
+    $component5 = interface_1866:com_41;
+} else {
+    $int2 = %varclientbit_35730;
+    $int3 = 0;
+    $component4 = interface_1866:com_68;
+    $component5 = interface_1866:com_69;
+}
+if ($int1 = 0 & $int2 = 0) {
+    ~script5760(2);
+    return;
+}
+if (%varplayer_6936 = 0) {
+    return;
+}
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = calc(enum_getoutputcount(enum_12533) + 1);
+def_int $intarray0(calc($int8 + 1));
+def_int $int9 = -1;
+def_int $int10 = -1;
+def_struct $struct11 = null;
+while ($int7 <= $int8) {
+    $struct11 = enum(int, struct, enum_12533, $int7);
+    $int9 = struct_param($struct11, param_6506);
+    if ($int3 = 1) {
+        if ($int9 = 1 & ~script5759($int7) = 1) {
+            $intarray0($int6) = $int7;
+            $int6 = calc($int6 + 1);
+        }
+    } else if ($int9 ! 1 & ~script5759($int7) = 1) {
+        $intarray0($int6) = $int7;
+        $int6 = calc($int6 + 1);
+    }
+    $int7 = calc($int7 + 1);
+}
+if ($int6 = 0) {
+    return;
+}
+def_int $int12 = 0;
+def_int $int13 = 3;
+def_int $int14 = calc($int13 * ($int6 + 1) + 28 * $int6);
+if ($int14 > if_getheight($component4)) {
+    $int12 = 1;
+}
+def_int $int15 = if_getnextsubid($component4);
+cc_create($component4, ^iftype_rectangle, $int15);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(0, $int14, ^setsize_minus, ^setsize_abs);
+cc_setcolour(0x071820);
+cc_setfill(true);
+cc_settrans(%varclientbit_19930);
+cc_setonmouseover("script5761($int3, 1)");
+cc_setonmouseleave("script5761($int3, 0)");
+if_sethide(false, $component4);
+if_sethide(false, $component5);
+$int7 = 0;
+$struct11 = null;
+def_int $int16 = calc(if_getwidth($component4) / 2 - 28 / 2);
+if ($int12 = 1) {
+    $int16 = calc($int16 - 14 / 2);
+}
+def_int $int17 = $int13;
+while ($int7 < $int6) {
+    $int15 = if_getnextsubid($component4);
+    cc_create($component4, ^iftype_graphic, $int15);
+    cc_setposition($int16, $int17, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(28, 28, ^setsize_abs, ^setsize_abs);
+    cc_setonmouserepeat("script5763($intarray0($int7), $component4, $int15)");
+    cc_setgraphic(struct_param(enum(int, struct, enum_12533, $intarray0($int7)), param_6504));
+    $int17 = calc($int17 + $int13 + 28);
+    $int7 = calc($int7 + 1);
+}
+if ($int12 = 1) {
+    if_setscrollsize(0, $int14, $component4);
+    if_setscrollpos(0, 0, $component4);
+    ~rs3_scrollbar_vertical($component5, $component4);
+}

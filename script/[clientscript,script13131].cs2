@@ -1,0 +1,22 @@
+// 13131
+[clientscript,script13131](component $component0, component $component1, int $int2, int $int3)
+def_int $int4 = 0;
+def_int $int5 = 0;
+if (if_find($component0) = true) {
+    $int4 = cc_param(param_6312);
+    $int5 = cc_param(param_6313);
+}
+if ($int5 > 0 & cc_find($component0, $int3) = true) {
+    if (calc(clientclock - cc_param(param_6314)) < $int5) {
+        return;
+    } else {
+        cc_setparam(param_6314, clientclock);
+    }
+}
+if ($int2 = 1) {
+    $int4 = ~invert($int4);
+}
+def_int $int6 = calc(if_getscrollx($component1) + $int4);
+if (cc_find($component0, 1) = true) {
+    ~scrollbar_horizontal_doscroll($component0, $component1, $int6, 1);
+}

@@ -10,17 +10,22 @@ if ($int2 < 0) {
 if ($int2 > $int4) {
     $int2 = $int4;
 }
+def_int $int5 = if_getscrollx($component1);
 if_setscrollpos($int2, if_getscrolly($component1), $component1);
 switch_component ($component1) {
     case interface_1588:com_2, interface_1681:com_5 :
         ~telemetry_set_scroll_horizontal($component1, $int2, $int3);
+    case interface_1843:com_261 :
+        ~script13174($int5, $int2);
 }
-def_int $int5 = 0;
-$int5 = calc(if_getwidth($component0) - 32 - cc_getwidth - 10);
-cc_setposition(calc(21 + scale($int2, $int4, $int5)), 0, ^setpos_abs_left, ^setpos_abs_top);
-if (.cc_find($component0, 2) = true) {
-    .cc_setposition(calc(cc_getx - 5), 0, ^setpos_abs_left, ^setpos_abs_top);
-}
-if (.cc_find($component0, 3) = true) {
-    .cc_setposition(calc(cc_getx + cc_getwidth), 0, ^setpos_abs_left, ^setpos_abs_top);
+def_int $int6 = 0;
+if (cc_find($component0, 1) = true) {
+    $int6 = calc(if_getwidth($component0) - 32 - cc_getwidth - 10);
+    cc_setposition(calc(21 + scale($int2, $int4, $int6)), 0, ^setpos_abs_left, ^setpos_abs_top);
+    if (.cc_find($component0, 2) = true) {
+        .cc_setposition(calc(cc_getx - 5), 0, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    if (.cc_find($component0, 3) = true) {
+        .cc_setposition(calc(cc_getx + cc_getwidth), 0, ^setpos_abs_left, ^setpos_abs_top);
+    }
 }

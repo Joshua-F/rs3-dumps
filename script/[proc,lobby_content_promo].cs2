@@ -1,64 +1,70 @@
 // 10044
-[proc,lobby_content_promo](component $component0, component $component1, component $component2, component $component3)
+[proc,lobby_content_promo](component $component0, component $component1, component $component2, component $component3, int $int4, int $int5)
 if_settext("Latest Content", $component1);
 if_sethide(false, $component3);
+~script13264(-1, 0, $int5);
 if_setop(1, "Click", $component0);
 if_setonop("script10042", $component0);
 if_setonclick("script10052", $component0);
-def_int $int4 = -1;
+def_int $int6 = -1;
 def_string $string0 = "";
 def_string $string1 = "";
-def_int $int5 = 1;
-def_struct $struct6 = struct_11515;
-def_graphic $graphic7 = struct_param($struct6, param_4446);
-switch_int ($int4) {
-    case default :
-        $string0 = struct_param(struct_11515, param_1266);
-        switch_int (map_lang) {
-            case 1 :
-                if (struct_param($struct6, param_4454) ! null) {
-                    $graphic7 = struct_param($struct6, param_4454);
-                }
-            case 2 :
-                if (struct_param($struct6, param_4455) ! null) {
-                    $graphic7 = struct_param($struct6, param_4455);
-                }
-            case 3 :
-                if (struct_param($struct6, param_4456) ! null) {
-                    $graphic7 = struct_param($struct6, param_4456);
-                }
-            case 6 :
-                if (struct_param($struct6, param_4457) ! null) {
-                    $graphic7 = struct_param($struct6, param_4457);
-                }
-        }
-        if_setgraphic($graphic7, $component0);
-        $string1 = struct_param($struct6, param_1273);
-    case 0 :
-        switch_int (map_lang) {
-            case 0 :
-                $graphic7 = graphic_29052;
-            case 1 :
-                $graphic7 = graphic_29053;
-            case 2 :
-                $graphic7 = graphic_29054;
-            case 3 :
-                $graphic7 = graphic_29055;
-        }
-        if_setgraphic($graphic7, $component0);
-        $string1 = struct_param($struct6, param_1273);
+def_int $int7 = 1;
+def_struct $struct8 = struct_11515;
+def_graphic $graphic9 = struct_param($struct8, param_4446);
+if ($int4 = 1) {
+    ~script13264(6, 1, $int5);
+    if_settext("Latest Content", $component1);
+} else {
+    switch_int ($int6) {
+        case default :
+            $string0 = struct_param(struct_11515, param_1266);
+            switch_int (map_lang) {
+                case 1 :
+                    if (struct_param($struct8, param_4454) ! null) {
+                        $graphic9 = struct_param($struct8, param_4454);
+                    }
+                case 2 :
+                    if (struct_param($struct8, param_4455) ! null) {
+                        $graphic9 = struct_param($struct8, param_4455);
+                    }
+                case 3 :
+                    if (struct_param($struct8, param_4456) ! null) {
+                        $graphic9 = struct_param($struct8, param_4456);
+                    }
+                case 6 :
+                    if (struct_param($struct8, param_4457) ! null) {
+                        $graphic9 = struct_param($struct8, param_4457);
+                    }
+            }
+            if_setgraphic($graphic9, $component0);
+            $string1 = struct_param($struct8, param_1273);
+        case 0 :
+            switch_int (map_lang) {
+                case 0 :
+                    $graphic9 = graphic_29052;
+                case 1 :
+                    $graphic9 = graphic_29053;
+                case 2 :
+                    $graphic9 = graphic_29054;
+                case 3 :
+                    $graphic9 = graphic_29055;
+            }
+            if_setgraphic($graphic9, $component0);
+            $string1 = struct_param($struct8, param_1273);
+    }
 }
 if (compare($string1, "") ! 0) {
     if_setonmouserepeat("script10070($string1, 400, event_com, event_comsubid)", $component0);
 }
 cc_deleteall($component2);
-if ($int5 = 1) {
+if ($int7 = 1) {
     return;
 }
-def_int $int8 = 0;
-~script10047($component2, $int8);
-$int8 = calc($int8 + 1);
-cc_create($component2, ^iftype_text, $int8);
+def_int $int10 = 0;
+~script10047($component2, $int10);
+$int10 = calc($int10 + 1);
+cc_create($component2, ^iftype_text, $int10);
 cc_settext($string0);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
 cc_setsize(0, 32, ^setsize_minus, ^setsize_abs);

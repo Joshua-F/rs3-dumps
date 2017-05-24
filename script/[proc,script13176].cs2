@@ -1,0 +1,115 @@
+// 13176
+[proc,script13176]
+def_int $int0 = -1;
+def_int $int1 = -1;
+def_int $int2 = -1;
+def_int $int3 = -1;
+def_int $int4 = -1;
+def_struct $struct5 = null;
+def_int $int6 = if_getscrolly(interface_1843:com_183);
+def_string $string0 = "";
+def_struct $struct7 = null;
+def_int $int8 = 0;
+def_struct $struct9 = null;
+def_struct $struct10 = null;
+def_graphic $graphic11 = null;
+def_component $component12 = null;
+def_int $int13 = -1;
+def_struct $struct14 = null;
+def_string $string1 = "";
+def_int $int15 = -1;
+def_int $int16 = enum_getoutputcount(enum_12238);
+if (if_find(interface_1843:com_1) = true) {
+    cc_setparam(param_5946, -1);
+}
+if (if_find(interface_1843:com_183) = true) {
+    $int0 = cc_param(param_6358);
+    $int2 = cc_param(param_6359);
+    $int3 = cc_getwidth;
+    $struct5 = enum(int, struct, enum_12233, ++$int4);
+    while (cc_find(interface_1843:com_183, $int0) = true & $struct5 ! null) {
+        ~script13154;
+        $struct7 = cc_param(param_4414);
+        if (struct_param($struct7, param_6352) ! null) {
+            $string1 = ~script13227($struct7);
+            if (compare($string1, struct_param($struct7, param_2533)) ! 0) {
+                $int15 = -1;
+                while (++$int15 < $int16) {
+                    $struct14 = enum(int, struct, enum_12238, $int15);
+                    if (compare($string1, struct_param($struct14, param_2533)) = 0) {
+                        $int13 = ~script13108($struct14, 0);
+                        $int15 = $int16;
+                    }
+                }
+            }
+        }
+        if ($int13 = -1) {
+            $int13 = $int0;
+        }
+        if (.if_find(if_getlayer(struct_param($struct5, param_4037))) = true) {
+            .cc_setparam(param_6361, $int0);
+            .cc_setposition(0, calc($int2 * (20 + 4) - $int6), ^setpos_abs_left, ^setpos_abs_top);
+            if (struct_param($struct7, param_4397) ! -1 & testbit(cc_param(param_6371), 3) = ^true) {
+                .cc_setsize($int3, 155, ^setsize_abs, ^setsize_abs);
+            } else {
+                .cc_setsize($int3, 20, ^setsize_abs, ^setsize_abs);
+            }
+        }
+        if (.if_find(struct_param($struct5, param_6310)) = true) {
+            .cc_setonop("script13181($int13, $int0, event_op, event_com)");
+            if ($struct7 ! null) {
+                if (struct_param($struct7, param_4397) ! -1) {
+                    if (~script9964($struct7) ! null) {
+                        .cc_setop(2, "Reclaim");
+                    } else {
+                        .cc_setop(2, "");
+                        $int8 = 1;
+                    }
+                } else if (struct_param($struct7, param_6352) ! null) {
+                    .cc_setop(2, "Rename");
+                } else {
+                    .cc_setop(2, "");
+                }
+            } else {
+                .cc_setop(2, "");
+            }
+        }
+        $string0 = cc_gettext;
+        $int1 = cc_param(param_6356);
+        if (.if_find(if_getlayer(struct_param($struct5, param_4037))) = true) {
+            $struct9, $struct10, $graphic11 = ~script13178;
+            if (.cc_param(param_4405) ! $struct9 | .cc_param(param_4425) ! $struct10) {
+                .cc_setparam(param_4405, $struct9);
+                .cc_setparam(param_4425, $struct10);
+                ~script10014($struct5, $struct9, $struct10);
+            }
+        }
+        if (if_find(struct_param($struct5, param_6311)) = true & .if_find(if_getlayer(cc_getlayer)) = true) {
+            cc_settext(~script3930($string0, cc_getwidth, 1, cc_getfontmetrics));
+            cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+            if (compare(cc_gettext, $string0) ! 0) {
+                .cc_setonmouserepeat("script13180(event_com, event_comsubid, $int0, 1)");
+            } else {
+                .cc_setonmouserepeat("script13180(event_com, event_comsubid, $int0, 0)");
+            }
+        }
+        $component12 = struct_param($struct5, param_6226);
+        cc_deleteall($component12);
+        cc_create($component12, ^iftype_text, 0);
+        if ($int8 = 1) {
+            ~script13179($component12, $struct9);
+            $int8 = 0;
+        }
+        $int0 = $int1;
+        $int2 = calc($int2 + 1);
+        $struct5 = enum(int, struct, enum_12233, ++$int4);
+        $int13 = -1;
+    }
+    while ($struct5 ! null & .if_find(if_getlayer(struct_param($struct5, param_4037))) = true) {
+        if (.cc_getwidth = 0) {
+            return;
+        }
+        .cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
+        $struct5 = enum(int, struct, enum_12233, ++$int4);
+    }
+}

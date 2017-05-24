@@ -1,0 +1,95 @@
+// 13336
+[proc,cheevo_update_slot](int $int0, int $int1)
+def_int $int2 = 0;
+def_struct $struct3 = null;
+$int1 = calc($int1 * 7);
+if (cc_find(interface_1851:com_48, $int1) = true) {
+    $int2 = cc_param(param_6430);
+    $struct3 = cc_param(param_6431);
+}
+if ($int2 = -65535) {
+    return;
+}
+def_int $int4 = calc($int0 * 77);
+def_int $rgb5 = 0xfefefe;
+def_int $rgb6 = ^black;
+def_int $int7 = 255;
+def_int $int8 = 0;
+switch_int ($int2) {
+    case default :
+        $rgb5 = 0x888888;
+        $int7 = 128;
+    case -2 :
+        $rgb5 = 0xfefefe;
+        $int7 = 255;
+    case -1 :
+        $rgb5 = 0xee0000;
+        $int7 = 128;
+        $rgb6 = 0xee0000;
+}
+if (%varclient_5991 = $struct3) {
+    %varclient_5992 = $int4;
+}
+if (cc_find(interface_1851:com_48, $int1) = true) {
+    cc_setposition(0, $int4, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setparam(param_6432, cc_getx);
+    cc_setparam(param_6433, cc_gety);
+    cc_setsize(6, 74, ^setsize_minus, ^setsize_abs);
+    cc_setfill(true);
+    cc_setcolour(~script10495(0x00001d));
+    ~script13337($struct3, $int2, "");
+}
+if (cc_find(interface_1851:com_48, calc($int1 + 1)) = true) {
+    cc_setposition(74, $int4, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setparam(param_6432, cc_getx);
+    cc_setparam(param_6433, cc_gety);
+    cc_setsize(79, 20, ^setsize_minus, ^setsize_abs);
+    cc_setcolour($rgb5);
+    cc_settext(~cheevo_name($struct3));
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settextfont(cinzel_12pt_bold);
+}
+if (cc_find(interface_1851:com_48, calc($int1 + 2)) = true) {
+    cc_setposition(5, calc($int4 + 5), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setparam(param_6432, cc_getx);
+    cc_setparam(param_6433, cc_gety);
+    cc_setsize(64, 64, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic(~cheevo_icon($struct3));
+}
+if (cc_find(interface_1851:com_48, calc($int1 + 3)) = true) {
+    cc_setposition(5, calc($int4 + 5), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setparam(param_6432, cc_getx);
+    cc_setparam(param_6433, cc_gety);
+    cc_setsize(64, 64, ^setsize_abs, ^setsize_abs);
+    cc_setfill(true);
+    cc_setcolour($rgb6);
+    cc_settrans($int7);
+}
+if (cc_find(interface_1851:com_48, calc($int1 + 4)) = true) {
+    cc_setposition(74, calc($int4 + 15), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setparam(param_6432, cc_getx);
+    cc_setparam(param_6433, cc_gety);
+    cc_setsize(100, 50, ^setsize_minus, ^setsize_abs);
+    cc_setcolour($rgb5);
+    cc_settext(~cheevo_details($struct3));
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settextfont(graphic_17813);
+}
+if (cc_find(interface_1851:com_48, calc($int1 + 5)) = true) {
+    cc_setposition(0, calc($int4 + 52), ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setparam(param_6432, cc_getx);
+    cc_setparam(param_6433, cc_gety);
+    cc_setsize(21, 22, ^setsize_abs, ^setsize_abs);
+    if (struct_param($struct3, param_6427) > -1) {
+        cc_setgraphic(graphic_30038);
+        cc_setonop("script13342(cc_getid, $struct3)");
+        cc_setop(3, "Open");
+    }
+}
+if ($int2 ! -2 & cc_find(interface_1851:com_48, calc($int1 + 6)) = true) {
+    cc_setposition(5, calc($int4 + 27), ^setpos_abs_right, ^setpos_abs_top);
+    cc_setparam(param_6432, cc_getx);
+    cc_setparam(param_6433, cc_gety);
+    cc_setsize(20, 20, ^setsize_abs, ^setsize_abs);
+    ~cheevo_update_pin(interface_1851:com_48, cc_getid, struct_param($struct3, param_6413));
+}

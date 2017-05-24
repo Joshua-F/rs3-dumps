@@ -4,12 +4,19 @@ if (%varplayerbit_35026 >= 80) {
     return;
 }
 if (calc($int0 / 4) ! %varplayerbit_35053) {
-    mes("You must make your guess on row <tostring(calc(%varplayerbit_35053 + 1))>.");
+    if (%varplayerbit_35053 >= 10) {
+        mes("You should reset the puzzle.");
+    } else {
+        mes("You must make your guess on row <tostring(calc(%varplayerbit_35053 + 1))>.");
+    }
     return;
 }
 def_obj $obj1 = null;
 if (cc_find(interface_1829:com_7, $int0) = true) {
     $obj1 = ~script13081(%varclient_5923);
+    if ($obj1 = null) {
+        return;
+    }
     cc_setobject($obj1, -1);
     cc_setonmouserepeat("script3876(oc_name($obj1), interface_1829:com_6, event_comsubid)");
 }
