@@ -1,0 +1,56 @@
+// 13179
+[proc,script13179](component $component0, struct $struct1)
+if ($component0 = null | $struct1 = null) {
+    return;
+}
+def_struct $struct2 = ~script9984($struct1, 6);
+if ($struct2 = null) {
+    return;
+}
+def_fontmetrics $fontmetrics3 = struct_param($struct2, param_3810);
+def_int $rgb4 = struct_param($struct2, param_3811);
+def_int $int5 = calc(2 + 1);
+def_int $int6 = calc(if_getwidth($component0) - $int5 * 2);
+def_int $int7 = calc(if_getheight($component0) - $int5 * 2);
+def_int $int8 = inv_size(inv_675);
+def_int $int9 = if_getnextsubid($component0);
+cc_settextfont($fontmetrics3);
+cc_settextshadow(true);
+cc_setposition($int5, $int5, ^setpos_abs_left, ^setpos_abs_top);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_setsize($int6, $int7, ^setsize_abs, ^setsize_abs);
+cc_setcolour($rgb4);
+def_string $string0 = "";
+if (%varclient_5939 = 0) {
+    $string0 = "The Keepsake Box can store wearable items as cosmetic overrides.";
+} else {
+    $string0 = "Keepsake slots available:<br><tostring(calc($int8 - %varclient_5939))> / <tostring($int8)>";
+}
+def_int $int10 = 34;
+def_int $int11 = 35;
+def_int $int12 = 0;
+.cc_create($component0, ^iftype_graphic, $int9++);
+if (%varplayer_6808 = 0) {
+    $string0 = "<$string0><br><br>To add an item you'll need a Keepsake Key.";
+    .cc_setgraphic(wardrobe_icon_keepsake_currency);
+} else {
+    $string0 = "<$string0><br><br>Drag your item into this box.";
+    .cc_setgraphic(wardrobe_icon_drop_item);
+}
+cc_settext($string0);
+.cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+$int12 = ~script7593($string0, $int6, $fontmetrics3, 0);
+$int7 = calc($int7 - $int11 - 4);
+if ($int12 > $int7) {
+    cc_settext(~script3930($string0, $int6, calc($int7 / enum(fontmetrics, int, enum_8549, $fontmetrics3)), $fontmetrics3));
+    $int12 = min($int7, ~script7593(cc_gettext, $int6, $fontmetrics3, 0));
+}
+cc_setsize($int6, $int12, ^setsize_abs, ^setsize_abs);
+cc_setposition(cc_getx, calc($int5 + ($int7 - $int12) / 2), ^setpos_abs_left, ^setpos_abs_top);
+.cc_setposition(0, cc_gety, ^setpos_abs_centre, ^setpos_abs_bottom);
+if (%varplayer_6808 = 0) {
+    cc_create($component0, ^iftype_graphic, $int9++);
+    cc_setgraphic(rs3_btn_add_currency_sml_nml);
+    cc_setsize(11, 11, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc(.cc_getx + .cc_getwidth - cc_getwidth), calc(.cc_gety + .cc_getheight - cc_getheight), ^setpos_abs_left, ^setpos_abs_top);
+}

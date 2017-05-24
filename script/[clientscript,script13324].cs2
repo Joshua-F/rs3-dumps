@@ -1,0 +1,143 @@
+// 13324
+[clientscript,script13324]
+def_component $component0 = interface_1852:com_29;
+def_component $component1 = interface_1852:com_30;
+def_component $component2 = interface_1852:com_31;
+def_component $component3 = if_getparentlayer($component0);
+cc_deleteall($component0);
+cc_deleteall($component1);
+cc_deleteall($component2);
+if (%varplayer_6893 = null) {
+    return;
+}
+def_int $int4 = 0;
+def_int $intarray0(enum_getoutputcount(%varplayer_6893));
+def_struct $struct5 = null;
+def_int $int6 = 0;
+while ($int6 < enum_getoutputcount(%varplayer_6893)) {
+    $struct5 = enum(int, struct, %varplayer_6893, $int6);
+    if (%varplayerbit_35406 ! 1 | %varplayerbit_35406 = 1 & ~cheevo_obtain_progress($struct5) ! -2) {
+        $intarray0($int4) = $int6;
+        $int4 = calc($int4 + 1);
+    }
+    $int6 = calc($int6 + 1);
+}
+$struct5 = null;
+$int6 = 0;
+if (calc($int4 * (80 + 2)) > if_getheight($component3)) {
+    if_setsize(56, if_getheight($component3), ^setsize_minus, ^setsize_abs, $component3);
+    if_setscrollsize(0, calc($int4 * (80 + 2)), $component3);
+    if_setscrollpos(0, 0, $component3);
+    ~rs3_scrollbar_vertical(interface_1852:com_32, $component3);
+} else {
+    if_setsize(40, if_getheight($component3), ^setsize_minus, ^setsize_abs, $component3);
+    if_setscrollsize(0, 0, $component3);
+    if_setscrollpos(0, 0, $component3);
+    cc_deleteall(interface_1852:com_32);
+}
+def_int $int7 = 0;
+def_string $string0 = "";
+def_string $string1 = "";
+if ($int4 = 0) {
+    ~rs3_background_panel_dynamic($component0, struct_21361, 0, calc($int6 * (80 + 2)), if_getwidth($component0), 80, null);
+    cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+    cc_setsize(80, 16, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, calc($int6 * (80 + 2) + 2), ^setpos_abs_centre, ^setpos_abs_top);
+    cc_settextfont(graphic_17813);
+    cc_setcolour(~script10495(0x000008));
+    cc_settext(enum(int, string, enum_10882, %varplayer_6892));
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+    cc_setsize(80, 30, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, calc($int6 * (80 + 2) + 20), ^setpos_abs_centre, ^setpos_abs_top);
+    cc_settextfont(graphic_17813);
+    cc_setcolour(~script10495(0x00000c));
+    cc_settext("You have completed this achievement path.");
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+    cc_setsize(80, 22, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, calc($int6 * (80 + 2) + 53), ^setpos_abs_centre, ^setpos_abs_top);
+    cc_settextfont(cinzel_15pt_bold);
+    cc_setcolour(~script10495(0x000008));
+    cc_settext("Congratulations!");
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    return;
+}
+while ($int6 < enum_getoutputcount(%varplayer_6893)) {
+    cc_create($component1, ^iftype_graphic, $int6);
+    $int6 = calc($int6 + 1);
+}
+$int6 = 0;
+def_int $int8 = 0;
+while ($int6 < $int4) {
+    $struct5 = enum(int, struct, %varplayer_6893, $intarray0($int6));
+    $int7 = ~cheevo_obtain_progress($struct5);
+    ~rs3_background_panel_dynamic($component0, struct_21361, 0, calc($int6 * (80 + 2)), if_getwidth($component0), 80, null);
+    cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+    cc_setsize(40, 40, ^setsize_abs, ^setsize_abs);
+    cc_setposition(4, calc($int6 * (80 + 2) + 4), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic(~cheevo_icon($struct5));
+    cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+    cc_setsize(80, 16, ^setsize_minus, ^setsize_abs);
+    cc_setposition(55, calc($int6 * (80 + 2) + 2), ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextfont(graphic_17813);
+    cc_setcolour(~script10495(0x000008));
+    cc_settext(~cheevo_name($struct5));
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+    cc_setsize(80, 30, ^setsize_minus, ^setsize_abs);
+    cc_setposition(55, calc($int6 * (80 + 2) + 20), ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextfont(graphic_17813);
+    cc_setcolour(~script10495(0x00000c));
+    cc_settext(~cheevo_details($struct5));
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+    cc_setsize(4, 22, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, calc($int6 * (80 + 2) + 53), ^setpos_abs_centre, ^setpos_abs_top);
+    cc_settextfont(cinzel_15pt_bold);
+    cc_setcolour(~script10495(0x000008));
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    switch_int ($int7) {
+        case -2 :
+            cc_settext("Completed");
+        case -1 :
+            cc_settext("Locked");
+        case 0 :
+            cc_settext("Ready");
+        case default :
+            cc_settext(append(tostring($int7), "% Complete"));
+    }
+    cc_create($component2, ^iftype_text, $int6);
+    cc_setsize(calc(if_getwidth($component2) - 22), 80, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, calc($int6 * (80 + 2)), ^setpos_abs_left, ^setpos_abs_top);
+    $string0 = "";
+    $string1 = "";
+    $int8 = 0;
+    if (struct_param($struct5, param_1270) ! 4094) {
+        $string0 = "View Quest";
+        $string1 = "Click for Quest Journal";
+        cc_setop(1, $string0);
+        cc_setopcursor(1, cursor_46);
+    } else if (struct_param($struct5, param_1346) > 0) {
+        $string0 = "View Boss";
+        $string1 = "Click for Boss Info";
+        cc_setop(1, $string0);
+        cc_setopcursor(1, cursor_46);
+    } else if (struct_param($struct5, param_1282) ! null) {
+        $string0 = "View Guidance";
+        $string1 = "Click for Guidance";
+        cc_setop(1, $string0);
+        cc_setopcursor(1, cursor_46);
+        $int8 = 1;
+    } else {
+        $int8 = 1;
+    }
+    ~script13337($struct5, $int7, $string1);
+    if ($int7 ! -2 & $int8 = 1 & cc_find($component1, $intarray0($int6)) = true) {
+        cc_setsize(19, 19, ^setsize_abs, ^setsize_abs);
+        cc_setposition(4, calc($int6 * (80 + 2) + 16), ^setpos_abs_right, ^setpos_abs_top);
+        ~script13326(struct_param($struct5, param_6413));
+        cc_setonvartransmit("script13325(struct_param($struct5, param_6413), $component1, cc_getid){varplayer_6901, varplayer_6901, varplayer_6902}");
+    }
+    $int6 = calc($int6 + 1);
+}

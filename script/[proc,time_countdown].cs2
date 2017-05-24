@@ -1,0 +1,21 @@
+// 3985
+[proc,time_countdown](int $int0, int $int1, string $string0)(string)
+def_int $int2 = 0;
+if ($int1 = 0) {
+    $int2 = calc(date_minutes_fromruneday($int0) - date_minutes);
+} else {
+    $int2 = calc(date_minutes_fromruneday(calc($int0 + 1)) - date_minutes);
+}
+def_int $int3 = calc($int2 / 1440);
+def_int $int4 = calc($int2 % 1440 / 60);
+def_int $int5 = calc($int2 % 60);
+if ($int2 > 0) {
+    if ($int3 > 0) {
+        $string0 = "<tostring($int3)>d  <tostring($int4)>h  <tostring($int5)>m";
+    } else if ($int4 > 0) {
+        $string0 = "<col=dd4400><tostring($int4)> <~text_plural($int4, "Hr", "Hrs")>  <tostring($int5)> <~text_plural($int5, "Min", "Mins")></col>";
+    } else if ($int5 > 0) {
+        $string0 = "<col=dd0000><tostring($int5)> <~text_plural($int5, "Minute", "Minutes")></col>";
+    }
+}
+return($string0);

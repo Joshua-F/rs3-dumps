@@ -10,25 +10,17 @@ def_int $int8 = if_getwidth($component2);
 def_int $int9 = 250;
 def_int $int10 = 16;
 def_int $int11 = stringwidth($string0, $fontmetrics6);
-if ($component3 = interface_1486:com_25) {
+if ($component3 = interface_1486:com_22) {
     $int9 = 350;
     $int11 = min($int11, $int9);
     $int10 = 0;
-    if ($int8 < min($int11, $int9)) {
-        if ($int4 = 0) {
-            if ($int11 <= $int9) {
-                $int8 = $int11;
-            } else {
-                $int8 = min(parawidth($string0, $int9, $fontmetrics6), $int9);
-            }
-        } else {
-            $int8 = min(parawidth($string0, $int9, $fontmetrics6), $int9);
-        }
+    if ($int8 < $int11) {
+        $int8 = max($int8, min(parawidth($string0, $int9, $fontmetrics6), $int9));
     }
 } else {
     $int11 = min($int11, $int9);
-    if ($int8 < min($int11, $int9)) {
-        $int8 = calc(min($int11, $int9) + $int10 * 2);
+    if ($int8 < $int11) {
+        $int8 = calc($int11 + $int10 * 2);
     }
 }
 if_setsize($int8, calc($int7 + $int5 + $int10), ^setsize_abs, ^setsize_abs, $component2);

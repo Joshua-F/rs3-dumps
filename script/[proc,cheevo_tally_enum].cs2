@@ -1,0 +1,18 @@
+// 13289
+[proc,cheevo_tally_enum](enum $enum0)(int, int)
+def_int $int1 = 0;
+def_int $int2 = enum_getoutputcount($enum0);
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_struct $struct5 = null;
+while ($int1 < $int2) {
+    $struct5 = enum(int, struct, $enum0, $int1);
+    if ($struct5 ! null) {
+        $int4 = calc($int4 + 1);
+        if (~cheevo_obtain_progress($struct5) = -2) {
+            $int3 = calc($int3 + 1);
+        }
+    }
+    $int1 = calc($int1 + 1);
+}
+return($int3, $int4);

@@ -1,26 +1,52 @@
 // 3995
-[proc,script3995](int $int0)(int, string, int)
-if ($int0 >= 4091) {
-    return(0, "", ^black);
+[proc,script3995]
+if (%varplayerbit_35529 = 0 | %varplayerbit_35680 = 0) {
+    return;
 }
-if ($int0 >= 4000 & $int0 <= 4027) {
-    return(0, "", ^black);
+def_obj $obj0 = null;
+def_struct $struct1 = null;
+def_int $int2 = 0;
+def_string $string0 = "";
+def_enum $enum3 = null;
+switch_int (%varplayerbit_35680) {
+    case 1 :
+        $obj0 = enum(int, obj, enum_3494, %varplayerbit_35529);
+        $int2 = enum(int, int, enum_3656, %varplayerbit_35529);
+        $string0 = enum(int, string, enum_5482, %varplayerbit_35529);
+    case 2 :
+        $obj0 = enum(int, obj, enum_5487, %varplayerbit_35529);
+        $int2 = enum(int, int, enum_5488, %varplayerbit_35529);
+        $string0 = enum(int, string, enum_5489, %varplayerbit_35529);
+    case 3 :
+        switch_int (%varplayerbit_35551) {
+            case 1 :
+                $enum3 = enum_5490;
+            case 2 :
+                $enum3 = enum_5491;
+            case 3 :
+                $enum3 = enum_5492;
+            case 4 :
+                $enum3 = enum_5493;
+            case default :
+                return;
+        }
+        $struct1 = enum(int, struct, $enum3, %varplayerbit_35529);
+        $int2 = 1;
+    case default :
+        return;
 }
-if (map_members = false & struct_param(~task_get_struct($int0), param_1290) = 2) {
-    return(0, "This Task cannot be completed in the free game.", ^red);
-}
-if (~task_get_progress($int0) = 2) {
-    return(2, "You have completed this Task.", ^green);
-} else if (~script3994($int0) = 1) {
-    if (~script3999($int0) = 1) {
-        return(0, "", ^green);
-    } else {
-        return(1, "You currently have this Task pinned.", 0x8f572b);
+if (%varplayerbit_35680 = 3) {
+    if ($struct1 = null) {
+        return;
     }
-} else if (~task_requirements_fulfilled($int0) = false) {
-    return(0, "You lack one or more prerequisites needed to complete this Task.", ^red);
-} else if (struct_param(~task_get_struct($int0), param_1294) = 0) {
-    return(1, "There are no requirements for this Task.", ^green);
+    if_settext(struct_param($struct1, param_2533), interface_1239:com_3);
+    if_settext(struct_param($struct1, param_4858), interface_1239:com_4);
 } else {
-    return(1, "You have the requirements to complete this Task.", ^green);
+    if ($obj0 = null) {
+        return;
+    }
+    if_settext("<tostring($int2)>x <oc_name($obj0)>", interface_1239:com_3);
+    if_settext($string0, interface_1239:com_4);
 }
+sound_vorbis_volume(sound_40090, 1, 0, 100);
+if_sethide(false, interface_1239:com_18);

@@ -1,0 +1,34 @@
+// 13171
+[proc,script13171](int $int0)
+def_int $int1 = 0;
+def_int $int2 = -1;
+if (if_find(interface_1843:com_183) = true) {
+    if ($int0 <= if_getheight(cc_getlayer)) {
+        cc_setscrollsize(0, 0);
+        cc_setsize(16, $int0, ^setsize_minus, ^setsize_abs);
+        cc_setscrollpos(0, 0);
+        if (cc_param(param_6359) > 0) {
+            $int2 = cc_param(param_6356);
+            cc_setparam(param_6358, $int2);
+            if ($int2 < 0) {
+                cc_setparam(param_6359, -1);
+            } else {
+                cc_setparam(param_6359, 0);
+            }
+        }
+        cc_deleteall(interface_1843:com_186);
+    } else {
+        cc_setscrollsize(0, $int0);
+        cc_setsize(16, 0, ^setsize_minus, ^setsize_minus);
+        if (cc_param(param_6359) > 0) {
+            $int1 = calc(cc_param(param_6359) * (20 + 4));
+        }
+        if (calc($int0 - cc_getheight) < $int1) {
+            cc_setscrollpos(0, calc($int0 - cc_getheight));
+            ~script13173($int1, cc_getscrolly);
+        } else {
+            cc_setscrollpos(0, $int1);
+        }
+        ~rs3_scrollbar_vertical(interface_1843:com_186, interface_1843:com_183);
+    }
+}

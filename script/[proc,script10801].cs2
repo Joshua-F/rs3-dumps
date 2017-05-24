@@ -25,7 +25,7 @@ if (%varplayer_6628 ! null) {
     if ($obj4 ! null) {
         $string0 = oc_name($obj4);
         if (string_length($string0) > 0) {
-            $string0 = "<$string0> (x<tostring(~script12870(struct_param(%varplayer_5006, param_6170), %varplayer_6628))>)";
+            $string0 = "<$string0> (x<tostring(~script12870(struct_param(%varplayer_5006, param_6405), %varplayer_6628))>)";
         }
     }
 }
@@ -85,6 +85,7 @@ if ($enum14 = null) {
 }
 def_int $int25 = 0;
 def_struct $struct26 = null;
+def_string $string1 = "";
 while ($struct16 ! null) {
     $int13 = -1;
     $enum17 = struct_param($struct16, param_2542);
@@ -93,9 +94,14 @@ while ($struct16 ! null) {
             $obj18 = enum(int, obj, $enum17, $int13);
             if ($obj18 ! null) {
                 $struct19 = oc_param($obj18, param_4414);
-                if ($struct19 ! null) {
+                if ($struct19 ! null & struct_param($struct19, param_6349) = false) {
+                    $string1 = struct_param($struct19, param_2533);
                     $int5, $int7 = ~script11369($struct19, $component1, $int5, $int7, enum(int, graphic, enum_9995, $int13), "");
                     $int25 = 1;
+                    $struct19 = struct_param($struct19, param_6322);
+                    if ($struct19 ! null & struct_param($struct19, param_6349) = false & compare($string1, struct_param($struct19, param_2533)) ! 0) {
+                        $int5, $int7 = ~script11369($struct19, $component1, $int5, $int7, enum(int, graphic, enum_9995, $int13), "");
+                    }
                 }
             }
             $int13 = calc($int13 + 1);
@@ -144,43 +150,43 @@ if ($int7 < if_getheight($component1)) {
 }
 $int6 = 0;
 $int8 = calc(if_getwidth($component0) - 2 * $int6);
-def_string $string1 = get_col_tag(~script10495(0x00003a));
-$string1 = append_char($string1, '<');
-$string1 = "<$string1>u<substring($string1, 4, calc(string_length($string1) - 1))>";
-def_string $string2 = get_col_tag(~script10495(0x00003b));
+def_string $string2 = get_col_tag(~script10495(0x00003a));
 $string2 = append_char($string2, '<');
 $string2 = "<$string2>u<substring($string2, 4, calc(string_length($string2) - 1))>";
+def_string $string3 = get_col_tag(~script10495(0x00003b));
+$string3 = append_char($string3, '<');
+$string3 = "<$string3>u<substring($string3, 4, calc(string_length($string3) - 1))>";
 if ($obj4 ! null) {
-    $string1 = "This package contains the items listed below. Please note that this currency can only be used for the current event (<struct_param(%varplayer_6628, param_6135)>). Any currency not used by <fromdate(struct_param(%varplayer_6628, param_6134))> will be removed. There is no refund available for this package.";
-    $string2 = "";
+    $string2 = "This package contains the items listed below. Please note that this currency can only be used for the current event (<struct_param(%varplayer_6628, param_6135)>). Any currency not used by <fromdate(struct_param(%varplayer_6628, param_6134))> will be removed. There is no refund available for this package.";
+    $string3 = "";
 } else if (struct_param($struct3, param_6171) = true) {
-    $string1 = "This package contains the items listed below.";
-    $string2 = "";
+    $string2 = "This package contains the items listed below.";
+    $string3 = "";
 } else if ($int25 = 0) {
-    $string1 = "This package contains the items listed below. Please note that the package may be subject to restrictions. For detailed information <$string1>visit Solomon's Store</u></col>.";
     $string2 = "This package contains the items listed below. Please note that the package may be subject to restrictions. For detailed information <$string2>visit Solomon's Store</u></col>.";
+    $string3 = "This package contains the items listed below. Please note that the package may be subject to restrictions. For detailed information <$string3>visit Solomon's Store</u></col>.";
 } else {
-    $string1 = "This package contains the items listed below. Please note that the package may be subject to restrictions and it may contain additional items such as emotes, etc. For detailed information <$string1>visit Solomon's Store</u></col>.";
     $string2 = "This package contains the items listed below. Please note that the package may be subject to restrictions and it may contain additional items such as emotes, etc. For detailed information <$string2>visit Solomon's Store</u></col>.";
+    $string3 = "This package contains the items listed below. Please note that the package may be subject to restrictions and it may contain additional items such as emotes, etc. For detailed information <$string3>visit Solomon's Store</u></col>.";
 }
-def_string $string3 = "Contents:";
+def_string $string4 = "Contents:";
 if (cc_find($component0, $int11) = true & .cc_find($component0, $int12) = true) {
-    cc_settext($string1);
-    if (string_length($string2) > 0) {
-        cc_setonmouseover("cc_text_swapper(event_com, event_comsubid, $string2)");
-        cc_setonmouseleave("cc_text_swapper(event_com, event_comsubid, $string1)");
+    cc_settext($string2);
+    if (string_length($string3) > 0) {
+        cc_setonmouseover("cc_text_swapper(event_com, event_comsubid, $string3)");
+        cc_setonmouseleave("cc_text_swapper(event_com, event_comsubid, $string2)");
         cc_setop(1, "Visit Solomon's Store");
         cc_setonop("script11368");
     }
     cc_setsize(calc($int6 * 2), ~script7593(cc_gettext, $int8, cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
-    .cc_settext($string3);
+    .cc_settext($string4);
     .cc_setsize(calc($int6 * 2), ~script7593(cc_gettext, $int8, cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
 }
-def_string $string4 = "No recolour available.";
+def_string $string5 = "No recolour available.";
 if (%varplayer_5008 = 1) {
     cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
     cc_setgraphic("rs3_icon_colour_palette,2");
     cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
     cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
-    cc_setonmouserepeat("script3876($string4, event_com, event_comsubid)");
+    cc_setonmouserepeat("script3876($string5, event_com, event_comsubid)");
 }

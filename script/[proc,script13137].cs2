@@ -1,0 +1,39 @@
+// 13137
+[proc,script13137]()(int, int, int, int)
+def_int $int0 = cc_getx;
+def_int $int1 = cc_gety;
+def_int $int2 = cc_getwidth;
+def_int $int3 = cc_getheight;
+def_component $component4 = cc_getparentlayer;
+def_int $int5 = 0;
+def_int $int6 = 0;
+while ($component4 ! null) {
+    $int0 = calc($int0 - if_getscrollx($component4));
+    if ($int0 < 0) {
+        $int2 = max(calc($int2 + $int0), 0);
+        $int0 = 0;
+    }
+    $int5 = if_getwidth($component4);
+    if ($int0 >= $int5) {
+        $int2 = 0;
+        $int0 = $int5;
+    } else {
+        $int2 = min($int2, calc($int5 - $int0));
+    }
+    $int1 = calc($int1 - if_getscrolly($component4));
+    if ($int1 < 0) {
+        $int3 = max(calc($int3 + $int1), 0);
+        $int1 = 0;
+    }
+    $int6 = if_getheight($component4);
+    if ($int1 >= $int6) {
+        $int3 = 0;
+        $int1 = $int6;
+    } else {
+        $int3 = min($int3, calc($int6 - $int1));
+    }
+    $int0 = calc($int0 + if_getx($component4));
+    $int1 = calc($int1 + if_gety($component4));
+    $component4 = if_getparentlayer($component4);
+}
+return($int0, $int1, $int2, $int3);

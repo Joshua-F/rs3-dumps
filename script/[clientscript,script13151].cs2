@@ -1,0 +1,116 @@
+// 13151
+[clientscript,script13151]
+~script13249;
+if (if_find(interface_1843:com_183) = true) {
+    cc_setparam(param_6356, -1);
+    cc_setparam(param_6357, -1);
+    cc_setparam(param_6358, -1);
+    cc_setparam(param_6359, -1);
+    cc_setparam(param_6362, 0);
+    cc_setparam(param_6364, 0);
+    cc_setparam(param_6365, 0);
+    cc_setparam(param_6366, 0);
+    cc_setparam(param_6367, 0);
+    cc_setparam(param_6368, 0);
+    cc_setparam(param_6369, 0);
+    cc_setparam(param_6370, 0);
+    if (%varclientbit_35136 = 0) {
+        cc_setparam(param_6371, ~script13250);
+        cc_setparam(param_6372, 12858);
+    } else {
+        cc_setparam(param_6371, calc(%varclient_5934 & ~script13250));
+        cc_setparam(param_6372, calc(%varclient_5935 & 12858));
+        if (cc_param(param_6371) = ~script13250 & cc_param(param_6372) = 12858) {
+            %varclientbit_35136 = 0;
+        }
+    }
+}
+def_string $string0 = "Recolour Outfit<br><br>SHIFT+Click to recolour individual slots";
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", interface_1843:com_271);
+$string0 = "This outfit is not recolourable";
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", interface_1843:com_272);
+$string0 = "Undo All Changes<br><br>CTRL+Click to undo individual slots";
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", interface_1843:com_279);
+$string0 = "Clear All Customisations<br><br>Right click to clear individual slots";
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", interface_1843:com_323);
+$string0 = "Hide All Equipment<br><br>This will show your base clothing.<br>Right click to hide individual slots.";
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", interface_1843:com_286);
+$string0 = "Save as preset";
+if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", interface_1843:com_302);
+def_int $int0 = -1;
+cc_deleteall(interface_1843:com_184);
+while (++$int0 < 19) {
+    cc_create(interface_1843:com_184, ^iftype_graphic, $int0);
+}
+~script13163;
+~script13182;
+if (if_find(interface_1843:com_251) = true) {
+    cc_setparam(param_5945, -1);
+    cc_setontimer("script13183");
+}
+if_setcolour(~script10495(0x000002), interface_1843:com_244);
+if (if_find(interface_1843:com_183) = true) {
+    cc_setparam_string(param_5441, "");
+}
+cc_deleteall(interface_1843:com_183);
+def_int $int1 = -1;
+def_int $int2 = -1;
+def_enum $enum3 = null;
+$int0 = -1;
+def_int $int4 = 0;
+def_int $int5 = 0;
+%varclient_5938 = ~script441(1);
+%varclient_5938 = max(min(%varclient_5938, 2), 2);
+%varclient_5939 = calc(inv_size(inv_675) - inv_freespace(inv_675));
+while (++$int1 <= 6) {
+    if (~script13106(%varclient_5938, $int1) = true) {
+        $int2 = -1;
+        while (++$int2 <= 21) {
+            if ($int1 = 2) {
+                $enum3 = enum(int, enum, enum_8464, $int2);
+            } else {
+                $enum3 = enum(int, enum, enum_5958, $int1);
+                $int2 = 21;
+            }
+            if ($enum3 ! null) {
+                $int0 = -1;
+                $int4 = enum_getoutputcount($enum3);
+                while (++$int0 < $int4) {
+                    cc_create(interface_1843:com_183, ^iftype_text, $int5);
+                    cc_setparam(param_4414, enum(int, struct, $enum3, $int0));
+                    ~script13155;
+                    $int5 = calc($int5 + 1);
+                }
+            }
+        }
+    } else {
+    }
+}
+if (%varclient_5938 = 2) {
+    if_setoninvtransmit("script13158(struct_28519){inv_675}", interface_1843:com_1);
+    if_setonvarcstrtransmit("script13158(struct_35654){varclient_5940, varclient_5941, varclient_5942, varclient_5943}", interface_1843:com_1);
+    if_setonvartransmit("script13158(null){varplayer_6808}", interface_1843:com_1);
+}
+if_setontimer("script13157(event_com)", interface_1843:com_1);
+if ($int5 < 1) {
+    return;
+}
+def_int $intarray0($int5);
+$int0 = -1;
+while (++$int0 < $int5) {
+    $intarray0($int0) = $int0;
+}
+~script12088(intarray0, interface_1843:com_183, 0, calc($int5 - 1));
+$int0 = -1;
+while (++$int0 < $int5) {
+    if (cc_find(interface_1843:com_183, $intarray0($int0)) = true) {
+        cc_setparam(param_6354, calc($int0 + 1));
+        cc_setparam_string(param_5441, lowercase(cc_gettext));
+    }
+}
+~script13166(-1);
+def_int $int6 = ~script13165(~script13160);
+if (~script13169(null, $int6) = false & if_find(interface_1843:com_0) = true) {
+    cc_setparam(param_5945, clientclock);
+    cc_setontimer("script13152($int6)");
+}

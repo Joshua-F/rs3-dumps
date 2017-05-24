@@ -1,10 +1,30 @@
 // 5807
-[clientscript,script5807]
-sound_vorbis_volume(sound_5251, 1, 0, 120);
-if (if_gethide(interface_917:com_159) = true) {
-    if_sethide(false, interface_917:com_159);
-    if_sethide(true, interface_917:com_160);
-} else {
-    if_sethide(true, interface_917:com_159);
-    if_sethide(false, interface_917:com_160);
+[clientscript,script5807](int $int0, int $int1)
+if (bitcount($int1) > 10) {
+    return;
 }
+def_int $int2 = calc(bitcount($int1) - 1);
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_component $component5 = null;
+while ($int3 < $int2) {
+    $component5 = ~script5809($int3);
+    $int4 = calc(34 * ($int2 - $int3) + 0);
+    if_setposition($int4, 0, ^setpos_abs_left, ^setpos_abs_top, $component5);
+    $int3 = calc($int3 + 1);
+}
+def_struct $struct6 = enum(int, struct, enum_12533, $int0);
+$component5 = ~script5809($int2);
+if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component5);
+$component5 = ~script5810($int2);
+if (if_find($component5) = true) {
+    cc_create($component5, ^iftype_graphic, if_getnextsubid($component5));
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(28, 28, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic(struct_param($struct6, param_6504));
+    cc_setonmouserepeat("script5763($int0, $component5, -1)");
+    cc_sendtofront;
+}
+def_component $component7 = interface_1866:com_55;
+if_setgraphic(struct_param($struct6, param_6504), $component7);
+if_setonmouserepeat("script5763($int0, $component7, -1)", $component7);

@@ -1,0 +1,32 @@
+// 13189
+[proc,script13189](component $component0, inv $inv1, int $int2, obj $obj3, int $int4)
+if ($inv1 = null | $int2 < 0 | $int2 >= inv_size($inv1) | $obj3 = null | $int4 < 1) {
+    return;
+}
+def_struct $struct5 = null;
+def_int $int6 = -1;
+def_int $int7 = -1;
+if (if_find($component0) = true & cc_find(interface_1843:com_183, cc_param(param_6361)) = true) {
+    $struct5 = cc_param(param_4414);
+    if ($struct5 ! null & struct_param($struct5, param_2531) = 2 & calc(struct_param($struct5, param_2532) & struct_param($struct5, param_4397)) > -1) {
+        $int7 = struct_param($struct5, param_4397);
+        if ($int7 < inv_size(inv_675)) {
+            if (inv_getobj(inv_675, $int7) = null) {
+                if ($int7 = 0 | inv_getobj(inv_675, calc($int7 - 1)) ! null) {
+                    cc_deleteall(interface_1843:com_185);
+                    while (++$int6 < $int2) {
+                        cc_create(interface_1843:com_185, ^iftype_graphic, $int6);
+                    }
+                    cc_create(interface_1843:com_185, ^iftype_graphic, $int6);
+                    cc_setobject($obj3, $int4);
+                    if_triggerop(interface_1843:com_185, $int6, 1);
+                    return;
+                } else {
+                    return;
+                }
+            } else {
+                return;
+            }
+        }
+    }
+}

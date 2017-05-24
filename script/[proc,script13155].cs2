@@ -1,0 +1,142 @@
+// 13155
+[proc,script13155]
+cc_setparam(param_5945, clientclock);
+def_struct $struct0 = cc_param(param_4414);
+if ($struct0 = null) {
+    return;
+}
+def_int $int1 = struct_param($struct0, param_2531);
+def_int $int2 = struct_param($struct0, param_2532);
+def_int $int3 = 0;
+def_int $int4 = -1;
+def_obj $obj5 = null;
+def_int $int6 = -1;
+def_int $int7 = 0;
+def_string $string0 = "!";
+def_string $string1 = "²";
+def_struct $struct8 = struct_param($struct0, param_4419);
+if ($struct8 = null) {
+    $struct8 = $struct0;
+}
+def_int $int9 = struct_param($struct8, param_4742);
+def_int $int10 = calc(%varplayer_3079 - 14);
+if (cc_param(param_6371) = 0) {
+    $int7 = 1;
+}
+if (~script13105($struct0) ! $struct0) {
+    if (staffmodlevel < 2) {
+        $int3 = 0;
+    } else {
+        $int3 = 1;
+        cc_setparam(param_6371, setbit(0, 6));
+    }
+} else if (~script6488($struct0) = 1) {
+    cc_setparam(param_6371, setbit(0, 1));
+    $int3 = 1;
+} else if (map_members = false & struct_param($struct0, param_2546) = 2 & ~script6214($struct0) = 1) {
+    cc_setparam(param_6371, setbit(setbit(0, 2), 1));
+    $int3 = 1;
+} else if (~script13100($struct0, 0) = 1) {
+    if ($int9 > $int10 & struct_param($struct0, param_4397) = -1) {
+        cc_setparam(param_6371, setbit(setbit(0, 4), 3));
+    } else {
+        cc_setparam(param_6371, setbit(0, 3));
+    }
+    $int3 = 1;
+} else if (staffmodlevel < 2) {
+    $int3 = 0;
+} else {
+    $int3 = 1;
+    cc_setparam(param_6371, setbit(0, 6));
+}
+def_string $string2 = "Keepsake Slot";
+if ($int3 = 1) {
+    if ($int7 = 1) {
+        cc_setop(1, "Select");
+        cc_setonop("script13190(event_com, event_comsubid, event_op)");
+        cc_setparam(param_2531, $int1);
+        cc_setparam(param_6362, setbit(0, $int1));
+        cc_setparam(param_2532, $int2);
+        cc_setparam(param_6363, setbit(0, $int2));
+        cc_setparam(param_2546, struct_param($struct0, param_2546));
+        $int4 = enum(int, int, enum_12188, cc_param(param_2546));
+        if ($int4 > -1 & $int4 < 32) {
+            cc_setparam(param_6372, setbit(0, $int4));
+        }
+        cc_settext(~script11659($struct0, 0));
+        if ($int1 = 2 & $int2 = 19 & struct_param($struct0, param_4397) > -1) {
+            cc_setparam_string(param_5441, "<$string1><lowercase($string2)> <~script47(calc(struct_param($struct0, param_4397) + 1))>");
+        } else {
+            $string2 = struct_param($struct0, param_5441);
+            if (string_length($string2) > 0) {
+                $string2 = lowercase($string2);
+            } else {
+                $string2 = lowercase(cc_gettext);
+            }
+            if (%varclientbit_35141 = 2 & string_length($string2) > 0) {
+                if (compare(substring($string2, 0, 1), $string0) ! 0) {
+                    if (testbit(cc_param(param_6371), 4) = ^true) {
+                        $string2 = "<~script13084(calc(9999 - $int9), 4)><$string0><$string2>";
+                    } else {
+                        $string2 = "<~script13084(calc(9999 - $int9), 4)><$string2>";
+                    }
+                }
+            } else if (testbit(cc_param(param_6371), 4) = ^true) {
+                $string2 = "<$string0><$string2>";
+            }
+            cc_setparam_string(param_5441, $string2);
+        }
+        if ($int1 = 2) {
+            if ($int2 = 3) {
+                cc_setparam(param_6370, calc(struct_param($struct0, param_4591) & 65534));
+            } else if ($int2 = 5) {
+                cc_setparam(param_6370, calc(struct_param($struct0, param_4591) & 33488896));
+            }
+        }
+    } else if (struct_param($struct0, param_6352) ! null) {
+        cc_settext(~script11659($struct0, 0));
+    }
+    if (struct_param($struct0, param_6348) = 6) {
+        cc_setparam(param_6371, setbit(0, 6));
+    }
+    if ($int1 = 2 & $int2 = 19 & struct_param($struct0, param_4397) ! -1) {
+        cc_setparam(param_6363, setbit(0, $int2));
+        cc_setparam(param_6370, 0);
+        $obj5 = ~script9964($struct0);
+        if ($obj5 ! null) {
+            if (cc_param(param_6371) = setbit(0, 3)) {
+                cc_setparam(param_6371, setbit(setbit(0, 2), 1));
+            }
+            cc_settext(oc_name($obj5));
+            $int6 = oc_wearpos($obj5);
+            if ($int6 ! -1) {
+                cc_setparam(param_6363, calc(cc_param(param_6363) | setbit(0, $int6) & 280255));
+                if ($int6 = 3) {
+                    cc_setparam(param_6370, enum(struct, int, enum_12196, oc_param($obj5, param_686)));
+                    cc_setparam(param_6370, calc(cc_param(param_6370) & 65534));
+                } else if ($int6 = 5) {
+                    cc_setparam(param_6370, enum(struct, int, enum_12196, oc_param($obj5, param_686)));
+                    cc_setparam(param_6370, calc(cc_param(param_6370) & 33488896));
+                }
+            }
+        } else {
+            if (cc_param(param_6371) = setbit(0, 3) & struct_param($struct0, param_4397) > %varclient_5939) {
+                cc_setparam(param_6371, setbit(0, 6));
+            }
+            cc_settext("");
+        }
+    }
+} else if ($int7 = 0) {
+    cc_setop(1, "");
+    cc_setonop(null);
+    cc_setparam(param_2531, 0);
+    cc_setparam(param_2532, 0);
+    cc_setparam(param_2546, 0);
+    cc_setparam(param_6362, 0);
+    cc_setparam(param_6363, 0);
+    cc_setparam(param_6370, 0);
+    cc_setparam(param_6371, 0);
+    cc_setparam(param_6372, 0);
+    cc_settext("");
+    cc_setparam_string(param_5441, "");
+}

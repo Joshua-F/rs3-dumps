@@ -1,7 +1,7 @@
 // 12885
 [proc,script12885](struct $struct0)
-def_component $component1 = interface_1802:com_29;
-def_component $component2 = interface_1802:com_30;
+def_component $component1 = interface_1802:com_33;
+def_component $component2 = interface_1802:com_34;
 def_int $int3 = if_getnextsubid($component1);
 def_int $int4 = if_getnextsubid($component2);
 def_int $int5 = 6;
@@ -194,7 +194,7 @@ if (struct_param($struct0, param_6139) = 0 & struct_param($struct0, param_6140) 
     }
     $int6 = 0;
     $int5 = 6;
-    if ($int4 = 0) {
+    if ($int4 = 0 & struct_param($struct0, param_6273) ! null & struct_param($struct0, param_6274) ! null) {
         cc_create($component2, ^iftype_text, $int4++);
         cc_settextfont(cinzel_18pt_bold);
         cc_settextalign(^settextalign_left, ^settextalign_top, 0);
@@ -211,52 +211,54 @@ if (struct_param($struct0, param_6139) = 0 & struct_param($struct0, param_6140) 
         cc_setsize(cc_getx, ~script7593(cc_gettext, calc($int7 - cc_getx), cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
         cc_setcolour(~script10495(0x00000e));
         $int6 = calc($int6 + (cc_getheight + 8));
-        cc_create($component2, ^iftype_text, $int4++);
-        cc_settextfont(graphic_17813);
-        cc_settextalign(^settextalign_left, ^settextalign_top, 0);
-        cc_settext("Boxes that are opened during an event will also contain special themed prizes.");
-        cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
-        cc_setsize(cc_getx, ~script7593(cc_gettext, calc($int7 - cc_getx), cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
-        cc_setcolour(~script10495(0x00000e));
-        $int6 = calc($int6 + (cc_getheight + 8));
-        cc_create($component2, ^iftype_text, $int4++);
-        cc_settextfont(graphic_17813);
-        cc_settext("Special prizes:");
-        cc_setsize(cc_getx, ~script7593(cc_gettext, calc($int7 - cc_getx), cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
-        cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
-        cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-        cc_setcolour(~script10495(0x00000c));
-        $int6 = calc($int6 + (cc_getheight + 8));
-        $int14 = 0;
-        while ($int14 < $int20) {
-            $obj21 = enum(int, obj, $enum19, $int14);
-            $graphic22 = oc_param($obj21, param_6276);
-            .cc_create($component2, ^iftype_graphic, $int4++);
-            .cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
-            .cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
-            if ($graphic22 = null) {
-                .cc_setgraphic(rs3_icon_slot_standard);
-            } else {
-                .cc_setgraphic($graphic22);
+        if (struct_param($struct0, param_6149) ! null) {
+            cc_create($component2, ^iftype_text, $int4++);
+            cc_settextfont(graphic_17813);
+            cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+            cc_settext("Boxes that are opened during an event will also contain special themed prizes.");
+            cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize(cc_getx, ~script7593(cc_gettext, calc($int7 - cc_getx), cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
+            cc_setcolour(~script10495(0x00000e));
+            $int6 = calc($int6 + (cc_getheight + 8));
+            cc_create($component2, ^iftype_text, $int4++);
+            cc_settextfont(graphic_17813);
+            cc_settext("Special prizes:");
+            cc_setsize(cc_getx, ~script7593(cc_gettext, calc($int7 - cc_getx), cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
+            cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
+            cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+            cc_setcolour(~script10495(0x00000c));
+            $int6 = calc($int6 + (cc_getheight + 8));
+            $int14 = 0;
+            while ($int14 < $int20) {
+                $obj21 = enum(int, obj, $enum19, $int14);
+                $graphic22 = oc_param($obj21, param_6276);
+                .cc_create($component2, ^iftype_graphic, $int4++);
+                .cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
+                .cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
+                if ($graphic22 = null) {
+                    .cc_setgraphic(rs3_icon_slot_standard);
+                } else {
+                    .cc_setgraphic($graphic22);
+                }
+                cc_create($component2, ^iftype_graphic, $int4++);
+                cc_setposition(calc($int5 + 4), calc($int6 + 2), ^setpos_abs_left, ^setpos_abs_top);
+                cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+                if ($graphic22 = null) {
+                    cc_setobject($obj21, -1);
+                }
+                cc_setoutline(1);
+                cc_setonmouserepeat("script9564($obj21, event_com, cc_getid)");
+                $int5 = calc($int5 + (.cc_getwidth + 6));
+                if (calc(($int14 + 1) % 6) = 0) {
+                    $int5 = 6;
+                    $int6 = calc($int6 + (.cc_getheight + 6));
+                }
+                $int14 = calc($int14 + 1);
             }
-            cc_create($component2, ^iftype_graphic, $int4++);
-            cc_setposition(calc($int5 + 4), calc($int6 + 2), ^setpos_abs_left, ^setpos_abs_top);
-            cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-            if ($graphic22 = null) {
-                cc_setobject($obj21, -1);
-            }
-            cc_setoutline(1);
-            cc_setonmouserepeat("script9564($obj21, event_com, cc_getid)");
-            $int5 = calc($int5 + (.cc_getwidth + 6));
-            if (calc(($int14 + 1) % 6) = 0) {
-                $int5 = 6;
-                $int6 = calc($int6 + (.cc_getheight + 6));
-            }
-            $int14 = calc($int14 + 1);
         }
     }
 } else {
-    cc_create(interface_1802:com_28, ^iftype_text, if_getnextsubid(interface_1802:com_28));
+    cc_create(interface_1802:com_31, ^iftype_text, if_getnextsubid(interface_1802:com_31));
     cc_settextfont(cinzel_18pt_bold);
     cc_setcolour(~script10495(0x00000e));
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);

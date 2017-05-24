@@ -1,0 +1,105 @@
+// 13322
+[clientscript,script13322]
+def_int $int0 = 0;
+def_int $int1 = enum_getoutputcount(enum_11155);
+def_struct $struct2 = null;
+def_struct $struct3 = null;
+def_enum $enum4 = null;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_enum $enum7 = null;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_struct $struct10 = null;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $intarray0(2000);
+def_int $intarray1(2000);
+while ($int0 < $int1) {
+    $struct2 = enum(int, struct, enum_11155, $int0);
+    if ($struct2 ! null) {
+        if ($struct2 ! struct_35893) {
+            $enum7 = struct_param($struct2, param_6422);
+            if ($enum7 ! null) {
+                $int8 = 0;
+                $int9 = enum_getoutputcount($enum7);
+                while ($int8 < $int9) {
+                    $struct10 = enum(int, struct, $enum7, $int8);
+                    if ($struct10 ! null) {
+                        $int11 = ~cheevo_obtain_progress($struct10);
+                        if ($int11 >= 70) {
+                            $intarray0($int12) = struct_param($struct10, param_6413);
+                            $intarray1($int12) = $int11;
+                            $int12 = calc($int12 + 1);
+                        }
+                    }
+                    $int8 = calc($int8 + 1);
+                }
+            }
+        }
+        $enum4 = struct_param($struct2, param_6420);
+        if ($enum4 ! null) {
+            $int5 = 0;
+            $int6 = enum_getoutputcount($enum4);
+            while ($int5 < $int6) {
+                $struct3 = enum(int, struct, $enum4, $int5);
+                if ($struct3 ! null) {
+                    $enum7 = struct_param($struct3, param_6422);
+                    if ($enum7 ! null) {
+                        $int8 = 0;
+                        $int9 = enum_getoutputcount($enum7);
+                        while ($int8 < $int9) {
+                            $struct10 = enum(int, struct, $enum7, $int8);
+                            if ($struct10 ! null) {
+                                $int11 = ~cheevo_obtain_progress($struct10);
+                                if ($int11 >= 70) {
+                                    $intarray0($int12) = struct_param($struct10, param_6413);
+                                    $intarray1($int12) = $int11;
+                                    $int12 = calc($int12 + 1);
+                                }
+                            }
+                            $int8 = calc($int8 + 1);
+                        }
+                    }
+                }
+                $int5 = calc($int5 + 1);
+            }
+        }
+    }
+    $int0 = calc($int0 + 1);
+}
+~script13310(interface_1852:com_2, interface_1852:com_44, 1, calc(8 * 1000));
+if_settext("<tostring(%varplayer_6903)>/<tostring(%varplayer_6904)><br>Achievements Completed", interface_1852:com_3);
+cc_deleteall(interface_1852:com_18);
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_struct $struct15 = null;
+if_sethide(true, interface_1852:com_35);
+if_sethide(true, interface_1852:com_39);
+if ($int12 = 0) {
+    cc_create(interface_1852:com_18, ^iftype_text, 0);
+    cc_settext("You have no achievements close to completion.");
+    cc_setposition(10, 40, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(20, 40, ^setsize_minus, ^setsize_minus);
+    cc_settextfont(graphic_17813);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_setcolour(~rgb_to_hex(255, 255, 255));
+} else {
+    if_sethide(false, interface_1852:com_35);
+    $int13 = random($int12);
+    $struct15 = enum(int, struct, enum_12251, $intarray0($int13));
+    %varclient_5993 = $intarray1($int13);
+    ~script13310(interface_1852:com_37, interface_1852:com_47, 2, calc(8 * 1000));
+    if_settext("You've almost finished '<struct_param($struct15, param_6410)>'", interface_1852:com_38);
+    if ($int12 > 1) {
+        if_sethide(false, interface_1852:com_39);
+        $int14 = random($int12);
+        while ($int14 = $int13) {
+            $int14 = random($int12);
+        }
+        $struct15 = enum(int, struct, enum_12251, $intarray0($int14));
+        %varclient_5994 = $intarray1($int14);
+        ~script13310(interface_1852:com_41, interface_1852:com_50, 3, calc(8 * 1000));
+        if_settext("You've almost finished '<struct_param($struct15, param_6410)>'", interface_1852:com_42);
+    }
+}
