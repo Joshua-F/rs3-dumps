@@ -59,32 +59,41 @@ while ($int6 < 12) {
         if (stat_base(enum(int, stat, enum_681, $int7)) < $int8) {
             $int15 = 0;
         }
-    } else if ($int7 = 60) {
-        $struct12 = ~task_get_data($int8);
-        if ($struct12 ! null) {
-            if (struct_param($struct12, param_1270) ! 4094) {
-                $graphic13 = struct_param(enum(int, struct, enum_2252, struct_param($struct12, param_1270)), param_952);
-            } else {
-                $graphic13 = struct_param($struct12, param_1271);
-            }
-            $string0 = "You must have completed the task: '<struct_param($struct12, param_1266)>'";
-            if (~task_get_progress(struct_param($struct12, param_1268)) ! 2) {
-                $int15 = 0;
-            }
-            $struct12 = null;
-        }
-    } else if ($int7 = 61) {
-        $graphic13 = struct_param(enum(int, struct, enum_2252, $int8), param_952);
-        $string0 = "You must have completed the quest: '<struct_param(enum(int, struct, enum_2252, $int8), param_845)>'";
-        if (~ql4_getquestcomplete($int8) = false) {
-            $int15 = 0;
-        }
-    }
-    if ($int7 = 0) {
-        $int6 = 12;
     } else {
-        $int6 = calc($int6 + 1);
+        switch_int ($int7) {
+            case 60 :
+                $struct12 = ~task_get_data($int8);
+                if ($struct12 ! null) {
+                    if (struct_param($struct12, param_1270) ! 4094) {
+                        $graphic13 = struct_param(enum(int, struct, enum_2252, struct_param($struct12, param_1270)), param_952);
+                    } else {
+                        $graphic13 = struct_param($struct12, param_1271);
+                    }
+                    $string0 = "You must have completed the task: '<struct_param($struct12, param_1266)>'";
+                    if (~task_get_progress(struct_param($struct12, param_1268)) ! 2) {
+                        $int15 = 0;
+                    }
+                    $struct12 = null;
+                }
+            case 61 :
+                $graphic13 = struct_param(enum(int, struct, enum_2252, $int8), param_952);
+                $string0 = "You must have completed the quest: '<struct_param(enum(int, struct, enum_2252, $int8), param_845)>'";
+                if (~ql4_getquestcomplete($int8) = false) {
+                    $int15 = 0;
+                }
+            case 62 :
+                if ($struct0 = struct_7212) {
+                    $graphic13 = struct_param(enum(int, struct, enum_2252, $int8), param_952);
+                    $string0 = "You must have received a warning about the contents of the tombs.";
+                    if (%varplayerbit_36034 = 0) {
+                        $int15 = 0;
+                    }
+                }
+            case 0 :
+                $int6 = 12;
+        }
     }
+    $int6 = calc($int6 + 1);
     if ($graphic13 ! null) {
         $int2, $int3 = ~script10391($int15, $obj14, $graphic13, $string0, $int2, $int3, $int4, $int5);
     }

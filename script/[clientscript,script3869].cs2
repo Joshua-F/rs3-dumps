@@ -100,28 +100,29 @@ while ($int2 < 12) {
         $int0, $int1 = ~bslay_req_add($int8, $obj9, $graphic7, $string0, $int0, $int1);
     }
 }
-if (%varclient_4485 = struct_28656 | %varclient_4485 = struct_35367) {
-    $obj9, $string0 = obj_20120, "You must own a frozen key which has charges remaining.";
-} else if (%varclient_4485 = struct_28642) {
-    $obj9, $string0 = obj_30004, "You must own a Barrows totem.";
-} else if (%varclient_4485 = struct_28655) {
-    $string0 = "You must own an Ascension Keystone Primus to enter Laboratory Primus.";
-    $string0 = append($string0, "<br>You must own an Ascension Keystone Secundus to enter Laboratory Secundus.");
-    $string0 = append($string0, "<br>You must own an Ascension Keystone Tertius to enter Laboratory Tertius.");
-    $string0 = append($string0, "<br>You must own an Ascension Keystone Quartus to enter Laboratory Quartus.");
-    $string0 = append($string0, "<br>You must own an Ascension Keystone Quintus to enter Laboratory Quintus.");
-    $string0 = append($string0, "<br>You must own an Ascension Keystone Sextus to enter Laboratory Sextus.");
-    if (~obj_gettotal(obj_28445) > 0 | ~obj_gettotal(obj_28447) > 0 | ~obj_gettotal(obj_28449) > 0 | ~obj_gettotal(obj_28451) > 0 | ~obj_gettotal(obj_28453) > 0 | ~obj_gettotal(obj_28455) > 0) {
-        $int8 = 1;
-    } else {
-        $int8 = 0;
-    }
-    $int0, $int1 = ~bslay_req_add($int8, obj_28445, null, $string0, $int0, $int1);
-    $obj9 = null;
-} else if (%varclient_4485 = struct_28649) {
-    $obj9, $string0 = obj_6570, "You must have previously sacrificed a fire cape.";
-} else if (%varclient_4485 = struct_33661) {
-    $obj9, $string0 = obj_37614, "You must have found all parts and assembled the Ancient Sigil.";
+switch_struct (%varclient_4485) {
+    case struct_28656, struct_35367 :
+        $obj9, $string0 = obj_20120, "You must own a frozen key which has charges remaining.";
+    case struct_28642 :
+        $obj9, $string0 = obj_30004, "You must own a Barrows totem.";
+    case struct_28655 :
+        $string0 = "You must own an Ascension Keystone Primus to enter Laboratory Primus.";
+        $string0 = append($string0, "<br>You must own an Ascension Keystone Secundus to enter Laboratory Secundus.");
+        $string0 = append($string0, "<br>You must own an Ascension Keystone Tertius to enter Laboratory Tertius.");
+        $string0 = append($string0, "<br>You must own an Ascension Keystone Quartus to enter Laboratory Quartus.");
+        $string0 = append($string0, "<br>You must own an Ascension Keystone Quintus to enter Laboratory Quintus.");
+        $string0 = append($string0, "<br>You must own an Ascension Keystone Sextus to enter Laboratory Sextus.");
+        if (~obj_gettotal(obj_28445) > 0 | ~obj_gettotal(obj_28447) > 0 | ~obj_gettotal(obj_28449) > 0 | ~obj_gettotal(obj_28451) > 0 | ~obj_gettotal(obj_28453) > 0 | ~obj_gettotal(obj_28455) > 0) {
+            $int8 = 1;
+        } else {
+            $int8 = 0;
+        }
+        $int0, $int1 = ~bslay_req_add($int8, obj_28445, null, $string0, $int0, $int1);
+        $obj9 = null;
+    case struct_28649 :
+        $obj9, $string0 = obj_6570, "You must have previously sacrificed a fire cape.";
+    case struct_33661 :
+        $obj9, $string0 = obj_37614, "You must have found all parts and assembled the Ancient Sigil.";
 }
 if ($obj9 ! null) {
     if (~obj_gettotal($obj9) > 0 | %varclient_4485 = struct_28649 & %varplayerbit_3910 = 1 | %varclient_4485 = struct_33661 & %varplayerbit_32608 = 1) {

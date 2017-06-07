@@ -9,8 +9,12 @@ def_stat $stat6 = null;
 $stat1, $stat2, $stat3, $stat4, $stat5, $stat6 = ~script790;
 def_int $int7 = 0;
 def_int $int8 = 0;
+def_int $int9 = 0;
 if (stat_base_actual(dungeoneering) < 120 & $stat1 ! dungeoneering & $stat2 ! dungeoneering & $stat3 ! dungeoneering & $stat4 ! dungeoneering & $stat5 ! dungeoneering) {
     $int7 = 1;
+}
+if (stat_base_actual(slayer) < 120 & $stat1 ! slayer & $stat2 ! slayer & $stat3 ! slayer & $stat4 ! slayer & $stat5 ! slayer) {
+    $int9 = 1;
 }
 if (stat_base_actual(invention) < 120 & $stat1 ! invention & $stat2 ! invention & $stat3 ! invention & $stat4 ! invention & $stat5 ! invention) {
     if (~invent_skill_unlocked = true) {
@@ -21,13 +25,34 @@ if (stat_base_actual(invention) < 120 & $stat1 ! invention & $stat2 ! invention 
 }
 if (stat_base_actual($stat6) = 99) {
     if ($int7 = 1) {
-        if ($int8 = 1) {
+        if ($int9 = 1) {
+            if ($int8 = 1) {
+                $stat3 = dungeoneering;
+                $stat4 = slayer;
+                $stat5 = invention;
+            } else if ($stat5 ! invention) {
+                $stat4 = dungeoneering;
+                $stat5 = slayer;
+            } else {
+                $stat3 = dungeoneering;
+                $stat4 = slayer;
+            }
+        } else if ($int8 = 1) {
             $stat4 = dungeoneering;
             $stat5 = invention;
         } else if ($stat5 ! invention) {
             $stat5 = dungeoneering;
         } else {
             $stat4 = dungeoneering;
+        }
+    } else if ($int9 = 1) {
+        if ($int8 = 1) {
+            $stat4 = slayer;
+            $stat5 = invention;
+        } else if ($stat5 ! invention) {
+            $stat5 = slayer;
+        } else {
+            $stat4 = slayer;
         }
     } else if ($int8 = 1) {
         $stat5 = invention;

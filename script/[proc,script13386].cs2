@@ -1,9 +1,15 @@
 // 13386
-[proc,script13386]()(int)
-def_int $int0 = random(15);
-def_struct $struct1 = enum(int, struct, enum_12591, $int0);
-while ($int0 ! 0 & $struct1 = struct_1579 | $struct1 = enum(int, struct, enum_12591, %varclient_6040)) {
-    $int0 = random(15);
-    $struct1 = enum(int, struct, enum_12591, $int0);
+[proc,script13386](enum $enum0)(int)
+def_int $int1 = %varclient_6045;
+def_int $int2 = enum_getoutputcount($enum0);
+if ($enum0 = enum_12591) {
+    $int1 = %varclient_6040;
+    $int2 = calc($int2 - 2);
 }
-return($int0);
+def_int $int3 = random($int2);
+def_struct $struct4 = enum(int, struct, $enum0, $int3);
+while ($int3 ! 0 & $struct4 = struct_1579 | $struct4 = enum(int, struct, $enum0, $int1)) {
+    $int3 = random($int2);
+    $struct4 = enum(int, struct, $enum0, $int3);
+}
+return($int3);

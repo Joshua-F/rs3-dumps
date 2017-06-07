@@ -1,0 +1,85 @@
+// 13441
+[proc,script13441](int $int0)
+def_int $int1 = 122880062;
+def_component $component2 = interface_1875:com_97;
+def_component $component3 = interface_1875:com_96;
+def_component $component4 = interface_1875:com_84;
+def_component $component5 = interface_1875:com_83;
+def_struct $struct6 = ~reputation_get_reputation_struct(5);
+def_enum $enum7 = struct_param($struct6, param_6582);
+def_enum $enum8 = struct_param($struct6, param_6583);
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 1;
+def_graphic $graphic14 = null;
+def_int $int15 = 0;
+def_int $int16 = 0;
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_int $int19 = enum_getoutputcount($enum7);
+def_obj $obj20 = null;
+def_int $int21 = 0;
+def_struct $struct22 = null;
+def_int $int23 = 0;
+def_int $int24 = 0;
+def_int $int25 = 0;
+def_string $string0 = null;
+$int16 = ~script13434(5);
+$int18 = ~script13431(5);
+$int15 = calc($int18 / ($int16 / 348));
+$int16 = calc($int16 / 10);
+$string0 = "<tostring(calc(%varplayer_7002 / 10))>/<tostring($int16)>";
+if (if_getnextsubid($component2) = 0) {
+    cc_create($component2, ^iftype_graphic, if_getnextsubid($component2));
+    cc_setgraphic("menaphos_progress_global,0");
+    cc_setposition($int9, $int10, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    if_setonmouserepeat("script3876($string0, $component2, -1)", $component3);
+    cc_setonvartransmit("script13436(5){varplayer_7002, varplayer_6991}");
+}
+if_setontimer("script13442($component2, $component3, $component4, $int15)", $component2);
+if_sethide(false, interface_1875:com_1);
+while ($int17 < $int19) {
+    $obj20 = enum(int, obj, $enum7, $int17);
+    $graphic14 = oc_param($obj20, param_6276);
+    $int12 = enum(int, int, $enum8, $int17);
+    $int12 = calc($int12 / 10);
+    $int11 = ~reputation_unlock_state($int17, 5);
+    $int12 = calc($int16 - $int12);
+    $int24 = 1000;
+    $int10 = calc($int16 - $int16 * $int17 / $int19);
+    $int10 = calc($int10 / $int24);
+    if ($int23 = 0) {
+        $int23 = 1;
+        $int9 = 0;
+    } else {
+        $int23 = 0;
+        $int9 = calc(if_getwidth($component5) - (36 + 4));
+    }
+    if ($obj20 ! null) {
+        if (calc($int18 / 10) >= calc($int16 - $int12) & $int11 = 0) {
+            $struct22 = struct_28303;
+        } else {
+            $struct22 = struct_28303;
+            if (calc($int18 / 10) < calc($int16 - $int12)) {
+                $struct22 = struct_21363;
+                $int11 = 2;
+            }
+        }
+        ~rs3_background_panel_dynamic($component5, $struct22, $int9, $int10, 36, calc(32 + 4), null);
+        cc_create($component5, ^iftype_graphic, if_getnextsubid($component5));
+        cc_setsize(calc(36 - 4), 32, ^setsize_abs, ^setsize_abs);
+        if ($graphic14 = null) {
+            cc_setobject($obj20, $int13);
+            cc_setposition(calc($int9 + 4), calc($int10 + 4), ^setpos_abs_left, ^setpos_abs_top);
+        } else {
+            cc_setgraphic($graphic14);
+            cc_setposition(calc($int9 + 2), calc($int10 + 2), ^setpos_abs_left, ^setpos_abs_top);
+        }
+        cc_setonmouserepeat("script13481($struct6, calc($int16 - $int12), $int11, $obj20, $component5, calc(if_getnextsubid($component5) - 1))");
+        $int21 = if_getnextsubid($component5);
+    }
+    $int17 = calc($int17 + 1);
+}

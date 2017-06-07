@@ -33,31 +33,30 @@ if (struct_param($struct0, param_6416) = 1) {
     if ($int5 = enum_getoutputcount($enum3)) {
         return(-2);
     }
-    return(calc(100 - scale(calc(enum_getoutputcount($enum3) - $int5), enum_getoutputcount($enum3), 100)));
+    return(calc(1000 - scale(calc(enum_getoutputcount($enum3) - $int5), enum_getoutputcount($enum3), 10000)));
 } else {
     $int1 = ~cheevo_get_progress($struct0);
+    if ($int1 = -1) {
+        return(-1);
+    }
     $int2 = struct_param($struct0, param_6423);
     if ($int2 = -1337) {
         $int2 = ~script13282($struct0);
     }
     if ($int1 >= $int2) {
         return(-2);
-    }
-    if ($int1 = -1) {
-        return(-1);
-    }
-    if (~cheevo_requirements_met($struct0) = 0) {
+    } else if (~cheevo_requirements_met($struct0) = 0) {
         return(-1);
     } else if ($int1 > 0) {
         if (struct_param($struct0, param_6424) = 1) {
             if (struct_param($struct0, param_6425) ! -1) {
                 $int6 = bitcount(calc(struct_param($struct0, param_6425) & $int1));
-                return(scale($int6, struct_param($struct0, param_6423), 100));
+                return(scale($int6, struct_param($struct0, param_6423), 10000));
             } else {
-                return(scale(bitcount($int1), bitcount(struct_param($struct0, param_6423)), 100));
+                return(scale(bitcount($int1), bitcount(struct_param($struct0, param_6423)), 10000));
             }
         } else {
-            return(scale($int1, struct_param($struct0, param_6423), 100));
+            return(scale($int1, struct_param($struct0, param_6423), 10000));
         }
     }
 }
