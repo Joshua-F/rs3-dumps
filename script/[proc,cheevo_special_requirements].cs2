@@ -6,6 +6,8 @@ def_int $int3 = -1;
 def_string $string0 = "";
 def_int $int4 = 1;
 def_int $int5 = 0;
+def_int $int6 = %varplayer_1297;
+def_int $int7 = %varplayer_423;
 if (struct_param(enum(int, struct, enum_12251, $int0), param_1346) > 0) {
     return($int4, "See Boss Info");
 }
@@ -171,7 +173,11 @@ switch_int ($int0) {
         }
         $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~cheevo_req_quest_partial(76));
     case 1249 :
-        if (~script13271(99) = 1 | %varplayer_1297 >= %varplayer_423) {
+        if (~script13424 = 1) {
+            $int6 = ~script13426;
+            $int7 = ~script13425;
+        }
+        if (~script13271(99) = 1 | $int6 >= $int7) {
             $int5 = 1;
         }
         $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Achieve 99 in a skill or complete all quests.");
@@ -308,6 +314,16 @@ switch_int ($int0) {
             $int5 = 1;
         }
         $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Rescue King Awowogei in the <~cheevo_req_quest_name(87)> quest.");
+        $int5 = 0;
+        if (%varplayerbit_9312 >= 5) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Bring Leela to Senliten's tomb.");
+    case 2796 :
+        if (~reputation_get_current_reputation_tier(5) > 2) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Achieve rank 3 overall Menaphos reputation.");
         $int5 = 0;
         if (%varplayerbit_9312 >= 5) {
             $int5 = 1;
@@ -486,6 +502,16 @@ switch_int ($int0) {
             $int5 = 1;
         }
         $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13296(60, 18, 60, 15, 60, 13));
+    case 2797 :
+        if (~reputation_get_current_reputation_tier(5) > 5) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Achieve rank 6 overall Menaphos reputation.");
+    case 2798 :
+        if (~reputation_get_current_reputation_tier(5) > 8) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Achieve rank 9 overall Menaphos reputation.");
     case default :
         ~error("Achievement #<tostring($int0)> (<struct_param(enum(int, struct, enum_12251, $int0), param_6410)>)'s special requirement case is missing.");
         return(0, "");
