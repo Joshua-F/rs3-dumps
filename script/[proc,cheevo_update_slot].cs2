@@ -2,6 +2,7 @@
 [proc,cheevo_update_slot](int $int0, int $int1)
 def_int $int2 = 0;
 def_struct $struct3 = null;
+def_string $string0 = "";
 $int1 = calc($int1 * 7);
 if (cc_find(interface_1851:com_48, $int1) = true) {
     $int2 = cc_param(param_6430);
@@ -45,7 +46,20 @@ if (cc_find(interface_1851:com_48, calc($int1 + 1)) = true) {
     cc_setparam(param_6433, cc_gety);
     cc_setsize(79, 20, ^setsize_minus, ^setsize_abs);
     cc_setcolour($rgb5);
-    cc_settext(~cheevo_name($struct3));
+    switch_int (~cheevo_get_difficulty(struct_param($struct3, param_6417))) {
+        case 1 :
+            $string0 = append($string0, "Beginner - ");
+        case 2 :
+            $string0 = append($string0, "Easy - ");
+        case 3 :
+            $string0 = append($string0, "Medium - ");
+        case 4 :
+            $string0 = append($string0, "Hard - ");
+        case 5 :
+            $string0 = append($string0, "Elite - ");
+    }
+    $string0 = append($string0, ~cheevo_name($struct3));
+    cc_settext($string0);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     cc_settextfont(cinzel_12pt_bold);
 }

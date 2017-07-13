@@ -1,19 +1,23 @@
 // 2290
-[clientscript,script2290](component $component0, int $int1)
-def_enum $enum2 = enum_6759;
-if (%varplayerbit_16789 = 1) {
-    $enum2 = enum_6760;
+[clientscript,script2290](int $int0, component $component1)
+def_struct $struct2 = null;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 36;
+if ($int0 = 5) {
+    $int8 = 119;
 }
-def_struct $struct3 = enum(int, struct, $enum2, $int1);
-if (~script7168($struct3) = 0) {
-    if (~script2295($int1) = 0) {
-        return;
-    }
-    if (cc_find($component0, $int1) = true) {
-        cc_setgraphic("miscgraphics,11");
-        cc_setop(1, "Deselect");
-    }
-} else if (cc_find($component0, $int1) = true) {
-    cc_setgraphic("miscgraphics,10");
-    cc_setop(1, "Select");
+$struct2 = ~reputation_get_reputation_struct($int0);
+$int3 = ~script13431($int0);
+$int4 = ~reputation_get_current_reputation_tier($int0);
+if ($int4 = 10) {
+    if_setsize($int8, 4, ^setsize_abs, ^setsize_minus, $component1);
+} else {
+    $int5 = enum(int, int, struct_param($struct2, param_6583), $int4);
+    $int6 = enum(int, int, struct_param($struct2, param_6583), calc($int4 + 1));
+    $int7 = calc($int6 - $int5);
+    if_setsize(scale(calc($int3 - $int5), $int7, $int8), 4, ^setsize_abs, ^setsize_minus, $component1);
 }

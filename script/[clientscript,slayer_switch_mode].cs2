@@ -1,0 +1,17 @@
+// 13520
+[clientscript,slayer_switch_mode](component $component0)
+def_int $int1 = if_getwidth(interface_1639:com_3);
+def_int $int2 = struct_param(struct_31708, param_3484);
+def_int $int3 = 65;
+def_int $int4 = struct_param(struct_31708, param_3485);
+def_int $int5 = 30;
+def_int $int6 = 5;
+def_int $int7 = calc(($int2 - $int3) / max($int6, 1));
+def_int $int8 = calc(($int4 - $int5) / max($int6, 1));
+if ($int1 <= $int3) {
+    if_setop(1, "Shrink", $component0);
+    if_setontimer("slayer_switch($int2, $int7, $int8, 1)", interface_1639:com_3);
+} else if ($int1 >= $int2) {
+    if_setop(1, "Expand", $component0);
+    if_setontimer("slayer_switch($int3, $int7, $int8, -1)", interface_1639:com_3);
+}

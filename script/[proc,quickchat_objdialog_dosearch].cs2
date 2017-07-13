@@ -35,9 +35,17 @@ def_obj $obj9 = oc_findnext;
 def_string $string0 = "";
 def_struct $struct10 = null;
 cc_create($component1, ^iftype_rectangle, 0);
+def_int $int11 = 0;
 while ($obj9 ! null) {
     $struct10 = oc_param($obj9, param_4749);
-    if (compare($string0, oc_name($obj9)) ! 0 & enum(obj, int, enum_1547, $obj9) = 0 & oc_param($obj9, param_2531) = 0 & compare(lowercase(oc_name($obj9)), null) ! 0 & %varplayer_3079 >= oc_param($obj9, param_4742) & ($struct10 = null | %varplayer_3079 >= struct_param($struct10, param_4630))) {
+    if (oc_param($obj9, param_6628) ! 0) {
+        $int11 = oc_param($obj9, param_6628);
+    } else if (oc_param($obj9, param_4749) ! null) {
+        $int11 = struct_param(oc_param($obj9, param_4749), param_4630);
+    } else {
+        $int11 = oc_param($obj9, param_4742);
+    }
+    if (compare($string0, oc_name($obj9)) ! 0 & enum(obj, int, enum_1547, $obj9) = 0 & oc_param($obj9, param_2531) = 0 & compare(lowercase(oc_name($obj9)), null) ! 0 & %varplayer_3079 >= oc_param($obj9, param_4742) & ($struct10 = null | %varplayer_3079 >= $int11)) {
         $string0 = oc_name($obj9);
         cc_create($component1, ^iftype_text, $int8);
         cc_setposition(4, calc(14 * ($int8 - 1)), ^setpos_abs_left, ^setpos_abs_top);
