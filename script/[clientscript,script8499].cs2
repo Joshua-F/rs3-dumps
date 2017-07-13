@@ -1,0 +1,37 @@
+// 8499
+[clientscript,script8499](component $component0, int $int1)
+def_struct $struct2 = null;
+def_int $int3 = 1;
+def_int $int4 = 0;
+if (cc_find(interface_1890:com_34, $int1) = true) {
+    if (~script6799(%varplayerbit_36830) = 1) {
+        $struct2 = enum(int, struct, enum_6760, $int1);
+    } else {
+        $struct2 = enum(int, struct, enum_6759, $int1);
+        $int3 = 1;
+        if (struct_param($struct2, param_2961) = 1) {
+            if (stat_base(prayer) >= struct_param($struct2, param_2965)) {
+                $int3 = 2;
+            }
+            if (stat_base(prayer) >= struct_param($struct2, param_2967)) {
+                $int3 = 3;
+            }
+            switch_int ($int3) {
+                case 1 :
+                    $struct2 = struct_param($struct2, param_2964);
+                case 2 :
+                    $struct2 = struct_param($struct2, param_2966);
+                case 3 :
+                    $struct2 = struct_param($struct2, param_2968);
+            }
+        }
+    }
+    $int4 = struct_param($struct2, param_2807);
+    if (stat_base(prayer) < $int4) {
+        cc_setgraphic(null);
+        return;
+    } else {
+        cc_setgraphic(combatv2_prayerglow);
+    }
+    ~script8562($struct2);
+}

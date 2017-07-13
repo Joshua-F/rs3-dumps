@@ -1,5 +1,5 @@
 // 2833
-[proc,inventory_setophelds](obj $obj0, int $int1)
+[proc,inventory_setophelds](obj $obj0, int $int1, int $int2)
 if ($int1 = 1) {
     cc_setopbase("<~script4033($obj0)><oc_name($obj0)>");
 }
@@ -65,12 +65,16 @@ switch_obj ($obj0) {
             return;
         }
 }
-if (oc_category($obj0) = category_3464) {
-    ~script6468($obj0, $int1);
-    return;
-} else if (oc_category($obj0) = category_4040) {
-    ~script12405($obj0, $int1);
-    return;
+switch_category (oc_category($obj0)) {
+    case category_3464 :
+        ~script6468($obj0, $int1);
+        return;
+    case category_4040 :
+        ~script12405($obj0, $int1);
+        return;
+    case category_1825 :
+        ~script13505($obj0, $int1, $int2);
+        return;
 }
 if ($int1 = 1) {
     if (oc_uncert($obj0) ! $obj0 & %varplayerbit_3617 = 1) {

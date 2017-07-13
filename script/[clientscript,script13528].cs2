@@ -1,0 +1,50 @@
+// 13528
+[clientscript,script13528]
+if_sethide(true, interface_1639:com_14);
+def_enum $enum0 = enum(int, enum, enum_1553, %varplayerbit_9072);
+if ($enum0 = null) {
+    return;
+}
+def_struct $struct1 = enum(int, struct, $enum0, %varplayerbit_9068);
+if ($struct1 = null) {
+    return;
+}
+def_npc $npc2 = struct_param($struct1, param_659);
+def_graphic $graphic3 = aif_combat_icon;
+if ($npc2 ! null) {
+    if_sethide(false, interface_1639:com_14);
+    switch_int (nc_param($npc2, param_2848)) {
+        case default :
+            $graphic3 = aif_combat_icon;
+        case 1 :
+            $graphic3 = "aif_magic_standard_icons,32";
+        case 2 :
+            $graphic3 = "aif_magic_standard_icons,33";
+        case 3 :
+            $graphic3 = "aif_magic_standard_icons,34";
+        case 4 :
+            $graphic3 = "aif_magic_standard_icons,35";
+        case 5 :
+            $graphic3 = "combaticons,7";
+        case 6 :
+            $graphic3 = "combaticons,1";
+        case 7 :
+            $graphic3 = "combaticons2,3";
+        case 8 :
+            $graphic3 = "aif_magic_lunar_icons,3";
+        case 9 :
+            $graphic3 = "aif_magic_standard_icons,38";
+        case 10 :
+            $graphic3 = "combaticons,18";
+        case 21 :
+            switch_int (nc_param($npc2, param_26)) {
+                case 3 :
+                    $graphic3 = "staticons,3";
+                case 1 :
+                    $graphic3 = "staticons,5";
+                case 2 :
+                    $graphic3 = "staticons,0";
+            }
+    }
+}
+if_setgraphic($graphic3, interface_1639:com_14);

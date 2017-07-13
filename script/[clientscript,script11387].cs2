@@ -1,65 +1,34 @@
 // 11387
 [clientscript,script11387](component $component0)
-if (playermember = true) {
-    switch_int (%varplayerbit_27893) {
-        case 0, 1 :
-            if_setop(7, "Buy action bar", $component0);
-            if_setop(8, "", $component0);
-            if_setop(9, "", $component0);
-            if_setop(10, "", $component0);
-        case 2 :
-            if_setop(7, "7", $component0);
-            if_setop(8, "Buy action bar", $component0);
-            if_setop(9, "", $component0);
-            if_setop(10, "", $component0);
-        case 3 :
-            if_setop(7, "7", $component0);
-            if_setop(8, "8", $component0);
-            if_setop(9, "Buy action bar", $component0);
-            if_setop(10, "", $component0);
-        case 4 :
-            if_setop(7, "7", $component0);
-            if_setop(8, "8", $component0);
-            if_setop(9, "9", $component0);
-            if_setop(10, "Buy action bar", $component0);
-        case 5 :
-            if_setop(7, "7", $component0);
-            if_setop(8, "8", $component0);
-            if_setop(9, "9", $component0);
-            if_setop(10, "10", $component0);
-    }
-} else {
-    switch_int (%varplayerbit_27893) {
-        case 0 :
-            if_setop(4, "Buy action bar", $component0);
-            if_setop(5, "", $component0);
-            if_setop(6, "", $component0);
-            if_setop(7, "", $component0);
-        case 1 :
-            if_setop(4, "4", $component0);
-            if_setop(5, "Buy action bar", $component0);
-            if_setop(6, "", $component0);
-            if_setop(7, "", $component0);
-        case 2 :
-            if_setop(4, "4", $component0);
-            if_setop(5, "5", $component0);
-            if_setop(6, "Buy action bar", $component0);
-            if_setop(7, "", $component0);
-        case 3 :
-            if_setop(4, "4", $component0);
-            if_setop(5, "5", $component0);
-            if_setop(6, "6", $component0);
-            if_setop(7, "Buy action bar", $component0);
-        case 4 :
-            if_setop(4, "4", $component0);
-            if_setop(5, "5", $component0);
-            if_setop(6, "6", $component0);
-            if_setop(7, "7", $component0);
-        case 5 :
-            if_setop(4, "4", $component0);
-            if_setop(5, "5", $component0);
-            if_setop(6, "6", $component0);
-            if_setop(7, "7", $component0);
-            if_setop(8, "8", $component0);
-    }
+def_int $int1 = -1;
+switch_component ($component0) {
+    case interface_1430:com_248 :
+        $int1 = ~script11800(1003);
+    case interface_1670:com_0 :
+        $int1 = ~script11800(1032);
+    case interface_1671:com_0 :
+        $int1 = ~script11800(1033);
+    case interface_1672:com_188 :
+        $int1 = ~script11800(1034);
+    case interface_1673:com_188 :
+        $int1 = ~script11800(1035);
+    case default :
+        return;
+}
+if_clearops($component0);
+if ($int1 = 15) {
+    return;
+}
+def_int $int2 = 5;
+if (playermember = false) {
+    $int2 = 3;
+}
+$int2 = calc($int2 + %varplayerbit_27893);
+def_int $int3 = 1;
+while ($int3 <= $int2) {
+    if_setop($int3, tostring($int3), $component0);
+    $int3 = calc($int3 + 1);
+}
+if ($int2 < 10 & %varplayerbit_27893 < 5) {
+    if_setop(calc($int2 + 1), "Buy action bar", $component0);
 }
