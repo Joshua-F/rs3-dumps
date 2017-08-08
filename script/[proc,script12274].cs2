@@ -8,7 +8,6 @@ def_string $string1 = tostring($int1);
 def_string $string2 = tostring($int2);
 def_string $string3 = "You have not set a fastest time for this boss.";
 def_string $string4 = "---";
-def_int $int3 = 0;
 if (%varclient_4488 ! -1) {
     if (%varclient_4488 > 0) {
         $int0, $int1, $int2 = ~script4705(%varclient_4488);
@@ -29,7 +28,17 @@ if (%varclient_4488 ! -1) {
         }
         $string3 = "Fastest kill: <$string0>:<$string1>:<$string2>";
         $string4 = "<$string0>:<$string1>:<$string2>";
-        $int3 = calc($int3 + 1);
+        if_setop(2, "Announce to Local Chat", interface_753:com_10);
+        if_setop(3, "Announce to Friends Chat", interface_753:com_10);
+        if_setop(4, "Announce to Clan Chat", interface_753:com_10);
+        if_setop(5, "Announce to Guest Clan Chat", interface_753:com_10);
+        if_setop(10, "Reset time", interface_753:com_10);
+    } else {
+        if_setop(2, "", interface_753:com_10);
+        if_setop(3, "", interface_753:com_10);
+        if_setop(4, "", interface_753:com_10);
+        if_setop(5, "", interface_753:com_10);
+        if_setop(10, "", interface_753:com_10);
     }
     if (%varclient_4489 > -1) {
         if (%varclient_4489 > 0) {
@@ -51,16 +60,24 @@ if (%varclient_4488 ! -1) {
             }
             $string3 = append($string3, "<br><col=ff3030>Fastest hardmode kill: <$string0>:<$string1>:<$string2></col>");
             $string4 = append($string4, "<br><col=ff3030><$string0>:<$string1>:<$string2></col>");
-            $int3 = calc($int3 + 1);
+            if_setop(6, "Announce to Local Chat (HM)", interface_753:com_10);
+            if_setop(7, "Announce to Friends Chat (HM)", interface_753:com_10);
+            if_setop(8, "Announce to Clan Chat (HM)", interface_753:com_10);
+            if_setop(9, "Announce to Guest Clan Chat (HM)", interface_753:com_10);
+            if_setop(10, "Reset time", interface_753:com_10);
         } else {
             $string3 = append($string3, "<br><col=ff3030>You have not set a fastest time for this boss in hard mode.</col>");
             $string4 = append($string4, "<br><col=ff3030>---</col>");
+            if_setop(6, "", interface_753:com_10);
+            if_setop(7, "", interface_753:com_10);
+            if_setop(8, "", interface_753:com_10);
+            if_setop(9, "", interface_753:com_10);
         }
-    }
-    if ($int3 = 0) {
-        if_setop(10, "", interface_753:com_35);
     } else {
-        if_setop(10, "Reset time", interface_753:com_35);
+        if_setop(6, "", interface_753:com_10);
+        if_setop(7, "", interface_753:com_10);
+        if_setop(8, "", interface_753:com_10);
+        if_setop(9, "", interface_753:com_10);
     }
     if_setonmouserepeat("script8799($string3, interface_753:com_8, -1)", interface_753:com_35);
     if_settext($string4, interface_753:com_3);

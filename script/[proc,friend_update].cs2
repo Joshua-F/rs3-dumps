@@ -30,13 +30,11 @@ def_int $int17 = calc(if_getwidth($component2) - ($int16 + $int14));
 if (playermember = true) {
     $int13 = 400;
 }
-if ($int1 <= 0) {
+if ($int1 < 0) {
     $int1 = if_getx($component8);
 }
 $int1 = max(min($int1, calc($int15 - $int14)), 0);
-if ($int15 > 0) {
-    %varclient_1036 = $int1;
-}
+%varclient_1036 = $int1;
 def_int $intarray0(calc($int11 + 1));
 def_int $int18 = -1;
 if_setposition($int1, 0, ^setpos_abs_left, ^setpos_abs_centre, $component8);
@@ -75,6 +73,7 @@ if (if_getnextsubid($component2) = 0) {
 }
 while ($int12 < $int11) {
     if (cc_find($component2, $int12) = true) {
+        cc_setsize($int16, 15, ^setsize_abs, ^setsize_abs);
         cc_clearops;
         cc_setontimer("friend_info($component0, event_comsubid, $int16, $int17)");
         if (compare(cc_gettext, "") = 0) {
@@ -89,6 +88,9 @@ while ($int12 < $int11) {
                 .cc_sethide(false);
             }
         }
+        if (cc_find($component4, $int12) = true) {
+            cc_setsize($int17, 15, ^setsize_abs, ^setsize_abs);
+        }
     }
     if ($int18 = -1 & friend_getworld($int12) = 0) {
         $int18 = $int12;
@@ -98,6 +100,7 @@ while ($int12 < $int11) {
 }
 while ($int12 < 400) {
     if (cc_find($component2, $int12) = true) {
+        cc_setsize($int16, 15, ^setsize_abs, ^setsize_abs);
         cc_settext("");
         cc_sethide(true);
         cc_setparam(param_5435, -1);
@@ -107,6 +110,7 @@ while ($int12 < 400) {
         cc_sethide(true);
     }
     if (cc_find($component4, $int12) = true) {
+        cc_setsize($int17, 15, ^setsize_abs, ^setsize_abs);
         cc_sethide(true);
     }
     if (cc_find($component5, $int12) = true) {

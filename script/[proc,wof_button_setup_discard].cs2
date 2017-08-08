@@ -40,6 +40,9 @@ if (%varplayer_1454 = 0) {
     $string1 = "Convert to coins. <tostring_localised(%varplayer_1454, true)> coins.";
     $string3 = "Cash Out";
 }
+if (~trh_state(struct_37795) = 1) {
+    $string3 = "Convert";
+}
 if (%varclient_1790 = 7) {
     $string1 = "Treasure Hunter is not available at the moment. Please try later.";
     $string2 = "Treasure Hunter is not available at the moment. Please try later.";
@@ -52,14 +55,17 @@ if (%varclient_1790 = 10) {
     $boolean2 = false;
 }
 if ($int3 = 1) {
-    if_setonmouserepeat("script3876($string1, event_com, -1)", interface_1253:com_236);
-    if_setonmouserepeat("script3876($string2, event_com, -1)", interface_1253:com_237);
+    if_setonmouserepeat("script3876($string1, event_com, -1)", interface_1253:com_237);
+    if_setonmouserepeat("script3876($string2, event_com, -1)", interface_1253:com_238);
 } else {
-    if_setonmouserepeat(null, interface_1253:com_236);
     if_setonmouserepeat(null, interface_1253:com_237);
+    if_setonmouserepeat(null, interface_1253:com_238);
 }
-if_setop(1, $string0, interface_1253:com_236);
-if_sethide($boolean2, interface_1253:com_237);
-if_sethide($boolean4, interface_1253:com_216);
-if_settext($string3, interface_1253:com_239);
-if_setonmouserepeat("script3876($string4, event_com, -1)", interface_1253:com_217);
+if_setop(1, $string0, interface_1253:com_237);
+if_sethide($boolean2, interface_1253:com_238);
+if_sethide($boolean4, interface_1253:com_217);
+if_settext($string3, interface_1253:com_240);
+if (~trh_state(struct_37795) = 1) {
+    $string4 = "The amount of extra oddments that will be received if using 'Convert' instead of claiming the item.";
+}
+if_setonmouserepeat("script3876($string4, event_com, -1)", interface_1253:com_218);
