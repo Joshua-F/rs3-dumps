@@ -7,12 +7,12 @@ if (%varclient_1753 <= 0) {
         %varclient_1753 = 8;
     }
 }
-cc_deleteall(interface_1218:com_15);
-cc_deleteall(interface_1218:com_60);
+cc_deleteall(interface_1218:com_16);
+cc_deleteall(interface_1218:com_61);
 def_int $int0 = 0;
 def_int $int1 = 0;
 def_string $string0 = "";
-def_obj $obj2 = null;
+def_int $int2 = -1;
 def_int $int3 = 0;
 def_int $int4 = 0;
 def_enum $enum5 = enum(int, enum, enum_5420, %varclient_1753);
@@ -83,15 +83,37 @@ def_int $int11 = 0;
 def_int $int12 = 0;
 def_obj $obj13 = null;
 def_boolean $boolean14 = false;
+def_int $int15 = 0;
+def_int $int16 = enum_getoutputcount(enum_12899);
+def_stat $stat17 = enum(int, stat, enum_681, %varclient_1753);
+def_struct $struct18 = null;
 if ($int9 > $int8) {
-    while ($int0 ! -1) {
-        $int0 = 0;
-        $string0, $obj2, $int0 = ~script1023(enum(int, stat, enum_681, %varclient_1753), $int1);
-        if ($int0 = 1) {
-            $int3 = ~script5686($int3, $string0);
+    while ($int15 < $int16) {
+        $struct18 = enum(int, struct, enum_12899, $int1);
+        if ($struct18 ! null) {
+            $int15 = calc($int15 + 1);
+            $string0, $int0 = ~script8584($stat17, $int8, $struct18, 0);
+            if ($int0 = 1) {
+                $int3 = ~script8790($int3, $string0, $struct18);
+            }
         }
         $int1 = calc($int1 + 1);
     }
+    $int1 = 0;
+    $int15 = 0;
+    $int16 = enum_getoutputcount(enum_2252);
+    while ($int15 < $int16) {
+        $struct18 = enum(int, struct, enum_2252, $int1);
+        if ($struct18 ! null) {
+            $int15 = calc($int15 + 1);
+            $string0, $int0 = ~script8584($stat17, $int8, $struct18, 1);
+            if ($int0 = 1) {
+                $int3 = ~script8790($int3, $string0, $struct18);
+            }
+        }
+        $int1 = calc($int1 + 1);
+    }
+    $int1 = 0;
     while ($int7 < $int6) {
         $struct10 = enum(int, struct, $enum5, $int7);
         $int11 = ~skillguide_skill($struct10);
@@ -105,7 +127,7 @@ if ($int9 > $int8) {
             }
         }
         if ($int12 > $int8 & $int12 <= $int9) {
-            cc_create(interface_1218:com_15, ^iftype_graphic, if_getnextsubid(interface_1218:com_15));
+            cc_create(interface_1218:com_16, ^iftype_graphic, if_getnextsubid(interface_1218:com_16));
             if ($boolean14 = true) {
                 cc_setgraphic("aif_skill_select_btn_1,2");
             } else {
@@ -120,26 +142,29 @@ if ($int9 > $int8) {
         $int7 = calc($int7 + 1);
     }
     if ($int3 > 0) {
-        if_sethide(true, interface_1218:com_10);
         if_sethide(true, interface_1218:com_11);
-        if_setsize(209, 260, ^setsize_minus, ^setsize_abs, interface_1218:com_8);
-        if_setsize(16, 260, ^setsize_abs, ^setsize_abs, interface_1218:com_9);
-        if_sethide(false, interface_1218:com_6);
-        if_sethide(true, interface_1218:com_7);
-        if_setscrollsize(0, $int3, interface_1218:com_8);
-        if_setscrollpos(0, 0, interface_1218:com_8);
-        if_setsize(0, $int3, ^setsize_minus, ^setsize_abs, interface_1218:com_15);
-        if_setsize(0, $int3, ^setsize_minus, ^setsize_abs, interface_1218:com_60);
-        ~scrollbar_vertical(interface_1218:com_9, interface_1218:com_8, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
+        if_sethide(true, interface_1218:com_12);
+        if_setsize(209, 279, ^setsize_minus, ^setsize_abs, interface_1218:com_9);
+        if_setsize(16, 279, ^setsize_abs, ^setsize_abs, interface_1218:com_10);
+        if_sethide(false, interface_1218:com_0);
+        if_sethide(true, interface_1218:com_8);
+        if_setscrollsize(0, $int3, interface_1218:com_9);
+        if_setscrollpos(0, 0, interface_1218:com_9);
+        if_setsize(0, $int3, ^setsize_minus, ^setsize_abs, interface_1218:com_16);
+        if_setsize(0, $int3, ^setsize_minus, ^setsize_abs, interface_1218:com_61);
+        ~scrollbar_vertical(interface_1218:com_10, interface_1218:com_9, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
         return;
     }
 }
 $int7 = 0;
-if_setsize(209, 355, ^setsize_minus, ^setsize_abs, interface_1218:com_8);
-if_setsize(16, 355, ^setsize_abs, ^setsize_abs, interface_1218:com_9);
-if_sethide(true, interface_1218:com_6);
+if (~script9378 = 1) {
+    ~script9212;
+}
+if_setsize(209, 355, ^setsize_minus, ^setsize_abs, interface_1218:com_9);
+if_setsize(16, 355, ^setsize_abs, ^setsize_abs, interface_1218:com_10);
+if_sethide(true, interface_1218:com_0);
 while ($int7 < $int6) {
-    cc_create(interface_1218:com_15, ^iftype_graphic, $int7);
+    cc_create(interface_1218:com_16, ^iftype_graphic, $int7);
     $struct10 = enum(int, struct, $enum5, $int7);
     $boolean14 = struct_param($struct10, param_2217);
     $obj13 = struct_param($struct10, param_2213);
@@ -166,10 +191,10 @@ while ($int7 < $int6) {
 $intarray0($int6) = -1;
 ~script5698(intarray0, 0, calc($int6 - 1), $enum5);
 $int7 = 0;
-if_setparam_int(param_2221, $intarray0($int7), interface_1218:com_15);
-if_setparam_int(param_2222, $intarray0(calc($int6 - 1)), interface_1218:com_15);
+if_setparam_int(param_2221, $intarray0($int7), interface_1218:com_16);
+if_setparam_int(param_2222, $intarray0(calc($int6 - 1)), interface_1218:com_16);
 while ($int7 < $int6) {
-    if (cc_find(interface_1218:com_15, $intarray0($int7)) = true) {
+    if (cc_find(interface_1218:com_16, $intarray0($int7)) = true) {
         cc_setparam_int(param_2221, $intarray0(calc($int7 + 1)));
         if ($int7 > 0) {
             cc_setparam_int(param_2222, $intarray0(calc($int7 - 1)));
@@ -179,10 +204,10 @@ while ($int7 < $int6) {
 }
 $int7 = 0;
 ~script5699(intarray0, 0, calc($int6 - 1), $enum5);
-if_setparam_int(param_2223, $intarray0($int7), interface_1218:com_15);
-if_setparam_int(param_2224, $intarray0(calc($int6 - 1)), interface_1218:com_15);
+if_setparam_int(param_2223, $intarray0($int7), interface_1218:com_16);
+if_setparam_int(param_2224, $intarray0(calc($int6 - 1)), interface_1218:com_16);
 while ($int7 < $int6) {
-    if (cc_find(interface_1218:com_15, $intarray0($int7)) = true) {
+    if (cc_find(interface_1218:com_16, $intarray0($int7)) = true) {
         cc_setparam_int(param_2223, $intarray0(calc($int7 + 1)));
         if ($int7 > 0) {
             cc_setparam_int(param_2224, $intarray0(calc($int7 - 1)));
@@ -190,5 +215,5 @@ while ($int7 < $int6) {
     }
     $int7 = calc($int7 + 1);
 }
-if_setscrollpos(0, 0, interface_1218:com_8);
+if_setscrollpos(0, 0, interface_1218:com_9);
 ~skillguide_skill_refresh(%varclient_1753);
