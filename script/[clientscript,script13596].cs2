@@ -1,0 +1,30 @@
+// 13596
+[clientscript,script13596](component $component0, int $int1)
+cc_deleteall($component0);
+def_int $int2 = 0;
+switch_int ($int1) {
+    case 0 :
+        $int2 = %varplayerbit_37053;
+    case 1 :
+        $int2 = %varplayerbit_37054;
+    case 2 :
+        $int2 = %varplayerbit_37055;
+    case 3 :
+        $int2 = %varplayerbit_37056;
+}
+if ($int2 = 0) {
+    return;
+}
+def_struct $struct3 = enum(int, struct, enum_12251, calc($int2 - 1));
+if ($struct3 = null) {
+    return;
+}
+def_string $string0 = "";
+cc_create($component0, ^iftype_graphic, 0);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setgraphic(~cheevo_icon($struct3));
+$string0 = ~cheevo_name($struct3);
+$string0 = append($string0, "<br>");
+$string0 = append($string0, ~cheevo_details($struct3, 0));
+cc_setonmouserepeat("script8799($string0, $component0, 0)");

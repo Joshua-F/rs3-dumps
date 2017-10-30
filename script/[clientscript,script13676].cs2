@@ -1,0 +1,62 @@
+// 13676
+[clientscript,script13676](component $component0)
+if (%varplayerbit_37614 = 0) {
+    return;
+}
+db_find(dbtable_22:col0, %varplayerbit_37614);
+def_dbrow $dbrow1 = db_findnext;
+def_int $int2 = db_getfield($dbrow1, dbtable_22:col16, 0);
+def_string $string0 = "The amount of time until your machine has processed all of your items.<br>This machine processes <tostring_localised($int2, true)> items per hour.";
+def_obj $obj3 = null;
+def_int $int4 = 0;
+def_obj $obj5 = null;
+def_int $int6 = 0;
+def_int $int7 = db_getfieldcount($dbrow1, dbtable_22:col18);
+def_int $int8 = db_getfield($dbrow1, dbtable_22:col21, 0);
+def_int $int9 = 0;
+def_int $int10 = 0;
+$int9, $int10 = ~script13641(%varplayerbit_37615);
+def_int $int11 = 100;
+def_int $int12 = 100;
+def_int $int13 = 100;
+def_int $int14 = 0;
+def_int $int15 = calc(100 * %varplayer_7270 / $int2);
+if (calc($int15 % 100) > 0) {
+    $int15 = calc($int15 + 100);
+}
+$int15 = calc($int15 / 100);
+$int15 = calc($int15 * db_getfield($dbrow1, dbtable_22:col21, 0));
+if ($int7 > 0) {
+    $obj3, $int4 = db_getfield($dbrow1, dbtable_22:col18, 0);
+    if ($int7 > 1) {
+        $obj5, $int6 = db_getfield($dbrow1, dbtable_22:col18, 1);
+    }
+}
+if (%varplayer_7270 > 0) {
+    if ($obj3 ! null) {
+        $int11 = calc(100 * %varplayerbit_37616 / ($int4 * %varplayer_7270));
+    }
+    if ($obj5 ! null) {
+        $int12 = calc(100 * %varplayerbit_37617 / ($int6 * %varplayer_7270));
+    }
+    $int13 = scale(%varplayerbit_37590, $int15, 100);
+    if ($int11 < 100) {
+        $int14 = 1;
+        $string0 = "<$string0><br><col=0xff0000>Your machine will process more items if you add more of the following:<br></col><col=0xff0000><oc_name($obj3)></col>";
+    }
+    if ($int12 < 100) {
+        if ($int14 = 0) {
+            $int14 = 1;
+            $string0 = "<$string0><br><col=0xff0000>Your machine will run for longer if you add more of the following:</col>";
+        }
+        $string0 = "<$string0><br><col=0xff0000><oc_name($obj5)></col>";
+    }
+    if ($int13 < 100) {
+        if ($int14 = 0) {
+            $int14 = 1;
+            $string0 = "<$string0><br><col=0xff0000>Your machine will run for longer if you add more of the following:</col>";
+        }
+        $string0 = "<$string0><br><col=0xff0000><oc_name(obj_36390)></col>";
+    }
+}
+~script13651($string0, $component0, -1, ^settextalign_centre, ^settextalign_top, calc(enum(fontmetrics, int, enum_8549, graphic_20452) + 2));

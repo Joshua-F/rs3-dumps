@@ -3,6 +3,13 @@
 def_int $int0 = 0;
 def_int $int1 = calc(if_getwidth(interface_792:com_3) - 16);
 def_int $int2 = 0;
+$int0, $int2 = ~clanwars_updateside_textbox("~ Eligibility ~", $int0, $int2, $int1, 1);
+if (%varclient_6260 = false) {
+    $int0, $int2 = ~clanwars_updateside_textbox("This Clan war is opened to all people in the challengers' friend chats.", $int0, $int2, $int1, 0);
+} else {
+    $int0, $int2 = ~clanwars_updateside_textbox("This Clan war is opened only to members of the challengers' clans.", $int0, $int2, $int1, 0);
+}
+$int0 = calc($int0 + 7);
 $int0, $int2 = ~clanwars_updateside_textbox("~ Winning ~", $int0, $int2, $int1, 1);
 $int0, $int2 = ~clanwars_updateside_textbox("Victory is awarded...", $int0, $int2, $int1, 0);
 if (%varclient_248 = false) {
@@ -46,7 +53,11 @@ if (%varclient_250 = false) {
 }
 switch_int (%varclient_252) {
     case 0 :
-        $int0, $int2 = ~clanwars_updateside_textbox("Magical combat is allowed.", $int0, $int2, $int1, 0);
+        if (%varclient_6259 = true | %varclientbit_37000 = 1) {
+            $int0, $int2 = ~clanwars_updateside_textbox("Magical combat is allowed, however the <col=ff0000>Intercept</col> spell is not.", $int0, $int2, $int1, 0);
+        } else {
+            $int0, $int2 = ~clanwars_updateside_textbox("Magical combat is allowed.", $int0, $int2, $int1, 0);
+        }
     case 1 :
         $int0, $int2 = ~clanwars_updateside_textbox("Spells from the <col=ff0000>standard spellbook</col> are allowed.", $int0, $int2, $int1, 0);
     case 2 :
@@ -84,6 +95,27 @@ if (%varclient_255 = false) {
     $int0, $int2 = ~clanwars_updateside_textbox("Potions are allowed.", $int0, $int2, $int1, 0);
 } else {
     $int0, $int2 = ~clanwars_updateside_textbox("<col=ff0000>Potions</col> are forbidden.<br>Boosted stats will be reset (excluding Prayer boosts).", $int0, $int2, $int1, 0);
+}
+$int0 = calc($int0 + 7);
+$int0, $int2 = ~clanwars_updateside_textbox("~ Aid effects ~", $int0, $int2, $int1, 1);
+if (%varclientbit_36998 = 0) {
+    $int0, $int2 = ~clanwars_updateside_textbox("Aid effects affect all those with Effects Accept aid turned on.", $int0, $int2, $int1, 0);
+} else {
+    $int0, $int2 = ~clanwars_updateside_textbox("<col=ff0000>Aid effects</col> do not affect other players.", $int0, $int2, $int1, 0);
+}
+if (%varclient_252 > 0) {
+    $int0, $int2 = ~clanwars_updateside_textbox("<col=ff0000>Lunar spells</col> are not allowed.", $int0, $int2, $int1, 0);
+} else if (%varclientbit_36999 = 0) {
+    $int0, $int2 = ~clanwars_updateside_textbox("Aid Lunar spells affect all those with Lunar Accept aid turned on.", $int0, $int2, $int1, 0);
+} else {
+    $int0, $int2 = ~clanwars_updateside_textbox("<col=ff0000>Aid Lunar spells</col> do not affect other players.", $int0, $int2, $int1, 0);
+}
+if (%varclient_252 > 0) {
+    $int0, $int2 = ~clanwars_updateside_textbox("<col=ff0000>Seren spells</col> are not allowed.", $int0, $int2, $int1, 0);
+} else if (%varclientbit_37000 = 0) {
+    $int0, $int2 = ~clanwars_updateside_textbox("Aid Seren spells affect all those with Seren Accept aid turned on.", $int0, $int2, $int1, 0);
+} else {
+    $int0, $int2 = ~clanwars_updateside_textbox("<col=ff0000>Aid Seren spells</col> do not affect other players.", $int0, $int2, $int1, 0);
 }
 $int0 = calc($int0 + 7);
 $int0, $int2 = ~clanwars_updateside_textbox("~ Arena ~", $int0, $int2, $int1, 1);

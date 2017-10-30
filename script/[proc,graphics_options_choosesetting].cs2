@@ -1,0 +1,40 @@
+// 13739
+[proc,graphics_options_choosesetting](int $int0, enum $enum1, int $int2)
+def_int $int3 = 0;
+switch_toplevelinterface (if_gettop) {
+    case interface_1477 :
+        $int3 = 1;
+    case interface_1420 :
+        $int3 = 4;
+    case interface_906 :
+        $int3 = 2;
+    case default :
+        $int3 = 0;
+}
+def_struct $struct4 = null;
+if ($enum1 = enum_13254) {
+    $struct4 = struct_845;
+} else {
+    $struct4 = enum(int, struct, $enum1, $int2);
+}
+if ($struct4 = null) {
+    return;
+}
+sound_vorbis_volume(sound_36961, 1, 0, 100);
+def_int $int5 = ~graphics_options_detailset($struct4, $int0, $int3);
+if ($int5 = 0) {
+    if ($struct4 = struct_845) {
+        setwindowmode(getdefaultwindowmode);
+        ~graphics_options_message($int3, 0, "RuneScape was unable to change to that resolution.<br><br>Please visit our website for more information.", "", "");
+    } else if ($struct4 = struct_1009) {
+        ~script3413($int3);
+    } else if ($struct4 = struct_28783) {
+        detail_toolkit_default(detailget_toolkit, true);
+        ~graphics_options_message($int3, 1, "RuneScape was unable to enter that display mode.<br><br>Please visit our website for more information.", "", "");
+    } else {
+        ~graphics_options_message($int3, 1, "RuneScape was unable to implement that setting.<br><br>Please visit our website for more information.", "", "");
+    }
+} else if ($struct4 ! struct_845 & autosetup_getlevel ! 0) {
+    autosetup_setcustom;
+}
+~graphics_options_rebuild(detailget_toolkit, getwindowmode, ~graphics_options_reviewoptions(detailget_toolkit), $int3);

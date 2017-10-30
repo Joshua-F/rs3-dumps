@@ -1,0 +1,32 @@
+// 13613
+[clientscript,script13613](component $component0)
+def_int $int1 = enum_getreverseindex(component, int, enum_13034, $component0, 0);
+if ($int1 < 0 | $int1 > calc(enum_getoutputcount(enum_11065) - 1)) {
+    return;
+}
+if_sethide(true, enum(int, component, enum_11154, $int1));
+cc_deleteall(interface_1851:com_4);
+if_sethide(true, interface_1851:com_4);
+if (cc_find(enum(int, component, enum_13035, $int1), 0) = true) {
+    cc_setvflip(false);
+}
+def_int $int2 = 0;
+def_int $int3 = 0;
+while ($int2 < enum_getoutputcount(enum_11065)) {
+    $int3 = calc(3 + (45 + 3) * $int2);
+    if_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_top, enum(int, component, enum_11065, $int2));
+    $int2 = calc($int2 + 1);
+}
+~cheevo_populate_scrollbar(calc($int1 + 1));
+def_struct $struct4 = enum(int, struct, enum_11155, $int1);
+if ($struct4 ! null) {
+    %varplayer_6891 = struct_param($struct4, param_6422);
+} else {
+    %varplayer_6891 = null;
+}
+if (%varplayer_6891 ! null) {
+    ~script13334(%varplayer_6891, 1);
+} else {
+    cc_deleteall(interface_1851:com_57);
+}
+if_setonop("script13331(event_com)", $component0);

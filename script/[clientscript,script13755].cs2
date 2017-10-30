@@ -1,0 +1,47 @@
+// 13755
+[clientscript,script13755](int $int0, int $int1, graphic $graphic2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8, string $string0, string $string1, string $string2)
+cc_create(interface_1029:com_198, ^iftype_graphic, if_getnextsubid(interface_1029:com_198));
+cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
+if ($int5 = 0) {
+    if ($int3 = $int1) {
+        cc_setgraphic(rs3_btn_radio_on);
+    } else {
+        cc_setgraphic(rs3_btn_radio_off);
+    }
+} else if ($int3 = 1) {
+    cc_setgraphic("rs3_btn_checkbox,3");
+} else {
+    cc_setgraphic("rs3_btn_checkbox,1");
+}
+cc_setposition(12, calc($int0 + 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_create(interface_1029:com_197, ^iftype_text, if_getnextsubid(interface_1029:com_197));
+cc_settext($string0);
+cc_setsize(640, 22, ^setsize_abs, ^setsize_abs);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_setposition(40, $int0, ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(graphic_17814);
+if ($int5 = 0) {
+    if ($int3 = $int1) {
+        cc_setcolour(0xffcb05);
+    } else if ($int4 = $int1) {
+        cc_setcolour(0x7592a0);
+    } else {
+        cc_setcolour(^white);
+    }
+} else if ($int3 = 1) {
+    cc_setcolour(0xffcb05);
+} else {
+    cc_setcolour(^white);
+}
+cc_create(interface_1029:com_196, ^iftype_rectangle, if_getnextsubid(interface_1029:com_196));
+cc_setsize(640, 30, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, $int0, ^setpos_abs_left, ^setpos_abs_top);
+cc_settrans(255);
+cc_setop(1, "Select");
+def_int $int9 = 2;
+if (if_gethide(interface_1029:com_194) = false) {
+    $int9 = 1;
+}
+cc_setonmouserepeat("script13761($graphic2, calc(if_getnextsubid(interface_1029:com_197) - 1), interface_1029:com_197)");
+cc_setonmouseleave("script13762(calc(if_getnextsubid(interface_1029:com_197) - 1), interface_1029:com_197)");
+cc_setonclick("script13759(event_comsubid, $string0, $string1, $string2, $graphic2, -1, $int9, $int5, $int6, $int7, $int8)");

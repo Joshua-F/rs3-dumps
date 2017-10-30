@@ -1,6 +1,6 @@
 // 13290
 [proc,cheevo_requirements_met](struct $struct0)(int)
-if (playermember = false & struct_param($struct0, param_1290) = 2) {
+if (struct_param($struct0, param_6415) ! 1 & struct_param($struct0, param_1290) ! 1 & (playermember = false | map_members = false)) {
     return(0);
 }
 def_int $int1 = 0;
@@ -8,7 +8,7 @@ def_int $int2 = 0;
 def_int $int3 = 0;
 def_string $string0 = "";
 def_int $int4 = 20;
-def_int $int5 = %varplayer_1297;
+def_struct $struct5 = null;
 while ($int1 < $int4) {
     switch_int ($int1) {
         case 0 :
@@ -72,36 +72,45 @@ while ($int1 < $int4) {
             $int2 = struct_param($struct0, param_6446);
             $int3 = struct_param($struct0, param_6447);
     }
-    if ($int2 ! 0) {
-        if ($int2 < 60) {
-            if (stat(enum(int, stat, enum_681, $int2)) < $int3) {
-                return(0);
-            }
-        } else if ($int2 = 61) {
+    switch_int ($int2) {
+        case 61 :
             if (~ql4_getprogress($int3) ! 2) {
                 return(0);
             }
-        } else if ($int2 = 63) {
+        case 60 :
+            $struct5 = enum(int, struct, enum_12251, $int3);
+            if ($struct5 = null) {
+                ~error("Struct #<tostring($int3)> not found in [cheevo_id_to_struct] enum.");
+                return(0);
+            }
+            if (~cheevo_obtain_progress($struct5) ! -2) {
+                return(0);
+            }
+        case 63 :
             if (~comlevel < $int3) {
                 return(0);
             }
-        } else if ($int2 = 64) {
-            if (~script13424 = 1) {
-                $int5 = ~script13426;
-            }
-            if ($int5 < $int3) {
+        case 64 :
+            if (%varplayer_1297 < $int3) {
                 return(0);
             }
-        } else if ($int2 = 65) {
+        case 65 :
             if (~task_kudos_available < $int3) {
                 return(0);
             }
-        } else if ($int2 = 62) {
+        case 62 :
             $int3, $string0 = ~cheevo_special_requirements(struct_param($struct0, param_6413));
             if ($int3 = 0) {
                 return(0);
             }
-        }
+        case default :
+            if ($int2 > 0 & $int2 < 60) {
+                if (stat_base_actual(enum(int, stat, enum_681, $int2)) < $int3) {
+                    return(0);
+                }
+            } else {
+                $int1 = $int4;
+            }
     }
     $int1 = calc($int1 + 1);
 }

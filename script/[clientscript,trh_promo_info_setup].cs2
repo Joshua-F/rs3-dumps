@@ -11,56 +11,71 @@
 %varclient_4971 = struct_param($struct0, param_5155);
 %varclient_4752 = calc(date_minutes_fromruneday(calc(struct_param($struct0, param_4631) + 1)) - ($int2 + 1));
 %varclient_4753 = $int3;
-if_setontimer("script11570(0)", interface_1253:com_70);
+switch_struct ($struct0) {
+    case struct_38726 :
+        %varclient_6297 = ~script13731($int2);
+        %varclient_6298 = $int3;
+}
+if_setontimer("script11570(0)", interface_1253:com_71);
 ~trh_promo_info_countdown($struct0);
-~script11196(struct_param($struct0, param_4910));
+switch_struct ($struct0) {
+    case struct_38726 :
+        ~script11196(~script13727(%varplayerbit_38544));
+    case default :
+        ~script11196(struct_param($struct0, param_4910));
+}
 if (%varclient_4937 = 0) {
-    if_sethide(true, interface_1253:com_874);
+    if_sethide(true, interface_1253:com_877);
 } else if (%varclient_4937 = calc(struct_param(%varclient_4745, param_4631) - struct_param(%varclient_4745, param_4630))) {
-    if_sethide(true, interface_1253:com_875);
+    if_sethide(true, interface_1253:com_878);
 }
 if (%varclient_4971 = 1) {
-    if_sethide(true, interface_1253:com_874);
-    if_sethide(true, interface_1253:com_875);
+    if_sethide(true, interface_1253:com_877);
+    if_sethide(true, interface_1253:com_878);
 }
 if (struct_param($struct0, param_4912) = 0) {
-    if_settext("Members Only", interface_1253:com_884);
+    if_settext("Members Only", interface_1253:com_887);
 } else {
-    if_settext("Members & Free-to-play", interface_1253:com_884);
+    if_settext("Members & Free-to-play", interface_1253:com_887);
 }
-if_settext(struct_param($struct0, param_4916), interface_1253:com_885);
-if_settext(struct_param($struct0, param_4917), interface_1253:com_886);
-if_settext(struct_param($struct0, param_4918), interface_1253:com_887);
-if_settext(struct_param($struct0, param_4919), interface_1253:com_888);
-switch_int (map_lang) {
-    case 0 :
-        if (struct_param($struct0, param_4640) ! null) {
-            if_setgraphic(struct_param($struct0, param_4640), interface_1253:com_913);
-        } else {
-            if_setgraphic(rs3_thbanner_th_fallback, interface_1253:com_913);
+if_settext(struct_param($struct0, param_4916), interface_1253:com_888);
+if_settext(struct_param($struct0, param_4917), interface_1253:com_889);
+if_settext(struct_param($struct0, param_4918), interface_1253:com_890);
+if_settext(struct_param($struct0, param_4919), interface_1253:com_891);
+switch_struct ($struct0) {
+    case struct_38726 :
+        ~script13732(%varplayerbit_38544);
+    case default :
+        switch_int (map_lang) {
+            case 0 :
+                if (struct_param($struct0, param_4640) ! null) {
+                    if_setgraphic(struct_param($struct0, param_4640), interface_1253:com_916);
+                } else {
+                    if_setgraphic(rs3_thbanner_th_fallback, interface_1253:com_916);
+                }
+                if_setgraphic(enum(int, graphic, enum_11568, struct_param($struct0, param_5951)), interface_1253:com_918);
+            case 1 :
+                if (struct_param($struct0, param_4639) ! null) {
+                    if_setgraphic(struct_param($struct0, param_4639), interface_1253:com_916);
+                } else {
+                    if_setgraphic(rs3_thbanner_th_fallback, interface_1253:com_916);
+                }
+                if_setgraphic(enum(int, graphic, enum_11569, struct_param($struct0, param_5951)), interface_1253:com_918);
+            case 2 :
+                if (struct_param($struct0, param_4642) ! null) {
+                    if_setgraphic(struct_param($struct0, param_4642), interface_1253:com_916);
+                } else {
+                    if_setgraphic(rs3_thbanner_th_fallback, interface_1253:com_916);
+                }
+                if_setgraphic(enum(int, graphic, enum_11570, struct_param($struct0, param_5951)), interface_1253:com_918);
+            case 3 :
+                if (struct_param($struct0, param_4643) ! null) {
+                    if_setgraphic(struct_param($struct0, param_4643), interface_1253:com_916);
+                } else {
+                    if_setgraphic(rs3_thbanner_th_fallback, interface_1253:com_916);
+                }
+                if_setgraphic(enum(int, graphic, enum_11571, struct_param($struct0, param_5951)), interface_1253:com_918);
         }
-        if_setgraphic(enum(int, graphic, enum_11568, struct_param($struct0, param_5951)), interface_1253:com_915);
-    case 1 :
-        if (struct_param($struct0, param_4639) ! null) {
-            if_setgraphic(struct_param($struct0, param_4639), interface_1253:com_913);
-        } else {
-            if_setgraphic(rs3_thbanner_th_fallback, interface_1253:com_913);
-        }
-        if_setgraphic(enum(int, graphic, enum_11569, struct_param($struct0, param_5951)), interface_1253:com_915);
-    case 2 :
-        if (struct_param($struct0, param_4642) ! null) {
-            if_setgraphic(struct_param($struct0, param_4642), interface_1253:com_913);
-        } else {
-            if_setgraphic(rs3_thbanner_th_fallback, interface_1253:com_913);
-        }
-        if_setgraphic(enum(int, graphic, enum_11570, struct_param($struct0, param_5951)), interface_1253:com_915);
-    case 3 :
-        if (struct_param($struct0, param_4643) ! null) {
-            if_setgraphic(struct_param($struct0, param_4643), interface_1253:com_913);
-        } else {
-            if_setgraphic(rs3_thbanner_th_fallback, interface_1253:com_913);
-        }
-        if_setgraphic(enum(int, graphic, enum_11571, struct_param($struct0, param_5951)), interface_1253:com_915);
 }
 if (struct_param($struct0, param_4913) = true) {
     %varclient_4748, %varclient_4749, %varclient_4952 = ~script11195(0);
@@ -69,6 +84,6 @@ if (struct_param($struct0, param_4913) = true) {
 ~script11565($struct0);
 ~script11190;
 if (struct_param(%varclient_4745, param_5385) = 1) {
-    if_sethide(true, interface_1253:com_874);
-    if_sethide(true, interface_1253:com_875);
+    if_sethide(true, interface_1253:com_877);
+    if_sethide(true, interface_1253:com_878);
 }

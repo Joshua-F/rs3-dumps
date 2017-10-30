@@ -3,18 +3,25 @@
 if (%varplayer_1831 = null) {
     return(0);
 }
-if (map_members = false) {
-    return(0);
-} else if (oc_param(%varplayer_1831, param_394) > 0) {
-    if (nc_param(oc_param(%varplayer_1831, param_74), param_424) > 0) {
-        return(1);
-    } else {
-        return(2);
-    }
-} else if (oc_category(%varplayer_1831) = category_31 | oc_category(%varplayer_1831) = category_30 | oc_category(%varplayer_1831) = category_29 | oc_category(%varplayer_1831) = category_33 | oc_category(%varplayer_1831) = category_32) {
+if (oc_category(%varplayer_1831) = category_31 | oc_category(%varplayer_1831) = category_30 | oc_category(%varplayer_1831) = category_29 | oc_category(%varplayer_1831) = category_33 | oc_category(%varplayer_1831) = category_32) {
     return(3);
-} else if (%varplayer_1831 = obj_24906 | %varplayer_1831 = obj_24907 | %varplayer_1831 = obj_24908) {
-    return(4);
-} else {
-    return(5);
 }
+if (map_members = true) {
+    switch_obj (%varplayer_1831) {
+        case obj_7771 :
+            return(3);
+        case obj_24906, obj_24907, obj_24908 :
+            return(4);
+        case default :
+            if (oc_param(%varplayer_1831, param_394) > 0) {
+                if (nc_param(oc_param(%varplayer_1831, param_74), param_424) > 0) {
+                    return(1);
+                } else {
+                    return(2);
+                }
+            } else {
+                return(5);
+            }
+    }
+}
+return(5);

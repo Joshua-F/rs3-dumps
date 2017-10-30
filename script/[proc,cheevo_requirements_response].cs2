@@ -1,8 +1,12 @@
 // 13327
 [proc,cheevo_requirements_response](struct $struct0)(string)
 def_string $string0 = "";
-if (map_members = false & struct_param($struct0, param_1290) = 2) {
-    $string0 = "Members' Achievement<br>";
+if (struct_param($struct0, param_6415) ! 1 & struct_param($struct0, param_1290) ! 1) {
+    if (playermember = false) {
+        $string0 = "Membership<br>";
+    } else if (map_members = false) {
+        $string0 = "Log in to a Members' World<br>";
+    }
 }
 def_int $int1 = 0;
 def_int $int2 = 0;
@@ -10,6 +14,8 @@ def_int $int3 = 0;
 def_string $string1 = "";
 def_int $int4 = 20;
 def_int $int5 = 0;
+def_struct $struct6 = null;
+def_int $int7 = 0;
 while ($int1 < $int4) {
     switch_int ($int1) {
         case 0 :
@@ -80,24 +86,37 @@ while ($int1 < $int4) {
                     $string0 = append($string0, "<str=FFFFFE>");
                 }
                 $string0 = append($string0, "<~cheevo_req_quest($int3)><br>");
+            case 60 :
+                $struct6 = enum(int, struct, enum_12251, $int3);
+                if ($struct6 = null) {
+                    ~error("Struct #<tostring($int3)> not found in [cheevo_id_to_struct] enum.");
+                    return("");
+                }
+                if (~cheevo_obtain_progress($struct6) = -2) {
+                    $string0 = append($string0, "<str=FFFFFE>");
+                }
+                $string0 = append($string0, "Achievement: <~cheevo_name($struct6)> (<~cheevo_details($struct6, 1)>)<br>");
             case 63 :
                 if (~comlevel >= $int3) {
                     $string0 = append($string0, "<str=FFFFFE>");
                 }
-                $string0 = append($string0, "Combat Level: <tostring($int3)>.<br>");
+                $string0 = append($string0, "Combat Level: <~tostring_spacer_local($int3)>.<br>");
             case 64 :
                 if (%varplayer_1297 >= $int3) {
                     $string0 = append($string0, "<str=FFFFFE>");
                 }
-                $string0 = append($string0, "Quest Points: <tostring($int3)>.<br>");
+                $string0 = append($string0, "Quest Points: <~tostring_spacer_local($int3)>.<br>");
             case 65 :
                 if (~task_kudos_available >= $int3) {
                     $string0 = append($string0, "<str=FFFFFE>");
                 }
-                $string0 = append($string0, "Varrock Museum Kudos: <tostring($int3)>.<br>");
+                $string0 = append($string0, "Varrock Museum Kudos: <~tostring_spacer_local($int3)>.<br>");
             case 62 :
                 $int3, $string1 = ~cheevo_special_requirements(struct_param($struct0, param_6413));
                 $string0 = append($string0, $string1);
+                if (struct_param($struct0, param_1346) > 0 | struct_param($struct0, param_1376) ! 0) {
+                    $int7 = 1;
+                }
             case default :
                 if ($int2 < 60) {
                     $int5 = calc($int5 + 1);
@@ -172,12 +191,15 @@ if ($int5 > 0) {
                 $int3 = struct_param($struct0, param_6447);
         }
         if ($int2 ! 0 & $int2 < 60) {
-            if (stat(enum(int, stat, enum_681, $int2)) >= $int3) {
+            if (stat_base_actual(enum(int, stat, enum_681, $int2)) >= $int3) {
                 $string0 = append($string0, "<str=FFFFFE>");
             }
             $string0 = append($string0, "<~cheevo_req_skill($int3, $int2)><br>");
         }
         $int1 = calc($int1 + 1);
     }
+}
+if ($int7 = 1) {
+    $string0 = append($string0, "See Boss Info for more<br>");
 }
 return($string0);

@@ -19,9 +19,20 @@ def_struct $struct4 = null;
 if ($int2 = 0) {
     return;
 }
-$struct4 = enum(int, struct, enum_12251, $int2);
+$struct4 = enum(int, struct, enum_12251, calc($int2 - 1));
 cc_create($component0, ^iftype_graphic, $int3);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setgraphic(~cheevo_icon($struct4));
 cc_setonmouserepeat("cheevo_tooltip($struct4, $component0, $int3)");
+def_int $int5 = -1;
+def_int $int6 = enum_getoutputcount(enum_10883);
+def_enum $enum7 = null;
+while (++$int5 < $int6) {
+    $enum7 = enum(int, enum, enum_10883, $int5);
+    if ($enum7 ! null & enum_hasoutput(struct, $enum7, $struct4) = true) {
+        return;
+    }
+}
+cc_setop(1, "Go To");
+cc_setopcursor(1, cursor_210);

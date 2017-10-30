@@ -1,0 +1,24 @@
+// 13347
+[proc,script13347](int $int0, string $string0, int $int1)(boolean)
+if (%varclient_1413 = false) {
+    return(false);
+}
+if ($int0 = 2 & compare("", clan_getchatdisplayname) = 0) {
+    mes_typed(^chattype_friendschatnotification, 0, "You need to be in a Friends Chat channel to use Friends Channel Quick Chat.");
+    return(false);
+}
+if ($int0 = 8 & activeclanchannel_find_affined = false) {
+    mes_typed(^chattype_clanmessage, 0, "You need to be in a Clan to use Clan Channel Quick Chat.");
+    return(false);
+}
+if ($int0 = 10 & activeclanchannel_find_listened = false) {
+    mes_typed(^chattype_clanguestmessage, 0, "You need to be a guest in a Clan Channel to use Guest Clan Quick Chat.");
+    return(false);
+}
+if (($int0 = 13 | $int0 = 15) & player_group_find = false) {
+    mes_typed(128, 0, "You need to be in a group to use Group Quick Chat.");
+    return(false);
+}
+~script8614($int1, $int0);
+~script8606($int1, $string0);
+return(true);

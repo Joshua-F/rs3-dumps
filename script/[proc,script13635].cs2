@@ -1,0 +1,61 @@
+// 13635
+[proc,script13635](component $component0, component $component1, component $component2, int $int3, struct $struct4, int $int5, int $int6, int $int7)
+if ($component0 = null | $component1 = null | $struct4 = null) {
+    return;
+}
+cc_deleteall($component0);
+cc_deleteall($component1);
+def_enum $enum8 = struct_param($struct4, param_6803);
+if ($enum8 = null) {
+    return;
+}
+def_int $int9 = 0;
+def_int $int10 = $int5;
+def_int $int11 = $int6;
+def_obj $obj12 = null;
+def_int $int13 = 0;
+def_int $int14 = enum_getoutputcount($enum8);
+def_int $int15 = $int14;
+while ($int9 < $int14) {
+    $obj12 = enum(int, obj, $enum8, $int9);
+    if ($obj12 ! null) {
+        $int13 = ~script13323($obj12);
+        if (calc($int10 + 40) >= if_getwidth($component0)) {
+            $int10, $int11 = $int5, calc($int11 + 36 + 2);
+        }
+        if ($int7 = 0) {
+            cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+            cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
+            cc_setposition($int10, $int11, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setgraphic(rs3_inventory_slot);
+        } else {
+            ~script10456($component0, null, null, "", $int10, $int11, 40);
+        }
+        cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int10 + (40 - 36) / 2 + 1), calc($int11 + (36 - 32) / 2), ^setpos_abs_left, ^setpos_abs_top);
+        if ($int13 > 0) {
+            cc_setobject($obj12, $int13);
+        } else {
+            cc_setobject_nonum($obj12, 1);
+            cc_settrans(180);
+            $int15 = calc($int15 - 1);
+        }
+        cc_setonmouserepeat("script9564($obj12, event_com, cc_getid)");
+        .cc_create($component1, ^iftype_text, $int9);
+        .cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        .cc_setposition(calc($int10 + (40 - 36) / 2 + 1), calc($int11 + (36 - 32) / 2), ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setop(1, "Share");
+        $int10 = calc($int10 + (40 + 2));
+    }
+    $int9 = calc($int9 + 1);
+}
+if_settext("Total obtained: <tostring($int15)>/<tostring($int14)>", interface_1897:com_15);
+if ($component2 ! null & $int3 ! -1) {
+    cc_deleteall($component2);
+    if_setscrollpos(0, 0, $component0);
+    if_setscrollpos(0, 0, $component1);
+    if_setscrollsize(0, max(if_getheight(interface_1897:com_17), calc($int11 + 36)), $component0);
+    if_setscrollsize(0, max(if_getheight(interface_1897:com_17), calc($int11 + 36)), $component1);
+    ~script13637($component2, $component0, $component1);
+}

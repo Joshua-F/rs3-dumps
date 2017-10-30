@@ -1,0 +1,49 @@
+// 13706
+[clientscript,script13706]
+def_int $int0 = 5703;
+def_int $int1 = 0;
+def_string $string0 = "You have already completed this element of the bar crawl.";
+if (%varplayerbit_38438 = 2) {
+    if_settext("Get the requested drink from each of the Inns before the 6th November to win 2 medium prismatic lamps. You will receive a small prismatic lamp for each task on the list you complete.", interface_1905:com_126);
+}
+while ($int1 < 18) {
+    if (~script13707($int0) = 1) {
+        if_sethide(false, enum(int, component, enum_13211, $int1));
+        if (%varplayerbit_38438 = 1) {
+            if_sethide(false, enum(int, component, enum_13214, $int1));
+            if_sethide(true, enum(int, component, enum_13215, $int1));
+        } else {
+            if_sethide(true, enum(int, component, enum_13214, $int1));
+            if_sethide(false, enum(int, component, enum_13215, $int1));
+        }
+        if_setonmouserepeat("script8799($string0, event_com, -1)", enum(int, component, enum_13211, $int1));
+    } else if (%varplayer_3079 < $int0) {
+        $string0 = "This element has not been unlocked yet. Come back later.";
+        if (%varplayerbit_38438 = 1) {
+            if_sethide(false, enum(int, component, enum_13212, $int1));
+            if_sethide(true, enum(int, component, enum_13214, $int1));
+            if_sethide(true, enum(int, component, enum_13213, $int1));
+            if_sethide(true, enum(int, component, enum_13215, $int1));
+            if_setonmouserepeat("script8799($string0, event_com, -1)", enum(int, component, enum_13212, $int1));
+        } else {
+            if_sethide(false, enum(int, component, enum_13213, $int1));
+            if_sethide(true, enum(int, component, enum_13215, $int1));
+            if_sethide(true, enum(int, component, enum_13212, $int1));
+            if_sethide(true, enum(int, component, enum_13214, $int1));
+            if_setonmouserepeat("script8799($string0, event_com, -1)", enum(int, component, enum_13213, $int1));
+        }
+    } else if (%varplayerbit_38438 = 1) {
+        $string0 = enum(int, string, enum_13216, $int1);
+        if_sethide(false, enum(int, component, enum_13214, $int1));
+        if_sethide(true, enum(int, component, enum_13215, $int1));
+        if_setonmouserepeat("script8799($string0, event_com, -1)", enum(int, component, enum_13214, $int1));
+    } else {
+        $string0 = enum(int, string, enum_13217, $int1);
+        if_sethide(false, enum(int, component, enum_13215, $int1));
+        if_sethide(true, enum(int, component, enum_13214, $int1));
+        if_setonmouserepeat("script8799($string0, event_com, -1)", enum(int, component, enum_13215, $int1));
+    }
+    $string0 = "You have already completed this element of the bar crawl.";
+    $int1 = calc($int1 + 1);
+    $int0 = calc($int0 + 1);
+}

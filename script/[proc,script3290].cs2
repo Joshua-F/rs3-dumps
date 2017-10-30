@@ -1,63 +1,76 @@
 // 3290
 [proc,script3290](component $component0, component $component1, component $component2, graphic $graphic3, graphic $graphic4, graphic $graphic5, graphic $graphic6, graphic $graphic7, graphic $graphic8)
-def_int $int9 = if_getscrollheight($component1);
-def_int $int10 = if_getheight($component0);
-def_int $int11 = calc($int10 - 32);
-def_int $int12 = 0;
-if ($int9 > 0) {
-    $int12 = scale(if_getheight($component1), $int9, $int11);
+def_struct $struct9 = ~script9984(struct_28551, -1);
+if ($struct9 = null) {
+    $struct9 = struct_28551;
+}
+$graphic7 = struct_param($struct9, param_1388);
+$graphic8 = struct_param($struct9, param_1389);
+$graphic4 = struct_param($struct9, param_1394);
+$graphic5 = struct_param($struct9, param_1395);
+$graphic6 = struct_param($struct9, param_1396);
+$graphic3 = struct_param($struct9, param_1393);
+def_int $int10 = if_getscrollheight($component1);
+def_int $int11 = if_getheight($component0);
+def_int $int12 = calc($int11 - 32);
+def_int $int13 = 0;
+if ($int10 > 0) {
+    $int13 = scale(if_getheight($component1), $int10, $int12);
 } else {
-    $int12 = $int11;
+    $int13 = $int12;
 }
-$int12 = max($int12, 10);
-def_int $int13 = if_getscrolly($component1);
-def_int $int14 = 0;
+$int13 = max($int13, struct_param($struct9, param_4406));
+if (struct_param($struct9, param_4407) ! -1) {
+    $int13 = min($int13, struct_param($struct9, param_4407));
+}
+def_int $int14 = if_getscrolly($component1);
 def_int $int15 = 0;
-if ($int13 > 0) {
-    $int14 = calc($int9 - if_getheight($component1));
-    if ($int14 = 0) {
-        $int14 = 1;
+def_int $int16 = 0;
+if ($int14 > 0) {
+    $int15 = calc($int10 - if_getheight($component1));
+    if ($int15 = 0) {
+        $int15 = 1;
     }
-    if ($int13 > $int14) {
-        if_setscrollpos(0, $int14, $component1);
-        if_setscrollpos(0, $int14, $component2);
-        $int13 = $int14;
+    if ($int14 > $int15) {
+        if_setscrollpos(0, $int15, $component1);
+        if_setscrollpos(0, $int15, $component2);
+        $int14 = $int15;
     }
-    $int15 = scale($int13, $int14, calc($int11 - $int12));
-    $int15 = min(max($int15, 0), calc($int11 - $int12));
+    $int16 = scale($int14, $int15, calc($int12 - $int13));
+    $int16 = min(max($int16, 0), calc($int12 - $int13));
 }
-def_struct $struct16 = ~script12611($component0);
+def_struct $struct17 = ~script12611($component0);
 cc_create($component0, ^iftype_graphic, 0);
 cc_setposition(0, 21, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(16, 42, ^setsize_abs, ^setsize_minus);
 cc_create($component0, ^iftype_graphic, 1);
-cc_setposition(0, calc(21 + $int15), ^setpos_abs_left, ^setpos_abs_top);
+cc_setposition(0, calc(21 + $int16), ^setpos_abs_left, ^setpos_abs_top);
 cc_setgraphic($graphic5);
-~script12591(4, $struct16, true);
+~script12591(4, $struct17, true);
 cc_settiling(true);
 cc_setdraggable($component0, 0);
 cc_setdragrenderbehaviour(3);
-cc_setsize(16, calc($int12 - 10), ^setsize_abs, ^setsize_abs);
+cc_setsize(16, calc($int13 - 10), ^setsize_abs, ^setsize_abs);
 cc_setondrag("script3294($component0, $component1, $component2, event_mousey, 0)");
 cc_setondragcomplete("script3294($component0, $component1, $component2, event_mousey, 1)");
 cc_create($component0, ^iftype_graphic, 2);
-cc_setposition(0, calc(16 + $int15), ^setpos_abs_left, ^setpos_abs_top);
+cc_setposition(0, calc(16 + $int16), ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(16, 5, ^setsize_abs, ^setsize_abs);
 cc_setgraphic($graphic4);
-~script12591(4, $struct16, true);
+~script12591(4, $struct17, true);
 cc_settiling(false);
 cc_create($component0, ^iftype_graphic, 3);
-cc_setposition(0, calc(16 + $int15 + $int12 - 5), ^setpos_abs_left, ^setpos_abs_top);
+cc_setposition(0, calc(16 + $int16 + $int13 - 5), ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(16, 5, ^setsize_abs, ^setsize_abs);
 cc_setgraphic($graphic6);
-~script12591(4, $struct16, true);
+~script12591(4, $struct17, true);
 cc_settiling(false);
 cc_create($component0, ^iftype_graphic, 4);
 cc_sendtoback;
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
 cc_setgraphic($graphic7);
-~script12591(4, $struct16, true);
+~script12591(4, $struct17, true);
 cc_settiling(false);
 cc_setonhold("script3291($component0, $component1, $component2)");
 cc_create($component0, ^iftype_graphic, 5);
@@ -65,7 +78,7 @@ cc_sendtoback;
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
 cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
 cc_setgraphic($graphic8);
-~script12591(4, $struct16, true);
+~script12591(4, $struct17, true);
 cc_settiling(false);
 cc_setonhold("script3292($component0, $component1, $component2)");
 cc_create($component0, ^iftype_graphic, 6);
@@ -73,7 +86,7 @@ cc_sendtoback;
 cc_setposition(0, 16, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(16, 32, ^setsize_abs, ^setsize_minus);
 cc_setgraphic($graphic3);
-~script12591(4, $struct16, true);
+~script12591(4, $struct17, true);
 cc_settiling(true);
 cc_setonclick("script3293($component0, $component1, $component2, event_mousey)");
 if_setonscrollwheel("script3295($component0, $component1, $component2, event_mousey)", $component0);

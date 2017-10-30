@@ -77,6 +77,10 @@ def_int $int37 = 0;
 def_int $int38 = ~script3365($component25);
 def_int $int39 = calc($int1 + $int38 - ~script3365($component11));
 def_int $int40 = calc(if_getwidth($component13) - ($int1 + ($int38 - ~script3365($component13)) + $int28));
+def_int $int41 = 0;
+if (player_group_find = true & ~script10281(~script10275) = true) {
+    $int41 = 1;
+}
 if_setsize($int40, 0, ^setsize_abs, ^setsize_minus, $component13);
 if_setsize($int40, 0, ^setsize_abs, ^setsize_minus, $component14);
 if_setonclanchanneltransmit("clan_chat_list_refresh(-1, $component2)", $component0);
@@ -88,12 +92,11 @@ if_setonmouseleave("script8805", $component23);
 if_settext("", $component17);
 if_settext("", $component27);
 if_sethide(true, $component16);
-def_int $int41 = activeclanchannel_getuserslot(removetags(chat_playername_unfiltered));
-if ($int41 = -1) {
+def_int $int42 = activeclanchannel_getuserslot(removetags(chat_playername_unfiltered));
+if ($int42 = -1) {
     return;
 }
-def_int $int42 = activeclanchannel_getuserrank($int41);
-def_int $int43 = -1;
+def_int $int43 = activeclanchannel_getuserrank($int42);
 $int31 = activeclanchannel_getusercount;
 $int29 = 0;
 while ($int29 < $int31) {
@@ -119,14 +122,11 @@ while ($int29 < $int31) {
             cc_setop(5, "Add friend");
             cc_setop(6, "Add ignore");
         }
-        if ($int42 >= activeclanchannel_getrankkick) {
+        if ($int43 >= activeclanchannel_getrankkick) {
             cc_setop(9, "Temp-ban");
         }
-        if (player_group_find = true) {
-            $int43 = ~script10275;
-            if ($int43 ! -1 & ~script10281($int43) = true) {
-                cc_setop(4, "Invite to group");
-            }
+        if ($int41 = 1) {
+            cc_setop(4, "Invite to group");
         }
         cc_setop(10, "Join");
         cc_setonop("clan_chat_list_op($string4, event_op, $int29)");
