@@ -118,12 +118,29 @@ while (($obj2 ! null | $struct6 ! null) & $int8 > 0) {
     }
 }
 def_boolean $boolean16 = oc_stackable($obj0);
-if ($int11 = 1 & $boolean16 = true) {
+def_int $int17 = inv_freespace(inv_93);
+if ($int11 = 1 & $boolean16 = true | oc_param($obj0, param_6425) = true) {
     $int8 = min($int13, $int8);
 }
-def_int $int17 = oc_param($obj0, param_5450);
-if ($int17 > 0) {
-    $int8 = min($int8, calc(inv_freespace(inv_93) / $int17));
+def_int $int18 = oc_param($obj0, param_5450);
+if ($boolean16 = true) {
+    if (inv_total(inv_93, $obj0) > 0) {
+        $int18 = max(0, calc($int18 - 1));
+    } else if ($int11 = 1 & $int17 = 0) {
+        return(0);
+    }
+    if ($int17 > 0 & $int18 = 1) {
+        $int18 = 0;
+    }
+} else if ($int11 = 1 & $int18 = 0) {
+    switch_obj ($obj0) {
+        case obj_39402, obj_39403, obj_39404, obj_39405, obj_39406, obj_39407, obj_41001, obj_41002, obj_41003, obj_41004, obj_41005, obj_41006, obj_31351, obj_31352, obj_31353, obj_31354, obj_31355, obj_31356, obj_33744, obj_33742, obj_33741, obj_33743, obj_34529, obj_34531, obj_37366, obj_37372, obj_37365, obj_37369, obj_37367, obj_37375, obj_37374, obj_37371, obj_37364, obj_37373, obj_37368, obj_37370, obj_32263, obj_36375 :
+        case default :
+            return(min($int8, $int17));
+    }
+}
+if ($int18 > 0) {
+    $int8 = min($int8, calc(inv_freespace(inv_93) / $int18));
 }
 if (%varplayer_1171 > 0) {
     $int8 = min($int8, %varplayer_1171);

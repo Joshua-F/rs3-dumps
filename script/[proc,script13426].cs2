@@ -1,18 +1,52 @@
 // 13426
-[proc,script13426]()(int)
-def_int $int0 = %varplayer_1297;
-if (~script13424 = 1) {
-    if (%varplayerbit_36140 >= 100) {
-        $int0 = calc($int0 - 1);
-    }
-    if (%varplayerbit_36134 >= 100) {
-        $int0 = calc($int0 - 1);
-    }
-    if (%varplayerbit_36116 >= 100) {
-        $int0 = calc($int0 - 1);
-    }
-    if (%varplayerbit_36148 >= 100) {
-        $int0 = calc($int0 - 1);
+[proc,script13426](obj $obj0, int $int1)(obj)
+def_obj $obj2 = $obj0;
+def_int $int3 = -1;
+def_int $int4 = calc(inv_size(inv_675) - 1);
+if ($int1 ! 735) {
+    if (%varplayerbit_37571 = 1) {
+        if (oc_param($obj0, param_5525) ! null) {
+            $obj2 = oc_param($obj0, param_5525);
+            if ($obj2 = null) {
+                $obj2 = $obj0;
+            }
+            return($obj2);
+        }
+    } else if (oc_param($obj0, param_5551) ! null) {
+        $obj2 = inv_getobj(inv_94, oc_wearpos($obj0));
+        if ($obj2 ! null & oc_param($obj2, param_5525) = $obj0) {
+            return($obj2);
+        }
+        while ($int3++ < $int4) {
+            $obj2 = inv_getobj(inv_675, $int3);
+            if ($obj2 ! null) {
+                if (oc_param($obj2, param_5525) = $obj0) {
+                    return($obj2);
+                }
+            } else {
+                $int3 = $int4;
+            }
+        }
     }
 }
-return($int0);
+$obj2 = $obj0;
+def_int $int5 = 0;
+if (oc_param($obj0, param_258) = 1) {
+    switch_obj ($obj0) {
+        case obj_9813, obj_9814, obj_34670, obj_34967, obj_34968, obj_34969 :
+            $int5 = 31;
+        case default :
+            $int5 = enum(stat, int, enum_1482, oc_param($obj0, param_277));
+    }
+    if ($int5 > 0) {
+        $obj2 = ~script13640($obj0, $int5);
+    }
+    if ($obj2 = null) {
+        $obj2 = $obj0;
+    }
+    return($obj2);
+}
+if ($obj2 = null) {
+    $obj2 = $obj0;
+}
+return($obj2);

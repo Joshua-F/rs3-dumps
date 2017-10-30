@@ -1,6 +1,19 @@
 // 10444
 [proc,dynamic_dropdown_hide]
-if (if_find(interface_1477:com_1012) = true) {
+def_component $component0 = interface_1477:com_1023;
+def_component $component1 = interface_1477:com_1028;
+switch_toplevelinterface (if_gettop) {
+    case interface_1477 :
+        $component0 = interface_1477:com_1023;
+        $component1 = interface_1477:com_1028;
+    case interface_906 :
+        $component0 = interface_906:com_705;
+        $component1 = interface_906:com_725;
+    case default :
+        $component0 = interface_882:com_75;
+        $component1 = interface_882:com_80;
+}
+if (if_find($component0) = true) {
     cc_sethide(true);
     cc_setontimer(null);
     cc_setparam(param_4514, true);
@@ -9,4 +22,4 @@ if (if_find(interface_1477:com_1012) = true) {
     cc_setparam(param_4517, null);
     cc_setparam(param_4515, false);
 }
-cc_deleteall(interface_1477:com_1017);
+cc_deleteall($component1);

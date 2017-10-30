@@ -1,10 +1,36 @@
 // 13427
-[proc,script13427]()(int)
-def_int $int0 = ~script13278;
-def_int $int1 = enum_getoutputcount(enum_12611);
-def_int $int2 = 0;
-while ($int2 < $int1) {
-    $int0 = calc($int0 - ~music_getvar(enum(int, int, enum_12611, $int2)));
-    $int2 = calc($int2 + 1);
+[proc,script13427](obj $obj0, inv $inv1, struct $struct2)(obj)
+def_obj $obj3 = $obj0;
+if (oc_param($obj0, param_4949) = 1) {
+    $obj3 = enum(obj, obj, enum_9905, $obj0);
 }
-return($int0);
+def_obj $obj4 = null;
+def_obj $obj5 = null;
+def_int $int6 = -1;
+def_int $int7 = calc(inv_size(inv_675) - 1);
+if (oc_param($obj0, param_5551) ! null & %varplayerbit_37571 = 1 & $inv1 ! null) {
+    $obj4 = inv_getobj($inv1, oc_wearpos($obj0));
+    if ($obj4 ! null & oc_param($obj4, param_5525) = $obj0) {
+        return($obj4);
+    }
+    if ($struct2 ! null) {
+        if (struct_param($struct2, param_4397) ! -1) {
+            $obj5 = ~script9964($struct2);
+            if ($obj5 ! null) {
+                $obj3 = $obj5;
+            }
+        }
+    } else {
+        while ($int6++ < $int7) {
+            $obj5 = inv_getobj(inv_675, $int6);
+            if ($obj5 ! null) {
+                if (oc_param($obj5, param_5525) = $obj0) {
+                    return($obj5);
+                }
+            } else {
+                $int6 = $int7;
+            }
+        }
+    }
+}
+return($obj3);

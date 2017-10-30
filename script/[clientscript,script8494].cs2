@@ -1,5 +1,5 @@
 // 8494
-[clientscript,script8494](int $int0, struct $struct1, int $int2, enum $enum3)
+[clientscript,script8494](int $int0, struct $struct1, int $int2, enum $enum3, int $int4)
 if (%varplayer_1295 < 1000) {
     mes("You can't do this while in the tutorial.");
     return;
@@ -40,7 +40,16 @@ switch_struct ($struct1) {
         ~script1558(25, 0);
     case struct_37655 :
         ~script12429($int0);
+    case struct_37910 :
+        %varplayerbit_36975 = calc(1 - %varplayerbit_36975);
+    case struct_37911 :
+        ~script7544($int0, enum_12987);
 }
 ~script8808;
 ~rebuildchatbox($int0);
-~script7544($int0, $enum3);
+~script10492;
+if (struct_param($struct1, param_6725) = true) {
+    ~script2256(interface_1477:com_700);
+} else if ($int4 = 1 & $struct1 ! struct_37911) {
+    ~script7544($int0, $enum3);
+}

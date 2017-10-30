@@ -1,5 +1,5 @@
 // 13285
-[proc,cheevo_details](struct $struct0)(string)
+[proc,cheevo_details](struct $struct0, int $int1)(string)
 if ($struct0 = null) {
     return("");
 }
@@ -7,13 +7,15 @@ def_string $string0 = struct_param($struct0, param_6411);
 if (string_length(struct_param($struct0, param_4586)) > 0 & ~ironman_mode = true) {
     $string0 = struct_param($struct0, param_4586);
 }
-if (~script13424 = 1) {
-    if ($struct0 = struct_35936) {
-        $string0 = append($string0, " The amnesty period for Menaphos quests (4 quest points) will end on the 5th September.");
-    } else if ($struct0 = struct_35945) {
-        $string0 = append($string0, " The amnesty period for Menaphos music tracks (<tostring(calc(enum_getoutputcount(enum_12611) - 1))> tracks) will end on the 5th September.");
+if ($struct0 = struct_38124) {
+    if (%varplayerbit_11754 = 0) {
+        $string0 = "Complete a task from each Slayer Master consecutively, starting with Turael and ending with Morvran.";
+    } else {
+        $string0 = "Complete a task from each Slayer Master consecutively, starting with Spria and ending with Morvran.";
     }
 }
+def_string $string1 = "";
+def_int $int2 = 0;
 if (struct_param($struct0, param_1270) ! 4094) {
     switch_int (struct_param(enum(int, struct, enum_2252, struct_param($struct0, param_1270)), param_848)) {
         case 0 :
@@ -33,23 +35,14 @@ if (struct_param($struct0, param_1270) ! 4094) {
     return("Defeat this boss at least once.");
 } else if (string_length(struct_param($struct0, param_4586)) > 0 & ~ironman_mode = true) {
     return($string0);
-} else if (struct_param($struct0, param_6423) = -1337) {
+} else if ($int1 = 1 & (struct_param($struct0, param_6423) = -1337 & struct_param($struct0, param_6426) = null | struct_param($struct0, param_6419) = true)) {
+    $int2 = ~cheevo_get_check_var_total($struct0);
+    $string1 = "<~tostring_spacer_local(max(0, ~cheevo_get_progress($struct0)))>/<~tostring_spacer_local($int2)>";
     if (struct_param($struct0, param_6413) = 1701) {
-        return("<$string0> (<~tostring_spacer_local(~cheevo_get_progress($struct0))>/<~tostring_spacer_local(~script13282($struct0))> Quest Points)");
+        return("<$string0> (<$string1> Quest Points)");
     } else {
-        return("<$string0> (<~tostring_spacer_local(~cheevo_get_progress($struct0))>/<~tostring_spacer_local(~script13282($struct0))>)");
+        return("<$string0> (<$string1>)");
     }
 } else {
-    if (struct_param($struct0, param_6419) = true) {
-        if (struct_param($struct0, param_6423) = -1337) {
-            if (struct_param($struct0, param_6413) = 1701) {
-                return("<$string0> (<~tostring_spacer_local(~cheevo_get_progress($struct0))>/<~tostring_spacer_local(~script13282($struct0))> Quest Points)");
-            } else {
-                return("<$string0> (<~tostring_spacer_local(~cheevo_get_progress($struct0))>/<~tostring_spacer_local(~script13282($struct0))>)");
-            }
-        } else {
-            return("<$string0> (<~tostring_spacer_local(~cheevo_get_progress($struct0))>/<~tostring_spacer_local(struct_param($struct0, param_6423))>)");
-        }
-    }
     return($string0);
 }

@@ -1,6 +1,6 @@
 // 12061
 [proc,invent_blueprint_check_requirements](dbrow $dbrow0)(int)
-def_int $int1 = db_getfield($dbrow0, dbtable_5:col9, 0);
+def_int $int1 = db_getfield($dbrow0, dbtable_5:col8, 0);
 if (stat_base(invention) < $int1 | stat(invention) < $int1) {
     return(0);
 }
@@ -9,7 +9,7 @@ def_int $int3 = 0;
 if (%varplayerbit_30223 < 105) {
     switch_dbrow ($dbrow0) {
         case dbrow_205 :
-            if (%varplayerbit_30223 < 5 & %varplayerbit_30223 < 35 & %varplayerbit_30223 >= 30) {
+            if (%varplayerbit_30223 < 5) {
                 return(0);
             }
         case dbrow_206 :
@@ -24,23 +24,23 @@ if (%varplayerbit_30223 < 105) {
             return(0);
     }
 }
-def_int $int4 = db_getfieldcount($dbrow0, dbtable_5:col11);
+def_int $int4 = db_getfieldcount($dbrow0, dbtable_5:col10);
 while ($int4-- > 0) {
-    $stat2, $int3 = db_getfield($dbrow0, dbtable_5:col11, $int4);
+    $stat2, $int3 = db_getfield($dbrow0, dbtable_5:col10, $int4);
     if (stat($stat2) < $int3) {
         return(0);
     }
 }
-$int4 = db_getfieldcount($dbrow0, dbtable_5:col10);
+$int4 = db_getfieldcount($dbrow0, dbtable_5:col9);
 while ($int4-- > 0) {
-    $int3 = db_getfield($dbrow0, dbtable_5:col10, $int4);
+    $int3 = db_getfield($dbrow0, dbtable_5:col9, $int4);
     if (~ql4_getprogress($int3) ! 2) {
         return(0);
     }
 }
-$int4 = db_getfieldcount($dbrow0, dbtable_5:col12);
+$int4 = db_getfieldcount($dbrow0, dbtable_5:col11);
 while ($int4-- > 0) {
-    $int3 = db_getfield($dbrow0, dbtable_5:col12, $int4);
+    $int3 = db_getfield($dbrow0, dbtable_5:col11, $int4);
     if (~invent_blueprint_unlocked($int3) ! 1) {
         return(0);
     }
@@ -65,10 +65,10 @@ switch_dbrow ($dbrow0) {
     case dbrow_793 :
         return(%varplayerbit_33876);
 }
-$int4 = db_getfieldcount($dbrow0, dbtable_5:col13);
+$int4 = db_getfieldcount($dbrow0, dbtable_5:col12);
 def_int $int5 = 0;
 while ($int4-- > 0) {
-    $int5, $int3 = db_getfield($dbrow0, dbtable_5:col13, $int4);
+    $int5, $int3 = db_getfield($dbrow0, dbtable_5:col12, $int4);
     if (~invent_techtree_unlocked($int5, $int3) ! 1) {
         return(0);
     }

@@ -44,14 +44,14 @@ if ($int3 = 0) {
     .cc_setposition($int10, 5, ^setpos_abs_left, ^setpos_abs_top);
     .cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     .cc_settext("No Materials");
-    ~script12108(0x00000a);
+    ~script12108(10);
     .cc_settextfont(cinzel_15pt_bold);
     .cc_create($component0, ^iftype_text, if_getnextsubid($component0));
     .cc_setsize($int10, 30, ^setsize_minus, ^setsize_abs);
     .cc_setposition($int10, 40, ^setpos_abs_left, ^setpos_abs_top);
     .cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     .cc_settext("You do not have any materials at the moment.<br><br>Materials are gained by disassembling items.");
-    ~script12108(0x00000c);
+    ~script12108(12);
     .cc_settextfont(graphic_20452);
     return;
 }
@@ -123,6 +123,10 @@ def_int $int25 = 0;
 def_int $int26 = 0;
 def_string $string0 = null;
 def_int $int27 = 0;
+def_int $int28 = 0;
+def_int $int29 = 0;
+def_int $int30 = 0;
+def_dbrow $dbrow31 = null;
 $int5 = 0;
 while ($int5 < $int3) {
     if (cc_find($component0, $intarray0($int5)) = true) {
@@ -171,6 +175,54 @@ while ($int5 < $int3) {
         if ($int27 = 0) {
             $string0 = "<$string0><br><br>You need to research this material before you can use it in a gizmo.";
         }
+        $int30 = db_getfieldcount($dbrow2, dbtable_4:col11);
+        if ($int30 > 0) {
+            $string0 = "<$string0><br><br>Armour Perks :";
+        } else {
+            $string0 = "<$string0><br><br>Armour Perks : None";
+        }
+        while ($int30 > 0) {
+            $int28, $int29, $int29 = db_getfield($dbrow2, dbtable_4:col11, calc($int30 - 1));
+            db_find(dbtable_8:col0, $int28);
+            $dbrow31 = db_findnext;
+            $string0 = "<$string0> <db_getfield($dbrow31, dbtable_8:col1, 0)>";
+            if ($int30 > 1) {
+                $string0 = "<$string0>,";
+            }
+            $int30 = calc($int30 - 1);
+        }
+        $int30 = db_getfieldcount($dbrow2, dbtable_4:col10);
+        if ($int30 > 0) {
+            $string0 = "<$string0><br><br>Weapon Perks :";
+        } else {
+            $string0 = "<$string0><br><br>Weapon Perks : None";
+        }
+        while ($int30 > 0) {
+            $int28, $int29, $int29 = db_getfield($dbrow2, dbtable_4:col10, calc($int30 - 1));
+            db_find(dbtable_8:col0, $int28);
+            $dbrow31 = db_findnext;
+            $string0 = "<$string0> <db_getfield($dbrow31, dbtable_8:col1, 0)>";
+            if ($int30 > 1) {
+                $string0 = "<$string0>,";
+            }
+            $int30 = calc($int30 - 1);
+        }
+        $int30 = db_getfieldcount($dbrow2, dbtable_4:col12);
+        if ($int30 > 0) {
+            $string0 = "<$string0><br><br>Tool Perks :";
+        } else {
+            $string0 = "<$string0><br><br>Tool Perks : None";
+        }
+        while ($int30 > 0) {
+            $int28, $int29, $int29 = db_getfield($dbrow2, dbtable_4:col12, calc($int30 - 1));
+            db_find(dbtable_8:col0, $int28);
+            $dbrow31 = db_findnext;
+            $string0 = "<$string0> <db_getfield($dbrow31, dbtable_8:col1, 0)>";
+            if ($int30 > 1) {
+                $string0 = "<$string0>,";
+            }
+            $int30 = calc($int30 - 1);
+        }
         .cc_setonmouserepeat("script3876($string0, event_com, .cc_getid)");
         cc_sendtofront;
         if ($int25 >= 10000000) {
@@ -185,7 +237,7 @@ while ($int5 < $int3) {
         .cc_setposition($int23, calc($int24 + $int14 - 15), ^setpos_abs_left, ^setpos_abs_top);
         .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
         .cc_settext($string0);
-        ~script12108(0x00000e);
+        ~script12108(14);
         .cc_settextfont(graphic_20452);
     }
     $int5 = calc($int5 + 1);

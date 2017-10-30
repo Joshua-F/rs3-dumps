@@ -9,27 +9,40 @@ def_int $intarray0($int4);
 def_int $int5 = 0;
 def_int $int6 = 0;
 $int3 = 0;
+def_component $component7 = interface_1477:com_1028;
+def_component $component8 = interface_1477:com_1029;
+switch_toplevelinterface (if_gettop) {
+    case interface_1477 :
+        $component7 = interface_1477:com_1028;
+        $component8 = interface_1477:com_1029;
+    case interface_906 :
+        $component7 = interface_906:com_725;
+        $component8 = interface_906:com_726;
+    case default :
+        $component7 = interface_882:com_80;
+        $component8 = interface_882:com_81;
+}
 while ($int3 <= $int4) {
-    if (cc_find(interface_1477:com_1017, $int3) = true & string_length(cc_gettext) > 0) {
+    if (cc_find($component7, $int3) = true & string_length(cc_gettext) > 0) {
         $intarray0($int5) = $int3;
         $int5 = calc($int5 + 1);
     }
     $int3 = calc($int3 + 1);
 }
 if ($int5 > 1) {
-    ~script12088(intarray0, interface_1477:com_1017, 0, calc($int5 - 1));
+    ~script12088(intarray0, $component7, 0, calc($int5 - 1));
 }
 $int3 = 0;
 while ($int3 < $int5) {
-    if (cc_find(interface_1477:com_1017, $intarray0($int3)) = true) {
+    if (cc_find($component7, $intarray0($int3)) = true) {
         cc_setposition(5, $int6, ^setpos_abs_left, ^setpos_abs_top);
         $int6 = calc($int6 + cc_getheight);
     }
     $int3 = calc($int3 + 1);
 }
 $int3 = -1;
-while (cc_find(interface_1477:com_1018, ++$int3) = true) {
-    if (.cc_find(interface_1477:com_1017, cc_param(param_6308)) = true) {
+while (cc_find($component8, ++$int3) = true) {
+    if (.cc_find($component7, cc_param(param_6308)) = true) {
         if (cc_param(param_5928) = 2) {
             cc_setposition(0, .cc_gety, ^setpos_abs_right, ^setpos_abs_top);
         } else {
@@ -37,4 +50,4 @@ while (cc_find(interface_1477:com_1018, ++$int3) = true) {
         }
     }
 }
-~dynamic_dropdown_highlight(interface_1477:com_1017, $int2);
+~dynamic_dropdown_highlight($component7, $int2);

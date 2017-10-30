@@ -1,39 +1,65 @@
 // 1077
 [proc,quickchat_phrase_send](chatphrase $chatphrase0, int $int1)
 def_chatphrase $chatphrase2 = $chatphrase0;
-if ($chatphrase0 = chatphrase_105) {
-    if (%varplayerbit_525 ! 0) {
-        $chatphrase0 = chatphrase_1021;
-    } else if (%varplayer_183 = 0) {
-        $chatphrase0 = chatphrase_561;
-    }
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+$int3, $int4, $int5 = date_runeday_todate(%varplayer_3079);
+switch_chatphrase ($chatphrase0) {
+    case chatphrase_105 :
+        if (%varplayerbit_525 ! 0) {
+            $chatphrase0 = chatphrase_1021;
+        } else if (%varplayer_183 = 0) {
+            $chatphrase0 = chatphrase_561;
+        }
+    case chatphrase_1712 :
+        if ($int3 = 1 & $int4 = 3) {
+            $chatphrase0 = chatphrase_1714;
+        }
+        if (~ironman_mode = false) {
+            ~info_box_coord_draw("You cannot send this message as you are not an Ironman.", 0, -120, 1);
+            return;
+        }
+    case chatphrase_1713 :
+        if ($int3 = 1 & $int4 = 3) {
+            $chatphrase0 = chatphrase_1715;
+        }
+        if (~hardcore_mode = false) {
+            ~info_box_coord_draw("You cannot send this message as you are not a Hardcore Ironman.", 0, -120, 1);
+            return;
+        }
+    case chatphrase_1716, chatphrase_1717 :
+        if (~hardcore_mode = false) {
+            ~info_box_coord_draw("You cannot send this message as you are not a Hardcore Ironman.", 0, -120, 1);
+            return;
+        }
 }
 activechatphrase_prepare($chatphrase0);
-def_int $int3 = 0;
-def_int $int4 = chatphrase_getdynamiccommandcount($chatphrase0);
-def_int $int5 = -1;
-while ($int3 < $int4 & $int3 < 10) {
-    switch_int (chatphrase_getdynamiccommand($chatphrase0, $int3)) {
+def_int $int6 = 0;
+def_int $int7 = chatphrase_getdynamiccommandcount($chatphrase0);
+def_int $int8 = -1;
+while ($int6 < $int7 & $int6 < 10) {
+    switch_int (chatphrase_getdynamiccommand($chatphrase0, $int6)) {
         case 0 :
-            ~quickchat_phrase_setint($int3, $int1);
+            ~quickchat_phrase_setint($int6, $int1);
         case 1 :
-            ~quickchat_phrase_setobj($int3, $int1);
+            ~quickchat_phrase_setobj($int6, $int1);
         case 10 :
-            ~quickchat_phrase_setobj($int3, $int1);
+            ~quickchat_phrase_setobj($int6, $int1);
         case 2 :
-            ~quickchat_phrase_setint($int3, $int1);
+            ~quickchat_phrase_setint($int6, $int1);
     }
-    $int3 = calc($int3 + 1);
+    $int6 = calc($int6 + 1);
 }
 switch_int (~script8613($int1)) {
     case 0, 4 :
         activechatphrase_send(0);
     case 1 :
-        $int5 = ~quickchat_friend_status(~script8605($int1));
-        if ($int5 = 1) {
+        $int8 = ~quickchat_friend_status(~script8605($int1));
+        if ($int8 = 1) {
             activechatphrase_sendprivate(removetags(~script8605($int1)));
             ~script1089;
-        } else if ($int5 = -1) {
+        } else if ($int8 = -1) {
             mes("Sorry, this user is not on your Friends List.");
         } else {
             mes("Sorry, your friend is no longer playing RuneScape.");

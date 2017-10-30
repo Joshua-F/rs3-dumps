@@ -1,0 +1,114 @@
+// 13663
+[clientscript,script13663]
+if (%varplayerbit_37614 = 0) {
+    return;
+}
+def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_string $string0 = "";
+db_find(dbtable_22:col0, %varplayerbit_37614);
+def_dbrow $dbrow5 = db_findnext;
+def_int $int6 = db_getfield($dbrow5, dbtable_22:col16, 0);
+def_obj $obj7 = null;
+def_int $int8 = 0;
+def_obj $obj9 = null;
+def_int $int10 = 0;
+def_int $int11 = db_getfieldcount($dbrow5, dbtable_22:col18);
+def_int $int12 = db_getfield($dbrow5, dbtable_22:col21, 0);
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = calc(100 * %varplayer_7270 / $int6);
+if (calc($int16 % 100) > 0) {
+    $int16 = calc($int16 + 100);
+}
+$int16 = calc($int16 / 100);
+$int16 = calc($int16 * $int12);
+def_int $int17 = %varplayer_7270;
+if ($int11 > 0) {
+    $obj7, $int8 = db_getfield($dbrow5, dbtable_22:col18, 0);
+    if ($int11 > 1) {
+        $obj9, $int10 = db_getfield($dbrow5, dbtable_22:col18, 1);
+    }
+}
+def_int $int18 = 0;
+if (%varplayer_7270 = 0 | calc(^max_32bit_int - 60 * %varplayer_7270 / ($int6 * (60 / 60))) < 0) {
+    $int18 = 1;
+}
+if (%varplayer_7270 > 0) {
+    if ($obj7 ! null) {
+        if (%varplayerbit_37616 < $int8) {
+            $int18 = 1;
+        } else {
+            $int13 = calc(%varplayerbit_37616 / $int8);
+        }
+    }
+    if ($obj9 ! null) {
+        if (%varplayerbit_37617 < $int10) {
+            $int18 = 1;
+        } else {
+            $int14 = calc(%varplayerbit_37617 / $int10);
+        }
+    }
+    if (%varplayerbit_37590 < $int12) {
+        $int18 = 1;
+    } else {
+        $int15 = calc(%varplayerbit_37590 / $int12 * $int6);
+    }
+}
+if ($int18 = 0) {
+    if ($obj7 ! null) {
+        $int17 = min(%varplayer_7270, $int13);
+    }
+    if ($obj9 ! null) {
+        $int17 = min($int17, $int14);
+    }
+    $int17 = min($int17, $int15);
+    $int0 = calc(60 * $int17 / ($int6 * (60 / 60)));
+    if ($int0 < 60) {
+        $int3, $int4 = ~script10900(date_minutes);
+        $int3 = 0;
+        $int4 = calc(60 - $int4);
+    } else {
+        $int1 = calc($int0 / 10080);
+        $int2 = calc(($int0 - $int1 * 10080) / 1440);
+        $int3 = calc(($int0 - $int1 * 10080 - $int2 * 1440) / 60);
+        if (calc($int17 % $int6) = 0) {
+            $int3 = calc($int3 - 1);
+        }
+        $int0, $int4 = ~script10900(date_minutes);
+        $int4 = calc(60 - $int4);
+    }
+    $string0 = "<tostring($int4)> minutes";
+    if ($int3 > 0) {
+        $string0 = "<tostring($int3)> hours <$string0>";
+    }
+    if ($int2 > 0) {
+        $string0 = "<tostring($int2)> days <$string0>";
+    }
+    if ($int1 > 0) {
+        $string0 = "<tostring($int1)> weeks <$string0>";
+    }
+    if ($obj7 ! null & $int13 < %varplayer_7270 | $obj9 ! null & $int14 < %varplayer_7270 | %varplayerbit_37590 < $int16) {
+        $string0 = "<col=0xff0000>! <$string0> !</col>";
+    }
+} else if (%varplayer_7270 = 0) {
+    $string0 = "<col=0xff0000>! You have no items to process !</col>";
+} else if ($obj7 ! null & %varplayerbit_37616 < $int8) {
+    $string0 = "<col=0xff0000>You have no: <oc_name($obj7)></col>";
+    if ($obj9 ! null & %varplayerbit_37617 < $int10) {
+        $string0 = "<$string0><col=0xff0000>, <oc_name($obj9)></col>";
+    }
+} else if ($obj9 ! null & %varplayerbit_37617 < $int10) {
+    $string0 = "<col=0xff0000>You have no: <oc_name($obj9)></col>";
+} else if (%varplayerbit_37590 < $int12) {
+    $string0 = "<col=0xff0000>You have no charge to process items</col>";
+} else {
+    $string0 = "Lots!";
+}
+if (if_find(interface_1902:com_26) = true) {
+    cc_settext($string0);
+}

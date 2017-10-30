@@ -1,0 +1,232 @@
+// 13678
+[proc,script13678](component $component0, component $component1, int $int2, int $int3, int $int4, int $int5, int $int6)
+def_int $int7 = 10;
+def_int $int8 = calc(20 + (55 + 5) * $int2);
+if ($int2 >= $int6 & $int6 ! 0) {
+    $int8 = calc($int8 + 16);
+}
+if (cc_find($component0, $int4) = true) {
+    cc_setsize(calc(2 * $int7), 55, ^setsize_minus, ^setsize_abs);
+    cc_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setparam(param_6814, $int8);
+    cc_setparam(param_6813, $int3);
+    cc_setop(1, "Select");
+} else {
+    return;
+}
+if ($int2 = 0) {
+    cc_create($component1, ^iftype_rectangle, 0);
+    cc_setsize(calc(2 * $int7), 55, ^setsize_minus, ^setsize_abs);
+    cc_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setcolour(^white);
+    cc_sethide(true);
+    cc_setfill(false);
+}
+def_dbrow $dbrow9 = enum(int, dbrow, enum_13176, %varplayerbit_37615);
+def_dbrow $dbrow10 = enum(int, dbrow, enum_13175, %varplayerbit_37614);
+def_dbrow $dbrow11 = enum(int, dbrow, enum_13175, $int3);
+def_int $int12 = db_getfield($dbrow10, dbtable_22:col20, 0);
+def_int $int13 = if_getnextsubid($component1);
+def_int $int14 = 0;
+def_int $int15 = 5;
+def_int $int16 = 5;
+def_int $int17 = 15;
+def_int $int18 = 15;
+def_dbrow $dbrow19 = null;
+def_int $int20 = 0;
+def_graphic $graphic21 = null;
+def_int $int22 = 22;
+def_int $int23 = -1;
+def_string $string0 = null;
+def_int $int24 = -1;
+def_obj $obj25 = null;
+def_int $int26 = -1;
+def_int $int27 = 0;
+def_int $int28 = 0;
+def_int $int29 = calc(55 - 10);
+def_int $int30 = 0;
+cc_create($component1, ^iftype_rectangle, $int13++);
+cc_setsize(calc(2 * $int7), 55, ^setsize_minus, ^setsize_abs);
+cc_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top);
+cc_setparam(param_6813, db_getfield($dbrow9, dbtable_23:col5, $int2));
+cc_setfill(true);
+if (calc($int2 % 2) = 0) {
+    ~script13650(struct_28679);
+} else {
+    ~script13650(struct_28680);
+}
+cc_setmouseovercursor(cursor_46);
+cc_create($component1, ^iftype_graphic, $int13++);
+cc_setgraphic(db_getfield(enum(int, dbrow, enum_10743, calc(db_getfield($dbrow11, dbtable_22:col4, 0) - 1)), dbtable_5:col5, 0));
+cc_setsize($int29, $int29, ^setsize_abs, ^setsize_abs);
+cc_setposition($int18, calc($int8 + (55 - $int29) / 2), ^setpos_abs_left, ^setpos_abs_top);
+$int18 = calc($int18 + ($int29 + $int16));
+if ($int2 < $int6) {
+    cc_create($component1, ^iftype_graphic, $int13++);
+    cc_setposition(calc($int18 - $int16 - 12), calc($int8 + 55 - $int22), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(12, 12, ^setsize_abs, ^setsize_abs);
+    if (db_getfield($dbrow11, dbtable_22:col6, 0) < db_getfield($dbrow10, dbtable_22:col6, 0)) {
+        cc_setgraphic("aif_group_sys_arrows,1");
+        cc_setcolour(^red);
+    } else {
+        cc_setgraphic("aif_group_sys_arrows,0");
+        cc_setcolour(^green);
+    }
+}
+cc_create($component1, ^iftype_line, $int13++);
+cc_setsize(0, calc(55 - 1), ^setsize_abs, ^setsize_abs);
+cc_setposition($int18, $int8, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour(^black);
+$int18 = calc($int18 + $int16);
+cc_create($component1, ^iftype_text, $int13++);
+cc_setsize(calc(4 * $int7), calc(55 / 2), ^setsize_minus, ^setsize_abs);
+cc_setposition($int18, $int8, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour(^white);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_settextfont(graphic_17813);
+cc_settext(db_getfield($dbrow11, dbtable_22:col1, 0));
+cc_settextshadow(true);
+cc_create($component1, ^iftype_graphic, $int13++);
+cc_setposition($int18, calc($int8 + 55 / 2 + (55 / 2 - $int22) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize($int22, $int22, ^setsize_abs, ^setsize_abs);
+cc_setgraphic("skill_icon_invention_22px,0");
+$string0 = "<col=f5b241>Current Invention level:</col> <tostring(stat(invention))>";
+cc_setonmouserepeat("script3876($string0, event_com, event_comsubid)");
+$int18 = calc($int18 + ($int22 + $int16));
+$int23 = db_getfield($dbrow11, dbtable_22:col3, 0);
+cc_create($component1, ^iftype_text, $int13++);
+cc_setsize(parawidth("999", if_getwidth($component1), graphic_17813), calc(55 / 2), ^setsize_abs, ^setsize_abs);
+cc_setposition($int18, calc($int8 + 55 / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_settext(tostring($int23));
+if (stat(invention) >= $int23) {
+    cc_setcolour(^green);
+} else {
+    cc_setcolour(^red);
+}
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_settextfont(graphic_17813);
+cc_settextshadow(true);
+cc_setonmouserepeat("script3876($string0, event_com, event_comsubid)");
+$int18 = calc($int18 + (parawidth("999", if_getwidth($component1), graphic_17813) + $int16));
+cc_create($component1, ^iftype_graphic, $int13++);
+cc_setposition($int18, calc($int8 + 55 / 2 + (55 / 2 - $int22) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize($int22, $int22, ^setsize_abs, ^setsize_abs);
+cc_setgraphic("menaphos_tombs_icon_power_up,3");
+if (%varplayerbit_37615 = 1) {
+    cc_setonmouserepeat("script13684(event_com, event_comsubid, 1, db_getfield($dbrow11, dbtable_22:col20, 0), $int12)");
+} else {
+    cc_setonmouserepeat("script13684(event_com, event_comsubid, 0, 0, $int12)");
+}
+$int18 = calc($int18 + ($int22 + $int16));
+$int27 = db_getfield($dbrow11, dbtable_22:col20, 0);
+cc_create($component1, ^iftype_text, $int13++);
+cc_setsize(parawidth("9999", if_getwidth($component1), graphic_17813), calc(55 / 2), ^setsize_abs, ^setsize_abs);
+cc_setposition($int18, calc($int8 + 55 / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_settext(tostring($int27));
+cc_settextshadow(true);
+if (calc(%varplayerbit_37612 - %varplayerbit_37613 + $int12) >= $int27 | %varplayerbit_37615 = 1) {
+    cc_setcolour(^green);
+} else {
+    cc_setcolour(^red);
+}
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_settextfont(graphic_17813);
+if (%varplayerbit_37615 = 1) {
+    cc_setonmouserepeat("script13684(event_com, event_comsubid, 1, db_getfield($dbrow11, dbtable_22:col20, 0), $int12)");
+} else {
+    cc_setonmouserepeat("script13684(event_com, event_comsubid, 0, 0, $int12)");
+}
+if (calc(db_getfieldcount($dbrow11, dbtable_22:col8) + db_getfieldcount($dbrow11, dbtable_22:col7)) > 4) {
+    return;
+}
+$int28 = db_getfieldcount($dbrow11, dbtable_22:col8);
+$int14 = db_getfieldcount($dbrow11, dbtable_22:col7);
+while ($int28 > 0) {
+    if ($int30 = 2) {
+        $int17 = 15;
+    }
+    $obj25, $int26 = db_getfield($dbrow11, dbtable_22:col8, calc($int28 - 1));
+    cc_create($component1, ^iftype_text, $int13++);
+    cc_setsize(parawidth("999", if_getwidth($component1), graphic_17813), calc(55 / 2), ^setsize_abs, ^setsize_abs);
+    if ($int30 >= 2) {
+        cc_setposition($int17, calc($int8 + 55 / 2), ^setpos_abs_right, ^setpos_abs_top);
+    } else {
+        cc_setposition($int17, $int8, ^setpos_abs_right, ^setpos_abs_top);
+    }
+    if (calc(inv_total(inv_93, $obj25) + inv_total(inv_93, oc_cert($obj25))) >= $int26) {
+        cc_setcolour(^green);
+    } else {
+        cc_setcolour(^red);
+    }
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settextfont(graphic_17813);
+    cc_settext(tostring($int26));
+    cc_settextshadow(true);
+    cc_setonmouserepeat("script8801(~script13683($obj25, 1), $component1, $int13, ^settextalign_centre, ^settextalign_top, enum(fontmetrics, int, enum_8549, graphic_17813))");
+    $int17 = calc($int17 + (parawidth("999", if_getwidth($component1), graphic_17813) + $int16));
+    cc_create($component1, ^iftype_graphic, $int13++);
+    cc_setsize($int22, $int22, ^setsize_abs, ^setsize_abs);
+    if ($int30 >= 2) {
+        cc_setposition($int17, calc($int8 + 55 / 2 + (55 / 2 - $int22) / 2), ^setpos_abs_right, ^setpos_abs_top);
+    } else {
+        cc_setposition($int17, calc($int8 + (55 / 2 - $int22) / 2), ^setpos_abs_right, ^setpos_abs_top);
+    }
+    cc_setobject($obj25, -1);
+    cc_setonmouserepeat("script8801(~script13683($obj25, 1), $component1, $int13, ^settextalign_centre, ^settextalign_top, enum(fontmetrics, int, enum_8549, graphic_17813))");
+    $int17 = calc($int17 + ($int22 + $int16));
+    $int28 = calc($int28 - 1);
+    $int30 = calc($int30 + 1);
+}
+while ($int14 > 0) {
+    if ($int30 = 2) {
+        $int17 = 15;
+    }
+    $dbrow19, $int20 = db_getfield($dbrow11, dbtable_22:col7, calc($int14 - 1));
+    $int24 = db_getfield($dbrow19, dbtable_4:col0, 0);
+    cc_create($component1, ^iftype_text, $int13++);
+    cc_setsize(parawidth("999", if_getwidth($component1), graphic_17813), calc(55 / 2), ^setsize_abs, ^setsize_abs);
+    if ($int30 >= 2) {
+        cc_setposition($int17, calc($int8 + 55 / 2), ^setpos_abs_right, ^setpos_abs_top);
+    } else {
+        cc_setposition($int17, $int8, ^setpos_abs_right, ^setpos_abs_top);
+    }
+    cc_settext(tostring($int20));
+    if (~invent_material_count(db_getfield($dbrow19, dbtable_4:col0, 0)) >= $int20) {
+        cc_setcolour(^green);
+    } else {
+        cc_setcolour(^red);
+    }
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settextfont(graphic_17813);
+    cc_settextshadow(true);
+    cc_setonmouserepeat("script8801(~script13682($int24, 1, db_getfield($dbrow19, dbtable_4:col1, 0)), $component1, $int13, ^settextalign_centre, ^settextalign_top, enum(fontmetrics, int, enum_8549, graphic_17813))");
+    $int17 = calc($int17 + (parawidth("999", if_getwidth($component1), graphic_17813) + $int16));
+    $graphic21 = db_getfield($dbrow19, dbtable_4:col4, 0);
+    cc_create($component1, ^iftype_graphic, $int13++);
+    cc_setgraphic($graphic21);
+    cc_setsize($int22, $int22, ^setsize_abs, ^setsize_abs);
+    if ($int30 >= 2) {
+        cc_setposition($int17, calc($int8 + 55 / 2 + (55 / 2 - $int22) / 2), ^setpos_abs_right, ^setpos_abs_top);
+    } else {
+        cc_setposition($int17, calc($int8 + (55 / 2 - $int22) / 2), ^setpos_abs_right, ^setpos_abs_top);
+    }
+    cc_setonmouserepeat("script8801(~script13682($int24, 1, db_getfield($dbrow19, dbtable_4:col1, 0)), $component1, $int13, ^settextalign_centre, ^settextalign_top, enum(fontmetrics, int, enum_8549, graphic_17813))");
+    $int17 = calc($int17 + ($int22 + $int16));
+    $int14 = calc($int14 - 1);
+    $int30 = calc($int30 + 1);
+}
+cc_create($component1, ^iftype_line, $int13++);
+cc_setsize(0, calc(55 - 1), ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int7 + 5 * $int16 + 2 * $int22 + 2 * parawidth("999", if_getwidth($component1), graphic_17813)), $int8, ^setpos_abs_right, ^setpos_abs_top);
+cc_setcolour(^black);
+if (calc($int2 + 1) = $int6) {
+    if_settext("Upgrades & downgrades available for this machine:", interface_1901:com_0);
+    if ($int6 ! $int5) {
+        cc_create($component1, ^iftype_text, $int13++);
+        cc_settextfont(graphic_17813);
+        cc_setsize(calc(2 * $int7), 11, ^setsize_minus, ^setsize_abs);
+        ~script11024(14);
+        cc_setposition(calc($int7 / 2), calc($int8 + 55 + 5), ^setpos_abs_left, ^setpos_abs_top);
+        cc_settext("Alternative machines available for this hotspot:");
+    }
+}

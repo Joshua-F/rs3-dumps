@@ -6,106 +6,102 @@ if ($enum2 = null) {
     return;
 }
 def_string $string0 = "";
-def_string $string1 = "";
-def_struct $struct4 = null;
-def_obj $obj5 = null;
-def_string $string2 = "";
+def_int $int4 = 0;
 ~script13334(%varplayer_6891, 1);
-cc_deleteall(interface_1851:com_49);
-if (cc_find(interface_1851:com_48, $int0) = true) {
-    cc_sethide(true);
+cc_deleteall(interface_1851:com_58);
+if (cc_find(interface_1851:com_57, $int0) = true) {
+    cc_setonop("cheevo_load_list(%varplayer_6891, -1, 0)");
+    cc_setop(5, "Close");
 }
+if (cc_find(interface_1851:com_57, calc($int0 + 7)) = true) {
+    cc_setvflip(true);
+}
+def_int $int5 = 0;
 def_int $int6 = 0;
-def_int $int7 = 0;
-if (cc_find(interface_1851:com_48, calc($int0 - 5)) = true) {
-    $int6 = cc_gety;
-    $int7 = cc_getheight;
+if (cc_find(interface_1851:com_57, $int0) = true) {
+    $int5 = cc_gety;
+    $int6 = cc_getheight;
 }
+def_int $int7 = 0;
 def_int $int8 = 0;
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
-if_setcolour(~script10495(0x00001d), interface_1851:com_50);
+def_struct $struct12 = null;
+if_setcolour(~script10495(29), interface_1851:com_59);
 switch_int ($int3) {
     case 0 :
-        while ($int10 < enum_getoutputcount($enum2)) {
-            $struct4 = enum(int, struct, $enum2, $int10);
-            $string0 = ~cheevo_name($struct4);
-            switch_int (~cheevo_obtain_progress($struct4)) {
+        $int10 = enum_getoutputcount($enum2);
+        while ($int9 < $int10) {
+            $struct12 = enum(int, struct, $enum2, $int9);
+            $string0 = ~cheevo_name($struct12);
+            switch_int (~cheevo_obtain_progress($struct12)) {
                 case -2 :
-                    $string1 = "<col=fefefe>";
+                    $int4 = ~script10495(14);
                 case -1 :
-                    $string1 = "<col=ff0000>";
+                    $int4 = ~script10495(46);
                 case default :
-                    $string1 = "<col=888888>";
+                    $int4 = ~script10495(64);
             }
-            $int11 = ~script13343($int10, $int11, "<$string1><$string0></col>", $struct4);
-            $int10 = calc($int10 + 1);
+            $int11 = ~script13343($int9, $int11, $int4, $string0, $struct12);
+            $int9 = calc($int9 + 1);
         }
     case default :
-        $int8 = ~cheevo_get_progress($struct1);
+        $int7 = ~cheevo_get_progress($struct1);
         if (struct_param($struct1, param_6424) = 1) {
-            if (struct_param($struct1, param_6425) ! -1) {
-                $int9 = struct_param($struct1, param_6423);
-                while ($int10 < $int9) {
-                    if (testbit(struct_param($struct1, param_6425), $int10) = ^true) {
-                        if (testbit($int8, $int10) = ^true) {
-                            $string1 = "<col=fefefe>";
-                        } else {
-                            $string1 = "<col=888888>";
-                        }
-                        if ($int3 = 1) {
-                            $obj5 = enum(int, obj, $enum2, $int10);
-                            $string0 = oc_name($obj5);
-                        } else {
-                            $string0 = enum(int, string, $enum2, $int10);
-                        }
-                        $int11 = ~script13343($int10, $int11, "<$string1><$string0></col>", null);
-                    }
-                    $int10 = calc($int10 + 1);
+            $int8 = bitcount(~cheevo_get_check_var_total($struct1));
+            while ($int9 < $int8) {
+                if (testbit($int7, $int9) = ^true) {
+                    $int4 = ~script10495(14);
+                } else {
+                    $int4 = ~script10495(64);
                 }
-            } else {
-                $int9 = bitcount(struct_param($struct1, param_6423));
-                while ($int10 < $int9) {
-                    if (testbit($int8, $int10) = ^true) {
-                        $string1 = "<col=fefefe>";
+                if ($int3 = 1) {
+                    $string0 = oc_name(enum(int, obj, $enum2, $int9));
+                } else if ($enum2 = enum_13065) {
+                    if ($int9 = 0) {
+                        if (%varplayerbit_11754 = 0) {
+                            $string0 = "Turael";
+                        } else {
+                            $string0 = "Spria";
+                        }
+                    } else if ($int9 = 5) {
+                        if (%varplayerbit_11754 = 0) {
+                            $string0 = "Duradel";
+                        } else {
+                            $string0 = "Lapalok";
+                        }
                     } else {
-                        $string1 = "<col=888888>";
+                        $string0 = enum(int, string, $enum2, $int9);
                     }
-                    if ($int3 = 1) {
-                        $obj5 = enum(int, obj, $enum2, $int10);
-                        $string0 = oc_name($obj5);
-                    } else {
-                        $string0 = enum(int, string, $enum2, $int10);
-                    }
-                    $int11 = ~script13343($int10, $int11, "<$string1><$string0></col>", null);
-                    $int10 = calc($int10 + 1);
+                } else {
+                    $string0 = enum(int, string, $enum2, $int9);
                 }
+                $int11 = ~script13343($int9, $int11, $int4, $string0, null);
+                $int9 = calc($int9 + 1);
             }
         } else if (struct_param($struct1, param_6424) = 2) {
-            $int9 = struct_param($struct1, param_6423);
-            while ($int10 < $int9) {
-                $string0 = enum(int, string, $enum2, $int10);
-                if ($int10 < $int8) {
-                    $string1 = "<col=fefefe>";
+            $int8 = ~cheevo_get_check_var_total($struct1);
+            while ($int9 < $int8) {
+                $string0 = enum(int, string, $enum2, $int9);
+                if ($int9 < $int7) {
+                    $int4 = ~script10495(14);
                 } else {
-                    $string1 = "<col=888888>";
+                    $int4 = ~script10495(64);
                 }
-                $int11 = ~script13343($int10, $int11, "<$string1><$string0></col>", null);
-                $int10 = calc($int10 + 1);
+                $int11 = ~script13343($int9, $int11, $int4, $string0, null);
+                $int9 = calc($int9 + 1);
             }
         }
 }
-if (calc($int10 % 2) = 1 & cc_find(interface_1851:com_49, calc(if_getnextsubid(interface_1851:com_49) - 1)) = true) {
+if (calc($int9 % 2) = 1 & cc_find(interface_1851:com_58, calc(if_getnextsubid(interface_1851:com_58) - 1)) = true) {
     $int11 = calc($int11 + cc_getheight);
 }
-def_int $int12 = $int11;
-$int12 = calc($int12 + 22);
-if_sethide(false, interface_1851:com_49);
-if_setsize(6, $int12, ^setsize_minus, ^setsize_abs, interface_1851:com_49);
-if_setposition(0, calc($int6 + $int7), ^setpos_abs_left, ^setpos_abs_top, interface_1851:com_49);
-~script13344(calc($int6 + $int7), $int12);
-if_setscrollsize(0, calc(if_getscrollheight(interface_1851:com_48) + $int12), interface_1851:com_48);
-if_setscrollpos(0, $int6, interface_1851:com_48);
-~rs3_scrollbar_vertical(interface_1851:com_47, interface_1851:com_48);
-if_setonclick("cheevo_load_list(%varplayer_6891, 0)", interface_1851:com_51);
+$int11 = calc($int11 + 2);
+if_sethide(false, interface_1851:com_58);
+if_setsize(0, $int11, ^setsize_minus, ^setsize_abs, interface_1851:com_58);
+if_setposition(0, calc($int5 + $int6), ^setpos_abs_left, ^setpos_abs_top, interface_1851:com_58);
+~script13344(calc($int5 + $int6), $int11);
+if_setscrollsize(0, calc(if_getscrollheight(interface_1851:com_57) + $int11), interface_1851:com_57);
+if_setscrollpos(0, $int5, interface_1851:com_57);
+~rs3_scrollbar_vertical(interface_1851:com_56, interface_1851:com_57);

@@ -1,0 +1,33 @@
+// 13618
+[proc,script13618](component $component0, int $int1, int $int2)
+def_string $string0 = "Favourite Achievement";
+def_string $string1 = "Favourite";
+def_int $int3 = 3;
+def_graphic $graphic4 = "achievement_icon_favourites_14px,0";
+def_graphic $graphic5 = "achievement_icon_favourites_14px,1";
+def_graphic $graphic6 = "achievement_icon_favourites_14px,2";
+def_int $int7 = 0;
+if (calc(%varplayerbit_37061 - 1) = $int2 | calc(%varplayerbit_37062 - 1) = $int2 | calc(%varplayerbit_37063 - 1) = $int2 | calc(%varplayerbit_37064 - 1) = $int2) {
+    $string0 = "Unfavourite Achievement";
+    $string1 = "Unfavourite";
+    $int3 = 4;
+    $graphic4 = "achievement_icon_favourites_14px,3";
+    $graphic5 = "achievement_icon_favourites_14px,4";
+    $graphic6 = "achievement_icon_favourites_14px,5";
+    $int7 = 1;
+}
+cc_clearops;
+cc_setop($int3, $string1);
+cc_setopcursor($int3, cursor_46);
+cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
+cc_setgraphic($graphic4);
+cc_setonmouseover("graphic_swapper_dynamic(event_com, event_comsubid, $graphic5)");
+cc_setonmouseleave("graphic_swapper_dynamic(event_com, event_comsubid, $graphic4)");
+cc_setonclick("graphic_swapper_dynamic(event_com, event_comsubid, $graphic6)");
+cc_setonrelease("graphic_swapper_dynamic(event_com, event_comsubid, $graphic5)");
+cc_setonvartransmit("script13617($component0, $int1, $int2){varplayer_7130, varplayer_7130, varplayer_7131, varplayer_7131}");
+if ($int7 = 1) {
+    cc_setonop("script13340");
+} else {
+    cc_setonop("script13341");
+}

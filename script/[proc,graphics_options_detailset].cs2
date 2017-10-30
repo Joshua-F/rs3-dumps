@@ -1,6 +1,19 @@
 // 2582
 [proc,graphics_options_detailset](struct $struct0, int $int1, int $int2)(int)
 switch_struct ($struct0) {
+    case struct_28783 :
+        if ($int1 ! 2 & $int1 ! detailget_toolkit) {
+            detail_toolkit($int1);
+            if ($int1 ! detailget_toolkit) {
+                return(0);
+            }
+            if ($int1 = 1 | $int1 = 3 | $int1 = 5) {
+                ~script2700(1, $int2, 0);
+                return(2);
+            } else {
+                detail_toolkit_default($int1, false);
+            }
+        }
     case struct_830 :
         detail_removeroofs_option($int1);
     case struct_831 :
@@ -154,6 +167,18 @@ switch_struct ($struct0) {
             return(0);
         }
         detail_groundblending(~int_to_bool($int1));
+    case struct_38730 :
+        if (detailcanmod_maxforegroundfps = true & detailcanset_maxforegroundfps(calc((1 + $int1) * 5)) < 3) {
+            detail_maxforegroundfps(calc((1 + $int1) * 5));
+            return(1);
+        }
+        return(0);
+    case struct_38731 :
+        if (detailcanmod_maxbackgroundfps = true & detailcanset_maxbackgroundfps(calc((1 + $int1) * 5)) < 3) {
+            detail_maxbackgroundfps(calc((1 + $int1) * 5));
+            return(1);
+        }
+        return(0);
     case default :
         return(0);
 }

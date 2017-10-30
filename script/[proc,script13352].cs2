@@ -19,51 +19,63 @@ if ($struct2 = null) {
 }
 def_int $int3 = 0;
 cc_create($component0, ^iftype_graphic, $int3);
-cc_setposition(5, 18, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(64, 64, ^setsize_abs, ^setsize_abs);
+cc_setposition(5, 5, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(28, 28, ^setsize_abs, ^setsize_abs);
 cc_setgraphic(~cheevo_icon($struct2));
-$int3 = calc($int3 + 1);
-cc_create($component0, ^iftype_text, $int3);
-cc_setposition(72, 5, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(72, 15, ^setsize_minus, ^setsize_abs);
-cc_settext(~cheevo_name($struct2));
-cc_settextfont(graphic_20280);
-cc_setcolour(~script10495(0x000008));
-cc_settextalign(^settextalign_left, ^settextalign_top, 0);
-$int3 = calc($int3 + 1);
-cc_create($component0, ^iftype_text, $int3);
-cc_setposition(72, 25, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(100, 45, ^setsize_minus, ^setsize_abs);
-cc_settext(~cheevo_details($struct2));
-cc_settextfont(graphic_17813);
-cc_setcolour(~script10495(0x00000c));
-cc_settextalign(^settextalign_left, ^settextalign_top, 0);
-$int3 = calc($int3 + 1);
-def_int $int4 = ~cheevo_obtain_progress($struct2);
-cc_create($component0, ^iftype_text, $int3);
-if ((struct_param($struct2, param_6423) > 1 | struct_param($struct2, param_6416) = 1) & $int4 >= 0) {
-    cc_setposition(10, 75, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setsize(20, 18, ^setsize_minus, ^setsize_abs);
-    cc_settextfont(graphic_17813);
-    cc_setcolour(~script10495(0x00000c));
-    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    cc_settext(append(tostring(calc($int4 / 100)), append(".<tostring(calc($int4 % 100))>", "%")));
+if (struct_param($struct2, param_1270) = 4094) {
+    cc_setop(1, "Go To");
+    cc_setopcursor(1, cursor_210);
 }
 $int3 = calc($int3 + 1);
 def_string $string0 = "Unpin Achievement";
-def_string $string1 = "Unpin";
-def_int $int5 = 1;
-def_graphic $graphic6 = graphic_30214;
-def_graphic $graphic7 = graphic_30213;
-def_graphic $graphic8 = graphic_30215;
+def_graphic $graphic4 = "rs3_icon_pinned_24px,0";
+def_graphic $graphic5 = "rs3_icon_pinned_24px,1";
+def_graphic $graphic6 = "rs3_icon_pinned_24px,2";
 cc_create($component0, ^iftype_graphic, $int3);
-cc_setposition(5, 0, ^setpos_abs_right, ^setpos_abs_centre);
-cc_setsize(20, 20, ^setsize_abs, ^setsize_abs);
-cc_setop($int5, $string1);
+cc_setposition(36, 5, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
+cc_setop(1, "Unpin");
+cc_setopcursor(1, cursor_46);
 cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
-cc_setgraphic($graphic6);
-cc_setonmouseover("graphic_swapper_dynamic(event_com, event_comsubid, $graphic7)");
-cc_setonmouseleave("graphic_swapper_dynamic(event_com, event_comsubid, $graphic6)");
-cc_setonclick("graphic_swapper_dynamic(event_com, event_comsubid, $graphic8)");
-cc_setonrelease("graphic_swapper_dynamic(event_com, event_comsubid, $graphic7)");
+cc_setgraphic($graphic4);
+cc_setonmouseover("graphic_swapper_dynamic(event_com, event_comsubid, $graphic5)");
+cc_setonmouseleave("graphic_swapper_dynamic(event_com, event_comsubid, $graphic4)");
+cc_setonclick("graphic_swapper_dynamic(event_com, event_comsubid, $graphic6)");
+cc_setonrelease("graphic_swapper_dynamic(event_com, event_comsubid, $graphic5)");
 cc_setonop("script13353");
+$int3 = calc($int3 + 1);
+cc_create($component0, ^iftype_text, $int3);
+cc_setposition(53, 5, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(58, 14, ^setsize_minus, ^setsize_abs);
+cc_settextfont(graphic_20280);
+~script11024(8);
+cc_settext(~script13575(~cheevo_name($struct2), cc_getwidth, cc_getfontmetrics, 1));
+$int3 = calc($int3 + 1);
+cc_create($component0, ^iftype_text, $int3);
+cc_setposition(36, 21, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(41, 30, ^setsize_minus, ^setsize_abs);
+cc_settextfont(graphic_17813);
+~script11024(12);
+cc_setmaxlines(2);
+def_string $string1 = ~cheevo_details($struct2, 1);
+cc_settext($string1);
+if (paraheight(cc_gettext, cc_getwidth, cc_getfontmetrics) > 2) {
+    cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
+}
+$int3 = calc($int3 + 1);
+def_int $int7 = ~cheevo_obtain_progress($struct2);
+cc_create($component0, ^iftype_text, $int3);
+cc_setposition(10, 53, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(20, 18, ^setsize_minus, ^setsize_abs);
+cc_settextfont(graphic_17813);
+~script11024(8);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+if ($int7 = -1) {
+    cc_settext("LOCKED");
+} else if ($int7 >= 0 & (struct_param($struct2, param_6423) = -1337 | struct_param($struct2, param_6423) > 1 | struct_param($struct2, param_6416) = 1)) {
+    if (calc($int7 % 100) ! 0) {
+        cc_settext(append(tostring(calc($int7 / 100)), append(".<tostring(calc($int7 % 100))>", "%")));
+    } else {
+        cc_settext(append(tostring(calc($int7 / 100)), "%"));
+    }
+}
