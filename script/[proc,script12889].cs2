@@ -1,13 +1,13 @@
 // 12889
-[proc,script12889]()(string, string, string, string, string)
-def_int $int0 = calc(%varclient_5880 / 1440);
-def_int $int1 = calc(%varclient_5880 % 1440 / 60);
-def_int $int2 = calc(%varclient_5880 % 60);
-def_int $int3 = calc(59 - %varclient_5881);
-def_string $string0 = tostring($int0);
-def_string $string1 = tostring($int1);
-def_string $string2 = tostring($int2);
-def_string $string3 = tostring($int3);
+[proc,script12889](struct $struct0)(string, string, string, string, string)
+def_int $int1 = calc(%varclient_5880 / 1440);
+def_int $int2 = calc(%varclient_5880 % 1440 / 60);
+def_int $int3 = calc(%varclient_5880 % 60);
+def_int $int4 = calc(59 - %varclient_5881);
+def_string $string0 = tostring($int1);
+def_string $string1 = tostring($int2);
+def_string $string2 = tostring($int3);
+def_string $string3 = tostring($int4);
 def_string $string4 = "<col=cde1ff>";
 if (%varclient_5880 < 60) {
     $string4 = "<col=dd0000>";
@@ -28,14 +28,32 @@ if (calc(%varclient_5880 + 1) > 0) {
         $string3 = append("0", $string3);
     }
 }
-if ($int0 = 0 & $int1 = 0 & $int2 = 0 & $int3 = 0) {
-    if_sethide(true, interface_1802:com_1);
-    if_sethide(true, interface_1802:com_3);
-    if_sethide(false, interface_1802:com_23);
-    if_setontimer(null, interface_1802:com_13);
+def_component $component5 = interface_1802:com_1;
+def_component $component6 = interface_1802:com_3;
+def_component $component7 = interface_1802:com_23;
+def_component $component8 = interface_1802:com_13;
+def_component $component9 = interface_1802:com_39;
+def_component $component10 = interface_1802:com_42;
+def_component $component11 = interface_1802:com_45;
+def_component $component12 = interface_1802:com_52;
+if ($struct0 = struct_9802) {
+    $component5 = interface_1930:com_71;
+    $component6 = interface_1930:com_17;
+    $component7 = interface_1930:com_65;
+    $component8 = interface_1930:com_40;
+    $component9 = interface_1930:com_74;
+    $component10 = interface_1930:com_76;
+    $component11 = interface_1930:com_78;
+    $component12 = interface_1930:com_80;
 }
-if_settext("<$string4><$string0>", interface_1802:com_39);
-if_settext("<$string4><$string1>", interface_1802:com_42);
-if_settext("<$string4><$string2>", interface_1802:com_45);
-if_settext("<$string4><$string3>", interface_1802:com_52);
+if ($int1 = 0 & $int2 = 0 & $int3 = 0 & $int4 = 0) {
+    if_sethide(true, $component5);
+    if_sethide(true, $component6);
+    if_sethide(false, $component7);
+    if_setontimer(null, $component8);
+}
+if_settext("<$string4><$string0>", $component9);
+if_settext("<$string4><$string1>", $component10);
+if_settext("<$string4><$string2>", $component11);
+if_settext("<$string4><$string3>", $component12);
 return($string4, $string0, $string1, $string2, $string3);

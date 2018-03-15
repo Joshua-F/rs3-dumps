@@ -1,41 +1,35 @@
 // 6372
-[proc,if_highlight_cc](component $component0, int $int1)
-def_int $int2 = 0;
-def_int $int3 = 0;
-def_int $int4 = max(20, calc(2 + cc_getwidth));
-def_int $int5 = max(20, calc(2 + cc_getheight));
+[proc,if_highlight_cc](int $int0, int $int1)
+def_component $component2 = enum(int, component, enum_13326, $int0);
+def_component $component3 = if_getparentlayer($component2);
+def_component $component4 = enum(int, component, enum_13327, $int0);
+def_int $int5 = 0;
 def_int $int6 = 0;
-def_int $int7 = 0;
-def_int $int8 = 0;
-def_string $string0 = "There are new Player Power Polls to vote on.";
+def_int $int7 = max(20, calc(cc_getwidth + 2));
+def_int $int8 = max(20, calc(cc_getheight + 2));
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
 if (~script6375 = true) {
-    $int2 = calc(~script6355 + cc_getwidth / 2);
-    $int3 = calc(~script6356 + cc_getheight / 2);
-    if (if_find(~script6358($component0)) = true) {
+    $int5 = calc(~script6355 + cc_getwidth / 2);
+    $int6 = calc(~script6356 + cc_getheight / 2);
+    if (if_find($component4) = true) {
         if ($int1 = 184 & ~script8292(4, -1) = false) {
-            if (if_getnextsubid(if_getparentlayer($component0)) = 0) {
-                .cc_create(if_getparentlayer($component0), ^iftype_graphic, 0);
-                .cc_setgraphic(rs3_icon_info);
-                .cc_setsize(20, 20, ^setsize_abs, ^setsize_abs);
-                .cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
-            }
-            if (.cc_find(if_getparentlayer($component0), 0) = true) {
-                .cc_setposition(calc($int2 - .cc_getwidth), $int3, ^setpos_abs_left, ^setpos_abs_top);
-            }
+            ~script13873($component3, $int5, $int6);
         } else {
             cc_sethide(false);
-            $int6, $int7, $int8 = ~script6373($int4, $int5);
-            cc_setsize($int6, $int7, ^setsize_abs, ^setsize_abs);
-            ~if_highlight_settrans($int8, $component0);
-            cc_setposition(calc($int2 - cc_getwidth / 2), calc($int3 - cc_getheight / 2), ^setpos_abs_left, ^setpos_abs_top);
-            if (.cc_find(if_getparentlayer($component0), 0) = true) {
+            $int9, $int10, $int11 = ~script6373($int7, $int8);
+            cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
+            cc_setposition(calc($int5 - cc_getwidth / 2), calc($int6 - cc_getheight / 2), ^setpos_abs_left, ^setpos_abs_top);
+            ~if_highlight_settrans($int11, $int0);
+            if (.cc_find($component3, 0) = true) {
                 .cc_delete;
             }
         }
     }
 } else {
-    if (.cc_find(if_getparentlayer($component0), 0) = true) {
+    if (.cc_find($component3, 0) = true) {
         .cc_delete;
     }
-    if_sethide(true, ~script6358($component0));
+    if_sethide(true, $component4);
 }

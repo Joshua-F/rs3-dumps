@@ -626,7 +626,7 @@ while ($int18 < inv_size($inv2)) {
     $obj47 = null;
     $struct48 = null;
     if (.cc_find($component7, $int18) = true) {
-        if ($component8 = interface_1869:com_8 & testbit(%varplayer_6954, $int18) = ^true) {
+        if ($component8 = interface_762:com_494 & testbit(%varplayer_6954, $int18) = ^true) {
             cc_create($component11, ^iftype_graphic, if_getnextsubid($component11));
             cc_setsize(.cc_getwidth, .cc_getheight, ^setsize_abs, ^setsize_abs);
             cc_setposition(.cc_getx, .cc_gety, ^setpos_abs_left, ^setpos_abs_top);
@@ -651,7 +651,11 @@ while ($int18 < inv_size($inv2)) {
                 if ($inv1 ! null) {
                     $obj47 = inv_getobj($inv1, $int18);
                     if ($obj47 ! null) {
-                        $obj47 = ~script13427($obj47, $inv1, oc_param($obj47, param_4414));
+                        if (oc_param($obj47, param_4949) = 1) {
+                            $obj47 = enum(obj, obj, enum_9905, $obj47);
+                        } else {
+                            $obj47 = ~script13427($obj47, $inv1, oc_param($obj47, param_4414));
+                        }
                     }
                 }
                 if ($int31 = 0) {
@@ -674,7 +678,7 @@ while ($int18 < inv_size($inv2)) {
                     ~script12112($obj19, inv_getnum($inv2, $int18), $inv2, $int18);
                     cc_settrans(0);
                     switch_component ($component8) {
-                        case interface_762:com_136 :
+                        case interface_762:com_116 :
                             if (oc_param($obj19, param_2091) = false | compare(oc_param($obj19, param_528), "Remove") = 0 | compare(oc_param($obj19, param_529), "Remove") = 0 | compare(oc_param($obj19, param_530), "Remove") = 0 | compare(oc_param($obj19, param_531), "Remove") = 0 | compare(oc_param($obj19, param_1211), "Remove") = 0 | compare(oc_param($obj19, param_6712), "Remove") = 0 | compare(oc_param($obj19, param_6713), "Remove") = 0 | compare(oc_param($obj19, param_6714), "Remove") = 0) {
                                 cc_setop(1, "Remove to bank");
                                 cc_setop(7, "Remove to inventory");
@@ -692,7 +696,7 @@ while ($int18 < inv_size($inv2)) {
                             cc_setondrag(null);
                             cc_setondragcomplete(null);
                             cc_setop(10, "Examine");
-                        case interface_1869:com_8 :
+                        case interface_762:com_494 :
                             cc_setonmouserepeat("script10767($obj19, $obj47, $inv1, event_com, event_comsubid)");
                             cc_setopbase("");
                             cc_setonop(null);
@@ -783,7 +787,11 @@ while ($int18 < inv_size($inv2)) {
                             }
                             $obj19 = inv_getobj(inv_94, $int18);
                             if ($obj19 ! null) {
-                                $obj19 = ~script13427($obj19, $inv1, oc_param($obj19, param_4414));
+                                if (oc_param($obj19, param_4949) = 1) {
+                                    $obj19 = enum(obj, obj, enum_9905, $obj19);
+                                } else {
+                                    $obj19 = ~script13427($obj19, $inv1, oc_param($obj19, param_4414));
+                                }
                             }
                             switch_int ($int18) {
                                 case 18, 14 :
@@ -995,7 +1003,7 @@ if ($int31 ! 0) {
 } else if ($component5 ! null) {
     cc_deleteall($component5);
     $int30 = calc($int24 * $int22 + 2);
-    if_setscrollsize(if_getscrollwidth($component4), $int30, $component4);
+    if_setscrollsize($int15, $int30, $component4);
     if ($int29 = 1) {
         ~rs3_scrollbar_vertical($component5, $component4);
     }

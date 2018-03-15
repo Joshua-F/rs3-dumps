@@ -1,17 +1,58 @@
 // 8299
-[proc,script8299]
-if_sendtofront(interface_1477:com_1077);
-if_sendtofront(interface_1477:com_1078);
-if_setontimer(null, interface_1477:com_1077);
-if_sethide(false, interface_1477:com_1077);
-if_set_gamescreen_enabled(false);
-if_setonkey("script736(event_keycode, event_keychar)", interface_1477:com_1077);
-def_int $int0 = 0;
-if_sethide(false, interface_1477:com_1150);
-if_setontimer("script8300(0)", interface_1477:com_1078);
-while ($int0 < 50) {
-    if_sethide(true, enum(int, component, enum_7667, $int0));
-    $int0 = calc($int0 + 1);
+[proc,script8299](struct $struct0, int $int1, int $int2, int $int3)
+def_obj $obj4 = struct_param($struct0, param_1935);
+def_string $string0 = struct_param($struct0, param_1931);
+def_int $int5 = struct_param($struct0, param_1932);
+def_int $int6 = struct_param($struct0, param_4270);
+def_int $intbool7 = ~script5491($obj4);
+def_int $int8 = %varclient_1648;
+def_int $int9 = 5;
+def_int $int10 = 5;
+def_int $int11 = oc_param($obj4, param_1430);
+def_int $int12 = oc_param($obj4, param_1429);
+def_boolean $boolean13 = false;
+~aura_bag_cancel_search;
+if_sethide(true, interface_1929:com_5);
+if_sethide(false, interface_1929:com_6);
+if_sethide(true, interface_1929:com_16);
+if ($int2 = 1) {
+    if_settext("Buy", interface_1929:com_62);
+    if ($int6 = 1) {
+        if (%varplayer_3079 >= struct_param($struct0, param_6876) & %varplayer_3079 <= struct_param($struct0, param_6877)) {
+            $string0 = struct_param($struct0, param_6878);
+        }
+    } else {
+        if_settext("You currently have <col=0xffffff><tostring_localised($int8, true)></col> Loyalty Points.<br>This aura costs <col=0xffffff><tostring_localised($int5, true)></col> Loyalty Points.", interface_1929:com_16);
+        if ($int8 < $int5) {
+            $boolean13 = true;
+            $string0 = "<$string0><br>You can't afford this aura. ";
+        }
+    }
 }
-if_sethide(false, interface_1477:com_1150);
-if_sethide(false, interface_1477:com_1079);
+$string0 = "<$string0><br><br>Duration - <col=0xffffff><~script11076($int11)><br></col>";
+$string0 = "<$string0>Cooldown - <col=0xffffff><~script11076($int12)></col>";
+if ($int6 = 1 & $intbool7 = ^false) {
+    $boolean13 = true;
+}
+switch_int ($int2) {
+    case 1 :
+        if_sethide(true, interface_1929:com_2);
+    case 0, 2, 3, 4 :
+        if_sethide(false, interface_1929:com_2);
+        ~script8697($int1);
+        ~script13406($obj4);
+    case default :
+        if_sethide(true, interface_1929:com_17);
+}
+if_settext(struct_param($struct0, param_1930), interface_1929:com_52);
+if_settext($string0, interface_1929:com_15);
+if_setsize(36, 32, ^setsize_abs, ^setsize_abs, interface_1929:com_51);
+if_setobject($obj4, -1, interface_1929:com_51);
+if_sethide(false, interface_1929:com_17);
+if_sethide($boolean13, interface_1929:com_59);
+if_sethide(~negate_bool($boolean13), interface_1929:com_60);
+if ($intbool7 = ^true & ~aura_get_time($obj4) > %varplayer_7654) {
+    if_sethide(false, interface_1929:com_60);
+}
+sound_vorbis_volume(sound_36961, 1, 0, 100);
+~aura_bag_get_aura_status($obj4, 1);

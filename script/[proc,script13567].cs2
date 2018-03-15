@@ -5,6 +5,7 @@ def_enum $enum2 = null;
 def_int $int3 = 0;
 def_int $int4 = 0;
 def_int $int5 = 0;
+def_int $int6 = 0;
 $enum2 = struct_param($struct0, param_6426);
 if ($enum2 = null) {
     return(-1);
@@ -13,6 +14,7 @@ if (~script3983($struct0) = 1) {
     return(-2);
 }
 $int4 = enum_getoutputcount($enum2);
+$int6 = struct_param($struct0, param_6836);
 while ($int3 < $int4) {
     $int1 = ~cheevo_obtain_progress(enum(int, struct, $enum2, $int3));
     if ($int1 = -1) {
@@ -22,7 +24,11 @@ while ($int3 < $int4) {
     }
     $int3 = calc($int3 + 1);
 }
-if ($int5 = $int4) {
+if ($int6 > 0) {
+    if ($int5 >= $int6) {
+        return(-2);
+    }
+} else if ($int5 = $int4) {
     return(-2);
 }
 return(scale($int5, $int4, 10000));

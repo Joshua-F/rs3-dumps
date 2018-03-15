@@ -1,17 +1,7 @@
 // 6766
-[proc,challenge_reqs_fishing](int $int0, int $int1)(int)
-def_int $int2 = struct_param(enum(int, struct, enum_5524, $int0), param_2236);
-if (stat_base(fishing) < $int2) {
+[proc,challenge_reqs_fishing](int $int0)(int)
+if (stat_base(fishing) < struct_param(enum(int, struct, enum_5524, $int0), param_2236)) {
     return(0);
-}
-if (map_members = false & $int1 = 0) {
-    switch_int ($int0) {
-        case 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 16, 19 :
-            return(1);
-        case default :
-            return(0);
-    }
-    return(1);
 }
 switch_int ($int0) {
     case 14 :
@@ -35,7 +25,7 @@ switch_int ($int0) {
             return(0);
         }
     case 21, 24, 30 :
-        if (stat_base(strength) < calc($int2 - 20) | %varplayerbit_1616 < 0) {
+        if (stat_base(strength) < calc(struct_param(enum(int, struct, enum_5524, $int0), param_2236) - 20) | %varplayerbit_1616 < 0) {
             return(0);
         }
     case 3 :
@@ -58,7 +48,8 @@ switch_int ($int0) {
         if (stat_base(crafting) < 76) {
             return(0);
         }
-    case default :
-        return(1);
+}
+if (map_members = false & ~script2391(15, $int0) = 0) {
+    return(0);
 }
 return(1);

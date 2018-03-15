@@ -2,40 +2,43 @@
 [proc,script3821]
 def_string $string0 = "Total number of <col=BA1626>free</col> bank slots used";
 def_string $string1 = "Total number of <col=BA1626>member</col> bank slots used";
-def_int $int0 = ~script1329;
-def_int $int1 = calc(~script1248 - $int0);
-def_int $int2 = %varclient_1038;
-def_int $int3 = calc(%varclient_192 - $int2);
-def_int $int4 = calc(($int0 - $int2) * -1);
-def_int $int5 = calc($int3 - (469 - 1));
+def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $int2 = 0;
+$int1, $int0, $int2 = ~script13810;
+$int1 = calc($int1 - $int0);
+def_int $int3 = %varclient_1038;
+def_int $int4 = calc(%varclient_192 - $int3);
+def_int $int5 = calc(($int0 - $int3) * -1);
+def_int $int6 = calc($int4 - 469 + 1);
 if_sethide(false, interface_762:com_68);
-if ($int5 > 0) {
-    $int2 = calc($int2 + $int5);
-    $int3 = calc(469 - 1);
-    if ($int5 = 1) {
+if ($int6 > 0) {
+    $int3 = calc($int3 + $int6);
+    $int4 = calc(469 - 1);
+    if ($int6 = 1) {
         $string0 = "Total number of <col=BA1626>free</col> bank slots used<br><col=BA1626>Note: this includes an overflow of 1 member item</col>";
     } else {
-        $string0 = "Total number of <col=BA1626>free</col> bank slots used<br><col=BA1626>Note: this includes an overflow of <tostring($int5)> member items</col>";
+        $string0 = "Total number of <col=BA1626>free</col> bank slots used<br><col=BA1626>Note: this includes an overflow of <tostring($int6)> member items</col>";
     }
     $string1 = "Total number of <col=BA1626>member</col> bank slots used";
-} else if ($int4 > 0) {
-    $int3 = calc($int3 + $int4);
-    $int2 = $int0;
+} else if ($int5 > 0) {
+    $int4 = calc($int4 + $int5);
+    $int3 = $int0;
     $string0 = "Total number of <col=BA1626>free</col> bank slots used";
-    if ($int4 = 1) {
+    if ($int5 = 1) {
         $string1 = "Total number of <col=BA1626>member</col> bank slots used<br><col=BA1626>Note: this includes an overflow of 1 free item</col>";
     } else {
-        $string1 = "Total number of <col=BA1626>member</col> bank slots used<br><col=BA1626>Note: this includes an overflow of <tostring($int4)> free items</col>";
+        $string1 = "Total number of <col=BA1626>member</col> bank slots used<br><col=BA1626>Note: this includes an overflow of <tostring($int5)> free items</col>";
     }
 }
-if_settext(tostring($int2), interface_762:com_72);
-if_settext(tostring($int3), interface_762:com_76);
+if_settext(tostring($int3), interface_762:com_72);
+if_settext(tostring($int4), interface_762:com_76);
 if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", interface_762:com_70);
 if_setonmouserepeat("script8799($string1, event_com, event_comsubid)", interface_762:com_74);
 if_settext(tostring($int0), interface_762:com_73);
 if_settext(tostring($int1), interface_762:com_77);
 def_string $string2 = "Click here to increase your bank capacity";
-if (calc(14 - ~script9850) > 0) {
+if (calc(14 - $int2) > 0) {
     if_sethide(true, interface_762:com_84);
     if (%varclient_5095 = true) {
         if (~script11847 = true) {
@@ -49,16 +52,13 @@ if (calc(14 - ~script9850) > 0) {
         }
     } else {
         if (~script11847 = true) {
-            $string2 = "As a member you would be entitled to claim free bank boosters.<br>Click here to subscribe";
+            $string2 = "As a member you would be entitled to claim free bank boosters.<br>Click here to subscribe.";
         }
-        if (calc($int0 - $int2) <= 20) {
+        if (calc($int0 - $int3) <= 20) {
             if_sethide(false, interface_762:com_85);
             $string2 = "You are running low on bank space.<br><$string2>.";
         } else {
             if_sethide(true, interface_762:com_85);
-            if (string_indexof_char($string2, '.', 0) > -1) {
-                $string2 = "<$string2>.";
-            }
         }
     }
 } else {

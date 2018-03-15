@@ -2,12 +2,16 @@
 [proc,script606](component $component0)
 if ($component0 ! null) {
     cc_create($component0, ^iftype_graphic, 0);
-    if ($component0 = interface_662:com_25) {
-        cc_setsize(4, 4, ^setsize_minus, ^setsize_minus);
-        cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-    } else {
-        cc_setsize(32, 36, ^setsize_abs, ^setsize_abs);
-        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    switch_component ($component0) {
+        case interface_662:com_25 :
+            cc_setsize(4, 4, ^setsize_minus, ^setsize_minus);
+            cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+        case interface_1923:com_48 :
+            cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+            cc_setposition(10, 0, ^setpos_abs_left, ^setpos_abs_centre);
+        case default :
+            cc_setsize(32, 36, ^setsize_abs, ^setsize_abs);
+            cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
     }
 }
 def_graphic $graphic1 = "lore_stats_side_icons,0";

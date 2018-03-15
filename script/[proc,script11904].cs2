@@ -1,0 +1,27 @@
+// 11904
+[proc,script11904]
+if_sethide(true, interface_762:com_468);
+if_sethide(true, interface_762:com_475);
+if_sethide(true, interface_762:com_477);
+if_sethide(false, interface_762:com_466);
+switch_int (%varplayerbit_22179) {
+    case 0 :
+        if_settext("Current (Worn)", interface_762:com_486);
+        if (if_gethide(interface_762:com_466) = false) {
+            if_settext("Current (Backpack)", interface_762:com_481);
+        } else {
+            if_settext("Current (BoB)", interface_762:com_481);
+        }
+    case default :
+        if_settext("Preset (Worn)", interface_762:com_486);
+        if (%varplayerbit_22179 = 11) {
+            if_sethide(true, interface_762:com_466);
+            if_sethide(false, interface_762:com_475);
+            if_sethide(false, interface_762:com_468);
+        }
+        if (if_gethide(interface_762:com_466) = false) {
+            if_settext("Preset (Backpack)", interface_762:com_481);
+        } else {
+            if_settext("Preset (BoB)", interface_762:com_481);
+        }
+}

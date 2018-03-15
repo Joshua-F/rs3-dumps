@@ -1,0 +1,66 @@
+// 13982
+[proc,script13982](component $component0, component $component1, struct $struct2, string $string0, boolean $boolean3, int $int4)
+if ($component0 = null | $struct2 = null) {
+    return;
+}
+def_struct $struct5 = struct_param($struct2, param_4405);
+if ($struct5 ! null) {
+    $struct2 = $struct5;
+}
+def_struct $struct6 = ~script9984($struct2, 1);
+def_struct $struct7 = ~script9984($struct2, 2);
+def_struct $struct8 = ~script9984($struct2, 3);
+def_struct $struct9 = ~script9984($struct2, 4);
+def_struct $struct10 = ~script9984($struct2, 6);
+def_struct $struct11 = $struct6;
+if ($int4 = 1) {
+    $struct6 = $struct9;
+    $struct7 = $struct9;
+    $struct11 = $struct6;
+} else if ($boolean3 = true) {
+    $struct11 = ~script9984($struct2, 5);
+}
+if ($struct11 = null) {
+    return;
+}
+def_int $int12 = struct_param($struct11, param_3808);
+def_int $int13 = struct_param($struct11, param_3807);
+def_int $int14 = 0;
+cc_create($component0, ^iftype_graphic, $int14++);
+cc_setsize($int12, $int13, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setgraphic(struct_param($struct11, param_3801));
+cc_create($component0, ^iftype_graphic, $int14++);
+cc_setsize(calc($int12 * 2), $int13, ^setsize_minus, ^setsize_abs);
+cc_setposition($int12, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setgraphic(struct_param($struct11, param_3802));
+cc_create($component0, ^iftype_graphic, $int14++);
+cc_setsize($int12, $int13, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
+cc_setgraphic(struct_param($struct11, param_3803));
+cc_create($component0, ^iftype_text, $int14++);
+if (string_length($string0) > 0) {
+    cc_setsize(calc($int12 * 2), 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_settextfont(struct_param($struct10, param_3810));
+    cc_setcolour(struct_param($struct10, param_3811));
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settext($string0);
+    cc_settextshadow(false);
+}
+cc_create($component0, ^iftype_text, $int14++);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setonvartransmit("script13984(event_com, event_comsubid, $struct2, $boolean3, 0, $int4){varplayer_3814}");
+if ($boolean3 = false & $struct6 ! null & $struct7 ! null) {
+    cc_setonmouseover("script13985(event_com, $struct7, 0, true)");
+    cc_setonmouseleave("script13985(event_com, $struct6, 0, false)");
+    if ($struct8 ! null) {
+        cc_setonclick("script13987(event_com, $struct8, $struct2, 0, 1, $int4)");
+        cc_setonrelease("script13986(event_com, $struct6, $struct7, 0)");
+    }
+}
+if ($component1 ! null) {
+    ~script4408($component1);
+    if_sethide($boolean3, $component1);
+}

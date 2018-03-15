@@ -14,7 +14,7 @@ if ($int0 < 1) {
         cc_settext("No matching items found.");
     }
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    cc_setcolour(~rgb_to_hex(117, 160, 145));
+    ~script11024(12);
     cc_settextshadow(false);
     if_setscrollsize(0, 0, interface_105:com_53);
     ~script11702(0);
@@ -29,48 +29,52 @@ def_int $int7 = 36;
 def_int $int8 = 32;
 def_int $int9 = calc($int6 / 2 - $int8 / 2);
 def_int $int10 = calc($int5 - $int7 - $int4 * 2);
-def_int $int11 = 32;
-def_int $int12 = $int4;
-def_int $int13 = 0;
+def_int $int11 = 24;
+def_int $int12 = 8;
+def_int $int13 = $int4;
 def_int $int14 = 0;
+def_int $int15 = 0;
 while ($obj3 ! null) {
-    $int14 = 0;
+    $int15 = 0;
     $int2 = 0;
     if (oc_param($obj3, param_6628) ! 0) {
-        $int14 = oc_param($obj3, param_6628);
+        $int15 = oc_param($obj3, param_6628);
     } else if (oc_param($obj3, param_4749) ! null) {
-        $int14 = struct_param(oc_param($obj3, param_4749), param_4630);
+        $int15 = struct_param(oc_param($obj3, param_4749), param_4630);
     } else {
-        $int14 = oc_param($obj3, param_4742);
+        $int15 = oc_param($obj3, param_4742);
     }
-    if (%varplayer_3079 < $int14) {
+    if (%varplayer_3079 < $int15) {
         $obj3 = oc_findnext;
         $int2 = 1;
     }
     if ($int2 = 0) {
-        if ($int12 >= $int1) {
-            $int12 = $int4;
-            $int13 = calc($int13 + $int6 + $int4);
+        if ($int13 >= $int1) {
+            $int13 = $int4;
+            $int14 = calc($int14 + $int6 + $int4);
         }
-        ~rs3_background_panel_dynamic(interface_105:com_53, struct_21361, $int12, $int13, $int5, $int6, null);
+        ~rs3_background_panel_dynamic(interface_105:com_53, struct_21361, $int13, $int14, $int5, $int6, null);
         cc_create(interface_105:com_53, ^iftype_rectangle, if_getnextsubid(interface_105:com_53));
         cc_setsize($int5, $int6, ^setsize_abs, ^setsize_abs);
-        cc_setposition($int12, $int13, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition($int13, $int14, ^setpos_abs_left, ^setpos_abs_top);
         cc_setonclick("script11703($obj3)");
         cc_settrans(255);
         cc_create(interface_105:com_53, ^iftype_graphic, if_getnextsubid(interface_105:com_53));
         cc_setsize($int7, $int8, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int12 + $int4), calc($int13 + $int9), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition(calc($int13 + $int4), calc($int14 + $int9), ^setpos_abs_left, ^setpos_abs_top);
         cc_setobject_nonum($obj3, 1);
         cc_create(interface_105:com_53, ^iftype_text, if_getnextsubid(interface_105:com_53));
         cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int12 + $int4 + $int7), calc($int13 + $int9), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition(calc($int13 + $int4 + $int7), calc($int14 + $int9), ^setpos_abs_left, ^setpos_abs_top);
+        cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         cc_settext(oc_name($obj3));
         cc_settextfont(graphic_20452);
-        cc_setcolour(~rgb_to_hex(117, 160, 145));
+        ~script11024(12);
+        cc_setonmouseover("script10496(event_com, event_comsubid, 13)");
+        cc_setonmouseleave("script10496(event_com, event_comsubid, 12)");
         $obj3 = oc_findnext;
-        $int12 = calc($int12 + $int5 + $int4);
+        $int13 = calc($int13 + $int5 + $int4);
     }
 }
-$int13 = calc($int13 + $int6);
-~script11702($int13);
+$int14 = calc($int14 + $int6);
+~script11702($int14);

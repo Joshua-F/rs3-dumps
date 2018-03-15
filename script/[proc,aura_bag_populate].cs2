@@ -1,0 +1,181 @@
+// 8255
+[proc,aura_bag_populate](int $int0, string $string0)
+if (%varplayer_7648 = 1) {
+    $int0 = 5;
+}
+def_int $int1 = 2;
+def_int $int2 = $int1;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = enum_getoutputcount(enum_5182);
+def_obj $obj9 = null;
+def_int $intbool10 = ^false;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = string_length($string0);
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_struct $struct16 = null;
+def_string $string1 = "";
+def_string $string2 = "Activate";
+def_int $int17 = 0;
+def_component $component18 = interface_1929:com_64;
+def_component $component19 = interface_1929:com_65;
+cc_deleteall($component18);
+if_sethide(true, interface_1929:com_63);
+while ($int4 < $int8) {
+    $struct16 = enum(int, struct, enum_5182, $int4);
+    $int17 = 0;
+    if (%varplayerbit_39051 = 0) {
+        cc_create($component18, ^iftype_graphic, $int4);
+        cc_sethide(true);
+    } else {
+        cc_create($component18, ^iftype_text, $int4);
+        cc_sethide(true);
+    }
+    if ($struct16 ! null) {
+        $obj9 = struct_param($struct16, param_1935);
+    }
+    if (~script6357($obj9) = 0) {
+        $int14 = ~aura_get_state($obj9);
+        $string1 = struct_param($struct16, param_1930);
+        if (enum_getreversecount(struct, enum_5182, $struct16) > 0) {
+            $int6 = enum_getreverseindex(struct, int, enum_5182, $struct16, 0);
+        }
+        $int7 = struct_param($struct16, param_1993);
+        $intbool10 = ~script5491($obj9);
+        $int11 = struct_param($struct16, param_6875);
+        $int12 = struct_param($struct16, param_4270);
+        $int15 = ~aura_get_time($obj9);
+        if ($intbool10 = ^false) {
+            if (%varclient_1648 >= struct_param($struct16, param_1932)) {
+                $string2 = "Buy";
+            }
+        } else if ($int14 = 0) {
+            $string2 = "Activate";
+        } else {
+            $string2 = "Deactivate";
+        }
+        if ($int13 = 0 | string_indexof_string(lowercase($string1), lowercase($string0), 0) ! -1) {
+            if ($intbool10 = ^false) {
+                if ($int0 = 1 & ~script8295($struct16, $int7) = 0) {
+                    $int17 = 1;
+                }
+            } else {
+                switch_int ($int0) {
+                    case 0 :
+                        if (~script8259($struct16, calc($int7 + 1)) = 0) {
+                            $int17 = 1;
+                        }
+                    case 2 :
+                        if ($int11 = 2 & ~script8259($struct16, calc($int7 + 1)) = 0) {
+                            $int17 = 1;
+                        }
+                    case 3 :
+                        if ($int11 = 3 & ~script8259($struct16, calc($int7 + 1)) = 0) {
+                            $int17 = 1;
+                        }
+                    case 4 :
+                        if (~script8259($struct16, calc($int7 + 1)) = 0 & ~script5768($int6) = ^true) {
+                            $int17 = 1;
+                        }
+                    case 5 :
+                        if (~script8259($struct16, calc($int7 + 1)) = 0 & ~script9925($obj9) = 1) {
+                            $int17 = 1;
+                        }
+                }
+            }
+            if ($int17 = 1 & cc_find($component18, $int6) = true) {
+                cc_setcolour(^white);
+                if ($intbool10 = ^false) {
+                    cc_setcolour(0x8d8d8d);
+                } else if (%varplayer_7654 ! 0 & ~aura_bag_get_aura_status($obj9, 0) = 2 & %varplayer_7648 = 0) {
+                    cc_setcolour(0x8d8d8d);
+                    $string2 = "";
+                }
+                if (%varplayerbit_39051 = 0) {
+                    cc_sethide(false);
+                    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+                    cc_setobject($obj9, -1);
+                    cc_setopbase($string1);
+                    cc_setposition($int2, $int3, ^setpos_abs_left, ^setpos_abs_top);
+                    cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
+                } else {
+                    cc_sethide(false);
+                    cc_settext($string1);
+                    cc_settextfont(graphic_17813);
+                    cc_setcolour(~script10495(12));
+                    if (~aura_bag_get_aura_status($obj9, 0) = 2 & %varplayer_7648 = 0) {
+                        cc_setcolour(0x8d8d8d);
+                        $string2 = "";
+                    }
+                    if (%varplayer_7647 = $int6) {
+                        cc_setcolour(~script10495(8));
+                    }
+                    cc_setposition(calc($int1 + 5), $int3, ^setpos_abs_left, ^setpos_abs_top);
+                    cc_setsize(0, 11, ^setsize_minus, ^setsize_abs);
+                    $int3 = calc($int3 + 15);
+                    if (string_length($string1) > 35) {
+                        cc_setsize(0, 25, ^setsize_minus, ^setsize_abs);
+                        $int3 = calc($int3 + 15);
+                    }
+                }
+                cc_clearops;
+                if (($int0 ! 1 | $int12 = 0) & compare($string2, "") ! 0 & %varplayer_7648 = 0) {
+                    cc_setop(2, $string2);
+                }
+                cc_setop(1, "Select");
+                cc_setonop("script8297($struct16, $int6, $int0, event_op)");
+                $int5 = calc($int5 + 1);
+                if (%varplayerbit_39051 = 0) {
+                    if (calc($int5 % 5) = 0) {
+                        $int2 = $int1;
+                        $int3 = calc($int3 + (32 + 5));
+                    } else {
+                        $int2 = calc($int2 + (36 + 5));
+                    }
+                }
+            }
+        }
+    }
+    $int4 = calc($int4 + 1);
+}
+if (%varplayerbit_39051 = 0) {
+    if_setscrollsize(0, max(if_getheight($component18), calc($int3 + (32 + 5))), $component18);
+} else {
+    if_setscrollsize(0, max(if_getheight($component18), $int3), $component18);
+}
+~rs3_scrollbar_vertical($component19, $component18);
+if ($int5 = 0) {
+    if_sethide(false, interface_1929:com_63);
+    if_sethide(true, interface_1929:com_17);
+    if_sethide(true, interface_1929:com_2);
+    if ($int13 ! 0) {
+        if_settext("No match found, try refining your search.", interface_1929:com_63);
+    } else {
+        ~script10163(0);
+        switch_int ($int0) {
+            case 0 :
+                if_settext("You don't own any auras!", interface_1929:com_63);
+                if_settext("You don't own any auras!", interface_1929:com_52);
+                if_settext("You can purchase auras with loyalty points. To view auras you can buy, choose the unowned dropdown option, or visit the RuneScape website.", interface_1929:com_15);
+            case 1 :
+                if_settext("You already own everything!", interface_1929:com_63);
+                if_settext("You already own everything!", interface_1929:com_52);
+                if_settext("You already own all available auras. To view your owned auras, choose the owned dropdown option, or visit the RuneScape website.", interface_1929:com_15);
+            case 4 :
+                if_settext("You don't have any aura set as favourites. You can do this by clicking the star icon.", interface_1929:com_63);
+                if_settext("No favourites set!", interface_1929:com_52);
+                if_settext("You can select favourite auras by viewing the aura you want as a favourite and selecting to add as favourite option.", interface_1929:com_15);
+            case 3, 2 :
+                if_settext("You don't own any auras in this category.", interface_1929:com_63);
+                if_settext("No auras in this category.", interface_1929:com_52);
+                if_settext("You can purchase auras with loyalty points. To view auras you can buy, choose the unowned dropdown option, or visit the RuneScape website.", interface_1929:com_15);
+            case 5 :
+                if_settext("You don't have any auras that can be reset.", interface_1929:com_63);
+        }
+    }
+}

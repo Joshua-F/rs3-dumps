@@ -30,19 +30,24 @@ if ($int2 < $int1 | $int1 = -1) {
 } else if ($int2 > $int1) {
     $int4 = -1;
 }
-def_int $int5 = $int2;
-def_int $int6 = 0;
-def_int $int7 = ~script2390(7);
-while ($int5 ! $int1 & $int2 ! -1 & $int2 ! 30) {
-    $int5 = calc($int5 + $int4);
-    $int6 = ~script2384($int5, 1);
-    if ($int2 <= 7 | $int6 ! $int7) {
-        ~script2386($int2, $int6);
-        $int2 = $int5;
+def_boolean $boolean5 = playermember;
+def_int $int6 = $int2;
+def_int $int7 = 0;
+def_int $int8 = ~script2390(7);
+def_int $int9 = 0;
+if (if_find(interface_1431:com_1) = true) {
+    $int9 = cc_param(param_6837);
+}
+while ($int6 ! $int1 & $int2 ! -1 & $int2 ! 30) {
+    $int6 = calc($int6 + $int4);
+    $int7 = ~script2384($int6, 1);
+    if ($int2 <= $int9 | $int7 ! $int8 | $int7 = $int8 & $boolean5 = true) {
+        ~script2386($int2, $int7);
+        $int2 = $int6;
     }
 }
 if ($int1 ! -1) {
-    if ($int0 ! $int7 & ~script2384($int1, 1) = $int7 & ~script2384(calc($int1 - $int4), 1) ! $int7) {
+    if ($boolean5 = false & $int0 ! $int8 & ~script2384($int1, 1) = $int8 & ~script2384(calc($int1 - $int4), 1) ! $int8) {
         $int1 = calc($int1 - $int4);
     }
     ~script2386($int1, $int0);

@@ -1,7 +1,21 @@
 // 11635
-[proc,script11635](int $int0, component $component1)(int)
-def_int $int2 = 1;
-if (~script2385($int0, 1) ! -1 & if_getlayer($component1) = interface_567:com_79) {
-    $int2 = 4;
+[proc,script11635]
+def_int $int0 = 2;
+def_int $int1 = 0;
+def_string $string0 = "";
+def_struct $struct2 = enum(int, struct, enum_5182, $int1);
+cc_clearops;
+cc_setop(1, "Aura management");
+while ($int1 < enum_getoutputcount(enum_5182) & $int0 < 8) {
+    if (~script5768($int1) = ^true) {
+        $struct2 = enum(int, struct, enum_5182, $int1);
+        $string0 = struct_param($struct2, param_1930);
+        if (~aura_get_state(struct_param($struct2, param_1935)) = 1) {
+            cc_setop($int0, "Deactivate <$string0>");
+        } else {
+            cc_setop($int0, "Activate <$string0>");
+        }
+        $int0 = calc($int0 + 1);
+    }
+    $int1 = calc($int1 + 1);
 }
-return($int2);

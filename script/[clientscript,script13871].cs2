@@ -1,0 +1,41 @@
+// 13871
+[clientscript,script13871](int $int0, component $component1)
+def_int $int2 = 50;
+if ($int0 > $int2) {
+    if (%varclientbit_38847 = 1) {
+        if_sethide(true, interface_1477:com_87);
+    } else {
+        if_sethide(false, interface_1477:com_87);
+    }
+    if_setontimer(null, $component1);
+    return;
+}
+def_int $int3 = calc(if_getwidth(interface_1919:com_0) + 8);
+def_int $int4 = calc(if_getheight(interface_1919:com_0) + 8);
+def_int $int5 = calc(150 - (if_getwidth(interface_1919:com_0) + 8));
+def_int $int6 = calc(150 - (if_getheight(interface_1919:com_0) + 8));
+if (%varclientbit_38847 = 1) {
+    $int3 = 150;
+    $int4 = 150;
+    $int5 = calc(if_getwidth(interface_1919:com_0) + 8 - 150);
+    $int6 = calc(if_getheight(interface_1919:com_0) + 8 - 150);
+}
+def_int $int7 = ~tween($int0, $int2, $int3, $int5, 0);
+def_int $int8 = ~tween($int0, $int2, $int4, $int6, 0);
+if_setsize($int7, $int8, ^setsize_abs, ^setsize_abs, $component1);
+$int0 = calc($int0 + 1);
+if_setontimer("script13871($int0, $component1)", $component1);
+if (calc($int0 % 3) ! 0 & $int0 < 48) {
+    return;
+}
+if_setsize(45, $int8, ^setsize_abs, ^setsize_minus, struct_param(struct_38884, param_3503));
+~script8144;
+if (%varclientbit_38843 = 0) {
+    return;
+}
+def_struct $struct9 = enum(int, struct, enum_7716, calc(%varclientbit_38843 - 1));
+if ($struct9 = null) {
+    return;
+}
+def_component $component10 = struct_param($struct9, param_3503);
+if_setposition(45, $int8, ^setpos_abs_right, ^setpos_abs_top, $component10);

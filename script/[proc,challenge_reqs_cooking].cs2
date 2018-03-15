@@ -1,32 +1,7 @@
 // 6765
-[proc,challenge_reqs_cooking](int $int0, int $int1)(int)
+[proc,challenge_reqs_cooking](int $int0)(int)
 if (stat_base(cooking) < struct_param(enum(int, struct, enum_5515, $int0), param_2236)) {
     return(0);
-}
-if (map_members = false & $int1 = 0) {
-    switch_int ($int0) {
-        case 1, 2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 14, 16, 17, 18, 22, 25, 26, 29, 30 :
-            return(1);
-        case 5 :
-            if (stat_base(crafting) < 2) {
-                return(0);
-            }
-        case 10 :
-            if (stat_base(crafting) < 12) {
-                return(0);
-            }
-        case 23 :
-            if (stat_base(crafting) < 36) {
-                return(0);
-            }
-        case 43, 44 :
-            if (%varplayerbit_18565 < 75) {
-                return(0);
-            }
-        case default :
-            return(0);
-    }
-    return(1);
 }
 switch_int ($int0) {
     case 27 :
@@ -57,7 +32,8 @@ switch_int ($int0) {
         if (%varplayerbit_18565 < 75) {
             return(0);
         }
-    case default :
-        return(1);
+}
+if (map_members = false & ~script2391(16, $int0) = 0) {
+    return(0);
 }
 return(1);
