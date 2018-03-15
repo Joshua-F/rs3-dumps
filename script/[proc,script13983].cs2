@@ -1,0 +1,80 @@
+// 13983
+[proc,script13983](component $component0, component $component1, struct $struct2, int $int3, int $int4, int $int5, int $int6, boolean $boolean7, int $int8, string $string0, int $int9)(int)
+if ($int5 <= 0 | $component0 = null | $struct2 = null) {
+    return($int6);
+}
+def_struct $struct10 = struct_param($struct2, param_4405);
+if ($struct10 ! null) {
+    $struct2 = $struct10;
+}
+def_struct $struct11 = ~script9984($struct2, 1);
+def_struct $struct12 = ~script9984($struct2, 2);
+def_struct $struct13 = ~script9984($struct2, 3);
+def_struct $struct14 = ~script9984($struct2, 4);
+def_struct $struct15 = ~script9984($struct2, 6);
+def_struct $struct16 = $struct11;
+if ($int9 = 1) {
+    $struct11 = $struct14;
+    $struct12 = $struct14;
+    $struct16 = $struct11;
+} else if ($boolean7 = true) {
+    $struct16 = ~script9984($struct2, 5);
+}
+if ($struct16 = null) {
+    return($int6);
+}
+def_int $int17 = struct_param($struct16, param_3808);
+def_int $int18 = struct_param($struct16, param_3807);
+def_int $int19 = if_getnextsubid($component0);
+def_int $int20 = $int19;
+cc_create($component0, ^iftype_graphic, $int20++);
+cc_setsize($int17, $int18, ^setsize_abs, ^setsize_abs);
+cc_setposition($int3, $int4, ^setpos_abs_left, ^setpos_abs_top);
+cc_setgraphic(struct_param($struct16, param_3801));
+cc_create($component0, ^iftype_graphic, $int20++);
+cc_setsize(calc($int17 * 2), $int18, ^setsize_minus, ^setsize_abs);
+cc_setposition(calc($int3 + $int17), $int4, ^setpos_abs_left, ^setpos_abs_top);
+cc_setgraphic(struct_param($struct16, param_3802));
+cc_create($component0, ^iftype_graphic, $int20++);
+cc_setsize($int17, $int18, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int3 + ($int5 - $int17)), $int4, ^setpos_abs_left, ^setpos_abs_top);
+cc_setgraphic(struct_param($struct16, param_3803));
+cc_create($component0, ^iftype_text, $int20++);
+if (string_length($string0) > 0) {
+    cc_setsize(8, $int18, ^setsize_minus, ^setsize_abs);
+    cc_setposition(calc($int3 + 4), $int4, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextfont(struct_param($struct15, param_3810));
+    cc_setcolour(struct_param($struct15, param_3811));
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settext($string0);
+    cc_settextshadow(true);
+}
+cc_create($component0, ^iftype_text, $int20++);
+cc_setsize($int5, $int18, ^setsize_abs, ^setsize_abs);
+cc_setposition($int3, $int4, ^setpos_abs_left, ^setpos_abs_top);
+cc_setonvartransmit("script13984(event_com, event_comsubid, $struct2, $boolean7, $int19, $int9){varplayer_3814}");
+if ($boolean7 = false & $struct11 ! null & $struct12 ! null) {
+    cc_setonmouseover("script13985(event_com, $struct12, $int19, true)");
+    cc_setonmouseleave("script13985(event_com, $struct11, $int19, false)");
+    if ($struct13 ! null) {
+        cc_setonclick("script13985(event_com, $struct13, $int19, true)");
+        cc_setonrelease("script13986(event_com, $struct11, $struct12, $int19)");
+    }
+}
+if ($component1 ! null) {
+    cc_create($component1, ^iftype_text, $int6);
+    if ($boolean7 = false) {
+        cc_setsize($int5, $int18, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int3, $int4, ^setpos_abs_left, ^setpos_abs_top);
+        if ($int8 = 1) {
+            cc_setpausetext("Select");
+        } else {
+            cc_setop(1, "Select");
+        }
+        ~script10407;
+    } else {
+        cc_sethide(true);
+    }
+    $int6 = calc($int6 + 1);
+}
+return($int6);

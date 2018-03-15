@@ -6,9 +6,10 @@ if_setcolour(^white, interface_1508:com_3);
 %varclient_4258 = 0;
 %varclient_4259 = clientclock;
 ~script4172(%varclient_4258);
-if (%varclient_5129 ! 999) {
-    if_setontimer("script2959(clientclock)", interface_1508:com_3);
-} else {
-    if_setontimer("script12251(clientclock, %varclient_5130)", interface_1508:com_3);
+switch_int (%varclient_5129) {
+    case 999, 2017, 1000 :
+        if_setontimer("script12251(clientclock, %varclient_5130)", interface_1508:com_3);
+    case default :
+        if_setontimer("script2959(clientclock)", interface_1508:com_3);
 }
 if_setonvarctransmit("script801{varclient_4258, varclient_5129, varclient_5130}", interface_1508:com_3);

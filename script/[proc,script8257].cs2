@@ -1,22 +1,17 @@
 // 8257
-[proc,script8257](component $component0, boolean $boolean1, int $int2)
+[proc,script8257](int $int0, boolean $boolean1, component $component2)
+if ($component2 = null) {
+    return;
+}
 def_int $int3 = 0;
-def_int $int4 = 0;
+def_int $int4 = if_getnextsubid($component2);
 def_int $int5 = -1;
-def_int $int6 = -1;
-if ($component0 ! null) {
-    if ($int2 = 1) {
-        $int6 = clientclock;
-    }
-    $int4 = if_getnextsubid($component0);
-    while ($int3 < $int4) {
-        if (cc_find($component0, $int3) = true) {
-            $int5 = ~script12590(cc_param(param_3540), $boolean1);
-            if ($int5 ! -1) {
-                cc_settrans($int5);
-                cc_setparam(param_5948, $int6);
-            }
+while ($int3 < $int4) {
+    if (cc_find($component2, $int3) = true) {
+        $int5 = ~script12590(cc_param(param_3540), $boolean1, $int0);
+        if ($int5 ! -1) {
+            cc_settrans($int5);
         }
-        $int3 = calc($int3 + 1);
     }
+    $int3 = calc($int3 + 1);
 }

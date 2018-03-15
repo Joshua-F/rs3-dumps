@@ -1,0 +1,80 @@
+// 13937
+[clientscript,script13937](component $component0, component $component1)
+def_int $int2 = 0;
+switch_component ($component0) {
+    case interface_762:com_37 :
+        $int2 = 1;
+    case interface_762:com_38 :
+        $int2 = 2;
+    case interface_762:com_39 :
+        $int2 = 3;
+    case interface_762:com_40 :
+        $int2 = 4;
+    case interface_762:com_41 :
+        $int2 = 5;
+    case interface_762:com_42 :
+        $int2 = 6;
+    case interface_762:com_43 :
+        $int2 = 7;
+    case interface_762:com_44 :
+        $int2 = 8;
+    case interface_762:com_45 :
+        $int2 = 9;
+    case interface_762:com_46 :
+        $int2 = 10;
+    case interface_762:com_47 :
+        $int2 = 11;
+    case default :
+        return;
+}
+def_int $int3 = ~script13935($int2);
+def_string $string0 = "Beast of Burden";
+if ($int2 ! 11) {
+    $string0 = ~script13936($int3);
+}
+def_string $string1 = "<$string0><br><br>Load this preset and close the bank interface.";
+def_int $int4 = 0;
+switch_int ($int2) {
+    case 3, 4, 5 :
+        if (playermember = false) {
+            $string1 = "This slot is only available to members.";
+            $int4 = 1;
+        }
+    case 6 :
+        if (%varplayerbit_22153 = 0 & %varplayer_4292 < date_minutes) {
+            $string1 = "This slot can be unlocked temporarily with Loyalty Points or permanently with RuneCoins.";
+            $int4 = 1;
+        }
+    case 7 :
+        if (%varplayerbit_22154 = 0 & %varplayer_4293 < date_minutes) {
+            $string1 = "This slot can be unlocked temporarily with Loyalty Points or permanently with RuneCoins.";
+            $int4 = 1;
+        }
+    case 8 :
+        if (%varplayerbit_22155 = 0 & %varplayer_4294 < date_minutes) {
+            $string1 = "This slot can be unlocked temporarily with Loyalty Points or permanently with RuneCoins.";
+            $int4 = 1;
+        }
+    case 9 :
+        if (%varplayerbit_22156 = 0 & %varplayer_4295 < date_minutes) {
+            $string1 = "This slot can be unlocked temporarily with Loyalty Points or permanently with RuneCoins.";
+            $int4 = 1;
+        }
+    case 10 :
+        if (%varplayerbit_22157 = 0 & %varplayer_4296 < date_minutes) {
+            $string1 = "This slot can be unlocked temporarily with Loyalty Points or permanently with RuneCoins.";
+            $int4 = 1;
+        }
+    case 11 :
+        if (playermember = false) {
+            $string1 = "A beast of burden preset can only be loaded on members' worlds.";
+            $int4 = 1;
+        }
+}
+if ($int4 = 1) {
+    if_setop(1, "", $component0);
+} else {
+    if_setop(1, "Load", $component0);
+}
+~script13959($component1, struct_28749, $int4);
+if_setonmouserepeat("script10009($string1, $component0, -1)", $component0);

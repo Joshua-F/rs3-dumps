@@ -66,26 +66,27 @@ def_struct $struct45 = null;
 def_int $int46 = 0;
 def_string $string8 = "0";
 def_obj $obj47 = $obj0;
+def_npc $npc48 = null;
 if (oc_param($obj0, param_4338) ! null) {
     $obj47 = oc_param($obj0, param_4338);
 }
 $int36 = oc_param($obj0, param_963);
 $int37 = oc_param($obj0, param_2951);
 cc_deleteall($component4);
-def_int $int48 = 0;
-if (string_length($string0) > 0 & $struct1 ! null & $obj0 ! null) {
-    $int48 = ~script7235($string0, $string7, $struct1, $component3, $component4, $int48);
+def_int $int49 = 0;
+if ($obj0 ! null & $struct1 ! null & string_length($string0) > 0) {
+    $int49 = ~script7235($string0, $string7, $struct1, $component3, $component4, $int49);
 }
 if (oc_wearpos($obj0) ! -1) {
     %varclient_2239 = inv_getobj(inv_94, oc_wearpos($obj0));
     $int8 = ~script7241($obj0);
-    $int18 = ~script7245($obj0);
+    $int18 = ~script7245($obj0, $int8);
     if (oc_param($obj0, param_2853) > 0) {
         $int9 = oc_param($obj0, param_2853);
     } else if (oc_param($obj0, param_686) ! null) {
         $int9 = struct_param(oc_param($obj0, param_686), param_2853);
     }
-    $int10 = ~script7243($obj0);
+    $int10 = ~script13825($obj0, $int8);
     $int11 = oc_param($obj0, param_14);
     $int12 = ~script7244($obj0);
     $int14 = oc_param($obj0, param_2870);
@@ -98,13 +99,13 @@ if (oc_wearpos($obj0) ! -1) {
         $int21 = ~script10005($obj0, 3);
     }
     $int22 = ~script7241(%varclient_2239);
-    $int32 = ~script7245(%varclient_2239);
+    $int32 = ~script7245(%varclient_2239, $int22);
     if (oc_param(%varclient_2239, param_2853) > 0) {
         $int23 = oc_param(%varclient_2239, param_2853);
     } else if (oc_param(%varclient_2239, param_686) ! null) {
         $int23 = struct_param(oc_param(%varclient_2239, param_686), param_2853);
     }
-    $int24 = ~script7243(%varclient_2239);
+    $int24 = ~script13825(%varclient_2239, $int22);
     $int25 = oc_param(%varclient_2239, param_14);
     $int26 = ~script7244(%varclient_2239);
     $int28 = oc_param(%varclient_2239, param_2870);
@@ -131,7 +132,7 @@ if (oc_wearpos($obj0) ! -1) {
         if (%varplayerbit_27168 = 1) {
             $int10 = calc($int10 / 10);
         }
-        $int48 = ~script7236("Damage", $int10, $rgb7, $string7, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7236("Damage", $int10, $rgb7, $string7, $struct2, $component3, $component4, $int49);
     }
     if ($int12 > 0) {
         if (%varclient_2239 = null) {
@@ -145,7 +146,7 @@ if (oc_wearpos($obj0) ! -1) {
         } else {
             $string7 = $string4;
         }
-        $int48 = ~script7236("Accuracy", $int12, $rgb7, $string7, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7236("Accuracy", $int12, $rgb7, $string7, $struct2, $component3, $component4, $int49);
     }
     if ($int13 > 0) {
         if (%varclient_2239 = null) {
@@ -159,7 +160,7 @@ if (oc_wearpos($obj0) ! -1) {
         } else {
             $string7 = $string4;
         }
-        $int48 = ~script7236("Skill Bonus", $int13, $rgb7, $string7, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7236("Skill Bonus", $int13, $rgb7, $string7, $struct2, $component3, $component4, $int49);
     }
     if ($int9 > 0) {
         if (%varclient_2239 = null) {
@@ -172,9 +173,9 @@ if (oc_wearpos($obj0) ! -1) {
             $string7 = $string4;
         }
         if ($int8 = 2) {
-            $int48 = ~script7237("Ammo", $int9, enum_6744, $rgb7, $string7, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7237("Ammo", $int9, enum_6744, $rgb7, $string7, $struct2, $component3, $component4, $int49);
         } else if ($int8 = 1) {
-            $int48 = ~script7237("Style", $int9, enum_6744, $rgb7, $string7, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7237("Style", $int9, enum_6744, $rgb7, $string7, $struct2, $component3, $component4, $int49);
         }
     }
     if ($int14 > 0) {
@@ -189,7 +190,7 @@ if (oc_wearpos($obj0) ! -1) {
         } else {
             $string7 = $string4;
         }
-        $int48 = ~script7236("Armour", max(1, calc($int14 / 10)), $rgb7, $string7, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7236("Armour", max(1, calc($int14 / 10)), $rgb7, $string7, $struct2, $component3, $component4, $int49);
     }
     if ($int15 > 0) {
         if (%varclient_2239 = null) {
@@ -203,7 +204,7 @@ if (oc_wearpos($obj0) ! -1) {
         } else {
             $string7 = $string4;
         }
-        $int48 = ~script7235("TzHaar DR : <$string7><tostring($int15)>%</col>", $string3, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7235("TzHaar DR : <$string7><tostring($int15)>%</col>", $string3, $struct2, $component3, $component4, $int49);
     }
     if ($int19 > 0) {
         if (%varclient_2239 = null) {
@@ -218,9 +219,9 @@ if (oc_wearpos($obj0) ! -1) {
             $string7 = $string4;
         }
         if (%varplayerbit_27168 = 0) {
-            $int48 = ~script7235("Strength Bonus : <$string7><tostring($int19)></col>", $string3, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235("Strength Bonus : <$string7><tostring($int19)></col>", $string3, $struct2, $component3, $component4, $int49);
         } else {
-            $int48 = ~script7235("Strength Bonus : <$string7><tostring(calc($int19 / 10))><~script8002><tostring(calc($int19 % 10))></col>", $string3, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235("Strength Bonus : <$string7><tostring(calc($int19 / 10))><~script8002><tostring(calc($int19 % 10))></col>", $string3, $struct2, $component3, $component4, $int49);
         }
     }
     if ($int20 > 0) {
@@ -236,9 +237,9 @@ if (oc_wearpos($obj0) ! -1) {
             $string7 = $string4;
         }
         if (%varplayerbit_27168 = 0) {
-            $int48 = ~script7235("Ranged Bonus : <$string7><tostring($int20)></col>", $string3, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235("Ranged Bonus : <$string7><tostring($int20)></col>", $string3, $struct2, $component3, $component4, $int49);
         } else {
-            $int48 = ~script7235("Ranged Bonus : <$string7><tostring(calc($int20 / 10))><~script8002><tostring(calc($int20 % 10))></col>", $string3, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235("Ranged Bonus : <$string7><tostring(calc($int20 / 10))><~script8002><tostring(calc($int20 % 10))></col>", $string3, $struct2, $component3, $component4, $int49);
         }
     }
     if ($int21 > 0) {
@@ -254,9 +255,9 @@ if (oc_wearpos($obj0) ! -1) {
             $string7 = $string4;
         }
         if (%varplayerbit_27168 = 0) {
-            $int48 = ~script7235("Magic Bonus : <$string7><tostring($int21)></col>", $string3, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235("Magic Bonus : <$string7><tostring($int21)></col>", $string3, $struct2, $component3, $component4, $int49);
         } else {
-            $int48 = ~script7235("Magic Bonus : <$string7><tostring(calc($int21 / 10))><~script8002><tostring(calc($int21 % 10))></col>", $string3, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235("Magic Bonus : <$string7><tostring(calc($int21 / 10))><~script8002><tostring(calc($int21 % 10))></col>", $string3, $struct2, $component3, $component4, $int49);
         }
     }
     if ($int16 > 0) {
@@ -272,7 +273,7 @@ if (oc_wearpos($obj0) ! -1) {
         if (%varplayerbit_27168 = 1) {
             $int16 = calc($int16 / 10);
         }
-        $int48 = ~script7236("Life Bonus", $int16, $rgb7, $string7, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7236("Life Bonus", $int16, $rgb7, $string7, $struct2, $component3, $component4, $int49);
     }
     if ($int17 ! 0) {
         if (%varclient_2239 = null) {
@@ -288,7 +289,7 @@ if (oc_wearpos($obj0) ! -1) {
         } else {
             $string7 = $string4;
         }
-        $int48 = ~script7236("Prayer Bonus", $int17, $rgb7, $string7, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7236("Prayer Bonus", $int17, $rgb7, $string7, $struct2, $component3, $component4, $int49);
     }
     if ($int8 > 0) {
         if (%varclient_2239 = null) {
@@ -298,7 +299,7 @@ if (oc_wearpos($obj0) ! -1) {
         } else {
             $string7 = $string4;
         }
-        $int48 = ~script7237("Type", $int8, enum_6742, $rgb7, $string7, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7237("Type", $int8, enum_6742, $rgb7, $string7, $struct2, $component3, $component4, $int49);
     }
     if ($int11 > 0 & ~script7239($int8) = 1) {
         if (%varclient_2239 = null) {
@@ -315,32 +316,32 @@ if (oc_wearpos($obj0) ! -1) {
         if ($int11 > 8) {
             $int11 = 8;
         }
-        $int48 = ~script7237("Speed", $int11, enum_6741, $rgb7, $string7, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7237("Speed", $int11, enum_6741, $rgb7, $string7, $struct2, $component3, $component4, $int49);
     }
     if (oc_param($obj47, param_4329) = 1) {
-        $int48 = ~script7235("Special Attack : <oc_param($obj47, param_4333)>", $string3, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7235("Special Attack : <oc_param($obj47, param_4333)>", $string3, $struct2, $component3, $component4, $int49);
     }
     if (oc_param($obj0, param_2832) = 1) {
-        $int48 = ~script7235("Shield", $string3, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7235("Shield", $string3, $struct2, $component3, $component4, $int49);
     }
     if (oc_param($obj0, param_5416) = 1) {
-        $int48 = ~script7235("Acts as a shield", $string3, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7235("Acts as a shield", $string3, $struct2, $component3, $component4, $int49);
     }
     if ($int18 > 0) {
         $string7 = $string4;
-        $int48 = ~script7236("Level", $int18, $rgb7, $string7, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7236("Level", $int18, $rgb7, $string7, $struct2, $component3, $component4, $int49);
     }
     $struct45 = oc_param($obj0, param_6186);
     if ($struct45 ! null) {
         if (compare(struct_param($struct45, param_2794), "") ! 0) {
-            $int48 = ~script7235("<struct_param($struct45, param_2794)> : <struct_param($struct45, param_2795)>", $string3, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235("<struct_param($struct45, param_2794)> : <struct_param($struct45, param_2795)>", $string3, $struct2, $component3, $component4, $int49);
         } else {
-            $int48 = ~script7235(struct_param($struct45, param_2795), $string3, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235(struct_param($struct45, param_2795), $string3, $struct2, $component3, $component4, $int49);
         }
     }
     $struct45 = oc_param($obj0, param_3203);
     if ($struct45 ! null) {
-        $int48 = ~script7235("Item Set : <struct_param($struct45, param_2794)>", $string3, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7235("Item Set : <struct_param($struct45, param_2794)>", $string3, $struct2, $component3, $component4, $int49);
         $obj38 = struct_param($struct45, param_3205);
         $obj39 = struct_param($struct45, param_3206);
         $obj40 = struct_param($struct45, param_3207);
@@ -355,7 +356,7 @@ if (oc_wearpos($obj0) ! -1) {
             $string8 = $string5;
         }
         if ($obj38 ! null | $obj39 ! null | $obj40 ! null | $obj41 ! null | $obj42 ! null | $obj43 ! null | $obj44 ! null) {
-            $int48 = ~script7235("- <oc_name(struct_param($struct45, param_3205))>", $string8, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235("- <oc_name(struct_param($struct45, param_3205))>", $string8, $struct2, $component3, $component4, $int49);
         }
         $obj38, $obj39, $obj40, $obj41, $obj42, $obj43, $obj44 = null, null, null, null, null, null, null;
         $obj38 = struct_param($struct45, param_3210);
@@ -372,7 +373,7 @@ if (oc_wearpos($obj0) ! -1) {
             $string8 = $string5;
         }
         if ($obj38 ! null | $obj39 ! null | $obj40 ! null | $obj41 ! null | $obj42 ! null | $obj43 ! null | $obj44 ! null) {
-            $int48 = ~script7235("- <oc_name(struct_param($struct45, param_3210))>", $string8, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235("- <oc_name(struct_param($struct45, param_3210))>", $string8, $struct2, $component3, $component4, $int49);
         }
         $obj38, $obj39, $obj40, $obj41, $obj42, $obj43, $obj44 = null, null, null, null, null, null, null;
         $obj38 = struct_param($struct45, param_3215);
@@ -389,7 +390,7 @@ if (oc_wearpos($obj0) ! -1) {
             $string8 = $string5;
         }
         if ($obj38 ! null | $obj39 ! null | $obj40 ! null | $obj41 ! null | $obj42 ! null | $obj43 ! null | $obj44 ! null) {
-            $int48 = ~script7235("- <oc_name(struct_param($struct45, param_3215))>", $string8, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235("- <oc_name(struct_param($struct45, param_3215))>", $string8, $struct2, $component3, $component4, $int49);
         }
         $obj38, $obj39, $obj40, $obj41, $obj42, $obj43, $obj44 = null, null, null, null, null, null, null;
         $obj38 = struct_param($struct45, param_3220);
@@ -406,7 +407,7 @@ if (oc_wearpos($obj0) ! -1) {
             $string8 = $string5;
         }
         if ($obj38 ! null | $obj39 ! null | $obj40 ! null | $obj41 ! null | $obj42 ! null | $obj43 ! null | $obj44 ! null) {
-            $int48 = ~script7235("- <oc_name(struct_param($struct45, param_3220))>", $string8, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235("- <oc_name(struct_param($struct45, param_3220))>", $string8, $struct2, $component3, $component4, $int49);
         }
         $obj38, $obj39, $obj40, $obj41, $obj42, $obj43, $obj44 = null, null, null, null, null, null, null;
         $obj38 = struct_param($struct45, param_3225);
@@ -423,7 +424,7 @@ if (oc_wearpos($obj0) ! -1) {
             $string8 = $string5;
         }
         if ($obj38 ! null | $obj39 ! null | $obj40 ! null | $obj41 ! null | $obj42 ! null | $obj43 ! null | $obj44 ! null) {
-            $int48 = ~script7235("- <oc_name(struct_param($struct45, param_3225))>", $string8, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235("- <oc_name(struct_param($struct45, param_3225))>", $string8, $struct2, $component3, $component4, $int49);
         }
         $obj38, $obj39, $obj40, $obj41, $obj42, $obj43, $obj44 = null, null, null, null, null, null, null;
         $obj38 = struct_param($struct45, param_5559);
@@ -440,7 +441,7 @@ if (oc_wearpos($obj0) ! -1) {
             $string8 = $string5;
         }
         if ($obj38 ! null | $obj39 ! null | $obj40 ! null | $obj41 ! null | $obj42 ! null | $obj43 ! null | $obj44 ! null) {
-            $int48 = ~script7235("- <oc_name(struct_param($struct45, param_5559))>", $string8, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235("- <oc_name(struct_param($struct45, param_5559))>", $string8, $struct2, $component3, $component4, $int49);
         }
         $obj38, $obj39, $obj40, $obj41, $obj42, $obj43, $obj44 = null, null, null, null, null, null, null;
         $obj38 = struct_param($struct45, param_5564);
@@ -457,7 +458,7 @@ if (oc_wearpos($obj0) ! -1) {
             $string8 = $string5;
         }
         if ($obj38 ! null | $obj39 ! null | $obj40 ! null | $obj41 ! null | $obj42 ! null | $obj43 ! null | $obj44 ! null) {
-            $int48 = ~script7235("- <oc_name(struct_param($struct45, param_5564))>", $string8, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235("- <oc_name(struct_param($struct45, param_5564))>", $string8, $struct2, $component3, $component4, $int49);
         }
         $obj38, $obj39, $obj40, $obj41, $obj42, $obj43, $obj44 = null, null, null, null, null, null, null;
         $obj38 = struct_param($struct45, param_5569);
@@ -474,7 +475,7 @@ if (oc_wearpos($obj0) ! -1) {
             $string8 = $string5;
         }
         if ($obj38 ! null | $obj39 ! null | $obj40 ! null | $obj41 ! null | $obj42 ! null | $obj43 ! null | $obj44 ! null) {
-            $int48 = ~script7235("- <oc_name(struct_param($struct45, param_5569))>", $string8, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235("- <oc_name(struct_param($struct45, param_5569))>", $string8, $struct2, $component3, $component4, $int49);
         }
         if ($int46 >= struct_param($struct45, param_3204)) {
             $string8 = $string4;
@@ -483,15 +484,15 @@ if (oc_wearpos($obj0) ! -1) {
         } else {
             $string8 = $string5;
         }
-        $int48 = ~script7235(struct_param($struct45, param_2795), $string8, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7235(struct_param($struct45, param_2795), $string8, $struct2, $component3, $component4, $int49);
     }
 } else {
     $struct45 = oc_param($obj0, param_6186);
     if ($struct45 ! null) {
         if (compare(struct_param($struct45, param_2794), "") ! 0) {
-            $int48 = ~script7235("<struct_param($struct45, param_2794)> : <struct_param($struct45, param_2795)>", $string3, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235("<struct_param($struct45, param_2794)> : <struct_param($struct45, param_2795)>", $string3, $struct2, $component3, $component4, $int49);
         } else {
-            $int48 = ~script7235(struct_param($struct45, param_2795), $string3, $struct2, $component3, $component4, $int48);
+            $int49 = ~script7235(struct_param($struct45, param_2795), $string3, $struct2, $component3, $component4, $int49);
         }
     }
 }
@@ -515,9 +516,9 @@ if ($int36 > 0 | $int37 > 0) {
         $string7 = "<col=ffff00>";
     }
     if (oc_param($obj0, param_2972) > 0) {
-        $int48 = ~script7235("Heals : <col=00ff00>???</col>", $string3, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7235("Heals : <col=00ff00>???</col>", $string3, $struct2, $component3, $component4, $int49);
     } else {
-        $int48 = ~script7236("Heals", $int36, $rgb7, $string7, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7236("Heals", $int36, $rgb7, $string7, $struct2, $component3, $component4, $int49);
     }
 }
 if (oc_param($obj0, param_3698) ! 0) {
@@ -526,7 +527,7 @@ if (oc_param($obj0, param_3698) ! 0) {
     if (%varplayerbit_27168 = 1 & %varclient_1533 ! 1) {
         $int36 = calc($int36 / 10);
     }
-    $int48 = ~script7236("Heals", $int36, $rgb7, $string7, $struct2, $component3, $component4, $int48);
+    $int49 = ~script7236("Heals", $int36, $rgb7, $string7, $struct2, $component3, $component4, $int49);
 }
 if (oc_param($obj0, param_3674) ! 0) {
     $string7 = "<col=00ff00>";
@@ -534,48 +535,474 @@ if (oc_param($obj0, param_3674) ! 0) {
     if (%varplayerbit_27168 = 1 & %varclient_1533 ! 1) {
         $int36 = calc($int36 / 10);
     }
-    $int48 = ~script7236("Heals", $int36, $rgb7, $string7, $struct2, $component3, $component4, $int48);
+    $int49 = ~script7236("Heals", $int36, $rgb7, $string7, $struct2, $component3, $component4, $int49);
 }
 if (oc_param($obj0, param_5553) ! 0 & %varclient_5121 ! null & %varclient_5122 >= 0) {
-    $int48 = ~script12197($obj0, %varclient_5121, %varclient_5122, $struct2, $component3, $component4, $int48);
+    $int49 = ~script12197($obj0, %varclient_5121, %varclient_5122, $struct2, $component3, $component4, $int49);
 }
 if (~script12070($obj0) = 1 & %varclient_5121 ! null & %varclient_5122 >= 0) {
     $int36 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_30212);
     $int17 = ~invent_item_level($int36);
-    $int48 = ~script7236("Item Level", $int17, $rgb7, "", $struct2, $component3, $component4, $int48);
+    $int49 = ~script7236("Item Level", $int17, $rgb7, "", $struct2, $component3, $component4, $int49);
     if ($int17 < 20) {
-        $int48 = ~script7235("Item XP: <tostring_localised($int36, true)>/<tostring_localised(~script12074(calc($int17 + 1)), true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int48);
+        $int49 = ~script7235("Item XP: <tostring_localised($int36, true)>/<tostring_localised(~script12074(calc($int17 + 1)), true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
     } else {
-        $int48 = ~script7235("Item XP: <tostring_localised($int36, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int48);
+        $int49 = ~script7235("Item XP: <tostring_localised($int36, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
     }
     if (~script12080(oc_param($obj0, param_5524)) = 1) {
-        $int48 = ~script12197($obj0, %varclient_5121, %varclient_5122, $struct2, $component3, $component4, $int48);
+        $int49 = ~script12197($obj0, %varclient_5121, %varclient_5122, $struct2, $component3, $component4, $int49);
     }
 }
 if (oc_param($obj0, param_6810) = true & %varclient_5121 ! null & %varclient_5122 >= 0) {
     $int36 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_30214);
-    $int48 = ~script7236("Charges remaining", $int36, $rgb7, "", $struct2, $component3, $component4, $int48);
+    $int49 = ~script7236("Charges remaining", $int36, $rgb7, "", $struct2, $component3, $component4, $int49);
+}
+if (oc_param($obj0, param_6833) = 1 & %varclient_5121 ! null & %varclient_5122 >= 0) {
+    $int49 = ~script13776($obj0, $component3, $component4, $int49);
+}
+if (oc_category($obj0) = category_3455) {
+    if (%varclient_5121 ! null & %varclient_5122 >= 0) {
+        $int36 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_27088);
+        if ($int36 > 0) {
+            $int49 = ~script7235(oc_name(enum(int, obj, enum_9769, inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_27087))), get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+    }
+} else if (oc_category($obj0) = category_4222) {
+    if (%varclient_5121 ! null & %varclient_5122 >= 0) {
+        switch_obj ($obj0) {
+            case obj_5509 :
+                $int36 = 3;
+                $int10 = 0;
+            case obj_5510, obj_5511 :
+                $int36 = ~script1569;
+                $int37 = 6;
+                $int10 = %varplayer_3217;
+                $int24 = 2400;
+            case obj_5512, obj_5513 :
+                $int36 = ~script1764;
+                $int37 = 9;
+                $int10 = %varplayer_3218;
+                $int24 = 3000;
+            case obj_5514, obj_5515 :
+                $int36 = ~script2258;
+                $int37 = 12;
+                $int10 = %varplayer_3219;
+                $int24 = 3600;
+            case obj_24205 :
+                $int36 = 18;
+                $int10 = 0;
+                $int24 = 0;
+        }
+        if ($int37 > 0) {
+            if ($int10 < 0) {
+                $int49 = ~script7235("Capacity: <tostring($int36)>/<tostring($int37)> +<tostring(calc($int10 * -100 / $int24))>%", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            } else {
+                $int49 = ~script7235("Capacity: <tostring($int36)>/<tostring($int37)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            }
+        } else if ($int36 > 0) {
+            if ($int10 < 0) {
+                $int49 = ~script7235("Capacity: <tostring($int36)> +<tostring(calc($int10 * -100 / $int24))>%", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            } else {
+                $int49 = ~script7235("Capacity: <tostring($int36)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            }
+        }
+        $int10 = 0;
+    }
+} else if (oc_hasvarobj($obj0) = true) {
+    if (%varclient_5121 ! null & %varclient_5122 >= 0) {
+        if (oc_category($obj0) = category_2804 | oc_category($obj0) = category_3794) {
+            if (oc_category($obj0) = category_2804) {
+                $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_17233);
+            } else if (oc_category($obj0) = category_3794) {
+                $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_30603);
+            }
+            $int10, $int12, $int14 = ~script4705($int17);
+            if ($int10 < 10) {
+                $string1 = append("0", tostring($int10));
+            } else {
+                $string1 = tostring($int10);
+            }
+            if ($int12 < 10) {
+                $string2 = append("0", tostring($int12));
+            } else {
+                $string2 = tostring($int12);
+            }
+            if ($int14 < 10) {
+                $string3 = append("0", tostring($int14));
+            } else {
+                $string3 = tostring($int14);
+            }
+            $string6 = "<col=ffffff>";
+            if ($int10 = 0 & $int12 <= 59) {
+                $string6 = "<col=ff0000>";
+            }
+            $int49 = ~script7235("<$string6><$string1>:<$string2>:<$string3> remaining", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if (oc_param($obj0, param_369) = 3) {
+            $int17 = min(max(scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_6139), oc_param($obj0, param_368), 100), 1), 99);
+            $int49 = ~script7235("Urn filled: <tostring($int17)>%", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if (oc_param($obj0, param_4563) = 1) {
+            $int17 = ~script670(%varclient_5121, %varclient_5122, $obj0);
+            if ($int17 = 0) {
+                $int17 = 100;
+            } else {
+                $int17 = calc(100 - $int17 / (oc_param($obj0, param_3385) / 100));
+                if ($int17 = 100) {
+                    $int17 = 99;
+                }
+            }
+            $string1 = tostring($int17);
+            $string2 = "<col=ffffff>";
+            if ($int17 <= 25) {
+                $string2 = "<col=ff0000>";
+            } else if ($int17 <= 65) {
+                $string2 = "<col=ffa500>";
+            } else {
+                $string2 = "<col=00ff00>";
+            }
+            $int49 = ~script7235("Item Charge: <$string2><$string1>%", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if (oc_param($obj0, param_3385) >= 1 & oc_param($obj0, param_1324) = 1) {
+            $int17 = ~script670(%varclient_5121, %varclient_5122, $obj0);
+            if ($int17 = 0) {
+                $int17 = 1000;
+            } else {
+                $int17 = calc(1000 - $int17 / (oc_param($obj0, param_3385) / 1000));
+                if ($int17 = 0 & oc_param($obj0, param_5772) = 0) {
+                    $int17 = 1;
+                }
+                if ($int17 = 1000) {
+                    $int17 = 999;
+                }
+            }
+            if ($int17 = 0) {
+                $string1 = "0.0";
+            } else {
+                $string1 = tostring(calc($int17 / 10));
+                $string1 = append($string1, ".<tostring(calc($int17 % 10))>");
+            }
+            $string2 = "<col=ffffff>";
+            if ($int17 <= 250) {
+                $string2 = "<col=ff0000>";
+            } else if ($int17 <= 650) {
+                $string2 = "<col=ffa500>";
+            } else {
+                $string2 = "<col=00ff00>";
+            }
+            $int49 = ~script7235("Item Charge: <$string2><$string1>%", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if (oc_param($obj0, param_5771) >= 1 & oc_param($obj0, param_6880) = 0 | $obj0 = obj_24338 & oc_param($obj0, param_1324) = 1) {
+            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_15190);
+            $int17 = calc(1000 - scale($int17, 6000, 100));
+            if ($int17 = 0) {
+                $int17 = 1;
+            }
+            $string1 = tostring(calc($int17 / 10));
+            $string1 = append($string1, ".<tostring(calc($int17 % 10))>");
+            $string2 = "<col=ffffff>";
+            if ($int17 <= 250) {
+                $string2 = "<col=ff0000>";
+            } else if ($int17 <= 650) {
+                $string2 = "<col=ffa500>";
+            } else {
+                $string2 = "<col=00ff00>";
+            }
+            $int49 = ~script7235("Item Charge: <$string2><$string1>%", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if (oc_param($obj0, param_3112) >= 1 & oc_param($obj0, param_1324) = 1) {
+            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_17233);
+            $int17 = min(1000, scale($int17, calc(oc_param($obj0, param_3109) / 10), 100));
+            if ($int17 = 0) {
+                $int17 = 1;
+            }
+            $string1 = tostring(calc($int17 / 10));
+            $string1 = append($string1, ".<tostring(calc($int17 % 10))>");
+            $string2 = "<col=ffffff>";
+            if ($int17 <= 250) {
+                $string2 = "<col=ff0000>";
+            } else if ($int17 <= 650) {
+                $string2 = "<col=ffa500>";
+            } else {
+                $string2 = "<col=00ff00>";
+            }
+            $int49 = ~script7235("Item Charge: <$string2><$string1>%", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if (oc_param($obj0, param_6834) >= 1) {
+            $int17 = min(max(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_17713), 1), 60000);
+            $int36 = scale(calc(60000 - $int17), 60000, 1000);
+            $string2 = "<col=ffffff>";
+            if ($int36 <= 250) {
+                $string2 = "<col=ff0000>";
+            } else if ($int36 <= 650) {
+                $string2 = "<col=ffa500>";
+            } else {
+                $string2 = "<col=00ff00>";
+            }
+            $int49 = ~script7235("Item Charge: <$string2><tostring(calc($int36 / 10))><~script8002><tostring(calc($int36 % 10))>%", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if (oc_param($obj0, param_1079) >= 1 & oc_param($obj0, param_1324) = 1) {
+            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_2156);
+            $int17 = calc(1000 - scale($int17, 6000, 100));
+            if ($int17 = 0) {
+                $int17 = 1;
+            }
+            $string1 = tostring(calc($int17 / 10));
+            $string1 = append($string1, ".<tostring(calc($int17 % 10))>");
+            $string2 = "<col=ffffff>";
+            if ($int17 <= 250) {
+                $string2 = "<col=ff0000>";
+            } else if ($int17 <= 650) {
+                $string2 = "<col=ffa500>";
+            } else {
+                $string2 = "<col=00ff00>";
+            }
+            $int49 = ~script7235("Item Charge: <$string2><$string1>%", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if (oc_category($obj0) = category_2771 | oc_category($obj0) = category_2769 | oc_category($obj0) = category_2770) {
+            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_3652);
+            $int17 = scale($int17, 15000, 1000);
+            if ($int17 = 0) {
+                $int17 = 1;
+            }
+            $string1 = tostring(calc($int17 / 10));
+            $string1 = append($string1, ".<tostring(calc($int17 % 10))>");
+            $string2 = "<col=ffffff>";
+            if ($int17 <= 250) {
+                $string2 = "<col=ff0000>";
+            } else if ($int17 <= 650) {
+                $string2 = "<col=ffa500>";
+            } else {
+                $string2 = "<col=00ff00>";
+            }
+            $int49 = ~script7235("Item Charge: <$string2><$string1>%", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if ($obj0 = obj_20120 | $obj0 = obj_23643) {
+            if ($obj0 = obj_23643) {
+                $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_9119);
+                $int49 = ~script7235("Charges remaining: <tostring($int17)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            } else if ($obj0 = obj_20120) {
+                $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_15191);
+                $int49 = ~script7235("Charges remaining: <tostring($int17)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            }
+        } else if ($obj0 = obj_40408) {
+            $npc48 = enum(int, npc, enum_12737, inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_36325));
+            $string1 = struct_param(enum(npc, struct, enum_12740, $npc48), param_6600);
+            $int49 = ~script7235("Soul contained: <$string1>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if (oc_category($obj0) = category_3411) {
+            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_6114);
+            $int49 = ~script7235("Charges remaining: <tostring($int17)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if ($obj0 = obj_41076) {
+            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_37518);
+            $int49 = ~script7235("Charges remaining: <tostring(calc(10 - $int17))>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if ($obj0 = obj_41078) {
+            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_37519);
+            $int49 = ~script7235("Charges remaining: <tostring(calc(10 - $int17))>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if ($obj0 = obj_41083) {
+            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_37521);
+            $int36 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_37522);
+            $int16 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_37523);
+            $int49 = ~script7235("Empty divine charges stored: <tostring($int17)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            $int49 = ~script7235("Divine charges stored: <tostring($int36)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            $int49 = ~script7235("Charge container filled: <tostring(~script12422($int16, 30000, 100))>%", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if ($obj0 = obj_41085) {
+            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_37520);
+            $int49 = ~script7235("Charges remaining: <tostring(calc(60 - $int17))>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if (oc_category($obj0) = category_3140) {
+            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_20976);
+            $int36 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_20977);
+            $int49 = ~script7235("Charges used: <tostring($int17)>/<tostring($int36)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if (oc_category($obj0) = category_3279) {
+            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_25008);
+            $int49 = ~script7235("Charges remaining: <tostring(calc(100 - $int17))>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if (oc_category($obj0) = category_4223) {
+            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_18361);
+            $int49 = ~script7235("Kills stored: <tostring($int17)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if ($obj0 = obj_27360) {
+            $struct45 = enum(int, struct, enum_7319, inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_17956));
+            $string1 = enum(int, string, enum_1563, struct_param($struct45, param_3248));
+            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_17957);
+            $int49 = ~script7235("Target to kill: <$string1>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            $int49 = ~script7235("Kills: <tostring($int17)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if (oc_category($obj0) = category_4111) {
+            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_35698);
+            $int49 = ~script7235("Charges remaining: <tostring(calc(oc_param(inv_getobj(%varclient_5121, %varclient_5122), param_6522) - $int17))>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if ($obj0 = obj_24205) {
+            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_16521);
+            $int36 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_16523);
+            $int49 = ~script7235("Essence stored: <tostring($int17)>/18", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            $int49 = ~script7235("Charges remaining: <tostring($int36)>/756", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+    }
+} else if (oc_category($obj0) = category_3567) {
+    if (%varclient_5121 ! null & %varclient_5122 >= 0) {
+        $string2 = "<col=ffffff>";
+        if (%varplayerbit_27394 <= 50000) {
+            $string2 = "<col=ff0000>";
+        } else if (%varplayerbit_27394 <= 100000) {
+            $string2 = "<col=ffa500>";
+        } else {
+            $string2 = "<col=00ff00>";
+        }
+        $int49 = ~script7235("XP remaining: <$string2><tostring_localised(calc(%varplayerbit_27394 / 10), true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+    }
+} else if (oc_category($obj0) = category_4212) {
+    if (%varclient_5121 ! null & %varclient_5122 >= 0) {
+        $int49 = ~script7235("Sapphire: <tostring(%varplayerbit_22581)> Emerald: <tostring(%varplayerbit_22582)> Ruby: <tostring(%varplayerbit_22583)> Diamond: <tostring(%varplayerbit_22584)> Dragonstone: <tostring(%varplayerbit_22585)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+    }
+} else if ($obj0 = obj_31846) {
+    if (%varclient_5121 ! null & %varclient_5122 >= 0) {
+        $string1 = enum(int, string, enum_9197, %varplayerbit_22901);
+        $int49 = ~script7235("Reaper assignment: <$string1>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        if (%varplayerbit_22902 >= 1) {
+            $int17 = ~script7235("Kills remaining: <tostring_localised(%varplayerbit_22902, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+    }
+} else if ($obj0 = obj_41081) {
+    if (%varclient_5121 ! null & %varclient_5122 >= 0) {
+        if (%varplayer_7253 ! null) {
+            $struct45 = oc_param(%varplayer_7253, param_2281);
+            $string1 = struct_param($struct45, param_2524);
+            $int49 = ~script7235("Potion stored: <$string1> (<tostring_localised(%varplayerbit_37584, true)>)", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else {
+            $int49 = ~script7235("Potion stored: Nothing!", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+    }
+} else if (oc_param($obj0, param_667) ! 0) {
+    if (%varclient_5121 ! null & %varclient_5122 >= 0) {
+        if ($obj0 = obj_27616 | $obj0 = obj_27617) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_18238, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+        if ($obj0 = obj_27618 | $obj0 = obj_27619) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_18242, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+        if ($obj0 = obj_27622 | $obj0 = obj_27623) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_18250, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+        if ($obj0 = obj_27620 | $obj0 = obj_27621) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_18246, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+        if ($obj0 = obj_27624 | $obj0 = obj_27625) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_18254, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+        if ($obj0 = obj_31089 | $obj0 = obj_31090) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_21930, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+        if ($obj0 = obj_31091 | $obj0 = obj_31092) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_21934, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+        if ($obj0 = obj_31093 | $obj0 = obj_31094) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_21938, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            if (date_runeday < %varplayerbit_21951) {
+                $int49 = ~script7235("Days until task can be forced: <tostring_localised(calc(%varplayerbit_21951 - date_runeday), true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            }
+        }
+        if ($obj0 = obj_31095 | $obj0 = obj_31096) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_21942, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            if (date_runeday < %varplayerbit_21951) {
+                $int49 = ~script7235("Days until task can be forced: <tostring_localised(calc(%varplayerbit_21951 - date_runeday), true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            }
+        }
+        if ($obj0 = obj_31097 | $obj0 = obj_31098) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_21946, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            if (date_runeday < %varplayerbit_21951) {
+                $int49 = ~script7235("Days until task can be forced: <tostring_localised(calc(%varplayerbit_21951 - date_runeday), true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            }
+        }
+        if ($obj0 = obj_31099 | $obj0 = obj_31100) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_21950, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+        if ($obj0 = obj_35277 | $obj0 = obj_35278) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_26736, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            if (date_runeday < %varplayerbit_28874) {
+                $int49 = ~script7235("Days until task can be forced: <tostring_localised(calc(%varplayerbit_28874 - date_runeday), true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            }
+        }
+        if ($obj0 = obj_35279 | $obj0 = obj_35280) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_26740, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+        if ($obj0 = obj_35281 | $obj0 = obj_35282) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_26744, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            if (date_runeday < %varplayerbit_28875) {
+                $int49 = ~script7235("Days until task can be forced: <tostring_localised(calc(%varplayerbit_28875 - date_runeday), true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            }
+        }
+        if ($obj0 = obj_35285 | $obj0 = obj_35286) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_28865, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            if (date_runeday < %varplayerbit_28877) {
+                $int49 = ~script7235("Days until task can be forced: <tostring_localised(calc(%varplayerbit_28877 - date_runeday), true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            }
+        }
+        if ($obj0 = obj_35287 | $obj0 = obj_35288) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_28869, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            if (date_runeday < %varplayerbit_28878) {
+                $int49 = ~script7235("Days until task can be forced: <tostring_localised(calc(%varplayerbit_28878 - date_runeday), true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            }
+        }
+        if ($obj0 = obj_35289 | $obj0 = obj_35290) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_28873, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            if (date_runeday < %varplayerbit_28879) {
+                $int49 = ~script7235("Days until task can be forced: <tostring_localised(calc(%varplayerbit_28879 - date_runeday), true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            }
+        }
+        if ($obj0 = obj_35283 | $obj0 = obj_35284) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_28861, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            if (date_runeday < %varplayerbit_28876) {
+                $int49 = ~script7235("Days until task can be forced: <tostring_localised(calc(%varplayerbit_28876 - date_runeday), true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            }
+        }
+        if ($obj0 = obj_28686 | $obj0 = obj_28687) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_18611, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+        if ($obj0 = obj_28688 | $obj0 = obj_28689) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_18615, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+        if ($obj0 = obj_28690 | $obj0 = obj_28691) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_18619, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+        if ($obj0 = obj_28692 | $obj0 = obj_28693) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_18623, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+        if ($obj0 = obj_28694 | $obj0 = obj_28695) {
+            $int49 = ~script7235("Kills: <tostring_localised(%varplayerbit_18627, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        }
+    }
+} else if ($obj0 = obj_41092 & %varclient_5121 ! null & %varclient_5122 >= 0) {
+    if (%varplayerbit_37578 >= 1) {
+        $int49 = ~script7235("Siphons stored: <tostring_localised(%varplayerbit_37578, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+    }
+    if (%varplayerbit_37579 >= 1) {
+        $int49 = ~script7235("Crystal Siphons stored: <tostring_localised(%varplayerbit_37579, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+    }
 }
 if (compare(oc_param($obj0, param_3376), "") ! 0) {
     $string7 = "<col=00ff00>";
-    $int48 = ~script7235(oc_param($obj0, param_3376), $string7, $struct2, $component3, $component4, $int48);
+    $int49 = ~script7235(oc_param($obj0, param_3376), $string7, $struct2, $component3, $component4, $int49);
 }
 if ($inv6 = inv_819) {
     if (string_length(oc_param($obj0, param_4085)) > 0) {
-        $int48 = ~script7235(oc_param($obj0, param_4085), $string3, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7235(oc_param($obj0, param_4085), $string3, $struct2, $component3, $component4, $int49);
     }
     if (string_length(oc_param($obj0, param_2231)) > 0) {
-        $int48 = ~script7235(oc_param($obj0, param_2231), $string3, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7235(oc_param($obj0, param_2231), $string3, $struct2, $component3, $component4, $int49);
     }
 }
 if (compare(%varclient_4645, "") ! 0) {
     $string7 = "<col=00ff00>";
-    $int48 = ~script7235(%varclient_4645, $string7, $struct2, $component3, $component4, $int48);
+    $int49 = ~script7235(%varclient_4645, $string7, $struct2, $component3, $component4, $int49);
 }
 if ($obj5 ! null & $obj5 ! $obj0) {
     if ($obj0 ! null) {
-        $int48 = ~script7235(" ", $string1, $struct2, $component3, $component4, $int48);
+        $int49 = ~script7235(" ", $string1, $struct2, $component3, $component4, $int49);
     }
-    $int48 = ~script10761($obj5, $inv6, $struct1, $struct2, $component3, $component4, $int48);
+    $int49 = ~script10761($obj5, $inv6, $struct1, $struct2, $component3, $component4, $int49);
 }
-return($int48);
+if (oc_param($obj0, param_6897) > 0 & %varclient_5121 ! null & %varclient_5122 >= 0) {
+    $int17 = calc(3 + ~script3862);
+    switch_obj ($obj0) {
+        case obj_42111, obj_42112, obj_42113, obj_42114 :
+            $int18 = calc(5 - ~script3862);
+            $int49 = ~script7235("Charges available: <tostring(%varplayerbit_39468)>/<tostring($int17)>", $string1, $struct2, $component3, $component4, $int49);
+            $int49 = ~script7235("Next charge progress: <tostring(%varplayerbit_39465)>/<tostring($int18)>", $string1, $struct2, $component3, $component4, $int49);
+        case obj_42119, obj_42120, obj_42121, obj_42122 :
+            $int18 = calc(5 - ~script3862);
+            $int49 = ~script7235("Charges available: <tostring(%varplayerbit_39469)>/<tostring($int17)>", $string1, $struct2, $component3, $component4, $int49);
+            $int49 = ~script7235("Next charge progress: <tostring(%varplayerbit_39466)>/<tostring($int18)>", $string1, $struct2, $component3, $component4, $int49);
+        case obj_42107, obj_42108, obj_42109, obj_42110 :
+            $int18 = calc(2 - ~script3862);
+            $int49 = ~script7235("Charges available: <tostring(%varplayerbit_39470)>/<tostring($int17)>", $string1, $struct2, $component3, $component4, $int49);
+            $int49 = ~script7235("Next charge progress: <tostring(%varplayerbit_39467)>/<tostring($int18)>", $string1, $struct2, $component3, $component4, $int49);
+    }
+}
+return($int49);

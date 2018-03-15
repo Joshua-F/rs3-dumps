@@ -1,29 +1,18 @@
 // 5489
 [proc,script5489]
-def_int $int0 = 0;
-def_int $int1 = 0;
-def_int $int2 = 0;
-def_int $int3 = 0;
-def_int $int4 = if_getwidth(%varclient_2240);
-def_int $int5 = if_getheight(%varclient_2240);
-def_int $int6 = 0;
-def_int $int7 = 0;
-$int6 = if_getwidth(interface_1477:com_15);
-$int7 = if_getheight(interface_1477:com_15);
+def_int $int0 = 30;
+def_int $int1 = 32;
+def_int $int2 = if_getwidth(interface_1477:com_803);
+def_int $int3 = if_getheight(interface_1477:com_803);
+def_int $int4 = get_mousey;
 switch_cursor (get_currentcursor) {
     case cursor_36, cursor_37, cursor_38, cursor_39, cursor_40 :
-        $int2 = 15;
-        $int3 = 22;
-    case default :
-        $int2 = 30;
-        $int3 = 32;
+        $int0 = 15;
+        $int1 = 22;
 }
-$int0 = min(calc(get_mousex + $int2), calc($int6 - $int4));
-$int1 = calc(get_mousey + $int3);
-if (%varclient_2010 = 1) {
-    $int1 = calc($int1 - 50);
+def_int $int5 = min(calc(get_mousex + $int0), calc(if_getwidth(interface_1477:com_18) - $int2));
+def_int $int6 = calc($int4 + $int1);
+if (calc($int6 + $int3) > if_getheight(interface_1477:com_18)) {
+    $int6 = calc($int4 - $int3);
 }
-if (calc($int1 + $int5) > $int7) {
-    $int1 = calc(get_mousey - $int5);
-}
-if_setposition($int0, $int1, ^setpos_abs_left, ^setpos_abs_top, %varclient_2240);
+if_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top, interface_1477:com_803);

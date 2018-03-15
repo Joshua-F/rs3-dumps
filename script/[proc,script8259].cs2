@@ -1,17 +1,23 @@
 // 8259
-[proc,script8259](struct $struct0)
-if ($struct0 = null) {
-    return;
-}
-def_int $int1 = -1;
-if (enum_getreversecount(struct, enum_7716, $struct0) > 0) {
-    $int1 = enum_getreverseindex(struct, int, enum_7716, $struct0, 0);
-}
-def_int $int2 = -1;
-if (%varplayerbit_27169 = 0 & struct_param($struct0, param_3539) = 1 | %varplayerbit_27169 = 1 & ($int1 = 18 | $int1 = 1003 | ~script12616($struct0) = true)) {
-    $int2 = ~script12590(.cc_param(param_3540), ~script12616($struct0));
-    if ($int2 ! -1) {
-        .cc_settrans($int2);
-        .cc_setparam(param_5948, clientclock);
+[proc,script8259](struct $struct0, int $int1)(int)
+def_int $intbool2 = ^false;
+def_int $int3 = $int1;
+while ($int3 < 6) {
+    switch_int ($int3) {
+        case 0, 1 :
+            $intbool2 = ~script5491(struct_param($struct0, param_1989));
+        case 2 :
+            $intbool2 = ~script5491(struct_param($struct0, param_1990));
+        case 3 :
+            $intbool2 = ~script5491(struct_param($struct0, param_1991));
+        case 4 :
+            $intbool2 = ~script5491(struct_param($struct0, param_1992));
+        case 5 :
+            $intbool2 = ~script5491(struct_param($struct0, param_4084));
+    }
+    $int3 = calc($int3 + 1);
+    if ($intbool2 = ^true) {
+        return(1);
     }
 }
+return(0);

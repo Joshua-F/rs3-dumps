@@ -5,9 +5,23 @@ if ($int0 = -1) {
 }
 if (~script8699($int0) ! 1 & $int0 = 8) {
     ~script193(1);
+    return;
 }
 ~script8306;
 ~script8792;
+if (%varplayerbit_38842 = 1) {
+    %varclientbit_32705 = 0;
+    if_setcolour(0x30281d, interface_1477:com_17);
+    ~script13892;
+    ~script8784;
+    return;
+} else if (%varplayerbit_27169 = 1) {
+    %varclientbit_32705 = 0;
+    if_setcolour(0x30281d, interface_1477:com_17);
+    ~script9943;
+    ~script8784;
+    return;
+}
 def_int $int1 = 0;
 def_int $int2 = 0;
 def_int $int3 = 0;
@@ -20,124 +34,115 @@ def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = 0;
-def_struct $struct13 = null;
-def_component $component14 = null;
-def_component $component15 = null;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_struct $struct15 = null;
+def_component $component16 = null;
+def_component $component17 = null;
 %varclient_3474 = 0;
-if ($int0 = 5) {
-    %varclientbit_32705 = 0;
-    if_setcolour(0x30281d, interface_1477:com_14);
-    ~script9943;
-    ~script8784;
-    return;
-}
-if_setcolour(^black, interface_1477:com_14);
-~script1177;
+if_setcolour(^black, interface_1477:com_17);
 ~script8352;
-$int11 = enum_getoutputcount(enum_7717);
-$int10 = calc($int11 - 1);
-def_int $int16 = 0;
-while ($int10 >= 0) {
-    $int12 = enum(int, int, enum_7717, $int10);
-    $struct13 = enum(int, struct, enum_7716, $int12);
-    if ($struct13 ! null) {
-        $component14 = struct_param($struct13, param_3503);
-        if ($component14 ! null) {
-            $int1, $int2, $int3, $int4, $int5, $int6, $int7, $int8, $int9 = ~script8701($int0, $int12);
-            if (struct_param($struct13, param_3526) = true | struct_param($struct13, param_3527) ! 0) {
-                $component15 = ~script1886($int12);
-                switch_int ($int12) {
+$int13 = enum_getoutputcount(enum_7717);
+$int12 = calc($int13 - 1);
+while ($int12 >= 0) {
+    $int14 = enum(int, int, enum_7717, $int12);
+    $struct15 = enum(int, struct, enum_7716, $int14);
+    if ($struct15 ! null) {
+        $component16 = struct_param($struct15, param_3503);
+        if ($component16 ! null) {
+            $int1, $int2, $int3, $int4, $int5, $int6, $int7, $int8, $int9, $int10, $int11 = ~script8701($int0, $int14);
+            if (struct_param($struct15, param_3526) = true | struct_param($struct15, param_3527) ! 0) {
+                $component17 = ~script1886($int14);
+                switch_int ($int14) {
                     case 1032 :
                         if (%varplayerbit_27170 ! 0 | %varplayerbit_29138 = 0 | %varplayerbit_29138 > ~script11803) {
-                            $int7 = 0;
+                            $int9 = 0;
                         }
                     case 1033 :
                         if (%varplayerbit_27170 ! 0 | %varplayerbit_29139 = 0 | %varplayerbit_29139 > ~script11803) {
-                            $int7 = 0;
+                            $int9 = 0;
                         }
                     case 1034 :
                         if (%varplayerbit_27170 ! 0 | %varplayerbit_29140 = 0 | %varplayerbit_29140 > ~script11803) {
-                            $int7 = 0;
+                            $int9 = 0;
                         }
                     case 1035 :
                         if (%varplayerbit_27170 ! 0 | %varplayerbit_29141 = 0 | %varplayerbit_29141 > ~script11803) {
-                            $int7 = 0;
+                            $int9 = 0;
                         }
                     case 19 :
                         if (%varplayerbit_30166 = 1 | %varplayerbit_20187 = 1) {
-                            $int7 = 0;
+                            $int9 = 0;
                         }
                     case 20 :
                         if (%varplayerbit_30167 = 1) {
-                            $int7 = 0;
+                            $int9 = 0;
                         }
                     case 21 :
                         if (%varplayerbit_30168 = 1) {
-                            $int7 = 0;
+                            $int9 = 0;
                         }
                     case 22 :
                         if (%varplayerbit_30169 = 1) {
-                            $int7 = 0;
+                            $int9 = 0;
                         }
                     case 23 :
                         if (%varplayerbit_30170 = 1) {
-                            $int7 = 0;
+                            $int9 = 0;
                         }
                     case 25 :
                         if (%varplayerbit_30171 = 1) {
-                            $int7 = 0;
+                            $int9 = 0;
                         }
+                    case 1042, 1043 :
+                        $int9 = 0;
                 }
-                if ($int7 = 0 | $int12 = 1008) {
-                    if_sethide(true, $component14);
+                if ($int9 = 0 | $int14 = 1008) {
+                    if_sethide(true, $component16);
                 } else {
-                    if_sethide(false, $component14);
+                    if_sethide(false, $component16);
                     %varclient_3474 = calc(%varclient_3474 + 1);
                 }
-                if (~script8137($int12) = false) {
-                    $int3 = min($int3, if_getwidth($component15));
-                    $int4 = min($int4, if_getheight($component15));
+                if (~script8137($int14) = false) {
+                    $int5 = min($int5, if_getwidth($component17));
+                    $int6 = min($int6, if_getheight($component17));
                 } else {
-                    $int3, $int4 = ~script8140($int12, $int5, $int6);
+                    $int5, $int6 = ~script8140($int14, $int7, $int8);
                 }
-                $int1 = ~script8711($int1, $int3, if_getwidth($component15));
-                $int2 = ~script8711($int2, $int4, if_getheight($component15));
-                if_setposition($int1, $int2, ^setpos_abs_left, ^setpos_abs_top, $component14);
-                if_setsize($int3, $int4, ^setsize_abs, ^setsize_abs, $component14);
-                if (if_gettrans($component14) ! $int8) {
-                    if_settrans($int8, $component14);
-                    ~script8411($int12, 0);
-                    $int16 = 1;
+                $int1 = ~script8711($int1, $int3, $int5, if_getwidth($component17));
+                $int2 = ~script8711($int2, $int4, $int6, if_getheight($component17));
+                if_setposition($int1, $int2, ^setpos_abs_left, ^setpos_abs_top, $component16);
+                if_setsize($int5, $int6, ^setsize_abs, ^setsize_abs, $component16);
+                if (if_gettrans($component16) ! $int10) {
+                    if_settrans($int10, $component16);
+                    ~script8411($int14, 0);
                 }
-                if ($int7 = 1) {
-                    if (struct_param($struct13, param_3521) = true) {
-                        if ($int8 = 1) {
-                            ~script8361($int12);
+                if ($int9 = 1) {
+                    if (struct_param($struct15, param_3521) = true) {
+                        if ($int10 = 1) {
+                            ~script8361($int14);
                         } else {
-                            ~script8350($int0, $int12, 1);
+                            ~script8350($int0, $int14, 1);
                         }
                     }
-                    if ($int12 ! 1008) {
-                        if_setonresize("script8782($int12, calc($int10 - 1), event_com, if_getx($component14), if_gety($component14), if_getwidth($component14), if_getheight($component14), 0)", $component14);
-                        if_callonresize($component14);
+                    if ($int14 ! 1008) {
+                        if_setonresize("script8782($int14, calc($int12 - 1), event_com, if_getx($component16), if_gety($component16), if_getwidth($component16), if_getheight($component16), 0)", $component16);
+                        if_callonresize($component16);
                     }
-                } else if (struct_param($struct13, param_3521) = true) {
-                    ~script8361($int12);
+                } else if (struct_param($struct15, param_3521) = true) {
+                    ~script8361($int14);
                 }
-            } else if ($int7 = 1) {
-                if_sethide(false, $component14);
+            } else if ($int9 = 1) {
+                if_sethide(false, $component16);
             } else {
-                if_sethide(true, $component14);
+                if_sethide(true, $component16);
             }
-            if (struct_param($struct13, param_3533) = true) {
-                ~script8393($int12, 0);
+            if (struct_param($struct15, param_3533) = true) {
+                ~script8393($int14, 0);
             }
         }
     }
-    $int10 = calc($int10 - 1);
-}
-if ($int16 = 1) {
-    ~script12588(%varclientbit_19930);
+    $int12 = calc($int12 - 1);
 }
 if (~script8785 = true) {
     %varclientbit_19931 = 3;
@@ -148,5 +153,5 @@ if (~script8785 = true) {
     %varclientbit_19931 = 3;
     %varclientbit_19932 = 1;
     %varclientbit_19933 = 3;
-    ~script1240;
+    ~script13875;
 }

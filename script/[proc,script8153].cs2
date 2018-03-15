@@ -3,29 +3,44 @@
 if ($enum0 = null) {
     return;
 }
-cc_deleteall(interface_1432:com_4);
-def_int $int2 = struct_param(struct_21255, param_3569);
+def_int $int2 = 0;
 def_int $int3 = 0;
-def_int $int4 = 0;
-def_int $int5 = 0;
-def_int $int6 = enum(int, int, $enum0, $int5);
-def_struct $struct7 = null;
-def_string $string0 = "";
-def_int $int8 = -1;
-def_int $int9 = -1;
-def_graphic $graphic10 = null;
-if ($int1 = 2 | $int1 = 1) {
-    $int3 = calc($int3 + 4);
+def_int $int4 = enum_getoutputcount($enum0);
+def_int $int5 = if_getwidth(interface_1432:com_4);
+cc_deleteall(interface_1432:com_5);
+cc_deleteall(interface_1432:com_6);
+~script13843(interface_1432:com_5, interface_1432:com_6, $enum0, 4);
+def_int $int6 = 36;
+def_int $int7 = 36;
+def_int $int8 = 4;
+def_int $int9 = 4;
+def_int $int10 = 4;
+def_int $int11 = 4;
+def_int $int12 = 4;
+if (%varplayerbit_22875 = 1) {
+    $int6 = 30;
+    $int7 = 37;
+    $int8 = 4;
+    $int9 = 7;
+    if ($int1 ! 0 & $int1 ! 1) {
+        $int11 = 0;
+    } else {
+        $int11 = 3;
+    }
+    $int12 = 0;
+    $int10 = 0;
 }
-while ($int6 ! -1) {
-    if (~script2385($int6, %varclientbit_21816) = -1) {
-        $struct7 = enum(int, struct, enum_7716, $int6);
-        if ($struct7 ! null) {
-            $string0, $graphic10 = ~script8155($int6);
-            $int3, $int4 = ~script8154($int6, $string0, $int8, $int9, $graphic10, interface_1432:com_4, $int4, 32, $int2, $int3, $int1);
-            $int3 = calc($int3 + 4);
+def_int $int13 = $int11;
+while ($int2 < $int4) {
+    if (cc_find(interface_1432:com_5, $int2) = true & .cc_find(interface_1432:com_6, $int2) = true) {
+        cc_setposition($int13, $int12, ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setposition(calc($int13 + $int8), calc($int12 + $int9), ^setpos_abs_left, ^setpos_abs_top);
+        .cc_sethide(false);
+        $int13 = calc($int13 + $int6);
+        if (calc($int13 + $int6) > $int5) {
+            $int13 = $int11;
+            $int12 = calc($int12 + $int7);
         }
     }
-    $int5 = calc($int5 + 1);
-    $int6 = enum(int, int, $enum0, $int5);
+    $int2 = calc($int2 + 1);
 }

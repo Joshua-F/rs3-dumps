@@ -50,6 +50,7 @@ def_int $int13 = 0;
 def_string $string1 = "";
 def_string $string2 = "";
 def_string $string3 = "Latest content";
+def_int $int14 = 0;
 if (%varclient_3905 = true) {
     ~script10592(interface_907:com_12, 1);
     ~script10593(1);
@@ -67,7 +68,7 @@ if (%varclient_3905 = true) {
         }
         return;
     }
-    if (map_lang ! 0 | date_minutes >= calc(date_minutes_fromruneday(5729) + 1260)) {
+    if (map_lang ! 0 | date_minutes >= calc(date_minutes_fromruneday(5843) + 720)) {
         if (%varplayer_6601 > 0) {
             while ($int5 < $int0) {
                 $int4 = 0;
@@ -139,7 +140,11 @@ if (%varclient_3905 = true) {
             case 3 :
                 if_setgraphic(struct_param($struct2, param_6387), interface_907:com_81);
         }
-        switch_int (struct_param($struct2, param_6392)) {
+        $int14 = struct_param($struct2, param_6392);
+        if ($struct2 = struct_39519) {
+            $int14 = 4;
+        }
+        switch_int ($int14) {
             case 1 :
                 ~script10593(1);
                 ~script10592(interface_907:com_13, 1);
@@ -173,10 +178,21 @@ if (%varclient_3905 = true) {
                 if_setop(1, "Click", interface_907:com_81);
                 if_setonop("script13495", interface_907:com_81);
         }
+    } else if (date_minutes >= calc(date_minutes_fromruneday(5840) + 720)) {
+        switch_int (map_lang) {
+            case 0 :
+                if_setgraphic(rs3_lobby_primary_update_bxp_nowlive_en, interface_907:com_81);
+            case 1 :
+                if_setgraphic(rs3_lobby_primary_update_bxp_nowlive_de, interface_907:com_81);
+            case 2 :
+                if_setgraphic(rs3_lobby_primary_update_bxp_nowlive_fr, interface_907:com_81);
+            case 3 :
+                if_setgraphic(rs3_lobby_primary_update_bxp_nowlive_pt, interface_907:com_81);
+        }
     } else {
         switch_int (map_lang) {
             case 0 :
-                if_setgraphic(graphic_32039, interface_907:com_81);
+                if_setgraphic(rs3_lobby_primary_update_bxp_incoming_en, interface_907:com_81);
             case 1 :
                 if_setgraphic(rs3_lobby_primary_update_bxp_incoming_de, interface_907:com_81);
             case 2 :
@@ -184,10 +200,7 @@ if (%varclient_3905 = true) {
             case 3 :
                 if_setgraphic(rs3_lobby_primary_update_bxp_incoming_pt, interface_907:com_81);
         }
-        $int13 = calc(date_minutes_fromruneday(5729) + 1140 + 44);
+        $int13 = calc(date_minutes_fromruneday(5840) + 720 - 1);
         if_setontimer("script12275($int13, date_minutes, -1, -1)", interface_906:com_1);
-        ~script10593(1);
-        if_setop(1, "Click", interface_907:com_81);
-        if_setonop("script7397(\"www\", \"twitch\")", interface_907:com_81);
     }
 }

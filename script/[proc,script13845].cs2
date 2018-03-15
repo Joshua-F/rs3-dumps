@@ -1,0 +1,115 @@
+// 13845
+[proc,script13845](component $component0, component $component1, enum $enum2, int $int3, int $int4, int $int5)
+def_int $int6 = -1;
+def_int $int7 = -1;
+def_int $int8 = 0;
+def_int $int9 = 32;
+def_int $int10 = -1;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_boolean $boolean13 = false;
+def_struct $struct14 = null;
+def_struct $struct15 = null;
+def_struct $struct16 = null;
+def_struct $struct17 = ~script13032;
+def_string $string0 = "";
+if (%varplayerbit_22875 = 1) {
+    $int9 = 22;
+}
+while ($int4 <= $int5) {
+    $int6 = enum(int, int, $enum2, $int4);
+    $int7 = ~script13857($int6);
+    $boolean13 = ~script13856($int6);
+    $int8 = ~script13859($int6, $boolean13, $int7, $int3);
+    $struct15 = ~script13415($int7);
+    if ($struct15 ! null) {
+        $struct16 = struct_param($struct15, param_5146);
+    }
+    if (%varplayerbit_22875 ! 1) {
+        if ($boolean13 = false) {
+            $int9 = 24;
+        } else {
+            $int9 = 32;
+        }
+    }
+    if ($boolean13 = false) {
+        $struct14 = enum(int, struct, enum_7716, $int6);
+        if ($int3 ! 3 & %varplayerbit_22875 ! 1) {
+            $int12 = ~script8314($int6);
+            if ($int12 = -1 | $int12 ! $int6) {
+                $int11 = 1;
+            } else {
+                $int11 = 0;
+            }
+        } else {
+            $int11 = 1;
+        }
+    } else {
+        $struct14 = $struct15;
+        if ($int7 = 4 & $struct17 ! null & struct_param($struct17, param_6285) ! null) {
+            $struct16 = struct_param($struct17, param_6285);
+        }
+        $int11 = ~script8285($int7);
+    }
+    $string0 = struct_param($struct14, param_3493);
+    if (%varplayerbit_27169 = 1 & compare(struct_param($struct14, param_4471), "") ! 0) {
+        $string0 = struct_param($struct14, param_4471);
+    }
+    if (cc_find($component0, $int4) = true) {
+        ~script723($component0, $struct16, $int8, $int4);
+    } else {
+        ~script11625($component0, null, $struct16, 0, 0, $int4, $int8);
+    }
+    if (cc_find($component0, $int4) = true) {
+        cc_setparam(param_3536, $int6);
+        cc_setopbase($string0);
+        cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
+        switch_int ($int3) {
+            case 0, 1, 2, 4 :
+                cc_setnoclickthrough(true);
+                if ($boolean13 = false) {
+                    cc_setop(1, "");
+                    cc_setonclick("script8158($int6, 1)");
+                    if (%varplayerbit_27169 = 1) {
+                        cc_setmouseovercursor(cursor_49);
+                    } else {
+                        cc_setmouseovercursor(cursor_194);
+                    }
+                } else {
+                    cc_setonop("script8146($int6)");
+                    if ($int8 = 1) {
+                        cc_setop(1, "Close");
+                    } else {
+                        cc_setop(1, "Open");
+                    }
+                    if (%varplayerbit_27169 = 0 & $int3 ! 2 & $int3 ! 1) {
+                        cc_setonmouserepeat("script8151(event_com, event_comsubid, $struct15, $int3)");
+                    }
+                }
+            case 3 :
+                cc_setonop("script2396($int6, event_com, event_comsubid)");
+                if (.cc_find($component1, $int4) = true) {
+                    .cc_setondragcomplete("script2395($int6, event_com, event_comsubid, event_com2)");
+                    .cc_setmouseovercursor(cursor_194);
+                    .cc_setdraggable(interface_567:com_7, -1);
+                    .cc_setdragdeadzone(5);
+                    .cc_setdragdeadtime(5);
+                    .cc_setdragrenderbehaviour(2);
+                }
+                $int10 = ~script2385($int6, 1);
+                if ($int10 = -1) {
+                    cc_setop(1, "Add");
+                } else {
+                    cc_setop(1, "Remove");
+                }
+        }
+    }
+    if (cc_find($component1, $int4) = false) {
+        cc_create($component1, ^iftype_graphic, $int4);
+    }
+    if (cc_find($component1, $int4) = true) {
+        cc_setsize($int9, $int9, ^setsize_abs, ^setsize_abs);
+        cc_setgraphic(~script13858($struct14, $int11, 1));
+    }
+    $int4 = calc($int4 + 1);
+}

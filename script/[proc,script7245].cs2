@@ -1,31 +1,34 @@
 // 7245
-[proc,script7245](obj $obj0)(int)
-def_int $int1 = 0;
+[proc,script7245](obj $obj0, int $int1)(int)
 def_stat $stat2 = null;
-if (oc_param($obj0, param_2827) = 1 | oc_param($obj0, param_972) > 0) {
-    $stat2 = magic;
-} else if (oc_param($obj0, param_2825) = 1) {
-    if (oc_param($obj0, param_749) = strength) {
-        $stat2 = strength;
-    } else {
-        $stat2 = attack;
-    }
-} else if (oc_param($obj0, param_2826) = 1 | oc_wearpos($obj0) = 13) {
-    $stat2 = ranged;
-} else if (oc_wearpos($obj0) ! -1) {
-    $stat2 = defence;
+switch_int ($int1) {
+    case default :
+        return(0);
+    case 3, 10 :
+        $stat2 = magic;
+    case 2, 4 :
+        $stat2 = ranged;
+    case 1 :
+        if (oc_param($obj0, param_749) = strength) {
+            $stat2 = strength;
+        } else {
+            $stat2 = attack;
+        }
+    case 9, 8, 7, 6, 5 :
+        $stat2 = defence;
 }
+def_int $int3 = 0;
 if (oc_param($obj0, param_749) = $stat2) {
-    $int1 = oc_param($obj0, param_750);
+    $int3 = oc_param($obj0, param_750);
 } else if (oc_param($obj0, param_751) = $stat2) {
-    $int1 = oc_param($obj0, param_752);
+    $int3 = oc_param($obj0, param_752);
 } else if (oc_param($obj0, param_753) = $stat2) {
-    $int1 = oc_param($obj0, param_754);
+    $int3 = oc_param($obj0, param_754);
 } else if (oc_param($obj0, param_755) = $stat2) {
-    $int1 = oc_param($obj0, param_756);
+    $int3 = oc_param($obj0, param_756);
 } else if (oc_param($obj0, param_757) = $stat2) {
-    $int1 = oc_param($obj0, param_758);
+    $int3 = oc_param($obj0, param_758);
 } else if (oc_param($obj0, param_759) = $stat2) {
-    $int1 = oc_param($obj0, param_760);
+    $int3 = oc_param($obj0, param_760);
 }
-return($int1);
+return($int3);

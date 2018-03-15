@@ -91,8 +91,6 @@ while ($int21 < 135) {
     }
     $int21 = calc($int21 + 1);
 }
-%varclient_2835 = max(0, ~script1960);
-def_int $int22 = %varclient_2835;
 switch_int ($int0) {
     case 18 :
         %varclient_3937 = %varclient_2835;
@@ -113,6 +111,8 @@ switch_int ($int0) {
     case 24 :
         %varclient_4298 = %varclient_2835;
 }
+%varclient_2835 = max(0, ~script1960);
+def_int $int22 = %varclient_2835;
 def_int $int23 = 0;
 def_int $int24 = 0;
 def_int $int25 = 0;
@@ -127,6 +127,24 @@ def_string $string5 = "";
 def_int $int28 = -1;
 def_int $int29 = if_getwidth($component3);
 $int25, $string0, $int26, $string1, $string2, $string3, $string4, $chatphrase27, $string5, $int28 = chat_gethistory_byuid($int22);
+def_int $int30 = -1;
+def_int $int31 = 0;
+if (%varplayerbit_38842 = 1 & %varclientbit_38846 = 1) {
+    if (if_find(interface_137:com_4) = true) {
+        $int30 = cc_param(param_6839);
+        while ($int22 ! -1 & $int22 ! $int30) {
+            if ($intarray0($int25) = 1 & ~script8508($int0, $int25, $string2, $int28) = 1) {
+                $int31 = calc($int31 + 1);
+            }
+            $int22 = chat_getprevuid($int22);
+            if ($int22 ! -1) {
+                $int25, $string0, $int26, $string1, $string2, $string3, $string4, $chatphrase27, $string5, $int28 = chat_gethistory_byuid($int22);
+            }
+        }
+    }
+    ~script13889($int31);
+    return;
+}
 while ($int6 < 100 & $int23 < 500) {
     if ($int25 ! -1) {
         if ($intarray0($int25) = 1 & ~script8508($int0, $int25, $string2, $int28) = 1) {

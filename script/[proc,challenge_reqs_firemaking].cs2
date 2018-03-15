@@ -1,16 +1,7 @@
 // 6769
-[proc,challenge_reqs_firemaking](int $int0, int $int1)(int)
+[proc,challenge_reqs_firemaking](int $int0)(int)
 if (stat_base(firemaking) < struct_param(enum(int, struct, enum_5520, $int0), param_2236)) {
     return(0);
-}
-if (map_members = false & $int1 = 0) {
-    switch_int ($int0) {
-        case 1, 2, 3, 4, 6 :
-            return(1);
-        case default :
-            return(0);
-    }
-    return(1);
 }
 switch_int ($int0) {
     case 5 :
@@ -65,7 +56,8 @@ switch_int ($int0) {
         if (~ql4_skill_requirements(struct_653) = false | ~ql4_skill_requirements(struct_640) = false | ~ql4_skill_requirements(struct_615) = false) {
             return(0);
         }
-    case default :
-        return(1);
+}
+if (map_members = false & ~script2391(17, $int0) = 0) {
+    return(0);
 }
 return(1);

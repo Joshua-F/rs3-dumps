@@ -1,7 +1,8 @@
 // 9742
 [proc,rand_rewards_populate]
-if_sethide(false, interface_940:com_9);
-if_sethide(true, interface_940:com_12);
+if_sethide(false, interface_940:com_179);
+if_sethide(false, interface_940:com_11);
+if_sethide(true, interface_940:com_15);
 def_int $int0 = 0;
 def_int $int1 = 0;
 def_int $int2 = 0;
@@ -16,49 +17,43 @@ if (map_members = true) {
     $enum7 = enum_3015;
 }
 if (calc(enum_getoutputcount($enum7) % 5) = 0) {
-    $int3 = calc(enum_getoutputcount($enum7) / 5 * 67);
+    $int3 = calc(enum_getoutputcount($enum7) / 5 * 58);
 } else {
-    $int3 = calc(enum_getoutputcount($enum7) / 5 * 67 + 67);
+    $int3 = calc(enum_getoutputcount($enum7) / 5 * 58 + 58);
 }
-cc_deleteall(interface_940:com_9);
-if_setscrollsize(calc(5 * 60), $int3, interface_940:com_9);
+cc_deleteall(interface_940:com_11);
+if_setscrollsize(calc(5 * 60), $int3, interface_940:com_11);
 while ($int0 < enum_getoutputcount($enum7)) {
     $struct8 = enum(int, struct, $enum7, $int0);
     $int6 = ~script10664($struct8);
-    cc_create(interface_940:com_87, ^iftype_graphic, $int4);
+    cc_create(interface_940:com_149, ^iftype_rectangle, $int4);
+    cc_setcolour(~script10495(51));
+    cc_setfill(true);
     cc_setop(1, oc_name(struct_param($struct8, param_1070)));
     cc_setonop("rand_rewards_clickinformation($int4)");
-    $int5 = $int4;
-    $int4 = calc($int4 + 1);
-    cc_setgraphic("km_shoptile,1");
-    if (stat_base(dungeoneering) < struct_param($struct8, param_1071)) {
-        cc_setcolour(^red);
-    }
-    cc_setsize(52, 55, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc($int1 * 60), calc($int2 * 67 - 1), ^setpos_abs_left, ^setpos_abs_top);
-    cc_sethide(true);
-    cc_create(interface_940:com_87, ^iftype_graphic, $int4);
-    $int4 = calc($int4 + 1);
-    cc_setgraphic("km_shoptile,0");
     if ($int6 > 0) {
+        cc_settrans(200);
         cc_setcolour(^red);
     }
-    cc_setsize(48, 52, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc($int1 * 60 + 2), calc($int2 * 67 + 1), ^setpos_abs_left, ^setpos_abs_top);
-    cc_setonmouserepeat("rand_rewards_onhover($int5)");
-    cc_setonmouseleave("rand_rewards_onexit($int5)");
-    cc_create(interface_940:com_87, ^iftype_graphic, $int4);
+    cc_setsize(52, 52, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int1 * 60 + 2), calc($int2 * 58 + 1), ^setpos_abs_left, ^setpos_abs_top);
+    if ($int6 <= 0) {
+        cc_setonmouseleave("rand_rewards_onexit($int4)");
+        cc_setonmouseover("rand_rewards_onhover($int4)");
+    }
+    $int4 = calc($int4 + 1);
+    cc_create(interface_940:com_149, ^iftype_graphic, $int4);
     $int4 = calc($int4 + 1);
     cc_setgraphic("km_shopitems,4");
     cc_setcolour(0xc80000);
     cc_setsize(12, 12, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc($int1 * 60 + 5), calc($int2 * 67 + 40), ^setpos_abs_left, ^setpos_abs_top);
-    cc_create(interface_940:com_87, ^iftype_text, $int4);
+    cc_setposition(calc($int1 * 60 + 5), calc($int2 * 58 + 40), ^setpos_abs_left, ^setpos_abs_top);
+    cc_create(interface_940:com_149, ^iftype_text, $int4);
     $int4 = calc($int4 + 1);
-    cc_setcolour(0x7592a0);
+    cc_setcolour(~script10495(12));
     cc_settextfont(graphic_17813);
     cc_settextshadow(true);
-    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     if (struct_param($struct8, param_4275) ! 0) {
         if (%varplayerbit_4290 = 0) {
             $int9 = struct_param($struct8, param_4275);
@@ -79,16 +74,16 @@ while ($int0 < enum_getoutputcount($enum7)) {
         cc_settext(~script940($int9));
     }
     cc_setsize(31, 12, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc($int1 * 60 + 18), calc($int2 * 67 + 40), ^setpos_abs_left, ^setpos_abs_top);
-    cc_create(interface_940:com_87, ^iftype_graphic, $int4);
+    cc_setposition(calc($int1 * 60 + 18), calc($int2 * 58 + 40), ^setpos_abs_left, ^setpos_abs_top);
+    cc_create(interface_940:com_149, ^iftype_graphic, $int4);
     $int4 = calc($int4 + 1);
     cc_setobject(struct_param($struct8, param_1070), -1);
-    cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc($int1 * 60 + 13), calc($int2 * 67 + 9), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int1 * 60 + 15), calc($int2 * 58 + 3), ^setpos_abs_left, ^setpos_abs_top);
     if (++$int1 >= 5) {
         $int1 = 0;
         $int2 = calc($int2 + 1);
     }
     $int0 = calc($int0 + 1);
 }
-~scrollbar_vertical(interface_940:com_11, interface_940:com_9, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical(interface_940:com_13, interface_940:com_11, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

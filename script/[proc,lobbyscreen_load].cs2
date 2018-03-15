@@ -1,6 +1,13 @@
 // 1299
-[proc,lobbyscreen_load](int $int0)
+[proc,lobbyscreen_load]
 %varclient_2835 = -1;
+if (%varclient_3496 = true | compare(substring(chat_playername_unfiltered, 0, 1), "#") = 0 & %varplayerbit_16464 ! 2) {
+    %varclient_3496 = false;
+    if_sendtofront(interface_906:com_4);
+    ~script8046;
+    if_setontimer(null, interface_906:com_0);
+    return;
+}
 if_setonvartransmit("script2354{varplayer_3184}", interface_906:com_0);
 if_setonvartransmit("lobbyscreen_launch_billing{varplayer_1745}", interface_906:com_711);
 if_setonvartransmit("script6270{varplayer_1305}", interface_906:com_715);
@@ -17,17 +24,17 @@ if (has_nxt = false & %varplayer_3079 > 0 & %varplayer_3079 < date_runeday) {
 } else {
     if_sethide(true, interface_906:com_578);
 }
-def_component $component1 = null;
+def_component $component0 = null;
 if (has_nxt = true) {
-    $component1 = interface_906:com_6;
+    $component0 = interface_906:com_6;
 } else {
-    $component1 = interface_906:com_16;
+    $component0 = interface_906:com_16;
 }
-if_sethide(false, $component1);
+if_sethide(false, $component0);
 if_setonresize("lobby_resize", interface_906:com_0);
-def_int $int2 = string_indexof_string(%varclient_2576, "@", 0);
-def_component $component3 = null;
-if ($int2 = -1) {
+def_int $int1 = string_indexof_string(%varclient_2576, "@", 0);
+def_component $component2 = null;
+if ($int1 = -1) {
     %varclient_1414 = 1;
 } else {
     %varclient_1414 = 2;
@@ -40,14 +47,14 @@ if_sethide(false, interface_906:com_36);
 ~script8288(100);
 if_setsize(742, calc(576 - 404), ^setsize_abs, ^setsize_minus, interface_906:com_103);
 ~script10028;
-$component3 = struct_param(struct_28781, param_3509);
-if_setposition(if_getx($component3), if_gety($component3), ^setpos_abs_left, ^setpos_abs_top, interface_906:com_99);
-if_setsize(if_getwidth($component3), if_getheight($component3), ^setsize_abs, ^setsize_abs, interface_906:com_99);
-~script10031(calc(3 - 1), $component3, interface_906:com_100);
-~script10031(calc(4 - 1), $component3, interface_906:com_101);
-~script10031(calc(5 - 1), $component3, interface_906:com_102);
-$component3 = struct_param(struct_28781, param_3507);
-if (cc_find($component3, 1) = true) {
+$component2 = struct_param(struct_28781, param_3509);
+if_setposition(if_getx($component2), if_gety($component2), ^setpos_abs_left, ^setpos_abs_top, interface_906:com_99);
+if_setsize(if_getwidth($component2), if_getheight($component2), ^setsize_abs, ^setsize_abs, interface_906:com_99);
+~script10031(calc(3 - 1), $component2, interface_906:com_100);
+~script10031(calc(4 - 1), $component2, interface_906:com_101);
+~script10031(calc(5 - 1), $component2, interface_906:com_102);
+$component2 = struct_param(struct_28781, param_3507);
+if (cc_find($component2, 1) = true) {
     cc_setop(1, "Logout");
     cc_setonop("lobbyscreen_leavelobby");
 }
@@ -57,7 +64,7 @@ if_setonchattransmit("lobbyscreen_chat_handler(interface_909:com_34, interface_9
 ~lobbyscreen_loginbutton_text(1);
 %varclient_2478 = "";
 %varclient_547 = 0;
-mes("Welcome to the RuneScape Lobby.");
+mes("Welcome to RuneScape.");
 if (userdetail_quickchat = true) {
     mes("Users restricted to quick-chat cannot send messages from the Lobby.");
 }
@@ -73,8 +80,3 @@ if (login_reply ! 0 & login_reply ! 2 & login_reply ! 15) {
     ~script10210(interface_906:com_131, map_world, detailget_soundvol, detailget_musicvol, detailget_bgsoundvol, detailget_speechvol, detailget_loginvol, login_reply, 2);
 }
 if_setontimer("lobbyscreen_blackout_timer(interface_906:com_720)", interface_906:com_719);
-if (%varclient_3496 = true | compare(substring(chat_playername_unfiltered, 0, 1), "#") = 0 & %varplayerbit_16464 ! 2) {
-    %varclient_3496 = false;
-    ~script8046;
-    if_setontimer(null, interface_906:com_0);
-}
