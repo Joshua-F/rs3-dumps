@@ -24922,3 +24922,148 @@ readyanim=seq_29935,seq_28835
 [bas_4198]
 readyanim=seq_31511,null
 
+// 4199
+[bas_4199]
+readyanim=seq_31574,null
+
+// 4200
+[bas_4200]
+readyanim_l=seq_31531
+readyanim_r=seq_31531
+walkanim_b=seq_31532
+walkanim_l=seq_31531
+walkanim_r=seq_31531
+readyanim=seq_31528,seq_31531
+
+// 4201
+[bas_4201]
+readyanim_l=seq_31529
+readyanim_r=seq_31529
+walkanim_b=seq_31530
+walkanim_l=seq_31529
+walkanim_r=seq_31529
+readyanim=seq_31528,seq_31529
+
+// 4202
+[bas_4202]
+readyanim_l=seq_31543
+readyanim_r=seq_31543
+readyanim=seq_31542,seq_31543
+
+// 4203
+[bas_4203]
+readyanim_l=seq_31558
+readyanim_r=seq_31558
+readyanim=seq_31557,seq_31558
+
+// 4204
+[bas_4204]
+readyanim_l=seq_31560
+readyanim_r=seq_31560
+readyanim=seq_31559,seq_31560
+
+// 4205
+[bas_4205]
+readyanim_l=seq_31564
+readyanim_r=seq_31564
+readyanim=seq_31563,seq_31564
+
+// 4206
+[bas_4206]
+readyanim_l=seq_31566
+readyanim_r=seq_31566
+readyanim=seq_31565,seq_31566
+
+// 4207
+[bas_4207]
+readyanim=seq_31615,null
+
+// 4208
+[bas_4208]
+readyanim_l=seq_31620
+readyanim_r=seq_31620
+readyanim=seq_31619,seq_31620
+
+// 4209
+[bas_4209]
+readyanim=seq_31618,null
+
+// 4210
+[bas_4210]
+readyanim=seq_21994,null
+
+// 4211
+[bas_4211]
+readyanim=seq_31592,null
+
+// 4212
+[bas_4212]
+readyanim=seq_31624,null
+
+// 4213
+[bas_4213]
+readyanim=seq_31584,null
+
+// 4214
+[bas_4214]
+readyanim=seq_31588,null
+
+// 4215
+[bas_4215]
+readyanim=seq_31591,null
+
+// 4216
+[bas_4216]
+readyanim=seq_31595,null
+
+// 4217
+[bas_4217]
+readyanim=seq_31583,null
+
+// 4218
+[bas_4218]
+readyanim=seq_31587,null
+
+// 4219
+[bas_4219]
+readyanim=seq_31626,null
+
+// 4220
+[bas_4220]
+runanim=seq_31630
+readyanim_l=seq_31629
+readyanim_r=seq_31629
+readyanim=seq_31628,seq_31629
+
+// 4221
+[bas_4221]
+runanim=seq_31636
+walkanim_b=seq_31635
+runanim_b=seq_31636
+readyanim_l=seq_31635
+readyanim_r=seq_31635
+readyanim=seq_31634,seq_31635
+
+// 4222
+[bas_4222]
+runanim=seq_31639
+walkanim_b=seq_31638
+runanim_b=seq_31639
+readyanim=seq_31637,seq_31638
+
+// 4223
+[bas_4223]
+runanim=seq_31652
+readyanim=seq_31651,seq_31651
+
+// 4224
+[bas_4224]
+readyanim_l=seq_31658
+readyanim_r=seq_31658
+walkturn_l=seq_31658
+walkturn_r=seq_31658
+walkanim_l=seq_31658
+walkanim_r=seq_31658
+runanim=seq_31657
+readyanim=seq_31655,seq_31658
+

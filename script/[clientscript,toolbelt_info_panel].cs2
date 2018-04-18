@@ -1,0 +1,41 @@
+// 14099
+[clientscript,toolbelt_info_panel](struct $struct0, obj $obj1, boolean $boolean2, int $int3)
+if ($boolean2 = false) {
+    if_settext("<oc_name($obj1)> - Not stored", interface_1944:com_8);
+} else {
+    if_settext(oc_name($obj1), interface_1944:com_8);
+}
+if_settext("Loading...", interface_1944:com_9);
+if (if_find(interface_1944:com_7) = true) {
+    cc_setobject_nonum($obj1, -1);
+    if ($boolean2 = false | map_members = false & oc_members($obj1) = 1) {
+        cc_setcolour(0x545454);
+    } else {
+        cc_setcolour(^white);
+    }
+    if (cc_param(param_6980) = $obj1) {
+        cc_setparam(param_6980, null);
+        ~script14101(interface_1944:com_19, interface_1944:com_6, 0);
+    } else {
+        cc_setparam(param_6980, $obj1);
+        ~script14101(interface_1944:com_19, interface_1944:com_6, 1);
+    }
+    if ($boolean2 = true & compare(struct_param($struct0, param_6986), "") ! 0 & (map_members = true | map_members = false & oc_members($obj1) = 0)) {
+        if_setonop(null, interface_1944:com_2);
+        if_setop(1, struct_param($struct0, param_6986), interface_1944:com_2);
+        if_setonmouseover("rs3_background_panel(event_com, struct_29006)", interface_1944:com_2);
+        if_setonmouseleave("rs3_background_panel(event_com, struct_21363)", interface_1944:com_2);
+    } else {
+        ~rs3_background_panel(interface_1944:com_2, struct_21363);
+        if_setonop(null, interface_1944:com_2);
+        if_clearops(interface_1944:com_2);
+        if_setonmouseover(null, interface_1944:com_2);
+        if_setonmouseleave(null, interface_1944:com_2);
+    }
+    if ($boolean2 = false | map_members = false & oc_members($obj1) = 1) {
+        ~rs3_background_panel(interface_1944:com_0, struct_21362);
+    } else {
+        ~rs3_background_panel(interface_1944:com_0, struct_21361);
+    }
+}
+~scrollbar_vertical_doscroll(interface_1944:com_10, interface_1944:com_15, $int3, 1);

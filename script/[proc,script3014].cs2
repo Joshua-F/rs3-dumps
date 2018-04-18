@@ -50,7 +50,6 @@ def_int $int13 = 0;
 def_string $string1 = "";
 def_string $string2 = "";
 def_string $string3 = "Latest content";
-def_int $int14 = 0;
 if (%varclient_3905 = true) {
     ~script10592(interface_907:com_12, 1);
     ~script10593(1);
@@ -104,7 +103,17 @@ if (%varclient_3905 = true) {
             $struct2 = $structarray0(random($int6));
         }
         $string1 = struct_param($struct2, param_6393);
-        $string2 = struct_param($struct2, param_6394);
+        switch_int (map_lang) {
+            case 1 :
+                $string2 = struct_param($struct2, param_6962);
+            case 2 :
+                $string2 = struct_param($struct2, param_6963);
+            case 3 :
+                $string2 = struct_param($struct2, param_6964);
+        }
+        if (string_length($string2) = 0) {
+            $string2 = struct_param($struct2, param_6394);
+        }
         if (string_length(struct_param($struct2, param_6391)) > 0) {
             $string3 = struct_param($struct2, param_6391);
         }
@@ -140,11 +149,7 @@ if (%varclient_3905 = true) {
             case 3 :
                 if_setgraphic(struct_param($struct2, param_6387), interface_907:com_81);
         }
-        $int14 = struct_param($struct2, param_6392);
-        if ($struct2 = struct_39519) {
-            $int14 = 4;
-        }
-        switch_int ($int14) {
+        switch_int (struct_param($struct2, param_6392)) {
             case 1 :
                 ~script10593(1);
                 ~script10592(interface_907:com_13, 1);
