@@ -7,7 +7,7 @@ if_setonop(null, $component0);
 if_setonclick(null, $component0);
 ~script13264(-1, 0, $int5);
 def_int $int6 = enum_getoutputcount(enum_7781);
-def_struct $structarray0($int6);
+def_struct $structarray0(max($int6, enum_getoutputcount(enum_13727)));
 def_struct $struct7 = null;
 def_struct $struct8 = null;
 def_int $int9 = 0;
@@ -17,6 +17,7 @@ def_int $int12 = 0;
 def_int $int13 = 0;
 def_string $string1 = "";
 def_string $string2 = "";
+def_int $intarray1(4);
 def_int $int14 = 0;
 if ($int4 = 1) {
     if_settext("Solomon's Store", $component1);
@@ -47,13 +48,167 @@ if ($int4 = 1) {
         $int10 = calc($int10 + 1);
     }
     if ($int11 = 0) {
-        $struct7 = enum(int, struct, enum_7781, -1);
+        $int6 = enum_getoutputcount(enum_13727);
+        $int10 = 0;
+        while ($int10 < $int6) {
+            $int9 = 0;
+            $struct7 = enum(int, struct, enum_13727, $int10);
+            switch_struct ($struct7) {
+                case struct_39676 :
+                    if (%varplayerbit_27128 = 1) {
+                        $int9 = 1;
+                    }
+                case struct_39677 :
+                    if (%varplayerbit_31201 = 1 & %varplayerbit_31202 = 1 & %varplayerbit_31203 = 1 & %varplayerbit_31204 = 1) {
+                        $int9 = 1;
+                    }
+                case struct_39678 :
+                    if (%varplayerbit_33360 = 1) {
+                        $int9 = 1;
+                    }
+                case struct_39679 :
+                    if (%varplayerbit_33770 = 1 & %varplayerbit_33771 = 1 & %varplayerbit_33772 = 1 & %varplayerbit_33773 = 1) {
+                        $int9 = 1;
+                    }
+                case struct_39680 :
+                    if (%varplayerbit_33695 = 1) {
+                        $int9 = 1;
+                    }
+                case struct_39681 :
+                    if (%varplayerbit_31333 = 1) {
+                        $int9 = 1;
+                    }
+                case struct_39682 :
+                    if (%varplayerbit_34852 = 1) {
+                        $int9 = 1;
+                    }
+                case struct_39683 :
+                    if (%varplayerbit_30675 = 1) {
+                        $int9 = 1;
+                    }
+                case struct_39684 :
+                    if (%varplayerbit_31332 = 1) {
+                        $int9 = 1;
+                    }
+                case struct_39685 :
+                    if (%varplayerbit_32669 = 1 & %varplayerbit_32670 = 1 & %varplayerbit_32671 = 1) {
+                        $int9 = 1;
+                    }
+                case struct_39686 :
+                    if (%varplayerbit_34330 = 1) {
+                        $int9 = 1;
+                    }
+                case struct_39687 :
+                    if (%varplayerbit_30677 = 1) {
+                        $int9 = 1;
+                    }
+                case struct_39688 :
+                    if (%varplayerbit_26916 = 1) {
+                        $int9 = 1;
+                    }
+                case struct_39689 :
+                    if (%varplayerbit_29603 = 1) {
+                        $int9 = 1;
+                    }
+                case struct_39690 :
+                    if (%varplayerbit_33550 = 1) {
+                        $int9 = 1;
+                    }
+            }
+            if ($int9 = 0) {
+                $structarray0($int11) = $struct7;
+                $int11 = calc($int11 + 1);
+            }
+            $int10 = calc($int10 + 1);
+        }
+        if ($int11 = 0) {
+            $struct7 = enum(int, struct, enum_13727, -1);
+        } else {
+            $struct7 = $structarray0(calc(%varplayer_6601 % $int11));
+        }
     } else {
         $struct7 = $structarray0(random($int11));
     }
     $string1 = struct_param($struct7, param_6393);
-    $string2 = struct_param($struct7, param_6394);
+    switch_int (map_lang) {
+        case 1 :
+            $string2 = struct_param($struct7, param_6962);
+        case 2 :
+            $string2 = struct_param($struct7, param_6963);
+        case 3 :
+            $string2 = struct_param($struct7, param_6964);
+    }
+    if (string_length($string2) = 0) {
+        $string2 = struct_param($struct7, param_6394);
+    }
     $string0 = struct_param($struct7, param_6391);
+    $int11 = 0;
+    switch_struct ($struct7) {
+        case struct_39677 :
+            if (%varplayerbit_31201 = 0) {
+                $intarray1($int11++) = 1;
+            }
+            if (%varplayerbit_31202 = 0) {
+                $intarray1($int11++) = 2;
+            }
+            if (%varplayerbit_31203 = 0) {
+                $intarray1($int11++) = 3;
+            }
+            if (%varplayerbit_31204 = 0) {
+                $intarray1($int11++) = 4;
+            }
+            switch_int ($intarray1(random($int11))) {
+                case 1 :
+                    $string2 = "index#category/Packs/package/OrnateLightWeaponPack";
+                case 2 :
+                    $string2 = "index#category/Packs/package/OrnateHeavyWeaponPack";
+                case 3 :
+                    $string2 = "index#category/Packs/package/OrnateMagicWeaponPack";
+                case 4 :
+                    $string2 = "index#category/Packs/package/OrnateRangedWeaponPack";
+            }
+        case struct_39679 :
+            if (%varplayerbit_33770 = 0) {
+                $intarray1($int11++) = 1;
+            }
+            if (%varplayerbit_33771 = 0) {
+                $intarray1($int11++) = 2;
+            }
+            if (%varplayerbit_33772 = 0) {
+                $intarray1($int11++) = 3;
+            }
+            if (%varplayerbit_33773 = 0) {
+                $intarray1($int11++) = 4;
+            }
+            switch_int ($intarray1(random($int11))) {
+                case 1 :
+                    $string2 = "index#category/Packs/package/FaeLightWeaponPack";
+                case 2 :
+                    $string2 = "index#category/Packs/package/FaeHeavyWeaponPack";
+                case 3 :
+                    $string2 = "index#category/Packs/package/FaeMagicWeaponPack";
+                case 4 :
+                    $string2 = "index#category/Packs/package/FaeRangedWeaponPack";
+            }
+        case struct_39685 :
+            if (%varplayerbit_32669 = 0) {
+                $intarray1($int11++) = 1;
+            }
+            if (%varplayerbit_32670 = 0) {
+                $intarray1($int11++) = 2;
+            }
+            if (%varplayerbit_32671 = 0) {
+                $intarray1($int11++) = 3;
+            }
+            switch_int ($intarray1(random($int11))) {
+                case 1 :
+                    $string2 = "index#category/Packs/package/ManticoreMeleeWeaponPack";
+                case 2 :
+                    $string2 = "index#category/Packs/package/ManticoreMagicWeaponPack";
+                case 3 :
+                    $string2 = "index#category/Packs/package/ManticoreRangedWeaponPack";
+            }
+    }
     switch_int (map_lang) {
         case 0 :
             if_setgraphic(struct_param($struct7, param_6381), $component0);

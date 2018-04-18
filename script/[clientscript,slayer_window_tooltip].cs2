@@ -1,14 +1,46 @@
 // 11607
-[clientscript,slayer_window_tooltip](component $component0)
-def_int $int1 = 0;
+[clientscript,slayer_window_tooltip](component $component0, int $int1)
 def_int $int2 = 0;
+def_int $int3 = 0;
 def_string $string0 = "";
-$int1, $int2, $string0 = ~script11608;
-if ($int1 = 0) {
-    if (compare(%varclient_4967, "No task.") = 0) {
-        ~script8800("You need to speak to a slayer master for a new assignment.", $component0, -1);
+def_int $int4 = -1;
+def_string $string1 = %varclient_4967;
+def_string $string2 = "";
+$int2, $int3, $string0 = ~script11608;
+if ($int2 = 0) {
+    if ($int1 = 1) {
+        $string1 = ~script14060;
+    }
+    if (compare($string1, "No task.") = 0) {
+        if ($int1 = 0) {
+            ~script8800("You need to speak to a slayer master for a new assignment.", $component0, -1);
+        } else {
+            ~script8800("You need to speak to Death for a new assignment.", $component0, -1);
+        }
     } else {
-        ~script8800("<tostring(%varplayer_183)> <%varclient_4967> left.", $component0, -1);
+        if (%varplayerbit_36140 >= 45 & stat(slayer) >= 99) {
+            switch_int (%varplayer_185) {
+                case 152 :
+                    $string2 = ~script6425(enum_13751);
+                case 153 :
+                    $string2 = ~script6425(enum_13752);
+                case 139 :
+                    $string2 = ~script6425(enum_13753);
+                case 154 :
+                    $string2 = ~script6425(enum_13754);
+                case 160 :
+                    $string2 = ~script6425(enum_13755);
+                case default :
+                    if (~slayer_codex_check_monster(calc(%varplayer_185 - 1)) = ^false) {
+                        $string2 = "You have not yet claimed this creature's soul.";
+                    }
+            }
+        }
+        if ($int1 = 0) {
+            ~script8800("<tostring(%varplayer_183)> <$string1> left. <$string2>", $component0, -1);
+        } else {
+            ~script8800("<tostring(%varplayerbit_22902)> <$string1> left.", $component0, -1);
+        }
     }
 } else {
     ~script8800($string0, $component0, -1);

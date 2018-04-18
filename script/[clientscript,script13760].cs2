@@ -1,12 +1,11 @@
 // 13760
-[clientscript,script13760](int $int0, int $int1, int $int2, int $int3, graphic $graphic4, string $string0)
+[clientscript,script13760](int $int0, int $int1, int $int2, graphic $graphic3, int $int4, string $string0)
 def_int $int5 = 0;
 def_int $int6 = 0;
+def_string $string1 = "This question requires <tostring($int4)> to pass";
 if ($int2 ! 0) {
     $int5 = scale($int1, $int2, 100);
-}
-if ($int3 ! 0) {
-    $int6 = scale($int1, $int3, 100);
+    $int6 = $int5;
 }
 cc_create(interface_1029:com_205, ^iftype_text, if_getnextsubid(interface_1029:com_205));
 cc_settext($string0);
@@ -15,7 +14,7 @@ cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_setposition(55, $int0, ^setpos_abs_left, ^setpos_abs_top);
 cc_settextfont(graphic_17814);
 cc_setcolour(^white);
-cc_setonmouserepeat("script13761($graphic4, calc(if_getnextsubid(interface_1029:com_205) - 1), interface_1029:com_205)");
+cc_setonmouserepeat("script13761($graphic3, calc(if_getnextsubid(interface_1029:com_205) - 1), interface_1029:com_205)");
 cc_setonmouseleave("script13762(calc(if_getnextsubid(interface_1029:com_205) - 1), interface_1029:com_205)");
 cc_create(interface_1029:com_205, ^iftype_text, if_getnextsubid(interface_1029:com_205));
 cc_settext("<tostring($int5)>%");
@@ -24,13 +23,22 @@ cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_setposition(5, $int0, ^setpos_abs_left, ^setpos_abs_top);
 cc_settextfont(graphic_17814);
 cc_setcolour(^white);
-cc_create(interface_1029:com_4, ^iftype_graphic, if_getnextsubid(interface_1029:com_4));
+cc_create(interface_1029:com_4, ^iftype_rectangle, if_getnextsubid(interface_1029:com_4));
 cc_setgraphic(quest_progress_bar_green_tile);
-cc_setsize(calc(5 * $int6), 15, ^setsize_abs, ^setsize_abs);
+cc_setcolour(0x2c6f0a);
+cc_setfill(true);
+cc_setsize(calc(6 * $int6), 15, ^setsize_abs, ^setsize_abs);
 cc_setposition(55, calc($int0 + 27), ^setpos_abs_left, ^setpos_abs_top);
+if (string_indexof_string($string0, "No", 0) ! 0 & $int4 ! 0) {
+    cc_create(interface_1029:com_4, ^iftype_rectangle, if_getnextsubid(interface_1029:com_4));
+    cc_setcolour(^white);
+    cc_setsize(2, 15, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc(55 + 6 * $int4), calc($int0 + 27), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setonmouserepeat("script8799($string1, interface_1029:com_4, if_getnextsubid(interface_1029:com_4))");
+}
 cc_create(interface_1029:com_4, ^iftype_rectangle, if_getnextsubid(interface_1029:com_4));
 cc_setcolour(~script10495(0));
-cc_setsize(500, 15, ^setsize_abs, ^setsize_abs);
+cc_setsize(600, 15, ^setsize_abs, ^setsize_abs);
 cc_setposition(55, calc($int0 + 27), ^setpos_abs_left, ^setpos_abs_top);
-cc_setonmouserepeat("script13761($graphic4, 0, null)");
+cc_setonmouserepeat("script13761($graphic3, 0, null)");
 cc_setonmouseleave("script13762(0, null)");

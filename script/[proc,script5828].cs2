@@ -660,7 +660,7 @@ if (oc_category($obj0) = category_3455) {
                 $string2 = "<col=00ff00>";
             }
             $int49 = ~script7235("Item Charge: <$string2><$string1>%", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
-        } else if (oc_param($obj0, param_3385) >= 1 & oc_param($obj0, param_1324) = 1) {
+        } else if (oc_param($obj0, param_3385) >= 1 & oc_param($obj0, param_1324) = 1 & oc_param($obj0, param_5527) = null) {
             $int17 = ~script670(%varclient_5121, %varclient_5122, $obj0);
             if ($int17 = 0) {
                 $int17 = 1000;
@@ -688,32 +688,23 @@ if (oc_category($obj0) = category_3455) {
                 $string2 = "<col=00ff00>";
             }
             $int49 = ~script7235("Item Charge: <$string2><$string1>%", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
-        } else if (oc_param($obj0, param_5771) >= 1 & oc_param($obj0, param_6880) = 0 | $obj0 = obj_24338 & oc_param($obj0, param_1324) = 1) {
-            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_15190);
-            $int17 = calc(1000 - scale($int17, 6000, 100));
-            if ($int17 = 0) {
-                $int17 = 1;
-            }
-            $string1 = tostring(calc($int17 / 10));
-            $string1 = append($string1, ".<tostring(calc($int17 % 10))>");
-            $string2 = "<col=ffffff>";
-            if ($int17 <= 250) {
-                $string2 = "<col=ff0000>";
-            } else if ($int17 <= 650) {
-                $string2 = "<col=ffa500>";
+        } else if (oc_param($obj0, param_1324) = 1 & oc_param($obj0, param_6880) = 0 & oc_param($obj0, param_5527) = null) {
+            if (oc_param($obj0, param_5777) ! null & oc_param($obj0, param_5778) ! null) {
+                if (oc_wearpos($obj0) = 3) {
+                    $int17 = scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_507), 3000, 1000);
+                } else {
+                    $int17 = scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_507), 35000, 1000);
+                }
+            } else if (oc_param($obj0, param_3112) = 1) {
+                $int17 = min(1000, scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_17233), calc(oc_param($obj0, param_3109) / 10), 100));
+            } else if ($obj0 = obj_24338) {
+                $int17 = calc(1000 - scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_16238), 6000, 100));
             } else {
-                $string2 = "<col=00ff00>";
+                $int17 = calc(1000 - scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_15190), 6000, 100));
             }
-            $int49 = ~script7235("Item Charge: <$string2><$string1>%", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
-        } else if (oc_param($obj0, param_3112) >= 1 & oc_param($obj0, param_1324) = 1) {
-            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_17233);
-            $int17 = min(1000, scale($int17, calc(oc_param($obj0, param_3109) / 10), 100));
-            if ($int17 = 0) {
-                $int17 = 1;
-            }
+            $int17 = max(1, $int17);
             $string1 = tostring(calc($int17 / 10));
             $string1 = append($string1, ".<tostring(calc($int17 % 10))>");
-            $string2 = "<col=ffffff>";
             if ($int17 <= 250) {
                 $string2 = "<col=ff0000>";
             } else if ($int17 <= 650) {
@@ -823,6 +814,12 @@ if (oc_category($obj0) = category_3455) {
             $int36 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_16523);
             $int49 = ~script7235("Essence stored: <tostring($int17)>/18", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
             $int49 = ~script7235("Charges remaining: <tostring($int36)>/756", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if ($obj0 = obj_21536) {
+            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_5129);
+            $int49 = ~script7235("Charges remaining: <tostring($int17)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if ($obj0 = obj_42519) {
+            $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40136);
+            $int49 = ~script7235("Doses remaining: <tostring_localised($int17, true)>/<tostring_localised(2000, true)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
         }
     }
 } else if (oc_category($obj0) = category_3567) {

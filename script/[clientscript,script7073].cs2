@@ -93,8 +93,6 @@ if_sethide(true, interface_1848:com_27);
 if_sethide(true, interface_1848:com_24);
 if_sethide(true, interface_1848:com_21);
 if_sethide(true, interface_1848:com_18);
-~script3374(1009);
-~script8808;
 def_int $int3 = 0;
 def_int $int4 = 0;
 def_int $int5 = 0;
@@ -110,7 +108,7 @@ def_obj $obj12 = null;
 def_graphic $graphic13 = null;
 def_int $int14 = 0;
 def_int $int15 = 0;
-while ($int5 < 298 & $int8 < 30) {
+while ($int5 < 300 & $int8 < 30) {
     $obj12 = null;
     $string1 = "";
     $int10 = 0;
@@ -2285,6 +2283,18 @@ while ($int5 < 298 & $int8 < 30) {
                 $struct7 = struct_39440;
                 $int3 = %varclient_6383;
             }
+        case 298 :
+            if (%varplayer_7845 > 0) {
+                $int9 = 0;
+                $int6 = 1;
+                $struct7 = struct_39571;
+            }
+        case 299 :
+            if (%varplayer_7845 < 0) {
+                $int9 = 1;
+                $int6 = 1;
+                $struct7 = struct_39572;
+            }
     }
     if ($int6 = 1) {
         if ($int9 = 1) {
@@ -2332,6 +2342,10 @@ while ($int5 < 298 & $int8 < 30) {
         $string0 = struct_param($struct7, param_2794);
         if (compare(struct_param($struct7, param_2795), "") ! 0) {
             $string0 = append($string0, "<br><struct_param($struct7, param_2795)>");
+        }
+        if ($struct7 = struct_28639) {
+            $string0 = "<oc_name(inv_getobj(inv_94, 14))> : ";
+            $string0 = append($string0, struct_param(enum(obj, struct, enum_13430, inv_getobj(inv_94, 14)), param_1931));
         }
         if (compare($string1, "") ! 0) {
             $string0 = append($string0, $string1);
@@ -2446,6 +2460,10 @@ while ($int5 < 298 & $int8 < 30) {
                 $int14 = %varplayerbit_38967;
             case struct_39440 :
                 $int14 = %varplayerbit_39880;
+            case struct_39571 :
+                $int14 = min(4, %varplayer_7845);
+            case struct_39572 :
+                $int14 = calc(-1 * max(-4, %varplayer_7845));
         }
         if ($int14 > 0) {
             if ($int3 > clientclock) {
