@@ -4,35 +4,39 @@ def_string $string0 = "World Map";
 def_graphic $graphic1 = null;
 def_graphic $graphic2 = null;
 $graphic1, $graphic2 = ~script789(%varplayerbit_11297);
-if_setgraphic($graphic1, $component0);
-if_setonmouseover("graphic_swapper(event_com, $graphic2)", $component0);
-if_setonmouseleave("graphic_swapper(event_com, $graphic1)", $component0);
-if_clearops($component0);
-if (%varplayerbit_11297 = 2) {
-    if_setop(1, "Citadel Information", $component0);
-    $string0 = "Citadel Information";
-    if_setop(4, "Gaze", $component0);
-    if_setop(5, "Visualise", $component0);
-} else if (%varplayerbit_11297 = 1) {
-    if (%varplayerbit_5548 > 0) {
-        if_setop(1, "Factory Layout", $component0);
-        $string0 = "Factory Layout";
-    } else if (%varplayerbit_17945 = 1) {
-        if_setop(1, "Sinkhole Map", $component0);
-        $string0 = "Sinkhole Map";
+if (if_find($component0) = true) {
+    cc_clearops;
+    if (%varplayerbit_11297 = 2) {
+        cc_setop(1, "Citadel Information");
+        $string0 = "Citadel Information";
+        cc_setop(4, "Gaze");
+        cc_setop(5, "Visualise");
+    } else if (%varplayerbit_11297 = 1) {
+        if (%varplayerbit_5548 > 0) {
+            cc_setop(1, "Factory Layout");
+            $string0 = "Factory Layout";
+        } else if (%varplayerbit_17945 = 1) {
+            cc_setop(1, "Sinkhole Map");
+            $string0 = "Sinkhole Map";
+        } else {
+            cc_setop(1, "Daemonheim Map");
+            $string0 = "Daemonheim Map";
+            cc_setop(4, "Freecam");
+            cc_setop(5, "Skybox/Filters");
+        }
     } else {
-        if_setop(1, "Daemonheim Map", $component0);
-        $string0 = "Daemonheim Map";
-        if_setop(4, "Freecam", $component0);
-        if_setop(5, "Skybox/Filters", $component0);
+        cc_setop(1, "World Map");
+        if (%varplayer_2807 ! null & %varplayer_2807 ! 0_0_0_0_0) {
+            cc_setop(2, "Clear your marker");
+        }
+        cc_setop(3, "Open World Select");
+        cc_setop(4, "Freecam");
+        cc_setop(5, "Skybox/Filters");
     }
-} else {
-    if_setop(1, "World Map", $component0);
-    if (%varplayer_2807 ! null & %varplayer_2807 ! 0_0_0_0_0) {
-        if_setop(2, "Clear your marker", $component0);
+    if (%varplayerbit_38842 = 0) {
+        cc_setgraphic($graphic1);
+        cc_setonmouseover("graphic_swapper(event_com, $graphic2)");
+        cc_setonmouseleave("graphic_swapper(event_com, $graphic1)");
+        cc_setonmouserepeat("script8799($string0, event_com, -1)");
     }
-    if_setop(3, "Open World Select", $component0);
-    if_setop(4, "Freecam", $component0);
-    if_setop(5, "Skybox/Filters", $component0);
 }
-if_setonmouserepeat("script8799($string0, event_com, -1)", $component0);

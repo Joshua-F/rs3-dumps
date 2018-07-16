@@ -17,29 +17,70 @@ def_int $int9 = 4;
 def_int $int10 = 4;
 def_int $int11 = 4;
 def_int $int12 = 4;
+def_int $int13 = 1;
+if ($enum0 = enum_7704) {
+    $int13 = 2;
+}
+def_int $int14 = calc($int4 / $int13);
+if (calc($int4 % $int13) > 0) {
+    $int14 = calc($int14 + 1);
+}
 if (%varplayerbit_22875 = 1) {
     $int6 = 30;
     $int7 = 37;
     $int8 = 4;
     $int9 = 7;
-    if ($int1 ! 0 & $int1 ! 1) {
-        $int11 = 0;
-    } else {
-        $int11 = 3;
-    }
+    $int11 = 0;
     $int12 = 0;
     $int10 = 0;
 }
-def_int $int13 = $int11;
+if ($int1 = 0) {
+    $int12 = calc($int12 + ($int14 - 1) * $int7);
+} else if ($int1 = 3) {
+    $int11 = calc($int11 + ($int14 - 1) * $int6);
+}
+def_int $int15 = 0;
+def_int $int16 = $int11;
+def_int $int17 = $int12;
 while ($int2 < $int4) {
     if (cc_find(interface_1432:com_5, $int2) = true & .cc_find(interface_1432:com_6, $int2) = true) {
-        cc_setposition($int13, $int12, ^setpos_abs_left, ^setpos_abs_top);
-        .cc_setposition(calc($int13 + $int8), calc($int12 + $int9), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setposition(calc($int11 + $int8), calc($int12 + $int9), ^setpos_abs_left, ^setpos_abs_top);
         .cc_sethide(false);
-        $int13 = calc($int13 + $int6);
-        if (calc($int13 + $int6) > $int5) {
-            $int13 = $int11;
-            $int12 = calc($int12 + $int7);
+        $int15 = calc($int15 + 1);
+        switch_int ($int1) {
+            case 0 :
+                if ($int15 >= $int13) {
+                    $int12 = calc($int12 - $int7);
+                    $int11 = $int16;
+                    $int15 = 0;
+                } else {
+                    $int11 = calc($int11 + $int6);
+                }
+            case 3 :
+                if ($int15 >= $int13) {
+                    $int11 = calc($int11 - $int6);
+                    $int12 = $int17;
+                    $int15 = 0;
+                } else {
+                    $int12 = calc($int12 + $int7);
+                }
+            case 1 :
+                if ($int15 >= $int13) {
+                    $int12 = calc($int12 + $int7);
+                    $int11 = $int16;
+                    $int15 = 0;
+                } else {
+                    $int11 = calc($int11 + $int6);
+                }
+            case 2 :
+                if ($int15 >= $int13) {
+                    $int11 = calc($int11 + $int6);
+                    $int12 = $int17;
+                    $int15 = 0;
+                } else {
+                    $int12 = calc($int12 + $int7);
+                }
         }
     }
     $int2 = calc($int2 + 1);

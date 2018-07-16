@@ -1,34 +1,34 @@
 // 9566
-[proc,script9566](string $string0, int $int0, int $int1, int $int2, int $int3, component $component4, int $int5, fontmetrics $fontmetrics6, int $rgb7, int $int8)
+[proc,script9566](string $string0, int $int0, int $int1, int $int2, int $int3, component $component4, int $int5, fontmetrics $fontmetrics6, int $rgb7, int $int8, int $int9)
 if (~tooltip_time($int3) = false) {
     return;
 }
-def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = 0;
 def_int $int13 = 0;
 def_int $int14 = 0;
+def_int $int15 = 0;
 ~script6211($component4, $int5);
-def_component $component15 = ~script10074;
-def_component $component16 = ~script10075;
-def_component $component17 = ~script10076;
-def_int $int18 = 0;
+def_component $component16 = ~script10074;
+def_component $component17 = ~script10075;
+def_component $component18 = ~script10076;
+def_int $int19 = 0;
 if (%varclient_2 ! 1 | $int8 = 1) {
-    $int2 = min($int2, if_getwidth($component15));
-    if_opensubclient($component16, interface_1486);
+    $int2 = min($int2, ~script14195($component16));
+    if_opensubclient($component17, interface_1486);
     if_setsize(0, 0, ^setsize_abs, ^setsize_abs, interface_1486:com_9);
-    if_setparam_int(param_4145, -1, $component17);
+    if_setparam_int(param_4145, -1, $component18);
     if_sethide(true, interface_1486:com_22);
     cc_deleteall(interface_1486:com_22);
     if_sethide(true, interface_1486:com_23);
     if_settext(null, interface_1486:com_23);
-    if_sethide(true, interface_1477:com_819);
+    if_sethide(true, interface_1477:com_829);
     if ($int1 ! -1) {
-        if_setparam_int(param_4145, $int1, $component17);
+        if_setparam_int(param_4145, $int1, $component18);
         if_sethide(false, interface_1486:com_22);
         if_setsize(0, 0, ^setsize_abs, ^setsize_abs, interface_1486:com_22);
-        if (cc_find($component17, 0) = true) {
+        if (cc_find($component18, 0) = true) {
             switch_int ($int1) {
                 case 0 :
                     ~worldmap_elements_quest_tooltip;
@@ -37,8 +37,8 @@ if (%varclient_2 ! 1 | $int8 = 1) {
                 case 2 :
                     ~lobby_world_tooltip;
                 case 3, 4 :
-                    ~rs3_item_tooltip;
-                    $int18 = 1;
+                    ~rs3_item_tooltip($string0);
+                    $int19 = 1;
                 case 5 :
                     ~cheevo_tooltip;
                 case 6 :
@@ -58,23 +58,40 @@ if (%varclient_2 ! 1 | $int8 = 1) {
         ~script8808;
         return;
     }
-    $int11 = if_getwidth(interface_1486:com_9);
-    $int12 = if_getheight(interface_1486:com_9);
-    if_setsize(calc($int11 + 5 * 2), calc($int12 + 5 * 2), ^setsize_abs, ^setsize_abs, interface_1486:com_9);
+    $int12 = if_getwidth(interface_1486:com_9);
+    $int13 = if_getheight(interface_1486:com_9);
+    if_setsize(calc($int12 + 5 * 2), calc($int13 + 5 * 2), ^setsize_abs, ^setsize_abs, interface_1486:com_9);
     %varclient_2 = 1;
 }
-$int11 = if_getwidth(interface_1486:com_9);
-$int12 = if_getheight(interface_1486:com_9);
-$int9, $int10, $int13, $int14 = ~script12613($component4, $int5);
-if (calc($int10 - ($int12 + 2)) >= 0) {
-    $int10 = calc($int10 - ($int12 + 2));
-} else {
-    $int10 = calc($int10 + $int14 + 2);
+$int12 = if_getwidth(interface_1486:com_9);
+$int13 = if_getheight(interface_1486:com_9);
+$int10, $int11, $int14, $int15 = ~script12613($component4, $int5);
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_int $int22 = if_getwidth($component16);
+def_int $int23 = if_getheight($component16);
+if (%varplayerbit_38842 = 1 & %varclient_6403 ! 0) {
+    $int20, $int21, $int22, $int23 = unknown_command_15;
+    $int22 = calc($int22 + $int20);
+    $int23 = calc($int23 + $int21);
 }
-$int9 = calc($int9 + $int13 / 2 - $int11 / 2);
-$int9 = max($int9, 0);
-$int9 = min($int9, calc(if_getwidth($component15) - $int11));
-if_setposition($int9, $int10, ^setpos_abs_left, ^setpos_abs_top, interface_1486:com_9);
-if ($int18 = 1 & if_find(interface_1486:com_9) = true & .if_find(interface_1477:com_819) = true) {
+def_int $int24 = calc($int11 - ($int13 + 2));
+def_int $int25 = $int10;
+if ($int24 < $int21 | $int9 = 1) {
+    $int24 = calc($int11 + $int15 + 2);
+}
+if ($int24 < $int21 | $int24 < $int11 & calc($int24 + $int13) > $int11 | $int24 >= $int11 & calc($int24 + $int13) > $int23) {
+    $int25 = calc($int10 - ($int12 + 2));
+    if ($int25 < $int20) {
+        $int25 = calc($int10 + $int14 + 2);
+    }
+    $int24 = calc($int11 + $int15 / 2 - $int13 / 2);
+    $int24 = min(max($int24, $int21), calc($int23 - $int13));
+} else {
+    $int25 = calc($int10 + $int14 / 2 - $int12 / 2);
+    $int25 = min(max($int25, $int20), calc($int22 - $int12));
+}
+if_setposition($int25, $int24, ^setpos_abs_left, ^setpos_abs_top, interface_1486:com_9);
+if ($int19 = 1 & if_find(interface_1486:com_9) = true & .if_find(interface_1477:com_829) = true) {
     .cc_setposition(calc(cc_getx + cc_getwidth / 2 - .cc_getwidth / 2), calc(cc_gety + cc_getheight - .cc_getheight - 5), ^setpos_abs_left, ^setpos_abs_top);
 }

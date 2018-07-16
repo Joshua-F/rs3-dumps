@@ -682,6 +682,8 @@ while ($int18 < inv_size($inv2)) {
                             if (oc_param($obj19, param_2091) = false | compare(oc_param($obj19, param_528), "Remove") = 0 | compare(oc_param($obj19, param_529), "Remove") = 0 | compare(oc_param($obj19, param_530), "Remove") = 0 | compare(oc_param($obj19, param_531), "Remove") = 0 | compare(oc_param($obj19, param_1211), "Remove") = 0 | compare(oc_param($obj19, param_6712), "Remove") = 0 | compare(oc_param($obj19, param_6713), "Remove") = 0 | compare(oc_param($obj19, param_6714), "Remove") = 0) {
                                 cc_setop(1, "Remove to bank");
                                 cc_setop(7, "Remove to inventory");
+                            } else if (oc_category($obj19) = category_2267) {
+                                cc_setop(1, "Deactivate");
                             }
                             if (oc_param($obj19, param_4594) = 1) {
                                 cc_setop(2, "Fill from bank");
@@ -716,35 +718,35 @@ while ($int18 < inv_size($inv2)) {
                                 if (oc_param($obj19, param_2091) = false) {
                                     cc_setop(1, "Remove");
                                 }
-                                $string1 = oc_param($obj19, param_528);
+                                $string1 = ~script3290(1, $obj19);
                                 if (string_length($string1) > 0) {
                                     cc_setop(2, $string1);
                                 }
-                                $string1 = oc_param($obj19, param_529);
+                                $string1 = ~script3290(2, $obj19);
                                 if (string_length($string1) > 0) {
                                     cc_setop(3, $string1);
                                 }
-                                $string1 = oc_param($obj19, param_530);
+                                $string1 = ~script3290(3, $obj19);
                                 if (string_length($string1) > 0) {
                                     cc_setop(4, $string1);
                                 }
-                                $string1 = oc_param($obj19, param_531);
+                                $string1 = ~script3290(4, $obj19);
                                 if (string_length($string1) > 0) {
                                     cc_setop(5, $string1);
                                 }
-                                $string1 = oc_param($obj19, param_1211);
+                                $string1 = ~script3290(5, $obj19);
                                 if (string_length($string1) > 0) {
                                     cc_setop(6, $string1);
                                 }
-                                $string1 = oc_param($obj19, param_6712);
+                                $string1 = ~script3290(6, $obj19);
                                 if (string_length($string1) > 0) {
                                     cc_setop(7, $string1);
                                 }
-                                $string1 = oc_param($obj19, param_6713);
+                                $string1 = ~script3290(7, $obj19);
                                 if (string_length($string1) > 0) {
                                     cc_setop(8, $string1);
                                 }
-                                $string1 = oc_param($obj19, param_6714);
+                                $string1 = ~script3290(8, $obj19);
                                 if (string_length($string1) > 0) {
                                     cc_setop(9, $string1);
                                 }
@@ -832,7 +834,7 @@ while ($int18 < inv_size($inv2)) {
                                                 cc_setgraphic(rs3_icon_slot_owned);
                                                 $int49 = setbit($int49, 2);
                                             }
-                                        } else if (~script13109($int18) = true) {
+                                        } else if (~script13109($int18) = true & ~script6488($struct48) = 0) {
                                             cc_setparam(param_4414, $struct48);
                                             cc_setop(6, "Purchase");
                                             $int49 = clearbit($int49, 1);
@@ -912,7 +914,7 @@ while ($int18 < inv_size($inv2)) {
                                                 cc_setgraphic(rs3_icon_slot_owned);
                                                 $int49 = setbit($int49, 2);
                                             }
-                                        } else if (~script13109($int18) = true) {
+                                        } else if (~script13109($int18) = true & ~script6488($struct48) = 0) {
                                             cc_setparam(param_4414, $struct48);
                                             cc_setop(6, "Purchase");
                                             $int49 = clearbit($int49, 1);

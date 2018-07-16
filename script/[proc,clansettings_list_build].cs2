@@ -1,71 +1,66 @@
 // 4301
 [proc,clansettings_list_build]
-def_component $component0 = interface_1096:com_44;
-def_component $component1 = interface_1096:com_45;
-def_component $component2 = interface_1096:com_46;
-def_component $component3 = interface_1096:com_47;
-def_int $int4 = 71827538;
-def_int $int5 = 71827539;
-def_component $component6 = interface_1096:com_345;
-def_int $int7 = 218;
-def_int $int8 = calc(16384 / 2);
-def_int $int9 = 3;
-def_int $int10 = 4;
-def_int $int11 = 200;
-def_int $int12 = 3;
-def_int $int13 = 16;
-def_int $int14 = 23;
-def_int $int15 = 177;
+def_component $component0 = interface_1096:com_80;
+def_component $component1 = interface_1096:com_81;
+def_component $component2 = interface_1096:com_82;
+def_component $component3 = interface_1096:com_83;
+def_int $int4 = 71827558;
+def_component $component5 = interface_1096:com_103;
+def_component $component6 = interface_1096:com_130;
+def_string $string0 = "";
+def_string $string1 = "";
+def_int $int7 = 15;
+def_int $int8 = 15;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = activeclansettings_getaffinedcount;
+def_int $int14 = 25;
+def_int $int15 = 4;
 def_int $int16 = 4;
-def_int $int17 = 157;
-def_int $int18 = 4;
-def_int $int19 = 15;
-def_int $int20 = 15;
+def_int $int17 = 4;
+def_int $int18 = 9;
+def_int $int19 = -1;
+def_int $int20 = -1;
 def_int $int21 = 0;
 def_int $int22 = 0;
-def_int $int23 = 0;
-def_int $int24 = 0;
-def_string $string0 = "0";
-def_int $int25 = 9;
-def_int $int26 = 23;
-def_int $int27 = 0;
-def_int $int28 = calc(if_getheight($component0) / $int14);
-def_int $int29 = calc($int28 * 2);
-def_int $int30 = -1;
-def_int $int31 = -1;
-def_int $int32 = 0;
-def_int $int33 = 0;
+def_int $int23 = 23;
+def_int $int24 = 23;
+def_int $int25 = calc(16384 / 2);
+def_int $int26 = calc(if_getwidth($component5) / 2);
+def_int $int27 = calc($int26 - $int18 - 4);
+def_int $int28 = 5;
+def_int $int29 = calc($int26 - $int7 - 20);
+def_int $int30 = calc(if_getheight($component0) / $int24);
+def_int $int31 = calc($int30 * 2);
 cc_deleteall($component0);
 cc_deleteall($component1);
 cc_deleteall($component2);
 cc_deleteall($component3);
 cc_deleteall($component6);
-def_string $string1 = "";
-def_int $int34 = -1;
-$int24 = activeclansettings_getaffinedcount;
-while ($int23 < $int24) {
-    $int22 = calc($int34 / 2 * $int14);
-    $string0 = activeclansettings_getaffineddisplayname($int23);
-    $int31 = activeclansettings_getaffinedrank($int23);
-    if (calc(%varclient_1516 - 1) ! $int31) {
-        $int33 = 1;
+while ($int12 < $int13) {
+    $string0 = activeclansettings_getaffineddisplayname($int12);
+    $int20 = activeclansettings_getaffinedrank($int12);
+    if (calc(%varclient_1516 - 1) ! $int20) {
+        $int22 = 1;
         if (%varclient_1516 = 0 | %varclient_1516 = -1) {
-            $int33 = 0;
+            $int22 = 0;
         }
     } else {
-        $int33 = 0;
+        $int22 = 0;
     }
-    cc_create($component0, ^iftype_text, $int23);
-    if ($int33 = 0) {
+    cc_create($component0, ^iftype_text, $int12);
+    if ($int22 = 0) {
         cc_settextfont(graphic_17813);
-        cc_setsize($int8, $int14, ^setsize_rel, ^setsize_abs);
-        $int30 = -1;
+        cc_setsize($int25, $int24, ^setsize_rel, ^setsize_abs);
+        $int19 = -1;
         if (activeclanchannel_find_affined = true & activeclanchannel_getuserslot($string0) > -1) {
-            $int30 = activeclanchannel_getuserworld(activeclanchannel_getuserslot($string0));
+            $int19 = activeclanchannel_getuserworld(activeclanchannel_getuserslot($string0));
         }
-        if ($int30 = map_world) {
+        if ($int19 = map_world) {
             cc_setcolour(0x3cb71e);
-        } else if ($int30 > 0) {
+        } else if ($int19 > 0) {
             cc_setcolour(0xffff64);
         } else {
             cc_setcolour(0xbeb28c);
@@ -73,73 +68,70 @@ while ($int23 < $int24) {
         cc_settextshadow(true);
         cc_settext($string0);
     }
-    cc_create($component2, ^iftype_graphic, $int23);
-    if ($int33 = 0) {
-        cc_setsize($int19, $int20, ^setsize_abs, ^setsize_abs);
-        cc_setgraphic(enum(int, graphic, enum_3712, $int31));
-        $string1 = enum(int, string, enum_3714, $int31);
-        cc_setonmouserepeat("script7768(interface_1096:com_112, $component2, $int23, $string1, 120, graphic_17813, graphic_17813, 16777215, 13, 4, 3, event_mousex, event_mousey)");
-        cc_setonmouseleave("deltooltip(interface_1096:com_112)");
+    cc_create($component2, ^iftype_graphic, $int12);
+    if ($int22 = 0) {
+        cc_setsize($int7, $int8, ^setsize_abs, ^setsize_abs);
+        cc_setgraphic(enum(int, graphic, enum_3712, $int20));
+        $string1 = enum(int, string, enum_3714, $int20);
+        cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
     }
-    cc_create($component6, ^iftype_graphic, $int23);
-    if ($int33 = 0) {
-        cc_setsize($int19, $int20, ^setsize_abs, ^setsize_abs);
-        switch_int ($int31) {
+    cc_create($component6, ^iftype_graphic, $int12);
+    if ($int22 = 0) {
+        cc_setsize($int7, $int8, ^setsize_abs, ^setsize_abs);
+        switch_int ($int20) {
             case 0 :
-                $int32 = %varclansettingbit_6214;
+                $int21 = %varclansettingbit_6214;
             case 1 :
-                $int32 = %varclansettingbit_6215;
+                $int21 = %varclansettingbit_6215;
             case 2 :
-                $int32 = %varclansettingbit_6216;
+                $int21 = %varclansettingbit_6216;
             case 3 :
-                $int32 = %varclansettingbit_6217;
+                $int21 = %varclansettingbit_6217;
             case 4 :
-                $int32 = %varclansettingbit_6218;
+                $int21 = %varclansettingbit_6218;
             case 5 :
-                $int32 = %varclansettingbit_6219;
+                $int21 = %varclansettingbit_6219;
         }
-        if ($int32 = 1 | $int31 >= 100) {
+        if ($int21 = 1 | $int20 >= 100) {
             cc_setgraphic("aif_clan_rank_icons,11");
             $string1 = "Rated Clan<br>Wars Leader";
-            cc_setonmouserepeat("script7768(interface_1096:com_112, $component6, $int23, $string1, 120, graphic_17813, graphic_17813, 16777215, 13, 4, 3, event_mousex, event_mousey)");
-            cc_setonmouseleave("deltooltip(interface_1096:com_112)");
+            cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
         }
     }
-    cc_create($component3, ^iftype_graphic, $int23);
-    if ($int33 = 0) {
-        cc_setsize($int25, $int26, ^setsize_abs, ^setsize_abs);
+    cc_create($component3, ^iftype_graphic, $int12);
+    if ($int22 = 0) {
+        cc_setsize($int18, $int23, ^setsize_abs, ^setsize_abs);
         cc_setgraphic("aif_browngrad_whole_btn,3");
         cc_setop(1, "Show details");
         cc_setonop("script4303");
     }
-    $int23 = calc($int23 + 1);
+    $int12 = calc($int12 + 1);
 }
-def_int $int35 = 0;
-$int23 = 0;
-def_int $int36 = 0;
-while ($int23 < $int24) {
-    $int36 = activeclansettings_getsortedaffinedslot($int23);
-    if (cc_find($component0, $int36) = true & compare(cc_gettext, "") ! 0) {
-        if (calc($int35 % 2) ! 0) {
-            $int21 = $int7;
+def_int $int32 = 0;
+$int12 = 0;
+def_int $int33 = 0;
+while ($int12 < $int13) {
+    $int33 = activeclansettings_getsortedaffinedslot($int12);
+    if (cc_find($component0, $int33) = true & compare(cc_gettext, "") ! 0) {
+        if (calc($int32 % 2) ! 0) {
+            $int10 = $int26;
         } else {
-            $int21 = 0;
+            $int10 = 0;
         }
-        $int22 = calc($int35 / 2 * $int14);
-        cc_setposition(calc($int9 + $int21), calc($int10 + $int22), ^setpos_abs_left, ^setpos_abs_top);
-        if (cc_find($component2, $int36) = true) {
-            cc_setposition(calc($int15 + $int21), calc($int16 + $int22), ^setpos_abs_left, ^setpos_abs_top);
+        $int11 = calc($int32 / 2 * $int24);
+        cc_setposition(calc($int14 + $int10), calc($int15 + $int11), ^setpos_abs_left, ^setpos_abs_top);
+        if (cc_find($component2, $int33) = true) {
+            cc_setposition(calc($int28 + $int10), calc($int15 + $int11), ^setpos_abs_left, ^setpos_abs_top);
         }
-        if (cc_find($component3, $int36) = true) {
-            cc_setposition(calc($int11 + $int21), $int22, ^setpos_abs_left, ^setpos_abs_top);
+        if (cc_find($component3, $int33) = true) {
+            cc_setposition(calc($int27 + $int10), $int11, ^setpos_abs_left, ^setpos_abs_top);
         }
-        if (cc_find($component6, $int36) = true) {
-            cc_setposition(calc($int17 + $int21), calc($int18 + $int22), ^setpos_abs_left, ^setpos_abs_top);
+        if (cc_find($component6, $int33) = true) {
+            cc_setposition(calc($int29 + $int10), calc($int17 + $int11), ^setpos_abs_left, ^setpos_abs_top);
         }
-        $int35 = calc($int35 + 1);
+        $int32 = calc($int32 + 1);
     }
-    $int23 = calc($int23 + 1);
+    $int12 = calc($int12 + 1);
 }
-%varclient_1517 = $int35;
+%varclient_1517 = $int32;
 ~script4318;
-return;

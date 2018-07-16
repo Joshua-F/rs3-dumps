@@ -5,32 +5,36 @@ def_string $string0 = "";
 def_struct $struct1 = null;
 def_graphic $graphic2 = null;
 def_int $int3 = enum_getoutputcount(enum_7120);
-if_setscrollsize(if_getwidth(interface_1378:com_11), calc($int3 * 50), interface_1378:com_11);
-if_setsize(if_getwidth(interface_1378:com_14), calc($int3 * 50), ^setsize_abs, ^setsize_abs, interface_1378:com_14);
-if_setsize(if_getwidth(interface_1378:com_12), calc($int3 * 50), ^setsize_abs, ^setsize_abs, interface_1378:com_12);
+if_setscrollsize(if_getwidth(interface_1378:com_15), calc($int3 * 50), interface_1378:com_15);
+if_setsize(if_getwidth(interface_1378:com_18), calc($int3 * 50), ^setsize_abs, ^setsize_abs, interface_1378:com_18);
 if_setsize(if_getwidth(interface_1378:com_16), calc($int3 * 50), ^setsize_abs, ^setsize_abs, interface_1378:com_16);
-if_setsize(if_getwidth(interface_1378:com_17), calc($int3 * 50), ^setsize_abs, ^setsize_abs, interface_1378:com_17);
-~scrollbar_vertical(interface_1378:com_10, interface_1378:com_11, "aif_scrollbar_dragger_4,3", "aif_scrollbar_dragger_4,0", "aif_scrollbar_dragger_4,1", "aif_scrollbar_dragger_4,2", "aif_scrollbar_arrow_4,1", "aif_scrollbar_arrow_4,0");
+if_setsize(if_getwidth(interface_1378:com_20), calc($int3 * 50), ^setsize_abs, ^setsize_abs, interface_1378:com_20);
+if_setsize(if_getwidth(interface_1378:com_21), calc($int3 * 50), ^setsize_abs, ^setsize_abs, interface_1378:com_21);
+~scrollbar_vertical(interface_1378:com_14, interface_1378:com_15, "aif_scrollbar_dragger_4,3", "aif_scrollbar_dragger_4,0", "aif_scrollbar_dragger_4,1", "aif_scrollbar_dragger_4,2", "aif_scrollbar_arrow_4,1", "aif_scrollbar_arrow_4,0");
 while ($int0 < $int3) {
     $struct1 = enum(int, struct, enum_7120, $int0);
     if ($struct1 ! null) {
-        cc_create(interface_1378:com_17, ^iftype_graphic, $int0);
+        cc_create(interface_1378:com_21, ^iftype_graphic, $int0);
         cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
         cc_setposition(0, calc(13 + $int0 * 50), ^setpos_abs_centre, ^setpos_abs_top);
         cc_setgraphic(combat_academy_info_icon);
-        $string0 = "<struct_param($struct1, param_3044)><br><br><struct_param($struct1, param_3045)>";
-        cc_setonmouserepeat("script7785(interface_1378:com_16, event_comsubid, interface_1378:com_28, $string0, 0, 250)");
-        cc_setonmouseleave("deltooltip(interface_1378:com_28)");
-        cc_create(interface_1378:com_16, ^iftype_text, $int0);
+        $string0 = struct_param($struct1, param_3045);
+        cc_setonmouserepeat("script7270(interface_1378:com_20, event_comsubid, interface_1378:com_32, $string0, 0, 250)");
+        cc_setonmouseleave("deltooltip(interface_1378:com_32)");
+        cc_create(interface_1378:com_20, ^iftype_text, $int0);
         cc_setposition(5, calc($int0 * 50), ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(0, 50, ^setsize_minus, ^setsize_abs);
         cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         cc_settextfont(graphic_20452);
-        cc_setcolour(0xebe0bc);
+        if ($int0 = %varclient_2244) {
+            cc_setcolour(^white);
+        } else {
+            cc_setcolour(0xaed0e0);
+        }
         cc_settextshadow(true);
         cc_settext("<tostring(calc($int0 + 1))>. <struct_param($struct1, param_3044)>");
         cc_sendtoback;
-        cc_create(interface_1378:com_13, ^iftype_graphic, calc(3 * $int0));
+        cc_create(interface_1378:com_17, ^iftype_graphic, calc(3 * $int0));
         cc_setsize(38, 38, ^setsize_abs, ^setsize_abs);
         cc_setposition(5, calc(6 + $int0 * 50), ^setpos_abs_right, ^setpos_abs_top);
         if (~script7265(2, $int0) = 1) {
@@ -46,24 +50,26 @@ while ($int0 < $int3) {
         } else {
             cc_setgraphic("combat_academy_icon_button,4");
         }
-        cc_create(interface_1378:com_14, ^iftype_graphic, calc(3 * $int0));
+        cc_create(interface_1378:com_18, ^iftype_graphic, calc(3 * $int0));
         cc_setsize(38, 38, ^setsize_abs, ^setsize_abs);
         cc_setposition(5, calc(6 + $int0 * 50), ^setpos_abs_right, ^setpos_abs_top);
+        $string0 = struct_param($struct1, param_3046);
         if (~script7265(2, $int0) = 1) {
             if (~script7266(2, $int0) = 1) {
                 cc_setgraphic("combat_academy_rank_icons,0");
                 cc_setop(1, "Claim-Reward");
                 cc_setonop("script7263(calc(3 * $int0 + 2))");
+                $string0 = "<$string0><br><br>Reward: available";
             } else {
                 cc_setgraphic("combat_academy_rank_icons,3");
+                $string0 = "<$string0><br><br>Reward: claimed";
             }
         } else {
             cc_setgraphic("combat_academy_rank_icons,6");
         }
-        $string0 = struct_param($struct1, param_3046);
-        cc_setonmouserepeat("script7271(event_com, event_comsubid, interface_1378:com_28, $string0, 0, 150)");
-        cc_setonmouseleave("deltooltip(interface_1378:com_28)");
-        cc_create(interface_1378:com_13, ^iftype_graphic, calc(3 * $int0 + 1));
+        cc_setonmouserepeat("script7271(event_com, event_comsubid, interface_1378:com_32, $string0, 0, 150)");
+        cc_setonmouseleave("deltooltip(interface_1378:com_32)");
+        cc_create(interface_1378:com_17, ^iftype_graphic, calc(3 * $int0 + 1));
         cc_setsize(38, 38, ^setsize_abs, ^setsize_abs);
         cc_setposition(0, calc(6 + $int0 * 50), ^setpos_abs_centre, ^setpos_abs_top);
         if (~script7265(1, $int0) = 1) {
@@ -79,24 +85,26 @@ while ($int0 < $int3) {
         } else {
             cc_setgraphic("combat_academy_icon_button,4");
         }
-        cc_create(interface_1378:com_14, ^iftype_graphic, calc(3 * $int0 + 1));
+        cc_create(interface_1378:com_18, ^iftype_graphic, calc(3 * $int0 + 1));
         cc_setsize(38, 38, ^setsize_abs, ^setsize_abs);
         cc_setposition(0, calc(6 + $int0 * 50), ^setpos_abs_centre, ^setpos_abs_top);
+        $string0 = struct_param($struct1, param_3047);
         if (~script7265(1, $int0) = 1) {
             if (~script7266(1, $int0) = 1) {
                 cc_setop(1, "Claim-Reward");
                 cc_setonop("script7263(calc(3 * $int0 + 1))");
                 cc_setgraphic("combat_academy_rank_icons,1");
+                $string0 = "<$string0><br><br>Reward: available";
             } else {
                 cc_setgraphic("combat_academy_rank_icons,4");
+                $string0 = "<$string0><br><br>Reward: claimed";
             }
         } else {
             cc_setgraphic("combat_academy_rank_icons,7");
         }
-        $string0 = struct_param($struct1, param_3047);
-        cc_setonmouserepeat("script7271(event_com, event_comsubid, interface_1378:com_28, $string0, 0, 150)");
-        cc_setonmouseleave("deltooltip(interface_1378:com_28)");
-        cc_create(interface_1378:com_13, ^iftype_graphic, calc(3 * $int0 + 2));
+        cc_setonmouserepeat("script7271(event_com, event_comsubid, interface_1378:com_32, $string0, 0, 150)");
+        cc_setonmouseleave("deltooltip(interface_1378:com_32)");
+        cc_create(interface_1378:com_17, ^iftype_graphic, calc(3 * $int0 + 2));
         cc_setsize(38, 38, ^setsize_abs, ^setsize_abs);
         cc_setposition(5, calc(6 + $int0 * 50), ^setpos_abs_left, ^setpos_abs_top);
         if (~script7265(0, $int0) = 1) {
@@ -112,24 +120,26 @@ while ($int0 < $int3) {
         } else {
             cc_setgraphic("combat_academy_icon_button,4");
         }
-        cc_create(interface_1378:com_14, ^iftype_graphic, calc(3 * $int0 + 2));
+        cc_create(interface_1378:com_18, ^iftype_graphic, calc(3 * $int0 + 2));
         cc_setsize(38, 38, ^setsize_abs, ^setsize_abs);
         cc_setposition(5, calc(6 + $int0 * 50), ^setpos_abs_left, ^setpos_abs_top);
+        $string0 = struct_param($struct1, param_3048);
         if (~script7265(0, $int0) = 1) {
             if (~script7266(0, $int0) = 1) {
                 cc_setgraphic("combat_academy_rank_icons,2");
                 cc_setop(1, "Claim-Reward");
                 cc_setonop("script7263(calc(3 * $int0))");
+                $string0 = "<$string0><br><br>Reward: available";
             } else {
                 cc_setgraphic("combat_academy_rank_icons,5");
+                $string0 = "<$string0><br><br>Reward: claimed";
             }
         } else {
             cc_setgraphic("combat_academy_rank_icons,8");
         }
-        $string0 = struct_param($struct1, param_3048);
-        cc_setonmouserepeat("script7271(event_com, event_comsubid, interface_1378:com_28, $string0, 0, 150)");
-        cc_setonmouseleave("deltooltip(interface_1378:com_28)");
-        cc_create(interface_1378:com_12, ^iftype_graphic, calc(3 * $int0));
+        cc_setonmouserepeat("script7271(event_com, event_comsubid, interface_1378:com_32, $string0, 0, 150)");
+        cc_setonmouseleave("deltooltip(interface_1378:com_32)");
+        cc_create(interface_1378:com_16, ^iftype_graphic, calc(3 * $int0));
         cc_setposition(5, calc($int0 * 50 + 2), ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(14, 46, ^setsize_abs, ^setsize_abs);
         if ($int0 = %varclient_2244) {
@@ -141,7 +151,7 @@ while ($int0 < $int3) {
         cc_setonmouseleave("script7262($int0)");
         cc_setop(2, "Select");
         cc_setonop("script7259($int0)");
-        cc_create(interface_1378:com_12, ^iftype_graphic, calc(3 * $int0 + 1));
+        cc_create(interface_1378:com_16, ^iftype_graphic, calc(3 * $int0 + 1));
         cc_setposition(0, calc($int0 * 50 + 2), ^setpos_abs_right, ^setpos_abs_top);
         cc_setsize(14, 46, ^setsize_abs, ^setsize_abs);
         if ($int0 = %varclient_2244) {
@@ -153,7 +163,7 @@ while ($int0 < $int3) {
         cc_setonmouseleave("script7262($int0)");
         cc_setop(2, "Select");
         cc_setonop("script7259($int0)");
-        cc_create(interface_1378:com_12, ^iftype_graphic, calc(3 * $int0 + 2));
+        cc_create(interface_1378:com_16, ^iftype_graphic, calc(3 * $int0 + 2));
         cc_setposition(19, calc($int0 * 50 + 2), ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(33, 46, ^setsize_minus, ^setsize_abs);
         if ($int0 = %varclient_2244) {
@@ -169,4 +179,4 @@ while ($int0 < $int3) {
     }
     $int0 = calc($int0 + 1);
 }
-if_sendtofront(interface_1378:com_28);
+if_sendtofront(interface_1378:com_32);

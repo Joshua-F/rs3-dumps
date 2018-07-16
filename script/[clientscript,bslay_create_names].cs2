@@ -1,3 +1,58 @@
 // 3371
 [clientscript,bslay_create_names]
-~bslay_create_names;
+~script10428(interface_753:com_117, interface_753:com_118, enum_9030, -1, "View different category information.", %varplayer_4517, 0);
+cc_deleteall(interface_753:com_64);
+if (%varplayer_4517 < 0 | %varplayer_4517 = -1) {
+    return;
+}
+if (%varplayer_4517 = 1) {
+    if_sethide(true, interface_753:com_47);
+    if_sethide(false, interface_753:com_48);
+    if_sethide(true, interface_753:com_49);
+    return;
+}
+if (%varplayer_4517 = 2) {
+    if_sethide(true, interface_753:com_47);
+    if_sethide(true, interface_753:com_48);
+    if_sethide(false, interface_753:com_49);
+    return;
+}
+if_sethide(false, interface_753:com_47);
+if_sethide(true, interface_753:com_48);
+if_sethide(true, interface_753:com_49);
+def_enum $enum0 = enum_9031;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_struct $struct3 = null;
+def_int $int4 = 0;
+def_int $int5 = enum_getoutputcount($enum0);
+if (if_find(interface_753:com_64) = true) {
+    while ($int1 < $int5) {
+        $struct3 = enum(int, struct, $enum0, $int1);
+        $int4 = if_getnextsubid(interface_753:com_64);
+        .cc_create(interface_753:com_64, ^iftype_graphic, $int4);
+        .cc_setposition(0, calc($int1 * 43), ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setsize(cc_getwidth, 43, ^setsize_abs, ^setsize_abs);
+        .cc_setgraphic("rs3_btn_challenge_select,0");
+        .cc_setonmouseover("graphic_swapper_dynamic(event_com, $int4, \"rs3_btn_challenge_select,1\")");
+        .cc_setonmouseleave("graphic_swapper_dynamic(event_com, $int4, \"rs3_btn_challenge_select,0\")");
+        .cc_setop(1, "Select");
+        $int4 = if_getnextsubid(interface_753:com_64);
+        .cc_create(interface_753:com_64, ^iftype_text, $int4);
+        .cc_setposition(0, calc($int1 * 43), ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setsize(cc_getwidth, 43, ^setsize_abs, ^setsize_abs);
+        .cc_settext(struct_param($struct3, param_1348));
+        .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        .cc_settextfont(graphic_17813);
+        .cc_setcolour(~rgb_to_hex(174, 208, 224));
+        .cc_setonmouseover("text_colour_swapper(event_com, ~rgb_to_hex(255, 255, 255))");
+        .cc_setonmouseleave("text_colour_swapper(event_com, ~rgb_to_hex(174, 208, 224))");
+        $int1 = calc($int1 + 1);
+    }
+}
+cc_deleteall(interface_753:com_63);
+if (calc($int1 * 43) > if_getheight(interface_753:com_38)) {
+    if_setscrollsize(0, calc($int1 * 43), interface_753:com_64);
+    if_setscrollpos(0, 0, interface_753:com_64);
+    ~scrollbar_vertical(interface_753:com_63, interface_753:com_64, "task_scrollbar_dragger,3", "task_scrollbar_dragger,0", "task_scrollbar_dragger,1", "task_scrollbar_dragger,2", "task_scrollbar,1", "task_scrollbar,0");
+}

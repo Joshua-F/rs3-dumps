@@ -1,0 +1,25 @@
+// 2649
+[proc,script2649]
+def_int $int0 = userdetail_lobby_unreadmessages;
+def_string $string0 = "www";
+def_string $string1 = "account_settings.ws?mod=messages";
+def_string $string2 = "Messages";
+def_int $int1 = 0;
+def_string $string3 = "<tostring($int0)> Unread";
+def_string $string4 = "";
+if ($int0 = 0) {
+    $string4 = "You have no unread messages. Click here to open your Message Centre.";
+} else {
+    $int1 = 1;
+    $string4 = append("You have <tostring($int0)> unread ", ~text_plural($int0, "message.", "messages."));
+    $string4 = append($string4, " Click here to open your Message Centre.");
+}
+if ($int1 = 1) {
+    if ($int0 < 100) {
+        ~script10017(interface_906:com_54, -1, 2, 0, tostring($int0), null);
+    } else {
+        ~script10017(interface_906:com_54, -1, 2, 0, "*", null);
+    }
+}
+~script10059($string2, $string3, $string4, interface_906:com_59);
+if_setonop("lobbyscreen_link($string0, $string1, true)", interface_906:com_59);
