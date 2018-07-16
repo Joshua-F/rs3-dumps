@@ -1,15 +1,19 @@
 // 4347
 [clientscript,script4347]
-def_enum $enum0 = null;
-if (%varplayer_2072 > 0) {
-    $enum0 = enum(int, enum, enum_3703, %varplayer_2072);
-    if ($enum0 ! null) {
-        if_sethide(true, interface_1097:com_202);
-        if_setscrollpos(0, 0, interface_1097:com_207);
-        ~script4499($enum0, 1, "Select a keyword", enum_getoutputcount($enum0), 7, interface_1097:com_196, interface_1097:com_206, interface_1097:com_208, interface_1097:com_207, interface_1097:com_213);
-    }
+if (%varplayer_2072 = 0) {
+    ~script14141(interface_1097:com_29, interface_1097:com_30, enum_3702, 9, "Select the keyword category", 0, 0, false, "Select a category");
+    if_sethide(true, interface_1097:com_32);
+    ~script13971(interface_1097:com_29, null, struct_28619, "No Category Selected", true);
+    return;
+}
+def_enum $enum0 = enum(int, enum, enum_3703, %varplayer_2072);
+if ($enum0 = null) {
+    return;
+}
+~script10428(interface_1097:com_29, interface_1097:com_30, enum_3702, 9, "Select the keyword category", %varplayer_2072, 0);
+if_sethide(false, interface_1097:com_32);
+if (%varplayer_2073 > 0) {
+    ~script10428(interface_1097:com_31, interface_1097:com_32, $enum0, enum_getoutputcount($enum0), "Select the keyword", %varplayer_2073, 0);
 } else {
-    if_sethide(false, interface_1097:com_202);
-    ~script4501(interface_1097:com_196, "Select a keyword");
-    ~script4501(interface_1097:com_182, "Select a category");
+    ~script14141(interface_1097:com_31, interface_1097:com_32, $enum0, enum_getoutputcount($enum0), "Select the keyword", 0, 0, false, "Select a keyword");
 }

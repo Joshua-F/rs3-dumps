@@ -1,169 +1,131 @@
 // 3736
-[clientscript,script3736](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, int $int9, component $component10, component $component11)
+[clientscript,script3736](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
+def_int $int7 = if_getwidth(interface_573:com_63);
+def_int $int8 = if_getheight(interface_573:com_63);
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_struct $struct11 = null;
 def_int $int12 = 0;
 def_int $int13 = 0;
-def_struct $struct14 = null;
-def_int $int15 = 0;
-def_int $int16 = 0;
 def_string $string0 = "";
-def_graphic $graphic17 = struct_param(struct_21332, param_1379);
-def_graphic $graphic18 = struct_param(struct_21332, param_1380);
-def_graphic $graphic19 = struct_param(struct_21332, param_1381);
-def_int $int20 = 0;
-def_graphic $graphic21 = null;
-if_sethide(true, interface_573:com_28);
+def_graphic $graphic14 = struct_param(struct_21332, param_1379);
+def_graphic $graphic15 = struct_param(struct_21332, param_1380);
+def_graphic $graphic16 = struct_param(struct_21332, param_1381);
+def_int $int17 = 0;
+def_graphic $graphic18 = null;
+if_sethide(true, interface_573:com_22);
 cc_deleteall($component1);
 cc_deleteall($component2);
 cc_deleteall($component3);
-cc_deleteall($component6);
 def_string $string1 = "";
-while (enum(int, int, enum_8661, $int12) ! -1) {
-    $int15 = paraheight(enum(int, string, enum_8662, $int12), if_getwidth($component1), graphic_20280);
-    $int15 = calc(15 * $int15 + 10);
-    cc_create($component1, ^iftype_text, $int12);
+def_int $int19 = enum_getoutputcount(enum_8661);
+while ($int9 < $int19) {
+    $int12 = paraheight(enum(int, string, enum_8662, $int9), if_getwidth($component1), graphic_20280);
+    $int12 = calc(15 * $int12 + 10);
+    cc_create($component1, ^iftype_text, $int9);
     cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
-    cc_settext(enum(int, string, enum_8662, $int12));
+    cc_settext(enum(int, string, enum_8662, $int9));
     cc_settextfont(graphic_17814);
     cc_settextalign(^settextalign_left, ^settextalign_top, 0);
     cc_setcolour(0xffcb05);
-    .cc_create($component11, ^iftype_graphic, $int12);
-    if (~script3751($int12) = 1) {
+    .cc_create($component6, ^iftype_graphic, $int9);
+    if (~script3751($int9) = 1) {
         $string1 = "Click here to deselect all messages in this section.";
-        $graphic21 = "rs3_btn_checkbox,1";
+        $graphic18 = "rs3_btn_checkbox,1";
         .cc_setgraphic("rs3_btn_checkbox,2");
-        .cc_setonop("graphic_swapper_dynamic(event_com, event_comsubid, $graphic21)");
+        .cc_setonop("graphic_swapper_dynamic(event_com, event_comsubid, $graphic18)");
         .cc_setop(1, "Deselect All");
     } else {
         $string1 = "Click here to select all messages in this section.";
-        $graphic21 = "rs3_btn_checkbox,2";
+        $graphic18 = "rs3_btn_checkbox,2";
         .cc_setgraphic("rs3_btn_checkbox,1");
-        .cc_setonop("graphic_swapper_dynamic(event_com, event_comsubid, $graphic21)");
+        .cc_setonop("graphic_swapper_dynamic(event_com, event_comsubid, $graphic18)");
         .cc_setop(1, "Select All");
     }
-    .cc_setonmouserepeat("script8799($string1, $component11, $int12)");
+    .cc_setonmouserepeat("script8799($string1, $component6, $int9)");
     .cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
-    $int12 = calc($int12 + 1);
+    $int9 = calc($int9 + 1);
 }
-def_int $int22 = 0;
-while (enum(int, int, enum_8659, $int13) ! -1) {
-    $int22 = enum(int, int, enum_8659, $int13);
-    $struct14 = enum(int, struct, enum_8660, $int22);
-    if ($struct14 ! null) {
-        $string0 = struct_param($struct14, param_4188);
-        $int15 = paraheight($string0, if_getwidth($component2), graphic_20452);
-        cc_create($component10, ^iftype_rectangle, $int13);
-        cc_setfill(true);
-        cc_setsize(0, calc(max(22, calc(12 * $int15)) + 4), ^setsize_minus, ^setsize_abs);
-        cc_create($component3, ^iftype_graphic, $int13);
-        if (~script3749($int22) = 1) {
-            $graphic21 = "rs3_btn_checkbox,1";
-            cc_setgraphic("rs3_btn_checkbox,2");
-            cc_setonop("graphic_swapper_dynamic(event_com, event_comsubid, $graphic21)");
-        } else {
-            $graphic21 = "rs3_btn_checkbox,2";
-            cc_setgraphic("rs3_btn_checkbox,1");
-            cc_setonop("graphic_swapper_dynamic(event_com, event_comsubid, $graphic21)");
-        }
-        cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
-        cc_setop(1, "Select");
-        cc_create($component5, ^iftype_graphic, $int13);
-        cc_setsize(20, 22, ^setsize_abs, ^setsize_abs);
-        cc_setgraphic($graphic17);
-        cc_setonmouseover("script3737($component5, $component6, $component7, $int13)");
-        cc_setonmouseleave("script3738($component5, $component6, $component7, $int13)");
-        cc_create($component6, ^iftype_graphic, $int13);
-        cc_setsize(calc(20 * 2), 22, ^setsize_minus, ^setsize_abs);
-        cc_setgraphic($graphic18);
-        cc_setonmouseover("script3737($component5, $component6, $component7, $int13)");
-        cc_setonmouseleave("script3738($component5, $component6, $component7, $int13)");
-        cc_create($component7, ^iftype_graphic, $int13);
-        cc_setsize(20, 22, ^setsize_abs, ^setsize_abs);
-        cc_setgraphic($graphic19);
-        cc_setonmouseover("script3737($component5, $component6, $component7, $int13)");
-        cc_setonmouseleave("script3738($component5, $component6, $component7, $int13)");
-        $string0 = enum(int, string, enum_3716, ~script3750($int22));
-        cc_create($component8, ^iftype_text, $int13);
-        cc_settext($string0);
-        cc_setsize(5, 22, ^setsize_minus, ^setsize_abs);
-        cc_settextfont(graphic_20452);
-        cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-        cc_setcolour(0x7592a0);
-        cc_setonop("script3742($int9, 37552187, $component8, 37552151, $int13)");
-        cc_setop(1, "Select");
-        $string0 = struct_param($struct14, param_4188);
-        cc_create($component2, ^iftype_text, $int13);
-        $int15 = paraheight($string0, if_getwidth($component2), graphic_20452);
-        cc_settext($string0);
-        cc_setsize(0, calc(12 * $int15), ^setsize_minus, ^setsize_abs);
-        cc_settextfont(graphic_20452);
-        cc_settextalign(^settextalign_left, ^settextalign_top, 0);
-        cc_setcolour(0x7592a0);
-        cc_setonmouserepeat("script8799(struct_param($struct14, param_4189), $component2, $int13)");
+def_int $int20 = 0;
+$int19 = enum_getoutputcount(enum_8659);
+while ($int10 < $int19) {
+    $int20 = enum(int, int, enum_8659, $int10);
+    $struct11 = enum(int, struct, enum_8660, $int20);
+    $string0 = struct_param($struct11, param_4188);
+    $int12 = paraheight($string0, if_getwidth($component2), graphic_20452);
+    cc_create(interface_573:com_63, ^iftype_text, $int10);
+    cc_sethide(true);
+    cc_create($component5, ^iftype_rectangle, $int10);
+    cc_setsize(0, max(22, calc(12 * $int12 + 4)), ^setsize_minus, ^setsize_abs);
+    cc_setfill(true);
+    cc_create($component3, ^iftype_graphic, $int10);
+    if (~script3749($int20) = 1) {
+        $graphic18 = "rs3_btn_checkbox,1";
+        cc_setgraphic("rs3_btn_checkbox,2");
+        cc_setonop("graphic_swapper_dynamic(event_com, event_comsubid, $graphic18)");
+    } else {
+        $graphic18 = "rs3_btn_checkbox,2";
+        cc_setgraphic("rs3_btn_checkbox,1");
+        cc_setonop("graphic_swapper_dynamic(event_com, event_comsubid, $graphic18)");
     }
-    $int13 = calc($int13 + 1);
+    cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
+    cc_setop(1, "Select");
+    cc_create($component2, ^iftype_text, $int10);
+    cc_settext($string0);
+    cc_setsize(0, calc(12 * $int12), ^setsize_minus, ^setsize_abs);
+    cc_settextfont(graphic_20452);
+    cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+    cc_setcolour(0x7592a0);
+    cc_setonmouserepeat("script8799(struct_param($struct11, param_4189), $component2, $int10)");
+    $int10 = calc($int10 + 1);
 }
-$int20 = 0;
-$int16 = 0;
-$int12 = 0;
+def_int $int21 = 0;
+$int17 = 0;
 $int13 = 0;
-def_int $int23 = 0;
-while (enum(int, int, enum_8661, $int12) ! -1) {
-    if (cc_find($component1, $int12) = true) {
-        cc_setposition(0, $int16, ^setpos_abs_left, ^setpos_abs_top);
-        if (.cc_find($component11, $int12) = true) {
-            .cc_setposition(0, $int16, ^setpos_abs_left, ^setpos_abs_top);
+$int9 = 0;
+$int10 = 0;
+$int19 = enum_getoutputcount(enum_8661);
+while ($int9 < $int19) {
+    if (cc_find($component1, $int9) = true) {
+        cc_setposition(0, $int13, ^setpos_abs_left, ^setpos_abs_top);
+        if (.cc_find($component6, $int9) = true) {
+            .cc_setposition(0, $int13, ^setpos_abs_left, ^setpos_abs_top);
         }
-        $int16 = calc($int16 + cc_getheight);
-        while (enum(int, int, enum_8659, $int13) ! -1) {
-            $int22 = enum(int, int, enum_8659, $int13);
-            $struct14 = enum(int, struct, enum_8660, $int22);
-            if ($struct14 ! null & struct_param($struct14, param_4187) = $int12) {
-                if (cc_find($component10, $int13) = true) {
-                    cc_setposition(0, $int16, ^setpos_abs_left, ^setpos_abs_top);
-                    if (calc($int23 % 2) = 0) {
+        $int13 = calc($int13 + cc_getheight);
+        while (enum(int, int, enum_8659, $int10) ! -1) {
+            $int20 = enum(int, int, enum_8659, $int10);
+            $struct11 = enum(int, struct, enum_8660, $int20);
+            if ($struct11 ! null & struct_param($struct11, param_4187) = $int9) {
+                if (cc_find($component5, $int10) = true) {
+                    cc_setposition(0, $int13, ^setpos_abs_left, ^setpos_abs_top);
+                    if (calc($int21 % 2) = 0) {
                         cc_setcolour(0x071820);
                     } else {
                         cc_setcolour(0x1c2c34);
                     }
-                    $int23 = calc($int23 + 1);
-                    $int20 = cc_getheight;
+                    $int21 = calc($int21 + 1);
+                    $int17 = cc_getheight;
                 }
-                $int16 = calc($int16 + 2);
-                if (cc_find($component3, $int13) = true) {
-                    cc_setposition(0, $int16, ^setpos_abs_left, ^setpos_abs_top);
-                    $int20 = max(cc_getheight, $int20);
+                $int13 = calc($int13 + 2);
+                if (cc_find($component3, $int10) = true) {
+                    cc_setposition(0, $int13, ^setpos_abs_left, ^setpos_abs_top);
+                    $int17 = max(cc_getheight, $int17);
                 }
-                if (cc_find($component5, $int13) = true) {
-                    cc_setposition(0, $int16, ^setpos_abs_left, ^setpos_abs_top);
-                    $int20 = max(cc_getheight, $int20);
+                ~script10430(interface_573:com_62, interface_573:com_63, 0, $int13, $int7, $int10, enum_3716, null, 126, "", ~script3750($int20), 0);
+                if (cc_find($component2, $int10) = true) {
+                    cc_setposition(0, $int13, ^setpos_abs_left, ^setpos_abs_top);
+                    $int17 = max(cc_getheight, $int17);
                 }
-                if (cc_find($component6, $int13) = true) {
-                    cc_setposition(0, $int16, ^setpos_abs_centre, ^setpos_abs_top);
-                    $int20 = max(cc_getheight, $int20);
-                }
-                if (cc_find($component7, $int13) = true) {
-                    cc_setposition(0, $int16, ^setpos_abs_right, ^setpos_abs_top);
-                    $int20 = max(cc_getheight, $int20);
-                }
-                if (cc_find($component8, $int13) = true) {
-                    cc_setposition(5, $int16, ^setpos_abs_left, ^setpos_abs_top);
-                    $int20 = max(cc_getheight, $int20);
-                }
-                if (cc_find($component2, $int13) = true) {
-                    cc_setposition(0, $int16, ^setpos_abs_left, ^setpos_abs_top);
-                    $int20 = max(cc_getheight, $int20);
-                }
-                $int16 = calc($int16 + $int20 + 2);
+                $int13 = calc($int13 + $int17 + 2);
             }
-            $int13 = calc($int13 + 1);
+            $int10 = calc($int10 + 1);
         }
     }
-    $int12 = calc($int12 + 1);
-    $int13 = 0;
-    $int23 = 0;
-    $int16 = calc($int16 + 15);
+    $int9 = calc($int9 + 1);
+    $int10 = 0;
+    $int21 = 0;
+    $int13 = calc($int13 + 15);
 }
-if_setscrollsize(0, $int16, $component0);
+if_setscrollsize(0, $int13, $component0);
 ~rs3_scrollbar_vertical($component4, $component0);
-if_setonvartransmit("script3747(event_com, $component11){varplayer_4276, varplayer_4276, varplayer_4276, varplayer_4276, varplayer_4277, varplayer_4277, varplayer_4277, varplayer_4277, varplayer_4278, varplayer_4278, varplayer_4278, varplayer_4278, varplayer_4279, varplayer_4279, varplayer_4279, varplayer_4279, varplayer_4280, varplayer_4280, varplayer_4280, varplayer_4280, varplayer_4281, varplayer_4281, varplayer_4281, varplayer_4281, varplayer_4282, varplayer_4282, varplayer_4282, varplayer_4282, varplayer_4283, varplayer_4283, varplayer_4283, varplayer_4283, varplayer_4284, varplayer_4284, varplayer_4284, varplayer_4284}", $component3);
-if_setonvartransmit("script3748(event_com){varplayer_4276, varplayer_4276, varplayer_4276, varplayer_4276, varplayer_4277, varplayer_4277, varplayer_4277, varplayer_4277, varplayer_4278, varplayer_4278, varplayer_4278, varplayer_4278, varplayer_4279, varplayer_4279, varplayer_4279, varplayer_4279, varplayer_4280, varplayer_4280, varplayer_4280, varplayer_4280, varplayer_4281, varplayer_4281, varplayer_4281, varplayer_4281, varplayer_4282, varplayer_4282, varplayer_4282, varplayer_4282, varplayer_4283, varplayer_4283, varplayer_4283, varplayer_4283, varplayer_4284, varplayer_4284, varplayer_4284, varplayer_4284}", $component8);
+if_setonvartransmit("script3747(event_com, $component6){varplayer_4276, varplayer_4276, varplayer_4276, varplayer_4276, varplayer_4277, varplayer_4277, varplayer_4277, varplayer_4277, varplayer_4278, varplayer_4278, varplayer_4278, varplayer_4278, varplayer_4279, varplayer_4279, varplayer_4279, varplayer_4279, varplayer_4280, varplayer_4280, varplayer_4280, varplayer_4280, varplayer_4281, varplayer_4281, varplayer_4281, varplayer_4281, varplayer_4282, varplayer_4282, varplayer_4282, varplayer_4282, varplayer_4283, varplayer_4283, varplayer_4283, varplayer_4283, varplayer_4284, varplayer_4284, varplayer_4284, varplayer_4284}", $component3);

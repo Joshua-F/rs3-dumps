@@ -1,15 +1,17 @@
 // 7662
 [clientscript,script7662]
-def_enum $enum0 = null;
-def_int $int1 = calc(%varplayerbit_18336 / 10);
-$enum0 = enum(int, enum, enum_7427, $int1);
-if ($enum0 ! null) {
-    if (%varplayerbit_18337 > 0) {
-        return;
-    }
-    if_sethide(true, interface_1405:com_56);
-    ~script4499($enum0, 0, "Select a subcategory", enum_getoutputcount($enum0), 4, interface_1405:com_50, interface_1405:com_60, interface_1405:com_62, interface_1405:com_61, interface_1405:com_97);
+def_int $int0 = calc(%varplayerbit_18336 / 10);
+def_int $int1 = calc(%varplayerbit_18337 % 10);
+if (%varplayerbit_18337 > 0 & %varplayerbit_18336 = 0) {
+    $int0 = calc(%varplayerbit_18337 / 10);
+}
+~script10428(interface_1405:com_69, interface_1405:com_70, enum_7426, -1, "Select the main category.", $int0, 0);
+def_enum $enum2 = enum(int, enum, enum_7427, $int0);
+if ($enum2 ! null) {
+    if_sethide(false, interface_1405:com_72);
+    ~script10428(interface_1405:com_71, interface_1405:com_72, $enum2, -1, "Select the sub category.", $int1, 0);
 } else {
-    if_sethide(false, interface_1405:com_56);
-    ~script4501(interface_1405:com_50, "No subcategories");
+    cc_deleteall(interface_1405:com_71);
+    if_sethide(true, interface_1405:com_72);
+    ~script13971(interface_1405:com_71, null, struct_28619, "No subcategories.", true);
 }

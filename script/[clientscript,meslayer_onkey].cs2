@@ -3,6 +3,7 @@
 if (%varclient_2873 ! 10) {
     return;
 }
+def_int $int2 = 0;
 switch_int ($key0) {
     case ^key_return :
         ~script8841(10, 0);
@@ -20,71 +21,69 @@ switch_int ($key0) {
                 return;
         }
         if (string_length(%varclient_2506) > 0) {
-            if (%varclient_5 = 4 | %varclient_5 = 5) {
-                if (ignore_count < 0) {
-                    mes("Unable to update Ignore List: system busy");
-                } else if (%varclient_5 = 4) {
-                    ignore_add(%varclient_2506);
-                } else if (%varclient_5 = 5) {
-                    if (ignore_test(~displayname_simplify(%varclient_2506)) = true) {
-                        ignore_del(~displayname_simplify(%varclient_2506));
-                    } else {
-                        mes("That player is not on your ignore list.");
+            switch_int (%varclient_5) {
+                case 4, 5 :
+                    if (ignore_count < 0) {
+                        mes("Unable to update Ignore List: system busy");
+                    } else if (%varclient_5 = 4) {
+                        ignore_add(%varclient_2506);
+                    } else if (%varclient_5 = 5) {
+                        if (ignore_test(~displayname_simplify(%varclient_2506)) = true) {
+                            ignore_del(~displayname_simplify(%varclient_2506));
+                        } else {
+                            mes("That player is not on your ignore list.");
+                        }
                     }
-                }
-                ~meslayer_close(%varclient_5);
-            } else if (%varclient_5 < 7) {
-                if (friend_count < 0) {
-                    mes("Unable to complete action - system busy");
                     ~meslayer_close(%varclient_5);
-                } else if (%varclient_5 = 2) {
-                    ~meslayer_close(2);
-                    friend_add(%varclient_2506);
-                } else if (%varclient_5 = 3) {
-                    if (friend_test(~displayname_simplify(%varclient_2506)) = true) {
-                        %varclient_3936 = ~displayname_simplify(%varclient_2506);
-                        ~script2018(8);
+                case 2, 3, 6 :
+                    if (friend_count < 0) {
+                        mes("Unable to complete action - system busy");
+                    } else if (%varclient_5 = 2) {
+                        friend_add(%varclient_2506);
+                    } else if (%varclient_5 = 3) {
+                        if (friend_test(~displayname_simplify(%varclient_2506)) = true) {
+                            %varclient_3936 = ~displayname_simplify(%varclient_2506);
+                            ~script2018(8);
+                        } else {
+                            mes("That player is not on your friends list.");
+                        }
+                    } else if (%varclient_5 = 6) {
+                        if (chat_getfilter_private = ^chatfilter_off) {
+                            chat_setfilter(chat_getfilter_public, ^chatfilter_friends, chat_getfilter_trade);
+                        }
+                        chat_sendprivate(%varclient_2367, %varclient_2506);
+                    }
+                    ~meslayer_close(%varclient_5);
+                case 11 :
+                    ~script1478;
+                case 7 :
+                    %varclient_2506 = ~script2332(%varclient_2506, "K", "000");
+                    %varclient_2506 = ~script2332(%varclient_2506, "k", "000");
+                    %varclient_2506 = ~script2332(%varclient_2506, "M", "000000");
+                    %varclient_2506 = ~script2332(%varclient_2506, "m", "000000");
+                    if (map_lang = 1) {
+                        %varclient_2506 = ~script2332(%varclient_2506, "T", "000");
+                        %varclient_2506 = ~script2332(%varclient_2506, "t", "000");
+                    }
+                    resume_countdialog(~script5390(%varclient_2506));
+                case 8 :
+                    %varclient_2507 = escape(%varclient_2506);
+                    %varclient_1026 = true;
+                    resume_namedialog(%varclient_2506);
+                case 9 :
+                    if (compare(lowercase(%varclient_2506), lowercase(%varclient_2577)) ! 0) {
+                        resume_stringdialog(%varclient_2506);
                     } else {
-                        mes("That player is not on your friends list.");
+                        mes("Please do not enter your password here!");
                     }
-                    ~meslayer_close(3);
-                } else if (%varclient_5 = 6) {
-                    if (chat_getfilter_private = ^chatfilter_off) {
-                        chat_setfilter(chat_getfilter_public, ^chatfilter_friends, chat_getfilter_trade);
-                    }
-                    chat_sendprivate(%varclient_2367, %varclient_2506);
-                    ~meslayer_close(6);
-                }
-            } else if (%varclient_5 = 11) {
-                ~script1478;
-            } else if (%varclient_5 = 7) {
-                %varclient_2506 = ~script2332(%varclient_2506, "K", "000");
-                %varclient_2506 = ~script2332(%varclient_2506, "k", "000");
-                %varclient_2506 = ~script2332(%varclient_2506, "M", "000000");
-                %varclient_2506 = ~script2332(%varclient_2506, "m", "000000");
-                if (map_lang = 1) {
-                    %varclient_2506 = ~script2332(%varclient_2506, "T", "000");
-                    %varclient_2506 = ~script2332(%varclient_2506, "t", "000");
-                }
-                resume_countdialog(~script5390(%varclient_2506));
-            } else if (%varclient_5 = 8) {
-                %varclient_2507 = escape(%varclient_2506);
-                %varclient_1026 = true;
-                resume_namedialog(%varclient_2506);
-            } else if (%varclient_5 = 9) {
-                if (compare(lowercase(%varclient_2506), lowercase(%varclient_2577)) ! 0) {
-                    resume_stringdialog(%varclient_2506);
-                } else {
-                    mes("Please do not enter your password here!");
-                }
-            } else if (%varclient_5 = 10) {
-                %varclient_2508 = escape(%varclient_2506);
-                %varclient_1027 = true;
-                clan_joinchat(%varclient_2506);
-            } else if (%varclient_5 = 15) {
-                ~friendschat_kick(%varclient_2506);
-            } else if (%varclient_5 = 16) {
-                ~clan_chat_kick_find(%varclient_2506);
+                case 10 :
+                    %varclient_2508 = escape(%varclient_2506);
+                    %varclient_1027 = true;
+                    clan_joinchat(%varclient_2506);
+                case 15 :
+                    ~friendschat_kick(%varclient_2506);
+                case 16 :
+                    ~clan_chat_kick_find(%varclient_2506);
             }
         } else if (%varclient_5 = 14) {
             ~music_search_close_both;
@@ -119,16 +118,17 @@ switch_int ($key0) {
                 }
                 return;
             case 6, 9, 11 :
-                %varclient_2506, %varclient_1029 = ~script802(%varclient_1029, %varclient_2506, 0, $key0, $char1);
+                $int2 = 0;
             case 7 :
-                %varclient_2506, %varclient_1029 = ~script802(%varclient_1029, %varclient_2506, 6, $key0, $char1);
+                $int2 = 6;
             case 13 :
-                %varclient_2506, %varclient_1029 = ~script802(%varclient_1029, %varclient_2506, 5, $key0, $char1);
+                $int2 = 5;
             case 14 :
-                %varclient_2506, %varclient_1029 = ~script802(%varclient_1029, %varclient_2506, 4, $key0, $char1);
+                $int2 = 4;
             case default :
-                %varclient_2506, %varclient_1029 = ~script802(%varclient_1029, %varclient_2506, 2, $key0, $char1);
+                $int2 = 2;
         }
+        %varclient_2506, %varclient_1029 = ~script802(%varclient_1029, %varclient_2506, $int2, $key0, $char1);
 }
 if_settext(escape(%varclient_2506), interface_1469:com_3);
 ~script1557;

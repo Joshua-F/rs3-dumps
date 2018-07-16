@@ -23,8 +23,8 @@ $graphicarray1(0) = "aif_make_x_available,0";
 $graphicarray1(1) = "aif_make_x_available,1";
 $graphicarray1(2) = "aif_make_x_available,2";
 def_int $int14 = 0;
-if_sethide(true, interface_1371:com_45);
-if_sethide(true, interface_1371:com_66);
+if_sethide(true, interface_1371:com_32);
+if_sethide(true, interface_1371:com_38);
 while ($int1 < $int0) {
     if (%varplayer_1169 ! null) {
         $obj8 = enum(int, obj, %varplayer_1169, $int1);
@@ -45,7 +45,7 @@ while ($int1 < $int0) {
     }
     $int7 = calc(5 + ($int4 * 10 + $int4 * $int13));
     $int6 = calc($int5 * 10 + $int5 * $int13 + $int14);
-    cc_create(interface_1371:com_44, ^iftype_graphic, $int12);
+    cc_create(interface_1371:com_31, ^iftype_graphic, $int12);
     if ($int2 = 0) {
         cc_sethide(true);
     } else {
@@ -63,14 +63,14 @@ while ($int1 < $int0) {
         }
     }
     $int12 = calc($int12 + 1);
-    cc_create(interface_1371:com_44, ^iftype_graphic, $int12);
+    cc_create(interface_1371:com_31, ^iftype_graphic, $int12);
     if ($int2 = 0) {
         cc_sethide(true);
     } else {
         cc_setposition($int7, $int6, ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(46, 46, ^setsize_abs, ^setsize_abs);
         cc_setalpha(true);
-        $string0 = oc_name($obj8);
+        $string0 = "";
         if ($boolean10 = false | $int11 = 0) {
             cc_setonop("script7121($obj8, event_comsubid, $graphicarray0(2))");
             if ($obj8 = %varplayer_1170) {
@@ -78,9 +78,11 @@ while ($int1 < $int0) {
             }
             if (map_members = false & ~script7116($obj8) = true) {
                 $string0 = append($string0, "<br>Members only");
-            } else if ($boolean10 = false) {
+            }
+            if ($boolean10 = false) {
                 $string0 = append($string0, "<br>Requirements not met");
-            } else if ($int11 = 0 & oc_param($obj8, param_5450) > 0 & inv_freespace(inv_93) = 0) {
+            }
+            if ($int11 = 0 & oc_param($obj8, param_5450) > 0 & inv_freespace(inv_93) = 0) {
                 $string0 = append($string0, "<br>No free space");
             } else {
                 $string0 = append($string0, "<br>Ingredients missing");
@@ -91,12 +93,11 @@ while ($int1 < $int0) {
                 cc_setgraphic($graphicarray1(2));
             }
         }
-        cc_setonmouserepeat("script7135($string0, event_mousex, 0, event_mousey, -100, event_com, event_comsubid)");
-        cc_setonmouseleave("deltooltip(interface_1371:com_23)");
+        cc_setonmouserepeat("script14193($string0, $obj8, event_com, event_comsubid)");
         cc_setop(1, "Select");
     }
     $int12 = calc($int12 + 1);
-    cc_create(interface_1371:com_44, ^iftype_graphic, $int12);
+    cc_create(interface_1371:com_31, ^iftype_graphic, $int12);
     if ($int2 = 0) {
         cc_sethide(true);
     } else {
@@ -115,7 +116,7 @@ while ($int1 < $int0) {
         }
     }
     $int12 = calc($int12 + 1);
-    cc_create(interface_1371:com_44, ^iftype_graphic, $int12);
+    cc_create(interface_1371:com_31, ^iftype_graphic, $int12);
     if ($int2 = 0) {
         cc_sethide(true);
     } else {
@@ -131,7 +132,7 @@ while ($int1 < $int0) {
     $int1 = calc($int1 + 1);
 }
 if ($int3 = 0) {
-    cc_create(interface_1371:com_44, ^iftype_text, $int12);
+    cc_create(interface_1371:com_31, ^iftype_text, $int12);
     cc_settext("You don't know how to make anything in this category.");
     ~script11024(12);
     cc_settextfont(graphic_17813);
