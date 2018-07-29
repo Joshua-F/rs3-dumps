@@ -11,7 +11,13 @@ def_int $int8 = -1;
 def_int $int9 = max(%varclient_2768, 0);
 def_int $int10 = enum_getoutputcount($enum2);
 def_int $iftype11 = ^iftype_graphic;
+def_int $int12 = 13;
+def_fontmetrics $fontmetrics13 = graphic_17813;
 if (%varplayerbit_34815 = 1) {
+    if (%varplayerbit_38842 = 1) {
+        $fontmetrics13 = graphic_21207;
+        $int12 = 30;
+    }
     $iftype11 = ^iftype_text;
 }
 while (++$int3 < $int10) {
@@ -21,7 +27,7 @@ while (++$int3 < $int10) {
     $string0 = struct_param($struct4, param_1419);
     cc_create($component0, $iftype11, $int3);
     if (%varplayerbit_34815 = 1) {
-        cc_setsize(107, 13, ^setsize_abs, ^setsize_abs);
+        cc_setsize(107, $int12, ^setsize_abs, ^setsize_abs);
     } else {
         cc_setsize(48, 48, ^setsize_abs, ^setsize_abs);
     }
@@ -54,7 +60,7 @@ while (++$int3 < $int10) {
     cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
     if (%varplayerbit_34815 = 1) {
         cc_settext($string0);
-        cc_settextfont(graphic_17813);
+        cc_settextfont($fontmetrics13);
         cc_setmaxlines(1);
         if ($boolean7 = true) {
             ~script11024(12);
@@ -65,6 +71,8 @@ while (++$int3 < $int10) {
         cc_setgraphic($graphic5);
     }
     cc_setonmouseleave("script8805");
+    cc_setdragdeadtime(5);
+    cc_setdragdeadzone(5);
     cc_setondragcomplete("script7001(event_com, event_comsubid, event_com2)");
 }
 ~emotes2_sort($component0, $component1, $enum2, $int9);

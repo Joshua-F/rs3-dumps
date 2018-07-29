@@ -110,6 +110,10 @@ def_int $int28 = 0;
 def_int $int29 = 0;
 def_int $int30 = 30;
 def_int $int31 = 30;
+if (%varplayerbit_38842 = 1) {
+    $int30 = 56;
+    $int31 = 56;
+}
 def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
@@ -246,49 +250,53 @@ if (%varplayerbit_22875 = 1) {
     if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component6);
     if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component6);
 }
-if_setsize(0, 32, ^setsize_minus, ^setsize_minus, $component1);
-def_int $int35 = if_getwidth($component1);
-def_int $int36 = if_getheight($component1);
-def_int $int37 = calc($int36 - 32);
-def_int $int38 = calc(32 + 2);
-$int38 = max($int38, 1);
-def_int $int39 = 34;
-def_int $int40 = 0;
+def_int $int35 = 32;
+if (%varplayerbit_38842 = 1) {
+    $int35 = 44;
+}
+if_setsize(0, $int35, ^setsize_minus, ^setsize_minus, $component1);
+def_int $int36 = if_getwidth($component1);
+def_int $int37 = if_getheight($component1);
+def_int $int38 = calc($int37 - $int35);
+def_int $int39 = calc($int31 + 4);
+$int39 = max($int39, 1);
+def_int $int40 = calc($int30 + 4);
 def_int $int41 = 0;
 def_int $int42 = 0;
 def_int $int43 = 0;
 def_int $int44 = 0;
-$int42, $int40, $int41 = ~script8107($int35, $int39);
-def_int $int45 = calc($int33 / $int42);
-if (calc($int33 % $int42) > 0) {
-    $int45 = calc($int45 + 1);
+def_int $int45 = 0;
+$int43, $int41, $int42 = ~script8107($int36, $int40);
+def_int $int46 = calc($int33 / $int43);
+if (calc($int33 % $int43) > 0) {
+    $int46 = calc($int46 + 1);
 }
-$int45 = max(1, $int45);
-if (calc($int45 * $int38 + $int44) > $int36) {
-    $int43 = 1;
-    if_setsize(16, 32, ^setsize_minus, ^setsize_minus, $component1);
+$int46 = max(1, $int46);
+if (calc($int46 * $int39 + $int45) > $int37) {
+    $int44 = 1;
+    if_setsize(16, $int35, ^setsize_minus, ^setsize_minus, $component1);
     if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom, $component2);
-    $int35 = if_getwidth($component1);
-    $int42, $int40, $int41 = ~script8107($int35, $int39);
-    $int45 = calc($int33 / $int42);
-    $int45 = max(1, $int45);
-    if (calc($int33 % $int42) > 0) {
-        $int45 = calc($int45 + 1);
+    $int36 = if_getwidth($component1);
+    $int43, $int41, $int42 = ~script8107($int36, $int40);
+    $int46 = calc($int33 / $int43);
+    $int46 = max(1, $int46);
+    if (calc($int33 % $int43) > 0) {
+        $int46 = calc($int46 + 1);
     }
-    $int45 = max(1, $int45);
+    $int46 = max(1, $int46);
 } else {
     cc_deleteall($component2);
 }
-def_int $intarray2($int42);
-def_int $int46 = 0;
-while ($int46 < $int42) {
-    $intarray2($int46) = ~script8108($int40, $int41, $int46);
-    $int46 = calc($int46 + 1);
-}
-$int46 = 0;
-$int21 = 0;
+def_int $intarray2($int43);
 def_int $int47 = 0;
+while ($int47 < $int43) {
+    $intarray2($int47) = ~script8108($int41, $int42, $int47);
+    $int47 = calc($int47 + 1);
+}
+$int47 = 0;
+$int21 = 0;
 def_int $int48 = 0;
+def_int $int49 = 0;
 while ($int21 < $int33) {
     $struct20 = enum(int, struct, $enum18, $intarray0($int21));
     $struct20 = ~script5730($struct20);
@@ -298,8 +306,8 @@ while ($int21 < $int33) {
             cc_clearscripthooks;
             cc_clearops;
             cc_settargetverb("");
-            cc_setposition(calc($intarray2(calc($int21 % $int42)) + 2), calc($int21 / $int42 * $int38), ^setpos_abs_left, ^setpos_abs_top);
-            $int47 = calc(cc_gety + $int31);
+            cc_setposition(calc($intarray2(calc($int21 % $int43)) + 2), calc($int21 / $int43 * $int39), ^setpos_abs_left, ^setpos_abs_top);
+            $int48 = calc(cc_gety + $int31);
             cc_setsize($int30, $int31, ^setsize_abs, ^setsize_abs);
             cc_setgraphic(struct_param($struct20, param_2802));
             cc_setopbase("<col=00ff00><struct_param($struct20, param_2794)>");
@@ -363,28 +371,28 @@ while ($int21 < $int33) {
             }
             if (cc_find($component6, $int28) = true) {
                 cc_sethide(false);
-                cc_setposition($intarray2(calc($int21 % $int42)), calc($int21 / $int42 * $int38 - 2), ^setpos_abs_left, ^setpos_abs_top);
+                cc_setposition($intarray2(calc($int21 % $int43)), calc($int21 / $int43 * $int39 - 2), ^setpos_abs_left, ^setpos_abs_top);
             }
             if (cc_find($component5, $int28) = true) {
-                cc_setposition($intarray2(calc($int21 % $int42)), calc($int21 / $int42 * $int38 - 1), ^setpos_abs_left, ^setpos_abs_top);
+                cc_setposition($intarray2(calc($int21 % $int43)), calc($int21 / $int43 * $int39 - 1), ^setpos_abs_left, ^setpos_abs_top);
                 if (struct_param($struct20, param_2874) = 1) {
-                    $int48 = -1;
+                    $int49 = -1;
                     if ($int24 = 4) {
                         if (%varplayerbit_21705 = $int28) {
-                            $int48 = 0;
+                            $int49 = 0;
                         } else if (%varplayerbit_21706 = $int28) {
-                            $int48 = 1;
+                            $int49 = 1;
                         }
                     } else if (%varplayerbit_43 = $int28) {
-                        $int48 = 0;
+                        $int49 = 0;
                     } else if (%varplayerbit_18050 = $int28) {
-                        $int48 = 1;
+                        $int49 = 1;
                     }
                     cc_sethide(false);
-                    if ($int48 ! -1) {
+                    if ($int49 ! -1) {
                         cc_setfill(false);
                         cc_settrans(0);
-                        cc_setontimer("script7053($component5, cc_getid, 1, $int48)");
+                        cc_setontimer("script7053($component5, cc_getid, 1, $int49)");
                     } else {
                         cc_settrans(255);
                         cc_setontimer(null);
@@ -398,8 +406,8 @@ while ($int21 < $int33) {
     }
     $int21 = calc($int21 + 1);
 }
-if_setscrollsize(0, calc($int47 + 4), $component1);
-if ($int43 = 1) {
+if_setscrollsize(0, calc($int48 + 4), $component1);
+if ($int44 = 1) {
     ~scrollbar_vertical($component2, $component1, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
     if (if_getscrolly($component1) > if_getscrollheight($component1)) {
         if_setscrollpos(0, if_getscrollheight($component1), $component1);

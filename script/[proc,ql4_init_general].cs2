@@ -16,6 +16,16 @@ def_int $int7 = 0;
 def_struct $struct8 = null;
 def_int $int9 = -1;
 def_int $int10 = 0;
+def_int $int11 = 15;
+def_fontmetrics $fontmetrics12 = p11_full;
+def_int $int13 = 20;
+def_fontmetrics $fontmetrics14 = b12_full;
+if (%varplayerbit_38842 = 1) {
+    $int11 = 30;
+    $fontmetrics12 = graphic_21207;
+    $int13 = 30;
+    $fontmetrics14 = graphic_21208;
+}
 %varclient_693 = %varplayerbit_315;
 %varclient_694 = %varplayerbit_317;
 %varclient_1103 = %varplayerbit_318;
@@ -29,12 +39,13 @@ while ($int7 < %varclient_272) {
         $int7 = calc($int7 + 1);
         $int10 = ~ql4_getprogress($int6);
         cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-        cc_setsize(10, 15, ^setsize_minus, ^setsize_abs);
+        cc_setsize(10, $int11, ^setsize_minus, ^setsize_abs);
         cc_setcolour(0x222222);
-        cc_settextfont(p11_full);
+        cc_settextfont($fontmetrics12);
         cc_settextalign(^settextalign_left, ^settextalign_top, 0);
         cc_settextshadow(true);
         cc_settext(struct_param($struct8, param_845));
+        cc_setmaxlines(1);
         if ($int9 = -1 & $struct8 = struct_510 & $int1 = 1) {
             $int9 = cc_getid;
         }
@@ -46,13 +57,14 @@ while ($int7 < %varclient_272) {
 %varclient_273 = calc($int6 - 1);
 while ($int6 < calc(%varclient_273 + 10)) {
     cc_create($component4, ^iftype_text, $int6);
-    cc_settextfont(b12_full);
-    cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
+    cc_settextfont($fontmetrics14);
+    cc_setsize(0, $int13, ^setsize_minus, ^setsize_abs);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     cc_settext("");
     cc_setcolour(0xff9900);
     cc_sethide(true);
     cc_settextshadow(true);
+    cc_setmaxlines(1);
     $int6 = calc($int6 + 1);
 }
 ~ql4_sort($int0, $int1, %varclient_693, %varclient_694, %varclient_692, %varclient_1103, %varclient_3853);

@@ -772,7 +772,7 @@ if (oc_category($obj0) = category_3455) {
                 $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_15191);
                 $int49 = ~script7235("Charges remaining: <tostring($int17)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
             }
-        } else if ($obj0 = obj_40408) {
+        } else if ($obj0 = obj_40408 | $obj0 = obj_42892) {
             $npc48 = enum(int, npc, enum_12737, inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_36325));
             $string1 = struct_param(enum(npc, struct, enum_12740, $npc48), param_6600);
             $int49 = ~script7235("Soul contained: <$string1>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
@@ -802,6 +802,11 @@ if (oc_category($obj0) = category_3455) {
         } else if (oc_category($obj0) = category_3279) {
             $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_25008);
             $int49 = ~script7235("Charges remaining: <tostring(calc(100 - $int17))>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if ($obj0 = obj_42895) {
+            $int49 = ~script7235("Commander Zilyana kills stored: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40669))>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            $int49 = ~script7235("K'ril Tsutsaroth kills stored: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40671))>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            $int49 = ~script7235("General Graardor kills stored: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40673))>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+            $int49 = ~script7235("Kree'arra kills stored: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40675))>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
         } else if (oc_category($obj0) = category_4223) {
             $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_18361);
             $int49 = ~script7235("Kills stored: <tostring($int17)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
@@ -831,6 +836,29 @@ if (oc_category($obj0) = category_3455) {
         } else if (oc_category($obj0) = category_4299) {
             $int17 = scale(calc(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40237) + inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40238) + inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40239)), oc_param($obj0, param_4535), 100);
             $int49 = ~script7235("Bag filled: <tostring($int17)>%", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if (oc_category($obj0) = category_4320) {
+            $int17 = min(max(scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40679), oc_param($obj0, param_7176), 100), 0), 99);
+            $int49 = ~script7235("Jar filled: <tostring($int17)>%", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+        } else if (oc_category($obj0) = category_4322) {
+            $int36 = oc_param($obj0, param_7176);
+            if ($obj0 = obj_42907) {
+                if (inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40680) = $int36 & inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40681) = $int36 & inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40682) = $int36 & inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40683) = $int36 & inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40684) = $int36) {
+                    $int49 = ~script7235("Memories successfully recovered", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+                } else {
+                    $int49 = ~script7235("Lustrous data recovered: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40680))>/<tostring($int36)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+                    $int49 = ~script7235("Brilliant data recovered: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40681))>/<tostring($int36)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+                    $int49 = ~script7235("Radiant data recovered: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40682))>/<tostring($int36)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+                    $int49 = ~script7235("Luminous data recovered: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40683))>/<tostring($int36)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+                    $int49 = ~script7235("Incandescent data recovered: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40684))>/<tostring($int36)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+                }
+            } else {
+                $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_40679);
+                if ($int17 = $int36) {
+                    $int49 = ~script7235("Memory successfully recovered", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+                } else {
+                    $int49 = ~script7235("Data recovered: <tostring($int17)>/<tostring($int36)>", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+                }
+            }
         }
     }
 } else if (oc_category($obj0) = category_3567) {
@@ -1001,21 +1029,29 @@ if ($obj5 ! null & $obj5 ! $obj0) {
     }
     $int49 = ~script10761($obj5, $inv6, $struct1, $struct2, $component3, $component4, $int49);
 }
-if (oc_param($obj0, param_6897) > 0 & %varclient_5121 ! null & %varclient_5122 >= 0) {
-    $int17 = calc(3 + ~script3862);
-    switch_obj ($obj0) {
-        case obj_42111, obj_42112, obj_42113, obj_42114 :
-            $int18 = calc(5 - ~script3862);
-            $int49 = ~script7235("Charges available: <tostring(%varplayerbit_39468)>/<tostring($int17)>", $string1, $struct2, $component3, $component4, $int49);
-            $int49 = ~script7235("Next charge progress: <tostring(%varplayerbit_39465)>/<tostring($int18)>", $string1, $struct2, $component3, $component4, $int49);
-        case obj_42119, obj_42120, obj_42121, obj_42122 :
-            $int18 = calc(5 - ~script3862);
-            $int49 = ~script7235("Charges available: <tostring(%varplayerbit_39469)>/<tostring($int17)>", $string1, $struct2, $component3, $component4, $int49);
-            $int49 = ~script7235("Next charge progress: <tostring(%varplayerbit_39466)>/<tostring($int18)>", $string1, $struct2, $component3, $component4, $int49);
-        case obj_42107, obj_42108, obj_42109, obj_42110 :
-            $int18 = calc(2 - ~script3862);
-            $int49 = ~script7235("Charges available: <tostring(%varplayerbit_39470)>/<tostring($int17)>", $string1, $struct2, $component3, $component4, $int49);
-            $int49 = ~script7235("Next charge progress: <tostring(%varplayerbit_39467)>/<tostring($int18)>", $string1, $struct2, $component3, $component4, $int49);
+if (oc_param($obj0, param_6897) > 0) {
+    if (%varclient_5121 ! null & %varclient_5122 >= 0) {
+        $int17 = calc(3 + ~script3862);
+        switch_obj ($obj0) {
+            case obj_42111, obj_42112, obj_42113, obj_42114 :
+                $int18 = calc(5 - ~script3862);
+                $int49 = ~script7235("Charges available: <tostring(%varplayerbit_39468)>/<tostring($int17)>", $string1, $struct2, $component3, $component4, $int49);
+                $int49 = ~script7235("Next charge progress: <tostring(%varplayerbit_39465)>/<tostring($int18)>", $string1, $struct2, $component3, $component4, $int49);
+            case obj_42119, obj_42120, obj_42121, obj_42122 :
+                $int18 = calc(5 - ~script3862);
+                $int49 = ~script7235("Charges available: <tostring(%varplayerbit_39469)>/<tostring($int17)>", $string1, $struct2, $component3, $component4, $int49);
+                $int49 = ~script7235("Next charge progress: <tostring(%varplayerbit_39466)>/<tostring($int18)>", $string1, $struct2, $component3, $component4, $int49);
+            case obj_42107, obj_42108, obj_42109, obj_42110 :
+                $int18 = calc(2 - ~script3862);
+                $int49 = ~script7235("Charges available: <tostring(%varplayerbit_39470)>/<tostring($int17)>", $string1, $struct2, $component3, $component4, $int49);
+                $int49 = ~script7235("Next charge progress: <tostring(%varplayerbit_39467)>/<tostring($int18)>", $string1, $struct2, $component3, $component4, $int49);
+        }
     }
+} else if ($obj0 = obj_42785 | $obj0 = obj_42787) {
+    if (%varclient_5121 ! null & %varclient_5122 >= 0) {
+        $int49 = ~script7235("Call upon elvish dark magic to restore 37% of your total prayer points over 1 minute. 5 Minute cooldown between each use.", get_col_tag($rgb7), $struct2, $component3, $component4, $int49);
+    }
+} else if ($obj0 = obj_5521 & %varclient_5121 ! null & %varclient_5122 >= 0) {
+    $int49 = ~script7235("Charges available: <tostring(%varplayer_3216)>", $string1, $struct2, $component3, $component4, $int49);
 }
 return($int49);

@@ -1,0 +1,41 @@
+// 4296
+[clientscript,script4296]
+def_int $int0 = 1000000;
+switch_int (%varplayerbit_40595) {
+    case default :
+        $int0 = 1000000;
+    case 1 :
+        $int0 = 200000;
+    case 3 :
+        $int0 = 500000;
+    case 2 :
+        $int0 = 100000;
+}
+def_int $int1 = scale(%varplayerbit_40594, $int0, 100);
+def_int $int2 = scale(350, 100, $int1);
+if (%varplayerbit_40611 = 1 & %varplayerbit_40595 ! 1 & %varplayerbit_40595 ! 2) {
+    if (%varplayerbit_40595 = 3) {
+        $int2 = calc($int2 * 2);
+    } else {
+        $int2 = calc($int2 * 4);
+    }
+}
+if (if_getwidth(interface_1185:com_10) ! $int2) {
+    if_setsize($int2, 33, ^setsize_abs, ^setsize_abs, interface_1185:com_10);
+    if_setontimer("script4297($int2, $int1, %varplayerbit_40611)", interface_1185:com_6);
+}
+def_int $int3 = %varplayerbit_40594;
+if (%varplayerbit_27168 = 1 & %varplayerbit_40595 = 0 | %varplayerbit_27168 = 1 & %varplayerbit_40595 = 2 | %varplayerbit_27168 = 1 & %varplayerbit_40595 = 3) {
+    $int3 = calc(%varplayerbit_40594 / 10);
+}
+def_string $string0 = ~tostring_spacer($int3, ",");
+if (%varplayerbit_40594 > 0) {
+    if (%varplayerbit_40595 = 1) {
+        $string0 = tostring(scale($int3, 20000, 10));
+        if_settext("<$string0>%", interface_1185:com_13);
+    } else {
+        if_settext($string0, interface_1185:com_13);
+    }
+} else {
+    if_settext("", interface_1185:com_13);
+}

@@ -7,97 +7,84 @@ if (stat_base(farming) >= 40) {
     $int0 = calc(%varplayerbit_5608 * enum(int, int, enum_1369, stat_base(farming)) / 100);
 }
 if (%varplayerbit_5608 = 1) {
-    if_settext("Trade one point<br>for <tostring_localised($int0, true)> XP?", interface_686:com_13);
+    if_settext("Trade one point for <tostring_localised($int0, true)> XP?", interface_686:com_11);
 } else {
-    if_settext("Trade <tostring_localised(%varplayerbit_5608, true)> points<br>for <tostring_localised($int0, true)> XP?", interface_686:com_13);
+    if_settext("Trade <tostring_localised(%varplayerbit_5608, true)> points for <tostring_localised($int0, true)> Farming XP?", interface_686:com_11);
 }
-cc_deleteall(interface_686:com_6);
+cc_deleteall(interface_686:com_0);
+cc_deleteall(interface_686:com_1);
 def_int $int1 = enum_getoutputcount(enum_1589);
 def_int $int2 = 0;
-def_int $int3 = 0;
+def_obj $obj3 = null;
 def_int $int4 = 0;
 def_int $int5 = 0;
-def_obj $obj6 = null;
-def_int $int7 = 0;
+def_int $int6 = 0;
+def_int $int7 = if_getwidth(interface_686:com_2);
 def_int $int8 = 0;
-while ($int8 < $int1) {
-    $obj6 = enum(int, obj, enum_1589, $int8);
-    $int7 = enum(obj, int, enum_1365, $obj6);
-    $int2 = calc($int8 % 9 * 50);
-    $int3 = calc($int8 / 9 * 54);
-    $int4, $int5 = max($int4, $int2), max($int5, $int3);
-    cc_create(interface_686:com_6, ^iftype_graphic, if_getnextsubid(interface_686:com_6));
-    cc_setsize(48, 52, ^setsize_abs, ^setsize_abs);
-    cc_setposition($int2, $int3, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setgraphic("km_shoptile,0");
-    if ($obj6 = obj_11209) {
-        cc_setop(1, "Trade points for XP");
-        cc_setonop("comp_sethide(false, interface_686:com_9)");
+def_string $string0 = "Farming experience";
+def_string $string1 = "";
+def_struct $struct9 = struct_28679;
+def_graphic $graphic10 = "xp_token,0";
+if (map_lang = 1) {
+    $graphic10 = "xp_token,2";
+}
+while ($int2 < $int1) {
+    $obj3 = enum(int, obj, enum_1589, $int2);
+    $int4 = enum(obj, int, enum_1365, $obj3);
+    if ($int4 = -1) {
+        $int8 = 11;
+        $string1 = "N/A";
     } else {
-        cc_setopbase("<col=ff981f><oc_name($obj6)></col>");
+        if ($int4 < %varplayerbit_5608) {
+            $int8 = 11;
+        } else {
+            $int8 = 46;
+        }
+        $string0 = "";
+        $string1 = tostring_localised($int4, true);
+    }
+    if (calc($int2 % 2) = 0) {
+        $struct9 = struct_28679;
+    } else {
+        $struct9 = struct_28680;
+    }
+    if (calc($int5 + 49) >= $int7) {
+        $int5 = 0;
+        $int6 = calc($int6 + 53);
+    }
+    ~cc_add_rect_struct(interface_686:com_0, 48, 52, $int5, $int6, true, $struct9);
+    if ($obj3 = obj_11209) {
+        ~script4512(interface_686:com_0, 34, 34, calc($int5 + 7), calc($int6 + 1), $graphic10);
+    } else {
+        ~cc_add_object_count(interface_686:com_0, 36, 32, calc($int5 + 6), calc($int6 + 2), $obj3, 5);
+        cc_setoutline(1);
+    }
+    ~script6203(interface_686:com_0, 44, 14, calc($int5 + 2), calc($int6 + 36), graphic_17813, $string1, $int8);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    ~cc_add_rect_struct(interface_686:com_1, 48, 52, $int5, $int6, false, struct_2438);
+    if ($obj3 = obj_11209) {
+        cc_setop(1, "Trade points for XP");
+        cc_setonop("comp_sethide(false, interface_686:com_6)");
+        cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
+    } else {
+        cc_setopbase("<col=ff981f><oc_name($obj3)></col>");
         cc_setop(1, "Value");
         cc_setop(2, "Buy 1");
         cc_setop(3, "Buy 5");
         cc_setop(4, "Buy 10");
-        if ($obj6 ! obj_12625) {
+        if ($obj3 ! obj_12625) {
             cc_setop(5, "Buy X");
         }
         cc_setop(10, "Examine");
+        cc_setonmouserepeat("script9564($obj3, event_com, event_comsubid)");
     }
-    cc_setonmouseover("cc_settrans(event_com, calc(cc_getid + 1), 0)");
-    cc_setonmouseleave("cc_settrans(event_com, calc(cc_getid + 1), 255)");
-    cc_create(interface_686:com_6, ^iftype_graphic, if_getnextsubid(interface_686:com_6));
-    cc_setsize(48, 52, ^setsize_abs, ^setsize_abs);
-    cc_setposition($int2, $int3, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setgraphic("km_shoptile,1");
-    cc_settrans(255);
-    cc_create(interface_686:com_6, ^iftype_graphic, if_getnextsubid(interface_686:com_6));
-    if ($obj6 = obj_11209) {
-        cc_setsize(34, 34, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int2 + 7), calc($int3 + 2), ^setpos_abs_left, ^setpos_abs_top);
-        if (map_lang = 1) {
-            cc_setgraphic("xp_token,2");
-        } else {
-            cc_setgraphic("xp_token,0");
-        }
-    } else {
-        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int2 + 6), calc($int3 + 4), ^setpos_abs_left, ^setpos_abs_top);
-        cc_setobject_nonum($obj6, 5);
-        cc_setoutline(1);
-    }
-    cc_setgraphicshadow(0x302020);
-    cc_create(interface_686:com_6, ^iftype_graphic, if_getnextsubid(interface_686:com_6));
-    cc_setsize(12, 12, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc($int2 + 2), calc($int3 + 38), ^setpos_abs_left, ^setpos_abs_top);
-    cc_setobject_nonum(obj_12625, 1);
-    cc_create(interface_686:com_6, ^iftype_text, if_getnextsubid(interface_686:com_6));
-    cc_setsize(31, 12, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc($int2 + 13), calc($int3 + 39), ^setpos_abs_left, ^setpos_abs_top);
-    cc_settextfont(p11_full);
-    cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
-    if ($int7 = -1) {
-        cc_settext("N/A");
-    } else {
-        cc_settext(~script940($int7));
-    }
-    if ($int7 <= %varplayerbit_5608) {
-        cc_setcolour(^yellow);
-    } else {
-        cc_setcolour(^red);
-    }
-    cc_settextshadow(true);
-    $int8 = calc($int8 + 1);
+    $int5 = calc($int5 + 49);
+    $int2 = calc($int2 + 1);
 }
-$int4, $int5 = calc($int4 + 48), calc($int5 + 52);
-def_int $int9 = if_getheight(interface_686:com_6);
-if_setsize($int4, $int9, ^setsize_abs, ^setsize_abs, interface_686:com_6);
-if ($int5 > $int9) {
-    if_setposition(calc((if_getwidth(interface_686:com_5) - if_getwidth(interface_686:com_7) - $int4) / 2), 0, ^setpos_abs_left, ^setpos_abs_centre, interface_686:com_6);
-    if_sethide(false, interface_686:com_7);
-    if_setscrollsize(0, $int5, interface_686:com_6);
-    ~scrollbar_vertical(interface_686:com_7, interface_686:com_6, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-} else {
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_686:com_6);
-    if_sethide(true, interface_686:com_7);
+if ($int5 > 0) {
+    $int6 = calc($int6 + 53);
+}
+if ($int6 > if_getheight(interface_686:com_2)) {
+    if_setscrollsize(0, $int6, interface_686:com_2);
+    ~rs3_scrollbar_vertical(interface_686:com_3, interface_686:com_2);
 }

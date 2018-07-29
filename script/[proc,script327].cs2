@@ -1,0 +1,106 @@
+// 327
+[proc,script327](component $component0, component $component1, enum $enum2, int $int3)(int, int)
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = enum_getoutputcount($enum2);
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $rgb9 = ^black;
+def_int $int10 = 0;
+def_int $int11 = 26;
+def_int $int12 = 0;
+def_dbrow $dbrow13 = null;
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+def_graphic $graphic14 = null;
+def_boolean $boolean15 = false;
+def_fontmetrics $fontmetrics16 = graphic_17813;
+if (%varplayerbit_38842 = 1) {
+    $int11 = 36;
+    $int12 = 7;
+    $fontmetrics16 = graphic_20280;
+    if ($int3 = 1) {
+        if_sethide(false, interface_148:com_0);
+        $int7 = 43;
+    }
+} else if ($int3 = 1) {
+    if_sethide(true, interface_148:com_0);
+}
+while ($int5 < $int6) {
+    $dbrow13 = enum(int, dbrow, $enum2, $int5);
+    $string1 = db_getfield($dbrow13, dbtable_28:col0, 0);
+    $graphic14 = db_getfield($dbrow13, dbtable_28:col1, 0);
+    $boolean15 = db_getfield($dbrow13, dbtable_28:col2, 0);
+    $string2 = db_getfield($dbrow13, dbtable_28:col3, 0);
+    switch_int (db_getfield($dbrow13, dbtable_28:col5, 0)) {
+        case 0 :
+            $string0 = $string1;
+        case 1 :
+            if ($int3 = 1) {
+                $string0 = "Coin pouch: <tostring_localised(%varclient_6480, true)>";
+            } else {
+                $string0, $rgb9 = ~money_pouch_int_to_string(%varclient_6480);
+            }
+        case 2 :
+            $string0 = "<tostring_localised(runweight_visible, true)>kg";
+    }
+    switch_int (db_getfield($dbrow13, dbtable_28:col5, 0)) {
+        case 0 :
+            if ($int3 = 1) {
+                ~script387($component0, 22, 22, 3, calc($int7 + $int12), $graphic14, $boolean15);
+                ~script6201($component0, 1000, 16, 25, calc($int7 + $int12 + 3), $fontmetrics16, $string0);
+                ~cc_add(^iftype_text, $component1, $int5, 1000, $int11, 0, $int7);
+            } else {
+                ~script11624($component0, $component1, struct_28749, 0, 0, $int5, 1);
+                ~script387($component0, 22, 22, 0, 0, $graphic14, $boolean15);
+            }
+        case 1 :
+            if ($int3 = 1) {
+                ~script6201($component0, 1000, 16, 6, calc($int7 + $int12 + 3), $fontmetrics16, $string0);
+            } else {
+                ~cc_add_colour_text($component0, 45, 24, 0, 0, graphic_17813, $string0, $rgb9);
+                cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+            }
+            cc_create($component1, ^iftype_text, $int5);
+        case 2 :
+            if ($int3 = 1) {
+                ~script387($component0, 22, 22, 3, calc($int7 + $int12), $graphic14, $boolean15);
+                ~script6201($component0, 1000, 16, 25, calc($int7 + $int12 + 3), $fontmetrics16, $string0);
+            } else {
+                ~script387($component0, 22, 22, 0, 0, $graphic14, $boolean15);
+                ~script6203($component0, 38, 24, 0, 0, graphic_17813, $string0, 14);
+                cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+            }
+            cc_create($component1, ^iftype_text, $int5);
+            cc_setonmisctransmit("script328($component0, $component1, 3)");
+    }
+    if ($int3 = 1) {
+        $int8 = parawidth($string0, 1000, $fontmetrics16);
+        $int4 = max($int4, calc($int8 + 38));
+        $int7 = calc($int7 + $int11);
+    }
+    if (cc_find($component1, $int5) = true) {
+        ~script331($dbrow13);
+        switch_dbrow ($dbrow13) {
+            case dbrow_1014 :
+                cc_setonmouserepeat("script316(event_com, event_comsubid)");
+            case default :
+                cc_setonmouserepeat("script3876($string2, event_com, event_comsubid)");
+        }
+    }
+    $int5 = calc($int5 + 1);
+}
+if ($int3 = 1) {
+    $int7 = calc($int7 + 8);
+} else if (enum_hasoutput(enum, enum_5134, $enum2) = true) {
+    ~script11624($component0, $component1, struct_28749, 3, 0, $int5, 1);
+    ~script4512($component0, 19, 19, 6, 3, "rs3_icon_filter,3");
+    if (cc_find($component1, $int5) = true) {
+        cc_setop(1, "View Options");
+        $int10 = enum_getreverseindex(enum, int, enum_5134, $enum2, 0);
+        $component1 = enum(int, component, enum_5135, $int10);
+        cc_setonop("script275(event_com, event_comsubid, $component1, $enum2, event_op)");
+    }
+}
+return($int4, $int7);

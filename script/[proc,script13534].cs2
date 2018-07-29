@@ -30,7 +30,7 @@ cc_deleteall($component4);
 while ($int9 < $int10) {
     $struct17 = enum(int, struct, $enum1, $int9);
     .cc_create($component4, ^iftype_text, $int9);
-    if (testbit(struct_param($struct17, param_6651), $int5) = ^true) {
+    if (testbit(struct_param($struct17, param_6651), $int5) = ^true & (%varplayerbit_38842 = 0 | struct_param($struct17, param_7286) = 1)) {
         if (struct_param($struct17, param_6654) = 1) {
             $int11, $int12 = ~script11599($int0, $struct17);
         } else {
@@ -156,14 +156,18 @@ while ($int9 < $int10) {
             }
         } else {
             $int15 = 16;
-            $int16 = 20;
+            if (%varplayerbit_38842 = 1) {
+                $int16 = 40;
+            } else {
+                $int16 = 20;
+            }
         }
         if ($int2 = 1) {
             $string3 = "<col=aed0e0><$string5></col><$string0>";
             $string4 = "<col=ffffff><$string5><$string0></col>";
             cc_create($component3, ^iftype_text, if_getnextsubid($component3));
             cc_setposition(20, $int7, ^setpos_abs_left, ^setpos_abs_top);
-            cc_setsize(20, 20, ^setsize_minus, ^setsize_abs);
+            cc_setsize(20, $int16, ^setsize_minus, ^setsize_abs);
             cc_settextfont(graphic_20452);
             cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
             cc_settext($string3);
@@ -181,8 +185,8 @@ while ($int9 < $int10) {
             cc_setonmouseleave("graphic_swapper_dynamic(event_com, event_comsubid, $graphic18)");
         }
         if ($int2 = 1) {
-            cc_setposition(0, $int7, ^setpos_abs_left, ^setpos_abs_top);
-            .cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
+            cc_setposition(0, calc($int7 + ($int16 - 20) / 2), ^setpos_abs_left, ^setpos_abs_top);
+            .cc_setsize(0, $int16, ^setsize_minus, ^setsize_abs);
             .cc_setposition(0, $int7, ^setpos_abs_left, ^setpos_abs_top);
         } else {
             if ($struct17 ! struct_37912) {

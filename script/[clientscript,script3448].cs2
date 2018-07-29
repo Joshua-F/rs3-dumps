@@ -1,17 +1,43 @@
 // 3448
 [clientscript,script3448]
 if (%varplayerbit_5907 ! 0) {
-    if_sethide(false, interface_987:com_30);
+    if_sethide(false, interface_987:com_28);
 } else {
-    if_sethide(true, interface_987:com_30);
+    if_sethide(true, interface_987:com_28);
 }
+def_component $component0 = null;
 switch_int (%varplayerbit_5907) {
     case 1 :
-        if_setposition(16, 28, ^setpos_abs_left, ^setpos_abs_top, interface_987:com_30);
+        $component0 = interface_987:com_3;
+    case 2 :
+        $component0 = interface_987:com_7;
+    case 3 :
+        $component0 = interface_987:com_9;
+    case 4 :
+        $component0 = interface_987:com_11;
+    case 5 :
+        $component0 = interface_987:com_13;
+    case 6 :
+        $component0 = interface_987:com_15;
     case 7 :
-        if_setposition(16, 161, ^setpos_abs_left, ^setpos_abs_top, interface_987:com_30);
-    case 2, 3, 4, 5, 6 :
-        if_setposition(calc(16 + (%varplayerbit_5907 - 1) * 79), 28, ^setpos_abs_left, ^setpos_abs_top, interface_987:com_30);
-    case 8, 9, 10, 11, 12 :
-        if_setposition(calc(16 + (%varplayerbit_5907 - 7) * 79), 161, ^setpos_abs_left, ^setpos_abs_top, interface_987:com_30);
+        $component0 = interface_987:com_17;
+    case 8 :
+        $component0 = interface_987:com_19;
+    case 9 :
+        $component0 = interface_987:com_21;
+    case 10 :
+        $component0 = interface_987:com_23;
+    case 11 :
+        $component0 = interface_987:com_25;
+    case 12 :
+        $component0 = interface_987:com_27;
+}
+if ($component0 = null) {
+    if_sethide(true, interface_987:com_28);
+    return;
+}
+if (if_find($component0) = true) {
+    if_sethide(false, interface_987:com_28);
+    if_setsize(cc_getwidth, cc_getheight, ^setsize_abs, ^setsize_abs, interface_987:com_28);
+    if_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top, interface_987:com_28);
 }

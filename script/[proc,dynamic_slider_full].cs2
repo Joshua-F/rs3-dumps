@@ -1,0 +1,91 @@
+// 10424
+[proc,dynamic_slider_full](component $component0, component $component1, component $component2, struct $struct3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, int $int11, boolean $boolean12, int $int13, enum $enum14)
+def_struct $struct15 = struct_param($struct3, param_7251);
+def_struct $struct16 = struct_param($struct3, param_7252);
+def_struct $struct17 = struct_param($struct3, param_7253);
+def_struct $struct18 = struct_param($struct3, param_7254);
+def_struct $struct19 = struct_param($struct3, param_7255);
+def_struct $struct20 = struct_param($struct3, param_4403);
+def_struct $struct21 = struct_param($struct3, param_7256);
+def_int $int22 = calc($int8 + $int10 / 2);
+def_int $int23 = 0;
+def_int $int24 = $int9;
+def_int $int25 = $int10;
+def_int $int26 = 0;
+def_int $int27 = 0;
+def_int $int28 = 0;
+def_int $int29 = 0;
+def_int $int30 = if_getnextsubid($component0);
+if (%varclient_6477 = 1) {
+    cancel_interface_drag;
+    %varclient_6477 = 0;
+}
+$int6 = calc($int6 - $int4);
+if ($struct18 ! null) {
+    $int27, $int26 = ~script10426($struct18);
+    $int23 = calc($int27 + 5);
+    $int24 = calc($int24 - $int23);
+    ~script9796($component0, $struct18, $int7, calc($int22 - $int26 / 2), $boolean12);
+    if (cc_find($component0, calc($int30 + 0)) = true & $boolean12 = false) {
+        cc_setop(1, "Decrease");
+        cc_setonop("script10447($component0, $component1, $component2, $int30, $int11, -1, $int4, $int5, $int13, $enum14)");
+    }
+} else {
+    cc_create($component0, ^iftype_text, calc($int30 + 0));
+}
+if ($struct19 ! null) {
+    $int27, $int26 = ~script10426($struct19);
+    $int28 = struct_param($struct3, param_7257);
+    ~script9799($component0, $struct19, calc($int7 + ($int9 - $int28)), calc($int22 - $int26 / 2), $int28, "    ", $boolean12);
+    $int28 = calc($int28 + 5);
+    $int24 = calc($int24 - $int28);
+    cc_create($component0, ^iftype_graphic, calc($int30 + 6));
+} else {
+    cc_create($component0, ^iftype_text, calc($int30 + 1));
+    cc_create($component0, ^iftype_text, calc($int30 + 2));
+    cc_create($component0, ^iftype_text, calc($int30 + 3));
+    cc_create($component0, ^iftype_text, calc($int30 + 4));
+    cc_create($component0, ^iftype_text, calc($int30 + 5));
+    cc_create($component0, ^iftype_text, calc($int30 + 6));
+}
+if ($struct17 ! null) {
+    $int27, $int26 = ~script10426($struct17);
+    $int24 = calc($int24 - ($int27 + 5));
+    ~script9796($component0, $struct17, calc($int7 + ($int9 - $int28 - $int27)), calc($int22 - $int26 / 2), $boolean12);
+    if (cc_find($component0, calc($int30 + 7)) = true & $boolean12 = false) {
+        cc_setop(1, "Increase");
+        cc_setonop("script10447($component0, $component1, $component2, $int30, $int11, 1, $int4, $int5, $int13, $enum14)");
+    }
+} else {
+    cc_create($component0, ^iftype_text, calc($int30 + 7));
+}
+$int27, $int26 = ~script10426($struct15);
+~script9799($component0, $struct15, calc($int7 + $int23), calc($int22 - $int26 / 2), $int24, "", $boolean12);
+$int27, $int26 = ~script10426($struct16);
+~script9799($component0, $struct16, calc($int7 + $int23), calc($int22 - $int26 / 2), calc($int24 / 2), "", $boolean12);
+$int27, $int26 = ~script10426($struct21);
+$int29 = if_getnextsubid($component0);
+cc_create($component0, ^iftype_text, $int29);
+cc_setsize($int24, $int26, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int7 + $int23), calc($int22 - $int26 / 2), ^setpos_abs_left, ^setpos_abs_top);
+if ($boolean12 = false) {
+    cc_setonclick("script10448($component0, $component1, $component2, $int30, $int11, event_mousex, $int24, $int4, $int5, $int13, $enum14)");
+}
+~script9796($component0, $struct21, calc($int7 + ($int23 + $int24 / 2)), calc($int22 - $int26 / 2), $boolean12);
+if ($boolean12 = false & cc_find($component0, calc($int30 + 19)) = true) {
+    cc_setparam(param_7249, $int6);
+    cc_setdragrenderbehaviour(1);
+    cc_setdraggable($component0, $int29);
+    cc_setnoclickthrough(true);
+    cc_setondrag("static_slider_drag($component0, $component1, $component2, $int30, $int11, event_mousex, calc($int24 - $int27), $int4, $int5, $int13, $enum14)");
+    cc_setondragcomplete("static_slider_drag_complete($component0, $component1, $component2, $int30, $int11, event_mousex, calc($int24 - $int27), $int4, $int5, $int13, $enum14)");
+}
+if ($component1 ! null) {
+    cc_create($component1, ^iftype_text, $int11);
+    cc_setsize(1, 1, ^setsize_abs, ^setsize_abs);
+    cc_setposition(-1, -1, ^setpos_abs_left, ^setpos_abs_top);
+    if ($boolean12 = false) {
+        cc_setop(1, "Select");
+    }
+}
+~script10602($component0, -1, $int30, $int4, $int5, $int6, $enum14);

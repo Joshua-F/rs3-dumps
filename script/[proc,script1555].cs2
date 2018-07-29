@@ -1,28 +1,29 @@
 // 1555
 [proc,script1555](int $int0, int $int1)
-if_setposition(~script1551(%varclient_1028, ~script8521($int0), graphic_20452, $int1), if_gety(~script8557($int0)), ^setpos_abs_left, ^setpos_abs_top, ~script8557($int0));
-def_int $int2 = if_getwidth(~script8555($int0));
-def_int $int3 = string_length(~script8521($int0));
+def_component $component2 = ~script8557($int0);
+if_setposition(~script1551(%varclient_1028, ~script8521($int0), graphic_20452, $int1), if_gety($component2), ^setpos_abs_left, ^setpos_abs_top, $component2);
+def_int $int3 = if_getwidth(~script8555($int0));
+def_int $int4 = string_length(~script8521($int0));
 def_string $string0 = "";
 if (%varclient_1028 > 0) {
-    $string0 = substring(~script8521($int0), 0, min(%varclient_1028, $int3));
+    $string0 = substring(~script8521($int0), 0, min(%varclient_1028, $int4));
 }
-def_int $int4 = calc(stringwidth($string0, graphic_20452) - $int2);
-if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, ~script8556($int0));
-if_setsize(max(stringwidth(if_gettext(~script8556($int0)), graphic_20452), $int2), if_getheight(~script8556($int0)), ^setsize_abs, ^setsize_abs, ~script8556($int0));
-if ($int4 > 0) {
-    if_setposition(calc(if_getx(~script8556($int0)) - $int4), 0, ^setpos_abs_left, ^setpos_abs_bottom, ~script8556($int0));
-    if_setposition(calc(if_getx(~script8557($int0)) - $int4), 0, ^setpos_abs_left, ^setpos_abs_centre, ~script8557($int0));
+def_int $int5 = calc(stringwidth($string0, graphic_20452) - $int3);
+def_component $component6 = ~script8556($int0);
+if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, $component6);
+if ($int5 > 0) {
+    if_setposition(calc(if_getx($component6) - $int5), 0, ^setpos_abs_left, ^setpos_abs_bottom, $component6);
+    if_setposition(calc(if_getx($component2) - $int5), 0, ^setpos_abs_left, ^setpos_abs_centre, $component2);
 }
 if (string_length(~script8521($int0)) <= 0 | %varclient_2873 ! 8 | %varclient_2231 ! $int0) {
-    if_sethide(true, ~script8557($int0));
+    if_sethide(true, $component2);
     if_setontimer(null, ~script8556($int0));
 } else {
     if (applet_hasfocus = true) {
-        if_sethide(false, ~script8557($int0));
+        if_sethide(false, $component2);
     } else {
-        if_sethide(true, ~script8557($int0));
+        if_sethide(true, $component2);
     }
     ~script8522($int0, ~script8521($int0));
-    if_setontimer("script1400(clientclock, ~script8557($int0))", ~script8556($int0));
+    if_setontimer("script1400(clientclock, $component2)", ~script8556($int0));
 }

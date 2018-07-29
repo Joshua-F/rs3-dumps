@@ -15,7 +15,8 @@ if (%varclient_3692 = 1 | %varclient_3693 = 1) {
 }
 %varclientbit_19930 = 191;
 ~script8411(1002, 0);
-if_sethide(false, interface_1477:com_51);
+if_sethide(false, interface_1477:com_56);
+%varclient_6478 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
 while ($int1 < $int2) {
@@ -35,11 +36,11 @@ while ($int1 < $int2) {
                         cc_setsize(0, 200, ^setsize_minus, ^setsize_abs);
                         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom);
                         if (%varplayer_7879 ! 1) {
-                            if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1923:com_10);
-                            if_sethide(true, interface_1923:com_9);
+                            if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1923:com_6);
+                            if_sethide(true, interface_1923:com_1);
                         } else {
-                            if_setposition(0, 45, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1923:com_10);
-                            if_sethide(false, interface_1923:com_9);
+                            if_setposition(0, 45, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1923:com_6);
+                            if_sethide(false, interface_1923:com_1);
                         }
                     case 1043 :
                         cc_setsize(0, 250, ^setsize_minus, ^setsize_abs);
@@ -60,7 +61,7 @@ while ($int1 < $int2) {
                     case 1006 :
                         ~script14156;
                     case 1004 :
-                        cc_setsize(240, 140, ^setsize_abs, ^setsize_abs);
+                        cc_setsize(298, 140, ^setsize_abs, ^setsize_abs);
                         cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
                         ~script13869;
                     case 1014 :
@@ -69,11 +70,12 @@ while ($int1 < $int2) {
                         cc_setposition(250, 0, ^setpos_abs_left, ^setpos_abs_top);
                     case 1021 :
                         cc_setposition(0, 200, ^setpos_abs_left, ^setpos_abs_top);
-                    case 1005, 1000 :
-                        cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
-                        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+                    case 1000 :
+                        ~script14246;
+                    case 1005 :
+                        $boolean9 = ~script14235;
                     case 1017 :
-                        cc_setsize(688, 400, ^setsize_abs, ^setsize_abs);
+                        cc_setsize(688, 460, ^setsize_abs, ^setsize_abs);
                         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
                     case 1013, 1007, 1023 :
                         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
@@ -90,7 +92,10 @@ while ($int1 < $int2) {
                         if (if_hassub(~script8073) = false) {
                             $boolean9 = true;
                         }
-                    case 1024, 1028, 1030 :
+                    case 1028 :
+                        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+                        cc_setsize(380, 260, ^setsize_abs, ^setsize_abs);
+                    case 1024, 1030 :
                         cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
                     case 1002 :
                         if (%varclientbit_38847 = 1) {
@@ -110,16 +115,18 @@ while ($int1 < $int2) {
                     case 1018, 1039 :
                         cc_setposition(0, 96, ^setpos_abs_centre, ^setpos_abs_top);
                     case 18 :
-                        if_sethide(false, interface_137:com_255);
-                        if_sethide(true, interface_137:com_54);
-                        if_sethide(true, interface_137:com_65);
-                        ~script14153(0);
+                        %varclientbit_41275 = calc(%varclientbit_41275 % 3);
                         ~mobile_chatbox_resize;
-                        ~script13884;
-                        ~script1850(18, 0);
-                        if_setnoclickthrough(false, $component7);
                     case 1029 :
-                        cc_setposition(240, 0, ^setpos_abs_right, ^setpos_abs_top);
+                        cc_setposition(298, 0, ^setpos_abs_right, ^setpos_abs_top);
+                    case 1041 :
+                        cc_setposition(0, 80, ^setpos_abs_centre, ^setpos_abs_top);
+                    case 2008 :
+                        cc_setposition(0, 80, ^setpos_abs_left, ^setpos_abs_top);
+                        cc_setsize(cc_getwidth, 100, ^setsize_abs, ^setsize_abs);
+                        if (%varclientbit_41275 = 2) {
+                            $boolean9 = true;
+                        }
                     case default :
                         if (struct_param($struct5, param_3527) ! 3) {
                             $int3, $int4 = ~script8724(1, $int0);
@@ -149,6 +156,7 @@ while ($int1 < $int2) {
 }
 if (%varclientbit_38843 > 0 & $int8 = 0) {
     ~script8311(calc(%varclientbit_38843 - 1));
+    ~script14241;
 }
 if (if_hassub(interface_1448:com_3) = false) {
     ~script8290(0);
@@ -156,3 +164,4 @@ if (if_hassub(interface_1448:com_3) = false) {
     ~script8288(%varplayerbit_18994);
 }
 ~script13893($int8);
+if_sethide(true, interface_1477:com_827);

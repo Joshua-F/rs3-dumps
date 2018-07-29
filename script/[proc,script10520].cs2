@@ -1,14 +1,21 @@
 // 10520
 [proc,script10520](component $component0)
-if (%varclient_2236 = 9) {
-    switch_component ($component0) {
-        case interface_1830:com_13 :
-            if_sethide(false, interface_1830:com_17);
-        case interface_1487:com_13 :
-            ~script9854;
-        case interface_1561:com_19 :
-            ~script10788;
-    }
-} else if (%varclient_2236 = 7 & $component0 = interface_1537:com_33) {
-    ~script10612;
+switch_int (%varclient_2236) {
+    case 9 :
+        switch_component ($component0) {
+            case interface_1830:com_13 :
+                if_sethide(false, interface_1830:com_17);
+            case interface_1487:com_13 :
+                ~script9854;
+            case interface_1561:com_19 :
+                ~script10788;
+        }
+    case 7 :
+        if ($component0 = interface_1537:com_33) {
+            ~script10612;
+        }
+    case 10 :
+        if ($component0 = interface_105:com_12) {
+            ~stockmarket_search_init;
+        }
 }

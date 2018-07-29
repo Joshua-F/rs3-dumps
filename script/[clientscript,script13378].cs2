@@ -2,26 +2,33 @@
 [clientscript,script13378]
 def_int $int0 = 0;
 def_int $int1 = 40;
-def_int $int2 = calc((if_getwidth(interface_1870:com_4) - $int1 * 6) / 2);
-def_int $int3 = calc((if_getheight(interface_1870:com_4) - $int1 * 6) / 2);
+def_int $int2 = calc((if_getwidth(interface_1870:com_11) - $int1 * 6) / 2);
+def_int $int3 = calc((if_getheight(interface_1870:com_11) - $int1 * 6) / 2);
 def_int $int4 = $int2;
 def_int $int5 = $int3;
 def_graphic $graphic6 = "trh119_icon_checkmarks,1";
-cc_deleteall(interface_1870:com_4);
-cc_deleteall(interface_1870:com_5);
-cc_deleteall(interface_1870:com_9);
-cc_deleteall(interface_1253:com_1046);
+def_graphic $graphic7 = "trh119_icon_checkmarks,0";
+if (~trh_state(struct_40380) = 1) {
+    $graphic6 = treasurehunter_trh142_icon_crossbones;
+    $graphic7 = treasurehunter_trh142_containr_grid;
+    if_setposition(54, 15, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_11);
+    if_setposition(54, 15, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_12);
+}
+cc_deleteall(interface_1870:com_11);
+cc_deleteall(interface_1870:com_12);
+cc_deleteall(interface_1870:com_17);
+cc_deleteall(interface_1253:com_1059);
 while ($int0 < 36) {
-    cc_create(interface_1870:com_4, ^iftype_graphic, $int0);
+    cc_create(interface_1870:com_11, ^iftype_graphic, $int0);
     cc_setsize($int1, $int1, ^setsize_abs, ^setsize_abs);
     cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setgraphic("trh119_icon_checkmarks,0");
-    cc_create(interface_1870:com_5, ^iftype_graphic, $int0);
+    cc_setgraphic($graphic7);
+    cc_create(interface_1870:com_12, ^iftype_graphic, $int0);
     cc_setop(1, "Dig");
     cc_setopcursor(1, cursor_173);
     cc_setsize($int1, $int1, ^setsize_abs, ^setsize_abs);
     cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setonvartransmit("script13379($int0){varplayer_6974, varplayer_6975}");
+    cc_setonvartransmit("script13379($int0){varplayer_7940, varplayer_7941, varplayer_7932, varplayer_7933, varplayer_7934, varplayer_7935, varplayer_7936, varplayer_7937, varplayer_7938}");
     cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, $graphic6)");
     cc_setonmouseleave("script13379($int0)");
     cc_setonop("script13377($int0)");
@@ -31,52 +38,65 @@ while ($int0 < 36) {
         $int4 = $int2;
         $int5 = calc($int5 + $int1);
     }
-    cc_create(interface_1253:com_1046, ^iftype_graphic, $int0);
+    cc_create(interface_1253:com_1059, ^iftype_graphic, $int0);
     $int0 = calc($int0 + 1);
 }
-cc_create(interface_1253:com_1046, ^iftype_graphic, $int0);
-if_setonop("script13377($int0)", interface_1870:com_6);
-def_int $int7 = 5;
-def_int $int8 = 0;
+cc_create(interface_1253:com_1059, ^iftype_graphic, $int0);
+if_setonop("script13377($int0)", interface_1870:com_14);
+def_int $int8 = 5;
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
+def_int $int12 = 0;
 def_string $string0 = "";
-$int1 = 28;
-$int2 = calc((if_getwidth(interface_1870:com_9) - (5 * $int1 + (5 - 1) * $int7)) / 2);
-$int3 = 6;
-$int4 = $int2;
-$int5 = $int3;
-$int0 = 0;
-while ($int0 < enum_getoutputcount(enum_12584)) {
-    $int9, $int10, $int11, $string0 = ~script13381($int0);
-    cc_create(interface_1870:com_9, ^iftype_rectangle, if_getnextsubid(interface_1870:com_9));
-    cc_setcolour(0x071820);
-    cc_setfill(true);
-    cc_setsize(calc(if_getwidth(interface_1870:com_9) - $int2), calc($int1 / 2), ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc($int2 / 2), calc($int3 + $int0 * ($int1 + $int7) + $int1 / 4), ^setpos_abs_left, ^setpos_abs_top);
-    if ($int10 > 0) {
-        while ($int8 < $int10) {
-            cc_create(interface_1870:com_9, ^iftype_graphic, if_getnextsubid(interface_1870:com_9));
-            cc_setgraphic(enum(int, graphic, enum_12585, $int11));
-            cc_setsize($int1, $int1, ^setsize_abs, ^setsize_abs);
-            cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
-            cc_setonmouserepeat("script3876($string0, event_com, event_comsubid)");
-            .cc_create(interface_1870:com_9, ^iftype_graphic, if_getnextsubid(interface_1870:com_9));
-            .cc_setgraphic(rs3_contextual_input_green_check_mark);
-            .cc_setsize($int1, $int1, ^setsize_abs, ^setsize_abs);
-            .cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
-            if ($int8 >= $int9) {
-                .cc_sethide(true);
-            } else {
-                cc_settrans(130);
+if (~trh_state(struct_1515) = 1) {
+    if_sethide(true, interface_1870:com_0);
+    if_sethide(false, interface_1870:com_10);
+    ~script7135;
+    $int1 = 28;
+    $int2 = calc((if_getwidth(interface_1870:com_17) - (5 * $int1 + (5 - 1) * $int8)) / 2);
+    $int3 = 6;
+    $int4 = $int2;
+    $int5 = $int3;
+    $int0 = 0;
+    while ($int0 < enum_getoutputcount(enum_12584)) {
+        $int10, $int11, $int12, $string0 = ~script13381($int0);
+        cc_create(interface_1870:com_17, ^iftype_rectangle, if_getnextsubid(interface_1870:com_17));
+        cc_setcolour(0x071820);
+        cc_setfill(true);
+        cc_setsize(calc(if_getwidth(interface_1870:com_17) - $int2), calc($int1 / 2), ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int2 / 2), calc($int3 + $int0 * ($int1 + $int8) + $int1 / 4), ^setpos_abs_left, ^setpos_abs_top);
+        if ($int11 > 0) {
+            while ($int9 < $int11) {
+                cc_create(interface_1870:com_17, ^iftype_graphic, if_getnextsubid(interface_1870:com_17));
+                cc_setgraphic(enum(int, graphic, enum_12585, $int12));
+                cc_setsize($int1, $int1, ^setsize_abs, ^setsize_abs);
+                cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
+                cc_setonmouserepeat("script3876($string0, event_com, event_comsubid)");
+                .cc_create(interface_1870:com_17, ^iftype_graphic, if_getnextsubid(interface_1870:com_17));
+                .cc_setgraphic(rs3_contextual_input_green_check_mark);
+                .cc_setsize($int1, $int1, ^setsize_abs, ^setsize_abs);
+                .cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
+                if ($int9 >= $int10) {
+                    .cc_sethide(true);
+                } else {
+                    cc_settrans(130);
+                }
+                $int4 = calc($int4 + ($int1 + $int8));
+                $int9 = calc($int9 + 1);
             }
-            $int4 = calc($int4 + ($int1 + $int7));
-            $int8 = calc($int8 + 1);
+            $int9 = 0;
+            $int4 = $int2;
+            $int5 = calc($int5 + ($int1 + $int8));
         }
-        $int8 = 0;
-        $int4 = $int2;
-        $int5 = calc($int5 + ($int1 + $int7));
+        $int0 = calc($int0 + 1);
     }
-    $int0 = calc($int0 + 1);
+    if_settext("Buried Treasure", interface_1870:com_18);
+    if_settext("Dig up chests and use Treasure Hunter keys to open them. Search for special buried treasure chests to uncover more loot!", interface_1870:com_19);
+    if_settext("Special Chests", interface_1870:com_20);
+    if_sethide(true, interface_1870:com_13);
+} else {
+    if_sethide(false, interface_1870:com_0);
+    if_sethide(true, interface_1870:com_10);
+    if_sethide(false, interface_1870:com_13);
 }

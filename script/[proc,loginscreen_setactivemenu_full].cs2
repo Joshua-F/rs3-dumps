@@ -14,7 +14,11 @@ sound_vorbis_volume(sound_36961, 1, 0, 100);
 %varclient_174 = 1;
 if (%varclient_1090 ! 6) {
     %varclient_1091 = %varclient_1090;
-    if_setonclick("loginscreen_setactivemenu(%varclient_1091)", interface_882:com_70);
+    if (has_nxt = true) {
+        if_setonop("loginscreen_setactivemenu(%varclient_1091)", interface_882:com_70);
+    } else {
+        if_setonclick("loginscreen_setactivemenu(%varclient_1091)", interface_882:com_70);
+    }
 }
 if_sethide(true, interface_744:com_35);
 if_closesubclient(interface_744:com_35);
@@ -140,4 +144,9 @@ switch_int ($int0) {
 }
 if ($int0 ! 9 & $int0 ! 10) {
     %varclient_1090 = $int0;
+}
+if ($int0 ! 6) {
+    ~script9790(1);
+} else {
+    ~script9790(0);
 }

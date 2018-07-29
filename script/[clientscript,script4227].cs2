@@ -1,109 +1,69 @@
 // 4227
-[clientscript,script4227](component $component0, component $component1)
+[clientscript,script4227](component $component0, component $component1, component $component2)
 cc_deleteall($component0);
-def_int $int2 = 0;
-def_int $int3 = calc((if_getwidth($component0) - 125 * 3) / 2);
+cc_deleteall($component1);
+cc_deleteall($component2);
+def_int $int3 = 0;
 def_int $int4 = enum_getoutputcount(enum_828);
 def_int $int5 = 0;
-def_int $int6 = 0;
-while ($int2 < $int4) {
-    cc_create($component0, ^iftype_graphic, $int2);
-    cc_setsize(calc(125 - 4), calc(125 - 4), ^setsize_abs, ^setsize_abs);
-    if ($int5 = 0) {
-        cc_setposition(2, calc($int6 + 2), ^setpos_abs_left, ^setpos_abs_top);
-        $int5 = 1;
-    } else if ($int5 = 1) {
-        cc_setposition(0, calc($int6 + 2), ^setpos_abs_centre, ^setpos_abs_top);
-        $int5 = 2;
-    } else {
-        cc_setposition(2, calc($int6 + 2), ^setpos_abs_right, ^setpos_abs_top);
-        $int5 = 0;
-        $int6 = calc($int6 + 125 + $int3);
-    }
-    cc_setgraphic(tradebacking);
-    cc_settiling(true);
-    $int2 = calc($int2 + 1);
+def_component $component6 = if_getparentlayer($component0);
+if_setscrollpos(0, 0, $component6);
+if (calc($int4 * 28) < if_getheight($component6)) {
+    if_sethide(true, $component2);
+    if_setsize(calc(if_getwidth($component6) + 16), 0, ^setsize_abs, ^setsize_minus, $component6);
+} else {
+    if_setscrollsize(0, calc($int4 * 28 + 2), $component6);
+    if_sethide(false, $component2);
+    ~rs3_scrollbar_vertical($component2, $component6);
 }
-if ($int5 = 0) {
-    $int6 = max(calc($int6 - $int3), 0);
-}
-if_setscrollsize(0, $int6, $component0);
-~scrollbar_vertical($component1, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 def_obj $obj7 = null;
 def_string $string0 = "";
-def_string $string1 = "";
 def_int $int8 = 0;
-def_int $int9 = 0;
-def_int $int10 = calc(125 - 18);
-$int2 = 0;
-while ($int2 < $int4) {
-    $obj7 = enum(int, obj, enum_828, $int2);
-    if ($obj7 ! null & cc_find($component0, $int2) = true) {
-        $string0, $string1 = oc_param($obj7, param_1367), oc_param($obj7, param_1368);
-        $int3 = oc_param($obj7, param_1366);
-        $int5, $int6 = calc(cc_getx - 2), calc(cc_gety - 2);
-        $int8 = calc($int5 + 125 - 9);
-        $int9 = calc($int6 + 125 - 9);
-        .cc_create($component0, ^iftype_model, if_getnextsubid($component0));
-        .cc_setsize(75, 75, ^setsize_abs, ^setsize_abs);
-        .cc_setposition(calc($int5 + 25), calc($int6 + 20), ^setpos_abs_left, ^setpos_abs_top);
-        .cc_setobject_nonum($obj7, 1);
-        .cc_create($component0, ^iftype_text, if_getnextsubid($component0));
-        .cc_setsize(125, 20, ^setsize_abs, ^setsize_abs);
-        .cc_setposition($int5, calc($int6 + 5), ^setpos_abs_left, ^setpos_abs_top);
-        .cc_settextfont(p11_full);
-        .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-        .cc_setcolour(0xff981f);
-        .cc_settextshadow(true);
-        .cc_settext($string0);
-        .cc_create($component0, ^iftype_text, if_getnextsubid($component0));
-        .cc_setsize(125, 20, ^setsize_abs, ^setsize_abs);
-        .cc_setposition($int5, calc($int6 + 125 - 25), ^setpos_abs_left, ^setpos_abs_top);
-        .cc_settextfont(p11_full);
-        .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-        .cc_setcolour(0xff981f);
-        .cc_settextshadow(true);
-        ~script4229($int3, $string1);
-        .cc_setonvartransmit("script4228(event_com, event_comsubid, $int3, $string1){varplayer_2773}");
-        .cc_setoninvtransmit("script4228(event_com, event_comsubid, $int3, $string1){inv_93, inv_94}");
-        .cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
-        .cc_setsize(9, 9, ^setsize_abs, ^setsize_abs);
-        .cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
-        .cc_setgraphic("v2_stone_button,0");
-        .cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
-        .cc_setsize(9, 9, ^setsize_abs, ^setsize_abs);
-        .cc_setposition($int8, $int6, ^setpos_abs_left, ^setpos_abs_top);
-        .cc_setgraphic("v2_stone_button,1");
-        .cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
-        .cc_setsize(9, 9, ^setsize_abs, ^setsize_abs);
-        .cc_setposition($int5, $int9, ^setpos_abs_left, ^setpos_abs_top);
-        .cc_setgraphic("v2_stone_button,2");
-        .cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
-        .cc_setsize(9, 9, ^setsize_abs, ^setsize_abs);
-        .cc_setposition($int8, $int9, ^setpos_abs_left, ^setpos_abs_top);
-        .cc_setgraphic("v2_stone_button,3");
-        .cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
-        .cc_setsize(9, $int10, ^setsize_abs, ^setsize_abs);
-        .cc_setposition($int5, calc($int6 + 9), ^setpos_abs_left, ^setpos_abs_top);
-        .cc_setgraphic("v2_stone_button,4");
-        .cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
-        .cc_setsize($int10, 9, ^setsize_abs, ^setsize_abs);
-        .cc_setposition(calc($int5 + 9), $int6, ^setpos_abs_left, ^setpos_abs_top);
-        .cc_setgraphic("v2_stone_button,5");
-        .cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
-        .cc_setsize(9, $int10, ^setsize_abs, ^setsize_abs);
-        .cc_setposition($int8, calc($int6 + 9), ^setpos_abs_left, ^setpos_abs_top);
-        .cc_setgraphic("v2_stone_button,6");
-        .cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
-        .cc_setsize($int10, 9, ^setsize_abs, ^setsize_abs);
-        .cc_setposition(calc($int5 + 9), $int9, ^setpos_abs_left, ^setpos_abs_top);
-        .cc_setgraphic("v2_stone_button,7");
+def_int $int9 = 12;
+def_int $int10 = calc(if_getwidth($component0) / 2);
+while ($int3 < $int4) {
+    $obj7 = enum(int, obj, enum_828, $int3);
+    if ($obj7 ! null) {
+        $string0 = oc_name($obj7);
+        $int8 = oc_param($obj7, param_1366);
+        cc_create($component0, ^iftype_rectangle, if_getnextsubid($component0));
+        cc_setposition(0, $int5, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(0, 28, ^setsize_minus, ^setsize_abs);
+        cc_setfill(true);
+        if (calc($int3 % 2) = 0) {
+            ~script13650(struct_28679);
+        } else {
+            ~script13650(struct_28680);
+        }
+        if (%varplayer_2773 < $int8) {
+            $int9 = 46;
+        } else {
+            $int9 = 12;
+        }
+        cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+        cc_setposition(5, $int5, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(calc($int10 - 5), 28, ^setsize_abs, ^setsize_abs);
+        cc_settextfont(graphic_17813);
+        ~script2731($component0, cc_getid, $int9);
+        cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+        cc_setmaxlines(1);
+        cc_settext($string0);
+        cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+        cc_setposition(5, $int5, ^setpos_abs_right, ^setpos_abs_top);
+        cc_setsize(calc($int10 - 5), 28, ^setsize_minus, ^setsize_abs);
+        cc_settextfont(graphic_17813);
+        ~script2731($component0, cc_getid, $int9);
+        cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+        cc_setmaxlines(1);
+        cc_settext(tostring($int8));
+        cc_create($component1, ^iftype_rectangle, if_getnextsubid($component1));
+        cc_setposition(0, $int5, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(0, 28, ^setsize_minus, ^setsize_abs);
         cc_setop(1, "Claim");
-        cc_setop(10, "Examine");
-        $string0 = ~script2332($string0, "<br>", " ");
-        cc_setopbase("<col=ff9040><$string0>");
-        cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, tradebacking_dark)");
-        cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, tradebacking)");
+        cc_setopbase($string0);
+        cc_setonmouseover("script14315($obj7)");
+        cc_setonmouseleave("script14316");
+        $int5 = calc($int5 + 28);
     }
-    $int2 = calc($int2 + 1);
+    $int3 = calc($int3 + 1);
 }

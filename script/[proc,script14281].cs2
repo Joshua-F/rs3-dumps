@@ -1,0 +1,30 @@
+// 14281
+[proc,script14281](struct $struct0)(boolean, graphic, string)
+def_graphic $graphic1 = null;
+def_stat $stat2 = null;
+switch_int (struct_param($struct0, param_7277)) {
+    case 1, 4 :
+        $stat2 = struct_param($struct0, param_5998);
+        $graphic1 = enum(stat, graphic, enum_14110, $stat2);
+        if (stat_base($stat2) < 25) {
+            return(true, $graphic1, "<col=ba2d14>Level 25 <enum(stat, string, enum_680, $stat2)> required.");
+        }
+    case 2 :
+        if (~script14283 = false) {
+            return(true, null, "<col=ba2d14>Level requirements not met.");
+        }
+    case 3 :
+        if (~script14283 = false) {
+            return(true, null, "<col=ba2d14>Level requirements not met.");
+        } else if (%varplayerbit_13118 < 40) {
+            return(true, null, "<col=ba2d14>Quest requirements not met.");
+        }
+}
+if (struct_param($struct0, param_5086) = 1 & ~ironman_mode = true) {
+    return(true, $graphic1, "<col=ba2d14>Not available in Ironman Mode.");
+}
+def_int $int3 = struct_param($struct0, param_4850);
+if (%varplayerbit_4861 < $int3) {
+    return(true, $graphic1, "<col=ba2d14>Cost: <tostring($int3)>");
+}
+return(false, $graphic1, "Cost: <col=ffffff><tostring($int3)>");

@@ -1,0 +1,94 @@
+// 4486
+[proc,script4486](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5)
+cc_deleteall(interface_740:com_1);
+def_int $int6 = if_getnextsubid(interface_740:com_1);
+def_int $int7 = -1;
+def_int $int8 = -1;
+def_int $int9 = -1;
+def_int $rgb10 = null;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = $int2;
+if ($int1 = 0) {
+    $int15 = 11;
+    $int16 = calc($int16 - 1);
+} else {
+    $int15 = calc($int1 - 1);
+}
+def_int $int17 = enum(int, int, enum_13930, $int15);
+if ($int15 = 1 & date_isleapyear($int2) = true) {
+    $int17 = 29;
+}
+while (++$int8 < 6) {
+    while (++$int7 < 7) {
+        $int11 = calc($int11 + 1);
+        if ($int8 = 0 & $int7 < $int0) {
+            $int9 = calc($int17 - $int0 + $int7 + 1);
+            if (%varplayerbit_27169 = 1 | %varplayerbit_22875 = 1) {
+                $rgb10 = 0x513b2e;
+            } else {
+                $rgb10 = 0x282c2f;
+            }
+            $int14 = 1;
+        } else if ($int11 > calc($int0 + $int3)) {
+            $int9 = calc($int11 - $int0 - $int3);
+            if (%varplayerbit_27169 = 1 | %varplayerbit_22875 = 1) {
+                $rgb10 = 0x513b2e;
+            } else {
+                $rgb10 = 0x282c2f;
+            }
+            $int14 = 3;
+        } else {
+            $int9 = calc($int11 - $int0);
+            if (%varplayerbit_27169 = 1 | %varplayerbit_22875 = 1) {
+                $rgb10 = 0x33251d;
+            } else {
+                $rgb10 = 0x1c2c34;
+            }
+            $int14 = 2;
+        }
+        $int12 = calc($int7 * 84 + $int7 * 4);
+        $int13 = calc($int8 * 58 + $int8 * 4);
+        cc_create(interface_740:com_1, ^iftype_rectangle, $int6);
+        cc_setsize(84, 58, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int12, $int13, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setfill(true);
+        cc_setcolour($rgb10);
+        cc_setop(1, "Select");
+        cc_setparam(param_7187, $int14);
+        cc_setparam(param_7188, $int5);
+        cc_setparam(param_7192, 1);
+        $int6 = calc($int6 + 1);
+        cc_create(interface_740:com_1, ^iftype_text, $int6);
+        cc_setsize(84, 58, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int12 + 2), calc($int13 + 2), ^setpos_abs_left, ^setpos_abs_top);
+        cc_settextfont(graphic_17813);
+        cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+        if (%varplayerbit_27169 = 1 | %varplayerbit_22875 = 1) {
+            cc_setcolour(^white);
+        } else {
+            cc_setcolour(0xaed0e0);
+        }
+        cc_settextshadow(true);
+        cc_settext(tostring($int9));
+        $int6 = calc($int6 + 1);
+        cc_create(interface_740:com_1, ^iftype_graphic, $int6);
+        cc_setsize(84, 58, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int12, $int13, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphic(graphic_3235);
+        if ($int4 = calc($int11 - 1)) {
+            cc_sethide(false);
+        } else {
+            cc_sethide(true);
+        }
+        cc_setparam(param_7186, 1);
+        $int6 = calc($int6 + 1);
+        $int5 = calc($int5 + 1);
+    }
+    $int7 = -1;
+}
+~script4584(interface_740:com_7, $int1, $int2);
+~script4487($int1, $int2);

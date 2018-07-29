@@ -1,0 +1,37 @@
+// 9789
+[clientscript,script9789]
+def_int $int0 = 237;
+def_int $int1 = 22;
+def_int $int2 = 20;
+def_int $int3 = 20;
+def_string $string0 = "";
+def_string $string1 = "";
+def_boolean $boolean4 = false;
+if (%varplayerbit_38842 = 1) {
+    $int0 = 105;
+    $int1 = 34;
+    $int2 = 32;
+    $int3 = 28;
+    ~script10410(interface_762:com_0, interface_762:com_1, struct_28557, 2, 0, $int2, $int3, 0, false, "");
+    ~script4512(interface_762:com_0, 28, 28, 4, 0, rs3_parent_title_icon_settings);
+    ~script6201(interface_762:com_0, 66, 28, 32, 0, graphic_17813, "Load Preset:");
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+} else {
+    ~script10410(interface_762:com_0, interface_762:com_1, struct_28557, 2, 0, 150, 20, 0, false, "Manage Presets");
+    ~script6201(interface_762:com_0, 81, 20, 154, 0, graphic_17813, "Load Preset:");
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+}
+if (cc_find(interface_762:com_1, 0) = true) {
+    cc_setonop("script13941");
+}
+def_int $int5 = 1;
+while ($int5 <= 11) {
+    $string1, $string0, $boolean4 = ~script9784($int5);
+    ~script10410(interface_762:com_0, interface_762:com_1, struct_28557, $int0, 0, $int2, $int3, $int5, $boolean4, $string1);
+    if ($boolean4 = false & cc_find(interface_762:com_1, $int5) = true) {
+        cc_setop(1, "Load");
+        cc_setonmouserepeat("script10009($string0, event_com, event_comsubid)");
+    }
+    $int0 = calc($int0 + $int1);
+    $int5 = calc($int5 + 1);
+}

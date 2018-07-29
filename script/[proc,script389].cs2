@@ -1,12 +1,28 @@
 // 389
-[proc,script389](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8)
-~deltooltip(interface_131:com_3);
-if_setgraphic("aif_chunky_button_blue,6", $component0);
-if_setgraphic("aif_chunky_button_blue,8", $component1);
-if_setgraphic("aif_chunky_button_blue,7", $component2);
-if_setgraphic("aif_chunky_button_blue,36", $component3);
-if_setgraphic("aif_chunky_button_blue,38", $component4);
-if_setgraphic("aif_chunky_button_blue,37", $component5);
-if_setgraphic("aif_chunky_button_blue,21", $component6);
-if_setgraphic("aif_chunky_button_blue,23", $component7);
-if_setgraphic("aif_chunky_button_blue,22", $component8);
+[proc,script389](enum $enum0, int $int1)(boolean, int)
+def_int $int2 = 0;
+def_int $int3 = enum_getoutputcount($enum0);
+def_int $int4 = 0;
+def_int $rgb5 = ^black;
+def_dbrow $dbrow6 = null;
+def_string $string0 = "";
+while ($int2 < $int3) {
+    $dbrow6 = enum(int, dbrow, $enum0, $int2);
+    if (~script332(db_getfield($dbrow6, dbtable_28:col6, 0)) = true) {
+        switch_int (db_getfield($dbrow6, dbtable_28:col5, 0)) {
+            case 0 :
+                $int4 = calc($int4 + 27);
+            case 1 :
+                $string0, $rgb5 = ~money_pouch_int_to_string(%varclient_6480);
+                $int4 = calc($int4 + (3 + parawidth($string0, 1000, graphic_17813)));
+            case 2 :
+                $string0 = "<tostring_localised(runweight_visible, true)>kg";
+                $int4 = calc($int4 + (25 + parawidth($string0, 1000, graphic_17813)));
+        }
+    }
+    $int2 = calc($int2 + 1);
+}
+if ($int4 >= $int1) {
+    return(false, $int4);
+}
+return(true, $int4);

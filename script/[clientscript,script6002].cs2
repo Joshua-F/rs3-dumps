@@ -16,6 +16,7 @@ if ($int2 <= 150) {
 }
 def_int $int4 = 0;
 def_int $int5 = 1;
+def_int $int6 = 0;
 def_string $string1 = "";
 switch_component ($component0) {
     case interface_1092:com_8 :
@@ -23,12 +24,16 @@ switch_component ($component0) {
         $string1 = enum(coord, string, enum_8651, 0_50_46_14_11);
         if (%varplayerbit_9482 = 15) {
             $int4 = 1;
+        } else {
+            $int6 = 1;
         }
     case interface_1092:com_9 :
         $string0 = enum(coord, string, enum_5726, 0_32_61_37_11);
         $string1 = enum(coord, string, enum_8651, 0_32_61_37_11);
         if (%varplayerbit_10236 = 190) {
             $int4 = 1;
+        } else {
+            $int6 = 2;
         }
     case interface_1092:com_10 :
         $string0 = enum(coord, string, enum_5726, 0_51_49_33_49);
@@ -115,6 +120,9 @@ switch_component ($component0) {
         $string0 = enum(coord, string, enum_5726, 0_35_49_14_14);
         $string1 = enum(coord, string, enum_8651, 0_35_49_14_14);
         $int4 = %varplayerbit_18528;
+        if (%varplayer_2102 < 15) {
+            $int6 = 3;
+        }
     case interface_1092:com_30 :
         $string0 = enum(coord, string, enum_5726, 0_49_56_7_52);
         $string1 = enum(coord, string, enum_8651, 0_49_56_7_52);
@@ -129,10 +137,16 @@ switch_component ($component0) {
         $string0 = enum(coord, string, enum_5726, 1_34_52_32_33);
         $string1 = enum(coord, string, enum_8651, 1_34_52_32_33);
         $int4 = %varplayerbit_24967;
+        if (%varplayerbit_23198 < 400) {
+            $int6 = 4;
+        }
     case interface_1092:com_22 :
         $string0 = enum(coord, string, enum_5726, 0_50_42_16_29);
         $string1 = enum(coord, string, enum_8651, 0_50_42_16_29);
         $int4 = %varplayerbit_36173;
+        if (%varplayerbit_36140 < 100) {
+            $int6 = 5;
+        }
     case interface_1092:com_33 :
         $string0 = "Teleport to J-Mod";
         $string1 = "";
@@ -149,8 +163,21 @@ if ($int5 = 1 & map_members = false) {
     }
 } else if ($int4 = 1) {
     $string2 = "Click to teleport to<br>this lodestone.<br><$string1>";
-} else {
+} else if ($int6 = 0) {
     $string2 = "This lodestone is<br>not yet active.";
+} else {
+    switch_int ($int6) {
+        case 1 :
+            $string2 = "Requires completing Desert Treasure.";
+        case 2 :
+            $string2 = "Requires completing Lunar Diplomacy.";
+        case 3 :
+            $string2 = "Requires starting Regicide.";
+        case 4 :
+            $string2 = "Requires completing Plague's End.";
+        case 5 :
+            $string2 = "Requires completing The Jack of Spades.";
+    }
 }
 ~script9087($int4, $string0, $string2, $component0, -1);
 if_setgraphic($graphic3, interface_1092:com_36);

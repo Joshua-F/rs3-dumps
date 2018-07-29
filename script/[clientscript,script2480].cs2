@@ -5,13 +5,25 @@ def_int $int1 = 0;
 def_int $int2 = 0;
 def_int $int3 = 0;
 def_int $int4 = 0;
-$int2 = calc((if_getwidth(interface_41:com_15) - 36 * 10) / (10 - 1));
-$int3 = calc((if_getheight(interface_41:com_15) - 128) / 3);
-cc_deleteall(interface_41:com_15);
+$int2 = calc((if_getwidth(interface_41:com_0) - 36 * 10) / (10 - 1));
+$int3 = calc((if_getheight(interface_41:com_0) - 128) / 3);
+def_string $string0 = "Mobilising Armies reward shop";
+switch_enum (%varclient_875) {
+    case enum_2378 :
+        $string0 = "Serjeant Cole's reward shop";
+    case enum_2379 :
+        $string0 = "Commander Loman's reward shop";
+    case enum_2380 :
+        $string0 = "War-chief Reeves's reward shop";
+    case enum_2381 :
+        $string0 = "Lord Marshal Brogan's reward shop";
+}
+~script9554(interface_41:com_4, interface_41:com_6, interface_41:com_5, $string0, struct_21218);
+cc_deleteall(interface_41:com_0);
 cc_deleteall(interface_881:com_0);
 while ($int4 = 0) {
     if (enum(int, obj, %varclient_875, $int0) ! obj_11760) {
-        cc_create(interface_41:com_15, ^iftype_graphic, $int0);
+        cc_create(interface_41:com_0, ^iftype_graphic, $int0);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc((36 + $int2) * ($int0 % 10)), calc($int0 / 10 * (32 + $int3)), ^setpos_abs_left, ^setpos_abs_top);
         cc_setobject(enum(int, obj, %varclient_875, $int0), -1);
@@ -42,7 +54,7 @@ $int0 = 0;
 $int4 = 0;
 while ($int4 = 0) {
     if (enum(int, obj, %varclient_875, $int0) ! obj_11760) {
-        cc_create(interface_41:com_15, ^iftype_graphic, $int1);
+        cc_create(interface_41:com_0, ^iftype_graphic, $int1);
         cc_setsize(12, 6, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc((36 + $int2) * ($int0 % 10)), calc($int0 / 10 * (32 + $int3)), ^setpos_abs_left, ^setpos_abs_top);
         cc_setgraphic(shop_infinity_icon);
@@ -52,4 +64,4 @@ while ($int4 = 0) {
     $int0 = calc($int0 + 1);
     $int1 = calc($int1 + 1);
 }
-if_settext(~tostring_spacer(%varplayer_1628, ","), interface_41:com_17);
+if_settext(~tostring_spacer(%varplayer_1628, ","), interface_41:com_2);

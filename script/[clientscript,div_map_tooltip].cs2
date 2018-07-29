@@ -1,106 +1,40 @@
 // 2723
 [clientscript,div_map_tooltip](component $component0, int $int1, int $int2)
 def_int $int3 = stat_base(divination);
+def_int $int4 = 0;
+def_int $int5 = 10;
 def_string $string0 = "";
-def_string $string1 = "You can use this colony, but a higher-level colony would be more beneficial.";
-def_string $string2 = "This is the ideal colony for your Divination level.";
-def_int $int4 = 2;
 switch_component ($component0) {
     case interface_92:com_21 :
-        if ($int3 >= 10) {
-            $string0 = $string1;
-        } else {
-            $string0 = $string2;
-        }
+        $int4, $int5 = 0, 10;
     case interface_92:com_22 :
-        if ($int3 < 10) {
-            $string0 = "This colony requires level 10 Divination.";
-        } else if ($int3 >= 20) {
-            $string0 = $string1;
-        } else {
-            $string0 = $string2;
-        }
+        $int4, $int5 = 10, 20;
     case interface_92:com_23 :
-        if ($int3 < 20) {
-            $string0 = "This colony requires level 20 Divination.";
-        } else if ($int3 >= 30) {
-            $string0 = $string1;
-        } else {
-            $string0 = $string2;
-        }
+        $int4, $int5 = 20, 30;
     case interface_92:com_24 :
-        if ($int3 < 30) {
-            $string0 = "This colony requires level 30 Divination.";
-        } else if ($int3 >= 40) {
-            $string0 = $string1;
-        } else {
-            $string0 = $string2;
-        }
+        $int4, $int5 = 30, 40;
     case interface_92:com_25 :
-        if ($int3 < 40) {
-            $string0 = "This colony requires level 40 Divination.";
-        } else if ($int3 >= 50) {
-            $string0 = $string1;
-        } else {
-            $string0 = $string2;
-        }
+        $int4, $int5 = 40, 50;
     case interface_92:com_26 :
-        if ($int3 < 50) {
-            $string0 = "This colony requires level 50 Divination.";
-        } else if ($int3 >= 60) {
-            $string0 = $string1;
-        } else {
-            $string0 = $string2;
-        }
-        $int4 = 0;
+        $int4, $int5 = 50, 60;
     case interface_92:com_27 :
-        if ($int3 < 60) {
-            $string0 = "This colony requires level 60 Divination.";
-        } else if ($int3 >= 70) {
-            $string0 = $string1;
-        } else {
-            $string0 = $string2;
-        }
-        $int4 = 0;
+        $int4, $int5 = 60, 70;
     case interface_92:com_28 :
-        if ($int3 < 70) {
-            $string0 = "This colony requires level 70 Divination.";
-        } else if ($int3 >= 80) {
-            $string0 = $string1;
-        } else {
-            $string0 = $string2;
-        }
+        $int4, $int5 = 70, 80;
     case interface_92:com_29 :
-        if ($int3 < 80) {
-            $string0 = "This colony requires level 80 Divination.";
-        } else if ($int3 >= 85) {
-            $string0 = $string1;
-        } else {
-            $string0 = $string2;
-        }
+        $int4, $int5 = 80, 85;
     case interface_92:com_30 :
-        if ($int3 < 85) {
-            $string0 = "This colony requires level 85 Divination.";
-        } else if ($int3 >= 90) {
-            $string0 = $string1;
-        } else {
-            $string0 = $string2;
-        }
+        $int4, $int5 = 85, 90;
     case interface_92:com_31 :
-        if ($int3 < 90) {
-            $string0 = "This colony requires level 90 Divination.";
-        } else if ($int3 >= 95) {
-            $string0 = $string1;
-        } else {
-            $string0 = $string2;
-        }
-        $int4 = 0;
+        $int4, $int5 = 90, 95;
     case interface_92:com_32 :
-        if ($int3 < 95) {
-            $string0 = "This colony requires level 95 Divination.";
-        } else {
-            $string0 = $string2;
-        }
-        $int4 = 0;
+        $int4, $int5 = 95, -1;
 }
-~script7769(interface_92:com_7, $component0, -1, $string0, 200, graphic_17813, graphic_17813, 16777215, 13, 3, 2, $int1, $int2);
+if ($int3 < $int4) {
+    $string0 = "This colony requires level <tostring_localised($int4, true)> Divination.";
+} else if ($int5 > 0 & $int3 >= $int5) {
+    $string0 = "You can use this colony, but a higher-level colony would be more beneficial.";
+} else {
+    $string0 = "This is the ideal colony for your Divination level.";
+}
+~script8800($string0, $component0, -1);
