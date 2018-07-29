@@ -10,9 +10,14 @@ $component1, $component2, $component3, $component4, $component5, $component6 = ~
 def_int $int7 = 0;
 def_int $int8 = 0;
 def_int $int9 = 19;
+def_fontmetrics $fontmetrics10 = graphic_17813;
+if (%varplayerbit_38842 = 1) {
+    $int9 = 27;
+    $fontmetrics10 = graphic_21207;
+}
 def_string $string0 = "";
-def_int $int10 = calc(if_getheight($component2) / 19);
-def_int $int11 = 0;
+def_int $int11 = calc(if_getheight($component2) / $int9);
+def_int $int12 = 0;
 cc_deleteall($component1);
 cc_deleteall($component4);
 if (activeclansettings_find_affined = true) {
@@ -20,14 +25,14 @@ if (activeclansettings_find_affined = true) {
     if_sethide(true, $component6);
     $int8 = activeclansettings_getbannedcount;
     while ($int7 < $int8) {
-        $int11 = calc($int7 * 19);
+        $int12 = calc($int7 * $int9);
         $string0 = activeclansettings_getbanneddisplayname($int7);
         cc_create($component1, ^iftype_text, if_getnextsubid($component1));
         cc_settext($string0);
         cc_setposition(0, calc($int7 * $int9), ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(16384, $int9, ^setsize_rel, ^setsize_abs);
         cc_setcolour(0xa4997d);
-        cc_settextfont(graphic_17813);
+        cc_settextfont($fontmetrics10);
         cc_settextshadow(true);
         cc_setopbase("<col=ffffff><$string0>");
         cc_setop(1, "Remove ban");
@@ -43,12 +48,12 @@ if (activeclansettings_find_affined = true) {
         }
         $int7 = calc($int7 + 1);
     }
-    while ($int7 < $int10) {
-        $int11 = calc($int7 * $int9);
+    while ($int7 < $int11) {
+        $int12 = calc($int7 * $int9);
         if (calc($int7 % 2) ! 0) {
             cc_create($component4, ^iftype_rectangle, if_getnextsubid($component4));
             cc_setsize(16384, $int9, ^setsize_rel, ^setsize_abs);
-            cc_setposition(0, $int11, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setposition(0, $int12, ^setpos_abs_left, ^setpos_abs_top);
             cc_setcolour(0x232220);
             cc_setfill(true);
             cc_settrans(128);
@@ -62,16 +67,16 @@ if (activeclansettings_find_affined = true) {
     cc_deleteall($component4);
 }
 if_sethide(false, $component3);
-def_int $int12 = calc($int9 * max($int10, $int8));
-def_int $int13 = if_getscrolly($component2);
-if_setscrollsize(calc(if_getwidth(if_getparentlayer($component2)) - 16), $int12, $component2);
-$int13 = min($int13, if_getscrollheight($component2));
-if_setscrollpos(0, $int13, $component2);
+def_int $int13 = calc($int9 * max($int11, $int8));
+def_int $int14 = if_getscrolly($component2);
+if_setscrollsize(calc(if_getwidth(if_getparentlayer($component2)) - 16), $int13, $component2);
+$int14 = min($int14, if_getscrollheight($component2));
+if_setscrollpos(0, $int14, $component2);
 ~scrollbar_vertical($component3, $component2, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
-if ($int12 > if_getheight($component2)) {
+if ($int13 > if_getheight($component2)) {
     if_sethide(false, $component3);
     if_setsize(16, 60, ^setsize_minus, ^setsize_minus, $component2);
-    ~scrollbar_resize($component3, $component2, $int13);
+    ~scrollbar_resize($component3, $component2, $int14);
 } else {
     if_sethide(true, $component3);
     if_setsize(0, 60, ^setsize_minus, ^setsize_minus, $component2);

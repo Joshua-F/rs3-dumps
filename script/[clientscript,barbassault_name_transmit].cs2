@@ -1,8 +1,8 @@
 // 1581
 [clientscript,barbassault_name_transmit](component $component0)
 def_string $string0 = "";
-def_fontmetrics $fontmetrics1 = p11_full;
-def_component $component2 = interface_492:com_49;
+def_int $int1 = 494;
+def_int $int2 = 32243761;
 switch_component ($component0) {
     case interface_492:com_24, interface_493:com_43, interface_1517:com_70 :
         $string0 = %varclient_2435;
@@ -15,35 +15,9 @@ switch_component ($component0) {
     case interface_492:com_28, interface_493:com_47 :
         $string0 = %varclient_2439;
 }
-switch_component ($component0) {
-    case interface_493:com_43, interface_493:com_44, interface_493:com_45, interface_493:com_46, interface_493:com_47 :
-        $fontmetrics1 = p12_full;
-        $component2 = interface_493:com_78;
-    case interface_1517:com_70, interface_1517:com_76, interface_1517:com_82, interface_1517:com_88 :
-        $fontmetrics1 = p12_full;
-        $component2 = interface_1517:com_92;
+if (string_length($string0) = 0) {
+    $string0 = "---";
 }
-def_string $string1 = $string0;
-def_int $int3 = if_getwidth($component0);
-if (parawidth("<$string1> ", ^max_32bit_int, $fontmetrics1) > $int3) {
-    while (parawidth("<$string1>... ", ^max_32bit_int, $fontmetrics1) > $int3) {
-        $string1 = substring($string1, 0, calc(string_length($string1) - 1));
-    }
-    if_setonmouserepeat("script7781(event_com, $component2, $string0, 25, 5000)", $component0);
-    if_setonmouseleave("deltooltip($component2)", $component0);
-    $string0 = "<$string1>...";
-} else {
-    if_setonmouserepeat(null, $component0);
-    if_setonmouseleave(null, $component0);
-}
-switch_component ($component0) {
-    case interface_492:com_24, interface_492:com_25, interface_492:com_26, interface_492:com_27, interface_492:com_28, interface_493:com_43, interface_493:com_44, interface_493:com_45, interface_493:com_46, interface_493:com_47 :
-        if (compare($string0, "") = 0 | compare($string0, null) = 0) {
-            $string0 = "none set";
-        }
-    case interface_1517:com_70, interface_1517:com_76, interface_1517:com_82, interface_1517:com_88 :
-        if (compare($string0, "") = 0 | compare($string0, null) = 0) {
-            $string0 = "---";
-        }
-}
+if_setmaxlines(1, $component0);
+if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", $component0);
 if_settext($string0, $component0);

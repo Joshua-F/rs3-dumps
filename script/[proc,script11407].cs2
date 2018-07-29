@@ -1,6 +1,6 @@
 // 11407
 [proc,script11407](component $component0)
-if_sethide(false, interface_1477:com_654);
+if_sethide(false, interface_1477:com_664);
 cc_deleteall($component0);
 cc_deleteall(interface_1622:com_1);
 cc_deleteall(interface_1622:com_0);
@@ -24,15 +24,21 @@ if (if_find(interface_1622:com_1) = true) {
 }
 def_int $int2 = inv_size(inv_773);
 def_int $int3 = 0;
+def_int $int4 = 40;
+def_int $int5 = 36;
+if (~script6431 = true) {
+    $int4 = 80;
+    $int5 = 72;
+}
 while ($int3 < $int2) {
     cc_create(interface_1622:com_9, ^iftype_graphic, $int3);
-    cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
+    cc_setsize($int4, $int5, ^setsize_abs, ^setsize_abs);
     cc_setgraphic(rs3_inventory_slot);
     cc_setonmouseover("inventory_slot_highlight(773, event_com, event_comsubid, interface_1622:com_11, 1)");
     cc_setonmouseleave("inventory_slot_highlight(773, event_com, event_comsubid, interface_1622:com_11, 0)");
-    ~script9229(interface_1622:com_11, $int3, 40, 36);
+    ~script9229(interface_1622:com_11, $int3, $int4, $int5);
     cc_create(interface_1622:com_10, ^iftype_graphic, $int3);
-    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_setsize(calc($int4 - 4), calc($int5 - 4), ^setsize_abs, ^setsize_abs);
     cc_setontargetenter("inventory_targetmode(1, event_com, event_comsubid)");
     cc_setontargetleave("inventory_targetmode(0, event_com, event_comsubid)");
     $int3 = calc($int3 + 1);

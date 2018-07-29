@@ -22,7 +22,7 @@ if (if_hassubmodal($component0, interface_1377) = true) {
 } else if (if_hassubmodal($component0, interface_566) = true) {
     $component1 = interface_566:com_0;
 } else if (if_hassubmodal($component0, interface_1317) = true) {
-    $component1 = interface_1317:com_50;
+    $component1 = interface_1317:com_49;
 } else if (if_hassubmodal($component0, interface_1273) = true) {
     $component1 = interface_1273:com_10;
 } else if (if_hassubmodal($component0, interface_1594) = true) {
@@ -88,7 +88,7 @@ if (if_hassubmodal($component0, interface_1377) = true) {
 } else if (if_hassubmodal($component0, interface_1865) = true) {
     $component1 = interface_1865:com_10;
 } else if (if_hassubmodal($component0, interface_1163) = true) {
-    $component1 = interface_1163:com_5;
+    $component1 = interface_1163:com_4;
 } else if (if_hassubmodal($component0, interface_1173) = true) {
     $component1 = interface_1173:com_5;
 } else if (if_hassubmodal($component0, interface_1168) = true) {
@@ -117,8 +117,8 @@ if (if_hassubmodal($component0, interface_1377) = true) {
     return;
 }
 if (%varclient_6403 ! 2 & if_find($component1) = true) {
-    unknown_command_16(cc_getx, cc_gety, cc_getwidth, cc_getheight);
-    ~script14171(interface_1477:com_673);
+    unknown_command_16(calc(if_getx(interface_1477:com_685) + cc_getx), calc(if_gety(interface_1477:com_685) + cc_gety), cc_getwidth, cc_getheight);
+    ~script14171(interface_1477:com_683);
     %varclient_6403 = 5;
     return;
 }
@@ -126,19 +126,23 @@ def_int $int2 = 0;
 def_int $int3 = 0;
 def_int $int4 = 0;
 def_int $int5 = 0;
-$int2, $int3, $int4, $int5 = unknown_command_15;
+def_int $int6 = 0;
+def_int $int7 = 0;
+$int4, $int5, $int6, $int7 = unknown_command_15;
 if (if_find($component1) = true) {
-    if (cc_getx < $int2) {
-        $int4 = calc($int4 + ($int2 - cc_getx));
-        $int2 = cc_getx;
+    $int2 = calc(if_getx(interface_1477:com_685) + cc_getx);
+    $int3 = calc(if_gety(interface_1477:com_685) + cc_gety);
+    if ($int2 < $int4) {
+        $int6 = calc($int6 + ($int4 - $int2));
+        $int4 = $int2;
     }
-    if (cc_gety < $int3) {
-        $int5 = calc($int5 + ($int3 - cc_gety));
-        $int3 = cc_gety;
+    if ($int3 < $int5) {
+        $int7 = calc($int7 + ($int5 - $int3));
+        $int5 = $int3;
     }
-    $int4 = max($int4, cc_getwidth);
-    $int5 = max($int5, cc_getheight);
-    unknown_command_16($int2, $int3, $int4, $int5);
-    ~script14172(interface_1477:com_658, interface_1477:com_673);
+    $int6 = max($int6, cc_getwidth);
+    $int7 = max($int7, cc_getheight);
+    unknown_command_16($int4, $int5, $int6, $int7);
+    ~script14172(interface_1477:com_668, interface_1477:com_683);
     %varclient_6403 = 5;
 }

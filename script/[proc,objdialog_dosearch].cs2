@@ -1,31 +1,31 @@
 // 577
 [proc,objdialog_dosearch](string $string0)
 def_int $int0 = oc_find($string0, true);
-def_int $int1 = if_getwidth(interface_389:com_4);
+def_int $int1 = if_getwidth(interface_389:com_2);
 def_int $int2 = calc($int1 - 8);
 if ($int0 = -1) {
-    cc_create(interface_389:com_4, ^iftype_text, 0);
+    cc_create(interface_389:com_2, ^iftype_text, 0);
     cc_setposition(0, 48, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize($int1, 16, ^setsize_abs, ^setsize_abs);
     cc_settextfont(m11_full);
     cc_settext("Too many results. Please refine your search.");
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    cc_setcolour(0xa05a00);
-    cc_settextshadow(false);
-    if_setscrollsize(0, 0, interface_389:com_4);
+    ~script6888(12);
+    cc_settextshadow(true);
+    if_setscrollsize(0, 0, interface_389:com_2);
     ~objdialog_doscrollbar;
     return;
 }
 if ($int0 = 0) {
-    cc_create(interface_389:com_4, ^iftype_text, 0);
+    cc_create(interface_389:com_2, ^iftype_text, 0);
     cc_setposition(0, 48, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize($int1, 16, ^setsize_abs, ^setsize_abs);
     cc_settextfont(m11_full);
     cc_settext("No matching items found.");
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    cc_setcolour(0xa05a00);
-    cc_settextshadow(false);
-    if_setscrollsize(0, 0, interface_389:com_4);
+    ~script6888(12);
+    cc_settextshadow(true);
+    if_setscrollsize(0, 0, interface_389:com_2);
     ~objdialog_doscrollbar;
     return;
 }
@@ -33,7 +33,7 @@ def_int $int3 = 1;
 def_int $int4 = 0;
 def_int $int5 = 0;
 def_obj $obj6 = oc_findnext;
-cc_create(interface_389:com_4, ^iftype_rectangle, 0);
+cc_create(interface_389:com_2, ^iftype_rectangle, 0);
 while ($obj6 ! null) {
     $int4 = 0;
     $int5 = 0;
@@ -49,18 +49,18 @@ while ($obj6 ! null) {
         $int4 = 1;
     }
     if ($int4 = 0) {
-        cc_create(interface_389:com_4, ^iftype_text, $int3);
+        cc_create(interface_389:com_2, ^iftype_text, $int3);
         cc_setposition(4, calc(15 * ($int3 - 1)), ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize($int2, 15, ^setsize_abs, ^setsize_abs);
-        cc_setcolour(0xa05a00);
+        ~script6888(12);
         cc_settext(oc_name($obj6));
         cc_settextfont(graphic_20452);
-        cc_settextshadow(false);
+        cc_settextshadow(true);
         cc_setonmouseover("objdialog_highlight($int3, $obj6)");
         cc_setonclick("objdialog_select($obj6)");
         $obj6 = oc_findnext;
         $int3 = calc($int3 + 1);
     }
 }
-if_setscrollsize(0, calc(15 * ($int3 - 1)), interface_389:com_4);
+if_setscrollsize(0, calc(15 * ($int3 - 1)), interface_389:com_2);
 ~objdialog_doscrollbar;

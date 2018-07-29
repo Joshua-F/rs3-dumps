@@ -1,0 +1,34 @@
+// 5177
+[proc,script5177](component $component0, int $int1, int $int2, int $int3)
+cc_deleteall($component0);
+def_int $int4 = if_getnextsubid($component0);
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+cc_create($component0, ^iftype_text, $int4);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(if_getwidth($component0), if_getheight($component0), ^setsize_abs, ^setsize_abs);
+cc_settextfont(graphic_17813);
+cc_setcolour(^white);
+cc_settextshadow(true);
+if (if_getwidth($component0) < 150) {
+    $int2 = calc($int2 + 1);
+    if ($int1 < 10) {
+        $string0 = "0<tostring($int1)>";
+    } else {
+        $string0 = tostring($int1);
+    }
+    if ($int2 < 10) {
+        $string1 = "0<tostring($int2)>";
+    } else {
+        $string1 = tostring($int2);
+    }
+    $string2 = tostring($int3);
+    cc_settext("<$string0>/<$string1>/<$string2>");
+} else {
+    $string1 = enum(int, string, enum_950, $int2);
+    $string2 = tostring($int3);
+    cc_settext("<tostring($int1)> <$string1> <$string2>");
+}
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_setop(1, "Open Calendar");

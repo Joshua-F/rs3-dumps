@@ -1,0 +1,104 @@
+// 329
+[proc,script329](component $component0, component $component1, int $int2)
+def_enum $enum3 = enum(int, enum, enum_5134, $int2);
+if ($enum3 = null) {
+    return;
+}
+if (cc_find($component0, 0) = false) {
+    ~script325($component0, $component1, $int2);
+}
+def_boolean $boolean4 = false;
+def_boolean $boolean5 = false;
+def_string $string0 = "";
+def_dbrow $dbrow6 = null;
+def_int $int7 = if_getwidth(if_getparentlayer($component0));
+def_int $rgb8 = ^black;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = enum_getoutputcount($enum3);
+def_int $int13 = 0;
+def_int $int14 = 0;
+$boolean4, $int10 = ~script389($enum3, $int7);
+if ($boolean4 = false) {
+    $int13 = 30;
+} else {
+    $int13 = calc(($int7 - $int10) / 2);
+}
+while ($int11 < $int12) {
+    $dbrow6 = enum(int, dbrow, $enum3, $int11);
+    if ($boolean4 = false & db_getfield($dbrow6, dbtable_28:col7, 0) = false) {
+        $boolean5 = true;
+    } else {
+        $boolean5 = ~negate_bool(~script332(db_getfield($dbrow6, dbtable_28:col6, 0)));
+    }
+    switch_int (db_getfield($dbrow6, dbtable_28:col5, 0)) {
+        case 0 :
+            if (cc_find($component0, $int14++) = true) {
+                cc_setposition($int13, 0, ^setpos_abs_left, ^setpos_abs_top);
+                cc_sethide($boolean5);
+            }
+            if (cc_find($component0, $int14++) = true) {
+                cc_setposition(calc($int13 + 1), 1, ^setpos_abs_left, ^setpos_abs_top);
+                cc_sethide($boolean5);
+            }
+            if (cc_find($component1, $int11) = true) {
+                cc_setposition($int13, 0, ^setpos_abs_left, ^setpos_abs_top);
+                cc_sethide($boolean5);
+            }
+            if ($boolean5 = false) {
+                $int13 = calc($int13 + 27);
+            }
+        case 1 :
+            $string0, $rgb8 = ~money_pouch_int_to_string(%varclient_6480);
+            $int9 = calc(3 + parawidth($string0, 1000, graphic_17813));
+            if (cc_find($component0, $int14++) = true) {
+                cc_setsize($int9, 24, ^setsize_abs, ^setsize_abs);
+                cc_setposition(calc($int13 + 3), 0, ^setpos_abs_left, ^setpos_abs_top);
+                cc_setcolour($rgb8);
+                cc_settext($string0);
+                cc_sethide($boolean5);
+            }
+            if (cc_find($component1, $int11) = true) {
+                if (%varclient_6480 = -1) {
+                    $string0 = "Loading...";
+                } else {
+                    $string0 = "Coin pouch: <tostring_localised(%varclient_6480, true)>";
+                }
+                cc_setsize($int9, 24, ^setsize_abs, ^setsize_abs);
+                cc_setposition(calc($int13 + 3), 0, ^setpos_abs_left, ^setpos_abs_top);
+                cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
+                cc_sethide($boolean5);
+            }
+            $int13 = calc($int13 + $int9);
+        case 2 :
+            $string0 = "<tostring_localised(runweight_visible, true)>kg";
+            $int9 = calc(25 + parawidth($string0, 1000, graphic_17813));
+            if (cc_find($component0, $int14++) = true) {
+                cc_setposition(calc($int13 + 3), 0, ^setpos_abs_left, ^setpos_abs_top);
+                cc_sethide($boolean5);
+            }
+            if (cc_find($component0, $int14++) = true) {
+                cc_setsize(calc($int9 - 25), 24, ^setsize_abs, ^setsize_abs);
+                cc_setposition(calc($int13 + 25), 0, ^setpos_abs_left, ^setpos_abs_top);
+                cc_settext($string0);
+                cc_sethide($boolean5);
+            }
+            if (cc_find($component1, $int11) = true) {
+                cc_setsize($int9, 24, ^setsize_abs, ^setsize_abs);
+                cc_setposition(calc($int13 + 3), 0, ^setpos_abs_left, ^setpos_abs_top);
+                cc_sethide($boolean5);
+            }
+            $int13 = calc($int13 + $int9);
+    }
+    $int11 = calc($int11 + 1);
+}
+if (cc_find($component0, $int14++) = true) {
+    cc_sethide($boolean4);
+}
+if (cc_find($component0, $int14++) = true) {
+    cc_sethide($boolean4);
+}
+if (cc_find($component1, $int11) = true) {
+    cc_sethide($boolean4);
+}

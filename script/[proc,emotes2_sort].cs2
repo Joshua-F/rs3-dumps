@@ -15,47 +15,53 @@ def_int $int14 = 0;
 def_int $int15 = 0;
 def_int $int16 = -1;
 def_int $int17 = 0;
+def_int $int18 = 13;
 if (%varplayerbit_34815 = 1) {
-    $int14, $int13, $int17 = ~script8107($int13, 112);
+    if (%varplayerbit_38842 = 1) {
+        $int14 = 1;
+        $int18 = 30;
+    } else {
+        $int14, $int13, $int17 = ~script8107($int13, 112);
+    }
 } else {
     $int14, $int13, $int17 = ~script8107($int13, 43);
 }
-def_int $int18 = 1;
+def_int $int19 = 1;
 while (++$int4 < $int12) {
-    $int18 = 0;
+    $int19 = 0;
     $struct6 = enum(int, struct, $enum2, $int4);
     if (cc_find($component0, $int4) = true) {
         $boolean9 = cc_param(param_6277);
         if ($int3 = 0) {
-            $int18 = 1;
+            $int19 = 1;
             if ((struct_param($struct6, param_1422) = 13 | struct_param($struct6, param_1422) = 14) & %varplayerbit_11297 ! 2) {
-                $int18 = 0;
+                $int19 = 0;
             }
             if (struct_param($struct6, param_3326) ! 0 & $boolean9 = false) {
-                $int18 = 0;
+                $int19 = 0;
             }
         } else if ($int3 = 1) {
             if ($boolean9 = true) {
-                $int18 = 1;
+                $int19 = 1;
             }
             if ((struct_param($struct6, param_1422) = 13 | struct_param($struct6, param_1422) = 14) & %varplayerbit_11297 ! 2) {
-                $int18 = 0;
+                $int19 = 0;
             }
         } else if ($int3 = struct_param($struct6, param_1422)) {
-            $int18 = 1;
+            $int19 = 1;
         } else if ($int3 = struct_param($struct6, param_1423)) {
-            $int18 = 1;
+            $int19 = 1;
         } else if ($int3 = struct_param($struct6, param_1424)) {
-            $int18 = 1;
+            $int19 = 1;
         } else if ($int3 = struct_param($struct6, param_1425)) {
-            $int18 = 1;
+            $int19 = 1;
         } else if ($int3 = struct_param($struct6, param_1426)) {
-            $int18 = 1;
+            $int19 = 1;
         }
         if ((struct_param($struct6, param_3326) = 2 | %varplayer_3079 < struct_param($struct6, param_4742) | %varplayer_3079 > struct_param($struct6, param_4743)) & $boolean9 = false) {
-            $int18 = 0;
+            $int19 = 0;
         }
-        if ($int18 = 1) {
+        if ($int19 = 1) {
             cc_sethide(false);
             if (%varplayerbit_34815 = 1) {
                 if ($int14 > 1) {
@@ -66,9 +72,9 @@ while (++$int4 < $int12) {
                     $int10 = ~script8108($int13, $int17, $int15);
                 } else {
                     $int16 = calc($int16 + 1);
-                    cc_setsize(0, 13, ^setsize_minus, ^setsize_abs);
+                    cc_setsize(0, $int18, ^setsize_minus, ^setsize_abs);
                 }
-                $int11 = calc(13 * $int16);
+                $int11 = calc($int18 * $int16);
                 cc_setposition($int10, $int11, ^setpos_abs_left, ^setpos_abs_top);
                 $int5 = calc($int5 + 1);
             } else {
@@ -86,12 +92,12 @@ while (++$int4 < $int12) {
         }
     }
 }
-def_int $int19 = calc($int11 + 58);
+def_int $int20 = calc($int11 + 58);
 if (%varplayerbit_34815 = 1) {
-    $int19 = calc($int11 + 13);
+    $int20 = calc($int11 + $int18);
 }
-if ($int19 > if_getheight($component0)) {
-    if_setscrollsize(0, $int19, $component0);
+if ($int20 > if_getheight($component0)) {
+    if_setscrollsize(0, $int20, $component0);
     if_sethide(false, $component1);
     ~scrollbar_vertical($component1, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 } else {

@@ -18,6 +18,7 @@ $intarray0(0) = 0;
 def_int $int7 = 1;
 def_int $int8 = 1;
 def_wma $wma9 = null;
+def_int $int10 = max(20, ~script10082);
 while ($int7 <= $int6) {
     $wma9 = enum(int, wma, enum_708, $int7);
     if ($wma9 ! null) {
@@ -29,7 +30,7 @@ while ($int7 <= $int6) {
 ~worldmap_quicksort_menu(intarray0, 1, calc($int8 - 1));
 cc_create($component2, ^iftype_text, if_getnextsubid($component2));
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
-cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
+cc_setsize(0, $int10, ^setsize_minus, ^setsize_abs);
 cc_settextfont(graphic_17813);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_setcolour(0x7592a0);
@@ -37,15 +38,16 @@ cc_setonmouseover("cc_text_colour_swapper(event_com, event_comsubid, 16777215)")
 cc_setonmouseleave("cc_text_colour_swapper(event_com, event_comsubid, 7705248)");
 $wma9 = enum(int, wma, enum_708, $intarray0(0));
 cc_settext(worldmap_getmapname($wma9));
-cc_setonclick("worldmap_choosemap($wma9, $component1, $component2, $component3, $component4, $component5)");
+cc_setop(1, "Select");
+cc_setonop("worldmap_choosemap($wma9, $component1, $component2, $component3, $component4, $component5)");
 ~script309($wma9, $component2, 0);
-def_int $int10 = cc_getheight;
-def_int $int11 = 0;
+def_int $int11 = cc_getheight;
+def_int $int12 = 0;
 $int7 = 1;
 while ($int7 < $int8) {
     cc_create($component2, ^iftype_text, if_getnextsubid($component2));
-    cc_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_top);
-    cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int11, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setsize(0, $int10, ^setsize_minus, ^setsize_abs);
     cc_settextfont(graphic_17813);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     cc_setcolour(0x7592a0);
@@ -53,18 +55,19 @@ while ($int7 < $int8) {
     cc_setonmouseleave("cc_text_colour_swapper(event_com, event_comsubid, 7705248)");
     $wma9 = enum(int, wma, enum_708, $intarray0($int7));
     cc_settext(worldmap_getmapname($wma9));
-    cc_setonclick("worldmap_choosemap($wma9, $component1, $component2, $component3, $component4, $component5)");
+    cc_setop(1, "Select");
+    cc_setonop("worldmap_choosemap($wma9, $component1, $component2, $component3, $component4, $component5)");
     if ($wma9 = worldmap_getcurrentmap) {
-        $int11 = $int10;
+        $int12 = $int11;
     }
-    ~script309($wma9, $component2, $int10);
-    $int10 = calc($int10 + cc_getheight);
+    ~script309($wma9, $component2, $int11);
+    $int11 = calc($int11 + cc_getheight);
     $int7 = calc($int7 + 1);
 }
-if_setscrollsize(0, $int10, $component2);
-$int10 = max($int10, 20);
-$int10 = calc($int10 + 3);
-$int10 = min($int10, 150);
-if_setsize(if_getwidth($component1), $int10, ^setsize_abs, ^setsize_abs, $component1);
+if_setscrollsize(0, $int11, $component2);
+$int11 = max($int11, $int10);
+$int11 = calc($int11 + 3);
+$int11 = min($int11, 150);
+if_setsize(if_getwidth($component1), $int11, ^setsize_abs, ^setsize_abs, $component1);
 ~scrollbar_vertical($component3, $component2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~scrollbar_ondrag_doscroll($component3, $component2, $int11, 1);
+~scrollbar_ondrag_doscroll($component3, $component2, $int12, 1);

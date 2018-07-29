@@ -2,20 +2,20 @@
 [proc,script690](int $int0)
 def_component $component1 = interface_669:com_4;
 def_component $component2 = interface_669:com_7;
-def_component $component3 = interface_669:com_18;
+def_component $component3 = interface_669:com_9;
 def_component $component4 = interface_669:com_8;
-def_component $component5 = interface_669:com_19;
-def_component $component6 = interface_669:com_28;
+def_component $component5 = interface_669:com_10;
+def_component $component6 = interface_669:com_18;
 def_component $component7 = %varplayer_3928;
 def_component $component8 = interface_669:com_6;
 def_int $int9 = %varplayer_3926;
 if ($int0 = 2) {
     $component1 = interface_695:com_0;
     $component2 = interface_695:com_2;
-    $component3 = interface_695:com_13;
-    $component4 = interface_695:com_19;
-    $component5 = interface_695:com_14;
-    $component6 = interface_695:com_27;
+    $component3 = interface_695:com_14;
+    $component4 = interface_695:com_4;
+    $component5 = interface_695:com_15;
+    $component6 = interface_695:com_17;
     $int9 = %varplayer_3927;
     $component8 = null;
     $component7 = null;
@@ -27,7 +27,7 @@ def_int $rgb11 = struct_param($struct10, param_3826);
 def_graphic $graphic12 = struct_param($struct10, param_3828);
 def_graphic $graphic13 = struct_param($struct10, param_4029);
 def_graphic $graphic14 = struct_param($struct10, param_4030);
-if (os_isios = true | os_isandroid = true) {
+if (~is_mobile_client = true) {
     if (compare(struct_param($struct10, param_7164), "") ! 0) {
         $string0 = struct_param($struct10, param_7164);
     }
@@ -39,6 +39,15 @@ if (os_isios = true | os_isandroid = true) {
     }
     if (struct_param($struct10, param_7167) ! null) {
         $graphic14 = struct_param($struct10, param_7167);
+    }
+    if ($graphic12 = rs3_tutsys_noimage) {
+        $graphic12 = null;
+    }
+    if ($graphic13 = rs3_tutsys_noimage) {
+        $graphic13 = null;
+    }
+    if ($graphic14 = rs3_tutsys_noimage) {
+        $graphic14 = null;
     }
 }
 def_obj $obj15 = struct_param($struct10, param_3829);
@@ -71,9 +80,14 @@ def_int $int27 = 0;
 def_int $int28 = 0;
 def_int $int29 = 0;
 def_int $int30 = 0;
+def_int $int31 = 0;
+def_int $int32 = 0;
+def_int $int33 = 0;
+$int30, $int31, $int32, $int33 = ~script14244;
+def_int $int34 = 0;
 if_setgraphic(struct_param($struct10, param_3831), $component5);
 if (compare(null, $string1) ! 0) {
-    $int30 = 1;
+    $int34 = 1;
 }
 if ($graphic12 ! null | $obj15 ! null) {
     if ($graphic13 ! null | $graphic14 ! null) {
@@ -140,21 +154,21 @@ if (if_gethide($component5) = true) {
     $int28 = calc(85 + $int28);
 }
 $int29 = calc(40 + $int29);
-if ($int30 = 1) {
+if ($int34 = 1) {
     $int28 = calc($int28 + 20);
 }
 if_setsize($int29, $int28, ^setsize_abs, ^setsize_abs, $component2);
-if_setposition(0, 33, ^setpos_abs_centre, ^setpos_abs_top, $component2);
+if_setposition(0, calc($int31 + 33), ^setpos_abs_centre, ^setpos_abs_top, $component2);
 if ($int0 = 1) {
     if_sethide(false, $component2);
 } else {
     if_sethide(true, $component2);
 }
-def_int $int31 = 0;
+def_int $int35 = 0;
 cc_deleteall($component3);
 cc_deleteall($component4);
-if ($int30 = 1) {
-    cc_create($component3, ^iftype_text, $int31);
+if ($int34 = 1) {
+    cc_create($component3, ^iftype_text, $int35);
     cc_setsize($int24, 20, ^setsize_abs, ^setsize_abs);
     if ($graphic13 ! null | $graphic14 ! null) {
         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
@@ -167,9 +181,9 @@ if ($int30 = 1) {
     cc_settextfont(graphic_17813);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 15);
     $int27 = 20;
-    $int31 = calc($int31 + 1);
+    $int35 = calc($int35 + 1);
 }
-cc_create($component3, ^iftype_text, $int31);
+cc_create($component3, ^iftype_text, $int35);
 cc_setsize($int24, $int25, ^setsize_abs, ^setsize_abs);
 if ($graphic13 ! null | $graphic14 ! null) {
     cc_setposition(0, $int27, ^setpos_abs_centre, ^setpos_abs_top);
@@ -181,58 +195,58 @@ cc_setmaxlines(0);
 cc_setcolour(^white);
 cc_settextfont(graphic_17813);
 cc_settextalign(^settextalign_centre, ^settextalign_top, 15);
-$int31 = calc($int31 + 1);
+$int35 = calc($int35 + 1);
 if ($graphic13 ! null | $graphic14 ! null) {
     if ($graphic12 ! null | $obj15 ! null) {
-        cc_create($component3, ^iftype_graphic, $int31);
+        cc_create($component3, ^iftype_graphic, $int35);
         cc_setsize($int16, $int17, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc(-30 - $int18 - $int16 / 2), calc($int25 / 2), ^setpos_abs_centre, ^setpos_abs_centre);
         if ($graphic12 ! null) {
             cc_setgraphic($graphic12);
-            cc_setontimer("script9285($int31, $component3)");
+            cc_setontimer("script9285($int35, $component3)");
         }
         if ($obj15 ! null) {
             cc_setobject($obj15, -1);
-            cc_setontimer("script9286($int31, $obj15, $component3)");
+            cc_setontimer("script9286($int35, $obj15, $component3)");
         }
-        $int31 = calc($int31 + 1);
+        $int35 = calc($int35 + 1);
     }
     if ($graphic13 ! null) {
-        cc_create($component3, ^iftype_graphic, $int31);
+        cc_create($component3, ^iftype_graphic, $int35);
         cc_setsize($int18, $int19, ^setsize_abs, ^setsize_abs);
         cc_setposition(0, calc($int25 / 2), ^setpos_abs_centre, ^setpos_abs_centre);
         if ($graphic13 ! null) {
             cc_setgraphic($graphic13);
-            cc_setontimer("script9285($int31, $component3)");
+            cc_setontimer("script9285($int35, $component3)");
         }
-        $int31 = calc($int31 + 1);
+        $int35 = calc($int35 + 1);
     }
     if ($graphic14 ! null) {
-        cc_create($component3, ^iftype_graphic, $int31);
+        cc_create($component3, ^iftype_graphic, $int35);
         cc_setsize($int20, $int21, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc(30 + $int18 + $int16 / 2), calc($int25 / 2), ^setpos_abs_centre, ^setpos_abs_centre);
         if ($graphic14 ! null) {
             cc_setgraphic($graphic14);
-            cc_setontimer("script9285($int31, $component3)");
+            cc_setontimer("script9285($int35, $component3)");
         }
-        $int31 = calc($int31 + 1);
+        $int35 = calc($int35 + 1);
     }
 } else if ($graphic12 ! null | $obj15 ! null) {
-    cc_create($component3, ^iftype_graphic, $int31);
+    cc_create($component3, ^iftype_graphic, $int35);
     cc_setsize($int16, $int17, ^setsize_abs, ^setsize_abs);
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
     if ($graphic12 ! null) {
         cc_setgraphic($graphic12);
-        cc_setontimer("script9285($int31, $component3)");
+        cc_setontimer("script9285($int35, $component3)");
     }
     if ($obj15 ! null) {
         cc_setobject($obj15, -1);
-        cc_setontimer("script9286($int31, $obj15, $component3)");
+        cc_setontimer("script9286($int35, $obj15, $component3)");
     }
-    $int31 = calc($int31 + 1);
+    $int35 = calc($int35 + 1);
 }
-~script9284(255, $int31);
-if_setontimer("script711($int31, $component1, $component6)", $component1);
+~script9284(255, $int35);
+if_setontimer("script711($int35, $component1, $component6)", $component1);
 if ($component7 ! null) {
     if_setontimer("script757($int0, $int9, $int29, $int28, 0)", $component8);
 }

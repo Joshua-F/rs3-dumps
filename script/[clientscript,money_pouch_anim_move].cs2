@@ -1,29 +1,25 @@
 // 5562
-[clientscript,money_pouch_anim_move](int $int0, component $component1, component $component2)
-def_int $int3 = stringwidth(if_gettext(interface_1473:com_39), graphic_17813);
-def_int $int4 = stringwidth(if_gettext(interface_1473:com_41), graphic_17813);
-def_int $int5 = 0;
-if (calc(($int3 + $int4 + 5) * 2) > if_getwidth($component1)) {
-    $int5 = 10;
-}
-def_int $int6 = 1;
-def_int $int7 = calc(clientclock - $int0);
-if ($int7 < 25) {
-    $int6 = calc(1 - $int4 * (25 - $int7) / 25);
+[clientscript,money_pouch_anim_move](int $int0, int $int1, component $component2)
+def_int $int3 = stringwidth(if_gettext(interface_1473:com_14), graphic_17813);
+def_int $int4 = 10;
+def_int $int5 = 1;
+def_int $int6 = calc(clientclock - $int0);
+if ($int6 < 25) {
+    $int5 = calc(1 - $int3 * (25 - $int6) / 25);
 }
 if ($component2 = interface_1920:com_13) {
-    if_setposition($int6, if_gety($component2), ^setpos_abs_left, ^setpos_abs_top, $component2);
+    if_setposition($int5, if_gety($component2), ^setpos_abs_left, ^setpos_abs_top, $component2);
 } else {
-    if_setposition($int6, $int5, ^setpos_abs_right, ^setpos_abs_top, $component2);
+    if_setposition($int5, $int4, ^setpos_abs_right, ^setpos_abs_top, $component2);
 }
-if ($int7 < 150) {
+if ($int6 < 150) {
     return;
 }
-if_sethide(true, interface_1474:com_37);
-if_sethide(true, interface_1473:com_40);
+if_sethide(true, interface_1474:com_14);
+if_sethide(true, interface_1473:com_13);
 if_sethide(true, interface_1920:com_13);
 if_sethide(true, interface_1666:com_1);
-if_setontimer(null, interface_1474:com_37);
-if_setontimer(null, interface_1473:com_40);
+if_setontimer(null, interface_1474:com_14);
+if_setontimer(null, interface_1473:com_13);
 if_setontimer(null, interface_1920:com_13);
 if_setontimer(null, interface_1666:com_1);
