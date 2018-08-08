@@ -37,6 +37,7 @@ def_int $int12 = -1;
 def_int $int13 = -1;
 def_int $int14 = -1;
 def_int $int15 = -1;
+def_int $int16 = -1;
 switch_int ($key0) {
     case ^key_f9 :
         if (~script8627($int2) ! null) {
@@ -107,7 +108,7 @@ switch_int ($key0) {
         if (~script6968($int2) = true) {
             return;
         }
-        $int9, $int10, $int11, $int12, $int13, $int14 = ~script4590;
+        $int9, $int10, $int11, $int12, $int13, $int14, $int15 = ~script4590;
         if (%varplayerbit_21242 = 0 & string_length(~script8521($int2)) <= 0 & %varplayerbit_38842 = 0) {
             ~script8517($int2);
             switch_int ($int2) {
@@ -180,12 +181,15 @@ switch_int ($key0) {
                         } else if ($int10 < $int11) {
                             $int6 = -1;
                             mes_typed(^chattype_clanmessage, 0, "Your rank is not high enough to talk in your Clan Chat.");
+                        } else if ($int12 = 1) {
+                            $int6 = -1;
+                            mes_typed(^chattype_clanmessage, 0, "You've been muted by your Clan and can't talk in your Clan Chat.");
                         }
                     case 3 :
-                        if ($int12 < 0) {
+                        if ($int13 < 0) {
                             $int6 = -1;
                             ~script7171($int2, "You aren't a guest in a visited Clan Chat channel.");
-                        } else if ($int13 < $int14) {
+                        } else if ($int14 < $int15) {
                             $int6 = -1;
                             mes_typed(^chattype_clanguestmessage, 0, "Guests cannot chat in this Clan Chat channel.");
                         }
@@ -202,7 +206,7 @@ switch_int ($key0) {
                         case 100 :
                             chat_sendprivate(%varclient_2367, ~script8521($int2));
                         case 6 :
-                            $int15 = ttv_chat_sendmessage(~script8521($int2));
+                            $int16 = ttv_chat_sendmessage(~script8521($int2));
                         case default :
                             chat_setmode($int6);
                             chat_sendpublic(~script8521($int2));

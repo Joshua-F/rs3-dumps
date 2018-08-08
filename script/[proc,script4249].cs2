@@ -1,32 +1,26 @@
 // 4249
 [proc,script4249](string $string0, string $string1, component $component0, component $component1, component $component2, component $component3, component $component4, int $int5, int $int6)(int)
-def_int $int7 = 0;
-if ($int6 < 50) {
-    $int7 = 1;
-}
-def_int $int8 = calc(stringwidth($string0, p12_full) + 3);
+def_int $int7 = calc(stringwidth($string0, graphic_20452) + 3);
 if_settext($string0, $component1);
 if ($component3 ! null) {
-    if_setposition($int8, 0, ^setpos_abs_left, ^setpos_abs_top, $component3);
+    if_setposition(0, 12, ^setpos_abs_left, ^setpos_abs_top, $component3);
 }
-$int8 = calc(if_getwidth($component0) - $int8);
-def_int $int9 = 20;
+$int7 = calc(if_getwidth($component0) - $int7);
+def_int $int8 = max(calc(paraheight($string1, $int7, graphic_20452) * 15 + 15), 20);
 if ($component3 ! null) {
-    $int9 = max(20, if_getheight($component3));
+    if_setposition(0, 12, ^setpos_abs_left, ^setpos_abs_top, $component3);
+    $int8 = calc($int8 + 5);
 }
-def_int $int10 = max(calc(paraheight($string1, $int8, p12_full) * 15 + 3), $int9);
-if ($int7 = 1) {
-    if_setsize(60, $int10, ^setsize_minus, ^setsize_abs, $component0);
-} else {
-    if_setsize(0, $int10, ^setsize_minus, ^setsize_abs, $component0);
+if_setsize(0, $int8, ^setsize_minus, ^setsize_abs, $component0);
+if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component2);
+if ($component2 = interface_1500:com_330) {
+    if_setposition(0, 11, ^setpos_abs_left, ^setpos_abs_top, $component2);
+    if_setsize(370, 0, ^setsize_abs, ^setsize_minus, $component2);
+    $int8 = max(calc(paraheight($string1, 370, graphic_20452) * 15 + 15), 20);
+    if_setsize(0, $int8, ^setsize_minus, ^setsize_abs, $component0);
 }
-if_setsize($int8, 0, ^setsize_abs, ^setsize_minus, $component2);
 if_settext($string1, $component2);
-if ($int7 = 1) {
-    if_setposition(60, $int6, ^setpos_abs_left, ^setpos_abs_top, $component0);
-} else {
-    if_setposition(0, $int6, ^setpos_abs_centre, ^setpos_abs_top, $component0);
-}
+if_setposition(0, $int6, ^setpos_abs_left, ^setpos_abs_top, $component0);
 if ($component3 ! null) {
     if ($int5 = 2) {
         if_sethide(true, $component3);
@@ -43,4 +37,4 @@ if ($component3 ! null) {
 } else {
     if_sethide(false, $component2);
 }
-return(calc($int6 + $int10));
+return(calc($int6 + $int8));

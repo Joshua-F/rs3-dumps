@@ -1,287 +1,144 @@
 // 4436
-[proc,script4436](component $component0, int $int1, component $component2)
-def_component $component3 = null;
-def_component $component4 = null;
-def_component $component5 = null;
-def_component $component6 = null;
-def_component $component7 = null;
-def_component $component8 = null;
-def_component $component9 = null;
-def_component $component10 = null;
-def_component $component11 = null;
-def_component $component12 = null;
-def_component $component13 = null;
-def_component $component14 = null;
-def_component $component15 = null;
-def_component $component16 = null;
-def_component $component17 = null;
-def_component $component18 = null;
-def_component $component19 = null;
-def_component $component20 = null;
-def_component $component21 = null;
-def_component $component22 = null;
-def_component $component23 = null;
-def_string $string0 = null;
-def_string $string1 = null;
-def_int $int24 = -1;
-def_component $component25 = null;
-def_component $component26 = null;
-$component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $component17, $component18, $component19, $component20, $component21, $component22, $component23, $int24, $component25, $component26 = ~script7814($component2);
-if (%varclient_1512 ! 1) {
-    %varclient_1512 = 1;
-}
-def_int $int27 = if_getwidth($component4);
-if (%varplayerbit_38842 = 1) {
-    $int1 = scale(if_getwidth($component25), 4, 3);
-    if_setdraggable(null, 0, $component4);
-    if_clearscripthooks($component4);
-} else {
-    if ($int1 <= -1) {
-        $int1 = if_getx($component4);
-    }
-    $int1 = max(min($int1, calc(if_getwidth($component25) - $int27)), 0);
-    if ($int1 > 0) {
-        %varclient_1035 = $int1;
-    }
-    if_setdraggable($component25, -1, $component4);
-    if_setondragcomplete("clan_chat_list_refresh(event_mousex, $component2)", $component4);
-}
-if_setposition($int1, 0, ^setpos_abs_left, ^setpos_abs_centre, $component4);
-if_setmouseovercursor(cursor_149, $component4);
-if_sethide(false, $component4);
-cc_deleteall($component11);
-cc_deleteall($component12);
-cc_deleteall($component13);
-cc_deleteall($component14);
-cc_deleteall($component15);
-if_setgraphic("aif_clanchat_icons,12", $component20);
-if_sethide(false, $component5);
-if_sethide(false, $component7);
-~script4470($component5, $component6);
-~script5395($component7, $component8);
-def_string $string2 = "Leave your clan chat channel";
-if_setonmouserepeat("script8799($string2, event_com, event_comsubid)", interface_1110:com_112);
-if_setonmouseleave("script8805", interface_1110:com_112);
-if_setop(1, "Leave Clan Chat channel", interface_1110:com_112);
-if_setonmouserepeat("script8799($string2, event_com, event_comsubid)", interface_1440:com_103);
-if_setonmouseleave("script8805", interface_1440:com_103);
-if_setop(1, "Leave Clan Chat channel", interface_1440:com_103);
-if_setonplayergrouptransmit("clan_chat_list_refresh(-1, $component2)", interface_1110:com_58);
-def_int $int28 = 0;
-def_int $int29 = 0;
-def_int $int30 = 0;
-def_string $string3 = "";
-def_int $int31 = 19;
-def_fontmetrics $fontmetrics32 = graphic_17813;
-if (%varplayerbit_38842 = 1) {
-    $int31 = 27;
-    $fontmetrics32 = graphic_21207;
-}
-def_int $int33 = calc(if_getheight($component18) / $int31);
-def_string $string4 = "";
-def_int $int34 = 0;
-def_string $string5 = "";
-def_int $int35 = 0;
-def_int $int36 = 0;
-def_string $string6 = "";
-def_string $string7 = "";
-def_int $int37 = 0;
-def_int $int38 = ~script3365($component25);
-def_int $int39 = calc($int1 + $int38 - ~script3365($component11));
-def_int $int40 = calc(if_getwidth($component13) - ($int1 + ($int38 - ~script3365($component13)) + $int27));
-def_int $int41 = 0;
-if (player_group_find = true & ~script10281(~script10275) = true) {
-    $int41 = 1;
-}
-if_setsize($int40, 0, ^setsize_abs, ^setsize_minus, $component13);
-if_setsize($int40, 0, ^setsize_abs, ^setsize_minus, $component14);
-if_setonclanchanneltransmit("clan_chat_list_refresh(-1, $component2)", $component0);
-if_setonfriendtransmit("clan_chat_list_refresh(-1, $component2)", $component0);
-if_settext(activeclanchannel_getclanname, $component23);
-$string0 = "The name of your clan";
-if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", $component23);
-if_setonmouseleave("script8805", $component23);
-if_settext("", $component17);
-if_settext("", $component26);
-if_sethide(true, $component16);
-def_int $int42 = activeclanchannel_getuserslot(removetags(chat_playername_unfiltered));
-if ($int42 = -1) {
+[proc,script4436](int $int0, component $component1)
+def_string $string0 = removetags(chat_playername_unfiltered);
+def_int $int2 = activeclanchannel_getuserslot($string0);
+if ($int2 = -1) {
     return;
 }
-def_int $int43 = activeclanchannel_getuserrank($int42);
-$int30 = activeclanchannel_getusercount;
-$int28 = 0;
-while ($int28 < $int30) {
-    $int29 = calc($int28 * $int31);
-    $string4 = removetags(activeclanchannel_getuserdisplayname($int28));
-    $int37 = activeclanchannel_getuserrank($int28);
-    cc_create($component11, ^iftype_text, if_getnextsubid($component11));
-    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-    cc_setposition(0, $int29, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setsize($int39, $int31, ^setsize_abs, ^setsize_abs);
-    cc_setcolour(0xa4997d);
-    cc_settextfont($fontmetrics32);
-    cc_settextshadow(true);
-    cc_setlinkactiveclanchannel($int28);
-    if (compare($string4, removetags(chat_playername_unfiltered)) ! 0) {
-        cc_setopbase($string4);
-        if (friend_test($string4) = true) {
-            cc_setop(1, "Message");
-            cc_setop(7, "Remove friend");
-        } else if (ignore_test($string4) = true) {
-            cc_setop(8, "Remove ignore");
-        } else {
-            cc_setop(5, "Add friend");
-            cc_setop(6, "Add ignore");
-        }
-        if ($int43 >= activeclanchannel_getrankkick) {
-            cc_setop(9, "Temp-ban");
-        }
-        if ($int41 = 1) {
-            cc_setop(4, "Invite to group");
-        }
-        cc_setop(10, "Join");
-        cc_setonop("clan_chat_list_op($string4, event_op, $int28)");
-    }
-    $string3 = "   <$string4>";
-    cc_setmaxlines(1);
-    cc_setonmouserepeat("script8799($string4, event_com, event_comsubid)");
-    cc_setonmouseleave("script8805");
-    cc_settext($string3);
-    cc_settextshadow(true);
-    $int34 = activeclanchannel_getuserworld($int28);
-    if ($int34 >= 1100 & $int34 < 5001) {
-        $string5 = "Lobby";
-        $string6 = "Lobby";
-        $int35 = 0;
-    } else if ($int34 >= 5001 & $int34 < 6000) {
-        $string5 = "Classic <tostring(calc($int34 - 5000))>";
-        $string6 = "Classic <tostring(calc($int34 - 5000))>";
-        $int35 = 0;
-    } else {
-        $string5 = tostring($int34);
-        $string6 = "World <tostring($int34)>";
-        $int35 = calc(2 + 24 + 2);
-    }
-    $int36 = stringwidth($string5, $fontmetrics32);
-    cc_create($component14, ^iftype_graphic, if_getnextsubid($component14));
-    if ($int40 >= calc($int36 + $int35)) {
-        if ($int35 > 0) {
-            if ($int34 > 199 & $int34 < 300) {
-                cc_setgraphic("rs3_icon_world_select_game_flags,1");
-            } else if (~script9377($int34) = 1) {
-                cc_setgraphic("rs3_icon_world_select_game_flags,2");
-            } else {
-                cc_setgraphic("rs3_icon_world_select_game_flags,0");
-            }
-            cc_setsize(24, 12, ^setsize_abs, ^setsize_abs);
-            cc_setposition(2, calc($int29 + 4 + ($int31 - 19) / 2), ^setpos_abs_left, ^setpos_abs_top);
-            cc_setonmouserepeat("script8799($string6, event_com, event_comsubid)");
-            cc_setonmouseleave("script8805");
-        }
-    } else {
-        $int35 = 0;
-    }
-    if ($int40 >= $int36) {
-    } else {
-        cc_setonmouserepeat("script8799($string6, event_com, event_comsubid)");
-        cc_setonmouseleave("script8805");
-        $string5 = "...";
-    }
-    cc_create($component13, ^iftype_text, if_getnextsubid($component13));
-    cc_setsize($int40, $int31, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc($int35 + 2), calc($int29 + 2 + ($int31 - 19) / 2), ^setpos_abs_left, ^setpos_abs_top);
-    cc_settextfont($fontmetrics32);
-    cc_settextshadow(true);
-    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-    cc_settext($string5);
-    if ($int34 = map_world) {
-        cc_setcolour(0x3cb71e);
-    } else {
-        cc_setcolour(0xffff64);
-    }
-    cc_setonmouserepeat("script8799($string6, event_com, event_comsubid)");
-    cc_setonmouseleave("script8805");
-    cc_create($component12, ^iftype_graphic, if_getnextsubid($component12));
-    if ($int37 = 127) {
-        cc_setposition(3, 3, ^setpos_abs_left, ^setpos_abs_top);
-        cc_setsize(9, 9, ^setsize_abs, ^setsize_abs);
-    } else {
-        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-        cc_setsize(15, 15, ^setsize_abs, ^setsize_abs);
-    }
-    cc_setgraphic(enum(int, graphic, enum_3712, $int37));
-    $string7 = enum(int, string, enum_3714, $int37);
-    cc_setonmouserepeat("script8799($string7, event_com, event_comsubid)");
-    cc_setonmouseleave("script8805");
-    cc_create($component15, ^iftype_graphic, if_getnextsubid($component15));
-    cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
-    cc_setsize(9, $int31, ^setsize_abs, ^setsize_abs);
-    cc_setgraphic("aif_browngrad_whole_btn,1");
-    cc_setonop("script4317(event_com, event_comsubid, $component2)");
-    cc_setop(1, "Show options");
-    $string1 = "Show options";
-    cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
-    cc_setonmouseleave("script8805");
-    $int28 = calc($int28 + 1);
+def_struct $struct3 = ~clan_chat_get_struct($component1);
+def_component $component4 = struct_param($struct3, param_7291);
+def_component $component5 = struct_param($struct3, param_7292);
+def_component $component6 = struct_param($struct3, param_7293);
+def_component $component7 = struct_param($struct3, param_7294);
+def_component $component8 = struct_param($struct3, param_7295);
+def_component $component9 = struct_param($struct3, param_7297);
+def_component $component10 = struct_param($struct3, param_7298);
+def_component $component11 = struct_param($struct3, param_7299);
+def_component $component12 = struct_param($struct3, param_7300);
+def_component $component13 = struct_param($struct3, param_7301);
+def_component $component14 = struct_param($struct3, param_7302);
+def_component $component15 = struct_param($struct3, param_7303);
+def_component $component16 = struct_param($struct3, param_7304);
+def_component $component17 = struct_param($struct3, param_7305);
+def_component $component18 = struct_param($struct3, param_7307);
+def_component $component19 = struct_param($struct3, param_7308);
+def_component $component20 = struct_param($struct3, param_7309);
+def_component $component21 = struct_param($struct3, param_7306);
+def_component $component22 = struct_param($struct3, param_7310);
+def_component $component23 = struct_param($struct3, param_7311);
+def_component $component24 = struct_param($struct3, param_7313);
+def_string $string1 = null;
+def_int $int25 = 0;
+def_int $int26 = 0;
+def_int $int27 = 0;
+def_int $int28 = activeclanchannel_getusercount;
+def_int $int29 = -1;
+def_int $int30 = if_getscrolly($component16);
+def_int $int31 = calc(19 * $int28);
+def_int $int32 = if_getheight($component16);
+def_int $int33 = if_getwidth($component4);
+def_int $int34 = ~script3365($component23);
+def_string $string2 = "Temporarily leave your clan chat channel";
+if ($int0 <= -1) {
+    $int0 = if_getx($component4);
 }
-$int28 = 0;
-def_int $int44 = 0;
-def_int $int45 = calc(($int31 - 19) / 2);
-while ($int28 < $int30) {
-    $int44 = activeclanchannel_getsorteduserslot($int28);
-    if (cc_find($component11, $int44) = true & compare(cc_gettext, "") ! 0) {
-        $int29 = calc($int28 * $int31);
-        cc_setposition(cc_getx, $int29, ^setpos_abs_left, ^setpos_abs_top);
-        if (cc_find($component12, $int44) = true) {
-            cc_setposition(cc_getx, calc($int29 + 3 + $int45), ^setpos_abs_left, ^setpos_abs_top);
-        }
-        if (cc_find($component13, $int44) = true) {
-            cc_setposition(cc_getx, $int29, ^setpos_abs_left, ^setpos_abs_top);
-        }
-        if (cc_find($component14, $int44) = true) {
-            cc_setposition(cc_getx, calc($int29 + 4 + $int45), ^setpos_abs_left, ^setpos_abs_top);
-        }
-        if (cc_find($component15, $int44) = true) {
-            cc_setposition(cc_getx, calc($int29 + 2 + $int45), ^setpos_abs_left, ^setpos_abs_top);
-        }
-    }
-    $int28 = calc($int28 + 1);
+$int0 = max(0, min($int0, calc(if_getwidth($component23) - $int33)));
+if ($int0 > 0) {
+    %varclient_1035 = $int0;
 }
-def_int $int46 = 0;
-def_int $int47 = -1;
+def_int $int35 = calc($int0 + $int34 - ~script3365($component9));
+def_int $int36 = calc(if_getwidth($component11) - ($int0 + ($int34 - ~script3365($component11)) + $int33));
+def_int $int37 = 0;
+if (player_group_find = true & ~script10281(~script10275) = true) {
+    $int37 = 1;
+}
+def_int $int38 = 0;
+if (activeclanchannel_getuserrank($int2) >= activeclanchannel_getrankkick) {
+    $int38 = 1;
+}
+if_setposition($int0, 0, ^setpos_abs_left, ^setpos_abs_centre, $component4);
+if_sethide(false, $component4);
+~script4470($component5, $component6);
+~script5395($component7, $component8);
+if_setonmouserepeat("script8799($string2, event_com, event_comsubid)", $component22);
+if_setonmouseleave("script8805", $component22);
+if_setop(1, "Leave Clan Chat channel", $component22);
+if_setsize($int36, 0, ^setsize_abs, ^setsize_minus, $component11);
+if_setsize($int36, 0, ^setsize_abs, ^setsize_minus, $component12);
+if_settext("", $component15);
+if_settext("", $component24);
+if_sethide(true, $component14);
+if_settext("<col=ee7600><activeclanchannel_getclanname></col> - <tostring($int28)>/500", $component20);
+if_setgraphic("aif_clanchat_icons,12", $component21);
+if (activeclansettings_find_affined = true) {
+    $string1 = "Clan size: <tostring(activeclansettings_getaffinedcount)>";
+    if_setonmouserepeat("script8799($string1, event_com, event_comsubid)", $component20);
+    if_setonmouseleave("script8805", $component20);
+}
+while ($int25 < $int28) {
+    $int26 = activeclanchannel_getsorteduserslot($int25);
+    $int27 = calc($int25 * 19);
+    if (cc_find($component10, $int26) = true) {
+        ~script455($int27, activeclanchannel_getuserrank($int26));
+    }
+    if (cc_find($component9, $int26) = true) {
+        ~script454(removetags(activeclanchannel_getuserdisplayname($int26)), $string0, $int35, $int27, $int37, $int38);
+    }
+    if (cc_find($component12, $int26) = true & .cc_find($component11, $int26) = true) {
+        ~script459($int36, $int27, activeclanchannel_getuserworld($int26));
+    }
+    if (cc_find($component13, $int26) = true) {
+        ~script460($int27);
+    }
+    $int25 = calc($int25 + 1);
+}
+while ($int25 < 600) {
+    if (cc_find($component9, $int25) = true) {
+        cc_sethide(true);
+    }
+    if (cc_find($component10, $int25) = true) {
+        cc_sethide(true);
+    }
+    if (cc_find($component11, $int25) = true) {
+        cc_sethide(true);
+    }
+    if (cc_find($component12, $int25) = true) {
+        cc_sethide(true);
+    }
+    if (cc_find($component13, $int25) = true) {
+        cc_sethide(true);
+    }
+    $int25 = calc($int25 + 1);
+}
 if (%varclient_1518 >= 0) {
-    $int47 = activeclanchannel_getuserslot(%varclient_2353);
-    if ($int47 >= 0) {
-        %varclient_1518 = $int47;
-        if (cc_find($component15, %varclient_1518) = true) {
-            $int46 = cc_gety;
-            if_setposition(0, $int46, ^setpos_abs_right, ^setpos_abs_top, $component22);
-            if_setposition(0, $int46, ^setpos_abs_right, ^setpos_abs_top, $component21);
+    $int29 = activeclanchannel_getuserslot(%varclient_2353);
+    if ($int29 >= 0) {
+        %varclient_1518 = $int29;
+        if (cc_find($component13, %varclient_1518) = true) {
+            $int27 = cc_gety;
+            if_setposition(0, $int27, ^setpos_abs_right, ^setpos_abs_top, $component19);
+            if_setposition(0, $int27, ^setpos_abs_right, ^setpos_abs_top, $component18);
         }
     } else {
         %varclient_1518 = -1;
         %varclient_2353 = "";
-        if_sethide(false, $component21);
-        ~script4628($component2);
+        if_sethide(false, $component18);
+        ~script4628($component1);
     }
 }
-def_int $int48 = if_getscrolly($component18);
-def_int $int49 = calc($int31 * max($int30, $int33));
-if_setscrollsize(calc(if_getwidth(if_getparentlayer($component18)) - 16), max(if_getheight($component18), $int49), $component18);
-$int48 = min($int48, if_getscrollheight($component18));
-if_setscrollpos(0, $int48, $component18);
-if ($int49 > if_getheight($component18)) {
-    if_sethide(false, $component19);
-    if_setsize(16, 60, ^setsize_minus, ^setsize_minus, $component18);
-    $int48 = min(if_getscrolly($component18), $int29);
-    ~scrollbar_resize($component19, $component18, $int48);
+if ($int31 > $int32) {
+    ~rs3_scrollbar_vertical($component17, $component16);
+    if_sethide(false, $component17);
+    if_setsize(16, 60, ^setsize_minus, ^setsize_minus, $component16);
+    if_setscrollpos(0, $int30, $component16);
+    if_setscrollsize(0, max($int32, $int31), $component16);
+    $int30 = min(if_getscrolly($component16), $int27);
+    ~scrollbar_resize($component17, $component16, $int30);
 } else {
-    if_sethide(true, $component19);
-    if_setsize(0, 60, ^setsize_minus, ^setsize_minus, $component18);
-    if_setscrollsize(0, 0, $component18);
-    if_setscrollpos(0, 0, $component18);
-    ~scrollbar_resize($component19, $component18, 0);
+    if_sethide(true, $component17);
+    if_setsize(0, 60, ^setsize_minus, ^setsize_minus, $component16);
+    if_setscrollsize(0, 0, $component16);
+    if_setscrollpos(0, 0, $component16);
+    ~scrollbar_resize($component17, $component16, 0);
 }
-~scrollbar_vertical($component19, $component18, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
 ~script6209;
