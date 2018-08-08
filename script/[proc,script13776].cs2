@@ -8,6 +8,8 @@ def_int $int8 = if_getwidth($component1);
 def_obj $obj9 = null;
 def_int $int10 = 0;
 def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
 if ($int3 > 0 & cc_find($component2, calc($int3 - 1)) = true) {
     $int6 = calc(cc_gety + cc_getheight);
 }
@@ -28,27 +30,51 @@ if (oc_param($obj0, param_6835) = 1) {
         cc_setposition(calc(80 - ($int11 - 1) * 20), $int6, $setposh5, ^setpos_abs_top);
         cc_setobject(enum(int, obj, enum_11885, inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_33776)), inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_33779));
     }
-} else if (oc_param($obj0, param_6295) = 1 | oc_param($obj0, param_4552) = 1) {
-    if (%varplayerbit_34961 ! 0) {
+} else if (oc_param($obj0, param_6295) = 1 | oc_param($obj0, param_4552) = 1 | oc_param($obj0, param_7393) = 1) {
+    if (oc_param($obj0, param_7393) = 1) {
+        $int4 = -20;
+    } else {
+        $int4 = -40;
+    }
+    $int12, $int13 = ~script470($obj0, 1);
+    if ($int12 ! 0) {
         cc_create($component2, ^iftype_graphic, $int3++);
         cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
-        cc_setposition(-40, $int6, ^setpos_abs_centre, ^setpos_abs_top);
-        cc_setgraphic(enum(int, graphic, enum_371, %varplayerbit_34961));
+        cc_setposition($int4, $int6, ^setpos_abs_centre, ^setpos_abs_top);
+        if ($int12 ! 31) {
+            cc_setgraphic(enum(int, graphic, enum_371, $int12));
+        } else {
+            cc_setgraphic("rs3_icon_abilities_quest_list_24px,0");
+        }
         $int11 = calc($int11 + 1);
     }
-    if (%varplayerbit_34962 ! 0) {
+    $int4 = calc($int4 + 40);
+    $int12, $int13 = ~script470($obj0, 2);
+    if ($int12 ! 0) {
         cc_create($component2, ^iftype_graphic, $int3++);
         cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
-        cc_setposition(0, $int6, ^setpos_abs_centre, ^setpos_abs_top);
-        cc_setgraphic(enum(int, graphic, enum_371, %varplayerbit_34962));
+        cc_setposition($int4, $int6, ^setpos_abs_centre, ^setpos_abs_top);
+        if ($int12 ! 31) {
+            cc_setgraphic(enum(int, graphic, enum_371, $int12));
+        } else {
+            cc_setgraphic("rs3_icon_abilities_quest_list_24px,0");
+        }
         $int11 = calc($int11 + 1);
     }
-    if (%varplayerbit_34963 ! 0) {
-        cc_create($component2, ^iftype_graphic, $int3++);
-        cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
-        cc_setposition(40, $int6, ^setpos_abs_centre, ^setpos_abs_top);
-        cc_setgraphic(enum(int, graphic, enum_371, %varplayerbit_34963));
-        $int11 = calc($int11 + 1);
+    if (oc_param($obj0, param_6295) = 1 | oc_param($obj0, param_4552) = 1) {
+        $int4 = calc($int4 + 40);
+        $int12, $int13 = ~script470($obj0, 3);
+        if ($int12 ! 0) {
+            cc_create($component2, ^iftype_graphic, $int3++);
+            cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
+            cc_setposition($int4, $int6, ^setpos_abs_centre, ^setpos_abs_top);
+            if ($int12 ! 31) {
+                cc_setgraphic(enum(int, graphic, enum_371, $int12));
+            } else {
+                cc_setgraphic("rs3_icon_abilities_quest_list_24px,0");
+            }
+            $int11 = calc($int11 + 1);
+        }
     }
     if ($int11 > 0) {
         if_setsize($int8, $int7, ^setsize_abs, ^setsize_abs, $component1);

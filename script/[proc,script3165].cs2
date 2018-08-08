@@ -17,7 +17,7 @@ def_int $int9 = 0;
 def_string $string0 = "";
 def_int $int10 = 15;
 def_int $int11 = 17;
-def_int $int12 = 0;
+def_int $rgb12 = ^black;
 def_int $int13 = 0;
 def_int $int14 = 0;
 def_int $int15 = 0;
@@ -40,7 +40,7 @@ while ($int9 < $int8) {
     $int17 = activeclanchannel_getuserrank($int9);
     $string2 = activeclanchannel_getuserdisplayname($int9);
     $string0 = $string2;
-    ~cc_add_rect($component3, $int9, if_getwidth($component3), $int10, 0, $int13, 0, true, 0);
+    ~cc_add_rect($component3, $int9, if_getwidth($component3), $int10, 0, $int13, ^black, true, 0);
     if (calc($int9 % 2) = 0) {
         cc_setcolour(0x071820);
     } else {
@@ -65,13 +65,13 @@ while ($int9 < $int8) {
         cc_setop(10, "Kick/ban <$string0>");
     }
     ~cc_add_graphic($component1, $int9, 9, 9, 5, calc($int13 + 2), enum(int, graphic, enum_3712, $int17), false, false, false, 0);
-    ~cc_add_text($component0, $int9, 0, $int10, $int11, $int13, $string0, 16777215, graphic_20452, ^settextalign_left, ^settextalign_centre, 0, true);
+    ~cc_add_text($component0, $int9, 0, $int10, $int11, $int13, $string0, ^white, graphic_20452, ^settextalign_left, ^settextalign_centre, 0, true);
     cc_setsize($int11, $int10, ^setsize_minus, ^setsize_abs);
     cc_setmaxlines(1);
     $int14 = activeclanchannel_getuserworld($int9);
     if ($int14 = 0) {
         $string0 = "Offline";
-        $int12 = 16711680;
+        $rgb12 = ^red;
     } else {
         if ($int14 >= 1149 & $int14 < 1200) {
             $string0 = "Beta lobby";
@@ -83,12 +83,12 @@ while ($int9 < $int8) {
             $string0 = "World <tostring($int14)>";
         }
         if ($int14 = map_world) {
-            $int12 = 65280;
+            $rgb12 = ^green;
         } else {
-            $int12 = 16776960;
+            $rgb12 = ^yellow;
         }
     }
-    ~cc_add_text($component2, $int9, 0, $int10, 5, $int13, $string0, $int12, graphic_20452, ^settextalign_left, ^settextalign_centre, 0, true);
+    ~cc_add_text($component2, $int9, 0, $int10, 5, $int13, $string0, $rgb12, graphic_20452, ^settextalign_left, ^settextalign_centre, 0, true);
     cc_setsize(5, $int10, ^setsize_minus, ^setsize_abs);
     cc_setmaxlines(1);
     $int13 = calc($int13 + $int10);
@@ -97,7 +97,7 @@ while ($int9 < $int8) {
 $int15 = calc(if_getheight($component4) / $int10 + 1);
 if ($int15 > $int8) {
     while ($int9 < $int15) {
-        ~cc_add_rect($component3, $int9, if_getwidth($component3), $int10, 0, $int13, 0, true, 0);
+        ~cc_add_rect($component3, $int9, if_getwidth($component3), $int10, 0, $int13, ^black, true, 0);
         if (calc($int9 % 2) = 0) {
             cc_setcolour(0x071820);
         } else {

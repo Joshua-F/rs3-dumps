@@ -6,52 +6,56 @@ def_int $int4 = -1;
 def_int $int5 = -1;
 def_int $int6 = -1;
 def_int $int7 = -1;
-def_int $int8 = 0;
-$int2, $int3, $int4, $int5, $int6, $int7 = ~script4590;
-def_int $int9 = $int1;
+def_int $int8 = -1;
+def_int $int9 = 0;
+$int2, $int3, $int4, $int5, $int6, $int7, $int8 = ~script4590;
+def_int $int10 = $int1;
 if (%varplayerbit_27169 = 1) {
     switch_int ($int0) {
         case 1 :
-            $int8 = 1;
+            $int9 = 1;
         case 2 :
-            $int8 = 1;
-            $int9 = 18;
-            ~quickchat_open(0, "", $int9);
+            $int9 = 1;
+            $int10 = 18;
+            ~quickchat_open(0, "", $int10);
         case 3 :
-            $int8 = 3;
+            $int9 = 3;
         case 4 :
-            $int8 = 3;
-            $int9 = 18;
+            $int9 = 3;
+            $int10 = 18;
             if (clan_getchatcount > 0) {
-                ~quickchat_open(2, "", $int9);
+                ~quickchat_open(2, "", $int10);
             } else {
                 ~script7171(18, "You aren't in a Friends Chat channel.");
                 return;
             }
         case 5 :
-            $int8 = 4;
+            $int9 = 4;
         case 6 :
-            $int8 = 4;
-            $int9 = 18;
+            $int9 = 4;
+            $int10 = 18;
             if ($int2 >= 0) {
-                if ($int3 >= $int4) {
-                    ~quickchat_open(8, "", $int9);
-                } else {
+                if ($int3 < $int4) {
                     mes_typed(^chattype_clanmessage, 0, "Your rank is not high enough to chat in the Clan Chat.");
                     return;
                 }
+                if ($int5 = 1) {
+                    mes_typed(^chattype_clanmessage, 0, "You've been muted by your Clan and can't talk in your Clan Chat.");
+                    return;
+                }
+                ~quickchat_open(8, "", $int10);
             } else {
                 ~script7171(18, "You aren't in a Clan Chat channel.");
                 return;
             }
         case 7 :
-            $int8 = 5;
+            $int9 = 5;
         case 8 :
-            $int8 = 5;
-            $int9 = 18;
-            if ($int5 >= 0) {
-                if ($int6 >= $int7) {
-                    ~quickchat_open(10, "", $int9);
+            $int9 = 5;
+            $int10 = 18;
+            if ($int6 >= 0) {
+                if ($int7 >= $int8) {
+                    ~quickchat_open(10, "", $int10);
                 } else {
                     mes_typed(^chattype_clanmessage, 0, "Guests cannot chat in this visited Clan channel.");
                     return;
@@ -61,18 +65,18 @@ if (%varplayerbit_27169 = 1) {
                 return;
             }
         case 9 :
-            $int8 = 15;
+            $int9 = 15;
         case 10 :
-            $int8 = 15;
-            $int9 = 18;
+            $int9 = 15;
+            $int10 = 18;
             if (player_group_find = true) {
-                ~quickchat_open(13, "", $int9);
+                ~quickchat_open(13, "", $int10);
             } else {
                 mes("You need to be in a group to use group quickchat.");
             }
     }
-    %varclient_41 = $int8;
-    ~script9912($int8);
+    %varclient_41 = $int9;
+    ~script9912($int9);
     ~script1558(18, 0);
     ~chat_v2_rebuildchatbox(18);
     return;
@@ -82,20 +86,20 @@ if ($int0 = 1) {
     ~script8516(18);
     return;
 } else if ($int0 = 2) {
-    $int9 = 18;
-    ~quickchat_open(0, "", $int9);
+    $int10 = 18;
+    ~quickchat_open(0, "", $int10);
 } else if ($int0 = 3) {
     ~script8515(20);
     ~script8516(20);
     return;
 } else if ($int0 = 4) {
     if ($int1 = 18) {
-        $int9 = 18;
+        $int10 = 18;
     } else {
-        $int9 = 20;
+        $int10 = 20;
     }
     if (clan_getchatcount > 0) {
-        ~quickchat_open(2, "", $int9);
+        ~quickchat_open(2, "", $int10);
     } else {
         ~script7171(18, "You aren't in a Friends Chat channel.");
         return;
@@ -106,17 +110,20 @@ if ($int0 = 1) {
     return;
 } else if ($int0 = 6) {
     if ($int1 = 18) {
-        $int9 = 18;
+        $int10 = 18;
     } else {
-        $int9 = 21;
+        $int10 = 21;
     }
     if ($int2 >= 0) {
-        if ($int3 >= $int4) {
-            ~quickchat_open(8, "", $int9);
-        } else {
+        if ($int3 < $int4) {
             mes_typed(^chattype_clanmessage, 0, "Your rank is not high enough to chat in the Clan Chat.");
             return;
         }
+        if ($int5 = 1) {
+            mes_typed(^chattype_clanmessage, 0, "You've been muted by your Clan and can't talk in your Clan Chat.");
+            return;
+        }
+        ~quickchat_open(8, "", $int10);
     } else {
         ~script7171(18, "You aren't in a Clan Chat channel.");
         return;
@@ -127,13 +134,13 @@ if ($int0 = 1) {
     return;
 } else if ($int0 = 8) {
     if ($int1 = 18) {
-        $int9 = 18;
+        $int10 = 18;
     } else {
-        $int9 = 22;
+        $int10 = 22;
     }
-    if ($int5 >= 0) {
-        if ($int6 >= $int7) {
-            ~quickchat_open(10, "", $int9);
+    if ($int6 >= 0) {
+        if ($int7 >= $int8) {
+            ~quickchat_open(10, "", $int10);
         } else {
             mes_typed(^chattype_clanmessage, 0, "Guests cannot chat in this visited Clan channel.");
             return;
@@ -148,12 +155,12 @@ if ($int0 = 1) {
     return;
 } else if ($int0 = 10) {
     if ($int1 = 18) {
-        $int9 = 18;
+        $int10 = 18;
     } else {
-        $int9 = 25;
+        $int10 = 25;
     }
     if (player_group_find = true) {
-        ~quickchat_open(13, "", $int9);
+        ~quickchat_open(13, "", $int10);
     } else {
         mes("You aren't in a group.");
     }

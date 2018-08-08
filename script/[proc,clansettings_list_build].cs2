@@ -1,12 +1,12 @@
 // 4301
 [proc,clansettings_list_build]
-def_component $component0 = interface_1096:com_80;
-def_component $component1 = interface_1096:com_81;
-def_component $component2 = interface_1096:com_82;
-def_component $component3 = interface_1096:com_83;
-def_int $int4 = 71827558;
-def_component $component5 = interface_1096:com_103;
-def_component $component6 = interface_1096:com_130;
+def_component $component0 = interface_1096:com_23;
+def_component $component1 = interface_1096:com_24;
+def_component $component2 = interface_1096:com_25;
+def_component $component3 = interface_1096:com_26;
+def_int $int4 = 71827476;
+def_component $component5 = interface_1096:com_21;
+def_component $component6 = interface_1096:com_27;
 def_string $string0 = "";
 def_string $string1 = "";
 def_int $int7 = 15;
@@ -42,6 +42,7 @@ cc_deleteall($component6);
 while ($int12 < $int13) {
     $string0 = activeclansettings_getaffineddisplayname($int12);
     $int20 = activeclansettings_getaffinedrank($int12);
+    $int21 = activeclansettings_getaffinedextrainfo($int12, 10, 10);
     if (calc(%varclient_1516 - 1) ! $int20) {
         $int22 = 1;
         if (%varclient_1516 = 0 | %varclient_1516 = -1) {
@@ -78,23 +79,9 @@ while ($int12 < $int13) {
     cc_create($component6, ^iftype_graphic, $int12);
     if ($int22 = 0) {
         cc_setsize($int7, $int8, ^setsize_abs, ^setsize_abs);
-        switch_int ($int20) {
-            case 0 :
-                $int21 = %varclansettingbit_6214;
-            case 1 :
-                $int21 = %varclansettingbit_6215;
-            case 2 :
-                $int21 = %varclansettingbit_6216;
-            case 3 :
-                $int21 = %varclansettingbit_6217;
-            case 4 :
-                $int21 = %varclansettingbit_6218;
-            case 5 :
-                $int21 = %varclansettingbit_6219;
-        }
-        if ($int21 = 1 | $int20 >= 100) {
-            cc_setgraphic("aif_clan_rank_icons,11");
-            $string1 = "Rated Clan<br>Wars Leader";
+        if ($int21 = 1) {
+            cc_setgraphic("aif_clan_permissions_list,12");
+            $string1 = "Muted in Clan Chat";
             cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
         }
     }

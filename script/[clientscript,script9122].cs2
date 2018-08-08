@@ -29,7 +29,41 @@ if (%varclient_1790 = 7) {
 }
 if_setobject($obj1, $int2, interface_1253:com_217);
 if_settext("Convert Value:", interface_1253:com_226);
-if_settext(tostring_localised(%varplayer_7102, true), interface_1253:com_227);
+def_int $int17 = 1;
+if (~trh_state(struct_29986) = 1) {
+    if (%varplayerbit_31212 = 1) {
+        $int17 = calc($int17 + 3);
+    } else if (%varplayerbit_26876 = 1) {
+        $int17 = calc($int17 + 2);
+    }
+} else if (~trh_state(struct_31910) = 1) {
+    if (%varplayerbit_39915 = 2) {
+        $int17 = calc($int17 + (%varplayerbit_28610 * %varplayerbit_39915 + 1));
+    } else {
+        $int17 = calc($int17 + %varplayerbit_28610 * %varplayerbit_39915);
+    }
+} else if (~trh_state(struct_34949) = 1) {
+    $int17 = calc($int17 + %varplayerbit_34315);
+} else if (~trh_state(struct_35442) = 1) {
+    if (%varplayerbit_35021 = 2) {
+        if (%varplayerbit_39915 = 2) {
+            $int17 = calc($int17 + (%varplayerbit_28610 * %varplayerbit_39915 + 1));
+        } else {
+            $int17 = calc($int17 + %varplayerbit_28610 * %varplayerbit_39915);
+        }
+    }
+} else if (~trh_state(struct_38726) = 1) {
+    if (%varplayerbit_38544 = 5) {
+        if (%varplayerbit_39915 = 2) {
+            $int17 = calc($int17 + (%varplayerbit_28610 * %varplayerbit_39915 + 1));
+        } else {
+            $int17 = calc($int17 + %varplayerbit_28610 * %varplayerbit_39915);
+        }
+    }
+} else if (~trh_state(struct_39564) = 1) {
+    $int17 = calc($int17 + %varplayerbit_39986);
+}
+if_settext(tostring_localised(calc(%varplayer_7102 * $int17), true), interface_1253:com_227);
 if ($int4 >= 34) {
     if_setgraphic(~script11746($int3), interface_1253:com_216);
 } else {
@@ -86,9 +120,9 @@ if ($int4 > 0) {
 } else {
     if_sethide(true, interface_1253:com_222);
 }
-def_int $int17 = 0;
+def_int $int18 = 0;
 if (%varclient_2045 > 0) {
-    $int17 = calc(%varclient_2045 - %varplayerbit_4322);
+    $int18 = calc(%varclient_2045 - %varplayerbit_4322);
     if (~trh_state(struct_33522) = 1 | ~trh_state(struct_35060) = 1 & date_runeday = 5778) {
         if (%varplayerbit_32410 = 0) {
             if_sethide(true, interface_1253:com_280);
@@ -99,7 +133,7 @@ if (%varclient_2045 > 0) {
     } else {
         if_sethide(false, interface_1253:com_230);
     }
-    if_settext("<tostring(max(1, $int17))>/<tostring(max(1, %varclient_2045))>", interface_1253:com_233);
+    if_settext("<tostring(max(1, $int18))>/<tostring(max(1, %varclient_2045))>", interface_1253:com_233);
 } else {
     if_settext("1/1", interface_1253:com_233);
     if_sethide(true, interface_1253:com_230);

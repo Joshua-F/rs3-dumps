@@ -1,18 +1,18 @@
 // 6089
 [proc,shop_draw_item](inv $inv0, int $int1, int $int2, int $int3)
-def_component $component4 = interface_1265:com_20;
-def_component $component5 = interface_1265:com_25;
-def_component $component6 = interface_1265:com_26;
-def_component $component7 = interface_1265:com_24;
-def_component $component8 = interface_1265:com_23;
-def_component $component9 = interface_1265:com_27;
+def_component $component4 = interface_1265:com_27;
+def_component $component5 = interface_1265:com_32;
+def_component $component6 = interface_1265:com_33;
+def_component $component7 = interface_1265:com_31;
+def_component $component8 = interface_1265:com_30;
+def_component $component9 = interface_1265:com_34;
 if ($inv0 = %varplayer_305) {
-    $component4 = interface_1265:com_21;
-    $component5 = interface_1265:com_98;
-    $component6 = interface_1265:com_99;
+    $component4 = interface_1265:com_28;
+    $component5 = interface_1265:com_81;
+    $component6 = interface_1265:com_82;
     $component7 = null;
-    $component8 = interface_1265:com_97;
-    $component9 = interface_1265:com_100;
+    $component8 = interface_1265:com_80;
+    $component9 = interface_1265:com_83;
 }
 def_int $int10 = 0;
 def_int $int11 = 0;
@@ -23,9 +23,9 @@ $int10, $int11 = ~shop_item_size($int3);
 $int12 = calc(if_getwidth($component4) / $int10);
 $int14 = calc($int2 / $int12 * $int11);
 $int13 = calc($int2 % $int12 * $int10);
-cc_create($component4, ^iftype_graphic, $int1);
+cc_create($component4, ^iftype_rectangle, $int1);
 def_int $int15 = 0;
-def_graphic $graphic16 = null;
+def_int $int16 = -1;
 def_graphic $graphic17 = null;
 def_obj $obj18 = inv_getobj($inv0, $int1);
 def_int $int19 = inv_getnum($inv0, $int1);
@@ -36,21 +36,22 @@ if (string_length($string0) > 20) {
 def_string $string1 = ~script2706($obj18);
 if ($int3 = 0) {
     $int15 = 48;
-    $graphic16 = graphic_10448;
-    $graphic17 = graphic_10451;
+    $int16 = 24086;
+    $graphic17 = "rs3_btn_icon_38px,3";
 } else {
     $int15 = 151;
-    $graphic16 = graphic_10453;
-    $graphic17 = graphic_10456;
+    $int16 = 24086;
+    $graphic17 = "rs3_btn_icon_38px,3";
 }
 cc_setsize($int15, 52, ^setsize_abs, ^setsize_abs);
 cc_setonmouserepeat("script5495($obj18)");
+cc_setcolour(~script10495(0x000033));
+cc_setfill(true);
 if ($inv0 = %varplayer_299 & $int1 = %varplayer_301) {
     cc_setgraphic($graphic17);
     cc_setonmouseover("shop_item_hover($int3, 1, 1, event_com, event_comsubid)");
     cc_setonmouseleave("shop_item_hover($int3, 1, 0, event_com, event_comsubid)");
 } else {
-    cc_setgraphic($graphic16);
     cc_setonmouseover("shop_item_hover($int3, 0, 1, event_com, event_comsubid)");
     cc_setonmouseleave("shop_item_hover($int3, 0, 0, event_com, event_comsubid)");
 }
@@ -128,7 +129,7 @@ if ($int3 = 0) {
     cc_setsize(calc(151 - 53), calc(52 - 18), ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int13 + 47), calc($int14 + 3), ^setpos_abs_left, ^setpos_abs_top);
     cc_settextfont(graphic_17813);
-    cc_settextalign(^settextalign_right, ^settextalign_centre, 13);
+    cc_settextalign(^settextalign_right, ^settextalign_top, 13);
     cc_settext($string0);
 }
 cc_create($component6, ^iftype_graphic, $int1);
