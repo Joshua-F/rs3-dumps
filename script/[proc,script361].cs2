@@ -1,12 +1,56 @@
 // 361
-[proc,script361](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8)
-~deltooltip(interface_91:com_3);
-if_setgraphic("aif_chunky_button_blue,0", $component0);
-if_setgraphic("aif_chunky_button_blue,2", $component1);
-if_setgraphic("aif_chunky_button_blue,1", $component2);
-if_setgraphic("aif_chunky_button_blue,30", $component3);
-if_setgraphic("aif_chunky_button_blue,32", $component4);
-if_setgraphic("aif_chunky_button_blue,31", $component5);
-if_setgraphic("aif_chunky_button_blue,15", $component6);
-if_setgraphic("aif_chunky_button_blue,17", $component7);
-if_setgraphic("aif_chunky_button_blue,16", $component8);
+[proc,script361](inv $inv0)
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_dbrow $dbrow6 = null;
+def_obj $obj7 = null;
+if_sethide(false, interface_90:com_3);
+if_sethide(true, interface_90:com_264);
+~script13969(interface_90:com_262, interface_90:com_263, struct_28595, "Check Animals");
+~script13972(interface_90:com_259, interface_90:com_260, struct_28595, "Add/Remove Animals", 1);
+$int2 = 10;
+$int3 = 25;
+if (inv_freespace($inv0) = inv_size($inv0)) {
+    $int5 = 0;
+} else {
+    $int1 = 0;
+    while ($int1 < inv_size($inv0)) {
+        $obj7 = inv_getobj($inv0, $int1);
+        if ($obj7 ! null) {
+            $dbrow6 = oc_param($obj7, param_7452);
+            if ($dbrow6 ! null) {
+                $int5 = db_getfield($dbrow6, dbtable_29:col0, 0);
+                $int1 = calc(inv_size($inv0) + 1);
+            }
+        }
+        $int1 = calc($int1 + 1);
+    }
+}
+switch_inv ($inv0) {
+    case inv_851, inv_852 :
+        $int4 = 1;
+    case inv_853, inv_854 :
+        $int4 = 2;
+    case inv_855, inv_856 :
+        $int4 = 3;
+    case inv_857 :
+        $int4 = 0;
+}
+$int1 = 0;
+while ($int1 < inv_size($inv0)) {
+    $int2, $int3 = ~script362($inv0, $int1, $int2, $int3, $int4, $int5);
+    $int1 = calc($int1 + 1);
+}
+$int1 = 0;
+$int2 = 5;
+$int3 = 5;
+while ($int1 < inv_size(inv_93)) {
+    $int2, $int3 = ~script362(inv_93, $int1, $int2, $int3, $int4, $int5);
+    $int1 = calc($int1 + 1);
+}
+$int3 = max($int3, calc(if_getheight(interface_90:com_48) - 80));
+if_setscrollsize(0, calc($int3 + 80), interface_90:com_48);
+~scrollbar_vertical(interface_90:com_47, interface_90:com_48, null, null, null, null, null, null);

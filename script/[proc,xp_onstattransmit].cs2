@@ -1,6 +1,5 @@
 // 5662
 [proc,xp_onstattransmit](int $int0, int $int1)
-~script5651;
 if (%varplayerbit_228 = 1) {
     if ($int1 = 1) {
         ~xp_display_updatevars;
@@ -21,7 +20,7 @@ def_int $int3 = 0;
 def_stat $stat4 = null;
 def_int $int5 = -1;
 def_int $int6 = 0;
-while ($int6 < enum_getoutputcount(enum_9458)) {
+while ($int6 < enum_getoutputcount(enum_681)) {
     $int6 = calc($int6 + 1);
     $stat4 = enum(int, stat, enum_681, $int6);
     if ($stat4 ! null) {
@@ -47,7 +46,7 @@ def_string $string0 = "";
 def_int $int8 = 0;
 def_int $int9 = 0;
 def_string $string1 = "0";
-if (if_gethide(interface_1477:com_607) = false) {
+if (if_gethide(interface_1477:com_612) = false) {
     if (%varplayer_95 > 0 & ($int7 = 0 | $int2 > 1)) {
         $int9 = calc(%varplayer_95 % 10);
         if ($int9 > 0) {
@@ -56,22 +55,16 @@ if (if_gethide(interface_1477:com_607) = false) {
             $string0 = "(<tostring_localised(calc(%varplayer_95 / 10), true)> bonus xp)";
         }
     }
-    if ($int7 > 0 & %varplayerbit_17640 > 0 & $int2 = 1) {
+    if ($int7 ! 0 & %varplayerbit_17640 > 0 & $int2 = 1) {
         $int9 = calc(%varplayerbit_17640 % 10);
         if ($int9 > 0) {
-            if (calc(%varplayerbit_17640 / 10) = 1) {
-                $string1 = "(<tostring_localised(calc(%varplayerbit_17640 / 10), true)><~script8002><tostring($int9)> bonus)";
-            } else {
-                $string1 = "(<tostring_localised(calc(%varplayerbit_17640 / 10), true)><~script8002><tostring($int9)> bonus)";
-            }
-        } else if (calc(%varplayerbit_17640 / 10) = 1) {
-            $string0 = "(<tostring_localised(calc(%varplayerbit_17640 / 10), true)> bonus)";
+            $string1 = "(<tostring_localised(calc(%varplayerbit_17640 / 10), true)><~script8002><tostring($int9)> bonus)";
         } else {
             $string0 = "(<""> bonus)";
         }
     }
-    cc_create(interface_1477:com_608, ^iftype_text, if_getnextsubid(interface_1477:com_608));
-    if ($int7 > 0 & $int2 = 1) {
+    cc_create(interface_1477:com_613, ^iftype_text, if_getnextsubid(interface_1477:com_613));
+    if ($int7 ! 0 & $int2 = 1) {
         if ($int7 = 1) {
             cc_settext("+<tostring_localised(1, true)> pet point <$string0>");
         } else {
@@ -88,7 +81,7 @@ if (if_gethide(interface_1477:com_607) = false) {
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom);
 } else {
-    cc_deleteall(interface_1477:com_608);
+    cc_deleteall(interface_1477:com_613);
 }
 if ($int1 = 1) {
     ~xp_display_updatevars;

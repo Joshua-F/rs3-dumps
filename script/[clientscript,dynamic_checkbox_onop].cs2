@@ -1,21 +1,36 @@
 // 10422
-[clientscript,dynamic_checkbox_onop](component $component0, int $int1, component $component2, int $int3, string $string0, string $string1)
-if (cc_find($component2, $int3) = true) {
-    if (cc_param(param_4513) = true) {
-        return;
+[clientscript,dynamic_checkbox_onop](component $component0, int $int1, component $component2, int $int3, string $string0, string $string1, int $int4, struct $struct5)
+if ($component0 = interface_365:com_16) {
+    if (~script2992($int1) = true) {
+        $int4 = calc(1 - $int4);
     }
-    if (cc_param(param_4512) = true) {
-        cc_setparam(param_4512, false);
-        cc_setgraphic("rs3_btn_checkbox,1");
+} else {
+    $int4 = calc(1 - $int4);
+}
+def_struct $struct6 = struct_param($struct5, param_7526);
+if ($int4 ! 0) {
+    $struct6 = struct_param($struct5, param_7525);
+}
+def_struct $struct7 = struct_param($struct6, param_4405);
+if ($struct7 ! null) {
+    $struct6 = $struct7;
+}
+def_struct $struct8 = ~script9984($struct6, 1);
+def_struct $struct9 = ~script9984($struct6, 2);
+def_struct $struct10 = $struct8;
+if (cc_find($component2, $int3) = true) {
+    cc_setgraphic(struct_param($struct10, param_3909));
+    cc_setonmouseover("dynamic_checkbox_icon_update(event_com, event_comsubid, $struct9)");
+    cc_setonmouseleave("dynamic_checkbox_icon_update(event_com, event_comsubid, $struct8)");
+    if ($int4 = 0) {
         if (string_length($string1) > 0) {
             cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
         }
-    } else {
-        cc_setparam(param_4512, true);
-        cc_setgraphic("rs3_btn_checkbox,3");
-        if (string_length($string0) > 0) {
-            cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
-        }
+    } else if (string_length($string0) > 0) {
+        cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
+    }
+    if ($int1 = -1 & if_find($component0) = true | cc_find($component0, $int1) = true) {
+        cc_setonop("dynamic_checkbox_onop(event_com, event_comsubid, $component2, $int3, $string0, $string1, $int4, $struct5)");
     }
     switch_component ($component0) {
         case interface_1640:com_17 :
@@ -26,9 +41,17 @@ if (cc_find($component2, $int3) = true) {
             ~script13625;
         case interface_1513:com_166 :
             if (has_nxt = false) {
-                ~graphics_options_choosesetting(~bool_to_int(cc_param(param_4512)), enum_201, $int1);
+                ~graphics_options_choosesetting($int4, enum_201, $int1);
             } else {
-                ~graphics_options_choosesetting(~bool_to_int(cc_param(param_4512)), enum_10849, $int1);
+                ~graphics_options_choosesetting($int4, enum_10849, $int1);
             }
+        case interface_365:com_16 :
+            ~settings_checkbox_update($int1, $int4);
+        case interface_324:com_24 :
+            ~script2789(dbrow_1292, $int1, $int4);
+        case interface_324:com_42 :
+            ~script2789(dbrow_1293, $int1, $int4);
+        case interface_324:com_14 :
+            ~script2736($int4);
     }
 }

@@ -1,0 +1,53 @@
+// 2875
+[clientscript,machinima_draw_interface]
+if (%varplayerbit_42884 = 2) {
+    ~static_checkbox_create(interface_623:com_65, interface_623:com_66, "Apply advanced data on login", "The saved skybox data will be applied on login", "Don't apply save data", %varplayerbit_42885);
+    if_sethide(true, interface_623:com_36);
+    if_sethide(false, interface_623:com_33);
+    ~script5910;
+    return;
+} else {
+    if_sethide(false, interface_623:com_36);
+    if_sethide(true, interface_623:com_33);
+}
+def_enum $enum0 = enum_15005;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 32;
+def_int $int5 = 0;
+def_int $int6 = %varplayerbit_28041;
+def_boolean $boolean7 = false;
+if (%varplayerbit_42884 = 1) {
+    $enum0 = enum_15006;
+    $int6 = %varplayerbit_42883;
+    if_settext("Filters can dramatically change the appearance of the world.", interface_623:com_38);
+} else {
+    if_settext("Skyboxes change the appearance of the sky and lighting of an area.", interface_623:com_38);
+}
+cc_deleteall(interface_623:com_26);
+cc_deleteall(interface_623:com_27);
+if (if_find(interface_623:com_36) = true) {
+    $int5 = calc(cc_getwidth / 2 - 10);
+}
+def_int $int8 = enum_getoutputcount($enum0);
+while ($int1 < $int8) {
+    if (%varplayerbit_42884 = 0) {
+        $boolean7 = ~negate_bool(~machinima_is_unlocked($int1));
+    } else {
+        $boolean7 = false;
+    }
+    if ($int1 = $int6) {
+        $int2 = ~script13998(interface_623:com_26, interface_623:com_27, struct_28556, $int3, $int4, calc($int5 - 10), 24, $int2, $boolean7, enum(int, string, $enum0, $int1), 1);
+    } else {
+        $int2 = ~script13998(interface_623:com_26, interface_623:com_27, struct_28556, $int3, $int4, calc($int5 - 10), 24, $int2, $boolean7, enum(int, string, $enum0, $int1), 0);
+    }
+    if ($int3 = 0) {
+        $int3 = $int5;
+    } else {
+        $int3 = 0;
+        $int4 = calc($int4 + 27);
+    }
+    $int1 = calc($int1 + 1);
+}
+~rs3_scrollbar_vertical(interface_623:com_37, interface_623:com_36);

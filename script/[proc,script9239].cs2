@@ -12,6 +12,7 @@ if (if_find($component0) = true) {
     $boolean7 = cc_param(param_3820);
 }
 def_int $int10 = 0;
+def_boolean $boolean11 = ~is_mobile_client;
 while ($int5 <= $int3) {
     if (cc_find($component0, $int5) = true) {
         if ($int5 >= $int2) {
@@ -56,8 +57,13 @@ while ($int5 <= $int3) {
             cc_clearops;
             cc_setopbase("");
             cc_setondragcomplete(null);
-            cc_setdragdeadzone(5);
-            cc_setdragdeadtime(5);
+            if ($boolean11 = false) {
+                cc_setdragdeadzone(5);
+                cc_setdragdeadtime(5);
+            } else {
+                cc_setdragdeadzone(20);
+                cc_setdragdeadtime(8);
+            }
             cc_setobject_nonum(null, 0);
             cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
         }

@@ -1,0 +1,52 @@
+// 3069
+[clientscript,script3069](component $component0, int $int1, struct $struct2)
+def_component $component3 = null;
+def_component $component4 = null;
+def_component $component5 = null;
+switch_component ($component0) {
+    case interface_365:com_15 :
+        $component3 = interface_365:com_3;
+        $component4 = interface_365:com_0;
+        $component5 = interface_365:com_9;
+    case default :
+        return;
+}
+cc_deleteall($component4);
+cc_deleteall($component5);
+def_enum $enum6 = ~script10402(~script2790($struct2));
+if ($enum6 = null) {
+    return;
+}
+def_int $int7 = 0;
+def_int $int8 = enum_getoutputcount($enum6);
+def_int $int9 = 8;
+def_int $int10 = 8;
+def_int $rgb11 = ^black;
+def_int $int12 = 0;
+if (cc_find($component0, $int1) = true & .if_find($component3) = true) {
+    .cc_setsize(186, 151, ^setsize_abs, ^setsize_abs);
+    $int12 = ~script3764;
+    if (cc_getwidth > 186) {
+        $int12 = calc($int12 + (cc_getwidth - 186) / 2);
+    }
+    if (calc(cc_gety + cc_getheight + 300) > if_getheight($component0)) {
+        .cc_setposition($int12, calc(~script3765 - 151), ^setpos_abs_left, ^setpos_abs_top);
+    } else {
+        .cc_setposition($int12, calc(~script3765 + cc_getheight), ^setpos_abs_left, ^setpos_abs_top);
+    }
+    .cc_sethide(false);
+    .cc_setontimer("script3083(event_com)");
+}
+~script13990($component4, null, struct_2837);
+while ($int7 < $int8) {
+    $rgb11 = enum(int, int, $enum6, $int7);
+    ~cc_add_rect($component5, $int7, 30, 30, $int9, $int10, $rgb11, true, 0);
+    cc_setop(1, "Select");
+    cc_setonop("script3082($component3, $component0, $int1, $rgb11)");
+    $int7 = calc($int7 + 1);
+    $int9 = calc($int9 + 35);
+    if (calc($int9 + 35) > 186) {
+        $int9 = 8;
+        $int10 = calc($int10 + 35);
+    }
+}

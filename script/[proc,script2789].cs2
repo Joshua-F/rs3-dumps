@@ -1,0 +1,33 @@
+// 2789
+[proc,script2789](dbrow $dbrow0, int $int1, int $int2)
+if ($dbrow0 = null) {
+    return;
+}
+if ($int1 > db_getfieldcount($dbrow0, dbtable_31:col2)) {
+    return;
+}
+def_struct $struct3 = db_getfield($dbrow0, dbtable_31:col2, $int1);
+def_int $int4 = 1;
+switch_struct ($struct3) {
+    case struct_834 :
+        detail_flickering_on(~int_to_bool($int2));
+        $int4 = 0;
+    case struct_33102 :
+        %varclient_3698 = $int2;
+        $int4 = 0;
+    case struct_963 :
+        detail_texturing($int2);
+    case struct_831 :
+        detail_grounddecor_on(~int_to_bool($int2));
+    case struct_843 :
+        detail_groundblending(~int_to_bool($int2));
+    case struct_33092 :
+        detail_hardshadows($int2);
+    case struct_33100 :
+        detail_bloom($int2);
+}
+if ($int4 = 1) {
+    %varclient_6503 = 0;
+    autosetup_setcustom;
+    ~script2707;
+}

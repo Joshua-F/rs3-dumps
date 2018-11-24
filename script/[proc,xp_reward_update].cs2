@@ -2,6 +2,7 @@
 [proc,xp_reward_update](stat $stat0, component $component1, component $component2, component $component3)
 def_int $int4 = enum(stat, int, enum_1482, $stat0);
 def_string $string0 = enum(stat, string, enum_680, $stat0);
+def_string $string1 = "";
 def_boolean $boolean5 = ~xp_reward_checkskill($stat0, %varclient_1798, %varclient_1799, 0);
 def_enum $enum6 = enum_3495;
 if ($boolean5 = true) {
@@ -11,11 +12,17 @@ cc_deleteall($component1);
 def_struct $struct7 = struct_21363;
 def_struct $struct8 = struct_28303;
 def_struct $struct9 = struct_29006;
-if (oc_param(%varclient_1799, param_4629) = 1 | oc_param(%varclient_1799, param_4628) = 1) {
-    if (~script9121($stat0) = true) {
+if ((oc_param(%varclient_1799, param_4629) = 1 | oc_param(%varclient_1799, param_4628) = 1) & ~script9121($stat0) = true) {
+    $struct7 = struct_29354;
+    $struct8 = struct_29356;
+    $struct9 = struct_29355;
+}
+if (%varclient_1799 = obj_43364) {
+    if (%varplayerbit_41402 = $int4) {
         $struct7 = struct_29354;
         $struct8 = struct_29356;
         $struct9 = struct_29355;
+        $string1 = "<br><col=eecc00>Highly sought after</col>";
     }
 } else if (~trh_state(struct_29980) = 1) {
     switch_int (date_runeday) {
@@ -80,8 +87,8 @@ cc_setgraphic(enum(int, graphic, $enum6, $int4));
 if ($boolean5 = false) {
     $string0 = "<$string0> - Unavailable";
     cc_settrans(150);
-} else if (%varclient_1799 = obj_32307) {
-    $string0 = "<$string0> - <tostring_localised(calc(~script11151($stat0) / 10), true)> Bonus XP";
+} else if (%varclient_1799 = obj_32307 | %varclient_1799 = obj_43364) {
+    $string0 = "<$string0> - <tostring_localised(calc(~script11151($stat0) / 10), true)> Bonus XP<$string1>";
 }
 if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", $component1);
 if_setop(1, "Choose", $component1);

@@ -4,6 +4,7 @@
 %varclient_6346 = 0;
 def_int $int0 = 0;
 def_string $string0 = "Withdraw-<tostring(%varplayer_111)>";
+def_boolean $boolean1 = ~script6431;
 while ($int0 < 1271) {
     cc_create(interface_762:com_213, ^iftype_graphic, $int0);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
@@ -22,8 +23,13 @@ while ($int0 < 1271) {
     cc_setop(10, "Examine<col=ff9040>");
     cc_setonop("script3777(event_op, event_comsubid, event_com)");
     cc_setdraggable(interface_762:com_31, -1);
-    cc_setdragdeadzone(10);
-    cc_setdragdeadtime(10);
+    if ($boolean1 = false) {
+        cc_setdragdeadzone(10);
+        cc_setdragdeadtime(10);
+    } else {
+        cc_setdragdeadzone(20);
+        cc_setdragdeadtime(8);
+    }
     cc_setondrag("script1454(event_com, event_comsubid, event_mousey)");
     cc_setondragcomplete("script3832(event_com, event_comsubid, event_com2, event_comsubid2)");
     cc_setonmouseover("script3823(event_com, event_comsubid, 1)");

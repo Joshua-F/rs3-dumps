@@ -34,9 +34,14 @@ def_int $int18 = calc($int1 + 1);
 cc_setonmouseover("script4779($component0, $int18, 1)");
 cc_setonmouseleave("script4779($component0, $int18, 0)");
 cc_setdraggable($component0, -1);
-cc_setdragrenderbehaviour(3);
 cc_setdragdeadzone(8);
-cc_setdragdeadtime(30);
+if (~is_mobile_client = false) {
+    cc_setdragrenderbehaviour(3);
+    cc_setdragdeadtime(30);
+} else {
+    cc_setdragrenderbehaviour(0);
+    cc_setdragdeadtime(8);
+}
 cc_setopbase($string0);
 $int1 = calc($int1 + 1);
 cc_create($component0, ^iftype_graphic, $int1);

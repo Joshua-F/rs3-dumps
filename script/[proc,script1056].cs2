@@ -1,0 +1,23 @@
+// 1056
+[proc,script1056](fontmetrics $fontmetrics0, fontmetrics $fontmetrics1, fontmetrics $fontmetrics2)
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_fontmetrics $fontmetrics5 = $fontmetrics2;
+def_int $int6 = 0;
+while ($int6 < 3) {
+    switch_int ($int6) {
+        case 0 :
+            $fontmetrics5 = $fontmetrics0;
+        case 1 :
+            $fontmetrics5 = $fontmetrics1;
+        case 2 :
+            $fontmetrics5 = $fontmetrics2;
+    }
+    $int4 = ~script7593(cc_gettext, cc_getwidth, $fontmetrics5, 0);
+    if ($int4 < cc_getheight) {
+        cc_settextfont($fontmetrics5);
+        return;
+    }
+    $int6 = calc($int6 + 1);
+}
+cc_settextfont($fontmetrics2);

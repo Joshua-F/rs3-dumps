@@ -6,10 +6,11 @@ def_int $int2 = 0;
 def_int $int3 = 0;
 def_int $int4 = 0;
 def_int $int5 = 0;
-def_component $component6 = interface_1311:com_528;
+def_component $component6 = interface_1311:com_531;
 def_int $int7 = enum_getoutputcount(enum_9013);
 def_int $int8 = 0;
 cc_deleteall($component6);
+def_boolean $boolean9 = ~is_mobile_client;
 while ($int0 <= $int7) {
     $struct1 = enum(int, struct, enum_9013, $int0);
     if ($struct1 ! null) {
@@ -25,10 +26,15 @@ while ($int0 <= $int7) {
         }
         cc_setonmouserepeat("mtx_pet_ability_tooltip($struct1, event_com, event_comsubid)");
         cc_setonmouseleave("script8805");
-        cc_setdraggable(interface_1311:com_528, -1);
+        cc_setdraggable(interface_1311:com_531, -1);
         cc_setdragrenderbehaviour(2);
-        cc_setdragdeadtime(5);
-        cc_setdragdeadzone(5);
+        if ($boolean9 = false) {
+            cc_setdragdeadtime(5);
+            cc_setdragdeadzone(5);
+        } else {
+            cc_setdragdeadtime(8);
+            cc_setdragdeadzone(20);
+        }
         cc_setop(1, "Select");
         cc_setonop("script11361(calc($int8 - 1), $int0, null, 0, 1)");
         cc_setondragcomplete("script11361(calc($int8 - 1), $int0, event_com2, event_comsubid2, 1)");
@@ -39,10 +45,10 @@ while ($int0 <= $int7) {
     }
     $int0 = calc($int0 + 1);
 }
-def_int $int9 = 1;
+def_int $int10 = 1;
 $int3 = 0;
-while ($int9 <= 3) {
-    $int0 = ~mtx_pet_ability_get_active($int9);
+while ($int10 <= 3) {
+    $int0 = ~mtx_pet_ability_get_active($int10);
     $struct1 = enum(int, struct, enum_9013, $int0);
     cc_create($component6, ^iftype_graphic, $int8);
     $int8 = calc($int8 + 1);
@@ -59,7 +65,7 @@ while ($int9 <= 3) {
         cc_setonmouseleave("script8805");
         cc_setop(1, "Remove");
         cc_setonop("script11361(calc($int8 - 1), $int0, null, 0, 0)");
-    } else if ($int9 > %varclient_4787) {
+    } else if ($int10 > %varclient_4787) {
         cc_setonmouserepeat("script11362($component6, calc($int8 - 1))");
         cc_setgraphic(rs3_icon_slot_standard_locked);
     } else {
@@ -67,7 +73,7 @@ while ($int9 <= 3) {
         cc_setgraphic(rs3_icon_slot_standard);
     }
     $int3 = calc($int3 + 1);
-    $int9 = calc($int9 + 1);
+    $int10 = calc($int10 + 1);
 }
 cc_create($component6, ^iftype_text, $int8);
 $int8 = calc($int8 + 1);

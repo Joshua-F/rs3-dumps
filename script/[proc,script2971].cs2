@@ -1,0 +1,48 @@
+// 2971
+[proc,script2971](dbrow $dbrow0, int $int1, int $int2, int $int3, int $int4)(int)
+def_int $int5 = 24;
+def_int $int6 = 3;
+if (~script6431 = true) {
+    $int5 = 30;
+    $int6 = 6;
+}
+switch_int (db_getfield($dbrow0, dbtable_31:col4, 0)) {
+    case 0 :
+    case 1 :
+        if (~script6431 = true) {
+            return($int2);
+        }
+    case 2 :
+        if (~script6431 = false) {
+            return($int2);
+        }
+    case default :
+        return($int2);
+}
+def_string $string0 = db_getfield($dbrow0, dbtable_31:col0, 0);
+def_string $string1 = db_getfield($dbrow0, dbtable_31:col1, 0);
+def_int $int7 = enum_getreverseindex(dbrow, int, enum_14569, $dbrow0, 0);
+def_struct $struct8 = struct_28577;
+def_int $int9 = 30;
+def_graphic $graphic10 = null;
+switch_int ($int4) {
+    case default :
+        $int4 = ~equal_int($int7, $int4);
+        $struct8 = struct_28556;
+        $int9 = $int5;
+    case -1 :
+        $int4 = 0;
+        $graphic10 = "rs3_icon_sort,0";
+    case -2 :
+        $int4 = 1;
+        $graphic10 = "rs3_icon_sort,5";
+}
+~script13998(interface_365:com_10, interface_365:com_11, $struct8, $int1, $int2, $int3, $int9, $int7, false, $string0, $int4);
+if ($graphic10 ! null) {
+    ~script4512(interface_365:com_10, 15, 15, 5, calc($int2 + 8), $graphic10);
+    ~script4512(interface_365:com_10, 15, 15, calc($int3 - 20), calc($int2 + 8), $graphic10);
+}
+if (cc_find(interface_365:com_11, $int7) = true) {
+    cc_setonop("script2930($int7)");
+}
+return(calc($int2 + $int9 + $int6));

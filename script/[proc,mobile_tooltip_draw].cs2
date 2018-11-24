@@ -1,0 +1,44 @@
+// 3353
+[proc,mobile_tooltip_draw](string $string0, component $component0, int $int1)
+def_component $component2 = interface_1322:com_0;
+def_struct $struct3 = enum(int, struct, enum_14118, %varplayer_7989);
+def_int $int4 = stringwidth($string0, struct_param($struct3, param_7275));
+def_int $int5 = calc(max($int4, if_getwidth(interface_1322:com_6)) + 10);
+def_int $int6 = calc(if_getheight(interface_1322:com_6) + 30);
+def_int $int7 = 0;
+$int5 = min($int5, 270);
+if (%varclient_6403 ! 0) {
+    $int7 = 30;
+    if ($int6 > 170) {
+        $int6 = 170;
+    }
+    if ($int5 > 270) {
+        $int5 = 270;
+    }
+}
+def_int $int8 = 0;
+def_int $int9 = 0;
+cc_create($component2, ^iftype_rectangle, if_getnextsubid($component2));
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setfill(true);
+cc_setcolour(struct_param($struct3, param_7260));
+~cc_add_text($component2, if_getnextsubid($component2), calc($int5 - 3), calc(struct_param($struct3, param_7265) - 3), 6, 3, $string0, struct_param($struct3, param_7273), struct_param($struct3, param_7275), ^settextalign_left, ^settextalign_top, 0, false);
+$int8, $int9 = ~mobile_tooltip_position($int5, calc($int6 + $int7), $component0, $int1);
+if_setscrollpos(0, 0, interface_1322:com_7);
+if (%varclient_6403 ! 0) {
+    if_setscrollsize(0, calc(if_getheight(interface_1322:com_7) + 20), interface_1322:com_7);
+    if (if_getheight(interface_1322:com_7) < $int6) {
+        if_sethide(true, interface_1322:com_8);
+    } else {
+        if_sethide(false, interface_1322:com_8);
+    }
+}
+if_setsize($int5, calc($int6 + $int7), ^setsize_abs, ^setsize_abs, interface_1322:com_6);
+if_setposition($int8, $int9, ^setpos_abs_left, ^setpos_abs_top, interface_1322:com_6);
+if_setposition(0, 25, ^setpos_abs_left, ^setpos_abs_top, interface_1322:com_7);
+if (%varclient_6403 ! 0) {
+    ~rs3_scrollbar_vertical(interface_1322:com_8, interface_1322:com_7);
+} else {
+    if_sethide(true, interface_1322:com_8);
+}

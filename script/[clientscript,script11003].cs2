@@ -1,19 +1,22 @@
 // 11003
 [clientscript,script11003](int $int0, struct $struct1)
 if_sethide(false, interface_1311:com_501);
-if_sethide(false, interface_1311:com_530);
-if_sethide(false, interface_1311:com_535);
+if_sethide(false, interface_1311:com_533);
+if_sethide(false, interface_1311:com_538);
 if_sethide(false, interface_1311:com_362);
+if_sethide(true, interface_1311:com_502);
 if ($int0 ! 1) {
     if_sethide(true, interface_1311:com_368);
     if_sethide(true, interface_1311:com_365);
     if_sethide(true, interface_1311:com_366);
     if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_1311:com_367);
+    if_sethide(false, interface_1311:com_543);
 } else {
     if_sethide(false, interface_1311:com_365);
     if_sethide(false, interface_1311:com_366);
     if_sethide(false, interface_1311:com_368);
     if_setposition(calc(if_getx(interface_1311:com_366) + if_getwidth(interface_1311:com_366) + 5), 0, ^setpos_abs_left, ^setpos_abs_top, interface_1311:com_367);
+    if_sethide(true, interface_1311:com_543);
 }
 if ($int0 ! 3 & (struct_param($struct1, param_477) = 0 | struct_param($struct1, param_477) = -1)) {
     if_sethide(false, interface_1311:com_354);
@@ -21,24 +24,48 @@ if ($int0 ! 3 & (struct_param($struct1, param_477) = 0 | struct_param($struct1, 
     if_sethide(true, interface_1311:com_354);
 }
 if_setposition(if_getx(interface_1311:com_350), 15, ^setpos_abs_left, ^setpos_abs_top, interface_1311:com_354);
-if_sethide(false, interface_1311:com_522);
+if_sethide(false, interface_1311:com_525);
 if (struct_param($struct1, param_4420) = 0 | ~script6488($struct1) = 0) {
-    if_sethide(false, interface_1311:com_524);
+    if_sethide(false, interface_1311:com_527);
 } else {
-    if_sethide(true, interface_1311:com_524);
+    if_sethide(true, interface_1311:com_527);
 }
+def_int $int2 = 0;
+def_int $int3 = -1;
+def_int $int4 = 0;
+def_enum $enum5 = null;
+def_enum $enum6 = null;
 if ($int0 = 2) {
-    if_sethide(true, interface_1311:com_502);
-    if_sethide(false, interface_1311:com_523);
+    if_sethide(true, interface_1311:com_505);
+    if_sethide(false, interface_1311:com_526);
+    if (struct_param($struct1, param_7494) = 1) {
+        if_sethide(false, interface_1311:com_502);
+        $int2 = if_getnextsubid(interface_1311:com_502);
+        switch_struct ($struct1) {
+            case struct_40780 :
+                $enum5 = enum_14531;
+                $enum6 = enum_14532;
+            case default :
+                return;
+        }
+        $int4 = enum_getoutputcount($enum5);
+        while (++$int3 < $int4) {
+            ~script11605(interface_1311:com_503, interface_1311:com_504, struct_28749, 0, calc((24 + 2) * $int3), $int2++, 1, "Select", "Unselect", enum(int, string, $enum6, $int3));
+            if (cc_find(interface_1311:com_504, $int3) = true) {
+                cc_setopcursor(1, cursor_46);
+            }
+            ~script4512(interface_1311:com_503, 24, 24, 0, calc((24 + 2) * $int3), enum(int, graphic, $enum5, $int3));
+        }
+    }
 } else if ($int0 = 3) {
-    if_sethide(true, interface_1311:com_502);
-    if_sethide(false, interface_1311:com_523);
+    if_sethide(true, interface_1311:com_505);
+    if_sethide(false, interface_1311:com_526);
 } else if ($int0 = 1) {
-    if_sethide(false, interface_1311:com_502);
+    if_sethide(false, interface_1311:com_505);
     if (~script6488($struct1) = 0 | ~script11005($struct1) = 24000) {
-        if_sethide(false, interface_1311:com_523);
+        if_sethide(false, interface_1311:com_526);
     } else {
-        if_sethide(true, interface_1311:com_523);
+        if_sethide(true, interface_1311:com_526);
     }
     if (~script6488($struct1) = 1) {
         if_sethide(false, interface_1311:com_368);

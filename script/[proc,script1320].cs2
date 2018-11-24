@@ -1,0 +1,47 @@
+// 1320
+[proc,script1320](int $int0, int $int1)
+def_int $int2 = 85;
+def_int $int3 = 3;
+def_int $int4 = ~script11800($int0);
+def_int $int5 = ~script11803;
+def_int $int6 = calc($int5 / 2);
+def_int $int7 = calc($int5 % 2);
+def_int $int8 = calc($int5 * $int2 + ($int5 + 1) * $int3);
+def_int $int9 = calc(0 - $int8 / 2 + $int3 + $int2 / 2);
+def_int $int10 = 0;
+def_graphic $graphic11 = "rs3_btn_combat_bar_adrenaline,0";
+def_component $component12 = interface_1924:com_181;
+def_component $component13 = interface_1924:com_182;
+if_setsize($int8, if_getheight(interface_1924:com_180), ^setsize_abs, ^setsize_abs, interface_1924:com_180);
+if ($int1 = 1 | if_getnextsubid($component12) = 0) {
+    cc_deleteall($component12);
+    cc_create($component12, ^iftype_rectangle, 0);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setfill(true);
+    cc_setcolour(0x0e2f3f);
+    cc_settrans(35);
+}
+cc_deleteall($component13);
+while ($int10 < $int5) {
+    if (calc($int10 + 1) = $int4) {
+        $graphic11 = button_circle_blue_down;
+    } else {
+        $graphic11 = button_circle_blue;
+    }
+    ~cc_add_graphic_custom($component13, calc($int10 * 2), $int2, $int2, ^setsize_abs, ^setsize_abs, $int9, 0, ^setpos_abs_centre, ^setpos_abs_centre, $graphic11, false, false, false, 0);
+    cc_setop(1, "Select");
+    cc_setonop("script1321(calc($int10 + 1))");
+    cc_create($component13, ^iftype_text, calc($int10 * 2 + 1));
+    cc_setsize($int2, $int2, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int9 + 2), 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_settext(tostring(calc($int10 + 1)));
+    cc_settextfont(graphic_17995);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settextshadow(true);
+    ~script6888(0x00000b);
+    $int10 = calc($int10 + 1);
+    $int9 = calc($int9 + ($int2 + $int3));
+}
+if (if_find($component13) = true) {
+    cc_setparam(param_7486, $int0);
+}

@@ -1,29 +1,26 @@
 // 12785
-[proc,script12785](inv $inv0, int $int1, obj $obj2, obj $obj3)(int)
+[proc,script12785](inv $inv0, int $int1, obj $obj2)(int)
 if (map_members = false) {
     return(0);
 }
-def_obj $obj4 = inv_getobj($inv0, $int1);
+def_obj $obj3 = inv_getobj($inv0, $int1);
 if ($int1 < 0) {
     return(0);
 }
-if ($obj4 = null | $obj4 ! $obj3) {
+if ($obj3 = null | oc_category($obj3) ! category_3983 | oc_param($obj3, param_7596) = 0) {
     return(0);
 }
-if (oc_category($obj4) ! category_3983) {
-    return(0);
+def_int $int4 = enum(obj, int, enum_11664, $obj2);
+def_int $int5 = inv_getvar($inv0, $int1, varobjectbit_33777);
+def_int $int6 = inv_getvar($inv0, $int1, varobjectbit_33778);
+def_int $int7 = inv_getvar($inv0, $int1, varobjectbit_33779);
+if (inv_getvar($inv0, $int1, varobjectbit_33774) = $int4 & $int5 > 0) {
+    return($int5);
 }
-def_int $int5 = enum(obj, int, enum_11664, $obj2);
-def_int $int6 = inv_getvar($inv0, $int1, varobjectbit_33777);
-def_int $int7 = inv_getvar($inv0, $int1, varobjectbit_33778);
-def_int $int8 = inv_getvar($inv0, $int1, varobjectbit_33779);
-if (inv_getvar($inv0, $int1, varobjectbit_33774) = $int5 & $int6 > 0) {
+if (inv_getvar($inv0, $int1, varobjectbit_33775) = $int4 & $int6 > 0) {
     return($int6);
 }
-if (inv_getvar($inv0, $int1, varobjectbit_33775) = $int5 & $int7 > 0) {
+if (inv_getvar($inv0, $int1, varobjectbit_33776) = $int4 & $int7 > 0) {
     return($int7);
-}
-if (inv_getvar($inv0, $int1, varobjectbit_33776) = $int5 & $int8 > 0) {
-    return($int8);
 }
 return(0);

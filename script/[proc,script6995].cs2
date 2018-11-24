@@ -69,8 +69,13 @@ if ($int2 = 0) {
     }
 }
 if (if_find($component27) = true) {
-    cc_setdragdeadtime(15);
-    cc_setdragdeadzone(15);
+    if (~is_mobile_client = false) {
+        cc_setdragdeadtime(15);
+        cc_setdragdeadzone(15);
+    } else {
+        cc_setdragdeadzone(20);
+        cc_setdragdeadtime(8);
+    }
     if ($int22 = 1) {
         cc_setgraphic(null);
         cc_setobject(null, -1);
@@ -87,6 +92,13 @@ if (if_find($component27) = true) {
         cc_settargetverb("");
         cc_setondrag("script7969(event_com, event_comsubid)");
         cc_setondragcomplete("script7001(event_com, event_comsubid, event_com2)");
+        if (~is_mobile_client = false) {
+            cc_setdragdeadzone(10);
+            cc_setdragdeadtime(10);
+        } else {
+            cc_setdragdeadzone(20);
+            cc_setdragdeadtime(8);
+        }
         cc_setcolour(^white);
         if ($int23 = 1) {
             cc_setop(10, "Customise-keybind");
@@ -258,6 +270,8 @@ if (if_find($component27) = true) {
         }
         cc_setobject(null, -1);
         cc_setgraphic($graphic18);
+        cc_setparam(param_7540, 1);
+        cc_setparam(param_7544, $struct20);
         cc_setparam(param_3438, $struct20);
         if ($int25 = 1) {
             cc_setsize(56, 56, ^setsize_abs, ^setsize_abs);
@@ -397,8 +411,15 @@ if (if_find($component27) = true) {
                 }
             } else {
                 cc_setop(1, $string1);
-                if ($struct20 = struct_14875) {
-                    cc_setop(2, "Previous-destination");
+                switch_struct ($struct20) {
+                    case struct_14875 :
+                        cc_setop(2, "Previous-destination");
+                    case struct_14873 :
+                        cc_setop(2, "Cast Normal");
+                        cc_setop(3, "Cast Ancient");
+                    case struct_32261 :
+                        cc_setop(2, "Cast Normal");
+                        cc_setop(3, "Cast Lunar");
                 }
             }
             if ($int23 = 1) {
@@ -453,6 +474,8 @@ if (if_find($component27) = true) {
                     cc_setonmouserepeat("script8799($string2, event_com, event_comsubid)");
                 case default :
                     cc_setonmouserepeat("script8448($struct20, event_com, event_comsubid)");
+                    cc_setparam(param_7540, 1);
+                    cc_setparam(param_7544, $struct20);
             }
             cc_setonmouseleave("script8805");
         } else {

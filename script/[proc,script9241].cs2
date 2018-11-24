@@ -1,9 +1,15 @@
 // 9241
 [proc,script9241](component $component0, component $component1, int $int2)
+def_boolean $boolean3 = ~is_mobile_client;
 if ($int2 ! 0) {
     cc_setdragrenderbehaviour(2);
-    cc_setdragdeadzone(10);
-    cc_setdragdeadtime(10);
+    if ($boolean3 = false) {
+        cc_setdragdeadzone(5);
+        cc_setdragdeadtime(5);
+    } else {
+        cc_setdragdeadzone(20);
+        cc_setdragdeadtime(8);
+    }
     if ($component1 ! null) {
         cc_setondrag("script9242(event_com, event_comsubid, $component1)");
     }
@@ -14,8 +20,13 @@ if ($int2 ! 0) {
     }
 } else {
     cc_setdragrenderbehaviour(0);
-    cc_setdragdeadzone(5);
-    cc_setdragdeadtime(5);
+    if ($boolean3 = false) {
+        cc_setdragdeadzone(5);
+        cc_setdragdeadtime(5);
+    } else {
+        cc_setdragdeadzone(20);
+        cc_setdragdeadtime(8);
+    }
     cc_setondrag(null);
     cc_setondragcomplete(null);
 }

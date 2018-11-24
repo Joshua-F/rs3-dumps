@@ -2,7 +2,7 @@
 [proc,script12112](obj $obj0, int $int1, inv $inv2, int $int3)
 def_int $int4 = 36;
 def_int $int5 = 32;
-if (~script6431 = true & cc_getlayer = interface_1464:com_16) {
+if (~script6431 = true & (cc_getlayer = interface_1464:com_16 | cc_getlayer = interface_1462:com_14)) {
     $int4 = 54;
     $int5 = 48;
 }
@@ -10,6 +10,10 @@ if ($obj0 ! null) {
     cc_setsize($int4, $int5, ^setsize_abs, ^setsize_abs);
     cc_setobject($obj0, $int1);
     cc_setonmouserepeat("script12093($obj0, $inv2, $int3)");
+    cc_setparam(param_7540, 0);
+    cc_setparam(param_7541, $obj0);
+    cc_setparam(param_7542, $int3);
+    cc_setparam(param_7543, $inv2);
     cc_setonmouseleave("script5495(null)");
     cc_setopbase(append("<col=ff9040>", oc_name($obj0)));
     cc_clearops;
@@ -17,8 +21,13 @@ if ($obj0 ! null) {
     cc_setoutline(1);
     cc_setnoclickthrough(true);
     cc_setdragrenderbehaviour(2);
-    cc_setdragdeadzone(5);
-    cc_setdragdeadtime(5);
+    if (~is_mobile_client = false) {
+        cc_setdragdeadzone(5);
+        cc_setdragdeadtime(5);
+    } else {
+        cc_setdragdeadzone(20);
+        cc_setdragdeadtime(8);
+    }
     cc_setondrag("script9226(inv_94, event_com, event_comsubid)");
     cc_setondragcomplete("script9223(event_com, event_comsubid, event_com2, event_comsubid2)");
     cc_setonop("script1620(event_com, event_comsubid, 100, 0, 8)");
@@ -26,11 +35,16 @@ if ($obj0 ! null) {
     cc_setsize($int4, $int5, ^setsize_abs, ^setsize_abs);
     cc_setobject(null, 0);
     cc_setonmouserepeat(null);
+    cc_setparam(param_7540, -1);
+    cc_setparam(param_7541, null);
+    cc_setparam(param_7542, -1);
+    cc_setparam(param_7543, null);
     cc_setonmouseleave(null);
     cc_setonop(null);
     cc_setondragcomplete(null);
     cc_clearops;
     cc_setopbase("");
+    cc_setdraggable(null, -1);
     cc_setdragrenderbehaviour(3);
     cc_setdragdeadzone(10000);
     cc_setdragdeadtime(10000);

@@ -7,17 +7,6 @@ def_int $int2 = ~login_getreply;
 def_string $string0 = " ";
 def_string $string1 = "";
 switch_int (%varclient_174) {
-    case 12 :
-        return;
-    case 2 :
-        switch_int ($int2) {
-            case -3, 21, 1 :
-                return;
-        }
-        if ($key0 = ^key_escape) {
-            ~loginscreen_setactivemenu(11);
-            return;
-        }
     case 3 :
         switch_int ($int2) {
             case -3, 21, 1 :
@@ -25,7 +14,9 @@ switch_int (%varclient_174) {
         }
         switch_int ($key0) {
             case ^key_escape :
-                ~loginscreen_setactivemenu(11);
+                if (~is_mobile_client = false) {
+                    ~loginscreen_setactivemenu(11);
+                }
                 return;
             case ^key_return, ^key_tab :
                 if (%varclient_175 >= clientclock) {
@@ -34,12 +25,11 @@ switch_int (%varclient_174) {
                 %varclient_174 = 4;
                 %varclient_175 = clientclock;
                 %varclient_1099 = string_length(~script2949(%varclient_2577));
-                ~script3237(interface_596:com_63, interface_596:com_64, interface_596:com_65, ~script2949(%varclient_2577), 4);
+                ~script3237(interface_596:com_66, interface_596:com_67, interface_596:com_68, ~script2949(%varclient_2577), 4);
                 return;
             case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
-                $string1 = ~script1346(%varclient_2576);
-                %varclient_1099 = ~script1553($key0, %varclient_1099, $string1);
-                ~script3237(interface_596:com_37, interface_596:com_38, interface_596:com_39, $string1, 3);
+                %varclient_1099 = ~script1553($key0, %varclient_1099, %varclient_2576);
+                ~script3237(interface_596:com_37, interface_596:com_38, interface_596:com_39, %varclient_2576, 3);
                 return;
         }
         if (string_length(%varclient_2576) >= 320 & $key0 ! ^key_backspace & $key0 ! ^key_del | string_length(removetags(append_char("", $char1))) = 0) {
@@ -57,7 +47,9 @@ switch_int (%varclient_174) {
         }
         switch_int ($key0) {
             case ^key_escape :
-                ~loginscreen_setactivemenu(11);
+                if (~is_mobile_client = false) {
+                    ~loginscreen_setactivemenu(11);
+                }
                 return;
             case ^key_return, ^key_tab :
                 if (%varclient_175 >= clientclock) {
@@ -74,15 +66,15 @@ switch_int (%varclient_174) {
                 return;
             case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
                 %varclient_1099 = ~script1553($key0, %varclient_1099, ~script2949(%varclient_2577));
-                ~script3237(interface_596:com_63, interface_596:com_64, interface_596:com_65, ~script2949(%varclient_2577), 4);
+                ~script3237(interface_596:com_66, interface_596:com_67, interface_596:com_68, ~script2949(%varclient_2577), 4);
                 return;
         }
         if (string_length(%varclient_2577) >= 20 & $key0 ! ^key_backspace & $key0 ! ^key_del) {
             return;
         }
         %varclient_2577, %varclient_1099 = ~script802(%varclient_1099, %varclient_2577, 0, $key0, $char1);
-        if_settext(~script2949(%varclient_2577), interface_596:com_64);
-        ~script3237(interface_596:com_63, interface_596:com_64, interface_596:com_65, ~script2949(%varclient_2577), 4);
+        if_settext(~script2949(%varclient_2577), interface_596:com_67);
+        ~script3237(interface_596:com_66, interface_596:com_67, interface_596:com_68, ~script2949(%varclient_2577), 4);
         return;
     case 19 :
         switch_int ($int2) {
@@ -104,15 +96,15 @@ switch_int (%varclient_174) {
                 return;
             case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
                 %varclient_1099 = ~script1553($key0, %varclient_1099, %varclient_4192);
-                ~script3237(interface_596:com_190, interface_596:com_191, interface_596:com_192, %varclient_4192, 19);
+                ~script3237(interface_744:com_122, interface_744:com_123, interface_744:com_124, %varclient_4192, 19);
                 return;
         }
         if (string_length(%varclient_4192) >= 6 & $key0 ! ^key_backspace & $key0 ! ^key_del) {
             return;
         }
         %varclient_4192, %varclient_1099 = ~script802(%varclient_1099, %varclient_4192, 1, $key0, $char1);
-        if_settext(%varclient_4192, interface_596:com_191);
-        ~script3237(interface_596:com_190, interface_596:com_191, interface_596:com_192, %varclient_4192, 19);
+        if_settext(%varclient_4192, interface_744:com_123);
+        ~script3237(interface_744:com_122, interface_744:com_123, interface_744:com_124, %varclient_4192, 19);
         return;
     case 18 :
         switch_int ($int2) {
@@ -123,7 +115,7 @@ switch_int (%varclient_174) {
             case ^key_escape :
                 ~loginscreen_setactivemenu(11);
                 if_sethide(false, interface_596:com_20);
-                if_sethide(true, interface_596:com_98);
+                if_sethide(true, interface_596:com_93);
                 %varclient_2576 = "";
                 return;
             case ^key_return, ^key_tab :
@@ -137,15 +129,15 @@ switch_int (%varclient_174) {
                 return;
             case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
                 %varclient_1099 = ~script1553($key0, %varclient_1099, %varclient_2576);
-                ~script3237(interface_596:com_124, interface_596:com_125, interface_596:com_123, %varclient_2576, 18);
+                ~script3237(interface_596:com_119, interface_596:com_120, interface_596:com_118, %varclient_2576, 18);
                 return;
         }
         if (string_length(%varclient_2576) >= 320 & $key0 ! ^key_backspace & $key0 ! ^key_del | string_length(removetags(append_char("", $char1))) = 0) {
             return;
         }
         %varclient_2576, %varclient_1099 = ~script802(%varclient_1099, %varclient_2576, 0, $key0, $char1);
-        if_settext(%varclient_2576, interface_596:com_125);
-        ~script3237(interface_596:com_124, interface_596:com_125, interface_596:com_123, %varclient_2576, 18);
+        if_settext(%varclient_2576, interface_596:com_120);
+        ~script3237(interface_596:com_119, interface_596:com_120, interface_596:com_118, %varclient_2576, 18);
         return;
     case 5 :
         switch_int ($int2) {

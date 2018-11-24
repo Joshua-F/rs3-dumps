@@ -1,0 +1,62 @@
+// 650
+[proc,script650](struct $struct0, int $int1, struct $struct2, component $component3, component $component4, int $int5, int $int6, int $int7)
+def_boolean $boolean8 = true;
+def_string $string0 = struct_param($struct2, param_5091);
+def_string $string1 = "";
+switch_int ($int5) {
+    case 1 :
+        $string0 = struct_param($struct2, param_5093);
+        $string1 = struct_param($struct2, param_5204);
+    case 2 :
+        $string0 = struct_param($struct2, param_5092);
+        $string1 = struct_param($struct2, param_4859);
+    case 3 :
+        $string1 = "You cannot afford this item.";
+        if (string_length(struct_param($struct2, param_7141)) ! 0) {
+            $string1 = "<$string1> <struct_param($struct2, param_7141)>";
+        }
+    case 4 :
+        $string1 = "You must be on a members' world to purchase this item.";
+    case 5 :
+        $string1 = "You cannot claim this item.";
+        if (string_length(struct_param($struct2, param_7141)) ! 0) {
+            $string1 = "<$string1> <struct_param($struct2, param_7141)>";
+        }
+    case 6 :
+        $string0 = struct_param($struct2, param_6615);
+        $string1 = struct_param($struct2, param_7402);
+        $boolean8 = false;
+    case 0 :
+        $boolean8 = false;
+    case default :
+        $string1 = "This has already been purchased.";
+}
+~script13989($component3, struct_28553, ~script653($int1, 1), $boolean8, 0);
+if (string_length($string0) > 0 & cc_find($component3, ~script653($int1, 2)) = true) {
+    cc_settext($string0);
+}
+if (struct_param($struct0, param_4153) = 0 & cc_find($component3, ~script653($int1, 3)) = true) {
+    cc_settext(~script12658($struct0, $int6, $int7, 0));
+}
+if (cc_find($component4, $int1) = true) {
+    if ($boolean8 = false) {
+        cc_setop(1, ~script12793($struct2, struct_param($struct2, param_4854)));
+        if (struct_param($struct2, param_4855) ! -1 | struct_param($struct2, param_4856) ! -1 | struct_param($struct2, param_4857) ! -1) {
+            $string1 = "There are more buy options if you right-click.";
+            if (struct_param($struct2, param_4855) ! -1) {
+                cc_setop(2, ~script12793($struct2, struct_param($struct2, param_4855)));
+            }
+            if (struct_param($struct2, param_4856) ! -1) {
+                cc_setop(3, ~script12793($struct2, struct_param($struct2, param_4856)));
+                cc_setop(4, "Buy X");
+            }
+            if (struct_param($struct2, param_4857) ! -1) {
+                cc_setop(4, ~script12793($struct2, struct_param($struct2, param_4857)));
+                cc_setop(5, "Buy X");
+            }
+        }
+    } else {
+        cc_clearops;
+    }
+    cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
+}
