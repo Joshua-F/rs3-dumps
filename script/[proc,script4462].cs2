@@ -13,31 +13,52 @@ def_component $component10 = interface_1110:com_4;
 def_int $int11 = 0;
 def_int $int12 = 0;
 def_string $string0 = "";
+def_int $int13 = -1;
+def_int $int14 = -1;
 if (activeclansettings_find_affined = true) {
-    if_settext("", $component6);
-    if_sethide(true, $component7);
     $int12 = activeclansettings_getbannedcount;
     if_settext("<col=ee7600>Clan Ban List</col> - <tostring($int12)>/100", $component10);
-    while ($int11 < $int12) {
-        if (cc_find($component2, $int11) = true) {
-            $string0 = activeclansettings_getbanneddisplayname($int11);
-            cc_settext($string0);
-            cc_setopbase("<col=ffffff><$string0>");
-            cc_sethide(false);
-        }
-        if (cc_find($component5, $int11) = true) {
-            cc_sethide(false);
-        }
-        $int11 = calc($int11 + 1);
+    $int13 = activeclansettings_getaffinedslot(chat_playername_unfiltered);
+    if ($int13 < 0) {
+        return;
     }
-    while ($int11 < 100) {
-        if (cc_find($component2, $int11) = true) {
-            cc_sethide(true);
+    $int14 = activeclansettings_getaffinedrank($int13);
+    if ($int14 >= 100 | %varclansettingbit_42911 = 1) {
+        if_settext("", $component6);
+        if_sethide(true, $component7);
+        while ($int11 < $int12) {
+            if (cc_find($component2, $int11) = true) {
+                $string0 = activeclansettings_getbanneddisplayname($int11);
+                cc_settext($string0);
+                cc_setopbase("<col=ffffff><$string0>");
+                cc_sethide(false);
+            }
+            if (cc_find($component5, $int11) = true) {
+                cc_sethide(false);
+            }
+            $int11 = calc($int11 + 1);
         }
-        if (cc_find($component5, $int11) = true) {
-            cc_sethide(true);
+        while ($int11 < 100) {
+            if (cc_find($component2, $int11) = true) {
+                cc_sethide(true);
+            }
+            if (cc_find($component5, $int11) = true) {
+                cc_sethide(true);
+            }
+            $int11 = calc($int11 + 1);
         }
-        $int11 = calc($int11 + 1);
+    } else {
+        if_sethide(false, $component7);
+        if_settext("Your rank does not have permission to<br>view the ban list.", $component6);
+        while ($int11 < 100) {
+            if (cc_find($component2, $int11) = true) {
+                cc_sethide(true);
+            }
+            if (cc_find($component5, $int11) = true) {
+                cc_sethide(true);
+            }
+            $int11 = calc($int11 + 1);
+        }
     }
 } else {
     if_sethide(false, $component7);
@@ -52,15 +73,15 @@ if (activeclansettings_find_affined = true) {
         $int11 = calc($int11 + 1);
     }
 }
-def_int $int13 = calc(19 * $int12);
-def_int $int14 = min(if_getscrolly($component3), if_getscrollheight($component3));
-if ($int13 > if_getheight($component3)) {
+def_int $int15 = calc(19 * $int12);
+def_int $int16 = min(if_getscrolly($component3), if_getscrollheight($component3));
+if ($int15 > if_getheight($component3)) {
     ~rs3_scrollbar_vertical($component4, $component3);
-    if_setscrollsize(0, $int13, $component3);
-    if_setscrollpos(0, $int14, $component3);
+    if_setscrollsize(0, $int15, $component3);
+    if_setscrollpos(0, $int16, $component3);
     if_sethide(false, $component4);
     if_setsize(16, 60, ^setsize_minus, ^setsize_minus, $component3);
-    ~scrollbar_resize($component4, $component3, $int14);
+    ~scrollbar_resize($component4, $component3, $int16);
 } else {
     if_sethide(true, $component4);
     if_setsize(0, 60, ^setsize_minus, ^setsize_minus, $component3);

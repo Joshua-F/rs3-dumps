@@ -1,5 +1,6 @@
 // 2190
 [proc,lobbyscreen_input_full](string $string0, string $string1, int $int0, int $int1, string $string2, string $string3, int $int2)
+def_int $int3 = 80;
 if ($int1 ! -1 & $int1 ! 6 & string_length($string0) <= 0) {
     return;
 } else if (($int1 = -1 | $int1 = 6) & string_length($string0) <= 0) {
@@ -34,20 +35,26 @@ if ($int2 = 0) {
     if_sethide(true, interface_906:com_186);
 }
 if_sethide(false, interface_906:com_157);
-def_int $int3 = 0;
+def_int $int4 = 0;
 switch_int ($int1) {
     case 1, 2, 3, 4, 5, 7, 9 :
-        $int3 = 2;
+        $int4 = 2;
+        $int3 = 12;
+    case 0 :
+        $int3 = 255;
+    case 6 :
+        $int3 = 500;
 }
 if (if_gethide(enum(int, component, enum_941, 4)) = false) {
     ~script3161(0);
 } else if (if_gethide(enum(int, component, enum_941, 3)) = false) {
     ~script4556(0);
 }
-if_setonkey("lobbyscreen_input_keyboard(event_keycode, event_keychar, event_com, $int3, $int1, $string2)", interface_906:com_173);
-~script13748(1);
+if_setonkey("lobbyscreen_input_keyboard(event_keycode, event_keychar, event_com, $int4, $int1, $string2)", interface_906:com_173);
+%varplayer_8156 = $int3;
+~script1566(0, $string1, $int3);
 if_setonop("lobbyscreen_input_ok($int1, $string2)", interface_906:com_182);
-def_int $int4 = 0;
+def_int $int5 = 0;
 if ($int1 ! -1 & $int1 ! 6) {
     %varclient_1097 = string_length(%varclient_2478);
     if_setonclick("script1874(event_mousex, interface_906:com_173, interface_906:com_174)", interface_906:com_173);
@@ -62,8 +69,8 @@ if ($int1 ! -1 & $int1 ! 6) {
     if_sethide(true, interface_906:com_172);
     if_sethide(true, interface_906:com_174);
     if_settextfont(graphic_17813, interface_906:com_169);
-    $int4 = ~script7593(%varclient_2478, if_getwidth(interface_906:com_169), graphic_17813, 0);
-    if_setsize(if_getwidth(interface_906:com_165), calc(if_getheight(interface_906:com_165) - if_gety(interface_906:com_176) + 16 + $int4), ^setsize_abs, ^setsize_abs, interface_906:com_165);
+    $int5 = ~script7593(%varclient_2478, if_getwidth(interface_906:com_169), graphic_17813, 0);
+    if_setsize(if_getwidth(interface_906:com_165), calc(if_getheight(interface_906:com_165) - if_gety(interface_906:com_176) + 16 + $int5), ^setsize_abs, ^setsize_abs, interface_906:com_165);
     if (string_length($string3) > 0 & string_length(%varclient_2478) > 0) {
         if_setsize(if_getwidth(interface_906:com_165), calc(if_getheight(interface_906:com_165) + 13 + 8), ^setsize_abs, ^setsize_abs, interface_906:com_165);
         if_setsize(parawidth($string3, if_getwidth(interface_906:com_175), if_getfontmetrics(interface_906:com_175)), 13, ^setsize_abs, ^setsize_abs, interface_906:com_175);

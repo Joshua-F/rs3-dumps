@@ -1,13 +1,23 @@
 // 7670
 [proc,script7670](int $int0, int $int1, component $component2, component $component3)
 def_int $int4 = if_getcharindexatpos($int0, $int1, $component2);
-if ($component2 = interface_1405:com_24) {
+if ($component2 = interface_1405:com_12) {
     %varclient_2753 = 1;
-    %varclient_2749 = if_getcharindexatpos($int0, $int1, $component2);
+    if (~is_mobile_client = true) {
+        %varclient_2749 = string_length(if_gettext($component2));
+    } else {
+        %varclient_2749 = if_getcharindexatpos($int0, $int1, $component2);
+    }
     ~script7671($component2, $component3, %varclient_2758);
-} else if ($component2 = interface_1405:com_49) {
+    ~script1566(0, %varclient_2758, 500);
+} else if ($component2 = interface_1405:com_18) {
     %varclient_2753 = 2;
-    %varclient_2750 = if_getcharindexatpos($int0, $int1, $component2);
+    if (~is_mobile_client = false) {
+        %varclient_2750 = string_length(if_gettext($component2));
+    } else {
+        %varclient_2750 = if_getcharindexatpos($int0, $int1, $component2);
+    }
     ~script7671($component2, $component3, %varclient_2759);
+    ~script1566(0, %varclient_2759, 500);
 }
 ~script8841(17, 1);

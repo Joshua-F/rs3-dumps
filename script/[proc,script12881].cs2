@@ -10,22 +10,26 @@ def_int $int4 = 0;
 if ($enum1 ! null) {
     $int4 = enum_getoutputcount($enum1);
 }
-def_int $int5 = 0;
+def_int $int5 = -1;
 def_component $component6 = interface_1802:com_24;
-def_component $component7 = interface_1802:com_8;
-def_component $component8 = interface_1802:com_6;
-def_component $component9 = interface_1802:com_27;
-if ($struct0 = struct_9802) {
-    $component6 = interface_1930:com_41;
-    $component7 = interface_1930:com_151;
-    $component8 = interface_1930:com_148;
-    $component9 = interface_1930:com_144;
+def_component $component7 = interface_1802:com_27;
+def_component $component8 = interface_1802:com_26;
+def_component $component9 = interface_1802:com_8;
+def_component $component10 = interface_1802:com_6;
+def_component $component11 = interface_1802:com_29;
+if ($struct0 = struct_9802 | $struct0 = struct_40974) {
+    $component6 = interface_1930:com_67;
+    $component7 = interface_1930:com_226;
+    $component8 = interface_1930:com_227;
+    $component9 = interface_1930:com_235;
+    $component10 = interface_1930:com_232;
+    $component11 = interface_1930:com_228;
 }
-if_setonvarctransmit("script12880($struct0){varclient_4968, varclient_4969, varclient_4659}", $component9);
-def_int $int10 = calc(%varclient_4968 + %varclient_4969);
-def_int $int11 = %varclient_4659;
-if_settext(~tostring_spacer_local($int10), $component7);
-if_settext(~tostring_spacer_local($int11), $component8);
+if_setonvarctransmit("script12880($struct0){varclient_4968, varclient_4969, varclient_4659}", $component11);
+def_int $int12 = calc(%varclient_4968 + %varclient_4969);
+def_int $int13 = %varclient_4659;
+if_settext(~tostring_spacer_local($int12), $component9);
+if_settext(~tostring_spacer_local($int13), $component10);
 if ($int4 = 0) {
     cc_create($component6, ^iftype_text, if_getnextsubid($component6));
     cc_settextfont(cinzel_18pt_bold);
@@ -34,14 +38,28 @@ if ($int4 = 0) {
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
     cc_settext("There are no purchaseable items for this event.");
-    while ($int5 < $int3) {
-        if_sethide(true, ~script12882($struct0, $int5));
-        $int5 = calc($int5 + 1);
-    }
     return;
 }
-while ($int5 < $int4) {
-    ~script12871(struct_34906, ~script12882($struct0, $int5), enum(int, struct, $enum1, $int5));
-    if_sethide(true, ~script12883($struct0, $int5));
-    $int5 = calc($int5 + 1);
+def_struct $struct14 = null;
+def_obj $obj15 = null;
+def_int $int16 = 0;
+while (++$int5 < $int4) {
+    $struct14 = enum(int, struct, $enum1, $int5);
+    $obj15 = struct_param($struct14, param_4851);
+    if ($obj15 ! null & oc_category($obj15) = category_4039) {
+        $int16 = calc($int16 + 1);
+    }
+}
+def_int $int17 = calc((if_getwidth($component7) - ($int16 * (113 + 6 * 2) - 6 * 2)) / 2);
+def_int $int18 = 0;
+$int5 = -1;
+while (++$int5 < $int4) {
+    $struct14 = enum(int, struct, $enum1, $int5);
+    ~script583(struct_34906, $struct14, $component7, $component8, struct_2839, $int17, $int18, 113, 113, $int5);
+    if ($int5 = calc($int16 - 1)) {
+        $int17 = calc((if_getwidth($component7) - (($int4 - $int16) * (113 + 6 * 2) - 6 * 2)) / 2);
+        $int18 = calc(113 + 6 * 2);
+    } else {
+        $int17 = calc($int17 + (113 + 6 * 2));
+    }
 }

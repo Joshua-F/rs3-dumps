@@ -1,7 +1,11 @@
 // 13771
 [proc,script13771](int $int0, int $int1)(int)
 def_string $string0 = "<col=ebe076>Note:</col>";
-def_int $int2 = calc(stringwidth($string0, graphic_20452) + 3);
+def_fontmetrics $fontmetrics2 = graphic_20452;
+if (~script6431 = true) {
+    $fontmetrics2 = graphic_17814;
+}
+def_int $int3 = calc(stringwidth($string0, $fontmetrics2) + 3);
 if_settext($string0, interface_1500:com_366);
 def_string $string1 = "";
 switch_int ($int1) {
@@ -11,5 +15,6 @@ switch_int ($int1) {
         $string1 = "This is a Sixth Age quest, and takes place in the present, after the events of The World Wakes.<br>The gods are free to return to Gielinor. You are the World Guardian.<br>It is recommended, but not necessary, to complete Fifth Age quests before Sixth Age quests to fully understand the story of the Sixth Age.";
 }
 if_setposition(0, $int0, ^setpos_abs_centre, ^setpos_abs_top, interface_1500:com_362);
-$int0 = ~script13772($int2, $string1, interface_1500:com_362, interface_1500:com_367, $int0);
+if_settextfont($fontmetrics2, interface_1500:com_366);
+$int0 = ~script13772($int3, $string1, interface_1500:com_362, interface_1500:com_367, $int0);
 return($int0);

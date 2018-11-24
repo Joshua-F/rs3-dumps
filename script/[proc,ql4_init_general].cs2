@@ -17,14 +17,14 @@ def_struct $struct8 = null;
 def_int $int9 = -1;
 def_int $int10 = 0;
 def_int $int11 = 15;
-def_fontmetrics $fontmetrics12 = p11_full;
+def_fontmetrics $fontmetrics12 = graphic_17813;
 def_int $int13 = 20;
-def_fontmetrics $fontmetrics14 = b12_full;
+def_fontmetrics $fontmetrics14 = cinzel_13pt_bold;
 if (%varplayerbit_38842 = 1) {
     $int11 = 30;
-    $fontmetrics12 = graphic_21207;
-    $int13 = 30;
-    $fontmetrics14 = graphic_21208;
+    $fontmetrics12 = graphic_17814;
+    $int13 = 20;
+    $fontmetrics14 = cinzel_13pt_bold;
 }
 %varclient_693 = %varplayerbit_315;
 %varclient_694 = %varplayerbit_317;
@@ -32,20 +32,25 @@ if (%varplayerbit_38842 = 1) {
 %varclient_692 = %varplayerbit_316;
 %varclient_3853 = %varplayerbit_20864;
 %varclient_272 = enum_getoutputcount($enum3);
+def_int $int15 = 0;
 while ($int7 < %varclient_272) {
     $struct8 = enum(int, struct, $enum3, $int6);
     cc_create($component4, ^iftype_text, $int6);
     if ($struct8 ! null) {
         $int7 = calc($int7 + 1);
         $int10 = ~ql4_getprogress($int6);
-        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-        cc_setsize(10, $int11, ^setsize_minus, ^setsize_abs);
+        cc_setsize(20, $int11, ^setsize_minus, ^setsize_abs);
+        if (~script6431 = true) {
+            $int15 = ~script7593(struct_param($struct8, param_845), cc_getwidth, $fontmetrics12, 0);
+            if ($int15 > 30) {
+                cc_setsize(20, calc($int11 + 20), ^setsize_minus, ^setsize_abs);
+            }
+        }
         cc_setcolour(0x222222);
         cc_settextfont($fontmetrics12);
         cc_settextalign(^settextalign_left, ^settextalign_top, 0);
         cc_settextshadow(true);
         cc_settext(struct_param($struct8, param_845));
-        cc_setmaxlines(1);
         if ($int9 = -1 & $struct8 = struct_510 & $int1 = 1) {
             $int9 = cc_getid;
         }

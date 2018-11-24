@@ -1,0 +1,26 @@
+// 5702
+[proc,script5702]
+def_boolean $boolean0 = ~int_to_bool(%varplayerbit_30224);
+def_int $int1 = 0;
+def_graphic $graphic2 = "aif_magic_standard_icons,47";
+def_graphic $graphic3 = "aif_magic_standard_icons,46";
+if (stat_base(magic) >= struct_param(struct_14770, param_2807)) {
+    $int1 = 2;
+} else if (stat_base(magic) >= struct_param(struct_14751, param_2807)) {
+    $int1 = 1;
+}
+if ($boolean0 = false) {
+    if_sethide(true, interface_577:com_10);
+} else {
+    if_sethide(false, interface_577:com_10);
+}
+switch_int ($int1) {
+    case 2 :
+        if_sethide(false, interface_577:com_6);
+        if_setgraphic($graphic2, interface_577:com_9);
+    case 1 :
+        if_sethide(false, interface_577:com_6);
+        if_setgraphic($graphic3, interface_577:com_9);
+    case 0 :
+        if_sethide(true, interface_577:com_6);
+}

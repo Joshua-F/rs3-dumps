@@ -4,17 +4,17 @@ if (map_members = false) {
     return(0);
 }
 def_int $int1 = 0;
-def_int $int2 = -1;
-if (inv_getobj(inv_94, 13) = obj_38453) {
-    $int1 = calc($int1 + ~script12785(inv_94, 13, $obj0, obj_38453));
-} else {
-    $int2 = ~inv_find(inv_93, obj_38453, 0);
-    if ($int2 ! -1) {
-        $int1 = calc($int1 + ~script12785(inv_93, $int2, $obj0, obj_38453));
-    }
+def_int $int2 = 0;
+if (oc_category(inv_getobj(inv_94, 13)) = category_3983 & ~script2144(inv_getobj(inv_94, 13)) = true) {
+    $int1 = calc($int1 + ~script12785(inv_94, 13, $obj0));
+    $int1 = calc($int1 + ~script377(inv_94, 13, $obj0));
 }
-$int2 = ~inv_find(inv_93, obj_38451, 0);
-if ($int2 ! -1) {
-    $int1 = calc($int1 + ~script12785(inv_93, $int2, $obj0, obj_38451));
+$int2 = ~inv_findcat(inv_93, category_3983, $int2);
+while ($int2 ! -1) {
+    if (~script2144(inv_getobj(inv_93, $int2)) = true) {
+        $int1 = calc($int1 + ~script12785(inv_93, $int2, $obj0));
+        $int1 = calc($int1 + ~script377(inv_93, $int2, $obj0));
+    }
+    $int2 = ~inv_findcat(inv_93, category_3983, calc($int2 + 1));
 }
 return($int1);

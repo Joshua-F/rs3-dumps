@@ -1,0 +1,140 @@
+// 2970
+[proc,script2970](component $component0, component $component1, component $component2, dbrow $dbrow3, int $int4, int $int5)(int)
+if ($dbrow3 = null) {
+    return($int4);
+}
+if ($component0 = null | $component1 = null | $component2 = null) {
+    return($int4);
+}
+def_int $int6 = 0;
+def_int $int7 = db_getfieldcount($dbrow3, dbtable_31:col2);
+if ($int7 = 0) {
+    return($int4);
+}
+def_struct $struct8 = null;
+def_int $int9 = 0;
+def_string $string0 = "";
+def_int $int10 = 0;
+def_boolean $boolean11 = false;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = 0;
+def_fontmetrics $fontmetrics17 = graphic_17813;
+def_boolean $boolean18 = ~script6431;
+def_int $int19 = 5;
+if ($boolean18 = true) {
+    $fontmetrics17 = graphic_17814;
+    $int19 = 10;
+}
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_int $int22 = 0;
+def_int $int23 = 0;
+def_int $int24 = 0;
+while ($int6 < $int7) {
+    $struct8 = db_getfield($dbrow3, dbtable_31:col2, $int6);
+    $int9 = struct_param($struct8, param_7513);
+    $string0 = struct_param($struct8, param_7528);
+    $int10 = ~script2973($struct8);
+    $boolean11 = ~settings_get_disabled($struct8);
+    $int10 = ~script2524($struct8, $int10);
+    switch_int ($int9) {
+        case 3 :
+            $int12 = calc($int5 - 25);
+            $int21 = calc($int12 - 8);
+            $int20 = ~script7593($string0, $int21, $fontmetrics17, 0);
+            $int16 = calc($int20 + 25);
+            $int15 = 18;
+            $int14 = 18;
+            $int13 = calc($int4 + $int16 / 2 - 9);
+            $int22 = 1;
+        case 4, 9 :
+            $int12 = calc($int5 - 200 - 7);
+            $int21 = calc($int12 - 8);
+            $int20 = ~script7593($string0, $int21, $fontmetrics17, 0);
+            $int16 = max(calc($int20 + 25), 28);
+            $int15 = 200;
+            $int14 = 22;
+            $int13 = calc($int4 + $int16 / 2 - 11);
+            $int22 = 0;
+        case 5 :
+            $int12 = 5;
+            $int21 = calc($int5 - 10);
+            $int20 = ~script7593($string0, $int21, $fontmetrics17, 0);
+            $int16 = calc($int20 + 22 + 26);
+            $int15 = $int21;
+            $int14 = 22;
+            $int13 = calc($int4 + 25 + $int20);
+            $int22 = 0;
+        case 1000, 1001, 1002, 10 :
+            $int12 = calc($int5 - 200 - 7);
+            $int21 = calc($int12 - 8);
+            $int20 = ~script7593($string0, $int21, $fontmetrics17, 0);
+            $int16 = max(calc($int20 + 24), 28);
+            $int15 = 200;
+            $int14 = 24;
+            $int13 = calc($int4 + $int16 / 2 - 12);
+            $int22 = 0;
+        case 6, 7, 8 :
+            $int12 = 5;
+            $int21 = calc($int5 - 10);
+            $int20 = ~script7593($string0, $int21, $fontmetrics17, 0);
+            $int16 = calc($int20 + 22 + 30);
+            $int15 = $int21;
+            $int14 = 30;
+            $int13 = calc($int4 + 22 + $int20);
+            $int22 = 0;
+        case 11 :
+            $int12 = 5;
+            $int21 = calc($int5 - 10);
+            $int20 = ~script7593(struct_param($struct8, param_7521), $int21, graphic_17814, 0);
+            $int16 = calc(5 + $int20);
+            $int15 = $int21;
+            $int14 = $int20;
+            $int13 = calc($int4 + 5);
+            $int22 = 0;
+        case default :
+            $int22 = 0;
+    }
+    $int23 = 1;
+    switch_int (struct_param($struct8, param_7529)) {
+        case 0 :
+            if ($boolean11 = true & struct_param($struct8, param_7534) = true) {
+                $int23 = 0;
+            }
+        case 1 :
+            if ($boolean18 = true) {
+                $int23 = 0;
+            }
+        case 2 :
+            if ($boolean18 = false) {
+                $int23 = 0;
+            }
+    }
+    if ($int23 = 0) {
+        cc_create($component1, ^iftype_text, $int6);
+    } else {
+        if ($int9 ! 11) {
+            if ($boolean11 = false) {
+                ~script2682($component0, $int5, $int16, 0, $int4, true, $int24);
+                ~script6203($component0, $int21, 12, 4, calc($int4 + 4), $fontmetrics17, struct_param($struct8, param_7527), 0x00000e);
+                ~script2681($component0, $int21, $int20, 4, calc($int4 + 20), $fontmetrics17, $string0);
+            } else {
+                ~cc_add_rect_struct($component0, $int5, $int16, 0, $int4, true, struct_28683);
+                ~script6203($component0, $int21, 12, 4, calc($int4 + 4), $fontmetrics17, struct_param($struct8, param_7527), 0x00003d);
+                ~script6203($component0, $int21, $int20, 4, calc($int4 + 20), $fontmetrics17, $string0, 0x000040);
+            }
+            $int24 = calc($int24 + 1);
+        }
+        ~script2830($component0, $component1, $component2, $struct8, $int12, $int13, $int15, $int14, $int6, $int10, $boolean11);
+        if ($int22 = 1 & cc_find($component1, $int6) = true) {
+            cc_setsize($int5, $int16, ^setsize_abs, ^setsize_abs);
+            cc_setposition(0, $int4, ^setpos_abs_left, ^setpos_abs_top);
+        }
+        $int4 = calc($int4 + ($int16 + $int19));
+    }
+    $int6 = calc($int6 + 1);
+}
+return($int4);

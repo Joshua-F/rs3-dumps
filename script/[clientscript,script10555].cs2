@@ -7,6 +7,7 @@ def_int $int4 = 0;
 def_obj $obj5 = null;
 def_int $int6 = 0;
 def_int $int7 = 0;
+def_boolean $boolean8 = ~is_mobile_client;
 while ($int4 < 20) {
     $obj5 = enum(int, obj, enum_9199, $int4);
     $int6 = ~script10556($obj5);
@@ -17,8 +18,13 @@ while ($int4 < 20) {
     if ($int6 > 0) {
         cc_setobject($obj5, $int6);
         cc_setdraggable(interface_1532:com_9, -1);
-        cc_setdragdeadzone(0);
-        cc_setdragdeadtime(0);
+        if ($boolean8 = false) {
+            cc_setdragdeadzone(0);
+            cc_setdragdeadtime(0);
+        } else {
+            cc_setdragdeadzone(20);
+            cc_setdragdeadtime(8);
+        }
         cc_setopbase(oc_name($obj5));
         cc_setop(1, "Add");
         cc_setop(2, "Slot 1");

@@ -10,10 +10,15 @@ if (string_length($string0) <= 0) {
 }
 def_int $int3 = 0;
 def_int $int4 = 0;
+def_fontmetrics $fontmetrics5 = graphic_17813;
 if (cc_find(interface_1218:com_230, $int0) = true) {
     if (if_gethide(interface_1218:com_232) = true) {
         $int4 = calc(cc_getheight + cc_gety - 5);
-        $int3 = calc(max(paraheight($string0, 500, graphic_17813), 1) * 12 + 30);
+        if (~script6431 = true) {
+            if_settextfont(graphic_17814, interface_1218:com_234);
+            $fontmetrics5 = graphic_17814;
+        }
+        $int3 = calc(max(paraheight($string0, 500, $fontmetrics5), 1) * 12 + 30);
         if_settext($string0, interface_1218:com_234);
         if_setsize(590, $int3, ^setsize_abs, ^setsize_abs, interface_1218:com_232);
         if (calc($int4 + $int3 - if_getscrolly(interface_1218:com_228)) > if_getheight(interface_1218:com_228)) {

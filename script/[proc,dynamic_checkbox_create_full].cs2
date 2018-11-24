@@ -1,15 +1,32 @@
 // 10419
-[proc,dynamic_checkbox_create_full](component $component0, component $component1, int $int2, int $int3, int $int4, int $int5, string $string0, string $string1, string $string2, string $string3, int $int6, boolean $boolean7, int $int8)(int, int)
+[proc,dynamic_checkbox_create_full](component $component0, component $component1, int $int2, int $int3, int $int4, int $int5, string $string0, string $string1, string $string2, string $string3, int $int6, boolean $boolean7, int $int8, struct $struct9)(int, int)
 def_string $string4 = $string1;
-def_boolean $boolean9 = true;
-def_int $int10 = 0;
-def_int $int11 = -1;
+def_boolean $boolean10 = true;
+def_int $int11 = 0;
+def_int $int12 = -1;
 if ($int6 < 1) {
-    $string4, $boolean9 = $string2, false;
+    $string4, $boolean10 = $string2, false;
 }
-if (compare($string3, "") ! 0 & $boolean7 = true) {
+def_struct $struct13 = struct_param($struct9, param_7526);
+if ($int6 ! 0) {
+    $struct13 = struct_param($struct9, param_7525);
+}
+def_struct $struct14 = struct_param($struct13, param_4405);
+if ($struct14 ! null) {
+    $struct13 = $struct14;
+}
+def_struct $struct15 = ~script9984($struct13, 1);
+def_struct $struct16 = ~script9984($struct13, 2);
+def_struct $struct17 = $struct15;
+if ($boolean7 = true) {
+    $struct17 = ~script9984($struct13, 5);
+}
+if ($struct17 = null) {
+    return($int3, $int5);
+}
+if ($boolean7 = true & string_length($string3) > 0) {
     if (compare(substring($string3, 0, 1), "*") = 0) {
-        if (compare($string4, "") ! 0) {
+        if (string_length($string4) > 0) {
             $string4 = "<$string4><substring($string3, 1, string_length($string3))>";
         } else {
             $string3 = "";
@@ -18,13 +35,13 @@ if (compare($string3, "") ! 0 & $boolean7 = true) {
         $string4 = $string3;
     }
 }
-if (compare($string0, "") ! 0) {
-    $int10 = ~script7593($string0, calc($int4 - 20), graphic_17813, -1);
-    if ($int4 >= 50 & $int10 < 40 & $int10 > 0) {
+if (string_length($string0) > 0) {
+    $int11 = ~script7593($string0, calc($int4 - 20), graphic_17813, -1);
+    if ($int4 >= 50 & $int11 < 40 & $int11 > 0) {
         cc_create($component0, ^iftype_text, if_getnextsubid($component0));
-        cc_setsize(calc($int4 - 20), $int10, ^setsize_abs, ^setsize_abs);
-        if ($int10 < 18) {
-            cc_setposition(calc($int2 + 20), calc($int3 + (18 - $int10) / 2), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(calc($int4 - 20), $int11, ^setsize_abs, ^setsize_abs);
+        if ($int11 < 18) {
+            cc_setposition(calc($int2 + 20), calc($int3 + (18 - $int11) / 2), ^setpos_abs_left, ^setpos_abs_top);
         } else {
             cc_setposition(calc($int2 + 20), $int3, ^setpos_abs_left, ^setpos_abs_top);
         }
@@ -42,56 +59,46 @@ if (compare($string0, "") ! 0) {
             cc_setonmouserepeat("script3876($string4, event_com, event_comsubid)");
         }
     } else {
-        $int10 = 0;
+        $int11 = 0;
     }
 }
-$int11 = if_getnextsubid($component0);
-cc_create($component0, ^iftype_graphic, $int11);
+$int12 = if_getnextsubid($component0);
+cc_create($component0, ^iftype_graphic, $int12);
 cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
-if ($int10 > 18) {
-    cc_setposition($int2, calc($int3 + $int10 / 2 - 18 / 2), ^setpos_abs_left, ^setpos_abs_top);
+if ($int11 > 18) {
+    cc_setposition($int2, calc($int3 + $int11 / 2 - 18 / 2), ^setpos_abs_left, ^setpos_abs_top);
 } else {
     cc_setposition($int2, $int3, ^setpos_abs_left, ^setpos_abs_top);
 }
 cc_setparam(param_4513, $boolean7);
-cc_setparam(param_4512, $boolean9);
+cc_setparam(param_4512, $boolean10);
+cc_setgraphic(struct_param($struct17, param_3909));
 if ($boolean7 = true) {
-    if ($boolean9 = true) {
-        cc_setgraphic("rs3_btn_checkbox,5");
-    } else {
-        cc_setgraphic("rs3_btn_checkbox,4");
-    }
-    if (compare($string3, "") ! 0) {
-        cc_setonmouserepeat("script3876($string4, event_com, event_comsubid)");
-    }
+    cc_setonmouseover(null);
+    cc_setonmouseleave(null);
+    cc_setonclick(null);
 } else {
-    cc_setonmouseover("script10420(event_com, event_comsubid)");
-    cc_setonmouseleave("script10421(event_com, event_comsubid)");
-    cc_setonmouserepeat("script3876($string4, event_com, event_comsubid)");
-    if ($boolean9 = true) {
-        cc_setgraphic("rs3_btn_checkbox,2");
-    } else {
-        cc_setgraphic("rs3_btn_checkbox,0");
-    }
+    cc_setonmouseover("dynamic_checkbox_icon_update(event_com, event_comsubid, $struct16)");
+    cc_setonmouseleave("dynamic_checkbox_icon_update(event_com, event_comsubid, $struct15)");
 }
 if ($int8 = 1) {
     cc_create($component1, ^iftype_text, $int5);
     cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
-    if ($int10 > 18) {
-        cc_setposition($int2, calc($int3 + $int10 / 2 - 18 / 2), ^setpos_abs_left, ^setpos_abs_top);
+    if ($int11 > 18) {
+        cc_setposition($int2, calc($int3 + $int11 / 2 - 18 / 2), ^setpos_abs_left, ^setpos_abs_top);
     } else {
         cc_setposition($int2, $int3, ^setpos_abs_left, ^setpos_abs_top);
     }
     if ($boolean7 = false) {
         if (has_nxt = false & (if_gettop = interface_744 | if_gettop = interface_1420)) {
-            cc_setonclick("dynamic_checkbox_onop(event_com, event_comsubid, $component0, $int11, $string1, $string2)");
+            cc_setonclick("dynamic_checkbox_onop(event_com, event_comsubid, $component0, $int12, $string1, $string2, $int6, $struct9)");
         } else {
-            cc_setonop("dynamic_checkbox_onop(event_com, event_comsubid, $component0, $int11, $string1, $string2)");
+            cc_setonop("dynamic_checkbox_onop(event_com, event_comsubid, $component0, $int12, $string1, $string2, $int6, $struct9)");
         }
         cc_setop(1, "Toggle");
     }
-} else {
-    if_setop(1, "Select", $component1);
-    if_setonop("dynamic_checkbox_onop(event_com, event_comsubid, $component0, $int11, $string1, $string2)", $component1);
+} else if ($boolean7 = false) {
+    if_setop(1, "Toggle", $component1);
+    if_setonop("dynamic_checkbox_onop(event_com, event_comsubid, $component0, $int12, $string1, $string2, $int6, $struct9)", $component1);
 }
-return(calc($int3 + max(18, $int10)), calc($int5 + 1));
+return(calc($int3 + max(18, $int11)), calc($int5 + 1));

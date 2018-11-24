@@ -1,15 +1,11 @@
 // 3239
-[proc,loginscreen_setactivemenu_full](int $int0, int $int1, int $int2)
-def_int $int3 = ~login_getreply;
-if ($int1 = 0 & ($int3 = -3 | $int3 = 21 | $int3 = 1)) {
-    return;
-}
-if ($int0 = 6 & ~script11846 = true) {
+[proc,loginscreen_setactivemenu_full](int $int0, int $int1)
+def_int $int2 = ~login_getreply;
+if ($int1 = 0 & ($int2 = -3 | $int2 = 21 | $int2 = 1)) {
     return;
 }
 sound_vorbis_volume(sound_36961, 1, 0, 100);
 %varclient_175 = clientclock;
-~deltooltip_action(interface_744:com_125);
 %varclient_1 = 0;
 %varclient_174 = 1;
 if (%varclient_1090 ! 6) {
@@ -20,76 +16,71 @@ if (%varclient_1090 ! 6) {
         if_setonclick("loginscreen_setactivemenu(%varclient_1091)", interface_882:com_70);
     }
 }
-if_sethide(true, interface_744:com_35);
-if_closesubclient(interface_744:com_35);
-if_sethide(true, interface_744:com_34);
-if_closesubclient(interface_744:com_34);
-if_closesubclient(interface_744:com_38);
-if_sethide(false, interface_744:com_19);
-if_sethide(true, interface_744:com_38);
+if_sethide(true, interface_744:com_92);
+if_closesubclient(interface_744:com_92);
+if_sethide(true, interface_744:com_91);
+if_closesubclient(interface_744:com_91);
 if ($int0 ! 11 & $int0 ! 12) {
     ~login_close;
 }
-if_closesubclient(interface_744:com_37);
-if_sethide(true, interface_744:com_37);
-if_closesubclient(interface_744:com_60);
-if_sethide(true, interface_744:com_60);
-if (%varclient_1090 = 6 & $int0 ! 5) {
-    if_sethide(false, interface_744:com_19);
-}
-if_sethide(true, interface_744:com_61);
-if_setonresize(null, interface_744:com_61);
+if_closesubclient(interface_744:com_93);
+if_sethide(true, interface_744:com_93);
+if_sethide(true, interface_744:com_143);
+if_setonresize(null, interface_744:com_143);
 if_setonresize(null, interface_882:com_15);
-if_sethide(true, interface_744:com_62);
-if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_74);
-if_setonmouseover(null, interface_744:com_74);
-if_setonmouseleave(null, interface_744:com_74);
-if_setonclick(null, interface_744:com_74);
-if_sethide(true, interface_744:com_74);
-if_settext("", interface_744:com_75);
-if_settext("", interface_744:com_73);
-if_setonclick(null, interface_744:com_76);
-if_sethide(true, interface_744:com_77);
-if_setonclick(null, interface_744:com_103);
-if_setonclick(null, interface_744:com_83);
-if_sethide(false, interface_744:com_19);
+if_sethide(true, interface_744:com_144);
+if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_156);
+if_setonmouseover(null, interface_744:com_156);
+if_setonmouseleave(null, interface_744:com_156);
+if_setonclick(null, interface_744:com_156);
+if_sethide(true, interface_744:com_156);
+if_settext("", interface_744:com_157);
+if_settext("", interface_744:com_155);
+if_setonclick(null, interface_744:com_158);
+if_sethide(true, interface_744:com_159);
+if_setonclick(null, interface_744:com_185);
+if_setonclick(null, interface_744:com_165);
 ~script14054;
+def_int $int3 = 0;
 def_int $int4 = 0;
-def_int $int5 = 0;
 def_string $string0 = "";
-def_fontmetrics $fontmetrics6 = graphic_17813;
+def_fontmetrics $fontmetrics5 = graphic_17813;
+switch_int ($int0) {
+    case 11, 16 :
+        if_setonkey("loginscreen_keypress(event_keycode, event_keychar)", interface_744:com_0);
+}
 switch_int ($int0) {
     case 15 :
         %varclient_174 = 20;
         ~script12352;
-        if_sethide(false, interface_744:com_35);
+        if_sethide(false, interface_744:com_92);
     case 0 :
         ~script14055;
         %varclient_174 = 0;
         ~firstrun;
-        if_sethide(false, interface_744:com_34);
-    case 5 :
-        if_opensubclient(interface_744:com_38, interface_975);
-        if_sethide(true, interface_744:com_19);
-        if_sethide(false, interface_744:com_38);
+        if_sethide(false, interface_744:com_91);
     case 11 :
-        if (~script13746 = 1) {
-            if_sethide(true, interface_596:com_73);
+        ~script1188;
+        if (~script1011 = false) {
+            ~script1566(0, %varclient_2576, 320);
         }
-        ~script13748(1);
         %varclient_547 = 0;
-        if_opensubclient(interface_744:com_37, interface_596);
+        if_opensubclient(interface_744:com_93, interface_596);
+        if_setonclick("login_dologin", interface_596:com_71);
+        ~script13969(interface_596:com_91, interface_596:com_92, struct_28554, "Create Free Account");
+        if_sethide(false, interface_744:com_93);
         if_sethide(true, interface_596:com_1);
-        ~script2937;
+        %varclient_1089 = -1;
         ~login_open($int0);
         if_sethide(false, interface_596:com_0);
+        if_sethide(true, interface_744:com_94);
         ~login_resize;
         ~script9083;
         if (%varclient_3706 = 0) {
             ~script2792;
         }
     case 12 :
-        if_opensubclient(interface_744:com_37, interface_596);
+        if_opensubclient(interface_744:com_93, interface_596);
         if_sethide(true, interface_596:com_1);
         %varclient_2576 = %varclient_2555;
         %varclient_2577 = %varclient_2559;
@@ -98,48 +89,57 @@ switch_int ($int0) {
         %varclient_4192 = "";
         %varclient_4193 = false;
         ~login_dologin(1);
+    case 16 :
+        if_opensubclient(interface_744:com_93, interface_499);
+        if_sethide(false, interface_744:com_93);
+        ~script13993(interface_499:com_3, null, struct_28556, "");
+        ~script13993(interface_499:com_6, null, struct_28556, "");
+        ~script13969(interface_499:com_8, null, struct_28554, "Create Free Account");
+        ~script6865(interface_499:com_4, -1, 0x000008);
+        ~script6865(interface_499:com_7, -1, 0x00000b);
     case 7 :
         ~script14055;
         ~script2213;
-    case 8 :
-        ~script14055;
-        %varclient_174 = 10;
-        if_sethide(false, interface_744:com_60);
     case 6 :
+        if_opensubclient(interface_744:com_143, interface_882);
+        if (has_nxt = false) {
+            if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, interface_882:com_15);
+            if_setsize(800, 600, ^setsize_abs, ^setsize_abs, interface_882:com_15);
+        }
         ~graphics_options_init(0);
         ~graphics_options_rebuild(detailget_toolkit, getwindowmode, ~graphics_options_reviewoptions(detailget_toolkit), 0);
-        if_sethide(false, interface_744:com_61);
+        if_sethide(false, interface_744:com_143);
         %varclient_174 = 13;
     case 9 :
-        $int4 = if_getwidth(interface_744:com_73);
-        $int5 = calc(paraheight(if_gettext(interface_744:com_73), $int4, $fontmetrics6) * 14 + 5);
-        if_setsize($int4, $int5, ^setsize_abs, ^setsize_abs, interface_744:com_73);
-        $string0 = if_gettext(interface_744:com_75);
-        $int5 = calc(if_gety(interface_744:com_73) + $int5 + 6);
+        $int3 = if_getwidth(interface_744:com_155);
+        $int4 = calc(paraheight(if_gettext(interface_744:com_155), $int3, $fontmetrics5) * 14 + 5);
+        if_setsize($int3, $int4, ^setsize_abs, ^setsize_abs, interface_744:com_155);
+        $string0 = if_gettext(interface_744:com_157);
+        $int4 = calc(if_gety(interface_744:com_155) + $int4 + 6);
         if (string_length($string0) > 0) {
-            if_setposition(0, $int5, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_74);
-            if_setsize(stringwidth($string0, $fontmetrics6), if_getheight(interface_744:com_74), ^setsize_abs, ^setsize_abs, interface_744:com_74);
-            if_settext("<u=c8c8c8><$string0></u>", interface_744:com_75);
-            if_setonmouseover("loginscreen_link_highlight(interface_744:com_74, interface_744:com_75, $string0, $fontmetrics6, 1)", interface_744:com_74);
-            if_setonmouseleave("loginscreen_link_highlight(interface_744:com_74, interface_744:com_75, $string0, $fontmetrics6, 0)", interface_744:com_74);
-            if_sethide(false, interface_744:com_74);
-            $int5 = calc($int5 + if_getheight(interface_744:com_74) + 6);
+            if_setposition(0, $int4, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_156);
+            if_setsize(stringwidth($string0, $fontmetrics5), if_getheight(interface_744:com_156), ^setsize_abs, ^setsize_abs, interface_744:com_156);
+            if_settext("<u=c8c8c8><$string0></u>", interface_744:com_157);
+            if_setonmouseover("loginscreen_link_highlight(interface_744:com_156, interface_744:com_157, $string0, $fontmetrics5, 1)", interface_744:com_156);
+            if_setonmouseleave("loginscreen_link_highlight(interface_744:com_156, interface_744:com_157, $string0, $fontmetrics5, 0)", interface_744:com_156);
+            if_sethide(false, interface_744:com_156);
+            $int4 = calc($int4 + if_getheight(interface_744:com_156) + 6);
         } else {
-            if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_74);
-            if_setonmouseover(null, interface_744:com_74);
-            if_setonmouseleave(null, interface_744:com_74);
-            if_setonclick(null, interface_744:com_74);
-            if_sethide(true, interface_744:com_74);
-            if_settext("", interface_744:com_75);
+            if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_156);
+            if_setonmouseover(null, interface_744:com_156);
+            if_setonmouseleave(null, interface_744:com_156);
+            if_setonclick(null, interface_744:com_156);
+            if_sethide(true, interface_744:com_156);
+            if_settext("", interface_744:com_157);
         }
-        if_setsize(stringwidth(if_gettext(interface_744:com_76), verdana_15pt_regular), if_getheight(interface_744:com_76), ^setsize_abs, ^setsize_abs, interface_744:com_76);
-        if_setsize(if_getwidth(interface_744:com_62), calc($int5 + if_getheight(interface_744:com_76) + 11), ^setsize_abs, ^setsize_abs, interface_744:com_62);
-        if_sethide(false, interface_744:com_62);
+        if_setsize(stringwidth(if_gettext(interface_744:com_158), verdana_15pt_regular), if_getheight(interface_744:com_158), ^setsize_abs, ^setsize_abs, interface_744:com_158);
+        if_setsize(if_getwidth(interface_744:com_144), calc($int4 + if_getheight(interface_744:com_158) + 11), ^setsize_abs, ^setsize_abs, interface_744:com_144);
+        if_sethide(false, interface_744:com_144);
     case 10 :
         %varclient_174 = 11;
-        if_sethide(false, interface_744:com_77);
+        if_sethide(false, interface_744:com_159);
         if (has_nxt = false) {
-            if_setposition(0, 200, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_77);
+            if_setposition(0, 200, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_159);
         }
 }
 if ($int0 ! 9 & $int0 ! 10) {

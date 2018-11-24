@@ -55,6 +55,9 @@ def_int $int13 = calc(if_getheight(struct_param($struct1, param_6663)) - (33 + i
 def_int $int14 = 0;
 def_int $int15 = 0;
 def_int $int16 = calc(if_getheight(if_getlayer(struct_param($struct1, param_6658))) - if_getheight(struct_param($struct1, param_6658)));
+if ($component0 = interface_1890:com_37) {
+    $int16 = 0;
+}
 if_setsize(0, $int16, ^setsize_minus, ^setsize_minus, struct_param($struct1, param_6658));
 if_setsize(0, if_getheight(struct_param($struct1, param_6658)), ^setsize_minus, ^setsize_abs, struct_param($struct1, param_6659));
 def_int $int17 = if_getwidth(struct_param($struct1, param_6658));
@@ -109,6 +112,7 @@ def_int $int31 = 0;
 def_string $string1 = "Activate";
 def_int $int32 = 0;
 def_graphic $graphic33 = null;
+def_boolean $boolean34 = ~is_mobile_client;
 while ($int12 < $int9) {
     $struct4 = enum(int, struct, $enum8, $int12);
     $struct4 = ~script9101($struct4);
@@ -127,17 +131,26 @@ while ($int12 < $int9) {
     cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
     cc_setposition($intarray0(calc($int12 % $int24)), calc($int12 / $int24 * $int23 + 3), ^setpos_abs_left, ^setpos_abs_top);
     ~prayer_set_graphics($struct4, $int7, $graphic6, $graphic5, $component0, $int12);
-    cc_setdragdeadzone(5);
-    cc_setdragdeadtime(5);
+    if ($boolean34 = false) {
+        cc_setdragdeadzone(5);
+        cc_setdragdeadtime(5);
+    } else {
+        cc_setdragdeadzone(20);
+        cc_setdragdeadtime(8);
+    }
     cc_setclickmask(false);
     if ($component0 = interface_1890:com_37) {
         cc_setop(1, "Toggle");
         cc_setonop("script8499(event_com, event_comsubid)");
         cc_setonmouserepeat("script8448($struct4, event_com, event_comsubid)");
+        cc_setparam(param_7540, 1);
+        cc_setparam(param_7544, $struct4);
         cc_setonmouseleave("script8805");
     } else {
         cc_setop(1, "<$string1><col=ff9040>");
         cc_setondragcomplete("script7001(event_com, event_comsubid, event_com2)");
+        cc_setparam(param_7540, 1);
+        cc_setparam(param_7544, $struct4);
         cc_setonmouserepeat("script8448($struct4, event_com, event_comsubid)");
         cc_setonstattransmit("prayer_statupdate($struct4, $int7, $graphic6, $graphic5, event_com, event_comsubid){prayer}");
         cc_setonmouseleave("script8805");

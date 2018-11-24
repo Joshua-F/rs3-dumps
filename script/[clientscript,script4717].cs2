@@ -20,6 +20,7 @@ if (%varplayerbit_34815 = 1) {
     }
     $iftype11 = ^iftype_text;
 }
+def_boolean $boolean14 = ~is_mobile_client;
 while (++$int3 < $int10) {
     $struct4 = enum(int, struct, $enum2, $int3);
     $graphic5 = struct_param($struct4, param_1420);
@@ -71,8 +72,13 @@ while (++$int3 < $int10) {
         cc_setgraphic($graphic5);
     }
     cc_setonmouseleave("script8805");
-    cc_setdragdeadtime(5);
-    cc_setdragdeadzone(5);
+    if ($boolean14 = false) {
+        cc_setdragdeadtime(5);
+        cc_setdragdeadzone(5);
+    } else {
+        cc_setdragdeadtime(8);
+        cc_setdragdeadzone(20);
+    }
     cc_setondragcomplete("script7001(event_com, event_comsubid, event_com2)");
 }
 ~emotes2_sort($component0, $component1, $enum2, $int9);

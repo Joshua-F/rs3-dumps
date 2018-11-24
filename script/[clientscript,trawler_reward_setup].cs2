@@ -6,6 +6,7 @@ def_int $int2 = calc((if_getheight($component0) - 32 * 5) / 4);
 def_int $int3 = 0;
 def_int $int4 = inv_size(inv_0);
 def_obj $obj5 = null;
+def_boolean $boolean6 = ~is_mobile_client;
 while ($int3 < $int4) {
     cc_create($component0, ^iftype_graphic, $int3);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
@@ -18,8 +19,13 @@ while ($int3 < $int4) {
         cc_setop(2, "Withdraw 1");
         cc_setop(3, "Withdraw All");
         cc_setop(10, "Examine");
-        cc_setdragdeadzone(5);
-        cc_setdragdeadtime(10);
+        if ($boolean6 = false) {
+            cc_setdragdeadzone(5);
+            cc_setdragdeadtime(10);
+        } else {
+            cc_setdragdeadzone(20);
+            cc_setdragdeadtime(8);
+        }
         cc_setgraphicshadow(0x333333);
         cc_setoutline(1);
         cc_setonmouserepeat("script9564($obj5, event_com, event_comsubid)");

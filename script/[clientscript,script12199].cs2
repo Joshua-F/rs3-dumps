@@ -20,265 +20,274 @@ def_obj $obj6 = oc_param($obj4, param_5527);
 if ($obj6 = null) {
     $obj6 = $obj4;
 }
-if_settext(oc_name($obj6), interface_1711:com_30);
-if_setobject($obj6, 1, interface_1711:com_32);
-def_int $int7 = inv_getvar($inv0, $int1, varobjectbit_30212);
-def_int $int8 = ~invent_item_level($int7);
-def_int $int9 = 0;
+def_int $int7 = enum(fontmetrics, int, enum_8584, if_getfontmetrics(interface_1711:com_7));
+if_settextalign(^settextalign_left, 3, $int7, interface_1711:com_7);
+if_settext(oc_name($obj6), interface_1711:com_7);
+if_setobject($obj6, 1, interface_1711:com_6);
+def_int $int8 = inv_getvar($inv0, $int1, varobjectbit_30212);
+def_int $int9 = ~invent_item_level($int8);
 def_int $int10 = 0;
-if_settext(tostring($int8), interface_1711:com_60);
-if_settext(tostring_localised($int7, true), interface_1711:com_74);
-$string0 = "Current XP: <tostring_localised($int7, true)>";
-if ($int8 < ~script12072) {
-    $int9 = ~script12074(calc($int8 + 1));
-    $int10 = ~script12074($int8);
-    $string0 = "<$string0><br>Next level: <tostring_localised($int9, true)><br>Remainder: <tostring_localised(calc($int9 - $int7), true)>";
-    if_setonmouserepeat(null, interface_1711:com_45);
-    if_sethide(false, interface_1711:com_75);
-    if_sethide(true, interface_1711:com_76);
-    if_setsize(scale(calc(if_getwidth(interface_1711:com_75) - 2), calc($int9 - $int10), calc($int7 - $int10)), 0, ^setsize_abs, ^setsize_minus, interface_1711:com_52);
+def_int $int11 = 0;
+if_settext(tostring($int9), interface_1711:com_45);
+if_settext(tostring_localised($int8, true), interface_1711:com_46);
+$string0 = "Current XP: <tostring_localised($int8, true)>";
+if ($int9 < ~script12072) {
+    $int10 = ~script12074(calc($int9 + 1));
+    $int11 = ~script12074($int9);
+    $string0 = "<$string0><br>Next level: <tostring_localised($int10, true)><br>Remainder: <tostring_localised(calc($int10 - $int8), true)>";
+    if_setonmouserepeat(null, interface_1711:com_33);
+    if_sethide(false, interface_1711:com_47);
+    if_sethide(true, interface_1711:com_53);
+    if_setsize(scale(calc(if_getwidth(interface_1711:com_47) - 2), calc($int10 - $int11), calc($int8 - $int11)), 0, ^setsize_abs, ^setsize_minus, interface_1711:com_51);
 } else {
-    if_settext("-", interface_1711:com_76);
-    if_sethide(true, interface_1711:com_75);
-    if_sethide(false, interface_1711:com_76);
-    if ($int8 < 20) {
+    if_settext("-", interface_1711:com_53);
+    if_sethide(true, interface_1711:com_47);
+    if_sethide(false, interface_1711:com_53);
+    if ($int9 < 20) {
         $string0 = "<$string0><br>You do not know how to level a weapon above level <tostring(~script12072)>.";
     } else {
         $string0 = "<$string0><br>This item has reached the maximum level.";
     }
 }
-if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1711:com_45);
-def_int $int11 = %varplayer_5991;
+if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1711:com_33);
+def_int $int12 = %varplayer_5991;
 if ($int3 = 0) {
-    $int11 = $int2;
-    if_settext("Drain rate:<br>This item", interface_1711:com_28);
+    $int12 = $int2;
+    if_settext("Drain rate:<br>This item", interface_1711:com_19);
     if ($int5 = 1) {
         $string0 = "This section refers to drain rates when using this item for skilling.";
     } else {
         $string0 = "This section refers to drain rates when using this item alone.";
     }
 } else {
-    if_settext("Drain rate:<br>Equipped items", interface_1711:com_28);
+    if_settext("Drain rate:<br>Equipped items", interface_1711:com_19);
     $string0 = "This section refers to all currently equipped augmented equipment.";
 }
-if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1711:com_28);
+if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1711:com_19);
 if (oc_param($obj4, param_5772) = 1) {
-    if_settext("Charges used:", interface_1711:com_6);
-    if_settext(tostring_localised(~script670($inv0, $int1, $obj4), true), interface_1711:com_7);
-    if_settext(tostring_localised(oc_param($obj4, param_3385), true), interface_1711:com_49);
-    if_settext("n/a", interface_1711:com_90);
-    if_sethide(false, interface_1711:com_47);
+    if_settext("Charges used:", interface_1711:com_36);
+    if_settext(tostring_localised(~script670($inv0, $int1, $obj4), true), interface_1711:com_37);
+    if_settext(tostring_localised(oc_param($obj4, param_3385), true), interface_1711:com_41);
+    if_settext("n/a", interface_1711:com_28);
+    if_sethide(false, interface_1711:com_38);
     $string0 = "Once this item runs out of charge it will become broken. It is not possible to repair, only disassemble to gain item experience and materials.<br><br>Once all charges are used up, the item will be able to level up to <tostring_localised(min(10, ~script12072), true)>.";
-    if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1711:com_46);
-    if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1711:com_47);
+    if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1711:com_34);
+    if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1711:com_38);
 } else {
-    if_settext("Charge drain:", interface_1711:com_6);
-    if_settext("<~invent_charge_string(scale($int2, 6, 10), 2)>/s", interface_1711:com_7);
-    if_settext("<~invent_charge_string(scale($int11, 6, 10), 2)>/s", interface_1711:com_90);
-    if_sethide(true, interface_1711:com_47);
+    if_settext("Charge drain:", interface_1711:com_36);
+    if_settext("<~invent_charge_string(scale($int2, 6, 10), 2)>/s", interface_1711:com_37);
+    if_settext("<~invent_charge_string(scale($int12, 6, 10), 2)>/s", interface_1711:com_28);
+    if_sethide(true, interface_1711:com_38);
 }
-if_settext(~invent_charge_string(%varplayer_5984, 0), interface_1711:com_91);
-def_int $int12 = 0;
+if_settext(~invent_charge_string(%varplayer_5984, 0), interface_1711:com_29);
 def_int $int13 = 0;
 def_int $int14 = 0;
-if ($int11 > 0) {
-    $int12, $int13, $int14 = ~script4705(calc(%varplayer_5984 / $int11));
-    if ($int12 > 0) {
-        if_settext(~text_plural($int12, "<tostring($int12)> hour", "<tostring($int12)> hours"), interface_1711:com_92);
-    } else if ($int13 > 0) {
-        if_settext(~text_plural($int13, "<tostring($int13)> minute", "<tostring($int13)> minutes"), interface_1711:com_92);
+def_int $int15 = 0;
+if ($int12 > 0) {
+    $int13, $int14, $int15 = ~script4705(calc(%varplayer_5984 / $int12));
+    if ($int13 > 0) {
+        if_settext(~text_plural($int13, "<tostring($int13)> hour", "<tostring($int13)> hours"), interface_1711:com_30);
     } else if ($int14 > 0) {
-        if_settext(~text_plural($int14, "<tostring($int14)> second", "<tostring($int14)> seconds"), interface_1711:com_92);
+        if_settext(~text_plural($int14, "<tostring($int14)> minute", "<tostring($int14)> minutes"), interface_1711:com_30);
+    } else if ($int15 > 0) {
+        if_settext(~text_plural($int15, "<tostring($int15)> second", "<tostring($int15)> seconds"), interface_1711:com_30);
     }
-    $string0 = "Approximate time remaining: <tostring($int12)>:";
-    if ($int13 < 10) {
-        $string0 = "<$string0>0";
-    }
-    $string0 = "<$string0><tostring($int13)>:";
+    $string0 = "Approximate time remaining: <tostring($int13)>:";
     if ($int14 < 10) {
         $string0 = "<$string0>0";
     }
-    $string0 = "<$string0><tostring($int14)>";
-    if_setonmouserepeat("script8799($string0, event_com, -1)", interface_1711:com_80);
+    $string0 = "<$string0><tostring($int14)>:";
+    if ($int15 < 10) {
+        $string0 = "<$string0>0";
+    }
+    $string0 = "<$string0><tostring($int15)>";
+    if_setonmouserepeat("script8799($string0, event_com, -1)", interface_1711:com_23);
 } else {
-    if_settext("n/a", interface_1711:com_92);
-    if_setonmouserepeat(null, interface_1711:com_80);
+    if_settext("n/a", interface_1711:com_30);
+    if_setonmouserepeat(null, interface_1711:com_23);
 }
-$string0 = "Maximum charge stored: <~invent_charge_string(~invent_max_charge, 0)>";
-if_setonmouserepeat("script8799($string0, event_com, -1)", interface_1711:com_79);
-def_int $int15 = 1;
+$string0 = "Maximum charge stored: <~invent_charge_string(~invent_max_charge, 0)>.";
+if_setonmouserepeat("script8799($string0, event_com, -1)", interface_1711:com_22);
+def_int $int16 = 1;
 if ($int3 = 1) {
-    $int15 = 0;
+    $int16 = 0;
 }
-if_setonop("script12199($inv0, $int1, $int2, $int15)", interface_1711:com_98);
-def_int $int16 = inv_getvar($inv0, $int1, varobjectbit_30215);
-def_int $int17 = inv_getvar($inv0, $int1, varobjectbit_30216);
-def_int $int18 = inv_getvar($inv0, $int1, varobjectbit_30217);
-def_int $int19 = inv_getvar($inv0, $int1, varobjectbit_30218);
-def_int $int20 = inv_getvar($inv0, $int1, varobjectbit_30219);
-def_int $int21 = inv_getvar($inv0, $int1, varobjectbit_30220);
-def_int $int22 = inv_getvar($inv0, $int1, varobjectbit_30221);
-def_int $int23 = inv_getvar($inv0, $int1, varobjectbit_30222);
-db_find(dbtable_8:col0, $int16);
-def_dbrow $dbrow24 = db_findnext;
-def_int $int25 = db_getfield($dbrow24, dbtable_8:col6, 0);
-~script12201($int16, $int17, interface_1711:com_22, interface_1711:com_23, interface_1711:com_36, 0);
-if ($int25 > 1) {
-    ~script12201($int16, $int17, interface_1711:com_19, interface_1711:com_20, interface_1711:com_39, 1);
+if_setonop("script12199($inv0, $int1, $int2, $int16)", interface_1711:com_59);
+def_int $int17 = inv_getvar($inv0, $int1, varobjectbit_30215);
+def_int $int18 = inv_getvar($inv0, $int1, varobjectbit_30216);
+def_int $int19 = inv_getvar($inv0, $int1, varobjectbit_30217);
+def_int $int20 = inv_getvar($inv0, $int1, varobjectbit_30218);
+def_int $int21 = inv_getvar($inv0, $int1, varobjectbit_30219);
+def_int $int22 = inv_getvar($inv0, $int1, varobjectbit_30220);
+def_int $int23 = inv_getvar($inv0, $int1, varobjectbit_30221);
+def_int $int24 = inv_getvar($inv0, $int1, varobjectbit_30222);
+db_find(dbtable_8:col0, $int17);
+def_dbrow $dbrow25 = db_findnext;
+def_int $int26 = db_getfield($dbrow25, dbtable_8:col6, 0);
+~script12201($int17, $int18, interface_1711:com_69, interface_1711:com_70, interface_1711:com_72, 0);
+if ($int26 > 1) {
+    ~script12201($int17, $int18, interface_1711:com_75, interface_1711:com_76, interface_1711:com_78, 1);
 } else {
-    ~script12201($int18, $int19, interface_1711:com_19, interface_1711:com_20, interface_1711:com_39, 0);
+    ~script12201($int19, $int20, interface_1711:com_75, interface_1711:com_76, interface_1711:com_78, 0);
 }
-db_find(dbtable_8:col0, $int20);
-$dbrow24 = db_findnext;
-$int25 = db_getfield($dbrow24, dbtable_8:col6, 0);
-~script12201($int20, $int21, interface_1711:com_1, interface_1711:com_2, interface_1711:com_16, 0);
-if ($int25 > 1) {
-    ~script12201($int20, $int21, interface_1711:com_12, interface_1711:com_13, interface_1711:com_15, 1);
+db_find(dbtable_8:col0, $int21);
+$dbrow25 = db_findnext;
+$int26 = db_getfield($dbrow25, dbtable_8:col6, 0);
+~script12201($int21, $int22, interface_1711:com_85, interface_1711:com_86, interface_1711:com_88, 0);
+if ($int26 > 1) {
+    ~script12201($int21, $int22, interface_1711:com_91, interface_1711:com_92, interface_1711:com_94, 1);
 } else {
-    ~script12201($int22, $int23, interface_1711:com_12, interface_1711:com_13, interface_1711:com_15, 0);
+    ~script12201($int23, $int24, interface_1711:com_91, interface_1711:com_92, interface_1711:com_94, 0);
 }
 def_string $string1 = "<col=ffffff>";
 def_string $string2 = "<col=aaaaaa>";
-$string0 = "Item Level Effects<br>";
-$string0 = "<$string0>Disassembling this item gives extra Invention XP at level 2 and above, increasing with item level.<br><br>It also gains the following:<br>";
-if ($int8 >= 2) {
+$string0 = "<$string0><br>Disassembling this item gives extra Invention XP at level 2 and above, increasing with item level.<br><br>It also gains the following:<br>";
+if ($int9 >= 2) {
     $string0 = "<$string0><$string1>";
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 2: Disassembling this item has a 50% chance to return installed gizmos.</col><br>";
-if ($int8 >= 3) {
+if ($int9 >= 3) {
     $string0 = "<$string0><$string1>";
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 3: Disassembling this item gives double materials.</col><br>";
-if ($int8 >= 4) {
+if ($int9 >= 4) {
     $string0 = "<$string0><$string1>";
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 4: Disassembling this item never gives junk.</col><br>";
-if ($int8 >= 5) {
+if ($int9 >= 5) {
     $string0 = "<$string0><$string1>";
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 5: This item drains 10% less charge when used.</col><br>";
-if ($int8 >= 6) {
+if ($int9 >= 6) {
     $string0 = "<$string0><$string1>";
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 6: Disassembling this item gives triple materials</col><br>";
-if ($int8 >= 7) {
+if ($int9 >= 7) {
     $string0 = "<$string0><$string1>";
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 7: Disassembling this item gives an extra random uncommon material.</col><br>";
-if ($int8 >= 8) {
+if ($int9 >= 8) {
     $string0 = "<$string0><$string1>";
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 8: Disassembling this item returns all installed gizmos.</col><br>";
-if ($int8 >= 9) {
+if ($int9 >= 9) {
     $string0 = "<$string0><$string1>";
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 9: Disassembling this item gives quadruple materials.</col><br>";
-if ($int8 >= 10) {
+if ($int9 >= 10) {
     $string0 = "<$string0><$string1>";
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 10: Disassembling this item gives the maximum extra Invention XP.</col><br>";
-if ($int8 >= 12) {
+if ($int9 >= 12) {
     $string0 = "<$string0><$string1>";
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 12: Siphoning this item gives the maximum extra Invention XP.</col><br>";
-if ($int8 >= 13) {
+if ($int9 >= 13) {
     $string0 = "<$string0><$string1>";
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 13: Siphoning this item has a 50% chance to not consume the siphon.</col><br>";
-if ($int8 >= 14) {
+if ($int9 >= 14) {
     $string0 = "<$string0><$string1>";
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 14: This item drains 12.5% less charge when used.</col><br>";
-if ($int8 >= 15) {
+if ($int9 >= 15) {
     $string0 = "<$string0><$string1>";
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 15: This item can now be used with an Equipment separator.</col><br>";
-if ($int8 >= 16) {
+if ($int9 >= 16) {
     $string0 = "<$string0><$string1>";
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 16: Siphoning this item will no longer consume the siphon.</col><br>";
-if ($int8 >= 17) {
+if ($int9 >= 17) {
     $string0 = "<$string0><$string1>";
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 17: Using the Equipment separator on this item has a 25% chance to not consume the separator.</col><br>";
-if ($int8 >= 18) {
+if ($int9 >= 18) {
     $string0 = "<$string0><$string1>";
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 18: This item drains 15% less charge when used.</col><br>";
-if ($int8 >= 19) {
+if ($int9 >= 19) {
     $string0 = "<$string0><$string1>";
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 19: Using the Equipment separator on this item has a 50% chance to not consume the separator.</col><br>";
 def_string $string3 = "";
-if ($int8 >= 20) {
+if ($int9 >= 20) {
     $string0 = "<$string0><$string1>";
-    if (enum(int, boolean, enum_13183, $int16) = true) {
-        if_sethide(false, interface_1711:com_35);
-        if_setposition(55, 0, ^setpos_abs_left, ^setpos_abs_top, interface_1711:com_36);
-        $string3 = "<~invent_perk_get_name(~script12076($int16), $int17)> has a 10% increased chance to activate!";
-        if_setonmouserepeat("script8799($string3, event_com, -1)", interface_1711:com_35);
+    if (enum(int, boolean, enum_13183, $int17) = true) {
+        if_sethide(false, interface_1711:com_71);
+        if_setposition(55, 0, ^setpos_abs_left, ^setpos_abs_top, interface_1711:com_72);
+        $string3 = "<~invent_perk_get_name(~script12076($int17), $int18)> has a 10% increased chance to activate!";
+        if_setonmouserepeat("script8799($string3, event_com, -1)", interface_1711:com_71);
     }
-    if (enum(int, boolean, enum_13183, $int18) = true) {
-        if_sethide(false, interface_1711:com_38);
-        if_setposition(55, 0, ^setpos_abs_left, ^setpos_abs_top, interface_1711:com_39);
-        $string3 = "<~invent_perk_get_name(~script12076($int18), $int19)> has a 10% increased chance to activate!";
-        if_setonmouserepeat("script8799($string3, event_com, -1)", interface_1711:com_38);
+    if (enum(int, boolean, enum_13183, $int19) = true) {
+        if_sethide(false, interface_1711:com_77);
+        if_setposition(55, 0, ^setpos_abs_left, ^setpos_abs_top, interface_1711:com_78);
+        $string3 = "<~invent_perk_get_name(~script12076($int19), $int20)> has a 10% increased chance to activate!";
+        if_setonmouserepeat("script8799($string3, event_com, -1)", interface_1711:com_77);
     }
-    if (enum(int, boolean, enum_13183, $int20) = true) {
-        if_sethide(false, interface_1711:com_3);
-        if_setposition(55, 0, ^setpos_abs_left, ^setpos_abs_top, interface_1711:com_16);
-        $string3 = "<~invent_perk_get_name(~script12076($int20), $int21)> has a 10% increased chance to activate!";
-        if_setonmouserepeat("script8799($string3, event_com, -1)", interface_1711:com_3);
+    if (enum(int, boolean, enum_13183, $int21) = true) {
+        if_sethide(false, interface_1711:com_87);
+        if_setposition(55, 0, ^setpos_abs_left, ^setpos_abs_top, interface_1711:com_88);
+        $string3 = "<~invent_perk_get_name(~script12076($int21), $int22)> has a 10% increased chance to activate!";
+        if_setonmouserepeat("script8799($string3, event_com, -1)", interface_1711:com_87);
     }
-    if (enum(int, boolean, enum_13183, $int22) = true) {
-        if_sethide(false, interface_1711:com_14);
-        if_setposition(55, 0, ^setpos_abs_left, ^setpos_abs_top, interface_1711:com_15);
-        $string3 = "<~invent_perk_get_name(~script12076($int22), $int23)> has a 10% increased chance to activate!";
-        if_setonmouserepeat("script8799($string3, event_com, -1)", interface_1711:com_14);
+    if (enum(int, boolean, enum_13183, $int23) = true) {
+        if_sethide(false, interface_1711:com_93);
+        if_setposition(55, 0, ^setpos_abs_left, ^setpos_abs_top, interface_1711:com_94);
+        $string3 = "<~invent_perk_get_name(~script12076($int23), $int24)> has a 10% increased chance to activate!";
+        if_setonmouserepeat("script8799($string3, event_com, -1)", interface_1711:com_93);
     }
 } else {
     $string0 = "<$string0><$string2>";
 }
 $string0 = "<$string0>Level 20: Helpful perks will activate 10% more frequently.</col><br>";
-if_setonmouserepeat("script8799($string0, event_com, -1)", interface_1711:com_77);
+if_setonop("script1259", interface_1711:com_13);
+if_settext($string0, interface_1711:com_102);
+def_fontmetrics $fontmetrics27 = graphic_17813;
+if (~script6431 = true) {
+    $fontmetrics27 = graphic_17814;
+}
+if_settextfont($fontmetrics27, interface_1711:com_102);
+if_setscrollsize(if_getwidth(interface_1711:com_101), calc(10 + ~script7593($string0, if_getwidth(interface_1711:com_101), $fontmetrics27, 0)), interface_1711:com_101);
+~rs3_scrollbar_vertical(interface_1711:com_103, interface_1711:com_101);
 if (~script12066($obj6) = 1) {
-    if_setposition(83, 0, ^setpos_abs_left, ^setpos_abs_top, interface_1711:com_68);
-    if_sethide(true, interface_1711:com_69);
+    if_setposition(83, 0, ^setpos_abs_left, ^setpos_abs_top, interface_1711:com_64);
+    if_sethide(true, interface_1711:com_80);
 } else {
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, interface_1711:com_68);
-    if_sethide(false, interface_1711:com_69);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, interface_1711:com_64);
+    if_sethide(false, interface_1711:com_80);
 }

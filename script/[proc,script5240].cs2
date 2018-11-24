@@ -1,0 +1,27 @@
+// 5240
+[proc,script5240](struct $struct0)(string)
+def_string $string0 = "";
+def_int $int1 = ~script5241($struct0);
+def_int $int2 = ~script5242($struct0);
+if ($int1 > 0) {
+    $string0 = "<col=ebe0bc>Restores <col=00ff00><tostring($int1)> prayer points";
+} else if ($int1 < 0) {
+    $string0 = "<col=ebe0bc>Removes <col=ff0000><tostring(abs($int1))> prayer points";
+}
+if ($int2 > 0) {
+    if (string_length($string0) > 0) {
+        $string0 = append($string0, "<col=ebe0bc>, and renews <col=00ff00><tostring($int2)> prayer points <col=ebe0bc>over the duration");
+    } else {
+        $string0 = append($string0, "<col=ebe0bc>Renews <col=00ff00><tostring($int2)> prayer points <col=ebe0bc>over the duration");
+    }
+} else if ($int2 < 0) {
+    if (string_length($string0) > 0) {
+        $string0 = append($string0, "<col=ebe0bc>, and drains <col=ff0000><tostring(abs($int2))> prayer points <col=ebe0bc>over the duration");
+    } else {
+        $string0 = append($string0, "<col=ebe0bc>Drains <col=ff0000><tostring(abs($int2))> prayer points <col=ebe0bc>over the duration");
+    }
+}
+if (string_length($string0) > 0) {
+    $string0 = append($string0, "<col=ebe0bc>.");
+}
+return($string0);
