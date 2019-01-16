@@ -1,0 +1,84 @@
+// 2598
+[proc,script2598]
+def_obj $obj0 = null;
+if (%varplayer_8332 = null) {
+    mes("ERROR, %smithing_interface_material_dbrow_selected is null.");
+    return;
+}
+if (%varplayer_8333 = null) {
+    mes("ERROR, %smithing_interface_base_object_selected is null");
+    return;
+}
+if (%varplayerbit_43239 < 0) {
+    mes("ERROR, %smithing_interface_upgrade_selected is null");
+    return;
+}
+def_int $int1 = oc_param(%varplayer_8333, param_7805);
+switch_int ($int1) {
+    case 0 :
+        if_sethide(true, interface_37:com_7);
+        if_sethide(true, interface_37:com_8);
+        if_sethide(true, interface_37:com_9);
+        if_sethide(true, interface_37:com_10);
+        if_sethide(true, interface_37:com_11);
+    case 1 :
+        if_sethide(false, interface_37:com_7);
+        if_sethide(true, interface_37:com_8);
+        if_sethide(true, interface_37:com_9);
+        if_sethide(true, interface_37:com_10);
+        if_sethide(true, interface_37:com_11);
+    case 2 :
+        if_sethide(false, interface_37:com_7);
+        if_sethide(false, interface_37:com_8);
+        if_sethide(true, interface_37:com_9);
+        if_sethide(true, interface_37:com_10);
+        if_sethide(true, interface_37:com_11);
+    case 3 :
+        if_sethide(false, interface_37:com_7);
+        if_sethide(false, interface_37:com_8);
+        if_sethide(false, interface_37:com_9);
+        if_sethide(true, interface_37:com_10);
+        if_sethide(true, interface_37:com_11);
+    case 4 :
+        if_sethide(false, interface_37:com_7);
+        if_sethide(false, interface_37:com_8);
+        if_sethide(false, interface_37:com_9);
+        if_sethide(false, interface_37:com_10);
+        if_sethide(true, interface_37:com_11);
+    case 5 :
+        if_sethide(false, interface_37:com_7);
+        if_sethide(false, interface_37:com_8);
+        if_sethide(false, interface_37:com_9);
+        if_sethide(false, interface_37:com_10);
+        if_sethide(false, interface_37:com_11);
+}
+switch_dbrow (%varplayer_8332) {
+    case default :
+        if_sethide(true, interface_37:com_12);
+        if (%varplayerbit_43239 = 50) {
+            %varplayerbit_43239 = $int1;
+        }
+    case dbrow_1494, dbrow_1495, dbrow_1496, dbrow_1497, dbrow_1498, dbrow_1499 :
+        if ($int1 > 0) {
+            if_sethide(false, interface_37:com_12);
+        }
+}
+if (%varplayerbit_43239 = 50) {
+    $int1 = 50;
+}
+%varplayerbit_43239 = min($int1, %varplayerbit_43239);
+$obj0 = ~script2542(%varplayer_8333, %varplayerbit_43239);
+if ($obj0 = null) {
+    mes("ERROR, can't find upgrade.");
+    $obj0 = %varplayer_8333;
+}
+switch_obj ($obj0) {
+    case obj_45435, obj_45436, obj_45437, obj_45438, obj_45439, obj_45440 :
+        if_sethide(true, interface_37:com_6);
+    case default :
+        if_sethide(false, interface_37:com_6);
+}
+if_settext(oc_name($obj0), interface_37:com_40);
+~script2609(%varplayerbit_43239);
+~script2605($obj0);
+~smithing_draw_slider;

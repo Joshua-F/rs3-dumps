@@ -1,9 +1,30 @@
 // 2543
-[proc,script2543]
-if (%varclient_915 = 1) {
-    if_setgraphic(graphic_1949, interface_39:com_9);
-} else if (%varclient_915 = 2) {
-    if_setgraphic(graphic_1946, interface_39:com_9);
-} else if (%varclient_915 = 3) {
-    if_setgraphic(graphic_1947, interface_39:com_9);
+[proc,script2543](obj $obj0, obj $obj1)(obj)
+def_dbrow $dbrow2 = enum(obj, dbrow, enum_2531, $obj0);
+def_string $string0 = "";
+def_enum $enum3 = null;
+def_int $int4 = db_getfieldcount($dbrow2, dbtable_37:col0);
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_obj $obj8 = null;
+def_obj $obj9 = null;
+while ($int6 < $int4) {
+    $string0, $enum3 = db_getfield($dbrow2, dbtable_37:col0, $int6);
+    $int5 = enum_getoutputcount($enum3);
+    while ($int7 < $int5) {
+        $obj8 = enum(int, obj, $enum3, $int7);
+        if ($int6 = 0 & $int7 = 0) {
+            $obj9 = $obj8;
+        }
+        if (oc_param($obj8, param_686) ! null & oc_param($obj8, param_686) = oc_param($obj1, param_686)) {
+            return($obj8);
+        }
+        if (oc_category($obj1) = oc_category($obj8)) {
+            return($obj8);
+        }
+        $int7 = calc($int7 + 1);
+    }
+    $int6 = calc($int6 + 1);
 }
+return($obj9);

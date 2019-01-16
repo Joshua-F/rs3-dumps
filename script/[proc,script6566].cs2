@@ -29,9 +29,10 @@ if (%varclient_4083 = 3) {
 %varclient_4083 = 3;
 def_component $component0 = null;
 def_component $component1 = null;
-def_seq $seq2 = null;
-def_seq $seq3 = seq_22668;
-def_int $int4 = 0;
+def_struct $struct2 = null;
+def_seq $seq3 = null;
+def_seq $seq4 = seq_22668;
+def_int $int5 = 0;
 switch_int (%varclient_1781) {
     case 1 :
         $component0 = interface_1253:com_43;
@@ -55,53 +56,53 @@ switch_int (%varclient_1781) {
 switch_int (%varclient_4077) {
     case 1 :
         if (%varclient_4097 = 1) {
-            $seq2 = seq_22659;
+            $seq3 = seq_22659;
         } else {
-            $seq2 = seq_22647;
+            $seq3 = seq_22647;
         }
-        $seq3 = seq_22668;
+        $seq4 = seq_22668;
     case 2 :
         if (%varclient_4097 = 1) {
-            $seq2 = seq_22660;
+            $seq3 = seq_22660;
         } else {
-            $seq2 = seq_22648;
+            $seq3 = seq_22648;
         }
-        $seq3 = seq_22668;
+        $seq4 = seq_22668;
     case 3 :
         if (%varclient_4097 = 1) {
-            $seq2 = seq_22661;
+            $seq3 = seq_22661;
         } else {
-            $seq2 = seq_22649;
+            $seq3 = seq_22649;
         }
-        $seq3 = seq_22669;
+        $seq4 = seq_22669;
     case 4 :
         if (%varclient_4097 = 1) {
-            $seq2 = seq_22662;
+            $seq3 = seq_22662;
         } else {
-            $seq2 = seq_22650;
+            $seq3 = seq_22650;
         }
-        $seq3 = seq_22669;
+        $seq4 = seq_22669;
     case 5 :
         if (%varclient_4097 = 1) {
-            $seq2 = seq_22663;
+            $seq3 = seq_22663;
         } else {
-            $seq2 = seq_22651;
+            $seq3 = seq_22651;
         }
-        $seq3 = seq_22670;
+        $seq4 = seq_22670;
     case 6 :
         if (%varclient_4097 = 1) {
-            $seq2 = seq_22663;
+            $seq3 = seq_22663;
         } else {
-            $seq2 = seq_22651;
+            $seq3 = seq_22651;
         }
-        $seq3 = seq_22670;
+        $seq4 = seq_22670;
     case default :
         if (%varclient_4097 = 1) {
-            $seq2 = seq_22659;
+            $seq3 = seq_22659;
         } else {
-            $seq2 = seq_22647;
+            $seq3 = seq_22647;
         }
-        $seq3 = seq_22668;
+        $seq4 = seq_22668;
 }
 if (%varclient_1928 = 6) {
     switch_int (%varclient_1781) {
@@ -127,8 +128,28 @@ if (%varclient_1928 = 6) {
             $component0 = interface_1585:com_20;
             $component1 = interface_1585:com_22;
     }
+} else if (%varclient_1928 = 34) {
+    switch_int (%varplayerbit_42991) {
+        case 1 :
+            $component0 = interface_35:com_27;
+            $struct2 = enum(int, struct, enum_1932, %varplayerbit_42981);
+        case 2 :
+            $component0 = interface_35:com_11;
+            $struct2 = enum(int, struct, enum_1932, %varplayerbit_42982);
+        case 3 :
+            $component0 = interface_35:com_29;
+            $struct2 = enum(int, struct, enum_1932, %varplayerbit_42983);
+        case 4 :
+            $component0 = interface_35:com_7;
+            $struct2 = enum(int, struct, enum_1932, %varplayerbit_42984);
+        case default :
+            if_setontimer("script5898(event_com, 300)", interface_1253:com_0);
+            return;
+    }
+    $component1 = $component0;
+    $seq3 = struct_param($struct2, param_7753);
 }
-$int4 = calc(300 - seqlength($seq2));
+$int5 = calc(300 - seqlength($seq3));
 if_setmodelanim(seq_22667, interface_1253:com_139);
 if_setmodelanim(seq_22645, interface_1253:com_43);
 if_setmodelanim(seq_22645, interface_1253:com_52);
@@ -154,18 +175,18 @@ if_setontimer(null, interface_1585:com_10);
 if_setontimer(null, interface_1585:com_6);
 if_setonmouseover(null, $component1);
 if_setonmouseleave(null, $component1);
-if_setmodelanim($seq2, $component0);
-if_setontimer("script5898(event_com, $int4)", interface_1253:com_0);
-def_int $int5 = clientclock;
+if_setmodelanim($seq3, $component0);
+if_setontimer("script5898(event_com, $int5)", interface_1253:com_0);
+def_int $int6 = clientclock;
 if (if_gethide(interface_1253:com_27) = false) {
     if (%varclient_4097 = 1) {
         if (%varplayer_5834 = 0) {
             ~script9697($component1);
-            $int5 = calc($int5 + 200);
-            if_setontimer("script9693(event_com, $int5, $seq3)", interface_1253:com_139);
+            $int6 = calc($int6 + 200);
+            if_setontimer("script9693(event_com, $int6, $seq4)", interface_1253:com_139);
         }
     } else {
-        if_setontimer("script9693(event_com, $int5, $seq3)", interface_1253:com_139);
+        if_setontimer("script9693(event_com, $int6, $seq4)", interface_1253:com_139);
     }
 }
 %varclient_4097 = 0;

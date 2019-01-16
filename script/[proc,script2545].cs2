@@ -1,9 +1,18 @@
 // 2545
-[proc,script2545]
-if (%varclient_916 = 1) {
-    if_setgraphic(graphic_1949, interface_39:com_15);
-} else if (%varclient_916 = 2) {
-    if_setgraphic(graphic_1946, interface_39:com_15);
-} else if (%varclient_916 = 3) {
-    if_setgraphic(graphic_1947, interface_39:com_15);
+[proc,script2545]()(string)
+def_int $int0 = ~script2544;
+def_string $string0 = "";
+if ($int0 > 1000) {
+    $int0 = calc($int0 / 1000);
+    $string0 = "<tostring($int0)> K";
+} else {
+    $string0 = tostring($int0);
 }
+def_int $int1 = %varplayerbit_43240;
+if ($int1 > 1000) {
+    $int1 = calc($int1 / 1000);
+    $string0 = "<$string0>/<br><tostring($int1)> K";
+} else {
+    $string0 = "<$string0>/<br><tostring($int1)>";
+}
+return($string0);
