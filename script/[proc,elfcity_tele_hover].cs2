@@ -1,24 +1,27 @@
 // 10860
 [proc,elfcity_tele_hover](component $component0, int $int1)
 def_int $int2 = 0;
-def_graphic $graphic3 = null;
+def_int $int3 = 0;
 def_graphic $graphic4 = null;
 def_graphic $graphic5 = null;
+def_graphic $graphic6 = null;
 def_string $string0 = "";
 def_string $string1 = "";
 switch_component ($component0) {
     case interface_1572:com_12 :
         $int2 = 1;
-        $graphic3 = "elfcity_icon_teleport_0,0";
-        $graphic4 = "elfcity_icon_teleport_0,1";
-        $graphic5 = "elfcity_icon_teleport_0,2";
+        $int3 = 1;
+        $graphic4 = "elfcity_icon_teleport_0,0";
+        $graphic5 = "elfcity_icon_teleport_0,1";
+        $graphic6 = "elfcity_icon_teleport_0,2";
         $string0 = "Lletya";
         $string1 = "This teleport will take you to the town of Lletya.";
     case interface_1572:com_13 :
         $int2 = 1;
-        $graphic3 = "elfcity_icon_teleport_1,0";
-        $graphic4 = "elfcity_icon_teleport_1,1";
-        $graphic5 = "elfcity_icon_teleport_1,2";
+        $int3 = 2;
+        $graphic4 = "elfcity_icon_teleport_1,0";
+        $graphic5 = "elfcity_icon_teleport_1,1";
+        $graphic6 = "elfcity_icon_teleport_1,2";
         if (%varplayerbit_29077 < 90) {
             $string0 = "Eluned";
             $string1 = "This teleport will take you to Eluned's current location.";
@@ -28,49 +31,58 @@ switch_component ($component0) {
         }
     case interface_1572:com_15 :
         $int2 = 2;
-        $graphic3 = "elfcity_icon_teleport_2,0";
-        $graphic4 = "elfcity_icon_teleport_2,1";
-        $graphic5 = "elfcity_icon_teleport_2,2";
+        $int3 = 3;
+        $graphic4 = "elfcity_icon_teleport_2,0";
+        $graphic5 = "elfcity_icon_teleport_2,1";
+        $graphic6 = "elfcity_icon_teleport_2,2";
         $string0 = "Tyras Camp";
         $string1 = "This teleport will take you to the Tyras forces' encampment.";
     case interface_1572:com_16 :
         $int2 = 2;
-        $graphic3 = "elfcity_icon_teleport_3,0";
-        $graphic4 = "elfcity_icon_teleport_3,1";
-        $graphic5 = "elfcity_icon_teleport_3,2";
+        $int3 = 4;
+        $graphic4 = "elfcity_icon_teleport_3,0";
+        $graphic5 = "elfcity_icon_teleport_3,1";
+        $graphic6 = "elfcity_icon_teleport_3,2";
         $string0 = "Poison Waste";
         $string1 = "This teleport will take you to the eastern edge of the Poison Waste.";
     case interface_1572:com_17 :
         $int2 = 3;
-        $graphic3 = "elfcity_icon_teleport_4,0";
-        $graphic4 = "elfcity_icon_teleport_4,1";
-        $graphic5 = "elfcity_icon_teleport_4,2";
+        $int3 = 5;
+        $graphic4 = "elfcity_icon_teleport_4,0";
+        $graphic5 = "elfcity_icon_teleport_4,1";
+        $graphic6 = "elfcity_icon_teleport_4,2";
         $string0 = "Death Altar";
         $string1 = "This teleport will take you to the Death Altar ruins.";
     case interface_1572:com_18 :
         $int2 = 3;
-        $graphic3 = "elfcity_icon_teleport_5,0";
-        $graphic4 = "elfcity_icon_teleport_5,1";
-        $graphic5 = "elfcity_icon_teleport_5,2";
+        $int3 = 6;
+        $graphic4 = "elfcity_icon_teleport_5,0";
+        $graphic5 = "elfcity_icon_teleport_5,1";
+        $graphic6 = "elfcity_icon_teleport_5,2";
         $string0 = "Elf Camp";
         $string1 = "This teleport will take you to the Iorwerth forces' encampment.";
-    case interface_1572:com_19 :
-        $int2 = 4;
-        $graphic3 = "elfcity_icon_teleport_6,0";
-        $graphic4 = "elfcity_icon_teleport_6,1";
-        $graphic5 = "elfcity_icon_teleport_6,2";
-        $string0 = "Harmony Pillars";
-        $string1 = "This teleport will take you to the Meilyr area of Prifddinas.";
     case interface_1572:com_14 :
         $int2 = 3;
-        $graphic3 = "elfcity_icon_teleport_6,0";
-        $graphic4 = "elfcity_icon_teleport_6,1";
-        $graphic5 = "elfcity_icon_teleport_6,2";
+        $int3 = 7;
+        $graphic4 = "elfcity_icon_teleport_6,0";
+        $graphic5 = "elfcity_icon_teleport_6,1";
+        $graphic6 = "elfcity_icon_teleport_6,2";
         $string0 = "Mushroom patch";
         $string1 = "This teleport will take you to the mushroom patch.";
+    case interface_1572:com_19 :
+        $int2 = 4;
+        $int3 = 8;
+        $graphic4 = "elfcity_icon_teleport_6,0";
+        $graphic5 = "elfcity_icon_teleport_6,1";
+        $graphic6 = "elfcity_icon_teleport_6,2";
+        $string0 = "Harmony Pillars";
+        $string1 = "This teleport will take you to the Meilyr area of Prifddinas.";
 }
 if ($int1 = 1) {
     if_settext($string0, interface_1572:com_3);
+    if ($int3 > 0 & ~is_mobile_client = false) {
+        $string1 = "<$string1><br>Keybind: <tostring($int3)>";
+    }
     if_settext($string1, interface_1572:com_4);
 } else {
     if_settext("Teleport Destination", interface_1572:com_3);
@@ -78,13 +90,13 @@ if ($int1 = 1) {
 }
 if (~script10861($int2) = true) {
     if ($int1 = 1) {
-        if_setgraphic($graphic4, $component0);
+        if_setgraphic($graphic5, $component0);
     } else {
-        if_setgraphic($graphic3, $component0);
+        if_setgraphic($graphic4, $component0);
     }
     if_sethide(true, interface_1572:com_10);
 } else {
-    if_setgraphic($graphic5, $component0);
+    if_setgraphic($graphic6, $component0);
     switch_int ($int2) {
         case 1 :
             if_settext("You can unlock this destination by completing all tasks in the Easy Tirannwn Task Set.", interface_1572:com_24);

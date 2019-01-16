@@ -1,10 +1,35 @@
 // 2559
 [clientscript,script2559](component $component0)
-if (if_getgraphic($component0) = graphic_1951) {
-    if_setgraphic(graphic_1946, $component0);
-} else if (if_getgraphic($component0) = graphic_1952) {
-    if_setgraphic(graphic_1947, $component0);
-} else if (if_getgraphic($component0) = graphic_1954) {
-    if_setgraphic(graphic_1949, $component0);
+def_graphic $graphic1 = "rs3_btn_checkbox,0";
+def_graphic $graphic2 = "rs3_btn_checkbox,2";
+if (%varplayerbit_22875 = 1) {
+    $graphic1 = "legacy_btn_checkbox,0";
+    $graphic2 = "legacy_btn_checkbox,2";
 }
-~script8808;
+def_int $int3 = 0;
+switch_component ($component0) {
+    case interface_1615:com_241 :
+        $int3 = %varplayerbit_27721;
+    case interface_1615:com_242 :
+        $int3 = %varplayerbit_27725;
+    case interface_1615:com_243 :
+        $int3 = %varplayerbit_27727;
+    case interface_1615:com_244 :
+        $int3 = %varplayerbit_27728;
+    case interface_1615:com_11 :
+        $int3 = %varplayerbit_43079;
+    case interface_1615:com_12 :
+        $int3 = %varplayerbit_43080;
+    case interface_1615:com_13 :
+        $int3 = %varplayerbit_43081;
+    case interface_1615:com_14 :
+        $int3 = %varplayerbit_43082;
+    case interface_1615:com_15 :
+        $int3 = %varplayerbit_43083;
+}
+if ($int3 = 1) {
+    if_setgraphic($graphic2, $component0);
+} else {
+    if_setgraphic($graphic1, $component0);
+}
+if_setonvartransmit("script2559($component0){varplayer_3814}", $component0);

@@ -107,14 +107,15 @@ def_obj $obj11 = null;
 def_graphic $graphic12 = null;
 def_int $int13 = 0;
 def_int $int14 = 0;
-while ($int5 < 326 & $int8 < 30) {
+def_int $int15 = 0;
+while ($int15 = 0) {
     $obj11 = null;
     $string1 = "";
     $int3 = 0;
     $int6 = 0;
     switch_int ($int5) {
         case default :
-            return;
+            $int15 = 1;
         case 0 :
             if (%varplayerbit_35298 = 0) {
                 $int9 = 0;
@@ -2416,6 +2417,32 @@ while ($int5 < 326 & $int8 < 30) {
             if (%varplayerbit_35300 = 0) {
                 $int9, $int6, $struct7, $int3 = 1, %varplayerbit_42522, struct_40606, %varclient_6514;
             }
+        case 326 :
+            if (%varplayerbit_35300 = 0) {
+                if (%varclient_6518 < clientclock) {
+                    $int6 = 0;
+                } else {
+                    $int9, $int6, $struct7, $int3 = 1, 1, struct_42729, %varclient_6518;
+                }
+            }
+        case 327 :
+            if (%varplayerbit_43052 = 1) {
+                $int9 = 1;
+                $int6 = 1;
+                $struct7 = struct_43721;
+            }
+        case 328 :
+            if (%varplayerbit_43238 > 0) {
+                $int9 = 1;
+                $int6 = 1;
+                $struct7 = struct_43722;
+            }
+        case 329 :
+            if (%varplayerbit_410 = 1) {
+                $int9 = 0;
+                $int6 = 1;
+                $struct7 = struct_43723;
+            }
     }
     if ($int6 = 1) {
         if ($int9 = 1) {
@@ -2448,9 +2475,12 @@ while ($int5 < 326 & $int8 < 30) {
         if (compare(struct_param($struct7, param_2795), "") ! 0) {
             $string0 = append($string0, "<br><struct_param($struct7, param_2795)>");
         }
-        if ($struct7 = struct_28639) {
-            $string0 = "<oc_name(inv_getobj(inv_94, 14))> : ";
-            $string0 = append($string0, struct_param(enum(obj, struct, enum_13430, inv_getobj(inv_94, 14)), param_1931));
+        switch_struct ($struct7) {
+            case struct_28639 :
+                $string0 = "<oc_name(inv_getobj(inv_94, 14))> : ";
+                $string0 = append($string0, struct_param(enum(obj, struct, enum_13430, inv_getobj(inv_94, 14)), param_1931));
+            case struct_43723 :
+                $string0 = "<struct_param($struct7, param_2794)><br>Your masterwork armour has stalled <tostring(%varplayerbit_43240)> damage. You'll take <tostring(~script2544)> or more damage every <col=ffffff>1.2</col> seconds until the pool is empty.";
         }
         if (compare($string1, "") ! 0) {
             $string0 = append($string0, $string1);
@@ -2540,7 +2570,12 @@ while ($int5 < 326 & $int8 < 30) {
             case struct_23175 :
                 $int13 = calc(stat_base(hitpoints) - stat(hitpoints));
             case struct_1624 :
-                $int13 = inv_getvar(inv_94, 17, varobjectbit_20171);
+                if (inv_getobj(inv_94, 2) = obj_44550) {
+                    $int13 = inv_getvar(inv_94, 2, varobjectbit_30214);
+                }
+                if (oc_category(inv_getobj(inv_94, 17)) = category_3021) {
+                    $int13 = calc($int13 + inv_getvar(inv_94, 17, varobjectbit_20171));
+                }
             case struct_1626 :
                 $int14 = 1;
                 $int13 = %varplayerbit_36378;
@@ -2602,13 +2637,18 @@ while ($int5 < 326 & $int8 < 30) {
         } else {
             if_settext("", $component1);
         }
+        if ($struct7 = struct_43723) {
+            if_settext(~script2545, $component1);
+        }
         if_sethide(false, $component2);
         if ($int9 = 1) {
             if_setcolour(0x5a9619, $component2);
         } else {
             if_setcolour(0xcc0000, $component2);
         }
-        $int8 = calc($int8 + 1);
+        if (++$int8 >= 30) {
+            $int15 = 1;
+        }
     }
     $graphic12 = null;
     $obj11 = null;

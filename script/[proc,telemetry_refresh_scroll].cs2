@@ -15,7 +15,7 @@ def_int $int13 = if_getwidth($component7);
 def_int $int14 = if_getheight($component7);
 def_int $int15 = 0;
 def_int $int16 = 0;
-if ($int0 = 2 & $int1 > $int13) {
+if (($int0 = 2 | ~script6431 = true & $int0 = 1) & $int1 > $int13) {
     $int16 = 1;
     $int14 = calc($int14 - 16);
 }
@@ -28,7 +28,7 @@ if ($int12 > $int14) {
     }
 }
 if_setscrollsize(max($int1, $int13), max($int12, $int14), $component6);
-if ($int0 = 1) {
+if ($int0 = 1 & ~script6431 = false) {
     $int10 = 0;
 }
 if_setsize($int13, $int14, ^setsize_abs, ^setsize_abs, $component7);
@@ -40,15 +40,24 @@ if ($int15 = 1 & $int16 = 1) {
     if_setsize(16, $int11, ^setsize_abs, ^setsize_minus, $component4);
     if_setsize(0, 16, ^setsize_minus, ^setsize_abs, $component5);
 }
+def_int $int17 = 0;
 if ($int16 = 1) {
     ~rs3_scrollbar_horizontal($component5, $component6);
     if_sethide(false, $component5);
+    $int17 = 3;
 } else {
     if_sethide(true, $component5);
 }
 if ($int15 = 1) {
-    ~scrollbar_vertical($component4, $component6, null, null, null, null, null, null);
+    ~rs3_scrollbar_vertical($component4, $component6);
     if_sethide(false, $component4);
+    $int17 = 12;
 } else {
     if_sethide(true, $component4);
+}
+if ($int17 > 0) {
+    if ($int16 = 1 & $int15 = 1) {
+        $int17 = 15;
+    }
+    ~telemetry_setup_scroll($component4, $component5, $component6, $int17);
 }

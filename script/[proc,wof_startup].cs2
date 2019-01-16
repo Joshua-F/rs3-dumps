@@ -4,8 +4,37 @@
 def_int $int0 = 82116608;
 def_component $component1 = interface_1253:com_471;
 def_int $int2 = max(0, ~script6950);
+if (clienttype = enhanced_ios) {
+    if_sethide(true, interface_1253:com_95);
+    if_sethide(true, interface_1253:com_161);
+}
 if (~script6431 = true) {
     if_sethide(true, interface_1253:com_104);
+    if_sethide(true, interface_1253:com_170);
+}
+def_boolean $boolean3 = if_gethide(interface_1253:com_161);
+def_boolean $boolean4 = if_gethide(interface_1253:com_170);
+def_int $int5 = 3;
+if ($boolean3 = true | $boolean4 = true) {
+    if ($boolean3 = true) {
+        $int5 = calc($int5 - 1);
+    }
+    if ($boolean4 = true) {
+        $int5 = calc($int5 - 1);
+    }
+    if ($int5 > 0) {
+        if ($int5 = 1) {
+            if_setposition(0, if_gety(interface_1253:com_179), ^setpos_abs_centre, ^setpos_abs_top, interface_1253:com_179);
+        } else if ($int5 = 2) {
+            $int5 = calc(if_getwidth(interface_1253:com_160) / 2);
+            if ($boolean3 = false) {
+                if_setposition(calc($int5 / 2 - 50), if_gety(interface_1253:com_161), ^setpos_abs_left, ^setpos_abs_top, interface_1253:com_161);
+            } else if ($boolean4 = false) {
+                if_setposition(calc($int5 / 2 - 50), if_gety(interface_1253:com_170), ^setpos_abs_left, ^setpos_abs_top, interface_1253:com_170);
+            }
+            if_setposition(calc($int5 + ($int5 / 2 - 50)), if_gety(interface_1253:com_179), ^setpos_abs_left, ^setpos_abs_top, interface_1253:com_179);
+        }
+    }
 }
 if (~trh_state(struct_33217) = 1) {
     if_sethide(true, interface_1253:com_27);
@@ -25,7 +54,7 @@ if (~trh_state(struct_33217) = 1) {
     if_sethide(false, interface_1253:com_346);
     if_sethide(false, interface_1253:com_142);
     if_setgraphic(th_background_stage_3, interface_1253:com_4);
-    if (~trh_state(struct_33918) = 1 | ~trh_state(struct_33522) = 1 | ~trh_state(struct_35060) = 1 & date_runeday = 5778) {
+    if (~trh_state(struct_33918) = 1 | ~trh_state(struct_33522) = 1) {
         if_sethide(true, interface_1253:com_137);
         if_sethide(true, interface_1253:com_29);
         if_sethide(true, interface_1253:com_157);

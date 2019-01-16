@@ -1,36 +1,38 @@
 // 7126
-[proc,script7126](obj $obj0)
-def_int $int1 = 0;
-def_int $int2 = oc_param($obj0, param_2696);
-def_int $int3 = 1;
-def_boolean $boolean4 = false;
+[proc,script7126](component $component0, obj $obj1)
+def_int $int2 = 0;
+def_int $int3 = oc_param($obj1, param_2696);
+def_int $int4 = 1;
+def_int $int5 = 0;
 def_string $string0 = "";
 def_string $string1 = "";
-if (oc_param($obj0, param_3037) = false) {
-    $int3 = oc_param($obj0, param_2653);
+def_graphic $graphic6 = null;
+if (oc_param($obj1, param_3037) = false) {
+    $int4 = oc_param($obj1, param_2653);
 } else {
-    $int3 = 1;
+    $int4 = 1;
 }
-def_int $int5 = 0;
-def_int $int6 = 4;
+def_int $int7 = 0;
+def_int $int8 = 4;
 if (map_lang = 3) {
-    $int6 = 3;
+    $int8 = 3;
 }
-if ($int2 ! 0) {
-    $boolean4 = false;
-    $int5 = oc_param($obj0, param_2697);
-    if (~script10744($obj0) = true) {
+cc_deleteall($component0);
+if ($int3 ! 0) {
+    $int5 = 0;
+    $int7 = oc_param($obj1, param_2697);
+    if (~script10744($obj1) = true) {
         if (inv_total(inv_93, obj_32821) > 0) {
-            $int5 = scale(12, 10, $int5);
+            $int7 = scale(12, 10, $int7);
         }
-    } else if ($obj0 = obj_33769) {
-        $int5 = calc(~script2181(2, construction, 0) / 2);
-    } else if (oc_param($obj0, param_223) ! null) {
-        $int5 = ~script9883(oc_param($obj0, param_223));
+    } else if ($obj1 = obj_33769) {
+        $int7 = calc(~script2181(2, construction, 0) / 2);
+    } else if (oc_param($obj1, param_223) ! null) {
+        $int7 = ~script9883(oc_param($obj1, param_223));
     }
-    if_setgraphic(enum(int, graphic, enum_371, $int2), interface_1370:com_28);
-    $string0 = ~makex2012_get_item_xp($obj0, $int5, $int3, 1);
-    if (string_length($string0) <= $int6) {
+    $graphic6 = enum(int, graphic, enum_371, $int3);
+    $string0 = ~makex2012_get_item_xp($obj1, $int7, $int4, 1);
+    if (string_length($string0) <= $int8) {
         if (string_length($string0) = 1) {
             $string0 = append("0", $string0);
         }
@@ -40,32 +42,33 @@ if ($int2 ! 0) {
     } else {
         $string0 = append(substring($string0, 0, calc(string_length($string0) - 1)), "xp");
     }
-    if_settext($string0, interface_1370:com_29);
-    $string1 = "<enum(int, string, enum_108, $int2)> Experience";
+    $string1 = "<enum(int, string, enum_108, $int3)> Experience";
 } else {
-    $boolean4 = true;
-    if_setgraphic(null, interface_1370:com_28);
-    if_settext("-", interface_1370:com_29);
+    $int5 = 1;
+    $graphic6 = null;
+    $string0 = "-";
     $string1 = "No xp Gain";
 }
-~script13959(interface_1370:com_20, struct_14998, $boolean4);
-if_setonmouserepeat("script8799($string1, event_com, event_comsubid)", interface_1370:com_19);
-$int2 = oc_param($obj0, param_2698);
-if (oc_param($obj0, param_2996) = false) {
-    $int3 = oc_param($obj0, param_2653);
+~script2554($component0, 0, $graphic6, $string0, $string1, $int5, 1);
+$int5 = 1;
+$graphic6 = null;
+$string0 = "-";
+$string1 = "";
+$int3 = oc_param($obj1, param_2698);
+if (oc_param($obj1, param_2996) = false) {
+    $int4 = oc_param($obj1, param_2653);
 } else {
-    $int3 = 1;
+    $int4 = 1;
 }
-if ($int2 ! 0) {
-    $boolean4 = false;
-    $int5 = oc_param($obj0, param_2699);
-    if_setgraphic(enum(int, graphic, enum_371, $int2), interface_1370:com_38);
-    if (~script7166($obj0) = true) {
-        $string0 = tostring(calc($int3 * $int5 / 10000));
+if ($int3 ! 0) {
+    $int5 = 0;
+    $int7 = oc_param($obj1, param_2699);
+    if (~script7166($obj1) = true) {
+        $string0 = tostring(calc($int4 * $int7 / 10000));
     } else {
-        $string0 = ~makex2012_get_item_xp($obj0, $int5, $int3, 2);
+        $string0 = ~makex2012_get_item_xp($obj1, $int7, $int4, 2);
     }
-    if (string_length($string0) <= $int6) {
+    if (string_length($string0) <= $int8) {
         if (string_length($string0) = 1) {
             $string0 = append("0", $string0);
         }
@@ -75,74 +78,84 @@ if ($int2 ! 0) {
     } else {
         $string0 = append(substring($string0, 0, calc(string_length($string0) - 1)), "xp");
     }
-    if_settext($string0, interface_1370:com_39);
-    $string1 = "<enum(int, string, enum_108, $int2)> Experience";
+    $graphic6 = enum(int, graphic, enum_371, $int3);
+    $string0 = ~makex2012_get_item_xp($obj1, $int7, $int4, 1);
+    $string1 = "<enum(int, string, enum_108, $int3)> Experience";
 } else {
-    $boolean4 = true;
-    if_setgraphic(null, interface_1370:com_38);
-    if_settext("-", interface_1370:com_39);
+    $int5 = 1;
+    $graphic6 = null;
+    $string0 = "-";
     $string1 = "No Secondary xp gain";
 }
-~script13959(interface_1370:com_22, struct_14998, $boolean4);
-if_setonmouserepeat("script8799($string1, event_com, event_comsubid)", interface_1370:com_21);
-if (oc_param($obj0, param_2989) ! null) {
-    $obj0 = oc_param($obj0, param_2989);
+~script2554($component0, 4, $graphic6, $string0, $string1, $int5, 1);
+$int5 = 1;
+$graphic6 = null;
+$string0 = "-";
+$string1 = "";
+if (oc_param($obj1, param_2989) ! null) {
+    $obj1 = oc_param($obj1, param_2989);
 }
-$int3 = oc_param($obj0, param_2653);
-def_int $int7 = 0;
+$int4 = oc_param($obj1, param_2653);
+def_int $int9 = 0;
 def_string $string2 = "Sell to Store Gold Value";
 def_string $string3 = "Grand Exchange Gold Value";
 def_string $string4 = "";
+def_string $string5 = "";
+def_string $string6 = "";
+def_string $string7 = "";
+def_int $int10 = 1;
+def_int $int11 = 1;
+def_int $int12 = 1;
+def_int $int13 = 1;
 if (stat_base(magic) >= 55) {
     $string4 = "High Alchemy Gold Value";
 } else {
     $string4 = "Low Alchemy Gold Value";
 }
-if (oc_cost($obj0) > 0) {
-    if (%varclient_2223 = 1) {
-        ~script13959(interface_1370:com_7, struct_14998, false);
-        $int7 = calc($int3 * max(1, scale(oc_cost($obj0), 100, 30)));
-        if_settext(~script940($int7), interface_1370:com_40);
-        $string2 = "<$string2>: <tostring($int7)>";
+if (oc_cost($obj1) > 0) {
+    if (oc_tradeable($obj1) = true) {
+        $int10 = 0;
+        $int9 = calc($int4 * max(1, scale(oc_cost($obj1), 100, 30)));
+        $string5 = ~script940($int9);
+        $string2 = "<$string2>: <tostring($int9)>";
         if (%varclient_2224 ! -1) {
-            ~script13959(interface_1370:com_25, struct_14998, false);
-            $int7 = calc($int3 * %varclient_2224);
-            ~script371;
-            if_settext(~script940($int7), interface_1370:com_43);
-            $string3 = "<$string3>: <tostring($int7)>";
+            $int12 = 0;
+            $int9 = calc($int4 * %varclient_2224);
+            $string6 = ~script940($int9);
+            $string3 = "<$string3>: <tostring($int9)>";
         } else {
-            ~script368;
-            ~script13959(interface_1370:com_25, struct_14998, false);
-            if_settext("-", interface_1370:com_43);
+            $int13 = 0;
+            $int12 = 1;
+            $string6 = "-";
         }
     } else {
-        ~script369;
-        ~script13959(interface_1370:com_7, struct_14998, true);
-        ~script13959(interface_1370:com_25, struct_14998, true);
-        if_settext("-", interface_1370:com_40);
-        if_settext("-", interface_1370:com_43);
+        $int13 = 1;
+        $int10 = 1;
+        $int12 = 1;
+        $string5 = "-";
+        $string6 = "-";
     }
-    if (oc_param($obj0, param_689) = 0) {
-        ~script13959(interface_1370:com_27, struct_14998, false);
+    if (oc_param($obj1, param_689) = 0) {
+        $int11 = 0;
         if (stat_base(magic) >= 55) {
-            $int7 = calc($int3 * scale(60, 100, oc_cost($obj0)));
+            $int9 = calc($int4 * scale(60, 100, oc_cost($obj1)));
         } else {
-            $int7 = calc($int3 * scale(40, 100, oc_cost($obj0)));
+            $int9 = calc($int4 * scale(40, 100, oc_cost($obj1)));
         }
-        if_settext(~script940($int7), interface_1370:com_45);
-        $string4 = "<$string4>: <tostring($int7)>";
+        $string7 = ~script940($int9);
+        $string4 = "<$string4>: <tostring($int9)>";
     } else {
-        ~script13959(interface_1370:com_27, struct_14998, true);
-        if_settext("-", interface_1370:com_45);
+        $int11 = 1;
+        $string7 = "-";
     }
 } else {
-    ~script13959(interface_1370:com_7, struct_14998, true);
-    ~script13959(interface_1370:com_25, struct_14998, true);
-    ~script13959(interface_1370:com_27, struct_14998, true);
-    if_settext("-", interface_1370:com_40);
-    if_settext("-", interface_1370:com_43);
-    if_settext("-", interface_1370:com_45);
+    $int10 = 1;
+    $int12 = 1;
+    $int11 = 1;
+    $string5 = "-";
+    $string6 = "-";
+    $string7 = "-";
 }
-if_setonmouserepeat("script8799($string2, event_com, event_comsubid)", interface_1370:com_23);
-if_setonmouserepeat("script8799($string3, event_com, event_comsubid)", interface_1370:com_24);
-if_setonmouserepeat("script8799($string4, event_com, event_comsubid)", interface_1370:com_26);
+~script2554($component0, 1, "aif_money_xp_icons,1", $string5, $string2, $int10, 1);
+~script2554($component0, 2, aif_grand_exchange_25x25, $string6, $string3, $int12, $int13);
+~script2554($component0, 3, "aif_make_x_gold_icons,2", $string7, $string4, $int11, 1);
