@@ -96,14 +96,16 @@ if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1343:com_18
 if_setposition(0, 202, ^setpos_abs_centre, ^setpos_abs_top, interface_1343:com_18);
 def_string $string1 = "";
 def_struct $struct5 = null;
+def_quest $quest6 = null;
 if ($int2 = 6) {
     if (struct_param($struct1, param_4057) = 63) {
         $struct5 = struct_param($struct1, param_4062);
-        switch_int (struct_param($struct5, param_848)) {
+        $quest6 = struct_param($struct5, param_1403);
+        switch_int (~quest_difficulty($quest6)) {
             case 0, 1 :
                 $string1 = append($string1, "A medium XP lamp");
             case 2, 3, 5 :
-                switch_int (struct_param($struct5, param_847)) {
+                switch_int (struct_param($struct5, param_1345)) {
                     case 73 :
                         $string1 = append($string1, "A huge XP lamp");
                     case 4 :
@@ -139,63 +141,63 @@ if (struct_param($struct1, param_2705) ! null) {
 } else {
     $string1 = append($string1, ".");
 }
-def_int $int6 = struct_param($struct1, param_2235);
-def_int $int7 = 0;
+def_int $int7 = struct_param($struct1, param_2235);
 def_int $int8 = 0;
 def_int $int9 = 0;
+def_int $int10 = 0;
 if (%varplayerbit_24212 = 1) {
-    $int6 = ~script3058($struct1);
-    $int7 = %varplayerbit_24210;
+    $int7 = ~script3058($struct1);
+    $int8 = %varplayerbit_24210;
 } else {
     switch_int ($int2) {
         case 1 :
-            $int7 = %varplayerbit_16576;
+            $int8 = %varplayerbit_16576;
         case 2 :
-            $int7 = %varplayerbit_16580;
+            $int8 = %varplayerbit_16580;
         case 3 :
-            $int7 = %varplayerbit_16584;
+            $int8 = %varplayerbit_16584;
         case 4 :
-            $int7 = %varplayerbit_16588;
+            $int8 = %varplayerbit_16588;
         case 5 :
-            $int7 = %varplayerbit_16592;
+            $int8 = %varplayerbit_16592;
         case 6 :
-            $int7 = %varplayerbit_21379;
+            $int8 = %varplayerbit_21379;
     }
 }
-def_graphic $graphic10 = null;
+def_graphic $graphic11 = null;
 switch_int ($int2) {
     case 1, 2, 3, 4, 5 :
-        if ($int7 >= $int6 & ~script10583($int2) = 1) {
-            $graphic10 = "rs3_icon_daily_challenge,1";
+        if ($int8 >= $int7 & ~script10583($int2) = 1) {
+            $graphic11 = "rs3_icon_daily_challenge,1";
         } else {
-            $graphic10 = "rs3_icon_daily_challenge,0";
+            $graphic11 = "rs3_icon_daily_challenge,0";
         }
-        $int8, $int9 = ~script10580($int2);
+        $int9, $int10 = ~script10580($int2);
         if_sethide(false, interface_1343:com_17);
         if_settext("Days left:", interface_1343:com_53);
         if_settext(~script3944(calc(6 - $int2)), interface_1343:com_52);
     case 6 :
-        if ($int7 >= $int6) {
-            $graphic10 = "rs3_icon_lucky_challenge,1";
+        if ($int8 >= $int7) {
+            $graphic11 = "rs3_icon_lucky_challenge,1";
         } else {
-            $graphic10 = "rs3_icon_lucky_challenge,0";
+            $graphic11 = "rs3_icon_lucky_challenge,0";
         }
         if_sethide(false, interface_1343:com_17);
         if_settext("Hours left:", interface_1343:com_53);
         if_settext(~script346, interface_1343:com_52);
     case default :
         if (~script6783(6) = $struct1) {
-            $int7 = %varplayerbit_16596;
+            $int8 = %varplayerbit_16596;
         }
-        $graphic10 = null;
+        $graphic11 = null;
         if_sethide(true, interface_1343:com_17);
         $string1 = "You will earn XP as you complete the Challenge, but only Daily Challenges give additional rewards.";
 }
 if_settext($string1, interface_1343:com_26);
-if ($graphic10 ! null) {
+if ($graphic11 ! null) {
     if_sethide(false, interface_1343:com_37);
-    if_setgraphic($graphic10, interface_1343:com_37);
-    switch_graphic ($graphic10) {
+    if_setgraphic($graphic11, interface_1343:com_37);
+    switch_graphic ($graphic11) {
         case "rs3_icon_daily_challenge,0" :
             $string0 = "This challenge can be handed in to the Challenge Mistress when complete for a reward.";
         case "rs3_icon_daily_challenge,1" :
@@ -211,17 +213,17 @@ if ($graphic10 ! null) {
 } else {
     if_sethide(true, interface_1343:com_37);
 }
-if ($int9 = 1) {
-    $int7 = calc($int6 + $int7);
+if ($int10 = 1) {
+    $int8 = calc($int7 + $int8);
 }
-if ($int8 = 1) {
-    if_settext(~script10524(struct_param($struct1, param_1273), $int6), interface_1343:com_31);
-    $int6 = calc($int6 * 2);
+if ($int9 = 1) {
+    if_settext(~script10524(struct_param($struct1, param_1273), $int7), interface_1343:com_31);
+    $int7 = calc($int7 * 2);
 }
 if_sethide(false, interface_1343:com_34);
-if_settext("<tostring($int7)> / <tostring($int6)>", interface_1343:com_72);
-if ($int6 ! 0) {
-    if_setsize(scale($int7, $int6, 16384), 16384, ^setsize_rel, ^setsize_rel, interface_1343:com_67);
+if_settext("<tostring($int8)> / <tostring($int7)>", interface_1343:com_72);
+if ($int7 ! 0) {
+    if_setsize(scale($int8, $int7, 16384), 16384, ^setsize_rel, ^setsize_rel, interface_1343:com_67);
 } else {
     if_setsize(16384, 16384, ^setsize_rel, ^setsize_rel, interface_1343:com_67);
 }

@@ -1,0 +1,26 @@
+// 4000
+[proc,script4000](obj $obj0)(int)
+def_int $int1 = oc_param($obj0, param_7863);
+def_int $int2 = oc_param($obj0, param_7864);
+if ($int2 > 0) {
+    if (inv_total(inv_93, obj_6714) > 0 | inv_total(inv_94, obj_6714) > 0) {
+        $int2 = calc($int2 + 2);
+    }
+    if (~is_active_aura(obj_20965) = true) {
+        $int2 = min(calc($int2 + 3), 100);
+    } else if (~is_active_aura(obj_22276) = true) {
+        $int2 = min(calc($int2 + 5), 100);
+    } else if (~is_active_aura(obj_22925) = true) {
+        $int2 = min(calc($int2 + 7), 100);
+    } else if (~is_active_aura(obj_23870) = true) {
+        $int2 = min(calc($int2 + 10), 100);
+    }
+    $int1 = calc($int1 + scale($int2, 100, ~script7081));
+}
+switch_obj ($obj0) {
+    case obj_21386, obj_21387, obj_21388 :
+        if (%varplayerbit_43336 = 0) {
+            return(0);
+        }
+}
+return($int1);

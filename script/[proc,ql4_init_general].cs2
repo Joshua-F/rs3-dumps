@@ -1,5 +1,5 @@
 // 2160
-[proc,ql4_init_general](int $int0, int $int1)
+[proc,ql4_init_general](component $component0, int $int1)
 def_struct $struct2 = enum(int, struct, enum_169, $int1);
 if ($struct2 = null) {
     return;
@@ -8,8 +8,8 @@ def_enum $enum3 = struct_param($struct2, param_61);
 if ($enum3 = null) {
     return;
 }
-def_component $component4 = ~script12681($int0);
-def_component $component5 = ~ql4_layer_scrollbar($int0);
+def_component $component4 = ~script12681($component0);
+def_component $component5 = ~ql4_layer_scrollbar($component0);
 cc_deleteall($component4);
 def_int $int6 = 0;
 def_int $int7 = 0;
@@ -20,7 +20,7 @@ def_int $int11 = 15;
 def_fontmetrics $fontmetrics12 = graphic_17813;
 def_int $int13 = 20;
 def_fontmetrics $fontmetrics14 = cinzel_13pt_bold;
-if (%varplayerbit_38842 = 1) {
+if (~script6431 = true) {
     $int11 = 30;
     $fontmetrics12 = graphic_17814;
     $int13 = 20;
@@ -31,26 +31,37 @@ if (%varplayerbit_38842 = 1) {
 %varclient_1103 = %varplayerbit_318;
 %varclient_692 = %varplayerbit_316;
 %varclient_3853 = %varplayerbit_20864;
+%varclient_6562 = %varplayerbit_43788;
+%varclient_6563 = %varplayerbit_43789;
 %varclient_272 = enum_getoutputcount($enum3);
-def_int $int15 = 0;
+def_string $string0 = "";
 while ($int7 < %varclient_272) {
     $struct8 = enum(int, struct, $enum3, $int6);
     cc_create($component4, ^iftype_text, $int6);
     if ($struct8 ! null) {
         $int7 = calc($int7 + 1);
-        $int10 = ~ql4_getprogress($int6);
+        $int10 = ~script3982($struct8);
+        cc_setsize(100, $int11, ^setsize_abs, ^setsize_abs);
         cc_setsize(20, $int11, ^setsize_minus, ^setsize_abs);
-        if (~script6431 = true) {
-            $int15 = ~script7593(struct_param($struct8, param_845), cc_getwidth, $fontmetrics12, 0);
-            if ($int15 > 30) {
-                cc_setsize(20, calc($int11 + 20), ^setsize_minus, ^setsize_abs);
+        $string0 = ~quest_sortname($struct8);
+        if (paraheight($string0, cc_getwidth, $fontmetrics12) > 1) {
+            $string0 = paraline($string0, cc_getwidth, $fontmetrics12, 0);
+            if (calc(string_length($string0) - string_length("(...)")) <= 0) {
+                $string0 = "...";
+            } else {
+                $string0 = substring($string0, 0, calc(string_length($string0) - string_length("(...)")));
+                $string0 = append($string0, "(...)");
             }
+        }
+        if (~script6431 = true & ~script7593($string0, cc_getwidth, $fontmetrics12, 0) > 30) {
+            cc_setsize(20, calc($int11 + 20), ^setsize_minus, ^setsize_abs);
         }
         cc_setcolour(0x222222);
         cc_settextfont($fontmetrics12);
         cc_settextalign(^settextalign_left, ^settextalign_top, 0);
         cc_settextshadow(true);
-        cc_settext(struct_param($struct8, param_845));
+        cc_settext($string0);
+        cc_setmaxlines(1);
         if ($int9 = -1 & $struct8 = struct_510 & $int1 = 1) {
             $int9 = cc_getid;
         }
@@ -60,7 +71,7 @@ while ($int7 < %varclient_272) {
     $int6 = calc($int6 + 1);
 }
 %varclient_273 = calc($int6 - 1);
-while ($int6 < calc(%varclient_273 + 10)) {
+while ($int6 < calc(%varclient_273 + 60)) {
     cc_create($component4, ^iftype_text, $int6);
     cc_settextfont($fontmetrics14);
     cc_setsize(0, $int13, ^setsize_minus, ^setsize_abs);
@@ -72,7 +83,7 @@ while ($int6 < calc(%varclient_273 + 10)) {
     cc_setmaxlines(1);
     $int6 = calc($int6 + 1);
 }
-~ql4_sort($int0, $int1, %varclient_693, %varclient_694, %varclient_692, %varclient_1103, %varclient_3853);
+~ql4_sort($component0, $int1, %varclient_693, %varclient_694, %varclient_692, %varclient_1103, %varclient_3853, %varclient_6562, %varclient_6563);
 ~scrollbar_vertical($component5, $component4, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
 if ($int9 ! -1) {
     ~script214($component4, $int9);

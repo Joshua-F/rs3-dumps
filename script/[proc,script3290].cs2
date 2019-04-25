@@ -1,47 +1,158 @@
 // 3290
-[proc,script3290](int $int0, obj $obj1)(string)
+[proc,script3290](obj $obj0, int $int1, int $int2)(boolean, string)
+if ($obj0 = null) {
+    return(false, "");
+}
+if ($int1 < -1 | $int1 > 8) {
+    return(false, "");
+}
+if (oc_wearpos($obj0) = -1) {
+    return(false, "");
+}
 def_string $string0 = "";
-switch_int ($int0) {
+switch_int ($int1) {
     case 1 :
-        $string0 = oc_param($obj1, param_528);
+        $string0 = oc_param($obj0, param_528);
     case 2 :
-        $string0 = oc_param($obj1, param_529);
+        $string0 = oc_param($obj0, param_529);
     case 3 :
-        $string0 = oc_param($obj1, param_530);
+        $string0 = oc_param($obj0, param_530);
     case 4 :
-        $string0 = oc_param($obj1, param_531);
+        $string0 = oc_param($obj0, param_531);
     case 5 :
-        $string0 = oc_param($obj1, param_1211);
+        $string0 = oc_param($obj0, param_1211);
     case 6 :
-        $string0 = oc_param($obj1, param_6712);
+        $string0 = oc_param($obj0, param_6712);
     case 7 :
-        $string0 = oc_param($obj1, param_6713);
+        $string0 = oc_param($obj0, param_6713);
     case 8 :
-        $string0 = oc_param($obj1, param_6714);
+        $string0 = oc_param($obj0, param_6714);
 }
-switch_obj ($obj1) {
-    case obj_42682 :
-        if (%varplayerbit_40405 ! 35 & %varplayerbit_40405 ! 60) {
-            $string0 = "";
-        }
-    case obj_20767, obj_32151 :
-        if (map_members = true & $int0 >= 4 & $int0 <= 6) {
-            $string0 = ~script474($obj1, calc($int0 - 3));
-        }
-    case obj_32052, obj_32053, obj_32054, obj_32055 :
-        if (map_members = true & ($int0 = 3 | $int0 = 4)) {
-            $string0 = ~script474($obj1, calc($int0 - 2));
-        }
-    case obj_44155 :
-        if (~event_state(struct_40722) ! 2 & $int0 >= 2 & $int0 <= 4) {
-            $string0 = "";
-        }
-    case obj_44550 :
-        switch_int ($int0) {
-            case 1 :
-                $string0 = enum(int, string, enum_14610, %varplayerbit_25054);
-            case 2 :
-                $string0 = enum(int, string, enum_14610, %varplayerbit_25055);
-        }
+if (oc_param($obj0, param_2281) ! null | oc_param($obj0, param_6810) = true) {
+    switch_int ($int1) {
+        case -1, 0 :
+            return(true, "");
+        case 1 :
+            if ($int2 = 1) {
+                return(true, "Operate");
+            } else if (string_length($string0) > 0) {
+                return(true, $string0);
+            }
+        case 2, 3, 4, 5, 6, 7, 8 :
+            if ($int2 = 0 & string_length($string0) > 0) {
+                return(true, $string0);
+            }
+    }
+} else {
+    if ($int1 = 0) {
+        return(false, "");
+    }
+    switch_obj ($obj0) {
+        case obj_42682 :
+            if (%varplayerbit_40405 = 35 | %varplayerbit_40405 = 60) {
+                if (($int1 = 1 | $int1 = -1) & string_length($string0) > 0) {
+                    return(true, $string0);
+                }
+                if (($int1 = 2 | $int1 = -1) & string_length($string0) > 0) {
+                    return(true, $string0);
+                }
+            }
+        case obj_20767, obj_32151 :
+            switch_int ($int1) {
+                case -1 :
+                    return(true, "");
+                case 1, 2, 3, 7, 8 :
+                    if (string_length($string0) > 0) {
+                        return(true, $string0);
+                    }
+                case 4 :
+                    if (string_length(~script474($obj0, 1)) > 0) {
+                        return(true, ~script474($obj0, 1));
+                    }
+                case 5 :
+                    if (string_length(~script474($obj0, 2)) > 0) {
+                        return(true, ~script474($obj0, 2));
+                    }
+                case 6 :
+                    if (string_length(~script474($obj0, 3)) > 0) {
+                        return(true, ~script474($obj0, 3));
+                    }
+            }
+        case obj_32052, obj_32053, obj_32054, obj_32055 :
+            switch_int ($int1) {
+                case -1 :
+                    return(true, "");
+                case 1, 2, 5, 6, 7, 8 :
+                    if (string_length($string0) > 0) {
+                        return(true, $string0);
+                    }
+                case 3 :
+                    if (string_length(~script474($obj0, 1)) > 0) {
+                        return(true, ~script474($obj0, 1));
+                    }
+                case 4 :
+                    if (string_length(~script474($obj0, 2)) > 0) {
+                        return(true, ~script474($obj0, 2));
+                    }
+            }
+        case obj_44155 :
+            switch_int ($int1) {
+                case -1 :
+                    return(true, "");
+                case 1, 5, 6, 7, 8 :
+                    if (string_length($string0) > 0) {
+                        return(true, $string0);
+                    }
+                case 2, 3, 4 :
+                    if (~event_state(struct_40722) = 2) {
+                        return(true, $string0);
+                    }
+            }
+        case obj_44550 :
+            switch_int ($int1) {
+                case -1 :
+                    return(true, "");
+                case 1 :
+                    return(true, enum(int, string, enum_14610, %varplayerbit_25054));
+                case 2 :
+                    return(true, enum(int, string, enum_14610, %varplayerbit_25055));
+                case 3, 4, 5, 6, 7, 8 :
+                    if (string_length($string0) > 0) {
+                        return(true, $string0);
+                    }
+            }
+        case default :
+            switch_int ($int1) {
+                case -1 :
+                    if (string_length(oc_param($obj0, param_528)) > 0) {
+                        return(true, "");
+                    }
+                    if (string_length(oc_param($obj0, param_529)) > 0) {
+                        return(true, "");
+                    }
+                    if (string_length(oc_param($obj0, param_530)) > 0) {
+                        return(true, "");
+                    }
+                    if (string_length(oc_param($obj0, param_531)) > 0) {
+                        return(true, "");
+                    }
+                    if (string_length(oc_param($obj0, param_1211)) > 0) {
+                        return(true, "");
+                    }
+                    if (string_length(oc_param($obj0, param_6712)) > 0) {
+                        return(true, "");
+                    }
+                    if (string_length(oc_param($obj0, param_6713)) > 0) {
+                        return(true, "");
+                    }
+                    if (string_length(oc_param($obj0, param_6714)) > 0) {
+                        return(true, "");
+                    }
+                case 1, 2, 3, 4, 5, 6, 7, 8 :
+                    if (string_length($string0) > 0) {
+                        return(true, $string0);
+                    }
+            }
+    }
 }
-return($string0);
+return(false, "");

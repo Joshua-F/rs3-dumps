@@ -1,21 +1,67 @@
 // 2697
-[clientscript,script2697](int $int0, int $int1)
-if ($int0 = detailget_toolkit) {
-    return;
+[clientscript,script2697]
+def_component $component0 = interface_78:com_4;
+def_component $component1 = interface_78:com_5;
+def_component $component2 = interface_78:com_6;
+def_component $component3 = interface_78:com_7;
+def_int $int4 = enum_getoutputcount(enum_7674);
+def_int $int5 = 0;
+def_struct $struct6 = null;
+def_int $rgb7 = 0xff8c00;
+while ($int5 < $int4) {
+    $struct6 = enum(int, struct, enum_7674, $int5);
+    cc_create($component0, ^iftype_graphic, $int5);
+    cc_setsize(60, 27, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic("stats_background_button,0");
+    cc_create($component1, ^iftype_graphic, $int5);
+    cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic(struct_param($struct6, param_3442));
+    cc_create($component2, ^iftype_text, $int5);
+    cc_setsize(18, 11, ^setsize_abs, ^setsize_abs);
+    cc_settextfont(p11_full);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_setcolour($rgb7);
+    cc_create($component3, ^iftype_text, $int5);
+    cc_setsize(18, 11, ^setsize_abs, ^setsize_abs);
+    cc_settextfont(p11_full);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_setcolour($rgb7);
+    $int5 = calc($int5 + 1);
 }
-if ($int0 = 2) {
-    return;
+def_component $component8 = interface_78:com_12;
+def_component $component9 = interface_78:com_13;
+if_setsize(16384, 0, ^setsize_rel, ^setsize_minus, $component8);
+cc_create($component8, ^iftype_graphic, 0);
+cc_setgraphic(rs3_icon_tab_skills);
+cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
+cc_setposition(2, 0, ^setpos_abs_left, ^setpos_abs_centre);
+def_string $string0 = "The total number of levels gained across all skills.";
+cc_setonmouserepeat("script8801($string0, event_com, event_comsubid, ^settextalign_left, ^settextalign_centre, 12)");
+cc_setonmouseleave("script8805");
+cc_create($component8, ^iftype_text, 1);
+cc_setsize(40, 0, ^setsize_abs, ^setsize_minus);
+cc_setposition(30, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_settextfont(graphic_17813);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_setcolour(^white);
+if_sethide(true, $component9);
+if (if_getwidth(interface_78:com_9) >= 120) {
+    if_setsize(calc(16384 / 2), 0, ^setsize_rel, ^setsize_minus, $component8);
+    if_setsize(calc(16384 / 2), 0, ^setsize_rel, ^setsize_minus, $component9);
+    if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, $component9);
+    if_sethide(false, $component9);
+    cc_create($component9, ^iftype_graphic, 0);
+    cc_setgraphic(aif_combat_icon);
+    cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
+    cc_setposition(2, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    $string0 = "Combat level is calculated from levels achieved in combat related skills.";
+    cc_setonmouserepeat("script8801($string0, event_com, event_comsubid, ^settextalign_left, ^settextalign_centre, 12)");
+    cc_setonmouseleave("script8805");
+    cc_create($component9, ^iftype_text, 1);
+    cc_setsize(40, 0, ^setsize_abs, ^setsize_minus);
+    cc_setposition(30, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    cc_settextfont(graphic_17813);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_setcolour(^white);
 }
-detail_toolkit($int0);
-def_int $int2 = detailget_toolkit;
-~script2593($int2, null);
-if ($int0 ! $int2) {
-    detail_toolkit_default($int2, true);
-    ~graphics_options_message($int1, 1, "RuneScape was unable to enter that display mode.<br><br>Please visit our website for more information.", "", "");
-}
-~graphics_options_rebuild($int2, getwindowmode, ~graphics_options_reviewoptions($int2), $int1);
-if ($int2 = 1 | $int2 = 3 | $int2 = 5) {
-    ~script2700(1, $int1, 0);
-} else {
-    detail_toolkit_default($int2, false);
-}
+~script6098;

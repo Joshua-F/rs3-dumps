@@ -2,10 +2,20 @@
 [proc,script8769](int $int0)(int)
 def_int $int1 = %varclient_1971;
 def_int $int2 = 0;
-if (%varplayerbit_19949 ! 1) {
+if (%varplayerbit_19949 ! 1 & %varplayerbit_19949 ! 3) {
     return($int1);
 }
-$int2 = scale(calc($int0 - 500), calc(3000 - 500), 1000000);
-$int1 = calc(%varclient_1971 + scale(%varclient_1971, 1870000, $int2));
-%varclient_1971 = max(min(%varclient_1971, 5725), 1860);
+if (%varplayerbit_19949 = 1) {
+    $int2 = scale(calc($int0 - 500), calc(3000 - 500), 1000000);
+    $int1 = calc(%varclient_1971 + scale(%varclient_1971, 1870000, $int2));
+    %varclient_1971 = max(min(%varclient_1971, 5725), 1860);
+} else {
+    $int2 = scale(calc($int0 - 10), calc(4090 - 10), 1000000);
+    $int1 = calc(%varclient_1971 + scale(%varclient_1971, 1870000, $int2));
+    if (~script6431 = true) {
+        %varclient_1971 = max(min(%varclient_1971, 9000), 1350);
+    } else {
+        %varclient_1971 = max(min(%varclient_1971, 12000), 1350);
+    }
+}
 return($int1);

@@ -7,95 +7,105 @@ def_int $int18 = 0;
 def_int $int19 = 0;
 def_int $int20 = 0;
 def_int $int21 = 0;
-def_int $int22 = -1;
-if ($int14 = 0) {
-    if_sethide(true, interface_90:com_3);
-    if_sethide(false, interface_90:com_264);
-    ~script13972(interface_90:com_262, interface_90:com_263, struct_28595, "Check Animals", 1);
-    ~script13969(interface_90:com_259, interface_90:com_260, struct_28595, "Add/Remove Animals");
-    %varclient_6489 = 0;
-    %varclient_6490 = 0;
-    %varclient_6491 = 0;
-    if ($int0 = 1) {
-        if_sethide(true, interface_90:com_304);
-        if_sethide(true, interface_90:com_305);
-        if_sethide(true, interface_90:com_265);
-        if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, interface_90:com_264);
-        if_setsize(512, 272, ^setsize_abs, ^setsize_abs, interface_90:com_0);
-        if_sethide(true, interface_90:com_257);
-    } else {
-        if ($int4 = 0) {
-            cc_deleteall(interface_90:com_267);
-            cc_deleteall(interface_90:com_268);
-            ~script13971(interface_90:com_267, interface_90:com_268, struct_28553, "Cure Disease", true);
-        } else {
-            cc_deleteall(interface_90:com_267);
-            cc_deleteall(interface_90:com_268);
-            ~script13969(interface_90:com_267, interface_90:com_268, struct_28553, "Cure Disease");
+def_dbrow $dbrow22 = ~script2646($inv1);
+def_int $int23 = 334;
+def_int $int24 = 512;
+if_setsize($int24, $int23, ^setsize_abs, ^setsize_abs, interface_90:com_0);
+switch_int ($int14) {
+    case 0 :
+        if_sethide(true, interface_90:com_4);
+        if_sethide(false, interface_90:com_66);
+        if_sethide(true, interface_90:com_3);
+        ~script13972(interface_90:com_64, interface_90:com_65, struct_28595, "Check Animals", 1);
+        ~script13969(interface_90:com_61, interface_90:com_62, struct_28595, "Add/Remove Animals");
+        ~script13969(interface_90:com_136, interface_90:com_137, struct_28595, "Farmhands");
+        %varclient_6489 = 0;
+        %varclient_6490 = 0;
+        %varclient_6491 = 0;
+        ~script3695($inv1);
+        if ($int0 = 1) {
+            if_sethide(true, interface_90:com_58);
+            if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, interface_90:com_66);
+            $int23 = calc($int23 - 23);
         }
-        if ($int7 <= 0) {
-            cc_deleteall(interface_90:com_273);
-            cc_deleteall(interface_90:com_274);
-            ~script13971(interface_90:com_273, interface_90:com_274, struct_24100, "Gather Produce", true);
-        } else {
-            cc_deleteall(interface_90:com_273);
-            cc_deleteall(interface_90:com_274);
-            ~script13969(interface_90:com_273, interface_90:com_274, struct_28553, "Gather Produce");
+        if ($dbrow22 ! null) {
+            ~pof_update_button(interface_90:com_69, interface_90:com_70, "Cure Disease", ~script915($int4));
+            ~pof_update_button(interface_90:com_75, interface_90:com_76, "Gather Produce", ~script915($int7));
+        } else if ($inv1 = inv_93) {
+            if_sethide(true, interface_90:com_67);
+            $int23 = calc($int23 - 42);
+        } else if ($inv1 = inv_859) {
+            if_sethide(true, interface_90:com_69);
+            if_sethide(true, interface_90:com_70);
+            if_sethide(true, interface_90:com_75);
+            if_sethide(true, interface_90:com_76);
         }
-    }
-    if ($struct8 = null) {
-        ~script13994(interface_90:com_327, null, struct_28556, "", true);
-    } else {
-        ~script13993(interface_90:com_327, null, struct_28556, "");
-    }
-    if ($struct9 = null) {
-        ~script13994(interface_90:com_323, null, struct_28556, "", true);
-    } else {
-        ~script13993(interface_90:com_323, null, struct_28556, "");
-    }
-    if ($struct10 = null) {
-        ~script13994(interface_90:com_330, null, struct_28556, "", true);
-    } else {
-        ~script13993(interface_90:com_330, null, struct_28556, "");
-    }
-    if_setsize($int15, if_getheight(interface_90:com_294), ^setsize_abs, ^setsize_abs, interface_90:com_294);
-    if_settext("<tostring($int5)>%", interface_90:com_295);
-    if_setsize($int16, if_getheight(interface_90:com_302), ^setsize_abs, ^setsize_abs, interface_90:com_302);
-    if_settext("<tostring($int6)>%", interface_90:com_303);
-    if_settext($string1, interface_90:com_316);
-    if_settext($string2, interface_90:com_296);
-    if_settext($string3, interface_90:com_314);
-    if_settext($string4, interface_90:com_315);
-    if_settext($string5, interface_90:com_313);
-    if_settext($string7, interface_90:com_306);
-    if_settext($string0, interface_90:com_307);
-    if_settext($string6, interface_90:com_288);
-    if_settext($string8, interface_90:com_317);
-    if ($struct8 = null) {
-        if_sethide(true, interface_90:com_326);
-        if_sethide(false, interface_90:com_321);
-    } else {
-        if_sethide(false, interface_90:com_322);
-        if_sethide(false, interface_90:com_329);
-        if_sethide(true, interface_90:com_321);
-        if_sethide(false, interface_90:com_326);
-        if_settext(struct_param($struct8, param_7456), interface_90:com_328);
-        if ($struct9 ! null) {
-            if_settext(struct_param($struct9, param_7456), interface_90:com_324);
-            if ($struct10 ! null) {
-                if_settext(struct_param($struct10, param_7456), interface_90:com_331);
+        if_setsize($int24, $int23, ^setsize_abs, ^setsize_abs, interface_90:com_0);
+        if ($struct8 = null) {
+            ~script13994(interface_90:com_129, null, struct_28556, "", true);
+        } else {
+            ~script13993(interface_90:com_129, null, struct_28556, "");
+        }
+        if ($struct9 = null) {
+            ~script13994(interface_90:com_125, null, struct_28556, "", true);
+        } else {
+            ~script13993(interface_90:com_125, null, struct_28556, "");
+        }
+        if ($struct10 = null) {
+            ~script13994(interface_90:com_132, null, struct_28556, "", true);
+        } else {
+            ~script13993(interface_90:com_132, null, struct_28556, "");
+        }
+        if_setsize($int15, if_getheight(interface_90:com_96), ^setsize_abs, ^setsize_abs, interface_90:com_96);
+        if_settext("<tostring($int5)>%", interface_90:com_97);
+        if_setsize($int16, if_getheight(interface_90:com_104), ^setsize_abs, ^setsize_abs, interface_90:com_104);
+        if_settext("<tostring($int6)>%", interface_90:com_105);
+        if_settext($string1, interface_90:com_118);
+        if_settext($string2, interface_90:com_98);
+        if_settext($string3, interface_90:com_116);
+        if_settext($string4, interface_90:com_117);
+        if_settext($string5, interface_90:com_115);
+        if_settext($string7, interface_90:com_108);
+        if_settext($string0, interface_90:com_109);
+        if_settext($string6, interface_90:com_90);
+        if_settext($string8, interface_90:com_119);
+        if ($struct8 = null) {
+            if_sethide(true, interface_90:com_128);
+            if_sethide(false, interface_90:com_123);
+        } else {
+            if_sethide(false, interface_90:com_124);
+            if_sethide(false, interface_90:com_131);
+            if_sethide(true, interface_90:com_123);
+            if_sethide(false, interface_90:com_128);
+            if_settext(struct_param($struct8, param_7456), interface_90:com_130);
+            if ($struct9 ! null) {
+                if_settext(struct_param($struct9, param_7456), interface_90:com_126);
+                if ($struct10 ! null) {
+                    if_settext(struct_param($struct10, param_7456), interface_90:com_133);
+                } else {
+                    if_settext("No trait", interface_90:com_133);
+                }
             } else {
-                if_settext("No trait", interface_90:com_331);
+                if_settext("No trait", interface_90:com_126);
             }
-        } else {
-            if_settext("No trait", interface_90:com_324);
         }
-    }
-    if_setnpcmodel($npc11, interface_90:com_284);
-    if_setmodelanim(bas_getanim_ready($bas13), interface_90:com_284);
-    if ($int12 > 200) {
-        if_setmodelzoom($int12, interface_90:com_284);
-    }
-} else {
-    ~script361($inv1);
+        if_setnpcmodel($npc11, interface_90:com_86);
+        if_setmodelanim(bas_getanim_ready($bas13), interface_90:com_86);
+        if ($int12 > 200) {
+            if_setmodelzoom($int12, interface_90:com_86);
+        }
+    case 1 :
+        if ($dbrow22 ! null) {
+            ~script3696($dbrow22);
+        }
+    case 2 :
+        if ($dbrow22 ! null) {
+            if_sethide(true, interface_90:com_4);
+            if_sethide(true, interface_90:com_66);
+            if_sethide(false, interface_90:com_3);
+            ~script13969(interface_90:com_64, interface_90:com_65, struct_28595, "Check Animals");
+            ~script13969(interface_90:com_61, interface_90:com_62, struct_28595, "Add/Remove Animals");
+            ~script13972(interface_90:com_136, interface_90:com_137, struct_28595, "Farmhands", 1);
+            ~script4197($dbrow22);
+        }
 }

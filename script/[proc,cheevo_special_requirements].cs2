@@ -8,21 +8,24 @@ def_int $int4 = 1;
 def_int $int5 = 0;
 def_int $int6 = %varplayer_1297;
 def_int $int7 = %varplayer_423;
+def_string $string1 = "";
 if (struct_param(enum(int, struct, enum_12251, $int0), param_1346) > 0 | struct_param(enum(int, struct, enum_12251, $int0), param_1376) ! 0) {
     return($int4, "");
 }
 switch_int ($int0) {
-    case 23, 249, 1213, 1094, 167, 961, 147, 294, 1713, 1737 :
+    case 23, 249, 1213, 1094, 167, 961, 147, 294, 1737 :
         $int4, $string0 = ~cheevo_special_string($int4, $string0, %varplayerbit_12058, "Access to the fairy ring network");
+    case 1713 :
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, %varplayerbit_12058, "Access to the fairy ring network");
+        $int5 = 0;
+        if (%varplayerbit_9482 > 12) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~cheevo_req_quest_partial(30));
     case 12 :
         $int4, $string0 = ~cheevo_special_string($int4, $string0, %varplayerbit_4165, "Larry or Chuck must explain the purpose of Penguin Hide and Seek");
     case 49 :
         $int4, $string0 = ~cheevo_special_string($int4, $string0, %varplayerbit_1181, "Unlock 500 music tracks in order to perform the Air Guitar emote");
-    case 59 :
-        if (%varplayer_3149 >= 4) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13300("Abyss"));
     case 1105 :
         if (%varplayerbit_3730 >= 450) {
             $int5 = 1;
@@ -58,11 +61,6 @@ switch_int ($int0) {
             }
             $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~cheevo_req_quest(50));
         }
-    case 175, 317 :
-        if (%varplayer_2747 >= 6 | %varplayerbit_13706 = 1) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13300("Bar Crawl"));
     case 177, 1835 :
         if (%varplayerbit_1623 > 0) {
             $int5 = 1;
@@ -103,11 +101,20 @@ switch_int ($int0) {
             $int5 = 1;
         }
         if (%varplayerbit_18023 >= 5) {
-            $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Obtain Balmung from Kharshai. (<~script13301("Koschei'sTroubles")>)");
+            $string1 = "Obtain Balmung from Kharshai. (";
+            $string1 = append($string1, ~script13301("Koschei's Troubles"));
+            $string1 = append($string1, ")");
+            $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, $string1);
         } else if (%varplayerbit_10871 >= 126) {
-            $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Obtain Balmung from Queen Sigrid. (<~cheevo_req_quest_partial(49)>)");
+            $string1 = "Obtain Balmung from Queen Sigrid. (";
+            $string1 = append($string1, ~cheevo_req_quest_partial(49));
+            $string1 = append($string1, ")");
+            $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, $string1);
         } else {
-            $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Obtain Balmung from Brundt the Chieftain. (<~cheevo_req_quest_partial(163)>)");
+            $string1 = "Obtain Balmung from Brundt the Chieftain. (";
+            $string1 = append($string1, ~cheevo_req_quest_partial(163));
+            $string1 = append($string1, ")");
+            $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, $string1);
         }
     case 107 :
         if (%varplayer_2268 >= 2 & %varplayerbit_10420 = 0 | %varplayer_2268 >= 10) {
@@ -176,9 +183,13 @@ switch_int ($int0) {
         $int4, $string0 = ~cheevo_special_string($int4, $string0, %varplayerbit_25955, "Unlock this recipe");
     case 1226 :
         if (%varplayerbit_29077 < 95) {
-            $int4, $string0 = ~cheevo_special_string($int4, $string0, %varplayerbit_10542, "Talk to Eluned after completing <~cheevo_req_quest_name(161)>");
+            $string1 = "Talk to Eluned after completing ";
+            $string1 = append($string1, ~cheevo_req_quest_name(161));
+            $int4, $string0 = ~cheevo_special_string($int4, $string0, %varplayerbit_10542, $string1);
         } else {
-            $int4, $string0 = ~cheevo_special_string($int4, $string0, %varplayerbit_10542, "Talk to Islwyn, in Prifddinas, after completing <~cheevo_req_quest_name(215)>");
+            $string1 = "Talk to Islwyn, in Prifddinas, after completing ";
+            $string1 = append($string1, ~cheevo_req_quest_name(215));
+            $int4, $string0 = ~cheevo_special_string($int4, $string0, %varplayerbit_10542, $string1);
         }
     case 276, 1792 :
         if (%varplayer_1297 >= 33) {
@@ -197,56 +208,6 @@ switch_int ($int0) {
             $int5 = 1;
         }
         $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~cheevo_req_quest_partial(176));
-    case 1758 :
-        if (%varplayerbit_33156 >= 8) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13300(struct_param(struct_33802, param_5784)));
-        $int5 = 0;
-        if (%varplayerbit_33152 >= 14) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13300(struct_param(struct_33803, param_5784)));
-        $int5 = 0;
-        if (%varplayerbit_33177 >= 6) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13300(struct_param(struct_33804, param_5784)));
-    case 1765 :
-        if (%varplayerbit_33157 >= 7) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13300(struct_param(struct_33805, param_5784)));
-    case 1766 :
-        if (%varplayerbit_33931 >= 11) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13300(struct_param(struct_34579, param_5784)));
-    case 1767, 1768, 1769 :
-        if (%varplayerbit_33932 >= 22) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13300(struct_param(struct_34580, param_5784)));
-    case 1770 :
-        if (%varplayerbit_33933 >= 32) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13300(struct_param(struct_34581, param_5784)));
-        $int5 = 0;
-        if (%varplayerbit_33935 >= 16) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13300(struct_param(struct_34583, param_5784)));
-        $int5 = 0;
-        if (%varplayerbit_33934 >= 10) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13300(struct_param(struct_34582, param_5784)));
-    case 1201 :
-        if (%varplayerbit_15344 >= 10) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Defeat Bork in the Chaos Tunnels");
     case 447 :
         if (%varplayerbit_16199 > 0) {
             $int5 = 1;
@@ -257,23 +218,16 @@ switch_int ($int0) {
             $int5 = 1;
         }
         $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Claim Kudos from Historian Minas in Varrock Museum for completing Shield of Arrav");
-    case 448 :
-        if (%varplayer_2618 >= 15) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Talk to Achietties outside the Taverley Heroes' Guild and complete the Heroes' Quest.");
     case 449 :
         $int4, $string0 = ~cheevo_special_string($int4, $string0, %varplayerbit_10909, "Rescue Mad Eadgar from the Troll Stronghold");
-    case 495 :
-        if (%varplayerbit_12753 >= 110) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Complete the Pirate Pete subquest of <~cheevo_req_quest_name(87)>");
     case 508 :
         if (~script165 >= 100) {
             $int5 = 1;
         }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Fully restore Senliten from the <~cheevo_req_quest_name(155)> quest");
+        $string1 = "Fully restore Senliten from the ";
+        $string1 = append($string1, ~cheevo_req_quest_name(155));
+        $string1 = append($string1, " quest");
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, $string1);
     case 2766 :
         if (%varplayerbit_11319 >= 8) {
             $int5 = 1;
@@ -281,21 +235,14 @@ switch_int ($int0) {
         $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Complete the Knight Waves in Camelot");
         $int5 = 0;
         $int4, $string0 = ~cheevo_special_string($int4, $string0, %varplayerbit_5143, "Complete the Soul Wars tutorial");
-    case 2767 :
-        if (%varplayerbit_12768 >= 20) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Rescue Sir Amik Varze in the <~cheevo_req_quest_name(87)> quest");
     case 2776 :
         if (~script165 >= 100) {
             $int5 = 1;
         }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Fully restore Senliten from the <~cheevo_req_quest_name(155)> quest");
-        $int5 = 0;
-        if (%varplayerbit_12772 >= 50) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Rescue King Awowogei in the <~cheevo_req_quest_name(87)> quest");
+        $string1 = "Fully restore Senliten from the ";
+        $string1 = append($string1, ~cheevo_req_quest_name(155));
+        $string1 = append($string1, " quest");
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, $string1);
         $int5 = 0;
         if (%varplayerbit_9312 >= 5) {
             $int5 = 1;
@@ -315,34 +262,77 @@ switch_int ($int0) {
         if (~script165 >= 100) {
             $int5 = 1;
         }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Fully restore Senliten from the <~cheevo_req_quest_name(155)> quest");
-    case 350 :
-        if (%varplayerbit_3584 >= 5) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Complete five Achievements");
+        $string1 = "Fully restore Senliten from the ";
+        $string1 = append($string1, ~cheevo_req_quest_name(155));
+        $string1 = append($string1, " quest");
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, $string1);
     case 2741 :
         $int4, $string0 = ~cheevo_special_string($int4, $string0, ~bool_to_int(~script11669), "Master Barbarian skilling");
-    case 1198, 1733, 2793, 1836, 3134 :
-        if (%varplayerbit_18023 >= 5) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13300("Koschei's Troubles"));
     case 2765 :
-        if (calc(stat_base_actual(attack) + stat_base_actual(strength)) >= 130) {
+        if (calc(stat_base_actual(attack) + stat_base_actual(strength)) >= 130 | stat_base_actual(attack) >= 99 | stat_base_actual(strength) >= 99) {
             $int5 = 1;
         }
         $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Ability to enter the Warriors' Guild");
-        $int5 = 0;
-        if (%varplayerbit_15344 >= 10) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Defeat Bork in the Chaos Tunnels");
     case 2771 :
         if (~cheevo_obtain_progress(struct_36985) = -2 & ~cheevo_obtain_progress(struct_36986) = -2 & ~cheevo_obtain_progress(struct_36987) = -2) {
             $int5 = 1;
         }
         $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Complete the Fremennik Province easy, medium, and hard achievements");
+    case 1757 :
+        if (%varplayerbit_17007 > 0) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Complete the 'Meet the Assassin' voyage in Player Owned Ports");
+    case 1765 :
+        if (~pop_island_unlocked(0) = ^true) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Discover the island of Cyclosis in Player Owned Ports");
+    case 1981, 3367 :
+        if (%varplayerbit_9712 > 12) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~cheevo_req_quest_partial(45));
+    case 1712 :
+        if (%varplayerbit_9482 > 12) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~cheevo_req_quest_partial(30));
+    case 1716 :
+        if (%varplayerbit_13194 >= 20) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~cheevo_req_quest_partial(128));
+    case 1834 :
+        if (%varplayerbit_9482 > 12) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~cheevo_req_quest_partial(30));
+        $int5 = 0;
+        if (inv_total(inv_93, obj_26122) = calc(date_runeday / 10)) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Exactly <~tostring_spacer_local(calc(date_runeday / 10))> obsidian shards in backpack");
+        $int5 = 0;
+        if (%varplayerbit_16915 > 0) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Recently donated TokKul to the Fight Cauldron coffer");
+        $int5 = 0;
+        if (inv_total(inv_94, obj_23644) >= 1) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "TokKul-Zo (uncharged) equipped");
+        $int5 = 0;
+        if (inv_totalparam(inv_94, param_541) = 0) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Do not wear any obsidian armour");
+        $int5 = 0;
+        if (inv_total(inv_94, obj_6570) = 0 & inv_total(inv_94, obj_23659) = 0 & inv_total(inv_94, obj_31610) = 0 & inv_total(inv_94, obj_31611) = 0) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Do not wear a fire cape or any kiln cape");
     case 1975 :
         if (stat_base_actual(mining) >= 65 | stat_base_actual(agility) >= 65 | stat_base_actual(divination) >= 65) {
             $int5 = 1;
@@ -350,21 +340,12 @@ switch_int ($int0) {
         $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13296(65, 13, 65, 8, 65, 26));
     case 1973 :
         $int4, $string0 = ~cheevo_special_string($int4, $string0, ~script13274(50), "50 in all F2P skills");
-    case 1986 :
-        if (stat_base_actual(strength) >= 70 | stat_base_actual(agility) >= 70) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13295(70, 2, 70, 8));
     case 1961 :
         if (~cheevo_obtain_progress(struct_35953) = -2) {
             $int5 = 1;
         }
         $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Complete the Stronghold of Security");
     case 1956 :
-        if (~cheevo_obtain_progress(struct_36017) = -2) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13300("Mahjarrat Memories"));
         $int5 = 0;
         if (%varplayerbit_21841 >= 35) {
             $int5 = 1;
@@ -389,7 +370,10 @@ switch_int ($int0) {
         if (%varplayerbit_10459 > 0) {
             $int5 = 1;
         }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Learn from Sithik Ints how to cure disease during the <~cheevo_req_quest_name(25)> quest");
+        $string1 = "Learn from Sithik Ints how to cure disease during the ";
+        $string1 = append($string1, ~cheevo_req_quest_name(25));
+        $string1 = append($string1, " quest");
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, $string1);
     case 1944 :
         if (%varplayerbit_11858 >= 150) {
             $int5 = 1;
@@ -420,16 +404,6 @@ switch_int ($int0) {
             $int5 = 1;
         }
         $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~cheevo_req_quest_partial(73));
-    case 1898 :
-        if (%varplayerbit_9683 >= 30) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13300("The General's Shadow"));
-    case 1885 :
-        if (~cheevo_obtain_progress(struct_36518) = -2) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13300("Sheep Shearer"));
     case 1863 :
         if (%varplayerbit_1623 > 0) {
             $int5 = 1;
@@ -506,12 +480,7 @@ switch_int ($int0) {
             $int5 = 1;
         }
         $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Total skill level: 60 or above");
-    case 3165, 3167, 3164 :
-        if (stat_base_actual(strength) >= 60 | stat_base_actual(agility) >= 60) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Access to the God Wars dungeon");
-    case 3126, 3135, 3137, 3141, 3146, 3147, 3154, 3157 :
+    case 3165, 3167, 3164, 3126, 3135, 3137, 3141, 3146, 3147, 3154, 3157, 1986 :
         if (stat_base_actual(strength) >= 60 | stat_base_actual(agility) >= 60) {
             $int5 = 1;
         }
@@ -525,12 +494,7 @@ switch_int ($int0) {
         if (stat_base_actual(smithing) >= 70 | stat_base_actual(construction) >= 59) {
             $int5 = 1;
         }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Skill: 70 Smithing / 59 Construction");
-    case 3268 :
-        if (%varplayerbit_12736 >= 5) {
-            $int5 = 1;
-        }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Complete the Evil Dave subquest of <~cheevo_req_quest_name(87)>.");
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13295(70, 14, 59, 22));
     case 3271, 3276, 3281 :
         if (%varplayerbit_27265 >= 35 | %varplayerbit_27266 >= 45) {
             $int5 = 1;
@@ -540,7 +504,7 @@ switch_int ($int0) {
         if (stat_base_actual(smithing) >= 10 | stat_base_actual(crafting) >= 12) {
             $int5 = 1;
         }
-        ~script13295(10, 14, 12, 11);
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~script13295(10, 14, 12, 11));
     case 3275 :
         if (%varplayerbit_27300 = 1) {
             $int5 = 1;
@@ -550,7 +514,7 @@ switch_int ($int0) {
         if (~obj_gettotal(obj_34394) > 0) {
             $int5 = 1;
         }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Cadava potion.");
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Cadava potion");
     case 3288 :
         if (%varplayerbit_27300 = 1) {
             $int5 = 1;
@@ -575,14 +539,22 @@ switch_int ($int0) {
         if (~comlevel >= struct_param(enum(int, struct, enum_12251, $int0), param_2233)) {
             $int5 = 1;
         }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "You need a combat level of at least <tostring(struct_param(enum(int, struct, enum_12251, $int0), param_2233))>.");
-    case 928, 933 :
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "You need a combat level of at least <tostring(struct_param(enum(int, struct, enum_12251, $int0), param_2233))>");
+    case 928, 933, 3786, 3787, 3788, 3789, 3790 :
         if (%varplayerbit_4759 >= 3) {
             $int5 = 1;
         }
         $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "You need to find and free Skaldrun from the frozen floors in Daemonheim.");
+    case 3805 :
+        return(1, "A high tolerance for puns.");
     case default :
-        ~error("Achievement #<tostring($int0)> (<struct_param(enum(int, struct, enum_12251, $int0), param_6410)>)'s special requirement case is missing.");
+        $string0 = ~cheevo_req_quest_name(struct_param(enum(int, struct, enum_12251, $int0), param_1345));
+        if (struct_param(enum(int, struct, enum_12251, $int0), param_1345) > 0) {
+            ~error("Achievement #<tostring($int0)> (.quest: <$string0>) has param=quest_requires_special,true but no case in [proc,cheevo_special_requirements].");
+        } else {
+            $string0 = struct_param(enum(int, struct, enum_12251, $int0), param_6410);
+            ~error("Achievement #<tostring($int0)> (<$string0>)'s special requirement case is missing from [proc,cheevo_special_requirements].");
+        }
         return(0, "");
 }
 if (string_length($string0) > 0) {

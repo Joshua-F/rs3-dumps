@@ -1,4 +1,15 @@
 // 2154
-[proc,ql4_quest_requirements](int $int0)(boolean)
-def_struct $struct1 = enum(int, struct, enum_2252, $int0);
-return(~script2155($struct1));
+[proc,ql4_quest_requirements](struct $struct0)(boolean)
+def_int $int1 = -1;
+def_int $int2 = 1;
+while ($int2 <= 12) {
+    $int1 = ~script2111($struct0, $int2);
+    if ($int1 = -1) {
+        return(true);
+    }
+    if (~ql4_getquestcomplete($int1) = false) {
+        return(false);
+    }
+    $int2 = calc($int2 + 1);
+}
+return(true);

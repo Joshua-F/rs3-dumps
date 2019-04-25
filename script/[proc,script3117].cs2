@@ -1,118 +1,77 @@
 // 3117
-[proc,script3117](int $int0, int $int1, int $int2, string $string0, string $string1, int $int3, int $int4)(graphic, string, int, int, graphic, int, graphic, string, string)
-def_int $int5 = -1;
-def_graphic $graphic6 = null;
+[proc,script3117](int $int0, int $int1, int $int2, string $string0, string $string1, int $int3, int $int4)(graphic, string, string, int, graphic, int, graphic, string, string)
+def_graphic $graphic5 = null;
+def_int $rgb6 = ^black;
 def_int $rgb7 = ^black;
-def_int $rgb8 = ^black;
-def_string $string2 = "";
+def_graphic $graphic8 = null;
 def_graphic $graphic9 = null;
-def_graphic $graphic10 = null;
-def_int $int11 = 0;
-def_int $int12 = 0;
-def_int $int13 = 0;
-def_int $int14 = 0;
-def_int $int15 = 0;
+def_string $string2 = "";
 def_string $string3 = "";
-def_string $string4 = "";
-if (testbit($int1, 0) = ^true) {
-    $int11 = 1;
-} else {
-    $int11 = 0;
+if (string_length($string0) <= 1) {
+    $string0 = "-";
 }
-if (testbit($int1, 1) = ^true) {
-    $int12 = 1;
+if (testbit($int1, 20) = ^true) {
+    $graphic8 = "rs3_icon_world_select_game_flags,2";
 } else {
-    $int12 = 0;
+    switch_int (map_lang) {
+        case 0 :
+            $graphic8 = enum(int, graphic, enum_1810, $int4);
+        case 1 :
+            $graphic8 = enum(int, graphic, enum_1810, 56);
+        case 2 :
+            $graphic8 = enum(int, graphic, enum_1810, 74);
+        case 3 :
+            $graphic8 = enum(int, graphic, enum_1810, 31);
+        case 6 :
+            $graphic8 = enum(int, graphic, enum_1810, 67);
+        case default :
+            $graphic8 = enum(int, graphic, enum_1810, $int4);
+    }
 }
-if (testbit($int1, 2) = ^true) {
-    $int13 = 1;
+switch_int (map_lang) {
+    case 1 :
+        $string1 = "German";
+    case 2 :
+        $string1 = "French";
+    case 3 :
+        $string1 = "Portuguese";
+    case 6 :
+        $string1 = "Spanish (Latin American)";
+}
+if (testbit($int1, 0) = ^false) {
+    $rgb7 = ^white;
+    $string2 = "Free";
 } else {
-    $int13 = 0;
+    $rgb7 = 0xffcb05;
+    $string2 = "Members";
 }
 if (testbit($int1, 3) = ^true) {
-    $int14 = 1;
+    $graphic9 = rs3_contextual_input_accept;
 } else {
-    $int14 = 0;
-}
-if (testbit($int1, 4) = ^true) {
-    $int15 = 1;
-} else {
-    $int15 = 0;
-}
-if (map_lang = 0) {
-    if ($int15 = 1) {
-        $graphic9 = enum(int, graphic, enum_730, 1);
-        $string2 = $string0;
-    } else if (string_length($string0) > 1) {
-        $graphic9 = enum(int, graphic, enum_730, 1);
-        $string2 = $string0;
-    } else {
-        $graphic9 = enum(int, graphic, enum_1810, $int4);
-        $string2 = $string1;
-    }
-    if (testbit($int1, 20) = ^true) {
-        $graphic9 = "rs3_icon_world_select_game_flags,2";
-    }
-} else {
-    if (map_lang = 1) {
-        $graphic9 = "rs3_icon_world_select_country_flags,7";
-    } else if (map_lang = 2) {
-        $graphic9 = enum(int, graphic, enum_1810, 74);
-    } else if (map_lang = 3) {
-        $graphic9 = enum(int, graphic, enum_1810, 31);
-    } else if (map_lang = 6) {
-        $graphic9 = enum(int, graphic, enum_1810, 67);
-    }
-    if ($int15 = 1) {
-        $string2 = $string0;
-    } else if (string_length($string0) > 1) {
-        $string2 = $string0;
-    } else if (map_lang = 1) {
-        $string2 = "German";
-    } else if (map_lang = 2) {
-        $string2 = "French";
-    } else if (map_lang = 3) {
-        $string2 = "Portuguese";
-    } else if (map_lang = 6) {
-        $string2 = "Spanish (Latin American)";
-    }
-}
-if ($int11 = 0) {
-    $int5 = 1532;
-    $rgb8 = ^white;
-    $string3 = "Free";
-} else {
-    $int5 = 1531;
-    $rgb8 = 0xffcb05;
-    $string3 = "Members";
-}
-if ($int14 = 1) {
-    $graphic10 = rs3_contextual_input_accept;
-} else {
-    $graphic10 = rs3_contextual_input_minus;
+    $graphic9 = rs3_contextual_input_minus;
 }
 if ($int0 = %varclient_998) {
-    $rgb7 = 0x36322b;
-    $graphic6 = "rs3_icon_lobby_favorite_small,0";
+    $rgb6 = 0x36322b;
+    $graphic5 = "rs3_icon_lobby_favorite_small,0";
 } else if ($int0 = %varclient_999) {
-    $rgb7 = 0x2f291f;
-    $graphic6 = "rs3_icon_lobby_favorite_small,0";
+    $rgb6 = 0x2f291f;
+    $graphic5 = "rs3_icon_lobby_favorite_small,0";
 } else if ($int0 = %varclient_4272) {
-    $rgb7 = 0x36322b;
-    $graphic6 = "rs3_icon_lobby_favorite_small,0";
+    $rgb6 = 0x36322b;
+    $graphic5 = "rs3_icon_lobby_favorite_small,0";
 } else {
     if (calc($int2 % 2) = 0) {
-        $rgb7 = 0x071820;
+        $rgb6 = 0x071820;
     } else {
-        $rgb7 = 0x1c2c34;
+        $rgb6 = 0x1c2c34;
     }
-    $graphic6 = "rs3_icon_lobby_favorite_small,2";
+    $graphic5 = "rs3_icon_lobby_favorite_small,2";
 }
 if ($int3 >= 1980) {
-    $string4 = "FULL";
+    $string3 = "FULL";
 } else if ($int3 >= 0) {
-    $string4 = tostring($int3);
+    $string3 = tostring($int3);
 } else {
-    $string4 = "OFFLINE";
+    $string3 = "OFFLINE";
 }
-return($graphic9, $string2, $int5, $rgb8, $graphic10, $rgb7, $graphic6, $string3, $string4);
+return($graphic8, $string1, $string0, $rgb7, $graphic9, $rgb6, $graphic5, $string2, $string3);

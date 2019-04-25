@@ -16,20 +16,62 @@ if ($struct0 = struct_38124) {
 }
 def_string $string1 = "";
 def_int $int2 = 0;
-if (struct_param($struct0, param_1270) ! 4094) {
-    switch_int (struct_param(enum(int, struct, enum_2252, struct_param($struct0, param_1270)), param_848)) {
-        case 0 :
-            return("Complete this Novice quest.");
+def_quest $quest3 = null;
+if (struct_param($struct0, param_1345) > 0) {
+    if (string_length($string0) > 0) {
+        return($string0);
+    }
+    $quest3 = struct_param($struct0, param_1403);
+    if ($quest3 = null) {
+        ~error("quest_struct_quest param not specified on quest #<tostring(struct_param($struct0, param_1345))>.");
+        return($string0);
+    }
+    switch_int (quest_param($quest3, param_7889)) {
         case 1 :
-            return("Complete this Intermediate quest.");
+            switch_int (~quest_difficulty($quest3)) {
+                case 0 :
+                    return("Complete this Novice miniquest.");
+                case 1 :
+                    return("Complete this Intermediate miniquest.");
+                case 2 :
+                    return("Complete this Experienced miniquest.");
+                case 3 :
+                    return("Complete this Master miniquest.");
+                case 4 :
+                    return("Complete this Grandmaster miniquest.");
+                case 5 :
+                    return("Complete this Special miniquest.");
+            }
         case 2 :
-            return("Complete this Experienced quest.");
-        case 3 :
-            return("Complete this Master quest.");
-        case 4 :
-            return("Complete this Grandmaster quest.");
-        case 5 :
-            return("Complete this Special quest.");
+            switch_int (~quest_difficulty($quest3)) {
+                case 0 :
+                    return("Complete this Novice saga.");
+                case 1 :
+                    return("Complete this Intermediate saga.");
+                case 2 :
+                    return("Complete this Experienced saga.");
+                case 3 :
+                    return("Complete this Master saga.");
+                case 4 :
+                    return("Complete this Grandmaster saga.");
+                case 5 :
+                    return("Complete this Special saga.");
+            }
+        case default :
+            switch_int (~quest_difficulty($quest3)) {
+                case 0 :
+                    return("Complete this Novice quest.");
+                case 1 :
+                    return("Complete this Intermediate quest.");
+                case 2 :
+                    return("Complete this Experienced quest.");
+                case 3 :
+                    return("Complete this Master quest.");
+                case 4 :
+                    return("Complete this Grandmaster quest.");
+                case 5 :
+                    return("Complete this Special quest.");
+            }
     }
 } else if (struct_param($struct0, param_1346) > 0) {
     return("Defeat this boss at least once.");

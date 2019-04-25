@@ -30,13 +30,25 @@ def_string $string1 = "";
 def_int $int7 = 1;
 def_struct $struct8 = struct_11515;
 def_graphic $graphic9 = struct_param($struct8, param_4446);
+def_struct $struct10 = null;
+def_quest $quest11 = null;
+if (struct_param(struct_11515, param_1345) > 0) {
+    $struct10 = enum(int, struct, enum_2252, struct_param(struct_11515, param_1345));
+    $quest11 = struct_param($struct10, param_1403);
+}
 if ($int4 = 1) {
     ~script13264(6, 1, $int5);
     if_settext("Latest Content", $component1);
 } else {
     switch_int ($int6) {
         case default :
-            $string0 = struct_param(struct_11515, param_1266);
+            if ($struct10 ! null) {
+                $string0 = ~quest_name($struct10);
+                $string1 = quest_param($quest11, param_5968);
+            } else {
+                $string0 = struct_param(struct_11515, param_1266);
+                $string1 = struct_param($struct8, param_1273);
+            }
             switch_int (map_lang) {
                 case 1 :
                     if (struct_param($struct8, param_4454) ! null) {
@@ -56,7 +68,6 @@ if ($int4 = 1) {
                     }
             }
             if_setgraphic($graphic9, $component0);
-            $string1 = struct_param($struct8, param_1273);
         case 0 :
             switch_int (map_lang) {
                 case 0 :
@@ -138,10 +149,10 @@ cc_deleteall($component2);
 if ($int7 = 1) {
     return;
 }
-def_int $int10 = 0;
-~script10047($component2, $int10);
-$int10 = calc($int10 + 1);
-cc_create($component2, ^iftype_text, $int10);
+def_int $int12 = 0;
+~script10047($component2, $int12);
+$int12 = calc($int12 + 1);
+cc_create($component2, ^iftype_text, $int12);
 cc_settext($string0);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
 cc_setsize(0, 32, ^setsize_minus, ^setsize_abs);

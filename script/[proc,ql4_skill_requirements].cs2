@@ -1,87 +1,22 @@
 // 2152
 [proc,ql4_skill_requirements](struct $struct0)(boolean)
-def_stat $stat1 = struct_param($struct0, param_871);
-if ($stat1 = null) {
-    return(true);
-}
-if (stat_base($stat1) < struct_param($struct0, param_872)) {
+def_quest $quest1 = struct_param($struct0, param_1403);
+if ($quest1 = null) {
+    ~error("quest_id #<tostring(struct_param($struct0, param_1345))> is missing quest_struct_quest param.");
     return(false);
 }
-$stat1 = struct_param($struct0, param_873);
-if ($stat1 = null) {
-    return(true);
-}
-if (stat_base($stat1) < struct_param($struct0, param_874)) {
-    return(false);
-}
-$stat1 = struct_param($struct0, param_875);
-if ($stat1 = null) {
-    return(true);
-}
-if (stat_base($stat1) < struct_param($struct0, param_876)) {
-    return(false);
-}
-$stat1 = struct_param($struct0, param_877);
-if ($stat1 = null) {
-    return(true);
-}
-if (stat_base($stat1) < struct_param($struct0, param_878)) {
-    return(false);
-}
-$stat1 = struct_param($struct0, param_879);
-if ($stat1 = null) {
-    return(true);
-}
-if (stat_base($stat1) < struct_param($struct0, param_880)) {
-    return(false);
-}
-$stat1 = struct_param($struct0, param_881);
-if ($stat1 = null) {
-    return(true);
-}
-if (stat_base($stat1) < struct_param($struct0, param_882)) {
-    return(false);
-}
-$stat1 = struct_param($struct0, param_883);
-if ($stat1 = null) {
-    return(true);
-}
-if (stat_base($stat1) < struct_param($struct0, param_884)) {
-    return(false);
-}
-$stat1 = struct_param($struct0, param_885);
-if ($stat1 = null) {
-    return(true);
-}
-if (stat_base($stat1) < struct_param($struct0, param_886)) {
-    return(false);
-}
-$stat1 = struct_param($struct0, param_887);
-if ($stat1 = null) {
-    return(true);
-}
-if (stat_base($stat1) < struct_param($struct0, param_888)) {
-    return(false);
-}
-$stat1 = struct_param($struct0, param_889);
-if ($stat1 = null) {
-    return(true);
-}
-if (stat_base($stat1) < struct_param($struct0, param_890)) {
-    return(false);
-}
-$stat1 = struct_param($struct0, param_891);
-if ($stat1 = null) {
-    return(true);
-}
-if (stat_base($stat1) < struct_param($struct0, param_892)) {
-    return(false);
-}
-$stat1 = struct_param($struct0, param_893);
-if ($stat1 = null) {
-    return(true);
-}
-if (stat_base($stat1) < struct_param($struct0, param_894)) {
-    return(false);
+def_int $int2 = quest_statreq_count($quest1);
+def_stat $stat3 = null;
+def_int $int4 = 0;
+def_int $int5 = 0;
+while ($int5 < $int2) {
+    $stat3, $int4 = ~script2112($struct0, calc($int5 + 1));
+    if ($stat3 = null) {
+        return(true);
+    }
+    if (stat_base($stat3) < $int4) {
+        return(false);
+    }
+    $int5 = calc($int5 + 1);
 }
 return(true);

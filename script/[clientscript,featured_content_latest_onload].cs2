@@ -9,8 +9,18 @@ if (~date_runeday >= 5179 & ~date_runeday <= 5219) {
     if_setonmouseleave("script8805", interface_1345:com_58);
     return;
 }
-if_settext(struct_param(struct_11515, param_1266), interface_1345:com_97);
+def_string $string1 = struct_param(struct_11515, param_1266);
 def_graphic $graphic0 = struct_param(struct_11515, param_1271);
+def_string $string2 = struct_param(struct_11515, param_1273);
+def_struct $struct1 = null;
+def_quest $quest2 = null;
+if (struct_param(struct_11515, param_1345) > 0) {
+    $struct1 = enum(int, struct, enum_2252, struct_param(struct_11515, param_1345));
+    $quest2 = struct_param($struct1, param_1403);
+    $string1 = ~quest_name($struct1);
+    $graphic0 = quest_param($quest2, param_6425);
+    $string2 = quest_param($quest2, param_5968);
+}
 switch_int (map_lang) {
     case 1 :
         if (struct_param(struct_11515, param_4450) ! null) {
@@ -29,7 +39,8 @@ switch_int (map_lang) {
             $graphic0 = struct_param(struct_11515, param_4453);
         }
 }
+if_settext($string1, interface_1345:com_97);
 if_setgraphic($graphic0, interface_1345:com_95);
-$string0 = struct_param(struct_11515, param_1273);
+$string0 = $string2;
 if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", interface_1345:com_58);
 if_setonmouseleave("script8805", interface_1345:com_58);

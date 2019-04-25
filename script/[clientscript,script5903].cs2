@@ -5,14 +5,14 @@ def_string $string1 = ~script2332(%varclient_2759, " ", "");
 def_string $string2 = lowercase($string0);
 def_string $string3 = lowercase($string1);
 if (string_length(%varclient_2758) < 1) {
-    mes("You need to enter bug information before you can submit your bug.");
+    ~script426("You need to enter bug information before you can submit your bug.", interface_1405:com_10, -1, 0);
     return;
 } else if (string_length(%varclient_2759) < 1) {
-    mes("You need to enter bug reproduction steps before you can submit your bug.");
+    ~script426("You need to enter bug reproduction steps before you can submit your bug.", interface_1405:com_10, -1, 0);
     return;
 }
 if (string_length(removetags(%varclient_2758)) > 500 | string_length(removetags(%varclient_2759)) > 500) {
-    mes("Your bug information and reproduction steps can only be 500 characters long.");
+    ~script426("Your bug information and reproduction steps can only be 500 characters long.", interface_1405:com_10, -1, 0);
     return;
 }
 def_int $int0 = scale(string_distance($string0, $string2), string_length($string0), 100);
@@ -21,6 +21,10 @@ if ($int0 <= 90) {
 }
 if ($int0 > 90) {
     ~bugreport_input_close;
+    %varclient_2758 = "";
+    %varclient_2759 = "";
+    %varplayerbit_18337 = 0;
+    %varplayerbit_18336 = 0;
     mes("Thank you for submitting your bug report.");
     return;
 }

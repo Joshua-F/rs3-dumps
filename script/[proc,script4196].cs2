@@ -1,0 +1,95 @@
+// 4196
+[proc,script4196](int $int0, int $int1, component $component2, component $component3, int $int4, inv $inv5, int $int6, obj $obj7, dbrow $dbrow8, int $int9, string $string0, int $int10)(int)
+def_struct $struct11 = struct_4220;
+def_int $int12 = 0;
+def_struct $struct13 = struct_param($struct11, param_4403);
+def_boolean $boolean14 = ~script891(inv_getvar($inv5, $int6, varobjectbit_41806));
+def_int $int15 = max(0, inv_getvar($inv5, $int6, varobjectbit_41804));
+def_int $int16 = inv_getvar($inv5, $int6, varobjectbit_41802);
+def_npc $npc17 = enum(int, npc, enum_14311, db_getfield($dbrow8, dbtable_29:col1, 0));
+def_int $int18 = inv_getvar($inv5, $int6, varobjectbit_41803);
+def_int $int19 = 600;
+def_int $int20 = 4;
+def_string $string1 = "Elder";
+if (db_getfield($dbrow8, dbtable_29:col2, 0) ! -1 & $int18 = 0) {
+    $npc17 = enum(int, npc, enum_14311, db_getfield($dbrow8, dbtable_29:col2, 0));
+}
+if (inv_getvar($inv5, $int6, varobjectbit_41805) = 1) {
+    if (db_getfield($dbrow8, dbtable_29:col4, 0) ! -1 & $int18 = 0) {
+        $npc17 = enum(int, npc, enum_14311, db_getfield($dbrow8, dbtable_29:col4, 0));
+    } else {
+        $npc17 = enum(int, npc, enum_14311, db_getfield($dbrow8, dbtable_29:col3, 0));
+    }
+}
+if ($int15 < db_getfield($dbrow8, dbtable_29:col8, 0)) {
+    $string1 = "Egg";
+    $int20 = 0;
+    $npc17 = enum(int, npc, enum_14311, db_getfield($dbrow8, dbtable_29:col11, 0));
+} else if ($int15 < db_getfield($dbrow8, dbtable_29:col9, 0)) {
+    $string1 = "Baby";
+    $int20 = 1;
+    $npc17 = enum(int, npc, enum_14311, db_getfield($dbrow8, dbtable_29:col12, 0));
+} else if ($int15 < db_getfield($dbrow8, dbtable_29:col10, 0)) {
+    $string1 = "Adolescent";
+    $int20 = 2;
+} else if ($int15 < db_getfield($dbrow8, dbtable_29:col7, 0)) {
+    $string1 = "Adult";
+    $int20 = 3;
+}
+def_enum $enum21 = null;
+def_enum $enum22 = null;
+def_string $string2 = "";
+def_int $int23 = 0;
+if ($npc17 = npc_25754) {
+    $int23 = 1;
+    $npc17 = npc_25749;
+}
+$int19 = scale(75, 100, nc_param($npc17, param_7479));
+if ($int23 = 1) {
+    $int19 = scale(60, 100, $int19);
+}
+$enum21, $enum22 = db_getfield($dbrow8, dbtable_29:col43, 0);
+if ($int18 = 0) {
+    $string2 = enum(int, string, $enum21, $int16);
+} else {
+    $string2 = enum(int, string, $enum22, $int16);
+}
+def_int $int24 = nc_param($npc17, param_7479);
+def_int $int25 = 0;
+if (if_find($component2) = true) {
+    $int4 = ~script10410($component2, $component3, $struct11, $int0, $int1, 75, 75, $int4, $boolean14, $string2);
+    cc_setop(1, "Select");
+    cc_setonop("script1009($npc17, $inv5, $int6, $string2, $string1, $int18, $int19, $int10, event_op)");
+    cc_setop(2, $string0);
+    $int12 = calc(if_getnextsubid($component2) - 2);
+    if (cc_find($component2, $int12) = true) {
+        cc_settextshadow(true);
+        cc_setsize(75, 30, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int0, $int1, ^setpos_abs_left, ^setpos_abs_top);
+        cc_settextalign(^settextalign_centre, ^settextalign_top, 13);
+        cc_settextfont(struct_param($struct13, param_3810));
+        ~script11024(0x000008);
+    }
+    cc_create($component2, ^iftype_model, if_getnextsubid($component2));
+    if ($int23 = 1) {
+        $int24 = scale(60, 100, $int24);
+        $int25 = -6;
+    }
+    cc_setposition(calc($int0 + 19 + nc_param($npc17, param_7480)), calc($int1 + 25 + nc_param($npc17, param_7481) + $int25), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(35, 52, ^setsize_abs, ^setsize_abs);
+    cc_setnpcmodel($npc17);
+    cc_setmodelanim(null);
+    if (inv_getvar($inv5, $int6, varobjectbit_41805) = 1 & db_getfield($dbrow8, dbtable_29:col0, 0) = 9) {
+        cc_setmodelangle(-1, 25, 0, 1600, 0, 800);
+    } else {
+        cc_setmodelangle(-1, 25, 0, 1824, 0, 800);
+    }
+    cc_setmodelzoom(scale(120, 100, $int24));
+    if ($boolean14 = true) {
+        cc_create($component2, ^iftype_graphic, if_getnextsubid($component2));
+        cc_setgraphic("xp_token_with_plus,0");
+        cc_setposition(calc($int0 + 47), calc($int1 + 47), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
+    }
+}
+return($int4);

@@ -1,0 +1,40 @@
+// 3979
+[proc,script3979](int $int0)(int)
+if ($int0 = -1) {
+    return(1);
+}
+def_struct $struct1 = enum(int, struct, enum_2252, $int0);
+if ($struct1 = null) {
+    ~error("No .struct found for quest_ID #<tostring($int0)>.");
+    return(1);
+}
+def_quest $quest2 = struct_param($struct1, param_1403);
+if ($quest2 = null) {
+    ~error("No .quest found for quest_ID #<tostring($int0)>.");
+    return(1);
+}
+if (~ironman_mode = true) {
+    return(1);
+}
+if (quest_param($quest2, param_7887) = 0) {
+    return(1);
+}
+if (~quest_already_completed($struct1) = 1) {
+    return(1);
+}
+switch_int ($int0) {
+    case 85 :
+        if (%varplayerbit_12837 = 6) {
+            return(1);
+        }
+    case 154 :
+        if (%varplayerbit_9902 = 11) {
+            return(1);
+        }
+    case 149 :
+        if (%varplayerbit_12907 = 12) {
+            return(1);
+        }
+    case default :
+        return(0);
+}
