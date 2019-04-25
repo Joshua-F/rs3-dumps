@@ -1,0 +1,123 @@
+// 6255
+[proc,script6255](component $component0, component $component1, int $int2)
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = -1;
+def_int $int6 = 0;
+def_obj $obj7 = null;
+def_string $string0 = "";
+def_int $int8 = 1;
+def_int $int9 = 1;
+def_int $int10 = -1;
+def_enum $enum11 = enum(int, enum, enum_15109, $int2);
+def_int $int12 = enum_getoutputcount(enum_15103);
+def_int $int13 = if_getwidth($component0);
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = -1;
+def_int $int17 = 0;
+def_int $int18 = 13;
+if (%varplayerbit_34815 = 1) {
+    if (%varplayerbit_38842 = 1) {
+        $int14 = 1;
+        $int18 = 30;
+    } else {
+        $int14, $int13, $int17 = ~script8107($int13, 112);
+    }
+} else {
+    $int14, $int13, $int17 = ~script8107($int13, 43);
+}
+def_fontmetrics $fontmetrics19 = graphic_17813;
+while (++$int5 < $int12) {
+    $obj7 = enum(int, obj, enum_15103, $int5);
+    $int8 = ~script5860($obj7);
+    $int9 = 1;
+    if ($enum11 ! null) {
+        $int9 = enum(obj, int, $enum11, $obj7);
+    }
+    $string0 = oc_name($obj7);
+    if (cc_find($component0, $int5) = true) {
+        if (%varplayerbit_34815 = 1) {
+            cc_setsize(107, $int18, ^setsize_abs, ^setsize_abs);
+        } else {
+            cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        }
+        if ($int8 = 0) {
+            cc_setcolour(0x404040);
+        } else {
+            cc_setcolour(^white);
+        }
+        $string0 = oc_name($obj7);
+        cc_setop(1, $string0);
+        cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
+        if (%varplayerbit_34815 = 1) {
+            cc_settext($string0);
+            cc_settextfont($fontmetrics19);
+            cc_setmaxlines(1);
+            if ($int8 = 1) {
+                ~script11024(0x00000c);
+            } else {
+                ~script11024(0x00003d);
+            }
+        } else {
+            cc_setobject($obj7, 1);
+        }
+        if ($int9 = 1 & ($int2 = 1 | oc_param($obj7, param_3326) ! 0)) {
+            $int9 = $int8;
+        }
+        if ($int9 = 1 & $int8 = 1) {
+            if (oc_param($obj7, param_5430) = 1) {
+                cc_setop(2, enum(obj, string, enum_15104, $obj7));
+            }
+            if (oc_param($obj7, param_863) = 1) {
+                cc_setop(3, "Reclaim");
+            }
+        } else {
+            cc_setop(2, "");
+            cc_setop(3, "");
+        }
+        if ($int9 = 1) {
+            cc_sethide(false);
+            if (%varplayerbit_34815 = 1) {
+                if ($int14 > 1) {
+                    $int15 = calc($int6 % $int14);
+                    if ($int15 = 0) {
+                        $int16 = calc($int16 + 1);
+                    }
+                    $int3 = ~script8108($int13, $int17, $int15);
+                } else {
+                    $int16 = calc($int16 + 1);
+                    cc_setsize(0, $int18, ^setsize_minus, ^setsize_abs);
+                }
+                $int4 = calc($int18 * $int16);
+                cc_setposition($int3, $int4, ^setpos_abs_left, ^setpos_abs_top);
+                $int6 = calc($int6 + 1);
+            } else {
+                $int15 = calc($int6 % $int14);
+                if ($int15 = 0) {
+                    $int16 = calc($int16 + 1);
+                }
+                $int3 = ~script8108($int13, $int17, $int15);
+                $int4 = calc(58 * $int16);
+                cc_setposition($int3, $int4, ^setpos_abs_left, ^setpos_abs_top);
+                $int6 = calc($int6 + 1);
+            }
+        } else {
+            cc_sethide(true);
+        }
+        cc_setposition($int3, $int4, ^setpos_abs_left, ^setpos_abs_top);
+    }
+}
+def_int $int20 = calc($int4 + 58);
+if (%varplayerbit_34815 = 1) {
+    $int20 = calc($int4 + $int18);
+}
+if_setscrollsize(0, $int20, $component0);
+if_sethide(false, $component1);
+~scrollbar_vertical($component1, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+%varclient_6540 = $int2;
+if ($component0 = interface_590:com_1) {
+    ~script10428(interface_590:com_27, interface_590:com_28, enum_15108, -1, "Select a filter", %varclient_6540, 0);
+} else {
+    ~script10428(interface_1438:com_16, interface_1438:com_17, enum_15108, -1, "Select a filter", %varclient_6540, 0);
+}

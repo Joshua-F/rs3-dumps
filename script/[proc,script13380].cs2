@@ -1,11 +1,14 @@
 // 13380
 [proc,script13380](int $int0)
 def_int $int1 = 0;
-def_graphic $graphic2 = "trh119_icon_checkmarks,2";
-if (cc_find(interface_1870:com_12, $int0) = true) {
+def_int $int2 = 0;
+def_graphic $graphic3 = "trh119_icon_checkmarks,2";
+if (cc_find(interface_1870:com_17, $int0) = true) {
     if (~trh_state(struct_40380) = 1) {
         $int1 = ~script6954($int0);
-        $graphic2 = treasurehunter_trh142_icon_crossbones;
+        $graphic3 = treasurehunter_trh142_icon_crossbones;
+    } else if (~trh_state(struct_7229) = 1) {
+        $int2 = ~script6397($int0);
     }
     switch_int (~script3872($int0)) {
         case 0 :
@@ -14,8 +17,13 @@ if (cc_find(interface_1870:com_12, $int0) = true) {
             } else {
                 cc_setgraphic(null);
             }
+            if ($int2 ! 0) {
+                cc_setgraphic(enum(int, graphic, enum_15149, $int2));
+            } else {
+                cc_setgraphic(null);
+            }
         case 1 :
-            cc_setgraphic($graphic2);
+            cc_setgraphic($graphic3);
             cc_setonmouseover(null);
         case 2 :
             cc_setgraphic(enum(int, graphic, enum_12585, ~script5875($int0)));

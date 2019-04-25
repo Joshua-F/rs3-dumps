@@ -4,28 +4,41 @@ def_component $component1 = null;
 def_component $component2 = null;
 def_component $component3 = null;
 def_component $component4 = null;
+def_int $int5 = 0;
 $component1, $component2, $component3, $component4 = ~script12594($int0);
-def_int $int5 = calc(if_getheight($component1) - if_getheight($component3));
+if ($int0 = 0 & ~script6431 = true) {
+    if_setsize(0, 60, ^setsize_minus, ^setsize_abs, $component3);
+    $int5 = if_getwidth($component3);
+    $int5 = calc($int5 / 3 - 5);
+    if_setposition(4, 0, ^setpos_abs_left, ^setpos_abs_centre, interface_1678:com_5);
+    if_setsize($int5, 10, ^setsize_abs, ^setsize_minus, interface_1678:com_5);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_1678:com_6);
+    if_setsize($int5, 10, ^setsize_abs, ^setsize_minus, interface_1678:com_6);
+    if_setposition(4, 0, ^setpos_abs_right, ^setpos_abs_centre, interface_1678:com_7);
+    if_setsize($int5, 10, ^setsize_abs, ^setsize_minus, interface_1678:com_7);
+}
+def_int $int6 = calc(if_getheight($component1) - if_getheight($component3));
 cc_deleteall($component2);
-def_int $int6 = calc(18 + 5);
-def_obj $obj7 = null;
-def_int $int8 = calc(100 - inv_freespace(inv_787));
+def_int $int7 = calc(18 + 5);
+def_obj $obj8 = null;
+def_int $int9 = calc(100 - inv_freespace(inv_787));
 if_sethide(true, $component4);
 if_setscrollsize(0, 0, $component2);
 if_setscrollpos(0, 0, $component2);
-def_int $int9 = calc($int8 * (18 + 0) + 25);
-if ($int9 > if_getheight($component2)) {
-    if_setscrollsize(0, $int9, $component2);
+def_int $int10 = calc($int9 * (18 + 0) + 25);
+if ($int10 > if_getheight($component2)) {
+    if_setscrollsize(0, $int10, $component2);
+    if_setsize(if_getwidth($component4), $int6, ^setsize_abs, ^setsize_abs, $component4);
     ~rs3_scrollbar_vertical($component4, $component2);
     if_sethide(false, $component4);
-    if_setsize(if_getwidth($component4), 0, ^setsize_minus, ^setsize_minus, $component2);
+    if_setsize(if_getwidth($component4), $int6, ^setsize_minus, ^setsize_abs, $component2);
 } else {
-    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component2);
+    if_setsize(0, $int6, ^setsize_minus, ^setsize_abs, $component2);
 }
 cc_create($component2, ^iftype_rectangle, if_getnextsubid($component2));
 cc_setfill(true);
 cc_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_top);
-cc_setsize(0, calc(max($int9, $int5) - 18), ^setsize_minus, ^setsize_abs);
+cc_setsize(0, calc(max($int10, $int6) - 18), ^setsize_minus, ^setsize_abs);
 ~script10010(struct_28679);
 if ($int0 = 0) {
     ~script12591(6, struct_32401);
@@ -38,15 +51,15 @@ cc_setsize(0, 18, ^setsize_minus, ^setsize_abs);
 if ($int0 = 0) {
     ~script12591(6, struct_32401);
 }
-def_int $int10 = parawidth("888W", 1000, graphic_17813);
-def_int $int11 = 0;
-def_int $int12 = %varplayerbit_28120;
-if ($int12 = 1) {
-    $int11 = parawidth("2,088,888,888", 1000, graphic_17813);
-    if (if_getwidth($component2) < calc($int11 + 5 + 5 + 5 + parawidth("...", 1000, graphic_17813))) {
-        $int12 = 0;
+def_int $int11 = parawidth("888W", 1000, graphic_17813);
+def_int $int12 = 0;
+def_int $int13 = %varplayerbit_28120;
+if ($int13 = 1) {
+    $int12 = parawidth("2,088,888,888", 1000, graphic_17813);
+    if (if_getwidth($component2) < calc($int12 + 5 + 5 + 5 + parawidth("...", 1000, graphic_17813))) {
+        $int13 = 0;
     } else {
-        $int10 = $int11;
+        $int11 = $int12;
     }
 }
 cc_create($component2, ^iftype_text, if_getnextsubid($component2));
@@ -55,7 +68,7 @@ if (~script6431 = true) {
 } else {
     cc_settextfont(graphic_17813);
 }
-cc_setsize(calc(15 + $int10), 18, ^setsize_minus, ^setsize_abs);
+cc_setsize(calc(15 + $int11), 18, ^setsize_minus, ^setsize_abs);
 cc_setposition(5, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_setcolour(~script10495(0x00000c));
@@ -63,13 +76,13 @@ cc_settextshadow(true);
 cc_setonvartransmit("script8429(event_com, event_comsubid){varplayer_5091}");
 ~script11909($component2, cc_getid);
 cc_create($component2, ^iftype_text, if_getnextsubid($component2));
-cc_setsize($int10, 18, ^setsize_abs, ^setsize_abs);
+cc_setsize($int11, 18, ^setsize_abs, ^setsize_abs);
 if (~script6431 = true) {
     cc_settextfont(graphic_17814);
 } else {
     cc_settextfont(graphic_17813);
 }
-if ($int12 = 1) {
+if ($int13 = 1) {
     cc_settext("Quantity");
 } else {
     cc_settext("Qty");
@@ -79,29 +92,29 @@ if (cc_getwidth < parawidth(cc_gettext, 1000, cc_getfontmetrics)) {
     cc_settext(~script3930(cc_gettext, cc_getwidth, 1, cc_getfontmetrics));
 }
 cc_setposition(5, 0, ^setpos_abs_right, ^setpos_abs_top);
-def_int $int13 = cc_getx;
+def_int $int14 = cc_getx;
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_setcolour(~script10495(0x00000c));
 cc_settextshadow(true);
-def_int $int14 = 0;
 def_int $int15 = 0;
+def_int $int16 = 0;
 def_string $string0 = "";
-while ($int8 >= 0) {
-    $obj7 = inv_getobj(inv_787, $int8);
-    if ($obj7 ! null) {
-        ~script9885($component2, ~script3930(oc_name($obj7), max(0, calc($int13 - 10)), 1, graphic_17813), 5, $int6, max(0, calc($int13 - 10)));
-        if (compare(oc_name($obj7), cc_gettext) ! 0) {
-            cc_setonmouserepeat("script3876(oc_name($obj7), event_com, event_comsubid)");
+while ($int9 >= 0) {
+    $obj8 = inv_getobj(inv_787, $int9);
+    if ($obj8 ! null) {
+        ~script9885($component2, ~script3930("<~script500(~script3709($int9))><oc_name($obj8)>", max(0, calc($int14 - 10)), 1, graphic_17813), 5, $int7, max(0, calc($int14 - 10)));
+        if (compare(oc_name($obj8), cc_gettext) ! 0) {
+            cc_setonmouserepeat("script3876(oc_name($obj8), event_com, event_comsubid)");
         }
-        $int15 = inv_getnum(inv_787, $int8);
-        if ($int12 = 1) {
-            $string0 = tostring_localised($int15, true);
+        $int16 = inv_getnum(inv_787, $int9);
+        if ($int13 = 1) {
+            $string0 = "<~script500(~script3709($int9))><tostring_localised($int16, true)>";
         } else {
-            $string0 = ~script11478($int15);
+            $string0 = "<~script500(~script3709($int9))><~script11478($int16)>";
         }
-        ~script9885($component2, $string0, $int13, $int6, $int10);
-        $int14 = calc($int14 + 1);
-        $int6 = calc($int6 + 18 + 0);
+        ~script9885($component2, $string0, $int14, $int7, $int11);
+        $int15 = calc($int15 + 1);
+        $int7 = calc($int7 + 18 + 0);
     }
-    $int8 = calc($int8 - 1);
+    $int9 = calc($int9 - 1);
 }

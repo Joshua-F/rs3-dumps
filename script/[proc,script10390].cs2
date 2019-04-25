@@ -64,8 +64,8 @@ while ($int6 < 12) {
             case 60 :
                 $struct12 = ~task_get_data($int8);
                 if ($struct12 ! null) {
-                    if (struct_param($struct12, param_1270) ! 4094) {
-                        $graphic13 = struct_param(enum(int, struct, enum_2252, struct_param($struct12, param_1270)), param_952);
+                    if (struct_param($struct12, param_1345) > 0) {
+                        $graphic13 = ~quest_icon(enum(int, struct, enum_2252, struct_param($struct12, param_1345)));
                     } else {
                         $graphic13 = struct_param($struct12, param_1271);
                     }
@@ -76,14 +76,14 @@ while ($int6 < 12) {
                     $struct12 = null;
                 }
             case 61 :
-                $graphic13 = struct_param(enum(int, struct, enum_2252, $int8), param_952);
-                $string0 = "You must have completed the quest: '<struct_param(enum(int, struct, enum_2252, $int8), param_845)>'";
+                $graphic13 = ~quest_icon(enum(int, struct, enum_2252, $int8));
+                $string0 = "You must have completed the quest: '<~quest_name(enum(int, struct, enum_2252, $int8))>'";
                 if (~ql4_getquestcomplete($int8) = false) {
                     $int15 = 0;
                 }
             case 62 :
                 if ($struct0 = struct_7212) {
-                    $graphic13 = struct_param(enum(int, struct, enum_2252, $int8), param_952);
+                    $graphic13 = ~quest_icon(enum(int, struct, enum_2252, $int8));
                     $string0 = "You must have received a warning about the contents of the tombs.";
                     if (%varplayerbit_36034 = 0) {
                         $int15 = 0;
@@ -97,6 +97,10 @@ while ($int6 < 12) {
                         }
                     case struct_40367 :
                         if (~script735 = 0) {
+                            $int15 = 0;
+                        }
+                    case struct_4505 :
+                        if (~dungeon_ulthven_requirements = 0) {
                             $int15 = 0;
                         }
                 }

@@ -190,31 +190,27 @@ switch_obj ($obj2) {
             if_setonvartransmit("farming_tools_main(event_com, $component1, $obj2, 0){varplayer_4892}", $component0);
         }
         $int5 = %varplayerbit_25950;
+    case obj_41087 :
+        if ($int3 = 1) {
+            if_setonvartransmit("farming_tools_main(event_com, $component1, $obj2, 0){varplayer_8523}", $component0);
+        }
+        $int5 = %varplayerbit_43922;
     case default :
         return;
 }
-def_graphic $graphic6 = graphic_6014;
+def_boolean $boolean6 = true;
+if ($int5 > 0) {
+    $boolean6 = false;
+    if_setonmouserepeat("script9564($obj2, event_com, event_comsubid)", $component1);
+    if_settrans(0, $component0);
+} else {
+    if_settrans(175, $component0);
+    if_setonmouserepeat(null, $component1);
+}
+~script13959($component1, struct_28755, $boolean6);
 if ($int4 > 1) {
     if_setobject_alwaysnum($obj2, $int5, $component0);
-    if ($int5 >= $int4) {
-        $graphic6 = graphic_6017;
-    }
 } else {
     if_setobject_nonum($obj2, $int5, $component0);
 }
 if_setopbase("<col=ff9040><oc_name($obj2)>", $component0);
-def_graphic $graphic7 = graphic_6015;
-if ($int5 > 0) {
-    if ($obj2 ! null) {
-        $string0 = oc_name($obj2);
-        if_setonmouserepeat("script8799($string0, $component1, -1)", $component1);
-    }
-    if_settrans(0, $component0);
-    if_setgraphic($graphic6, $component1);
-    if_setonmouseover("graphic_swapper(event_com, $graphic7)", $component1);
-    if_setonmouseleave("graphic_swapper(event_com, $graphic6)", $component1);
-} else {
-    if_settrans(175, $component0);
-    if_setgraphic(graphic_6016, $component1);
-    if_clearscripthooks($component1);
-}

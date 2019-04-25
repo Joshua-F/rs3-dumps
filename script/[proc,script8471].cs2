@@ -659,7 +659,10 @@ $int22 = 0;
 def_obj $obj45 = null;
 def_struct $struct46 = null;
 def_string $string2 = "";
-def_int $int47 = 2;
+def_int $int47 = 1;
+def_boolean $boolean48 = false;
+def_string $string3 = "";
+def_int $int49 = 2;
 while ($int20 < $int34) {
     $obj45 = null;
     $struct46 = null;
@@ -728,7 +731,7 @@ while ($int20 < $int34) {
                                 cc_setop(3, "Empty to bank");
                             }
                             cc_setop(10, "Examine");
-                        case interface_1367:com_140, interface_1367:com_122 :
+                        case interface_1367:com_96, interface_1367:com_86 :
                             cc_setonmouserepeat("script10767($obj21, $obj45, $inv1, event_com, event_comsubid)");
                             cc_setopbase("");
                             cc_setonop(null);
@@ -768,38 +771,14 @@ while ($int20 < $int34) {
                                 if (oc_param($obj21, param_2091) = false) {
                                     cc_setop(1, "Remove");
                                 }
-                                $string1 = ~script3290(1, $obj21);
-                                if (string_length($string1) > 0) {
-                                    cc_setop(2, $string1);
+                                while ($int47 <= 8) {
+                                    $boolean48, $string3 = ~script3290($obj21, $int47, 0);
+                                    if ($boolean48 = true) {
+                                        cc_setop(calc($int47 + 1), $string3);
+                                    }
+                                    $int47 = calc($int47 + 1);
                                 }
-                                $string1 = ~script3290(2, $obj21);
-                                if (string_length($string1) > 0) {
-                                    cc_setop(3, $string1);
-                                }
-                                $string1 = ~script3290(3, $obj21);
-                                if (string_length($string1) > 0) {
-                                    cc_setop(4, $string1);
-                                }
-                                $string1 = ~script3290(4, $obj21);
-                                if (string_length($string1) > 0) {
-                                    cc_setop(5, $string1);
-                                }
-                                $string1 = ~script3290(5, $obj21);
-                                if (string_length($string1) > 0) {
-                                    cc_setop(6, $string1);
-                                }
-                                $string1 = ~script3290(6, $obj21);
-                                if (string_length($string1) > 0) {
-                                    cc_setop(7, $string1);
-                                }
-                                $string1 = ~script3290(7, $obj21);
-                                if (string_length($string1) > 0) {
-                                    cc_setop(8, $string1);
-                                }
-                                $string1 = ~script3290(8, $obj21);
-                                if (string_length($string1) > 0) {
-                                    cc_setop(9, $string1);
-                                }
+                                $int47 = 1;
                             }
                             cc_setop(10, "Examine");
                     }
@@ -868,7 +847,7 @@ while ($int20 < $int34) {
                                         cc_setop(3, "Clear customisation");
                                         if ($struct46 ! null & oc_param($obj45, param_2500) ! null & oc_param($obj45, param_2500) ! struct_28387) {
                                             cc_setop(5, "Recolour (SHIFT+Click)");
-                                            $int47 = setbit($int47, 0);
+                                            $int49 = setbit($int49, 0);
                                             if ($component13 ! null) {
                                                 .cc_create($component13, ^iftype_graphic, if_getnextsubid($component13));
                                                 .cc_setsize(struct_param(struct_35562, param_3915), struct_param(struct_35562, param_3916), ^setsize_abs, ^setsize_abs);
@@ -897,31 +876,31 @@ while ($int20 < $int34) {
                                                 cc_setsize(.cc_getwidth, .cc_getheight, ^setsize_abs, ^setsize_abs);
                                                 cc_setposition(.cc_getx, .cc_gety, ^setpos_abs_left, ^setpos_abs_top);
                                                 cc_setgraphic(rs3_icon_slot_owned);
-                                                $int47 = setbit($int47, 2);
+                                                $int49 = setbit($int49, 2);
                                             }
                                         } else if (~script13109($int20) = true & ~script6488($struct46) = 0) {
                                             cc_setparam(param_4414, $struct46);
                                             cc_setop(6, "Purchase");
-                                            $int47 = clearbit($int47, 1);
+                                            $int49 = clearbit($int49, 1);
                                             if (.cc_find($component7, $int20) = true) {
                                                 if (~script13102($struct46) = 0) {
                                                     cc_setgraphic(~script8478($inv1, $int20, 2));
                                                     cc_settrans(0);
-                                                    $int47 = setbit($int47, 3);
+                                                    $int49 = setbit($int49, 3);
                                                 }
                                                 ~script10017($component7, .cc_getid, -1, 5, null, $component11);
                                             }
-                                            $int47 = setbit($int47, 2);
+                                            $int49 = setbit($int49, 2);
                                         } else if ($struct46 ! null & ~script6488($struct46) = 1 & ~script12779($struct46, $obj45, ~script13103($inv1, $int20)) = 1) {
                                             if (.cc_find($component7, $int20) = true) {
                                                 cc_create($component11, ^iftype_graphic, if_getnextsubid($component11));
                                                 cc_setsize(.cc_getwidth, .cc_getheight, ^setsize_abs, ^setsize_abs);
                                                 cc_setposition(.cc_getx, .cc_gety, ^setpos_abs_left, ^setpos_abs_top);
                                                 cc_setgraphic(rs3_icon_slot_owned);
-                                                $int47 = setbit($int47, 2);
+                                                $int49 = setbit($int49, 2);
                                             }
                                         } else if (.cc_find($component7, $int20) = true) {
-                                            $int47 = clearbit($int47, 1);
+                                            $int49 = clearbit($int49, 1);
                                             cc_setparam(param_4414, $struct46);
                                             cc_setgraphic(~script8478($inv1, $int20, 2));
                                             cc_settrans(0);
@@ -929,7 +908,7 @@ while ($int20 < $int34) {
                                             cc_setsize(.cc_getwidth, .cc_getheight, ^setsize_abs, ^setsize_abs);
                                             cc_setposition(.cc_getx, .cc_gety, ^setpos_abs_left, ^setpos_abs_top);
                                             cc_setgraphic(rs3_icon_slot_unavailable);
-                                            $int47 = setbit($int47, 2);
+                                            $int49 = setbit($int49, 2);
                                         }
                                     }
                                 case 3, 5, 0, 1, 2, 4, 7, 9, 10 :
@@ -942,7 +921,7 @@ while ($int20 < $int34) {
                                         cc_setop(3, "Clear customisation");
                                         if ($struct46 ! null & oc_param($obj45, param_2500) ! null & oc_param($obj45, param_2500) ! struct_28387) {
                                             cc_setop(5, "Recolour (SHIFT+Click)");
-                                            $int47 = setbit($int47, 0);
+                                            $int49 = setbit($int49, 0);
                                             if ($component13 ! null) {
                                                 .cc_create($component13, ^iftype_graphic, if_getnextsubid($component13));
                                                 .cc_setsize(struct_param(struct_35562, param_3915), struct_param(struct_35562, param_3916), ^setsize_abs, ^setsize_abs);
@@ -977,21 +956,21 @@ while ($int20 < $int34) {
                                                 cc_setsize(.cc_getwidth, .cc_getheight, ^setsize_abs, ^setsize_abs);
                                                 cc_setposition(.cc_getx, .cc_gety, ^setpos_abs_left, ^setpos_abs_top);
                                                 cc_setgraphic(rs3_icon_slot_owned);
-                                                $int47 = setbit($int47, 2);
+                                                $int49 = setbit($int49, 2);
                                             }
                                         } else if (~script13109($int20) = true & ~script6488($struct46) = 0) {
                                             cc_setparam(param_4414, $struct46);
                                             cc_setop(6, "Purchase");
-                                            $int47 = clearbit($int47, 1);
+                                            $int49 = clearbit($int49, 1);
                                             if (.cc_find($component7, $int20) = true) {
                                                 if (~script13102($struct46) = 0) {
                                                     cc_setgraphic(~script8478($inv1, $int20, 2));
                                                     cc_settrans(0);
-                                                    $int47 = setbit($int47, 3);
+                                                    $int49 = setbit($int49, 3);
                                                 }
                                                 ~script10017($component7, .cc_getid, -1, 5, null, $component11);
                                             }
-                                            $int47 = setbit($int47, 2);
+                                            $int49 = setbit($int49, 2);
                                         } else if ($struct46 ! null) {
                                             if (~script6488($struct46) = 1 & ~script12779($struct46, $obj45, ~script13103($inv1, $int20)) = 1) {
                                                 if (.cc_find($component7, $int20) = true) {
@@ -999,10 +978,10 @@ while ($int20 < $int34) {
                                                     cc_setsize(.cc_getwidth, .cc_getheight, ^setsize_abs, ^setsize_abs);
                                                     cc_setposition(.cc_getx, .cc_gety, ^setpos_abs_left, ^setpos_abs_top);
                                                     cc_setgraphic(rs3_icon_slot_owned);
-                                                    $int47 = setbit($int47, 2);
+                                                    $int49 = setbit($int49, 2);
                                                 }
                                             } else if (.cc_find($component7, $int20) = true) {
-                                                $int47 = clearbit($int47, 1);
+                                                $int49 = clearbit($int49, 1);
                                                 cc_setparam(param_4414, $struct46);
                                                 cc_setgraphic(~script8478($inv1, $int20, 2));
                                                 cc_settrans(0);
@@ -1010,7 +989,7 @@ while ($int20 < $int34) {
                                                 cc_setsize(.cc_getwidth, .cc_getheight, ^setsize_abs, ^setsize_abs);
                                                 cc_setposition(.cc_getx, .cc_gety, ^setpos_abs_left, ^setpos_abs_top);
                                                 cc_setgraphic(rs3_icon_slot_unavailable);
-                                                $int47 = setbit($int47, 2);
+                                                $int49 = setbit($int49, 2);
                                             }
                                         } else if (inv_total(inv_675, $obj45) > 0) {
                                             if (.cc_find($component7, $int20) = true) {
@@ -1018,10 +997,10 @@ while ($int20 < $int34) {
                                                 cc_setsize(.cc_getwidth, .cc_getheight, ^setsize_abs, ^setsize_abs);
                                                 cc_setposition(.cc_getx, .cc_gety, ^setpos_abs_left, ^setpos_abs_top);
                                                 cc_setgraphic(rs3_icon_slot_owned);
-                                                $int47 = setbit($int47, 2);
+                                                $int49 = setbit($int49, 2);
                                             }
                                         } else if (.cc_find($component7, $int20) = true) {
-                                            $int47 = clearbit($int47, 1);
+                                            $int49 = clearbit($int49, 1);
                                             cc_setparam(param_4414, struct_35592);
                                             cc_setgraphic(~script8478($inv1, $int20, 2));
                                             cc_settrans(0);
@@ -1029,7 +1008,7 @@ while ($int20 < $int34) {
                                             cc_setsize(.cc_getwidth, .cc_getheight, ^setsize_abs, ^setsize_abs);
                                             cc_setposition(.cc_getx, .cc_gety, ^setpos_abs_left, ^setpos_abs_top);
                                             cc_setgraphic(rs3_icon_slot_unavailable);
-                                            $int47 = setbit($int47, 2);
+                                            $int49 = setbit($int49, 2);
                                         }
                                     }
                             }
@@ -1077,20 +1056,20 @@ if ($int33 ! 0) {
 }
 if ($inv1 = inv_818) {
     if (if_find(interface_1843:com_272) = true) {
-        if (testbit($int47, 0) = ^true) {
+        if (testbit($int49, 0) = ^true) {
             cc_sethide(true);
         } else {
             cc_sethide(false);
         }
     }
     if (if_find(interface_1843:com_312) = true) {
-        if (testbit($int47, 1) = ^true) {
+        if (testbit($int49, 1) = ^true) {
             cc_settext("Apply");
         } else {
             cc_settext("Confirm");
         }
     }
-    ~script13243($component8, $int47);
+    ~script13243($component8, $int49);
 }
 if ($component0 = interface_1464:com_0) {
     ~script330(interface_1464:com_23, interface_1464:com_24, 3);

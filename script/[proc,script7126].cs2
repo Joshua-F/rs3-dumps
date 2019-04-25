@@ -13,9 +13,11 @@ if (oc_param($obj1, param_3037) = false) {
     $int4 = 1;
 }
 def_int $int7 = 0;
-def_int $int8 = 4;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 4;
 if (map_lang = 3) {
-    $int8 = 3;
+    $int10 = 3;
 }
 cc_deleteall($component0);
 if ($int3 ! 0) {
@@ -31,18 +33,17 @@ if ($int3 ! 0) {
         $int7 = ~script9883(oc_param($obj1, param_223));
     }
     $graphic6 = enum(int, graphic, enum_371, $int3);
-    $string0 = ~makex2012_get_item_xp($obj1, $int7, $int4, 1);
-    if (string_length($string0) <= $int8) {
-        if (string_length($string0) = 1) {
-            $string0 = append("0", $string0);
-        }
-        $string0 = "<substring($string0, 0, calc(string_length($string0) - 1))><~script8002><substring($string0, calc(string_length($string0) - 1), string_length($string0))>xp";
-    } else if (map_lang = 3 & string_length($string0) > 5) {
-        $string0 = substring($string0, 0, calc(string_length($string0) - 1));
-    } else {
-        $string0 = append(substring($string0, 0, calc(string_length($string0) - 1)), "xp");
+    $int7 = ~makex2012_get_item_xp($obj1, $int7, $int4, 1);
+    $int8, $int9 = ~script362($int7, 1);
+    $string0 = ~script361($int7, 1);
+    if (map_lang ! 3 | string_length($string0) <= 5) {
+        $string0 = append($string0, "xp");
     }
-    $string1 = "<enum(int, string, enum_108, $int3)> Experience";
+    if ($int9 > 0) {
+        $string1 = "<tostring($int8)><~script8002><tostring($int9)> <enum(int, string, enum_108, $int3)> Experience";
+    } else {
+        $string1 = "<tostring($int8)> <enum(int, string, enum_108, $int3)> Experience";
+    }
 } else {
     $int5 = 1;
     $graphic6 = null;
@@ -54,6 +55,8 @@ $int5 = 1;
 $graphic6 = null;
 $string0 = "-";
 $string1 = "";
+$int8 = 0;
+$int9 = 0;
 $int3 = oc_param($obj1, param_2698);
 if (oc_param($obj1, param_2996) = false) {
     $int4 = oc_param($obj1, param_2653);
@@ -64,23 +67,21 @@ if ($int3 ! 0) {
     $int5 = 0;
     $int7 = oc_param($obj1, param_2699);
     if (~script7166($obj1) = true) {
-        $string0 = tostring(calc($int4 * $int7 / 10000));
+        $int7 = calc($int4 * $int7 / 10000);
     } else {
-        $string0 = ~makex2012_get_item_xp($obj1, $int7, $int4, 2);
-    }
-    if (string_length($string0) <= $int8) {
-        if (string_length($string0) = 1) {
-            $string0 = append("0", $string0);
-        }
-        $string0 = "<substring($string0, 0, calc(string_length($string0) - 1))><~script8002><substring($string0, calc(string_length($string0) - 1), string_length($string0))>xp";
-    } else if (map_lang = 3 & string_length($string0) > 5) {
-        $string0 = substring($string0, 0, calc(string_length($string0) - 1));
-    } else {
-        $string0 = append(substring($string0, 0, calc(string_length($string0) - 1)), "xp");
+        $int7 = ~makex2012_get_item_xp($obj1, $int7, $int4, 2);
     }
     $graphic6 = enum(int, graphic, enum_371, $int3);
-    $string0 = ~makex2012_get_item_xp($obj1, $int7, $int4, 1);
-    $string1 = "<enum(int, string, enum_108, $int3)> Experience";
+    $int8, $int9 = ~script362($int7, 1);
+    $string0 = ~script361($int7, 1);
+    if (map_lang ! 3 | string_length($string0) <= 5) {
+        $string0 = append($string0, "xp");
+    }
+    if ($int9 > 0) {
+        $string1 = "<tostring($int8)><~script8002><tostring($int9)> <enum(int, string, enum_108, $int3)> Experience";
+    } else {
+        $string1 = "<tostring($int8)> <enum(int, string, enum_108, $int3)> Experience";
+    }
 } else {
     $int5 = 1;
     $graphic6 = null;
@@ -96,17 +97,17 @@ if (oc_param($obj1, param_2989) ! null) {
     $obj1 = oc_param($obj1, param_2989);
 }
 $int4 = oc_param($obj1, param_2653);
-def_int $int9 = 0;
+def_int $int11 = 0;
 def_string $string2 = "Sell to Store Gold Value";
 def_string $string3 = "Grand Exchange Gold Value";
 def_string $string4 = "";
 def_string $string5 = "";
 def_string $string6 = "";
 def_string $string7 = "";
-def_int $int10 = 1;
-def_int $int11 = 1;
 def_int $int12 = 1;
 def_int $int13 = 1;
+def_int $int14 = 1;
+def_int $int15 = 1;
 if (stat_base(magic) >= 55) {
     $string4 = "High Alchemy Gold Value";
 } else {
@@ -114,48 +115,48 @@ if (stat_base(magic) >= 55) {
 }
 if (oc_cost($obj1) > 0) {
     if (oc_tradeable($obj1) = true) {
-        $int10 = 0;
-        $int9 = calc($int4 * max(1, scale(oc_cost($obj1), 100, 30)));
-        $string5 = ~script940($int9);
-        $string2 = "<$string2>: <tostring($int9)>";
+        $int12 = 0;
+        $int11 = calc($int4 * max(1, scale(oc_cost($obj1), 100, 30)));
+        $string5 = ~script940($int11);
+        $string2 = "<$string2>: <tostring($int11)>";
         if (%varclient_2224 ! -1) {
-            $int12 = 0;
-            $int9 = calc($int4 * %varclient_2224);
-            $string6 = ~script940($int9);
-            $string3 = "<$string3>: <tostring($int9)>";
+            $int14 = 0;
+            $int11 = calc($int4 * %varclient_2224);
+            $string6 = ~script940($int11);
+            $string3 = "<$string3>: <tostring($int11)>";
         } else {
-            $int13 = 0;
-            $int12 = 1;
+            $int15 = 0;
+            $int14 = 1;
             $string6 = "-";
         }
     } else {
-        $int13 = 1;
-        $int10 = 1;
+        $int15 = 1;
         $int12 = 1;
+        $int14 = 1;
         $string5 = "-";
         $string6 = "-";
     }
     if (oc_param($obj1, param_689) = 0) {
-        $int11 = 0;
+        $int13 = 0;
         if (stat_base(magic) >= 55) {
-            $int9 = calc($int4 * scale(60, 100, oc_cost($obj1)));
+            $int11 = calc($int4 * scale(60, 100, oc_cost($obj1)));
         } else {
-            $int9 = calc($int4 * scale(40, 100, oc_cost($obj1)));
+            $int11 = calc($int4 * scale(40, 100, oc_cost($obj1)));
         }
-        $string7 = ~script940($int9);
-        $string4 = "<$string4>: <tostring($int9)>";
+        $string7 = ~script940($int11);
+        $string4 = "<$string4>: <tostring($int11)>";
     } else {
-        $int11 = 1;
+        $int13 = 1;
         $string7 = "-";
     }
 } else {
-    $int10 = 1;
     $int12 = 1;
-    $int11 = 1;
+    $int14 = 1;
+    $int13 = 1;
     $string5 = "-";
     $string6 = "-";
     $string7 = "-";
 }
-~script2554($component0, 1, "aif_money_xp_icons,1", $string5, $string2, $int10, 1);
-~script2554($component0, 2, aif_grand_exchange_25x25, $string6, $string3, $int12, $int13);
-~script2554($component0, 3, "aif_make_x_gold_icons,2", $string7, $string4, $int11, 1);
+~script2554($component0, 1, "aif_money_xp_icons,1", $string5, $string2, $int12, 1);
+~script2554($component0, 2, aif_grand_exchange_25x25, $string6, $string3, $int14, $int15);
+~script2554($component0, 3, "aif_make_x_gold_icons,2", $string7, $string4, $int13, 1);

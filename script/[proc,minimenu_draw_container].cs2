@@ -1,12 +1,15 @@
 // 13636
 [proc,minimenu_draw_container](int $int0, int $int1, int $int2, struct $struct3, component $component4, component $component5, string $string0)
 if_setscrollsize($int0, calc($int2 - struct_param($struct3, param_7265)), $component4);
-if_setsize($int0, calc($int1 - struct_param($struct3, param_7265) - struct_param($struct3, param_7271)), ^setsize_abs, ^setsize_abs, $component4);
+if_setsize($int0, calc($int1 - struct_param($struct3, param_7265) - 2), ^setsize_abs, ^setsize_abs, $component4);
 if_setposition(0, struct_param($struct3, param_7265), ^setpos_abs_left, ^setpos_abs_top, $component4);
 if ($int1 ! $int2) {
     ~rs3_scrollbar_vertical(interface_1322:com_14, $component4);
-    if (if_find(interface_1322:com_14) = true) {
-        cc_setparam(param_6313, 10);
+    if_setparam_int(param_6313, 4, interface_1322:com_14);
+    if_setparam_int(param_6312, 15, interface_1322:com_14);
+    if (~is_mobile_client = true) {
+        ~script14182($component4);
+        if_setonrelease("script3711($component4, event_com)", ~minimenu_get_root);
     }
     if_sethide(false, interface_1322:com_16);
     if_sethide(false, interface_1322:com_15);

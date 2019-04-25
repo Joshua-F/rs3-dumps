@@ -56,22 +56,24 @@ def_int $int24 = 0;
 def_int $int25 = 0;
 def_int $int26 = 0;
 def_int $int27 = 0;
-def_int $int28 = calc(if_getheight($component9) / $int19);
+def_int $int28 = 0;
 def_int $int29 = 0;
-def_int $int30 = clan_getchatcount;
-if_settext("<tostring_localised($int30, true)> / 100", ~friendschat_get_component($int1, interface_1109:com_28));
-if ($int30 > 0) {
+def_int $int30 = calc(if_getheight($component9) / $int19);
+def_int $int31 = 0;
+def_int $int32 = clan_getchatcount;
+if_settext("<tostring_localised($int32, true)> / 100", ~friendschat_get_component($int1, interface_1109:com_28));
+if ($int32 > 0) {
     if_sethide(true, ~friendschat_get_component($int1, interface_1109:com_23));
-    while ($int13 < $int30) {
+    while ($int13 < $int32) {
         $int18 = $int13;
-        $int27 = calc($int13 * $int19);
+        $int29 = calc($int13 * $int19);
         $string1 = clan_getchatusername($int13);
         $string2 = clan_getchatusername_unfiltered($int13);
         $int23 = clan_getchatuserworld($int13);
-        $int26 = clan_getchatuserrank($int13);
+        $int28 = clan_getchatuserrank($int13);
         cc_create($component4, ^iftype_text, $int13);
         cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-        cc_setposition(0, $int27, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition(0, $int29, ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize($int15, $int19, ^setsize_abs, ^setsize_abs);
         cc_setcolour(0xa4997d);
         cc_settextfont($fontmetrics20);
@@ -92,7 +94,7 @@ if ($int30 > 0) {
         if_setsize($int16, 0, ^setsize_abs, ^setsize_minus, $component7);
         cc_create($component6, ^iftype_text, if_getnextsubid($component6));
         cc_settextfont($fontmetrics20);
-        cc_setposition(0, $int27, ^setpos_abs_right, ^setpos_abs_top);
+        cc_setposition(0, $int29, ^setpos_abs_right, ^setpos_abs_top);
         cc_setsize($int16, $int19, ^setsize_abs, ^setsize_abs);
         cc_settextshadow(true);
         if ($int23 = map_world) {
@@ -101,45 +103,58 @@ if ($int30 > 0) {
             cc_setcolour(0xffff64);
         }
         cc_settextshadow(false);
-        if ($int23 >= 1100 & $int23 < 5001) {
+        if ($int23 < 300) {
+            $string3 = tostring($int23);
+            $int21 = calc(2 + 24 + 2);
+            $string4 = "RuneScape <$string3>";
+            $string4, $int24, $int25 = ~script6305($string4, $int23);
+        } else if ($int23 >= 300 & $int23 < 500) {
+            $string3 = tostring($int23);
+            $string4 = "Old School <tostring($int23)>";
+            $int21 = calc(2 + 24 + 2);
+        } else if ($int23 >= 1100 & $int23 <= 1200) {
             $string3 = "Lobby";
             $string4 = "Lobby";
             $int21 = 0;
-        } else if ($int23 >= 5001 & $int23 < 6000) {
-            $string3 = "Classic <tostring(calc($int23 - 5000))>";
-            $string4 = "Classic <tostring(calc($int23 - 5000))>";
-            $int21 = 0;
         } else {
-            $string3 = tostring($int23);
+            $string3 = "World <tostring($int23)>";
             $string4 = "World <tostring($int23)>";
-            $int21 = calc(2 + 24 + 2);
+            $int21 = 0;
         }
         $int22 = stringwidth($string3, $fontmetrics20);
         if ($int16 >= calc($int22 + $int21)) {
             if ($int21 > 0) {
                 cc_create($component7, ^iftype_graphic, if_getnextsubid($component7));
-                if ($int23 > 199 & $int23 < 300) {
+                if ($int23 >= 300 & $int23 < 500) {
+                    cc_setgraphic("rs3_icon_world_select_game_flags,3");
+                } else if ($int24 = -1) {
+                    if ($int25 >= 0) {
+                        cc_setgraphic(enum(int, graphic, enum_1810, $int25));
+                    } else {
+                        cc_setgraphic("rs3_icon_world_select_game_flags,0");
+                    }
+                } else if (testbit($int24, 16) = ^true) {
                     cc_setgraphic("rs3_icon_world_select_game_flags,1");
-                } else if (~script9377($int23) = 1) {
+                } else if (testbit($int24, 20) = ^true) {
                     cc_setgraphic("rs3_icon_world_select_game_flags,2");
                 } else {
-                    cc_setgraphic("rs3_icon_world_select_game_flags,0");
+                    cc_setgraphic(enum(int, graphic, enum_1810, $int25));
                 }
                 cc_setsize(24, 12, ^setsize_abs, ^setsize_abs);
-                cc_setposition(2, calc($int27 + ($int19 - 19) / 2 + 3), ^setpos_abs_left, ^setpos_abs_top);
-                cc_setonmouserepeat("script8799($string4, event_com, event_comsubid)");
+                cc_setposition(2, calc($int29 + ($int19 - 19) / 2 + 3), ^setpos_abs_left, ^setpos_abs_top);
+                cc_setonmouserepeat("script3127($string4, event_com, event_comsubid, $int1, $component6)");
             }
         } else {
             $int21 = 0;
         }
         if ($int16 >= $int22) {
         } else {
-            cc_setonmouserepeat("script8799($string4, event_com, event_comsubid)");
+            cc_setonmouserepeat("script3127($string4, event_com, event_comsubid, $int1, $component6)");
             $string3 = "...";
         }
         cc_create($component6, ^iftype_text, if_getnextsubid($component6));
         cc_setsize($int16, $int19, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int21 + 2), $int27, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition(calc($int21 + 2), $int29, ^setpos_abs_left, ^setpos_abs_top);
         cc_settextfont($fontmetrics20);
         cc_settextshadow(true);
         cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
@@ -151,12 +166,12 @@ if ($int30 > 0) {
         } else {
             cc_setcolour(0xffff64);
         }
-        cc_setonmouserepeat("script8799($string4, event_com, event_comsubid)");
+        cc_setonmouserepeat("script3127($string4, event_com, event_comsubid, $int1, $component6)");
         cc_create($component5, ^iftype_graphic, if_getnextsubid($component5));
         cc_setposition(1, calc($int13 * $int19 + ($int19 - 19) / 2 + 5), ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(9, 9, ^setsize_abs, ^setsize_abs);
-        cc_setgraphic(~script1599($int26));
-        $string3 = "Rank: <enum(int, string, enum_5853, $int26)>";
+        cc_setgraphic(~script1599($int28));
+        $string3 = "Rank: <enum(int, string, enum_5853, $int28)>";
         cc_setonmouserepeat("script8799($string3, event_com, event_comsubid)");
         $int13 = calc($int13 + 1);
     }
@@ -167,15 +182,15 @@ if ($int30 > 0) {
     $string4 = "Leave the Friends chat channel";
     if_setonmouserepeat("script8799($string4, event_com, event_comsubid)", ~friendschat_get_component($int1, interface_1109:com_13));
     if_sethide(false, $component2);
-    $int24 = if_getscrolly($component9);
-    $int25 = calc(max($int13, $int28) * $int19);
-    if ($int25 > if_getheight($component9)) {
+    $int26 = if_getscrolly($component9);
+    $int27 = calc(max($int13, $int30) * $int19);
+    if ($int27 > if_getheight($component9)) {
         if_sethide(false, ~friendschat_get_component($int1, interface_1109:com_21));
-        if_setscrollsize(if_getwidth($component9), $int25, $component9);
-        if ($int24 > $int25) {
-            $int24 = $int25;
+        if_setscrollsize(if_getwidth($component9), $int27, $component9);
+        if ($int26 > $int27) {
+            $int26 = $int27;
         }
-        if_setscrollpos(0, $int24, $component9);
+        if_setscrollpos(0, $int26, $component9);
         ~scrollbar_vertical($component10, $component9, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
     } else {
         if_sethide(true, ~friendschat_get_component($int1, interface_1109:com_21));

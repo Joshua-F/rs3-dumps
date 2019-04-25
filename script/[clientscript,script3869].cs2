@@ -52,8 +52,8 @@ while ($int2 < 12) {
     } else if ($int3 = 60) {
         $struct6 = ~task_get_data($int4);
         if ($struct6 ! null) {
-            if (struct_param($struct6, param_1270) ! 4094) {
-                $graphic7 = struct_param(enum(int, struct, enum_2252, struct_param($struct6, param_1270)), param_952);
+            if (struct_param($struct6, param_1345) > 0) {
+                $graphic7 = ~quest_icon(enum(int, struct, enum_2252, struct_param($struct6, param_1345)));
             } else {
                 $graphic7 = struct_param($struct6, param_1271);
             }
@@ -64,8 +64,8 @@ while ($int2 < 12) {
             $struct6 = null;
         }
     } else if ($int3 = 61) {
-        $graphic7 = struct_param(enum(int, struct, enum_2252, $int4), param_952);
-        $string0 = "You must have completed the quest: '<struct_param(enum(int, struct, enum_2252, $int4), param_845)>'";
+        $graphic7 = ~quest_icon(enum(int, struct, enum_2252, $int4));
+        $string0 = "You must have completed the quest: '<~quest_name(enum(int, struct, enum_2252, $int4))>'";
         if (%varclient_4485 = struct_28641) {
             if ($int4 = 176) {
                 $string0 = append(append("Optional requirement: ", $string0), " to face Akrisae.");
@@ -80,13 +80,15 @@ while ($int2 < 12) {
             $int8 = 0;
         }
     } else if ($int3 = 66) {
-        $graphic7 = struct_param(enum(int, struct, enum_2252, $int4), param_952);
+        $graphic7 = achievement_icon_default;
         $string0 = "You must have completed the elite dungeon: ";
         switch_int ($int4) {
             case 49 :
                 $string0 = append($string0, "The Temple of Aminishi");
             case 50 :
                 $string0 = append($string0, "The Dragonkin Laboratory");
+            case 51 :
+                $string0 = append($string0, "The Shadow Reef");
         }
     } else if ($int3 = 62) {
         switch_int ($int4) {
@@ -145,9 +147,11 @@ if ($obj9 ! null) {
 }
 cc_deleteall(interface_753:com_31);
 if_setscrollpos(0, 0, interface_753:com_30);
-if ($int1 > 0) {
+if (calc($int1 + 36) > if_getheight(interface_753:com_30)) {
     if_setscrollsize(0, calc($int1 + 36), interface_753:com_30);
-    ~scrollbar_vertical(interface_753:com_31, interface_753:com_30, "task_scrollbar_dragger,3", "task_scrollbar_dragger,0", "task_scrollbar_dragger,1", "task_scrollbar_dragger,2", "task_scrollbar,1", "task_scrollbar,0");
+    ~rs3_scrollbar_vertical(interface_753:com_31, interface_753:com_30);
+} else {
+    if_setscrollsize(0, 0, interface_753:com_30);
 }
 if (if_getnextsubid(interface_753:com_30) = 0) {
     cc_create(interface_753:com_30, ^iftype_text, if_getnextsubid(interface_753:com_30));

@@ -2,101 +2,167 @@
 [clientscript,script13378]
 def_int $int0 = 0;
 def_int $int1 = 40;
-def_int $int2 = calc((if_getwidth(interface_1870:com_11) - $int1 * 6) / 2);
-def_int $int3 = calc((if_getheight(interface_1870:com_11) - $int1 * 6) / 2);
-def_int $int4 = $int2;
-def_int $int5 = $int3;
-def_graphic $graphic6 = "trh119_icon_checkmarks,1";
-def_graphic $graphic7 = "trh119_icon_checkmarks,0";
-if (~trh_state(struct_40380) = 1) {
-    $graphic6 = treasurehunter_trh142_icon_crossbones;
-    $graphic7 = treasurehunter_trh142_containr_grid;
-    if_setposition(54, 15, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_11);
-    if_setposition(54, 15, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_12);
+def_int $int2 = 6;
+def_graphic $graphic3 = "trh119_icon_checkmarks,1";
+def_graphic $graphic4 = "trh119_icon_checkmarks,0";
+if (~trh_state(struct_7229) = 1) {
+    $int2 = 8;
+    if_setsize(640, 320, ^setsize_abs, ^setsize_abs, interface_1870:com_16);
+    if_setsize(640, 320, ^setsize_abs, ^setsize_abs, interface_1870:com_17);
+    $graphic4 = treasurehunter_trh157_container_grid;
+    if_setposition(158, 15, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_16);
+    if_setposition(158, 15, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_17);
 }
-cc_deleteall(interface_1870:com_11);
-cc_deleteall(interface_1870:com_12);
+def_int $int5 = calc((if_getwidth(interface_1870:com_16) - $int1 * $int2) / 2);
+def_int $int6 = calc((if_getheight(interface_1870:com_16) - $int1 * 6) / 2);
+def_int $int7 = $int5;
+def_int $int8 = $int6;
+def_int $int9 = 0;
+if (~trh_state(struct_40380) = 1) {
+    $graphic3 = treasurehunter_trh142_icon_crossbones;
+    $graphic4 = treasurehunter_trh142_container_grid;
+    if_setposition(54, 15, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_16);
+    if_setposition(54, 15, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_17);
+}
+cc_deleteall(interface_1870:com_16);
 cc_deleteall(interface_1870:com_17);
-cc_deleteall(interface_1253:com_1060);
+cc_deleteall(interface_1870:com_23);
+cc_deleteall(interface_1253:com_1090);
 while ($int0 < 36) {
-    cc_create(interface_1870:com_11, ^iftype_graphic, $int0);
+    if (~trh_state(struct_7229) = 1 & (calc($int0 % 3) = 0 | calc($int0 % 5) = 0 | calc($int0 % 7) = 0)) {
+        $int7 = calc($int7 + $int1);
+    }
+    cc_create(interface_1870:com_16, ^iftype_graphic, $int0);
     cc_setsize($int1, $int1, ^setsize_abs, ^setsize_abs);
-    cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setgraphic($graphic7);
-    cc_create(interface_1870:com_12, ^iftype_graphic, $int0);
+    cc_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic($graphic4);
+    cc_create(interface_1870:com_17, ^iftype_graphic, $int0);
     cc_setop(1, "Dig");
     cc_setopcursor(1, cursor_173);
     cc_setsize($int1, $int1, ^setsize_abs, ^setsize_abs);
-    cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top);
     cc_setonvartransmit("script13379($int0){varplayer_7940, varplayer_7941, varplayer_7932, varplayer_7933, varplayer_7934, varplayer_7935, varplayer_7936, varplayer_7937, varplayer_7938}");
-    cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, $graphic6)");
+    cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, $graphic3)");
     cc_setonmouseleave("script13379($int0)");
     cc_setonop("script13377($int0)");
-    if (calc(($int0 + 1) % 6) ! 0) {
-        $int4 = calc($int4 + $int1);
+    if ($int9 < calc(6 - 1)) {
+        $int7 = calc($int7 + $int1);
+        $int9 = calc($int9 + 1);
     } else {
-        $int4 = $int2;
-        $int5 = calc($int5 + $int1);
+        $int7 = $int5;
+        $int8 = calc($int8 + $int1);
+        $int9 = 0;
     }
-    cc_create(interface_1253:com_1060, ^iftype_graphic, $int0);
+    cc_create(interface_1253:com_1090, ^iftype_graphic, $int0);
     $int0 = calc($int0 + 1);
 }
-cc_create(interface_1253:com_1060, ^iftype_graphic, $int0);
-if_setonop("script13377($int0)", interface_1870:com_14);
-def_int $int8 = 5;
-def_int $int9 = 0;
-def_int $int10 = 0;
+cc_create(interface_1253:com_1090, ^iftype_graphic, $int0);
+if_setonop("script13377($int0)", interface_1870:com_20);
+def_int $int10 = 5;
 def_int $int11 = 0;
 def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
 def_string $string0 = "";
+def_enum $enum15 = enum_9077;
 if (~trh_state(struct_1515) = 1 | ~trh_state(struct_42706) = 1 & %varplayer_3079 = 6143) {
     if_sethide(true, interface_1870:com_0);
-    if_sethide(false, interface_1870:com_10);
-    ~script7135;
+    if_sethide(false, interface_1870:com_15);
     $int1 = 28;
-    $int2 = calc((if_getwidth(interface_1870:com_17) - (5 * $int1 + (5 - 1) * $int8)) / 2);
-    $int3 = 6;
-    $int4 = $int2;
-    $int5 = $int3;
+    $int5 = calc((if_getwidth(interface_1870:com_23) - (5 * $int1 + (5 - 1) * $int10)) / 2);
+    $int6 = 6;
+    $int7 = $int5;
+    $int8 = $int6;
     $int0 = 0;
     while ($int0 < enum_getoutputcount(enum_12584)) {
-        $int10, $int11, $int12, $string0 = ~script13381($int0);
-        cc_create(interface_1870:com_17, ^iftype_rectangle, if_getnextsubid(interface_1870:com_17));
+        $int12, $int13, $int14, $string0 = ~script13381($int0);
+        cc_create(interface_1870:com_23, ^iftype_rectangle, if_getnextsubid(interface_1870:com_23));
         cc_setcolour(0x071820);
         cc_setfill(true);
-        cc_setsize(calc(if_getwidth(interface_1870:com_17) - $int2), calc($int1 / 2), ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int2 / 2), calc($int3 + $int0 * ($int1 + $int8) + $int1 / 4), ^setpos_abs_left, ^setpos_abs_top);
-        if ($int11 > 0) {
-            while ($int9 < $int11) {
-                cc_create(interface_1870:com_17, ^iftype_graphic, if_getnextsubid(interface_1870:com_17));
-                cc_setgraphic(enum(int, graphic, enum_12585, $int12));
+        cc_setsize(calc(if_getwidth(interface_1870:com_23) - $int5), calc($int1 / 2), ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int5 / 2), calc($int6 + $int0 * ($int1 + $int10) + $int1 / 4), ^setpos_abs_left, ^setpos_abs_top);
+        if ($int13 > 0) {
+            while ($int11 < $int13) {
+                cc_create(interface_1870:com_23, ^iftype_graphic, if_getnextsubid(interface_1870:com_23));
+                cc_setgraphic(enum(int, graphic, enum_12585, $int14));
                 cc_setsize($int1, $int1, ^setsize_abs, ^setsize_abs);
-                cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
+                cc_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top);
                 cc_setonmouserepeat("script3876($string0, event_com, event_comsubid)");
-                .cc_create(interface_1870:com_17, ^iftype_graphic, if_getnextsubid(interface_1870:com_17));
+                .cc_create(interface_1870:com_23, ^iftype_graphic, if_getnextsubid(interface_1870:com_23));
                 .cc_setgraphic(rs3_contextual_input_green_check_mark);
                 .cc_setsize($int1, $int1, ^setsize_abs, ^setsize_abs);
-                .cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
-                if ($int9 >= $int10) {
+                .cc_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top);
+                if ($int11 >= $int12) {
                     .cc_sethide(true);
                 } else {
                     cc_settrans(130);
                 }
-                $int4 = calc($int4 + ($int1 + $int8));
-                $int9 = calc($int9 + 1);
+                $int7 = calc($int7 + ($int1 + $int10));
+                $int11 = calc($int11 + 1);
             }
-            $int9 = 0;
-            $int4 = $int2;
-            $int5 = calc($int5 + ($int1 + $int8));
+            $int11 = 0;
+            $int7 = $int5;
+            $int8 = calc($int8 + ($int1 + $int10));
         }
         $int0 = calc($int0 + 1);
     }
-    if_settext("Buried Treasure", interface_1870:com_18);
-    if_settext("Dig up chests and use Treasure Hunter keys to open them. Search for special buried treasure chests to uncover more loot!", interface_1870:com_19);
-    if_settext("Special Chests", interface_1870:com_20);
-    if_sethide(true, interface_1870:com_13);
-} else {
+    if_settext("Buried Treasure", interface_1870:com_24);
+    if_settext("Dig up chests and use Treasure Hunter keys to open them. Search for special buried treasure chests to uncover more loot!", interface_1870:com_25);
+    if_settext("Special Chests", interface_1870:com_26);
+    if_sethide(true, interface_1870:com_18);
+} else if (~trh_state(struct_40380) = 1 | ~trh_state(struct_7229) = 1) {
     if_sethide(false, interface_1870:com_0);
-    if_sethide(true, interface_1870:com_10);
-    if_sethide(false, interface_1870:com_13);
+    if_sethide(true, interface_1870:com_15);
+    if_sethide(false, interface_1870:com_18);
+    cc_deleteall(interface_1870:com_4);
+    cc_deleteall(interface_1870:com_6);
+    if (~trh_state(struct_7229) = 1) {
+        if_setposition(-55, 3, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_0);
+        $enum15 = enum_15153;
+        if_setposition(161, 23, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1870:com_18);
+        if_settext("The Undergrowth", interface_1870:com_14);
+    }
+    $int5 = 4;
+    $int6 = 5;
+    $int7 = $int5;
+    $int8 = $int6;
+    $int0 = 0;
+    if_setsize(calc($int5 * 2 + 56 * enum_getoutputcount($enum15)), 0, ^setsize_abs, ^setsize_minus, interface_1870:com_4);
+    if_setsize(calc($int5 * 2 + 56 * enum_getoutputcount($enum15)), 0, ^setsize_abs, ^setsize_minus, interface_1870:com_5);
+    if_setsize(calc($int5 * 2 + 56 * enum_getoutputcount($enum15)), 0, ^setsize_abs, ^setsize_minus, interface_1870:com_6);
+    if_setscrollsize(calc($int5 * 2 + 56 * enum_getoutputcount($enum15)), 0, interface_1870:com_3);
+    if (enum_getoutputcount($enum15) > 4) {
+        ~scrollbar_horizontal(interface_1870:com_7, interface_1870:com_3, struct_4567);
+    }
+    while ($int0 < enum_getoutputcount($enum15)) {
+        cc_create(interface_1870:com_4, ^iftype_graphic, if_getnextsubid(interface_1870:com_4));
+        if ($int0 = 0) {
+            cc_setgraphic(treasurehunter_trh142_button_active);
+        } else if (~script3495(enum(int, struct, $enum15, $int0)) = 1) {
+            cc_setgraphic(treasurehunter_trh142_button_claimed);
+        } else {
+            cc_setgraphic(treasurehunter_trh142_button_off);
+        }
+        cc_setsize(56, 54, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top);
+        cc_create(interface_1870:com_4, ^iftype_graphic, if_getnextsubid(interface_1870:com_4));
+        cc_setgraphic(struct_param(enum(int, struct, $enum15, $int0), param_856));
+        cc_setsize(36, 34, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int7 + 10), calc($int8 + 4), ^setpos_abs_left, ^setpos_abs_top);
+        if (struct_param(enum(int, struct, $enum15, $int0), param_4742) = struct_param(struct_40380, param_4630)) {
+            cc_create(interface_1870:com_5, ^iftype_graphic, if_getnextsubid(interface_1870:com_5));
+            cc_setgraphic("rs3_icon_lobby_take_action,1");
+            cc_setsize(15, 15, ^setsize_abs, ^setsize_abs);
+            cc_setposition(calc($int7 + 36), $int8, ^setpos_abs_left, ^setpos_abs_top);
+        }
+        cc_create(interface_1870:com_6, ^iftype_graphic, if_getnextsubid(interface_1870:com_6));
+        cc_setsize(36, 34, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int7 + 10), calc($int8 + 4), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setop(1, "Select");
+        cc_setonmouserepeat("script3876(struct_param(enum(int, struct, $enum15, $int0), param_2533), event_com, event_comsubid)");
+        cc_setonop("script4528($int0, $enum15)");
+        $int7 = calc($int7 + 56);
+        $int0 = calc($int0 + 1);
+    }
+    ~script5263(0, $enum15);
 }

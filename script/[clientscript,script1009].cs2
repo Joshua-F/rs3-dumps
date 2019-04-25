@@ -1,19 +1,61 @@
 // 1009
-[clientscript,script1009](npc $npc0, int $int1, int $int2, string $string0, string $string1, string $string2, string $string3, string $string4, string $string5, string $string6)
-if_sethide(false, interface_90:com_241);
-if_setnpcmodel($npc0, interface_90:com_243);
-if_setmodelzoom($int1, interface_90:com_243);
-if_settext($string0, interface_90:com_250);
-if_settext($string1, interface_90:com_251);
-if_settext($string2, interface_90:com_253);
-if_settext($string3, interface_90:com_252);
-if_settext($string4, interface_90:com_246);
-if_settext($string5, interface_90:com_247);
-if_settext($string6, interface_90:com_248);
-if ($int2 = 1) {
-    if_sethide(false, interface_90:com_256);
-    if_sethide(true, interface_90:com_255);
+[clientscript,script1009](npc $npc0, inv $inv1, int $int2, string $string0, string $string1, int $int3, int $int4, int $int5, int $int6)
+if ($int6 > 1) {
+    if (compare(if_gettext(interface_90:com_51), $string0) = 0) {
+        if_sethide(true, interface_90:com_42);
+    }
+    return;
+}
+def_obj $obj7 = inv_getobj($inv1, $int2);
+if ($obj7 = null) {
+    return;
+}
+def_dbrow $dbrow8 = oc_param($obj7, param_7452);
+if ($dbrow8 = null) {
+    return;
+}
+def_string $string2 = oc_name($obj7);
+def_string $string3 = "Gender: Female";
+if ($int3 = 0) {
+    $string3 = "Gender: Male";
+}
+def_struct $struct9 = null;
+def_struct $struct10 = null;
+def_struct $struct11 = null;
+def_string $string4 = "";
+def_string $string5 = "";
+def_string $string6 = "";
+$struct9 = enum(int, struct, enum_14342, inv_getvar($inv1, $int2, varobjectbit_41807));
+if (inv_getvar($inv1, $int2, varobjectbit_41808) > 0) {
+    $struct10 = enum(int, struct, enum_14343, inv_getvar($inv1, $int2, varobjectbit_41808));
+}
+if (inv_getvar($inv1, $int2, varobjectbit_41809) > 0) {
+    $struct11 = enum(int, struct, enum_14344, inv_getvar($inv1, $int2, varobjectbit_41809));
+}
+$struct9, $struct10, $struct11 = ~script2640($struct9, $struct10, $struct11, $dbrow8);
+if ($struct9 ! null) {
+    $string4 = struct_param($struct9, param_7456);
+}
+if ($struct10 ! null) {
+    $string5 = struct_param($struct10, param_7456);
+}
+if ($struct11 ! null) {
+    $string6 = struct_param($struct11, param_7456);
+}
+if_sethide(false, interface_90:com_42);
+if_setnpcmodel($npc0, interface_90:com_44);
+if_setmodelzoom($int4, interface_90:com_44);
+if_settext($string0, interface_90:com_51);
+if_settext($string1, interface_90:com_52);
+if_settext($string2, interface_90:com_54);
+if_settext($string3, interface_90:com_53);
+if_settext($string4, interface_90:com_47);
+if_settext($string5, interface_90:com_48);
+if_settext($string6, interface_90:com_49);
+if ($int5 = 1) {
+    if_sethide(false, interface_90:com_57);
+    if_sethide(true, interface_90:com_56);
 } else {
-    if_sethide(true, interface_90:com_256);
-    if_sethide(false, interface_90:com_255);
+    if_sethide(true, interface_90:com_57);
+    if_sethide(false, interface_90:com_56);
 }

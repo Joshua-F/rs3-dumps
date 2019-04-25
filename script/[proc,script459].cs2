@@ -1,39 +1,60 @@
 // 459
-[proc,script459](int $int0, int $int1, int $int2)
-def_int $int3 = 0;
-def_int $int4 = 0;
+[proc,script459](int $int0, int $int1, int $int2, component $component3, component $component4)
 def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
 def_string $string0 = "";
 def_string $string1 = "";
-if ($int2 < 1100 | $int2 > 6000) {
+def_int $int8 = 0;
+def_int $int9 = 0;
+if ($int2 < 300) {
     $string0 = tostring($int2);
-    $string1 = "World <$string0>";
-    $int3 = 28;
+    $string1 = "RuneScape <$string0>";
+    $int5 = 28;
+    $string1, $int8, $int9 = ~script6305($string1, $int2);
+} else if ($int2 >= 300 & $int2 < 500) {
+    $string0 = tostring($int2);
+    $string1 = "Old School <tostring($int2)>";
+    $int5 = 28;
+} else if ($int2 < 1100 | $int2 > 6000) {
+    $string0 = "World <tostring($int2)>";
+    $string1 = $string0;
+    $int5 = 0;
 } else if ($int2 >= 1100 & $int2 <= 5000) {
     $string0 = "Lobby";
     $string1 = "Lobby";
-    $int3 = 0;
+    $int5 = 0;
 } else {
     $string0 = "Classic <tostring(calc($int2 - 5000))>";
     $string1 = $string0;
-    $int3 = 0;
-}
-$int4 = stringwidth($string0, graphic_20452);
-if ($int3 = 0 | $int0 < calc($int4 + $int3)) {
     $int5 = 0;
+}
+$int6 = stringwidth($string0, graphic_20452);
+if ($int5 = 0 | $int0 < calc($int6 + $int5)) {
+    $int7 = 0;
     cc_sethide(true);
 } else {
-    $int5 = 26;
-    if (~script9377($int2) = 1) {
+    $int7 = 26;
+    if ($int2 >= 300 & $int2 < 500) {
+        cc_setgraphic("rs3_icon_world_select_game_flags,3");
+    } else if ($int8 = -1) {
+        if ($int9 >= 0) {
+            cc_setgraphic(enum(int, graphic, enum_1810, $int9));
+        } else {
+            cc_setgraphic("rs3_icon_world_select_game_flags,0");
+        }
+    } else if (testbit($int8, 16) = ^true) {
+        cc_setgraphic("rs3_icon_world_select_game_flags,1");
+    } else if (testbit($int8, 20) = ^true) {
         cc_setgraphic("rs3_icon_world_select_game_flags,2");
     } else {
-        cc_setgraphic("rs3_icon_world_select_game_flags,0");
+        cc_setgraphic(enum(int, graphic, enum_1810, $int9));
     }
     cc_setposition(2, calc($int1 + 3), ^setpos_abs_left, ^setpos_abs_top);
-    cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
+    cc_setonmouserepeat("script3125($string1, event_com, event_comsubid, $component3, $component4)");
     cc_sethide(false);
 }
-if ($int0 < $int4) {
+if ($int0 < $int6) {
     $string0 = "...";
 }
 if ($int2 = map_world) {
@@ -44,5 +65,6 @@ if ($int2 = map_world) {
 .cc_setmaxlines(1);
 .cc_settext($string0);
 .cc_setsize($int0, 19, ^setsize_abs, ^setsize_abs);
-.cc_setposition($int5, $int1, ^setpos_abs_left, ^setpos_abs_top);
+.cc_setposition($int7, $int1, ^setpos_abs_left, ^setpos_abs_top);
+.cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
 .cc_sethide(false);

@@ -8,14 +8,18 @@ def_int $int5 = ~stat_bonus_xp($stat0);
 def_int $int6 = enum(int, int, $enum4, $int1);
 def_int $int7 = ~script480($stat0);
 def_int $int8 = 0;
-if (%varplayerbit_41402 ! 0) {
+if (%varplayerbit_18201 = 1) {
+    $int8 = 2;
+} else if (%varplayerbit_41402 ! 0) {
     $int8 = 1;
 }
 def_int $int9 = max(1, pow(2, calc(~script491($stat0, $int8) / $int7)));
 def_int $int10 = calc($int7 - ~script491($stat0, $int8) % $int7);
 def_int $int11 = 0;
 def_int $int12 = 0;
-$int6 = scale(calc(100 + 10), 100, $int6);
+if ($int8 ! 2) {
+    $int6 = scale(calc(100 + 10), 100, $int6);
+}
 $int12 = calc($int6 * $int9);
 def_int $int13 = calc($int5 / $int12);
 if ($int2 = 2) {
