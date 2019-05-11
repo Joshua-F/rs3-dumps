@@ -5,51 +5,85 @@ def_int $int1 = 0;
 def_int $int2 = 0;
 def_int $int3 = 0;
 def_int $int4 = 0;
-def_boolean $boolean5 = false;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_boolean $boolean8 = ~not_bool(~script6518);
+def_boolean $boolean9 = ~not_bool(~script6519);
 def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
-if (~script4292 = 0) {
-    $boolean5 = true;
+if (~script6518 = false) {
+    $boolean8 = true;
+}
+if (~script6519 = false) {
+    $boolean9 = true;
 }
 if (activeclansettings_find_affined = true) {
-    ~script4329(interface_1096:com_92);
+    ~script4329(interface_1096:com_96);
     if (activeclansettings_getranktalk = -1) {
         $int1 = 1;
     }
     if (activeclansettings_getallowunaffined = true) {
         $int2 = 1;
     }
+    if (%varclansettingbit_43993 = 1) {
+        $int3 = 1;
+    }
+    if (%varclansettingbit_43995 = 1) {
+        $int4 = 1;
+    }
+    if (%varclansettingbit_43997 = 1) {
+        $int5 = 1;
+    }
     $int0 = calc(%varclansetting_0 / 10 + 72);
     if (%varclansettingbit_8805 = 0) {
         $string1 = "Not Set";
     }
     if (clanprofile_find = true) {
-        $int3 = %varclan_2811;
-        $int4 = %varclansettingbit_6339;
+        $int6 = %varclan_2811;
+        $int7 = %varclansettingbit_6339;
     } else {
         $string2 = "N/A";
     }
     $string0 = "Check this box to use the timezone offset to display event timings on the noticeboard. Uncheck to use standard game time (UTC).";
-    ~static_checkbox_create_disable(interface_1096:com_74, interface_1096:com_75, "Clan Time", $string0, $string0, %varclansettingbit_8804, $boolean5);
+    ~static_checkbox_create_disable(interface_1096:com_76, interface_1096:com_77, "Clan Time", $string0, $string0, %varclansettingbit_8804, $boolean9);
     $string0 = "Check to allow guests into your clan chat channel.";
-    ~static_checkbox_create_disable(interface_1096:com_77, interface_1096:com_78, "Guests can enter chat", $string0, $string0, $int2, $boolean5);
+    ~static_checkbox_create_disable(interface_1096:com_79, interface_1096:com_80, "Guests can enter chat", $string0, $string0, $int2, $boolean9);
     $string0 = "Check to allow guests (and all ranks) to talk in your clan chat channel.";
-    ~static_checkbox_create_disable(interface_1096:com_80, interface_1096:com_81, "Guests can talk in chat", $string0, $string0, $int1, $boolean5);
+    ~static_checkbox_create_disable(interface_1096:com_82, interface_1096:com_83, "Guests can talk in chat", $string0, $string0, $int1, $boolean8);
+    if ($int3 = 1) {
+        $string0 = "Current guest PIN: <tostring(%varclansettingbit_43992)>";
+    } else {
+        $string0 = "Check to force guests to enter a PIN to join your clan chat channel (if checked you will be prompted to set a PIN).";
+    }
+    ~static_checkbox_create_disable(interface_1096:com_625, interface_1096:com_626, "Guest pin", $string0, $string0, $int3, $boolean9);
     $string0 = "Check this box to indicate that your clan is recruiting. This will display on your clan information interface when a player clicks your vexillum and on your clan website.";
-    ~static_checkbox_create_disable(interface_1096:com_83, interface_1096:com_84, "Clan recruiting", $string0, $string0, %varclansettingbit_8803, $boolean5);
+    ~static_checkbox_create_disable(interface_1096:com_87, interface_1096:com_88, "Clan recruiting", $string0, $string0, %varclansettingbit_8803, $boolean9);
+    if ($int4 = 1) {
+        $string0 = "Total level required to join Clan Chat as a guest: <tostring_localised(%varclansettingbit_43994, true)>";
+    } else {
+        $string0 = "Check to force a clan guest to have reached a certain total level to be able to join your Clan Chat as a guest.";
+    }
+    ~static_checkbox_create_disable(interface_1096:com_627, interface_1096:com_628, "Total level for guests to join chat", $string0, $string0, $int4, $boolean9);
+    if ($int5 = 1) {
+        $string0 = "Total level required for someone to join your Clan: <tostring_localised(%varclansettingbit_43996, true)>";
+    } else {
+        $string0 = "Check to force clan members to have reached a certain total level to join your clan.";
+    }
+    ~static_checkbox_create_disable(interface_1096:com_629, interface_1096:com_630, "Total level to join clan", $string0, $string0, $int5, $boolean9);
     ~script14140(interface_1096:com_17, interface_1096:com_18, enum_3797, 127, "Select the ranks to display.", %varclient_1516, 0, false);
-    ~script14141(interface_1096:com_99, interface_1096:com_100, enum_3700, 200, "Select a world to designate as your home (optional). This will appear on your clan information interface when a player clicks on your vexillum.", %varclansettingbit_8805, 0, $boolean5, $string1);
-    ~script14140(interface_1096:com_103, interface_1096:com_104, enum_3711, 156, "Specify a time offset for your clan. Standard game time is UTC.", $int0, 0, $boolean5);
-    ~script14141(interface_1096:com_107, interface_1096:com_108, enum_4514, -1, "Select who can view the relationships set on your clan signpost.", $int3, 0, $boolean5, $string2);
-    ~script14141(interface_1096:com_111, interface_1096:com_112, enum_4255, -1, "Select where guests can go in your citadel. You must be in your citadel to change this.", $int4, 0, $boolean5, $string2);
-    ~script13971(interface_1096:com_116, interface_1096:com_117, struct_28554, "Motto Editor", $boolean5);
-    ~script13971(interface_1096:com_119, interface_1096:com_120, struct_28554, "Motif Editor", $boolean5);
-    ~script13971(interface_1096:com_122, interface_1096:com_123, struct_28554, "Keyword Editor", $boolean5);
-    ~script13971(interface_1096:com_128, interface_1096:com_129, struct_28554, "Broadcast Settings", $boolean5);
-    ~script13971(interface_1096:com_125, interface_1096:com_126, struct_28554, "Chat Broadcast Settings", $boolean5);
-    ~script13994(interface_1096:com_94, interface_1096:com_95, struct_28556, "Edit Thread ID", $boolean5);
-    ~script13991(interface_1096:com_135, interface_1096:com_136, struct_28556, $boolean5);
+    ~script14141(interface_1096:com_103, interface_1096:com_104, enum_3700, 200, "Select a world to designate as your home (optional). This will appear on your clan information interface when a player clicks on your vexillum.", %varclansettingbit_8805, 0, $boolean9, $string1);
+    ~script14140(interface_1096:com_107, interface_1096:com_108, enum_3711, 156, "Specify a time offset for your clan. Standard game time is UTC.", $int0, 0, $boolean9);
+    ~script14141(interface_1096:com_111, interface_1096:com_112, enum_4514, -1, "Select who can view the relationships set on your clan signpost.", $int6, 0, $boolean9, $string2);
+    ~script14141(interface_1096:com_115, interface_1096:com_116, enum_4255, -1, "Select where guests can go in your citadel. You must be in your citadel to change this.", $int7, 0, $boolean9, $string2);
+    ~script13971(interface_1096:com_120, interface_1096:com_121, struct_28554, "Motto Editor", $boolean8);
+    ~script13971(interface_1096:com_123, interface_1096:com_124, struct_28554, "Motif Editor", $boolean8);
+    ~script13971(interface_1096:com_126, interface_1096:com_127, struct_28554, "Keyword Editor", $boolean8);
+    ~script13971(interface_1096:com_132, interface_1096:com_133, struct_28554, "Broadcast Settings", $boolean8);
+    ~script13971(interface_1096:com_129, interface_1096:com_130, struct_28554, "Chat Broadcast Settings", $boolean8);
+    ~script13994(interface_1096:com_98, interface_1096:com_99, struct_28556, "Edit Thread ID", $boolean8);
+    ~script13991(interface_1096:com_139, interface_1096:com_140, struct_28556, $boolean8);
     ~clansettings_list_build;
 }
 ~script4310;

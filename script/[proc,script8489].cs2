@@ -73,6 +73,8 @@ def_graphic $graphic37 = null;
 def_graphic $graphic38 = null;
 def_int $rgb39 = 0xff8c00;
 def_int $int40 = -1;
+def_int $int41 = 0;
+def_int $int42 = 0;
 while ($int29 < $int15) {
     $int33 = calc($int29 % $int22);
     $int32 = calc($int29 / $int22);
@@ -81,6 +83,8 @@ while ($int29 < $int15) {
     $struct28 = enum(int, struct, enum_7674, $int29);
     $stat36 = struct_param($struct28, param_3440);
     $int40 = ~script3158($stat36);
+    $int41 = stat($stat36);
+    $int42 = stat_base($stat36);
     cc_create($component4, ^iftype_graphic, $int29);
     cc_setsize(60, 27, ^setsize_abs, ^setsize_abs);
     cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
@@ -116,6 +120,16 @@ while ($int29 < $int15) {
                 $graphic38 = "stats_background_button,3";
             }
         }
+    }
+    if ($int13 = 1) {
+        cc_setcolour(^black);
+    }
+    if ($int41 < $int42) {
+        cc_setcolour(^red);
+    } else if ($int41 > $int42) {
+        cc_setcolour(^green);
+    } else {
+        cc_setcolour(^black);
     }
     cc_setgraphic($graphic37);
     cc_setonmouseover("cc_graphic_swapper(event_com, $int29, $graphic38)");
@@ -183,13 +197,13 @@ while ($int29 < $int15) {
     cc_setonmouseleave("script546($component1)");
     $int29 = calc($int29 + 1);
 }
-def_int $int41 = 0;
-$int16 = calc($int16 - $int41);
-def_int $int42 = min(3, max(1, calc($int16 / 60)));
-$int42 = calc($int16 / $int42);
+def_int $int43 = 0;
+$int16 = calc($int16 - $int43);
+def_int $int44 = min(3, max(1, calc($int16 / 60)));
+$int44 = calc($int16 / $int44);
 def_string $string0 = "";
-if_setsize($int42, 0, ^setsize_abs, ^setsize_minus, $component10);
-if_setposition($int41, 0, ^setpos_abs_left, ^setpos_abs_top, $component10);
+if_setsize($int44, 0, ^setsize_abs, ^setsize_minus, $component10);
+if_setposition($int43, 0, ^setpos_abs_left, ^setpos_abs_top, $component10);
 cc_create($component10, ^iftype_graphic, 0);
 cc_setgraphic(rs3_icon_tab_skills);
 cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
@@ -234,8 +248,8 @@ if (%varplayerbit_19007 = 1) {
     }
 }
 if ($int16 >= 120) {
-    if_setsize($int42, 0, ^setsize_abs, ^setsize_minus, $component11);
-    if_setposition(calc($int41 + $int42), 0, ^setpos_abs_left, ^setpos_abs_top, $component11);
+    if_setsize($int44, 0, ^setsize_abs, ^setsize_minus, $component11);
+    if_setposition(calc($int43 + $int44), 0, ^setpos_abs_left, ^setpos_abs_top, $component11);
     cc_create($component11, ^iftype_graphic, 0);
     cc_setgraphic(aif_combat_icon);
     cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
@@ -256,8 +270,8 @@ if ($int16 >= 120) {
     }
 }
 if ($int16 >= 180 & $int0 ! 61341696) {
-    if_setsize($int42, 0, ^setsize_abs, ^setsize_minus, $component12);
-    if_setposition(calc($int41 + $int42 * 2), 0, ^setpos_abs_left, ^setpos_abs_top, $component12);
+    if_setsize($int44, 0, ^setsize_abs, ^setsize_minus, $component12);
+    if_setposition(calc($int43 + $int44 * 2), 0, ^setpos_abs_left, ^setpos_abs_top, $component12);
     cc_create($component12, ^iftype_graphic, 0);
     cc_setgraphic("rs3_icon_menu_tab_quest_list,0");
     cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);

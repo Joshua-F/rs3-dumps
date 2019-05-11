@@ -1,0 +1,38 @@
+// 6514
+[clientscript,script6514]
+def_int $int0 = -1;
+def_int $int1 = enum_getoutputcount(enum_12587);
+def_enum $enum2 = null;
+switch_int (%varplayerbit_43967) {
+    case 1 :
+        if_setgraphic(glow_seren_yellow_trh158, interface_49:com_1);
+        if_setgraphic(icon_seren_artisan_trh158, interface_49:com_2);
+        $enum2 = enum_12963;
+        if_sethide(false, interface_49:com_0);
+    case 2 :
+        if_setgraphic(glow_seren_red_trh158, interface_49:com_1);
+        if_setgraphic(icon_seren_combat_trh158, interface_49:com_2);
+        $enum2 = enum_15182;
+        if_sethide(false, interface_49:com_0);
+    case 3 :
+        if_setgraphic(glow_seren_green_trh158, interface_49:com_1);
+        if_setgraphic(icon_seren_gathering_trh158, interface_49:com_2);
+        $enum2 = enum_15184;
+        if_sethide(false, interface_49:com_0);
+    case 4 :
+        if_setgraphic(glow_seren_blue_trh158, interface_49:com_1);
+        if_setgraphic(icon_seren_support_trh158, interface_49:com_2);
+        $enum2 = enum_15186;
+        if_sethide(false, interface_49:com_0);
+    case default :
+        if_sethide(true, interface_49:com_0);
+}
+if ($enum2 = null) {
+    return;
+}
+while (++$int0 < $int1) {
+    if_setgraphic(enum(int, graphic, $enum2, $int0), enum(int, component, enum_12587, $int0));
+}
+if_setontimer("script6515(1)", interface_49:com_1);
+~script6517;
+if_setonvartransmit("script6516{varplayer_8283}", interface_49:com_2);
