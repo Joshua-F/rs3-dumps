@@ -17,7 +17,7 @@
 %varplayerbit_27092 = $int15;
 %varplayerbit_27091 = $int16;
 if (%varplayerbit_4323 <= 0) {
-    if_sethide(true, interface_1253:com_233);
+    if_sethide(true, interface_1253:com_238);
     if (~trh_state(struct_33919) = 1) {
         if_sethide(false, interface_1253:com_113);
     }
@@ -25,11 +25,11 @@ if (%varplayerbit_4323 <= 0) {
 }
 if (%varclient_1790 = 7) {
     ~wof_button_disable;
-    if_settext("Treasure Hunter is not available at the moment. Please try again later.", interface_1253:com_251);
+    if_settext("Treasure Hunter is not available at the moment. Please try again later.", interface_1253:com_256);
     return;
 }
-if_setobject($obj1, $int2, interface_1253:com_248);
-if_settext("Oddments Value:", interface_1253:com_257);
+if_setobject($obj1, $int2, interface_1253:com_253);
+if_settext("Oddments Value:", interface_1253:com_262);
 if (~trh_state(struct_29986) = 1) {
     if (%varplayerbit_31212 = 1) {
         $int3 = calc($int3 + 3);
@@ -53,45 +53,48 @@ if (~trh_state(struct_29986) = 1) {
         }
     }
 } else if (~trh_state(struct_38726) = 1) {
-    if (%varplayerbit_38544 = 5) {
-        if (%varplayerbit_39915 = 2) {
-            $int3 = calc($int3 + (%varplayerbit_28610 * %varplayerbit_39915 + 1));
-        } else {
-            $int3 = calc($int3 + %varplayerbit_28610 * %varplayerbit_39915);
-        }
+    switch_int (%varplayerbit_44001) {
+        case 5 :
+            if (%varplayerbit_39915 = 2) {
+                $int3 = calc($int3 + (%varplayerbit_28610 * %varplayerbit_39915 + 1));
+            } else {
+                $int3 = calc($int3 + %varplayerbit_28610 * %varplayerbit_39915);
+            }
+        case 7 :
+            $int3 = calc($int3 + %varplayerbit_34315);
     }
 } else if (~trh_state(struct_39564) = 1 | ~trh_state(struct_42706) = 1 & %varplayer_3079 = 6130) {
     $int3 = calc($int3 + %varplayerbit_39986);
 }
-if_settext(tostring_localised(calc(%varplayer_7102 * $int3), true), interface_1253:com_258);
+if_settext(tostring_localised(calc(%varplayer_7102 * $int3), true), interface_1253:com_263);
 if ($int5 >= 34) {
-    if_setgraphic(~script11746($int4), interface_1253:com_247);
+    if_setgraphic(~script11746($int4), interface_1253:com_252);
 } else {
-    if_setgraphic(~script9718($int4), interface_1253:com_247);
+    if_setgraphic(~script9718($int4), interface_1253:com_252);
 }
-if_settext(oc_name($obj1), interface_1253:com_252);
-if_settext($string0, interface_1253:com_251);
-if_sethide(true, interface_1253:com_243);
-if_sethide(true, interface_1253:com_244);
-if_sethide(true, interface_1253:com_245);
+if_settext(oc_name($obj1), interface_1253:com_257);
+if_settext($string0, interface_1253:com_256);
+if_sethide(true, interface_1253:com_248);
+if_sethide(true, interface_1253:com_249);
+if_sethide(true, interface_1253:com_250);
+if_sethide(true, interface_1253:com_251);
 if_sethide(true, interface_1253:com_246);
-if_sethide(true, interface_1253:com_241);
-if_sethide(true, interface_1253:com_242);
-def_string $string1 = "<col=ffcd37><if_gettext(interface_1253:com_252)>";
+if_sethide(true, interface_1253:com_247);
+def_string $string1 = "<col=ffcd37><if_gettext(interface_1253:com_257)>";
 switch_int (%varclient_1928) {
     case 6 :
         if (%varplayerbit_4323 = 6) {
-            if_settext("<col=ff0000>2<x> <$string1>", interface_1253:com_252);
-            if_sethide(false, interface_1253:com_243);
-            if_setgraphic(~script9718($int4), interface_1253:com_243);
+            if_settext("<col=ff0000>2<x> <$string1>", interface_1253:com_257);
+            if_sethide(false, interface_1253:com_248);
+            if_setgraphic(~script9718($int4), interface_1253:com_248);
             if (%varplayerbit_31213 = 1) {
-                if_sethide(false, interface_1253:com_244);
-                if_setgraphic(~script9718($int4), interface_1253:com_244);
-                if_settext("<col=ff0000>3<x> <$string1>", interface_1253:com_252);
+                if_sethide(false, interface_1253:com_249);
+                if_setgraphic(~script9718($int4), interface_1253:com_249);
+                if_settext("<col=ff0000>3<x> <$string1>", interface_1253:com_257);
             }
         } else {
-            if_sethide(true, interface_1253:com_243);
-            if_sethide(true, interface_1253:com_244);
+            if_sethide(true, interface_1253:com_248);
+            if_sethide(true, interface_1253:com_249);
         }
     case 8 :
         ~script11670($int4, $int7);
@@ -102,48 +105,53 @@ switch_int (%varclient_1928) {
             ~script11670($int4, $int7);
         }
     case 25 :
-        if (%varplayerbit_38544 = 5) {
-            ~script11670($int4, $int7);
+        switch_int (%varplayerbit_44001) {
+            case 5 :
+                ~script11670($int4, $int7);
+            case 7 :
+                ~script12909($int4, $int7);
+            case default :
+                ~script13407(%varclient_6507, $int4);
         }
     case 28 :
         ~script1286($int4, $int7, $int2);
     case default :
         ~script13407(%varclient_6507, $int4);
 }
-if_sethide(false, interface_1253:com_240);
+if_sethide(false, interface_1253:com_245);
 if (oc_members($obj1) = 1) {
-    if_sethide(false, interface_1253:com_254);
+    if_sethide(false, interface_1253:com_259);
 } else {
-    if_sethide(true, interface_1253:com_254);
+    if_sethide(true, interface_1253:com_259);
 }
 if ($int5 > 0) {
-    if_sethide(false, interface_1253:com_253);
-    if_settext("Category: <col=ffffff><enum(int, string, enum_8519, $int5)>", interface_1253:com_253);
+    if_sethide(false, interface_1253:com_258);
+    if_settext("Category: <col=ffffff><enum(int, string, enum_8519, $int5)>", interface_1253:com_258);
 } else {
-    if_sethide(true, interface_1253:com_253);
+    if_sethide(true, interface_1253:com_258);
 }
 def_int $int18 = 0;
 if (%varclient_2045 > 0) {
     $int18 = calc(%varclient_2045 - %varplayerbit_4322);
     if (~trh_state(struct_33522) = 1) {
         if (%varplayerbit_32410 = 0) {
-            if_sethide(true, interface_1253:com_311);
+            if_sethide(true, interface_1253:com_316);
         } else {
-            if_sethide(false, interface_1253:com_311);
+            if_sethide(false, interface_1253:com_316);
         }
-        if_sethide(true, interface_1253:com_261);
+        if_sethide(true, interface_1253:com_266);
     } else {
-        if_sethide(false, interface_1253:com_261);
+        if_sethide(false, interface_1253:com_266);
     }
-    if_settext("<tostring(max(1, $int18))>/<tostring(max(1, %varclient_2045))>", interface_1253:com_264);
+    if_settext("<tostring(max(1, $int18))>/<tostring(max(1, %varclient_2045))>", interface_1253:com_269);
 } else {
-    if_settext("1/1", interface_1253:com_264);
-    if_sethide(true, interface_1253:com_261);
+    if_settext("1/1", interface_1253:com_269);
+    if_sethide(true, interface_1253:com_266);
     if (~trh_state(struct_33522) = 1) {
         if (%varplayerbit_32410 = 0) {
-            if_sethide(true, interface_1253:com_311);
+            if_sethide(true, interface_1253:com_316);
         } else {
-            if_sethide(false, interface_1253:com_311);
+            if_sethide(false, interface_1253:com_316);
         }
     }
 }

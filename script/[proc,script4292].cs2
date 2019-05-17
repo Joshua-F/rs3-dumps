@@ -1,0 +1,47 @@
+// 4292
+[proc,script4292]()(int)
+def_int $int0 = 0;
+def_graphic $graphic1 = null;
+def_string $string0 = null;
+if (%varplayerbit_42976 < 6) {
+    $int0 = calc($int0 + 1);
+}
+if (%varplayerbit_42978 < 6) {
+    $int0 = calc($int0 + 1);
+}
+if (%varplayerbit_42977 < 6) {
+    $int0 = calc($int0 + 1);
+}
+switch_int (%varplayerbit_44000) {
+    case 2 :
+        $string0 = "Clairvoyance has revealed a <col=FFFF00>yellow prize</col> in one of your next chests.";
+        $graphic1 = ~script4419(%varplayerbit_44000);
+    case 3 :
+        $string0 = "Clairvoyance has revealed a <col=FF6600>orange prize</col> in one of your next chests.";
+        $graphic1 = ~script4419(%varplayerbit_44000);
+    case 4 :
+        $string0 = "Clairvoyance has revealed a <col=FF0000>red prize</col> in one of your next chests.";
+        $graphic1 = ~script4419(%varplayerbit_44000);
+    case 5 :
+        $string0 = "Clairvoyance has revealed a <col=6600FF>purple prize</col> in one of your next chests.";
+        $graphic1 = ~script4419(%varplayerbit_44000);
+    case default :
+        $string0 = "Clairvoyance has revealed <tostring($int0)> of the prizes in your next chests.";
+        if ($int0 = 2) {
+            $graphic1 = icon_multiplier_x2;
+        } else if ($int0 = 3) {
+            $graphic1 = icon_multiplier_x3;
+        }
+}
+if_settext($string0, interface_1253:com_220);
+if_sethide(false, interface_1253:com_218);
+if_sethide(true, interface_1253:com_219);
+if_setgraphic($graphic1, interface_1253:com_218);
+if ($graphic1 = icon_multiplier_x2 | $graphic1 = icon_multiplier_x3) {
+    if_setsize(60, 50, ^setsize_abs, ^setsize_abs, interface_1253:com_218);
+    if_setposition(-2, 35, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1253:com_218);
+} else {
+    if_setsize(80, 113, ^setsize_abs, ^setsize_abs, interface_1253:com_218);
+    if_setposition(-2, 5, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1253:com_218);
+}
+return(1);

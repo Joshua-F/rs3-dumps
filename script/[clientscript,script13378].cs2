@@ -18,7 +18,7 @@ def_int $int6 = calc((if_getheight(interface_1870:com_16) - $int1 * 6) / 2);
 def_int $int7 = $int5;
 def_int $int8 = $int6;
 def_int $int9 = 0;
-if (~trh_state(struct_40380) = 1) {
+if (~trh_state(struct_40380) = 1 | ~trh_state(struct_38726) = 1) {
     $graphic3 = treasurehunter_trh142_icon_crossbones;
     $graphic4 = treasurehunter_trh142_container_grid;
     if_setposition(54, 15, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_16);
@@ -27,7 +27,7 @@ if (~trh_state(struct_40380) = 1) {
 cc_deleteall(interface_1870:com_16);
 cc_deleteall(interface_1870:com_17);
 cc_deleteall(interface_1870:com_23);
-cc_deleteall(interface_1253:com_1090);
+cc_deleteall(interface_1253:com_1095);
 while ($int0 < 36) {
     if (~trh_state(struct_7229) = 1 & (calc($int0 % 3) = 0 | calc($int0 % 5) = 0 | calc($int0 % 7) = 0)) {
         $int7 = calc($int7 + $int1);
@@ -53,10 +53,10 @@ while ($int0 < 36) {
         $int8 = calc($int8 + $int1);
         $int9 = 0;
     }
-    cc_create(interface_1253:com_1090, ^iftype_graphic, $int0);
+    cc_create(interface_1253:com_1095, ^iftype_graphic, $int0);
     $int0 = calc($int0 + 1);
 }
-cc_create(interface_1253:com_1090, ^iftype_graphic, $int0);
+cc_create(interface_1253:com_1095, ^iftype_graphic, $int0);
 if_setonop("script13377($int0)", interface_1870:com_20);
 def_int $int10 = 5;
 def_int $int11 = 0;
@@ -111,7 +111,7 @@ if (~trh_state(struct_1515) = 1 | ~trh_state(struct_42706) = 1 & %varplayer_3079
     if_settext("Dig up chests and use Treasure Hunter keys to open them. Search for special buried treasure chests to uncover more loot!", interface_1870:com_25);
     if_settext("Special Chests", interface_1870:com_26);
     if_sethide(true, interface_1870:com_18);
-} else if (~trh_state(struct_40380) = 1 | ~trh_state(struct_7229) = 1) {
+} else if (~trh_state(struct_40380) = 1 | ~trh_state(struct_7229) = 1 | ~trh_state(struct_38726) = 1) {
     if_sethide(false, interface_1870:com_14);
     if_sethide(false, interface_1870:com_0);
     if_sethide(true, interface_1870:com_15);

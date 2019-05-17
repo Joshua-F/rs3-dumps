@@ -26008,3 +26008,13 @@ readyanim_l=seq_31718
 readyanim_r=seq_31718
 readyanim=seq_32662,seq_31718
 
+// 4369
+[bas_4369]
+readyanim_l=seq_32665
+readyanim_r=seq_32665
+walkanim_l=seq_32665
+walkanim_r=seq_32665
+walkturn_l=seq_32665
+walkturn_r=seq_32665
+readyanim=seq_32664,seq_32665
+
