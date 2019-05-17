@@ -33,10 +33,22 @@ switch_int ($int1) {
     case 3 :
         opplayer(7, $string3);
     case 4 :
-        if ($chattype5 = ^chattype_latest_newspost) {
-            ~script822;
-        } else if ($chattype5 = ^chattype_motd) {
-            openurl("www", "twitchredirect?type=user&username=jagex", false);
+        switch_int ($chattype5) {
+            case ^chattype_latest_newspost :
+                ~script822;
+            case ^chattype_system_broadcast, 127, ^chattype_broadcast :
+                if (string_length(enum(int, string, enum_15193, $int6)) > 0) {
+                    switch_int (map_lang) {
+                        case default :
+                            openurlraw(enum(int, string, enum_15193, $int6), true);
+                        case 1 :
+                            openurlraw(enum(int, string, enum_15206, $int6), true);
+                        case 2 :
+                            openurlraw(enum(int, string, enum_15207, $int6), true);
+                        case 3 :
+                            openurlraw(enum(int, string, enum_15208, $int6), true);
+                    }
+                }
         }
     case 5 :
         opplayer(9, $string3);
