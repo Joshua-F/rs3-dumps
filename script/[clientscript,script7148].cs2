@@ -1,28 +1,45 @@
 // 7148
-[clientscript,script7148](int $int0)
-if (%varplayerbit_1002 = 0) {
-    return;
-}
-def_int $int1 = %varplayerbit_1003;
-switch_int ($int0) {
-    case 0 :
-        %varplayerbit_1003 = min(%varplayerbit_1002, calc(%varplayerbit_1003 + 1));
-    case 1 :
-        %varplayerbit_1003 = max(1, calc(%varplayerbit_1003 - 1));
-}
-def_vorbis $vorbis2 = null;
-if ($int1 ! %varplayerbit_1003) {
-    ~script7147;
-    ~script7152;
-    ~script7153(interface_1371:com_4, 10);
-    ~script7153(interface_1371:com_5, 30);
-    switch_int (random(3)) {
-        case 0 :
-            $vorbis2 = sound_21248;
-        case 1 :
-            $vorbis2 = sound_21256;
-        case 2 :
-            $vorbis2 = sound_21256;
+[clientscript,script7148]
+def_component $component0 = interface_184:com_8;
+def_int $int1 = enum_getoutputcount(enum_15291);
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_obj $obj7 = null;
+def_string $string0 = "";
+cc_deleteall($component0);
+while ($int2 < $int1) {
+    $int4 = calc(41 * ($int2 % 5));
+    $int5 = calc(37 * ($int2 / 5));
+    $obj7 = enum(int, obj, enum_15291, $int2);
+    $int3 = inv_total(inv_867, oc_cert($obj7));
+    cc_create($component0, ^iftype_graphic, $int6++);
+    cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic(rs3_inventory_slot);
+    cc_setgraphicshadow(0x302020);
+    cc_setoutline(1);
+    cc_create($component0, ^iftype_graphic, $int6++);
+    cc_setposition(calc($int4 + 3), calc($int5 + 3), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    if ($int3 > 0) {
+        cc_setobject_alwaysnum($obj7, $int3);
+        cc_settrans(0);
+        cc_setop(1, "Withdraw");
+        cc_setop(2, "Withdraw-all");
+    } else {
+        cc_setobject($obj7, $int3);
+        cc_settrans(175);
     }
-    sound_vorbis_rate($vorbis2, 1, 0, 20, random_sound_pitch(5, 10));
+    cc_setop(10, "Examine");
+    $string0 = oc_name($obj7);
+    cc_setopbase("<col=ff981f><$string0>");
+    cc_setonmouserepeat("script5495($obj7)");
+    cc_setonmouseleave("script5495(null)");
+    $int2 = calc($int2 + 1);
 }
+~script7150;
+if_setoninvtransmit("script7148{inv_867}", $component0);
+if_setonvartransmit("script7149{varplayer_8606}", interface_184:com_16);

@@ -1,0 +1,39 @@
+// 6548
+[clientscript,script6548]
+~script9554(interface_168:com_1, interface_168:com_35, interface_168:com_2, db_getfield(%varplayer_8551, dbtable_47:col0, 0), struct_21218);
+if (~script6545(%varplayer_8551) = true) {
+    if_sethide(false, interface_168:com_22);
+}
+def_string $string0 = "";
+def_int $int0 = 0;
+if (~script6546(%varplayer_8551) = 1) {
+    switch_dbrow (%varplayer_8551) {
+        case dbrow_1668 :
+            if (%varplayerbit_23063 = 1) {
+                return;
+            } else {
+                if_settext("Pet Chance", interface_168:com_44);
+            }
+        case dbrow_1578 :
+            if (%varplayerbit_28712 ! 1) {
+                return;
+            }
+        case dbrow_1669 :
+            $string0 = "Number of rolls left: <tostring(%varplayerbit_17792)>";
+            if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", interface_168:com_31);
+    }
+    $int0 = 1;
+    if_sethide(false, interface_168:com_31);
+}
+if (~script6547(%varplayer_8551) = 1) {
+    switch_dbrow (%varplayer_8551) {
+        case dbrow_1669 :
+            $string0 = "Using this button will convert all Dominion Tower items into more Factor points that will be added to the XP book reward.";
+            if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", interface_168:com_32);
+    }
+    $int0 = 1;
+    if_sethide(false, interface_168:com_32);
+}
+if ($int0 = 1) {
+    if_setsize(if_getwidth(interface_168:com_0), 0, ^setsize_abs, ^setsize_minus, interface_168:com_0);
+}

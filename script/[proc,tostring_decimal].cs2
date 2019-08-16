@@ -1,0 +1,32 @@
+// 7653
+[proc,tostring_decimal](int $int0, int $int1, int $int2, int $int3)(string)
+if ($int0 = 0) {
+    return("0");
+}
+if ($int1 = 0) {
+    return(tostring_localised($int0, true));
+}
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+if ($int1 > $int2) {
+    if ($int3 = 0) {
+        $int6 = pow(10, calc($int1 - $int2));
+        $int0 = calc($int0 / $int6);
+        $int0 = calc($int0 * $int6);
+    } else {
+        $int6 = pow(10, calc($int1 - $int2 - 1));
+        $int0 = calc($int0 / $int6);
+        if ($int0 < 0) {
+            if (calc($int0 % 10) >= 5) {
+                $int0 = calc($int0 - 10);
+            }
+        } else if (calc($int0 % 10) >= 5) {
+            $int0 = calc($int0 + 10);
+        }
+        $int0 = calc($int0 / 10);
+        $int0 = calc($int0 * ($int6 + 1));
+    }
+}
+$int4, $int5 = ~script362($int0, $int1);
+return("<tostring_localised($int4, true)><~script8002><tostring($int5)>");

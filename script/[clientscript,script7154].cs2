@@ -1,7 +1,59 @@
 // 7154
-[clientscript,script7154](int $int0, component $component1)
-if (clientclock < $int0) {
-    return;
+[clientscript,script7154]
+def_component $component0 = interface_186:com_3;
+def_component $component1 = interface_186:com_4;
+def_component $component2 = interface_186:com_5;
+def_component $component3 = interface_186:com_8;
+def_component $component4 = interface_186:com_9;
+def_component $component5 = if_getlayer($component4);
+def_obj $obj6 = null;
+def_string $string0 = "???";
+def_int $int7 = 0;
+def_int $int8 = 2;
+def_int $int9 = enum_getoutputcount(enum_15296);
+def_int $int10 = 0;
+def_boolean $boolean11 = false;
+cc_deleteall($component0);
+cc_deleteall($component1);
+while ($int7 < $int9) {
+    $obj6 = enum(int, obj, enum_15296, $int7);
+    if ($obj6 ! null) {
+        $boolean11 = ~script6681($obj6);
+        if ($boolean11 = false) {
+            $boolean11 = ~script6681(oc_param($obj6, param_2655));
+        }
+        if ($boolean11 = false) {
+            $boolean11 = ~script6681(oc_param($obj6, param_2656));
+        }
+        if ($boolean11 = false) {
+            $boolean11 = ~script6681(oc_param($obj6, param_2657));
+        }
+        if ($boolean11 = true) {
+            $string0 = oc_name($obj6);
+        } else {
+            $string0 = "???";
+        }
+        if (~script6685(calc($int7 + 1)) > 0) {
+            if (~script6667(calc($int7 + 1)) = true) {
+                $int10 = 2;
+            } else {
+                $int10 = 1;
+            }
+        } else {
+            $int10 = 0;
+        }
+        ~script10410($component0, $component1, struct_28556, 2, $int8, calc(if_getwidth($component0) - 6), 28, $int7, false, $string0);
+        if (cc_find($component1, $int7) = true) {
+            cc_setonop("script7218($obj6, $boolean11, $int10)");
+        }
+        $int8 = calc($int8 + 30);
+    }
+    $int7 = calc($int7 + 1);
 }
-if_setontimer(null, $component1);
-if_sethide(true, $component1);
+if_setscrollsize(0, max(if_getheight($component0), $int8), $component0);
+if_setscrollpos(0, 0, $component0);
+~rs3_scrollbar_vertical($component2, $component0);
+if_setdraggable($component5, -1, $component3);
+if_setondrag("script8479($component3, $component4, -1)", $component3);
+if_setondragcomplete("script8480($component3, $component4, -1)", $component3);
+if_setonvartransmit("script7219{varplayer_8654, varplayer_8654, varplayer_8655}", $component5);

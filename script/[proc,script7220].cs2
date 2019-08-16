@@ -1,0 +1,70 @@
+// 7220
+[proc,script7220](obj $obj0, boolean $boolean1, int $int2)
+def_component $component3 = interface_186:com_9;
+def_component $component4 = interface_186:com_10;
+def_component $component5 = interface_186:com_13;
+def_component $component6 = interface_186:com_17;
+def_component $component7 = interface_186:com_16;
+def_component $component8 = interface_186:com_18;
+def_string $string0 = oc_name($obj0);
+def_string $string1 = "";
+def_obj $obj9 = oc_param($obj0, param_2655);
+def_int $int10 = 0;
+if ($boolean1 = true) {
+    if_settext($string0, $component6);
+    if_settext(~script7221($obj0), $component7);
+} else {
+    if_settext("???", $component6);
+    if_settext("", $component7);
+}
+if_setobject_nonum($obj0, 1, $component3);
+if_setposition(0, oc_param($obj0, param_7942), ^setpos_abs_centre, ^setpos_abs_top, $component3);
+if_setmodelangle(0, 0, 0, oc_param($obj0, param_7943), 0, oc_param($obj0, param_7941), $component3);
+if (~script6681($obj0) = true) {
+    if_resetmodellighting($component3);
+    switch_int ($int2) {
+        case 0 :
+            if_settext("Totem state: <col=ff0000>Inactive", $component8);
+        case 1 :
+            if_settext("Totem state: <col=ff0000>Idle", $component8);
+        case 2 :
+            if_settext("Totem state: <col=00ff00>Active", $component8);
+    }
+} else {
+    if_setmodellighting(0, 0, 0, 16, 14, 14, -100, -2, 3, material_328, $component3);
+    if_settext("", $component8);
+}
+while ($int10 < 3) {
+    switch_int ($int10) {
+        case 0 :
+            $obj9 = oc_param($obj0, param_2655);
+            $component4 = interface_186:com_10;
+            $component5 = interface_186:com_13;
+        case 1 :
+            $obj9 = oc_param($obj0, param_2656);
+            $component4 = interface_186:com_11;
+            $component5 = interface_186:com_14;
+        case 2 :
+            $obj9 = oc_param($obj0, param_2657);
+            $component4 = interface_186:com_12;
+            $component5 = interface_186:com_15;
+    }
+    if_setobject_nonum($obj9, 1, $component4);
+    if (~script6681($obj9) = true) {
+        if_setcolour(^white, $component4);
+        if (~script6683($obj9) = true) {
+            $string1 = "This totem piece is owned and is currently stored in the totem bag.";
+            if_sethide(false, $component5);
+        } else {
+            $string1 = "This totem piece is owned but is not currently stored in the totem bag.";
+            if_sethide(true, $component5);
+        }
+    } else {
+        $string1 = "This totem piece is not currently owned.";
+        if_setcolour(0x010000, $component4);
+        if_sethide(true, $component5);
+    }
+    if_setonmouserepeat("script8799($string1, $component4, -1)", $component4);
+    $int10 = calc($int10 + 1);
+}
+~script13982(interface_186:com_20, null, struct_28553, "Withdraw", false, -1);

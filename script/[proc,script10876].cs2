@@ -1,11 +1,11 @@
 // 10876
 [proc,script10876](int $int0, int $int1)(int)
-def_obj $obj2 = null;
+def_int $int2 = -1;
 def_int $int3 = -1;
 def_int $int4 = -1;
 def_string $string0 = "";
 def_int $int5 = 0;
-def_component $component6 = interface_1253:com_858;
+def_int $int6 = 82117445;
 def_component $component7 = null;
 def_component $component8 = null;
 def_component $component9 = null;
@@ -13,77 +13,43 @@ def_int $int10 = 0;
 def_graphic $graphic11 = null;
 def_graphic $graphic12 = null;
 def_int $int13 = 0;
-if (~script2500(7) = 0) {
-    switch_int ($int1) {
-        case 0 :
-            $component7 = interface_1253:com_191;
-            $component8 = interface_1253:com_192;
-        case 1 :
-            $component7 = interface_1253:com_189;
-            $component8 = interface_1253:com_190;
-        case 2 :
-            $component7 = interface_1253:com_193;
-            $component8 = interface_1253:com_194;
-        case default :
-            return(calc($int1 + 1));
-    }
-    $obj2, $int3, $int4 = ~script9712($int0);
-    $string0 = ~script9674($int0);
-    $int5 = ~script9675($int0);
-    if ($obj2 = null) {
-        if_setgraphic(null, $component7);
-        if_setobject(null, 0, $component8);
-        if_setonmouserepeat(null, $component7);
-        if_setonmouseleave("script3914", $component7);
-    } else {
-        if ($int0 > 34) {
-            if_setgraphic(~script11746($int4), $component7);
-        } else {
-            if_setgraphic(~script9718($int4), $component7);
+$int10 = random(enum_getoutputcount(enum_596));
+switch_int ($int1) {
+    case 0 :
+        $component7 = interface_1253:com_188;
+        $component8 = interface_1253:com_191;
+        $component9 = interface_1253:com_194;
+        %varplayerbit_431 = $int10;
+    case 1 :
+        $component7 = interface_1253:com_189;
+        $component8 = interface_1253:com_192;
+        $component9 = interface_1253:com_195;
+        if ($int10 = %varplayerbit_431 & ++$int10 >= enum_getoutputcount(enum_596)) {
+            $int10 = 0;
         }
-        if_setobject($obj2, $int3, $component8);
-        if_setonmouserepeat("script10925($component6, event_com, event_comsubid, $int0, event_mousex, event_mousey)", $component7);
-        if_setonmouseleave("script3914", $component7);
-    }
-} else {
-    $int10 = random(enum_getoutputcount(enum_596));
-    switch_int ($int1) {
-        case 0 :
-            $component7 = interface_1253:com_222;
-            $component8 = interface_1253:com_225;
-            $component9 = interface_1253:com_228;
-            %varplayerbit_431 = $int10;
-        case 1 :
-            $component7 = interface_1253:com_223;
-            $component8 = interface_1253:com_226;
-            $component9 = interface_1253:com_229;
-            if ($int10 = %varplayerbit_431 & ++$int10 >= enum_getoutputcount(enum_596)) {
+        %varplayerbit_432 = $int10;
+    case 2 :
+        $component7 = interface_1253:com_190;
+        $component8 = interface_1253:com_193;
+        $component9 = interface_1253:com_196;
+        while ($int10 = %varplayerbit_431 | $int10 = %varplayerbit_432) {
+            if (++$int10 >= enum_getoutputcount(enum_596)) {
                 $int10 = 0;
             }
-            %varplayerbit_432 = $int10;
-        case 2 :
-            $component7 = interface_1253:com_224;
-            $component8 = interface_1253:com_227;
-            $component9 = interface_1253:com_230;
-            while ($int10 = %varplayerbit_431 | $int10 = %varplayerbit_432) {
-                if (++$int10 >= enum_getoutputcount(enum_596)) {
-                    $int10 = 0;
-                }
-            }
-            %varplayerbit_3521 = $int10;
-        case default :
-            return(calc($int1 + 1));
-    }
-    $graphic11 = enum(int, graphic, enum_596, $int10);
-    $graphic12 = enum(graphic, graphic, enum_607, $graphic11);
-    $int13 = enum(graphic, int, enum_940, $graphic11);
-    if_setgraphic($graphic12, $component7);
-    if_setgraphic($graphic11, $component8);
-    if_setonmouserepeat("script3876(enum(int, string, enum_600, $int10), event_com, event_comsubid)", $component8);
-    if ($int13 > 1) {
-        if_settext(~script940($int13), $component9);
-    } else {
-        if_settext("", $component9);
-    }
+        }
+        %varplayerbit_3521 = $int10;
+    case default :
+        return(calc($int1 + 1));
+}
+$graphic11 = enum(int, graphic, enum_596, $int10);
+$graphic12 = enum(graphic, graphic, enum_607, $graphic11);
+$int13 = enum(graphic, int, enum_940, $graphic11);
+if_setgraphic($graphic12, $component7);
+if_setgraphic($graphic11, $component8);
+if_setonmouserepeat("script3876(enum(int, string, enum_600, $int10), event_com, event_comsubid)", $component8);
+if ($int13 > 1) {
+    if_settext(~script940($int13), $component9);
+} else {
+    if_settext("", $component9);
 }
 return(calc($int1 + 1));

@@ -67,7 +67,7 @@ if (map_members = true & $struct3 = struct_1004 | map_members = false & $struct3
     if_sethide(false, interface_940:com_162);
     if_sethide(false, interface_940:com_163);
     if_settext("You already own this pet.", interface_940:com_163);
-} else if (map_members = true & enum(int, struct, $enum2, $int1) = struct_28314 & inv_total(inv_93, obj_31436) = 0 | enum(int, struct, $enum2, $int1) = struct_28316 & inv_total(inv_93, obj_18338) = 0) {
+} else if (map_members = true & enum(int, struct, $enum2, $int1) = struct_28314 & inv_total(inv_93, obj_31436) = 0 | enum(int, struct, $enum2, $int1) = struct_28316 & inv_total(inv_93, obj_18338) = 0 | enum(int, struct, $enum2, $int1) = struct_4264 & inv_total(inv_93, obj_47069) = 0) {
     if_sethide(true, interface_940:com_154);
     if_settext(struct_param($struct3, param_1078), interface_940:com_152);
     if_sethide(false, interface_940:com_156);
@@ -82,6 +82,9 @@ if (map_members = true & $struct3 = struct_1004 | map_members = false & $struct3
     if_sethide(false, interface_940:com_163);
     if ($struct3 = struct_28316) {
         $struct3 = struct_982;
+    }
+    if ($struct3 = struct_4264) {
+        $struct3 = struct_43654;
     }
     if_settext("You need to have a <oc_name(struct_param($struct3, param_1070))> in your inventory.", interface_940:com_163);
 } else if ($int4 > 0) {
@@ -100,6 +103,9 @@ if (map_members = true & $struct3 = struct_1004 | map_members = false & $struct3
     if ($struct3 = struct_28316) {
         $struct3 = struct_982;
     }
+    if ($struct3 = struct_4264) {
+        $struct3 = struct_43654;
+    }
     switch_int ($int4) {
         case 1 :
             if_settext("You have already unlocked: <oc_name(struct_param($struct3, param_1070))>.", interface_940:com_163);
@@ -109,6 +115,8 @@ if (map_members = true & $struct3 = struct_1004 | map_members = false & $struct3
             if_settext("You must have a gold accumulator in your inventory.", interface_940:com_163);
         case 4 :
             if_settext("You must reach the maximum gold accumulator price.", interface_940:com_163);
+        case 5 :
+            if_settext("You already have one of those. Go read it.", interface_940:com_163);
     }
 } else {
     if_sethide(true, interface_940:com_154);

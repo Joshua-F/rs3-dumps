@@ -1,0 +1,73 @@
+// 6786
+[proc,script6786](component $component0, int $int1)
+sound_vorbis_volume(sound_39599, 1, 0, 255);
+db_find(dbtable_51:col0, $int1);
+def_dbrow $dbrow2 = db_findnext;
+if ($dbrow2 = null) {
+    return;
+}
+def_int $int3 = ~script6061($int1);
+def_int $int4 = ~script6062($int1);
+def_int $int5 = 0;
+def_dbrow $dbrow6 = null;
+def_dbrow $dbrow7 = null;
+def_string $string0 = "Build";
+if_setgraphic(db_getfield($dbrow2, dbtable_51:col3, min($int3, calc($int4 - 1))), interface_176:com_25);
+if ($int3 < $int4) {
+    if_sethide(false, interface_176:com_26);
+    if_sethide(false, interface_176:com_55);
+    if_sethide(false, interface_176:com_56);
+    if_sethide(false, interface_176:com_57);
+    if_sethide(false, interface_176:com_23);
+    if_sethide(false, interface_176:com_53);
+    if_sethide(false, interface_176:com_54);
+    $dbrow6 = db_getfield($dbrow2, dbtable_51:col4, 0);
+    if ($dbrow6 ! null) {
+        $int5 = db_getfield($dbrow2, dbtable_51:col5, $int3);
+        if_settext(tostring_localised($int5, true), interface_176:com_55);
+        ~script7019($dbrow6, interface_176:com_55, $int5);
+        if_setgraphic(db_getfield($dbrow6, dbtable_50:col4, 0), interface_176:com_23);
+        if_setonmouserepeat("script8799(db_getfield($dbrow6, dbtable_50:col1, 0), interface_176:com_23, -1)", interface_176:com_23);
+    } else {
+        if_sethide(true, interface_176:com_23);
+        if_sethide(true, interface_176:com_55);
+    }
+    $dbrow6 = db_getfield($dbrow2, dbtable_51:col6, 0);
+    if ($dbrow6 ! null) {
+        $int5 = db_getfield($dbrow2, dbtable_51:col7, $int3);
+        if_settext(tostring_localised($int5, true), interface_176:com_56);
+        ~script7019($dbrow6, interface_176:com_56, $int5);
+        if_setgraphic(db_getfield($dbrow6, dbtable_50:col4, 0), interface_176:com_53);
+        if_setonmouserepeat("script8799(db_getfield($dbrow6, dbtable_50:col1, 0), interface_176:com_53, -1)", interface_176:com_53);
+    } else {
+        if_sethide(true, interface_176:com_53);
+        if_sethide(true, interface_176:com_56);
+    }
+    $dbrow6 = db_getfield($dbrow2, dbtable_51:col8, 0);
+    if ($dbrow6 ! null) {
+        $int5 = db_getfield($dbrow2, dbtable_51:col9, $int3);
+        if_settext(tostring_localised($int5, true), interface_176:com_57);
+        ~script7019($dbrow6, interface_176:com_57, $int5);
+        if_setgraphic(db_getfield($dbrow6, dbtable_50:col4, 0), interface_176:com_54);
+        if_setonmouserepeat("script8799(db_getfield($dbrow6, dbtable_50:col1, 0), interface_176:com_54, -1)", interface_176:com_54);
+    } else {
+        if_sethide(true, interface_176:com_54);
+        if_sethide(true, interface_176:com_57);
+    }
+    $dbrow7 = db_getfield($dbrow2, dbtable_51:col11, 0);
+    if_settext(~script7135($dbrow7, $int3), interface_176:com_58);
+    if ($int3 > 0) {
+        $string0 = "Upgrade";
+    }
+    ~script13969(interface_176:com_59, interface_176:com_60, struct_28553, $string0);
+} else {
+    if_settext("", interface_176:com_58);
+    if_sethide(true, interface_176:com_26);
+    if_sethide(true, interface_176:com_55);
+    if_sethide(true, interface_176:com_56);
+    if_sethide(true, interface_176:com_57);
+    if_sethide(true, interface_176:com_23);
+    if_sethide(true, interface_176:com_53);
+    if_sethide(true, interface_176:com_54);
+    ~script13971(interface_176:com_59, interface_176:com_60, struct_28553, "Upgrade", true);
+}

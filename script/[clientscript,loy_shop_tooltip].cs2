@@ -19,7 +19,7 @@ def_int $int13 = 0;
 def_int $int14 = 0;
 def_int $int15 = 0;
 def_int $int16 = 0;
-def_int $intbool17 = ^false;
+def_int $int17 = 0;
 def_int $int18 = -1;
 def_int $int19 = 0;
 if ($int3 = 1 & struct_param($struct2, param_1937) ! 2 & cc_find($component0, $int1) = true) {
@@ -35,26 +35,17 @@ if ($int3 = 1 & struct_param($struct2, param_1937) ! 2 & cc_find($component0, $i
     }
     switch_int (struct_param($struct2, param_1937)) {
         case 1 :
-            $int18 = enum_getreverseindex(struct, int, enum_5182, $struct2, 0);
-            if ($int18 <= 31) {
-                $intbool17 = testbit(%varplayer_1241, $int18);
-            } else if ($int18 <= 62) {
-                $intbool17 = testbit(%varplayer_1242, calc($int18 - 31));
-            } else if ($int18 <= 93) {
-                $intbool17 = testbit(%varplayer_1243, calc($int18 - 62));
-            } else {
-                $intbool17 = testbit(%varplayer_5888, calc($int18 - 94));
-            }
+            $int17 = ~script5491(enum_getreverseindex(struct, obj, enum_13430, $struct2, 0));
         case 3 :
             if (gender = 1) {
                 $int18 = enum_getreverseindex(struct, int, enum_5188, $struct2, 0);
             } else {
                 $int18 = enum_getreverseindex(struct, int, enum_5189, $struct2, 0);
             }
-            $intbool17 = testbit(%varplayer_1246, $int18);
+            $int17 = testbit(%varplayer_1246, $int18);
         case 5 :
             $int18 = enum_getreverseindex(struct, int, enum_5183, $struct2, 0);
-            $intbool17 = testbit(%varplayer_1247, calc($int18 + 16));
+            $int17 = testbit(%varplayer_1247, calc($int18 + 16));
     }
     if_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top, interface_1143:com_92);
     if_settext(struct_param($struct2, param_1931), interface_1143:com_127);
@@ -116,7 +107,7 @@ if ($int3 = 1 & struct_param($struct2, param_1937) ! 2 & cc_find($component0, $i
         $string5 = append("Female Title: ", $string5);
         if_settext("<$string4><br><$string5>", interface_1143:com_127);
     }
-    if ($intbool17 = ^false & struct_param($struct2, param_4270) = 0) {
+    if ($int17 = 0 & struct_param($struct2, param_4270) = 0) {
         $string3 = "<br><br><col=ff0000>Please visit Solomon's Store to purchase.";
     }
     if_settext(append(if_gettext(interface_1143:com_127), $string3), interface_1143:com_127);

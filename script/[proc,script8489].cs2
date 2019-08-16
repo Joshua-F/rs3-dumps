@@ -1,6 +1,6 @@
 // 8489
 [proc,script8489](int $int0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12)
-$component1 = interface_1477:com_858;
+$component1 = interface_1477:com_859;
 cc_deleteall($component3);
 cc_deleteall($component4);
 cc_deleteall($component6);
@@ -75,6 +75,10 @@ def_int $rgb39 = 0xff8c00;
 def_int $int40 = -1;
 def_int $int41 = 0;
 def_int $int42 = 0;
+def_int $int43 = 0;
+def_int $int44 = 0;
+def_int $int45 = 0;
+def_int $int46 = 0;
 while ($int29 < $int15) {
     $int33 = calc($int29 % $int22);
     $int32 = calc($int29 / $int22);
@@ -83,8 +87,18 @@ while ($int29 < $int15) {
     $struct28 = enum(int, struct, enum_7674, $int29);
     $stat36 = struct_param($struct28, param_3440);
     $int40 = ~script3158($stat36);
-    $int41 = stat($stat36);
-    $int42 = stat_base($stat36);
+    if ($int13 = 1) {
+        $int44 = ~player_inspect_get_xp($stat36);
+        $int46 = ~script10782($stat36);
+        $int41 = ~player_inspect_get_stat($stat36);
+        $int42 = $int46;
+    } else {
+        $int44 = stat_visible_xp_actual($stat36);
+        $int46 = stat_base_actual($stat36);
+        $int41 = stat($stat36);
+        $int42 = stat_base($stat36);
+    }
+    $int45 = ~script11849($stat36, $int44, -1);
     cc_create($component4, ^iftype_graphic, $int29);
     cc_setsize(60, 27, ^setsize_abs, ^setsize_abs);
     cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
@@ -103,7 +117,7 @@ while ($int29 < $int15) {
         $graphic38 = "stats_background_button,1";
     }
     if (%varplayerbit_19009 = 1) {
-        if ($int13 = 1 & ~script11849($stat36, ~player_inspect_get_xp($stat36), -1) >= $int40 | $int13 = 0 & ~script11849($stat36, stat_visible_xp_actual($stat36), -1) >= $int40) {
+        if ($int45 >= $int40) {
             if (enum_hasoutput(stat, enum_10327, $stat36) = true) {
                 $graphic37 = "stats_background_button_elite,4";
                 $graphic38 = "stats_background_button_elite,5";
@@ -121,15 +135,17 @@ while ($int29 < $int15) {
             }
         }
     }
-    if ($int13 = 1) {
-        cc_setcolour(^black);
-    }
-    if ($int41 < $int42) {
-        cc_setcolour(^red);
-    } else if ($int41 > $int42) {
-        cc_setcolour(^green);
-    } else {
-        cc_setcolour(^black);
+    if (%varplayerbit_44074 = 0) {
+        if ($int13 = 1) {
+            cc_setcolour(^black);
+        }
+        if ($int41 < $int42) {
+            cc_setcolour(^red);
+        } else if ($int41 > $int42) {
+            cc_setcolour(^green);
+        } else {
+            cc_setcolour(^black);
+        }
     }
     cc_setgraphic($graphic37);
     cc_setonmouseover("cc_graphic_swapper(event_com, $int29, $graphic38)");
@@ -172,13 +188,13 @@ while ($int29 < $int15) {
     cc_create($component8, ^iftype_graphic, $int29);
     cc_setsize(14, 13, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int34 + 43), calc($int35 + 1), ^setpos_abs_left, ^setpos_abs_top);
-    if ($int13 = 1 & ~player_inspect_get_xp($stat36) >= 200000000 | $int13 = 0 & stat_visible_xp_actual($stat36) >= 200000000) {
+    if ($int44 >= 200000000) {
         if (%varplayerbit_19011 = 0) {
             cc_setgraphic(enum(int, graphic, enum_10398, %varplayerbit_19010));
         } else {
             cc_setgraphic(enum(int, graphic, enum_10399, %varplayerbit_19011));
         }
-    } else if ($int13 = 1 & ~script11849($stat36, ~player_inspect_get_xp($stat36), -1) >= $int40 | $int13 = 0 & ~script11849($stat36, stat_visible_xp_actual($stat36), -1) >= $int40) {
+    } else if ($int45 >= $int40) {
         cc_setgraphic(enum(int, graphic, enum_10398, %varplayerbit_19010));
     }
     cc_create($component9, ^iftype_text, $int29);
@@ -197,13 +213,13 @@ while ($int29 < $int15) {
     cc_setonmouseleave("script546($component1)");
     $int29 = calc($int29 + 1);
 }
-def_int $int43 = 0;
-$int16 = calc($int16 - $int43);
-def_int $int44 = min(3, max(1, calc($int16 / 60)));
-$int44 = calc($int16 / $int44);
+def_int $int47 = 0;
+$int16 = calc($int16 - $int47);
+def_int $int48 = min(3, max(1, calc($int16 / 60)));
+$int48 = calc($int16 / $int48);
 def_string $string0 = "";
-if_setsize($int44, 0, ^setsize_abs, ^setsize_minus, $component10);
-if_setposition($int43, 0, ^setpos_abs_left, ^setpos_abs_top, $component10);
+if_setsize($int48, 0, ^setsize_abs, ^setsize_minus, $component10);
+if_setposition($int47, 0, ^setpos_abs_left, ^setpos_abs_top, $component10);
 cc_create($component10, ^iftype_graphic, 0);
 cc_setgraphic(rs3_icon_tab_skills);
 cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
@@ -248,8 +264,8 @@ if (%varplayerbit_19007 = 1) {
     }
 }
 if ($int16 >= 120) {
-    if_setsize($int44, 0, ^setsize_abs, ^setsize_minus, $component11);
-    if_setposition(calc($int43 + $int44), 0, ^setpos_abs_left, ^setpos_abs_top, $component11);
+    if_setsize($int48, 0, ^setsize_abs, ^setsize_minus, $component11);
+    if_setposition(calc($int47 + $int48), 0, ^setpos_abs_left, ^setpos_abs_top, $component11);
     cc_create($component11, ^iftype_graphic, 0);
     cc_setgraphic(aif_combat_icon);
     cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
@@ -270,8 +286,8 @@ if ($int16 >= 120) {
     }
 }
 if ($int16 >= 180 & $int0 ! 61341696) {
-    if_setsize($int44, 0, ^setsize_abs, ^setsize_minus, $component12);
-    if_setposition(calc($int43 + $int44 * 2), 0, ^setpos_abs_left, ^setpos_abs_top, $component12);
+    if_setsize($int48, 0, ^setsize_abs, ^setsize_minus, $component12);
+    if_setposition(calc($int47 + $int48 * 2), 0, ^setpos_abs_left, ^setpos_abs_top, $component12);
     cc_create($component12, ^iftype_graphic, 0);
     cc_setgraphic("rs3_icon_menu_tab_quest_list,0");
     cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
