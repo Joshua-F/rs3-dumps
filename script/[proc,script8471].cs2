@@ -846,7 +846,11 @@ while ($int20 < $int34) {
                                         cc_settrans(0);
                                         cc_setop(3, "Clear customisation");
                                         if ($struct46 ! null & oc_param($obj45, param_2500) ! null & oc_param($obj45, param_2500) ! struct_28387) {
-                                            cc_setop(5, "Recolour (SHIFT+Click)");
+                                            if (~script6431 = true) {
+                                                cc_setop(5, "Recolour");
+                                            } else {
+                                                cc_setop(5, "Recolour (SHIFT+Click)");
+                                            }
                                             $int49 = setbit($int49, 0);
                                             if ($component13 ! null) {
                                                 .cc_create($component13, ^iftype_graphic, if_getnextsubid($component13));
@@ -860,7 +864,11 @@ while ($int20 < $int34) {
                                         }
                                     }
                                     if ($obj45 ! inv_getobj(inv_817, $int20) | ~script13103($inv1, $int20) ! ~script13103(inv_817, $int20)) {
-                                        cc_setop(2, "Undo change (CTRL+Click)");
+                                        if (~script6431 = true) {
+                                            cc_setop(2, "Undo change");
+                                        } else {
+                                            cc_setop(2, "Undo change (CTRL+Click)");
+                                        }
                                         if ($component14 ! null) {
                                             .cc_create($component14, ^iftype_graphic, if_getnextsubid($component14));
                                             .cc_setsize(struct_param(struct_35560, param_3915), struct_param(struct_35560, param_3916), ^setsize_abs, ^setsize_abs);
@@ -920,8 +928,23 @@ while ($int20 < $int34) {
                                         cc_settrans(0);
                                         cc_setop(3, "Clear customisation");
                                         if ($struct46 ! null & oc_param($obj45, param_2500) ! null & oc_param($obj45, param_2500) ! struct_28387) {
-                                            cc_setop(5, "Recolour (SHIFT+Click)");
+                                            if (~script6431 = true) {
+                                                cc_setop(5, "Recolour");
+                                            } else {
+                                                cc_setop(5, "Recolour (SHIFT+Click)");
+                                            }
                                             $int49 = setbit($int49, 0);
+                                            if ($component13 ! null) {
+                                                .cc_create($component13, ^iftype_graphic, if_getnextsubid($component13));
+                                                .cc_setsize(struct_param(struct_35562, param_3915), struct_param(struct_35562, param_3916), ^setsize_abs, ^setsize_abs);
+                                                .cc_setposition(calc(cc_getx + cc_getwidth / 2 - .cc_getwidth / 2), calc(cc_gety + cc_getheight / 2 - .cc_getheight / 2), ^setpos_abs_left, ^setpos_abs_top);
+                                                .cc_setgraphic(struct_param(struct_35562, param_3911));
+                                                .cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, .cc_getgraphic)");
+                                                .cc_setgraphic(struct_param(struct_35562, param_3910));
+                                                .cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, .cc_getgraphic)");
+                                            }
+                                        } else if (oc_param($obj45, param_7896) ! 0) {
+                                            cc_setop(5, ~mobile_text("Recolour", "Recolour (SHIFT+Click)"));
                                             if ($component13 ! null) {
                                                 .cc_create($component13, ^iftype_graphic, if_getnextsubid($component13));
                                                 .cc_setsize(struct_param(struct_35562, param_3915), struct_param(struct_35562, param_3916), ^setsize_abs, ^setsize_abs);
@@ -934,7 +957,11 @@ while ($int20 < $int34) {
                                         }
                                     }
                                     if ($obj45 ! inv_getobj(inv_817, $int20) | testbit(%varplayer_6870, $int20) ! testbit(%varplayer_6869, $int20) | ~script13103($inv1, $int20) ! ~script13103(inv_817, $int20)) {
-                                        cc_setop(2, "Undo change (CTRL+Click)");
+                                        if (~script6431 = true) {
+                                            cc_setop(2, "Undo change");
+                                        } else {
+                                            cc_setop(2, "Undo change (CTRL+Click)");
+                                        }
                                         if ($component14 ! null) {
                                             .cc_create($component14, ^iftype_graphic, if_getnextsubid($component14));
                                             .cc_setsize(struct_param(struct_35560, param_3915), struct_param(struct_35560, param_3916), ^setsize_abs, ^setsize_abs);

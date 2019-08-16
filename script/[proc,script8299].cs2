@@ -4,7 +4,7 @@ def_obj $obj4 = struct_param($struct0, param_1935);
 def_string $string0 = struct_param($struct0, param_1931);
 def_int $int5 = struct_param($struct0, param_1932);
 def_int $int6 = struct_param($struct0, param_4270);
-def_int $intbool7 = ~script5491($obj4);
+def_int $int7 = ~script5491($obj4);
 def_int $int8 = %varclient_1648;
 def_int $int9 = 5;
 def_int $int10 = 5;
@@ -29,22 +29,32 @@ if ($int2 = 1) {
                 }
         }
     } else {
-        if_settext("You currently have <col=0xffffff><tostring_localised($int8, true)></col> Loyalty Points.<br>This aura costs <col=0xffffff><tostring_localised($int5, true)></col> Loyalty Points.", interface_1929:com_11);
+        if_settext("You currently have <col=ffffff><tostring_localised($int8, true)></col> Loyalty Points.<br>This aura costs <col=ffffff><tostring_localised($int5, true)></col> Loyalty Points.", interface_1929:com_11);
         if ($int8 < $int5) {
             $boolean13 = true;
             $string0 = "<$string0><br>You can't afford this aura. ";
         }
     }
 }
-$string0 = "<$string0><br><br>Duration - <col=0xffffff><~script11076($int11)><br></col>";
-$string0 = "<$string0>Cooldown - <col=0xffffff><~script11076($int12)></col>";
-if ($int6 = 1 & $intbool7 = ^false) {
+if (~script7384($obj4) = 0) {
+    if ($int11 > 0) {
+        $string0 = "<$string0><br><br>Duration - <col=ffffff><~script11076($int11)><br></col>";
+    } else {
+        $string0 = "<$string0><br><br>Duration - <col=ffffff>Unlimited<br></col>";
+    }
+    if ($int12 > 0) {
+        $string0 = "<$string0>Cooldown - <col=ffffff><~script11076($int12)></col>";
+    } else {
+        $string0 = "<$string0>Cooldown - <col=ffffff>Instant</col>";
+    }
+}
+if ($int6 = 1 & $int7 = 0) {
     $boolean13 = true;
 }
 switch_int ($int2) {
     case 1 :
         if_sethide(true, interface_1929:com_8);
-    case 0, 2, 3, 4 :
+    case 0, 2, 3, 4, 5 :
         if_sethide(false, interface_1929:com_8);
         ~script8697($int1);
         ~script13406($obj4);
@@ -58,7 +68,7 @@ if_setobject($obj4, -1, interface_1929:com_71);
 if_sethide(false, interface_1929:com_12);
 if_sethide($boolean13, interface_1929:com_17);
 if_sethide(~negate_bool($boolean13), interface_1929:com_18);
-if ($intbool7 = ^true & ~aura_get_time($obj4) > %varplayer_7654) {
+if ($int7 = 1 & ~aura_get_time($obj4) > %varplayer_7654) {
     if_sethide(false, interface_1929:com_18);
 }
 sound_vorbis_volume(sound_36961, 1, 0, 100);

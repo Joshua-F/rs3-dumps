@@ -38,10 +38,14 @@ if (oc_param($obj0, param_6835) = 1) {
         cc_setposition(calc(80 - ($int12 - 1) * 20), $int6, $setposh5, ^setpos_abs_top);
         cc_setobject_alwaysnum(enum(int, obj, enum_11885, inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_33776)), inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_33779));
     }
-} else if (oc_param($obj0, param_6295) = 1 | oc_param($obj0, param_4552) = 1 | oc_param($obj0, param_7393) = 1) {
+}
+if (~script4034($obj0) = true) {
+    $obj0 = obj_20767;
+}
+if (oc_param($obj0, param_6295) = 1 | oc_param($obj0, param_7393) = 1) {
     $int14, $int13 = ~script470($obj0, 1);
     $int15, $int13 = ~script470($obj0, 2);
-    if (oc_param($obj0, param_6295) = 1 | oc_param($obj0, param_4552) = 1) {
+    if (oc_param($obj0, param_6295) = 1) {
         $int16, $int13 = ~script470($obj0, 3);
     }
     if ($int15 = 0) {
@@ -85,56 +89,7 @@ if (oc_param($obj0, param_6835) = 1) {
             cc_setgraphic("rs3_icon_abilities_quest_list_24px,0");
         }
     }
-} else if (oc_category($obj0) = category_4448) {
-    if (~script2532 = true) {
-        $int21 = enum_getoutputcount(enum_2501);
-        while ($int20 < $int21) {
-            $obj10 = enum(int, obj, enum_2501, $int20);
-            $int12 = ~script2537($obj10);
-            if ($int12 > 0 & ~script2535($obj0, $obj10) = true) {
-                cc_create($component2, ^iftype_graphic, $int3++);
-                cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-                cc_setobject_alwaysnum($obj10, $int12);
-            }
-            $int20 = calc($int20 + 1);
-        }
-        $int20 = 0;
-        $int12 = calc($int3 - $int22);
-        while ($int22 < $int3) {
-            if (cc_find($component2, $int22++) = true) {
-                switch_int (calc(min($int12, 3) % 3)) {
-                    case 1 :
-                        cc_setposition(0, calc($int6 + 35 * ($int20 / 3)), ^setpos_abs_centre, ^setpos_abs_top);
-                    case 2 :
-                        switch_int (calc($int20 % 3)) {
-                            case 0 :
-                                cc_setposition(calc((0 - 36) / 2), calc($int6 + 35 * ($int20 / 3)), ^setpos_abs_centre, ^setpos_abs_top);
-                            case 1 :
-                                cc_setposition(calc(36 / 2), calc($int6 + 35 * ($int20 / 3)), ^setpos_abs_centre, ^setpos_abs_top);
-                        }
-                    case 0 :
-                        switch_int (calc($int20 % 3)) {
-                            case 0 :
-                                cc_setposition(calc(0 - 36), calc($int6 + 35 * ($int20 / 3)), ^setpos_abs_centre, ^setpos_abs_top);
-                            case 1 :
-                                cc_setposition(0, calc($int6 + 35 * ($int20 / 3)), ^setpos_abs_centre, ^setpos_abs_top);
-                            case 2 :
-                                cc_setposition(36, calc($int6 + 35 * ($int20 / 3)), ^setpos_abs_centre, ^setpos_abs_top);
-                        }
-                }
-                if (calc($int20 % 3) = 2) {
-                    $int12 = calc($int12 - 3);
-                    $int12 = abs($int12);
-                }
-                $int20 = calc($int20 + 1);
-            }
-        }
-        if ($int20 > 2) {
-            $int9 = max($int9, calc(36 * 3 + 20));
-        }
-        $int8 = calc($int8 * ($int20 / 3 + 1));
-        $int12 = calc($int12 + 1);
-    }
+    $int9 = max($int9, calc($int12 * (25 + 20)));
 } else {
     switch_obj ($obj0) {
         case obj_18338 :
@@ -188,28 +143,86 @@ if (oc_param($obj0, param_6835) = 1) {
             cc_create($component2, ^iftype_graphic, $int3++);
             cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
             cc_setposition($int4, $int6, $setposh5, ^setpos_abs_top);
-            cc_setobject_alwaysnum(obj_30139, inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_34116));
+            cc_setobject_alwaysnum(obj_30139, %varplayerbit_44598);
             cc_create($component2, ^iftype_graphic, $int3++);
             cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
             cc_setposition(calc($int4 + 40), $int6, $setposh5, ^setpos_abs_top);
-            cc_setobject_alwaysnum(obj_30140, inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_34117));
+            cc_setobject_alwaysnum(obj_30140, %varplayerbit_44599);
             cc_create($component2, ^iftype_graphic, $int3++);
             cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
             cc_setposition(calc($int4 + 80), $int6, $setposh5, ^setpos_abs_top);
-            cc_setobject_alwaysnum(obj_30141, inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_34118));
+            cc_setobject_alwaysnum(obj_30141, %varplayerbit_44600);
             cc_create($component2, ^iftype_graphic, $int3++);
             cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
             cc_setposition(calc($int4 + 120), $int6, $setposh5, ^setpos_abs_top);
-            cc_setobject_alwaysnum(obj_30142, inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_34119));
+            cc_setobject_alwaysnum(obj_30142, %varplayerbit_44601);
             cc_create($component2, ^iftype_graphic, $int3++);
             cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
             cc_setposition(calc($int4 + 160), $int6, $setposh5, ^setpos_abs_top);
-            cc_setobject_alwaysnum(obj_30143, inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_34120));
+            cc_setobject_alwaysnum(obj_30143, %varplayerbit_44602);
             cc_create($component2, ^iftype_graphic, $int3++);
             cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
             cc_setposition(calc($int4 + 200), $int6, $setposh5, ^setpos_abs_top);
-            cc_setobject_alwaysnum(obj_30144, inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_34121));
+            cc_setobject_alwaysnum(obj_30144, %varplayerbit_44603);
             $int12 = 6;
+        case obj_47836 :
+            $int21 = enum_getoutputcount(enum_15320);
+            while ($int20 < $int21) {
+                $obj10 = enum(int, obj, enum_15320, $int20);
+                $int12 = ~script7361($obj10);
+                cc_create($component2, ^iftype_graphic, $int3++);
+                cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+                cc_setobject_alwaysnum($obj10, $int12);
+                $int20 = calc($int20 + 1);
+            }
+            $int20 = 0;
+            $int12 = calc($int3 - $int22);
+            while ($int22 < $int3) {
+                if (cc_find($component2, $int22++) = true) {
+                    ~script7229($int12, $int6, $int20);
+                    if (calc($int20 % 5) = 4) {
+                        $int12 = calc($int12 - 5);
+                        $int12 = abs($int12);
+                    }
+                    $int20 = calc($int20 + 1);
+                }
+            }
+            if ($int20 > 0) {
+                $int8 = calc(35 + 35 * (($int20 - 1) / 5));
+                $int9 = max($int9, calc(36 * min(5, $int20) + 20));
+            }
+            $int12 = calc($int12 + 1);
+        case obj_48056 :
+            if (~script6666 = true) {
+                $int21 = enum_getoutputcount(enum_15289);
+                while ($int20 < $int21) {
+                    $obj10 = enum(int, obj, enum_15289, $int20);
+                    $int12 = ~script6646($obj10);
+                    if ($int12 > 0) {
+                        cc_create($component2, ^iftype_graphic, $int3++);
+                        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+                        cc_setobject_alwaysnum($obj10, $int12);
+                    }
+                    $int20 = calc($int20 + 1);
+                }
+                $int20 = 0;
+                $int12 = calc($int3 - $int22);
+                while ($int22 < $int3) {
+                    if (cc_find($component2, $int22++) = true) {
+                        ~script7229($int12, $int6, $int20);
+                        if (calc($int20 % 5) = 4) {
+                            $int12 = calc($int12 - 5);
+                            $int12 = abs($int12);
+                        }
+                        $int20 = calc($int20 + 1);
+                    }
+                }
+                if ($int20 > 0) {
+                    $int8 = calc(35 + 35 * (($int20 - 1) / 5));
+                    $int9 = max($int9, calc(36 * min(5, $int20) + 20));
+                }
+                $int12 = calc($int12 + 1);
+            }
         case default :
             switch_category (oc_category($obj0)) {
                 case category_3455 :
@@ -265,10 +278,66 @@ if (oc_param($obj0, param_6835) = 1) {
                     if ($int12 > 0) {
                         $int3 = ~script13777($component2, $int3, $int4, $int6, obj_37227, $int12);
                     }
-                case category_4211 :
-                    $int12 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_2155);
-                    if ($int12 > 0) {
-                        $int3 = ~script13777($component2, $int3, $int4, $int6, obj_453, $int12);
+                case category_4448 :
+                    if (~script2532 = true) {
+                        $int21 = enum_getoutputcount(enum_2501);
+                        while ($int20 < $int21) {
+                            $obj10 = enum(int, obj, enum_2501, $int20);
+                            $int12 = ~script2537($obj10);
+                            if ($int12 > 0 & ~script2535($obj0, $obj10) = true) {
+                                cc_create($component2, ^iftype_graphic, $int3++);
+                                cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+                                cc_setobject_alwaysnum($obj10, $int12);
+                            }
+                            $int20 = calc($int20 + 1);
+                        }
+                        $int20 = 0;
+                        $int12 = calc($int3 - $int22);
+                        while ($int22 < $int3) {
+                            if (cc_find($component2, $int22++) = true) {
+                                switch_int (calc(min($int12, 4) % 4)) {
+                                    case 1 :
+                                        cc_setposition(0, calc($int6 + 35 * ($int20 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
+                                    case 2 :
+                                        switch_int (calc($int20 % 4)) {
+                                            case 0 :
+                                                cc_setposition(calc((0 - 36) / 2), calc($int6 + 35 * ($int20 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
+                                            case 1 :
+                                                cc_setposition(calc(36 / 2), calc($int6 + 35 * ($int20 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
+                                        }
+                                    case 3 :
+                                        switch_int (calc($int20 % 4)) {
+                                            case 0 :
+                                                cc_setposition(calc(0 - 36), calc($int6 + 35 * ($int20 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
+                                            case 1 :
+                                                cc_setposition(0, calc($int6 + 35 * ($int20 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
+                                            case 2 :
+                                                cc_setposition(36, calc($int6 + 35 * ($int20 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
+                                        }
+                                    case 0 :
+                                        switch_int (calc($int20 % 4)) {
+                                            case 0 :
+                                                cc_setposition(scale(calc(0 - 36), 2, 3), calc($int6 + 35 * ($int20 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
+                                            case 1 :
+                                                cc_setposition(calc((0 - 36) / 2), calc($int6 + 35 * ($int20 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
+                                            case 2 :
+                                                cc_setposition(calc(36 / 2), calc($int6 + 35 * ($int20 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
+                                            case 3 :
+                                                cc_setposition(scale(36, 2, 3), calc($int6 + 35 * ($int20 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
+                                        }
+                                }
+                                if (calc($int20 % 4) = 3) {
+                                    $int12 = calc($int12 - 4);
+                                    $int12 = abs($int12);
+                                }
+                                $int20 = calc($int20 + 1);
+                            }
+                        }
+                        if ($int20 > 0) {
+                            $int8 = calc(35 + 35 * (($int20 - 1) / 4));
+                            $int9 = max($int9, calc(36 * min(4, $int20) + 20));
+                        }
+                        $int12 = calc($int12 + 1);
                     }
                 case category_3168 :
                     $int12 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_21711);

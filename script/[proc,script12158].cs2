@@ -127,6 +127,7 @@ def_int $int28 = 0;
 def_int $int29 = 0;
 def_int $int30 = 0;
 def_dbrow $dbrow31 = null;
+def_string $string1 = "";
 $int5 = 0;
 while ($int5 < $int3) {
     if (cc_find($component0, $intarray0($int5)) = true) {
@@ -168,12 +169,14 @@ while ($int5 < $int3) {
         if ($int27 = 0) {
             .cc_settrans(178);
         }
+        $string1 = db_getfield($dbrow2, dbtable_4:col1, 0);
         $string0 = "<tostring_localised($int25, true)> x <db_getfield($dbrow2, dbtable_4:col1, 0)><br><br><db_getfield($dbrow2, dbtable_4:col2, 0)>";
         if (db_getfieldcount($dbrow2, dbtable_4:col3) > 0) {
             $string0 = "<$string0><br><br>Disassembly sources: <db_getfield($dbrow2, dbtable_4:col3, 0)>";
         }
         if ($int27 = 0) {
             $string0 = "<$string0><br><br>You need to research this material before you can use it in a gizmo.";
+            .cc_setonclick("script6558($string1, $string0)");
         }
         $int30 = db_getfieldcount($dbrow2, dbtable_4:col11);
         if ($int30 > 0) {
@@ -224,6 +227,7 @@ while ($int5 < $int3) {
             $int30 = calc($int30 - 1);
         }
         .cc_setonmouserepeat("script3876($string0, event_com, .cc_getid)");
+        cc_setonclick("script6558($string1, $string0)");
         cc_sendtofront;
         if ($int25 >= 10000000) {
             $string0 = "<tostring(calc($int25 / 1000000))>M";

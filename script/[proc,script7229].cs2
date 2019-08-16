@@ -1,21 +1,46 @@
 // 7229
-[proc,script7229](component $component0, int $int1, component $component2, int $int3, component $component4, component $component5, component $component6)
-def_int $int7 = 0;
-if (cc_find($component0, $int1) = true) {
-    if ($int3 = -1) {
-        $int3 = $int1;
-        if ($component2 ! null) {
-            %varclient_2238 = $int3;
+[proc,script7229](int $int0, int $int1, int $int2)
+switch_int (calc(min($int0, 5) % 5)) {
+    case 1 :
+        cc_setposition(0, calc($int1 + 35 * ($int2 / 5)), ^setpos_abs_centre, ^setpos_abs_top);
+    case 2 :
+        switch_int (calc($int2 % 5)) {
+            case 0 :
+                cc_setposition(calc((0 - 36) / 2), calc($int1 + 35 * ($int2 / 5)), ^setpos_abs_centre, ^setpos_abs_top);
+            case 1 :
+                cc_setposition(calc(36 / 2), calc($int1 + 35 * ($int2 / 5)), ^setpos_abs_centre, ^setpos_abs_top);
         }
-    } else {
-        %varclient_2238 = $int3;
-    }
-    if ($int3 >= calc(if_getnextsubid($component0) - 1)) {
-        $int7 = calc(if_getx($component4) + if_getwidth($component4));
-    } else if ($int3 = 0) {
-        $int7 = 0;
-    } else if (cc_find($component0, $int3) = true) {
-        $int7 = calc(cc_getx + cc_getwidth / 2);
-    }
+    case 3 :
+        switch_int (calc($int2 % 5)) {
+            case 0 :
+                cc_setposition(calc(0 - 36), calc($int1 + 35 * ($int2 / 5)), ^setpos_abs_centre, ^setpos_abs_top);
+            case 1 :
+                cc_setposition(0, calc($int1 + 35 * ($int2 / 5)), ^setpos_abs_centre, ^setpos_abs_top);
+            case 2 :
+                cc_setposition(36, calc($int1 + 35 * ($int2 / 5)), ^setpos_abs_centre, ^setpos_abs_top);
+        }
+    case 4 :
+        switch_int (calc($int2 % 5)) {
+            case 0 :
+                cc_setposition(scale(calc(0 - 36), 2, 3), calc($int1 + 35 * ($int2 / 5)), ^setpos_abs_centre, ^setpos_abs_top);
+            case 1 :
+                cc_setposition(calc((0 - 36) / 2), calc($int1 + 35 * ($int2 / 5)), ^setpos_abs_centre, ^setpos_abs_top);
+            case 2 :
+                cc_setposition(calc(36 / 2), calc($int1 + 35 * ($int2 / 5)), ^setpos_abs_centre, ^setpos_abs_top);
+            case 3 :
+                cc_setposition(scale(36, 2, 3), calc($int1 + 35 * ($int2 / 5)), ^setpos_abs_centre, ^setpos_abs_top);
+        }
+    case 0 :
+        switch_int (calc($int2 % 5)) {
+            case 0 :
+                cc_setposition(calc((0 - 36) * 2), calc($int1 + 35 * ($int2 / 5)), ^setpos_abs_centre, ^setpos_abs_top);
+            case 1 :
+                cc_setposition(calc(0 - 36), calc($int1 + 35 * ($int2 / 5)), ^setpos_abs_centre, ^setpos_abs_top);
+            case 2 :
+                cc_setposition(0, calc($int1 + 35 * ($int2 / 5)), ^setpos_abs_centre, ^setpos_abs_top);
+            case 3 :
+                cc_setposition(36, calc($int1 + 35 * ($int2 / 5)), ^setpos_abs_centre, ^setpos_abs_top);
+            case 4 :
+                cc_setposition(calc(36 * 2), calc($int1 + 35 * ($int2 / 5)), ^setpos_abs_centre, ^setpos_abs_top);
+        }
 }
-~script7230($component4, $component5, $component6, $int7);

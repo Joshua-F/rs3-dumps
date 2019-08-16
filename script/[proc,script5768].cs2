@@ -3,12 +3,19 @@
 if ($int0 < 0) {
     return(^false);
 }
-if ($int0 <= 31) {
-    return(testbit(%varplayer_7656, $int0));
-} else if ($int0 <= 62) {
-    return(testbit(%varplayer_7657, calc($int0 - 31)));
-} else if ($int0 <= 93) {
-    return(testbit(%varplayer_7658, calc($int0 - 62)));
+if ($int0 >= 1000) {
+    $int0 = calc($int0 - 1000);
+    return(testbit(%varplayer_8691, $int0));
 } else {
-    return(testbit(%varplayer_7659, calc($int0 - 94)));
+    switch_int (calc($int0 / 32)) {
+        case 0 :
+            return(testbit(%varplayer_7656, $int0));
+        case 1 :
+            return(testbit(%varplayer_7657, calc($int0 % 32)));
+        case 2 :
+            return(testbit(%varplayer_7658, calc($int0 % 32)));
+        case 3 :
+            return(testbit(%varplayer_7659, calc($int0 % 32)));
+    }
 }
+return(^false);

@@ -1,0 +1,37 @@
+// 6801
+[proc,script6801](component $component0, component $component1, component $component2, component $component3)
+cc_deleteall($component0);
+cc_deleteall($component1);
+cc_deleteall($component2);
+cc_deleteall($component3);
+def_int $int4 = 1;
+def_int $int5 = 120;
+def_string $string0 = "";
+if_settext("<tostring(~script2073)>/<tostring(~script2072)>", interface_176:com_44);
+if_settext("Max resources: <tostring_localised(~script6641, true)>", interface_176:com_38);
+while ($int4 <= 6) {
+    cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+    cc_setsize(100, 24, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int5, 10, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextfont(graphic_17814);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settext("<tostring(calc(~script5844($int4) * 10 * (60 / 10)))>/hr");
+    ~script2733($component0, cc_getid, 0x00000c);
+    $string0 = "The amount of resources you will generate per hour";
+    cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
+    cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+    cc_setgraphic(icon_workers);
+    cc_setsize(54, 54, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int5 + 23), 34, ^setpos_abs_left, ^setpos_abs_top);
+    cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+    cc_setsize(100, 24, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int5, 67, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextfont(graphic_17993);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settext(tostring(~script5844($int4)));
+    cc_setcolour(^white);
+    ~script11605(interface_176:com_37, $component2, struct_15006, calc($int5 + 25), 96, if_getnextsubid(interface_176:com_37), 1, "Decrease workers", "", "");
+    ~script11605(interface_176:com_37, $component2, struct_15001, calc($int5 + 55), 96, if_getnextsubid(interface_176:com_37), 1, "Increase workers", "", "");
+    $int5 = calc($int5 + 110);
+    $int4 = calc($int4 + 1);
+}

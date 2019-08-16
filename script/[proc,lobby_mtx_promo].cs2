@@ -17,15 +17,41 @@ def_int $int12 = 0;
 def_int $int13 = 0;
 def_string $string1 = "";
 def_string $string2 = "";
+def_string $string3 = "";
 def_int $intarray1(4);
 def_int $int14 = 0;
+def_int $int15 = 0;
+def_struct $struct16 = ~script7456;
+if ($struct16 ! null) {
+    $int15 = 1;
+}
 if ($int4 = 1) {
     if_settext("Solomon's Store", $component1);
     $string1 = "mtxn_rs_shop";
     $string2 = "index";
-    if_setop(1, "Click", $component0);
+    if_setop(1, "Select", $component0);
     if_setonop("script10029($string1, $string2, $string2, true)", $component0);
     if_setonclick("script10052", $component0);
+} else if ($int15 = 1) {
+    switch_int (map_lang) {
+        case 0 :
+            if_setgraphic(struct_param($struct16, param_6381), $component0);
+        case 1 :
+            if_setgraphic(struct_param($struct16, param_6385), $component0);
+        case 2 :
+            if_setgraphic(struct_param($struct16, param_6386), $component0);
+        case 3 :
+            if_setgraphic(struct_param($struct16, param_6387), $component0);
+    }
+    if (string_length($string0) = 0) {
+        $string0 = "Bonds";
+    }
+    if_setop(1, "Select", $component0);
+    if_setonop("script13252", $component0);
+    if_setonclick("script10052", $component0);
+    if (string_length($string0) > 0) {
+        if_settext($string0, $component1);
+    }
 } else {
     while ($int10 < $int6) {
         $int9 = 0;
@@ -40,12 +66,6 @@ if ($int4 = 1) {
         }
         if (%varplayer_6601 < $int12 | %varplayer_6601 > $int13) {
             $int9 = 1;
-        }
-        switch_struct ($struct7) {
-            case struct_35082 :
-                if (%varplayerbit_41242 = 1 & %varplayerbit_41243 = 1 & %varplayerbit_41244 = 1 & %varplayerbit_41245 = 1 & %varplayerbit_41246 = 1) {
-                    $int9 = 1;
-                }
         }
         if ($int9 = 0) {
             $structarray0($int11) = $struct7;
@@ -128,6 +148,10 @@ if ($int4 = 1) {
                     if (%varplayerbit_40521 = 1) {
                         $int9 = 1;
                     }
+                case struct_6862 :
+                    if (%varplayerbit_44081 = 1) {
+                        $int9 = 1;
+                    }
             }
             if ($int9 = 0) {
                 $structarray0($int11) = $struct7;
@@ -143,17 +167,28 @@ if ($int4 = 1) {
     } else {
         $struct7 = $structarray0(random($int11));
     }
-    $string1 = struct_param($struct7, param_6393);
     switch_int (map_lang) {
         case 1 :
             $string2 = struct_param($struct7, param_6962);
+            $string3 = struct_param($struct7, param_5558);
+            $string1 = struct_param($struct7, param_7961);
         case 2 :
             $string2 = struct_param($struct7, param_6963);
+            $string3 = struct_param($struct7, param_7892);
+            $string1 = struct_param($struct7, param_7962);
         case 3 :
             $string2 = struct_param($struct7, param_6964);
+            $string3 = struct_param($struct7, param_7893);
+            $string1 = struct_param($struct7, param_7963);
     }
     if (string_length($string2) = 0) {
         $string2 = struct_param($struct7, param_6394);
+    }
+    if (string_length($string3) = 0) {
+        $string3 = struct_param($struct7, param_65);
+    }
+    if (string_length($string1) = 0) {
+        $string1 = struct_param($struct7, param_6393);
     }
     $string0 = struct_param($struct7, param_6391);
     $int11 = 0;
@@ -248,7 +283,7 @@ if ($int4 = 1) {
             if (string_length($string2) = 0) {
                 $string2 = "index";
             }
-            if_setop(1, "Click", $component0);
+            if_setop(1, "Select", $component0);
             if (~is_mobile_client = true) {
                 if_setonop("script10042", $component0);
             } else {
@@ -260,15 +295,23 @@ if ($int4 = 1) {
                 $string0 = "Solomon's Store";
             }
             $int14 = 1;
-            if_setop(1, "Click", $component0);
+            if_setop(1, "Select", $component0);
             if_setonop("script12374($string1, $string2, $string2, struct_param($struct7, param_6395))", $component0);
+            if_setonclick("script10052", $component0);
+        case 9 :
+            if (string_length($string0) = 0) {
+                $string0 = "Solomon's Store";
+            }
+            $int14 = 1;
+            if_setop(1, "Select", $component0);
+            if_setonop("script2827($string3, 0)", $component0);
             if_setonclick("script10052", $component0);
         case 4 :
             if (string_length($string0) = 0) {
                 $string0 = "Solomon's Store";
             }
             $int14 = 1;
-            if_setop(1, "Click", $component0);
+            if_setop(1, "Select", $component0);
             if_setonop("script13252", $component0);
         case 5 :
             if (string_length($string0) = 0) {
@@ -295,47 +338,47 @@ cc_deleteall($component2);
 if ($int14 = 1) {
     return;
 }
-def_int $int15 = 0;
-def_int $int16 = if_getwidth($component2);
-def_int $int17 = 50;
-def_string $string3 = "";
-~script10047($component2, $int15);
-$int15 = calc($int15 + 1);
-$string3 = "Loyalty Points";
-cc_create($component2, ^iftype_text, $int15);
+def_int $int17 = 0;
+def_int $int18 = if_getwidth($component2);
+def_int $int19 = 50;
+def_string $string4 = "";
+~script10047($component2, $int17);
+$int17 = calc($int17 + 1);
+$string4 = "Loyalty Points";
+cc_create($component2, ^iftype_text, $int17);
 if (%varclient_4660 > -1) {
     cc_settext(tostring(%varclient_4660));
 }
 cc_setonvarctransmit("script10050(event_com, event_comsubid, 2){varclient_4660}");
-cc_setposition($int17, 0, ^setpos_abs_left, ^setpos_abs_bottom);
-cc_setsize(calc($int16 / 2 - $int17), 32, ^setsize_abs, ^setsize_abs);
+cc_setposition($int19, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+cc_setsize(calc($int18 / 2 - $int19), 32, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_settextfont(graphic_17814);
 cc_setcolour(^white);
 cc_settextshadow(true);
-$int15 = calc($int15 + 1);
-.cc_create($component2, ^iftype_graphic, $int15);
+$int17 = calc($int17 + 1);
+.cc_create($component2, ^iftype_graphic, $int17);
 .cc_setgraphic(rs3_icon_general_store_loyalty);
 .cc_setsize(34, 35, ^setsize_abs, ^setsize_abs);
 .cc_setposition(calc(cc_getx - 20 - .cc_getwidth / 2), -1, ^setpos_abs_left, ^setpos_abs_bottom);
-$int15 = calc($int15 + 1);
-.cc_setonmouserepeat("script8799($string3, event_com, event_comsubid)");
-$string3 = "RuneCoins";
-cc_create($component2, ^iftype_text, $int15);
+$int17 = calc($int17 + 1);
+.cc_setonmouserepeat("script8799($string4, event_com, event_comsubid)");
+$string4 = "RuneCoins";
+cc_create($component2, ^iftype_text, $int17);
 if (%varclient_4659 > -1) {
     cc_settext(tostring(%varclient_4659));
 }
 cc_setonvarctransmit("script10050(event_com, event_comsubid, 3){varclient_4659}");
-cc_setposition(calc($int16 / 2 + $int17), 0, ^setpos_abs_left, ^setpos_abs_bottom);
-cc_setsize(calc($int16 / 2 - $int17), 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int18 / 2 + $int19), 0, ^setpos_abs_left, ^setpos_abs_bottom);
+cc_setsize(calc($int18 / 2 - $int19), 32, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_settextfont(graphic_17814);
 cc_setcolour(^white);
 cc_settextshadow(true);
-$int15 = calc($int15 + 1);
-.cc_create($component2, ^iftype_graphic, $int15);
+$int17 = calc($int17 + 1);
+.cc_create($component2, ^iftype_graphic, $int17);
 .cc_setgraphic(rs3_icon_general_store_runecoin);
 .cc_setsize(34, 35, ^setsize_abs, ^setsize_abs);
 .cc_setposition(calc(cc_getx - 20 - .cc_getwidth / 2), -1, ^setpos_abs_left, ^setpos_abs_bottom);
-$int15 = calc($int15 + 1);
-.cc_setonmouserepeat("script8799($string3, event_com, event_comsubid)");
+$int17 = calc($int17 + 1);
+.cc_setonmouserepeat("script8799($string4, event_com, event_comsubid)");

@@ -1,32 +1,32 @@
 // 473
-[proc,script473](int $int0, int $int1)(boolean)
-if (~map_members = false) {
-    return(false);
+[proc,script473](stat $stat0, int $int1, int $int2)(boolean)
+def_int $int3 = 1;
+def_int $int4 = -1;
+def_stat $stat5 = null;
+def_int $intarray0(28);
+while ($int3 < 28) {
+    if (~script7292(enum(int, stat, enum_681, $int3)) >= 2000000000) {
+        $intarray0($int3) = 1;
+    } else {
+        $intarray0($int3) = 0;
+    }
+    $int3 = calc($int3 + 1);
 }
-def_obj $obj2 = .inv_getobj(inv_94, 1);
-def_stat $stat3 = null;
-if ($obj2 = null) {
-    return(false);
+if (~skill_unlocked(26) = false) {
+    $intarray0(enum(stat, int, enum_1482, invention)) = 1;
 }
-def_int $int4 = oc_param($obj2, param_4244);
-if (($int0 <= 0 | $int0 > enum_getoutputcount(enum_681)) & $int0 ! 31) {
-    ~error("Invalid stat perk attempting to be activated! $stat = <tostring($int0)>");
-    return(false);
+$int3 = 0;
+while ($int3 < $int1) {
+    $int4 = ~script7230(intarray0, $int2);
+    if ($int4 < 1) {
+        return(false);
+    }
+    $stat5 = enum(int, stat, enum_681, $int4);
+    if ($stat0 = $stat5) {
+        return(true);
+    } else {
+        $intarray0($int4) = 1;
+    }
+    $int3 = calc($int3 + 1);
 }
-if (oc_param($obj2, param_258) = 0) {
-    return(false);
-}
-if (oc_param($obj2, param_4552) = 1 | oc_param($obj2, param_6295) = 1 | oc_param($obj2, param_7393) = 1) {
-    return(~script13041($obj2, $int0, $int1));
-}
-if ($int1 = 1 & $int4 = 0) {
-    return(false);
-}
-if ($int0 = 31 & oc_param($obj2, param_6296) = 1) {
-    return(true);
-}
-$stat3 = enum(int, stat, enum_681, $int0);
-if ($stat3 ! oc_param($obj2, param_277)) {
-    return(false);
-}
-return(true);
+return(false);

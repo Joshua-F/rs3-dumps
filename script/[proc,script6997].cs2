@@ -1,29 +1,57 @@
 // 6997
-[proc,script6997](component $component0, obj $obj1, component $component2, int $int3, int $int4, int $int5, int $int6)
-def_obj $obj7 = null;
-def_int $int8 = ~script7980($component0);
-def_int $int9 = ~script11786($component0);
-def_int $int10 = 0;
-$int10, $obj7 = ~script11792(~script11800($int9), $int8);
-if_setobject($obj1, -1, $component0);
-if ($obj7 = $obj1) {
-    if (calc(inv_total(inv_93, $obj1) + inv_total(inv_94, $obj1)) > 0) {
-        if_setcolour(^white, $component0);
-        ~script7968($component2, 1);
+[proc,script6997](component $component0, int $int1, obj $obj2, inv $inv3, component $component4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, int $int11, int $int12)
+def_obj $obj13 = null;
+def_int $int14 = -1;
+def_int $int15 = -1;
+def_inv $inv16 = null;
+if (if_find($component0) = true) {
+    if ($int9 = 14) {
+        $obj2 = inv_getobj(inv_94, $int10);
+        $inv3 = inv_94;
+        cc_setgraphic(null);
+        cc_setobject($obj2, -1);
+        if ($int12 = 1 & $obj2 = null) {
+            ~script6995($int11, $int1, 0, 0, 0, -1);
+            return;
+        } else {
+            cc_setcolour(^white);
+            ~script7968($component4, 1);
+            ~script9380($obj2, inv_94);
+        }
     } else {
-        if_setcolour(0x333333, $component0);
-        ~script7968($component2, 0);
+        $obj13, $int15, $inv16 = ~script947($obj2);
+        if ($int15 ! -1) {
+            cc_setcolour(^white);
+            ~script7968($component4, 1);
+            cc_setobject($obj13, -1);
+            ~script9380($obj2, $inv3);
+        } else {
+            cc_setcolour(0x333333);
+            ~script7968($component4, 0);
+            cc_setobject($obj2, -1);
+            ~script9380($obj2, $inv3);
+        }
     }
-    if (if_find($component0) = true) {
-        ~script9380($obj1);
+    if ($int5 = 1) {
+        cc_setop(10, "Customise-keybind");
+        cc_setonop("script7023(event_com, event_op)");
     }
-} else if ($int3 = 14) {
-    if ($int6 = 1 & inv_getobj(inv_94, $int4) = null) {
-        ~script6995($int5, $int8, 0, 0, 0, -1);
+    ~script7033;
+    if ($int6 = 0 & ~script792 = false) {
+        $int14 = ~script7000($obj2, $inv3);
+        if (oc_param($obj2, param_3921) = 1 & $int14 > 3) {
+            cc_setoptkey($int7, $int8);
+            cc_setoptkeyignoreheld;
+        } else {
+            cc_setopkey($int14, $int7, $int8, null, 0, null, 0, null, 0, null, 0);
+            cc_setopkeyrate($int14, 6, 50);
+        }
+    }
+    if (%varplayerbit_1892 = 0 & %varplayerbit_38842 = 0) {
+        cc_setonmouserepeat("script5495($obj2)");
+        cc_setonmouseleave("script5495(null)");
     } else {
-        if_setcolour(^white, $component0);
-        ~script7968($component2, 1);
+        cc_setonmouserepeat(null);
+        cc_setonmouseleave(null);
     }
-} else {
-    if_setoninvtransmit(null, $component0);
 }

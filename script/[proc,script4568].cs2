@@ -1,27 +1,27 @@
 // 4568
-[proc,script4568](int $int0, string $string0, int $int1, string $string1, string $string2, int $chattype2)(int)
-def_int $int3 = if_getwidth(interface_589:com_20);
-def_int $int4 = calc(max(paraheight($string0, $int3, graphic_20452), 1) * 15);
+[proc,script4568](int $int0, string $string0, int $int1, string $string1, string $string2, int $chattype2, int $int3)(int)
+def_int $int4 = if_getwidth(interface_589:com_20);
+def_int $int5 = calc(max(paraheight($string0, $int4, graphic_20452), 1) * 15);
 cc_create(interface_589:com_20, ^iftype_text, $int0);
 cc_setposition(0, calc($int0 * 15), ^setpos_abs_left, ^setpos_abs_bottom);
-cc_setsize(0, $int4, ^setsize_minus, ^setsize_abs);
+cc_setsize(0, $int5, ^setsize_minus, ^setsize_abs);
 cc_setcolour(^white);
 cc_settextfont(graphic_20452);
 cc_settext($string0);
 cc_settextalign(^settextalign_left, ^settextalign_top, 15);
-def_int $int5 = 0;
 def_int $int6 = 0;
+def_int $int7 = 0;
 def_string $string3 = removetags($string1);
-while ($int6 < $int0) {
-    if (.cc_find(interface_589:com_20, $int6) = true) {
-        $int5 = calc($int5 + .cc_getheight);
+while ($int7 < $int0) {
+    if (.cc_find(interface_589:com_20, $int7) = true) {
+        $int6 = calc($int6 + .cc_getheight);
     }
-    $int6 = calc($int6 + 1);
+    $int7 = calc($int7 + 1);
 }
-cc_setposition(0, $int5, ^setpos_abs_left, ^setpos_abs_bottom);
+cc_setposition(0, $int6, ^setpos_abs_left, ^setpos_abs_bottom);
 if ($int1 = 1) {
     cc_setopbase(removetags($string1));
-    cc_setonop("script4569(event_op, $string3, $string2)");
+    cc_setonop("script4569(event_op, $string3, $string2, $int3)");
     switch_int ($chattype2) {
         case ^chattype_friendschat, ^chattype_quickchat_friend_chat :
             if (compare(removetags(chat_playername_unfiltered), removetags($string2)) ! 0) {
@@ -38,6 +38,8 @@ if ($int1 = 1) {
                     cc_setop(10, "Kick/ban");
                 }
             }
+        case ^chattype_system_broadcast :
+            cc_setop(6, "Open link");
     }
 }
 return(calc($int0 + 1));

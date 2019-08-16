@@ -3,7 +3,13 @@
 if (calc(clientclock % 10) ! 0) {
     return;
 }
-if (map_loadedpercent < 20 & %varclient_6564 <= clientclock) {
+if (map_loadingscreen_isopen = true & %varclient_6564 <= clientclock) {
     %varclient_6344 = 0;
-    if_setontimer("script13879", interface_1477:com_870);
+    if_setontimer("script13879", interface_1477:com_871);
+}
+if (%varclient_6564 ! 0 & %varclient_6564 < clientclock) {
+    %varclient_6564 = 0;
+    if (%varclient_3698 = 1) {
+        map_loadingscreen_settriggerpercent(20, 90);
+    }
 }

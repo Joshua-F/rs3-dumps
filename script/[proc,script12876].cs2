@@ -1,13 +1,13 @@
 // 12876
 [proc,script12876](struct $struct0)
-def_component $component1 = interface_1802:com_9;
-def_int $int2 = 118095893;
+def_component $component1 = interface_1802:com_19;
+def_int $int2 = 118095932;
 def_component $component3 = interface_1802:com_1;
-def_component $component4 = interface_1802:com_75;
-def_component $component5 = interface_1802:com_74;
-def_component $component6 = interface_1802:com_11;
-def_component $component7 = interface_1802:com_73;
-def_component $component8 = interface_1802:com_72;
+def_component $component4 = interface_1802:com_134;
+def_component $component5 = interface_1802:com_133;
+def_component $component6 = interface_1802:com_21;
+def_component $component7 = interface_1802:com_132;
+def_component $component8 = interface_1802:com_131;
 def_enum $enum9 = struct_param($struct0, param_6146);
 def_enum $enum10 = struct_param($struct0, param_6147);
 def_enum $enum11 = struct_param($struct0, param_6148);
@@ -37,16 +37,29 @@ $int29 = calc($int29 / 1000);
 def_struct $struct30 = null;
 cc_deleteall($component1);
 cc_deleteall($component8);
-if_settext(struct_param($struct0, param_6135), interface_1802:com_22);
-if_setgraphic($graphic23, interface_1802:com_16);
-if_settext(struct_param($struct0, param_6136), interface_1802:com_18);
-if_settext(struct_param($struct0, param_6137), interface_1802:com_71);
-if_setgraphic(struct_param($struct0, param_6138), interface_1802:com_15);
+if (struct_param($struct0, param_7899) = 1) {
+    if_settext("<col=fff8c1><struct_param($struct0, param_6135)>", interface_1802:com_28);
+    if_settext(struct_param($struct0, param_6137), interface_1802:com_27);
+    if_sethide(true, interface_1802:com_73);
+    if_sethide(true, interface_1802:com_30);
+    if_sethide(false, interface_1802:com_28);
+    if_sethide(false, interface_1802:com_27);
+} else {
+    if_settext(struct_param($struct0, param_6135), interface_1802:com_73);
+    if_sethide(true, interface_1802:com_28);
+    if_sethide(true, interface_1802:com_27);
+    if_sethide(false, interface_1802:com_73);
+    if_sethide(false, interface_1802:com_30);
+    if_setgraphic($graphic23, interface_1802:com_29);
+    if_settext(struct_param($struct0, param_6136), interface_1802:com_31);
+    if_settext(struct_param($struct0, param_6137), interface_1802:com_130);
+}
+if_setgraphic(struct_param($struct0, param_6138), interface_1802:com_25);
 switch_struct (~script13032) {
-    case struct_4108, struct_1764 :
-        if_setsize(688, 402, ^setsize_abs, ^setsize_abs, interface_1802:com_15);
+    case struct_4108, struct_1764, struct_7135, struct_36740 :
+        if_setsize(688, 402, ^setsize_abs, ^setsize_abs, interface_1802:com_25);
     case default :
-        if_setsize(683, 314, ^setsize_abs, ^setsize_abs, interface_1802:com_15);
+        if_setsize(683, 314, ^setsize_abs, ^setsize_abs, interface_1802:com_25);
 }
 if (struct_param($struct0, param_6139) = 0) {
     if (if_getnextsubid($component3) = 0) {
@@ -165,7 +178,11 @@ if (struct_param($struct0, param_6139) = 0) {
                 cc_setposition(calc($int25 - 18), calc($int26 + 1), ^setpos_abs_left, ^setpos_abs_top);
             }
             cc_setop(1, "Examine");
-            cc_setonop("mes(oc_param($obj19, param_6167))");
+            if (~is_mobile_client = true) {
+                cc_setonop("event_popup_setup($graphic22, $obj19, $int14, $int13, $int15)");
+            } else {
+                cc_setonop("mes(oc_param($obj19, param_6167))");
+            }
             $obj19, $obj20, $inv21 = ~script13265($obj19);
             cc_setonmouserepeat("script12893($struct0, $int13, $int15, $obj19, $obj20, $component8, calc(if_getnextsubid($component8) - 1))");
             $int27 = if_getnextsubid($component8);
