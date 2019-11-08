@@ -1,0 +1,119 @@
+// 9378
+[proc,script9378]
+if_setscrollpos(0, 0, interface_209:com_4);
+if_setscrollsize(0, 0, interface_209:com_4);
+cc_deleteall(interface_209:com_6);
+if (%varplayer_8741 = 0) {
+    if_sethide(true, interface_209:com_4);
+    if_sethide(false, interface_209:com_7);
+    return;
+}
+if_sethide(false, interface_209:com_4);
+if_sethide(true, interface_209:com_7);
+def_component $component0 = interface_209:com_5;
+def_component $component1 = interface_209:com_8;
+cc_deleteall($component0);
+cc_deleteall($component1);
+def_int $int2 = if_getwidth($component0);
+def_string $string0 = "";
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = ~script8224(calc(%varplayer_8741 - 1));
+def_int $int6 = ~script8226(calc(%varplayer_8741 - 1));
+cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(40, 40, ^setsize_abs, ^setsize_abs);
+cc_setgraphic(~activity_tracker_get_icon($int5, $int6));
+cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+cc_setposition(45, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(45, 40, ^setsize_minus, ^setsize_abs);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_setmaxlines(2);
+cc_settextfont(graphic_17813);
+cc_settext(~activity_tracker_get_title($int5, $int6));
+~script2731($component0, cc_getid, 0);
+$int3 = calc(cc_gety + cc_getheight + 5);
+cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+cc_setposition(0, $int3, ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(graphic_17813);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+~script2731($component0, cc_getid, 18);
+~script9389($component0, $int5, $int6);
+$string0 = ~activity_tracker_get_desc($int5, $int6);
+$int4 = ~script7593($string0, $int2, graphic_17813, 0);
+cc_setsize(0, $int4, ^setsize_minus, ^setsize_abs);
+cc_settext($string0);
+$int3 = calc($int3 + (cc_getheight + 5));
+def_int $int7 = ~script9534($int5);
+if ($int7 > 0) {
+    if (testbit($int7, 0) = ^true) {
+        cc_create($component0, ^iftype_rectangle, if_getnextsubid($component0));
+        .cc_create($component0, ^iftype_rectangle, if_getnextsubid($component0));
+        cc_setposition(5, $int3, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(10, 5, ^setsize_minus, ^setsize_abs);
+        cc_setfill(true);
+        cc_setcolour(~rgb_to_hex(255, 0, 0));
+        .cc_setposition(5, $int3, ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setfill(true);
+        .cc_setcolour(~rgb_to_hex(0, 255, 0));
+        ~activity_tracker_update_progress_bar($int5, $int6);
+        ~script9129($component0, $int5, $int6);
+        $int3 = calc($int3 + (5 + 5));
+    }
+    if (testbit($int7, 1) = ^true) {
+        cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+        cc_setposition(0, $int3, ^setpos_abs_left, ^setpos_abs_top);
+        cc_settextfont(graphic_17813);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        $string0 = ~script9536($int5, $int6);
+        $int4 = ~script7593($string0, $int2, cc_getfontmetrics, 0);
+        cc_setsize(10, $int4, ^setsize_minus, ^setsize_abs);
+        ~script2731($component0, cc_getid, 18);
+        cc_settext($string0);
+        $int3 = calc($int3 + (cc_getheight + 5));
+    }
+}
+def_string $string1 = "";
+def_string $string2 = "";
+switch_int ($int5) {
+    case 1 :
+        $string1 = "Overview";
+        $string2 = "Journal";
+    case 2 :
+        $string1 = "Achievements";
+    case 3 :
+        $string1 = "Paths";
+    case 4 :
+        $string1 = "Challenges";
+    case 5 :
+        $string1 = "Skill Guide";
+    case 6 :
+        $string1 = "Minigames";
+}
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+if (compare($string1, "") ! 0) {
+    $int8 = calc($int2 / 2);
+    $int9 = calc($int8 - 150 / 2);
+    $int10 = calc(~script7593($string1, 150, graphic_17813, 0) + 12);
+    $int13 = $int10;
+    if (compare($string2, "") ! 0) {
+        $int12 = calc(~script7593($string2, 150, graphic_17813, 0) + 12);
+        $int13 = max($int10, $int12);
+        $int9 = calc($int8 - (150 * 2 + 12) / 2);
+        $int11 = calc($int9 + 150 + 12);
+    }
+    $int14 = ~script10410($component0, $component1, struct_28556, $int9, $int3, 150, $int10, $int14, false, $string1);
+    $int14 = ~script10410($component0, $component1, struct_28556, $int11, $int3, 150, $int12, $int14, false, $string2);
+    $int3 = calc($int3 + ($int13 + 5));
+}
+$int3 = ~activity_tracker_draw_rewards($component0, $int3, $int5, $int6);
+if ($int3 > if_getheight($component0)) {
+    if_setscrollsize(0, $int3, interface_209:com_4);
+    ~rs3_scrollbar_vertical(interface_209:com_6, interface_209:com_4);
+}

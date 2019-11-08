@@ -1,0 +1,46 @@
+// 11087
+[proc,script11087](struct $struct0)(string)
+def_string $string0 = "";
+def_obj $obj1 = null;
+switch_struct ($struct0) {
+    case struct_31901 :
+        if (%varplayerbit_28446 > 0) {
+            $string0 = " - <tostring(calc(%varplayerbit_28446 * 2))>% Combat XP Boost";
+        } else if (%varplayerbit_28447 > 0) {
+            $string0 = " - <tostring(calc(%varplayerbit_28447 * 2))>% Artisan XP Boost";
+        } else if (%varplayerbit_28448 > 0) {
+            $string0 = " - <tostring(calc(%varplayerbit_28448 * 2))>% Gatherer XP Boost";
+        } else if (%varplayerbit_28449 > 0) {
+            $string0 = " - <tostring(calc(%varplayerbit_28449 * 2))>% Support XP Boost";
+        }
+    case struct_21215 :
+        $obj1 = inv_getobj(inv_94, 17);
+        if ($obj1 ! null) {
+            $string0 = "<oc_name($obj1)> Active";
+        }
+    case struct_33383 :
+        $obj1 = inv_getobj(inv_94, 17);
+        if ($obj1 = obj_37225) {
+            $string0 = "<oc_name($obj1)> is boosting your combat skills";
+        } else {
+            $string0 = "<oc_name($obj1)> will activate on your next attack";
+        }
+    case struct_33384 :
+        $obj1 = inv_getobj(inv_94, 17);
+        if ($obj1 ! null) {
+            $string0 = "<oc_name($obj1)> is reflecting <tostring(calc(100 / 20))>% of incoming damage";
+        }
+    case struct_34189 :
+        $string0 = "Crystal Shield Defence Active - You have <col=00ff000><tostring(%varplayerbit_33710)></col> temporary lifepoints, thanks to your Crystal Shield's absorption.";
+    case struct_1626 :
+        $string0 = "The residual energy from the Stone of Jas is empowering you, increasing your damage by <col=33cc33><tostring(%varplayerbit_36378)>%</col>.";
+    case struct_39037 :
+        if (%varplayer_2735 = 1) {
+            $string0 = "You have 1 cannonball remaining in your Cannon.";
+        } else {
+            $string0 = "You have <tostring(%varplayer_2735)> cannonballs remaining in your Cannon.";
+        }
+    case struct_40798 :
+        $string0 = "Attuning to the Avatar Habitat has granted you a <col=33cc33><tostring(%varplayerbit_41299)>%</col> boost in resources gathered at Citadel skill plots.";
+}
+return($string0);

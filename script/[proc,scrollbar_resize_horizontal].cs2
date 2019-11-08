@@ -2,7 +2,10 @@
 [proc,scrollbar_resize_horizontal](component $component0, component $component1, int $int2)
 def_int $int3 = if_getscrollwidth($component1);
 def_int $int4 = if_getwidth($component0);
-def_int $int5 = calc($int4 - 32);
+def_int $int5 = $int4;
+if (%varplayerbit_22875 ! 2) {
+    $int4 = calc($int4 - 32);
+}
 def_int $int6 = 0;
 if ($int3 > 0) {
     $int6 = calc($int5 * $int4 / $int3);
@@ -13,6 +16,10 @@ if ($int6 < 10) {
     $int6 = 10;
 }
 if (cc_find($component0, 1) = true) {
-    cc_setsize(calc($int6 - 10), 16, ^setsize_abs, ^setsize_abs);
+    if (%varplayerbit_22875 = 2) {
+        cc_setsize($int6, 8, ^setsize_abs, ^setsize_abs);
+    } else {
+        cc_setsize(calc($int6 - 10), 16, ^setsize_abs, ^setsize_abs);
+    }
     ~scrollbar_horizontal_doscroll($component0, $component1, $int2, 1);
 }

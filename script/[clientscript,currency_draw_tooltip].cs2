@@ -1,12 +1,16 @@
 // 12777
-[clientscript,currency_draw_tooltip](struct $struct0, component $component1, int $int2)
+[clientscript,currency_draw_tooltip](dbrow $dbrow0, component $component1, int $int2)
 def_string $string0 = "";
-if (compare(struct_param($struct0, param_5979), "") ! 0) {
-    $string0 = struct_param($struct0, param_5979);
-} else if (struct_param($struct0, param_5980) ! null) {
-    $string0 = oc_name(struct_param($struct0, param_5980));
+if (string_length(db_getfield($dbrow0, dbtable_66:col4, 0)) ! 0) {
+    $string0 = db_getfield($dbrow0, dbtable_66:col4, 0);
+} else if (db_getfield($dbrow0, dbtable_66:col3, 0) ! null) {
+    $string0 = oc_name(db_getfield($dbrow0, dbtable_66:col3, 0));
 } else {
     $string0 = "This object needs a name!";
 }
-$string0 = append($string0, ": <tostring_localised(~script12781($struct0), true)>");
+if ($dbrow0 = dbrow_2274) {
+    $string0 = append($string0, ": <tostring_localised(calc(~currency_pouch_value_get($dbrow0) * 10), true)>");
+} else {
+    $string0 = append($string0, ": <tostring_localised(~currency_pouch_value_get($dbrow0), true)>");
+}
 ~script3877($string0, $component1, $int2);

@@ -1,26 +1,41 @@
 // 6495
 [clientscript,script6495](component $component0, component $component1, component $component2)
-def_string $string0 = "Click here to show more detailed information about prayers.";
-if (if_getheight($component1) > 1) {
-    if_setontimer("script6496($component1, 5, 1)", $component1);
-    if_setop(1, "Show", $component0);
-    if ($component2 ! null) {
-        if_sethide(true, $component2);
-    }
-} else if (if_getheight($component1) = 1) {
+def_string $string0 = "Show";
+def_boolean $boolean3 = null;
+def_component $component4 = interface_1458:com_47;
+def_component $component5 = interface_1458:com_6;
+def_component $component6 = interface_1458:com_7;
+if ($component0 = interface_1458:com_47) {
+    $component4 = interface_1457:com_42;
+    $component5 = interface_1457:com_6;
+    $component6 = interface_1457:com_7;
+}
+if (%varplayerbit_45116 = 0) {
+    $boolean3 = false;
+    $string0 = "Show All";
+    %varplayerbit_45116 = 1;
+    ~script12244;
+    ~script12243(~prayer_mode_enum($component0));
+    if_setscrollpos(0, 0, struct_param(struct_37670, param_8122));
+    if_setscrollpos(0, 0, struct_param(struct_37671, param_8122));
     ~script5808($component1, 1);
-    if_setop(1, "Hide", $component0);
-    $string0 = "Click here to hide more detailed information about prayers.";
-    if ($component2 ! null) {
-        if_sethide(false, $component2);
-    }
+    ~script5808($component5, 1);
 } else {
+    $boolean3 = true;
+    $string0 = "Show Active-Only";
+    %varplayerbit_45116 = 0;
     if_setsize(0, 1, ^setsize_minus, ^setsize_abs, $component1);
-    if_setop(1, "Show", $component0);
-    if ($component2 ! null) {
-        if_sethide(true, $component2);
-    }
+    if_setsize(0, 1, ^setsize_minus, ^setsize_abs, $component5);
 }
+if_setop(1, $string0, $component0);
+if_setop(1, $string0, $component4);
+if_sethide($boolean3, $component1);
+if_sethide($boolean3, $component5);
 if ($component2 ! null) {
-    if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", $component0);
+    if_sethide($boolean3, $component2);
 }
+if ($component6 ! null) {
+    if_sethide($boolean3, $component6);
+}
+~script7819(struct_param(struct_37670, param_8124));
+~script7819(struct_param(struct_37671, param_8124));

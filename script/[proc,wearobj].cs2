@@ -1,100 +1,100 @@
 // 9214
-[proc,wearobj](obj $obj0, inv $inv1, int $int2, component $component3, component $component4)
-if (~wearprevent($obj0) = 1) {
+[proc,wearobj](obj $obj0, inv $inv1, int $int2, int $int3)
+if (~wearprevent($obj0) ! 0) {
     return;
 }
 if (~script925($obj0) = false) {
     return;
 }
-def_int $int5 = oc_wearpos($obj0);
-if ($int5 = -1) {
+def_int $int4 = oc_wearpos($obj0);
+if ($int4 = -1) {
     mes("You can't wear this item.");
     return;
 }
-if ($int5 = 17) {
-    $int5 = 17;
+if ($int4 = 17) {
+    $int4 = 17;
 }
-def_obj $obj6 = inv_getobj(inv_94, $int5);
-if ($obj6 = $obj0) {
+def_obj $obj5 = inv_getobj(inv_94, $int4);
+if ($obj5 = $obj0) {
     if (oc_stackable($obj0) = false) {
         return;
     } else {
-        $obj6 = null;
+        $obj5 = null;
     }
 }
-if ($obj6 ! null) {
-    if ($obj6 = $obj0) {
+if ($obj5 ! null) {
+    if ($obj5 = $obj0) {
         if (oc_stackable($obj0) = false) {
             return;
         } else {
-            $obj6 = null;
+            $obj5 = null;
         }
-    } else if (~script9224($obj6, $obj0) = 1) {
+    } else if (~script9224($obj5, $obj0) = 1) {
         return;
     }
 }
-def_int $int7 = 0;
-def_obj $obj8 = null;
+def_int $int6 = 0;
+def_obj $obj7 = null;
+def_int $int8 = 0;
 def_int $int9 = 0;
 def_int $int10 = 0;
-def_int $int11 = 0;
 if ($obj0 ! null) {
-    $int9 = min(calc(^max_32bit_int - inv_total(inv_94, $obj0)), inv_total($inv1, $obj0));
+    $int8 = min(calc(^max_32bit_int - inv_total(inv_94, $obj0)), inv_total($inv1, $obj0));
 }
-if ($obj6 ! null) {
-    $int10 = min(calc(^max_32bit_int - inv_total($inv1, $obj6)), inv_total(inv_94, $obj6));
-    if ($int10 < inv_total(inv_94, $obj6)) {
+if ($obj5 ! null) {
+    $int9 = min(calc(^max_32bit_int - inv_total($inv1, $obj5)), inv_total(inv_94, $obj5));
+    if ($int9 < inv_total(inv_94, $obj5)) {
         return;
     }
 }
 if (oc_wearpos($obj0) = 5) {
-    $obj8 = inv_getobj(inv_94, 3);
-    if ($obj8 ! null) {
-        if (oc_wearpos2($obj8) = 5) {
-            $int11 = min(calc(^max_32bit_int - inv_total($inv1, $obj8)), inv_total(inv_94, $obj8));
-            $int7 = 3;
+    $obj7 = inv_getobj(inv_94, 3);
+    if ($obj7 ! null) {
+        if (oc_wearpos2($obj7) = 5) {
+            $int10 = min(calc(^max_32bit_int - inv_total($inv1, $obj7)), inv_total(inv_94, $obj7));
+            $int6 = 3;
         } else {
-            $obj8 = null;
+            $obj7 = null;
         }
     }
 } else if (oc_wearpos2($obj0) = 5) {
-    $obj8 = inv_getobj(inv_94, 5);
-    if ($obj8 ! null) {
-        $int11 = min(calc(^max_32bit_int - inv_total($inv1, $obj8)), inv_total(inv_94, $obj8));
-        if ($obj8 = $obj0) {
-            if ($int11 < inv_total(inv_94, $obj8)) {
+    $obj7 = inv_getobj(inv_94, 5);
+    if ($obj7 ! null) {
+        $int10 = min(calc(^max_32bit_int - inv_total($inv1, $obj7)), inv_total(inv_94, $obj7));
+        if ($obj7 = $obj0) {
+            if ($int10 < inv_total(inv_94, $obj7)) {
                 return;
             }
-            $obj8 = null;
+            $obj7 = null;
         } else {
-            $int7 = 5;
+            $int6 = 5;
         }
     }
 }
-if (~script3847($obj6, $obj8, $obj0, $inv1) = false) {
+if (~script3847($obj5, $obj7, $obj0, $inv1) = false) {
     return;
 }
 if ($inv1 = inv_93) {
-    ~script9215($int5, $int2, $component3, $component4);
+    ~script9215($int4, $int2);
 } else if ($inv1 = inv_95) {
-    ~script3834($obj0, inv_total($inv1, $obj0), $int2, $component4, inv_94, $int5, $component3);
+    ~script3968($obj0, inv_total($inv1, $obj0), $int2, inv_94, $int4);
 }
+def_int $int11 = -1;
 def_int $int12 = -1;
-def_int $int13 = -1;
-if ($int7 > 0) {
+if ($int6 > 0) {
     if ($inv1 = inv_93) {
-        if ($obj6 ! null) {
-            $int12 = ~script9249(inv_93);
+        if ($obj5 ! null) {
+            $int11 = ~script9249(inv_93);
         } else {
-            $int12 = $int2;
+            $int11 = $int2;
         }
-        ~script9215($int7, $int12, $component3, $component4);
+        ~script9215($int6, $int11);
     } else if ($inv1 = inv_95) {
-        if (%varplayerbit_288 <= 1) {
-            $int12 = ~script3784;
+        if (%varplayerbit_45141 <= 1) {
+            $int11 = ~script14295;
         } else {
-            $int13, $int12 = ~script1467(~script11290(%varplayerbit_288));
+            $int12, $int11 = ~bank_get_tab_range(~script14372(%varplayerbit_45141));
         }
-        ~script3805($obj8, inv_getnum(inv_94, $int7), inv_94, $int7, 1, 1, $component4, $component3);
+        ~bank_deposit_generic(inv_94, $obj7, inv_getnum(inv_94, $int6), $int6, 1, 1);
     }
 }

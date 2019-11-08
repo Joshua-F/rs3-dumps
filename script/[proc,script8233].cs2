@@ -1,98 +1,22 @@
 // 8233
-[proc,script8233]
-def_struct $struct0 = null;
-def_struct $struct1 = null;
-def_struct $struct2 = null;
-def_struct $struct3 = null;
-def_struct $struct4 = null;
-def_struct $struct5 = null;
-if (%varplayer_4448 ! 0) {
-    $struct0 = enum(int, struct, enum_8085, %varplayer_4448);
-    $struct1 = struct_param($struct0, param_4251);
-    if_settext(struct_param($struct1, param_1266), interface_400:com_103);
-    if_setgraphic(struct_param($struct0, param_4253), interface_400:com_102);
-} else {
-    if_settext("More Quests...", interface_400:com_103);
-    if_setgraphic(rs3_icon_path_quest, interface_400:com_102);
-    if_sethide(true, interface_400:com_22);
-    if_sethide(true, interface_400:com_23);
+[proc,script8233](struct $struct0, inv $inv1, obj $obj2, int $int3)(obj, int)
+if ($int3 = 0) {
+    ~error("Increment of 0 - would be an infinite loop. Breaking out.");
+    return(null, -1);
 }
-if (%varplayer_4449 ! 0) {
-    $struct2 = enum(int, struct, enum_8085, %varplayer_4449);
-    $struct3 = struct_param($struct2, param_4251);
-    if_settext(struct_param($struct3, param_1266), interface_400:com_112);
-    if_setgraphic(struct_param($struct2, param_4253), interface_400:com_111);
-} else {
-    if_settext("More Quests...", interface_400:com_112);
-    if_setgraphic(rs3_icon_path_quest, interface_400:com_111);
-    if_sethide(true, interface_400:com_23);
+def_int $int4 = 0;
+def_obj $obj5 = null;
+switch_int (oc_param($obj2, param_3744)) {
+    case 0 :
+        $obj5, $int4 = ~script8234($struct0, $inv1, 4, 11, $int3);
+    case 1, 2, 4, 5 :
+        $obj5, $int4 = ~script8234($struct0, $inv1, 8, 11, $int3);
+        if ($obj5 = null) {
+            $obj5, $int4 = ~script8234($struct0, $inv1, 12, 17, $int3);
+        }
+    case 6 :
+        $obj5, $int4 = ~script8234($struct0, $inv1, 12, 17, $int3);
+    case 3, 7 :
+        $obj5, $int4 = ~script8234($struct0, $inv1, 10, 11, $int3);
 }
-if (%varplayer_4450 ! 0) {
-    $struct4 = enum(int, struct, enum_8085, %varplayer_4450);
-    $struct5 = struct_param($struct4, param_4251);
-    if_settext(struct_param($struct5, param_1266), interface_400:com_121);
-    if_setgraphic(struct_param($struct4, param_4253), interface_400:com_120);
-} else {
-    if_settext("More Quests...", interface_400:com_121);
-    if_setgraphic(rs3_icon_path_quest, interface_400:com_120);
-}
-def_struct $struct6 = null;
-def_struct $struct7 = null;
-def_struct $struct8 = null;
-if (%varplayer_4451 ! 0) {
-    $struct6 = enum(int, struct, enum_8789, %varplayer_4451);
-    if_settext(struct_param($struct6, param_4255), interface_400:com_130);
-    if_setgraphic(struct_param($struct6, param_4253), interface_400:com_129);
-} else {
-    if_settext("Grand Exchange", interface_400:com_130);
-    if_setgraphic(rs3_icon_path_grand_exchange, interface_400:com_129);
-    if_sethide(true, interface_400:com_131);
-    if_sethide(true, interface_400:com_141);
-}
-if (%varplayer_4452 ! 0) {
-    $struct7 = enum(int, struct, enum_8789, %varplayer_4452);
-    if_settext(struct_param($struct7, param_4255), interface_400:com_140);
-    if_setgraphic(struct_param($struct7, param_4253), interface_400:com_139);
-} else {
-    if_settext("Grand Exchange", interface_400:com_140);
-    if_setgraphic(rs3_icon_path_grand_exchange, interface_400:com_139);
-    if_sethide(true, interface_400:com_141);
-}
-if (%varplayer_4453 ! 0) {
-    $struct8 = enum(int, struct, enum_8789, %varplayer_4453);
-    if_settext(struct_param($struct8, param_4255), interface_400:com_150);
-    if_setgraphic(struct_param($struct8, param_4253), interface_400:com_149);
-} else {
-    if_settext("Grand Exchange", interface_400:com_150);
-    if_setgraphic(rs3_icon_path_grand_exchange, interface_400:com_149);
-}
-def_struct $struct9 = null;
-def_struct $struct10 = null;
-def_struct $struct11 = null;
-if (%varplayer_4454 ! 0) {
-    $struct9 = enum(int, struct, enum_8790, %varplayer_4454);
-    if_settext(struct_param($struct9, param_4255), interface_400:com_159);
-    if_setgraphic(struct_param($struct9, param_4253), interface_400:com_158);
-} else {
-    if_settext("Minigames: Combat", interface_400:com_159);
-    if_setgraphic(rs3_icon_path_minigame, interface_400:com_158);
-    if_sethide(true, interface_400:com_160);
-    if_sethide(true, interface_400:com_170);
-}
-if (%varplayer_4455 ! 0) {
-    $struct10 = enum(int, struct, enum_8790, %varplayer_4455);
-    if_settext(struct_param($struct10, param_4255), interface_400:com_169);
-    if_setgraphic(struct_param($struct10, param_4253), interface_400:com_168);
-} else {
-    if_settext("Minigames: Combat", interface_400:com_169);
-    if_setgraphic(rs3_icon_path_minigame, interface_400:com_168);
-    if_sethide(true, interface_400:com_170);
-}
-if (%varplayer_4456 ! 0) {
-    $struct11 = enum(int, struct, enum_8790, %varplayer_4456);
-    if_settext(struct_param($struct11, param_4255), interface_400:com_179);
-    if_setgraphic(struct_param($struct11, param_4253), interface_400:com_178);
-} else {
-    if_settext("Minigames: Combat", interface_400:com_179);
-    if_setgraphic(rs3_icon_path_minigame, interface_400:com_178);
-}
+return($obj5, $int4);

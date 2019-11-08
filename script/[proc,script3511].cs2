@@ -1,7 +1,14 @@
 // 3511
-[proc,script3511](component $component0)
-if (~script3546(3) = ~script3547(3)) {
-    ~script3633($component0);
-} else {
-    ~script3634($component0);
+[proc,script3511](dbrow $dbrow0, int $int1)(int)
+if ($dbrow0 = null) {
+    return(-1);
 }
+if ($int1 < 0) {
+    return(6);
+}
+def_int $int2 = ~currency_pouch_value_get($dbrow0);
+if ($int1 > $int2) {
+    return(7);
+}
+~currency_pouch_value_set($dbrow0, calc($int2 - $int1));
+return(4);

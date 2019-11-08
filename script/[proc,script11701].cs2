@@ -4,7 +4,7 @@ def_int $int0 = oc_find($string0, true);
 def_int $int1 = if_getwidth(interface_105:com_16);
 if_setscrollpos(0, 0, interface_105:com_16);
 if ($int0 < 1) {
-    cc_create(interface_105:com_16, ^iftype_text, 0);
+    cc_create(interface_105:com_17, ^iftype_text, 0);
     cc_setposition(0, 48, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize($int1, 16, ^setsize_abs, ^setsize_abs);
     cc_settextfont(graphic_20452);
@@ -14,7 +14,7 @@ if ($int0 < 1) {
         cc_settext("No matching items found.");
     }
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    ~script11024(0x00000c);
+    ~script11024(3);
     cc_settextshadow(false);
     if_setscrollsize(0, 0, interface_105:com_16);
     ~script11702(0);
@@ -41,7 +41,7 @@ while ($obj3 ! null) {
     if (oc_param($obj3, param_6628) ! 0) {
         $int15 = oc_param($obj3, param_6628);
     } else if (oc_param($obj3, param_4749) ! null) {
-        $int15 = struct_param(oc_param($obj3, param_4749), param_4630);
+        $int15 = ~trh_promo_start_runeday(oc_param($obj3, param_4749));
     } else {
         $int15 = oc_param($obj3, param_4742);
     }
@@ -54,29 +54,35 @@ while ($obj3 ! null) {
             $int13 = $int4;
             $int14 = calc($int14 + $int6 + $int4);
         }
-        $int16 = ~script10410(interface_105:com_16, null, struct_21361, $int13, $int14, $int5, $int6, if_getnextsubid(interface_105:com_16), false, "");
-        cc_create(interface_105:com_16, ^iftype_rectangle, if_getnextsubid(interface_105:com_16));
+        ~script10410(interface_105:com_17, null, struct_21361, $int13, $int14, $int5, $int6, if_getnextsubid(interface_105:com_17), false, "");
+        cc_create(interface_105:com_17, ^iftype_rectangle, if_getnextsubid(interface_105:com_17));
         cc_setsize($int5, $int6, ^setsize_abs, ^setsize_abs);
         cc_setposition($int13, $int14, ^setpos_abs_left, ^setpos_abs_top);
         cc_setop(1, "Select");
         cc_setonop("script11703($obj3)");
         cc_settrans(255);
         cc_setonmouserepeat("script9564($obj3, event_com, event_comsubid)");
-        cc_create(interface_105:com_16, ^iftype_graphic, if_getnextsubid(interface_105:com_16));
+        cc_create(interface_105:com_18, ^iftype_graphic, if_getnextsubid(interface_105:com_18));
         cc_setsize($int7, $int8, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int13 + $int4), calc($int14 + $int9), ^setpos_abs_left, ^setpos_abs_top);
-        cc_setobject_nonum($obj3, 1);
-        cc_create(interface_105:com_16, ^iftype_text, if_getnextsubid(interface_105:com_16));
+        cc_setparam(param_4677, $obj3);
+        cc_create(interface_105:com_17, ^iftype_text, if_getnextsubid(interface_105:com_17));
         cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int13 + $int4 + $int7), calc($int14 + $int9), ^setpos_abs_left, ^setpos_abs_top);
         cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         cc_settext(oc_name($obj3));
         cc_settextfont(graphic_20452);
-        ~script11024(0x00000c);
-        cc_setonmouseover("script10496(event_com, event_comsubid, 0x00000d)");
-        cc_setonmouseleave("script10496(event_com, event_comsubid, 0x00000c)");
+        ~script11024(3);
+        cc_setonmouseover("script10496(event_com, event_comsubid, 4)");
+        cc_setonmouseleave("script10496(event_com, event_comsubid, 3)");
         $obj3 = oc_findnext;
         $int13 = calc($int13 + $int5 + $int4);
+        $int16 = calc($int16 + 1);
+    }
+}
+while (--$int16 >= 0) {
+    if (cc_find(interface_105:com_18, $int16) = true) {
+        cc_setobject_nonum(cc_param(param_4677), 1);
     }
 }
 $int14 = calc($int14 + $int6);

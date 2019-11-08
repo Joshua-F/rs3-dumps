@@ -1,0 +1,24 @@
+// 3509
+[proc,script3509](dbrow $dbrow0, int $int1, int $int2)(int)
+if ($dbrow0 = null) {
+    return(-1);
+}
+if ($int1 < 0) {
+    return(6);
+}
+def_int $int3 = ~currency_pouch_value_get($dbrow0);
+def_int $int4 = -1;
+if (calc(^max_32bit_int - $int3) < $int1) {
+    if ($int2 = 1) {
+        $int4 = ~script3510($dbrow0, ^max_32bit_int, $int2);
+        if ($int4 = 4) {
+            return(5);
+        } else {
+            return($int4);
+        }
+    } else {
+        return(3);
+    }
+}
+$int1 = calc($int3 + $int1);
+return(~script3510($dbrow0, $int1, $int2));

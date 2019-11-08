@@ -1,23 +1,56 @@
 // 6316
-[proc,script6316](string $string0, obj $obj0, component $component1, component $component2, component $component3, component $component4)
-if_setpausetext($string0, $component1);
-cc_deleteall($component2);
-cc_deleteall($component3);
-cc_deleteall($component4);
-~script4513($component2, struct_1746);
-~script4513($component3, struct_1747);
-~script4513($component4, struct_1748);
-def_int $int5 = if_getheight($component1);
-cc_deleteall($component1);
-cc_create($component1, ^iftype_model, 0);
-cc_setsize(calc($int5 - 1), calc($int5 - 1), ^setsize_abs, ^setsize_abs);
-cc_setposition(1, 0, ^setpos_abs_left, ^setpos_abs_centre);
-cc_setobject($obj0, 1);
-cc_create($component1, ^iftype_text, 1);
-cc_setsize($int5, 0, ^setsize_minus, ^setsize_minus);
-cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
-cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-cc_settextfont(p12_full);
-cc_setcolour(0xcccccc);
-cc_settextshadow(true);
-cc_settext($string0);
+[proc,script6316](int $int0, int $int1)(boolean)
+if ($int0 < 2 | $int0 > 15) {
+    return(false);
+}
+def_int $int2 = calc(~bank_get_tab_size($int0) + $int1);
+if ($int2 < 0) {
+    $int2 = 0;
+    ~error("BANK V2 : Attempt to shrink tab <tostring($int0)> to negative value.");
+}
+switch_int ($int0) {
+    case 2 :
+        %varplayerbit_45143 = $int2;
+    case 3 :
+        %varplayerbit_45144 = $int2;
+    case 4 :
+        %varplayerbit_45145 = $int2;
+    case 5 :
+        %varplayerbit_45146 = $int2;
+    case 6 :
+        %varplayerbit_45147 = $int2;
+    case 7 :
+        %varplayerbit_45148 = $int2;
+    case 8 :
+        %varplayerbit_45149 = $int2;
+    case 9 :
+        %varplayerbit_45150 = $int2;
+    case 10 :
+        %varplayerbit_45151 = $int2;
+    case 11 :
+        %varplayerbit_45152 = $int2;
+    case 12 :
+        %varplayerbit_45153 = $int2;
+    case 13 :
+        %varplayerbit_45154 = $int2;
+    case 14 :
+        %varplayerbit_45155 = $int2;
+    case 15 :
+        %varplayerbit_45156 = $int2;
+    case default :
+        ~error("Unhandled tab: <tostring($int0)>");
+        return(false);
+}
+if ($int2 > 0) {
+    return(false);
+}
+~bank_collapse_tab($int0);
+~script6749(~script14374($int0), $int0);
+if (%varplayerbit_45141 > 1) {
+    if (%varplayerbit_45141 = $int0) {
+        %varplayerbit_45141 = 1;
+    } else if (%varplayerbit_45141 > $int0) {
+        %varplayerbit_45141 = calc(%varplayerbit_45141 - 1);
+    }
+}
+return(true);

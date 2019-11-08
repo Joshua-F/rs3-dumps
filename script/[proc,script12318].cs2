@@ -233,12 +233,12 @@ if_setparam_int(param_5641, clientclock, $component2);
 if_setparam_int(param_5642, 0, $component2);
 if_setparam_int(param_5639, %varclientbit_30621, $component2);
 if_setparam_int(param_5640, %varclientbit_30622, $component2);
-def_int $int19 = ~script12303;
-def_int $int20 = calc((clientclock - %varclient_5159) / %varclient_5157 % $int19);
+def_int $int19 = max(1, ~script12303);
+def_int $int20 = calc((clientclock - %varclient_5159) / max(1, %varclient_5157) % $int19);
 def_int $int21 = calc(256 / $int19 - 1 + %varclientbit_30621);
 def_int $int22 = 2;
 if (%varclientbit_30621 = 1) {
-    $int22 = calc(16 - 1 * %varclientbit_30622);
+    $int22 = max(1, calc(16 - 1 * %varclientbit_30622));
 }
 def_int $int23 = calc((if_getwidth($component3) + %varclientbit_30621) / $int22);
 $int23 = min($int23, $int21);
@@ -267,9 +267,9 @@ if ($component7 ! null) {
                 cc_setonop("script1148(event_com, event_comsubid, %varclientbit_30619)");
             }
         }
-        cc_setcolour(~script10495(0x00003a));
-        cc_setonmouseover("cc_text_colour_swapper(event_com, event_comsubid, ~script10495(0x00003b))");
-        cc_setonmouseleave("cc_text_colour_swapper(event_com, event_comsubid, ~script10495(0x00003a))");
+        cc_setcolour(~script10495(3));
+        cc_setonmouseover("cc_text_colour_swapper(event_com, event_comsubid, ~script10495(4))");
+        cc_setonmouseleave("cc_text_colour_swapper(event_com, event_comsubid, ~script10495(3))");
         cc_setonclick("cc_settrans(event_com, event_comsubid, 180)");
         cc_setonrelease("cc_settrans(event_com, event_comsubid, 205)");
         $string0 = "Click here to view your historical data in the RuneMetrics web app";
@@ -284,7 +284,7 @@ if ($component7 ! null) {
             cc_setposition($int24, 0, ^setpos_abs_centre, ^setpos_abs_centre);
         }
     } else {
-        cc_setcolour(~script10495(0x00003c));
+        cc_setcolour(~script10495(5));
     }
 }
 $int23 = calc($int23 - %varclientbit_30621);
@@ -296,7 +296,7 @@ def_int $int29 = 0;
 def_int $int30 = 0;
 while (++$int26 < $int23) {
     if ($boolean28 = true) {
-        $boolean28, $int29, $int30 = ~script12310(interface_1477:com_11, calc(($int23 - 1 - $int26) * $int19 + $int20), $int19);
+        $boolean28, $int29, $int30 = ~script12310(interface_1477:com_9, calc(($int23 - 1 - $int26) * $int19 + $int20), $int19);
         $int29 = ~script12311($int29, $int30);
         if ($int29 > $int17) {
             $int17 = $int29;
@@ -322,10 +322,10 @@ if (%varclientbit_30621 = 1 & ++$int23 > 0) {
         $int29 = 0;
         $int30 = 0;
     } else {
-        $boolean28, $int29, $int30 = ~script12310(interface_1477:com_11, 0, $int20);
+        $boolean28, $int29, $int30 = ~script12310(interface_1477:com_9, 0, $int20);
     }
     if ($boolean28 = true) {
-        $boolean28, $int31, $int32 = ~script12310(interface_1477:com_12, 0, 1);
+        $boolean28, $int31, $int32 = ~script12310(interface_1477:com_10, 0, 1);
     }
     if ($boolean28 = true) {
         $int29, $int30 = ~script12313($int29, $int30, $int31, $int32);
@@ -354,9 +354,9 @@ if_setonvartransmit("script12317($struct0){varplayer_3814}", $component3);
 $string0 = "";
 def_int $int34 = -1;
 def_int $int35 = 0;
-def_int $rgb36 = ~script10495(0x00000b);
-def_int $rgb37 = ~script10495(0x00000e);
-def_int $rgb38 = ~script10495(0x00000c);
+def_int $int36 = ~script10495(0);
+def_int $rgb37 = ^white;
+def_int $int38 = ~script10495(3);
 def_int $int39 = 0;
 def_int $int40 = 0;
 def_int $int41 = -1;
@@ -476,7 +476,7 @@ if ($int23 > 0) {
     cc_create($component3, ^iftype_rectangle, 1);
     cc_setposition(0, -1, ^setpos_abs_left, ^setpos_abs_bottom);
     cc_setsize(0, 1, ^setsize_minus, ^setsize_abs);
-    cc_setcolour(~script10495(^black));
+    cc_setcolour(~script10495(7));
     cc_settrans(63);
     cc_sendtoback;
     ~script12325($struct0, 1, 1);

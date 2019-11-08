@@ -5,8 +5,8 @@ switch_struct ($struct0) {
         if (~script2525($int1) = true) {
             return(~settings_get_state($struct0));
         }
-    case struct_41513, struct_41514, struct_41515, struct_41516, struct_41517, struct_41518, struct_41519, struct_41520, struct_41521, struct_41522 :
-        if (~script10528($int1) ! -1) {
+    case struct_41513, struct_41514, struct_41515, struct_41516, struct_41517, struct_41518, struct_41519, struct_41520, struct_41521, struct_41522, struct_42725, struct_42726, struct_42728, struct_42729, struct_42730, struct_42774, struct_42775, struct_42776, struct_42777, struct_42778, struct_42779, struct_42780, struct_42781, struct_42782, struct_42783, struct_42784, struct_42785, struct_42786, struct_42787, struct_42788, struct_42789, struct_42790, struct_42791, struct_42792, struct_42793, struct_42794, struct_42795, struct_42796, struct_42797 :
+        if (~script8036($struct0, $int1) = true) {
             return(~settings_get_state($struct0));
         }
 }
@@ -17,6 +17,10 @@ if (%varplayerbit_27169 = 1 & struct_param($struct0, param_7532) = false) {
     return(~settings_get_state($struct0));
 }
 def_int $int2 = 0;
+def_enum $enum3 = struct_param($struct0, param_7514);
+if (~is_mobile_client = true & struct_param($struct0, param_8051) ! null) {
+    $enum3 = struct_param($struct0, param_8051);
+}
 switch_int (struct_param($struct0, param_7513)) {
     case 6, 7, 8 :
         $int2 = struct_param($struct0, param_7519);
@@ -26,7 +30,7 @@ switch_int (struct_param($struct0, param_7513)) {
     case 4, 5 :
         $int2 = struct_param($struct0, param_7517);
         if ($int2 = -1) {
-            $int2 = enum_getoutputcount(struct_param($struct0, param_7514));
+            $int2 = enum_getoutputcount($enum3);
         }
         if ($int1 > $int2) {
             return(~settings_get_state($struct0));

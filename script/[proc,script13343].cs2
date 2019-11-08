@@ -1,8 +1,8 @@
 // 13343
-[proc,script13343](int $int0, int $int1, int $rgb2, string $string0, struct $struct3)(int)
-def_int $int4 = calc(if_getwidth(interface_1851:com_35) / 2 - 6);
+[proc,script13343](int $int0, int $int1, int $int2, string $string0, struct $struct3)(int)
+def_int $int4 = calc(if_getwidth(interface_1851:com_37) / 2 - 6);
 def_string $string1 = "";
-cc_create(interface_1851:com_35, ^iftype_text, if_getnextsubid(interface_1851:com_35));
+cc_create(interface_1851:com_37, ^iftype_text, if_getnextsubid(interface_1851:com_37));
 if (calc($int0 % 2) = 0) {
     cc_setposition(3, $int1, ^setpos_abs_left, ^setpos_abs_top);
 } else {
@@ -14,7 +14,7 @@ cc_settext($string0);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_left, ^settextalign_top, 0);
 cc_settextfont(graphic_17813);
-cc_setcolour($rgb2);
+cc_setcolour($int2);
 if ($struct3 ! null) {
     if (struct_param($struct3, param_7960) = 1) {
         cc_setop(1, "Go To");
@@ -22,10 +22,13 @@ if ($struct3 ! null) {
         cc_setopcursor(1, cursor_210);
     }
     $string1 = struct_param($struct3, param_6411);
-    cc_setonmouserepeat("script8799($string1, interface_1851:com_35, cc_getid)");
+    if (string_length(struct_param($struct3, param_4586)) > 0 & ~ironman_mode = true) {
+        $string1 = struct_param($struct3, param_4586);
+    }
+    cc_setonmouserepeat("script8799($string1, interface_1851:com_37, cc_getid)");
 }
 if (calc($int0 % 2) = 1) {
-    if (.cc_find(interface_1851:com_35, calc(cc_getid - 1)) = true) {
+    if (.cc_find(interface_1851:com_37, calc(cc_getid - 1)) = true) {
         $int1 = calc($int1 + max(cc_getheight, .cc_getheight));
     } else {
         $int1 = calc($int1 + cc_getheight);

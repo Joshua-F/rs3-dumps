@@ -3,21 +3,26 @@
 def_int $int0 = 0;
 def_int $int1 = 0;
 def_int $int2 = 0;
-if (testbit(%varclient_98, 31) = ^true) {
-    if_sethide(true, interface_14:com_0);
-    if_sethide(false, interface_14:com_1);
+if (%varplayerbit_45157 = 0) {
+    if_sethide(true, interface_14:com_20);
+    if_setsize(180, 10, ^setsize_abs, ^setsize_minus, interface_14:com_15);
 } else {
-    if_sethide(false, interface_14:com_0);
-    if_sethide(true, interface_14:com_1);
-    ~rs3_background_panel(interface_14:com_8, struct_21361);
-    ~rs3_background_panel(interface_14:com_15, struct_21361);
-    if_sethide(true, interface_14:com_10);
+    if_sethide(false, interface_14:com_20);
+    if_setsize(180, 40, ^setsize_abs, ^setsize_minus, interface_14:com_15);
+}
+if (testbit(%varclient_98, 31) = ^true) {
+    if_sethide(true, interface_14:com_3);
+    if_sethide(false, interface_14:com_22);
+} else {
+    if_sethide(false, interface_14:com_3);
+    if_sethide(true, interface_14:com_22);
     if_sethide(true, interface_14:com_11);
     if_sethide(true, interface_14:com_12);
     if_sethide(true, interface_14:com_13);
+    if_sethide(true, interface_14:com_14);
     switch_int (calc(%varclient_98 & 3)) {
         case 0 :
-            if_settext("No PIN set", interface_14:com_17);
+            if_settext("No PIN set", interface_14:com_7);
             if (%varplayerbit_25398 = 1) {
                 $int1 = 3;
             } else {
@@ -27,20 +32,20 @@ if (testbit(%varclient_98, 31) = ^true) {
                 $int2 = calc($int0 * (26 + 4));
                 switch_int ($int0) {
                     case 0 :
-                        ~script4147(interface_14:com_10, $int2, "Set a PIN");
+                        ~script4147(interface_14:com_11, $int2, "Set a PIN");
                     case 1 :
-                        ~script4147(interface_14:com_11, $int2, "Change recovery delay");
+                        ~script4147(interface_14:com_12, $int2, "Change recovery delay");
                     case 2 :
                         if (%varplayerbit_25397 = 1) {
-                            ~script4147(interface_14:com_12, $int2, "Cancel Authenticator as a bank pin");
+                            ~script4147(interface_14:com_13, $int2, "Cancel Authenticator as a bank pin");
                         } else {
-                            ~script4147(interface_14:com_12, $int2, "Use Authenticator as a bank pin");
+                            ~script4147(interface_14:com_13, $int2, "Use Authenticator as a bank pin");
                         }
                 }
                 $int0 = calc($int0 + 1);
             }
         case default :
-            if_settext("You have a PIN", interface_14:com_17);
+            if_settext("You have a PIN", interface_14:com_7);
             if (%varplayerbit_25398 = 1) {
                 $int1 = 4;
             } else {
@@ -50,22 +55,22 @@ if (testbit(%varclient_98, 31) = ^true) {
                 $int2 = calc($int0 * (26 + 4));
                 switch_int ($int0) {
                     case 0 :
-                        ~script4147(interface_14:com_10, $int2, "Change your PIN");
+                        ~script4147(interface_14:com_11, $int2, "Change your PIN");
                     case 1 :
-                        ~script4147(interface_14:com_11, $int2, "Delete your PIN");
+                        ~script4147(interface_14:com_12, $int2, "Delete your PIN");
                     case 2 :
-                        ~script4147(interface_14:com_12, $int2, "Change recovery delay");
+                        ~script4147(interface_14:com_13, $int2, "Change recovery delay");
                     case 3 :
                         if (%varplayerbit_25397 = 1) {
-                            ~script4147(interface_14:com_13, $int2, "Cancel Authenticator as a bank pin");
+                            ~script4147(interface_14:com_14, $int2, "Cancel Authenticator as a bank pin");
                         } else {
-                            ~script4147(interface_14:com_13, $int2, "Use Authenticator as a bank pin");
+                            ~script4147(interface_14:com_14, $int2, "Use Authenticator as a bank pin");
                         }
                 }
                 $int0 = calc($int0 + 1);
             }
         case 3 :
-            if_settext("PIN coming soon", interface_14:com_17);
+            if_settext("PIN coming soon", interface_14:com_7);
             if (%varplayerbit_25398 = 1) {
                 $int1 = 2;
             } else {
@@ -75,43 +80,43 @@ if (testbit(%varclient_98, 31) = ^true) {
                 $int2 = calc($int0 * (26 + 4));
                 switch_int ($int0) {
                     case 0 :
-                        ~script4147(interface_14:com_10, $int2, "Cancel the PIN");
+                        ~script4147(interface_14:com_11, $int2, "Cancel the PIN");
                     case 1 :
                         if (%varplayerbit_25397 = 1) {
-                            ~script4147(interface_14:com_11, $int2, "Cancel Authenticator as a bank pin");
+                            ~script4147(interface_14:com_12, $int2, "Cancel Authenticator as a bank pin");
                         } else {
-                            ~script4147(interface_14:com_11, $int2, "Use Authenticator as a bank pin");
+                            ~script4147(interface_14:com_12, $int2, "Use Authenticator as a bank pin");
                         }
                 }
                 $int0 = calc($int0 + 1);
             }
     }
     if (testbit(%varclient_98, 10) = ^true) {
-        if_settext("7 days", interface_14:com_19);
+        if_settext("7 days", interface_14:com_9);
     } else {
-        if_settext("3 days", interface_14:com_19);
+        if_settext("3 days", interface_14:com_9);
     }
 }
-cc_deleteall(interface_14:com_21);
-cc_create(interface_14:com_21, ^iftype_text, 0);
+cc_deleteall(interface_14:com_18);
+cc_create(interface_14:com_18, ^iftype_text, 0);
 cc_settextfont(graphic_20452);
 cc_setcolour(0xff981f);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_settext(%varclient_2352);
-if (calc(paraheight(%varclient_2352, calc(if_getwidth(if_getlayer(interface_14:com_21)) - 14), graphic_20452) * 11 + 5) <= if_getheight(interface_14:com_21)) {
-    if_setsize(14, 40, ^setsize_minus, ^setsize_minus, interface_14:com_21);
-    if_setscrollsize(0, 0, interface_14:com_21);
+if (calc(paraheight(%varclient_2352, calc(if_getwidth(if_getlayer(interface_14:com_18)) - 14), graphic_20452) * 11 + 5) <= if_getheight(interface_14:com_18)) {
+    if_setsize(14, 40, ^setsize_minus, ^setsize_minus, interface_14:com_18);
+    if_setscrollsize(0, 0, interface_14:com_18);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
-    if_sethide(true, interface_14:com_22);
+    if_sethide(true, interface_14:com_19);
     return;
 }
-if_setsize(31, 40, ^setsize_minus, ^setsize_minus, interface_14:com_21);
-def_int $int3 = calc(paraheight(%varclient_2352, if_getwidth(interface_14:com_21), graphic_20452) * 11 + 5);
-if_setscrollsize(0, $int3, interface_14:com_21);
-if_setscrollpos(0, 0, interface_14:com_21);
+if_setsize(31, 40, ^setsize_minus, ^setsize_minus, interface_14:com_18);
+def_int $int3 = calc(paraheight(%varclient_2352, if_getwidth(interface_14:com_18), graphic_20452) * 11 + 5);
+if_setscrollsize(0, $int3, interface_14:com_18);
+if_setscrollpos(0, 0, interface_14:com_18);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setsize(0, $int3, ^setsize_minus, ^setsize_abs);
-if_sethide(false, interface_14:com_22);
-~scrollbar_vertical(interface_14:com_22, interface_14:com_21, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_sethide(false, interface_14:com_19);
+~scrollbar_vertical(interface_14:com_19, interface_14:com_18, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

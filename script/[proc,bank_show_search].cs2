@@ -1,0 +1,73 @@
+// 9325
+[proc,bank_show_search](string $string0, int $int0)
+$string0 = escape($string0);
+~script8808;
+%varclient_1 = 0;
+if_sethide(true, interface_517:com_181);
+def_int $int1 = 0;
+if (string_length($string0) = 0) {
+    if (cc_find(interface_517:com_290, 14) = true) {
+        cc_settext("Bank of Gielinor (no search entered)");
+        cc_setmaxlines(1);
+    }
+    if_sethide(false, interface_517:com_179);
+    while ($int1 < 1320) {
+        if (cc_find(interface_517:com_184, $int1) = true) {
+            cc_sethide(true);
+        }
+        $int1 = calc($int1 + 1);
+    }
+    ~bank_build_scrollbar(0);
+    ~script9302("Items found: <col=ffffff><tostring_localised(0, true)>");
+    return;
+} else {
+    if (cc_find(interface_517:com_290, 14) = true) {
+        cc_settext("Bank of Gielinor (search: '<$string0>')");
+        cc_setmaxlines(1);
+    }
+    if_sethide(true, interface_517:com_179);
+}
+def_int $int2 = ~script14337;
+def_int $int3 = 8;
+def_int $int4 = 5;
+def_int $int5 = if_getwidth(interface_517:com_182);
+def_int $int6 = 0;
+def_string $string1 = "";
+$string0 = lowercase($string0);
+while ($int1 <= $int2) {
+    if (cc_find(interface_517:com_184, $int1) = true) {
+        if ($int0 = 0) {
+            $string1 = oc_name(inv_getobj(inv_95, $int1));
+        } else {
+            $string1 = oc_name(cc_getinvobject);
+        }
+        if (string_indexof_string(lowercase($string1), $string0, 0) ! -1) {
+            cc_setposition($int3, $int4, ^setpos_abs_left, ^setpos_abs_top);
+            cc_sethide(false);
+            $int6 = calc($int6 + 1);
+            $int3 = calc($int3 + 44);
+            if (calc($int3 + 36) >= $int5) {
+                $int3 = 8;
+                $int4 = calc($int4 + 44);
+            }
+        } else {
+            cc_sethide(true);
+        }
+    }
+    $int1 = calc($int1 + 1);
+}
+while ($int2 < 1320) {
+    if (cc_find(interface_517:com_184, $int2) = true) {
+        cc_sethide(true);
+    }
+    $int2 = calc($int2 + 1);
+}
+if ($int6 = 0) {
+    if_sethide(false, interface_517:com_181);
+}
+if_setscrollpos(0, 0, interface_517:com_182);
+if ($int3 > 8) {
+    $int4 = calc($int4 + 44);
+}
+~bank_build_scrollbar($int4);
+~script9302("Items found: <col=ffffff><tostring_localised($int6, true)>");

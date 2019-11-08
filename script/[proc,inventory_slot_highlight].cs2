@@ -25,7 +25,7 @@ if (cc_find($component1, $int2) = true) {
     if ($int0 = 94) {
         if (%varclient_3823 ! inv_94) {
             $obj6 = cc_getinvobject;
-            if (oc_wearpos(%varclient_3822) = -1 | $int5 = 1 & (~wearprevent(%varclient_3822) = 1 | ~script925(%varclient_3822) = false) | $int5 = 0 & (~script3848(%varclient_3822) = 1 | ~script3898(%varclient_3822) = false)) {
+            if (oc_wearpos(%varclient_3822) = -1 | $int5 = 1 & ~wearprevent(%varclient_3822) ! 0 | $int5 = 0 & ~script3848(%varclient_3822, -1) ! 0) {
                 $rgb7 = ^red;
             }
         }
@@ -45,6 +45,11 @@ if (cc_find($component3, $int2) = true) {
         if_setonmouserepeat("script3901($int0, $component1, $int2, $component3, calc(clientclock + 25), %varclient_3822, %varclient_3823)", $component1);
     } else {
         if_setonmouserepeat(null, $component1);
+    }
+    if (~script6431 = true) {
+        cc_setsize(46, 52, ^setsize_abs, ^setsize_abs);
+    } else {
+        cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
     }
     cc_setcolour($rgb7);
     cc_sethide(false);

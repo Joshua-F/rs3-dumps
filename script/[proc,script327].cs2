@@ -5,113 +5,130 @@ def_int $int5 = 0;
 def_int $int6 = enum_getoutputcount($enum2);
 def_int $int7 = 0;
 def_int $int8 = 0;
-def_int $rgb9 = ^black;
+def_int $int9 = 0;
 def_int $int10 = 0;
-def_int $int11 = 26;
+def_int $rgb11 = ^black;
 def_int $int12 = 0;
-def_int $int13 = 0;
-def_int $int14 = 22;
-def_dbrow $dbrow15 = null;
+def_int $int13 = 26;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = 22;
+def_dbrow $dbrow17 = null;
 def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
-def_graphic $graphic16 = null;
-def_boolean $boolean17 = false;
-def_fontmetrics $fontmetrics18 = graphic_17813;
-def_boolean $boolean19 = ~script6431;
-if ($boolean19 = true) {
-    $int11 = 36;
-    $int13 = 5;
-    $int12 = 2;
-    $fontmetrics18 = graphic_20280;
-    $int14 = 28;
+def_graphic $graphic18 = null;
+def_boolean $boolean19 = false;
+def_fontmetrics $fontmetrics20 = graphic_17813;
+def_boolean $boolean21 = ~script6431;
+if ($boolean21 = true) {
+    $int13 = 36;
+    $int15 = 5;
+    $int14 = 2;
+    $fontmetrics20 = graphic_20280;
+    $int16 = 28;
 } else if ($int3 = 1) {
     if_sethide(true, interface_148:com_0);
 }
 while ($int5 < $int6) {
-    $dbrow15 = enum(int, dbrow, $enum2, $int5);
-    $string1 = db_getfield($dbrow15, dbtable_28:col0, 0);
-    $graphic16 = db_getfield($dbrow15, dbtable_28:col1, 0);
-    $boolean17 = db_getfield($dbrow15, dbtable_28:col2, 0);
-    $string2 = db_getfield($dbrow15, dbtable_28:col3, 0);
-    switch_int (db_getfield($dbrow15, dbtable_28:col5, 0)) {
+    $int9 = if_getwidth($component0);
+    $dbrow17 = enum(int, dbrow, $enum2, $int5);
+    switch_int (db_getfield($dbrow17, dbtable_28:col9, 0)) {
+        case 0 :
+            $int9 = db_getfield($dbrow17, dbtable_28:col8, 0);
+        case 1 :
+            $int9 = calc(if_getwidth($component0) - db_getfield($dbrow17, dbtable_28:col8, 0));
+        case 2 :
+            $int9 = calc(if_getwidth($component0) * db_getfield($dbrow17, dbtable_28:col8, 0) / 16384);
+    }
+    if (calc($int8 + $int9) > if_getwidth($component0)) {
+        $int8 = 0;
+        $int7 = calc($int7 + ($int13 + $int14));
+    }
+    $string1 = db_getfield($dbrow17, dbtable_28:col0, 0);
+    $graphic18 = db_getfield($dbrow17, dbtable_28:col1, 0);
+    $boolean19 = db_getfield($dbrow17, dbtable_28:col2, 0);
+    $string2 = db_getfield($dbrow17, dbtable_28:col3, 0);
+    switch_int (db_getfield($dbrow17, dbtable_28:col5, 0)) {
         case 0 :
             $string0 = $string1;
         case 1 :
-            if ($int3 = 1 | $boolean19 = true) {
-                $string0, $rgb9 = ~money_pouch_int_to_string(%varclient_6480);
+            if ($int3 = 1 | $boolean21 = true) {
+                $string0, $rgb11 = ~money_pouch_int_to_string(%varclient_6480);
                 $string0 = "<col=0xffffff>Coin pouch:</col> <$string0>";
             } else {
-                $string0, $rgb9 = ~money_pouch_int_to_string(%varclient_6480);
+                $string0, $rgb11 = ~money_pouch_int_to_string(%varclient_6480);
             }
         case 2 :
             $string0 = "<tostring_localised(runweight_visible, true)>kg";
+        case 3 :
+            $string0, $rgb11 = ~money_pouch_int_to_string(%varclient_6480);
     }
-    switch_int (db_getfield($dbrow15, dbtable_28:col5, 0)) {
-        case 0 :
-            if ($boolean19 = true) {
-                ~script10410($component0, $component1, struct_28556, 0, calc($int7 + $int13), max(1, if_getwidth($component0)), $int11, $int5, false, "");
+    switch_int (db_getfield($dbrow17, dbtable_28:col5, 0)) {
+        case 0, 3 :
+            if ($boolean21 = true) {
+                ~script10410($component0, $component1, struct_28556, $int8, calc($int7 + $int15), max(1, $int9), $int13, $int5, false, "");
                 cc_create($component0, ^iftype_text, if_getnextsubid($component0));
-                cc_setsize(calc(if_getwidth($component0) - $int14 - struct_param(struct_24114, param_3808) * 2), $int11, ^setsize_abs, ^setsize_abs);
-                cc_setposition(calc(struct_param(struct_24114, param_3808) + $int14 + 5), calc($int7 + $int13), ^setpos_abs_left, ^setpos_abs_top);
+                cc_setsize(calc($int9 - $int16 - struct_param(struct_24114, param_3808) * 2), $int13, ^setsize_abs, ^setsize_abs);
+                cc_setposition(calc(struct_param(struct_24114, param_3808) + $int16 + $int8), calc($int7 + $int15), ^setpos_abs_left, ^setpos_abs_top);
                 cc_settext($string0);
                 cc_setmaxlines(2);
                 cc_settextfont(graphic_17814);
                 cc_settextalign(^settextalign_centre, ^settextalign_centre, scale(enum(fontmetrics, int, enum_8584, cc_getfontmetrics), 100, 66));
                 cc_settextshadow(false);
-                ~script11024(0x000017);
-                ~script387($component0, $int14, $int14, calc(($int11 - $int14) / 2), calc($int7 + $int13 + ($int11 - $int14) / 2), $graphic16, $boolean17);
+                ~script11024(18);
+                ~script387($component0, $int16, $int16, calc(($int13 - $int16) / 2 + $int8), calc($int7 + $int15 + ($int13 - $int16) / 2), $graphic18, $boolean19);
             } else if ($int3 = 1) {
-                ~script387($component0, 22, 22, 3, calc($int7 + $int13), $graphic16, $boolean17);
-                ~script6201($component0, 1000, 16, 25, calc($int7 + $int13 + 3), $fontmetrics18, $string0);
-                ~cc_add(^iftype_text, $component1, $int5, 1000, $int11, 0, $int7);
+                ~script387($component0, 22, 22, 3, calc($int7 + $int15), $graphic18, $boolean19);
+                ~script6201($component0, 1000, 16, 25, calc($int7 + $int15 + 3), $fontmetrics20, $string0);
+                ~cc_add(^iftype_text, $component1, $int5, 1000, $int13, 0, $int7);
             } else {
                 ~script11624($component0, $component1, struct_28749, 0, 0, $int5, 1);
-                ~script387($component0, 22, 22, 0, 0, $graphic16, $boolean17);
+                ~script387($component0, 22, 22, 0, 0, $graphic18, $boolean19);
             }
         case 1 :
-            if ($int3 = 1 | $boolean19 = true) {
-                ~script6201($component0, if_getwidth($component0), 16, 6, calc($int7 + $int13 + 3), $fontmetrics18, $string0);
-                if ($boolean19 = true) {
+            if ($int3 = 1 | $boolean21 = true) {
+                ~script6201($component0, $int9, 16, calc(6 + $int8), calc($int7 + $int15 + 3), $fontmetrics20, $string0);
+                if ($boolean21 = true) {
                     ~script1025($component0, cc_getid, graphic_21207, graphic_17993, graphic_20280);
                     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
                     cc_setoninvtransmit("script5705($component0, cc_getid){inv_623}");
                 }
-                cc_setcolour($rgb9);
+                cc_setcolour($rgb11);
             } else {
-                ~cc_add_colour_text($component0, 45, 24, 0, 0, graphic_17813, $string0, $rgb9);
+                ~cc_add_colour_text($component0, 45, 24, 0, 0, graphic_17813, $string0, $rgb11);
                 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
             }
             cc_create($component1, ^iftype_text, $int5);
         case 2 :
-            if ($int3 = 1 | $boolean19 = true) {
-                ~script387($component0, $int14, $int14, 3, calc($int7 + $int13), $graphic16, $boolean17);
-                ~script6201($component0, if_getwidth($component0), 16, 25, calc($int7 + $int13 + 3), $fontmetrics18, $string0);
-                if ($boolean19 = true) {
+            if ($int3 = 1 | $boolean21 = true) {
+                ~script387($component0, $int16, $int16, 3, calc($int7 + $int15), $graphic18, $boolean19);
+                ~script6201($component0, $int9, 16, 25, calc($int7 + $int15 + 3), $fontmetrics20, $string0);
+                if ($boolean21 = true) {
                     ~script1025($component0, cc_getid, graphic_21207, graphic_17993, graphic_20280);
                     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
                     cc_setonmisctransmit("script8476($component0, cc_getid)");
                 }
             } else {
-                ~script387($component0, 22, 22, 0, 0, $graphic16, $boolean17);
-                ~script6203($component0, 38, 24, 0, 0, graphic_17813, $string0, 0x00000e);
+                ~script387($component0, 22, 22, 0, 0, $graphic18, $boolean19);
+                ~script6203($component0, 38, 24, 0, 0, graphic_17813, $string0, 3);
                 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
             }
             cc_create($component1, ^iftype_text, $int5);
-            if ($boolean19 = false) {
+            if ($boolean21 = false) {
                 cc_setonmisctransmit("script328($component0, $component1, 3)");
             } else {
                 cc_setonmisctransmit("script8476($component1, cc_getid)");
             }
     }
-    if ($int3 = 1 | $boolean19 = true) {
-        $int8 = parawidth($string0, 1000, $fontmetrics18);
-        $int4 = max($int4, calc($int8 + 38));
-        $int7 = calc($int7 + ($int11 + $int12));
+    if ($int3 = 1 | $boolean21 = true) {
+        $int10 = parawidth($string0, 1000, $fontmetrics20);
+        $int4 = max($int4, calc($int10 + 38));
+        $int8 = calc($int8 + $int9 + 4);
     }
     if (cc_find($component1, $int5) = true) {
-        ~script331($dbrow15);
-        switch_dbrow ($dbrow15) {
+        ~script331($dbrow17);
+        switch_dbrow ($dbrow17) {
             case dbrow_1014 :
                 cc_setonmouserepeat("script316(event_com, event_comsubid)");
             case default :
@@ -120,15 +137,15 @@ while ($int5 < $int6) {
     }
     $int5 = calc($int5 + 1);
 }
-if ($int3 = 1 | $boolean19 = true) {
+if ($int3 = 1 | $boolean21 = true) {
     $int7 = calc($int7 + 8);
 } else if (enum_hasoutput(enum, enum_5134, $enum2) = true) {
     ~script11624($component0, $component1, struct_28749, 3, 0, $int5, 1);
     ~script4512($component0, 19, 19, 6, 3, "rs3_icon_filter,3");
     if (cc_find($component1, $int5) = true) {
         cc_setop(1, "View Options");
-        $int10 = enum_getreverseindex(enum, int, enum_5134, $enum2, 0);
-        $component1 = enum(int, component, enum_5135, $int10);
+        $int12 = enum_getreverseindex(enum, int, enum_5134, $enum2, 0);
+        $component1 = enum(int, component, enum_5135, $int12);
         cc_setonop("script275(event_com, event_comsubid, $component1, $enum2, event_op)");
     }
 }

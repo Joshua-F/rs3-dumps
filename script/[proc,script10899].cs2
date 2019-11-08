@@ -86,8 +86,13 @@ cc_setgraphic(struct_param($struct17, param_3806));
 cc_setcolour($rgb23);
 cc_create($component0, ^iftype_text, $int26++);
 if (string_length($string0) > 0) {
-    cc_setsize($int24, $int25, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc($int3 + $int20), calc($int4 + $int21), ^setpos_abs_left, ^setpos_abs_top);
+    if (struct_param($struct2, param_8063) = true) {
+        cc_setsize($int24, $int25, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int3 + $int20), calc($int4 + $int21), ^setpos_abs_left, ^setpos_abs_top);
+    } else {
+        cc_setsize($int5, $int6, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int3, $int4, ^setpos_abs_left, ^setpos_abs_top);
+    }
     cc_settext($string0);
     if ($int11 = 0) {
         cc_settextfont(graphic_17813);
@@ -97,12 +102,12 @@ if (string_length($string0) > 0) {
         cc_settextalign(^settextalign_centre, ^settextalign_centre, enum(fontmetrics, int, enum_8584, cc_getfontmetrics));
     }
     cc_settextshadow(false);
-    ~script11024(0x000017);
+    ~script11024(18);
 }
 cc_create($component0, ^iftype_text, $int26++);
 cc_setsize($int5, $int6, ^setsize_abs, ^setsize_abs);
 cc_setposition($int3, $int4, ^setpos_abs_left, ^setpos_abs_top);
-cc_setonvartransmit("script10412(event_com, event_comsubid, $struct2, $boolean8, $int18, $int10){varplayer_3814}");
+cc_setonvartransmit("script10412(event_com, event_comsubid, $struct2, $boolean8, $int18, $int10, 1){varplayer_3814}");
 if ($boolean8 = false & $struct13 ! null & $struct14 ! null) {
     cc_setonmouseover("script10413(event_com, $struct14, $int18, true)");
     cc_setonmouseleave("script10413(event_com, $struct13, $int18, false)");

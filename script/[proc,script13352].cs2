@@ -1,81 +1,11 @@
 // 13352
-[proc,script13352](component $component0)
-cc_deleteall($component0);
-def_int $int1 = 0;
-switch_component ($component0) {
-    case interface_1854:com_3, interface_1855:com_3 :
-        $int1 = %varplayerbit_35411;
-    case interface_1854:com_5, interface_1855:com_5 :
-        $int1 = %varplayerbit_35412;
-    case interface_1854:com_7, interface_1855:com_7 :
-        $int1 = %varplayerbit_35413;
-}
-if ($int1 = 0) {
-    return;
-}
-def_struct $struct2 = enum(int, struct, enum_12251, calc($int1 - 1));
-if ($struct2 = null) {
-    return;
-}
-def_int $int3 = 0;
-cc_create($component0, ^iftype_graphic, $int3);
-cc_setposition(5, 5, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(28, 28, ^setsize_abs, ^setsize_abs);
-cc_setgraphic(~cheevo_icon($struct2));
-if (struct_param($struct2, param_1345) <= 0) {
-    cc_setop(1, "Go To");
-    cc_setopcursor(1, cursor_210);
-}
-$int3 = calc($int3 + 1);
-def_string $string0 = "Unpin Achievement";
-def_graphic $graphic4 = "rs3_icon_pinned_24px,0";
-def_graphic $graphic5 = "rs3_icon_pinned_24px,1";
-def_graphic $graphic6 = "rs3_icon_pinned_24px,2";
-cc_create($component0, ^iftype_graphic, $int3);
-cc_setposition(36, 5, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
-cc_setop(1, "Unpin");
-cc_setopcursor(1, cursor_46);
-cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
-cc_setgraphic($graphic4);
-cc_setonmouseover("graphic_swapper_dynamic(event_com, event_comsubid, $graphic5)");
-cc_setonmouseleave("graphic_swapper_dynamic(event_com, event_comsubid, $graphic4)");
-cc_setonclick("graphic_swapper_dynamic(event_com, event_comsubid, $graphic6)");
-cc_setonrelease("graphic_swapper_dynamic(event_com, event_comsubid, $graphic5)");
-cc_setonop("script13353");
-$int3 = calc($int3 + 1);
-cc_create($component0, ^iftype_text, $int3);
-cc_setposition(53, 5, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(58, 14, ^setsize_minus, ^setsize_abs);
-cc_settextfont(graphic_20280);
-~script11024(0x000008);
-cc_settext(~script13575(~cheevo_name($struct2), cc_getwidth, cc_getfontmetrics, 1));
-$int3 = calc($int3 + 1);
-cc_create($component0, ^iftype_text, $int3);
-cc_setposition(36, 21, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(41, 30, ^setsize_minus, ^setsize_abs);
-cc_settextfont(graphic_17813);
-~script11024(0x00000c);
-cc_setmaxlines(2);
-def_string $string1 = ~cheevo_details($struct2, 1);
-cc_settext($string1);
-if (paraheight(cc_gettext, cc_getwidth, cc_getfontmetrics) > 2) {
-    cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
-}
-$int3 = calc($int3 + 1);
-def_int $int7 = ~cheevo_obtain_progress($struct2);
-cc_create($component0, ^iftype_text, $int3);
-cc_setposition(10, 53, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(20, 18, ^setsize_minus, ^setsize_abs);
-cc_settextfont(graphic_17813);
-~script11024(0x000008);
-cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-if ($int7 = -1) {
-    cc_settext("LOCKED");
-} else if ($int7 >= 0 & (struct_param($struct2, param_6423) = -1337 | struct_param($struct2, param_6423) > 1 | struct_param($struct2, param_6416) = 1)) {
-    if (calc($int7 % 100) ! 0) {
-        cc_settext(append(tostring(calc($int7 / 100)), append(".<tostring(calc($int7 % 100))>", "%")));
-    } else {
-        cc_settext(append(tostring(calc($int7 / 100)), "%"));
-    }
-}
+[proc,script13352]
+if_setontimer(null, interface_517:com_138);
+if_setscrollpos(0, 0, interface_517:com_138);
+%varplayerbit_45192 = calc(1 - %varplayerbit_45192);
+%varclientbit_45225 = %varplayerbit_45192;
+~script10239;
+~script9313;
+~script9324(1);
+~bank_build_tabs(1);
+~script10241;

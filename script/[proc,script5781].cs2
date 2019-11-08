@@ -1,15 +1,18 @@
 // 5781
-[proc,script5781](int $int0, int $int1, component $component2, int $int3)
-if (cc_find($component2, $int3) = true) {
-    if ($int1 = 1) {
-        if ($int0 = 1) {
-            cc_setgraphic("aif_help_button,1");
-        } else {
-            cc_setgraphic("aif_help_button,0");
-        }
-    } else if ($int0 = 1) {
-        cc_setgraphic("aif_help_button,2");
-    } else {
-        cc_setgraphic("aif_help_button,3");
+[proc,script5781](int $int0, int $int1, int $int2)
+def_int $int3 = ~bank_get_tab($int1);
+if ($int0 = -1) {
+    $int0 = ~bank_get_tab($int2);
+}
+if ($int3 = $int0) {
+    return;
+}
+if (~script6316($int3, -1) = true) {
+    if ($int3 <= $int0) {
+        $int0 = calc($int0 - 1);
+    }
+    if (%varplayerbit_45141 > 1) {
+        %varplayerbit_45141 = $int0;
     }
 }
+~script6316($int0, 1);

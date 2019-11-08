@@ -1,37 +1,41 @@
 // 9223
 [clientscript,script9223](component $component0, int $int1, component $component2, int $int3)
 ~script3843;
-if ($component0 ! interface_1464:com_15 & $component0 ! interface_1462:com_31 & $component0 ! interface_762:com_105) {
+if ($component0 ! interface_1464:com_15 & $component0 ! interface_1462:com_31 & $component0 ! interface_517:com_27) {
     return;
 }
 if (~script7980($component2) ! -1) {
     ~script7002($component0, $int1, $component2);
     return;
+} else if (~script8053($component2) = true) {
+    return;
 }
 def_inv $inv4 = null;
 switch_component ($component2) {
-    case interface_1473:com_7, interface_1474:com_8, interface_762:com_28 :
+    case interface_1473:com_7, interface_1474:com_8, interface_517:com_14 :
         $inv4 = inv_93;
+    case interface_517:com_33 :
+        return;
     case default :
-        ~script3839($component2, $int3, $component0, $int1, inv_94);
+        ~script8918($component0, inv_94, $int1, $component2, $int3);
         return;
 }
 def_obj $obj5 = null;
 def_obj $obj6 = null;
 if ($inv4 ! null & cc_find($component0, $int1) = true) {
     if ($int3 = -1) {
-        ~script9217($inv4, 0, cc_getinvobject, $int1, $component0, $component2);
+        ~script9217($inv4, 0, cc_getinvobject, $int1);
     } else if (.cc_find($component2, $int3) = true) {
         $obj6 = cc_getinvobject;
         $obj5 = .cc_getinvobject;
         if ($obj5 = null) {
-            ~script9218($inv4, 0, $obj6, $int1, $int3, $component0, $component2);
+            ~script9218($inv4, 0, $obj6, $int1, $int3);
         } else if (oc_wearpos($obj6) = oc_wearpos($obj5)) {
-            ~wearobj($obj5, $inv4, $int3, $component0, $component2);
+            ~wearobj($obj5, $inv4, $int3, 1);
         } else if (oc_wearpos($obj5) ! -1 & (oc_wearpos($obj6) = 5 & oc_wearpos2($obj5) = 5 | oc_wearpos($obj6) = 3 & oc_wearpos2($obj5) = 3 | oc_wearpos2($obj6) = 5 & oc_wearpos($obj5) = 5 | oc_wearpos2($obj6) = 3 & oc_wearpos($obj5) = 3)) {
-            ~wearobj($obj5, $inv4, $int3, $component0, $component2);
+            ~wearobj($obj5, $inv4, $int3, 1);
         } else {
-            ~script9217($inv4, 0, cc_getinvobject, $int1, $component0, $component2);
+            ~script9217($inv4, 0, cc_getinvobject, $int1);
         }
     }
 }

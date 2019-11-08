@@ -1,18 +1,14 @@
 // 3222
-[proc,script3222](int $int0, int $int1, int $int2, component $component3)(int)
-def_string $string0 = ~script3714($int1, $int2, -1);
-def_int $int4 = 0;
-def_int $int5 = 0;
-if (compare($string0, "") ! 0) {
-    if_sethide(false, $component3);
-    if_settext($string0, $component3);
-    if_settextfont(p11_full, $component3);
-    if_settextalign(^settextalign_left, ^settextalign_centre, 13, $component3);
-    $int4 = calc(if_getwidth(if_getlayer($component3)) - 18);
-    $int5 = calc(15 * paraheight($string0, $int4, graphic_17813));
-    if_setsize($int4, $int5, ^setsize_abs, ^setsize_abs, $component3);
-    if_setposition(9, $int0, ^setpos_abs_left, ^setpos_abs_top, $component3);
-} else {
-    $int5 = 0;
+[proc,script3222](int $int0)(int, int)
+def_int $int1 = 0;
+def_int $int2 = 0;
+if ($int0 = -1) {
+    $int0 = %varplayerbit_45141;
 }
-return(calc($int0 + $int5));
+if ($int0 >= 2) {
+    $int1, $int2 = ~bank_get_tab_range($int0);
+} else {
+    $int2 = ~script14337;
+    $int0 = 1;
+}
+return($int2, $int0);

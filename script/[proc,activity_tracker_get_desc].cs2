@@ -1,0 +1,72 @@
+// 9533
+[proc,activity_tracker_get_desc](int $int0, int $int1)(string)
+def_struct $struct2 = null;
+def_string $string0 = "";
+def_int $int3 = 0;
+def_int $intbool4 = ^false;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_stat $stat7 = null;
+def_int $int8 = 0;
+def_int $int9 = -1;
+switch_int ($int0) {
+    case default :
+        return("");
+    case 2, 3 :
+        return(~cheevo_details(enum(int, struct, enum_12251, $int1), 1));
+    case 1 :
+        $struct2 = enum(int, struct, enum_12251, $int1);
+        if ($struct2 ! null) {
+            return(~script8220(struct_param($struct2, param_1403)));
+        } else {
+            return("");
+        }
+    case 4 :
+        $struct2 = ~task_get_struct($int1);
+        if ($struct2 ! null) {
+            $int8 = struct_param($struct2, param_2235);
+            $string0 = struct_param($struct2, param_1273);
+            if (~script9851($int1) = 1) {
+                $string0 = ~script10524($string0, $int8);
+                $int8 = calc($int8 * 2);
+            }
+            if (~script8242($int1) >= $int8) {
+                $string0 = "Daily challenge complete! Return to Challenge Mistress";
+            }
+            $int3 = ~script8243($int1);
+            if ($int3 < 6) {
+                $string0 = append($string0, "<br>Days Left: <~script3944(calc(6 - $int3))>");
+            }
+        }
+        return($string0);
+    case 5 :
+        $intbool4, $int5, $int6 = ~script4037($int1);
+        $stat7 = enum(int, stat, enum_681, $int1);
+        if ($stat7 = null) {
+            return("");
+        }
+        if ($intbool4 = ^true) {
+            $int5 = enum(int, int, ~script12289($stat7), $int5);
+        }
+        $int8 = max(0, calc($int5 - stat_visible_xp_actual($stat7)));
+        return("<tostring_localised($int8, true)> XP Remaining");
+    case 6 :
+        $struct2 = enum(int, struct, enum_6452, $int1);
+        if ($struct2 ! null) {
+            return(struct_param($struct2, param_1273));
+        } else {
+            return("");
+        }
+    case 7 :
+        if (%varplayer_183 > 0) {
+            return("<tostring(%varplayer_183)> left");
+        } else {
+            return("Task complete. Please return to <~script10499> for a new assignment");
+        }
+    case 8 :
+        if (%varplayerbit_22902 > 0) {
+            return("<tostring(%varplayerbit_22902)> left");
+        } else {
+            return("Task complete. Please return to Death for a new assignment");
+        }
+}

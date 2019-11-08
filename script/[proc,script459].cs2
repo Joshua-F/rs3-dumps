@@ -34,7 +34,7 @@ if ($int5 = 0 | $int0 < calc($int6 + $int5)) {
     $int7 = 0;
     cc_sethide(true);
 } else {
-    $int7 = 26;
+    $int7 = $int5;
     if ($int2 >= 300 & $int2 < 600) {
         cc_setgraphic("rs3_icon_world_select_game_flags,3");
     } else if ($int8 = -1) {
@@ -50,8 +50,17 @@ if ($int5 = 0 | $int0 < calc($int6 + $int5)) {
     } else {
         cc_setgraphic(enum(int, graphic, enum_1810, $int9));
     }
-    cc_setposition(2, calc($int1 + 3), ^setpos_abs_left, ^setpos_abs_top);
-    cc_setonmouserepeat("script3125($string1, event_com, event_comsubid, $component3, $component4)");
+    if (~script6431 = true) {
+        $int1 = calc($int1 + (27 / 2 - cc_getheight / 2));
+    } else {
+        $int1 = calc($int1 + (19 / 2 - cc_getheight / 2));
+    }
+    cc_setposition(2, $int1, ^setpos_abs_left, ^setpos_abs_top);
+    if (~script6431 = false) {
+        cc_setonmouserepeat("script3125($string1, event_com, event_comsubid, $component3, $component4)");
+    } else {
+        cc_setonclick("script3125($string1, event_com, event_comsubid, $component3, $component4)");
+    }
     cc_sethide(false);
 }
 if ($int0 < $int6) {
@@ -66,5 +75,9 @@ if ($int2 = map_world) {
 .cc_settext($string0);
 .cc_setsize($int0, 19, ^setsize_abs, ^setsize_abs);
 .cc_setposition($int7, $int1, ^setpos_abs_left, ^setpos_abs_top);
-.cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
+if (~script6431 = false) {
+    .cc_setonmouserepeat("script3125($string1, event_com, event_comsubid, $component3, $component4)");
+} else {
+    .cc_setonclick("script3125($string1, event_com, event_comsubid, $component3, $component4)");
+}
 .cc_sethide(false);

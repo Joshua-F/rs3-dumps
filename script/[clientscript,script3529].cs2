@@ -1,0 +1,14 @@
+// 3529
+[clientscript,script3529]
+def_int $int0 = -1;
+def_int $int1 = -1;
+db_find(dbtable_67:col5, false);
+def_dbrow $dbrow2 = db_findnext;
+while ($dbrow2 ! null) {
+    $int0, $int1 = ~script3526($dbrow2);
+    if ($int0 ! -1 & $int1 ! -1) {
+        ~local_notification_cancel($dbrow2);
+        ~local_notification_new($dbrow2, $int1);
+    }
+    $dbrow2 = db_findnext;
+}

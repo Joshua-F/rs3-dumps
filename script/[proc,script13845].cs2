@@ -13,9 +13,6 @@ def_struct $struct15 = null;
 def_struct $struct16 = null;
 def_struct $struct17 = ~script13032;
 def_string $string0 = "";
-if (%varplayerbit_22875 = 1) {
-    $int9 = 22;
-}
 while ($int4 <= $int5) {
     $int6 = enum(int, int, $enum2, $int4);
     $int7 = ~script13857($int6);
@@ -25,16 +22,20 @@ while ($int4 <= $int5) {
     if ($struct15 ! null) {
         $struct16 = struct_param($struct15, param_5146);
     }
-    if (%varplayerbit_22875 ! 1) {
+    if (%varplayerbit_22875 = 0) {
         if ($boolean13 = false) {
             $int9 = 24;
         } else {
             $int9 = 32;
         }
+    } else if (%varplayerbit_22875 = 1) {
+        $int9 = 22;
+    } else if (%varplayerbit_22875 = 2 & ~script6431 = true) {
+        $int9 = 50;
     }
     if ($boolean13 = false) {
-        $struct14 = enum(int, struct, enum_7716, $int6);
-        if ($int3 ! 3 & %varplayerbit_22875 ! 1) {
+        $struct14 = ~script10405($int6);
+        if ($int3 ! 3 & %varplayerbit_22875 = 0) {
             $int12 = ~script8314($int6);
             if ($int12 = -1 | $int12 ! $int6) {
                 $int11 = 1;
@@ -55,32 +56,20 @@ while ($int4 <= $int5) {
     if (%varplayerbit_27169 = 1 & compare(struct_param($struct14, param_4471), "") ! 0) {
         $string0 = struct_param($struct14, param_4471);
     }
-    if (%varplayerbit_38842 = 1 & $int3 = 0) {
-        switch_struct ($struct16) {
-            case struct_31715 :
-                $struct16 = struct_15011;
-            case struct_31721 :
-                $struct16 = struct_15017;
-            case struct_31727 :
-                $struct16 = struct_15023;
-            case struct_31733 :
-                $struct16 = struct_15029;
-            case struct_31739 :
-                $struct16 = struct_15035;
-            case struct_31745 :
-                $struct16 = struct_15041;
-            case struct_31751 :
-                $struct16 = struct_39904;
-            case struct_31757 :
-                $struct16 = struct_39910;
-            case struct_35384 :
-                $struct16 = struct_39916;
-        }
+    if (~script6431 = true & compare(struct_param($struct14, param_8095), "") ! 0) {
+        $string0 = struct_param($struct14, param_8095);
     }
-    if (cc_find($component0, $int4) = true) {
-        ~script723($component0, $struct16, $int8, $int4);
+    if (~script6431 = false) {
+        if (cc_find($component0, $int4) = true) {
+            ~script723($component0, $struct16, $int8, $int4);
+        } else {
+            ~script11625($component0, null, $struct16, 0, 0, $int4, $int8);
+        }
+    } else if (cc_find($component0, $int4) = true) {
+        cc_setsize(50, 50, ^setsize_abs, ^setsize_abs);
     } else {
-        ~script11625($component0, null, $struct16, 0, 0, $int4, $int8);
+        cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+        cc_setsize(50, 50, ^setsize_abs, ^setsize_abs);
     }
     if (cc_find($component0, $int4) = true) {
         cc_setparam(param_3536, $int6);
@@ -90,11 +79,11 @@ while ($int4 <= $int5) {
             case 0, 1, 2, 4 :
                 cc_setnoclickthrough(true);
                 if ($boolean13 = false) {
-                    cc_setop(1, "Open");
-                    if ($int6 = 17 & ~script6431 = true) {
-                        cc_setop(2, "Close");
+                    cc_setonop("script8146($int6)");
+                    cc_setop(1, "Close");
+                    if (($int6 = 17 | $int8 = 1) & ~script6431 = true) {
+                        cc_setop(1, "Open");
                     }
-                    cc_setonclick("script8158($int6, 1)");
                     if (%varplayerbit_27169 = 1) {
                         cc_setmouseovercursor(cursor_49);
                     } else {
@@ -116,7 +105,7 @@ while ($int4 <= $int5) {
                 if (.cc_find($component1, $int4) = true) {
                     .cc_setondragcomplete("script2395($int6, event_com, event_comsubid, event_com2)");
                     .cc_setmouseovercursor(cursor_194);
-                    .cc_setdraggable(interface_567:com_7, -1);
+                    .cc_setdraggable(interface_567:com_4, -1);
                     if (~is_mobile_client = false) {
                         .cc_setdragdeadzone(5);
                         .cc_setdragdeadtime(5);
@@ -139,7 +128,12 @@ while ($int4 <= $int5) {
     }
     if (cc_find($component1, $int4) = true) {
         cc_setsize($int9, $int9, ^setsize_abs, ^setsize_abs);
-        cc_setgraphic(~script13858($struct14, $int11, 1));
+        cc_setgraphic(~script13858($struct14, $int11, 1, $int8));
+        if ($int8 = 1) {
+            cc_settrans(0);
+        } else {
+            cc_settrans(0);
+        }
     }
     $int4 = calc($int4 + 1);
 }
