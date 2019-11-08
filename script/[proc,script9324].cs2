@@ -1,3 +1,16 @@
 // 9324
-[proc,script9324](int $int0)(struct)
-return(enum(int, struct, enum_8081, $int0));
+[proc,script9324](int $int0)
+if (%varclient_6684 = true) {
+    ~bank_show_search(%varclient_6711, $int0);
+} else if (%varplayerbit_45140 ! 0) {
+    switch_int (%varplayerbit_45140) {
+        case default :
+            ~bank_filter_simple(%varplayerbit_45140, $int0);
+        case 4, 1, 7 :
+            ~bank_filter_complex(%varplayerbit_45140, $int0);
+    }
+} else if (%varplayerbit_45141 = 1) {
+    ~bank_show_all;
+} else {
+    ~bank_show_tab(%varplayerbit_45141);
+}

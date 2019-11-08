@@ -27,7 +27,7 @@ if (~trh_state(struct_40380) = 1 | ~trh_state(struct_38726) = 1) {
 cc_deleteall(interface_1870:com_16);
 cc_deleteall(interface_1870:com_17);
 cc_deleteall(interface_1870:com_23);
-cc_deleteall(interface_1253:com_1074);
+cc_deleteall(interface_1253:com_1090);
 while ($int0 < 36) {
     if (~trh_state(struct_7229) = 1 & (calc($int0 % 3) = 0 | calc($int0 % 5) = 0 | calc($int0 % 7) = 0)) {
         $int7 = calc($int7 + $int1);
@@ -53,10 +53,10 @@ while ($int0 < 36) {
         $int8 = calc($int8 + $int1);
         $int9 = 0;
     }
-    cc_create(interface_1253:com_1074, ^iftype_graphic, $int0);
+    cc_create(interface_1253:com_1090, ^iftype_graphic, $int0);
     $int0 = calc($int0 + 1);
 }
-cc_create(interface_1253:com_1074, ^iftype_graphic, $int0);
+cc_create(interface_1253:com_1090, ^iftype_graphic, $int0);
 if_setonop("script13377($int0)", interface_1870:com_20);
 def_int $int10 = 5;
 def_int $int11 = 0;
@@ -71,7 +71,7 @@ if (~trh_state(struct_1515) = 1 | ~trh_state(struct_42706) = 1 & %varplayer_3079
     if_sethide(false, interface_1870:com_15);
     $int1 = 28;
     $int5 = calc((if_getwidth(interface_1870:com_23) - (5 * $int1 + (5 - 1) * $int10)) / 2);
-    $int6 = 6;
+    $int6 = 0;
     $int7 = $int5;
     $int8 = $int6;
     $int0 = 0;
@@ -109,7 +109,6 @@ if (~trh_state(struct_1515) = 1 | ~trh_state(struct_42706) = 1 & %varplayer_3079
     }
     if_settext("Buried Treasure", interface_1870:com_24);
     if_settext("Dig up chests and use Treasure Hunter keys to open them. Search for special buried treasure chests to uncover more loot!", interface_1870:com_25);
-    if_settext("Special Chests", interface_1870:com_26);
     if_sethide(true, interface_1870:com_18);
 } else if (~trh_state(struct_40380) = 1 | ~trh_state(struct_7229) = 1 | ~trh_state(struct_38726) = 1) {
     if_sethide(false, interface_1870:com_14);
@@ -151,7 +150,7 @@ if (~trh_state(struct_1515) = 1 | ~trh_state(struct_42706) = 1 & %varplayer_3079
         cc_setgraphic(struct_param(enum(int, struct, $enum15, $int0), param_856));
         cc_setsize(36, 34, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int7 + 10), calc($int8 + 4), ^setpos_abs_left, ^setpos_abs_top);
-        if (struct_param(enum(int, struct, $enum15, $int0), param_4742) = struct_param(struct_40380, param_4630)) {
+        if (struct_param(enum(int, struct, $enum15, $int0), param_4742) = ~trh_promo_start_runeday(struct_40380)) {
             cc_create(interface_1870:com_5, ^iftype_graphic, if_getnextsubid(interface_1870:com_5));
             cc_setgraphic("rs3_icon_lobby_take_action,1");
             cc_setsize(15, 15, ^setsize_abs, ^setsize_abs);

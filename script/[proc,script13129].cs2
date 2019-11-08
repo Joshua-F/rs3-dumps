@@ -1,12 +1,14 @@
 // 13129
-[proc,script13129](component $component0, enum $enum1, int $int2)(int, string, string, string, graphic, int, int, int)
+[proc,script13129](component $component0, enum $enum1, int $int2, int $int3)(int, string, string, string, graphic, int, int, int)
+def_struct $struct4 = null;
 switch_component ($component0) {
     case interface_1588:com_48, interface_1681:com_78 :
         if (~script11494($enum1, $int2) = 1) {
             return(0, "", "", "", null, -1, -1, -1);
         }
-    case interface_1894:com_11, interface_1895:com_10 :
-        if (~script13589(enum(int, enum, enum_10883, $int2)) = true) {
+    case interface_1894:com_5, interface_1895:com_6 :
+        $struct4 = enum(int, struct, ~cheevo_path_book_enum, $int2);
+        if (~script13589($struct4) = true) {
             return(0, "", "", "", null, -1, -1, -1);
         }
     case interface_1433:com_25 :
@@ -27,12 +29,26 @@ switch_component ($component0) {
         }
 }
 switch_enum ($enum1) {
-    case enum_10322 :
+    case enum_10322, enum_15426 :
         if (~script11806($int2) = true) {
             return(0, "", "", "", null, -1, -1, -1);
         }
-    case enum_13443 :
-        if (~script10532($int2) = true) {
+    case enum_13443, enum_15423 :
+        if (~script8035($int2, $int3) = true) {
+            return(0, "", "", "", null, -1, -1, -1);
+        }
+    case enum_15424 :
+        if ($int2 > 1) {
+            return(0, "", "", "", null, -1, -1, -1);
+        }
+        if (~script8035($int2, $int3) = true) {
+            return(0, "", "", "", null, -1, -1, -1);
+        }
+    case enum_15425 :
+        if (~script11805($int2) = true) {
+            return(0, "", "", "", null, -1, -1, -1);
+        }
+        if (~script8035($int2, $int3) = true) {
             return(0, "", "", "", null, -1, -1, -1);
         }
     case enum_13429 :
@@ -40,26 +56,26 @@ switch_enum ($enum1) {
             return(0, "", "", "", null, -1, -1, -1);
         }
 }
-def_int $int3 = 1;
+def_int $int5 = 1;
 def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
-def_graphic $graphic4 = null;
-def_int $int5 = -1;
-def_int $int6 = -1;
+def_graphic $graphic6 = null;
 def_int $int7 = -1;
-def_fontmetrics $fontmetrics8 = graphic_17813;
-def_int $rgb9 = 0xaed0e0;
-def_struct $struct10 = null;
+def_int $int8 = -1;
+def_int $int9 = -1;
+def_fontmetrics $fontmetrics10 = graphic_17813;
+def_int $int11 = ~script10495(3);
+def_struct $struct12 = null;
 switch_enum ($enum1) {
     case enum_12197, enum_12199 :
-        $int3, $string0, $graphic4, $int5, $int6, $int7 = ~script13200($enum1, $int2);
+        $int5, $string0, $graphic6, $int7, $int8, $int9 = ~script13200($enum1, $int2);
         $string2 = $string0;
     case enum_12198 :
-        $string0, $graphic4 = ~script13196($int2);
+        $string0, $graphic6 = ~script13196($int2);
         $string2 = $string0;
     case enum_12244 :
-        $string0, $graphic4 = ~script13191($component0, $int2);
+        $string0, $graphic6 = ~script13191($component0, $int2);
         $string2 = $string0;
     case enum_12237 :
         $string0 = ~script13226($int2);
@@ -84,23 +100,32 @@ switch_enum ($enum1) {
         if (compare($string2, "") = 0) {
             $string2 = $string0;
         }
-    case enum_10882 :
-        $fontmetrics8, $rgb9 = ~script10433(0);
-        $string0 = ~script13575(enum(int, string, $enum1, $int2), if_getwidth($component0), $fontmetrics8, 1);
-        $struct10 = enum(int, struct, enum_13687, $int2);
-        if ($struct10 ! null) {
-            $string2 = struct_param($struct10, param_6969);
-        }
     case enum_13254 :
         $string0 = ~graphics_options_resolutions($int2);
     case enum_13933 :
-        $string0, $graphic4, $int7 = ~script4484($int2);
+        $string0, $graphic6, $int9 = ~script4484($int2);
         $string2 = $string0;
+    case enum_8657 :
+        if ($int2 = 0 & $component0 = interface_517:com_204) {
+            $string0 = "- Remove Name -";
+        } else {
+            $string0 = enum(int, string, $enum1, $int2);
+            $string2 = $string0;
+        }
     case default :
-        $string0 = enum(int, string, $enum1, $int2);
-        $string2 = $string0;
+        if (enum_hasoutput(enum, enum_15492, $enum1) = true) {
+            $fontmetrics10, $int11 = ~script10433(0);
+            $string0 = ~script13575(struct_param(enum(int, struct, $enum1, $int2), param_8073), if_getwidth($component0), $fontmetrics10, 1);
+            $struct12 = enum(int, struct, ~cheevo_path_book_enum, $int2);
+            if ($struct12 ! null) {
+                $string2 = struct_param($struct12, param_6969);
+            }
+        } else {
+            $string0 = enum(int, string, $enum1, $int2);
+            $string2 = $string0;
+        }
 }
 if (string_length($string0) = 0) {
-    $int3 = 0;
+    $int5 = 0;
 }
-return($int3, $string0, $string1, $string2, $graphic4, $int5, $int6, $int7);
+return($int5, $string0, $string1, $string2, $graphic6, $int7, $int8, $int9);

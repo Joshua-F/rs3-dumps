@@ -1,74 +1,10 @@
 // 8188
-[proc,script8188]
-def_struct $struct0 = null;
-def_struct $struct1 = null;
-def_int $intarray0(3);
-def_int $int2 = 0;
-def_int $int3 = 1;
-def_int $int4 = 0;
-while ($int2 < 3 & enum(int, struct, enum_8790, $int3) ! null) {
-    $int4 = 0;
-    $struct0 = enum(int, struct, enum_8790, $int3);
-    if (playermember = true | struct_param($struct0, param_4254) = 0) {
-        switch_int (struct_param($struct0, param_4252)) {
-            case 1 :
-                $int4 = %varplayerbit_22443;
-            case 2 :
-                if (%varplayerbit_22270 ! 100 | %varplayerbit_22442 = 1) {
-                    $int4 = 1;
-                }
-            case 3 :
-                $int4 = %varplayerbit_3412;
-            case 4 :
-                $int4 = ~script8325;
-            case 5 :
-                $int4 = %varplayerbit_22436;
-            case 6 :
-                $int4 = %varplayerbit_22440;
-            case 7 :
-                $int4 = %varplayerbit_22441;
-            case 8 :
-                $int4 = %varplayerbit_22437;
-        }
-        if ($int4 = 0) {
-            $struct1 = struct_param($struct0, param_4251);
-            if ($struct1 = null | ~task_requirements_fulfilled(struct_param($struct1, param_1268)) = true) {
-                $intarray0($int2) = struct_param($struct0, param_4252);
-                $int2 = calc($int2 + 1);
-            } else {
-                mes("Requirements not met for: <struct_param($struct0, param_4255)>");
-            }
-        }
+[proc,script8188](obj $obj0)(obj)
+def_obj $obj1 = null;
+if ($obj0 ! null) {
+    $obj1 = enum(obj, obj, enum_2541, $obj0);
+    if ($obj1 = null & oc_param($obj0, param_5527) ! null & oc_param($obj0, param_5772) = 0) {
+        $obj1 = oc_param($obj0, param_5527);
     }
-    $int3 = calc($int3 + 1);
 }
-def_struct $struct5 = null;
-def_struct $struct6 = null;
-def_struct $struct7 = null;
-if ($intarray0(0) ! 0) {
-    $struct5 = enum(int, struct, enum_8790, $intarray0(0));
-    if_settext(struct_param($struct5, param_4255), interface_400:com_159);
-    if_setgraphic(struct_param($struct5, param_4253), interface_400:com_158);
-} else {
-    if_settext("Minigames: Combat", interface_400:com_159);
-    if_setgraphic(rs3_icon_path_minigame, interface_400:com_158);
-    if_sethide(true, interface_400:com_160);
-    if_sethide(true, interface_400:com_170);
-}
-if ($intarray0(1) ! 0) {
-    $struct6 = enum(int, struct, enum_8790, $intarray0(1));
-    if_settext(struct_param($struct6, param_4255), interface_400:com_169);
-    if_setgraphic(struct_param($struct6, param_4253), interface_400:com_168);
-} else {
-    if_settext("Minigames: Combat", interface_400:com_169);
-    if_setgraphic(rs3_icon_path_minigame, interface_400:com_168);
-    if_sethide(true, interface_400:com_170);
-}
-if ($intarray0(2) ! 0) {
-    $struct7 = enum(int, struct, enum_8790, $intarray0(2));
-    if_settext(struct_param($struct7, param_4255), interface_400:com_179);
-    if_setgraphic(struct_param($struct7, param_4253), interface_400:com_178);
-} else {
-    if_settext("Minigames: Combat", interface_400:com_179);
-    if_setgraphic(rs3_icon_path_minigame, interface_400:com_178);
-}
+return($obj1);

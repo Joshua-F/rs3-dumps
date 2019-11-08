@@ -1,33 +1,37 @@
 // 12590
-[proc,script12590](int $int0, boolean $boolean1, int $int2)(int)
-def_int $int3 = -1;
+[proc,script12590](int $int0, boolean $boolean1, int $int2, int $int3)(int)
+def_int $int4 = -1;
 switch_int ($int0) {
+    case 8 :
+        $int4 = max(0, min(255, scale($int2, 127, %varplayer_7624)));
     case 2 :
-        $int3 = calc($int2 / 2);
+        $int4 = calc($int2 / 2);
     case 3, 4 :
-        $int3 = min(calc($int2 * 3 / 2), 127);
+        $int4 = min(calc($int2 * 3 / 2), 127);
     case 1 :
-        $int3 = $int2;
+        $int4 = $int2;
     case 5 :
         if (%varplayerbit_19928 = 1 & $int2 > 226 & ~script1186 = true) {
-            $int3 = calc(255 - 5 * (255 - $int2));
+            $int4 = calc(255 - 5 * (255 - $int2));
         } else {
-            $int3 = calc($int2 / 2);
+            $int4 = calc($int2 / 2);
         }
     case 6 :
         if ($int2 > 226) {
-            $int3 = calc(255 - 5 * (255 - $int2));
+            $int4 = calc(255 - 5 * (255 - $int2));
         } else {
-            $int3 = min(calc($int2 * 3 / 2), 127);
+            $int4 = min(calc($int2 * 3 / 2), 127);
         }
+    case 7 :
+        $int4 = calc(255 - (255 - $int2) * (255 - $int3) / 255);
     case default :
         return(-1);
 }
 if ($boolean1 = true) {
     if ($int0 = 4) {
-        $int3 = 204;
+        $int4 = 204;
     } else {
-        $int3 = 255;
+        $int4 = 255;
     }
 }
-return($int3);
+return($int4);

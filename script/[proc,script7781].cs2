@@ -1,0 +1,142 @@
+// 7781
+[proc,script7781](obj $obj0, int $int1, inv $inv2, int $int3, int $int4)(int)
+def_obj $obj5 = null;
+def_obj $obj6 = null;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+if (oc_param($obj0, param_8016) = 1) {
+    $int9, $int10, $int11 = ~script7782(0, 0, 0, $obj0, $int1, $inv2, 1, 0, 0, $int3, $int4);
+    if (calc($int9 + $int10 + $int11) > 0) {
+        return(2);
+    } else {
+        return(1);
+    }
+}
+switch_obj ($obj0) {
+    case default :
+        switch_category (oc_category($obj0)) {
+            case category_4451 :
+                $obj5 = enum(obj, obj, enum_15085, $obj0);
+                if ($obj5 = null) {
+                    return(0);
+                }
+                $int7 = enum(obj, int, enum_15086, $obj0);
+                if ($int7 <= 0) {
+                    return(0);
+                }
+                if (calc(^max_32bit_int / $int1) < $int7) {
+                    $int8 = ^max_32bit_int;
+                    ~error("Player <name> MAX INT'd via item <oc_name($obj0)> inside the GE");
+                } else {
+                    $int8 = calc($int7 * $int1);
+                }
+                $obj6 = oc_cert($obj5);
+            case default :
+                return(0);
+        }
+    case obj_492 :
+        $obj5, $obj6 = null, null;
+    case obj_7952 :
+        $obj5, $obj6 = null, null;
+    case obj_6743 :
+        $obj5, $obj6 = obj_6739, obj_6740;
+    case obj_520 :
+        $obj5, $obj6 = obj_1359, obj_1360;
+    case obj_518 :
+        $obj5, $obj6 = obj_1357, obj_1358;
+    case obj_516 :
+        $obj5, $obj6 = obj_1355, obj_1356;
+    case obj_514 :
+        $obj5, $obj6 = obj_1361, obj_1362;
+    case obj_512 :
+        $obj5, $obj6 = obj_1353, obj_1354;
+    case obj_510 :
+        $obj5, $obj6 = obj_1349, obj_1350;
+    case obj_508 :
+        $obj5, $obj6 = obj_1351, obj_1352;
+    case obj_6741 :
+        $obj5, $obj6 = obj_6739, obj_6740;
+    case obj_506 :
+        $obj5, $obj6 = obj_1359, obj_1360;
+    case obj_504 :
+        $obj5, $obj6 = obj_1357, obj_1358;
+    case obj_502 :
+        $obj5, $obj6 = obj_1355, obj_1356;
+    case obj_500 :
+        $obj5, $obj6 = obj_1361, obj_1362;
+    case obj_498 :
+        $obj5, $obj6 = obj_1353, obj_1354;
+    case obj_496 :
+        $obj5, $obj6 = obj_1349, obj_1350;
+    case obj_494 :
+        $obj5, $obj6 = obj_1351, obj_1352;
+    case obj_466 :
+        $obj5, $obj6 = null, null;
+    case obj_490 :
+        $obj5, $obj6 = obj_45548, obj_1276;
+    case obj_488 :
+        $obj5, $obj6 = obj_45521, obj_1272;
+    case obj_486 :
+        $obj5, $obj6 = obj_45494, obj_1274;
+    case obj_484 :
+        $obj5, $obj6 = obj_45467, obj_1270;
+    case obj_482 :
+        $obj5, $obj6 = obj_1267, obj_1268;
+    case obj_480 :
+        $obj5, $obj6 = obj_1265, obj_1266;
+    case obj_478 :
+        $obj5, $obj6 = obj_45548, obj_1276;
+    case obj_476 :
+        $obj5, $obj6 = obj_45521, obj_1272;
+    case obj_474 :
+        $obj5, $obj6 = obj_45494, obj_1274;
+    case obj_472 :
+        $obj5, $obj6 = obj_45467, obj_1270;
+    case obj_470 :
+        $obj5, $obj6 = obj_1267, obj_1268;
+    case obj_468 :
+        $obj5, $obj6 = obj_1265, obj_1266;
+    case obj_7088 :
+        $obj5, $obj6 = obj_5988, obj_5989;
+    case obj_1873 :
+        $obj5, $obj6 = obj_1885, obj_1886;
+    case obj_1877 :
+        $obj5, $obj6 = obj_1885, obj_1886;
+    case obj_1879 :
+        $obj5, $obj6 = obj_1885, obj_1886;
+    case obj_3406 :
+        $obj5, $obj6 = obj_95, obj_96;
+    case obj_1999 :
+        $obj5, $obj6 = obj_1997, obj_1998;
+    case obj_7228 :
+        $obj5, $obj6 = obj_2878, obj_2879;
+    case obj_28267 :
+        $obj5, $obj6 = obj_995, null;
+}
+if ($obj5 = null) {
+    ~sm_mes("That item is no longer in use.");
+    ~script7787(9704, 1, 0, 50, 256);
+    ~script7788($inv2, $obj0, $int1);
+    return(1);
+}
+if ($int4 = 1 & $obj6 ! null) {
+    $obj5 = $obj6;
+}
+if ($int8 = 0) {
+    $int8 = $int1;
+}
+def_int $int12 = ~inv_itemspace2(inv_93, $obj5, $int8, calc(inv_size(inv_93) - $int3));
+$int8 = calc($int8 - $int12);
+if ($int8 <= 0) {
+    ~script7787(10046, 1, 0, 100, 256);
+    ~sm_mes("You do not have enough room in your inventory.");
+    return(2);
+}
+~sm_mes("That item is no longer in use. Please accept this substitute.");
+~script7787(9704, 1, 0, 50, 256);
+~script7788($inv2, $obj0, $int1);
+~script7792(inv_93, $obj5, $int8);
+return(1);

@@ -1,0 +1,100 @@
+// 9327
+[proc,bank_filter_complex](int $int0, int $int1)
+def_int $int2 = max(1, calc(if_getwidth(interface_517:com_182) / 44));
+def_int $int3 = 0;
+def_enum $enum4 = null;
+switch_int ($int0) {
+    case 4 :
+        $int3 = 19;
+        $enum4 = enum_974;
+    case 1 :
+        $int3 = enum_getoutputcount(enum_15583);
+        $enum4 = enum_15583;
+    case 7 :
+        $int3 = calc(15 + 1);
+    case default :
+        return;
+}
+def_int $intarray0($int3);
+def_int $int5 = 0;
+def_int $int6 = 0;
+switch_int ($int0) {
+    case 4 :
+        $int5 = ~script9305(intarray0, $int1);
+    case 1 :
+        $int5 = ~script9306(intarray0, $int1);
+    case 7 :
+        $int5 = ~script9307(intarray0, $int1);
+    case default :
+        return;
+}
+if ($int5 = 0) {
+    if_sethide(false, interface_517:com_180);
+    while ($int6 < 1320) {
+        if (cc_find(interface_517:com_184, $int6) = true) {
+            cc_sethide(true);
+        }
+        $int6 = calc($int6 + 1);
+    }
+    if_setscrollpos(0, 0, interface_517:com_182);
+    ~script9302("Items found: <col=ffffff>0");
+    return;
+}
+def_int $intarray1($int3);
+def_int $intarray2($int3);
+def_int $int7 = 0;
+def_int $int8 = 5;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_string $string0 = "";
+while ($int6 < $int3) {
+    $int10 = $intarray0($int6);
+    if ($int10 > 0) {
+        if ($enum4 ! null) {
+            $string0 = enum(int, string, $enum4, $int6);
+        } else if ($int0 = 7) {
+            if ($int6 = 0) {
+                $string0 = "Untabbed";
+            } else {
+                $int11 = ~script5883($int6);
+                if ($int11 ! 0) {
+                    $string0 = "Tab <tostring($int6)> - <enum(int, string, enum_8657, $int11)>";
+                } else {
+                    $string0 = "Tab <tostring($int6)>";
+                }
+            }
+        }
+        ~script9328($int6, $int8, $string0);
+        $intarray2($int6) = calc($int8 + 20);
+        $int9 = calc($int10 / $int2);
+        if (calc($int10 % $int2) > 0) {
+            $int9 = calc($int9 + 1);
+        }
+        $int8 = calc($int8 + 15 + $int9 * 44);
+    }
+    $int7 = $int8;
+    $int6 = calc($int6 + 1);
+}
+$int6 = 0;
+def_int $int12 = ~script14337;
+def_int $int13 = -1;
+def_int $int14 = 8;
+while ($int6 < $int12) {
+    if (cc_find(interface_517:com_184, $int6) = true) {
+        $int13 = cc_param(param_3844);
+        if ($int13 ! -1) {
+            $int8 = calc($intarray2($int13) + $intarray1($int13) / $int2 * 44);
+            $int14 = calc(8 + $intarray1($int13) % $int2 * 44);
+            cc_setposition($int14, $int8, ^setpos_abs_left, ^setpos_abs_top);
+            cc_sethide(false);
+            $intarray1($int13) = calc($intarray1($int13) + 1);
+        } else {
+            cc_sethide(true);
+        }
+    }
+    $int6 = calc($int6 + 1);
+}
+~bank_build_scrollbar($int7);
+if_sethide(true, interface_517:com_180);
+~script9302("Items found: <col=ffffff><tostring_localised($int5, true)>");

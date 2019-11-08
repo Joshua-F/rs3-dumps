@@ -1,54 +1,14 @@
 // 10485
 [clientscript,script10485]
-if_settext("Oddments", interface_1253:com_347);
-def_int $int0 = 1;
+if_settext("Oddments", interface_1253:com_350);
+def_int $int0 = %varplayer_7102;
 if (%varplayer_7102 > 0) {
-    if_settext("+<tostring(%varplayer_7102)>", interface_1253:com_346);
-    if_sethide(false, interface_1253:com_340);
-    if_settext("Oddments Value:", interface_1253:com_230);
-    if (~trh_state(struct_29986) = 1) {
-        if (%varplayerbit_31212 = 1) {
-            $int0 = calc($int0 + 3);
-        } else if (%varplayerbit_26876 = 1) {
-            $int0 = calc($int0 + 2);
-        }
-    } else if (~trh_state(struct_31910) = 1) {
-        if (%varplayerbit_39915 = 2) {
-            $int0 = calc($int0 + (%varplayerbit_28610 * %varplayerbit_39915 + 1));
-        } else {
-            $int0 = calc($int0 + %varplayerbit_28610 * %varplayerbit_39915);
-        }
-    } else if (~trh_state(struct_34949) = 1) {
-        $int0 = calc($int0 + %varplayerbit_34315);
-    } else if (~trh_state(struct_35442) = 1) {
-        if (%varplayerbit_35021 = 2) {
-            if (%varplayerbit_39915 = 2) {
-                $int0 = calc($int0 + (%varplayerbit_28610 * %varplayerbit_39915 + 1));
-            } else {
-                $int0 = calc($int0 + %varplayerbit_28610 * %varplayerbit_39915);
-            }
-        }
-    } else if (~trh_state(struct_38726) = 1) {
-        switch_int (%varplayerbit_44001) {
-            case 5 :
-                if (%varplayerbit_39915 = 2) {
-                    $int0 = calc($int0 + (%varplayerbit_28610 * %varplayerbit_39915 + 1));
-                } else {
-                    $int0 = calc($int0 + %varplayerbit_28610 * %varplayerbit_39915);
-                }
-            case 7 :
-                $int0 = calc($int0 + (%varplayerbit_34315 - 1));
-            case 6 :
-                $int0 = calc($int0 + %varplayerbit_42233);
-        }
-    } else if (~trh_state(struct_6824) = 1) {
-        $int0 = %varplayerbit_34046;
-    } else if (~trh_state(struct_39564) = 1 | ~trh_state(struct_42706) = 1 & %varplayer_3079 = 6130) {
-        $int0 = calc($int0 + %varplayerbit_39986);
-    } else {
-        $int0 = %varplayerbit_42233;
+    if (~trh_state(struct_38726) = 1) {
+        $int0 = calc($int0 * 2);
     }
-    if_settext(tostring_localised(calc(%varplayer_7102 * $int0), true), interface_1253:com_231);
+    if_settext("+<tostring($int0)>", interface_1253:com_349);
+    if_sethide(false, interface_1253:com_342);
+    ~script1524(%varplayer_7102);
 } else {
-    if_sethide(true, interface_1253:com_340);
+    if_sethide(true, interface_1253:com_342);
 }

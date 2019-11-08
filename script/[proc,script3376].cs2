@@ -14,10 +14,19 @@ if ($int9 = -1 | $int9 > $int8) {
 }
 def_string $string2 = "";
 if (string_length($string1) = 0) {
-    if ($enum6 = enum_13254) {
-        $string2 = ~script12292(~graphics_options_resolutions($int9));
-    } else {
-        $string2 = ~script12292(enum(int, string, $enum6, $int9));
+    switch_enum ($enum6) {
+        case enum_13254 :
+            $string2 = ~script12292(~graphics_options_resolutions($int9));
+        case default :
+            if (enum_hasoutput(enum, enum_15492, $enum6) = true) {
+                if (enum(int, struct, $enum6, $int9) = null) {
+                    $string2 = "Select a Path";
+                } else {
+                    $string2 = ~script12292(struct_param(enum(int, struct, $enum6, $int9), param_8073));
+                }
+            } else {
+                $string2 = ~script12292(enum(int, string, $enum6, $int9));
+            }
     }
 } else {
     $string2 = $string1;
@@ -27,7 +36,6 @@ if (string_length($string2) = 0) {
     $string2 = "Select an element.";
 }
 def_int $int14 = calc(if_getnextsubid($component0) + 3);
-~script13980($component0, null, struct_28619, $int2, $int3, $int4, -1, $boolean12, $string2);
 if ($int10 = 0) {
     if_clearops($component1);
     if_clearscripthooks($component1);
@@ -38,6 +46,12 @@ if ($int10 = 0) {
         } else {
             if_setonop("dynamic_dropdown_open($component1, -1, $component0, $int14, $enum6, $enum7, $int8, $int9, $int10, $int11)", $component1);
         }
+    }
+    switch_component ($component0) {
+        case interface_517:com_224, interface_517:com_280, interface_517:com_203 :
+            ~script13969($component0, null, struct_28234, $string2);
+        case default :
+            ~script13969($component0, null, struct_28619, $string2);
     }
 } else if ($int10 = 1) {
     cc_create($component1, ^iftype_text, $int5);
@@ -52,6 +66,12 @@ if ($int10 = 0) {
         } else {
             cc_setonop("dynamic_dropdown_open(event_com, event_comsubid, $component0, $int14, $enum6, $enum7, $int8, $int9, $int10, $int11)");
         }
+    }
+    switch_component ($component0) {
+        case interface_517:com_224, interface_517:com_280, interface_517:com_203 :
+            ~script13980($component0, null, struct_28234, $int2, $int3, $int4, -1, $boolean12, $string2);
+        case default :
+            ~script13980($component0, null, struct_28619, $int2, $int3, $int4, -1, $boolean12, $string2);
     }
 }
 return(calc($int3 + 22 + 4), calc($int5 + 1));

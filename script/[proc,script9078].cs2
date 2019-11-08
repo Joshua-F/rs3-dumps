@@ -1,0 +1,68 @@
+// 9078
+[proc,script9078](component $component0, int $int1, int $int2, int $int3, int $int4, int $int5, boolean $boolean6)(int)
+def_string $string0 = "";
+def_int $int7 = 0;
+def_int $int8 = 5;
+$string0 = ~activity_tracker_get_desc($int4, $int5);
+if (compare($string0, "") ! 0) {
+    $int7 = ~script7593($string0, calc($int2 - 15 * 2), graphic_20280, 14);
+    $int8 = calc($int8 + $int7);
+    $int8 = calc($int8 + 5);
+}
+def_int $int9 = ~script9534($int4);
+def_int $int10 = 0;
+def_string $string1 = "";
+def_int $int11 = 0;
+if ($int9 > 0) {
+    if (testbit($int9, 0) = ^true) {
+        $int10 = 5;
+        $int8 = calc($int8 + $int10);
+        $int8 = calc($int8 + 5);
+    }
+    if (testbit($int9, 1) = ^true) {
+        $string1 = ~script9536($int4, $int5);
+        $int11 = ~script7593($string1, calc($int2 - 15 * 2), graphic_20280, 14);
+        $int8 = calc($int8 + $int11);
+        $int8 = calc($int8 + 5);
+    }
+}
+$int1 = calc($int1 + 5);
+cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+if ($int7 > 0) {
+    cc_setposition(15, $int1, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settext($string0);
+    cc_settextfont(graphic_20280);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 14);
+    cc_setsize(calc(15 * 2), $int7, ^setsize_minus, ^setsize_abs);
+    ~script11024(18);
+    ~script9124($component0, $int4, $int5, $int3);
+    $int1 = calc($int1 + $int7);
+    $int1 = calc($int1 + 5);
+}
+cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+if ($int11 > 0) {
+    cc_setposition(15, $int1, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settext($string1);
+    cc_settextfont(graphic_20280);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 14);
+    cc_setsize(calc(15 * 2), $int11, ^setsize_minus, ^setsize_abs);
+    ~script11024(18);
+    $int1 = calc($int1 + $int11);
+    $int1 = calc($int1 + 5);
+}
+cc_create($component0, ^iftype_rectangle, if_getnextsubid($component0));
+.cc_create($component0, ^iftype_rectangle, if_getnextsubid($component0));
+if ($int10 > 0) {
+    cc_setposition(15, $int1, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(calc(15 * 2), $int10, ^setsize_minus, ^setsize_abs);
+    cc_setfill(true);
+    cc_setcolour(~rgb_to_hex(255, 0, 0));
+    .cc_setposition(15, $int1, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setfill(true);
+    .cc_setcolour(~rgb_to_hex(0, 255, 0));
+    ~activity_tracker_update_progress_bar($int4, $int5);
+    ~script9129($component0, $int4, $int5);
+    $int1 = calc($int1 + $int10);
+    $int1 = calc($int1 + 5);
+}
+return($int1);

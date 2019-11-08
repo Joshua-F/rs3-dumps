@@ -50,10 +50,17 @@ if ($int9 = 0) {
 $int8 = calc($int8 - 1);
 def_int $int10 = if_getnextsubid($component3);
 def_int $int11 = min(100, calc($int10 + $int9));
+def_boolean $boolean12 = ~script6431;
+def_fontmetrics $fontmetrics13 = graphic_20452;
+def_int $int14 = 14;
+if ($boolean12 = true) {
+    $fontmetrics13 = graphic_17815;
+    $int14 = 18;
+}
 while ($int10 < $int11) {
     cc_create($component3, ^iftype_text, $int10);
-    cc_settextfont(graphic_20452);
-    cc_settextalign(^settextalign_left, ^settextalign_top, 14);
+    cc_settextfont($fontmetrics13);
+    cc_settextalign(^settextalign_left, ^settextalign_top, $int14);
     cc_settextshadow(true);
     $int10 = calc($int10 + 1);
 }
@@ -83,23 +90,23 @@ while ($int10 >= $int9) {
     }
     $int10 = calc($int10 - 1);
 }
-def_int $int12 = ~script4467;
-def_int $int13 = ~script1891;
-def_int $int14 = 2;
-def_int $int15 = 0;
-def_int $int16 = if_getwidth($component3);
-def_int $int17 = 0;
+def_int $int15 = ~script4467;
+def_int $int16 = ~script1891;
+def_int $int17 = 2;
+def_int $int18 = 0;
+def_int $int19 = if_getwidth($component3);
+def_int $int20 = 0;
 $int10 = 0;
 $int4, $string0, $int5, $string1, $string2, $string3, $string4, $chatphrase6, $string5, $int7 = chat_gethistory_byuid($int8);
 while ($int10 < $int9 & $int8 <= $int2) {
     if ($int4 ! -1 & ~script8507($int0, $int4, 0) = 1 & ~script8508($int0, $int4, $string2, $int7) = 1) {
         if (cc_find($component3, $int10) = true) {
-            ~script8505($int4, $string5, $int5, $string1, $string4, $chatphrase6, $string0, $int14);
-            ~script8506($int0, $int4, $string5, $int5, $string1, $string2, $chatphrase6, $int12, $int13);
+            ~script8505($int4, $string5, $int5, $string1, $string4, $chatphrase6, $string0, $int17, $boolean12);
+            ~script8506($int0, $int4, $string5, $int5, $string1, $string2, $chatphrase6, $int15, $int16);
             cc_setparam(param_3443, $int8);
-            $int15 = max(paraheight(cc_gettext, $int16, cc_getfontmetrics), 1);
-            cc_setsize(2, calc(14 * $int15), ^setsize_minus, ^setsize_abs);
-            $int14 = calc($int14 + cc_getheight);
+            $int18 = max(1, paraheight(cc_gettext, $int19, cc_getfontmetrics));
+            cc_setsize(2, calc($int14 * $int18), ^setsize_minus, ^setsize_abs);
+            $int17 = calc($int17 + cc_getheight);
             ~script10487($int4, $string3);
             switch_int ($int4) {
                 case 3, 6, 7, 18, 19 :
@@ -107,7 +114,7 @@ while ($int10 < $int9 & $int8 <= $int2) {
             }
         }
         if ($int4 ! 109) {
-            $int17 = calc($int17 + 1);
+            $int20 = calc($int20 + 1);
         }
         $int10 = calc($int10 + 1);
     }
@@ -118,16 +125,13 @@ while ($int10 < $int9 & $int8 <= $int2) {
         $int8 = $int2;
     }
 }
-if ($int17 > 0 & %varplayerbit_38842 = 1 & %varclientbit_41275 = 0) {
-    ~script13890($int17);
+def_int $int21 = calc($int17 - 2);
+def_int $int22 = 0;
+def_int $int23 = 0;
+def_int $int24 = 0;
+$int22, $int23, $int24 = ~script8548($int0);
+if (calc($int22 - $int23) ! $int24 & $int23 ! 0) {
+    ~script8549($int0, $int22, calc($int23 - $int21), $int24);
 }
-def_int $int18 = calc($int14 - 2);
-def_int $int19 = 0;
-def_int $int20 = 0;
-def_int $int21 = 0;
-$int19, $int20, $int21 = ~script8548($int0);
-if (calc($int19 - $int20) ! $int21 & $int20 ! 0) {
-    ~script8549($int0, $int19, calc($int20 - $int18), $int21);
-}
-$int14 = ~script8503($component3, $int10, $int14);
-~script8504($int0, $int14);
+$int17 = ~script8503($component3, $int10, $int17);
+~script8504($int0, $int17);

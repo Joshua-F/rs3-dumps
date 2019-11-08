@@ -4,31 +4,44 @@ if ($struct0 = null) {
     return(0);
 }
 def_enum $enum1 = struct_param($struct0, param_6803);
-def_int $int2 = enum_getoutputcount($enum1);
-def_obj $obj3 = null;
-def_int $int4 = 1;
-def_int $int5 = -1;
+def_int $int2 = 0;
+if (struct_param($struct0, param_6426) ! null) {
+    $int2 = 1;
+    $enum1 = struct_param($struct0, param_6426);
+}
+if ($enum1 = null) {
+    ~error("Null $item_list passed in here.");
+    return(0);
+}
+def_int $int3 = enum_getoutputcount($enum1);
+def_obj $obj4 = null;
+def_int $int5 = 1;
+def_int $int6 = -1;
 switch_struct ($struct0) {
     case struct_1555 :
-        $int4 = 0;
-        while (++$int5 < $int2) {
-            $obj3 = enum(int, obj, $enum1, $int5);
-            switch_obj ($obj3) {
+        $int5 = 0;
+        while (++$int6 < $int3) {
+            $obj4 = enum(int, obj, $enum1, $int6);
+            switch_obj ($obj4) {
                 case obj_39590, obj_39586, obj_39588, obj_39592 :
-                    if (~script13323($obj3) > 0) {
-                        $int4 = 1;
+                    if (~script13323($obj4) > 0) {
+                        $int5 = 1;
                     }
                 case default :
-                    if (~script13323($obj3) = 0) {
+                    if (~script13323($obj4) = 0) {
                         return(0);
                     }
             }
         }
     case default :
-        while (++$int5 < $int2) {
-            if (~script13323(enum(int, obj, $enum1, $int5)) = 0) {
-                return(0);
+        if ($int2 = 0) {
+            while (++$int6 < $int3) {
+                if (~script13323(enum(int, obj, $enum1, $int6)) = 0) {
+                    return(0);
+                }
             }
+        } else if (~cheevo_obtain_progress(struct_15036) ! -2) {
+            return(0);
         }
 }
-return($int4);
+return($int5);

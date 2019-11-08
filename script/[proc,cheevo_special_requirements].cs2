@@ -9,7 +9,12 @@ def_int $int5 = 0;
 def_int $int6 = %varplayer_1297;
 def_int $int7 = %varplayer_423;
 def_string $string1 = "";
-if (struct_param(enum(int, struct, enum_12251, $int0), param_1346) > 0 | struct_param(enum(int, struct, enum_12251, $int0), param_1376) ! 0) {
+def_struct $struct8 = enum(int, struct, enum_12251, $int0);
+if ($struct8 = null) {
+    ~error("Achievement #<tostring($int0)> needs to be added to [cheevo_id_to_struct_enum].");
+    return(0, "");
+}
+if (struct_param($struct8, param_1346) > 0 | struct_param($struct8, param_1376) ! 0) {
     return($int4, "");
 }
 switch_int ($int0) {
@@ -97,21 +102,24 @@ switch_int ($int0) {
         }
         $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "Begin the Herblore section of Otto Godblessed's barbarian training");
     case 417 :
-        if (~script13303(3) > 0) {
+        if (~script13303(1) > 0) {
+            $int5 = 1;
+        }
+        if (inv_total(inv_94, obj_15403) > 0) {
             $int5 = 1;
         }
         if (%varplayerbit_18023 >= 5) {
-            $string1 = "Obtain Balmung from Kharshai. (";
+            $string1 = "Wield Balmung. Obtain Balmung from Kharshai. (";
             $string1 = append($string1, ~script13301("Koschei's Troubles"));
             $string1 = append($string1, ")");
             $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, $string1);
         } else if (%varplayerbit_10871 >= 126) {
-            $string1 = "Obtain Balmung from Queen Sigrid. (";
+            $string1 = "Wield Balmung. Obtain Balmung from Queen Sigrid. (";
             $string1 = append($string1, ~cheevo_req_quest_partial(49));
             $string1 = append($string1, ")");
             $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, $string1);
         } else {
-            $string1 = "Obtain Balmung from Brundt the Chieftain. (";
+            $string1 = "Wield Balmung. Obtain Balmung from Brundt the Chieftain. (";
             $string1 = append($string1, ~cheevo_req_quest_partial(163));
             $string1 = append($string1, ")");
             $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, $string1);
@@ -536,21 +544,66 @@ switch_int ($int0) {
         }
         $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, ~cheevo_req_quest_partial(213));
     case 818, 819, 820, 822 :
-        if (~comlevel >= struct_param(enum(int, struct, enum_12251, $int0), param_2233)) {
+        if (~comlevel >= struct_param($struct8, param_2233)) {
             $int5 = 1;
         }
-        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "You need a combat level of at least <tostring(struct_param(enum(int, struct, enum_12251, $int0), param_2233))>");
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "You need a combat level of at least <tostring(struct_param($struct8, param_2233))>");
     case 928, 933, 3786, 3787, 3788, 3789, 3790 :
         if (%varplayerbit_4759 >= 3) {
             $int5 = 1;
         }
         $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "You need to find and free Skaldrun from the frozen floors in Daemonheim.");
+    case 4048, 4049, 4050 :
+        if (%varplayerbit_44830 = 1) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "You need to complete the Burthorpe introduction path or talk to Fara the challenge mistress.");
+    case 4037 :
+        if (%varplayerbit_44800 = 1) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "You need to pick up coins dropped by a monster defeated by you.");
+    case 4038, 4039, 4040 :
+        if (%varplayerbit_44801 = 1) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "You need to pick up bones dropped by a monster defeated by you.");
+    case 4006, 4007, 4008 :
+        if (%varplayerbit_44784 > 0) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "You need to pick up cow hide dropped by a monster defeated by you.");
+    case 4041, 4042, 4043, 4044, 4045, 4046, 4047 :
+        if (%varplayerbit_44823 = 1) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "You need to complete the Burthorpe introduction path or start a lap of the Burthorpe agility course.");
+    case 4051, 4052, 4053 :
+        if (%varplayerbit_44826 = 1) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "You need to complete the Burthorpe introduction path or buy a bird snare.");
+    case 4054, 4055, 4056, 4057 :
+        if (%varplayerbit_44805 > 0) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "You need to purchase or pick up a potato seed dropped by a monster defeated by you.");
+    case 4058, 4059, 4060, 4061, 4062, 4063, 4064 :
+        if (%varplayerbit_44809 = 1) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "You need to purchase or pick up a grimy guam herb dropped by a monster defeated by you.");
+    case 4065, 4066, 4067, 4068, 4069, 4070, 4071 :
+        if (%varplayerbit_44816 = 1) {
+            $int5 = 1;
+        }
+        $int4, $string0 = ~cheevo_special_string($int4, $string0, $int5, "You need to purchase or pick up a gold charm dropped by a monster defeated by you.");
     case default :
-        $string0 = ~cheevo_req_quest_name(struct_param(enum(int, struct, enum_12251, $int0), param_1345));
-        if (struct_param(enum(int, struct, enum_12251, $int0), param_1345) > 0) {
+        $string0 = ~cheevo_req_quest_name(struct_param($struct8, param_1345));
+        if (struct_param($struct8, param_1345) > 0) {
             ~error("Achievement #<tostring($int0)> (.quest: <$string0>) has param=quest_requires_special,true but no case in [proc,cheevo_special_requirements].");
         } else {
-            $string0 = struct_param(enum(int, struct, enum_12251, $int0), param_6410);
+            $string0 = struct_param($struct8, param_6410);
             ~error("Achievement #<tostring($int0)> (<$string0>)'s special requirement case is missing from [proc,cheevo_special_requirements].");
         }
         return(0, "");

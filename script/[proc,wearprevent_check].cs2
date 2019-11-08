@@ -6,8 +6,6 @@ if (oc_members($obj0) = 1 & map_members = false) {
 if (%varplayerbit_15102 = 1 & %varplayer_1295 < 400) {
     return(2, "0");
 }
-def_int $int1 = %varplayer_1297;
-def_int $int2 = %varplayer_423;
 switch_obj ($obj0) {
     case obj_8839, obj_8840, obj_8842, obj_11663, obj_11664, obj_11665, obj_31641, obj_31642, obj_31643, obj_31644, obj_31645, obj_31646, obj_8841, obj_31647, obj_31648, obj_31649, obj_31650, obj_31651, obj_31652, obj_19785, obj_19786, obj_19787, obj_19788, obj_19789, obj_19790 :
         if (~script11500 = 0) {
@@ -50,11 +48,11 @@ switch_obj ($obj0) {
             return(1, "You do not meet the requirements to wear this hood.");
         }
     case obj_9813, obj_34670 :
-        if ($int1 < $int2) {
+        if (%varplayer_1297 < %varplayer_423) {
             return(1, "You need to have completed all of the quests to wear this cape.");
         }
     case obj_9814 :
-        if ($int1 < $int2) {
+        if (%varplayer_1297 < %varplayer_423) {
             return(1, "You need to have completed all of the quests to wear this hood.");
         }
     case obj_3107 :
@@ -151,5 +149,11 @@ if (%varplayerbit_9644 = 1) {
 }
 if (%varplayerbit_21785 = 1) {
     return(2, "You should step away from the controls before equipping anything.");
+}
+if (oc_param($obj0, param_1047) = 1) {
+    return(2, "");
+}
+if (enum(obj, boolean, enum_15589, $obj0) = true) {
+    return(1, "You can't equip that.");
 }
 return(0, "");

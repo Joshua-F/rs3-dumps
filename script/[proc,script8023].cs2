@@ -1,144 +1,26 @@
 // 8023
-[proc,script8023](int $int0, int $int1, component $component2)
-if (%varplayerbit_3577 ! $int0) {
-    return;
-}
-def_component $component3 = interface_1220:com_18;
-def_component $component4 = interface_1220:com_19;
-def_component $component5 = interface_1220:com_9;
-def_component $component6 = interface_1220:com_10;
-def_component $component7 = interface_1220:com_46;
-def_component $component8 = interface_1220:com_47;
-def_component $component9 = interface_1220:com_38;
-def_component $component10 = interface_1220:com_39;
-def_component $component11 = interface_1220:com_1;
-if ($component2 = interface_1056:com_3) {
-    $component3 = interface_1056:com_16;
-    $component4 = interface_1056:com_17;
-    $component5 = interface_1056:com_7;
-    $component6 = interface_1056:com_8;
-    $component7 = interface_1056:com_48;
-    $component8 = interface_1056:com_49;
-    $component9 = interface_1056:com_40;
-    $component10 = interface_1056:com_41;
-    $component11 = interface_1056:com_4;
-}
-def_boolean $boolean12 = true;
-def_boolean $boolean13 = true;
-if ($int1 <= 0) {
-    $int1 = max(%varplayerbit_3575, 1);
-}
-if ($int1 = 1) {
-    $boolean12 = false;
-}
-def_struct $struct14 = ~task_get_data($int0);
-def_int $int15 = 1;
-def_int $int16 = 0;
-def_int $int17 = 1;
-def_string $string0 = "";
-def_string $string1 = "";
-def_string $string2 = "";
-def_string $string3 = "";
-def_int $int18 = 42;
-while ($int17 < 9) {
-    switch_int ($int17) {
-        case 1 :
-            if (~ironman_mode = true & string_length(struct_param($struct14, param_4587)) > 0) {
-                $string1 = struct_param($struct14, param_4587);
-            } else {
-                $string1 = struct_param($struct14, param_1274);
-            }
-            $string2 = struct_param($struct14, param_1275);
-            $string3 = struct_param($struct14, param_1276);
-        case 2 :
-            switch_int ($int0) {
-                case 3041 :
-                    $string1 = "Only Daily Challenges need to be handed in.";
-                case 3064 :
-                    $string1 = "Check your challenge token or visit Captain Haskell in Burthorpe to claim your reward.";
-                case default :
-                    $string1 = struct_param($struct14, param_1275);
-            }
-            $string2 = struct_param($struct14, param_1276);
-            $string3 = struct_param($struct14, param_1277);
-        case 3 :
-            $string1 = struct_param($struct14, param_1276);
-            $string2 = struct_param($struct14, param_1277);
-            $string3 = struct_param($struct14, param_1278);
-        case 4 :
-            $string1 = struct_param($struct14, param_1277);
-            $string2 = struct_param($struct14, param_1278);
-            $string3 = struct_param($struct14, param_1279);
-        case 5 :
-            $string1 = struct_param($struct14, param_1278);
-            $string2 = struct_param($struct14, param_1279);
-            $string3 = struct_param($struct14, param_1280);
-        case 6 :
-            $string1 = struct_param($struct14, param_1279);
-            $string2 = struct_param($struct14, param_1280);
-            $string3 = struct_param($struct14, param_1281);
-        case 7 :
-            $string1 = struct_param($struct14, param_1280);
-            $string2 = struct_param($struct14, param_1281);
-        case 8 :
-            $string1 = struct_param($struct14, param_1281);
-    }
-    if (compare($string2, "") = 0 & $int16 = 0) {
-        $int15 = $int17;
-        $int16 = 1;
-    }
-    if (compare($string3, "") = 0 & $int16 = 0 & $component3 = null) {
-        $int15 = $int17;
-        $int16 = 1;
-    }
-    if ($int17 = $int1) {
-        $string0 = $string1;
-    }
-    $int17 = calc($int17 + 1);
-}
-if ($int15 <= $int1) {
-    $boolean13 = false;
-}
-if (compare(struct_param($struct14, param_1274), "") = 0) {
-    $int1 = 0;
-    $int15 = 0;
-}
-if_settext(tostring($int1), $component5);
-if_settext(tostring($int15), $component6);
-if_setscrollpos(0, 0, $component3);
-cc_deleteall($component3);
-if ($int1 = 0 & $int15 = 0) {
-    $string0 = "There are no hints available for this Task. Good luck!";
-}
-def_int $int19 = ~script5798($int0, $struct14, 0, $string0, 0, $component3, null, -1);
-$int19 = max($int19, 0);
-if (cc_find($component3, 0) = true) {
-    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
-}
-def_int $int20 = if_getheight($component2);
-if_setonop("script5870($int0, calc($int1 + 1))", $component7);
-if_sethide($boolean13, $component8);
-if_setonop("script5870($int0, calc($int1 - 1))", $component9);
-if_sethide($boolean12, $component10);
-if ($int15 < 2) {
-    if_sethide(true, $component11);
-    $int20 = calc($int20 + if_getheight($component11));
-} else if (%varplayerbit_3617 = 0 | ~script3999(%varplayerbit_16612) = 0 & %varplayerbit_16612 = %varplayerbit_3561) {
-    if_sethide(false, $component11);
-} else {
-    if_sethide(true, $component11);
-    $int20 = calc($int20 + if_getheight($component11));
-}
-if_sethide(false, $component3);
-if ($int19 < $int20) {
-    if_sethide(true, $component4);
-    if_setscrollsize(0, if_getheight($component3), $component3);
-    if_setscrollpos(0, 0, $component3);
-} else {
-    $int19 = calc($int19 + 5);
-    if_setsize(calc(if_getwidth($component4) + 2), 0, ^setsize_minus, ^setsize_minus, $component3);
-    if_setscrollsize(0, max($int19, if_getheight($component3)), $component3);
-    if_setscrollpos(0, 0, $component3);
-    if_sethide(false, $component4);
-    ~rs3_scrollbar_vertical($component4, $component3);
+[proc,script8023](int $int0)(int)
+switch_int ($int0) {
+    case 1 :
+        return(%varplayerbit_26177);
+    case 2 :
+        return(%varplayerbit_26178);
+    case 3 :
+        return(%varplayerbit_26179);
+    case 4 :
+        return(%varplayerbit_26180);
+    case 5 :
+        return(%varplayerbit_26181);
+    case 6 :
+        return(%varplayerbit_26182);
+    case 7 :
+        return(%varplayerbit_26183);
+    case 8 :
+        return(%varplayerbit_26184);
+    case 9 :
+        return(%varplayerbit_26185);
+    case 10 :
+        return(%varplayerbit_26186);
+    case 11 :
+        return(1);
 }

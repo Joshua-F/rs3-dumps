@@ -4,12 +4,11 @@ def_int $int0 = 0;
 def_graphic $graphic1 = "loadingwheel,9";
 ~login_popup_close;
 if (string_length(%varclient_2576) > 0) {
-    ~script2619("ariMOV");
+    ~script1128("ariMOV");
     $int0 = login_accountappeal(%varclient_2576);
     switch_int ($int0) {
         case 2 :
-            $graphic1 = "loadingwheel,13";
-            ~login_popup(-1000, 0, "Page has opened in a new window (please check your popup blocker)", 0, $graphic1, 0, -1, "", 1, "Back");
+            ~login_popup(-1000, 0, "Account Recovery has opened in your default web browser.", 0, "loadingwheel,13", 0, -1, "", 1, "Back");
         case 3 :
             ~login_popup(-1000, 1, "Error connecting to server.", 0, $graphic1, 0, -1, "", 1, "Back");
         case 4 :
@@ -22,10 +21,16 @@ if (string_length(%varclient_2576) > 0) {
             ~login_popup(-1000, 1, "You must enter a valid login to proceed. For accounts created after 24th November 2010, please use your email address to login. Otherwise please login with your username, even if you have registered your email.", 0, $graphic1, 0, -1, "", 1, "Back");
     }
 } else {
-    if_sethide(true, interface_596:com_20);
-    if_sethide(false, interface_596:com_99);
     %varclient_174 = 18;
-    if_settext("", interface_596:com_126);
     %varclient_2576 = "";
-    ~script3237(interface_596:com_125, interface_596:com_126, interface_596:com_124, %varclient_2576, 18);
+    if (~is_mobile_client = false) {
+        if_sethide(true, interface_596:com_20);
+        if_sethide(false, interface_596:com_102);
+        if_settext("", interface_596:com_130);
+        ~script3237(interface_596:com_129, interface_596:com_130, interface_596:com_128, %varclient_2576, 18);
+    } else {
+        if_sethide(false, interface_744:com_251);
+        if_settext("", interface_744:com_271);
+        ~script3237(interface_744:com_270, interface_744:com_271, interface_744:com_269, %varclient_2576, 18);
+    }
 }

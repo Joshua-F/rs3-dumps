@@ -1,13 +1,12 @@
 // 12112
 [proc,script12112](obj $obj0, int $int1, inv $inv2, int $int3)
-def_int $int4 = 36;
-def_int $int5 = 32;
-if (~script6431 = true & (cc_getlayer = interface_1464:com_15 | cc_getlayer = interface_1462:com_31)) {
-    $int4 = 54;
-    $int5 = 48;
-}
 if ($obj0 ! null) {
-    cc_setsize($int4, $int5, ^setsize_abs, ^setsize_abs);
+    if (~script6431 = true & (cc_getlayer = interface_1464:com_15 | cc_getlayer = interface_1462:com_31)) {
+        cc_setsize(54, 48, ^setsize_abs, ^setsize_abs);
+    } else {
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    }
+    cc_setgraphic(null);
     cc_setobject($obj0, $int1);
     cc_setonmouserepeat("script12093($obj0, $inv2, $int3)");
     cc_setparam(param_7540, 0);
@@ -15,9 +14,8 @@ if ($obj0 ! null) {
     cc_setparam(param_7542, $int3);
     cc_setparam(param_7543, $inv2);
     cc_setonmouseleave("script5495(null)");
-    cc_setopbase(append("<col=ff9040>", oc_name($obj0)));
+    ~script14420($obj0);
     cc_clearops;
-    cc_setgraphicshadow(0x302020);
     cc_setoutline(1);
     cc_setnoclickthrough(true);
     cc_setdragrenderbehaviour(2);
@@ -32,8 +30,13 @@ if ($obj0 ! null) {
     cc_setondragcomplete("script9223(event_com, event_comsubid, event_com2, event_comsubid2)");
     cc_setonop("script1620(event_com, event_comsubid, 100, 0, 8)");
 } else {
-    cc_setsize($int4, $int5, ^setsize_abs, ^setsize_abs);
+    if (~script6431 = true & (cc_getlayer = interface_1464:com_15 | cc_getlayer = interface_1462:com_31)) {
+        cc_setsize(calc(54 - 3), calc(48 - 2), ^setsize_abs, ^setsize_abs);
+    } else {
+        cc_setsize(calc(36 - 4), calc(32 - 2), ^setsize_abs, ^setsize_abs);
+    }
     cc_setobject(null, 0);
+    cc_setgraphic(~script8478($inv2, cc_getid, 0));
     cc_setonmouserepeat(null);
     cc_setparam(param_7540, -1);
     cc_setparam(param_7541, null);

@@ -1,13 +1,22 @@
 // 11747
 [proc,trh_state](struct $struct0)(int)
-def_struct $struct1 = struct_param($struct0, param_5767);
-if (%varplayer_3079 < struct_param($struct0, param_4630)) {
+def_int $int1 = %varplayer_3079;
+if ($int1 < struct_param($struct0, param_3838)) {
     return(0);
 }
-if (%varplayer_3079 <= struct_param($struct0, param_4631) | $struct1 ! null & %varplayer_3079 >= struct_param($struct1, param_4630) & %varplayer_3079 <= struct_param($struct1, param_4631)) {
-    return(1);
-}
-if (%varplayer_3079 >= struct_param($struct0, param_4632)) {
+if ($int1 >= struct_param($struct0, param_4632)) {
     return(3);
+}
+def_enum $enum2 = struct_param($struct0, param_3839);
+def_struct $struct3 = null;
+if ($enum2 ! null) {
+    if (enum_getreversecount(int, $enum2, $int1) > 0) {
+        return(1);
+    }
+} else {
+    $struct3 = struct_param($struct0, param_5767);
+    if ($int1 >= struct_param($struct0, param_4630) & $int1 <= struct_param($struct0, param_4631) | $struct3 ! null & $int1 >= struct_param($struct3, param_4630) & $int1 <= struct_param($struct3, param_4631)) {
+        return(1);
+    }
 }
 return(2);

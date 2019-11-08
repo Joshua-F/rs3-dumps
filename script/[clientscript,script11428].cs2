@@ -1,0 +1,32 @@
+// 11428
+[clientscript,script11428](component $component0)
+def_int $int1 = 0;
+def_component $component2 = null;
+if (if_find($component0) = true) {
+    mes("Found head");
+    if (cc_param(param_8102) = true) {
+        mes("component is actually head");
+        $component2 = cc_param(param_8101);
+        mes("Set component to point at inactive head");
+        while (.if_find($component2) = true) {
+            $int1 = calc($int1 + 1);
+            mes("IN PROGRESS - Inactive list is of size <tostring($int1)>");
+            $component2 = .cc_param(param_8105);
+        }
+        mes("Inactive list is of size <tostring($int1)>");
+        $int1 = 0;
+        mes("reset length");
+        $component2 = cc_param(param_8100);
+        mes("Set component to point at active head");
+        while (.if_find($component2) = true) {
+            $int1 = calc($int1 + 1);
+            mes("IN PROGRESS - Active list is of size <tostring($int1)>");
+            $component2 = .cc_param(param_8105);
+        }
+        mes("Active list is of size <tostring($int1)>");
+    } else {
+        mes("Component is not head");
+    }
+} else {
+    mes("Cannot find head");
+}

@@ -1,109 +1,37 @@
 // 3714
-[proc,script3714](int $int0, int $int1, int $int2)(string)
-def_struct $struct3 = ~task_get_struct($int0);
-def_struct $struct4 = null;
-def_int $int5 = 0;
-def_int $int6 = 0;
-def_stat $stat7 = null;
-def_string $string0 = "";
-def_struct $struct8 = null;
-switch_int ($int1) {
-    case 0 :
-        if (~ironman_mode = false | struct_param($struct3, param_4589) = 0) {
-            $int5 = struct_param($struct3, param_1294);
-            $int6 = struct_param($struct3, param_1295);
+[proc,script3714](int $int0, component $component1, int $int2)
+~script14186;
+def_obj $obj3 = ~bank_get_object($int0);
+if ($obj3 = null) {
+    return;
+}
+def_int $int4 = ~bank_get_num($int0);
+switch_component ($component1) {
+    case interface_517:com_184 :
+        ~bank_swap_slots($int0, $int2);
+        ~bank_swap_sound;
+        return;
+    case interface_517:com_199 :
+        ~script5780(-1, $int0, $int2);
+    case interface_517:com_14 :
+        ~script3968($obj3, $int4, $int0, inv_93, $int2);
+    case interface_517:com_33 :
+        ~script3968($obj3, $int4, $int0, inv_530, $int2);
+    case interface_517:com_147 :
+        ~script5785(1, $int0);
+    case interface_517:com_151 :
+        ~script5785(~script14372($int2), $int0);
+    case interface_517:com_187, interface_517:com_188 :
+        if (%varplayerbit_45141 = 1) {
+            ~script5785(~script14372($int2), $int0);
         } else {
-            $int5 = struct_param($struct3, param_4588);
-            $int6 = struct_param($struct3, param_4589);
+            ~script5785($int2, $int0);
         }
-    case 1 :
-        $int5 = struct_param($struct3, param_1296);
-        $int6 = struct_param($struct3, param_1297);
-    case 2 :
-        $int5 = struct_param($struct3, param_1298);
-        $int6 = struct_param($struct3, param_1299);
-    case 3 :
-        $int5 = struct_param($struct3, param_1300);
-        $int6 = struct_param($struct3, param_1301);
-    case 4 :
-        $int5 = struct_param($struct3, param_1302);
-        $int6 = struct_param($struct3, param_1303);
-    case 5 :
-        $int5 = struct_param($struct3, param_1304);
-        $int6 = struct_param($struct3, param_1305);
-    case 6 :
-        $int5 = struct_param($struct3, param_1306);
-        $int6 = struct_param($struct3, param_1307);
-    case 7 :
-        $int5 = struct_param($struct3, param_1308);
-        $int6 = struct_param($struct3, param_1309);
-    case 8 :
-        $int5 = struct_param($struct3, param_1310);
-        $int6 = struct_param($struct3, param_1311);
-    case 9 :
-        $int5 = struct_param($struct3, param_1312);
-        $int6 = struct_param($struct3, param_1313);
-    case 10 :
-        $int5 = struct_param($struct3, param_2227);
-        $int6 = struct_param($struct3, param_2228);
-    case 11 :
-        $int5 = struct_param($struct3, param_2229);
-        $int6 = struct_param($struct3, param_2230);
-    case 12 :
-        $int5 = struct_param($struct3, param_4474);
-        $int6 = struct_param($struct3, param_4475);
-    case 13 :
-        $int5 = struct_param($struct3, param_6434);
-        $int6 = struct_param($struct3, param_6435);
-    case 14 :
-        $int5 = struct_param($struct3, param_6436);
-        $int6 = struct_param($struct3, param_6437);
-    case 15 :
-        $int5 = struct_param($struct3, param_6438);
-        $int6 = struct_param($struct3, param_6439);
-    case 16 :
-        $int5 = struct_param($struct3, param_6440);
-        $int6 = struct_param($struct3, param_6441);
-    case 17 :
-        $int5 = struct_param($struct3, param_6442);
-        $int6 = struct_param($struct3, param_6443);
-    case 18 :
-        $int5 = struct_param($struct3, param_6444);
-        $int6 = struct_param($struct3, param_6445);
-    case 19 :
-        $int5 = struct_param($struct3, param_6446);
-        $int6 = struct_param($struct3, param_6447);
-}
-if ($int5 = 0) {
-    return("");
-} else if ($int5 < 60) {
-    $stat7 = enum(int, stat, enum_681, $int5);
-    if ($stat7 ! null) {
-        $string0 = "This Task requires <tostring($int6)> <enum(int, string, enum_108, $int5)>.";
-        if ($stat7 = summoning) {
-            if (stat_base($stat7) >= $int6) {
-                $string0 = append("<str=FFFFFE>", $string0);
-            }
-        } else if (max(stat($stat7), stat_base($stat7)) >= $int6) {
-            $string0 = append("<str=FFFFFE>", $string0);
+    case interface_517:com_27, interface_517:com_55 :
+        if ($obj3 ! null & oc_wearpos($obj3) ! -1) {
+            ~script3968($obj3, $int4, $int0, inv_94, oc_wearpos($obj3));
         }
-    }
-} else if ($int5 = 61) {
-    $struct8 = enum(int, struct, enum_2252, $int6);
-    $string0 = "To complete this Task, you must complete the quest '<~quest_name($struct8)>'.";
-    if (~script3982($struct8) = 2) {
-        $string0 = append("<str=FFFFFE>", $string0);
-    }
-} else if ($int5 = 60) {
-    $struct4 = ~task_get_data($int6);
-    if ($struct4 = null) {
-        return("");
-    }
-    $string0 = "To complete this Task, you must complete the Task '<struct_param($struct4, param_1266)>'.";
-    if (~task_get_progress($int6) = 2) {
-        $string0 = append("<str=FFFFFE>", $string0);
-    }
-} else {
-    $string0 = ~script3715($int0, calc($int1 + 1), $int2);
+    case default :
+        ~script14219($component1, $int0, $obj3, $int4);
+        return;
 }
-return($string0);

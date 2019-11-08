@@ -4,7 +4,7 @@ if ($int1 < 1 | $int1 > 14) {
     return;
 }
 def_int $int6 = ~script11800(~script11798($int0));
-if ($int6 < 1 | $int6 > 10 & $int6 ! 15) {
+if ($int6 < 1 | $int6 > 13 & $int6 ! 15) {
     return;
 }
 def_int $int7 = 0;
@@ -29,36 +29,37 @@ def_int $int22 = 1;
 def_int $int23 = 1;
 def_int $int24 = 1;
 def_int $int25 = 0;
-def_component $component26 = ~script1580($int0, $int1);
-def_component $component27 = ~script7974($int0, $int1);
-def_component $component28 = ~script313($int0, $int1);
-def_component $component29 = ~script7975($int0, $int1);
-def_component $component30 = ~script7977($int0, $int1);
-def_component $component31 = ~script7979($int0, $int1);
-def_component $component32 = ~script7976($int0, $int1);
-if_sethide(true, $component28);
-def_obj $obj33 = null;
-def_int $int34 = -1;
-def_inv $inv35 = null;
+def_int $int26 = 0;
+def_component $component27 = ~script1580($int0, $int1);
+def_component $component28 = ~script7974($int0, $int1);
+def_component $component29 = ~script313($int0, $int1);
+def_component $component30 = ~script7975($int0, $int1);
+def_component $component31 = ~script7977($int0, $int1);
+def_component $component32 = ~script7979($int0, $int1);
+def_component $component33 = ~script7976($int0, $int1);
+if_sethide(true, $component29);
+def_obj $obj34 = null;
+def_int $int35 = -1;
 def_int $int36 = -1;
-def_int $int37 = $int1;
+def_int $int37 = -1;
+def_int $int38 = $int1;
 $int7, $int8, $obj16 = ~script11797($int6, $int1);
 switch_int ($int0) {
     case 1430, 1436 :
         $int11, $int12 = ~script8825(5, $int1);
-        $int36 = 1;
+        $int37 = 1;
     case 1670 :
         $int11, $int12 = ~script8825(5, calc(14 + $int1));
-        $int36 = 2;
+        $int37 = 2;
     case 1671 :
         $int11, $int12 = ~script8825(5, calc(2 * 14 + $int1));
-        $int36 = 3;
+        $int37 = 3;
     case 1672 :
         $int11, $int12 = ~script8825(5, calc(3 * 14 + $int1));
-        $int36 = 4;
+        $int37 = 4;
     case 1673 :
         $int11, $int12 = ~script8825(5, calc(4 * 14 + $int1));
-        $int36 = 5;
+        $int37 = 5;
     case 1924, 1925 :
         $int23 = 0;
     case 1945, 1946 :
@@ -68,8 +69,8 @@ switch_int ($int0) {
 if ($int7 = 14) {
     $obj16 = inv_getobj(inv_94, $int8);
 }
-if_settrans(255, $component32);
-if_setonvartransmit(null, $component32);
+if_settrans(255, $component33);
+if_setonvartransmit(null, $component33);
 if ($int2 = 0) {
     if ($int7 ! 0) {
         $int22 = 0;
@@ -78,10 +79,13 @@ if ($int2 = 0) {
         $int22 = 0;
     }
 }
-if (%varplayerbit_38842 = 1 & ($int0 = 1924 | $int0 = 1945)) {
+if ($int0 = 1924) {
     $int25 = 1;
+} else if ($int0 = 1945 | $int0 = 1946) {
+    $int26 = 1;
 }
-if (if_find($component27) = true) {
+def_int $int39 = 0;
+if (if_find($component28) = true) {
     if (~is_mobile_client = false) {
         cc_setdragdeadtime(15);
         cc_setdragdeadzone(15);
@@ -96,9 +100,12 @@ if (if_find($component27) = true) {
         cc_clearops;
         cc_setopbase("");
         if ($int25 = 1) {
-            cc_setsize(56, 56, ^setsize_abs, ^setsize_abs);
+            cc_setsize(52, 52, ^setsize_abs, ^setsize_abs);
         } else {
             cc_setsize(30, 30, ^setsize_abs, ^setsize_abs);
+        }
+        if ($int26 = 1) {
+            cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
         }
         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
         cc_settargetverb("");
@@ -120,39 +127,42 @@ if (if_find($component27) = true) {
         cc_setoninvtransmit(null);
         cc_setonstattransmit(null);
         ~script7033;
-        if_setonvartransmit(null, $component29);
-        if_settrans(255, $component29);
-        if_setontimer(null, $component29);
+        if_setonvartransmit(null, $component30);
+        if_settrans(255, $component30);
+        if_setontimer(null, $component30);
         cc_setparam(param_3438, null);
         cc_setparam(param_5313, false);
         cc_setparam(param_5314, false);
-        ~script7968($component30, 0);
+        ~script7968($component31, 0);
     } else if ($obj16 ! null) {
         cc_clearscripthooks;
         cc_clearops;
         cc_settargetverb("");
-        $obj33, $int34, $inv35 = ~script196($obj16);
-        $struct19 = oc_param($obj33, param_2281);
+        $obj34, $int35, $int36 = ~script196($obj16);
+        $struct19 = oc_param($obj34, param_2281);
         $string0 = struct_param($struct19, param_2524);
         if (string_length($string0) < 1) {
-            $string0 = oc_name($obj33);
+            $string0 = oc_name($obj34);
         }
-        cc_setoninvtransmit("script6996($component27, $int1, $component30, $int23, $int3, $int11, $int12, $int7, $int8, $int0){inv_93, inv_94}");
-        cc_setopbase("<~script4033($obj33)><$string0>");
+        cc_setoninvtransmit("script6996($component28, $int1, $component31, $int23, $int3, $int11, $int12, $int7, $int8, $int0){inv_93, inv_94}");
+        cc_setopbase("<~script4033($obj34)><$string0>");
         cc_setparam(param_3438, null);
-        ~script6997($component27, $int1, $obj33, $inv35, $component30, $int23, $int3, $int11, $int12, $int7, $int8, $int0, 0);
+        ~script6997($component28, $int1, $obj34, $int36, $component31, $int23, $int3, $int11, $int12, $int7, $int8, $int0, 0);
         if ($int25 = 1) {
             cc_setsize(56, 52, ^setsize_abs, ^setsize_abs);
         } else {
             cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         }
+        if ($int26 = 1) {
+            cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
+        }
         cc_setposition(3, 0, ^setpos_abs_centre, ^setpos_abs_centre);
         cc_sethide(false);
         cc_setondrag("script7969(event_com, event_comsubid)");
         cc_setondragcomplete("script7001(event_com, event_comsubid, event_com2)");
-        if_setonvartransmit(null, $component29);
-        if_settrans(255, $component29);
-        if_setontimer(null, $component29);
+        if_setonvartransmit(null, $component30);
+        if_settrans(255, $component30);
+        if_setontimer(null, $component30);
     } else if ($int7 > 0 & ($int8 > 0 | $int7 = 9 | $int7 = 14)) {
         if ($int4 = 0 & $int7 ! 14) {
             cc_clearscripthooks;
@@ -166,27 +176,32 @@ if (if_find($component27) = true) {
                 return;
             case 1 :
                 $enum17 = enum_6734;
+                $int39 = 1;
             case 2 :
                 $enum17 = enum_6735;
+                $int39 = 1;
             case 3 :
                 $enum17 = enum_6736;
+                $int39 = 1;
             case 5 :
                 $enum17 = enum_6738;
+                $int39 = 1;
             case 4 :
                 $enum17 = enum_6737;
+                $int39 = 1;
             case 7 :
                 $struct20 = enum(int, struct, enum_6739, $int8);
-                $struct20 = ~script5730($struct20);
-                $graphic18 = struct_param($struct20, param_2802);
+                $struct20 = ~script8247($struct20);
+                $graphic18 = ~script11778($struct20, 1);
                 $string0 = struct_param($struct20, param_2794);
                 $int9 = 30;
                 $int10 = 30;
-                if_setonvartransmit("script7028($component27, $component32, $struct20, 0){varplayer_1028, varplayer_3272, varplayer_3275, varplayer_5859, varplayer_3277}", $component32);
-                ~script7029($component27, $component32, $struct20, 1);
+                if_setonvartransmit("script7028($component28, $component33, $struct20, 0){varplayer_1028, varplayer_3272, varplayer_3275, varplayer_5859, varplayer_3277}", $component33);
+                ~script7029($component28, $component33, $struct20, 1);
             case 6 :
                 $struct20 = enum(int, struct, enum_6740, $int8);
-                $struct20 = ~script5730($struct20);
-                $graphic18 = struct_param($struct20, param_2802);
+                $struct20 = ~script8247($struct20);
+                $graphic18 = ~script11778($struct20, 1);
                 $string0 = struct_param($struct20, param_2794);
                 $int9 = 30;
                 $int10 = 30;
@@ -195,10 +210,11 @@ if (if_find($component27) = true) {
                 } else {
                     $string1 = "Cast";
                 }
+                $int39 = 1;
             case 11 :
                 $struct20 = enum(int, struct, enum_13200, $int8);
-                $struct20 = ~script5730($struct20);
-                $graphic18 = struct_param($struct20, param_2802);
+                $struct20 = ~script8247($struct20);
+                $graphic18 = ~script11778($struct20, 1);
                 $string0 = struct_param($struct20, param_2794);
                 if ($struct20 = struct_14875) {
                     $int9 = 30;
@@ -210,7 +226,7 @@ if (if_find($component27) = true) {
                 $string1 = "Cast";
             case 8 :
                 $struct20 = struct_14722;
-                $struct20 = ~script5730($struct20);
+                $struct20 = ~script8247($struct20);
                 if (%varplayer_463 = 0) {
                     $graphic18 = navigation_icon_energy_off;
                 } else {
@@ -221,7 +237,7 @@ if (if_find($component27) = true) {
                 $int10 = 28;
             case 9 :
                 $struct20 = enum(int, struct, enum_3874, $int8);
-                $struct20 = ~script5730($struct20);
+                $struct20 = ~script8247($struct20);
                 $graphic18 = struct_param($struct20, param_1420);
                 $string0 = struct_param($struct20, param_1419);
                 $int9 = 30;
@@ -229,14 +245,14 @@ if (if_find($component27) = true) {
                 $string1 = "Perform";
             case 12 :
                 $struct20 = struct_14723;
-                $struct20 = ~script5730($struct20);
+                $struct20 = ~script8247($struct20);
                 $graphic18 = struct_param($struct20, param_2802);
                 $string0 = struct_param($struct20, param_2794);
                 $int9 = 20;
                 $int10 = 20;
             case 13 :
                 $struct20 = struct_14724;
-                $struct20 = ~script5730($struct20);
+                $struct20 = ~script8247($struct20);
                 $graphic18 = struct_param($struct20, param_2802);
                 $string0 = struct_param($struct20, param_2794);
                 $int9 = 20;
@@ -250,11 +266,11 @@ if (if_find($component27) = true) {
         }
         if ($enum17 ! null) {
             $struct20 = enum(int, struct, $enum17, $int8);
-            $struct20 = ~script5730($struct20);
+            $struct20 = ~script8247($struct20);
             if ($struct20 = null) {
                 return;
             }
-            $graphic18 = struct_param($struct20, param_2802);
+            $graphic18 = ~script11778($struct20, 1);
             $string0 = struct_param($struct20, param_2794);
             $int9 = 30;
             $int10 = 30;
@@ -265,10 +281,14 @@ if (if_find($component27) = true) {
         cc_setparam(param_7544, $struct20);
         cc_setparam(param_3438, $struct20);
         if ($int25 = 1) {
-            cc_setsize(56, 56, ^setsize_abs, ^setsize_abs);
+            cc_setsize(52, 52, ^setsize_abs, ^setsize_abs);
             cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
         } else {
             cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
+            cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+        }
+        if ($int26 = 1) {
+            cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
             cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
         }
         if (struct_param($struct20, param_2875) = 1) {
@@ -278,7 +298,7 @@ if (if_find($component27) = true) {
                 cc_setonop("script7023(event_com, event_op)");
                 ~script7033;
                 if ($int3 = 0 & ~script792 = false) {
-                    ~script8845($int11, $int12, $component27, -1);
+                    ~script8845($int11, $int12, $component28, -1);
                 }
             }
             if ($struct20 = struct_32942 | $struct20 = struct_32943 | $struct20 = struct_1488) {
@@ -390,16 +410,16 @@ if (if_find($component27) = true) {
                     } else {
                         $int21 = 1;
                         if ($int14 = 1) {
-                            if_sethide(false, $component28);
+                            if_sethide(false, $component29);
                             if ($int23 = 1 & $int3 = 0 & ~script792 = false) {
-                                ~script8845($int11, $int12, $component28, -1);
+                                ~script8845($int11, $int12, $component29, -1);
                             }
-                            if_setontargetenter("script7006(event_com)", $component28);
-                            if_setontargetleave("script7007(event_com)", $component28);
-                            if_settargetverb("Cast <col=00ff00><%varclient_2516>", $component28);
+                            if_setontargetenter("script7006(event_com)", $component29);
+                            if_setontargetleave("script7007(event_com)", $component29);
+                            if_settargetverb("Cast <col=00ff00><%varclient_2516>", $component29);
                         } else {
                             if ($int23 = 1 & $int3 = 0 & ~script792 = false) {
-                                ~script8844(1, $int11, $int12, $component27, -1);
+                                ~script8844(1, $int11, $int12, $component28, -1);
                             }
                             cc_setontargetenter("script7006(event_com)");
                             cc_setontargetleave("script7007(event_com)");
@@ -410,7 +430,7 @@ if (if_find($component27) = true) {
                 if (%varclient_6250 = false & %varclient_6252 = false & %varclient_6251 = false & %varclient_6248 = false & %varclient_6255 = false & %varclient_6254 = false & %varclient_6253 = false & %varclient_6249 = false) {
                     cc_setop(1, "Summon Pet");
                     cc_setop(2, "Open Pet Interface");
-                    cc_setop(3, "Select follower interaction");
+                    cc_setop(3, "Select Follower Interaction");
                 }
             } else {
                 cc_setop(1, $string1);
@@ -432,7 +452,7 @@ if (if_find($component27) = true) {
             if ($int21 = 0) {
                 ~script7033;
                 if ($int3 = 0 & ~script792 = false) {
-                    ~script8844(1, $int11, $int12, $component27, -1);
+                    ~script8844(1, $int11, $int12, $component28, -1);
                 }
                 cc_setontargetenter(null);
                 cc_setontargetleave(null);
@@ -440,16 +460,16 @@ if (if_find($component27) = true) {
         }
         if (struct_param($struct20, param_2874) = 1) {
             cc_setop(9, "Auto-cast");
-            if_settrans(255, $component29);
-            if_setontimer(null, $component29);
+            if_settrans(255, $component30);
+            if_setontimer(null, $component30);
             switch_int ($int0) {
                 case 1430, 1670, 1671, 1672, 1673 :
-                    if_setonvartransmit("script7052($int0, $int1, $struct20){varplayer_0}", $component29);
+                    if_setonvartransmit("script7052($int0, $int1, $struct20){varplayer_0}", $component30);
             }
         } else {
-            if_setonvartransmit(null, $component29);
-            if_settrans(255, $component29);
-            if_setontimer(null, $component29);
+            if_setonvartransmit(null, $component30);
+            if_settrans(255, $component30);
+            if_setontimer(null, $component30);
         }
         if ($struct20 ! struct_14724) {
             cc_setopbase("<col=00ff00><$string0>");
@@ -459,16 +479,16 @@ if (if_find($component27) = true) {
             case 8 :
                 cc_setonvartransmit("script7017(event_com){varplayer_463}");
                 cc_setoninvtransmit(null);
-                ~script7968($component30, 1);
-            case 7, 9, 12, 13, 11 :
-                ~script7968($component30, 1);
+                ~script7968($component31, 1);
+            case 9, 12, 13, 11 :
+                ~script7968($component31, 1);
             case 14 :
                 cc_setoninvtransmit("script6994($int0, $int1){inv_94}");
             case default :
-                cc_setonvartransmit("script7003($component27, -1, struct_param($struct20, param_2799), $struct20, $component30){varplayer_679, varplayer_1180, varplayer_1185, varplayer_4, varplayer_3277, varplayer_3274}");
-                ~script7004($component27, -1, struct_param($struct20, param_2799), $struct20, $component30);
-                cc_setoninvtransmit("script7003($component27, -1, struct_param($struct20, param_2799), $struct20, $component30){inv_94, inv_93}");
-                cc_setonstattransmit("script7003($component27, -1, struct_param($struct20, param_2799), $struct20, $component30){attack, strength, defence, ranged, magic, hitpoints}");
+                cc_setonvartransmit("script7003($component28, -1, struct_param($struct20, param_2799), $struct20, $component31, 1){varplayer_679, varplayer_1180, varplayer_1185, varplayer_4, varplayer_3277, varplayer_3274}");
+                ~script7004($component28, -1, struct_param($struct20, param_2799), $struct20, $component31, 1);
+                cc_setoninvtransmit("script7003($component28, -1, struct_param($struct20, param_2799), $struct20, $component31, 1){inv_94, inv_93}");
+                cc_setonstattransmit("script7003($component28, -1, struct_param($struct20, param_2799), $struct20, $component31, 1){attack, strength, defence, ranged, magic, hitpoints}");
         }
         if (%varplayerbit_1892 = 0 & %varplayerbit_38842 = 0) {
             switch_int ($int7) {
@@ -491,23 +511,26 @@ if (if_find($component27) = true) {
         cc_setondragcomplete("script7001(event_com, event_comsubid, event_com2)");
     }
     if ($int2 = 0 & $int23 = 1) {
-        if_settext(~script8213($int11, $int12, 1, 1), $component30);
+        if_settext(~script8213($int11, $int12, 1, 1), $component31);
     }
     if ($int24 = 0) {
         cc_clearops;
     }
+    if ($int39 = 1) {
+        ~script11816($struct20);
+    }
 }
-if ($component26 ! null & if_find($component26) = true) {
+if ($component27 ! null & if_find($component27) = true) {
     if (%varplayerbit_38842 = 1) {
         cc_setnoclickthrough(false);
     } else {
         cc_setnoclickthrough(true);
     }
-    $int37 = ~script2102($int6, $int37);
+    $int38 = ~script2102($int6, $int38);
     switch_int ($int6) {
         case 0 :
         case 1 :
-            switch_int ($int37) {
+            switch_int ($int38) {
                 case 1 :
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_739, varplayer_823}");
                 case 2 :
@@ -538,7 +561,7 @@ if ($component26 ! null & if_find($component26) = true) {
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_4416, varplayer_4430}");
             }
         case 2 :
-            switch_int ($int37) {
+            switch_int ($int38) {
                 case 1 :
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_751, varplayer_835}");
                 case 2 :
@@ -569,7 +592,7 @@ if ($component26 ! null & if_find($component26) = true) {
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_4418, varplayer_4432}");
             }
         case 3 :
-            switch_int ($int37) {
+            switch_int ($int38) {
                 case 1 :
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_763, varplayer_847}");
                 case 2 :
@@ -600,7 +623,7 @@ if ($component26 ! null & if_find($component26) = true) {
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_4420, varplayer_4434}");
             }
         case 4 :
-            switch_int ($int37) {
+            switch_int ($int38) {
                 case 1 :
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_775, varplayer_859}");
                 case 2 :
@@ -631,7 +654,7 @@ if ($component26 ! null & if_find($component26) = true) {
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_4422, varplayer_4436}");
             }
         case 5 :
-            switch_int ($int37) {
+            switch_int ($int38) {
                 case 1 :
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_787, varplayer_871}");
                 case 2 :
@@ -662,7 +685,7 @@ if ($component26 ! null & if_find($component26) = true) {
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_4424, varplayer_4438}");
             }
         case 6 :
-            switch_int ($int37) {
+            switch_int ($int38) {
                 case 1 :
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_5265, varplayer_5335}");
                 case 2 :
@@ -693,7 +716,7 @@ if ($component26 ! null & if_find($component26) = true) {
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_5278, varplayer_5348}");
             }
         case 7 :
-            switch_int ($int37) {
+            switch_int ($int38) {
                 case 1 :
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_5279, varplayer_5349}");
                 case 2 :
@@ -724,7 +747,7 @@ if ($component26 ! null & if_find($component26) = true) {
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_5292, varplayer_5362}");
             }
         case 8 :
-            switch_int ($int37) {
+            switch_int ($int38) {
                 case 1 :
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_5293, varplayer_5363}");
                 case 2 :
@@ -755,7 +778,7 @@ if ($component26 ! null & if_find($component26) = true) {
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_5306, varplayer_5376}");
             }
         case 9 :
-            switch_int ($int37) {
+            switch_int ($int38) {
                 case 1 :
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_5307, varplayer_5377}");
                 case 2 :
@@ -786,7 +809,7 @@ if ($component26 ! null & if_find($component26) = true) {
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_5320, varplayer_5390}");
             }
         case 10 :
-            switch_int ($int37) {
+            switch_int ($int38) {
                 case 1 :
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_5321, varplayer_5391}");
                 case 2 :
@@ -816,8 +839,101 @@ if ($component26 ! null & if_find($component26) = true) {
                 case 14 :
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_5334, varplayer_5404}");
             }
+        case 11 :
+            switch_int ($int38) {
+                case 1 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8759, varplayer_8801}");
+                case 2 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8760, varplayer_8802}");
+                case 3 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8761, varplayer_8803}");
+                case 4 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8762, varplayer_8804}");
+                case 5 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8763, varplayer_8805}");
+                case 6 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8764, varplayer_8806}");
+                case 7 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8765, varplayer_8807}");
+                case 8 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8766, varplayer_8808}");
+                case 9 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8767, varplayer_8809}");
+                case 10 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8768, varplayer_8810}");
+                case 11 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8769, varplayer_8811}");
+                case 12 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8770, varplayer_8812}");
+                case 13 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8771, varplayer_8813}");
+                case 14 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8772, varplayer_8814}");
+            }
+        case 12 :
+            switch_int ($int38) {
+                case 1 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8773, varplayer_8815}");
+                case 2 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8774, varplayer_8816}");
+                case 3 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8775, varplayer_8817}");
+                case 4 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8776, varplayer_8818}");
+                case 5 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8777, varplayer_8819}");
+                case 6 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8778, varplayer_8820}");
+                case 7 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8779, varplayer_8821}");
+                case 8 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8780, varplayer_8822}");
+                case 9 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8781, varplayer_8823}");
+                case 10 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8782, varplayer_8824}");
+                case 11 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8783, varplayer_8825}");
+                case 12 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8784, varplayer_8826}");
+                case 13 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8785, varplayer_8827}");
+                case 14 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8786, varplayer_8828}");
+            }
+        case 13 :
+            switch_int ($int38) {
+                case 1 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8787, varplayer_8829}");
+                case 2 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8788, varplayer_8830}");
+                case 3 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8789, varplayer_8831}");
+                case 4 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8790, varplayer_8832}");
+                case 5 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8791, varplayer_8833}");
+                case 6 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8792, varplayer_8834}");
+                case 7 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8793, varplayer_8835}");
+                case 8 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8794, varplayer_8836}");
+                case 9 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8795, varplayer_8837}");
+                case 10 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8796, varplayer_8838}");
+                case 11 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8797, varplayer_8839}");
+                case 12 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8798, varplayer_8840}");
+                case 13 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8799, varplayer_8841}");
+                case 14 :
+                    cc_setonvartransmit("script6994($int0, $int1){varplayer_8800, varplayer_8842}");
+            }
         case 15 :
-            switch_int ($int37) {
+            switch_int ($int38) {
                 case 1 :
                     cc_setonvartransmit("script6994($int0, $int1){varplayer_799, varplayer_883}");
                 case 2 :

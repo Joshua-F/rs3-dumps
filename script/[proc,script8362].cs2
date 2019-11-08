@@ -1,7 +1,7 @@
 // 8362
 [proc,script8362](int $int0, int $int1, int $int2)
-def_struct $struct3 = enum(int, struct, enum_7716, $int1);
-def_struct $struct4 = enum(int, struct, enum_7716, $int0);
+def_struct $struct3 = ~script10405($int1);
+def_struct $struct4 = ~script10405($int0);
 def_struct $struct5 = ~script8418($struct4, 0);
 def_component $component6 = struct_param($struct4, param_3509);
 def_int $int7 = ~script8373($int2);
@@ -13,7 +13,11 @@ cc_setgraphic(struct_param($struct5, param_3613));
 cc_setparam_int(param_3536, $int1);
 cc_setonclick("end_drag_generic_pop($int0, $int1)");
 if (%varplayerbit_27169 = 0) {
-    cc_setonmouserepeat("script8799(struct_param($struct3, param_3493), event_com, event_comsubid)");
+    if (~script6431 = true & compare(struct_param($struct3, param_8095), "") ! 0) {
+        cc_setonmouserepeat("script8799(struct_param($struct3, param_8095), event_com, event_comsubid)");
+    } else {
+        cc_setonmouserepeat("script8799(struct_param($struct3, param_3493), event_com, event_comsubid)");
+    }
 } else if (compare(struct_param($struct3, param_4471), "") = 0) {
     cc_setonmouserepeat("script8799(struct_param($struct3, param_3493), event_com, event_comsubid)");
 } else {
@@ -27,5 +31,5 @@ cc_create($component6, ^iftype_graphic, $int7);
 ~script12591(0, $struct4);
 cc_setsize(struct_param($struct5, param_3569), struct_param($struct5, param_3570), ^setsize_abs, ^setsize_abs);
 cc_setposition(calc($int8 - cc_getwidth / 2), 0, ^setpos_abs_left, ^setpos_abs_centre);
-def_struct $struct9 = enum(int, struct, enum_7716, $int1);
-cc_setgraphic(~script13858($struct9, 1, 0));
+def_struct $struct9 = ~script10405($int1);
+cc_setgraphic(~script13858($struct9, 1, 0, 4));

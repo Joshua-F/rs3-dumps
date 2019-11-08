@@ -1,0 +1,91 @@
+// 3503
+[proc,script3503](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8)
+if (%varclient_1963 = 0) {
+    return;
+}
+def_int $int9 = 0;
+if (%varclient_1968 = 1) {
+    $int2 = 200;
+    $int9 = 850;
+    $int1 = 80;
+} else {
+    $int9 = calc(300 + $int0);
+    if (%varclient_1963 ! 5) {
+        $int1 = calc(100 + $int1);
+    } else {
+        $int1 = calc(60 + $int1);
+    }
+}
+if (cc_find(interface_1311:com_330, 0) = true & $int3 = 0) {
+    $int2 = cc_getmodelangle_y;
+    $int9 = cc_getmodelzoom;
+    $int1 = cc_getmodelyof;
+}
+if ($int4 = 1) {
+    cc_deleteall(interface_1311:com_330);
+}
+cc_create(interface_1311:com_330, ^iftype_model, if_getnextsubid(interface_1311:com_330));
+if (%varclient_1963 ! 5) {
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+} else {
+    if_sethide(false, interface_1311:com_364);
+    cc_setsize(8, 70, ^setsize_minus, ^setsize_minus);
+    if (%varclient_2699 = 3) {
+        cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    } else {
+        cc_setposition(0, -15, ^setpos_abs_centre, ^setpos_abs_centre);
+    }
+}
+if (%varclient_1963 ! 5) {
+    if (%varclient_1968 = 1) {
+        cc_setplayerhead_self;
+        if ($int2 > 1024) {
+            $int2 = max($int2, 1572);
+        } else {
+            $int2 = min($int2, 512);
+        }
+    } else {
+        cc_setplayermodel_self;
+    }
+} else {
+    cc_setnpcmodel(%varclient_2692);
+    if ($int6 = -1) {
+        $int6 = ~script1530(%varclient_6714);
+    }
+    if (struct_param(%varclient_6714, param_3847) = 1) {
+        ~script2738(%varclient_6714, $int5, $int6);
+    }
+    if (%varclient_2692 ! null & nc_param(%varclient_2692, param_477) = 0) {
+        ~script7411(%varclient_3756);
+    }
+}
+cc_setmodelangle(0, $int1, 10, $int2, 10, $int9);
+if (%varclient_1963 ! 5) {
+    if (%varclient_1968 = 1) {
+        cc_setmodelanim(seq_12287);
+    } else {
+        if (%varclient_779 ! null) {
+            cc_setmodelanim(bas_getanim_ready(%varclient_779));
+        } else {
+            cc_setmodelanim(bas_getanim_ready(bas_1426));
+        }
+        cc_setonvarctransmit("script1517(event_com, event_comsubid){varclient_779}");
+    }
+} else {
+    if (%varclient_2693 ! null) {
+        cc_setmodelanim(%varclient_2693);
+    }
+    if (nc_param(%varclient_2692, param_4813) = true) {
+        cc_setmodelanim(seq_21964);
+    }
+}
+def_component $component10 = interface_1311:com_330;
+def_component $component11 = interface_1311:com_349;
+if (%varclient_1963 = 5 & %varclient_2692 = null) {
+    if_setondrag(null, $component11);
+    if_setmouseovercursor(null, $component11);
+} else {
+    if_setondrag("script9319(event_com, $component10, 0, 1)", $component11);
+    if_setmouseovercursor(cursor_188, $component11);
+}

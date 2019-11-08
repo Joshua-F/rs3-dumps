@@ -1,0 +1,63 @@
+// 10886
+[proc,script10886](component $component0, struct $struct1)
+def_string $string0 = "";
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
+def_int $int5 = ~script11296($struct1);
+if (struct_param($struct1, param_8113) = true) {
+    $string1 = ~script11086($struct1);
+} else {
+    if (struct_param($struct1, param_8112) = true) {
+        $int2 = ~script11073($struct1);
+        $int3 = calc(1 + ($int2 - clientclock) / 50);
+        if ($int3 > 0) {
+            if ($int3 > 60) {
+                $string2 = "<tostring(calc($int3 / 60))>m";
+            } else {
+                $string2 = tostring($int3);
+            }
+        }
+    }
+    if (struct_param($struct1, param_8110) = true) {
+        $int4 = ~script11077($struct1);
+        if ($int4 > 0) {
+            if (compare($string2, "") = 0) {
+                $string3 = tostring($int4);
+                if (struct_param($struct1, param_8111) = true) {
+                    $string3 = "<tostring($int4)>%";
+                }
+            } else {
+                $string3 = "(<tostring($int4)>)";
+                if (struct_param($struct1, param_8111) = true) {
+                    $string3 = "(<tostring($int4)>%)";
+                }
+            }
+        }
+    }
+}
+if (.cc_find($component0, 1) = true) {
+    if (struct_param($struct1, param_8113) = false) {
+        if (struct_param($struct1, param_8112) = true & struct_param($struct1, param_8110) = true) {
+            $string1 = "<$string2> <$string3>";
+            if (~script6431 = true) {
+                .cc_settextfont(graphic_21207);
+                .cc_settextalign(^settextalign_centre, ^settextalign_centre, 15);
+                $string1 = "<$string2><br><$string3>";
+            }
+        } else {
+            if (struct_param($struct1, param_8112) = true) {
+                $string1 = $string2;
+            } else if (struct_param($struct1, param_8110) = true) {
+                $string1 = $string3;
+            }
+            if (string_length($string1) > 3 & ~script6431 = true) {
+                .cc_settextfont(graphic_17993);
+            }
+        }
+    }
+    .cc_settext($string1);
+}

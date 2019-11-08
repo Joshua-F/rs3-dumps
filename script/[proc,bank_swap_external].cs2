@@ -1,0 +1,155 @@
+// 5786
+[proc,bank_swap_external](int $int0, inv $inv1, int $int2, boolean $boolean3)(boolean)
+if ($inv1 = null) {
+    ~error("Inventory param $inv was null!");
+    return(false);
+}
+def_int $int4 = inv_size($inv1);
+if ($int2 < 0 | $int2 >= $int4) {
+    ~error("Integer param $slot was out of expected bounds!");
+    return(false);
+}
+if ($int0 < 0 | $int0 >= 1320) {
+    ~error("Integer param $bank_slot was out of expected bounds!");
+    return(false);
+}
+def_obj $obj5 = ~bank_get_object($int0);
+def_int $int6 = ~bank_get_num($int0);
+def_obj $obj7 = ~bank_get_invobject($inv1, $int2);
+def_int $int8 = ~bank_get_invnum($inv1, $int2);
+def_int $int9 = $int6;
+def_obj $obj10 = oc_uncert($obj7);
+if ($obj5 = null | $obj7 = null | $int6 < 1 | $int8 < 1 | ~script3994($obj10) = true) {
+    return(false);
+}
+def_int $int11 = %varplayer_160;
+def_obj $obj12 = oc_cert($obj5);
+def_obj $obj13 = null;
+if ($inv1 = inv_94) {
+    $int11 = 0;
+    $obj13 = ~script8156($obj10);
+    switch_int (~bank_deposit_worn_check($obj13, $int2, $obj7, $obj10, 1)) {
+        case 0 :
+        case 3 :
+            $obj7 = $obj13;
+            $obj10 = $obj13;
+        case 2 :
+            if (oc_stackable($obj5) = true) {
+                return(~bank_withdraw($obj5, $int6, $int0, $inv1, $int2, $int6, false));
+            } else {
+                return(~bank_withdraw($obj5, 1, $int0, $inv1, $int2, $int6, false));
+            }
+        case default :
+            return(false);
+    }
+} else if ($inv1 = inv_530) {
+    if (%varplayer_1831 ! null) {
+        $int9 = calc($int6 - ~script3970(inv_95, $obj5, $int6, $obj7, ~int_to_bool($int11)));
+        if ($int9 = 0) {
+            ~script2347($obj7, $obj10, ~bank_get_item_slot($inv1, $obj10), $int8, $int0, -1, inv_530, $int2, 1, 1);
+            ~script14187;
+            return(false);
+        }
+    } else {
+        return(false);
+    }
+} else if ($obj12 = $obj5) {
+    $int11 = 0;
+}
+def_int $int14 = ~bank_get_tab($int0);
+if (playermember = false & oc_members($obj7) = 0 & oc_members($obj5) = 1 & calc(~script5778 - ~script14294) <= 0) {
+    ~bank_mes("You need to subscribe if you wish to store any more items in the bank.");
+    return(false);
+}
+def_boolean $boolean15 = ~script3802($obj10);
+def_int $int16 = ~bank_get_item_slot($inv1, $obj10);
+def_int $int17 = 0;
+if ($int16 ! -1) {
+    $int17 = inv_getnum(inv_95, $int2);
+}
+def_int $int18 = -1;
+def_int $int19 = 0;
+def_int $int20 = 0;
+def_int $int21 = 1;
+$boolean3 = ~script5175($boolean3, $obj5);
+if ($int11 = 1 | oc_stackable($obj5) = true) {
+    $int18 = ~bank_find_inv($inv1, $obj12, 0);
+    if ($int18 ! -1) {
+        $int20 = ~bank_get_invnum($inv1, $int18);
+        $int19 = calc(^max_32bit_int - $int20);
+    }
+    if ($int6 = $int9 & $boolean3 = false) {
+        if ($int18 = -1) {
+            $int21 = 0;
+        } else if ($int19 >= $int9) {
+            $int21 = 0;
+        }
+    }
+} else if ($int6 = 1 & $boolean3 = false) {
+    $int21 = 0;
+}
+if ($int21 = 0) {
+    if ($int18 ! -1) {
+        ~script14362($int0, $int6, $obj5, $int6, $inv1, $int18, ~int_to_bool($int11), $boolean3);
+        ~script14363($inv1, $int2, $obj7, $obj10, $int8, $int0);
+        ~script14248($inv1, $obj7, $obj5);
+        return(true);
+    } else if ($int8 = 1 | $boolean15 = false) {
+        if ($int16 = -1) {
+            ~script14365($int0, $obj5, $obj12, $int6, $inv1, $int2, $obj7, $obj10, $int8, $int11);
+            ~script14248($inv1, $obj7, $obj5);
+            return(true);
+        }
+        if (calc(^max_32bit_int - $int17 - $int8) < 0) {
+            if ($obj10 = $obj5) {
+                ~script2347($obj7, $obj10, $int16, $int8, $int16, -1, $inv1, $int2, 1, 1);
+            }
+            return(false);
+        }
+        if (~script2347($obj7, $obj10, $int16, $int8, $int16, -1, $inv1, $int2, 1, 1) = 0) {
+            return(false);
+        }
+        if (~bank_get_invobject($inv1, $int2) ! null) {
+            return(false);
+        }
+        $int6 = ~bank_get_num($int0);
+        ~script14362($int0, $int6, $obj5, $int9, $inv1, $int2, ~int_to_bool($int11), $boolean3);
+        ~script6961($int0, $obj5, $boolean3);
+        ~script14248($inv1, $obj7, $obj5);
+        return(true);
+    }
+    ~error("<oc_debugname> x <tostring($int8)> couldn't swap with <oc_debugname> x <tostring($int6)>. An inventory object shouldn't need multiple bank slots.");
+    return(false);
+}
+if (~bank_itemspace($obj7, $int8) = 0) {
+    if ($obj7 = $obj5 & oc_stackable($obj7) = true) {
+        ~script2347($obj7, $obj10, $int16, $int8, $int16, -1, $inv1, $int2, 1, 1);
+    }
+    return(false);
+}
+if (%varplayer_8970 ! -1 & ~script14337 >= ~bank_get_size) {
+    $int16 = calc($int16 - ~bank_freespace_range(0, $int16));
+    $int0 = calc($int0 - ~bank_freespace_range(0, $int0));
+    ~bank_compress;
+}
+if (~script2347($obj7, $obj10, $int16, $int8, calc($int0 + 1), ~bank_get_tab($int0), $inv1, $int2, 1, 1) = 0) {
+    return(false);
+}
+if ($int18 ! -1) {
+    if ($int19 > 0 & $int19 >= $int9) {
+        return(true);
+    } else {
+        $int9 = min($int9, $int19);
+    }
+    $int2 = $int18;
+} else if (~bank_get_invobject($inv1, $int2) ! null) {
+    return(false);
+}
+$int6 = ~bank_get_num($int0);
+if (oc_stackable($obj5) = false & $int11 = 0) {
+    ~script14362($int0, $int6, $obj5, 1, $inv1, $int2, ~int_to_bool($int11), $boolean3);
+} else {
+    ~script14362($int0, $int6, $obj5, $int9, $inv1, $int2, ~int_to_bool($int11), $boolean3);
+}
+~script14248($inv1, $obj7, $obj5);
+return(true);

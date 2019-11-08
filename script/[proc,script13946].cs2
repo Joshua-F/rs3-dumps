@@ -1,72 +1,111 @@
 // 13946
 [proc,script13946]
-def_int $int0 = date_minutes;
-if_settext(~script3873(1), interface_762:com_280);
-if_settext(~script3873(2), interface_762:com_291);
-if (playermember = false) {
-    if_settext("Locked", interface_762:com_302);
-    if_settext("Locked", interface_762:com_313);
-    if_settext("Locked", interface_762:com_324);
-    if_sethide(false, interface_762:com_303);
-    if_sethide(false, interface_762:com_314);
-    if_sethide(false, interface_762:com_325);
-    if_setgraphic("rs3_bonds_icons_medium,0", interface_762:com_305);
-    if_setgraphic("rs3_bonds_icons_medium,0", interface_762:com_316);
-    if_setgraphic("rs3_bonds_icons_medium,0", interface_762:com_327);
-} else {
-    if_settext(~script3873(3), interface_762:com_302);
-    if_settext(~script3873(4), interface_762:com_313);
-    if_settext(~script3873(5), interface_762:com_324);
+cc_deleteall(interface_517:com_245);
+cc_deleteall(interface_517:com_246);
+cc_deleteall(interface_517:com_247);
+cc_deleteall(interface_517:com_251);
+cc_deleteall(interface_517:com_248);
+cc_deleteall(interface_517:com_249);
+cc_deleteall(interface_517:com_250);
+cc_create(interface_517:com_245, ^iftype_text, 0);
+cc_create(interface_517:com_247, ^iftype_text, 0);
+cc_create(interface_517:com_251, ^iftype_text, 0);
+cc_create(interface_517:com_248, ^iftype_text, 0);
+cc_create(interface_517:com_249, ^iftype_text, 0);
+cc_create(interface_517:com_250, ^iftype_text, 0);
+if_sethide(true, interface_517:com_254);
+def_int $int0 = 1;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "Displays whether this preset will load: Backpack | Worn | Beast of Burden";
+def_graphic $graphic5 = null;
+while ($int0 <= 11) {
+    switch_int (~script6963($int0)) {
+        case default :
+            $string0 = ~script3873($int0);
+            $string1 = "";
+            $graphic5 = null;
+        case 1 :
+            $string0 = "Locked";
+            $string1 = "This preset is only available to members.";
+            $graphic5 = "rs3_bonds_icons_medium,0";
+        case 3 :
+            $string0 = "Locked";
+            $string1 = "This preset will be unlocked on members worlds.";
+            $graphic5 = "rs3_bonds_icons_medium,0";
+        case 2 :
+            $string0 = "Locked";
+            $string1 = "This preset can be unlocked or rented for bonds.";
+            $graphic5 = invention_machine_icon_padlock_gold_36px;
+    }
+    $int2 = calc(1 - ~script7961($int0));
+    $int3 = calc(1 - ~script8021($int0));
+    $int4 = ~script8023($int0);
+    ~script14400(interface_517:com_245, 0, 30, 0, $int1, true, $int0);
+    cc_setonmouseover("script14390(event_com, event_comsubid)");
+    cc_setonmouseleave("script14391(event_com, event_comsubid)");
+    cc_setdragdeadtime(5);
+    cc_setdragdeadzone(5);
+    if ($int0 ! 11) {
+        ~cc_add_title_text(interface_517:com_246, 24, 30, 0, $int1, graphic_20280, tostring($int0));
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        cc_setdraggable(interface_517:com_244, -1);
+    } else {
+        ~script4512(interface_517:com_246, 24, 24, 3, calc($int1 + 3), child_tab_summon_familiar);
+    }
+    ~script14402(interface_517:com_247, $int0, 0, 30, 0, $int1);
+    if ($graphic5 = null) {
+        cc_setop(2, "Load");
+        cc_setop(3, "Reset");
+    }
+    cc_setonop("script13938(event_comsubid)");
+    cc_create(interface_517:com_251, ^iftype_graphic, $int0);
+    cc_setsize(30, 30, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, $int1, ^setpos_abs_right, ^setpos_abs_top);
+    cc_setgraphic($graphic5);
+    cc_create(interface_517:com_246, ^iftype_text, if_getnextsubid(interface_517:com_246));
+    cc_setsize(80, 30, ^setsize_minus, ^setsize_abs);
+    cc_setposition(30, $int1, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settext($string0);
+    cc_settextfont(graphic_17813);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    ~script6888(2);
+    if ($graphic5 = null) {
+        if ($int0 ! 11) {
+            ~script14397(interface_517:com_248, 24, 24, 0, calc($int1 + 3), ^setpos_abs_left, ^setpos_abs_top, ~script14389(93, $int2));
+            cc_setop(1, "Toggle");
+            ~script14397(interface_517:com_249, 24, 24, 0, calc($int1 + 3), ^setpos_abs_left, ^setpos_abs_top, ~script14389(94, $int3));
+            cc_setop(1, "Toggle");
+            ~script14397(interface_517:com_250, 24, 24, 0, calc($int1 + 3), ^setpos_abs_left, ^setpos_abs_top, ~script14389(530, $int4));
+            cc_setop(1, "Toggle");
+        } else {
+            cc_create(interface_517:com_248, ^iftype_text, $int0);
+            cc_create(interface_517:com_249, ^iftype_text, $int0);
+            ~script14397(interface_517:com_250, 24, 24, 0, calc($int1 + 3), ^setpos_abs_left, ^setpos_abs_top, ~script14389(530, 1));
+            cc_setop(1, "Toggle");
+        }
+        cc_create(interface_517:com_246, ^iftype_text, if_getnextsubid(interface_517:com_246));
+        cc_setsize(50, 30, ^setsize_abs, ^setsize_abs);
+        cc_setposition(0, $int1, ^setpos_abs_right, ^setpos_abs_top);
+        cc_setonmouserepeat("script8799($string2, event_com, event_comsubid)");
+    } else {
+        cc_create(interface_517:com_248, ^iftype_text, $int0);
+        cc_create(interface_517:com_249, ^iftype_text, $int0);
+        cc_create(interface_517:com_250, ^iftype_text, $int0);
+        cc_create(interface_517:com_246, ^iftype_rectangle, if_getnextsubid(interface_517:com_246));
+        cc_setsize(0, 30, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, $int1, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setcolour(^black);
+        cc_setfill(true);
+        cc_settrans(100);
+    }
+    $int1 = calc($int1 + 32);
+    $int0 = calc($int0 + 1);
 }
-if (%varplayerbit_22153 = 0 & %varplayer_4292 < $int0) {
-    if_settext("Locked", interface_762:com_335);
-    if_setgraphic(hud_combat_btn_unlocked, interface_762:com_338);
-    if_sethide(false, interface_762:com_336);
-} else {
-    if_settext(~script3873(6), interface_762:com_335);
-    if_setgraphic(~script13947(%varplayer_4292), interface_762:com_338);
-    if_sethide(true, interface_762:com_336);
-}
-if (%varplayerbit_22154 = 0 & %varplayer_4293 < $int0) {
-    if_settext("Locked", interface_762:com_346);
-    if_setgraphic(hud_combat_btn_unlocked, interface_762:com_349);
-    if_sethide(false, interface_762:com_347);
-} else {
-    if_settext(~script3873(7), interface_762:com_346);
-    if_setgraphic(~script13947(%varplayer_4293), interface_762:com_349);
-    if_sethide(true, interface_762:com_347);
-}
-if (%varplayerbit_22155 = 0 & %varplayer_4294 < $int0) {
-    if_settext("Locked", interface_762:com_357);
-    if_setgraphic(hud_combat_btn_unlocked, interface_762:com_360);
-    if_sethide(false, interface_762:com_358);
-} else {
-    if_settext(~script3873(8), interface_762:com_357);
-    if_setgraphic(~script13947(%varplayer_4294), interface_762:com_360);
-    if_sethide(true, interface_762:com_358);
-}
-if (%varplayerbit_22156 = 0 & %varplayer_4295 < $int0) {
-    if_settext("Locked", interface_762:com_368);
-    if_setgraphic(hud_combat_btn_unlocked, interface_762:com_371);
-    if_sethide(false, interface_762:com_369);
-} else {
-    if_settext(~script3873(9), interface_762:com_368);
-    if_setgraphic(~script13947(%varplayer_4295), interface_762:com_371);
-    if_sethide(true, interface_762:com_369);
-}
-if (%varplayerbit_22157 = 0 & %varplayer_4296 < $int0) {
-    if_settext("Locked", interface_762:com_379);
-    if_setgraphic(hud_combat_btn_unlocked, interface_762:com_382);
-    if_sethide(false, interface_762:com_380);
-} else {
-    if_settext(~script3873(10), interface_762:com_379);
-    if_setgraphic(~script13947(%varplayer_4296), interface_762:com_382);
-    if_sethide(true, interface_762:com_380);
-}
-if (map_members = false) {
-    if_settext("Locked", interface_762:com_389);
-    if_sethide(false, interface_762:com_392);
-} else {
-    if_settext("Beast of Burden", interface_762:com_389);
-    if_sethide(true, interface_762:com_392);
-}
+$string1 = "If your preset has an augmented item this will only load the item with matching perks.<br><br>If the augmented item isn't loading, re-save your preset";
+~static_checkbox_create(interface_517:com_284, interface_517:com_285, "Exact Matching", $string1, $string1, %varplayerbit_45228);

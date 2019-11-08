@@ -1,23 +1,43 @@
 // 2483
-[proc,script2483]
-def_int $int0 = if_getwidth(interface_1923:com_8);
-if (%varplayer_7879 = 1) {
-    if_setsize(650, 0, ^setsize_minus, ^setsize_minus, interface_1923:com_8);
-} else if ($int0 <= 330) {
-    if_setsize(450, 0, ^setsize_minus, ^setsize_minus, interface_1923:com_8);
-} else {
-    if_setsize(650, 0, ^setsize_minus, ^setsize_minus, interface_1923:com_8);
+[proc,script2483](inv $inv0, int $int1, obj $obj2, int $int3)(int)
+if ($int1 = -1) {
+    $int1 = ~script5797(%varplayerbit_45141);
 }
-$int0 = if_getwidth(interface_1923:com_8);
-if ($int0 <= 330) {
-    if (%varplayer_7879 = 1) {
-        if_setposition(0, 80, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1923:com_12);
-        if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1923:com_11);
-    } else {
-        if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, interface_1923:com_11);
-        if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom, interface_1923:com_12);
+def_int $int4 = $int1;
+def_int $int5 = ~script14337;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = ~bank_get_tab($int4);
+def_int $int9 = ~script14374($int8);
+if ($int9 = 1) {
+    $int9 = 0;
+}
+def_int $int10 = 0;
+$int6, $int7 = ~bank_get_tab_range($int9);
+while ($int10 <= 15) {
+    if (calc($int7 - $int6) > 0) {
+        $int4 = ~bank_find_placeholder($obj2, $int4, $int7);
+        if ($int4 >= $int7) {
+            $int4 = -1;
+        }
+        while ($int4 ! -1) {
+            ~script14363($inv0, -1, $obj2, $obj2, 1, $int4);
+            if (--$int3 <= 0) {
+                return(0);
+            }
+            $int4 = ~bank_find_placeholder($obj2, $int4, $int7);
+            if ($int4 > $int7) {
+                $int4 = -1;
+            }
+        }
     }
-} else {
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, interface_1923:com_11);
-    if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom, interface_1923:com_12);
+    if (++$int9 > 15) {
+        $int9 = 0;
+    } else if ($int9 = 1) {
+        $int9 = 2;
+    }
+    $int6, $int7 = ~bank_get_tab_range(~script14372($int9));
+    $int4 = $int6;
+    $int10 = calc($int10 + 1);
 }
+return($int3);

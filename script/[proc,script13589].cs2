@@ -1,14 +1,32 @@
 // 13589
-[proc,script13589](enum $enum0)(boolean)
-def_int $int1 = 0;
+[proc,script13589](struct $struct0)(boolean)
+def_enum $enum1 = struct_param($struct0, param_8072);
 def_int $int2 = 0;
 def_int $int3 = 0;
-if ($enum0 = null) {
+def_int $int4 = 0;
+if ($enum1 = null) {
     return(false);
 }
-if (%varplayerbit_35406 = 1) {
-    $int1, $int2, $int3 = ~cheevo_tally_enum($enum0);
-    if ($int1 >= $int2) {
+if (struct_param($struct0, param_1294) = 62) {
+    if (~cheevo_requirements_met(enum(int, struct, $enum1, 0)) = 0) {
+        return(true);
+    }
+} else if (~cheevo_requirements_met($struct0) = 0) {
+    return(true);
+}
+if (%varplayerbit_44752 = 1 & %varplayerbit_44753 = 1) {
+    $int2, $int3, $int4 = ~script8218($enum1);
+    if ($int2 >= $int3) {
+        return(true);
+    }
+} else if (%varplayerbit_44753 = 1) {
+    $int2, $int3, $int4 = ~cheevo_tally_enum_locked($enum1);
+    if ($int2 >= $int3) {
+        return(true);
+    }
+} else if (%varplayerbit_44752 = 1) {
+    $int2, $int3, $int4 = ~cheevo_tally_enum($enum1);
+    if ($int2 >= $int3) {
         return(true);
     }
 }

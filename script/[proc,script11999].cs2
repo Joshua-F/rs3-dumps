@@ -1,0 +1,35 @@
+// 11999
+[proc,script11999](component $component0, component $component1, component $component2, int $int3)
+def_int $int4 = if_getwidth($component0);
+if ($int3 = 1) {
+    if_setgraphic("chat_v2_settings_over,6", $component1);
+} else if (%varplayerbit_45115 = 1) {
+    if_setgraphic("chat_v2_settings_on,6", $component1);
+    if ($int4 >= 110) {
+        switch_int (%varplayerbit_16789) {
+            case 1 :
+                if_settext("Show all Curses", $component0);
+            case 0 :
+                if_settext("Show all Prayers", $component0);
+        }
+    } else if ($int4 >= calc(110 / 2)) {
+        if_settext("Show All", $component0);
+    } else {
+        if_settext("", $component0);
+    }
+} else {
+    if_setgraphic("chat_v2_settings_off,6", $component1);
+    if ($int4 >= 110) {
+        switch_int (%varplayerbit_16789) {
+            case 1 :
+                if_settext("Filter Unusable Curses", $component0);
+            case 0 :
+                if_settext("Filter Unusable Prayers", $component0);
+        }
+    } else if ($int4 >= calc(110 / 2)) {
+        if_settext("Filter", $component0);
+    } else {
+        if_settext("", $component0);
+    }
+}
+~script12014($component2);

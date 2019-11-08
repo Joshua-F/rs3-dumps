@@ -1,0 +1,86 @@
+// 13830
+[clientscript,script13830](int $int0)
+if ($int0 < 5) {
+    if_setontimer("script13830(calc($int0 + 1))", interface_517:com_226);
+    return;
+}
+if_setontimer(null, interface_517:com_226);
+~bank_clear_size;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = 0;
+$int2, $int1, $int3 = ~script5779;
+$int2 = calc($int2 - $int1);
+def_int $int4 = 0;
+def_obj $obj5 = null;
+def_int $int6 = 0;
+def_int $int7 = 0;
+while ($int4 < 1320) {
+    $obj5 = inv_getobj(inv_95, $int4);
+    if ($obj5 ! null) {
+        $int6 = calc($int6 + 1);
+        if (oc_members($obj5) = 0) {
+            $int7 = calc($int7 + 1);
+        }
+    }
+    $int4 = calc($int4 + 1);
+}
+def_int $int8 = calc($int6 - $int7);
+def_boolean $boolean9 = true;
+def_boolean $boolean10 = true;
+if_sethide(false, interface_517:com_227);
+def_string $string0 = "You already own all available bank boosters.";
+def_string $string1 = "Total number of bank spaces used and available.";
+def_string $string2 = "";
+if (calc(14 - $int3) > 0) {
+    $boolean9 = false;
+    $string0 = "Bank boosters are available for purchase!";
+    if (playermember = true) {
+        $string1 = "<$string1><br><br>You may purchase an additional <tostring(calc((14 - $int3) * 50))> bank spaces from Solomon's Store.";
+    }
+}
+if (playermember = true) {
+    if_settext(tostring_localised($int6, true), interface_517:com_230);
+    if_settext(tostring_localised(~bank_get_members_size, true), interface_517:com_231);
+} else {
+    if ($int8 > 500) {
+        $int7 = calc($int7 + ($int8 - 500));
+        $int8 = 500;
+    }
+    $string1 = "<$string1><br><br>Free spaces are displayed on the left and members spaces to the right.<br>Items within the members spaces do not count towards your limit for non-members items.";
+    $string2 = ~script13865($string2, $int8);
+    $string2 = ~script13865($string2, $int7);
+    if_settext("<tostring_localised($int7, true)>       <$string2><tostring_localised($int8, true)>", interface_517:com_230);
+    if_settext("<tostring_localised(~script5778, true)>       <tostring_localised(500, true)>", interface_517:com_231);
+}
+if_setonmouserepeat("script8799($string1, event_com, event_comsubid)", interface_517:com_227);
+if (%varplayerbit_39917 < 98) {
+    $boolean9 = true;
+    $string0 = "";
+}
+~script13959(interface_517:com_233, struct_28222, $boolean9);
+~script13959(interface_517:com_234, struct_31846, $boolean9);
+if ($boolean9 = false) {
+    if (playermember = true) {
+        if (~script11847 = true) {
+            $string0 = "Select to claim your free members bank booster";
+            $boolean10 = false;
+        } else if (calc($int1 + $int2 - $int6) <= 20) {
+            $string0 = "You are running low on bank space.<br><$string0>.";
+            $boolean10 = false;
+        }
+    } else {
+        if (~script11847 = true) {
+            $string0 = "As a member you would be entitled to claim free bank boosters.<br>Click here to subscribe.";
+        }
+        if (calc($int1 - $int7) <= 20) {
+            $string0 = "You are running low on bank space.<br><$string0>.";
+            $boolean10 = false;
+        }
+    }
+    if_setop(1, "Select", interface_517:com_232);
+} else {
+    if_clearops(interface_517:com_232);
+}
+if_sethide($boolean10, interface_517:com_235);
+if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", interface_517:com_232);

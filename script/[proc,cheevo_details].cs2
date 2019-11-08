@@ -4,15 +4,33 @@ if ($struct0 = null) {
     return("");
 }
 def_string $string0 = struct_param($struct0, param_6411);
+if (~script6431 = true & string_length(struct_param($struct0, param_8069)) > 0) {
+    $string0 = struct_param($struct0, param_8069);
+    if (string_length(struct_param($struct0, param_8068)) > 0 & %varplayerbit_11754 > 0) {
+        $string0 = struct_param($struct0, param_8068);
+    }
+} else if (string_length(struct_param($struct0, param_8067)) > 0 & %varplayerbit_11754 > 0) {
+    $string0 = struct_param($struct0, param_8067);
+}
 if (string_length(struct_param($struct0, param_4586)) > 0 & ~ironman_mode = true) {
     $string0 = struct_param($struct0, param_4586);
 }
-if ($struct0 = struct_38124) {
-    if (%varplayerbit_11754 = 0) {
-        $string0 = "Complete a task from each Slayer Master consecutively, starting with Turael and ending with Morvran.";
-    } else {
-        $string0 = "Complete a task from each Slayer Master consecutively, starting with Spria and ending with Morvran.";
-    }
+if (struct_param($struct0, param_8072) ! null) {
+    $string0 = struct_param($struct0, param_6969);
+}
+switch_struct ($struct0) {
+    case struct_38124 :
+        if (%varplayerbit_11754 = 0) {
+            $string0 = "Complete a task from each Slayer Master consecutively, starting with Turael and ending with Morvran.";
+        } else {
+            $string0 = "Complete a task from each Slayer Master consecutively, starting with Spria and ending with Morvran.";
+        }
+    case struct_36728 :
+        if (%varplayerbit_36140 >= 100) {
+            $string0 = " Complete the Easy Tasks and then speak to Hassan in Menaphos to claim your reward.";
+        } else {
+            $string0 = " Complete the Easy Tasks and then speak to Hassan in Al Kharid Palace to claim your reward.";
+        }
 }
 def_string $string1 = "";
 def_int $int2 = 0;
@@ -26,53 +44,7 @@ if (struct_param($struct0, param_1345) > 0) {
         ~error("quest_struct_quest param not specified on quest #<tostring(struct_param($struct0, param_1345))>.");
         return($string0);
     }
-    switch_int (quest_param($quest3, param_7889)) {
-        case 1 :
-            switch_int (~quest_difficulty($quest3)) {
-                case 0 :
-                    return("Complete this Novice miniquest.");
-                case 1 :
-                    return("Complete this Intermediate miniquest.");
-                case 2 :
-                    return("Complete this Experienced miniquest.");
-                case 3 :
-                    return("Complete this Master miniquest.");
-                case 4 :
-                    return("Complete this Grandmaster miniquest.");
-                case 5 :
-                    return("Complete this Special miniquest.");
-            }
-        case 2 :
-            switch_int (~quest_difficulty($quest3)) {
-                case 0 :
-                    return("Complete this Novice saga.");
-                case 1 :
-                    return("Complete this Intermediate saga.");
-                case 2 :
-                    return("Complete this Experienced saga.");
-                case 3 :
-                    return("Complete this Master saga.");
-                case 4 :
-                    return("Complete this Grandmaster saga.");
-                case 5 :
-                    return("Complete this Special saga.");
-            }
-        case default :
-            switch_int (~quest_difficulty($quest3)) {
-                case 0 :
-                    return("Complete this Novice quest.");
-                case 1 :
-                    return("Complete this Intermediate quest.");
-                case 2 :
-                    return("Complete this Experienced quest.");
-                case 3 :
-                    return("Complete this Master quest.");
-                case 4 :
-                    return("Complete this Grandmaster quest.");
-                case 5 :
-                    return("Complete this Special quest.");
-            }
-    }
+    return(~script8220($quest3));
 } else if (struct_param($struct0, param_1346) > 0) {
     return("Defeat this boss at least once.");
 } else if (string_length(struct_param($struct0, param_4586)) > 0 & ~ironman_mode = true) {
