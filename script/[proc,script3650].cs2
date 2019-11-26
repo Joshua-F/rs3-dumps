@@ -1,0 +1,78 @@
+// 3650
+[proc,script3650](component $component0, component $component1, int $int2)
+def_dbrow $dbrow3 = ~script3602($int2);
+def_int $int4 = ~script3610($dbrow3);
+def_int $int5 = ~script3606($int2);
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_obj $obj9 = null;
+def_npc $npc10 = null;
+def_loc $loc11 = null;
+def_boolean $boolean12 = false;
+def_string $string0 = "";
+def_int $int13 = db_getfieldcount($dbrow3, dbtable_74:col7);
+def_int $int14 = if_getwidth($component1);
+if (if_gethide(interface_634:com_29) = true) {
+    $int14 = calc($int14 - 16);
+}
+def_boolean $boolean15 = db_getfield($dbrow3, dbtable_74:col8, 0);
+def_int $int16 = ~script3604($int2);
+cc_deleteall($component1);
+switch_int ($int2) {
+    case 0 :
+        $string0 = "A";
+    case 1 :
+        $string0 = "B";
+}
+if (db_getfieldcount($dbrow3, dbtable_74:col1) > 0) {
+    if_settext("Task <$string0> - <db_getfield($dbrow3, dbtable_74:col1, 0)>", $component0);
+} else {
+    if_settext("Task <$string0>", $component0);
+}
+def_int $int17 = 0;
+$int5 = ~script3606($int2);
+while ($int5 < $int13) {
+    $int7, $int6, $int8, $obj9, $npc10, $loc11, $boolean12, $string0 = db_getfield($dbrow3, dbtable_74:col7, $int5);
+    if ($int7 <= $int4) {
+        if ($boolean12 = true & calc($int6 & %varplayer_9062) ! 0) {
+            if (string_length($string0) = 0 & $obj9 ! null) {
+                $string0 = oc_name($obj9);
+            }
+            cc_create($component1, ^iftype_text, if_getnextsubid($component1));
+            cc_setcolour(^white);
+            cc_settext($string0);
+            cc_settextfont(graphic_17993);
+            cc_setposition(8, $int17, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize(32, 64, ^setsize_minus, ^setsize_abs);
+            if ($boolean15 = true) {
+                cc_create($component1, ^iftype_graphic, if_getnextsubid($component1));
+                cc_setposition(4, $int17, ^setpos_abs_right, ^setpos_abs_top);
+                cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
+                cc_setgraphic(runepass_tickbox);
+                if (testbit($int16, $int8) = ^true) {
+                    cc_create($component1, ^iftype_graphic, if_getnextsubid($component1));
+                    cc_setposition(0, $int17, ^setpos_abs_right, ^setpos_abs_top);
+                    cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
+                    cc_setgraphic(runepass_tick);
+                }
+            }
+            $int17 = calc($int17 + 16 + ~script7593($string0, calc($int14 - 32), graphic_17993, -1));
+        }
+        $int5 = calc($int5 + 1);
+    } else {
+        $int5 = $int13;
+    }
+}
+if_setscrollsize(0, $int17, interface_634:com_33);
+if (if_getscrolly(interface_634:com_33) > if_getscrollheight(interface_634:com_33)) {
+    if_setscrollpos(0, if_getscrollheight(interface_634:com_33), interface_634:com_33);
+}
+if ($int17 < if_getheight(interface_634:com_33)) {
+    if_sethide(true, interface_634:com_29);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_634:com_33);
+} else {
+    if_sethide(false, interface_634:com_29);
+    if_setsize(16, 0, ^setsize_minus, ^setsize_minus, interface_634:com_33);
+}
+~scrollbar_vertical_existing(interface_634:com_31, interface_634:com_29, interface_634:com_33);

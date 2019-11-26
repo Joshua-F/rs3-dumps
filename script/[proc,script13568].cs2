@@ -6,8 +6,13 @@ def_stat $stat2 = null;
 def_int $int3 = 0;
 while ($int0 < $int1) {
     $stat2 = enum(int, stat, enum_681, calc($int0 + 1));
-    if ($stat2 ! null & stat_base_actual($stat2) >= enum(stat, int, enum_10865, $stat2)) {
-        $int3 = setbit($int3, $int0);
+    if ($stat2 ! null) {
+        if (stat_base_actual($stat2) >= enum(stat, int, enum_10865, $stat2)) {
+            $int3 = setbit($int3, $int0);
+        }
+        if (date_runeday <= 6725 & ($stat2 = farming | $stat2 = herblore) & stat_base_actual($stat2) >= 99) {
+            $int3 = setbit($int3, $int0);
+        }
     }
     $int0 = calc($int0 + 1);
 }
