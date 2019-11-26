@@ -13,6 +13,7 @@ def_struct $struct15 = null;
 def_struct $struct16 = null;
 def_struct $struct17 = ~script13032;
 def_string $string0 = "";
+def_boolean $boolean18 = ~script6431;
 while ($int4 <= $int5) {
     $int6 = enum(int, int, $enum2, $int4);
     $int7 = ~script13857($int6);
@@ -30,7 +31,7 @@ while ($int4 <= $int5) {
         }
     } else if (%varplayerbit_22875 = 1) {
         $int9 = 22;
-    } else if (%varplayerbit_22875 = 2 & ~script6431 = true) {
+    } else if (%varplayerbit_22875 = 2 & $boolean18 = true) {
         $int9 = 50;
     }
     if ($boolean13 = false) {
@@ -56,20 +57,22 @@ while ($int4 <= $int5) {
     if (%varplayerbit_27169 = 1 & compare(struct_param($struct14, param_4471), "") ! 0) {
         $string0 = struct_param($struct14, param_4471);
     }
-    if (~script6431 = true & compare(struct_param($struct14, param_8095), "") ! 0) {
-        $string0 = struct_param($struct14, param_8095);
-    }
-    if (~script6431 = false) {
+    if ($boolean18 = false) {
         if (cc_find($component0, $int4) = true) {
             ~script723($component0, $struct16, $int8, $int4);
         } else {
             ~script11625($component0, null, $struct16, 0, 0, $int4, $int8);
         }
-    } else if (cc_find($component0, $int4) = true) {
-        cc_setsize(50, 50, ^setsize_abs, ^setsize_abs);
     } else {
-        cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
-        cc_setsize(50, 50, ^setsize_abs, ^setsize_abs);
+        if (cc_find($component0, $int4) = true) {
+            cc_setsize(50, 50, ^setsize_abs, ^setsize_abs);
+        } else {
+            cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+            cc_setsize(50, 50, ^setsize_abs, ^setsize_abs);
+        }
+        if (compare(struct_param($struct14, param_8095), "") ! 0) {
+            $string0 = struct_param($struct14, param_8095);
+        }
     }
     if (cc_find($component0, $int4) = true) {
         cc_setparam(param_3536, $int6);
@@ -81,7 +84,7 @@ while ($int4 <= $int5) {
                 if ($boolean13 = false) {
                     cc_setonop("script8146($int6)");
                     cc_setop(1, "Close");
-                    if (($int6 = 17 | $int8 = 1) & ~script6431 = true) {
+                    if (($int6 = 17 | $int8 = 1) & $boolean18 = true) {
                         cc_setop(1, "Open");
                     }
                     if (%varplayerbit_27169 = 1) {
@@ -133,6 +136,9 @@ while ($int4 <= $int5) {
             cc_settrans(0);
         } else {
             cc_settrans(0);
+        }
+        if ($struct14 = struct_21186 & ~runepass_get_current ! null) {
+            cc_setonvartransmit("script13833(interface_1431:com_0, interface_1431:com_11){varplayer_9062, varplayer_9078, varplayer_9080, varplayer_9081, varplayer_9082}");
         }
     }
     $int4 = calc($int4 + 1);

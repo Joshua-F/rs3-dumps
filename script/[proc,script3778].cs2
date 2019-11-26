@@ -1,0 +1,66 @@
+// 3778
+[proc,script3778](dbrow $dbrow0, component $component1)
+if ($dbrow0 = null) {
+    return;
+}
+def_int $int2 = min(calc(db_getfield($dbrow0, dbtable_73:col18, 0) - 1), max(0, calc(%varplayer_9078 - 1)));
+def_int $int3 = min(calc(db_getfield($dbrow0, dbtable_73:col18, 0) - 1), %varplayer_9078);
+def_int $int4 = -1;
+def_int $int5 = db_getfieldcount($dbrow0, dbtable_73:col13);
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = -1;
+def_int $int10 = -1;
+if ($int2 = calc(db_getfield($dbrow0, dbtable_73:col18, 0) - 1)) {
+    $int9, $int7, $int8 = db_getfield($dbrow0, dbtable_73:col12, $int2);
+    if (if_find($component1) = true) {
+        cc_setposition(calc($int7 - cc_getwidth / 2), calc($int8 - cc_getheight / 2), ^setpos_abs_left, ^setpos_abs_top);
+        cc_set2dangle(0);
+        return;
+    }
+}
+def_int $int11 = 0;
+while ($int11 < $int5 & $int9 < $int2) {
+    $int9, $int10, $int7, $int8 = db_getfield($dbrow0, dbtable_73:col13, $int11);
+    if ($int11 < $int5 & $int9 < $int2) {
+        $int11 = calc($int11 + 1);
+    }
+}
+if ($int9 = $int2) {
+    $int4 = $int11;
+}
+while ($int11 < $int5 & $int9 = $int2) {
+    $int9, $int10, $int7, $int8 = db_getfield($dbrow0, dbtable_73:col13, $int11);
+    if ($int11 < $int5 & $int9 = $int2) {
+        $int11 = calc($int11 + 1);
+    }
+}
+$int6 = calc($int11 - $int4);
+def_int $int12 = 0;
+if (~script3605(0) > 0) {
+    $int12 = max($int12, calc(1000 * ~script3603(0) / ~script3605(0)));
+}
+if (~script3605(1) > 0) {
+    $int12 = max($int12, calc(1000 * ~script3603(1) / ~script3605(1)));
+}
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = 0;
+$int9, $int13, $int14 = db_getfield($dbrow0, dbtable_73:col12, $int2);
+$int9, $int15, $int16 = db_getfield($dbrow0, dbtable_73:col12, $int3);
+def_int $int17 = calc(1000 / ($int6 + 1));
+def_int $int18 = calc($int12 / $int17);
+def_int $int19 = calc($int12 % $int17);
+$int18 = min($int18, $int6);
+if ($int18 > 0) {
+    $int9, $int10, $int13, $int14 = db_getfield($dbrow0, dbtable_73:col13, calc($int4 + $int18 - 1));
+}
+if ($int18 < $int6) {
+    $int9, $int10, $int15, $int16 = db_getfield($dbrow0, dbtable_73:col13, calc($int4 + $int18));
+}
+if (if_find($component1) = true) {
+    cc_setposition(calc(($int13 * ($int17 - $int19) + $int15 * $int19) / $int17 - cc_getwidth / 2), calc(($int14 * ($int17 - $int19) + $int16 * $int19) / $int17 - cc_getheight / 2), ^setpos_abs_left, ^setpos_abs_top);
+    cc_set2dangle(calc((scale(calc(atan2(calc($int16 - $int14), calc($int13 - $int15)) - 4096), 16384, 65536) + 32768) % 65536));
+}

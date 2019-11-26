@@ -91,6 +91,10 @@ switch_int ($int14) {
         }
         if_setnpcmodel($npc11, interface_90:com_86);
         if_setmodelanim(bas_getanim_ready($bas13), interface_90:com_86);
+        if_setmodelangle(0, 0, nc_param($npc11, param_3864), nc_param($npc11, param_3865), 0, $int12, interface_90:com_86);
+        if ($npc11 = npc_14886) {
+            if_setposition(39, 18, ^setpos_abs_left, ^setpos_abs_top, interface_90:com_86);
+        }
         if ($int12 > 200) {
             if_setmodelzoom($int12, interface_90:com_86);
         }
@@ -108,4 +112,9 @@ switch_int ($int14) {
             ~script13972(interface_90:com_136, interface_90:com_137, struct_28595, "Farmhands", 1);
             ~script4197($dbrow22);
         }
+}
+if (db_getfield($dbrow22, dbtable_39:col1, 0) = 2) {
+    if_sethide(true, interface_90:com_59);
+} else {
+    if_sethide(false, interface_90:com_59);
 }

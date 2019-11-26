@@ -10,11 +10,19 @@ $stat1, $stat2, $stat3, $stat4, $stat5, $stat6 = ~script790;
 def_int $int7 = 0;
 def_int $int8 = 0;
 def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
 if (stat_base_actual(dungeoneering) < 120 & $stat1 ! dungeoneering & $stat2 ! dungeoneering & $stat3 ! dungeoneering & $stat4 ! dungeoneering & $stat5 ! dungeoneering) {
     $int7 = 1;
 }
 if (stat_base_actual(slayer) < 120 & $stat1 ! slayer & $stat2 ! slayer & $stat3 ! slayer & $stat4 ! slayer & $stat5 ! slayer) {
     $int9 = 1;
+}
+if (stat_base_actual(farming) < 120 & $stat1 ! farming & $stat2 ! farming & $stat3 ! farming & $stat4 ! farming & $stat5 ! farming) {
+    $int10 = 1;
+}
+if (stat_base_actual(herblore) < 120 & $stat1 ! herblore & $stat2 ! herblore & $stat3 ! herblore & $stat4 ! herblore & $stat5 ! herblore) {
+    $int11 = 1;
 }
 if (stat_base_actual(invention) < 120 & $stat1 ! invention & $stat2 ! invention & $stat3 ! invention & $stat4 ! invention & $stat5 ! invention) {
     if (~invent_skill_unlocked = true) {
@@ -23,39 +31,44 @@ if (stat_base_actual(invention) < 120 & $stat1 ! invention & $stat2 ! invention 
         return(false);
     }
 }
+def_stat $statarray0(5);
+def_int $int12 = 0;
+def_int $int13 = 0;
 if (stat_base_actual($stat6) = 99) {
+    if ($int8 = 1) {
+        $statarray0($int12) = invention;
+        $int12 = calc($int12 + 1);
+    }
+    if ($int9 = 1) {
+        $statarray0($int12) = slayer;
+        $int12 = calc($int12 + 1);
+    }
     if ($int7 = 1) {
-        if ($int9 = 1) {
-            if ($int8 = 1) {
-                $stat3 = dungeoneering;
-                $stat4 = slayer;
-                $stat5 = invention;
-            } else if ($stat5 ! invention) {
-                $stat4 = dungeoneering;
-                $stat5 = slayer;
-            } else {
-                $stat3 = dungeoneering;
-                $stat4 = slayer;
-            }
-        } else if ($int8 = 1) {
-            $stat4 = dungeoneering;
-            $stat5 = invention;
-        } else if ($stat5 ! invention) {
-            $stat5 = dungeoneering;
-        } else {
-            $stat4 = dungeoneering;
+        $statarray0($int12) = dungeoneering;
+        $int12 = calc($int12 + 1);
+    }
+    if ($int10 = 1) {
+        $statarray0($int12) = farming;
+        $int12 = calc($int12 + 1);
+    }
+    if ($int11 = 1) {
+        $statarray0($int12) = herblore;
+        $int12 = calc($int12 + 1);
+    }
+    while ($int13 < $int12) {
+        switch_int ($int13) {
+            case 0 :
+                $stat5 = $statarray0(0);
+            case 1 :
+                $stat4 = $statarray0(1);
+            case 2 :
+                $stat3 = $statarray0(2);
+            case 3 :
+                $stat2 = $statarray0(3);
+            case 4 :
+                $stat1 = $statarray0(4);
         }
-    } else if ($int9 = 1) {
-        if ($int8 = 1) {
-            $stat4 = slayer;
-            $stat5 = invention;
-        } else if ($stat5 ! invention) {
-            $stat5 = slayer;
-        } else {
-            $stat4 = slayer;
-        }
-    } else if ($int8 = 1) {
-        $stat5 = invention;
+        $int13 = calc($int13 + 1);
     }
 }
 if ($stat0 = $stat1 | $stat0 = $stat2 | $stat0 = $stat3 | $stat0 = $stat4 | $stat0 = $stat5) {

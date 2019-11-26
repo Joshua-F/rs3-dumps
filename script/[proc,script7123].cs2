@@ -6,56 +6,86 @@ if (%varplayer_1170 = null | %varplayer_1170 = obj_0) {
 def_obj $obj0 = %varplayer_1170;
 if ($obj0 = null) {
     if_sethide(true, interface_1370:com_5);
-    if_sethide(true, interface_1370:com_11);
-    if_sethide(true, interface_1370:com_19);
+    if_sethide(true, interface_1370:com_15);
+    if_sethide(true, interface_1370:com_23);
     return;
 } else {
     if_sethide(false, interface_1370:com_5);
-    if_sethide(false, interface_1370:com_11);
-    if_sethide(false, interface_1370:com_19);
+    if_sethide(false, interface_1370:com_15);
+    if_sethide(false, interface_1370:com_23);
 }
 def_obj $obj1 = oc_param($obj0, param_2989);
 if ($obj1 = null) {
     $obj1 = $obj0;
 }
+def_int $int2 = oc_param($obj0, param_3858);
+if ($int2 > -1) {
+    if_sethide(false, interface_1370:com_9);
+    if_sethide(false, interface_1370:com_8);
+    if_sethide(false, interface_1370:com_7);
+    switch_int ($int2) {
+        case 0 :
+            if_setgraphic("stat_star,0", interface_1370:com_9);
+            if_setgraphic("stat_star,1", interface_1370:com_8);
+            if_setgraphic("stat_star,1", interface_1370:com_7);
+        case 1 :
+            if_setgraphic("stat_star,0", interface_1370:com_9);
+            if_setgraphic("stat_star,0", interface_1370:com_8);
+            if_setgraphic("stat_star,1", interface_1370:com_7);
+        case 2 :
+            if_setgraphic("stat_star,0", interface_1370:com_9);
+            if_setgraphic("stat_star,0", interface_1370:com_8);
+            if_setgraphic("stat_star,0", interface_1370:com_7);
+    }
+} else {
+    if_sethide(true, interface_1370:com_9);
+    if_sethide(true, interface_1370:com_8);
+    if_sethide(true, interface_1370:com_7);
+}
 if (oc_param($obj0, param_5491) ! null) {
-    if_setgraphic(oc_param($obj0, param_5491), interface_1370:com_8);
-    if_setsize(32, 32, ^setsize_abs, ^setsize_abs, interface_1370:com_8);
+    if_setgraphic(oc_param($obj0, param_5491), interface_1370:com_12);
+    if_setsize(32, 32, ^setsize_abs, ^setsize_abs, interface_1370:com_12);
 } else {
     if (oc_param($obj0, param_2653) > 1) {
-        if_setobject($obj1, oc_param($obj0, param_2653), interface_1370:com_8);
+        if_setobject($obj1, oc_param($obj0, param_2653), interface_1370:com_12);
+    } else if (oc_param($obj0, param_3860) > 1) {
+        if_setobject($obj1, oc_param($obj0, param_3860), interface_1370:com_12);
     } else {
-        if_setobject_nonum($obj1, -1, interface_1370:com_8);
+        if_setobject_nonum($obj1, -1, interface_1370:com_12);
     }
-    if_setsize(36, 32, ^setsize_abs, ^setsize_abs, interface_1370:com_8);
+    if_setsize(36, 32, ^setsize_abs, ^setsize_abs, interface_1370:com_12);
 }
-if_setonmouserepeat("script14194($obj0, event_com, event_comsubid)", interface_1370:com_5);
-def_int $int2 = ~script7124(interface_1370:com_9, oc_name($obj0), oc_param($obj0, param_2653));
-~script7126(interface_1370:com_12, $obj0);
-def_int $int3 = calc(if_gety(interface_1370:com_12) + if_getheight(interface_1370:com_12) + 2);
-def_int $int4 = 0;
-def_int $int5 = calc(if_gety(interface_1370:com_16) + if_getheight(interface_1370:com_16) + 2);
-if_setposition(if_getx(interface_1370:com_15), $int3, ^setpos_abs_left, ^setpos_abs_top, interface_1370:com_15);
-$int4 = ~script7127($obj0, $int5, interface_1370:com_15);
-if ($int4 > $int5) {
-    if_sethide(false, interface_1370:com_15);
-    $int3 = calc($int3 + $int4 + 2);
+if (string_length(oc_param($obj0, param_3859)) > 0 & oc_param($obj0, param_2989) ! null) {
+    if_setonmouserepeat("script3584(oc_param($obj0, param_2989), oc_param($obj0, param_2989), null, event_com, event_comsubid, 0, 1, \"\")", interface_1370:com_5);
 } else {
-    if_sethide(true, interface_1370:com_15);
+    if_setonmouserepeat("script14194($obj0, event_com, event_comsubid)", interface_1370:com_5);
 }
-if_setposition(if_getx(interface_1370:com_17), $int3, ^setpos_abs_left, ^setpos_abs_top, interface_1370:com_17);
-$int5 = calc(if_gety(interface_1370:com_18) + if_getheight(interface_1370:com_18) + 2);
-$int4 = ~script7129($obj0, $int5, interface_1370:com_17);
-if ($int4 > $int5) {
-    if_sethide(false, interface_1370:com_17);
-    $int3 = calc($int3 + $int4);
+def_int $int3 = ~script7124(interface_1370:com_13, $obj0, oc_param($obj0, param_2653));
+~script7126(interface_1370:com_16, $obj0);
+def_int $int4 = calc(if_gety(interface_1370:com_16) + if_getheight(interface_1370:com_16) + 2);
+def_int $int5 = 0;
+def_int $int6 = calc(if_gety(interface_1370:com_20) + if_getheight(interface_1370:com_20) + 2);
+if_setposition(if_getx(interface_1370:com_19), $int4, ^setpos_abs_left, ^setpos_abs_top, interface_1370:com_19);
+$int5 = ~script7127($obj0, $int6, interface_1370:com_19);
+if ($int5 > $int6) {
+    if_sethide(false, interface_1370:com_19);
+    $int4 = calc($int4 + $int5 + 2);
 } else {
-    if_sethide(true, interface_1370:com_17);
+    if_sethide(true, interface_1370:com_19);
 }
-if (if_getheight(interface_1370:com_11) < $int3) {
-    if_setscrollsize(if_getwidth(interface_1370:com_11), $int3, interface_1370:com_11);
+if_setposition(if_getx(interface_1370:com_21), $int4, ^setpos_abs_left, ^setpos_abs_top, interface_1370:com_21);
+$int6 = calc(if_gety(interface_1370:com_22) + if_getheight(interface_1370:com_22) + 2);
+$int5 = ~script7129($obj0, $int6, interface_1370:com_21);
+if ($int5 > $int6) {
+    if_sethide(false, interface_1370:com_21);
+    $int4 = calc($int4 + $int5);
 } else {
-    if_setscrollsize(0, 0, interface_1370:com_11);
+    if_sethide(true, interface_1370:com_21);
 }
-if_setscrollpos(0, 0, interface_1370:com_11);
-~scrollbar_vertical(interface_1370:com_19, interface_1370:com_11, "task_scrollbar_dragger,3", "task_scrollbar_dragger,0", "task_scrollbar_dragger,1", "task_scrollbar_dragger,2", "task_scrollbar,1", "task_scrollbar,0");
+if (if_getheight(interface_1370:com_15) < $int4) {
+    if_setscrollsize(if_getwidth(interface_1370:com_15), $int4, interface_1370:com_15);
+} else {
+    if_setscrollsize(0, 0, interface_1370:com_15);
+}
+if_setscrollpos(0, 0, interface_1370:com_15);
+~scrollbar_vertical(interface_1370:com_23, interface_1370:com_15, "task_scrollbar_dragger,3", "task_scrollbar_dragger,0", "task_scrollbar_dragger,1", "task_scrollbar_dragger,2", "task_scrollbar,1", "task_scrollbar,0");
