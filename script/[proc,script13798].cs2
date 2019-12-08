@@ -17,20 +17,66 @@ if ($int1 = 0) {
     cc_settrans(128);
     return;
 }
-cc_setop(1, $string1);
-cc_setop(2, "<$string0>-1");
-cc_setop(3, "<$string0>-5");
-cc_setop(4, "<$string0>-10");
-cc_setop(5, "<$string0>-<tostring(%varplayer_111)>");
-cc_setop(6, "<$string0>-X");
-cc_setop(7, "<$string0>-All");
-cc_setop(8, "<$string0>-Placeholder");
-if (%varplayerbit_45139 = 2) {
-    cc_setop(9, "Withdraw-1");
-} else if (oc_wearpos($obj0) ! -1 & oc_param($obj0, param_3845) = false & enum(obj, boolean, enum_15589, $obj0) = false) {
-    cc_setop(9, oc_iop($obj0, 2));
-} else {
-    cc_setop(9, "");
-}
 cc_setop(10, "Examine");
 cc_settrans(0);
+if (%varplayerbit_45139 = 2) {
+    if (oc_wearpos($obj0) = -1 | oc_param($obj0, param_3845) = true | enum(obj, boolean, enum_15589, $obj0) = true) {
+        $string0 = "Withdraw";
+        if (%varplayerbit_45140 ! 1) {
+            $string1 = ~script13687("Withdraw");
+            cc_setop(1, $string1);
+            cc_setop(2, "<$string0>-1");
+            cc_setop(3, "<$string0>-5");
+            cc_setop(4, "<$string0>-10");
+            cc_setop(5, "<$string0>-<tostring(%varplayer_111)>");
+            cc_setop(6, "<$string0>-X");
+            cc_setop(7, "<$string0>-All");
+            cc_setop(9, "");
+            cc_setop(8, "<$string0>-Placeholder");
+            cc_setop(%varplayerbit_45189, "");
+            return;
+        }
+        cc_setop(9, "");
+    } else {
+        cc_setop(9, "Withdraw-1");
+    }
+    if (oc_stackable($obj0) = true) {
+        cc_setop(1, $string1);
+        cc_setop(2, "<$string0>-1");
+        cc_setop(3, "<$string0>-5");
+        cc_setop(4, "<$string0>-10");
+        cc_setop(5, "<$string0>-<tostring(%varplayer_111)>");
+        cc_setop(6, "<$string0>-X");
+        cc_setop(7, "<$string0>-All");
+        cc_setop(8, "<$string0>-Placeholder");
+        cc_setop(%varplayerbit_45189, "");
+    } else {
+        if (%varplayerbit_45140 = 1) {
+            cc_setop(1, $string1);
+        } else {
+            cc_setop(1, "");
+        }
+        cc_setop(2, "<$string0>-1");
+        cc_setop(3, "");
+        cc_setop(4, "");
+        cc_setop(5, "");
+        cc_setop(6, "");
+        cc_setop(7, "");
+        cc_setop(8, "<$string0>-Placeholder");
+    }
+} else {
+    cc_setop(1, $string1);
+    cc_setop(2, "<$string0>-1");
+    cc_setop(3, "<$string0>-5");
+    cc_setop(4, "<$string0>-10");
+    cc_setop(5, "<$string0>-<tostring(%varplayer_111)>");
+    cc_setop(6, "<$string0>-X");
+    cc_setop(7, "<$string0>-All");
+    cc_setop(8, "<$string0>-Placeholder");
+    cc_setop(%varplayerbit_45189, "");
+    if (oc_wearpos($obj0) ! -1 & oc_param($obj0, param_3845) = false & enum(obj, boolean, enum_15589, $obj0) = false) {
+        cc_setop(9, oc_iop($obj0, 2));
+    } else {
+        cc_setop(9, "");
+    }
+}

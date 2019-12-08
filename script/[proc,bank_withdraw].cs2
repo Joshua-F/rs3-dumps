@@ -126,7 +126,9 @@ switch_int ($int9) {
     case 1 :
         ~bank_mes("<oc_name($obj0)>: Moved to backpack as it requires a confirmation to equip.");
     case 2 :
-        ~bank_mes("<oc_name($obj0)>: Moved to backpack as it can't be equipped.");
+        if (oc_wearpos($obj0) ! -1 & oc_param($obj0, param_3845) = false & enum(obj, boolean, enum_15589, $obj0) = false) {
+            ~bank_mes("<oc_name($obj0)>: Moved to backpack as it can't be equipped.");
+        }
     case 9 :
         ~bank_mes("<oc_name($obj0)>: Moved to backpack as it can't be equipped from the bank.");
 }
