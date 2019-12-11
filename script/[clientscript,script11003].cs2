@@ -1,5 +1,5 @@
 // 11003
-[clientscript,script11003](int $int0, struct $struct1, int $int2)
+[clientscript,script11003](int $int0, struct $struct1, int $int2, int $int3)
 if_sethide(false, interface_1311:com_501);
 if_sethide(false, interface_1311:com_535);
 if_sethide(false, interface_1311:com_540);
@@ -30,15 +30,13 @@ if (struct_param($struct1, param_4420) = 0 | ~script6488($struct1) = 0) {
 } else {
     if_sethide(true, interface_1311:com_529);
 }
-def_int $int3 = 0;
-def_int $int4 = -1;
-def_int $int5 = 0;
-def_int $int6 = 1;
-def_int $int7 = 0;
-def_enum $enum8 = null;
+def_int $int4 = 0;
+def_int $int5 = -1;
+def_int $int6 = 0;
+def_int $int7 = 1;
+def_int $int8 = 0;
 def_enum $enum9 = null;
-def_int $int10 = 5;
-def_int $int11 = 4;
+def_enum $enum10 = null;
 if (struct_param($struct1, param_3847) = 1) {
     if_sethide(false, interface_1311:com_502);
     if_sethide(false, interface_1311:com_503);
@@ -52,68 +50,23 @@ if ($int0 = 2) {
     if (struct_param($struct1, param_7494) = 1) {
         switch_struct ($struct1) {
             case struct_40780 :
-                $enum8 = enum_14531;
-                $enum9 = enum_14532;
+                $enum9 = enum_14531;
+                $enum10 = enum_14532;
             case default :
                 return;
         }
         if_sethide(false, interface_1311:com_504);
-        $int3 = if_getnextsubid(interface_1311:com_504);
-        $int7 = enum_getoutputcount($enum8);
-        while (++$int4 < $int7) {
-            ~script11605(interface_1311:com_505, interface_1311:com_506, struct_28749, 0, calc((24 + 5) * $int4), $int3++, 1, "Select", "Unselect", enum(int, string, $enum9, $int4));
-            if (cc_find(interface_1311:com_506, $int4) = true) {
+        $int4 = if_getnextsubid(interface_1311:com_504);
+        $int8 = enum_getoutputcount($enum9);
+        while (++$int5 < $int8) {
+            ~script11605(interface_1311:com_505, interface_1311:com_506, struct_28749, 0, calc((24 + 5) * $int5), $int4++, 1, "Select", "Unselect", enum(int, string, $enum10, $int5));
+            if (cc_find(interface_1311:com_506, $int5) = true) {
                 cc_setopcursor(1, cursor_46);
             }
-            ~script4512(interface_1311:com_505, 24, 24, 0, calc((24 + 5) * $int4), enum(int, graphic, $enum8, $int4));
+            ~script4512(interface_1311:com_505, 24, 24, 0, calc((24 + 5) * $int5), enum(int, graphic, $enum9, $int5));
         }
     } else if (struct_param($struct1, param_3847) = 1) {
-        cc_deleteall(interface_1311:com_655);
-        cc_deleteall(interface_1311:com_656);
-        if_sethide(false, interface_1311:com_502);
-        $int3 = if_getnextsubid(interface_1311:com_502);
-        $int4 = 1;
-        while ($int4 <= struct_param($struct1, param_3850)) {
-            if (getbit_range($int2, calc($int5 * 4), calc($int5 * 4 + 3)) = 1) {
-                $int3 = ~script11605(interface_1311:com_655, interface_1311:com_656, struct_28749, 0, $int10, $int3, 4, "Select", "Unselect", ~script2412($int4, $struct1));
-            } else {
-                $int3 = ~script11605(interface_1311:com_655, interface_1311:com_656, struct_28749, 0, $int10, $int3, 1, "Select", "Unselect", ~script2412($int4, $struct1));
-            }
-            if (cc_find(interface_1311:com_656, $int4) = true) {
-                cc_setopcursor(1, cursor_46);
-            }
-            if (~script1528($struct1, 1, $int4) = 1) {
-                ~script4512(interface_1311:com_655, 24, 24, 0, $int10, ~script2679($struct1, $int4));
-                if (getbit_range($int2, calc($int5 * $int11), calc($int5 * $int11 + ($int11 - 1))) = 0) {
-                    cc_setcolour(0xcccccc);
-                }
-            } else {
-                ~script4512(interface_1311:com_655, calc(24 - 10), calc(24 - 10), 5, calc($int10 + 5), icon_padlock_trh_catwalk);
-            }
-            $int6 = calc($int6 + 1);
-            $int10 = calc($int10 + (24 + 5));
-            $int4 = calc($int4 + 1);
-            $int5 = calc($int5 + 1);
-        }
-        if (struct_param($struct1, param_3849) > 1) {
-            if_sethide(false, interface_1311:com_503);
-            $int3 = if_getnextsubid(interface_1311:com_503);
-            $int10 = 5;
-            $int4 = 1;
-            while ($int4 <= struct_param($struct1, param_3849)) {
-                ~script11605(interface_1311:com_657, interface_1311:com_658, struct_28749, 0, $int10, $int3++, 1, "Select", "Unselect", ~script2431($struct1, $int4));
-                if (cc_find(interface_1311:com_658, $int4) = true) {
-                    cc_setopcursor(1, cursor_46);
-                }
-                if (~script1529($struct1, $int4) = 1) {
-                    ~script4512(interface_1311:com_657, calc(24 - 4), calc(24 - 4), 2, calc($int10 + 2), ~script2737($struct1, $int4));
-                } else {
-                    ~script4512(interface_1311:com_657, calc(24 - 10), calc(24 - 10), 5, calc($int10 + 5), icon_padlock_trh_catwalk);
-                }
-                $int4 = calc($int4 + 1);
-                $int10 = calc($int10 + (24 + 5));
-            }
-        }
+        ~script3836($struct1, $int2, $int3);
     }
 } else if ($int0 = 3) {
     if_sethide(true, interface_1311:com_507);
