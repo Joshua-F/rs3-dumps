@@ -1,0 +1,72 @@
+// 14902
+[proc,script14902]
+def_component $component0 = null;
+def_component $component1 = null;
+def_component $component2 = null;
+def_component $component3 = null;
+def_int $int4 = enum_getoutputcount(enum_14095);
+def_enum $enum5 = null;
+def_int $int6 = 0;
+def_dbrow $dbrow7 = null;
+def_int $int8 = 1;
+def_int $int9 = 2;
+def_int $int10 = $int8;
+def_int $int11 = $int9;
+def_int $int12 = 0;
+def_int $int13 = -1;
+def_int $int14 = -1;
+while (++$int13 < $int4) {
+    $enum5 = enum(int, enum, enum_14095, $int13);
+    $int6 = enum_getoutputcount($enum5);
+    switch_enum ($enum5) {
+        case enum_14496 :
+            $component1 = interface_693:com_128;
+            $component2 = interface_693:com_134;
+            $component3 = interface_693:com_168;
+        case enum_14497 :
+            $component1 = interface_693:com_139;
+            $component2 = interface_693:com_145;
+            $component3 = interface_693:com_169;
+        case enum_14498 :
+            $component1 = interface_693:com_150;
+            $component2 = interface_693:com_156;
+            $component3 = interface_693:com_170;
+        case enum_14499 :
+            $component1 = interface_693:com_161;
+            $component2 = interface_693:com_167;
+            $component3 = interface_693:com_171;
+        case enum_14500 :
+            $component1 = interface_693:com_176;
+            $component2 = interface_693:com_182;
+            $component3 = interface_693:com_183;
+    }
+    cc_deleteall($component2);
+    cc_deleteall($component3);
+    $component0 = if_getparentlayer(if_getparentlayer($component2));
+    $int10 = $int8;
+    $int11 = $int9;
+    $int14 = -1;
+    while (++$int14 < $int6) {
+        $dbrow7 = enum(int, dbrow, $enum5, $int14);
+        if (calc($int10 - $int8 + 60 + 8) > if_getwidth($component2)) {
+            $int10, $int11 = $int8, calc($int11 + 90 + 2);
+        }
+        if ($enum5 = %varplayer_9288 & $int14 = %varplayer_9289) {
+            $int12 = 1;
+        } else {
+            $int12 = 0;
+        }
+        ~script14903($component2, $component3, $enum5, $dbrow7, $int10, $int11, $int14, $int12);
+        $int10 = calc($int10 + (60 + 8 + 2));
+    }
+    $int11 = calc($int11 + (90 + $int9));
+    if (if_find($component0) = true) {
+        if (cc_param(param_4052) = -1 & cc_param(param_4053) = -1) {
+            ~script9582($component0, $int11, $int11);
+        }
+        if ($enum5 = %varplayer_9288) {
+            ~script341($component1, 0);
+        }
+    }
+}
+~script9581(interface_693:com_86);

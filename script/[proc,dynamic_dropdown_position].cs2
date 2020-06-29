@@ -5,14 +5,14 @@ if (%varplayer_4734 ! $enum5 | ~script13128($component0, %varplayer_4735) = true
     return(-1);
 }
 def_component $component7 = ~script10074;
-def_component $component8 = interface_1477:com_823;
+def_component $component8 = interface_1477:com_827;
 switch_toplevelinterface (if_gettop) {
     case default :
-        $component8 = interface_1477:com_823;
+        $component8 = interface_1477:com_827;
     case interface_906 :
-        $component8 = interface_906:com_586;
+        $component8 = interface_906:com_585;
     case interface_744 :
-        $component8 = interface_744:com_293;
+        $component8 = interface_744:com_290;
     case interface_1420 :
         $component8 = interface_1420:com_23;
 }
@@ -27,6 +27,10 @@ def_int $int16 = 0;
 def_int $int17 = 0;
 def_int $int18 = 0;
 def_int $int19 = 0;
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_int $int22 = 0;
+def_int $int23 = 0;
 if (if_find($component8) = true) {
     $boolean15 = cc_param(param_4514);
     $int16 = cc_getx;
@@ -40,23 +44,30 @@ if ($int4 = 0 & if_find($component0) = true | cc_find($component0, $int1) = true
         return(-1);
     }
     $int9, $int10, $int11, $int12 = ~script6355, ~script6356, cc_getheight, cc_getwidth;
+    $int20, $int21, $int23, $int22 = $int9, $int10, $int11, $int12;
+    if (~script6431 = true) {
+        $int20 = calc($int20 - 20);
+        $int22 = calc($int22 + (20 + 60));
+        $int21 = calc($int21 - 150);
+        $int23 = calc($int23 + (150 + 150));
+    }
     if ($int4 = 0 & $int3 = -1) {
         switch_component ($component0) {
-            case interface_517:com_225, interface_517:com_281, interface_517:com_204 :
+            case interface_517:com_227, interface_517:com_283, interface_517:com_206 :
                 $int11 = 30;
             case default :
                 $int11 = 22;
         }
     }
     if ($int3 ! -1) {
-        if (($int13 < $int9 | $int13 >= calc($int9 + $int12) | $int14 < $int10 | $int14 >= calc($int10 + $int11)) & ($int13 < $int16 | $int13 >= calc($int16 + $int18) | $int14 < $int17 | $int14 >= calc($int17 + $int19))) {
+        if (($int13 < $int20 | $int13 >= calc($int20 + $int22) | $int14 < $int21 | $int14 >= calc($int21 + $int23)) & ($int13 < $int16 | $int13 >= calc($int16 + $int18) | $int14 < $int17 | $int14 >= calc($int17 + $int19))) {
             $int6 = calc($int6 + 1);
         }
     } else if ($boolean15 = true) {
-        if ($int13 < $int9 | $int13 >= calc($int9 + $int12) | $int14 < $int10 | $int14 >= calc($int10 + $int11 + $int2)) {
+        if ($int13 < $int20 | $int13 >= calc($int20 + $int22) | $int14 < $int21 | $int14 >= calc($int21 + $int23 + $int2)) {
             $int6 = calc($int6 + 1);
         }
-    } else if ($int13 < $int9 | $int13 >= calc($int9 + $int12) | $int14 < calc($int10 - $int2) | $int14 >= calc($int10 + $int11)) {
+    } else if ($int13 < $int20 | $int13 >= calc($int20 + $int22) | $int14 < calc($int21 - $int2) | $int14 >= calc($int21 + $int23)) {
         $int6 = calc($int6 + 1);
     }
     if ($int6 >= 50) {
@@ -67,19 +78,19 @@ if ($int4 = 0 & if_find($component0) = true | cc_find($component0, $int1) = true
     ~dynamic_dropdown_hide;
     return(-1);
 }
-def_int $int20 = ~script10082;
-def_int $int21 = 0;
-def_int $int22 = 0;
-def_int $int23 = 0;
-def_int $int24 = 0;
-$int21, $int22, $int23, $int24 = ~script14244;
-def_int $int25 = calc($int24 - $int10 - $int11 - 5);
-if ($int25 >= min(calc($int20 * 4), $int2)) {
-    $boolean15, $int2 = true, min($int2, $int25);
-} else if (calc($int10 - $int22 - 5) > $int25) {
-    $boolean15, $int2 = false, min($int2, calc($int10 - $int22 + $int11));
+def_int $int24 = ~script10082;
+def_int $int25 = 0;
+def_int $int26 = 0;
+def_int $int27 = 0;
+def_int $int28 = 0;
+$int25, $int26, $int27, $int28 = ~script14244;
+def_int $int29 = calc($int28 - $int10 - $int11 - 5);
+if ($int29 >= min(calc($int24 * 4 + 8), $int2)) {
+    $boolean15, $int2 = true, min($int2, $int29);
+} else if (calc($int10 - $int26 - 5) > $int29) {
+    $boolean15, $int2 = false, min($int2, calc($int10 - $int26 + $int11));
 } else {
-    $boolean15, $int2 = true, min($int2, $int25);
+    $boolean15, $int2 = true, min($int2, $int29);
 }
 if_sethide(false, $component8);
 if ($int3 ! -1) {

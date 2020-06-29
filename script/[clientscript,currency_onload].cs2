@@ -2,7 +2,7 @@
 [clientscript,currency_onload]
 ~script3521;
 def_int $int0 = 0;
-def_int $int1 = db_find_with_count(dbtable_66:col5, 1);
+def_int $int1 = db_find_with_count(dbtable_66:col6, 1);
 def_int $intarray0($int1);
 def_int $intarray1($int1);
 def_dbrow $dbrow2 = db_findnext;
@@ -21,7 +21,7 @@ while ($int0 < $int1) {
     $int3 = $intarray0($int0);
     db_find(dbtable_66:col0, $int3);
     $dbrow4 = db_findnext;
-    switch_int (db_getfield($dbrow4, dbtable_66:col6, 0)) {
+    switch_int (db_getfield($dbrow4, dbtable_66:col7, 0)) {
         case 1 :
             $component5 = interface_1790:com_37;
         case 2 :
@@ -37,11 +37,15 @@ while ($int0 < $int1) {
     cc_create($component5, ^iftype_graphic, $int3);
     cc_setparam(param_3855, $dbrow4);
     cc_setop(1, "Favourite");
-    if (string_length(db_getfield($dbrow4, dbtable_66:col7, 0)) ! 0) {
-        cc_setop(2, db_getfield($dbrow4, dbtable_66:col7, 0));
-    }
     if (string_length(db_getfield($dbrow4, dbtable_66:col8, 0)) ! 0) {
-        cc_setop(3, db_getfield($dbrow4, dbtable_66:col8, 0));
+        cc_setop(2, db_getfield($dbrow4, dbtable_66:col8, 0));
+    }
+    if (string_length(db_getfield($dbrow4, dbtable_66:col9, 0)) ! 0) {
+        cc_setop(3, db_getfield($dbrow4, dbtable_66:col9, 0));
+    }
+    if (db_getfield($dbrow4, dbtable_66:col1, 0) = 1) {
+        cc_setop(4, "Withdraw");
+        cc_setop(10, "Examine");
     }
     $int0 = calc($int0 + 1);
 }
@@ -76,7 +80,7 @@ while ($int18 > 0) {
             $dbrow4 = cc_param(param_3855);
             $int3 = db_getfield($dbrow4, dbtable_66:col0, 0);
             if ($dbrow4 ! null) {
-                $int16 = ~currency_pouch_value_get($dbrow4);
+                $int16 = ~currency_pouch_total($dbrow4);
                 if ($dbrow4 = dbrow_2274) {
                     $int16 = calc($int16 * 10);
                 }
@@ -88,22 +92,16 @@ while ($int18 > 0) {
                 .cc_setposition($int13, $int14, ^setpos_abs_left, ^setpos_abs_top);
                 .cc_setgraphic("rs3_icon_slot_40px,0");
                 .cc_setsize($int9, $int9, ^setsize_abs, ^setsize_abs);
-                if (string_length(db_getfield($dbrow4, dbtable_66:col4, 0)) ! 0) {
-                    $string1 = db_getfield($dbrow4, dbtable_66:col4, 0);
-                } else if (db_getfield($dbrow4, dbtable_66:col3, 0) ! null) {
-                    $string1 = oc_name(db_getfield($dbrow4, dbtable_66:col3, 0));
-                } else {
-                    $string1 = "This object needs a name!";
-                }
-                cc_setopbase($string1);
-                $string1 = append($string1, ": <tostring_localised($int16, true)>");
-                cc_setonmouserepeat("script3876($string1, $component5, $int0)");
+                $string1 = append(~currency_name($dbrow4), ": <tostring_localised($int16, true)>");
+                ~script14990(2, $string1);
                 cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
                 cc_setposition(calc($int13 + 4), calc($int14 + 4), ^setpos_abs_left, ^setpos_abs_top);
-                if (db_getfield($dbrow4, dbtable_66:col3, 0) ! null) {
-                    cc_setobject_nonum(db_getfield($dbrow4, dbtable_66:col3, 0), 1000);
-                } else if (db_getfield($dbrow4, dbtable_66:col2, 0) ! null) {
-                    cc_setgraphic(db_getfield($dbrow4, dbtable_66:col2, 0));
+                if (db_getfield($dbrow4, dbtable_66:col4, 0) ! null) {
+                    cc_setobject_nonum(db_getfield($dbrow4, dbtable_66:col4, 0), 1000);
+                    cc_setopbase("<~script4033(db_getfield($dbrow4, dbtable_66:col4, 0))><~currency_name($dbrow4)>");
+                } else if (db_getfield($dbrow4, dbtable_66:col3, 0) ! null) {
+                    cc_setgraphic(db_getfield($dbrow4, dbtable_66:col3, 0));
+                    cc_setopbase("<~script4033(obj_41028)><~currency_name($dbrow4)>");
                 }
                 cc_sendtofront;
                 .cc_create($component5, ^iftype_text, if_getnextsubid($component5));

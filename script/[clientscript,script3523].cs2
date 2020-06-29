@@ -8,27 +8,12 @@ def_int $int1 = 0;
 def_int $int2 = calc($int1 % 2 * 55);
 def_int $int3 = calc($int1 / 2 * 63);
 def_obj $obj4 = null;
+def_string $string0 = "";
+def_string $string1 = "";
 while ($int1 < 8) {
     $int2 = calc($int1 % 2 * 55);
     $int3 = calc($int1 / 2 * 63);
-    switch_int ($int1) {
-        case 0 :
-            $dbrow0 = ~script3524(%varplayerbit_33764);
-        case 1 :
-            $dbrow0 = ~script3524(%varplayerbit_33765);
-        case 2 :
-            $dbrow0 = ~script3524(%varplayerbit_33766);
-        case 3 :
-            $dbrow0 = ~script3524(%varplayerbit_33767);
-        case 4 :
-            $dbrow0 = ~script3524(%varplayerbit_37037);
-        case 5 :
-            $dbrow0 = ~script3524(%varplayerbit_37038);
-        case 6 :
-            $dbrow0 = ~script3524(%varplayerbit_37039);
-        case 7 :
-            $dbrow0 = ~script3524(%varplayerbit_37040);
-    }
+    $dbrow0 = ~script14968(calc($int1 + 1));
     cc_create(interface_1790:com_8, ^iftype_graphic, $int1);
     cc_setsize(40, 40, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int2 + 7), $int3, ^setpos_abs_left, ^setpos_abs_top);
@@ -40,23 +25,28 @@ while ($int1 < 8) {
         cc_setonmouserepeat("currency_draw_tooltip($dbrow0, event_com, event_comsubid)");
         cc_setonop("script1620(event_com, event_comsubid, 100, 0, 8)");
         cc_setop(1, "Clear");
-        if (string_length(db_getfield($dbrow0, dbtable_66:col7, 0)) ! 0) {
-            cc_setop(2, db_getfield($dbrow0, dbtable_66:col7, 0));
+        if (string_length(db_getfield($dbrow0, dbtable_66:col8, 0)) ! 0) {
+            cc_setop(2, db_getfield($dbrow0, dbtable_66:col8, 0));
         } else {
             cc_setop(2, "");
         }
-        if (string_length(db_getfield($dbrow0, dbtable_66:col8, 0)) ! 0) {
-            cc_setop(3, db_getfield($dbrow0, dbtable_66:col8, 0));
+        if (string_length(db_getfield($dbrow0, dbtable_66:col9, 0)) ! 0) {
+            cc_setop(3, db_getfield($dbrow0, dbtable_66:col9, 0));
         } else {
             cc_setop(3, "");
         }
-        $obj4 = db_getfield($dbrow0, dbtable_66:col3, 0);
+        if (db_getfield($dbrow0, dbtable_66:col1, 0) = 1) {
+            cc_setop(4, "Withdraw");
+            cc_setop(10, "Examine");
+        }
+        $obj4 = db_getfield($dbrow0, dbtable_66:col4, 0);
+        $string1 = ~currency_name($dbrow0);
         if ($obj4 ! null) {
             cc_setobject_nonum($obj4, 1000);
-            cc_setopbase("<~script4033($obj4)><oc_name($obj4)>");
-        } else if (db_getfield($dbrow0, dbtable_66:col2, 0) ! null) {
-            cc_setgraphic(db_getfield($dbrow0, dbtable_66:col2, 0));
-            cc_setopbase("<~script4033(obj_41028)><db_getfield($dbrow0, dbtable_66:col4, 0)>");
+            cc_setopbase("<~script4033($obj4)><$string1>");
+        } else if (db_getfield($dbrow0, dbtable_66:col3, 0) ! null) {
+            cc_setgraphic(db_getfield($dbrow0, dbtable_66:col3, 0));
+            cc_setopbase("<~script4033(obj_41028)><$string1>");
         }
         cc_create(interface_1790:com_63, ^iftype_text, $int1);
         cc_setsize(55, 11, ^setsize_abs, ^setsize_abs);
@@ -70,9 +60,9 @@ while ($int1 < 8) {
         cc_setcolour(~script10495(3));
         cc_settextshadow(true);
         if ($dbrow0 = dbrow_2274) {
-            cc_settext(~script11601(calc(~currency_pouch_value_get($dbrow0) * 10), true));
+            cc_settext(~script11601(calc(~currency_pouch_total($dbrow0) * 10), true));
         } else {
-            cc_settext(~script11601(~currency_pouch_value_get($dbrow0), true));
+            cc_settext(~script11601(~currency_pouch_total($dbrow0), true));
         }
         cc_setonvartransmit("script6719(event_com, event_comsubid, 0){varplayer_3814}");
     }

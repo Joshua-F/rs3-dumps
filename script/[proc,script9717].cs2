@@ -8,6 +8,7 @@ def_int $int4 = 0;
 def_int $int5 = 0;
 def_struct $struct6 = oc_param(%varclient_1799, param_5741);
 def_string $string0 = "";
+def_obj $obj7 = null;
 if (oc_category(%varclient_1799) = category_3961) {
     $int0 = 0;
     if_settext("Use all small bright lamps", interface_678:com_9);
@@ -31,6 +32,20 @@ if (oc_category(%varclient_1799) = category_3961) {
     $int2 = inv_total(inv_93, obj_37899);
     $int3 = inv_total(inv_93, obj_37900);
     $int4 = inv_total(inv_93, obj_37901);
+} else if (oc_category(%varclient_1799) = category_4463) {
+    $int0 = 0;
+    if_settext("Use all small bubbling lamps", interface_678:com_9);
+    if_settext("Use all medium bubbling lamps", interface_678:com_13);
+    if_settext("Use all large bubbling lamps", interface_678:com_17);
+    if_settext("Use all huge bubbling lamps", interface_678:com_22);
+    $int1 = inv_total(inv_93, obj_47435);
+    $int2 = inv_total(inv_93, obj_47436);
+    if (map_members = true | oc_members(obj_47437) = 0) {
+        $int3 = inv_total(inv_93, obj_47437);
+    }
+    if (map_members = true | oc_members(obj_47438) = 0) {
+        $int4 = inv_total(inv_93, obj_47438);
+    }
 } else if ($struct6 ! null) {
     $int0 = struct_param($struct6, param_5748);
     $string0 = struct_param($struct6, param_5747);
@@ -38,10 +53,22 @@ if (oc_category(%varclient_1799) = category_3961) {
     if_settext("Use all medium <$string0>", interface_678:com_13);
     if_settext("Use all large <$string0>", interface_678:com_17);
     if_settext("Use all huge <$string0>", interface_678:com_22);
-    $int1 = inv_total(inv_93, struct_param($struct6, param_5743));
-    $int2 = inv_total(inv_93, struct_param($struct6, param_5744));
-    $int3 = inv_total(inv_93, struct_param($struct6, param_5745));
-    $int4 = inv_total(inv_93, struct_param($struct6, param_5746));
+    $obj7 = struct_param($struct6, param_5743);
+    if ($obj7 ! null & (oc_members($obj7) = 0 | map_members = true)) {
+        $int1 = inv_total(inv_93, $obj7);
+    }
+    $obj7 = struct_param($struct6, param_5744);
+    if ($obj7 ! null & (oc_members($obj7) = 0 | map_members = true)) {
+        $int2 = inv_total(inv_93, $obj7);
+    }
+    $obj7 = struct_param($struct6, param_5745);
+    if ($obj7 ! null & (oc_members($obj7) = 0 | map_members = true)) {
+        $int3 = inv_total(inv_93, $obj7);
+    }
+    $obj7 = struct_param($struct6, param_5746);
+    if ($obj7 ! null & (oc_members($obj7) = 0 | map_members = true)) {
+        $int4 = inv_total(inv_93, $obj7);
+    }
 } else if (oc_param(%varclient_1799, param_4271) = 1) {
     $int0 = 0;
     if_settext("Use all small lamps", interface_678:com_9);
@@ -95,20 +122,6 @@ if (oc_category(%varclient_1799) = category_3961) {
     $int2 = inv_total(inv_93, obj_42449);
     $int3 = inv_total(inv_93, obj_42450);
     $int4 = inv_total(inv_93, obj_42451);
-} else if (oc_category(%varclient_1799) = category_4463) {
-    $int0 = 0;
-    if_settext("Use all small bubbling lamps", interface_678:com_9);
-    if_settext("Use all medium bubbling lamps", interface_678:com_13);
-    if_settext("Use all large bubbling lamps", interface_678:com_17);
-    if_settext("Use all huge bubbling lamps", interface_678:com_22);
-    $int1 = inv_total(inv_93, obj_47435);
-    $int2 = inv_total(inv_93, obj_47436);
-    if (map_members = true | oc_members(obj_47437) = 0) {
-        $int3 = inv_total(inv_93, obj_47437);
-    }
-    if (map_members = true | oc_members(obj_47438) = 0) {
-        $int4 = inv_total(inv_93, obj_47438);
-    }
 } else {
     if_settext("Use all small stars", interface_678:com_9);
     if_settext("Use all medium stars", interface_678:com_13);

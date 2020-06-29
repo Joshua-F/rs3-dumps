@@ -3,11 +3,18 @@
 if (struct_param($struct0, param_2217) = true) {
     return(true);
 }
-if (struct_param($struct0, param_2213) ! null) {
-    if (oc_members(struct_param($struct0, param_2213)) = 1) {
-        return(true);
-    } else {
-        return(false);
+def_dbrow $dbrow1 = struct_param($struct0, param_6569);
+if ($dbrow1 ! null) {
+    switch_dbtable (db_getrowtable($dbrow1)) {
+        case dbtable_86 :
+            return(db_getfield($dbrow1, dbtable_86:col4, 0));
+        case dbtable_88 :
+            return(db_getfield($dbrow1, dbtable_88:col3, 0));
+        case dbtable_94 :
+            return(db_getfield($dbrow1, dbtable_94:col3, 0));
     }
+}
+if (struct_param($struct0, param_2213) ! null & oc_members(struct_param($struct0, param_2213)) = 1) {
+    return(true);
 }
 return(false);

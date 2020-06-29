@@ -1,24 +1,19 @@
 // 5747
-[proc,script5747](component $component0)
+[proc,script5747](dbrow $dbrow0)(int)
 def_int $int1 = 0;
-while ($int1 < 3) {
-    if (cc_find($component0, $int1) = true) {
-        if (%varplayerbit_35725 = $int1) {
-            cc_sethide(false);
-        } else {
-            cc_sethide(true);
+def_dbrow $dbrowarray0(30);
+def_int $int2 = 0;
+$dbrowarray0($int2) = $dbrow0;
+def_int $int3 = 0;
+while ($int2 > -1) {
+    $dbrow0 = $dbrowarray0($int2);
+    if (~script5759($dbrow0) = true) {
+        $int1 = calc($int1 + ~script5758($dbrow0));
+        $int3 = calc(db_getfieldcount($dbrow0, dbtable_100:col0) - 1);
+        while ($int3 > -1) {
+            $dbrowarray0($int2++) = db_getfield($dbrow0, dbtable_100:col0, $int3--);
         }
     }
-    $int1 = calc($int1 + 1);
+    $int2 = calc($int2 - 1);
 }
-def_string $string0 = "";
-def_struct $struct2 = null;
-def_string $string1 = null;
-$string0, $struct2 = ~sworlds_get_challenge_var(%varplayerbit_35725);
-$string1 = "You cannot start the <$string0> from this portal. Please use the other portal.";
-if (struct_param($struct2, param_6453) = true) {
-    if_sethide(true, interface_1867:com_142);
-} else {
-    if_setonmouserepeat("script3876($string1, event_com, event_comsubid)", interface_1867:com_142);
-    if_sethide(false, interface_1867:com_142);
-}
+return($int1);

@@ -1,159 +1,199 @@
 // 10044
 [proc,lobby_content_promo](component $component0, component $component1, component $component2, component $component3, int $int4, int $int5)
-if_settext("Latest Content", $component1);
-if_sethide(false, $component3);
-~script13264(-1, 0, $int5);
-if_setop(1, "Select", $component0);
-if_setonop("script10042", $component0);
-if_setonclick("script10052", $component0);
-def_int $int6 = -1;
-if (calc((date_minutes - date_minutes_fromruneday(6120)) / 60) >= 12 & calc((date_minutes - date_minutes_fromruneday(6123)) / 60) < 12) {
-    $int6 = 0;
-}
-if (calc((date_minutes - date_minutes_fromruneday(6127)) / 60) >= 12 & calc((date_minutes - date_minutes_fromruneday(6130)) / 60) < 12) {
-    $int6 = 1;
-}
-if (calc((date_minutes - date_minutes_fromruneday(6134)) / 60) >= 12 & calc((date_minutes - date_minutes_fromruneday(6137)) / 60) < 12) {
-    $int6 = 2;
-}
-if (calc((date_minutes - date_minutes_fromruneday(6141)) / 60) >= 12 & calc((date_minutes - date_minutes_fromruneday(6144)) / 60) < 12) {
-    $int6 = 3;
-}
-if (calc((date_minutes - date_minutes_fromruneday(6148)) / 60) >= 12 & calc((date_minutes - date_minutes_fromruneday(6151)) / 60) < 12) {
-    $int6 = 4;
-}
-if (calc((date_minutes - date_minutes_fromruneday(6155)) / 60) >= 12 & calc((date_minutes - date_minutes_fromruneday(6158)) / 60) < 12) {
-    $int6 = 5;
-}
 def_string $string0 = "";
+if_sethide(false, $component3);
+if_clearops($component0);
+if_setonop(null, $component0);
+if_setonclick(null, $component0);
+if_setonmouserepeat(null, $component0);
+~script13264(-1, 0, $int5);
+def_int $int6 = enum_getoutputcount(enum_6177);
+def_struct $structarray0($int6);
+def_struct $struct7 = null;
+def_struct $struct8 = null;
+def_struct $struct9 = null;
+def_quest $quest10 = null;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
 def_string $string1 = "";
-def_int $int7 = 1;
-def_struct $struct8 = struct_11515;
-def_graphic $graphic9 = struct_param($struct8, param_4446);
-def_struct $struct10 = null;
-def_quest $quest11 = null;
-if (struct_param(struct_11515, param_1345) > 0) {
-    $struct10 = enum(int, struct, enum_2252, struct_param(struct_11515, param_1345));
-    $quest11 = struct_param($struct10, param_1403);
-}
+def_string $string2 = "";
+def_string $string3 = "";
+def_string $string4 = "";
+def_string $string5 = "";
 if ($int4 = 1) {
     ~script13264(6, 1, $int5);
     if_settext("Latest Content", $component1);
 } else {
-    switch_int ($int6) {
-        case default :
-            if ($struct10 ! null) {
-                $string0 = ~quest_name($struct10);
-                $string1 = quest_param($quest11, param_5968);
+    while ($int12 < $int6) {
+        $int11 = 0;
+        $int14 = 0;
+        $int15 = 0;
+        $struct7 = enum(int, struct, enum_6177, $int12);
+        $struct8 = struct_param($struct7, param_6390);
+        if ($struct8 ! null) {
+            if (~trh_state_lobby($struct8) = 1) {
+                $int14 = %varplayer_6601;
+                $int15 = %varplayer_6601;
             } else {
-                $string0 = struct_param(struct_11515, param_1266);
-                $string1 = struct_param($struct8, param_1273);
+                $int11 = 1;
             }
-            switch_int (map_lang) {
-                case 1 :
-                    if (struct_param($struct8, param_4454) ! null) {
-                        $graphic9 = struct_param($struct8, param_4454);
-                    }
-                case 2 :
-                    if (struct_param($struct8, param_4455) ! null) {
-                        $graphic9 = struct_param($struct8, param_4455);
-                    }
-                case 3 :
-                    if (struct_param($struct8, param_4456) ! null) {
-                        $graphic9 = struct_param($struct8, param_4456);
-                    }
-                case 6 :
-                    if (struct_param($struct8, param_4457) ! null) {
-                        $graphic9 = struct_param($struct8, param_4457);
-                    }
-            }
-            if_setgraphic($graphic9, $component0);
-        case 0 :
-            switch_int (map_lang) {
-                case 0 :
-                    $graphic9 = graphic_33417;
-                case 1 :
-                    $graphic9 = graphic_33418;
-                case 2 :
-                    $graphic9 = graphic_33419;
-                case 3 :
-                    $graphic9 = graphic_33420;
-            }
-            if_setgraphic($graphic9, $component0);
+        } else {
+            $int14 = struct_param($struct7, param_6388);
+            $int15 = struct_param($struct7, param_6389);
+        }
+        if ((%varplayer_6601 < $int14 | %varplayer_6601 > $int15) & $int14 ! -1) {
+            $int11 = 1;
+        }
+        if ($int11 = 0) {
+            $structarray0($int13) = $struct7;
+            $int13 = calc($int13 + 1);
+        }
+        $int12 = calc($int12 + 1);
+    }
+    if ($int13 = 0) {
+        $struct7 = enum(int, struct, enum_6177, -1);
+    } else {
+        $struct7 = $structarray0(random($int13));
+    }
+    if ($struct7 = struct_11515) {
+        $struct7 = ~script6341;
+    }
+    switch_int (map_lang) {
         case 1 :
-            switch_int (map_lang) {
-                case 0 :
-                    $graphic9 = graphic_33425;
-                case 1 :
-                    $graphic9 = graphic_33426;
-                case 2 :
-                    $graphic9 = graphic_33427;
-                case 3 :
-                    $graphic9 = graphic_33428;
-            }
-            if_setgraphic($graphic9, $component0);
+            $string2 = struct_param($struct7, param_6962);
+            $string3 = struct_param($struct7, param_5558);
+            $string1 = struct_param($struct7, param_7961);
         case 2 :
-            switch_int (map_lang) {
-                case 0 :
-                    $graphic9 = graphic_33413;
-                case 1 :
-                    $graphic9 = graphic_33414;
-                case 2 :
-                    $graphic9 = graphic_33415;
-                case 3 :
-                    $graphic9 = graphic_33416;
-            }
-            if_setgraphic($graphic9, $component0);
+            $string2 = struct_param($struct7, param_6963);
+            $string3 = struct_param($struct7, param_7892);
+            $string1 = struct_param($struct7, param_7962);
         case 3 :
-            switch_int (map_lang) {
-                case 0 :
-                    $graphic9 = graphic_33433;
-                case 1 :
-                    $graphic9 = graphic_33434;
-                case 2 :
-                    $graphic9 = graphic_33435;
-                case 3 :
-                    $graphic9 = graphic_33436;
+            $string2 = struct_param($struct7, param_6964);
+            $string3 = struct_param($struct7, param_7893);
+            $string1 = struct_param($struct7, param_7963);
+    }
+    if (string_length($string2) = 0) {
+        $string2 = struct_param($struct7, param_6394);
+    }
+    if (string_length($string3) = 0) {
+        $string3 = struct_param($struct7, param_65);
+    }
+    if (string_length($string1) = 0) {
+        $string1 = struct_param($struct7, param_6393);
+    }
+    $string0 = struct_param($struct7, param_6391);
+    switch_int (map_lang) {
+        case 0 :
+            if_setgraphic(struct_param($struct7, param_6381), $component0);
+        case 1 :
+            if_setgraphic(struct_param($struct7, param_6385), $component0);
+        case 2 :
+            if_setgraphic(struct_param($struct7, param_6386), $component0);
+        case 3 :
+            if_setgraphic(struct_param($struct7, param_6387), $component0);
+    }
+    switch_int (struct_param($struct7, param_6392)) {
+        case 1 :
+            if (string_length($string0) = 0) {
+                $string0 = "Treasure Hunter";
             }
-            if_setgraphic($graphic9, $component0);
+            ~script13264(1, 1, $int5);
+        case 2 :
+            if (string_length($string0) = 0) {
+                $string0 = "Solomon's Store";
+            }
+            $string1 = "mtxn_rs_shop";
+            if (string_length($string2) = 0) {
+                $string2 = "index";
+            }
+            if_setop(1, "Select", $component0);
+            if (~is_mobile_client = true) {
+                if_setonop("script13252", $component0);
+                ~script13264(2, 1, $int5);
+            } else {
+                if_setonop("script10029($string1, $string2, $string2, true)", $component0);
+            }
+            if_setonclick("script9036", $component0);
+        case 3 :
+            if (string_length($string0) = 0) {
+                $string0 = "Latest Content";
+            }
+            if_setop(1, "Select", $component0);
+            if_setonop("script12374($string1, $string2, $string2, struct_param($struct7, param_6395))", $component0);
+            if_setonclick("script9036", $component0);
+        case 9 :
+            if (string_length($string0) = 0) {
+                $string0 = "Latest Content";
+            }
+            if_setop(1, "Select", $component0);
+            if_setonop("script2827($string3, 0)", $component0);
+            if_setonclick("script9036", $component0);
         case 4 :
-            switch_int (map_lang) {
-                case 0 :
-                    $graphic9 = graphic_33429;
-                case 1 :
-                    $graphic9 = graphic_33430;
-                case 2 :
-                    $graphic9 = graphic_33431;
-                case 3 :
-                    $graphic9 = graphic_33432;
+            if (string_length($string0) = 0) {
+                $string0 = "Latest Content";
             }
-            if_setgraphic($graphic9, $component0);
+            if_setop(1, "Select", $component0);
+            if_setonop("script13252", $component0);
         case 5 :
-            switch_int (map_lang) {
-                case 0 :
-                    $graphic9 = graphic_33421;
-                case 1 :
-                    $graphic9 = graphic_33422;
-                case 2 :
-                    $graphic9 = graphic_33423;
-                case 3 :
-                    $graphic9 = graphic_33424;
+            if (string_length($string0) = 0) {
+                $string0 = "Latest Content";
             }
-            if_setgraphic($graphic9, $component0);
+            ~script13264(5, 1, $int5);
+        case 8 :
+            if (string_length($string0) = 0) {
+                $string0 = "Latest Content";
+            }
+            ~script13264(8, 1, $int5);
+        case 10 :
+            if (string_length($string0) = 0) {
+                $string0 = "Bonds";
+            }
+            ~script13264(10, 1, $int5);
+        case 11 :
+            if (string_length($string0) = 0) {
+                $string0 = "Latest Content";
+            }
+            ~script13264(11, 1, $int5);
+            if (struct_param($struct7, param_1345) > 0) {
+                $struct9 = enum(int, struct, enum_2252, struct_param($struct7, param_1345));
+                $quest10 = struct_param($struct9, param_1403);
+            }
+            if ($struct9 ! null) {
+                $string5 = quest_param($quest10, param_5968);
+            } else {
+                $string5 = struct_param($struct7, param_1273);
+            }
+        case 12 :
+            if (string_length($string0) = 0) {
+                $string0 = "Yak Track";
+            }
+            ~script13264(12, 1, $int5);
+        case default :
+            if (string_length($string0) = 0) {
+                $string0 = "Latest Content";
+            }
+            if_setop(1, "Select", $component0);
+            if_setonop("script13252", $component0);
+    }
+    if (string_length($string0) > 0) {
+        if_settext($string0, $component1);
     }
 }
-if (compare($string1, "") ! 0) {
-    if_setonmouserepeat("script10070($string1, 400, event_com, event_comsubid)", $component0);
+if (compare($string5, "") ! 0) {
+    if_setonmouserepeat("script10070($string5, 400, event_com, event_comsubid)", $component0);
 }
 cc_deleteall($component2);
-if ($int7 = 1) {
+if (compare($string4, "") = 0) {
     return;
 }
-def_int $int12 = 0;
-~script10047($component2, $int12);
-$int12 = calc($int12 + 1);
-cc_create($component2, ^iftype_text, $int12);
-cc_settext($string0);
+def_int $int16 = 0;
+~script10047($component2, $int16);
+$int16 = calc($int16 + 1);
+cc_create($component2, ^iftype_text, $int16);
+cc_settext($string4);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
 cc_setsize(0, 32, ^setsize_minus, ^setsize_abs);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);

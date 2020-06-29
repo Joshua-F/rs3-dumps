@@ -1,0 +1,28 @@
+// 14843
+[proc,arch_research_build_info](component $component0, int $int1, dbrow $dbrow2, int $int3, int $int4, int $int5, int $int6, int $int7)(int)
+def_int $int8 = calc(($int6 - 326) / 2);
+def_int $int9 = $int3;
+def_int $int10 = $int4;
+def_int $int11 = $int5;
+def_string $string0 = "";
+def_string $string1 = "";
+if (~arch_research_get_unlock_state($dbrow2) = ^true) {
+    $string0 = "Field Study: <db_getfield($dbrow2, dbtable_90:col6, 0)>";
+    if (~arch_research_get_complete_state($dbrow2) = 1) {
+        $string1 = "Report: <db_getfield($dbrow2, dbtable_90:col7, 0)>";
+    } else {
+        $string1 = "Report: I need to get my team to do some further research.";
+    }
+} else {
+    $string0 = "Field Study: I have yet to find any information on this.";
+}
+if (~arch_research_get_complete_state($dbrow2) = 1) {
+    $string1 = "Report: <db_getfield($dbrow2, dbtable_90:col7, 0)>";
+}
+~cc_add_text_custom($component0, if_getnextsubid($component0), $int11, 20, ^setsize_abs, ^setsize_abs, $int9, $int10, ^setpos_abs_left, ^setpos_abs_top, db_getfield($dbrow2, dbtable_90:col3, 0), ^black, graphic_20280, ^settextalign_left, ^settextalign_top, enum(fontmetrics, int, enum_8584, graphic_20280), false);
+if (string_length($string0) > 0) {
+    ~cc_add_text_custom($component0, if_getnextsubid($component0), $int11, 60, ^setsize_abs, ^setsize_abs, $int9, calc($int10 + 20), ^setpos_abs_left, ^setpos_abs_top, $string0, ^black, graphic_17813, ^settextalign_left, ^settextalign_top, enum(fontmetrics, int, enum_8584, graphic_17813), false);
+}
+if (string_length($string1) > 0) {
+    ~cc_add_text_custom($component0, if_getnextsubid($component0), $int11, 100, ^setsize_abs, ^setsize_abs, $int9, calc($int10 + 20 + 60), ^setpos_abs_left, ^setpos_abs_top, $string1, ^black, graphic_17813, ^settextalign_left, ^settextalign_top, enum(fontmetrics, int, enum_8584, graphic_17813), false);
+}

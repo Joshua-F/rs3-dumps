@@ -1,25 +1,14 @@
 // 2593
-[proc,script2593](int $int0, struct $struct1)
-if (has_nxt = false) {
-    if (detailget_groundblending = false) {
-        detail_texturing(0);
-        detail_hardshadows(0);
-        detail_bloom(0);
-    } else if (detailget_texturing = 0) {
-        detail_hardshadows(0);
-        detail_bloom(0);
-    }
-    if (detailget_fog_on = false) {
-        detail_waterdetail_high(false);
-    }
-    if (detailget_lightdetail_high = false) {
-        detail_bloom(0);
-    }
+[proc,script2593]
+if (clientoption_get(^clientoption_interface_scale) ! 100) {
+    clientoption_set(^clientoption_interface_scale, 100);
+}
+if (clientoption_get(^clientoption_game_render_scale) ! 100) {
+    clientoption_set(^clientoption_game_render_scale, 100);
 }
 if (autosetup_getlevel = 1 | autosetup_getlevel = 2) {
     ~audio_mute_all;
-}
-detail_dof(0);
-if (detailget_texturing = 2) {
-    detail_texturing(1);
+    clientoption_set(^clientoption_dof, 0);
+} else if (detailget_drawdistance = 0) {
+    clientoption_set(^clientoption_dof, 0);
 }

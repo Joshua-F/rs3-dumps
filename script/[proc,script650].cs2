@@ -3,6 +3,8 @@
 def_boolean $boolean8 = true;
 def_string $string0 = struct_param($struct2, param_5091);
 def_string $string1 = "";
+def_int $int9 = 0;
+def_int $int10 = 0;
 switch_int ($int5) {
     case 1 :
         $string0 = struct_param($struct2, param_5093);
@@ -10,20 +12,29 @@ switch_int ($int5) {
     case 2 :
         $string0 = struct_param($struct2, param_5092);
         $string1 = struct_param($struct2, param_4859);
+        $int9 = 1;
     case 3 :
         $string1 = "You cannot afford this item.";
         if (string_length(struct_param($struct2, param_7141)) ! 0) {
             $string1 = "<$string1> <struct_param($struct2, param_7141)>";
         }
+        $int9 = 1;
     case 4 :
         $string1 = "You must be on a members' world to purchase this item.";
+        $int9 = 1;
     case 5 :
         $string1 = "You cannot claim this item.";
         if (string_length(struct_param($struct2, param_7141)) ! 0) {
             $string1 = "<$string1> <struct_param($struct2, param_7141)>";
         }
+        $int9 = 1;
     case 6 :
-        $string0 = struct_param($struct2, param_6615);
+        $int10 = ~script12776($struct2);
+        if ($int10 > 0) {
+            $string0 = "<tostring($int10)>% off!";
+        } else {
+            $string0 = struct_param($struct2, param_6615);
+        }
         $string1 = struct_param($struct2, param_7402);
         $boolean8 = false;
     case 0 :
@@ -31,7 +42,11 @@ switch_int ($int5) {
     case default :
         $string1 = "This has already been purchased.";
 }
-~script13989($component3, struct_28553, ~script653($int1, 1), $boolean8, -1, 0);
+if ($int10 > 0) {
+    ~script13989($component3, struct_28554, ~script653($int1, 1), $boolean8, -1, 0);
+} else {
+    ~script13989($component3, struct_28553, ~script653($int1, 1), $boolean8, -1, 0);
+}
 if (string_length($string0) > 0 & cc_find($component3, ~script653($int1, 2)) = true) {
     cc_settext($string0);
 }
@@ -61,6 +76,13 @@ if (cc_find($component4, $int1) = true) {
         }
     } else {
         cc_clearops;
+    }
+    if (~script6431 = true) {
+        if ($boolean8 = true) {
+            cc_setonclick("script7774($string1, event_com, event_comsubid, $int9)");
+        } else {
+            cc_setonclick(null);
+        }
     }
     cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
 }

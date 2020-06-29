@@ -2,75 +2,88 @@
 [proc,script583](struct $struct0, struct $struct1, component $component2, component $component3, struct $struct4, int $int5, int $int6, int $int7, int $int8, int $int9)
 ~script10410($component2, null, $struct4, $int5, $int6, $int7, $int8, $int9, false, "");
 ~script10410($component2, null, struct_28575, calc($int5 + 5), calc($int6 + 35), 40, 40, 0, false, "");
-~script13980($component2, $component3, struct_28553, calc($int5 + 5), calc($int6 + 81), 103, $int9, false, "Buy");
-def_int $int10 = if_getnextsubid($component2);
-cc_create($component2, ^iftype_text, $int10++);
+def_int $int10 = struct_param($struct1, param_4850);
+def_int $int11 = ~script13501($struct1);
+if ($int11 = 0) {
+    ~script13980($component2, $component3, struct_28553, calc($int5 + 5), calc($int6 + 81), 103, $int9, false, "Buy");
+} else {
+    ~script13980($component2, $component3, struct_28554, calc($int5 + 5), calc($int6 + 81), 103, $int9, false, "Buy");
+}
+def_int $int12 = if_getnextsubid($component2);
+cc_create($component2, ^iftype_text, $int12++);
 cc_setsize(calc($int7 - 6), 24, ^setsize_abs, ^setsize_abs);
 cc_setposition(calc($int5 + 3), calc($int6 + 6), ^setpos_abs_left, ^setpos_abs_top);
-cc_settext(struct_param($struct1, param_4849));
+if ($int11 = 0) {
+    cc_settext(~script13337($struct1));
+} else {
+    cc_settext("<col=ffcb05><~script13337($struct1)></col>");
+}
 cc_settextfont(graphic_17813);
 cc_setcolour(~script10495(3));
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 11);
-cc_create($component2, ^iftype_text, $int10++);
+if ($int11 = 1) {
+    if (struct_param($struct1, param_6613) ! -1) {
+        $int10 = struct_param($struct1, param_6613);
+    }
+    $int10 = ~script12719($struct1, $int10);
+}
+cc_create($component2, ^iftype_text, $int12++);
 cc_setsize(60, 50, ^setsize_abs, ^setsize_abs);
 cc_setposition(calc($int5 + $int7 - 65), calc($int6 + 30), ^setpos_abs_left, ^setpos_abs_top);
-def_int $int11 = struct_param($struct1, param_4850);
-if (struct_param($struct1, param_6613) ! -1 & ~script13501($struct1) = 1) {
-    $int11 = struct_param($struct1, param_6613);
-}
-def_int $int12 = struct_param($struct1, param_5878);
+def_int $int13 = struct_param($struct1, param_5878);
 if (playermember = false & struct_param($struct1, param_5147) > 0) {
-    $int11 = struct_param($struct1, param_5147);
+    $int10 = struct_param($struct1, param_5147);
 }
 if (playermember = false & struct_param($struct1, param_5879) > 0) {
-    $int12 = struct_param($struct1, param_5879);
+    $int13 = struct_param($struct1, param_5879);
 }
-if ($int11 > 0) {
-    $int11 = max(1, scale(struct_param($struct0, param_7399), 100, $int11));
+if ($int10 > 0) {
+    $int10 = max(1, scale(struct_param($struct0, param_7399), 100, $int10));
 }
-if ($int12 > 0) {
-    $int12 = max(1, scale(struct_param($struct0, param_7400), 100, $int12));
+if ($int13 > 0) {
+    $int13 = max(1, scale(struct_param($struct0, param_7400), 100, $int13));
 }
-cc_settext(~script12658($struct0, $int11, $int12, 0));
+cc_settext(~script12658($struct0, $int10, $int13, 0));
 cc_settextfont(graphic_17813);
 cc_setcolour(^white);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 11);
-cc_create($component2, ^iftype_graphic, $int10++);
-def_obj $obj13 = struct_param($struct1, param_4851);
-def_obj $obj14 = null;
-def_inv $inv15 = null;
+cc_create($component2, ^iftype_graphic, $int12++);
+def_obj $obj14 = struct_param($struct1, param_4851);
+def_obj $obj15 = null;
+def_inv $inv16 = null;
 if (struct_param($struct1, param_4852) ! null) {
     cc_setsize(min(struct_param($struct1, param_4860), 32), min(struct_param($struct1, param_4861), 32), ^setsize_abs, ^setsize_abs);
     cc_setgraphic(struct_param($struct1, param_4852));
     cc_setposition(calc($int5 + 5 + (40 - cc_getwidth) / 2), calc($int6 + 35 + (40 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
-} else if ($obj13 ! null) {
+} else if ($obj14 ! null) {
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    if (struct_param($struct1, param_6131) ! null) {
-        $obj13 = struct_param($struct1, param_6131);
-    }
-    cc_setobject($obj13, struct_param($struct1, param_4448));
+    $obj14 = ~script14453($struct1, $obj14);
+    cc_setobject($obj14, struct_param($struct1, param_4448));
     cc_setposition(calc($int5 + 8 + (40 - cc_getwidth) / 2), calc($int6 + 37 + (40 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
 }
 cc_setonclick("script1365($struct1)");
 switch_int (struct_param($struct1, param_4862)) {
     case 1 :
-        cc_setonmouserepeat("script8799(struct_param($struct1, param_4858), event_com, event_comsubid)");
+        ~script14990(0, struct_param($struct1, param_4858));
     case 2 :
-        $obj13, $obj14, $inv15 = ~script13265($obj13);
-        if ($obj14 ! null) {
-            cc_setonmouserepeat("script10767($obj13, $obj14, $inv15, event_com, event_comsubid)");
+        $obj14, $obj15, $inv16 = ~script13265($obj14);
+        if ($obj15 ! null) {
+            ~script14994(null, null, -1, $obj15, $inv16, 0);
         } else {
+            ~script14994(null, null, -1, null, null, 0);
             cc_setonmouserepeat(null);
         }
     case 3 :
-        $obj13, $obj14, $inv15 = ~script13265($obj13);
-        if ($obj14 ! null & $obj14 ! $obj13) {
-            cc_setonmouserepeat("script13254($obj13, $obj14, $inv15, event_com, event_comsubid)");
-        } else if ($obj14 ! null | $obj13 ! null) {
-            cc_setonmouserepeat("script10767($obj13, $obj14, $inv15, event_com, event_comsubid)");
+        $obj14, $obj15, $inv16 = ~script13265($obj14);
+        if ($obj15 ! null & $obj15 ! $obj14) {
+            ~script14994(null, null, -1, $obj15, $inv16, 1);
+        } else if ($obj15 ! null | $obj14 ! null) {
+            ~script14994(null, null, -1, $obj15, $inv16, 0);
         } else {
+            ~script14994(null, null, -1, null, null, 0);
             cc_setonmouserepeat(null);
         }
     case default :
+        ~script14990(0, "");
         cc_setonmouserepeat(null);
 }

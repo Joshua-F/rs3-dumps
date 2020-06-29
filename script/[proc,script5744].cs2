@@ -1,85 +1,189 @@
 // 5744
-[proc,script5744](component $component0, component $component1)
-def_int $int2 = ~script10495(9);
-def_int $int3 = ~script10495(12);
-def_int $int4 = ~script10495(16);
-def_int $int5 = ~script10495(11);
-def_int $int6 = ~script10495(14);
-def_int $rgb7 = 0xaed0e0;
-def_int $int8 = 16;
+[proc,script5744](component $component0)
+def_int $int1 = ~script10495(9);
+def_int $int2 = ~script10495(12);
+def_int $int3 = ~script10495(16);
+def_int $int4 = ~script10495(11);
+def_int $int5 = ~script10495(14);
+def_int $rgb6 = 0xaed0e0;
+def_int $int7 = 5;
+def_int $int8 = 0;
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = if_getwidth($component0);
 def_int $int12 = 0;
 def_int $int13 = 0;
 def_struct $struct14 = null;
-def_string $string0 = "";
-def_component $component15 = null;
+def_string $string0 = null;
 def_string $string1 = null;
-def_string $string2 = null;
-while ($int10 < 3) {
-    $string0, $struct14 = ~sworlds_get_challenge_var($int10);
-    $component15 = ~script5751($int10);
+def_int $int15 = if_getnextsubid($component0);
+def_enum $enum16 = null;
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_int $int19 = 0;
+def_int $int20 = 0;
+def_int $int21 = 28;
+def_int $int22 = 0;
+def_int $int23 = -2;
+while ($int10++ < 3) {
+    $struct14 = ~sworlds_get_challenge_var($int10);
     $int12, $int13 = ~script5752($int10);
-    if ($int12 = 0) {
-        if (struct_param($struct14, param_6453) = false) {
-            $string1 = "<col=ff0000)>INCOMPLETE</col><br><col=ff0000)><tostring($int13)>/<tostring(struct_param($struct14, param_6452))></col>";
-        } else {
-            $string1 = "<col=ff0000)>INCOMPLETE</col>";
-        }
-    } else {
-        $string1 = "<col=00ff00>COMPLETE</col>";
-    }
-    .cc_create($component15, ^iftype_text, if_getnextsubid($component15));
-    .cc_settextfont(graphic_17813);
-    .cc_setcolour($rgb7);
-    .cc_settext("<$string0><br><struct_param($struct14, param_2232)><br><br><struct_param($struct14, param_6449)><br><br><$string1>");
-    .cc_setposition(8, 0, ^setpos_abs_left, ^setpos_abs_top);
-    .cc_setsize(16, calc(~script7593(.cc_gettext, calc($int11 - 16), .cc_getfontmetrics, 0) + 16), ^setsize_minus, ^setsize_abs);
-    .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    cc_create($component15, ^iftype_rectangle, if_getnextsubid($component15));
-    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setsize(0, .cc_getheight, ^setsize_minus, ^setsize_abs);
+    $int8 = $int7;
+    cc_create($component0, ^iftype_rectangle, $int15);
+    cc_setposition(0, $int9, ^setpos_abs_left, ^setpos_abs_top);
     cc_setfill(true);
-    .cc_create($component15, ^iftype_rectangle, if_getnextsubid($component15));
-    .cc_setsize(cc_getwidth, cc_getheight, ^setsize_abs, ^setsize_abs);
-    .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
-    .cc_setcolour(^black);
-    .cc_setfill(true);
-    if (calc($int10 % 2) = 1) {
+    cc_setop(1, "Select");
+    if (calc($int10 - 1) = 0) {
         cc_setcolour($int2);
     } else {
-        cc_setcolour($int3);
+        cc_setcolour($int1);
     }
-    if (struct_param($struct14, param_6453) = true) {
-        $string2 = "You can start this challenge from this portal.";
-        .cc_settrans(255);
-    } else {
-        $string2 = "You cannot start this challenge from this portal.";
-        .cc_settrans(153);
+    $int15 = calc($int15 + 1);
+    .cc_create($component0, ^iftype_text, $int15);
+    .cc_settext(struct_param($struct14, param_2232));
+    .cc_setsize(10, ~script7593(.cc_gettext, calc($int11 - 10), graphic_17813, 0), ^setsize_minus, ^setsize_abs);
+    .cc_setposition(5, calc($int9 + $int8), ^setpos_abs_left, ^setpos_abs_top);
+    switch_int ($int10) {
+        case 1 :
+            .cc_setcolour(0xcd7f32);
+            cc_setparam(param_6804, 1);
+        case 2 :
+            .cc_setcolour(0xc0c0c0);
+            cc_setparam(param_6804, 2);
+        case 3 :
+            .cc_setcolour(0xffd700);
+            cc_setparam(param_6804, 3);
     }
-    cc_sendtoback;
-    .cc_sendtofront;
-    if (.if_find($component15) = true) {
-        .if_setsize(cc_getwidth, cc_getheight, ^setsize_abs, ^setsize_abs, $component15);
-        .if_setposition(0, $int9, ^setpos_abs_left, ^setpos_abs_top, $component15);
-        .cc_setonmouserepeat("script3876($string2, event_com, event_comsubid)");
-        .cc_setmouseovercursor(cursor_46);
-        cc_create($component1, ^iftype_rectangle, if_getnextsubid($component1));
-        cc_setsize(.cc_getwidth, .cc_getheight, ^setsize_abs, ^setsize_abs);
-        cc_setposition(.cc_getx, .cc_gety, ^setpos_abs_left, ^setpos_abs_top);
-        cc_setfill(false);
-        cc_setcolour(0xffcd0a);
-        cc_sendtofront;
+    .cc_settextshadow(true);
+    .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    .cc_settextfont(graphic_17813);
+    $int8 = calc($int8 + (~script7593(.cc_gettext, calc($int11 - 10), graphic_17813, 0) + $int7));
+    $int15 = calc($int15 + 1);
+    .cc_create($component0, ^iftype_text, $int15);
+    .cc_settext(struct_param($struct14, param_6449));
+    .cc_setsize(10, ~script7593(.cc_gettext, calc($int11 - 10), graphic_20452, 0), ^setsize_minus, ^setsize_abs);
+    .cc_setposition(5, calc($int9 + $int8), ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setcolour($rgb6);
+    .cc_settextshadow(true);
+    .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    .cc_settextfont(graphic_20452);
+    $int8 = calc($int8 + (~script7593(.cc_gettext, calc($int11 - 10), graphic_20452, 0) + $int7));
+    $enum16 = struct_param($struct14, param_6464);
+    if ($enum16 ! null) {
+        $int18 = enum_getoutputcount(struct_param($struct14, param_6464));
     }
-    $int9 = calc($int9 + .cc_getheight + 3);
-    $int10 = calc($int10 + 1);
+    if ($int18 > 0) {
+        $int17 = 0;
+        while ($int17 < $int18) {
+            $int15 = calc($int15 + 1);
+            $int19 = calc($int17 / 4);
+            $int20 = min(calc($int18 - $int19 * 4), 4);
+            $int22 = calc($int9 + $int8 + $int19 * ($int21 + $int7));
+            $int23 = enum(int, int, $enum16, $int17);
+            .cc_create($component0, ^iftype_graphic, $int15);
+            .cc_setsize($int21, $int21, ^setsize_abs, ^setsize_abs);
+            if ($int23 = -1) {
+                .cc_setgraphic(trh102_ui_gem_questionmark);
+                ~script14928("<col=1bb3f9>Random</col><br>A random mutator will be selected for this challenge.");
+            } else {
+                .cc_setgraphic(struct_param(enum(int, struct, enum_12533, $int23), param_6504));
+                ~script14928(~sworlds_mutator_tooltip($int23));
+            }
+            switch_int (calc($int17 % 4)) {
+                case 0 :
+                    switch_int ($int20) {
+                        case 1 :
+                            .cc_setposition(0, $int22, ^setpos_abs_centre, ^setpos_abs_top);
+                        case 2 :
+                            .cc_setposition(calc(0 - $int11 / 8), $int22, ^setpos_abs_centre, ^setpos_abs_top);
+                        case 3 :
+                            .cc_setposition(calc(0 - $int11 / 3), $int22, ^setpos_abs_centre, ^setpos_abs_top);
+                        case 4 :
+                            .cc_setposition(calc(0 - 3 * $int11 / 8), $int22, ^setpos_abs_centre, ^setpos_abs_top);
+                    }
+                case 1 :
+                    switch_int ($int20) {
+                        case 2 :
+                            .cc_setposition(calc($int11 / 8), $int22, ^setpos_abs_centre, ^setpos_abs_top);
+                        case 3 :
+                            .cc_setposition(0, $int22, ^setpos_abs_centre, ^setpos_abs_top);
+                        case 4 :
+                            .cc_setposition(calc(0 - $int11 / 8), $int22, ^setpos_abs_centre, ^setpos_abs_top);
+                    }
+                case 2 :
+                    switch_int ($int20) {
+                        case 3 :
+                            .cc_setposition(calc($int11 / 3), $int22, ^setpos_abs_centre, ^setpos_abs_top);
+                        case 4 :
+                            .cc_setposition(calc($int11 / 8), $int22, ^setpos_abs_centre, ^setpos_abs_top);
+                    }
+                case 3 :
+                    switch_int ($int20) {
+                        case 4 :
+                            .cc_setposition(calc(3 * $int11 / 8), $int22, ^setpos_abs_centre, ^setpos_abs_top);
+                    }
+            }
+            $int17 = calc($int17 + 1);
+        }
+        $int8 = calc($int22 + $int21 + $int7 - $int9);
+    }
+    $int15 = calc($int15 + 1);
+    .cc_create($component0, ^iftype_text, $int15);
+    switch_int ($int10) {
+        case 1 :
+            .cc_settext("<tostring_localised(250000, true)> anima");
+            if (%varplayerbit_35817 = 1) {
+                .cc_settext("<str><.cc_gettext></str>");
+                ~script14928("You have already claimed the reward for this challenge this week.");
+            } else {
+                ~script14928("The amount of anima you will gain for completing this challenge.");
+            }
+        case 2 :
+            .cc_settext("<tostring_localised(1000000, true)> anima");
+            if (%varplayerbit_35818 = 1) {
+                .cc_settext("<str><.cc_gettext></str>");
+                ~script14928("You have already claimed the reward for this challenge this week.");
+            } else {
+                ~script14928("The amount of anima you will gain for completing this challenge.");
+            }
+        case 3 :
+            .cc_settext("<tostring_localised(7500000, true)> anima");
+            if (%varplayerbit_35819 = 1) {
+                .cc_settext("<str><.cc_gettext></str>");
+                ~script14928("You have already claimed the reward for this challenge this week.");
+            } else {
+                ~script14928("The amount of anima you will gain for completing this challenge.");
+            }
+    }
+    .cc_setsize(10, ~script7593(.cc_gettext, calc($int11 - 10), graphic_17813, 0), ^setsize_minus, ^setsize_abs);
+    .cc_setposition(5, calc($int9 + $int8), ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setcolour($rgb6);
+    .cc_settextshadow(true);
+    .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    .cc_settextfont(graphic_17813);
+    $int8 = calc($int8 + (~script7593(.cc_gettext, calc($int11 - 10), graphic_17813, 0) + $int7));
+    cc_setsize(0, $int8, ^setsize_minus, ^setsize_abs);
+    cc_setparam(param_6805, calc($int15 + 1));
+    $int15 = calc($int15 + 1);
+    cc_create($component0, ^iftype_rectangle, $int15);
+    cc_setsize(0, $int8, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int9, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setfill(false);
+    cc_setcolour(0xffcd0a);
+    cc_sethide(true);
+    $int9 = calc($int9 + ($int8 + $int7));
+    $int8 = 0;
+    $int18 = 0;
+    $int15 = calc($int15 + 1);
 }
-if (calc($int9 - 3) > if_getheight(interface_1867:com_6)) {
-    if_setscrollsize(0, $int9, interface_1867:com_6);
-    if_setscrollpos(0, 0, interface_1867:com_6);
+~script3536("Please select a challenge first", interface_1867:com_128, -1);
+if_sethide(true, interface_1867:com_127);
+if_sethide(false, interface_1867:com_128);
+if (calc($int9 - 3) > if_getheight(interface_1867:com_4)) {
+    if_setscrollsize(0, $int9, interface_1867:com_4);
+    if_setscrollpos(0, 0, interface_1867:com_4);
 } else {
-    if_setscrollsize(0, 0, interface_1867:com_6);
-    if_setscrollpos(0, 0, interface_1867:com_6);
+    if_setscrollsize(0, 0, interface_1867:com_4);
+    if_setscrollpos(0, 0, interface_1867:com_4);
 }
-~rs3_scrollbar_vertical(interface_1867:com_4, interface_1867:com_6);
+~rs3_scrollbar_vertical(interface_1867:com_2, interface_1867:com_4);

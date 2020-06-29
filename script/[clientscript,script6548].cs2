@@ -1,10 +1,16 @@
 // 6548
 [clientscript,script6548]
-~script9554(interface_168:com_1, interface_168:com_35, interface_168:com_2, db_getfield(%varplayer_8551, dbtable_47:col0, 0), struct_21218);
+~script9554(interface_168:com_1, interface_168:com_36, interface_168:com_2, db_getfield(%varplayer_8551, dbtable_47:col0, 0), struct_21218);
 if (~script6545(%varplayer_8551) = true) {
     if_sethide(false, interface_168:com_22);
 }
 def_string $string0 = "";
+switch_dbrow (%varplayer_8551) {
+    case dbrow_2629 :
+        if_settext("Deposit all", interface_168:com_30);
+        $string0 = "Deposit all materials into your material storage.";
+        if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", interface_168:com_22);
+}
 def_int $int0 = 0;
 if (~script6546(%varplayer_8551) = 1) {
     switch_dbrow (%varplayer_8551) {
@@ -12,7 +18,7 @@ if (~script6546(%varplayer_8551) = 1) {
             if (%varplayerbit_23063 = 1) {
                 return;
             } else {
-                if_settext("Pet Chance", interface_168:com_44);
+                if_settext("Pet Chance", interface_168:com_45);
             }
         case dbrow_1578 :
             if (%varplayerbit_28712 ! 1) {

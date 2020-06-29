@@ -1,87 +1,98 @@
 // 6050
-[clientscript,script6050](component $component0, int $int1, int $int2)
-def_int $int3 = 425;
-def_int $int4 = scale(%varplayer_679, 1000, 100);
-def_int $int5 = scale(if_getwidth($component0), $int3, 100);
-def_int $int6 = 1;
-def_int $int7 = 0;
-def_component $component8 = interface_640:com_12;
-def_component $component9 = interface_640:com_14;
-def_component $component10 = interface_640:com_13;
-def_component $component11 = interface_640:com_7;
-def_component $component12 = interface_640:com_11;
+[clientscript,script6050](component $component0, component $component1, int $int2, int $int3)
+def_int $int4 = 425;
+def_int $int5 = scale(%varplayer_679, 1000, 100);
+def_int $int6 = scale(if_getwidth($component0), $int4, 100);
+def_int $int7 = scale(if_getwidth($component1), $int4, 100);
+def_int $int8 = calc($int6 + $int7);
+def_int $int9 = 1;
+def_int $int10 = 0;
+def_component $component11 = interface_640:com_13;
+def_component $component12 = interface_640:com_15;
+def_component $component13 = interface_640:com_14;
+def_component $component14 = interface_640:com_7;
+def_component $component15 = interface_640:com_11;
 if (if_getlayer($component0) = interface_1616:com_1) {
-    $component8 = interface_1616:com_10;
-    $component9 = interface_1616:com_12;
-    $component10 = interface_1616:com_11;
-    $component11 = interface_1616:com_5;
-    $component12 = interface_1616:com_0;
+    $component11 = interface_1616:com_11;
+    $component12 = interface_1616:com_13;
+    $component13 = interface_1616:com_12;
+    $component14 = interface_1616:com_5;
+    $component15 = interface_1616:com_0;
 }
-if (%varplayer_679 >= 500 & $int5 >= 50) {
-    if_sethide(false, $component8);
+if (%varplayer_679 >= 500 & $int8 >= 50) {
+    if_sethide(false, $component11);
 } else {
-    if_sethide(true, $component8);
+    if_sethide(true, $component11);
 }
-if (%varplayer_679 >= 1000 & $int5 >= 100) {
-    if_sethide(false, $component9);
-    if_sethide(false, $component10);
-    if_setgraphic("combatv2_energy_level,2", $component12);
-} else if (%varplayer_679 >= 500 & $int5 >= 50) {
-    if_sethide(true, $component9);
-    if_sethide(true, $component10);
-    if_setgraphic("combatv2_energy_level,1", $component12);
+if (%varplayer_679 >= 1000 & $int8 >= 100) {
+    if_sethide(false, $component12);
+    if_sethide(false, $component13);
+    if_setgraphic("combatv2_energy_level,2", $component15);
+} else if (%varplayer_679 >= 500 & $int8 >= 50) {
+    if_sethide(true, $component12);
+    if_sethide(true, $component13);
+    if_setgraphic("combatv2_energy_level,1", $component15);
 } else {
-    if_sethide(true, $component9);
-    if_sethide(true, $component10);
-    if_setgraphic("combatv2_energy_level,0", $component12);
+    if_sethide(true, $component12);
+    if_sethide(true, $component13);
+    if_setgraphic("combatv2_energy_level,0", $component15);
 }
-if ($int5 ! $int4) {
-    if ($int5 < $int4) {
-        if ($int1 ! 1 & $int1 ! $int2) {
+if ($int8 ! $int5) {
+    if ($int8 < $int5) {
+        if ($int2 ! 1 & $int2 ! $int3) {
             if_setontimer(null, $component0);
-            if_setsize(if_getwidth($component0), if_getheight($component11), ^setsize_abs, ^setsize_abs, $component11);
+            if_setsize(if_getwidth($component0), if_getheight($component14), ^setsize_abs, ^setsize_abs, $component14);
             return;
         }
-        if_setsize(min(calc(if_getwidth($component0) + $int6), $int3), if_getheight($component0), ^setsize_abs, ^setsize_abs, $component0);
-        $int2 = $int1;
-        $int1 = 1;
+        if_setsize(min(calc(if_getwidth($component0) + $int9), $int4), if_getheight($component0), ^setsize_abs, ^setsize_abs, $component0);
+        if (if_getwidth($component0) = $int4 & $int7 < max(0, calc($int5 - 100))) {
+            if_setsize(min(calc(if_getwidth($component1) + $int9), $int4), if_getheight($component1), ^setsize_abs, ^setsize_abs, $component1);
+        }
+        $int3 = $int2;
+        $int2 = 1;
     } else {
-        if ($int1 ! 3 & $int1 ! $int2) {
+        if ($int2 ! 3 & $int2 ! $int3) {
             if_setontimer(null, $component0);
-            if_setsize(if_getwidth($component0), if_getheight($component11), ^setsize_abs, ^setsize_abs, $component11);
+            if_setsize(if_getwidth($component0), if_getheight($component14), ^setsize_abs, ^setsize_abs, $component14);
             return;
         }
-        $int6 = 10;
-        if_setsize(max(calc(if_getwidth($component0) - $int6), 1), if_getheight($component0), ^setsize_abs, ^setsize_abs, $component0);
-        $int2 = $int1;
-        $int1 = 3;
+        $int9 = 10;
+        if ($int7 > max(calc($int5 - 100), 0)) {
+            if_setsize(max(calc(if_getwidth($component1) - $int9), 1), if_getheight($component1), ^setsize_abs, ^setsize_abs, $component1);
+        } else {
+            if_setsize(max(calc(if_getwidth($component0) - $int9), 1), if_getheight($component0), ^setsize_abs, ^setsize_abs, $component0);
+        }
+        $int3 = $int2;
+        $int2 = 3;
     }
-    $int5 = scale(if_getwidth($component0), $int3, 100);
-    if (%varplayer_679 >= 500 & $int5 >= 50) {
-        if_sethide(false, $component8);
+    $int6 = scale(if_getwidth($component0), $int4, 100);
+    $int7 = scale(if_getwidth($component1), $int4, 100);
+    $int8 = calc($int6 + $int7);
+    if (%varplayer_679 >= 500 & $int8 >= 50) {
+        if_sethide(false, $component11);
     } else {
-        if_sethide(true, $component8);
+        if_sethide(true, $component11);
     }
-    if (%varplayer_679 >= 1000 & $int5 >= 100) {
-        if_sethide(false, $component9);
-        if_sethide(false, $component10);
-        if_setgraphic("combatv2_energy_level,2", $component12);
-    } else if (%varplayer_679 >= 500 & $int5 >= 50) {
-        if_sethide(true, $component9);
-        if_sethide(true, $component10);
-        if_setgraphic("combatv2_energy_level,1", $component12);
+    if (%varplayer_679 >= 1000 & $int8 >= 100) {
+        if_sethide(false, $component12);
+        if_sethide(false, $component13);
+        if_setgraphic("combatv2_energy_level,2", $component15);
+    } else if (%varplayer_679 >= 500 & $int8 >= 50) {
+        if_sethide(true, $component12);
+        if_sethide(true, $component13);
+        if_setgraphic("combatv2_energy_level,1", $component15);
     } else {
-        if_sethide(true, $component9);
-        if_sethide(true, $component10);
-        if_setgraphic("combatv2_energy_level,0", $component12);
+        if_sethide(true, $component12);
+        if_sethide(true, $component13);
+        if_setgraphic("combatv2_energy_level,0", $component15);
     }
-    if ($int5 ! $int4) {
-        if_setontimer("script6050($component0, $int1, $int2)", $component0);
+    if ($int8 ! $int5) {
+        if_setontimer("script6050($component0, $component1, $int2, $int3)", $component0);
         return;
     }
 }
 if (%varplayer_679 < 1) {
     if_setsize(1, if_getheight($component0), ^setsize_abs, ^setsize_abs, $component0);
 }
-if_setsize(if_getwidth($component0), if_getheight($component11), ^setsize_abs, ^setsize_abs, $component11);
+if_setsize(if_getwidth($component0), if_getheight($component14), ^setsize_abs, ^setsize_abs, $component14);
 if_setontimer(null, $component0);

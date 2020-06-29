@@ -13,7 +13,7 @@ def_int $int17 = 0;
 def_obj $obj18 = null;
 def_struct $struct19 = null;
 def_int $int20 = 0;
-def_int $int21 = db_getfieldcount($dbrow12, dbtable_73:col17);
+def_int $int21 = db_getfieldcount($dbrow12, dbtable_73:col18);
 def_int $int22 = -1;
 def_string $string0 = "";
 $int14 = 0;
@@ -22,7 +22,7 @@ if_settext("", $component4);
 if_setgraphic(null, $component2);
 if_setobject(null, -1, $component3);
 while ($int20 < $int21 & $int14 <= $int0) {
-    $int14, $int15, $obj18, $struct19, $int17 = db_getfield($dbrow12, dbtable_73:col17, $int20);
+    $int14, $int15, $obj18, $struct19, $int17 = db_getfield($dbrow12, dbtable_73:col18, $int20);
     if ($int22 ! $int14) {
         $int16 = ~script3599($int14);
         $int22 = $int14;
@@ -35,7 +35,7 @@ while ($int20 < $int21 & $int14 <= $int0) {
             if ($struct19 ! null & $struct19 ! struct_40074) {
                 $string0 = ~runepass_get_reward_string($struct19, 1);
             }
-            if_setcolour(^white, $component4);
+            if_setcolour(0xfbde83, $component4);
             if (calc($int16 & $int15) ! 0) {
                 if_setcolour(^green, $component4);
                 $string0 = "<$string0> - Claimed";
@@ -50,6 +50,8 @@ while ($int20 < $int21 & $int14 <= $int0) {
                 if_setgraphic(~runepass_get_reward_graphic($struct19, $obj18, 0), $component2);
             }
         }
+        $struct19 = null;
+        $obj18 = null;
         $int13 = calc($int13 + 1);
     }
     $int20 = calc($int20 + 1);
@@ -68,5 +70,7 @@ if ($int1 = 0) {
 if ($int1 = calc($int13 - 1) | $int13 = 0) {
     if_sethide(true, $component7);
 }
+if_setopcursor(1, cursor_46, $component6);
+if_setopcursor(1, cursor_46, $component7);
 if_setonop("runepass_reward_arrow($int0, calc($int1 - 1), $int8)", $component6);
 if_setonop("runepass_reward_arrow($int0, calc($int1 + 1), $int8)", $component7);

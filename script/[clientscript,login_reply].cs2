@@ -2,7 +2,7 @@
 [clientscript,login_reply](int $int0)
 def_int $int1 = ~login_getreply;
 def_component $component2 = interface_596:com_71;
-def_component $component3 = interface_744:com_189;
+def_component $component3 = interface_744:com_190;
 if ($int1 = 49) {
     if (%varclient_1100 ! 49) {
         ~script9804;
@@ -127,7 +127,7 @@ if ($int1 = 1) {
 }
 ~login_popup_close;
 if_setonclick("login_dologin", $component2);
-if_setontimer(null, interface_744:com_189);
+if_setontimer(null, interface_744:com_190);
 def_string $string2 = "";
 def_int $int6 = 1;
 def_int $int7 = 0;
@@ -179,10 +179,6 @@ switch_int ($int1) {
             case 13 :
                 $string2 = "You are standing in a members-only area. To play on this world, move to a free area first.";
             case 15 :
-                $string2 = "Your account does not currently have access to the mobile technical beta.";
-            case 17 :
-                $string2 = "You must be a member to log in on a mobile device during the mobile members beta.";
-            case 16 :
                 $string2 = "You can not login to a Legacy world on mobile.";
             case default :
                 $string2 = "Unexpected server response. Please try using a different world.";
@@ -341,12 +337,16 @@ switch_int ($int1) {
     case 47, 51 :
         $string2 = "You need to validate your email address to log in.";
     case 48 :
-        $string2 = "Your game session has now ended.<br><br>To play again, please close your browser tab/window and wait 5 minutes before reloading the game. ";
+        if (~is_mobile_client = true) {
+            $string2 = "Your game session has now ended.<br><br>To play again, please close the app and wait 5 minutes before reloading it. ";
+        } else {
+            $string2 = "Your game session has now ended.<br><br>To play again, please close your browser tab/window and wait 5 minutes before reloading the game. ";
+        }
     case 53 :
         %varclient_200 = login_ban_duration;
         $int13, $int14, $int15 = ~ban_time_remaining(%varclient_200);
         $string2 = "Your ban will be lifted in<br><tostring($int13)> hours, <tostring($int14)> minutes, <tostring($int15)> seconds";
-        if_setontimer("script6715", interface_744:com_189);
+        if_setontimer("script6715", interface_744:com_190);
         $int9 = 1;
         $string3 = "Cancel";
         $int11 = 1;
@@ -372,6 +372,20 @@ switch_int ($int1) {
         $string2 = "Single Sign on timed out. Please try again in a few moments.";
     case 65 :
         $string2 = "Single Sign on failed. Please try again in a few moments.";
+    case 1401 :
+        $string2 = "Single Sign on failed because your token has expired. Please try re-entering your login details.";
+    case 1402 :
+        $string2 = "Single Sign on failed because you exited without signing in.";
+    case 1403 :
+        $string2 = "Could not connect. Please check your internet connection or try again later.";
+    case 1404 :
+        $string2 = "Single Sign on failed because your access is unauthorized. Please try re-entering your login details.";
+    case 1405 :
+        $string2 = "Revoking token action unsuccessful.";
+    case 1406 :
+        $string2 = "Single Sign on failed because your account creation was unsuccessful. Please ensure you have entered a valid date of birth.";
+    case 1407 :
+        $string2 = "Single Sign on failed because you have a pending transaction.";
     case default :
         $string2 = "Unexpected server response. Please try using a different world.";
 }

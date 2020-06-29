@@ -1,0 +1,33 @@
+// 7214
+[proc,crs_teleport_coord](struct $struct0)(coord)
+def_int $int1 = 0;
+def_struct $struct2 = null;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_enum $enum5 = null;
+def_coord $coord6 = struct_param($struct0, param_2700);
+if ($coord6 = null & struct_param($struct0, param_1403) ! null) {
+    $coord6 = ~quest_lodestone($struct0);
+} else if (struct_param($struct0, param_1346) > 0) {
+    $coord6 = ~script7797(struct_param($struct0, param_1378));
+} else if ($struct0 = struct_11585) {
+    $coord6 = ~script7156(%varplayerbit_9072);
+} else if (struct_param($struct0, param_8072) ! null) {
+    $int1, $struct2 = ~script6301($struct0, 0, -1);
+    if ($struct2 ! null) {
+        $coord6 = ~crs_teleport_coord($struct2);
+    }
+    if ($coord6 = null) {
+        $int3 = 0;
+        $int4 = enum_getoutputcount(enum_15492);
+        while ($int3 < $int4) {
+            $enum5 = enum(int, enum, enum_15492, $int3);
+            if (enum_hasoutput(struct, $enum5, $struct0) = true) {
+                $coord6 = enum(int, coord, enum_6169, $int3);
+                $int3 = $int4;
+            }
+            $int3 = calc($int3 + 1);
+        }
+    }
+}
+return($coord6);

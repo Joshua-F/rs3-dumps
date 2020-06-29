@@ -15,14 +15,14 @@ def_boolean $boolean5 = false;
 def_string $string0 = "";
 def_dbrow $dbrow6 = null;
 def_int $int7 = if_getwidth(if_getparentlayer($component0));
-def_int $rgb8 = ^black;
+def_int $int8 = 0;
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = enum_getoutputcount($enum3);
 def_int $int13 = 0;
 def_int $int14 = 0;
-$boolean4, $int10 = ~script389($enum3, $int7);
+$boolean4, $int10 = ~script389($enum3, $int7, $component1);
 if ($boolean4 = false) {
     $int13 = 30;
 } else {
@@ -33,7 +33,7 @@ while ($int11 < $int12) {
     if ($boolean4 = false & db_getfield($dbrow6, dbtable_28:col7, 0) = false) {
         $boolean5 = true;
     } else {
-        $boolean5 = ~negate_bool(~script332(db_getfield($dbrow6, dbtable_28:col6, 0)));
+        $boolean5 = ~negate_bool(~script332(db_getfield($dbrow6, dbtable_28:col6, 0), $component1));
     }
     switch_int (db_getfield($dbrow6, dbtable_28:col5, 0)) {
         case 0, 3 :
@@ -53,12 +53,12 @@ while ($int11 < $int12) {
                 $int13 = calc($int13 + 27);
             }
         case 1 :
-            $string0, $rgb8 = ~money_pouch_int_to_string(%varclient_6480);
+            $string0, $int8 = ~money_pouch_int_to_string(%varclient_6480);
             $int9 = calc(3 + parawidth($string0, 1000, graphic_17813));
             if (cc_find($component0, $int14++) = true) {
                 cc_setsize($int9, 24, ^setsize_abs, ^setsize_abs);
                 cc_setposition(calc($int13 + 3), 0, ^setpos_abs_left, ^setpos_abs_top);
-                cc_setcolour($rgb8);
+                cc_setcolour($int8);
                 cc_settext($string0);
                 cc_sethide($boolean5);
             }

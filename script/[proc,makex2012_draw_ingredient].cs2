@@ -35,7 +35,7 @@ if ($boolean9 = true) {
     $string1 = tostring($int7);
     $int18 = 2;
 }
-~script7134($component10, $string0, 17813, 1, $int1, calc($int0 + $int14 + 3), calc(if_getwidth($component10) - ($int0 + $int14 + 3) - (20 + 5 + stringwidth($string1, graphic_17813) + 5)), $int11);
+~script7134($component10, $string0, 17813, 1, $int1, calc($int0 + $int14 + 5), calc(if_getwidth($component10) - ($int0 + $int14 + 5) - (20 + 5 + stringwidth($string1, graphic_17813) + 5)), $int11);
 $int12 = max($int12, calc(cc_gety + cc_getheight));
 $int11 = calc($int11 + 1);
 .cc_create($component10, ^iftype_graphic, $int11);
@@ -77,17 +77,27 @@ if (oc_param($obj4, param_5774) = 1) {
     $string1 = "<$string1><br>This item must have no charges used.";
 }
 def_string $string2 = "";
+switch_category (oc_category($obj4)) {
+    case category_4603 :
+        $string2 = ~script14694($component10);
+    case category_4602 :
+        $string2 = ~script14684($component10);
+}
+if (string_length($string2) > 0) {
+    $string1 = "<$string1><br><br><$string2>";
+}
+def_string $string3 = "";
 if ($obj4 = obj_36365) {
-    $string2 = ~script12161($int6);
-    if (string_length($string2) > 0) {
+    $string3 = ~script12161($int6);
+    if (string_length($string3) > 0) {
         $string1 = append($string1, "<br><br>To collect this material, disassemble:<br>");
-        $string1 = append($string1, "<col=ffffff><$string2></col>");
+        $string1 = append($string1, "<col=ffffff><$string3></col>");
     }
 }
 if ($struct5 ! null) {
     $string1 = "<$string1><br><br>You can use any of the following:<~script12101($struct5)>";
 }
-cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
+~script3537($string1);
 $int11 = calc($int11 + 1);
 ~script7133(0, calc($int1 - 1), if_getwidth($component10), calc($int12 - $int1 + 3), $component10, $int15);
 return($int11, $int12);

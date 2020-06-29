@@ -1,12 +1,12 @@
 // 13022
-[proc,script13022]()(boolean)
-if (%varplayer_8745 = null) {
-    if_sethide(true, interface_512:com_3);
-    if_sethide(true, interface_512:com_17);
-    if_sethide(true, interface_512:com_14);
-    if_sethide(true, interface_512:com_24);
-    if_sethide(true, interface_512:com_20);
-    if_setontimer(null, interface_512:com_8);
-    return(false);
+[proc,script13022](dbrow $dbrow0)(int)
+if (db_getfield($dbrow0, dbtable_81:col0, 0) ! -1) {
+    return(~book_get_unlock_state($dbrow0));
 }
-return(true);
+switch_dbrow ($dbrow0) {
+    case dbrow_3249 :
+        if (%varplayerbit_47175 >= 2) {
+            return(1);
+        }
+}
+return(0);

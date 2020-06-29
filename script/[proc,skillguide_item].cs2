@@ -1,0 +1,40 @@
+// 14715
+[proc,skillguide_item](struct $struct0)(obj)
+def_obj $obj1 = struct_param($struct0, param_2213);
+if ($obj1 ! null) {
+    return($obj1);
+}
+def_dbrow $dbrow2 = struct_param($struct0, param_6569);
+def_dbrow $dbrow3 = null;
+def_int $int4 = 0;
+if ($dbrow2 ! null) {
+    switch_dbtable (db_getrowtable($dbrow2)) {
+        case dbtable_86 :
+            if (db_getfield($dbrow2, dbtable_86:col1, 0) = 2) {
+                $dbrow3 = db_getfield($dbrow2, dbtable_86:col17, 0);
+                if ($dbrow3 ! null & db_getfieldcount($dbrow3, dbtable_88:col16) > 0) {
+                    $dbrow3, $int4 = db_getfield($dbrow3, dbtable_88:col16, max(0, calc(db_getfieldcount($dbrow3, dbtable_88:col16) - 1)));
+                    if ($dbrow3 ! null & db_getrowtable($dbrow3) = dbtable_89) {
+                        $obj1 = db_getfield($dbrow3, dbtable_89:col6, 0);
+                    }
+                }
+            }
+        case dbtable_88 :
+            switch_int (db_getfield($dbrow2, dbtable_88:col1, 0)) {
+                case 1 :
+                    if (db_getfieldcount($dbrow2, dbtable_88:col16) > 0) {
+                        $dbrow3, $int4 = db_getfield($dbrow2, dbtable_88:col16, 0);
+                        if ($dbrow3 ! null & db_getrowtable($dbrow3) = dbtable_89) {
+                            $obj1 = db_getfield($dbrow3, dbtable_89:col6, 0);
+                        }
+                    }
+                case 2 :
+                    if (db_getfieldcount($dbrow2, dbtable_88:col14) > 0) {
+                        $obj1, $int4 = db_getfield($dbrow2, dbtable_88:col14, 0);
+                    }
+            }
+        case dbtable_94 :
+            $obj1 = db_getfield($dbrow2, dbtable_94:col9, 0);
+    }
+}
+return($obj1);

@@ -1,7 +1,6 @@
 // 2470
 [proc,script2470](component $component0, int $int1, string $string0)
-def_component $component2 = ~script12020($component0);
-def_int $int3 = 0;
+def_int $int2 = 0;
 if (if_find($component0) = true) {
     if (cc_param(param_5433) = -1) {
         return;
@@ -13,80 +12,82 @@ if (if_find($component0) = true) {
     cc_setparam(param_5433, $int1);
     switch_int ($int1) {
         case 0 :
-            $int3 = 0;
-            if_setgraphic("rs3_icon_sort,4", $component2);
+            $int2 = 0;
+            ~script3515("rs3_icon_sort,4");
         case 1 :
-            $int3 = cc_param(param_5434);
-            if_setgraphic("rs3_icon_sort,1", $component2);
+            $int2 = cc_param(param_5434);
+            ~script3515("rs3_icon_sort,1");
         case 2 :
-            $int3 = cc_param(param_5435);
-            if_setgraphic("rs3_icon_sort,6", $component2);
+            $int2 = cc_param(param_5435);
+            ~script3515("rs3_icon_sort,6");
         case default :
             return;
     }
 } else {
     return;
 }
-def_int $int4 = 5;
-def_int $int5 = friend_count;
-def_boolean $boolean6 = false;
-def_component $component7 = ~script2968($component0);
-def_component $component8 = ~script3098($component0);
-def_component $component9 = ~script3099($component0);
-def_component $component10 = ~script10588($component0);
-def_component $component11 = ~friends_world_layer($component0);
-def_component $component12 = ~script11297($component0);
-def_int $int13 = 0;
-def_boolean $boolean14 = ~script6431;
-def_int $int15 = enum(fontmetrics, int, enum_8549, graphic_20452);
-if ($boolean14 = true) {
-    $int15 = enum(fontmetrics, int, enum_8549, graphic_21207);
+def_int $int3 = 5;
+def_int $int4 = friend_count;
+def_boolean $boolean5 = false;
+def_component $component6 = ~script2968($component0);
+def_component $component7 = ~script3098($component0);
+def_component $component8 = ~script3099($component0);
+def_component $component9 = ~script10588($component0);
+def_component $component10 = ~friends_world_layer($component0);
+def_component $component11 = ~script11297($component0);
+def_int $int12 = 0;
+def_boolean $boolean13 = ~script6431;
+def_int $int14 = enum(fontmetrics, int, enum_8549, graphic_20452);
+if ($boolean13 = true) {
+    $int14 = enum(fontmetrics, int, enum_8549, graphic_21207);
 }
-$int15 = calc($int15 + 4);
-while ($int3 ! -1) {
-    $int13 = calc($int13 + 1);
-    if (cc_find($component10, $int3) = true) {
-        cc_setposition(0, $int4, ^setpos_abs_left, ^setpos_abs_top);
+$int14 = calc($int14 + 4);
+while ($int2 ! -1) {
+    $int12 = calc($int12 + 1);
+    if (cc_find($component9, $int2) = true) {
+        cc_setposition(0, $int3, ^setpos_abs_left, ^setpos_abs_top);
     }
-    if (cc_find($component11, $int3) = true) {
-        cc_setposition(cc_getx, $int4, ^setpos_abs_left, ^setpos_abs_top);
+    if (cc_find($component10, $int2) = true) {
+        cc_setposition(cc_getx, $int3, ^setpos_abs_left, ^setpos_abs_top);
     }
-    if (cc_find($component12, $int3) = true) {
-        cc_setposition(2, calc($int4 + 1), ^setpos_abs_left, ^setpos_abs_top);
+    if (cc_find($component11, $int2) = true) {
+        cc_setposition(2, calc($int3 + 1), ^setpos_abs_left, ^setpos_abs_top);
     }
-    if (cc_find($component9, $int3) = true) {
-        cc_setposition(0, $int4, ^setpos_abs_left, ^setpos_abs_top);
+    if (cc_find($component8, $int2) = true) {
+        cc_setposition(0, $int3, ^setpos_abs_left, ^setpos_abs_top);
         switch_int ($int1) {
             case 0 :
-                if (++$int3 >= $int5) {
-                    $int3 = -1;
+                if (++$int2 >= $int4) {
+                    $int2 = -1;
                 }
             case 1 :
-                $int3 = cc_param(param_5434);
+                $int2 = cc_param(param_5434);
             case 2 :
-                $int3 = cc_param(param_5435);
+                $int2 = cc_param(param_5435);
             case default :
                 return;
         }
-        $boolean6 = cc_gethide;
+        $boolean5 = cc_gethide;
     } else {
         return;
     }
-    if ($boolean6 = false) {
-        $int4 = calc($int4 + $int15);
+    if ($boolean5 = false) {
+        $int3 = calc($int3 + $int14);
     }
 }
-if (if_getscrolly($component7) > $int4) {
-    if_setscrollpos(0, 0, $component7);
+if (if_getscrolly($component6) > $int3) {
+    if_setscrollpos(0, 0, $component6);
 }
-if (if_getscrolly($component7) > $int4) {
-    if_setscrollpos(0, 0, $component7);
+if (if_getscrolly($component6) > $int3) {
+    if_setscrollpos(0, 0, $component6);
 }
-if ($int4 > if_getheight($component7)) {
-    if_setscrollsize(0, $int4, $component7);
-    ~rs3_scrollbar_vertical($component8, $component7);
+if ($int3 > if_getheight($component6)) {
+    if_setsize(16, 60, ^setsize_minus, ^setsize_minus, $component6);
+    if_setscrollsize(0, $int3, $component6);
+    ~rs3_scrollbar_vertical($component7, $component6);
 } else {
-    if_setscrollpos(0, 0, $component7);
-    if_setscrollsize(0, 0, $component7);
-    cc_deleteall($component8);
+    if_setsize(0, 60, ^setsize_minus, ^setsize_minus, $component6);
+    if_setscrollpos(0, 0, $component6);
+    if_setscrollsize(0, 0, $component6);
+    cc_deleteall($component7);
 }

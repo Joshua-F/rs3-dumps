@@ -4,44 +4,44 @@ def_int $int2 = 85;
 def_int $int3 = 3;
 def_int $int4 = ~script11800($int0);
 def_int $int5 = ~script11803;
-def_int $int6 = calc($int5 * $int2 + ($int5 + 1) * $int3);
-def_int $int7 = calc(0 - $int6 / 2 + $int3 + $int2 / 2);
-def_int $int8 = 0;
-def_int $int9 = calc($int2 + 10);
-def_fontmetrics $fontmetrics10 = graphic_17995;
-def_int $int11 = 100;
+def_int $int6 = if_getwidth(interface_1924:com_183);
+def_int $int7 = 0;
+def_int $int8 = calc($int2 + 10);
+def_fontmetrics $fontmetrics9 = graphic_17995;
+def_int $int10 = 100;
 if ($int6 > if_getwidth(interface_276:com_0)) {
-    $int11 = calc(if_getwidth(interface_276:com_0) * 100 / $int6);
-    $int2 = calc($int2 * $int11 / 100);
-    $int3 = calc($int3 * $int11 / 100);
-    $int7 = calc($int7 * $int11 / 100);
-    $int9 = calc($int2 + 10);
-    $fontmetrics10 = graphic_21209;
+    $int10 = calc(if_getwidth(interface_276:com_0) * 100 / $int6);
+    $int2 = calc($int2 * $int10 / 100);
+    $int3 = calc($int3 * $int10 / 100);
+    $int8 = calc($int2 + 10);
+    $fontmetrics9 = graphic_21209;
 }
-def_graphic $graphic12 = "rs3_btn_combat_bar_adrenaline,0";
-def_component $component13 = interface_1924:com_186;
+def_int $int11 = calc($int6 / $int5);
+def_int $int12 = calc(($int11 - $int2) / 2);
+def_graphic $graphic13 = "rs3_btn_combat_bar_adrenaline,0";
+def_component $component14 = interface_1924:com_186;
 if_setsize($int6, if_getheight(interface_1924:com_183), ^setsize_abs, ^setsize_abs, interface_1924:com_183);
-cc_deleteall($component13);
-while ($int8 < $int5) {
-    if (calc($int8 + 1) = $int4) {
-        $graphic12 = magic_button_pressed_mainmenu;
+cc_deleteall($component14);
+while ($int7 < $int5) {
+    if (calc($int7 + 1) = $int4) {
+        $graphic13 = magic_button_pressed_mainmenu;
     } else {
-        $graphic12 = magic_button_normal_mainmenu;
+        $graphic13 = magic_button_normal_mainmenu;
     }
-    ~cc_add_graphic_custom($component13, calc($int8 * 2), $int2, $int2, ^setsize_abs, ^setsize_abs, $int7, 0, ^setpos_abs_centre, ^setpos_abs_centre, $graphic12, false, false, false, 0);
+    ~cc_add_graphic_custom($component14, calc($int7 * 2), $int2, $int2, ^setsize_abs, ^setsize_abs, $int12, 0, ^setpos_abs_left, ^setpos_abs_centre, $graphic13, false, false, false, 0);
     cc_setop(1, "Select");
-    cc_setonop("script1321(calc($int8 + 1))");
-    cc_create($component13, ^iftype_text, calc($int8 * 2 + 1));
+    cc_setonop("script1321(calc($int7 + 1))");
+    cc_create($component14, ^iftype_text, calc($int7 * 2 + 1));
     cc_setsize($int2, $int2, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc($int7 + 2), 0, ^setpos_abs_centre, ^setpos_abs_centre);
-    cc_settext(tostring(calc($int8 + 1)));
-    cc_settextfont($fontmetrics10);
+    cc_setposition(calc($int12 + 2), 0, ^setpos_abs_left, ^setpos_abs_centre);
+    cc_settext(tostring(calc($int7 + 1)));
+    cc_settextfont($fontmetrics9);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_settextshadow(true);
     ~script6888(2);
-    $int8 = calc($int8 + 1);
-    $int7 = calc($int7 + ($int2 + $int3));
+    $int7 = calc($int7 + 1);
+    $int12 = calc($int11 * $int7 + ($int11 - $int2) / 2);
 }
-if (if_find($component13) = true) {
+if (if_find($component14) = true) {
     cc_setparam(param_7486, $int0);
 }

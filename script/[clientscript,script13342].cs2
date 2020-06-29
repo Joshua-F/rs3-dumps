@@ -28,6 +28,7 @@ def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
 def_struct $struct12 = null;
+def_dbrow $dbrow13 = null;
 if_setcolour(~script10495(12), interface_1851:com_38);
 switch_int ($int3) {
     case 0 :
@@ -64,6 +65,12 @@ switch_int ($int3) {
                 }
                 if ($int3 = 1) {
                     $string0 = oc_name(enum(int, obj, $enum2, $int9));
+                } else if ($int3 = 3) {
+                    $dbrow13 = enum(int, dbrow, $enum2, $int9);
+                    switch_dbtable (db_getrowtable($dbrow13)) {
+                        case dbtable_90 :
+                            $string0 = db_getfield($dbrow13, dbtable_90:col3, 0);
+                    }
                 } else if ($enum2 = enum_13065) {
                     if ($int9 = 0) {
                         if (%varplayerbit_11754 = 0) {

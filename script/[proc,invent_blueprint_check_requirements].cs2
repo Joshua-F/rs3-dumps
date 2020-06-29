@@ -1,8 +1,9 @@
 // 12061
-[proc,invent_blueprint_check_requirements](dbrow $dbrow0)(int)
-def_int $int1 = db_getfield($dbrow0, dbtable_5:col8, 0);
+[proc,invent_blueprint_check_requirements](dbrow $dbrow0)(int, string)
+def_string $string0 = "";
+def_int $int1 = db_getfield($dbrow0, dbtable_5:col9, 0);
 if (stat(invention) < $int1) {
-    return(0);
+    return(0, "This blueprint requires <tostring($int1)> Invention.");
 }
 def_stat $stat2 = null;
 def_int $int3 = 0;
@@ -10,85 +11,48 @@ if (%varplayerbit_30223 < 105) {
     switch_dbrow ($dbrow0) {
         case dbrow_205 :
             if (%varplayerbit_30223 < 5) {
-                return(0);
+                return(0, "");
             }
         case dbrow_206 :
             if (%varplayerbit_30223 < 55) {
-                return(0);
+                return(0, "");
             }
         case dbrow_207 :
             if (%varplayerbit_30223 < 80) {
-                return(0);
+                return(0, "");
             }
         case default :
-            return(0);
+            return(0, "");
     }
 }
-def_int $int4 = db_getfieldcount($dbrow0, dbtable_5:col10);
+def_int $int4 = db_getfieldcount($dbrow0, dbtable_5:col11);
 while ($int4-- > 0) {
-    $stat2, $int3 = db_getfield($dbrow0, dbtable_5:col10, $int4);
+    $stat2, $int3 = db_getfield($dbrow0, dbtable_5:col11, $int4);
     if (stat($stat2) < $int3) {
-        return(0);
+        return(0, "This blueprint requires <tostring($int3)> <enum(stat, string, enum_680, $stat2)>.");
     }
 }
-$int4 = db_getfieldcount($dbrow0, dbtable_5:col9);
+$int4 = db_getfieldcount($dbrow0, dbtable_5:col10);
 while ($int4-- > 0) {
-    $int3 = db_getfield($dbrow0, dbtable_5:col9, $int4);
+    $int3 = db_getfield($dbrow0, dbtable_5:col10, $int4);
+    $string0 = ~quest_name(enum(int, struct, enum_2252, $int3));
     if (~ql4_getprogress($int3) ! 2) {
-        return(0);
+        return(0, "This blueprint requires completion of the quest: '<$string0>'.");
     }
-}
-$int4 = db_getfieldcount($dbrow0, dbtable_5:col11);
-while ($int4-- > 0) {
-    $int3 = db_getfield($dbrow0, dbtable_5:col11, $int4);
-    if (~invent_blueprint_unlocked($int3) ! 1) {
-        return(0);
-    }
-}
-switch_dbrow ($dbrow0) {
-    case dbrow_555 :
-        if (~script12376(2, 8) = 0) {
-            return(0);
-        }
-    case dbrow_556 :
-        if (~script12376(3, 8) = 0) {
-            return(0);
-        }
-    case dbrow_557 :
-        if (~script12376(4, 8) = 0) {
-            return(0);
-        }
-    case dbrow_558 :
-        if (~script12376(1, 8) = 0) {
-            return(0);
-        }
-    case dbrow_793 :
-        return(%varplayerbit_33876);
-    case dbrow_1184 :
-        if (%varplayerbit_41043 = 0) {
-            return(0);
-        }
-    case dbrow_1237 :
-        if (%varplayerbit_41064 = 0) {
-            return(0);
-        }
-    case dbrow_1291 :
-        return(%varplayerbit_41687);
-    case dbrow_1853 :
-        return(%varplayerbit_44323);
-    case dbrow_1861 :
-        return(%varplayerbit_34064);
-    case dbrow_1862 :
-        return(%varplayerbit_34062);
-    case dbrow_1863 :
-        return(%varplayerbit_34063);
 }
 $int4 = db_getfieldcount($dbrow0, dbtable_5:col12);
-def_int $int5 = 0;
 while ($int4-- > 0) {
-    $int5, $int3 = db_getfield($dbrow0, dbtable_5:col12, $int4);
-    if (~invent_techtree_unlocked($int5, $int3) ! 1) {
-        return(0);
+    $int3 = db_getfield($dbrow0, dbtable_5:col12, $int4);
+    if (~invent_blueprint_unlocked($int3) ! 1) {
+        return(0, "This blueprint requires an understanding of the invention: '<db_getfield($dbrow0, dbtable_5:col1, 0)>'");
     }
 }
-return(1);
+$int4 = db_getfieldcount($dbrow0, dbtable_5:col13);
+def_int $int5 = 0;
+while ($int4-- > 0) {
+    $int5, $int3 = db_getfield($dbrow0, dbtable_5:col13, $int4);
+    if (~invent_techtree_unlocked($int5, $int3) ! 1) {
+        return(0, "This blueprint requires an understanding of: '<~script12051($dbrow0, 0)> Technology'.");
+    }
+}
+return(1, "");

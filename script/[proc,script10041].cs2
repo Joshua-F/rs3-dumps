@@ -33,27 +33,23 @@ if ($int4 = 1) {
 } else {
     while ($int10 < $int6) {
         $int9 = 0;
+        $int12 = 0;
+        $int13 = 0;
         $struct7 = enum(int, struct, enum_6673, $int10);
         $struct8 = struct_param($struct7, param_6390);
         if ($struct8 ! null) {
-            $int12 = ~script1713($struct8);
-            $int13 = ~script1718($struct8);
+            if (~trh_state_lobby($struct8) = 1) {
+                $int12 = %varplayer_6601;
+                $int13 = %varplayer_6601;
+            } else {
+                $int9 = 1;
+            }
         } else {
             $int12 = struct_param($struct7, param_6388);
             $int13 = struct_param($struct7, param_6389);
         }
         if (%varplayer_6601 < $int12 | %varplayer_6601 > $int13) {
             $int9 = 1;
-        }
-        switch_struct ($struct7) {
-            case struct_40623 :
-                if (~is_mobile_client = false) {
-                    $int9 = 1;
-                }
-            case struct_40622 :
-                if (~is_mobile_client = true) {
-                    $int9 = 1;
-                }
         }
         if ($int9 = 0) {
             $structarray0($int11) = $struct7;
@@ -118,7 +114,7 @@ if ($int4 = 1) {
             $int18 = 1;
             if_setop(1, "Select", $component0);
             if_setonop("script12374($string1, $string2, $string2, struct_param($struct7, param_6395))", $component0);
-            if_setonclick("script10052", $component0);
+            if_setonclick("script9036", $component0);
         case 9 :
             if (string_length($string0) = 0) {
                 $string0 = "Treasure Hunter";
@@ -126,7 +122,7 @@ if ($int4 = 1) {
             $int18 = 1;
             if_setop(1, "Select", $component0);
             if_setonop("script2827($string3, 0)", $component0);
-            if_setonclick("script10052", $component0);
+            if_setonclick("script9036", $component0);
         case 4 :
             if (string_length($string0) = 0) {
                 $string0 = "Treasure Hunter";
@@ -152,6 +148,12 @@ if ($int4 = 1) {
             }
             $int18 = 1;
             ~script13264(10, 1, $int5);
+        case 12 :
+            if (string_length($string0) = 0) {
+                $string0 = "Yak Track";
+            }
+            $int18 = 1;
+            ~script13264(12, 1, $int5);
         case default :
             if (string_length($string0) = 0) {
                 $string0 = "Treasure Hunter";
@@ -190,52 +192,22 @@ $int19 = calc($int19 + 1);
 .cc_setposition(calc(cc_getx - 20 - .cc_getwidth / 2), -1, ^setpos_abs_left, ^setpos_abs_bottom);
 .cc_setonmouserepeat("script8799($string8, event_com, event_comsubid)");
 $int19 = calc($int19 + 1);
-if (~script2500(8) = 0 | $struct7 = struct_33620) {
-    $string8 = "Hearts of Ice";
-    cc_create($component2, ^iftype_text, $int19);
-    if (%varclient_4267 > -1) {
-        cc_settext(tostring(%varclient_4267));
-    }
-    cc_setonvarctransmit("script10050(event_com, event_comsubid, 1){varclient_4267}");
-    cc_setposition(calc($int20 / 2 + $int21), 0, ^setpos_abs_left, ^setpos_abs_bottom);
-    cc_setsize(calc($int20 / 2 - $int21), 32, ^setsize_abs, ^setsize_abs);
-    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-    cc_settextfont(graphic_17814);
-    cc_setcolour(~script10495(3));
-    cc_settextshadow(true);
-    $int19 = calc($int19 + 1);
-    .cc_create($component2, ^iftype_graphic, $int19);
-    .cc_setgraphic(rs3_icon_th_frozen_hearts);
-    .cc_setsize(30, 35, ^setsize_abs, ^setsize_abs);
-    .cc_setposition(calc(cc_getx - 20 - .cc_getwidth / 2), -1, ^setpos_abs_left, ^setpos_abs_bottom);
-    .cc_setonmouserepeat("script8799($string8, event_com, event_comsubid)");
-    $int19 = calc($int19 + 1);
-} else {
-    $int13 = ~script1718(struct_param($struct7, param_6390));
-    $int17 = calc(date_minutes_fromruneday(calc($int13 + 1)) - date_minutes);
-    $int14 = calc($int17 / 1440);
-    $int15 = calc($int17 % 1440 / 60);
-    $int16 = calc($int17 % 60);
-    $string4 = tostring($int14);
-    $string5 = tostring($int15);
-    $string6 = tostring($int16);
-    if (string_length($string4) = 1) {
-        $string4 = append("0", $string4);
-    }
-    if (string_length($string5) = 1) {
-        $string5 = append("0", $string5);
-    }
-    if (string_length($string6) = 1) {
-        $string6 = append("0", $string6);
-    }
-    $string7 = "<$string4>D <$string5>H <$string6>M";
-    cc_create($component2, ^iftype_text, $int19);
-    cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom);
-    cc_setsize(128, 32, ^setsize_minus, ^setsize_abs);
-    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    cc_settextfont(graphic_17814);
-    cc_setcolour(~script10495(3));
-    cc_settextshadow(true);
-    cc_settext($string7);
-    cc_setontimer("script6531($component2, $int19, $int13)");
+$string8 = "Hearts of Ice";
+cc_create($component2, ^iftype_text, $int19);
+if (%varclient_4267 > -1) {
+    cc_settext(tostring(%varclient_4267));
 }
+cc_setonvarctransmit("script10050(event_com, event_comsubid, 1){varclient_4267}");
+cc_setposition(calc($int20 / 2 + $int21), 0, ^setpos_abs_left, ^setpos_abs_bottom);
+cc_setsize(calc($int20 / 2 - $int21), 32, ^setsize_abs, ^setsize_abs);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_settextfont(graphic_17814);
+cc_setcolour(~script10495(3));
+cc_settextshadow(true);
+$int19 = calc($int19 + 1);
+.cc_create($component2, ^iftype_graphic, $int19);
+.cc_setgraphic(rs3_icon_th_frozen_hearts);
+.cc_setsize(30, 35, ^setsize_abs, ^setsize_abs);
+.cc_setposition(calc(cc_getx - 20 - .cc_getwidth / 2), -1, ^setpos_abs_left, ^setpos_abs_bottom);
+.cc_setonmouserepeat("script8799($string8, event_com, event_comsubid)");
+$int19 = calc($int19 + 1);

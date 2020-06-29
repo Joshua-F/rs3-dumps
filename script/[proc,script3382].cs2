@@ -1,46 +1,86 @@
 // 3382
 [proc,script3382](int $int0, int $int1, int $int2, int $int3, int $int4)(string)
 def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
 switch_int ($int3) {
     case 0 :
+        $string0 = " ";
         if ($int0 ! -1 & ($int0 > 0 | $int4 = 0)) {
-            $string0 = "<tostring($int0)> <~text_plural($int0, "Day", "Days")> ";
+            $string1 = "<tostring($int0)> <~text_plural($int0, "Day", "Days")>";
         }
         if ($int1 ! -1 & ($int1 > 0 | $int4 = 0)) {
-            $string0 = "<$string0><tostring($int1)> <~text_plural($int1, "Hour", "Hours")> ";
+            $string2 = "<tostring($int1)> <~text_plural($int1, "Hour", "Hours")>";
         }
         if ($int2 ! -1 & ($int2 > 0 | $int4 = 0)) {
-            $string0 = "<$string0><tostring($int2)> <~text_plural($int2, "Minute", "Minutes")>";
+            $string3 = "<tostring($int2)> <~text_plural($int2, "Minute", "Minutes")>";
         }
     case 1 :
+        $string0 = " ";
         if ($int0 ! -1 & ($int0 > 0 | $int4 = 0)) {
-            $string0 = "<tostring($int0)>d ";
+            $string1 = "<tostring($int0)>d";
         }
         if ($int1 ! -1 & ($int1 > 0 | $int4 = 0)) {
-            $string0 = "<$string0><tostring($int1)>h ";
+            $string2 = "<tostring($int1)>h";
         }
         if ($int2 ! -1 & ($int2 > 0 | $int4 = 0)) {
-            $string0 = "<$string0><tostring($int2)>m";
+            $string3 = "<tostring($int2)>m";
         }
     case 2 :
+        $string0 = " ";
         if ($int0 ! -1 & ($int0 > 0 | $int4 = 0)) {
-            $string0 = "<tostring($int0)>D ";
+            $string1 = "<tostring($int0)>D";
         }
         if ($int1 ! -1 & ($int1 > 0 | $int4 = 0)) {
-            $string0 = "<$string0><tostring($int1)>H ";
+            $string2 = "<tostring($int1)>H";
         }
         if ($int2 ! -1 & ($int2 > 0 | $int4 = 0)) {
-            $string0 = "<$string0><tostring($int2)>M";
+            $string3 = "<tostring($int2)>M";
         }
     case 3 :
+        $string0 = " ";
         if ($int0 ! -1 & ($int0 > 0 | $int4 = 0)) {
-            $string0 = "<tostring($int0)> <~text_plural($int0, "Day", "Days")> ";
+            $string1 = "<tostring($int0)> <~text_plural($int0, "Day", "Days")>";
         }
         if ($int1 ! -1 & ($int1 > 0 | $int4 = 0)) {
-            $string0 = "<$string0><tostring($int1)> <~text_plural($int1, "Hr", "Hrs")> ";
+            $string2 = "<tostring($int1)> <~text_plural($int1, "Hr", "Hrs")>";
         }
         if ($int2 ! -1 & ($int2 > 0 | $int4 = 0)) {
-            $string0 = "<$string0><tostring($int2)> <~text_plural($int2, "Min", "Mins")>";
+            $string3 = "<tostring($int2)> <~text_plural($int2, "Min", "Mins")>";
+        }
+    case 4 :
+        $string0 = ":";
+        if ($int0 ! -1 & ($int0 > 0 | $int4 = 0)) {
+            if ($int0 < 10) {
+                $string1 = "0";
+            }
+            $string1 = "<$string1><tostring($int0)>";
+        }
+        if ($int1 ! -1 & ($int1 > 0 | $int4 = 0 | $int4 = 1 & string_length($string1) ! 0)) {
+            if ($int1 < 10) {
+                $string2 = "0";
+            }
+            $string2 = "<$string2><tostring($int1)>";
+        }
+        if ($int2 ! -1 & ($int2 > 0 | $int4 = 0 | $int4 = 1 & string_length($string2) ! 0)) {
+            if ($int2 < 10) {
+                $string3 = "0";
+            }
+            $string3 = "<$string3><tostring($int2)>";
         }
 }
-return($string0);
+def_string $string4 = "";
+def_string $string5 = "";
+if (string_length($string1) ! 0) {
+    $string4 = $string1;
+    $string5 = $string0;
+}
+if (string_length($string2) ! 0) {
+    $string4 = "<$string4><$string5><$string2>";
+    $string5 = $string0;
+}
+if (string_length($string3) ! 0) {
+    $string4 = "<$string4><$string5><$string3>";
+}
+return($string4);

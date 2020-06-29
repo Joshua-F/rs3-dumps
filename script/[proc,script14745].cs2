@@ -1,0 +1,35 @@
+// 14745
+[proc,script14745]
+def_component $component0 = interface_1486:com_22;
+def_int $int1 = cc_param(param_4261);
+def_dbrow $dbrow2 = ~arch_site_get_data($int1);
+if ($dbrow2 = null) {
+    return;
+}
+if (db_getfield($dbrow2, dbtable_86:col1, 0) ! 2) {
+    return;
+}
+def_string $string0 = ~arch_site_get_name($dbrow2);
+if (string_length($string0) = 0) {
+    $string0 = "Excavation Site";
+}
+def_int $int3 = 200;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = -1;
+if (~script6431 = true) {
+    $int3 = 300;
+}
+$int6 = ~script14747($component0, $int6, $int3, $string0, -1);
+$int6 = ~script14748($component0, $int6);
+def_int $int8 = db_getfieldcount($dbrow2, dbtable_86:col17);
+def_dbrow $dbrow9 = null;
+$int7 = -1;
+while (++$int7 < $int8) {
+    $dbrow9 = db_getfield($dbrow2, dbtable_86:col17, $int7);
+    if ($dbrow9 ! null) {
+        $int6 = ~script14746($component0, $int6, ++$int4, $int3, $dbrow9);
+    }
+}
+if_setsize($int3, calc($int6 - 2), ^setsize_abs, ^setsize_abs, $component0);

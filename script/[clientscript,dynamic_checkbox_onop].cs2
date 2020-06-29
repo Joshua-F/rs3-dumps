@@ -8,7 +8,7 @@ if ($component0 = interface_365:com_16) {
     $int4 = calc(1 - $int4);
 }
 def_struct $struct6 = struct_param($struct5, param_7526);
-if ($int4 ! 0) {
+if ($int4 >= 1) {
     $struct6 = struct_param($struct5, param_7525);
 }
 def_struct $struct7 = struct_param($struct6, param_4405);
@@ -20,8 +20,13 @@ def_struct $struct9 = ~script9984($struct6, 2);
 def_struct $struct10 = $struct8;
 if (cc_find($component2, $int3) = true) {
     cc_setgraphic(struct_param($struct10, param_3909));
-    cc_setonmouseover("dynamic_checkbox_icon_update(event_com, event_comsubid, $struct9)");
-    cc_setonmouseleave("dynamic_checkbox_icon_update(event_com, event_comsubid, $struct8)");
+    if ($int1 = -1) {
+        if_setonmouseover("dynamic_checkbox_icon_update($component2, $int3, $struct9)", $component0);
+        if_setonmouseleave("dynamic_checkbox_icon_update($component2, $int3, $struct8)", $component0);
+    } else if ($component0 ! null & .cc_find($component0, $int1) = true | .cc_find($component2, $int3) = true) {
+        .cc_setonmouseover("dynamic_checkbox_icon_update($component2, $int3, $struct9)");
+        .cc_setonmouseleave("dynamic_checkbox_icon_update($component2, $int3, $struct8)");
+    }
     if ($int4 = 0) {
         if (string_length($string1) > 0) {
             cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
@@ -37,18 +42,16 @@ if (cc_find($component2, $int3) = true) {
             ~script12342($component0, $int1);
         case interface_1857:com_93 :
             ~script13625;
-        case interface_1513:com_155 :
-            if (has_nxt = false) {
-                ~graphics_options_choosesetting($int4, enum_201, $int1);
-            } else {
-                ~graphics_options_choosesetting($int4, enum_10849, $int1);
-            }
+        case interface_1513:com_131 :
+            ~graphics_options_choosesetting($int4, enum_10849, $int1);
         case interface_365:com_16 :
             ~settings_checkbox_update($int1, $int4);
         case interface_324:com_30 :
             ~script2789(dbrow_1292, $int1, $int4);
+            ~script2684;
         case interface_324:com_48 :
             ~script2789(dbrow_1293, $int1, $int4);
+            ~script2684;
         case interface_324:com_20 :
             ~script2736($int4);
     }

@@ -1,26 +1,26 @@
 // 12177
-[proc,script12177]
-def_component $component0 = interface_1712:com_3;
-cc_deleteall($component0);
-def_int $int1 = 0;
-while ($int1 < 9) {
-    cc_create($component0, ^iftype_graphic, $int1);
-    $int1 = calc($int1 + 1);
+[proc,script12177](obj $obj0)
+def_component $component1 = interface_1712:com_3;
+cc_deleteall($component1);
+def_int $int2 = 0;
+while ($int2 < 9) {
+    cc_create($component1, ^iftype_graphic, $int2);
+    $int2 = calc($int2 + 1);
 }
-$int1 = 0;
-while ($int1 < 9) {
-    if (cc_find($component0, $int1) = true) {
+$int2 = 0;
+while ($int2 < 9) {
+    if (cc_find($component1, $int2) = true) {
         cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int1 % 3 * 36 + 2), calc($int1 / 3 * 36 + 2), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition(calc($int2 % 3 * 36 + 2), calc($int2 / 3 * 36 + 2), ^setpos_abs_left, ^setpos_abs_top);
         cc_setgraphic(null);
-        if (~script12064($int1) = 1) {
+        if (~script12064($obj0, $int2) = 1) {
             cc_setop(1, "Remove");
             cc_setonop("invent_gizmo_material_remove(event_com, event_comsubid)");
             cc_setonmouserepeat("invent_gizmo_material_tooltip(event_com, event_comsubid)");
         }
-        cc_setondragcomplete("script12182(event_com, event_comsubid, event_com2, event_comsubid2)");
+        cc_setondragcomplete("script12182($obj0, event_com, event_comsubid, event_com2, event_comsubid2)");
         cc_setdragdeadzone(5);
-        .cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+        .cc_create($component1, ^iftype_text, if_getnextsubid($component1));
         .cc_settextfont(p11_full);
         .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
         .cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
@@ -31,5 +31,5 @@ while ($int1 < 9) {
         cc_setparam(param_5531, .cc_getid);
         cc_setondrag("script12179(cc_getlayer, cc_getid, .cc_getid)");
     }
-    $int1 = calc($int1 + 1);
+    $int2 = calc($int2 + 1);
 }

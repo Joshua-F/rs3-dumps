@@ -75,7 +75,7 @@ if (~script6431 = true) {
 ~script6211($component1, $int2);
 if (%varclient_2 ! 1) {
     ~script8808;
-    if_opensubclient(interface_1477:com_841, interface_1451);
+    if_opensubclient(interface_1477:com_845, interface_1451);
     %varclient_2 = 1;
     $string2 = struct_param($struct0, param_2794);
     $string3 = struct_param($struct0, param_2795);
@@ -258,6 +258,8 @@ if (%varclient_2 ! 1) {
             if (%varplayerbit_45345 > 0) {
                 $string3 = ~script3595($string3);
             }
+        case struct_43909 :
+            $string3 = ~script14975($string3);
     }
     if (string_length($string5) > 0) {
         $string3 = "<$string3><$string5>";
@@ -461,7 +463,17 @@ if (%varclient_2 ! 1) {
             if_setgraphic($graphic30, $component17);
         }
     }
-    if (($struct0 = %varplayer_3170 | $struct0 = struct_14874) & %varplayerbit_0 = 2) {
+    if (~script14617($struct0) = true) {
+        $string1 = "<col=FF00>";
+        $string0 = "<$string1>Relic</col>";
+        $graphic30 = arch_icon_power_24px;
+        $component14, $component17, $component18, $int19 = ~script8450($int19);
+        if ($component14 ! null) {
+            if_sethide(false, $component14);
+            if_settext($string0, $component18);
+            if_setgraphic($graphic30, $component17);
+        }
+    } else if (($struct0 = %varplayer_3170 | $struct0 = struct_14874) & %varplayerbit_0 = 2) {
         $int26 = struct_param(struct_14874, param_2908);
         if ($int26 > 0) {
             if ($int26 > 0 & ~magic_runecount(obj_9075) < $int26) {
@@ -559,75 +571,75 @@ if (%varclient_2 ! 1) {
             }
             $int23 = calc($int23 + 1);
         }
-        if (struct_param($struct0, param_2913) = 1) {
-            switch_struct ($struct0) {
-                case struct_14767 :
-                    if (inv_total(inv_94, obj_4170) < 1 & ~script7008 = false & inv_total(inv_94, obj_30828) < 1 & inv_total(inv_94, obj_36637) < 1 & inv_total(inv_94, obj_30825) < 1 & inv_total(inv_94, obj_30827) < 1 & inv_total(inv_94, obj_36635) < 1 & inv_total(inv_94, obj_30830) < 1) {
-                        $string1 = "<col=ff0000>";
-                    } else {
-                        $string1 = "<col=00ff00>";
-                    }
-                    $string0 = "<$string1>Staff</col>";
-                    $obj24 = obj_4170;
-                case struct_14880 :
-                    if (inv_total(inv_94, obj_22494) < 1 & inv_total(inv_94, obj_22496) < 1 & inv_total(inv_94, obj_22497) < 1 & inv_total(inv_94, obj_36639) < 1) {
-                        $string1 = "<col=ff0000>";
-                    } else {
-                        $string1 = "<col=00ff00>";
-                    }
-                    $string0 = "<$string1>Staff</col>";
-                    $obj24 = obj_22494;
-                case struct_14783, struct_14775, struct_14771, struct_14780 :
-                    if (inv_total(inv_93, obj_567) < 1) {
-                        $string1 = "<col=ff0000>";
-                    } else {
-                        $string1 = "<col=00ff00>";
-                    }
-                    $string0 = "<$string1>Orb</col>";
-                    $obj24 = obj_567;
-                case struct_14781 :
-                    if (inv_total(inv_93, obj_1963) < 1) {
-                        $string1 = "<col=ff0000>";
-                    } else {
-                        $string1 = "<col=00ff00>";
-                    }
-                    $string0 = "<$string1>Banana</col>";
-                    $obj24 = obj_1963;
-                case struct_14859 :
+    }
+    if (struct_param($struct0, param_2913) = 1) {
+        switch_struct ($struct0) {
+            case struct_14767 :
+                if (inv_total(inv_94, obj_4170) < 1 & ~script7008 = false & inv_total(inv_94, obj_30828) < 1 & inv_total(inv_94, obj_36637) < 1 & inv_total(inv_94, obj_30825) < 1 & inv_total(inv_94, obj_30827) < 1 & inv_total(inv_94, obj_36635) < 1 & inv_total(inv_94, obj_30830) < 1) {
+                    $string1 = "<col=ff0000>";
+                } else {
                     $string1 = "<col=00ff00>";
-                    $string0 = "<$string1>Coins</col>";
-                    $obj24 = obj_1001;
-                case struct_14861 :
-                    if (inv_total(inv_93, obj_21778) < 1) {
-                        $string1 = "<col=ff0000>";
-                    } else {
-                        $string1 = "<col=00ff00>";
-                    }
-                    $string0 = "<$string1>Ore</col>";
-                    $obj24 = obj_21778;
-                case struct_20279, struct_20280 :
-                    if (inv_total(inv_94, obj_29475) < 1) {
-                        $string1 = "<col=ff0000>";
-                    } else {
-                        $string1 = "<col=00ff00>";
-                    }
-                    $string0 = "<$string1>Aura</col>";
-                    $obj24 = obj_29475;
-                case struct_32942, struct_32943 :
-                    if (~invent_toolbelt_unlocked(1) = 0) {
-                        $string1 = "<col=ff0000>";
-                    } else {
-                        $string1 = "<col=00ff00>";
-                    }
-                    $string0 = "<$string1>Tool</col>";
-                    $obj24 = obj_36367;
-            }
-            $component14, $component17, $component18, $int19 = ~script8450($int19);
-            if ($component14 ! null) {
-                if_sethide(false, $component14);
-                if_settext($string0, $component18);
-                if_setobject($obj24, -1, $component17);
-            }
+                }
+                $string0 = "<$string1>Staff</col>";
+                $obj24 = obj_4170;
+            case struct_14880 :
+                if (inv_total(inv_94, obj_22494) < 1 & inv_total(inv_94, obj_22496) < 1 & inv_total(inv_94, obj_22497) < 1 & inv_total(inv_94, obj_36639) < 1) {
+                    $string1 = "<col=ff0000>";
+                } else {
+                    $string1 = "<col=00ff00>";
+                }
+                $string0 = "<$string1>Staff</col>";
+                $obj24 = obj_22494;
+            case struct_14783, struct_14775, struct_14771, struct_14780 :
+                if (inv_total(inv_93, obj_567) < 1) {
+                    $string1 = "<col=ff0000>";
+                } else {
+                    $string1 = "<col=00ff00>";
+                }
+                $string0 = "<$string1>Orb</col>";
+                $obj24 = obj_567;
+            case struct_14781 :
+                if (inv_total(inv_93, obj_1963) < 1) {
+                    $string1 = "<col=ff0000>";
+                } else {
+                    $string1 = "<col=00ff00>";
+                }
+                $string0 = "<$string1>Banana</col>";
+                $obj24 = obj_1963;
+            case struct_14859 :
+                $string1 = "<col=00ff00>";
+                $string0 = "<$string1>Coins</col>";
+                $obj24 = obj_1001;
+            case struct_14861 :
+                if (inv_total(inv_93, obj_21778) < 1) {
+                    $string1 = "<col=ff0000>";
+                } else {
+                    $string1 = "<col=00ff00>";
+                }
+                $string0 = "<$string1>Ore</col>";
+                $obj24 = obj_21778;
+            case struct_20279, struct_20280 :
+                if (inv_total(inv_94, obj_29475) < 1) {
+                    $string1 = "<col=ff0000>";
+                } else {
+                    $string1 = "<col=00ff00>";
+                }
+                $string0 = "<$string1>Aura</col>";
+                $obj24 = obj_29475;
+            case struct_32942, struct_32943 :
+                if (~invent_toolbelt_unlocked(1) = 0) {
+                    $string1 = "<col=ff0000>";
+                } else {
+                    $string1 = "<col=00ff00>";
+                }
+                $string0 = "<$string1>Tool</col>";
+                $obj24 = obj_36367;
+        }
+        $component14, $component17, $component18, $int19 = ~script8450($int19);
+        if ($component14 ! null) {
+            if_sethide(false, $component14);
+            if_settext($string0, $component18);
+            if_setobject($obj24, -1, $component17);
         }
     }
     if ($int5 = 0) {

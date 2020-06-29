@@ -1,47 +1,58 @@
 // 13325
-[proc,script13325](struct $struct0)(int)
-if ($struct0 = null) {
-    return(0);
-}
-def_enum $enum1 = struct_param($struct0, param_6803);
-def_int $int2 = 0;
-if (struct_param($struct0, param_6426) ! null) {
-    $int2 = 1;
-    $enum1 = struct_param($struct0, param_6426);
-}
-if ($enum1 = null) {
-    ~error("Null $item_list passed in here.");
-    return(0);
-}
-def_int $int3 = enum_getoutputcount($enum1);
-def_obj $obj4 = null;
+[proc,script13325](struct $struct0, int $int1, int $int2)
+cc_deleteall(interface_1311:com_670);
+cc_deleteall(interface_1311:com_671);
+if_sethide(false, interface_1311:com_507);
+def_int $int3 = if_getnextsubid(interface_1311:com_507);
+def_int $int4 = 1;
 def_int $int5 = 1;
-def_int $int6 = -1;
-switch_struct ($struct0) {
-    case struct_1555 :
-        $int5 = 0;
-        while (++$int6 < $int3) {
-            $obj4 = enum(int, obj, $enum1, $int6);
-            switch_obj ($obj4) {
-                case obj_39590, obj_39586, obj_39588, obj_39592 :
-                    if (~script13323($obj4) > 0) {
-                        $int5 = 1;
-                    }
-                case default :
-                    if (~script13323($obj4) = 0) {
-                        return(0);
-                    }
-            }
-        }
-    case default :
-        if ($int2 = 0) {
-            while (++$int6 < $int3) {
-                if (~script13323(enum(int, obj, $enum1, $int6)) = 0) {
-                    return(0);
-                }
-            }
-        } else if (~cheevo_obtain_progress(struct_15036) ! -2) {
-            return(0);
-        }
+def_int $int6 = 0;
+def_int $int7 = 1;
+def_int $int8 = 5;
+while ($int5 <= 7) {
+    if_sethide(true, ~script13631($int5));
+    $int5 = calc($int5 + 1);
 }
-return($int5);
+$int5 = 1;
+while ($int5 <= struct_param($struct0, param_3850)) {
+    if ($int1 = $int5) {
+        if_sethide(false, ~script13631($int5));
+        $int4 = 4;
+    } else {
+        $int4 = 1;
+    }
+    $int3 = ~script11605(interface_1311:com_670, interface_1311:com_671, struct_28222, 0, $int8, $int3, $int4, "Select", "Unselect", ~script2412($int5, $struct0));
+    if (cc_find(interface_1311:com_671, $int5) = true) {
+        cc_setopcursor(1, cursor_46);
+    }
+    ~script4512(interface_1311:com_670, calc(30 - 2 * 2), calc(30 - 2 * 2), 2, calc($int8 + 2), ~script2679($struct0, $int5));
+    $int7 = calc($int7 + 1);
+    $int8 = calc($int8 + (30 + 4));
+    $int5 = calc($int5 + 1);
+    $int6 = calc($int6 + 1);
+}
+cc_deleteall(interface_1311:com_672);
+cc_deleteall(interface_1311:com_673);
+if (struct_param($struct0, param_3849) > 1) {
+    if_sethide(false, interface_1311:com_518);
+    $int3 = if_getnextsubid(interface_1311:com_518);
+    $int8 = 5;
+    $int5 = 1;
+    while ($int5 <= struct_param($struct0, param_3849)) {
+        if ($int2 = $int5) {
+            $int4 = 4;
+        } else {
+            $int4 = 1;
+        }
+        ~script11605(interface_1311:com_672, interface_1311:com_673, struct_28222, 0, $int8, $int3++, $int4, "Select", "Unselect", ~script2431($struct0, $int5));
+        if (cc_find(interface_1311:com_673, $int5) = true) {
+            cc_setopcursor(1, cursor_46);
+        }
+        ~script4512(interface_1311:com_672, calc(30 - 8), calc(30 - 8), 4, calc($int8 + 4), ~script2737($struct0, $int5));
+        if (~script1529($struct0, $int5) = 0) {
+            ~script4512(interface_1311:com_672, 14, 18, 18, calc($int8 + 15), icon_padlock_new_trh_catwalk);
+        }
+        $int5 = calc($int5 + 1);
+        $int8 = calc($int8 + (30 + 4));
+    }
+}

@@ -1,0 +1,26 @@
+// 14828
+[proc,script14828]
+cc_deleteall(interface_685:com_80);
+cc_deleteall(interface_685:com_81);
+if (%varclient_6762 = -1) {
+    %varclient_6762 = 0;
+}
+def_dbrow $dbrow0 = enum(int, dbrow, enum_14073, %varclient_6762);
+if ($dbrow0 = null) {
+    return;
+}
+def_int $int1 = ~script14762(interface_685:com_80, interface_685:com_81, $dbrow0, 0, 0, if_getwidth(interface_685:com_80), 0);
+def_int $int2 = db_getfieldcount($dbrow0, dbtable_84:col11);
+def_int $int3 = -1;
+while (++$int3 < $int2) {
+    if (cc_find(interface_685:com_81, $int3) = true) {
+        db_find(dbtable_89:col6, db_getfield($dbrow0, dbtable_84:col11, $int3));
+        cc_setopcursor(1, cursor_172);
+        cc_setop(1, "Info");
+        cc_setonop("script14830(db_findnext)");
+    }
+}
+if_setscrollsize(0, max(if_getheight(interface_685:com_78), $int1), interface_685:com_78);
+if_setscrollpos(0, 0, interface_685:com_78);
+~rs3_scrollbar_vertical(interface_685:com_79, interface_685:com_78);
+~script10428(interface_685:com_90, interface_685:com_91, enum_14072, calc(enum_getoutputcount(enum_14072) - 1), "Select a filter", %varclient_6762, 0);
