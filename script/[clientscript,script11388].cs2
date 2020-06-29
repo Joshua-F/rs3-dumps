@@ -1,32 +1,48 @@
 // 11388
 [clientscript,script11388]
-if (has_nxt = false) {
-    ~script704(struct_param(struct_21308, param_3503), 714, 650);
+def_int $int0 = 40;
+def_int $int1 = 36;
+def_int $int2 = 36;
+def_int $int3 = 32;
+def_graphic $graphic4 = null;
+def_int $int5 = 0;
+if (~script6431 = true) {
+    $int0 = 52;
+    $int1 = 52;
+    $int2 = 56;
+    $int3 = 52;
+    $graphic4 = graphic_2746;
+    $int5 = 175;
 }
-def_graphic $graphic0 = null;
 if (%varplayerbit_22875 ! 1) {
-    $graphic0 = rs3_inventory_slot;
+    if (~script6431 = true) {
+        $graphic4 = graphic_2746;
+        $int5 = 175;
+    } else {
+        $graphic4 = rs3_inventory_slot;
+    }
 }
 ~script3288;
 cc_deleteall(interface_1621:com_25);
 cc_deleteall(interface_1621:com_20);
-def_enum $enum1 = ~script11401;
-if ($enum1 = null) {
+def_enum $enum6 = ~script11401;
+if ($enum6 = null) {
     if_setontimer("script11388", interface_1621:com_23);
     if_sethide(false, interface_1621:com_17);
     return;
 }
-def_int $int2 = 0;
-def_int $int3 = enum_getoutputcount($enum1);
-while ($int2 < $int3) {
-    cc_create(interface_1621:com_25, ^iftype_graphic, $int2);
-    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+def_int $int7 = 0;
+def_int $int8 = enum_getoutputcount($enum6);
+while ($int7 < $int8) {
+    cc_create(interface_1621:com_25, ^iftype_graphic, $int7);
+    cc_setsize($int2, $int3, ^setsize_abs, ^setsize_abs);
     cc_sethide(true);
-    cc_create(interface_1621:com_20, ^iftype_graphic, $int2);
-    cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
-    cc_setgraphic($graphic0);
+    cc_create(interface_1621:com_20, ^iftype_graphic, $int7);
+    cc_setsize($int0, $int1, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic($graphic4);
+    cc_settrans($int5);
     cc_sethide(true);
-    $int2 = calc($int2 + 1);
+    $int7 = calc($int7 + 1);
 }
 %varclient_4797 = 105;
 if_setontimer("script11396(2)", interface_1621:com_23);
@@ -35,3 +51,4 @@ if_setonvartransmit("script11390{varplayer_5411, varplayer_5407, varplayer_5408,
 if_setoninvtransmit("script5247{inv_93}", interface_1621:com_23);
 ~script11391;
 ~script11398(-1);
+~script15069(1);

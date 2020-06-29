@@ -1,40 +1,43 @@
 // 12183
-[clientscript,invent_gizmo_material_add](component $component0, int $int1)
-def_dbrow $dbrow2 = enum(int, dbrow, enum_10742, $int1);
-if ($dbrow2 = null) {
+[clientscript,invent_gizmo_material_add](obj $obj0, component $component1, int $int2)
+def_dbrow $dbrow3 = enum(int, dbrow, enum_10742, $int2);
+if ($dbrow3 = null) {
     return;
 }
-if (~invent_material_unlocked($dbrow2) = 0) {
+if (~invent_material_unlocked($dbrow3) = 0) {
     return;
 }
-def_int $int3 = 0;
+if (~invent_gizmo_validate_material($obj0, $dbrow3) = 0) {
+    return;
+}
 def_int $int4 = 0;
-while ($int4 < 9) {
-    switch_int ($int4) {
+def_int $int5 = 0;
+while ($int5 < 9) {
+    switch_int ($int5) {
         case 0 :
-            $int3 = 4;
+            $int4 = 4;
         case 1 :
-            $int3 = 1;
+            $int4 = 1;
         case 2 :
-            $int3 = 3;
+            $int4 = 3;
         case 3 :
-            $int3 = 5;
+            $int4 = 5;
         case 4 :
-            $int3 = 7;
+            $int4 = 7;
         case 5 :
-            $int3 = 0;
+            $int4 = 0;
         case 6 :
-            $int3 = 2;
+            $int4 = 2;
         case 7 :
-            $int3 = 6;
+            $int4 = 6;
         case 8 :
-            $int3 = 8;
+            $int4 = 8;
     }
-    if (~script12064($int3) = 1 & cc_find(interface_1712:com_3, $int3) = true & cc_param(param_5529) = null) {
-        ~invent_gizmo_update_slot($dbrow2, 1);
+    if (~script12064($obj0, $int4) = 1 & cc_find(interface_1712:com_3, $int4) = true & cc_param(param_5529) = null) {
+        ~invent_gizmo_update_slot($dbrow3, 1);
         ~invent_gizmo_register_move;
         return;
     }
-    $int4 = calc($int4 + 1);
+    $int5 = calc($int5 + 1);
 }
 ~invent_gizmo_register_move;

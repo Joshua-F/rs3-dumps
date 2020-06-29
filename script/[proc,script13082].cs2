@@ -1,11 +1,7 @@
 // 13082
-[proc,script13082]()(int, int, int, int)
-def_int $int0 = date_runeday_fromdate(26, 6, 2019);
-def_int $int1 = date_runeday_fromdate(29, 6, 2019);
-def_int $int2 = calc((date_minutes - date_minutes_fromruneday($int0)) / 60);
-def_int $int3 = calc((date_minutes - date_minutes_fromruneday($int1)) / 60);
-if ($int0 >= $int1) {
-    ~error("Start date must be before end date.");
-    return(0, 0, 0, 0);
+[proc,script13082](int $int0, int $int1)(boolean, string)
+def_string $string0 = "";
+if ($int0 ! 1 & ~script11282($int1) < 1) {
+    $string0 = ~text_plural(1, "kill", "kills");
+    return(false, "You require <tostring(1)> <$string0> of this boss to direct the portal to its location.");
 }
-return($int0, $int1, $int2, $int3);

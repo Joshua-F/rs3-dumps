@@ -1,120 +1,123 @@
 // 5692
 [clientscript,script5692](int $int0, int $int1, struct $struct2)
-.cc_create(interface_1218:com_231, ^iftype_graphic, if_getnextsubid(interface_1218:com_231));
+.cc_create(interface_1218:com_239, ^iftype_graphic, if_getnextsubid(interface_1218:com_239));
 .cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
 .cc_setposition(3, calc($int1 + 2), ^setpos_abs_left, ^setpos_abs_top);
 if ($struct2 = null) {
     return;
 }
-def_obj $obj3 = struct_param($struct2, param_2213);
-def_stat $stat4 = enum(int, stat, enum_681, ~skillguide_skill($struct2));
-def_int $int5 = ~skillguide_level($struct2);
-def_boolean $boolean6 = ~skillguide_members($struct2);
+def_dbrow $dbrow3 = struct_param($struct2, param_6569);
+def_obj $obj4 = ~skillguide_item($struct2);
+def_stat $stat5 = enum(int, stat, enum_681, ~skillguide_skill($struct2));
+def_int $int6 = ~skillguide_level($struct2);
+def_boolean $boolean7 = ~skillguide_members($struct2);
 def_string $string0 = ~skillguide_name($struct2);
-if ($obj3 ! null) {
+def_int $int8 = 0;
+if (struct_param($struct2, param_5442) = 1) {
+    $int8 = 1;
+}
+if ($obj4 ! null) {
     if (string_length($string0) < 1) {
-        $string0 = oc_name($obj3);
+        $string0 = oc_name($obj4);
     }
-    if (oc_param($obj3, param_2640) > 0 & oc_param($obj3, param_2640) ! 62 & oc_param($obj3, param_2641) = 0 & oc_param($obj3, param_2640) = %varclient_1753) {
-        $stat4 = enum(int, stat, enum_681, oc_param($obj3, param_2640));
-        $int5 = oc_param($obj3, param_2645);
-        if (oc_param($obj3, param_2639) = true | oc_members(oc_param($obj3, param_2655)) = 1 | oc_members(oc_param($obj3, param_2656)) = 1 | oc_members(oc_param($obj3, param_2650)) = 1 | oc_members($obj3) = 1) {
-            $boolean6 = true;
+    if (oc_param($obj4, param_2640) > 0 & oc_param($obj4, param_2640) ! 62 & oc_param($obj4, param_2641) = 0 & oc_param($obj4, param_2640) = %varclient_1753) {
+        $stat5 = enum(int, stat, enum_681, oc_param($obj4, param_2640));
+        $int6 = oc_param($obj4, param_2645);
+        if (oc_param($obj4, param_2639) = true | oc_members(oc_param($obj4, param_2655)) = 1 | oc_members(oc_param($obj4, param_2656)) = 1 | oc_members(oc_param($obj4, param_2650)) = 1 | oc_members($obj4) = 1) {
+            $boolean7 = true;
         }
     }
 }
-if ($stat4 ! null & ~script11863($stat4) < $int5) {
+if ($stat5 ! null & ~script11863($stat5) < $int6) {
     .cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
     .cc_setgraphic(aif_locked_button_icon);
     .cc_setposition(6, calc($int1 + 5), ^setpos_abs_left, ^setpos_abs_top);
     .cc_setonmouseover("script5693(event_comsubid, 1)");
     .cc_setonmouseleave("script5694");
-} else if ($obj3 = null) {
+} else if ($obj4 = null) {
     .cc_setgraphic(~skillguide_item_graphic($struct2));
     .cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
 } else {
-    .cc_setobject($obj3, -1);
+    .cc_setobject($obj4, -1);
+    ~script14739($obj4);
 }
-.cc_create(interface_1218:com_231, ^iftype_text, if_getnextsubid(interface_1218:com_231));
+.cc_create(interface_1218:com_239, ^iftype_text, if_getnextsubid(interface_1218:com_239));
 .cc_setposition(35, $int1, ^setpos_abs_left, ^setpos_abs_top);
-.cc_settextfont(graphic_17813);
-if (~script6431 = true) {
-    .cc_settextfont(graphic_17814);
-}
+.cc_settextfont(graphic_17814);
 .cc_settextshadow(true);
-if ($int5 = 0) {
+if ($int6 = 0) {
     .cc_settext("");
 } else {
-    .cc_settext(tostring($int5));
+    .cc_settext(tostring($int6));
 }
 .cc_setcolour(0xdb9000);
 .cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
 .cc_setsize(32, 36, ^setsize_abs, ^setsize_abs);
-if ($boolean6 = true) {
-    .cc_create(interface_1218:com_231, ^iftype_text, if_getnextsubid(interface_1218:com_231));
+if ($boolean7 = true) {
+    .cc_create(interface_1218:com_239, ^iftype_text, if_getnextsubid(interface_1218:com_239));
     .cc_setposition(74, calc($int1 + 9), ^setpos_abs_left, ^setpos_abs_top);
     .cc_setsize(25, 20, ^setsize_abs, ^setsize_abs);
     .cc_setonmouseover("script5693(event_comsubid, 0)");
     .cc_setonmouseleave("script5694");
 }
-.cc_create(interface_1218:com_231, ^iftype_text, if_getnextsubid(interface_1218:com_231));
-.cc_setposition(100, $int1, ^setpos_abs_left, ^setpos_abs_top);
+.cc_create(interface_1218:com_239, ^iftype_text, if_getnextsubid(interface_1218:com_239));
+.cc_setposition(105, $int1, ^setpos_abs_left, ^setpos_abs_top);
 .cc_settext($string0);
-.cc_settextfont(graphic_17813);
-if (~script6431 = true) {
-    .cc_settextfont(graphic_17814);
+if (compare("", struct_param($struct2, param_2216)) ! 0 | struct_param($struct2, param_6569) ! null) {
+    .cc_setsize(455, 17, ^setsize_abs, ^setsize_abs);
+    if (stringwidth($string0, graphic_17814) <= 455) {
+        .cc_settextfont(graphic_17814);
+    } else {
+        .cc_settextfont(graphic_17813);
+    }
+    .cc_setmaxlines(1);
+} else {
+    .cc_setsize(455, 36, ^setsize_abs, ^setsize_abs);
+    if (paraheight($string0, 455, graphic_17814) <= 2) {
+        .cc_settextfont(graphic_17814);
+    } else {
+        .cc_settextfont(graphic_17813);
+    }
+    .cc_setmaxlines(2);
 }
 .cc_settextshadow(true);
 .cc_setcolour(0xe6be78);
 .cc_settextalign(^settextalign_centre, ^settextalign_centre, 12);
-.cc_setsize(490, 36, ^setsize_abs, ^setsize_abs);
-if (compare("", struct_param($struct2, param_2216)) ! 0) {
-    .cc_setsize(490, 17, ^setsize_abs, ^setsize_abs);
-    .cc_create(interface_1218:com_231, ^iftype_text, if_getnextsubid(interface_1218:com_231));
-    .cc_setposition(100, calc($int1 + 18), ^setpos_abs_left, ^setpos_abs_top);
-    .cc_settextfont(graphic_17813);
-    if (~script6431 = true) {
-        .cc_settextfont(graphic_17814);
-    }
-    .cc_settextshadow(true);
-    .cc_settext(struct_param($struct2, param_2216));
-    .cc_setcolour(0xdb9000);
-    .cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
-    .cc_setsize(490, 16, ^setsize_abs, ^setsize_abs);
-} else if (struct_param($struct2, param_5444) ! null) {
-    if (~script12058(struct_param($struct2, param_5444)) = 1) {
-        .cc_setsize(490, 17, ^setsize_abs, ^setsize_abs);
-        .cc_create(interface_1218:com_231, ^iftype_text, if_getnextsubid(interface_1218:com_231));
-        .cc_setposition(100, calc($int1 + 18), ^setpos_abs_left, ^setpos_abs_top);
-        .cc_settextfont(graphic_17813);
-        .cc_settextshadow(true);
-        .cc_settext("Discovered");
-        .cc_setcolour(0xdb9000);
-        .cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
-        .cc_setsize(490, 16, ^setsize_abs, ^setsize_abs);
-    } else if (db_getfieldcount(struct_param($struct2, param_5444), dbtable_5:col12) > 0) {
-        .cc_setsize(490, 17, ^setsize_abs, ^setsize_abs);
-        .cc_create(interface_1218:com_231, ^iftype_text, if_getnextsubid(interface_1218:com_231));
-        .cc_setposition(100, calc($int1 + 18), ^setpos_abs_left, ^setpos_abs_top);
-        .cc_settextfont(graphic_17813);
-        .cc_settextshadow(true);
-        .cc_settext("Also requires: <~script12051(struct_param($struct2, param_5444), 0)> Technology");
-        .cc_setcolour(0xdb9000);
-        .cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
-        .cc_setsize(490, 16, ^setsize_abs, ^setsize_abs);
+if (compare("", struct_param($struct2, param_4279)) ! 0 & ~script6431 = true) {
+    ~script14716($int1, struct_param($struct2, param_4279));
+} else if (compare("", struct_param($struct2, param_2216)) ! 0) {
+    ~script14716($int1, struct_param($struct2, param_2216));
+} else if ($dbrow3 ! null) {
+    switch_dbtable (db_getrowtable($dbrow3)) {
+        case dbtable_5 :
+            if (~script12058($dbrow3) = 1) {
+                ~script14716($int1, "Discovered");
+            } else if (db_getfieldcount($dbrow3, dbtable_5:col13) > 0) {
+                ~script14716($int1, "Also requires: <~script12051($dbrow3, 0)> Technology");
+            }
+        case dbtable_94 :
+            if (~arch_relic_get_unlock_state($dbrow3) = ^true) {
+                ~script14716($int1, "Ancient power unlocked");
+            }
     }
 }
-def_graphic $graphic7 = "sept16_icon_info_tab,1";
-def_graphic $graphic8 = "sept16_icon_info_tab,0";
-if (string_length(struct_param($struct2, param_2211)) > 0 | struct_param($struct2, param_5442) = 1 | struct_param($struct2, param_5444) ! null) {
-    .cc_create(interface_1218:com_231, ^iftype_graphic, if_getnextsubid(interface_1218:com_231));
+if ($int8 = 0 & $dbrow3 ! null) {
+    switch_dbtable (db_getrowtable($dbrow3)) {
+        case dbtable_5, dbtable_86, dbtable_88, dbtable_94 :
+            $int8 = 1;
+    }
+}
+def_graphic $graphic9 = "sept16_icon_info_tab,1";
+def_graphic $graphic10 = "sept16_icon_info_tab,0";
+if (string_length(struct_param($struct2, param_2211)) > 0 | $int8 = 1) {
+    .cc_create(interface_1218:com_239, ^iftype_graphic, if_getnextsubid(interface_1218:com_239));
     .cc_setposition(5, calc($int1 + 8), ^setpos_abs_right, ^setpos_abs_top);
     .cc_setgraphic("sept16_icon_info_tab,0");
     .cc_setsize(20, 20, ^setsize_abs, ^setsize_abs);
-    .cc_setonmouseover("graphic_swapper_dynamic(event_com, event_comsubid, $graphic7)");
-    .cc_setonmouseleave("graphic_swapper_dynamic(event_com, event_comsubid, $graphic8)");
+    .cc_setonmouseover("graphic_swapper_dynamic(event_com, event_comsubid, $graphic9)");
+    .cc_setonmouseleave("graphic_swapper_dynamic(event_com, event_comsubid, $graphic10)");
 }
-if (cc_find(interface_1218:com_230, $int0) = true) {
+if (cc_find(interface_1218:com_238, $int0) = true) {
     cc_setposition(5, $int1, ^setpos_abs_left, ^setpos_abs_top);
     cc_setontimer(null);
 }

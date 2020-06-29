@@ -1,61 +1,47 @@
 // 1258
 [proc,script1258](enum $enum0, int $int1)(int)
+def_int $clientoption2 = ^clientoption_ambient_occlusion;
 switch_enum ($enum0) {
     case enum_10851 :
-        if (detailcanset_shadowquality($int1) = 3) {
-            return(0);
-        }
+        $clientoption2 = ^clientoption_shadow_quality;
     case enum_10858 :
-        if (detailcanset_vsync($int1) = 3) {
-            return(0);
-        }
+        $clientoption2 = ^clientoption_v_sync;
     case enum_10853 :
-        if (detailcanset_antialiasingmode($int1) = 3) {
-            return(0);
-        }
+        $clientoption2 = ^clientoption_antialiasing_mode;
     case enum_10854 :
-        if (detailcanset_antialiasing_quality($int1) = 3) {
-            return(0);
-        }
-    case enum_10857 :
-        if (detailcanset_reflections($int1) = 3) {
-            return(0);
-        }
-    case enum_10852 :
-        if (detailcanset_lightingquality($int1) = 3) {
-            return(0);
-        }
+        $clientoption2 = ^clientoption_antialiasing_quality;
+    case enum_10857, enum_604 :
+        $clientoption2 = ^clientoption_reflections;
+    case enum_10852, enum_14563 :
+        $clientoption2 = ^clientoption_lighting_quality;
     case enum_11147 :
-        if (detailcanset_ambientocclusion($int1) = 3) {
-            return(0);
-        }
+        $clientoption2 = ^clientoption_ambient_occlusion;
     case enum_10855 :
-        if (detailcanset_bloom($int1) = 3) {
-            return(0);
-        }
+        $clientoption2 = ^clientoption_bloom;
     case enum_10856 :
-        if (detailcanset_texturing($int1) = 3) {
-            return(0);
-        }
-    case enum_11847 :
-        if (detailcanset_anisotropicfiltering($int1) = 3) {
-            return(0);
-        }
+        $clientoption2 = ^clientoption_texturing;
+    case enum_11847, enum_14564 :
+        $clientoption2 = ^clientoption_anisotropic_filtering;
     case enum_11848 :
-        if (detailcanset_volumetriclighting($int1) = 3) {
-            return(0);
-        }
-    case enum_14502 :
-        if (detailcanset_maxforegroundfps(calc((1 + $int1) * 5)) = 3) {
-            return(0);
-        }
+        $clientoption2 = ^clientoption_volumetric_lighting;
+    case enum_14502, enum_14565 :
+        $clientoption2 = ^clientoption_max_foreground_fps;
+        $int1 = calc((1 + $int1) * 5);
     case enum_14503 :
-        if (detailcanset_maxbackgroundfps(calc((1 + $int1) * 5)) = 3) {
-            return(0);
-        }
+        $clientoption2 = ^clientoption_max_background_fps;
+        $int1 = calc((1 + $int1) * 5);
     case enum_1577 :
-        if (detailcanset_grounddecor($int1) = 3) {
-            return(0);
-        }
+        $clientoption2 = ^clientoption_ground_decor;
+    case enum_421 :
+        $clientoption2 = ^clientoption_dof;
+    case enum_866, enum_14567 :
+        $clientoption2 = ^clientoption_draw_distance;
+    case enum_1579 :
+        $clientoption2 = ^clientoption_remove_roof;
+    case default :
+        return(0);
+}
+if (clientoption_canset($clientoption2, $int1) = 3) {
+    return(0);
 }
 return(1);

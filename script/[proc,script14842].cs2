@@ -1,0 +1,38 @@
+// 14842
+[proc,script14842](enum $enum0)
+cc_deleteall(interface_685:com_24);
+cc_deleteall(interface_685:com_25);
+~script14814(interface_685:com_23, if_getscrollheight(interface_685:com_23), -1, interface_685:com_256, interface_685:com_257);
+if_setscrollpos(0, 0, interface_685:com_23);
+if ($enum0 = null) {
+    return;
+}
+def_dbrow $dbrow1 = null;
+def_int $int2 = enum_getoutputcount($enum0);
+def_int $int3 = 0;
+def_int $int4 = 75;
+def_int $int5 = if_getheight(interface_685:com_23);
+def_int $int6 = $int5;
+def_int $int7 = -1;
+while (++$int7 < $int2) {
+    $dbrow1 = enum(int, dbrow, $enum0, $int7);
+    if ($int7 > 0 & calc($int7 % 2) = 0) {
+        if (calc($int7 % (2 * 2)) = 0) {
+            $int3 = 0;
+            $int4 = calc($int4 - (180 + 20) * 2 + $int5);
+            $int6 = calc($int6 + $int5);
+        } else {
+            $int3 = calc(if_getwidth(interface_685:com_24) - 326);
+            $int4 = calc($int4 - (180 + 20) * 2);
+        }
+    }
+    ~arch_research_build_info(interface_685:com_24, 44892185, $dbrow1, $int3, $int4, 326, 180, if_getnextsubid(interface_685:com_25));
+    $int4 = calc($int4 + (180 + 20));
+}
+if_setscrollsize(0, $int6, interface_685:com_23);
+if ($int6 > $int5) {
+    if_sethide(false, interface_685:com_89);
+    ~script14812(interface_685:com_23, $int5, interface_685:com_254, interface_685:com_256, interface_685:com_255, interface_685:com_257);
+} else {
+    if_sethide(true, interface_685:com_89);
+}

@@ -7,7 +7,7 @@ def_int $int7 = 0;
 def_int $int8 = 0;
 def_int $int9 = 0;
 def_int $int10 = 0;
-def_int $rgb11 = ^black;
+def_int $int11 = 0;
 def_int $int12 = 0;
 def_int $int13 = 26;
 def_int $int14 = 0;
@@ -21,6 +21,7 @@ def_graphic $graphic18 = null;
 def_boolean $boolean19 = false;
 def_fontmetrics $fontmetrics20 = graphic_17813;
 def_boolean $boolean21 = ~script6431;
+def_boolean $boolean22 = true;
 if ($boolean21 = true) {
     $int13 = 36;
     $int15 = 5;
@@ -49,90 +50,98 @@ while ($int5 < $int6) {
     $graphic18 = db_getfield($dbrow17, dbtable_28:col1, 0);
     $boolean19 = db_getfield($dbrow17, dbtable_28:col2, 0);
     $string2 = db_getfield($dbrow17, dbtable_28:col3, 0);
-    switch_int (db_getfield($dbrow17, dbtable_28:col5, 0)) {
-        case 0 :
-            $string0 = $string1;
-        case 1 :
-            if ($int3 = 1 | $boolean21 = true) {
-                $string0, $rgb11 = ~money_pouch_int_to_string(%varclient_6480);
-                $string0 = "<col=0xffffff>Coin pouch:</col> <$string0>";
-            } else {
-                $string0, $rgb11 = ~money_pouch_int_to_string(%varclient_6480);
-            }
-        case 2 :
-            $string0 = "<tostring_localised(runweight_visible, true)>kg";
-        case 3 :
-            $string0, $rgb11 = ~money_pouch_int_to_string(%varclient_6480);
+    if ($boolean21 = true) {
+        $boolean22 = ~script332(db_getfield($dbrow17, dbtable_28:col6, 0), $component1);
     }
-    switch_int (db_getfield($dbrow17, dbtable_28:col5, 0)) {
-        case 0, 3 :
-            if ($boolean21 = true) {
-                ~script10410($component0, $component1, struct_28556, $int8, calc($int7 + $int15), max(1, $int9), $int13, $int5, false, "");
-                cc_create($component0, ^iftype_text, if_getnextsubid($component0));
-                cc_setsize(calc($int9 - $int16 - struct_param(struct_24114, param_3808) * 2), $int13, ^setsize_abs, ^setsize_abs);
-                cc_setposition(calc(struct_param(struct_24114, param_3808) + $int16 + $int8), calc($int7 + $int15), ^setpos_abs_left, ^setpos_abs_top);
-                cc_settext($string0);
-                cc_setmaxlines(2);
-                cc_settextfont(graphic_17814);
-                cc_settextalign(^settextalign_centre, ^settextalign_centre, scale(enum(fontmetrics, int, enum_8584, cc_getfontmetrics), 100, 66));
-                cc_settextshadow(false);
-                ~script11024(18);
-                ~script387($component0, $int16, $int16, calc(($int13 - $int16) / 2 + $int8), calc($int7 + $int15 + ($int13 - $int16) / 2), $graphic18, $boolean19);
-            } else if ($int3 = 1) {
-                ~script387($component0, 22, 22, 3, calc($int7 + $int15), $graphic18, $boolean19);
-                ~script6201($component0, 1000, 16, 25, calc($int7 + $int15 + 3), $fontmetrics20, $string0);
-                ~cc_add(^iftype_text, $component1, $int5, 1000, $int13, 0, $int7);
-            } else {
-                ~script11624($component0, $component1, struct_28749, 0, 0, $int5, 1);
-                ~script387($component0, 22, 22, 0, 0, $graphic18, $boolean19);
-            }
-        case 1 :
-            if ($int3 = 1 | $boolean21 = true) {
-                ~script6201($component0, $int9, 16, calc(6 + $int8), calc($int7 + $int15 + 3), $fontmetrics20, $string0);
-                if ($boolean21 = true) {
-                    ~script1025($component0, cc_getid, graphic_21207, graphic_17993, graphic_20280);
-                    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-                    cc_setoninvtransmit("script5705($component0, cc_getid){inv_623}");
+    if ($boolean22 = false) {
+        cc_create($component1, ^iftype_text, $int5);
+        cc_sethide(true);
+    } else {
+        switch_int (db_getfield($dbrow17, dbtable_28:col5, 0)) {
+            case 0 :
+                $string0 = $string1;
+            case 1 :
+                if ($int3 = 1 | $boolean21 = true) {
+                    $string0, $int11 = ~money_pouch_int_to_string(%varclient_6480);
+                    $string0 = "<col=0xffffff>Coin pouch:</col> <$string0>";
+                } else {
+                    $string0, $int11 = ~money_pouch_int_to_string(%varclient_6480);
                 }
-                cc_setcolour($rgb11);
-            } else {
-                ~cc_add_colour_text($component0, 45, 24, 0, 0, graphic_17813, $string0, $rgb11);
-                cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-            }
-            cc_create($component1, ^iftype_text, $int5);
-        case 2 :
-            if ($int3 = 1 | $boolean21 = true) {
-                ~script387($component0, $int16, $int16, 3, calc($int7 + $int15), $graphic18, $boolean19);
-                ~script6201($component0, $int9, 16, 25, calc($int7 + $int15 + 3), $fontmetrics20, $string0);
+            case 2 :
+                $string0 = "<tostring_localised(runweight_visible, true)>kg";
+            case 3 :
+                $string0, $int11 = ~money_pouch_int_to_string(%varclient_6480);
+        }
+        switch_int (db_getfield($dbrow17, dbtable_28:col5, 0)) {
+            case 0, 3 :
                 if ($boolean21 = true) {
-                    ~script1025($component0, cc_getid, graphic_21207, graphic_17993, graphic_20280);
-                    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-                    cc_setonmisctransmit("script8476($component0, cc_getid)");
+                    ~script10410($component0, $component1, struct_28556, $int8, calc($int7 + $int15), max(1, $int9), $int13, $int5, false, "");
+                    cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+                    cc_setsize(calc($int9 - $int16 - struct_param(struct_24114, param_3808) * 2), $int13, ^setsize_abs, ^setsize_abs);
+                    cc_setposition(calc(struct_param(struct_24114, param_3808) + $int16 + $int8), calc($int7 + $int15), ^setpos_abs_left, ^setpos_abs_top);
+                    cc_settext($string0);
+                    cc_setmaxlines(2);
+                    cc_settextfont(graphic_17814);
+                    cc_settextalign(^settextalign_centre, ^settextalign_centre, scale(enum(fontmetrics, int, enum_8584, cc_getfontmetrics), 100, 66));
+                    cc_settextshadow(false);
+                    ~script11024(18);
+                    ~script387($component0, $int16, $int16, calc(($int13 - $int16) / 2 + $int8), calc($int7 + $int15 + ($int13 - $int16) / 2), $graphic18, $boolean19);
+                } else if ($int3 = 1) {
+                    ~script387($component0, 22, 22, 3, calc($int7 + $int15), $graphic18, $boolean19);
+                    ~script6201($component0, 1000, 16, 25, calc($int7 + $int15 + 3), $fontmetrics20, $string0);
+                    ~cc_add(^iftype_text, $component1, $int5, 1000, $int13, 0, $int7);
+                } else {
+                    ~script11624($component0, $component1, struct_28749, 0, 0, $int5, 1);
+                    ~script387($component0, 22, 22, 0, 0, $graphic18, $boolean19);
                 }
-            } else {
-                ~script387($component0, 22, 22, 0, 0, $graphic18, $boolean19);
-                ~script6203($component0, 38, 24, 0, 0, graphic_17813, $string0, 3);
-                cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+            case 1 :
+                if ($int3 = 1 | $boolean21 = true) {
+                    ~script6201($component0, $int9, 16, calc(6 + $int8), calc($int7 + $int15 + 3), $fontmetrics20, $string0);
+                    if ($boolean21 = true) {
+                        ~script1025($component0, cc_getid, graphic_21207, graphic_17993, graphic_20280);
+                        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+                        cc_setoninvtransmit("script5705($component0, cc_getid){inv_623}");
+                    }
+                    cc_setcolour($int11);
+                } else {
+                    ~cc_add_colour_text($component0, 45, 24, 0, 0, graphic_17813, $string0, $int11);
+                    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+                }
+                cc_create($component1, ^iftype_text, $int5);
+            case 2 :
+                if ($int3 = 1 | $boolean21 = true) {
+                    ~script387($component0, $int16, $int16, 3, calc($int7 + $int15), $graphic18, $boolean19);
+                    ~script6201($component0, $int9, 16, 25, calc($int7 + $int15 + 3), $fontmetrics20, $string0);
+                    if ($boolean21 = true) {
+                        ~script1025($component0, cc_getid, graphic_21207, graphic_17993, graphic_20280);
+                        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+                        cc_setoninvtransmit("script8476($component0, cc_getid){inv_93, inv_94}");
+                    }
+                } else {
+                    ~script387($component0, 22, 22, 0, 0, $graphic18, $boolean19);
+                    ~script6203($component0, 38, 24, 0, 0, graphic_17813, $string0, 3);
+                    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+                }
+                cc_create($component1, ^iftype_text, $int5);
+                if ($boolean21 = false) {
+                    cc_setoninvtransmit("script328($component0, $component1, 3){inv_93, inv_94}");
+                } else {
+                    cc_setoninvtransmit("script8476($component1, cc_getid){inv_93, inv_94}");
+                }
+        }
+        if ($int3 = 1 | $boolean21 = true) {
+            $int10 = parawidth($string0, 1000, $fontmetrics20);
+            $int4 = max($int4, calc($int10 + 38));
+            $int8 = calc($int8 + $int9 + 4);
+        }
+        if (cc_find($component1, $int5) = true) {
+            ~script331($dbrow17);
+            switch_dbrow ($dbrow17) {
+                case dbrow_1014 :
+                    cc_setonmouserepeat("script316(event_com, event_comsubid)");
+                case default :
+                    cc_setonmouserepeat("script3876($string2, event_com, event_comsubid)");
             }
-            cc_create($component1, ^iftype_text, $int5);
-            if ($boolean21 = false) {
-                cc_setonmisctransmit("script328($component0, $component1, 3)");
-            } else {
-                cc_setonmisctransmit("script8476($component1, cc_getid)");
-            }
-    }
-    if ($int3 = 1 | $boolean21 = true) {
-        $int10 = parawidth($string0, 1000, $fontmetrics20);
-        $int4 = max($int4, calc($int10 + 38));
-        $int8 = calc($int8 + $int9 + 4);
-    }
-    if (cc_find($component1, $int5) = true) {
-        ~script331($dbrow17);
-        switch_dbrow ($dbrow17) {
-            case dbrow_1014 :
-                cc_setonmouserepeat("script316(event_com, event_comsubid)");
-            case default :
-                cc_setonmouserepeat("script3876($string2, event_com, event_comsubid)");
         }
     }
     $int5 = calc($int5 + 1);

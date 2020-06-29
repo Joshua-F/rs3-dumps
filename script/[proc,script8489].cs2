@@ -1,6 +1,6 @@
 // 8489
 [proc,script8489](int $int0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10)
-$component1 = interface_1477:com_841;
+$component1 = interface_1477:com_845;
 cc_deleteall($component3);
 cc_deleteall($component4);
 cc_deleteall($component6);
@@ -32,48 +32,50 @@ if ($boolean16 = true) {
 }
 def_int $int17 = if_getwidth($component2);
 def_int $int18 = if_getheight($component2);
-def_int $int19 = 0;
-def_int $int20 = 0;
+def_int $int19 = 2;
+def_int $int20 = 2;
 def_int $int21 = 0;
-$int21, $int19, $int20 = ~script8107($int17, $int14);
-def_int $int22 = calc($int13 / $int21);
-if (calc($int13 % $int21) > 0) {
-    $int22 = calc($int22 + 1);
+def_int $int22 = 0;
+def_int $int23 = 0;
+$int23, $int21, $int22 = ~script9856($int17, $int14, $int19, $int20);
+def_int $int24 = calc($int13 / $int23);
+if (calc($int13 % $int23) > 0) {
+    $int24 = calc($int24 + 1);
 }
-def_int $int23 = calc($int15 * $int22);
-def_int $int24 = 0;
-if ($int23 > $int18) {
-    $int24 = 1;
+def_int $int25 = calc($int15 * $int24);
+def_int $int26 = 0;
+if ($int25 > $int18) {
+    $int26 = 1;
     if_setsize(16, $int12, ^setsize_minus, ^setsize_minus, $component2);
     $int17 = if_getwidth($component2);
 }
-if ($int24 = 1) {
-    $int21, $int19, $int20 = ~script8107($int17, $int14);
-    $int22 = calc($int13 / $int21);
-    if (calc($int13 % $int21) > 0) {
-        $int22 = calc($int22 + 1);
+if ($int26 = 1) {
+    $int19 = 0;
+    $int20 = 0;
+    $int23, $int21, $int22 = ~script9856($int17, $int14, $int19, $int20);
+    $int24 = calc($int13 / $int23);
+    if (calc($int13 % $int23) > 0) {
+        $int24 = calc($int24 + 1);
     }
-    $int23 = calc($int15 * $int22);
+    $int25 = calc($int15 * $int24);
 } else {
     cc_deleteall($component3);
 }
-def_int $intarray0($int21);
-def_int $int25 = 0;
-while ($int25 < $int21) {
-    $intarray0($int25) = ~script8108($int19, $int20, $int25);
-    $int25 = calc($int25 + 1);
+def_int $intarray0($int23);
+def_int $int27 = 0;
+while ($int27 < $int23) {
+    $intarray0($int27) = ~script9857($int21, $int19, $int22, $int27);
+    $int27 = calc($int27 + 1);
 }
-$int25 = 0;
-def_int $int26 = 0;
-if ($int24 = 1) {
-    if_setscrollsize(0, $int23, $component2);
+$int27 = 0;
+def_int $int28 = 0;
+if ($int26 = 1) {
+    if_setscrollsize(0, $int25, $component2);
     ~scrollbar_vertical($component3, $component2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 } else {
     if_setscrollsize(0, 0, $component2);
 }
-def_struct $struct27 = null;
-def_int $int28 = 0;
-def_int $int29 = 0;
+def_struct $struct29 = null;
 def_int $int30 = 0;
 def_int $int31 = 0;
 def_int $int32 = 0;
@@ -94,13 +96,13 @@ def_int $int46 = 0;
 if ($boolean16 = true) {
     $int46 = 10;
 }
-while ($int28 < $int13) {
-    $int32 = calc($int28 % $int21);
-    $int31 = calc($int28 / $int21);
+while ($int30 < $int13) {
+    $int32 = calc($int30 % $int23);
+    $int31 = calc($int30 / $int23);
     $int33 = $intarray0($int32);
     $int34 = calc($int31 * $int15 + $int46);
-    $struct27 = enum(int, struct, enum_7674, $int28);
-    $stat35 = struct_param($struct27, param_3440);
+    $struct29 = enum(int, struct, enum_7674, $int30);
+    $stat35 = struct_param($struct29, param_3440);
     $int39 = ~script3158($stat35);
     if ($int11 = 1) {
         $int43 = ~player_inspect_get_xp($stat35);
@@ -114,7 +116,7 @@ while ($int28 < $int13) {
         $int41 = stat_base($stat35);
     }
     $int44 = ~script11849($stat35, $int43, -1);
-    cc_create($component4, ^iftype_graphic, $int28);
+    cc_create($component4, ^iftype_graphic, $int30);
     cc_setsize(60, 27, ^setsize_abs, ^setsize_abs);
     cc_setposition($int33, $int34, ^setpos_abs_left, ^setpos_abs_top);
     if (enum_hasoutput(stat, enum_10327, $stat35) = true) {
@@ -130,6 +132,7 @@ while ($int28 < $int13) {
     } else {
         $graphic36 = "stats_background_button,0";
         $graphic37 = "stats_background_button,1";
+        $rgb38 = 0xff8c00;
     }
     if (%varplayerbit_19009 = 1) {
         if ($int44 >= $int39) {
@@ -163,20 +166,20 @@ while ($int28 < $int13) {
         }
     }
     cc_setgraphic($graphic36);
-    cc_setonmouseover("cc_graphic_swapper(event_com, $int28, $graphic37)");
-    cc_setonmouseleave("cc_graphic_swapper(event_com, $int28, $graphic36)");
-    cc_create($component5, ^iftype_graphic, $int28);
+    cc_setonmouseover("cc_graphic_swapper(event_com, $int30, $graphic37)");
+    cc_setonmouseleave("cc_graphic_swapper(event_com, $int30, $graphic36)");
+    cc_create($component5, ^iftype_graphic, $int30);
     cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
     cc_setposition($int33, $int34, ^setpos_abs_left, ^setpos_abs_top);
     if ($int11 = 1 | ~stat_unlocked($stat35) = 1) {
-        cc_setgraphic(struct_param($struct27, param_3442));
+        cc_setgraphic(struct_param($struct29, param_3442));
     } else {
-        cc_setgraphic(struct_param($struct27, param_5493));
+        cc_setgraphic(struct_param($struct29, param_5493));
     }
     if ($int11 = 0) {
-        cc_setonvartransmit("script968($component5, $int28){varplayer_1227}");
+        cc_setonvartransmit("script968($component5, $int30){varplayer_1227}");
     }
-    cc_create($component6, ^iftype_text, $int28);
+    cc_create($component6, ^iftype_text, $int30);
     cc_setsize(18, 11, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int33 + 24), calc($int34 + 2), ^setpos_abs_left, ^setpos_abs_top);
     cc_settextfont(p11_full);
@@ -188,7 +191,7 @@ while ($int28 < $int13) {
         cc_settext(tostring(~script11861($stat35)));
         cc_setonstattransmit("stats_stat(event_com, cc_getid, $stat35){$stat35}");
     }
-    cc_create($component7, ^iftype_text, $int28);
+    cc_create($component7, ^iftype_text, $int30);
     cc_setsize(18, 11, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int33 + 39), calc($int34 + 14), ^setpos_abs_left, ^setpos_abs_top);
     cc_settextfont(p11_full);
@@ -200,7 +203,7 @@ while ($int28 < $int13) {
         cc_settext(tostring(~script11860($stat35)));
         cc_setonstattransmit("stats_statbase(event_com, cc_getid, $stat35){$stat35}");
     }
-    cc_create($component8, ^iftype_graphic, $int28);
+    cc_create($component8, ^iftype_graphic, $int30);
     cc_setsize(14, 13, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int33 + 43), calc($int34 + 1), ^setpos_abs_left, ^setpos_abs_top);
     if ($int43 >= 200000000) {
@@ -212,19 +215,19 @@ while ($int28 < $int13) {
     } else if ($int44 >= $int39) {
         cc_setgraphic(enum(int, graphic, enum_10398, %varplayerbit_19010));
     }
-    cc_create($component9, ^iftype_text, $int28);
+    cc_create($component9, ^iftype_text, $int30);
     cc_setsize(60, 27, ^setsize_abs, ^setsize_abs);
     cc_setposition($int33, $int34, ^setpos_abs_left, ^setpos_abs_top);
     if ($int11 = 0) {
-        cc_setop(1, "View");
+        cc_setop(1, "View Skillguide");
         cc_setop(2, "Set Level Target");
         cc_setop(3, "Set XP Target");
         cc_setop(4, "Clear Target");
-        cc_setonop("skillguide_setskill(struct_param($struct27, param_3441))");
+        cc_setonop("skillguide_setskill(struct_param($struct29, param_3441))");
         cc_setparam(param_7540, 3);
         cc_setparam(param_7545, $stat35);
     }
-    cc_setonmouserepeat("stats_mouseover($component9, $int28, $stat35, $component1, $int11)");
+    cc_setonmouserepeat("stats_mouseover($component9, $int30, $stat35, $component1, $int11)");
     cc_setonmouseleave("script546($component1)");
-    $int28 = calc($int28 + 1);
+    $int30 = calc($int30 + 1);
 }

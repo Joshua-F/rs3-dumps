@@ -11,14 +11,25 @@ if (map_members = false & enum_hasoutput(stat, enum_5472, $stat0) = true & stat_
     }
     return(false);
 }
+switch_stat ($stat0) {
+    case invention :
+        if (stat_base(smithing) < 80 | stat_base(divination) < 80 | stat_base(crafting) < 80) {
+            return(false);
+        }
+    case archaeology :
+        if (~script14580 = true) {
+            if ($int3 = 1) {
+                mes("You cannot use this item in Archaeology right now.");
+                sound_vorbis_volume(sound_10046, 1, 0, 150);
+            }
+            return(false);
+        }
+}
 if (stat_base($stat0) < $int1) {
     if ($int3 = 1) {
         mes("You must choose a skill in which you already have level <tostring($int1)>.");
         sound_vorbis_volume(sound_10046, 1, 0, 150);
     }
-    return(false);
-}
-if ($stat0 = invention & (stat_base(smithing) < 80 | stat_base(divination) < 80 | stat_base(crafting) < 80)) {
     return(false);
 }
 switch_obj ($obj2) {
@@ -410,6 +421,8 @@ switch_obj ($obj2) {
                 if (%varplayerbit_20590 = 0) {
                     return(false);
                 }
+            case default :
+                return(false);
         }
     case obj_27362 :
         switch_stat ($stat0) {
@@ -662,6 +675,10 @@ switch_obj ($obj2) {
                 if (%varplayer_6195 > 0) {
                     return(true);
                 }
+            case archaeology :
+                if (%varplayer_9208 > 0) {
+                    return(true);
+                }
         }
         return(false);
     case obj_39669 :
@@ -879,6 +896,10 @@ if (oc_param($obj2, param_4762) = 1) {
             }
         case invention :
             if (~script10926(invention, oc_param($obj2, param_5883), $int3) = 0) {
+                return(false);
+            }
+        case archaeology :
+            if (~script10926(archaeology, oc_param($obj2, param_5986), $int3) = 0) {
                 return(false);
             }
     }

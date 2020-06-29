@@ -13,12 +13,7 @@ $int1 = calc($int1 + 1);
 cc_create($component0, ^iftype_graphic, $int1);
 cc_setsize(196, 150, ^setsize_abs, ^setsize_abs);
 cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
-cc_setgraphic(invention_discovery_card);
-if (db_getfield($dbrow6, dbtable_5:col6, 0) = 3) {
-    cc_setgraphic(invention_discovery_card_blue);
-} else {
-    cc_setgraphic(invention_discovery_card);
-}
+cc_setgraphic(~script14925($dbrow6));
 $int1 = calc($int1 + 1);
 cc_create($component0, ^iftype_graphic, $int1);
 cc_setgraphic(db_getfield($dbrow6, dbtable_5:col5, 0));
@@ -33,7 +28,7 @@ cc_setcolour(0x332200);
 cc_setsize(140, 32, ^setsize_abs, ^setsize_abs);
 cc_setposition(calc($int4 + 5), calc($int5 + 5), ^setpos_abs_left, ^setpos_abs_top);
 $int1 = calc($int1 + 1);
-def_string $string0 = tostring(db_getfield($dbrow6, dbtable_5:col8, 0));
+def_string $string0 = tostring(db_getfield($dbrow6, dbtable_5:col9, 0));
 cc_create($component0, ^iftype_text, $int1);
 cc_settextfont(graphic_17813);
 cc_settext($string0);
@@ -48,7 +43,7 @@ cc_setgraphic(skill_icon_invention_16px);
 cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
 cc_setposition(calc($int4 + 170 - $int8), calc($int5 + 128), ^setpos_abs_left, ^setpos_abs_top);
 $int1 = calc($int1 + 1);
-def_int $int9 = db_getfieldcount($dbrow6, dbtable_5:col12);
+def_int $int9 = db_getfieldcount($dbrow6, dbtable_5:col13);
 def_int $int10 = 0;
 while ($int10 < $int9) {
     $string0 = ~script12051($dbrow6, $int10);
@@ -72,7 +67,6 @@ if ($component2 ! null & cc_find($component2, $int3) = true) {
     cc_setparam(param_5532, $int1);
     cc_setonmouserepeat("script12123(event_com, event_comsubid, $dbrow6, $component0, $int7, $int1)");
     cc_setop(1, "Select");
-    cc_setnoclickthrough(true);
     cc_sendtofront;
     if ($component2 = interface_1708:com_33) {
         cc_setonscrollwheel("scrollbar_vertical_wheel(interface_1708:com_1, interface_1708:com_2, event_mousey)");

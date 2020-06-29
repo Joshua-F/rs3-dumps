@@ -9,9 +9,17 @@ while ($int1 < 9) {
     $int1 = calc($int1 + 1);
 }
 def_string $string0 = null;
-if ($int0 > 5) {
+def_int $int2 = ~invent_gizmo_slot_count(%varclient_6775);
+if ($int0 > $int2) {
+    switch_int ($int2) {
+        case 5 :
+            $string0 = "You can only fit up to five materials into the gizmo.";
+        case 9 :
+            $string0 = "You can only fit up to nine materials into the gizmo.";
+        case default :
+            $string0 = "You can only fit so many materials into the gizmo.";
+    }
     if_sethide(false, interface_1712:com_25);
-    $string0 = "You can only fit up to five materials into the gizmo.";
     if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1712:com_25);
 } else if ($int0 = 0) {
     if_sethide(false, interface_1712:com_25);
@@ -24,11 +32,11 @@ if ($int0 > 5) {
 } else {
     if_sethide(true, interface_1712:com_25);
 }
-def_int $int2 = 0;
-def_component $component3 = interface_1712:com_19;
+def_int $int3 = 0;
+def_component $component4 = interface_1712:com_19;
 if ($int0 = 0) {
-    cc_deleteall($component3);
-    $int2, $int2 = ~script12086($component3, 0, 5, 5, calc(if_getwidth($component3) - 10), "Drag or click on a material from the list to add it to the gizmo above.<br><br>You can put up to 5 materials into a gizmo, and you can put the same material in several times.<br><br>Common materials are used in stacks of five per slot.<br><br>Higher Invention skill will help you get higher rank positive perks.", struct_29166);
+    cc_deleteall($component4);
+    $int3, $int3 = ~script12086($component4, 0, 5, 5, calc(if_getwidth($component4) - 10), "Drag or click on a material from the list to add it to the gizmo above.<br><br>You can put up to <tostring($int2)> materials into a gizmo, and you can put the same material in several times.<br><br>Common materials are used in stacks of five per slot.<br><br>Higher Invention skill will help you get higher rank positive perks.", struct_29166);
     return;
 }
 $int1 = 0;

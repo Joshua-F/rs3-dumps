@@ -1,0 +1,58 @@
+// 14430
+[clientscript,script14430]
+def_int $int0 = 6645;
+def_int $int1 = 1;
+def_component $component2 = null;
+def_component $component3 = null;
+def_obj $obj4 = null;
+def_component $component5 = null;
+def_int $int6 = calc(5 - %varplayerbit_45862);
+$int6 = calc($int6 + ~script14433(enum(int, int, enum_6240, %varplayer_3079)));
+while ($int0 <= 6655) {
+    $int1 = enum(int, int, enum_6240, $int0);
+    $component2 = enum(int, component, enum_6242, $int1);
+    $component3 = enum(int, component, enum_6243, $int1);
+    $obj4 = enum(int, obj, enum_6238, $int0);
+    $component5 = enum(int, component, enum_6244, $int1);
+    if ($int0 = %varplayer_3079) {
+        if_setgraphic(container_active_prize_daily, $component3);
+    } else {
+        if_setgraphic(container_default_prize_daily, $component3);
+    }
+    if ($int0 <= %varplayer_3079) {
+        if (~script14433($int1) = 1) {
+            if_setgraphic(icon_tick_daily, $component2);
+        } else {
+            if_setgraphic(icon_cross_daily, $component2);
+        }
+        if_setsize(30, 30, ^setsize_abs, ^setsize_abs, $component2);
+        if ($int1 > 5) {
+            if_setposition(-10, -10, ^setpos_abs_centre, ^setpos_abs_centre, $component2);
+        } else {
+            if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component2);
+        }
+    }
+    if ($int0 >= %varplayer_3079) {
+        if (~script14433($int1) ! 1) {
+            if_setobject($obj4, enum(obj, int, enum_6239, $obj4), $component2);
+            if_setsize(36, 32, ^setsize_abs, ^setsize_abs, $component2);
+            if ($int1 > 5) {
+                if_setposition(-8, -8, ^setpos_abs_centre, ^setpos_abs_centre, $component2);
+            } else {
+                if_setposition(2, 2, ^setpos_abs_centre, ^setpos_abs_centre, $component2);
+            }
+            if (%varplayerbit_45862 >= 5) {
+                if_sethide(false, $component5);
+                if_setgraphic(icon_multiplier_x2, $component5);
+            } else if (calc($int0 - %varplayer_3079) >= $int6) {
+                if_sethide(false, $component5);
+                if_setgraphic(icon_multiplier_x2_grey, $component5);
+            } else {
+                if_sethide(true, $component5);
+            }
+        } else {
+            if_sethide(true, $component5);
+        }
+    }
+    $int0 = calc($int0 + 1);
+}

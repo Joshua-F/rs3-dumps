@@ -478,6 +478,9 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
     if (oc_param($obj0, param_7796) ! null | oc_category($obj0) = category_67 & oc_param($obj0, param_1047) = 1) {
         $int39 = ~script2579($obj0, $int7, $struct2, $component3, $component4, $int39);
     }
+    if (oc_param($obj0, param_6663) ! null) {
+        $int39 = ~script14793($obj0, $int7, $struct2, $component3, $component4, $int39);
+    }
     if (oc_param($obj0, param_6833) = 1 | ~script4034($obj0) = true) {
         $int39 = ~script13776($obj0, $component3, $component4, $int39);
     }
@@ -620,7 +623,11 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
             case obj_24205 :
                 $int33 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_16523);
                 $int39 = ~script7235("Capacity: 18", $string3, $struct2, $component3, $component4, $int39);
-                $int39 = ~script7235("Charges remaining: <tostring($int33)>/756", $string3, $struct2, $component3, $component4, $int39);
+                if (~arch_relic_check_active(dbrow_2896) = true) {
+                    $int39 = ~script7235("Charges remaining: <col=00ff00>Infinite - Relic active</col>", $string3, $struct2, $component3, $component4, $int39);
+                } else {
+                    $int39 = ~script7235("Charges remaining: <tostring($int33)>/756", $string3, $struct2, $component3, $component4, $int39);
+                }
             case obj_21536 :
                 $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_5129);
                 $int39 = ~script7235("Charges remaining: <tostring($int17)>", $string3, $struct2, $component3, $component4, $int39);
@@ -666,6 +673,14 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                 $int39 = ~script7235("Charges remaining: <tostring_localised(calc(100 - inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_18289)), true)>", $string3, $struct2, $component3, $component4, $int39);
             case obj_48680 :
                 $int39 = ~script7235("Doses remaining: <tostring(calc(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_18550) / 500))>", $string3, $struct2, $component3, $component4, $int39);
+            case obj_49978 :
+                $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_47034);
+                $int39 = ~script7235("Charges: <tostring_localised($int17, true)>/<tostring_localised(100000, true)>", $string3, $struct2, $component3, $component4, $int39);
+            case obj_49981 :
+                $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_47034);
+                $int39 = ~script7235("Charges left: <tostring_localised($int17, true)>", $string3, $struct2, $component3, $component4, $int39);
+            case obj_37407 :
+                $int39 = ~script7235("Charge: <tostring(scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_31400), 30, 100))>%", $string3, $struct2, $component3, $component4, $int39);
             case default :
                 switch_category (oc_category($obj0)) {
                     case category_4452 :
@@ -987,7 +1002,11 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                                 $int39 = ~script7235("Capacity: <tostring($int33)>", $string3, $struct2, $component3, $component4, $int39);
                                 if ($int24 > 0) {
                                     $int10 = scale(calc($int24 - $int10), $int24, 100);
-                                    $int39 = ~script7235("Durability: <~script4229($int10, 20, 80, $string3)><tostring($int10)>%", $string3, $struct2, $component3, $component4, $int39);
+                                    if (~arch_relic_check_active(dbrow_2896) = true) {
+                                        $int39 = ~script7235("Durability: <col=00ff00>100% - Relic active</col>", $string3, $struct2, $component3, $component4, $int39);
+                                    } else {
+                                        $int39 = ~script7235("Durability: <~script4229($int10, 20, 80, $string3)><tostring($int10)>%", $string3, $struct2, $component3, $component4, $int39);
+                                    }
                                 }
                             } else if ($int33 > 0) {
                                 $int39 = ~script7235("Capacity: <tostring($int33)>", $string3, $struct2, $component3, $component4, $int39);

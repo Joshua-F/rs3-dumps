@@ -1,19 +1,19 @@
 // 14116
 [clientscript,script14116]
 def_int $int0 = -1;
-def_boolean $boolean1 = false;
-def_int $int2 = enum_getoutputcount(enum_13740);
+def_int $int1 = 0;
+def_int $int2 = enum_getoutputcount(enum_6511);
 if (%varplayerbit_41612 = 0) {
-    if_sethide(true, interface_1006:com_6);
+    if_settext("Herb collector<col=0xff0000> - Purchased at the Ardougne Farmers' Market</col>", interface_1006:com_160);
+    if_sethide(true, interface_1006:com_159);
 } else {
-    if_sethide(false, interface_1006:com_6);
+    if_settext("Herb collector", interface_1006:com_160);
+    if_sethide(false, interface_1006:com_159);
 }
 while (++$int0 < $int2) {
-    if_sethide(~int_to_bool(testbit(%varplayer_1086, $int0)), enum(int, component, enum_13740, $int0));
-    if_sethide(~int_to_bool(calc(1 - testbit(%varplayer_1086, $int0))), enum(int, component, enum_13739, $int0));
+    ~static_checkbox_create(enum(int, component, enum_6511, $int0), enum(int, component, enum_6512, $int0), "", "", "", testbit(%varplayer_1086, $int0));
 }
 if (bitcount(%varplayer_1086) = $int2) {
-    $boolean1 = true;
+    $int1 = 1;
 }
-if_sethide($boolean1, interface_1006:com_70);
-if_sethide(~negate_bool($boolean1), interface_1006:com_68);
+~static_checkbox_create(interface_1006:com_71, interface_1006:com_177, "", "", "", $int1);

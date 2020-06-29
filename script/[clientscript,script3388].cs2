@@ -1,118 +1,57 @@
 // 3388
 [clientscript,script3388](int $int0, int $int1)
-def_int $int2 = 4;
-if (has_nxt = true) {
-    $int2 = 5;
-}
-def_component $component3 = null;
+def_component $component2 = null;
 switch_int ($int1) {
     case 1 :
-        $component3 = null;
+        $component2 = null;
     case 4 :
-        $component3 = interface_1420:com_509;
+        $component2 = interface_1420:com_509;
     case 2 :
-        $component3 = interface_906:com_215;
+        $component2 = interface_906:com_214;
     case default :
-        $component3 = interface_744:com_187;
+        $component2 = interface_744:com_188;
 }
-if ($component3 ! null) {
-    if_settext("Your display has been changed. Do you want to keep this setting?", $component3);
+if ($component2 ! null) {
+    if_settext("Your display has been changed. Do you want to keep this setting?", $component2);
 }
-if (has_nxt = true) {
-    switch_int ($int0) {
-        case 1 :
-            if (autosetup_getlevel ! 1) {
-                autosetup_setmin;
-            } else {
-                return;
-            }
-        case 2 :
-            if (autosetup_getlevel ! 2) {
-                autosetup_setlow;
-            } else {
-                return;
-            }
-        case 3 :
-            if (autosetup_getlevel ! 3) {
-                autosetup_setmedium;
-            } else {
-                return;
-            }
-        case 4 :
-            if (autosetup_getlevel ! 4) {
-                autosetup_sethigh;
-            } else {
-                return;
-            }
-        case 5 :
-            if (autosetup_getlevel ! 5) {
-                autosetup_setultra(0);
-            } else {
-                return;
-            }
-        case 0 :
-            if (autosetup_getlevel ! 0) {
-                autosetup_setcustom;
-            } else {
-                return;
-            }
-        case -1 :
-            ~autosetup($int1);
-    }
-} else {
-    switch_int ($int0) {
-        case 1 :
-            if (autosetup_getlevel ! 1) {
-                autosetup_setmin;
-            } else {
-                return;
-            }
-        case 2 :
-            if ($int2 >= 2) {
-                if (autosetup_getlevel ! 2) {
-                    autosetup_setlow;
-                } else {
-                    return;
-                }
-            } else {
-                ~script3413($int1);
-            }
-        case 3 :
-            if ($int2 >= 3) {
-                if (autosetup_getlevel ! 3) {
-                    autosetup_setmedium;
-                } else {
-                    return;
-                }
-            } else {
-                ~script3413($int1);
-            }
-        case 4 :
-            if ($int2 >= 4) {
-                if (autosetup_getlevel ! 4) {
-                    autosetup_sethigh;
-                } else {
-                    return;
-                }
-            } else {
-                ~script3413($int1);
-            }
-        case 0 :
-            if (autosetup_getlevel ! 0) {
-                autosetup_setcustom;
-            } else {
-                return;
-            }
-        case -1 :
-            ~autosetup($int1);
-    }
-    if (autosetup_getlevel = 1 | autosetup_getlevel = 2) {
-        ~audio_mute_all;
-    }
+switch_int ($int0) {
+    case 1 :
+        if (autosetup_getlevel ! 1) {
+            autosetup_setmin;
+        } else {
+            return;
+        }
+    case 2 :
+        if (autosetup_getlevel ! 2) {
+            autosetup_setlow;
+        } else {
+            return;
+        }
+    case 3 :
+        if (autosetup_getlevel ! 3) {
+            autosetup_setmedium;
+        } else {
+            return;
+        }
+    case 4 :
+        if (autosetup_getlevel ! 4) {
+            autosetup_sethigh;
+        } else {
+            return;
+        }
+    case 5 :
+        if (autosetup_getlevel ! 5) {
+            autosetup_setultra(0);
+        } else {
+            return;
+        }
+    case 0 :
+        if (autosetup_getlevel ! 0) {
+            autosetup_setcustom;
+        } else {
+            return;
+        }
+    case -1 :
+        ~autosetup($int1);
 }
-def_int $int4 = detailget_toolkit;
-detail_dof(0);
-if (detailget_texturing = 2) {
-    detail_texturing(1);
-}
-~graphics_options_rebuild($int4, getwindowmode, ~graphics_options_reviewoptions($int4), $int1);
+~graphics_options_rebuild(getwindowmode, ~graphics_options_reviewoptions, $int1);

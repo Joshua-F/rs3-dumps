@@ -1,0 +1,55 @@
+// 14677
+[proc,script14677](dbrow $dbrow0)(string)
+def_dbrow $dbrow1 = ~arch_qualification_get_data(calc(db_getfield($dbrow0, dbtable_91:col1, 0) + 1));
+def_string $string0 = "";
+switch_dbrow ($dbrow0) {
+    case dbrow_2934, dbrow_2935, dbrow_2933 :
+        if (~ql4_getprogress(32) ! 2 | %varplayerbit_46468 < 2) {
+            $string0 = ~quest_name(enum(int, struct, enum_2252, 32));
+            return("You must have completed the '<$string0>' quest before you can unlock this researcher, and also have achieved the '<db_getfield($dbrow1, dbtable_93:col1, 0)>' qualification.");
+        }
+        return("You can unlock this researcher by handing them a specific restored artefact.<br>You can find them at the Varrock Dig Site.");
+    case dbrow_2936, dbrow_2937 :
+        if (%varplayerbit_44292 < 30 | %varplayerbit_46468 < 3) {
+            return("You must have completed the Anachronia base camp tutorial before you can unlock this researcher, and also have achieved the '<db_getfield($dbrow1, dbtable_93:col1, 0)>' qualification.");
+        }
+        return("You can unlock this researcher by showing them a completed Anachronia totem.<br>You can find them at Anachronia base camp.");
+    case dbrow_2942 :
+        if (~ql4_getprogress(121) ! 2 | %varplayerbit_46468 < 5) {
+            $string0 = ~quest_name(enum(int, struct, enum_2252, 121));
+            return("You must have completed the '<$string0>' quest before you can unlock this researcher, and also have achieved the '<db_getfield($dbrow1, dbtable_93:col1, 0)>' qualification.");
+        }
+        return("You can unlock this researcher by talking to them.<br>You can find them on a bench east of Varrock.");
+    case dbrow_2944 :
+        if (~ql4_getprogress(55) ! 2 | %varplayerbit_46468 < 5) {
+            $string0 = ~quest_name(enum(int, struct, enum_2252, 55));
+            return("You must have completed the '<$string0>' quest before you can unlock this researcher, and also have achieved the '<db_getfield($dbrow1, dbtable_93:col1, 0)>' qualification.");
+        }
+        return("You can unlock this researcher by handing them a specific restored artefact.<br>You can find them at the Varrock Dig Site's north-east winch.");
+    case dbrow_2943 :
+        if (~ql4_getprogress(30) ! 2 | %varplayerbit_46468 < 5) {
+            $string0 = ~quest_name(enum(int, struct, enum_2252, 30));
+            return("You must have completed the '<$string0>' quest before you can unlock this researcher, and also have achieved the '<db_getfield($dbrow1, dbtable_93:col1, 0)>' qualification.");
+        }
+        return("You can unlock this researcher by handing them a specific restored artefact.<br>You can find them at the Bedabin Camp.");
+    case dbrow_2945 :
+        $string0 = ~cheevo_name(struct_29039);
+        return("You can unlock this researcher by completing the '<$string0>' achievement.");
+    case dbrow_2946 :
+        $string0 = ~cheevo_name(struct_28715);
+        return("You can unlock this researcher by completing the '<$string0>' achievement.");
+    case dbrow_2947 :
+        $string0 = ~cheevo_name(struct_28816);
+        return("You can unlock this researcher by completing the '<$string0>' achievement.");
+    case dbrow_2948 :
+        $string0 = ~cheevo_name(struct_21269);
+        return("You can unlock this researcher by completing the '<$string0>' achievement.");
+    case dbrow_2949 :
+        $string0 = ~cheevo_name(struct_23242);
+        return("You can unlock this researcher by completing the '<$string0>' achievement.");
+}
+if ($dbrow1 ! null) {
+    return("You can unlock this researcher by achieving the '<db_getfield($dbrow1, dbtable_93:col1, 0)>' qualification.");
+} else {
+    return("You can unlock this researcher by playing the game.");
+}

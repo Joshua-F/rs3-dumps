@@ -8,7 +8,7 @@ if ($int6 < 1) {
     $string4, $boolean10 = $string2, false;
 }
 def_struct $struct13 = struct_param($struct9, param_7526);
-if ($int6 ! 0) {
+if ($int6 >= 1) {
     $struct13 = struct_param($struct9, param_7525);
 }
 def_struct $struct14 = struct_param($struct13, param_4405);
@@ -73,14 +73,6 @@ if ($int11 > 18) {
 cc_setparam(param_4513, $boolean7);
 cc_setparam(param_4512, $boolean10);
 cc_setgraphic(struct_param($struct17, param_3909));
-if ($boolean7 = true) {
-    cc_setonmouseover(null);
-    cc_setonmouseleave(null);
-    cc_setonclick(null);
-} else {
-    cc_setonmouseover("dynamic_checkbox_icon_update(event_com, event_comsubid, $struct16)");
-    cc_setonmouseleave("dynamic_checkbox_icon_update(event_com, event_comsubid, $struct15)");
-}
 if ($int8 = 1) {
     cc_create($component1, ^iftype_text, $int5);
     cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
@@ -90,15 +82,16 @@ if ($int8 = 1) {
         cc_setposition($int2, $int3, ^setpos_abs_left, ^setpos_abs_top);
     }
     if ($boolean7 = false) {
-        if (has_nxt = false & (if_gettop = interface_744 | if_gettop = interface_1420)) {
-            cc_setonclick("dynamic_checkbox_onop(event_com, event_comsubid, $component0, $int12, $string1, $string2, $int6, $struct9)");
-        } else {
-            cc_setonop("dynamic_checkbox_onop(event_com, event_comsubid, $component0, $int12, $string1, $string2, $int6, $struct9)");
-        }
-        cc_setop(1, "Toggle");
+        ~script14458($component1, $int5, $component0, $int12, $string1, $struct15, $string2, $struct16, $int6, $struct9);
+    } else {
+        cc_setonmouseover(null);
+        cc_setonmouseleave(null);
+        cc_setonclick(null);
+        cc_setonop(null);
     }
 } else if ($boolean7 = false) {
-    if_setop(1, "Toggle", $component1);
-    if_setonop("dynamic_checkbox_onop(event_com, event_comsubid, $component0, $int12, $string1, $string2, $int6, $struct9)", $component1);
+    ~script14457($component1, -1, $component0, $int12, $string1, $struct15, $string2, $struct16, $int6, $struct9, $component1);
+} else {
+    if_setonop(null, $component1);
 }
 return(calc($int3 + max(18, $int11)), calc($int5 + 1));

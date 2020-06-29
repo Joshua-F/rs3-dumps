@@ -1,132 +1,170 @@
 // 2267
 [clientscript,script2267]
-~script13972(interface_45:com_15, null, struct_28595, "Pouches", ~equal_int(0, %varplayerbit_43381));
-~script13972(interface_45:com_16, null, struct_28595, "Scrolls", ~equal_int(1, %varplayerbit_43381));
+~script13972(interface_45:com_18, null, struct_28595, "Pouches", ~equal_int(0, %varplayerbit_43381));
+~script13972(interface_45:com_19, null, struct_28595, "Scrolls", ~equal_int(1, %varplayerbit_43381));
 def_int $int0 = 0;
-def_component $component1 = interface_45:com_0;
-def_component $component2 = interface_45:com_2;
-def_component $component3 = null;
-cc_deleteall($component1);
-cc_deleteall($component2);
-cc_deleteall(interface_45:com_1);
+cc_deleteall(interface_45:com_3);
+cc_deleteall(interface_45:com_4);
+cc_deleteall(interface_45:com_5);
+cc_deleteall(interface_45:com_20);
+cc_deleteall(interface_45:com_21);
+cc_deleteall(interface_45:com_22);
+cc_deleteall(interface_45:com_0);
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = 0;
 def_int $int4 = 0;
 def_int $int5 = 0;
 def_int $int6 = 0;
 def_int $int7 = 0;
-def_int $int8 = 0;
-def_int $int9 = 0;
+def_obj $obj8 = null;
+def_obj $obj9 = null;
 def_int $int10 = 0;
-def_obj $obj11 = null;
-def_obj $obj12 = null;
-def_int $int13 = 0;
 def_string $string0 = "";
-def_enum $enum14 = null;
-def_int $int15 = 57;
-def_int $int16 = 52;
-def_int $int17 = 0;
+def_string $string1 = "";
+def_enum $enum11 = null;
+def_int $int12 = 57;
+def_int $int13 = 52;
+def_int $int14 = 0;
+def_component $component15 = null;
+def_component $component16 = null;
+def_component $component17 = null;
 if (%varplayerbit_43381 = 0) {
-    $enum14 = enum_1182;
+    $enum11 = enum_1182;
 } else {
-    $enum14 = enum_10053;
+    $enum11 = enum_10053;
 }
-while ($int0 < enum_getoutputcount($enum14)) {
-    if (oc_param(enum(int, obj, $enum14, $int0), param_457) > 0 | oc_param(enum(int, obj, $enum14, $int0), param_599) > 0) {
-        $obj12 = enum(int, obj, $enum14, $int0);
-        $obj11 = enum(int, obj, enum_1182, $int0);
-        $int13 = enum(obj, int, enum_1185, oc_uncert($obj11));
-        $string0 = oc_name($obj12);
-        if ((inv_total(inv_93, $obj12) > 0 | inv_total(inv_93, oc_cert($obj12)) > 0) & stat_base(summoning) >= enum(int, int, enum_1472, $int13)) {
-            $int10 = 1;
-            $component3 = $component1;
-            $int8 = $int4;
-            $int9 = $int5;
+def_int $int18 = enum_getoutputcount($enum11);
+while ($int0 < $int18) {
+    $obj9 = enum(int, obj, $enum11, $int0);
+    cc_create(interface_45:com_4, ^iftype_graphic, $int0);
+    .cc_create(interface_45:com_21, ^iftype_graphic, $int0);
+    if ($enum11 = enum_10053) {
+        cc_setobject_alwaysnum($obj9, max(oc_param($obj9, param_599), 1));
+        .cc_setobject_alwaysnum($obj9, max(oc_param($obj9, param_599), 1));
+    } else {
+        cc_setobject($obj9, 1);
+        .cc_setobject($obj9, 1);
+    }
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    .cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_sethide(true);
+    .cc_sethide(true);
+    $int0 = calc($int0 + 1);
+}
+$int0 = 0;
+while ($int0 < $int18) {
+    cc_create(interface_45:com_5, ^iftype_text, $int0);
+    cc_create(interface_45:com_22, ^iftype_text, $int0);
+    $int0 = calc($int0 + 1);
+}
+$int0 = 0;
+while ($int0 < $int18) {
+    if (oc_param(enum(int, obj, $enum11, $int0), param_457) <= 0 & oc_param(enum(int, obj, $enum11, $int0), param_599) <= 0) {
+        cc_create(interface_45:com_5, ^iftype_text, $int0);
+        cc_create(interface_45:com_22, ^iftype_text, $int0);
+    } else {
+        $obj9 = enum(int, obj, $enum11, $int0);
+        $obj8 = enum(int, obj, enum_1182, $int0);
+        $int10 = enum(obj, int, enum_1185, oc_uncert($obj8));
+        $string0 = oc_name($obj9);
+        $int14 = oc_param($obj9, param_457);
+        if (%varplayer_8368 = 1) {
+            $int14 = addpercent($int14, 10);
+        }
+        if (stat_base(summoning) >= enum(int, int, enum_1472, $int10) & (inv_total(inv_93, $obj9) > 0 | oc_cert($obj9) ! $obj9 & inv_total(inv_93, oc_cert($obj9)) > 0)) {
+            $int7 = 1;
+            $int5 = $int1;
+            $int6 = $int2;
+            $component15 = interface_45:com_3;
+            $component16 = interface_45:com_4;
+            $component17 = interface_45:com_5;
         } else {
-            $int10 = 0;
-            $component3 = $component2;
-            $int8 = $int6;
-            $int9 = $int7;
-            if (oc_param(oc_uncert($obj12), param_394) > enum(int, int, enum_1471, stat_base(summoning))) {
-                $string0 = append($string0, " - You need a Summoning level of <tostring(enum(int, int, enum_1472, oc_param(oc_uncert($obj12), param_394)))> to swap this");
-            }
+            $int7 = 0;
+            $int5 = $int3;
+            $int6 = $int4;
+            $component15 = interface_45:com_20;
+            $component16 = interface_45:com_21;
+            $component17 = interface_45:com_22;
         }
-        if ($int8 >= 9) {
-            $int8 = 0;
-            $int9 = calc($int9 + 1);
+        if (oc_param(oc_uncert($obj9), param_394) > enum(int, int, enum_1471, stat_base(summoning))) {
+            $string1 = "<$string0> - You need a Summoning level of <tostring(enum(int, int, enum_1472, oc_param(oc_uncert($obj9), param_394)))> to swap this";
+        } else if (~script6431 = false) {
+            $string1 = $string0;
+        } else {
+            $string1 = "";
         }
-        cc_create($component3, ^iftype_rectangle, if_getnextsubid($component3));
-        cc_setcolour(~script10495(9));
-        cc_setfill(true);
+        if ($int5 >= 9) {
+            $int5 = 0;
+            $int6 = calc($int6 + 1);
+        }
+        ~script2682($component15, 45, 50, calc(2 + $int5 * $int13), calc(1 + $int6 * $int12), true, calc($int5 + $int6 * 9));
+        ~cc_add_rect_struct($component15, 45, 50, calc(2 + $int5 * $int13), calc(1 + $int6 * $int12), false, struct_2438);
+        if (cc_find($component16, $int0) = true) {
+            cc_setposition(calc(8 + $int5 * $int13), calc(5 + $int6 * $int12), ^setpos_abs_left, ^setpos_abs_top);
+            cc_sethide(false);
+        }
+        cc_create($component17, ^iftype_text, $int0);
         cc_setsize(45, 50, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int8 * $int16 + 2), calc($int9 * $int15 + 1), ^setpos_abs_left, ^setpos_abs_top);
-        cc_setonmouserepeat("script8799($string0, $component3, calc(if_getnextsubid($component3) - 1))");
-        if ($int10 = 1) {
-            cc_setonmouseleave("script3188($component3, calc(if_getnextsubid($component3) - 1))");
-            cc_setonmouseover("script3187($component3, calc(if_getnextsubid($component3) - 1))");
-            cc_setop(1, "Value");
+        cc_setposition(calc(2 + $int5 * $int13), calc(1 + $int6 * $int12), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setop(1, "Value");
+        cc_setopbase($string0);
+        if (string_length($string1) > 0) {
+            ~script14990(0, $string1);
+        }
+        if ($int7 = 1) {
             cc_setop(2, "Swap-1");
             cc_setop(3, "Swap-5");
             cc_setop(4, "Swap-10");
             cc_setop(5, "Swap-X");
             cc_setop(6, "Swap-All");
         }
-        cc_create($component3, ^iftype_graphic, if_getnextsubid($component3));
-        if ($enum14 = enum_10053) {
-            cc_setobject_alwaysnum($obj12, max(oc_param($obj12, param_599), 1));
-        } else {
-            cc_setobject($obj12, 1);
-        }
-        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int8 * $int16 + 8), calc($int9 * $int15 + 5), ^setpos_abs_left, ^setpos_abs_top);
-        $int17 = oc_param($obj12, param_457);
-        if (%varplayer_8368 = 1) {
-            $int17 = addpercent($int17, 10);
-        }
-        cc_create($component3, ^iftype_text, if_getnextsubid($component3));
+        cc_create($component15, ^iftype_text, if_getnextsubid($component15));
         cc_setcolour(^white);
         cc_settextfont(graphic_17813);
         cc_settextshadow(true);
         cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-        cc_settext(~script940(max(1, $int17)));
+        cc_settext(~script940(max(1, $int14)));
         cc_setsize(45, 20, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int8 * $int16 + 2), calc($int9 * $int15 + 35), ^setpos_abs_left, ^setpos_abs_top);
-        $int8 = calc($int8 + 1);
-        if ($int10 = 1) {
-            $int4 = $int8;
-            $int5 = $int9;
+        cc_setposition(calc(2 + $int5 * $int13), calc(35 + $int6 * $int12), ^setpos_abs_left, ^setpos_abs_top);
+        $int5 = calc($int5 + 1);
+        if ($int7 = 1) {
+            $int1 = $int5;
+            $int2 = $int6;
         } else {
-            $int6 = $int8;
-            $int7 = $int9;
+            $int3 = $int5;
+            $int4 = $int6;
         }
     }
     $int0 = calc($int0 + 1);
 }
-if_setposition(0, 25, ^setpos_abs_left, ^setpos_abs_top, $component2);
-if ($int4 > 0 | $int5 >= 1) {
-    if_setposition(0, calc($int5 * $int15 + $int15 + 40), ^setpos_abs_left, ^setpos_abs_top, $component2);
-    if_setposition(0, 20, ^setpos_abs_left, ^setpos_abs_top, $component1);
-    cc_create(interface_45:com_1, ^iftype_text, if_getnextsubid(interface_45:com_1));
+if_setposition(0, 25, ^setpos_abs_left, ^setpos_abs_top, interface_45:com_2);
+if ($int1 > 0 | $int2 >= 1) {
+    if_setposition(0, calc($int2 * $int12 + $int12 + 40), ^setpos_abs_left, ^setpos_abs_top, interface_45:com_2);
+    if_setposition(0, 20, ^setpos_abs_left, ^setpos_abs_top, interface_45:com_1);
+    cc_create(interface_45:com_0, ^iftype_text, if_getnextsubid(interface_45:com_0));
     cc_setcolour(~script10495(3));
     cc_settextfont(cinzel_15pt_bold);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     cc_settext("Able to swap for shards");
     cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
     cc_setposition(5, 1, ^setpos_abs_left, ^setpos_abs_top);
-    cc_create(interface_45:com_1, ^iftype_text, if_getnextsubid(interface_45:com_1));
+    cc_create(interface_45:com_0, ^iftype_text, if_getnextsubid(interface_45:com_0));
     cc_setcolour(~script10495(3));
     cc_settextfont(cinzel_15pt_bold);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     cc_settext("Not able to swap");
     cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
-    cc_setposition(5, calc($int5 * $int15 + $int15 + 20), ^setpos_abs_left, ^setpos_abs_top);
-    if_setscrollsize(0, calc(($int5 + $int7) * $int15 + $int15 * 3 - 20), interface_45:com_1);
+    cc_setposition(5, calc($int2 * $int12 + $int12 + 20), ^setpos_abs_left, ^setpos_abs_top);
+    if_setscrollsize(0, calc(($int2 + $int4) * $int12 + $int12 * 3 - 20), interface_45:com_0);
 } else {
-    cc_create(interface_45:com_1, ^iftype_text, if_getnextsubid(interface_45:com_1));
+    cc_create(interface_45:com_0, ^iftype_text, if_getnextsubid(interface_45:com_0));
     cc_setcolour(~script10495(3));
     cc_settextfont(cinzel_15pt_bold);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     cc_settext("Not able to swap");
     cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
     cc_setposition(5, 1, ^setpos_abs_left, ^setpos_abs_top);
-    if_setscrollsize(0, calc(($int5 + $int7) * $int15 + $int15 + 20), interface_45:com_1);
+    if_setscrollsize(0, calc(($int2 + $int4) * $int12 + $int12 + 20), interface_45:com_0);
 }
-~rs3_scrollbar_vertical(interface_45:com_13, interface_45:com_1);
+~rs3_scrollbar_vertical(interface_45:com_16, interface_45:com_0);

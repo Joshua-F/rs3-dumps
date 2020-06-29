@@ -15,7 +15,17 @@ if (calc($int4 - $int5) = $int6) {
     $int7 = max(calc($int5 + $int1 - $int4), 0);
 }
 if ($component3 ! null) {
-    ~scrollbar_resize($component3, $component2, $int7);
+    if (~script6431 = true & %varclientbit_41275 = 0) {
+        if_sethide(true, $component3);
+        if_setscrollpos(0, $int1, $component2);
+        if_setonswipevertical(null, $component2);
+        if_setonscrollwheel(null, $component2);
+    } else {
+        if_sethide(false, $component3);
+        ~scrollbar_resize($component3, $component2, $int7);
+        if_setonscrollwheel("scrollbar_vertical_wheel($component3, $component2, event_mousey)", $component2);
+        ~script14178($component3, $component2);
+    }
 } else if ($int0 = 1019) {
     if_setscrollpos(0, $int1, $component2);
 }

@@ -1,0 +1,50 @@
+// 592
+[proc,script592]
+def_int $int0 = if_getwidth(interface_517:com_112);
+def_int $int1 = max(0, calc(($int0 - 180) / 7));
+def_int $int2 = 0;
+def_int $int3 = 1;
+def_int $int4 = calc(30 + $int1);
+$int1 = max($int1, 4);
+def_int $int5 = $int1;
+def_string $string0 = "";
+def_string $string1 = "";
+def_boolean $boolean6 = false;
+cc_create(interface_517:com_114, ^iftype_text, 0);
+while ($int3 <= 11) {
+    $string1, $string0, $boolean6 = ~script9784($int3);
+    ~script10410(interface_517:com_113, interface_517:com_114, struct_28228, $int1, $int2, 30, 30, $int3, $boolean6, $string1);
+    if (cc_find(interface_517:com_114, $int3) = true) {
+        cc_setposition($int1, $int2, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(30, 30, ^setsize_abs, ^setsize_abs);
+        cc_setonmouserepeat("script8780(event_com, event_comsubid)");
+        if ($boolean6 = false) {
+            cc_setop(1, "Load");
+            cc_setop(2, "Save");
+            cc_setop(3, "Settings");
+            cc_setonop("script13941(event_comsubid, event_op)");
+        } else {
+            cc_clearops;
+            cc_setonop(null);
+        }
+    }
+    if ($int3 = 11) {
+        ~script4512(interface_517:com_113, 24, 24, calc($int1 + 3), calc($int2 + 3), child_tab_summon_familiar);
+    }
+    if ($int3 = 5) {
+        $int1 = $int5;
+        $int2 = calc($int2 + 34);
+    } else if ($int3 = 10) {
+        $int1 = calc($int1 + $int4);
+        $int2 = 0;
+    } else {
+        $int1 = calc($int1 + $int4);
+    }
+    $int3 = calc($int3 + 1);
+}
+~script10410(interface_517:com_113, interface_517:com_114, struct_28228, calc($int1 - $int4), 34, 30, 30, 0, false, "");
+~script4512(interface_517:com_113, 24, 24, calc($int1 - $int4 + 3), 37, rs3_parent_title_icon_settings);
+if (cc_find(interface_517:com_114, 0) = true) {
+    cc_setop(1, "Open Settings");
+    cc_setonop("script13941(event_comsubid, event_op)");
+}

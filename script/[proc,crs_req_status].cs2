@@ -1,0 +1,51 @@
+// 7765
+[proc,crs_req_status](struct $struct0)(int)
+def_int $int1 = 0;
+if ($struct0 = null) {
+    return($int1);
+}
+if (struct_param($struct0, param_4253) ! null) {
+    $struct0 = struct_param($struct0, param_4253);
+}
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = ~script7663($struct0);
+switch_int ($int5) {
+    case 6, 0 :
+        if (~crs_req_task_status($struct0) = false) {
+            $int1 = -1;
+        } else {
+            $int1 = 0;
+        }
+    case 4 :
+        $int1 = 0;
+    case 2 :
+        $int1 = ~cheevo_obtain_progress($struct0);
+        if (struct_param($struct0, param_1346) > 0) {
+            if ($int1 = -2) {
+                $int1 = 0;
+            }
+            if (struct_param($struct0, param_1353) > ~comlevel) {
+                $int1 = -1;
+            }
+        }
+    case 1 :
+        $int1 = ~cheevo_obtain_progress($struct0);
+    case 7 :
+        $int1 = 0;
+    case 3 :
+        if (~cheevo_requirements_met($struct0) = 0) {
+            $int1 = -1;
+        } else {
+            $int2, $int3, $int4 = ~cheevo_tally_enum(struct_param($struct0, param_8072));
+            if ($int2 >= $int3) {
+                $int1 = -2;
+            } else {
+                $int1, $struct0 = ~script6301($struct0, 0, -1);
+            }
+        }
+    case default :
+        ~error("Unhandled struct of system #<tostring($int5)> in [proc,crs_req_status]. Can't get reqs");
+}
+return($int1);

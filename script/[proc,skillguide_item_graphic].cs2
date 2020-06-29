@@ -1,9 +1,15 @@
 // 12099
 [proc,skillguide_item_graphic](struct $struct0)(graphic)
 def_graphic $graphic1 = null;
-if (struct_param($struct0, param_2214) ! null) {
+def_dbrow $dbrow2 = struct_param($struct0, param_6569);
+if ($dbrow2 = null) {
     $graphic1 = struct_param($struct0, param_2214);
-} else if (struct_param($struct0, param_5444) ! null) {
-    $graphic1 = db_getfield(struct_param($struct0, param_5444), dbtable_5:col5, 0);
+} else {
+    switch_dbtable (db_getrowtable($dbrow2)) {
+        case dbtable_5 :
+            $graphic1 = db_getfield($dbrow2, dbtable_5:col5, 0);
+        case default :
+            $graphic1 = struct_param($struct0, param_2214);
+    }
 }
 return($graphic1);

@@ -71,15 +71,21 @@ if (%varclient_3905 = true) {
         }
         return;
     }
-    if (%varplayer_6601 = 6477 & date_minutes >= calc(date_minutes_fromruneday(6477) + 720) | %varplayer_6601 > 6477 | %varplayer_6601 < 6473 | %varplayer_8991 = 0 | random(2) = 0) {
+    if (%varplayer_6601 = 6645 & date_minutes >= calc(date_minutes_fromruneday(6645) + 720) | %varplayer_6601 > 6645 | %varplayer_6601 < 6641 | %varplayer_8991 = 0) {
         if (%varplayer_6601 > 0) {
             while ($int6 < $int0) {
                 $int5 = 0;
+                $int8 = 0;
+                $int9 = 0;
                 $struct2 = enum(int, struct, enum_7783, $int6);
                 $struct4 = struct_param($struct2, param_6390);
                 if ($struct4 ! null) {
-                    $int8 = ~script1713($struct4);
-                    $int9 = ~script1718($struct4);
+                    if (~trh_state_lobby($struct4) = 1) {
+                        $int8 = %varplayer_6601;
+                        $int9 = %varplayer_6601;
+                    } else {
+                        $int5 = 1;
+                    }
                 } else {
                     $int8 = struct_param($struct2, param_6388);
                     $int9 = struct_param($struct2, param_6389);
@@ -108,14 +114,14 @@ if (%varclient_3905 = true) {
                         if (~script6431 = false) {
                             $int5 = 1;
                         }
-                    case struct_36005 :
+                    case struct_11755, struct_44337 :
                         if (~is_mobile_client = true) {
                             $int5 = 1;
                         }
-                    case struct_36638 :
-                        if (date_minutes <= calc(date_minutes_fromruneday(6477) + 720) | date_minutes >= calc(date_minutes_fromruneday(6487) + 720)) {
+                    case struct_11554 :
+                        if (date_minutes <= calc(date_minutes_fromruneday(6645) + 720) | date_minutes >= calc(date_minutes_fromruneday(6655) + 720)) {
                             $int5 = 1;
-                        } else if (%varplayerbit_45314 = 1 & %varplayer_9017 = -1 | random(2) = 0) {
+                        } else if (%varplayerbit_45314 = 3 & %varplayer_9017 = -1) {
                             $int5 = 1;
                         } else if ($int5 = 0) {
                             $struct3 = $struct2;
@@ -206,11 +212,11 @@ if (%varclient_3905 = true) {
         switch_int (struct_param($struct2, param_6392)) {
             case 1 :
                 ~script10592(interface_907:com_9, 1);
-                if_setonop("script10042", interface_907:com_9);
+                if_setonop("script13252", interface_907:com_9);
             case 2 :
                 ~script10592(interface_907:com_12, 1);
                 if (~is_mobile_client = true) {
-                    if_setonop("script10042", interface_907:com_12);
+                    if_setonop("script13252", interface_907:com_12);
                 } else {
                     if_setonop("script10029($string1, $string2, $string2, true)", interface_907:com_12);
                 }
@@ -226,10 +232,10 @@ if (%varclient_3905 = true) {
                 if_setonop("script2828($string3)", interface_907:com_19);
             case 4 :
                 if_setop(1, "Select", interface_907:com_19);
-                if_setonop("script10042", interface_907:com_19);
+                if_setonop("script13252", interface_907:com_19);
             case 5 :
                 ~script10592(interface_907:com_10, 1);
-                if_setonop("script10042", interface_907:com_10);
+                if_setonop("script13252", interface_907:com_10);
             case 7 :
                 if_setop(1, "Select", interface_907:com_19);
                 if_setonop("script13495", interface_907:com_19);
@@ -237,13 +243,13 @@ if (%varclient_3905 = true) {
                 ~script10592(interface_907:com_11, 1);
             case 10 :
                 ~script10592(interface_907:com_13, 1);
-                if_setonop("script10042", interface_907:com_13);
-            case 11 :
+                if_setonop("script13252", interface_907:com_13);
+            case 12 :
                 ~script10592(interface_907:com_14, 1);
-                if_setonop("script10042", interface_907:com_14);
+                if_setonop("script13252", interface_907:com_14);
         }
     } else {
-        $int14 = calc(date_minutes_fromruneday(6477) + 720 - 1);
+        $int14 = calc(date_minutes_fromruneday(6645) + 720 - 1);
         ~script3568($int14, date_minutes, -1, -1);
         if_setontimer("script12275($int14, date_minutes, -1, -1)", interface_906:com_1);
     }

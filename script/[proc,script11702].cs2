@@ -1,7 +1,21 @@
 // 11702
-[proc,script11702](int $int0)
-if_setscrollsize(0, 0, interface_105:com_16);
-if ($int0 >= if_getheight(interface_105:com_16)) {
-    if_setscrollsize(0, $int0, interface_105:com_16);
+[proc,script11702](int $int0, int $int1)
+def_component $component2 = null;
+def_component $component3 = null;
+switch_int (%varplayerbit_19000) {
+    case 1 :
+        $component2 = interface_105:com_338;
+        $component3 = interface_105:com_342;
+    case 4 :
+        $component2 = interface_707:com_20;
+        $component3 = interface_707:com_24;
 }
-~rs3_scrollbar_vertical(interface_105:com_19, interface_105:com_16);
+if ($component2 = null & $component3 = null) {
+    return;
+}
+if_setscrollsize(0, 0, $component2);
+if ($int0 >= if_getheight($component2)) {
+    if_setscrollsize(0, $int0, $component2);
+}
+if_setscrollpos(0, $int1, $component2);
+~rs3_scrollbar_vertical($component3, $component2);

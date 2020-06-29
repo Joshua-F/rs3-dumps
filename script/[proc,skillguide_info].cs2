@@ -1,12 +1,30 @@
 // 12096
 [proc,skillguide_info](struct $struct0)(string)
 def_string $string0 = "";
-if (struct_param($struct0, param_5444) ! null) {
-    $string0 = db_getfield(struct_param($struct0, param_5444), dbtable_5:col3, 0);
-    if (struct_param($struct0, param_5443) = 0) {
-        $string0 = "<$string0><br><struct_param($struct0, param_2211)>";
-    }
-} else if (string_length(struct_param($struct0, param_2211)) > 0) {
+def_dbrow $dbrow1 = struct_param($struct0, param_6569);
+def_obj $obj2 = struct_param($struct0, param_2213);
+def_int $int3 = struct_param($struct0, param_5442);
+if ($dbrow1 = null) {
     $string0 = struct_param($struct0, param_2211);
+} else {
+    switch_dbtable (db_getrowtable($dbrow1)) {
+        case dbtable_5 :
+            $string0 = db_getfield($dbrow1, dbtable_5:col3, 0);
+            if (struct_param($struct0, param_5443) = 0) {
+                $string0 = "<$string0><br><struct_param($struct0, param_2211)>";
+            }
+            $int3 = 1;
+        case dbtable_86 :
+            $string0 = db_getfield($dbrow1, dbtable_86:col3, 0);
+        case dbtable_88 :
+            $string0 = ~script14789($dbrow1);
+        case dbtable_94 :
+            $string0 = "Offering this to the Monolith at the Archaeology campus will unlock the '<db_getfield($dbrow1, dbtable_94:col1, 0)>' relic power.<br><br>Power: <~arch_relic_get_description($dbrow1)>";
+        case default :
+            $string0 = struct_param($struct0, param_2211);
+    }
+}
+if ($int3 = 1 & $obj2 ! null & struct_param($struct0, param_5443) = 1) {
+    $string0 = "<$string0>Ingredients: <~script12104($obj2)>.";
 }
 return($string0);

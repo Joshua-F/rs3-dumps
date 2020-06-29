@@ -1,70 +1,107 @@
 // 2963
-[proc,friend_resize](component $component0, int $int1)
+[proc,friend_resize](component $component0, component $component1, int $int2)
 if (friend_count < 0) {
     return;
 }
-def_component $component2 = ~script2968($component0);
-def_component $component3 = ~script3098($component0);
-def_component $component4 = ~script3211($component0);
-def_component $component5 = ~script3099($component0);
-def_component $component6 = ~script3210($component0);
-def_component $component7 = ~friends_world_layer($component0);
-def_component $component8 = ~script11297($component0);
-def_component $component9 = ~friends_info_layer($component0);
-def_int $int10 = if_getwidth($component4);
-def_int $int11 = if_getwidth($component6);
-def_int $int12 = calc($int1 + (~script3365($component6) - ~script3365($component5)));
-def_int $int13 = calc(if_getwidth($component5) - ($int12 + $int10));
-def_fontmetrics $fontmetrics14 = graphic_20452;
-def_int $int15 = enum(fontmetrics, int, enum_8549, graphic_20452);
-def_boolean $boolean16 = ~script6431;
-if ($boolean16 = true) {
-    $int1 = scale(if_getwidth($component6), 4, 3);
-    $fontmetrics14 = graphic_21207;
-    $int15 = enum(fontmetrics, int, enum_8549, graphic_21207);
+def_component $component3 = ~script3211($component0);
+def_component $component4 = ~script3099($component0);
+def_component $component5 = ~script3210($component0);
+def_component $component6 = ~friends_world_layer($component0);
+def_component $component7 = ~script11297($component0);
+def_component $component8 = ~friends_info_layer($component0);
+def_component $component9 = ~ignore_info_layer($component1);
+def_component $component10 = ~friends_button_layer($component0);
+def_component $component11 = ~script3524($component0);
+def_component $component12 = ~script14976($component0);
+def_component $component13 = ~script3518($component0);
+def_component $component14 = ~ignore_button_layer($component1);
+def_component $component15 = ~script14978($component1);
+def_int $int16 = if_getwidth($component3);
+def_int $int17 = if_getwidth($component5);
+def_boolean $boolean18 = ~script6431;
+def_int $int19 = enum(fontmetrics, int, enum_8549, graphic_20452);
+def_fontmetrics $fontmetrics20 = graphic_20452;
+if ($boolean18 = true) {
+    $int2 = scale(if_getwidth($component5), 4, 3);
+    $fontmetrics20 = graphic_21207;
+    $int19 = enum(fontmetrics, int, enum_8549, graphic_21207);
 }
-$int15 = calc($int15 + 4);
-if_setposition($int1, 0, ^setpos_abs_left, ^setpos_abs_centre, $component4);
-if_setsize($int13, 0, ^setsize_abs, ^setsize_minus, $component7);
-if_setsize($int13, 0, ^setsize_abs, ^setsize_minus, $component8);
-if (if_getwidth($component0) < 170) {
+def_int $int21 = calc($int2 + (~script3365($component5) - ~script3365($component4)));
+def_int $int22 = calc(if_getwidth($component4) - ($int21 + $int16));
+$int19 = calc($int19 + 4);
+if_setposition($int2, 0, ^setpos_abs_left, ^setpos_abs_centre, $component3);
+if_setsize($int22, 0, ^setsize_abs, ^setsize_minus, $component6);
+if_setsize($int22, 0, ^setsize_abs, ^setsize_minus, $component7);
+def_int $int23 = 155;
+def_int $int24 = 185;
+if ($boolean18 = true) {
+    $int23 = calc($int23 - 27);
+    $int24 = calc($int24 - 27);
+    if_setposition(59, 3, ^setpos_abs_left, ^setpos_abs_bottom, $component11);
+    if_setsize(128, 30, ^setsize_minus, ^setsize_abs, $component8);
+    if_setposition(86, 0, ^setpos_abs_left, ^setpos_abs_centre, $component8);
+    if_sethide(true, $component12);
+}
+if (if_getwidth($component0) < $int24) {
+    if_sethide(true, $component8);
+} else {
+    if_sethide(false, $component8);
+}
+if (if_getwidth($component0) < $int23) {
+    if_sethide(true, $component10);
+    if ($component13 ! null) {
+        if_sethide(false, $component13);
+    }
+} else {
+    if_sethide(false, $component10);
+    if ($component13 ! null) {
+        if_sethide(true, $component13);
+    }
+}
+if (if_getwidth($component1) < 155) {
     if_sethide(true, $component9);
 } else {
     if_sethide(false, $component9);
 }
-if (if_getwidth($component0) < 120) {
-    if_sethide(true, ~friends_button_layer($component0));
+if (if_getwidth($component1) < 125) {
+    if_sethide(true, $component14);
+    if ($component15 ! null) {
+        if_sethide(false, $component15);
+    }
 } else {
-    if_sethide(false, ~friends_button_layer($component0));
+    if_sethide(false, $component14);
+    if ($component15 ! null) {
+        if_sethide(true, $component15);
+    }
 }
-if ($int1 <= 0) {
-    $int1 = if_getx($component4);
+if ($int2 <= 0) {
+    $int2 = if_getx($component3);
 }
-$int1 = max(min($int1, calc($int11 - $int10)), 0);
-if ($int11 > 0) {
-    %varclient_1036 = $int1;
+$int2 = max(min($int2, calc($int17 - $int16)), 0);
+if ($int17 > 0) {
+    %varclient_1036 = $int2;
 }
 def_string $string0 = "";
 def_string $string1 = "";
-def_int $int17 = 0;
-def_int $int18 = 0;
-def_int $int19 = friend_count;
-def_int $int20 = calc(5 + $int15 * $int19);
-while ($int17 < $int19) {
-    if (cc_find($component5, $int17) = true) {
-        $string0, $string1 = friend_getname($int17);
-        if (stringwidth($string0, $fontmetrics14) > $int12) {
-            while (stringwidth("<$string0>...", $fontmetrics14) > $int12) {
+def_int $int25 = 0;
+def_int $int26 = 0;
+def_int $int27 = friend_count;
+def_int $int28 = calc(5 + $int19 * $int27);
+while ($int25 < $int27) {
+    if (cc_find($component4, $int25) = true) {
+        $string0, $string1 = friend_getname($int25);
+        if (stringwidth($string0, $fontmetrics20) > $int21) {
+            while (stringwidth("<$string0>...", $fontmetrics20) > $int21) {
                 $string0 = substring($string0, 0, calc(string_length($string0) - 1));
             }
             $string0 = "<$string0>...";
             cc_settext($string0);
         }
     }
-    $int18 = friend_getworld($int17);
-    if (cc_find($component8, $int17) = true & .cc_find($component7, $int17) = true) {
-        if ($int18 > 0 & (string_indexof_string(friend_getworldname($int17), "RuneScape", 0) ! -1 | testbit(friend_getworldflags($int17), 16) = ^true | testbit(friend_getworldflags($int17), 20) = ^true)) {
-            if ($int13 >= calc(stringwidth(tostring($int18), $fontmetrics14) + 2 + 24 + 2)) {
+    $int26 = friend_getworld($int25);
+    if (cc_find($component7, $int25) = true & .cc_find($component6, $int25) = true) {
+        if ($int26 > 0 & (string_indexof_string(friend_getworldname($int25), "RuneScape", 0) ! -1 | testbit(friend_getworldflags($int25), 16) = ^true | testbit(friend_getworldflags($int25), 20) = ^true)) {
+            if ($int22 >= calc(stringwidth(tostring($int26), $fontmetrics20) + 2 + 24 + 2)) {
                 .cc_setposition(calc(2 + 24 + 2), cc_gety, ^setpos_abs_left, ^setpos_abs_top);
                 cc_sethide(false);
             } else {
@@ -76,19 +113,7 @@ while ($int17 < $int19) {
             cc_sethide(true);
         }
     }
-    $int17 = calc($int17 + 1);
+    $int25 = calc($int25 + 1);
 }
-if (if_getscrolly($component2) > $int20) {
-    if_setscrollpos(0, 0, $component2);
-}
-if (if_getscrolly($component2) > $int20) {
-    if_setscrollpos(0, 0, $component2);
-}
-if ($int20 > if_getheight($component2)) {
-    if_setscrollsize(0, $int20, $component2);
-    ~rs3_scrollbar_vertical($component3, $component2);
-} else {
-    if_setscrollpos(0, 0, $component2);
-    if_setscrollsize(0, 0, $component2);
-    cc_deleteall($component3);
-}
+~script3516($int28, ~script2968($component0), ~script3098($component0));
+~script3516($int28, ~script12021($component1), ~ignore_scrollbar_layer($component1));

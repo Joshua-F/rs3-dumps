@@ -1,14 +1,17 @@
 // 3511
-[proc,script3511](dbrow $dbrow0, int $int1)(int)
-if ($dbrow0 = null) {
-    return(-1);
+[proc,script3511](component $component0)
+def_int $int1 = 190;
+def_int $int2 = 261;
+def_int $int3 = if_getwidth($component0);
+def_int $int4 = if_getheight($component0);
+if ($int3 <= $int1) {
+    if ($int4 <= $int2) {
+        if_setsize($int1, $int2, ^setsize_abs, ^setsize_abs, interface_1117:com_3);
+    } else {
+        if_setsize($int1, 0, ^setsize_abs, ^setsize_minus, interface_1117:com_3);
+    }
+} else if ($int4 <= $int2) {
+    if_setsize(0, $int2, ^setsize_minus, ^setsize_abs, interface_1117:com_3);
+} else {
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_1117:com_3);
 }
-if ($int1 < 0) {
-    return(6);
-}
-def_int $int2 = ~currency_pouch_value_get($dbrow0);
-if ($int1 > $int2) {
-    return(7);
-}
-~currency_pouch_value_set($dbrow0, calc($int2 - $int1));
-return(4);

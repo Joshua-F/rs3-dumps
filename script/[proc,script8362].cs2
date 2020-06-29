@@ -31,5 +31,18 @@ cc_create($component6, ^iftype_graphic, $int7);
 ~script12591(0, $struct4);
 cc_setsize(struct_param($struct5, param_3569), struct_param($struct5, param_3570), ^setsize_abs, ^setsize_abs);
 cc_setposition(calc($int8 - cc_getwidth / 2), 0, ^setpos_abs_left, ^setpos_abs_centre);
-def_struct $struct9 = ~script10405($int1);
-cc_setgraphic(~script13858($struct9, 1, 0, 4));
+cc_setgraphic(~script13858($struct3, 1, 0, 4));
+def_int $int9 = calc(min(cc_getwidth, cc_getheight) / 2);
+~script14933($component6, ++$int7, calc(cc_getx + $int9), calc(cc_gety + cc_getheight / 2), $int9, $int9);
+def_dbrow $dbrow10 = null;
+if ($int0 = $int1) {
+    cc_sethide(true);
+} else {
+    db_find(dbtable_100:col2, $int1);
+    $dbrow10 = db_findnext;
+    if (~script5758($dbrow10) > 0) {
+        cc_sethide(false);
+    } else {
+        cc_sethide(true);
+    }
+}

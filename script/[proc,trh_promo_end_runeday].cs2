@@ -1,3 +1,50 @@
 // 1016
 [proc,trh_promo_end_runeday](struct $struct0)(int)
-return(~script2289($struct0, 0));
+if ($struct0 = null) {
+    return(0);
+}
+def_enum $enum1 = struct_param($struct0, param_3839);
+if ($enum1 = null) {
+    return(struct_param($struct0, param_4631));
+}
+def_int $int2 = enum_getoutputcount($enum1);
+if ($int2 = 0) {
+    return(0);
+}
+def_int $int3 = 0;
+if (enum_getreversecount(int, $enum1, %varplayer_3079) > 0) {
+    $int3 = 1;
+}
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+if ($int3 = 0) {
+    $int5 = enum(int, int, $enum1, 0);
+    if (%varplayer_3079 > $int5) {
+        return($int5);
+    } else {
+        $int4 = $int2;
+        while (--$int4 >= 0) {
+            $int5 = enum(int, int, $enum1, $int4);
+            if (%varplayer_3079 < $int5) {
+                $int6 = enum(int, int, $enum1, calc($int4 - 1));
+                while ($int6 = calc($int5 + 1)) {
+                    $int4 = calc($int4 - 1);
+                    $int5 = enum(int, int, $enum1, $int4);
+                    $int6 = enum(int, int, $enum1, calc($int4 - 1));
+                }
+                return($int5);
+            }
+        }
+    }
+} else {
+    $int4 = enum_getreverseindex(int, int, $enum1, %varplayer_3079, 0);
+    while ($int4 >= 0) {
+        $int5 = enum(int, int, $enum1, $int4);
+        if (enum(int, int, $enum1, calc($int4 - 1)) ! calc($int5 + 1)) {
+            return($int5);
+        }
+        $int4 = calc($int4 - 1);
+    }
+}
+return(0);

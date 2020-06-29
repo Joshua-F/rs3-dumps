@@ -1,0 +1,43 @@
+// 14782
+[proc,script14782](int $int0)
+if (%varplayer_9215 = null) {
+    return;
+}
+cc_deleteall(interface_657:com_12);
+cc_deleteall(interface_657:com_13);
+cc_deleteall(interface_657:com_9);
+def_int $int1 = enum_getoutputcount(%varplayer_9215);
+def_dbrow $dbrow2 = null;
+def_string $string0 = "";
+def_int $int3 = 0;
+def_int $int4 = -1;
+def_int $int5 = 25;
+if (~script6431 = true) {
+    $int5 = 38;
+}
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = -1;
+while (++$int8 < $int1) {
+    $dbrow2 = enum(int, dbrow, %varplayer_9215, $int8);
+    if (~script14575($dbrow2) = 1) {
+        $string0 = db_getfield($dbrow2, dbtable_82:col1, 0);
+        $int6 = max($int5, calc(2 * ~script7593($string0, calc(if_getwidth(interface_657:com_8) - 2 * 1), graphic_17813, 0)));
+        ~script13998(interface_657:com_12, interface_657:com_13, struct_28556, 1, calc($int7 + 1), calc(if_getwidth(interface_657:com_8) - 2 * 1), $int6, $int8, false, $string0, ~equal_int($int8, %varplayer_9218));
+        if (cc_find(interface_657:com_13, $int8) = true) {
+            cc_setonop("script14781($int8)");
+        }
+        $int7 = calc($int7 + $int6);
+    } else {
+        cc_create(interface_657:com_13, ^iftype_text, $int8);
+    }
+}
+if_setscrollsize(0, max(if_getheight(interface_657:com_8), calc($int7 + 1)), interface_657:com_8);
+~rs3_scrollbar_vertical(interface_657:com_9, interface_657:com_8);
+~script10428(interface_657:com_26, interface_657:com_27, %varplayer_9216, calc(enum_getoutputcount(%varplayer_9216) - 1), "Select a filter", %varplayer_9217, 1);
+~script14783(%varplayer_9218);
+~script14784(%varplayer_9218);
+if ($int0 = 1) {
+    if_setscrollpos(0, 0, interface_657:com_19);
+}
+~rs3_scrollbar_vertical(interface_657:com_21, interface_657:com_19);
