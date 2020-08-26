@@ -76,12 +76,17 @@ if (string_length($string0) > 0) {
 if_setontimer("script1868(interface_906:com_314)", interface_906:com_314);
 ~lobby_resize;
 if_setontimer("lobbyscreen_blackout_timer(interface_906:com_626)", interface_906:com_625);
+def_int $int2 = clientoption_get(^clientoption_volume_main_effects);
+def_int $int3 = clientoption_get(^clientoption_volume_main_music);
+def_int $int4 = clientoption_get(^clientoption_volume_background_effects);
+def_int $int5 = clientoption_get(^clientoption_volume_speech);
+def_int $int6 = clientoption_get(^clientoption_volume_login_music);
 if (login_reply ! 0 & login_reply ! 2 & login_reply ! 15) {
-    ~script10210(interface_906:com_131, map_world, detailget_soundvol, detailget_musicvol, detailget_bgsoundvol, detailget_speechvol, detailget_loginvol, login_reply, 2);
+    ~script10210(interface_906:com_131, map_world, $int2, $int3, $int4, $int5, $int6, login_reply, 2);
 }
 if (lobby_entergamereply ! -2) {
     if_sethide(true, interface_906:com_4);
-    ~script10210(interface_906:com_623, map_world, detailget_soundvol, detailget_musicvol, detailget_bgsoundvol, detailget_speechvol, detailget_loginvol, lobby_entergamereply, 1);
+    ~script10210(interface_906:com_623, map_world, $int2, $int3, $int4, $int5, $int6, lobby_entergamereply, 1);
     login_resetreply;
     return;
 }

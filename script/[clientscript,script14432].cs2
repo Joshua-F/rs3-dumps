@@ -1,15 +1,16 @@
 // 14432
 [clientscript,script14432]
 def_int $int0 = ~get_hour(%varplayer_3079);
-def_int $int1 = enum(int, int, enum_6240, %varplayer_3079);
-def_int $int2 = 1;
-if (%varplayer_3079 >= 6645 & %varplayer_3079 <= 6655) {
-    if (%varplayer_3079 = 6645 & $int0 < 12) {
-        $int2 = 0;
-    } else if (%varplayer_3079 = 6655 & $int0 >= 12) {
-        $int2 = 0;
+def_int $int1 = 1;
+def_int $int2 = db_getfield(dbrow_3581, dbtable_105:col2, 0);
+def_int $int3 = db_getfield(dbrow_3581, dbtable_105:col3, 0);
+if (%varplayer_3079 >= $int2 & %varplayer_3079 <= $int3) {
+    if (%varplayer_3079 = $int2 & $int0 < 12) {
+        $int1 = 0;
+    } else if (%varplayer_3079 = $int3 & $int0 >= 12) {
+        $int1 = 0;
     }
-    if (~script14433($int1) <= 0 & %varplayerbit_20806 = 0 & $int2 = 1) {
+    if (%varplayer_9502 ! %varplayer_3079 & %varplayerbit_20806 = 0 & $int1 = 1) {
         if_sethide(false, interface_745:com_8);
         if_sethide(false, interface_1920:com_8);
     } else {

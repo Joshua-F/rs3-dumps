@@ -14,44 +14,25 @@ switch_int ($int1) {
 if ($component2 ! null) {
     if_settext("Your display has been changed. Do you want to keep this setting?", $component2);
 }
-switch_int ($int0) {
-    case 1 :
-        if (autosetup_getlevel ! 1) {
+if (autosetup_getlevel ! $int0) {
+    switch_int ($int0) {
+        case 1 :
             autosetup_setmin;
-        } else {
-            return;
-        }
-    case 2 :
-        if (autosetup_getlevel ! 2) {
+        case 2 :
             autosetup_setlow;
-        } else {
-            return;
-        }
-    case 3 :
-        if (autosetup_getlevel ! 3) {
+        case 3 :
             autosetup_setmedium;
-        } else {
-            return;
-        }
-    case 4 :
-        if (autosetup_getlevel ! 4) {
+        case 4 :
             autosetup_sethigh;
-        } else {
-            return;
-        }
-    case 5 :
-        if (autosetup_getlevel ! 5) {
+        case 5 :
             autosetup_setultra(0);
-        } else {
-            return;
-        }
-    case 0 :
-        if (autosetup_getlevel ! 0) {
+        case 0 :
             autosetup_setcustom;
-        } else {
-            return;
-        }
-    case -1 :
-        ~autosetup($int1);
+        case -1 :
+            ~autosetup($int1);
+    }
+} else {
+    return;
 }
+~script2593;
 ~graphics_options_rebuild(getwindowmode, ~graphics_options_reviewoptions, $int1);

@@ -1,11 +1,15 @@
 // 14167
 [proc,interface_zoom_set](int $int0, component $component1, component $component2)
-if (%varclient_6403 = 2 & $int0 = 3) {
+if (%varclient_6403 = 2 & ($int0 = 3 | $int0 = 1)) {
     ~script14172(interface_1477:com_653, interface_1477:com_668);
     return;
 }
 if (if_find($component1) = true) {
-    ~script4452(cc_getx, cc_gety, cc_getwidth, cc_getheight);
+    if ($int0 = 1 & (if_hassub(struct_param(struct_21300, param_3505)) = true | if_hassub(interface_1477:com_685) = true)) {
+        ~script4452(cc_getx, cc_gety, calc(cc_getwidth + 210 + 10), cc_getheight);
+    } else {
+        ~script4452(cc_getx, cc_gety, cc_getwidth, cc_getheight);
+    }
     ~script14171($component2);
     ~interface_zoom_set_var($int0);
 }

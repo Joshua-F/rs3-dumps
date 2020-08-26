@@ -1,27 +1,32 @@
 // 13849
 [proc,script13849]
-if_sethide(true, interface_567:com_9);
-if_sethide(true, interface_567:com_10);
-if_sethide(true, interface_567:com_11);
+if_sethide(true, interface_567:com_13);
+if_sethide(true, interface_567:com_14);
+if_sethide(true, interface_567:com_15);
 def_int $int0 = 0;
 def_int $int1 = 0;
 if (if_find(interface_1431:com_1) = true) {
     $int0 = cc_param(param_6837);
     $int1 = min(cc_param(param_6838), 30);
 }
-def_int $int2 = calc(44 * ($int0 % 10) - 7);
-switch_int (calc($int0 / 10)) {
+def_int $int2 = calc(44 * ($int0 % 15) - 7);
+switch_int (calc($int0 / 15)) {
     case 0 :
         ~script13850(false, true, true, $int2, 0, 0);
     case 1 :
-        ~script13850(false, false, true, 433, $int2, 0);
+        ~script13850(false, false, true, 653, $int2, 0);
     case 2 :
-        ~script13850(false, false, false, 433, 433, $int2);
+        ~script13850(false, false, false, 653, 653, $int2);
     case 3 :
-        ~script13850(false, false, false, 433, 433, 433);
+        ~script13850(false, false, false, 653, 653, 653);
 }
 if (~script6431 = true) {
-    if_settext("Ribbon Bar - Displays up to 7 icons.", interface_567:com_12);
+    if_sethide(true, interface_567:com_3);
+    if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, interface_567:com_2);
+    if_settext("Ribbon Bar - Displays up to 7 icons.", interface_567:com_8);
 } else {
-    if_settext("Ribbon Bar - Displays up to <tostring_localised($int1, true)> icons at current size.", interface_567:com_12);
+    if_sethide(false, interface_567:com_3);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, interface_567:com_2);
+    ~static_checkbox_create(interface_567:com_4, interface_567:com_5, "Use custom ribbon", "", "", %varclientbit_42113);
+    if_settext("Ribbon Bar - Displays up to <tostring_localised($int1, true)> icons at current size.", interface_567:com_8);
 }

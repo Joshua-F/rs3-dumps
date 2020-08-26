@@ -1,0 +1,48 @@
+// 15178
+[proc,event_crafting_build_info](obj $obj0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, obj $obj7, string $string0)
+if ($obj0 = null | $int1 <= 0) {
+    return;
+}
+if_settext(oc_name($obj0), interface_653:com_89);
+if_setopbase(oc_name($obj0), interface_653:com_99);
+if_setopbase(oc_name($obj7), interface_653:com_101);
+if_sethide(true, interface_653:com_86);
+if_sethide(false, interface_653:com_87);
+if_setobject($obj0, $int1, interface_653:com_274);
+if_settext($string0, interface_653:com_90);
+if_settext("<tostring_localised($int2, true)> available in your inventory.", interface_653:com_96);
+if (oc_param($obj0, param_59) = 1) {
+    if_settext("<oc_name($obj0)> isn't bankable.", interface_653:com_275);
+} else {
+    if_settext("<tostring_localised($int3, true)> available in your bank.", interface_653:com_275);
+}
+if_setobject($obj0, $int5, interface_653:com_278);
+if_setobject_nonum($obj7, 0, interface_653:com_280);
+def_int $int8 = 0;
+if ($int6 = 1 & $int5 ! $int1) {
+    if_settext("You deposited <tostring_localised($int5, true)> and skipped the rest!", interface_653:com_277);
+    if_settext("You've already skipped this ingredient!", interface_653:com_279);
+} else {
+    $int8 = ~script15125($obj0, calc($int1 - $int5));
+    if_settext("You've deposited <tostring_localised($int5, true)>/<tostring_localised($int1, true)>", interface_653:com_277);
+    if_settext("You can skip the remainder of this ingredient for : <tostring_localised($int8, true)> x <oc_name($obj7)>", interface_653:com_279);
+}
+def_boolean $boolean9 = false;
+def_string $string1 = "";
+if ($obj0 = obj_995) {
+    $boolean9 = true;
+    if_setgraphic(icon_coins, interface_653:com_282);
+    $string1 = "Currency Pouch";
+} else if (~script2551($obj0) = true) {
+    $boolean9 = true;
+    if_setgraphic("challenge_skill_icons_35px,15", interface_653:com_282);
+    $string1 = "Metal bank";
+} else if (enum_hasoutput(obj, enum_14058, $obj0) = true) {
+    $boolean9 = true;
+    if_setgraphic("challenge_skill_icons_35px,27", interface_653:com_282);
+    $string1 = "Material storage";
+}
+if ($boolean9 = true) {
+    if_settext("<tostring_localised($int4, true)> avaliable in your : <$string1>", interface_653:com_281);
+}
+if_sethide(~not_bool($boolean9), interface_653:com_95);

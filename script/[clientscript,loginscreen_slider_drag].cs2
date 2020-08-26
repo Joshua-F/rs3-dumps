@@ -2,36 +2,27 @@
 [clientscript,loginscreen_slider_drag](component $component0, component $component1, int $int2, int $int3)
 def_int $int4 = max(calc(if_getwidth($component0) - if_getwidth($component1)), 1);
 $int2 = min(max($int2, 0), $int4);
-def_int $int5 = 255;
-def_int $int6 = 5;
-if (has_nxt = false) {
-    $int5 = 127;
-    $int6 = 4;
-}
-def_int $int7 = min(scale($int2, $int4, $int6), calc($int6 - 1));
+def_int $int5 = min(scale($int2, $int4, 5), 4);
 switch_int ($int3) {
     case 0 :
-        detail_soundvol(scale($int2, $int4, $int5));
+        clientoption_set(^clientoption_volume_main_effects, scale($int2, $int4, 255));
         ~script1217($component0, $component1);
     case 1 :
-        detail_musicvol(scale($int2, $int4, 255));
+        clientoption_set(^clientoption_volume_main_music, scale($int2, $int4, 255));
         ~loginscreen_musicvol($component0, $component1);
     case 2 :
-        detail_bgsoundvol(scale($int2, $int4, $int5));
+        clientoption_set(^clientoption_volume_background_effects, scale($int2, $int4, 255));
         ~script1218($component0, $component1);
     case 5 :
-        detail_speechvol(scale($int2, $int4, $int5));
+        clientoption_set(^clientoption_volume_speech, scale($int2, $int4, 255));
         ~script5868($component0, $component1);
     case 3 :
-        if (has_nxt = false) {
-            $int7 = calc($int7 + 1);
-        }
-        detail_brightness($int7);
+        clientoption_set(^clientoption_brightness, $int5);
         ~loginscreen_brightness($component0, $component1);
     case 4 :
-        detail_loginvol(scale($int2, $int4, 255));
+        clientoption_set(^clientoption_volume_login_music, scale($int2, $int4, 255));
         ~script2007($component0, $component1, 1, 1);
     case 7 :
-        detail_loginvol(scale($int2, $int4, 255));
+        clientoption_set(^clientoption_volume_login_music, scale($int2, $int4, 255));
         ~script2007($component0, $component1, 1, 1);
 }

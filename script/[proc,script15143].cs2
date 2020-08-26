@@ -1,0 +1,17 @@
+// 15143
+[proc,script15143]()(dbrow)
+if (db_listall(dbtable_107) <= 0) {
+    return(null);
+}
+def_dbrow $dbrow0 = db_findnext;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = date_runeday;
+while ($dbrow0 ! null) {
+    $int1, $int2 = ~script15149($dbrow0);
+    if (($int3 <= $int2 | $int2 = -1) & $int3 >= $int1) {
+        return($dbrow0);
+    }
+    $dbrow0 = db_findnext;
+}
+return(null);
