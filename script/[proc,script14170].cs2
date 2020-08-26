@@ -133,13 +133,9 @@ if (if_hassubmodal($component0, interface_1377) = true) {
     $component1 = interface_691:com_0;
 } else if (if_hassubmodal($component0, interface_685) = true) {
     $component1 = interface_685:com_0;
+} else if (if_hassubmodal($component0, interface_1587) = true) {
+    $component1 = interface_1587:com_0;
 } else {
-    return;
-}
-if (%varclient_6403 ! 2 & if_find($component1) = true) {
-    ~script4452(calc(if_getx(interface_1477:com_670) + cc_getx), calc(if_gety(interface_1477:com_670) + cc_gety), cc_getwidth, cc_getheight);
-    ~script14171(interface_1477:com_668);
-    ~interface_zoom_set_var(5);
     return;
 }
 def_int $int2 = 0;
@@ -148,6 +144,16 @@ def_int $int4 = 0;
 def_int $int5 = 0;
 def_int $int6 = 0;
 def_int $int7 = 0;
+if (%varclient_6403 ! 2 & if_find($component1) = true) {
+    $int6 = cc_getwidth;
+    if (if_hassub(struct_param(struct_21300, param_3505)) = true | if_hassub(interface_1477:com_685) = true) {
+        $int6 = calc($int6 + (210 + 10));
+    }
+    ~script4452(calc(if_getx(interface_1477:com_670) + cc_getx), calc(if_gety(interface_1477:com_670) + cc_gety), $int6, cc_getheight);
+    ~script14171(interface_1477:com_668);
+    ~interface_zoom_set_var(5);
+    return;
+}
 $int4, $int5, $int6, $int7 = unknown_command_15;
 if (if_find($component1) = true) {
     $int2 = calc(if_getx(interface_1477:com_670) + cc_getx);
@@ -162,6 +168,9 @@ if (if_find($component1) = true) {
     }
     $int6 = max($int6, cc_getwidth);
     $int7 = max($int7, cc_getheight);
+    if (if_hassub(struct_param(struct_21300, param_3505)) = true | if_hassub(interface_1477:com_685) = true) {
+        $int6 = calc($int6 + (210 + 10));
+    }
     ~script4452($int4, $int5, $int6, $int7);
     ~script14172(interface_1477:com_653, interface_1477:com_668);
     ~interface_zoom_set_var(5);

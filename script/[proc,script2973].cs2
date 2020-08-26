@@ -38,50 +38,48 @@ switch_struct ($struct0) {
     case struct_4195 :
         return(%varclient_6565);
     case struct_41493 :
-        return(detailget_brightness);
+        return(clientoption_get(^clientoption_brightness));
     case struct_830 :
-        return(detailget_removeroofs_option);
-    case struct_834 :
-        return(~bool_to_int(detailget_flickering_on));
+        return(clientoption_get(^clientoption_remove_roof));
     case struct_33102 :
         return(%varclient_3698);
     case struct_33101 :
-        return(detailget_drawdistance);
+        return(clientoption_get(^clientoption_draw_distance));
     case struct_38730 :
-        if (enum_hasoutput(int, enum_14566, detailget_maxforegroundfps) = false) {
-            detail_maxforegroundfps(enum(int, int, enum_14566, 1));
+        if (enum_hasoutput(int, enum_14566, clientoption_get(^clientoption_max_foreground_fps)) = false) {
+            clientoption_set(^clientoption_max_foreground_fps, enum(int, int, enum_14566, 1));
+            return(enum(int, int, enum_14566, 1));
         }
-        $int1 = enum_getreverseindex(int, int, enum_14566, detailget_maxforegroundfps, 0);
-        return($int1);
+        return(enum_getreverseindex(int, int, enum_14566, clientoption_get(^clientoption_max_foreground_fps), 0));
     case struct_963 :
-        if (detailget_texturing = 0) {
-            return(detailget_texturing);
-        } else if (detailget_texturing > 0) {
+        if (clientoption_get(^clientoption_texturing) = 0) {
+            return(0);
+        }
+        return(1);
+    case struct_34879 :
+        return(clientoption_get(^clientoption_anisotropic_filtering));
+    case struct_33103 :
+        return(clientoption_get(^clientoption_antialiasing_mode));
+    case struct_831 :
+        return(clientoption_get(^clientoption_ground_decor));
+    case struct_843 :
+        return(clientoption_get(^clientoption_ground_blending));
+    case struct_33092 :
+        return(clientoption_get(^clientoption_shadows));
+    case struct_33093 :
+        return(clientoption_get(^clientoption_shadow_quality));
+    case struct_33097 :
+        return(clientoption_get(^clientoption_ambient_occlusion));
+    case struct_838 :
+        if (clientoption_get(^clientoption_lighting_quality) > 1) {
+            clientoption_set(^clientoption_lighting_quality, 1);
             return(1);
         }
-    case struct_34879 :
-        return(detailget_anisotropicfiltering);
-    case struct_33103 :
-        return(detailget_antialiasingmode);
-    case struct_831 :
-        return(~bool_to_int(detailget_grounddecor_on));
-    case struct_843 :
-        return(~bool_to_int(detailget_groundblending));
-    case struct_33092 :
-        return(detailget_hardshadows);
-    case struct_33093 :
-        return(detailget_shadowquality);
-    case struct_33097 :
-        return(detailget_ambientocclusion);
-    case struct_838 :
-        if (detailget_lightingquality > 1) {
-            detail_lightingquality(1);
-        }
-        return(detailget_lightingquality);
+        return(clientoption_get(^clientoption_lighting_quality));
     case struct_33100 :
-        return(detailget_bloom);
+        return(clientoption_get(^clientoption_bloom));
     case struct_33096 :
-        return(detailget_reflections);
+        return(clientoption_get(^clientoption_reflections));
     case struct_11519 :
         return(clientoption_get(^clientoption_dof));
     case struct_11516 :

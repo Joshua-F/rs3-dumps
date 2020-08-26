@@ -59,7 +59,7 @@ def_int $int45 = 0;
 def_struct $struct46 = null;
 def_enum $enum47 = null;
 def_int $int48 = -1;
-def_fontmetrics $fontmetrics49 = graphic_20452;
+def_fontmetrics $fontmetrics49 = verdana_11pt_regular;
 if (~script6431 = true) {
     %varclient_2 = 0;
     $fontmetrics49 = struct_param(enum(int, struct, enum_14118, %varplayer_7989), param_7275);
@@ -75,7 +75,7 @@ if (~script6431 = true) {
 ~script6211($component1, $int2);
 if (%varclient_2 ! 1) {
     ~script8808;
-    if_opensubclient(interface_1477:com_845, interface_1451);
+    if_opensubclient(interface_1477:com_851, interface_1451);
     %varclient_2 = 1;
     $string2 = struct_param($struct0, param_2794);
     $string3 = struct_param($struct0, param_2795);
@@ -116,10 +116,16 @@ if (%varclient_2 ! 1) {
         $int29 = 1000;
     } else if (struct_param($struct0, param_2799) = 3) {
         $string6 = "Special Attack<br>";
-        $string2 = ~script9866($obj31, $obj32);
-        $string3 = ~script9867($obj31, $obj32);
         $int28 = 1;
-        $int29 = ~script9868($obj31, $obj32);
+        if ($struct0 = struct_11748) {
+            if (oc_category(inv_getobj(inv_94, 2)) = category_4700 & oc_hasvarobj(inv_getobj(inv_94, 2)) = true & inv_getvar(inv_94, 2, varobjectbit_47702) > 0) {
+                $string2, $string3, $int29 = ~script15096(inv_94, 2);
+            }
+        } else {
+            $string2 = ~script9866($obj31, $obj32);
+            $string3 = ~script9867($obj31, $obj32);
+            $int29 = ~script9868($obj31, $obj32);
+        }
     }
     switch_struct ($struct0) {
         case struct_14726 :
@@ -634,6 +640,14 @@ if (%varclient_2 ! 1) {
                 }
                 $string0 = "<$string1>Tool</col>";
                 $obj24 = obj_36367;
+            case struct_11748 :
+                if (oc_category(inv_getobj(inv_94, 2)) ! category_4700) {
+                    $string1 = "<col=ff0000>";
+                } else {
+                    $string1 = "<col=00ff00>";
+                }
+                $string0 = "<$string1>Amulet</col>";
+                $obj24 = obj_50465;
         }
         $component14, $component17, $component18, $int19 = ~script8450($int19);
         if ($component14 ! null) {

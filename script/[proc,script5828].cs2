@@ -311,6 +311,8 @@ if (oc_wearpos($obj0) ! -1) {
         }
     } else if (oc_param($obj0, param_4329) = 1) {
         $int39 = ~script7235("Special Attack : <oc_param($obj0, param_4333)>", $string3, $struct2, $component3, $component4, $int39);
+    } else if (oc_category($obj0) = category_4700 & %varclient_5121 ! null & %varclient_5122 ! -1) {
+        $int39 = ~script7235("Special Attack : <~script15097(%varclient_5121, %varclient_5122)>", $string3, $struct2, $component3, $component4, $int39);
     }
     if (oc_param($obj0, param_2832) = 1) {
         $int39 = ~script7235("Shield", $string3, $struct2, $component3, $component4, $int39);
@@ -657,18 +659,17 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                 $int39 = ~script7235("Folding progress : <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43229))>/1001", $string3, $struct2, $component3, $component4, $int39);
             case obj_47719 :
                 $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43749);
-                $int33 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43756);
+                $int33 = calc(10 + inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_47701));
+                if (inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43756) > 0) {
+                    $int33 = calc($int33 + 3);
+                }
                 $int16 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43757);
                 if ($int16 = 1) {
                     $int39 = ~script7235("Divine", $string3, $struct2, $component3, $component4, $int39);
                 } else {
                     $int39 = ~script7235("Host log: <enum(int, string, enum_12899, $int17)>", $string3, $struct2, $component3, $component4, $int39);
                 }
-                if ($int33 > 0) {
-                    $int39 = ~script7235("Reward rate: x1.3", $string3, $struct2, $component3, $component4, $int39);
-                } else if ($int33 > 0) {
-                    $int39 = ~script7235("Reward rate: x1", $string3, $struct2, $component3, $component4, $int39);
-                }
+                $int39 = ~script7235("Reward rate: <tostring(calc($int33 / 10))>.<tostring(calc($int33 % 10))>x", $string3, $struct2, $component3, $component4, $int39);
             case obj_28014 :
                 $int39 = ~script7235("Charges remaining: <tostring_localised(calc(100 - inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_18289)), true)>", $string3, $struct2, $component3, $component4, $int39);
             case obj_48680 :
@@ -689,7 +690,7 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                         }
                     case category_2804, category_3794 :
                         if (oc_category($obj0) = category_2804) {
-                            if (inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_17232) = 1) {
+                            if (%varclient_5121 = inv_94 & inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_17232) = 1) {
                                 $int17 = %varplayerbit_17234;
                             } else {
                                 $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_17233);
@@ -733,7 +734,7 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                         $int39 = ~script7235("Item Charge: <$string2><$string1>%", $string3, $struct2, $component3, $component4, $int39);
                     case category_3021 :
                         if ($obj0 = obj_44550) {
-                            $int39 = ~script7235(~text_boolean(%varplayerbit_35985, "Stored sign of the porter (disabled) charges: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_30214))>/<tostring(500)>", "Stored sign of the porter charges: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_30214))>/<tostring(500)>"), $string3, $struct2, $component3, $component4, $int39);
+                            $int39 = ~script7235(~text_boolean(~int_to_bool(%varplayerbit_35985), "Stored sign of the porter (disabled) charges: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_30214))>/<tostring(500)>", "Stored sign of the porter charges: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_30214))>/<tostring(500)>"), $string3, $struct2, $component3, $component4, $int39);
                         } else {
                             $int39 = ~script7235("Charges remaining: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_20171))>", $string3, $struct2, $component3, $component4, $int39);
                         }
@@ -1046,8 +1047,10 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                         }
                     case category_4480 :
                         $int39 = ~script7235(~script6345($obj0), $string3, $struct2, $component3, $component4, $int39);
+                    case category_3573 :
+                        $int39 = ~script7235(~script10081($obj0), $string3, $struct2, $component3, $component4, $int39);
                     case default :
-                        if (oc_param($obj0, param_6897) > 0) {
+                        if (oc_param($obj0, param_3203) = struct_39402) {
                             $int17 = calc(3 + ~script3862);
                             switch_obj ($obj0) {
                                 case obj_42111, obj_42112, obj_42113, obj_42114 :
@@ -1070,9 +1073,8 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
         }
     }
 }
-if (compare(oc_param($obj0, param_3376), "") ! 0) {
-    $string7 = "<col=00ff00>";
-    $int39 = ~script7235(oc_param($obj0, param_3376), $string7, $struct2, $component3, $component4, $int39);
+if (compare(oc_param($obj0, param_3200), "") ! 0) {
+    $int39 = ~script7235(oc_param($obj0, param_3200), $string7, $struct2, $component3, $component4, $int39);
 }
 if ($inv6 = inv_819) {
     if (string_length(oc_param($obj0, param_4085)) > 0) {

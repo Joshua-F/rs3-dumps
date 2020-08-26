@@ -374,6 +374,35 @@ if (oc_param($obj0, param_6295) = 1 | oc_param($obj0, param_7393) = 1) {
                     if ($int12 > 0) {
                         $int3 = ~script13777($component2, $int3, $int4, $int6, obj_30915, $int12);
                     }
+                case category_4699 :
+                    $int21 = enum_getoutputcount(enum_15971);
+                    $int22 = 0;
+                    $int20 = -1;
+                    while (++$int20 < $int21) {
+                        $obj10 = enum(int, obj, enum_15971, $int20);
+                        $int12 = inv_total(inv_891, $obj10);
+                        if ($int12 > 0) {
+                            cc_create($component2, ^iftype_graphic, $int3++);
+                            cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+                            cc_setobject_alwaysnum($obj10, $int12);
+                            $int22 = calc($int22 + 1);
+                        }
+                    }
+                    if ($int22 > 0) {
+                        $int20 = 0;
+                        $int9 = max($int9, calc(min(5, $int22) * 36 + 16));
+                        $int8 = calc(32 * (1 + ($int22 - 1) / 5));
+                        $int4 = calc(($int9 - min(5, $int22) * 36) / 2);
+                        while ($int23 < $int3) {
+                            if (cc_find($component2, $int23++) = true) {
+                                cc_setposition(calc($int4 + $int20 % 5 * 36), calc($int6 + $int20 / 5 * 32), ^setpos_abs_left, ^setpos_abs_top);
+                            }
+                            if (calc(++$int20 % 5) = 0) {
+                                $int4 = calc(($int9 - min(5, calc($int22 - $int20)) * 36) / 2);
+                            }
+                        }
+                        $int12 = $int22;
+                    }
             }
     }
 }

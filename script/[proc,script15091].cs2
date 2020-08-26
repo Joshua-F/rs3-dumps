@@ -1,0 +1,119 @@
+// 15091
+[proc,script15091](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, struct $struct6)
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 1;
+def_int $int13 = 0;
+def_int $int14 = ~script12869($struct6);
+if ($int14 = 0) {
+    cc_deleteall($component2);
+    cc_deleteall($component3);
+}
+def_int $int15 = calc(if_getwidth($component5) - 50);
+def_int $int16 = calc(if_getwidth($component0) / 100);
+def_enum $enum17 = struct_param($struct6, param_6146);
+def_int $int18 = enum_getoutputcount($enum17);
+def_obj $obj19 = null;
+def_obj $obj20 = null;
+def_inv $inv21 = null;
+def_graphic $graphic22 = null;
+def_enum $enum23 = struct_param($struct6, param_6147);
+def_enum $enum24 = struct_param($struct6, param_6148);
+def_struct $struct25 = null;
+cc_deleteall($component5);
+cc_deleteall($component4);
+def_int $int26 = calc($int16 * ($int14 * 1000 / (struct_param($struct6, param_6142) * struct_param($struct6, param_6144) / 100)));
+$int26 = calc($int26 / 1000);
+if (if_getnextsubid($component0) = 0) {
+    cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+    cc_settextfont(graphic_17993);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setcolour(^white);
+}
+if (cc_find($component0, 0) = true & struct_param($struct6, param_78) = false) {
+    cc_settext("<~tostring_spacer_local($int14)>/<~tostring_spacer_local(calc(struct_param($struct6, param_6142) * struct_param($struct6, param_6144)))>");
+}
+if (if_getnextsubid($component1) = 0) {
+    cc_create($component1, ^iftype_graphic, if_getnextsubid($component1));
+    cc_setgraphic(trh72_progress_bar_green);
+    cc_setposition($int8, $int9, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(0, 19, ^setsize_minus, ^setsize_abs);
+    cc_setonvartransmit("script12874($struct6){varplayer_6626}");
+}
+if_setontimer("script12886($component1, $component2, $component3, $int26)", $component1);
+if (if_getnextsubid($component5) = 0) {
+    cc_create($component5, ^iftype_graphic, if_getnextsubid($component5));
+    cc_setgraphic(trh72_progress_bar_back_end);
+    cc_setposition($int8, $int9, ^setpos_abs_right, ^setpos_abs_top);
+    cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
+    cc_create($component5, ^iftype_graphic, if_getnextsubid($component5));
+    cc_setgraphic(trh72_progress_bar_back_start);
+    cc_setposition($int8, $int9, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
+    cc_create($component5, ^iftype_graphic, if_getnextsubid($component5));
+    cc_setgraphic(trh72_progress_bar_back_tile);
+    cc_setposition(calc($int8 + 25), $int9, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize($int15, 25, ^setsize_abs, ^setsize_abs);
+}
+while ($int7 < $int18) {
+    $obj19 = enum(int, obj, $enum17, $int7);
+    $graphic22 = oc_param($obj19, param_6276);
+    $int11 = enum(int, int, $enum23, $int7);
+    $int12 = enum(int, int, $enum24, $int7);
+    $int13 = ~script12879($struct6, $int7);
+    $int8 = $int16;
+    $int8 = calc($int8 * ($int11 / (struct_param($struct6, param_6142) * struct_param($struct6, param_6144) / 100)));
+    if ($int7 ! calc($int18 - 1) & if_getnextsubid($component5) ! calc($int18 + 2)) {
+        cc_create($component5, ^iftype_graphic, if_getnextsubid($component5));
+        cc_setgraphic(trh72_progress_bar_back_link);
+        cc_setposition(calc($int8 - 7), $int9, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
+    }
+    if (if_getnextsubid($component2) = $int7 & if_getnextsubid($component3) = $int7) {
+        cc_create($component2, ^iftype_graphic, if_getnextsubid($component2));
+        cc_setgraphic(trh72_progress_bar_back_final);
+        cc_setposition(calc($int8 - 9), $int9, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(15, 19, ^setsize_abs, ^setsize_abs);
+        cc_create($component3, ^iftype_graphic, if_getnextsubid($component3));
+        cc_setgraphic("trh72_progress_bar_join,0");
+        cc_setposition(calc($int8 - 3), $int9, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(3, 1, ^setsize_abs, ^setsize_abs);
+        cc_sethide(true);
+    }
+    if (if_getnextsubid($component4) = $int10) {
+        if ($int14 >= $int11 & $int13 = 0) {
+            $struct25 = struct_28303;
+        } else {
+            $struct25 = struct_29356;
+            if ($int14 < $int11) {
+                $struct25 = struct_21363;
+                $int13 = 2;
+            }
+        }
+        ~rs3_background_panel_dynamic($component4, $struct25, calc($int8 - 20), $int9, calc(36 + 4), calc(32 + 4), null);
+        cc_create($component4, ^iftype_graphic, if_getnextsubid($component4));
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        if ($graphic22 = null) {
+            cc_setobject($obj19, $int12);
+            cc_setposition(calc($int8 - 16), calc($int9 + 2), ^setpos_abs_left, ^setpos_abs_top);
+        } else {
+            cc_setgraphic($graphic22);
+            cc_setposition(calc($int8 - 18), calc($int9 + 1), ^setpos_abs_left, ^setpos_abs_top);
+        }
+        cc_setop(1, "Examine");
+        if (~is_mobile_client = true) {
+            cc_setonop("event_popup_setup($graphic22, $obj19, $int12, $int11, $int13)");
+        } else {
+            cc_setonop("mes(~script14456($obj19))");
+        }
+        $obj19, $obj20, $inv21 = ~script13265($obj19);
+        cc_setonmouserepeat("script12893($struct6, $int11, $int13, $obj19, $obj20, $component4, calc(if_getnextsubid($component4) - 1))");
+        $int10 = if_getnextsubid($component4);
+    }
+    $int7 = calc($int7 + 1);
+}

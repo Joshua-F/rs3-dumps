@@ -9,7 +9,7 @@ def_int $int2 = stat($stat1);
 def_int $int3 = 0;
 def_obj $obj4 = inv_getobj(inv_94, 3);
 def_obj $obj5 = inv_getobj(inv_94, 5);
-if ($stat1 = magic & %varplayerbit_3043 = 1) {
+if ($stat1 = magic & struct_param($struct0, param_2880) ! 0 & %varplayerbit_3043 = 1) {
     $int2 = max($int2, %varplayer_1185);
 }
 if ($int2 < struct_param($struct0, param_2807) & %varplayerbit_15197 = 0) {
@@ -78,6 +78,10 @@ if ($int2 < struct_param($struct0, param_2807) & %varplayerbit_15197 = 0) {
     if (~script14970 = true) {
         $int3 = 1;
     } else {
+        $int3 = 0;
+    }
+} else if ($struct0 = struct_11748) {
+    if (oc_category(inv_getobj(inv_94, 2)) ! category_4700 | oc_param(inv_getobj(inv_94, 2), param_3793) = 1 | oc_hasvarobj(inv_getobj(inv_94, 2)) = false | inv_getvar(inv_94, 2, varobjectbit_47702) = 0) {
         $int3 = 0;
     }
 } else if (struct_param($struct0, param_2913) = 1) {

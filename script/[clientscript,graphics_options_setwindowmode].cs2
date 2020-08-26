@@ -1,39 +1,21 @@
 // 2698
 [clientscript,graphics_options_setwindowmode](int $int0, int $int1, int $int2, int $int3)
-def_int $int4 = detailget_maxscreensize;
-def_int $int5 = 0;
-if ($int0 = 2) {
-    $int5 = 0;
-} else {
-    $int5 = $int4;
-}
-if ($int0 = getwindowmode & $int5 = $int4) {
+if ($int0 = getwindowmode) {
     return;
 }
 if (autosetup_getlevel ! 0) {
     autosetup_setcustom;
 }
-def_int $int6 = -1;
 if ($int0 ! 3) {
-    $int0 = $int5;
+    $int0 = 2;
     setwindowmode(^windowmode_resizable);
     setdefaultwindowmode(2);
     if (%varclient_4108 ! 5 & %varclient_4108 ! -1) {
         ~script709(%varclient_4108, $int0);
         ~script8885(%varclient_4108);
-    } else {
-        detail_maxscreensize($int0);
     }
-    $int6 = detailget_maxscreensize;
-    if ($int0 ! $int6) {
-        ~graphics_options_message($int3, 0, "RuneScape was unable to enter that display mode.<br><br>Please visit our website for more information.", "", "");
-        ~graphics_options_rebuild($int6, $int1, $int2, $int3);
-        return;
-    }
-    ~graphics_options_rebuild($int6, $int1, $int2, $int3);
-    if ($int6 = 2) {
-        %varclient_994 = 2;
-    }
+    ~graphics_options_rebuild(2, $int1, $int2, $int3);
+    %varclient_994 = 2;
     autosetup_setcustom;
     return;
 }

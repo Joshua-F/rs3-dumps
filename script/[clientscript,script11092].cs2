@@ -1,14 +1,14 @@
 // 11092
 [clientscript,script11092](struct $struct0, struct $struct1, int $int2, int $int3, int $int4)
 def_string $string0 = ~script13337($struct1);
-if_settext($string0, interface_1594:com_35);
-cc_deleteall(interface_1594:com_38);
-cc_create(interface_1594:com_38, ^iftype_graphic, 0);
+if_settext($string0, interface_1594:com_36);
+cc_deleteall(interface_1594:com_39);
+cc_create(interface_1594:com_39, ^iftype_graphic, 0);
 if (struct_param($struct1, param_4852) ! null) {
     cc_setsize(min(struct_param($struct1, param_4860), 32), min(struct_param($struct1, param_4861), 32), ^setsize_abs, ^setsize_abs);
     cc_setgraphic(struct_param($struct1, param_4852));
     if ($int2 > 1) {
-        if_settext("<$string0> X<tostring($int2)>", interface_1594:com_35);
+        if_settext("<$string0> X<tostring($int2)>", interface_1594:com_36);
     }
 } else if (struct_param($struct1, param_4851) ! null) {
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
@@ -16,9 +16,14 @@ if (struct_param($struct1, param_4852) ! null) {
 }
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 sound_vorbis_volume(sound_34371, 1, 0, 150);
+def_string $string1 = "This will cost you <~script12658($struct0, $int3, $int4, 1)>";
 if (struct_param($struct1, param_7140) = 1) {
-    if_settext("You are about to claim this item", interface_1594:com_57);
-} else {
-    if_settext("This will cost you <~script12658($struct0, $int3, $int4, 1)>", interface_1594:com_57);
+    $string1 = "You are about to claim this item";
 }
+def_string $string2 = struct_param($struct1, param_7228);
+if (~script10080($struct1) = 1 & string_length($string2) > 0) {
+    $string2 = append("<br>", $string2);
+    $string1 = append($string1, $string2);
+}
+if_settext($string1, interface_1594:com_58);
 sound_vorbis_volume(sound_34371, 1, 0, 150);

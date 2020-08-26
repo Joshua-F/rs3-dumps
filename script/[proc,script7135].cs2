@@ -54,17 +54,22 @@ if ($stat5 ! null & $int6 > 0) {
     $string0 = append($string0, ", <~script7021($stat5, $int6)><tostring($int6)> <enum(stat, string, enum_680, $stat5)></col>");
 }
 def_obj $obj7 = null;
-if ($int1 = 2) {
-    $obj7 = db_getfield($dbrow0, dbtable_52:col11, 0);
-    if ($obj7 ! null) {
-        if (string_length($string0) > 1) {
-            if ($boolean4 = true) {
-                $string0 = append($string0, "<br>");
-            } else {
-                $string0 = append($string0, "<br><br>");
-            }
+switch_int ($int1) {
+    case 0 :
+        $obj7 = db_getfield($dbrow0, dbtable_52:col11, 0);
+    case 1 :
+        $obj7 = db_getfield($dbrow0, dbtable_52:col12, 0);
+    case 2 :
+        $obj7 = db_getfield($dbrow0, dbtable_52:col13, 0);
+}
+if ($obj7 ! null) {
+    if (string_length($string0) > 1) {
+        if ($boolean4 = true) {
+            $string0 = append($string0, "<br>");
+        } else {
+            $string0 = append($string0, "<br><br>");
         }
-        $string0 = append($string0, "Item requirement: <~script7030($obj7)><oc_name($obj7)>");
     }
+    $string0 = append($string0, "Item requirement: <~script7030($obj7)><oc_name($obj7)>");
 }
 return($string0);
