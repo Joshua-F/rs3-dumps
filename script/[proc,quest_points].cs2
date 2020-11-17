@@ -1,49 +1,44 @@
 // 2133
-[proc,quest_points](struct $struct0)(string)
-if ($struct0 = null) {
+[proc,quest_points](quest $quest0)(string)
+if ($quest0 = null) {
     return("");
 }
-def_quest $quest1 = struct_param($struct0, param_1403);
-if ($quest1 = null) {
-    ~error("quest_id #<tostring(struct_param($struct0, param_1345))> is missing quest_struct_quest param.");
-    return("");
-}
-def_int $int2 = quest_points($quest1);
-switch_struct ($struct0) {
-    case struct_658 :
+def_int $int1 = quest_points($quest0);
+switch_quest ($quest0) {
+    case quest_74 :
         if (%varplayer_2163 >= 21 & %varplayerbit_9584 = 0) {
-            $int2 = 1;
+            $int1 = 1;
         }
-    case struct_659 :
+    case quest_20 :
         if (%varplayer_2473 >= 3 & %varplayerbit_9585 = 0) {
-            $int2 = 1;
+            $int1 = 1;
         }
-    case struct_4335 :
+    case quest_341 :
         if (%varplayer_2692 = 100) {
-            $int2 = 0;
+            $int1 = 0;
         }
-    case struct_12392 :
+    case quest_355 :
         if (%varplayer_2388 = 110) {
-            $int2 = 0;
+            $int1 = 0;
         }
-    case struct_4343 :
+    case quest_357 :
         if (%varplayer_2261 = 100) {
-            $int2 = 0;
+            $int1 = 0;
         }
-    case struct_504 :
+    case quest_358 :
         if (%varplayer_2689 = 6) {
-            $int2 = 0;
+            $int1 = 0;
         }
-    case struct_22560 :
+    case quest_363 :
         if (%varplayer_2552 = 4) {
-            $int2 = 0;
+            $int1 = 0;
         }
 }
-switch_int ($int2) {
+switch_int ($int1) {
     case 0 :
         return("");
     case 1 :
         return("1 Quest Point");
     case default :
-        return("<tostring($int2)> Quest Points");
+        return("<tostring($int1)> Quest Points");
 }

@@ -15,8 +15,13 @@ def_component $component19 = interface_744:com_212;
 if (if_gethide($component8) = false) {
     return;
 }
-if (~is_mobile_client = true) {
-    if_setposition(0, 10, ^setpos_abs_centre, ^setpos_abs_top, $component9);
+switch_int (platformtype) {
+    case ^platformtype_default :
+        if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component9);
+    case ^platformtype_apple, ^platformtype_android :
+        if_setposition(0, 10, ^setpos_abs_centre, ^setpos_abs_top, $component9);
+    case default :
+        if_setposition(0, -100, ^setpos_abs_centre, ^setpos_abs_centre, $component9);
 }
 if (%varclient_174 ! 5) {
     %varclient_1089 = %varclient_174;
@@ -110,3 +115,4 @@ if_setposition(0, $int22, ^setpos_abs_centre, ^setpos_abs_bottom, $component10);
 if_sethide(false, $component8);
 if_sethide(false, $component9);
 if_sethide(true, interface_596:com_0);
+if_sethide(true, interface_724:com_1);

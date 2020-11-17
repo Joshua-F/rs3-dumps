@@ -10,13 +10,34 @@ def_struct $struct3 = null;
 if ($obj2 ! null) {
     $struct3 = oc_param($obj2, param_4414);
 }
+if ($struct3 = null) {
+    $struct3 = oc_param($obj2, param_5051);
+}
 if ($struct3 ! null & struct_param($struct3, param_4744) > 0) {
-    return(~int_to_bool(~script10881($struct3)));
+    switch_struct ($struct3) {
+        case struct_1572 :
+            if (%varplayerbit_30305 = 1 & %varplayerbit_30306 = 1 & %varplayerbit_30307 = 1 & %varplayerbit_30308 = 1 & %varplayerbit_30309 = 1 & %varplayerbit_30310 = 1 & %varplayerbit_30312 = 1 & %varplayerbit_30311 = 1) {
+                return(true);
+            } else {
+                return(false);
+            }
+        case struct_1348 :
+            if (%varplayerbit_35849 = 1 & %varplayerbit_35850 = 1 & %varplayerbit_35851 = 1 & %varplayerbit_35852 = 1 & %varplayerbit_35853 = 1 & %varplayerbit_35854 = 1 & %varplayerbit_35884 = 1 & %varplayerbit_27438 = 1 & %varplayerbit_35883 = 1) {
+                return(true);
+            } else {
+                return(false);
+            }
+        case default :
+            return(~int_to_bool(~script10881($struct3)));
+    }
 }
 switch_dbrow ($dbrow0) {
-}
-if (db_getfield($dbrow0, dbtable_106:col5, 0) = false) {
-    ~error("Missing a plugin for recipe ID - <tostring(db_getfield($dbrow0, dbtable_106:col0, 0))>");
-    return(true);
+    case dbrow_3682 :
+        return(~int_to_bool(%varplayerbit_280));
+    case default :
+        if (db_getfield($dbrow0, dbtable_106:col5, 0) = false) {
+            ~error("Missing a plugin for recipe ID - <tostring(db_getfield($dbrow0, dbtable_106:col0, 0))>");
+            return(true);
+        }
 }
 return(false);

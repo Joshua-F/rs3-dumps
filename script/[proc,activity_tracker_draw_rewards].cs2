@@ -1,21 +1,23 @@
 // 9391
-[proc,activity_tracker_draw_rewards](component $component0, int $int1, int $int2, int $int3)(int)
+[proc,activity_tracker_draw_rewards](component $component0, int $int1, int $int2, int $int3, achievement $achievement4)(int)
 def_string $string0 = "";
-def_struct $struct4 = null;
+def_struct $struct5 = null;
 switch_int ($int2) {
-    case 2, 3 :
-        $struct4 = enum(int, struct, enum_12251, $int3);
-        if ($struct4 ! null) {
-            if (struct_param($struct4, param_1345) > 0) {
-                $string0 = ~script2134($struct4, "", "");
+    case 2 :
+        $string0 = achievement_getreward($achievement4);
+    case 3 :
+        $struct5 = enum(int, struct, enum_12251, $int3);
+        if ($struct5 ! null) {
+            if (struct_param($struct5, param_1345) > 0) {
+                $string0 = ~script2134(struct_param($struct5, param_1403), "", "");
             } else {
-                $string0 = struct_param($struct4, param_6414);
+                $string0 = struct_param($struct5, param_6414);
             }
         }
     case 1 :
-        $struct4 = enum(int, struct, enum_12251, $int3);
-        if ($struct4 ! null) {
-            $string0 = ~script2134($struct4, "", "");
+        $struct5 = enum(int, struct, enum_12251, $int3);
+        if ($struct5 ! null) {
+            $string0 = ~script2134(struct_param($struct5, param_1403), "", "");
         }
 }
 if (compare($string0, "") ! 0) {

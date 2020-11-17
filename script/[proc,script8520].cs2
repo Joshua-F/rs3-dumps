@@ -43,30 +43,25 @@ if (compare(substring($string0, 0, min(4, $int1)), "/pm ") = 0 | compare(substri
         mes("You need to enter the name of a player on your friends list and a message to send.");
         $int2 = 101;
     }
+} else if (%varclient_6858 = true) {
+    ~wiki($string0, ~script8526($int0));
+    $string0 = "";
+    $int2 = 101;
+    %varclient_6858 = false;
 } else if (compare(substring($string0, 0, min(5, $int1)), "/wiki") = 0 | compare(substring($string0, 0, min(5, $int1)), "\\wiki") = 0) {
     if ($int1 = 5) {
-        if (map_lang = 3) {
-            openurlraw("https://pt.runescape.wiki/?utm_source=rsgame&utm_medium=rs3&utm_campaign=cmd", true);
-        } else {
-            openurlraw("https://runescape.wiki/?utm_source=rsgame&utm_medium=rs3&utm_campaign=cmd", true);
-        }
-        mes_typed(~script8526($int0), 0, "Opening RuneScape Wiki in a new window, please wait...");
+        ~wiki("", ~script8526($int0));
         $string0 = "";
         $int2 = 101;
     } else if ($int1 > 6 & compare(substring($string0, 5, 6), " ") = 0) {
         $string0 = substring($string0, 6, $int1);
-        mes_typed(~script8526($int0), 0, "Please wait, searching RuneScape Wiki for: <$string0>");
-        $string0 = urlencode($string0);
-        if (map_lang = 3) {
-            openurlraw("https://pt.runescape.wiki/w/Special:Search?utm_source=rsgame&utm_medium=rs3&utm_campaign=cmd&search=<$string0>", true);
-        } else {
-            openurlraw("https://runescape.wiki/w/Special:Search?utm_source=rsgame&utm_medium=rs3&utm_campaign=cmd&search=<$string0>", true);
-        }
+        ~wiki($string0, ~script8526($int0));
         $string0 = "";
         $int2 = 101;
     } else {
         mes_typed(~script8526($int0), 0, "Unrecognised Command: type /? for a list.");
     }
+    %varclient_6858 = false;
 } else if (~script8550($int0) = 100) {
     while ($int1 > 0 & compare(substring($string0, 0, 1), "/") = 0) {
         $string0 = substring($string0, 1, $int1);

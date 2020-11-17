@@ -27,18 +27,21 @@ if (%varplayerbit_25803 = 1) {
     ~wof_show_reward;
 } else if (%varclient_4083 = 2) {
     %varclient_4083 = 3;
-    if (%varclient_1928 = 54) {
-        if (%varplayerbit_47441 = 1) {
-            if_setmodelanim(seq_33402, interface_696:com_5);
-            if_sethide(false, interface_1253:com_58);
-            if_setontimer("script5898(event_com, 60)", interface_1253:com_0);
-        } else {
+    switch_int (%varclient_1928) {
+        case 54 :
+            if (%varplayerbit_47441 = 1) {
+                if_setmodelanim(seq_33402, interface_696:com_5);
+                if_sethide(false, interface_1253:com_58);
+                if_setontimer("script5898(event_com, 60)", interface_1253:com_0);
+            } else {
+                if_setontimer("script5898(event_com, 300)", interface_1253:com_0);
+            }
+        case 56 :
             if_setontimer("script5898(event_com, 300)", interface_1253:com_0);
-        }
-    } else {
-        if_setontimer("script5898(event_com, 0)", interface_1253:com_0);
+        case default :
+            if_setontimer("script5898(event_com, 0)", interface_1253:com_0);
+            if_setontimer("script9693(event_com, clientclock, seq_22668)", interface_1253:com_172);
     }
-    if_setontimer("script9693(event_com, clientclock, seq_22668)", interface_1253:com_172);
 }
 ~wof_reward_clear;
 ~wof_refresh_text;

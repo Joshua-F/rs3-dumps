@@ -1,57 +1,56 @@
 // 13332
 [proc,script13332](int $int0)
-def_int $int1 = -1;
-def_component $component2 = enum(int, component, enum_13762, $int0);
-~script14001($component2, struct_28556, 0, false, 1, 0);
+def_component $component1 = enum(int, component, enum_13762, $int0);
+~script14001($component1, struct_28556, 0, false, 1, 0);
 if (cc_find(enum(int, component, enum_13035, $int0), 0) = true) {
     cc_setvflip(true);
 }
-if (%varplayerbit_37066 > 0) {
-    $component2 = enum(int, component, enum_13762, calc(%varplayerbit_37066 - 1));
-    ~script14001($component2, struct_28556, 0, false, 0, 0);
-    if_setonop("script13331(event_com)", enum(int, component, enum_13034, calc(%varplayerbit_37066 - 1)));
-    if (cc_find(enum(int, component, enum_13035, calc(%varplayerbit_37066 - 1)), 0) = true) {
+if (%varplayer_9620 > 0) {
+    $component1 = enum(int, component, enum_13762, calc(%varplayer_9620 - 1));
+    ~script14001($component1, struct_28556, 0, false, 0, 0);
+    if_setonop("script13331(event_com)", enum(int, component, enum_13034, calc(%varplayer_9620 - 1)));
+    if (cc_find(enum(int, component, enum_13035, calc(%varplayer_9620 - 1)), 0) = true) {
         cc_setvflip(false);
     }
 }
-%varplayerbit_37066 = calc($int0 + 1);
-def_struct $struct3 = null;
-def_enum $enum4 = null;
-def_int $int5 = -1;
+%varplayer_9620 = calc($int0 + 1);
+def_struct $struct2 = null;
+def_enum $enum3 = null;
+def_int $int4 = -1;
+def_int $int5 = 0;
 def_int $int6 = 0;
 def_int $int7 = 0;
-def_int $int8 = 0;
 def_string $string0 = "";
-cc_deleteall(interface_1851:com_10);
-if_sethide(true, interface_1851:com_10);
-if_sethide(true, interface_1851:com_37);
-$struct3 = enum(int, struct, enum_11155, $int0);
-if ($struct3 = null) {
+cc_deleteall(interface_1851:com_12);
+if_sethide(true, interface_1851:com_12);
+if_sethide(true, interface_1851:com_41);
+$struct2 = enum(int, struct, enum_11155, $int0);
+if ($struct2 = null) {
     return;
 }
-$enum4 = struct_param($struct3, param_6420);
-def_struct $struct9 = null;
+$enum3 = struct_param($struct2, param_6420);
+def_struct $struct8 = null;
+def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
-def_int $int12 = 0;
-def_enum $enum13 = null;
+def_enum $enum12 = null;
 $int0 = calc($int0 + 1);
 def_string $string1 = "";
-if ($enum4 ! null) {
-    if_sethide(false, interface_1851:com_10);
-    $int6 = enum_getoutputcount($enum4);
-    if_setsize(calc(5 * 2), calc(2 + $int6 * (25 + 3)), ^setsize_minus, ^setsize_abs, interface_1851:com_10);
-    if_setposition(5, calc(3 + (45 + 3) * $int0), ^setpos_abs_centre, ^setpos_abs_top, interface_1851:com_10);
-    while ($int7 < $int6) {
-        $struct9 = enum(int, struct, $enum4, $int7);
-        if (%varclient_5990 = $int7) {
-            $enum13 = struct_param($struct9, param_6422);
+if ($enum3 ! null) {
+    if_sethide(false, interface_1851:com_12);
+    $int5 = enum_getoutputcount($enum3);
+    if_setsize(calc(5 * 2), calc(2 + $int5 * (25 + 3)), ^setsize_minus, ^setsize_abs, interface_1851:com_12);
+    if_setposition(5, calc(3 + (45 + 3) * $int0), ^setpos_abs_centre, ^setpos_abs_top, interface_1851:com_12);
+    while ($int6 < $int5) {
+        $struct8 = enum(int, struct, $enum3, $int6);
+        if (%varclient_5990 = $int6) {
+            $enum12 = struct_param($struct8, param_6422);
         }
-        cc_create(interface_1851:com_10, ^iftype_rectangle, calc($int7 * 3));
-        cc_setposition(1, calc($int7 * (25 + 3) + 2), ^setpos_abs_left, ^setpos_abs_top);
+        cc_create(interface_1851:com_12, ^iftype_rectangle, calc($int6 * 3));
+        cc_setposition(1, calc($int6 * (25 + 3) + 2), ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(5, 25, ^setsize_minus, ^setsize_abs);
         cc_setfill(true);
-        if (calc($int7 % 2) = 0) {
+        if (calc($int6 % 2) = 0) {
             cc_setcolour(~script10495(12));
             cc_setonmouseover("cc_text_colour_swapper(event_com, cc_getid, ~script10495(13))");
             cc_setonmouseleave("cc_text_colour_swapper(event_com, cc_getid, ~script10495(12))");
@@ -60,74 +59,70 @@ if ($enum4 ! null) {
             cc_setonmouseover("cc_text_colour_swapper(event_com, cc_getid, ~script10495(10))");
             cc_setonmouseleave("cc_text_colour_swapper(event_com, cc_getid, ~script10495(9))");
         }
-        cc_setonop("cheevo_load_list(struct_param($struct9, param_6422), $int7, 1)");
+        cc_setonop("cheevo_load_list(struct_param($struct8, param_6422), $int6, 1)");
         cc_setop(1, "Select");
-        cc_create(interface_1851:com_10, ^iftype_text, calc($int7 * 3 + 1));
-        cc_setposition(calc(5 + 2 * 2), calc($int7 * (25 + 3) + 2), ^setpos_abs_right, ^setpos_abs_top);
-        $int10, $int11, $int12 = ~cheevo_tally_enum(struct_param($struct9, param_6757));
-        cc_settext("<tostring_localised($int10, true)>/<tostring_localised($int11, true)>");
+        cc_create(interface_1851:com_12, ^iftype_text, calc($int6 * 3 + 1));
+        cc_setposition(calc(5 + 2 * 2), calc($int6 * (25 + 3) + 2), ^setpos_abs_right, ^setpos_abs_top);
+        $int9, $int10, $int11 = ~cheevo_tally_enum(struct_param($struct8, param_6757));
+        cc_settext("<tostring_localised($int9, true)>/<tostring_localised($int10, true)>");
         cc_settextshadow(true);
         cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
         cc_settextfont(graphic_17813);
         cc_setcolour(~script10495(3));
         cc_setsize(50, calc(25 - 2), ^setsize_abs, ^setsize_abs);
-        cc_create(interface_1851:com_10, ^iftype_text, calc($int7 * 3 + 2));
-        cc_setposition(5, calc($int7 * (25 + 3) + 2), ^setpos_abs_left, ^setpos_abs_top);
+        cc_create(interface_1851:com_12, ^iftype_text, calc($int6 * 3 + 2));
+        cc_setposition(5, calc($int6 * (25 + 3) + 2), ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(85, 25, ^setsize_abs, ^setsize_abs);
         cc_setcolour(~script10495(3));
         cc_settextshadow(true);
         cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         cc_settextfont(graphic_17813);
-        $string0 = struct_param($struct9, param_6421);
+        $string0 = struct_param($struct8, param_6421);
         $string1 = "";
         if (paraheight($string0, cc_getwidth, cc_getfontmetrics) > 1) {
             $string1 = $string0;
-            if (compare(struct_param($struct9, param_6756), "") ! 0) {
-                $string0 = struct_param($struct9, param_6756);
+            if (compare(struct_param($struct8, param_6756), "") ! 0) {
+                $string0 = struct_param($struct8, param_6756);
             }
         }
-        if (struct_param($struct9, param_6577) = true) {
-            cc_settext("   <$string0>");
-        } else {
-            cc_settext($string0);
-        }
-        if (compare($string1, "") ! 0 | compare(struct_param($struct9, param_2225), "") ! 0 | compare(struct_param($struct9, param_8081), "") ! 0) {
-            if (compare(struct_param($struct9, param_2225), "") ! 0) {
+        cc_settext($string0);
+        if (compare($string1, "") ! 0 | compare(struct_param($struct8, param_2225), "") ! 0 | compare(struct_param($struct8, param_8081), "") ! 0) {
+            if (compare(struct_param($struct8, param_2225), "") ! 0) {
                 if (compare($string1, "") ! 0) {
-                    $string1 = append($string1, "<br><struct_param($struct9, param_2225)>");
+                    $string1 = append($string1, "<br><struct_param($struct8, param_2225)>");
                 } else {
-                    $string1 = struct_param($struct9, param_2225);
+                    $string1 = struct_param($struct8, param_2225);
                 }
             }
-            if (compare(struct_param($struct9, param_8081), "") ! 0) {
+            if (compare(struct_param($struct8, param_8081), "") ! 0) {
                 if (compare($string1, "") ! 0) {
-                    $string1 = append($string1, "<br><struct_param($struct9, param_8081)>");
+                    $string1 = append($string1, "<br><struct_param($struct8, param_8081)>");
                 } else {
-                    $string1 = struct_param($struct9, param_8081);
+                    $string1 = struct_param($struct8, param_8081);
                 }
             }
-            cc_setonmouserepeat("script8799($string1, interface_1851:com_10, cc_getid)");
+            cc_setonmouserepeat("script8799($string1, interface_1851:com_12, cc_getid)");
         }
-        $int7 = calc($int7 + 1);
+        $int6 = calc($int6 + 1);
     }
 }
-$int7 = 0;
-def_int $int14 = enum_getoutputcount(enum_11065);
-while ($int7 < $int14) {
-    $int8 = calc(3 + (45 + 3) * $int7);
-    if ($enum4 ! null & calc($int7 + 1) > $int0) {
-        $int8 = calc($int8 + (2 + $int6 * (25 + 3)));
+$int6 = 0;
+def_int $int13 = enum_getoutputcount(enum_11065);
+while ($int6 < $int13) {
+    $int7 = calc(3 + (45 + 3) * $int6);
+    if ($enum3 ! null & calc($int6 + 1) > $int0) {
+        $int7 = calc($int7 + (2 + $int5 * (25 + 3)));
     }
-    if_setposition(0, $int8, ^setpos_abs_centre, ^setpos_abs_top, enum(int, component, enum_11065, $int7));
-    $int7 = calc($int7 + 1);
+    if_setposition(0, $int7, ^setpos_abs_centre, ^setpos_abs_top, enum(int, component, enum_11065, $int6));
+    $int6 = calc($int6 + 1);
 }
 ~cheevo_populate_scrollbar($int0);
-%varplayer_6891 = struct_param($struct3, param_6422);
-if ($enum13 = null & %varplayer_6891 ! null) {
+%varplayer_6891 = struct_param($struct2, param_6422);
+if ($enum12 = null & %varplayer_6891 ! null) {
     ~script13334(%varplayer_6891, 1);
-} else if ($enum13 ! null) {
-    %varplayer_6891 = $enum13;
-    ~cheevo_load_list($enum13, %varclient_5990, 2);
+} else if ($enum12 ! null) {
+    %varplayer_6891 = $enum12;
+    ~cheevo_load_list($enum12, %varclient_5990, 2);
 } else {
-    cc_deleteall(interface_1851:com_36);
+    cc_deleteall(interface_1851:com_40);
 }

@@ -1,29 +1,32 @@
 // 13317
-[clientscript,script13317](component $component0, int $int1)
-def_int $int2 = 0;
-def_int $int3 = 0;
+[clientscript,script13317](component $component0)
 cc_deleteall($component0);
-switch_int ($int1) {
-    case 0 :
-        $int2 = %varplayerbit_35407;
-    case 1 :
-        $int2 = %varplayerbit_35408;
-    case 2 :
-        $int2 = %varplayerbit_35409;
-    case 3 :
-        $int2 = %varplayerbit_35410;
+def_achievement $achievement1 = null;
+switch_component ($component0) {
+    case interface_1852:com_27 :
+        $achievement1 = %varplayer_9612;
+    case interface_1852:com_28 :
+        $achievement1 = %varplayer_9613;
+    case interface_1852:com_29 :
+        $achievement1 = %varplayer_9614;
+    case interface_1852:com_30 :
+        $achievement1 = %varplayer_9615;
     case default :
         return;
 }
-def_struct $struct4 = null;
-if ($int2 = 0) {
+if ($achievement1 = null) {
+    if_clearops($component0);
     return;
 }
-$struct4 = enum(int, struct, enum_12251, calc($int2 - 1));
-cc_create($component0, ^iftype_graphic, $int3);
+if (achievement_category($achievement1) ! null) {
+    if_setop(1, "Go To", $component0);
+    if_setopbase(achievement_getname($achievement1), $component0);
+    if_setopcursor(1, cursor_210, $component0);
+} else {
+    if_clearops($component0);
+}
+cc_create($component0, ^iftype_graphic, 0);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-cc_setgraphic(~cheevo_icon($struct4));
-cc_setonmouserepeat("cheevo_tooltip($struct4, $component0, $int3)");
-cc_setop(1, "Go To");
-cc_setopcursor(1, cursor_210);
+cc_setgraphic(achievement_sprite($achievement1));
+cc_setonmouserepeat("cheevo_tooltip($achievement1, $component0, cc_getid)");

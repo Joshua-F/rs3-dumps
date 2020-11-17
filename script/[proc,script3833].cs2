@@ -66,17 +66,22 @@ if ($int17 = -1) {
 if ($int17 <= 0) {
     return($int8);
 }
-def_int $int19 = calc($int17 + $int14);
-if ($int19 <= 0) {
-    if ($boolean18 = true & $int16 > 0 & $int8 > calc(^max_32bit_int - $int16)) {
-        return(calc(^max_32bit_int - $int16));
+def_int $int19 = 0;
+def_int $int20 = calc($int17 + $int14);
+if ($int20 <= 0) {
+    if ($boolean18 = true) {
+        if ($int16 > 0 & $int8 > calc(^max_32bit_int - $int16)) {
+            return(calc(^max_32bit_int - $int16));
+        }
+    } else {
+        $int19 = ~script15390($obj0);
     }
     if ($int17 <= 0) {
         return($int8);
     } else {
-        return(min(inv_size(inv_93), $int8));
+        return(min(calc(inv_size(inv_93) - $int19), $int8));
     }
-} else if ($int19 > 0) {
+} else if ($int20 > 0) {
     if ($boolean18 = true) {
         if ($int16 > 0) {
             if ($int8 > calc(^max_32bit_int - $int16)) {
@@ -92,6 +97,6 @@ if ($int19 <= 0) {
     } else if ($int13 = 1) {
         return(min($int8, inv_freespace(inv_93)));
     } else {
-        return(min($int8, calc(inv_size(inv_93) / $int19)));
+        return(min($int8, calc(inv_size(inv_93) / $int20)));
     }
 }

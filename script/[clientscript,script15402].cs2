@@ -1,0 +1,39 @@
+// 15402
+[clientscript,script15402]
+def_dbrow $dbrow0 = ~script15392(%varplayerbit_48371);
+def_string $string0 = db_getfield($dbrow0, dbtable_116:col2, 0);
+def_string $string1 = enum(int, string, enum_16104, %varplayerbit_48373);
+def_graphic $graphic1 = null;
+def_component $component2 = null;
+def_int $int3 = db_getfield($dbrow0, dbtable_116:col6, 0);
+def_int $int4 = -1;
+def_loc $loc5 = null;
+def_obj $obj6 = null;
+def_int $int7 = -1;
+while (++$int7 < $int3) {
+    switch_int ($int7) {
+        case 0 :
+            $int4 = %varplayerbit_48597;
+            $component2 = interface_736:com_12;
+        case 1 :
+            $int4 = %varplayerbit_48598;
+            $component2 = interface_736:com_16;
+        case 2 :
+            $int4 = %varplayerbit_48599;
+            $component2 = interface_736:com_18;
+        case 3 :
+            $int4 = %varplayerbit_48600;
+            $component2 = interface_736:com_20;
+        case 4 :
+            $int4 = %varplayerbit_48601;
+            $component2 = interface_736:com_22;
+    }
+    $loc5, $obj6 = db_getfield($dbrow0, dbtable_116:col5, $int4);
+    switch_int (~script15391($loc5)) {
+        case 0 :
+            $graphic1 = "aif_tick_cross_icon,0";
+        case 1 :
+            $graphic1 = "aif_tick_cross_icon,1";
+    }
+    if_setgraphic($graphic1, $component2);
+}

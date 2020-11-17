@@ -16,7 +16,7 @@ def_int $int9 = 0;
 if_setonop(null, interface_907:com_18);
 if_setonop(null, interface_907:com_19);
 if_setop(1, "", interface_907:com_19);
-if_setontimer(null, interface_906:com_1);
+if_setontimer(null, interface_906:com_2);
 cc_deleteall(interface_907:com_20);
 if_settext("", interface_907:com_21);
 def_int $int10 = 0;
@@ -58,7 +58,7 @@ if (%varclient_3905 = true) {
     ~script10592(interface_907:com_8, 1);
     ~script10593(1);
 } else {
-    if ((playermember = false | $boolean12 = false & $int11 < 2880) & random(2) = 0 & ~script13491(%varplayer_6601) = false) {
+    if ((playermember = false | $boolean12 = false & $int11 < 2880) & random(5) = 0 & ~script13491(%varplayer_6601) = false) {
         switch_int (map_lang) {
             case 0 :
                 if_setgraphic(rs3_lobby_primary_default_bonds_banner_en, interface_907:com_19);
@@ -71,7 +71,7 @@ if (%varclient_3905 = true) {
         }
         return;
     }
-    if (%varplayer_6601 = 6736 & date_minutes >= calc(date_minutes_fromruneday(6736) + 720) | %varplayer_6601 > 6736 | %varplayer_6601 < 6732 | %varplayer_8991 = 0) {
+    if (%varplayer_6601 = 6827 & date_minutes >= calc(date_minutes_fromruneday(6827) + 720) | %varplayer_6601 > 6827 | %varplayer_6601 < 6732 | random(2) = 0 | %varplayerbit_48641 = 0) {
         if (%varplayer_6601 > 0) {
             while ($int6 < $int0) {
                 $int5 = 0;
@@ -94,17 +94,33 @@ if (%varclient_3905 = true) {
                     $int5 = 1;
                 }
                 switch_struct ($struct2) {
-                    case struct_11603, struct_44337 :
+                    case struct_44284, struct_11554 :
                         if (~is_mobile_client = true) {
                             $int5 = 1;
                         }
                     case struct_35237 :
-                        if (date_minutes <= calc(date_minutes_fromruneday(6736) + 720) | date_minutes >= calc(date_minutes_fromruneday(6746) + 720)) {
+                        if (date_minutes <= calc(date_minutes_fromruneday(6827) + 720) | date_minutes >= calc(date_minutes_fromruneday(6837) + 720)) {
                             $int5 = 1;
-                        } else if (%varplayerbit_45314 = 4 & %varplayer_9017 = -1) {
+                        } else if (%varplayerbit_45314 = 5 & %varplayer_9017 = -1) {
                             $int5 = 1;
                         } else if ($int5 = 0) {
-                            $struct3 = $struct2;
+                            if (random(2) = 0) {
+                                $struct3 = $struct2;
+                            } else {
+                                $int5 = 1;
+                            }
+                        }
+                    case struct_5613 :
+                        switch_int (platformtype) {
+                            case ^platformtype_apple, ^platformtype_android :
+                                if (%varplayerbit_48642 = 0) {
+                                    $int5 = 1;
+                                }
+                            case ^platformtype_default :
+                            case default :
+                                if (%varplayerbit_48643 = 0) {
+                                    $int5 = 1;
+                                }
                         }
                 }
                 if ($int5 = 0) {
@@ -223,10 +239,13 @@ if (%varclient_3905 = true) {
             case 12 :
                 ~script10592(interface_907:com_14, 1);
                 if_setonop("script13252", interface_907:com_14);
+            case 13 :
+                if_setop(1, "Select", interface_907:com_19);
+                if_setonop("script4253", interface_907:com_19);
         }
     } else {
-        $int14 = calc(date_minutes_fromruneday(6736) + 720 - 1);
+        $int14 = calc(date_minutes_fromruneday(6827) + 720 - 1);
         ~script3568($int14, date_minutes, -1, -1);
-        if_setontimer("script12275($int14, date_minutes, -1, -1)", interface_906:com_1);
+        if_setontimer("script12275($int14, date_minutes, -1, -1)", interface_906:com_2);
     }
 }
