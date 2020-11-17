@@ -1,0 +1,306 @@
+// 15340
+[proc,script15340](int $int0)(boolean)
+~cheevo_reset_dropdown;
+def_component $component1 = interface_1851:com_40;
+cc_deleteall($component1);
+def_achievement $achievementarray0($int0);
+def_int $intarray1($int0);
+def_int $int2 = 15000;
+def_int $int3 = 20000;
+def_int $int4 = 25000;
+if (%varplayerbit_48340 < %varplayerbit_48341) {
+    $int4 = 15000;
+    $int3 = 20000;
+    $int2 = 25000;
+}
+def_achievement $achievement5 = achievement_findnext;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+while ($achievement5 ! null) {
+    $achievementarray0($int6) = $achievement5;
+    if (achievement_allprereqmet($achievement5) = false) {
+        if (achievement_gethide($achievement5) = 0) {
+            $intarray1($int6) = calc($int6 + $int2);
+            $int9 = calc($int9 + 1);
+        } else {
+            $intarray1($int6) = calc($int6 + $int3);
+            $int10 = calc($int10 + 1);
+        }
+    } else {
+        $int7 = achievement_reqstate($achievement5);
+        switch_int ($int7) {
+            case -2 :
+                $intarray1($int6) = calc($int6 + $int4);
+                $int8 = calc($int8 + 1);
+            case -1 :
+                if (achievement_gethide($achievement5) = 0) {
+                    $intarray1($int6) = calc($int6 + $int2);
+                    $int9 = calc($int9 + 1);
+                } else {
+                    $intarray1($int6) = calc($int6 + $int3);
+                    $int10 = calc($int10 + 1);
+                }
+            case -3 :
+                $intarray1($int6) = calc($int6 + 10000);
+            case default :
+                if (achievement_gethide($achievement5) < 2) {
+                    $intarray1($int6) = calc($int6 + 10000);
+                } else {
+                    $intarray1($int6) = calc($int6 + $int3);
+                    $int10 = calc($int10 + 1);
+                }
+        }
+    }
+    $achievement5 = achievement_findnext;
+    $int6 = calc($int6 + 1);
+}
+array_sort($int0, 1, 0);
+def_int $int11 = $int0;
+if (%varplayerbit_48340 = 1) {
+    $int0 = calc($int0 - $int8);
+}
+if (%varplayerbit_48341 = 1) {
+    $int0 = calc($int0 - $int9);
+    $int0 = calc($int0 - $int10);
+}
+if ($int0 = 0) {
+    return(false);
+}
+~script15336($component1, $int0);
+def_int $int12 = 60;
+def_int $int13 = 0;
+if (%varplayerbit_37059 = 1) {
+    $int13 = 1;
+    $int12 = 35;
+}
+def_int $int14 = 7829367;
+def_int $int15 = 7829367;
+def_int $int16 = 0;
+$int6 = 0;
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_int $int19 = 0;
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_string $string0 = "";
+def_string $string1 = "";
+def_int $int22 = 0;
+def_int $int23 = 0;
+def_int $int24 = 0;
+def_string $string2 = "";
+def_boolean $boolean25 = false;
+def_int $int26 = 1;
+def_int $int27 = 0;
+def_int $int28 = 0;
+while ($int6 < $int0) {
+    $int16 = calc($int6 * 11);
+    $achievement5 = $achievementarray0($int6);
+    if (achievement_allprereqmet($achievement5) = false) {
+        $int7 = -1;
+    } else {
+        $int7 = achievement_reqstate($achievement5);
+    }
+    switch_int ($int7) {
+        case -2 :
+            $int14 = 16777215;
+            $int15 = ~script10495(0);
+        case -1 :
+            $int14 = ~script10495(6);
+            $int15 = ~script10495(6);
+        case -3 :
+            $int14 = 7829367;
+            $int15 = 16355874;
+        case default :
+            $int15 = 7829367;
+            $int14 = 7829367;
+    }
+    $string0 = achievement_getname($achievement5);
+    $string1 = ~achievement_description($achievement5);
+    $int24 = achievement_runescore($achievement5);
+    $string2 = achievement_getreward($achievement5);
+    $boolean25 = ~script15342($achievement5);
+    $int26 = 1;
+    $int27 = 0;
+    if ($int7 ! -2 & achievement_gethide($achievement5) = 2) {
+        $int27 = 1;
+    } else if ($int7 = -1 & achievement_gethide($achievement5) = 1) {
+        $int27 = 1;
+    }
+    if ($int27 = 1) {
+        $string0 = "This Achievement is hidden";
+        $string1 = "Play more of the game to unlock this achievement.";
+        $string2 = "";
+        $int26 = 0;
+        $boolean25 = false;
+        $int24 = 0;
+    }
+    $int22 = achievement_getgraceday($achievement5);
+    if ($int7 ! -2 & $int22 > ~date_runeday) {
+        $string1 = append($string1, " <col=0xF99222>Grace period ends: <~fromdate($int22)></col>");
+    }
+    $int21 = compare($string2, "");
+    if (cc_find($component1, $int16) = true) {
+        cc_setposition(0, $int23, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setparam(param_8167, $int23);
+        cc_setsize(0, $int12, ^setsize_minus, ^setsize_abs);
+        cc_setfill(true);
+        cc_setcolour(~script10495(12));
+        ~cheevo_resolve_tooltip($achievement5);
+        if ($boolean25 = true) {
+            cc_setonop("cheevo_toggle_dropdown(cc_getid, $achievement5)");
+            cc_setop(5, "Toggle");
+            cc_setopcursor(5, cursor_46);
+        }
+    }
+    if ($int13 = 1) {
+        if ($int26 = 1 & cc_find($component1, calc($int16 + 4)) = true) {
+            cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
+            if ($int24 > 0) {
+                cc_setposition(calc($int17 + 2), calc($int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
+            } else {
+                cc_setposition(calc($int17 + 2), calc($int23 + ($int12 / 2 - cc_getheight / 2)), ^setpos_abs_left, ^setpos_abs_top);
+            }
+            cc_setnoclickthrough(true);
+            if ($int7 = -2) {
+                ~script13618($component1, cc_getid, $achievement5);
+            } else {
+                ~cheevo_update_pin($component1, cc_getid, $achievement5);
+            }
+            $int18 = calc(cc_getx + cc_getwidth);
+        } else {
+            $int18 = 0;
+        }
+        if ($int24 > 0 & cc_find($component1, calc($int16 + 10)) = true) {
+            cc_setposition(calc($int17 + 1 + 2), calc($int23 + 14 + 2 * 2), ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize(14, 12, ^setsize_abs, ^setsize_abs);
+            cc_setcolour(~script10495(3));
+            cc_settext(tostring_localised($int24, true));
+            cc_settextshadow(true);
+            cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+            cc_settextfont(graphic_17813);
+        }
+        if (cc_find($component1, calc($int16 + 6)) = true) {
+            cc_setposition(calc($int18 + 2), $int23, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize(calc($int18 + 2 * 2 + 15), $int12, ^setsize_minus, ^setsize_abs);
+            cc_setcolour($int14);
+            cc_settext($string1);
+            cc_settextshadow(true);
+            cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+            cc_settextfont(graphic_17813);
+        }
+        if ($int21 ! 0 & cc_find($component1, calc($int16 + 8)) = true) {
+            cc_setposition(2, calc($int23 + 2), ^setpos_abs_right, ^setpos_abs_top);
+            cc_setgraphic("achievement_icon_rewards_14px,0");
+            cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
+            ~script3537($string2);
+            cc_setmouseovercursor(cursor_172);
+            cc_setnoclickthrough(true);
+        }
+        if ($boolean25 = true & cc_find($component1, calc($int16 + 7)) = true) {
+            cc_setsize(13, 13, ^setsize_abs, ^setsize_abs);
+            if ($int21 = 0) {
+                cc_setposition(2, calc($int23 + ($int12 / 2 - cc_getheight / 2)), ^setpos_abs_right, ^setpos_abs_top);
+            } else {
+                cc_setposition(2, calc($int23 + ($int12 - cc_getheight)), ^setpos_abs_right, ^setpos_abs_top);
+            }
+            cc_setgraphic("rs3_icon_accordion,0");
+        }
+    } else {
+        if (cc_find($component1, calc($int16 + 1)) = true) {
+            cc_setposition(2, calc($int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize(28, 28, ^setsize_abs, ^setsize_abs);
+            cc_setgraphic(achievement_sprite($achievement5));
+            $int17 = calc(cc_getx + cc_getwidth);
+        }
+        if (($int7 = -1 | $int7 = -2) & cc_find($component1, calc($int16 + 3)) = true) {
+            cc_setposition(2, calc($int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize(28, 28, ^setsize_abs, ^setsize_abs);
+            if ($int7 = -2) {
+                cc_setgraphic(mad_may_16_icon_case_complete);
+            } else {
+                cc_setgraphic(mad_may_16_icon_case_locked);
+                if (.cc_find($component1, calc($int16 + 2)) = true) {
+                    .cc_setposition(2, calc($int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
+                    .cc_setsize(28, 28, ^setsize_abs, ^setsize_abs);
+                    .cc_setfill(true);
+                    .cc_setcolour(0x808080);
+                    .cc_settrans(128);
+                }
+            }
+        }
+        if ($int26 = 1 & cc_find($component1, calc($int16 + 4)) = true) {
+            cc_setposition(calc($int17 + 2), $int23, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
+            cc_setnoclickthrough(true);
+            if ($int7 = -2) {
+                ~script13618($component1, cc_getid, $achievement5);
+            } else {
+                ~cheevo_update_pin($component1, cc_getid, $achievement5);
+            }
+            $int18 = calc(cc_getx + cc_getwidth);
+        } else {
+            $int18 = calc($int17 + 2);
+        }
+        if (cc_find($component1, calc($int16 + 5)) = true) {
+            cc_setposition(calc($int18 + 2), $int23, ^setpos_abs_left, ^setpos_abs_top);
+            cc_settextshadow(true);
+            cc_settext($string0);
+            cc_setsize($int18, 15, ^setsize_minus, ^setsize_abs);
+            cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+            cc_settextfont(cinzel_12pt_bold);
+            cc_setcolour($int15);
+        }
+        if (cc_find($component1, calc($int16 + 6)) = true) {
+            cc_setposition(calc($int17 + 2), calc($int23 + 15), ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize(calc($int17 + 13), calc($int12 - 15), ^setsize_minus, ^setsize_abs);
+            cc_setcolour($int14);
+            cc_settext($string1);
+            cc_settextshadow(true);
+            cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+            cc_settextfont(graphic_17813);
+            $int19 = cc_gety;
+            $int20 = calc(cc_getheight / 2);
+        }
+        if ($boolean25 = true & cc_find($component1, calc($int16 + 7)) = true) {
+            cc_setsize(13, 13, ^setsize_abs, ^setsize_abs);
+            cc_setposition(2, calc($int19 + ($int20 - cc_getheight / 2)), ^setpos_abs_right, ^setpos_abs_top);
+            cc_setgraphic("rs3_icon_accordion,0");
+        }
+        if ($int21 ! 0 & cc_find($component1, calc($int16 + 8)) = true) {
+            cc_setposition(2, calc($int23 + 2), ^setpos_abs_right, ^setpos_abs_top);
+            cc_setgraphic("achievement_icon_rewards_14px,0");
+            cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
+            ~script3537($string2);
+            cc_setmouseovercursor(cursor_172);
+            cc_setnoclickthrough(true);
+        }
+        if ($int24 > 0) {
+            if (cc_find($component1, calc($int16 + 9)) = true) {
+                cc_setposition(calc($int17 - 15), calc($int23 + 2 + 28 - 12), ^setpos_abs_left, ^setpos_abs_top);
+                cc_setsize(15, 12, ^setsize_abs, ^setsize_abs);
+                cc_setcolour(^black);
+                cc_settrans(128);
+                cc_setfill(true);
+            }
+            if (cc_find($component1, calc($int16 + 10)) = true) {
+                cc_setposition(calc($int17 - 15), calc($int23 + $int17 - 12), ^setpos_abs_left, ^setpos_abs_top);
+                cc_setsize(14, 12, ^setsize_abs, ^setsize_abs);
+                cc_setcolour(~script10495(3));
+                cc_settext(tostring_localised($int24, true));
+                cc_settextshadow(true);
+                cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+                cc_settextfont(graphic_17813);
+            }
+        }
+    }
+    if (%varplayer_9607 = $achievement5) {
+        $int28 = $int23;
+    }
+    $int23 = calc($int23 + ($int12 + 2));
+    $int6 = calc($int6 + 1);
+}
+~script15341($component1, $int23, $int28);
+return(true);

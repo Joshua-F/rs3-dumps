@@ -80,6 +80,8 @@ if ($int1 = 21) {
         if_setontimer(null, $component2);
         if ($int0 = 0) {
             ~login_dologin;
+        } else if ($int0 = 8) {
+            ~login_dologin_steam;
         } else {
             ~script4634($int0);
         }
@@ -141,6 +143,25 @@ def_int $int12 = 0;
 def_int $int13 = 0;
 def_int $int14 = 0;
 def_int $int15 = 0;
+if (%varclient_6816 = 1) {
+    switch_int ($int1) {
+        case -2, 29, 46, 45, 5, 7, 8, 9, 13, 16, 17, 20, 25, 26, 27, 37, 62, 39, 41, 55, 14, 6, 3, 4, 11, 18, 30, 31, 12, 40, 32, 47, 51, 53, 50, 38, 58, 59, 61, 1401, 1402, 1404, 1406, 1407 :
+        case 1403 :
+            if (clienttype ! enhanced_ios) {
+                %varclient_6816 = 2;
+                ~login_popup_close;
+                ~loginscreen_setactivemenu_full(11, 1);
+                return;
+            } else {
+                ~login_popup_close;
+            }
+        case default :
+            %varclient_6816 = 2;
+            ~login_popup_close;
+            ~loginscreen_setactivemenu_full(11, 1);
+            return;
+    }
+}
 switch_int ($int1) {
     case -2 :
         ~login_popup_close;
@@ -375,7 +396,11 @@ switch_int ($int1) {
     case 1402 :
         $string2 = "Single Sign on failed because you exited without signing in.";
     case 1403 :
-        $string2 = "Could not connect. Please check your internet connection or try again later.";
+        if (clienttype = enhanced_ios) {
+            $string2 = "Sign on was interrupted or cancelled. Please check your internet connection or try again later.";
+        } else {
+            $string2 = "Could not connect. Please check your internet connection or try again later.";
+        }
     case 1404 :
         $string2 = "Single Sign on failed because your access is unauthorized. Please try re-entering your login details.";
     case 1405 :

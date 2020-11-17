@@ -5,38 +5,50 @@ def_int $int1 = 40;
 def_int $int2 = 6;
 def_graphic $graphic3 = "trh119_icon_checkmarks,1";
 def_graphic $graphic4 = "trh119_icon_checkmarks,0";
-if (~trh_state(struct_7229) = 1) {
+if (~trh_state(struct_44604) = 1) {
     $int2 = 8;
-    if_setsize(640, 320, ^setsize_abs, ^setsize_abs, interface_1870:com_16);
     if_setsize(640, 320, ^setsize_abs, ^setsize_abs, interface_1870:com_17);
-    $graphic4 = treasurehunter_trh157_container_grid;
-    if_setposition(158, 15, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_16);
+    if_setsize(640, 320, ^setsize_abs, ^setsize_abs, interface_1870:com_18);
+    $graphic3 = trh172_icon_digsite_cross_highlight;
+    $graphic4 = trh172_grid_digsite_normal;
     if_setposition(158, 15, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_17);
+    if_setposition(158, 15, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_18);
+} else if (~trh_state(struct_7229) = 1) {
+    $int2 = 8;
+    if_setsize(640, 320, ^setsize_abs, ^setsize_abs, interface_1870:com_17);
+    if_setsize(640, 320, ^setsize_abs, ^setsize_abs, interface_1870:com_18);
+    $graphic4 = treasurehunter_trh157_container_grid;
+    if_setposition(158, 15, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_17);
+    if_setposition(158, 15, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_18);
 }
-def_int $int5 = calc((if_getwidth(interface_1870:com_16) - $int1 * $int2) / 2);
-def_int $int6 = calc((if_getheight(interface_1870:com_16) - $int1 * 6) / 2);
+def_int $int5 = calc((if_getwidth(interface_1870:com_17) - $int1 * $int2) / 2);
+def_int $int6 = calc((if_getheight(interface_1870:com_17) - $int1 * 6) / 2);
 def_int $int7 = $int5;
 def_int $int8 = $int6;
 def_int $int9 = 0;
 if (~trh_state(struct_40380) = 1 | ~trh_state(struct_38726) = 1) {
     $graphic3 = treasurehunter_trh142_icon_crossbones;
     $graphic4 = treasurehunter_trh142_container_grid;
-    if_setposition(54, 15, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_16);
     if_setposition(54, 15, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_17);
+    if_setposition(54, 15, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_18);
 }
-cc_deleteall(interface_1870:com_16);
 cc_deleteall(interface_1870:com_17);
-cc_deleteall(interface_1870:com_23);
+cc_deleteall(interface_1870:com_18);
+cc_deleteall(interface_1870:com_24);
 cc_deleteall(interface_1253:com_1132);
 while ($int0 < 36) {
-    if (~trh_state(struct_7229) = 1 & (calc($int0 % 3) = 0 | calc($int0 % 5) = 0 | calc($int0 % 7) = 0)) {
-        $int7 = calc($int7 + $int1);
+    if (~trh_state(struct_7229) = 1) {
+        if (calc($int0 % 3) = 0 | calc($int0 % 5) = 0 | calc($int0 % 7) = 0) {
+            $int7 = calc($int7 + $int1);
+        }
+    } else if (~trh_state(struct_44604) = 1) {
+        $int7 = calc($int7 + $int1 * enum(int, int, enum_1652, $int0));
     }
-    cc_create(interface_1870:com_16, ^iftype_graphic, $int0);
+    cc_create(interface_1870:com_17, ^iftype_graphic, $int0);
     cc_setsize($int1, $int1, ^setsize_abs, ^setsize_abs);
     cc_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top);
     cc_setgraphic($graphic4);
-    cc_create(interface_1870:com_17, ^iftype_graphic, $int0);
+    cc_create(interface_1870:com_18, ^iftype_graphic, $int0);
     cc_setop(1, "Dig");
     cc_setopcursor(1, cursor_173);
     cc_setsize($int1, $int1, ^setsize_abs, ^setsize_abs);
@@ -57,7 +69,7 @@ while ($int0 < 36) {
     $int0 = calc($int0 + 1);
 }
 cc_create(interface_1253:com_1132, ^iftype_graphic, $int0);
-if_setonop("script13377($int0)", interface_1870:com_20);
+if_setonop("script13377($int0)", interface_1870:com_21);
 def_int $int10 = 5;
 def_int $int11 = 0;
 def_int $int12 = 0;
@@ -66,30 +78,30 @@ def_int $int14 = 0;
 def_string $string0 = "";
 def_enum $enum15 = enum_9077;
 if (~trh_state(struct_1515) = 1 | ~trh_state(struct_42706) = 1 & %varplayer_3079 = 6508) {
-    if_sethide(true, interface_1870:com_14);
+    if_sethide(true, interface_1870:com_15);
     if_sethide(true, interface_1870:com_0);
-    if_sethide(false, interface_1870:com_15);
+    if_sethide(false, interface_1870:com_16);
     $int1 = 28;
-    $int5 = calc((if_getwidth(interface_1870:com_23) - (5 * $int1 + (5 - 1) * $int10)) / 2);
+    $int5 = calc((if_getwidth(interface_1870:com_24) - (5 * $int1 + (5 - 1) * $int10)) / 2);
     $int6 = 0;
     $int7 = $int5;
     $int8 = $int6;
     $int0 = 0;
     while ($int0 < enum_getoutputcount(enum_12584)) {
         $int12, $int13, $int14, $string0 = ~script13381($int0);
-        cc_create(interface_1870:com_23, ^iftype_rectangle, if_getnextsubid(interface_1870:com_23));
+        cc_create(interface_1870:com_24, ^iftype_rectangle, if_getnextsubid(interface_1870:com_24));
         cc_setcolour(0x071820);
         cc_setfill(true);
-        cc_setsize(calc(if_getwidth(interface_1870:com_23) - $int5), calc($int1 / 2), ^setsize_abs, ^setsize_abs);
+        cc_setsize(calc(if_getwidth(interface_1870:com_24) - $int5), calc($int1 / 2), ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int5 / 2), calc($int6 + $int0 * ($int1 + $int10) + $int1 / 4), ^setpos_abs_left, ^setpos_abs_top);
         if ($int13 > 0) {
             while ($int11 < $int13) {
-                cc_create(interface_1870:com_23, ^iftype_graphic, if_getnextsubid(interface_1870:com_23));
+                cc_create(interface_1870:com_24, ^iftype_graphic, if_getnextsubid(interface_1870:com_24));
                 cc_setgraphic(enum(int, graphic, enum_12585, $int14));
                 cc_setsize($int1, $int1, ^setsize_abs, ^setsize_abs);
                 cc_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top);
                 cc_setonmouserepeat("script3876($string0, event_com, event_comsubid)");
-                .cc_create(interface_1870:com_23, ^iftype_graphic, if_getnextsubid(interface_1870:com_23));
+                .cc_create(interface_1870:com_24, ^iftype_graphic, if_getnextsubid(interface_1870:com_24));
                 .cc_setgraphic(rs3_contextual_input_green_check_mark);
                 .cc_setsize($int1, $int1, ^setsize_abs, ^setsize_abs);
                 .cc_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top);
@@ -107,21 +119,27 @@ if (~trh_state(struct_1515) = 1 | ~trh_state(struct_42706) = 1 & %varplayer_3079
         }
         $int0 = calc($int0 + 1);
     }
-    if_settext("Buried Treasure", interface_1870:com_24);
-    if_settext("Dig up chests and use Treasure Hunter keys to open them. Search for special buried treasure chests to uncover more loot!", interface_1870:com_25);
-    if_sethide(true, interface_1870:com_18);
-} else if (~trh_state(struct_40380) = 1 | ~trh_state(struct_7229) = 1 | ~trh_state(struct_38726) = 1) {
-    if_sethide(false, interface_1870:com_14);
+    if_settext("Buried Treasure", interface_1870:com_25);
+    if_settext("Dig up chests and use Treasure Hunter keys to open them. Search for special buried treasure chests to uncover more loot!", interface_1870:com_26);
+    if_sethide(true, interface_1870:com_19);
+} else if (~trh_state(struct_40380) = 1 | ~trh_state(struct_7229) = 1 | ~trh_state(struct_44604) = 1 | ~trh_state(struct_38726) = 1) {
+    if_sethide(false, interface_1870:com_15);
     if_sethide(false, interface_1870:com_0);
-    if_sethide(true, interface_1870:com_15);
-    if_sethide(false, interface_1870:com_18);
+    if_sethide(true, interface_1870:com_16);
+    if_sethide(false, interface_1870:com_19);
     cc_deleteall(interface_1870:com_4);
     cc_deleteall(interface_1870:com_6);
     if (~trh_state(struct_7229) = 1) {
         if_setposition(-55, 3, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_0);
         $enum15 = enum_15153;
-        if_setposition(161, 23, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1870:com_18);
-        if_settext("The Undergrowth", interface_1870:com_14);
+        if_setposition(161, 23, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1870:com_19);
+        if_settext("The Undergrowth", interface_1870:com_15);
+    }
+    if (~trh_state(struct_44604) = 1) {
+        if_setposition(-55, 3, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_0);
+        $enum15 = enum_1650;
+        if_setposition(161, 23, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1870:com_19);
+        if_settext("Digsite Delve", interface_1870:com_15);
     }
     $int5 = 4;
     $int6 = 5;

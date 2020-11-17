@@ -1,0 +1,74 @@
+// 15251
+[proc,script15251](int $int0)
+if (%varclient_6817 = $int0) {
+    return;
+}
+def_string $string0 = "";
+if_sethide(false, interface_724:com_1);
+if_sethide(true, interface_724:com_4);
+if_sethide(true, interface_724:com_5);
+~login_popup_close;
+if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_724:com_1);
+switch_int ($int0) {
+    case 0 :
+        if_sethide(true, interface_724:com_1);
+        ~loginscreen_steam_spinner("Checking Steam login status...");
+    case 1 :
+        if_setsize(364, 270, ^setsize_abs, ^setsize_abs, interface_724:com_1);
+        if_sethide(false, interface_724:com_4);
+        if_setonclick("login_dologin_steam", interface_724:com_22);
+        ~script15268(interface_724:com_21);
+        ~script15272;
+    case 2 :
+        if_settext("Welcome To RuneScape", interface_724:com_6);
+        if_setsize(364, 300, ^setsize_abs, ^setsize_abs, interface_724:com_1);
+        if_sethide(false, interface_724:com_5);
+        if_sethide(false, interface_724:com_7);
+        if_sethide(true, interface_724:com_8);
+        if_sethide(true, interface_724:com_12);
+        ~script13993(interface_724:com_18, null, struct_28556, "Yes - Link my RuneScape account with Steam.");
+        ~script13993(interface_724:com_19, null, struct_28556, "No - Create a new account with Steam.");
+        if_setonclick("script15265", interface_724:com_18);
+        if_setonclick("script15264", interface_724:com_19);
+        ~script15272;
+    case 5 :
+        if_settext("Create New Account", interface_724:com_6);
+        if_setsize(364, 250, ^setsize_abs, ^setsize_abs, interface_724:com_1);
+        if_setposition(0, -25, ^setpos_abs_centre, ^setpos_abs_centre, interface_724:com_1);
+        if_sethide(false, interface_724:com_5);
+        if_sethide(true, interface_724:com_7);
+        if_sethide(false, interface_724:com_8);
+        if_sethide(true, interface_724:com_12);
+        ~script13969(interface_724:com_10, null, struct_28553, "Create");
+        ~script13969(interface_724:com_11, null, struct_28554, "Go Back");
+        if_setonclick("script2661", interface_724:com_10);
+        if_setonclick("script1396", interface_724:com_11);
+    case 4 :
+        if_settext("Welcome To RuneScape", interface_724:com_6);
+        if_setsize(364, 355, ^setsize_abs, ^setsize_abs, interface_724:com_1);
+        if_sethide(false, interface_724:com_5);
+        if_sethide(true, interface_724:com_7);
+        if_sethide(true, interface_724:com_8);
+        if_sethide(false, interface_724:com_12);
+        ~script13969(interface_724:com_15, null, struct_28554, "Launch web page");
+        ~script13969(interface_724:com_16, null, struct_28555, "Cancel");
+        if_setonclick("script15260", interface_724:com_14);
+        if_setonclick("script15252", interface_724:com_16);
+        if_setonclick("script15266", interface_724:com_15);
+        $string0 = "If the browser page didn't launch or it closed without your account being linked use this button to re-launch the web page.";
+        if_setonmouserepeat("script8802($string0, 1000, 0, event_com, event_comsubid, graphic_20452, ^white)", interface_724:com_15);
+        ~script15272;
+    case 3 :
+        ~loginscreen_steam_spinner("Account linking in progress.");
+    case 6 :
+        ~loginscreen_steam_popup("We failed to link your Steam account. Please try again later.", "Back", 1, 1);
+    case 7 :
+        if_sethide(true, interface_724:com_1);
+        ~loginscreen_steam_spinner("Logging In - Please Wait");
+    case 8 :
+        if_sethide(true, interface_724:com_1);
+        ~loginscreen_steam_popup("Logging in - Please Wait", "Abort Login", 0, 1);
+    case default :
+        ~script15256;
+}
+%varclient_6817 = $int0;

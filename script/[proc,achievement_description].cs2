@@ -1,0 +1,20 @@
+// 15321
+[proc,achievement_description](achievement $achievement0)(string)
+if ($achievement0 = null) {
+    return("");
+}
+def_string $string0 = achievement_getdesc($achievement0, 0);
+def_string $string1 = "";
+if (~ironman_mode = true) {
+    $string1 = achievement_getdesc($achievement0, 1);
+    if (string_length($string1) > 0) {
+        $string0 = $string1;
+    }
+}
+def_int $int1 = 0;
+def_int $int2 = 0;
+$int1, $int2 = ~achievement_tally($achievement0);
+if ($int2 > 0) {
+    $string0 = append($string0, " (<~tostring_spacer_local($int1)>/<~tostring_spacer_local($int2)>)");
+}
+return($string0);

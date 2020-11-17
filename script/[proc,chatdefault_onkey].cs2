@@ -87,16 +87,28 @@ switch_int ($key0) {
         if (string_length(~script8521($int2)) < 1) {
             if (~script7460 = false) {
                 ~script8517($int2);
-            } else if (~script8853 > 1) {
-                ~script9958(8, 0);
-            } else if (~script8846(1) = true) {
-                ~script8182;
+            } else {
+                if (%varclient_6858 = true) {
+                    %varclient_6858 = false;
+                    if (%varplayerbit_37056 = 0) {
+                        if_sethide(false, interface_137:com_76);
+                    }
+                    return;
+                }
+                if (~script8853 > 1) {
+                    ~script9958(8, 0);
+                } else if (~script8846(1) = true) {
+                    ~script8182;
+                }
             }
         } else {
             ~script8522($int2, "");
             %varclient_1028 = 0;
             if (~script8853 > 1) {
                 ~script9958(8, 0);
+            }
+            if (~script7460 = true & %varplayerbit_37056 = 0 & %varclient_6858 = false) {
+                if_sethide(false, interface_137:com_76);
             }
         }
     case ^key_tab :
@@ -226,6 +238,12 @@ switch_int ($key0) {
             %varclient_1652 = false;
             return;
         }
+        if ($int2 = 18) {
+            $int5 = string_length(%varclient_2483);
+        }
         ~script8510($int2, $key0, $char1);
+        if ($int2 = 18 & $int5 = 0 & string_length(%varclient_2483) > 0) {
+            if_sethide(true, interface_137:com_76);
+        }
 }
 ~script1558($int2, 0);

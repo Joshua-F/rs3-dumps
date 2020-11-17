@@ -1,0 +1,83 @@
+// 15386
+[proc,tut6_controls_fade](int $int0, int $int1)
+def_int $int2 = 0;
+def_component $component3 = null;
+def_int $int4 = 0;
+def_component $component5 = null;
+while ($int2 < 9) {
+    switch_int ($int1) {
+        case 1 :
+            switch_int ($int2) {
+                case 0 :
+                    $component5 = interface_579:com_25;
+                    $component3 = interface_579:com_22;
+                case 1 :
+                    $component3 = interface_579:com_23;
+                case 2 :
+                    $component3 = interface_579:com_24;
+                case 3 :
+                    $component5 = interface_579:com_29;
+                    $component3 = interface_579:com_26;
+                case 4 :
+                    $component3 = interface_579:com_27;
+                case 5 :
+                    $component3 = interface_579:com_28;
+                case 6 :
+                    $component5 = interface_579:com_33;
+                    $component3 = interface_579:com_30;
+                case 7 :
+                    $component3 = interface_579:com_31;
+                case 8 :
+                    $component3 = interface_579:com_32;
+            }
+        case 2 :
+            switch_int ($int2) {
+                case 0 :
+                    $component5 = interface_579:com_13;
+                    $component3 = interface_579:com_10;
+                case 1 :
+                    $component3 = interface_579:com_11;
+                case 2 :
+                    $component3 = interface_579:com_12;
+                case 3 :
+                    $component5 = interface_579:com_17;
+                    $component3 = interface_579:com_14;
+                case 4 :
+                    $component3 = interface_579:com_15;
+                case 5 :
+                    $component3 = interface_579:com_16;
+                case 6 :
+                    $component5 = interface_579:com_21;
+                    $component3 = interface_579:com_18;
+                case 7 :
+                    $component3 = interface_579:com_19;
+                case 8 :
+                    $component3 = interface_579:com_20;
+            }
+        case default :
+            ~error("Unhandled $page : <tostring($int1)>");
+            return;
+    }
+    $int4 = calc(if_getnextsubid($component3) - 1);
+    while ($int4 >= 0) {
+        if (cc_find($component3, $int4) = true) {
+            switch_int ($int0) {
+                case 0 :
+                    cc_settrans(255);
+                    cc_setontimer(null);
+                    if ($component5 ! null) {
+                        if_sethide(true, $component5);
+                    }
+                case 1 :
+                    ~cc_fadein(50, $component5);
+                case 2 :
+                    ~cc_fadeout(50, $component5);
+                case default :
+                    ~error("Unhandled $fade_type : <tostring($int0)>");
+                    return;
+            }
+        }
+        $int4 = calc($int4 - 1);
+    }
+    $int2 = calc($int2 + 1);
+}

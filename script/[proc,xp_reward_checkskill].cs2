@@ -16,14 +16,6 @@ switch_stat ($stat0) {
         if (stat_base(smithing) < 80 | stat_base(divination) < 80 | stat_base(crafting) < 80) {
             return(false);
         }
-    case archaeology :
-        if (~script14580 = true) {
-            if ($int3 = 1) {
-                mes("You cannot use this item in Archaeology right now.");
-                sound_vorbis_volume(sound_10046, 1, 0, 150);
-            }
-            return(false);
-        }
 }
 if (stat_base($stat0) < $int1) {
     if ($int3 = 1) {
@@ -446,7 +438,7 @@ switch_obj ($obj2) {
         }
     case obj_28320 :
         switch_stat ($stat0) {
-            case smithing, fishing, mining, runecraft, crafting, woodcutting, firemaking, fletching, construction, hunter, thieving, cooking, herblore, farming, divination :
+            case smithing, fishing, mining, runecraft, crafting, woodcutting, firemaking, fletching, construction, hunter, thieving, cooking, herblore, farming, divination, archaeology :
             case default :
                 if ($int3 = 1) {
                     mes("You can only boost certain non-combat skills with the banner.");
@@ -697,6 +689,8 @@ switch_obj ($obj2) {
         if ($stat0 = invention) {
             return(false);
         }
+    case obj_21409 :
+        return(~script6679($stat0, $int3));
 }
 if (oc_param($obj2, param_4018) = 1 | oc_param($obj2, param_4019) = 1 | oc_param($obj2, param_4020) = 1 | oc_param($obj2, param_4021) = 1 | oc_param($obj2, param_4022) = 1 | oc_param($obj2, param_4023) = 1 | oc_param($obj2, param_4024) = 1 | oc_param($obj2, param_4025) = 1 | oc_param($obj2, param_4026) = 1 | oc_param($obj2, param_4027) = 1) {
     switch_stat ($stat0) {

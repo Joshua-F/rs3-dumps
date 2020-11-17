@@ -40,13 +40,11 @@ if_sethide(false, $component4);
 if_sethide(false, $component3);
 if (%varplayerbit_27169 = 1) {
     if_sethide(true, ~script13539($int0));
-    if_setsize(0, 18, ^setsize_minus, ^setsize_minus, if_getparentlayer($component5));
-} else if ($int0 ! 18) {
-    if_setsize(16, 41, ^setsize_abs, ^setsize_minus, $component6);
-    if_setposition(0, calc(if_getheight($component3) + 3), ^setpos_abs_right, ^setpos_abs_bottom, $component6);
+    if_setsize(0, 26, ^setsize_minus, ^setsize_minus, if_getparentlayer($component5));
+    if_setposition(0, 26, ^setpos_abs_left, ^setpos_abs_bottom, if_getparentlayer($component5));
 } else {
     if_setsize(16, 0, ^setsize_abs, ^setsize_minus, $component6);
-    if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre, $component6);
+    if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom, $component6);
 }
 if ($component7 ! null) {
     if_sethide(true, $component7);
@@ -82,7 +80,11 @@ switch_int ($int9) {
     case 5 :
         if_settext("Group Chat (Team)<img=3>:", $component8);
     case default :
-        if_settext("<chat_playername><img=3>:", $component8);
+        if (%varclient_6858 = true) {
+            if_settext("Search Wiki<img=3>:", $component8);
+        } else {
+            if_settext("<chat_playername><img=3>:", $component8);
+        }
 }
 if_settextfont(graphic_20452, $component4);
 if_setcolour(0x7fa9ff, $component4);
@@ -106,25 +108,18 @@ if (string_length(~script8521($int0)) > 0 | %varclient_2873 = 8 & %varclient_223
     if_setcolour(0x969696, $component4);
 }
 ~script7172($int0);
-if ($boolean10 = true | $int0 = 18) {
-    if ($boolean10 = false) {
-        if_setposition(5, 0, ^setpos_abs_left, ^setpos_abs_bottom, $component8);
-    } else {
-        if_setposition(5, 0, ^setpos_abs_left, ^setpos_abs_centre, $component8);
-    }
-    if_setsize(stringwidth(if_gettext($component8), graphic_20452), 2, ^setsize_abs, ^setsize_minus, $component8);
-    if ($boolean10 = false) {
-        if_setposition(calc(4 + if_getx($component8) + if_getwidth($component8)), 1, ^setpos_abs_left, ^setpos_abs_bottom, $component3);
-    } else {
-        if_setposition(calc(4 + if_getx($component8) + if_getwidth($component8)), 0, ^setpos_abs_left, ^setpos_abs_centre, $component3);
-    }
-    if_setsize(calc(if_getx($component3) + 5), 4, ^setsize_minus, ^setsize_minus, $component3);
+if ($boolean10 = false) {
+    if_setposition(5, 0, ^setpos_abs_left, ^setpos_abs_bottom, $component8);
 } else {
-    if_setposition(5, 2, ^setpos_abs_left, ^setpos_abs_bottom, $component8);
-    if_setsize(stringwidth(if_gettext($component8), graphic_20452), if_getheight($component8), ^setsize_abs, ^setsize_abs, $component8);
-    if_setposition(calc(4 + if_getx($component8) + if_getwidth($component8)), 2, ^setpos_abs_left, ^setpos_abs_bottom, $component3);
-    if_setsize(calc(if_getwidth(if_getlayer($component3)) - if_getx($component3) - 5), if_getheight($component3), ^setsize_abs, ^setsize_abs, $component3);
+    if_setposition(5, 0, ^setpos_abs_left, ^setpos_abs_centre, $component8);
 }
+if_setsize(stringwidth(if_gettext($component8), graphic_20452), 2, ^setsize_abs, ^setsize_minus, $component8);
+if ($boolean10 = false) {
+    if_setposition(calc(4 + if_getx($component8) + if_getwidth($component8)), 1, ^setpos_abs_left, ^setpos_abs_bottom, $component3);
+} else {
+    if_setposition(calc(4 + if_getx($component8) + if_getwidth($component8)), 0, ^setpos_abs_left, ^setpos_abs_centre, $component3);
+}
+if_setsize(calc(if_getx($component3) + 5), 4, ^setsize_minus, ^setsize_minus, $component3);
 if_setonclick("script1554($int0, event_mousex, 0)", $component4);
 def_string $string0 = ~script8521($int0);
 %varclient_1028 = min(%varclient_1028, string_length(escape($string0)));

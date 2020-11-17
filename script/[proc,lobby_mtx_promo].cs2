@@ -25,8 +25,13 @@ if ($int4 = 1) {
     $string1 = "mtxn_rs_shop";
     $string2 = "index";
     if_setop(1, "Select", $component0);
-    if_setonop("script10029($string1, $string2, $string2, true)", $component0);
-    if_setonclick("script9036", $component0);
+    if (~is_mobile_client = true) {
+        if_setonop("script13252", $component0);
+        ~script13264(2, 1, $int5);
+    } else {
+        if_setonop("script10029($string1, $string2, $string2, true)", $component0);
+        if_setonclick("script9036", $component0);
+    }
 } else {
     while ($int10 < $int6) {
         $int9 = 0;
@@ -50,6 +55,10 @@ if ($int4 = 1) {
         }
         switch_struct ($struct7) {
             case struct_11779 :
+                if (map_lang ! 0) {
+                    $int9 = 1;
+                }
+            case struct_836 :
                 if (map_lang ! 0) {
                     $int9 = 1;
                 }
@@ -195,13 +204,13 @@ if ($int4 = 1) {
             }
             switch_int ($intarray1(random($int11))) {
                 case 1 :
-                    $string2 = "index#category/Packs/package/OrnateLightWeaponPack";
+                    $string2 = "index?category=Packs&package=OrnateLightWeaponPack";
                 case 2 :
-                    $string2 = "index#category/Packs/package/OrnateHeavyWeaponPack";
+                    $string2 = "index?category=Packs&package=OrnateHeavyWeaponPack";
                 case 3 :
-                    $string2 = "index#category/Packs/package/OrnateMagicWeaponPack";
+                    $string2 = "index?category=Packs&package=OrnateMagicWeaponPack";
                 case 4 :
-                    $string2 = "index#category/Packs/package/OrnateRangedWeaponPack";
+                    $string2 = "index?category=Packs&package=OrnateRangedWeaponPack";
             }
         case struct_39679 :
             if (%varplayerbit_33770 = 0) {
@@ -218,13 +227,13 @@ if ($int4 = 1) {
             }
             switch_int ($intarray1(random($int11))) {
                 case 1 :
-                    $string2 = "index#category/Packs/package/FaeLightWeaponPack";
+                    $string2 = "index?category=Packs&package=FaeLightWeaponPack";
                 case 2 :
-                    $string2 = "index#category/Packs/package/FaeHeavyWeaponPack";
+                    $string2 = "index?category=Packs&package=FaeHeavyWeaponPack";
                 case 3 :
-                    $string2 = "index#category/Packs/package/FaeMagicWeaponPack";
+                    $string2 = "index?category=Packs&package=FaeMagicWeaponPack";
                 case 4 :
-                    $string2 = "index#category/Packs/package/FaeRangedWeaponPack";
+                    $string2 = "index?category=Packs&package=FaeRangedWeaponPack";
             }
         case struct_39685 :
             if (%varplayerbit_32669 = 0) {
@@ -238,11 +247,11 @@ if ($int4 = 1) {
             }
             switch_int ($intarray1(random($int11))) {
                 case 1 :
-                    $string2 = "index#category/Packs/package/ManticoreMeleeWeaponPack";
+                    $string2 = "index?category=Packs&package=ManticoreMeleeWeaponPack";
                 case 2 :
-                    $string2 = "index#category/Packs/package/ManticoreMagicWeaponPack";
+                    $string2 = "index?category=Packs&package=ManticoreMagicWeaponPack";
                 case 3 :
-                    $string2 = "index#category/Packs/package/ManticoreRangedWeaponPack";
+                    $string2 = "index?category=Packs&package=ManticoreRangedWeaponPack";
             }
     }
     switch_int (map_lang) {
@@ -324,6 +333,14 @@ if ($int4 = 1) {
             }
             $int14 = 1;
             ~script13264(12, 1, $int5);
+        case 13 :
+            if (string_length($string0) = 0) {
+                $string0 = "Solomon's Store";
+            }
+            $int14 = 1;
+            if_setop(1, "Select", $component0);
+            if_setonop("script4253", $component0);
+            if_setonclick("script9036", $component0);
         case default :
             if (string_length($string0) = 0) {
                 $string0 = "Solomon's Store";

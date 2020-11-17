@@ -1,0 +1,19 @@
+// 15362
+[clientscript,cheevo_resolve_goto](component $component0, component $component1)
+if (%varplayer_9607 = null) {
+    return;
+}
+def_category $category2 = achievement_category(%varplayer_9607);
+def_category $category3 = achievement_subcat(%varplayer_9607);
+def_int $int4 = enum_getreverseindex(category, int, enum_16072, $category2, 0);
+~cheevo_op_category($component0, $component1, $int4);
+def_enum $enum5 = enum(category, enum, enum_16076, $category2);
+def_int $int6 = -1;
+def_int $int7 = 0;
+if ($category3 ! null) {
+    $int6 = enum_getreverseindex(category, int, $enum5, $category3, 0);
+    $int7 = calc($int6 * (25 + 3 + 2));
+    ~script15359($category2, $category3, $int7);
+}
+%varclient_6829 = calc($int4 + 1);
+%varclient_6830 = calc($int6 + 1);

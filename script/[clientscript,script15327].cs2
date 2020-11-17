@@ -1,0 +1,22 @@
+// 15327
+[clientscript,script15327](component $component0, component $component1, component $component2)
+def_int $int3 = enum_getoutputcount(enum_16072);
+def_category $category4 = null;
+def_achievement $achievement5 = null;
+def_int $int6 = 0;
+def_int $int7 = 0;
+while ($int3-- > 0) {
+    $category4 = enum(int, category, enum_16072, $int3);
+    $int6 = calc($int6 + achievement_findcategory($category4));
+    $achievement5 = achievement_findnext;
+    while ($achievement5 ! null) {
+        if (achievement_reqstate($achievement5) = -2) {
+            $int7 = calc($int7 + 1);
+        }
+        $achievement5 = achievement_findnext;
+    }
+}
+%varclient_6855 = $int7;
+%varclient_6854 = $int6;
+~script13310($component0, $component1, 1, calc(8 * 1000));
+if_settext("<~tostring_spacer_local(%varclient_6855)>/<~tostring_spacer_local(%varclient_6854)>", $component2);
