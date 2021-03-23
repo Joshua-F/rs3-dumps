@@ -1,15 +1,8 @@
 // 7073
 [proc,script7073](int $int0)(int)
-switch_int ($int0) {
-    case 6 :
-        return(%varplayer_4292);
-    case 7 :
-        return(%varplayer_4293);
-    case 8 :
-        return(%varplayer_4294);
-    case 9 :
-        return(%varplayer_4295);
-    case 10 :
-        return(%varplayer_4296);
+def_quest $quest1 = enum(int, quest, enum_2252, $int0);
+if ($quest1 = null) {
+    ~error("Quest #<tostring($int0)> missing from [ql4_quests]. enum.");
+    return(0);
 }
-return(0);
+return(~ql4_getprogress($quest1));

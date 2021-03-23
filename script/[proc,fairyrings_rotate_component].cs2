@@ -1,7 +1,29 @@
 // 966
-[proc,fairyrings_rotate_component](component $component0, int $int1)
-def_int $int2 = if_getmodelangle_z($component0);
-if ($int2 ! $int1) {
-    if_setmodelangle(0, 0, if_getmodelangle_x($component0), if_getmodelangle_y($component0), ~script967($int2, $int1), if_getmodelzoom($component0), $component0);
-    %varclient_125 = clientclock;
+[proc,fairyrings_rotate_component](component $component0, component $component1, int $int2, int $int3)
+def_int $int4 = calc(if_getx($component0) + if_getwidth($component0) / 2);
+def_int $int5 = calc(if_gety($component0) + if_getheight($component0) / 2);
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+if (if_find($component1) = true) {
+    $int6 = cc_param(param_679);
+    $int7 = cc_param(param_678);
+    $int10 = calc(($int6 + $int2) % 360);
+    if ($int7 = $int10) {
+        return;
+    }
+    $int7 = calc($int7 + 5 * $int3);
+    if ($int7 >= 360) {
+        $int7 = calc($int7 - 360);
+    }
+    if ($int7 < 0) {
+        $int7 = calc($int7 + 360);
+    }
+    $int8, $int9 = ~script2106($int4, $int5, %varclient_6879, $int7);
+    $int8 = calc($int8 - cc_getwidth / 2);
+    $int9 = calc($int9 - cc_getheight / 2);
+    cc_setposition($int8, $int9, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setparam(param_678, $int7);
 }

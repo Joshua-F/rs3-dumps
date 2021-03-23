@@ -13,18 +13,18 @@ def_component $component5 = ~ql4_layer_scrollbar($component0);
 cc_deleteall($component4);
 def_int $int6 = 0;
 def_int $int7 = 0;
-def_struct $struct8 = null;
+def_quest $quest8 = null;
 def_int $int9 = -1;
 def_int $int10 = 0;
 def_int $int11 = 15;
-def_fontmetrics $fontmetrics12 = graphic_17813;
+def_fontmetrics $fontmetrics12 = fontmetrics_17813;
 def_int $int13 = 20;
-def_fontmetrics $fontmetrics14 = cinzel_13pt_bold;
+def_fontmetrics $fontmetrics14 = fontmetrics_14490;
 if (~script6431 = true) {
     $int11 = 30;
-    $fontmetrics12 = graphic_17814;
+    $fontmetrics12 = fontmetrics_17814;
     $int13 = 20;
-    $fontmetrics14 = cinzel_13pt_bold;
+    $fontmetrics14 = fontmetrics_14490;
 }
 %varclient_693 = %varplayerbit_315;
 %varclient_694 = %varplayerbit_317;
@@ -36,14 +36,14 @@ if (~script6431 = true) {
 %varclient_272 = enum_getoutputcount($enum3);
 def_string $string0 = "";
 while ($int7 < %varclient_272) {
-    $struct8 = enum(int, struct, $enum3, $int6);
+    $quest8 = enum(int, quest, $enum3, $int6);
     cc_create($component4, ^iftype_text, $int6);
-    if ($struct8 ! null) {
+    if ($quest8 ! null) {
         $int7 = calc($int7 + 1);
-        $int10 = ~script3982($struct8);
+        $int10 = ~ql4_getprogress($quest8);
         cc_setsize(100, $int11, ^setsize_abs, ^setsize_abs);
         cc_setsize(20, $int11, ^setsize_minus, ^setsize_abs);
-        $string0 = ~quest_sortname($struct8);
+        $string0 = ~quest_sortname($quest8);
         if (~script6431 = true & ~script7593($string0, cc_getwidth, $fontmetrics12, 0) > 30) {
             cc_setsize(20, calc($int11 + 20), ^setsize_minus, ^setsize_abs);
         }
@@ -53,7 +53,7 @@ while ($int7 < %varclient_272) {
         cc_settextshadow(true);
         cc_settext($string0);
         cc_setmaxlines(1);
-        if ($int9 = -1 & $struct8 = struct_510 & $int1 = 1) {
+        if ($int9 = -1 & $quest8 = quest_131 & $int1 = 1) {
             $int9 = cc_getid;
         }
     } else {

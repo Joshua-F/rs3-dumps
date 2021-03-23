@@ -1,17 +1,20 @@
 // 724
 [proc,script724]
 def_int $int0 = 0;
-if (%varclient_4677 = %varplayerbit_19949) {
+if (%varclient_4677 = %varplayerbit_19949 | %varclient_4677 = 4) {
     $int0 = 1;
 }
-if (%varplayerbit_19949 = 1) {
-    ~script188;
-} else if (%varplayerbit_19949 = 2) {
-    ~script6387;
-} else if (%varplayerbit_19949 = 3) {
-    ~script6503;
-} else {
-    ~script190;
+switch_int (%varplayerbit_19949) {
+    case 1 :
+        ~script188;
+    case 2 :
+        ~script6387;
+    case 3 :
+        ~script6503;
+    case 4 :
+        ~script15714;
+    case default :
+        ~script190;
 }
 %varclient_4677 = %varplayerbit_19949;
 cam2_setcollisionmode(true, true);

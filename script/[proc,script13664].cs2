@@ -10,42 +10,51 @@ def_int $int2 = 0;
 def_int $int3 = 0;
 def_int $int4 = db_getfield($dbrow0, dbtable_22:col10, 0);
 def_int $int5 = db_getfieldcount($dbrow0, dbtable_22:col18);
-def_int $int6 = if_getwidth(interface_1902:com_10);
-def_int $int7 = if_getwidth(interface_1902:com_11);
-def_int $int8 = db_getfield($dbrow0, dbtable_22:col16, 0);
-def_int $int9 = calc(%varplayer_7270 / $int8);
-if (calc(%varplayer_7270 % $int8) > 0) {
-    $int9 = calc($int9 + 1);
+def_int $int6 = db_getfield($dbrow0, dbtable_22:col9, 0);
+def_int $int7 = if_getwidth(interface_1902:com_10);
+def_int $int8 = if_getwidth(interface_1902:com_11);
+def_int $int9 = db_getfield($dbrow0, dbtable_22:col16, 0);
+def_int $int10 = 0;
+if ($int6 = 2 & %varplayerbit_48814 > 0) {
+    $int10 = calc(%varplayerbit_48814 / $int9);
+    if (calc(%varplayerbit_48814 % $int9) > 0) {
+        $int10 = calc($int10 + 1);
+    }
+} else {
+    $int10 = calc(%varplayer_7270 / $int9);
+    if (calc(%varplayer_7270 % $int9) > 0) {
+        $int10 = calc($int10 + 1);
+    }
 }
 if ($int5 > 0) {
     $obj1, $int2 = db_getfield($dbrow0, dbtable_22:col18, 0);
-    $int3 = calc(if_getx(interface_1902:com_10) + scale($int6, calc($int2 * $int4), calc(%varplayer_7270 * $int2)) - if_getwidth(interface_1902:com_16) / 2);
+    $int3 = calc(if_getx(interface_1902:com_10) + scale($int7, calc($int2 * $int4), calc(%varplayer_7270 * $int2)) - if_getwidth(interface_1902:com_16) / 2);
     if (if_find(interface_1902:com_16) = true) {
-        cc_setparam(param_6408, ~script12422(cc_getx, $int6, 65536));
-        cc_setparam(param_6409, ~script12422($int3, $int6, 65536));
-    }
-}
-if ($int5 > 1) {
-    $obj1, $int2 = db_getfield($dbrow0, dbtable_22:col18, 1);
-    $int3 = calc(if_getx(interface_1902:com_11) + scale($int7, calc($int2 * $int4), calc(%varplayer_7270 * $int2)) - if_getwidth(interface_1902:com_18) / 2);
-    if (if_find(interface_1902:com_18) = true) {
         cc_setparam(param_6408, ~script12422(cc_getx, $int7, 65536));
         cc_setparam(param_6409, ~script12422($int3, $int7, 65536));
     }
 }
+if ($int5 > 1) {
+    $obj1, $int2 = db_getfield($dbrow0, dbtable_22:col18, 1);
+    $int3 = calc(if_getx(interface_1902:com_11) + scale($int8, calc($int2 * $int4), calc(%varplayer_7270 * $int2)) - if_getwidth(interface_1902:com_18) / 2);
+    if (if_find(interface_1902:com_18) = true) {
+        cc_setparam(param_6408, ~script12422(cc_getx, $int8, 65536));
+        cc_setparam(param_6409, ~script12422($int3, $int8, 65536));
+    }
+}
 $int2 = db_getfield($dbrow0, dbtable_22:col21, 0);
-def_int $int10 = 0;
-def_int $int11 = calc($int9 * $int2);
+def_int $int11 = 0;
+def_int $int12 = calc($int10 * $int2);
 switch_int (%varplayerbit_37593) {
     case 1 :
-        $int10 = 175000;
+        $int11 = 175000;
     case 2 :
-        $int10 = 350000;
+        $int11 = 350000;
     case 3 :
-        $int10 = 500000;
+        $int11 = 500000;
 }
-$int3 = calc(if_getx(interface_1902:com_12) + scale($int11, $int10, $int7) - if_getwidth(interface_1902:com_13) / 2);
+$int3 = calc(if_getx(interface_1902:com_12) + scale($int12, $int11, $int8) - if_getwidth(interface_1902:com_13) / 2);
 if (if_find(interface_1902:com_13) = true) {
-    cc_setparam(param_6408, ~script12422(cc_getx, $int7, 65536));
-    cc_setparam(param_6409, ~script12422($int3, $int7, 65536));
+    cc_setparam(param_6408, ~script12422(cc_getx, $int8, 65536));
+    cc_setparam(param_6409, ~script12422($int3, $int8, 65536));
 }

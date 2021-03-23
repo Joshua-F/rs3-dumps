@@ -44,6 +44,7 @@ if (~script7421(%varclient_4272) = true) {
 if_setsize(if_getwidth($component4), $int24, ^setsize_abs, ^setsize_abs, $component4);
 if_setsize($int18, calc(65 + $int24), ^setsize_abs, ^setsize_minus, $component0);
 if_setposition(0, calc(if_gety($component4) + $int24), ^setpos_abs_left, ^setpos_abs_top, $component0);
+def_int $int28 = calc(if_getwidth(interface_1587:com_0) - 800 - 16);
 while ($int8 ! -1) {
     if (~script7421($int8) = true) {
         if ($int8 = %varclient_998 | $int8 = %varclient_999 | $int8 = %varclient_4272) {
@@ -112,14 +113,14 @@ while ($int8 ! -1) {
         ~script11014($component26, $string0, $int14, 180, $int19, 225);
         ~script11014($component26, $string1, $int14, 435, $int19, 214);
         if (testbit($int9, 0) = ^false) {
-            ~script11014($component26, "Free", $int14, 655, $int19, 65);
+            ~script11014($component26, "Free", $int14, calc(655 + $int28), $int19, 65);
         } else {
-            ~script11014($component26, "Members", $int14, 655, $int19, 65);
+            ~script11014($component26, "Members", $int14, calc(655 + $int28), $int19, 65);
         }
         if (testbit($int9, 3) = ^true) {
-            ~script7742($component26, rs3_contextual_input_accept, 736, calc($int19 + ($int25 - 16) / 2), 16, 16);
+            ~script7742($component26, rs3_contextual_input_accept, calc(736 + $int28), calc($int19 + ($int25 - 16) / 2), 16, 16);
         } else {
-            ~script7742($component26, rs3_contextual_input_minus, 736, calc($int19 + ($int25 - 16) / 2), 16, 16);
+            ~script7742($component26, rs3_contextual_input_minus, calc(736 + $int28), calc($int19 + ($int25 - 16) / 2), 16, 16);
         }
         if (cc_find($component27, $int8) = true) {
             cc_setop(1, "Select");
@@ -137,11 +138,11 @@ while ($int8 ! -1) {
     }
     $int8, $int9, $string0, $int10, $string1, $int11, $int12, $string2 = worldlist_next;
 }
-def_int $int28 = if_getheight($component0);
-if ($int17 > $int28) {
+def_int $int29 = if_getheight($component0);
+if ($int17 > $int29) {
     if_setscrollsize(0, $int17, $component0);
     if ($int21 ! 0) {
-        if_setscrollpos(0, max(0, min($int17, calc($int21 - $int28 / 2))), $component0);
+        if_setscrollpos(0, max(0, min($int17, calc($int21 - $int29 / 2))), $component0);
     }
 } else {
     if_setscrollsize(0, 0, $component0);

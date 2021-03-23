@@ -1,0 +1,75 @@
+// 15731
+[proc,script15731](int $int0, int $int1)(int)
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
+def_string $string4 = "";
+def_string $string5 = "";
+def_int $int2 = 0;
+def_string $string6 = "";
+$string0, $string1, $string2, $string3, $string4, $string5, $int2, $string6 = shop_getproductdetails($int0, $int1);
+if (compare($string1, "") = 0) {
+    return(0);
+}
+def_dbrow $dbrow3 = null;
+switch_client_type (clienttype) {
+    case default :
+        return(0);
+    case enhanced_android :
+        if (enum_hasoutput_string(enum_15463, $string1) = false) {
+            return(0);
+        }
+        $dbrow3 = enum_getreverseindex_string(dbrow, enum_15463, $string1, 0);
+    case enhanced_ios :
+        if (enum_hasoutput_string(enum_15464, $string1) = false) {
+            return(0);
+        }
+        $dbrow3 = enum_getreverseindex_string(dbrow, enum_15464, $string1, 0);
+}
+if ($dbrow3 = null) {
+    return(0);
+}
+def_int $int4 = shop_isproductavailable($int0, $int1);
+if (~script15747($int4, $dbrow3) = 0) {
+    return(0);
+}
+def_component $component5 = null;
+def_int $int6 = 20;
+def_int $int7 = 0;
+def_int $int8 = 0;
+switch_int (~mobile_shop_card_type($dbrow3, shop_isproductrecommended($int0, $int1))) {
+    case 1 :
+        $component5 = interface_828:com_5;
+        $int7 = if_getnextsubid($component5);
+        ~script15733($component5, db_getfield($dbrow3, dbtable_122:col1, 0), if_getwidth($component5), $int6, db_getfield($dbrow3, dbtable_122:col2, 0), $string3, $int2, $string6);
+    case 3 :
+        $component5 = interface_828:com_6;
+        $int7 = if_getnextsubid($component5);
+        ~script15734($component5, db_getfield($dbrow3, dbtable_122:col1, 0), if_getwidth($component5), $int6, db_getfield($dbrow3, dbtable_122:col2, 0), $string3, $int2, $string6);
+    case 4 :
+        $component5 = interface_828:com_8;
+        $int7 = if_getnextsubid($component5);
+        $int8 = calc($int7 / 9);
+        if (calc($int8 % 2) = 1) {
+            $int6 = calc($int6 + (20 + 205));
+        }
+        ~script15737($component5, db_getfield($dbrow3, dbtable_122:col0, 0), calc(20 + $int8 / 2 * (255 + 20)), $int6, db_getfield($dbrow3, dbtable_122:col2, 0), $string3, $int2, $string6);
+    case 2 :
+        $component5 = interface_828:com_7;
+        $int7 = if_getnextsubid($component5);
+        $int8 = calc($int7 / 9);
+        if (calc($int8 % 2) = 1) {
+            $int6 = calc($int6 + (20 + 205));
+        }
+        ~script15736($component5, db_getfield($dbrow3, dbtable_122:col0, 0), calc(20 + $int8 / 2 * (255 + 20)), $int6, db_getfield($dbrow3, dbtable_122:col2, 0), $string3, $int2, $string6);
+}
+if (cc_find($component5, $int7) = true) {
+    cc_setonop("script15739(db_getfield($dbrow3, dbtable_122:col2, 0), $string3, $dbrow3, $string1, $int0)");
+    cc_setop(1, "Buy");
+}
+if_setposition(calc(if_getwidth(interface_828:com_5) - 20), 0, ^setpos_abs_left, ^setpos_abs_top, interface_828:com_6);
+if_setposition(calc(if_getx(interface_828:com_6) + if_getwidth(interface_828:com_6) - 20), 0, ^setpos_abs_left, ^setpos_abs_top, interface_828:com_7);
+if_setposition(calc(if_getx(interface_828:com_7) + if_getwidth(interface_828:com_7) - 20), 0, ^setpos_abs_left, ^setpos_abs_top, interface_828:com_8);
+if_setsize(calc(if_getx(interface_828:com_8) + if_getwidth(interface_828:com_8)), 0, ^setsize_abs, ^setsize_minus, interface_828:com_4);
+return(1);

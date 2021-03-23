@@ -114,6 +114,9 @@ while ($int0 < enum_getoutputcount(enum_9031)) {
         case struct_4557 :
             $int2, $int4 = %varplayerbit_43420, %varplayerbit_43426;
             $int3, $int5 = %varplayerbit_43419, %varplayerbit_43425;
+        case struct_45051 :
+            $int2, $int4 = %varplayerbit_48687, %varplayerbit_48689;
+            $int3, $int5 = %varplayerbit_48688, %varplayerbit_48690;
     }
     switch_int (calc($int1 % 2)) {
         case 0 :
@@ -129,14 +132,19 @@ while ($int0 < enum_getoutputcount(enum_9031)) {
     cc_create($component8, ^iftype_text, if_getnextsubid($component8));
     cc_setsize(10, 25, ^setsize_minus, ^setsize_abs);
     cc_setposition(5, $int9, ^setpos_abs_left, ^setpos_abs_top);
-    cc_settext(struct_param($struct11, param_1348));
-    cc_settextfont(graphic_17813);
+    switch_struct ($struct11) {
+        case struct_45051 :
+            cc_settext("<struct_param($struct11, param_1348)> (Solo Mode)");
+        case default :
+            cc_settext(struct_param($struct11, param_1348));
+    }
+    cc_settextfont(fontmetrics_17813);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     cc_setcolour(~script10495(3));
     cc_create($component8, ^iftype_text, if_getnextsubid($component8));
     cc_setsize(60, 25, ^setsize_abs, ^setsize_abs);
     cc_setposition(50, $int9, ^setpos_abs_right, ^setpos_abs_top);
-    cc_settextfont(graphic_17813);
+    cc_settextfont(fontmetrics_17813);
     cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
     cc_setcolour(~script10495(3));
     if ($int4 > 0) {
@@ -147,7 +155,7 @@ while ($int0 < enum_getoutputcount(enum_9031)) {
     cc_setsize(10, 25, ^setsize_minus, ^setsize_abs);
     cc_setposition(5, $int9, ^setpos_abs_right, ^setpos_abs_top);
     cc_settext(tostring($int2));
-    cc_settextfont(graphic_17813);
+    cc_settextfont(fontmetrics_17813);
     cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
     cc_setcolour(^white);
     if ($int3 ! -1) {
@@ -165,18 +173,23 @@ while ($int0 < enum_getoutputcount(enum_9031)) {
         cc_create($component8, ^iftype_text, if_getnextsubid($component8));
         cc_setsize(10, 25, ^setsize_minus, ^setsize_abs);
         cc_setposition(5, $int9, ^setpos_abs_left, ^setpos_abs_top);
-        if (struct_param($struct11, param_5704) = true) {
-            cc_settext("<struct_param($struct11, param_1348)> (Challenge Mode)");
-        } else {
-            cc_settext("<struct_param($struct11, param_1348)> (Hard Mode)");
+        switch_struct ($struct11) {
+            case struct_45051 :
+                cc_settext("<struct_param($struct11, param_1348)> (Duo Mode)");
+            case default :
+                if (struct_param($struct11, param_5704) = true) {
+                    cc_settext("<struct_param($struct11, param_1348)> (Challenge Mode)");
+                } else {
+                    cc_settext("<struct_param($struct11, param_1348)> (Hard Mode)");
+                }
         }
-        cc_settextfont(graphic_17813);
+        cc_settextfont(fontmetrics_17813);
         cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         cc_setcolour(~script10495(3));
         cc_create($component8, ^iftype_text, if_getnextsubid($component8));
         cc_setsize(60, 25, ^setsize_abs, ^setsize_abs);
         cc_setposition(50, $int9, ^setpos_abs_right, ^setpos_abs_top);
-        cc_settextfont(graphic_17813);
+        cc_settextfont(fontmetrics_17813);
         cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
         cc_setcolour(~script10495(3));
         if ($int5 > 0) {
@@ -187,7 +200,7 @@ while ($int0 < enum_getoutputcount(enum_9031)) {
         cc_setsize(10, 25, ^setsize_minus, ^setsize_abs);
         cc_setposition(5, $int9, ^setpos_abs_right, ^setpos_abs_top);
         cc_settext(tostring($int3));
-        cc_settextfont(graphic_17813);
+        cc_settextfont(fontmetrics_17813);
         cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
         cc_setcolour(^white);
     }
@@ -208,12 +221,12 @@ while ($int0 < enum_getoutputcount(enum_9031)) {
     if ($int6 ! -1) {
         if_settext("Total kills: <tostring($int6)>", interface_753:com_51);
     } else {
-        if_settext("Total kills: <col=ff0000>LOTS</col>", interface_753:com_51);
+        if_settext("Total kills: <col=FF0000>LOTS</col>", interface_753:com_51);
     }
     if ($int7 ! -1) {
         if_settext("Total prestige: <tostring($int7)>", interface_753:com_52);
     } else {
-        if_settext("Total prestige: <col=ff0000>LOTS</col>", interface_753:com_52);
+        if_settext("Total prestige: <col=FF0000>LOTS</col>", interface_753:com_52);
     }
     $int1 = calc($int1 + 1);
     $int0 = calc($int0 + 1);

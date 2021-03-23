@@ -9,7 +9,6 @@ if (minimenuopen($component2, -1) = true) {
 cc_deleteall($component0);
 cc_deleteall($component1);
 cc_deleteall($component2);
-cc_deleteall($component5);
 def_int $int6 = ignore_count;
 def_int $int7 = 0;
 def_int $int8 = 0;
@@ -29,45 +28,38 @@ def_int $int17 = 100;
 if (playermember = true) {
     $int17 = 400;
 }
+def_int $int18 = 1;
+if (~script6431 = true) {
+    $int11 = 30;
+    $int18 = calc($int18 + 7);
+}
 if ($int6 = -2) {
-    ~rs3_background_panel($component5, struct_21362);
-    if_settext("Name", interface_909:com_71);
-    ~script3038("Loading Ignore List.<br><br>Please wait.", $component2);
-    if_setscrollsize(0, 0, interface_909:com_61);
-    if_setscrollpos(0, 0, interface_909:com_61);
-    ~scrollbar_resize(interface_909:com_62, interface_909:com_61, 0);
+    ~script15595("Loading Ignore List.<br><br>Please wait.", $component5, $component2, null, interface_909:com_47, interface_909:com_46);
 } else if ($int6 = -1) {
-    ~rs3_background_panel($component5, struct_21362);
-    if_settext("Name", interface_909:com_71);
-    ~script3038("Connecting to server.<br><br>Please wait.", $component2);
-    if_setscrollsize(0, 0, interface_909:com_61);
-    if_setscrollpos(0, 0, interface_909:com_61);
-    ~scrollbar_resize(interface_909:com_62, interface_909:com_61, 0);
+    ~script15595("Connecting to server.<br><br>Please wait.", $component5, $component2, null, interface_909:com_47, interface_909:com_46);
 } else if ($int6 > 0) {
-    if_settext("Name (<tostring($int6)>/<tostring($int17)>)", interface_909:com_71);
+    if_sethide(true, $component5);
+    if_settext("Name (<tostring($int6)>/<tostring($int17)>)", interface_909:com_52);
     while ($int7 < $int6) {
         $string0, $string1 = ignore_getname($int7);
-        ~cc_add_rect($component2, $int7, if_getwidth($component2), $int11, 0, $int8, 0, true, 0);
-        if (calc($int7 % 2) = 0) {
-            cc_setcolour(0x071820);
-        } else {
-            cc_setcolour(0x1c2c34);
-        }
-        cc_setonmouseover("script3031($component2, $int7)");
-        cc_setonmouseleave("script3036");
-        if (string_length($string1) > 0) {
-            $int16 = calc(stringwidth("Last known as: <$string1>", p11_full) + 8);
-            if ($int16 > if_getwidth(interface_909:com_59)) {
-                $string3 = "Last known as:<br><$string1>";
-            } else {
-                $string3 = "Last known as: <$string1>";
+        ~script14400($component2, 0, $int11, 0, $int8, true, $int7);
+        if (cc_find($component2, $int7) = true) {
+            cc_setonmouseover("script3031($component2, $int7)");
+            cc_setonmouseleave("script3036");
+            if (string_length($string1) > 0) {
+                $int16 = calc(stringwidth("Last known as: <$string1>", fontmetrics_494) + 8);
+                if ($int16 > if_getwidth(interface_909:com_44)) {
+                    $string3 = "Last known as:<br><$string1>";
+                } else {
+                    $string3 = "Last known as: <$string1>";
+                }
+                cc_setonmouserepeat("script8799($string3, event_com, event_comsubid)");
             }
-            cc_setonmouserepeat("script8799($string3, event_com, event_comsubid)");
+            cc_setopbase($string0);
+            cc_setop(1, "Delete");
+            cc_setonop("lobby_friends_ignoreop(event_op, $string0)");
         }
-        cc_setopbase($string0);
-        cc_setop(1, "Delete");
-        cc_setonop("lobby_friends_ignoreop(event_op, $string0)");
-        ~cc_add_graphic($component1, $int7, 14, 14, 5, calc($int8 + 1), null, false, false, false, 0);
+        ~cc_add_graphic($component1, $int7, 14, 14, 5, calc($int8 + $int18), null, false, false, false, 0);
         if (compare($string1, "") ! 0) {
             cc_setgraphic(friends_changed_name);
             $int13 = 20;
@@ -76,7 +68,7 @@ if ($int6 = -2) {
             $int13 = 5;
         }
         $string2 = $string0;
-        ~cc_add_text($component0, $int7, 0, $int11, $int13, $int8, $string2, 16777215, graphic_20452, ^settextalign_left, ^settextalign_centre, 0, true);
+        ~cc_add_text($component0, $int7, 0, $int11, $int13, $int8, $string2, 16777215, fontmetrics_20452, ^settextalign_left, ^settextalign_centre, 0, true);
         cc_setsize($int13, $int11, ^setsize_minus, ^setsize_abs);
         cc_setmaxlines(1);
         $int8 = calc($int8 + $int11);
@@ -85,12 +77,7 @@ if ($int6 = -2) {
     $int10 = calc(if_getheight($component3) / $int11 + 1);
     if ($int10 > $int6) {
         while ($int7 < $int10) {
-            ~cc_add_rect($component2, $int7, if_getwidth($component2), $int11, 0, $int8, 0, true, 0);
-            if (calc($int7 % 2) = 0) {
-                cc_setcolour(0x071820);
-            } else {
-                cc_setcolour(0x1c2c34);
-            }
+            ~script14400($component2, 0, $int11, 0, $int8, true, $int7);
             $int8 = calc($int8 + $int11);
             $int7 = calc($int7 + 1);
         }
@@ -99,23 +86,17 @@ if ($int6 = -2) {
         $int12 = $int8;
     }
     if ($int10 <= $int6) {
-        $int15 = if_getscrolly(interface_909:com_61);
-        if_setscrollsize(0, $int12, interface_909:com_61);
+        $int15 = if_getscrolly(interface_909:com_46);
+        if_setscrollsize(0, $int12, interface_909:com_46);
         if ($int15 > $int12) {
             $int15 = $int12;
         }
-        ~scrollbar_resize(interface_909:com_62, interface_909:com_61, $int15);
+        ~scrollbar_resize(interface_909:com_47, interface_909:com_46, $int15);
     } else {
-        if_setscrollsize(0, 0, interface_909:com_61);
-        if_setscrollpos(0, 0, interface_909:com_61);
-        ~scrollbar_resize(interface_909:com_62, interface_909:com_61, 0);
+        if_setscrollsize(0, 0, interface_909:com_46);
+        if_setscrollpos(0, 0, interface_909:com_46);
+        ~scrollbar_resize(interface_909:com_47, interface_909:com_46, 0);
     }
 } else if ($int6 = 0) {
-    ~rs3_background_panel($component5, struct_21362);
-    if_settext("Name", interface_909:com_71);
-    ~script3038("You are not ignoring any players.", $component2);
-    if_setscrollsize(0, 0, interface_909:com_61);
-    if_setscrollpos(0, 0, interface_909:com_61);
-    ~scrollbar_resize(interface_909:com_62, interface_909:com_61, 0);
+    ~script15595("You are not ignoring any players.", $component5, $component2, null, interface_909:com_47, interface_909:com_46);
 }
-return;

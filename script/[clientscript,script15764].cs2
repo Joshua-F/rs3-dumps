@@ -1,0 +1,20 @@
+// 15764
+[clientscript,script15764](component $component0, int $int1, int $int2, int $int3)
+def_int $int4 = if_getscrollx($component0);
+def_int $int5 = calc($int4 - $int1);
+if ($int5 = 0 | $int1 < 0 | $int1 > calc(if_getscrollwidth($component0) - $int2)) {
+    if_setontimer(null, $component0);
+    return;
+}
+def_int $int6 = 0;
+if ($int3 > 0) {
+    $int6 = calc(abs($int5) / $int3);
+} else {
+    $int6 = abs($int5);
+}
+if ($int5 < 0) {
+    if_setscrollpos(calc($int4 + min($int6, abs($int5))), 0, $component0);
+} else {
+    if_setscrollpos(calc($int4 - min($int6, abs($int5))), 0, $component0);
+}
+if_setontimer("script15764($component0, $int1, $int2, --$int3)", $component0);

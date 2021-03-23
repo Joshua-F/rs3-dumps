@@ -1,63 +1,80 @@
 // 1009
-[clientscript,script1009](npc $npc0, inv $inv1, int $int2, string $string0, string $string1, int $int3, int $int4, int $int5, int $int6)
+[clientscript,script1009](npc $npc0, inv $inv1, int $int2, string $string0, string $string1, int $int3, int $int4, int $int5, int $int6, boolean $boolean7)
+def_string $string2 = "You can only remove this animal from the 'Check Animals' tab while it has produce to gather.";
 if ($int6 > 1) {
-    if (compare(if_gettext(interface_90:com_51), $string0) = 0) {
-        if_sethide(true, interface_90:com_42);
+    if (compare(if_gettext(interface_90:com_54), $string0) = 0) {
+        if_sethide(true, interface_90:com_43);
     }
     return;
 }
-def_obj $obj7 = inv_getobj($inv1, $int2);
-if ($obj7 = null) {
+if ($boolean7 = true) {
+    ~script426($string2, interface_90:com_10, $int2, 0);
+    mes($string2);
     return;
 }
-def_dbrow $dbrow8 = oc_param($obj7, param_7452);
-if ($dbrow8 = null) {
+def_obj $obj8 = inv_getobj($inv1, $int2);
+if ($obj8 = null) {
     return;
 }
-def_string $string2 = oc_name($obj7);
-def_string $string3 = "Gender: Female";
+def_dbrow $dbrow9 = oc_param($obj8, param_7452);
+if ($dbrow9 = null) {
+    return;
+}
+def_string $string3 = oc_name($obj8);
+def_string $string4 = "Gender: Female";
 if ($int3 = 0) {
-    $string3 = "Gender: Male";
+    $string4 = "Gender: Male";
 }
-def_struct $struct9 = null;
 def_struct $struct10 = null;
 def_struct $struct11 = null;
-def_string $string4 = "";
+def_struct $struct12 = null;
 def_string $string5 = "";
 def_string $string6 = "";
-$struct9 = enum(int, struct, enum_14342, inv_getvar($inv1, $int2, varobjectbit_41807));
+def_string $string7 = "";
+$struct10 = enum(int, struct, enum_14342, inv_getvar($inv1, $int2, varobjectbit_41807));
 if (inv_getvar($inv1, $int2, varobjectbit_41808) > 0) {
-    $struct10 = enum(int, struct, enum_14343, inv_getvar($inv1, $int2, varobjectbit_41808));
+    $struct11 = enum(int, struct, enum_14343, inv_getvar($inv1, $int2, varobjectbit_41808));
 }
 if (inv_getvar($inv1, $int2, varobjectbit_41809) > 0) {
-    $struct11 = enum(int, struct, enum_14344, inv_getvar($inv1, $int2, varobjectbit_41809));
+    $struct12 = enum(int, struct, enum_14344, inv_getvar($inv1, $int2, varobjectbit_41809));
 }
-$struct9, $struct10, $struct11 = ~script2640($struct9, $struct10, $struct11, $dbrow8);
-if ($struct9 ! null) {
-    $string4 = struct_param($struct9, param_7456);
-}
+$struct10, $struct11, $struct12 = ~script2640($struct10, $struct11, $struct12, $dbrow9);
 if ($struct10 ! null) {
     $string5 = struct_param($struct10, param_7456);
 }
 if ($struct11 ! null) {
     $string6 = struct_param($struct11, param_7456);
 }
-if_sethide(false, interface_90:com_42);
-if_setnpcmodel($npc0, interface_90:com_44);
-if_setmodelanim(bas_getanim_ready(nc_param($npc0, param_3857)), interface_90:com_44);
-if_setmodelzoom($int4, interface_90:com_44);
-if_setmodelangle(0, 0, nc_param($npc0, param_3864), nc_param($npc0, param_3865), 0, $int4, interface_90:com_44);
-if_settext($string0, interface_90:com_51);
-if_settext($string1, interface_90:com_52);
-if_settext($string2, interface_90:com_54);
-if_settext($string3, interface_90:com_53);
-if_settext($string4, interface_90:com_47);
+if ($struct12 ! null) {
+    $string7 = struct_param($struct12, param_7456);
+}
+if_sethide(false, interface_90:com_43);
+if_setnpcmodel($npc0, interface_90:com_45);
+if_setmodelanim(bas_getanim_ready(nc_param($npc0, param_3857)), interface_90:com_45);
+if_setmodelzoom($int4, interface_90:com_45);
+if_setmodelangle(0, 0, nc_param($npc0, param_3864), nc_param($npc0, param_3865), 0, $int4, interface_90:com_45);
+if_settext($string0, interface_90:com_54);
+if_settext($string1, interface_90:com_55);
+if_settext($string3, interface_90:com_57);
+if_settext($string4, interface_90:com_56);
 if_settext($string5, interface_90:com_48);
 if_settext($string6, interface_90:com_49);
-if ($int5 = 1) {
-    if_sethide(false, interface_90:com_57);
-    if_sethide(true, interface_90:com_56);
+if_settext($string7, interface_90:com_50);
+if (inv_getvar($inv1, $int2, varobjectbit_48837) = 1) {
+    if_setgraphic("stat_star,0", interface_90:com_181);
+    if_setgraphic("stat_star,0", interface_90:com_182);
 } else {
-    if_sethide(true, interface_90:com_57);
-    if_sethide(false, interface_90:com_56);
+    if_setgraphic("stat_star,1", interface_90:com_181);
+    if_setgraphic("stat_star,1", interface_90:com_182);
+}
+if ($int5 = 1) {
+    if_sethide(false, interface_90:com_60);
+    if_sethide(true, interface_90:com_59);
+    if_sethide(true, interface_90:com_51);
+    if_sethide(false, interface_90:com_52);
+} else {
+    if_sethide(true, interface_90:com_60);
+    if_sethide(false, interface_90:com_59);
+    if_sethide(false, interface_90:com_51);
+    if_sethide(true, interface_90:com_52);
 }

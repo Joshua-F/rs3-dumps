@@ -1,10 +1,10 @@
 // 14470
 [proc,script14470]()(string)
-def_string $string0 = "The number of Hearts of Ice you have. Select the categories button for more information.";
-if (~trh_state(struct_11563) = 1 | ~trh_state(struct_34810) = 1) {
-    $string0 = "The number of Hearts of Ice you have. Select the probabilities button for more information.";
+switch_struct (~trh_promo_current) {
+    case struct_11563, struct_34810 :
+        return("The number of Hearts of Ice you have. Select the probabilities button for more information.");
+    case struct_44937 :
+        return("The number of Hearts of Ice you have. They are not used while playing Dwarven Discovery.");
+    case default :
+        return("The number of Hearts of Ice you have. Select the categories button for more information.");
 }
-if (~trh_state(struct_44937) = 1) {
-    $string0 = "The number of Hearts of Ice you have. They are not used while playing Dwarven Discovery.";
-}
-return($string0);

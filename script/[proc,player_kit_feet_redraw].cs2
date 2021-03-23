@@ -27,7 +27,7 @@ while ($int2 < $int3) {
     .cc_setposition(0, $int5, ^setpos_abs_right, ^setpos_abs_top);
     .cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     .cc_setcolour(0xff981f);
-    .cc_settextfont(graphic_20452);
+    .cc_settextfont(fontmetrics_20452);
     .cc_settext($string0);
     if ($idkit4 = %varclient_1014) {
         cc_setgraphic("rs3_btn_checkbox,3");
@@ -66,47 +66,48 @@ if ($int5 > if_getheight(interface_728:com_13)) {
 cc_deleteall(interface_728:com_16);
 $int3 = enum_getoutputcount(enum_3297);
 def_int $int7 = 6;
-if (calc((($int3 - 1) / $int7 + 1) * 21) > if_getheight(interface_728:com_16)) {
+def_int $int8 = calc((($int3 - 1) / $int7 + 1) * 21);
+if ($int8 > if_getheight(interface_728:com_16)) {
     $int7 = 5;
 }
 $int2 = 0;
 $int5 = 0;
-def_int $int8 = 0;
-def_graphic $graphic9 = null;
-def_int $int10 = 0;
+def_int $int9 = 0;
+def_graphic $graphic10 = null;
+def_int $int11 = 0;
 while ($int2 < $int3) {
     $string0 = enum(int, string, enum_3296, $int2);
-    $int10 = enum(int, int, enum_3297, $int2);
+    $int11 = enum(int, int, enum_3297, $int2);
     cc_create(interface_728:com_16, ^iftype_rectangle, if_getnextsubid(interface_728:com_16));
     cc_setsize(20, 20, ^setsize_abs, ^setsize_abs);
     cc_setfill(true);
-    cc_setposition(calc($int8 * cc_getwidth), $int5, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition(calc($int9 * cc_getwidth), $int5, ^setpos_abs_left, ^setpos_abs_top);
     cc_setcolour(enum(int, int, enum_753, $int2));
     cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
     .cc_create(interface_728:com_16, ^iftype_graphic, if_getnextsubid(interface_728:com_16));
     .cc_setsize(cc_getwidth, cc_getheight, ^setsize_abs, ^setsize_abs);
     .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
-    if ($int10 = %varclient_1018) {
+    if ($int11 = %varclient_1018) {
         .cc_setgraphic("km_colourpickerbox,1");
         $int6 = $int5;
     } else {
-        $graphic9 = "km_colourpickerbox,0";
-        .cc_setgraphic($graphic9);
-        .cc_setonmouseleave("cc_graphic_swapper(event_com, .cc_getid, $graphic9)");
-        $graphic9 = "km_colourpickerbox,1";
-        .cc_setonmouseover("cc_graphic_swapper(event_com, .cc_getid, $graphic9)");
+        $graphic10 = "km_colourpickerbox,0";
+        .cc_setgraphic($graphic10);
+        .cc_setonmouseleave("cc_graphic_swapper(event_com, .cc_getid, $graphic10)");
+        $graphic10 = "km_colourpickerbox,1";
+        .cc_setonmouseover("cc_graphic_swapper(event_com, .cc_getid, $graphic10)");
         .cc_setop(1, $string0);
-        .cc_setonop("player_kit_feet_colourbutton(event_op, $int10)");
+        .cc_setonop("player_kit_feet_colourbutton(event_op, $int11)");
     }
     $int2 = calc($int2 + 1);
-    if ($int8 < calc($int7 - 1)) {
-        $int8 = calc($int8 + 1);
+    if ($int9 < calc($int7 - 1)) {
+        $int9 = calc($int9 + 1);
     } else {
-        $int8 = 0;
+        $int9 = 0;
         $int5 = calc($int5 + cc_getheight);
     }
 }
-if ($int8 ! 0) {
+if ($int9 ! 0) {
     $int5 = calc($int5 + 21);
 }
 if ($int5 > if_getheight(interface_728:com_16) | $int7 < 6) {

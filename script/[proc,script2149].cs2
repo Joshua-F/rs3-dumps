@@ -1,31 +1,27 @@
 // 2149
-[proc,script2149](struct $struct0)(boolean)
-if ($struct0 = null) {
+[proc,script2149](quest $quest0)(boolean)
+if ($quest0 = null) {
     return(false);
 }
-def_quest $quest1 = struct_param($struct0, param_1403);
-if ($quest1 = null) {
+if (~ql4_quest_requirements($quest0) = false) {
     return(false);
 }
-if (~ql4_quest_requirements($struct0) = false) {
+if (%varplayer_1297 < quest_pointsreq($quest0)) {
     return(false);
 }
-if (%varplayer_1297 < quest_pointsreq($quest1)) {
+if (%varclient_698 < quest_param($quest0, param_7859)) {
     return(false);
 }
-if (%varclient_698 < quest_param($quest1, param_7859)) {
+if (~task_kudos_available < quest_param($quest0, param_7860)) {
     return(false);
 }
-if (~task_kudos_available < quest_param($quest1, param_7860)) {
+if (~ql4_skill_requirements($quest0) = false) {
     return(false);
 }
-if (~ql4_skill_requirements($struct0) = false) {
+if (quest_param($quest0, param_7862) = true & ~ql4_special_requirements($quest0) = false) {
     return(false);
 }
-if (quest_param($quest1, param_7862) = true & ~ql4_special_requirements(struct_param($struct0, param_1345)) = false) {
-    return(false);
-}
-if (quest_param($quest1, param_7861) = true & %varplayerbit_9663 = 0) {
+if (quest_param($quest0, param_7861) = true & %varplayerbit_9663 = 0) {
     return(false);
 }
 return(true);

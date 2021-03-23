@@ -2,53 +2,55 @@
 [proc,wof_startup]
 %varclient_1783 = 0;
 def_int $int0 = 82116608;
-def_component $component1 = interface_1253:com_521;
+def_component $component1 = interface_1253:com_522;
 def_int $int2 = max(0, ~script6950);
 def_string $string0 = "The number of chests to open at once, provided you have enough keys.";
 if (clienttype = enhanced_ios) {
-    if_sethide(true, interface_1253:com_102);
-    if_sethide(true, interface_1253:com_195);
+    if_sethide(true, interface_1253:com_103);
+    if_sethide(true, interface_1253:com_196);
 }
-if (platformtype ! ^platformtype_default) {
-    if_sethide(true, interface_1253:com_111);
-    if_sethide(true, interface_1253:com_203);
-    if_setonclick("script7774($string0, interface_1253:com_91, -1, 0)", interface_1253:com_91);
-    if_sethide(false, interface_1253:com_246);
+if (~is_mobile_client = true) {
+    if_sethide(true, interface_1253:com_112);
+    if_sethide(true, interface_1253:com_204);
+    if_setonclick("script7774($string0, interface_1253:com_92, -1, 0)", interface_1253:com_92);
+    if_sethide(false, interface_1253:com_247);
     switch_int (map_lang) {
         case 0 :
-            if_setgraphic(struct_param(struct_685, param_4640), interface_1253:com_247);
+            if_setgraphic(struct_param(struct_685, param_4640), interface_1253:com_248);
         case 2 :
-            if_setgraphic(struct_param(struct_685, param_4642), interface_1253:com_247);
+            if_setgraphic(struct_param(struct_685, param_4642), interface_1253:com_248);
         case 1 :
-            if_setgraphic(struct_param(struct_685, param_4639), interface_1253:com_247);
+            if_setgraphic(struct_param(struct_685, param_4639), interface_1253:com_248);
         case 3 :
-            if_setgraphic(struct_param(struct_685, param_4643), interface_1253:com_247);
+            if_setgraphic(struct_param(struct_685, param_4643), interface_1253:com_248);
     }
-    if_sethide(true, interface_1253:com_235);
+    if_sethide(true, interface_1253:com_236);
 }
-if (~trh_state(struct_33217) = 1) {
-    if_sethide(true, interface_1253:com_27);
-    if_sethide(true, interface_1253:com_395);
-    if_sethide(true, interface_1253:com_170);
-    if_sethide(true, interface_1253:com_175);
-    if_setgraphic(trh87_easter_background_leaf, interface_1253:com_4);
-} else if (~trh_state(struct_34277) = 1) {
-    if_sethide(true, interface_1253:com_27);
-    if_sethide(true, interface_1253:com_395);
-    if_sethide(true, interface_1253:com_170);
-    if_sethide(true, interface_1253:com_175);
-    if_setgraphic(trh104_background, interface_1253:com_4);
-    if_setgraphic(~trh104_get_map_graphic, interface_1786:com_1);
-} else {
-    if_sethide(false, interface_1253:com_27);
-    if_sethide(false, interface_1253:com_395);
-    if_sethide(false, interface_1253:com_175);
-    if_setgraphic(th_background_stage_3, interface_1253:com_4);
-    if (~trh_state(struct_33918) = 1 | ~trh_state(struct_33522) = 1) {
-        if_sethide(true, interface_1253:com_170);
-        if_sethide(true, interface_1253:com_29);
-        if_sethide(true, interface_1253:com_190);
-    }
+def_struct $struct3 = ~trh_promo_current;
+switch_struct ($struct3) {
+    case struct_33217 :
+        if_sethide(true, interface_1253:com_28);
+        if_sethide(true, interface_1253:com_396);
+        if_sethide(true, interface_1253:com_171);
+        if_sethide(true, interface_1253:com_176);
+        if_setgraphic(trh87_easter_background_leaf, interface_1253:com_4);
+    case struct_34277 :
+        if_sethide(true, interface_1253:com_28);
+        if_sethide(true, interface_1253:com_396);
+        if_sethide(true, interface_1253:com_171);
+        if_sethide(true, interface_1253:com_176);
+        if_setgraphic(trh104_background, interface_1253:com_4);
+        if_setgraphic(~trh104_get_map_graphic, interface_1786:com_1);
+    case default :
+        if_sethide(false, interface_1253:com_28);
+        if_sethide(false, interface_1253:com_396);
+        if_sethide(false, interface_1253:com_176);
+        if_setgraphic(struct_param($struct3, param_8206), interface_1253:com_4);
+        if ($struct3 = struct_33918 | $struct3 = struct_33522) {
+            if_sethide(true, interface_1253:com_171);
+            if_sethide(true, interface_1253:com_30);
+            if_sethide(true, interface_1253:com_191);
+        }
 }
 ~trh_options_onload;
 if (%varplayerbit_4323 > 0 | %varclient_1781 > 0) {
@@ -59,17 +61,17 @@ if (%varplayerbit_4323 > 0 | %varclient_1781 > 0) {
     ~wof_show_wheel;
 }
 if (%varplayerbit_4321 = 2 | %varplayerbit_4321 = 4) {
-    if_setgraphic(rs3_btn_radio_off, interface_1253:com_88);
-    if_setgraphic(rs3_btn_radio_on, interface_1253:com_93);
+    if_setgraphic(rs3_btn_radio_off, interface_1253:com_89);
+    if_setgraphic(rs3_btn_radio_on, interface_1253:com_94);
 } else {
-    if_setgraphic(rs3_btn_radio_on, interface_1253:com_88);
-    if_setgraphic(rs3_btn_radio_off, interface_1253:com_93);
+    if_setgraphic(rs3_btn_radio_on, interface_1253:com_89);
+    if_setgraphic(rs3_btn_radio_off, interface_1253:com_94);
 }
 ~script3904;
 %varclient_1781 = -1;
-if_setonvarctransmit("script5880{varclient_1800}", interface_1253:com_18);
-if_setonvartransmit("script5880{varplayer_1448, varplayer_1451}", interface_1253:com_18);
-if_setonvarctransmit("wof_hotkey{varclient_1993}", interface_1253:com_522);
+if_setonvarctransmit("script5880{varclient_1800}", interface_1253:com_19);
+if_setonvartransmit("script5880{varplayer_1448, varplayer_1451}", interface_1253:com_19);
+if_setonvarctransmit("wof_hotkey{varclient_1993}", interface_1253:com_523);
 if_setonvarctransmit("script3907{varclient_1928}", $component1);
 %varclient_1784 = 0;
 ~script5881;

@@ -1,12 +1,20 @@
 // 9408
 [proc,activity_tracker_get_icon](int $int0, int $int1, achievement $achievement2)(graphic)
 def_struct $struct3 = null;
+def_quest $quest4 = null;
 switch_int ($int0) {
     case default :
         return(null);
     case 2 :
         return(achievement_sprite($achievement2));
-    case 1, 3 :
+    case 1 :
+        $quest4 = enum(int, quest, enum_2252, $int1);
+        if ($quest4 ! null) {
+            return(~quest_icon($quest4));
+        } else {
+            return(null);
+        }
+    case 3 :
         $struct3 = enum(int, struct, enum_12251, $int1);
         if ($struct3 ! null) {
             return(~cheevo_icon($struct3));

@@ -1,13 +1,24 @@
 // 3236
 [clientscript,script3236](int $int0, component $component1, component $component2, int $int3, component $component4)
 def_string $string0 = "";
+def_fontmetrics $fontmetrics5 = if_getfontmetrics($component1);
 switch_int ($int3) {
-    case 3 :
+    case 100 :
         $string0 = ~script1346(%varclient_2576);
-    case 4 :
+    case 101 :
         $string0 = ~script2949(%varclient_2577);
-    case 19 :
+    case 114 :
         $string0 = %varclient_4192;
+    case 113 :
+        $string0 = if_gettext($component1);
 }
-%varclient_1099 = ~script1401($int0, $string0, graphic_17814, 0);
-~script3237($component4, $component1, $component2, $string0, $int3);
+if (if_gethide(interface_744:com_189) = true) {
+    ~script315;
+}
+if (~is_mobile_client = true) {
+    %varclient_1099 = ~script1401(999, $string0, $fontmetrics5, 0);
+    ~script3237($component4, $component1, $component2, $string0, $int3, $fontmetrics5);
+    return;
+}
+%varclient_1099 = ~script1401($int0, $string0, $fontmetrics5, 0);
+~script3237($component4, $component1, $component2, $string0, $int3, $fontmetrics5);

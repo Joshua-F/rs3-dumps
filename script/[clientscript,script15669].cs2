@@ -1,0 +1,16 @@
+// 15669
+[clientscript,script15669](component $component0, int $int1, int $int2)
+if (map_loadedpercent < 100) {
+    return;
+}
+%varclient_6890 = setbit(%varclient_6890, $int1);
+if (++$int1 < $int2) {
+    map_preload(enum(int, coord, enum_8809, $int1));
+    if_setontimer("script15669($component0, $int1, $int2)", $component0);
+    return;
+}
+if (%varclient_2771 ! null) {
+    map_preload(%varclient_2771);
+}
+%varclient_6889 = 0;
+if_setontimer(null, $component0);

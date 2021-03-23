@@ -1,118 +1,34 @@
 // 3232
-[proc,login_popup_full](int $int0, int $int1, string $string0, int $int2, graphic $graphic3, int $int4, int $int5, string $string1, int $int6, string $string2, int $int7)
-def_component $component8 = interface_744:com_190;
-def_component $component9 = interface_744:com_191;
-def_component $component10 = interface_744:com_203;
-def_component $component11 = interface_744:com_202;
-def_component $component12 = interface_744:com_204;
-def_component $component13 = interface_744:com_209;
-def_component $component14 = interface_744:com_205;
-def_component $component15 = interface_744:com_206;
-def_component $component16 = interface_744:com_207;
-def_component $component17 = interface_744:com_210;
-def_component $component18 = interface_744:com_211;
-def_component $component19 = interface_744:com_212;
-if (if_gethide($component8) = false) {
+[proc,login_popup_full](int $int0, int $int1, string $string0, graphic $graphic2, string $string1)
+def_component $component3 = interface_744:com_320;
+def_component $component4 = interface_744:com_324;
+def_component $component5 = interface_744:com_327;
+def_component $component6 = interface_744:com_325;
+def_component $component7 = interface_744:com_326;
+def_component $component8 = interface_744:com_328;
+if (if_gethide($component3) = false) {
     return;
 }
-switch_int (platformtype) {
-    case ^platformtype_default :
-        if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component9);
-    case ^platformtype_apple, ^platformtype_android :
-        if_setposition(0, 10, ^setpos_abs_centre, ^setpos_abs_top, $component9);
-    case default :
-        if_setposition(0, -100, ^setpos_abs_centre, ^setpos_abs_centre, $component9);
-}
-if (%varclient_174 ! 5) {
+if (%varclient_174 ! 102) {
     %varclient_1089 = %varclient_174;
 }
-%varclient_174 = 5;
-def_int $int20 = 250;
-if ($int4 = 1) {
-    $int20 = max(250, calc(stringwidth($string1, graphic_17813) + 36));
-    if (calc($int20 % 2) > 0) {
-        $int20 = calc($int20 + 1);
-    }
-}
-if_setsize($int20, 154, ^setsize_abs, ^setsize_abs, $component9);
-def_int $int21 = calc(paraheight($string0, if_getwidth($component10), graphic_17813) * 16 + 5);
-if_setsize(20, $int21, ^setsize_minus, ^setsize_abs, $component10);
-if_settext($string0, $component10);
-if ($int2 = 1) {
-    %varclient_1092 = calc(clientclock + 5);
-    if_setgraphic(null, $component11);
-    if_setsize(60, 60, ^setsize_abs, ^setsize_abs, $component11);
-    if_setposition(0, -10, ^setpos_abs_centre, ^setpos_abs_centre, $component11);
-    if (if_getparentlayer($component11) ! null) {
-        if (cc_find(if_getparentlayer($component11), 0) = true) {
-            if (cc_getgraphic = rs3_loading_spinner_default_backing) {
-                cc_sethide(false);
-            }
-            if (cc_find(if_getparentlayer($component11), 1) = true & cc_getgraphic = rs3_loading_spinner_default) {
-                cc_sethide(false);
-                cc_set2dangle(0);
-            }
-        } else {
-            cc_create(if_getparentlayer($component11), ^iftype_graphic, 0);
-            .cc_create(if_getparentlayer($component11), ^iftype_graphic, 1);
-            cc_setgraphic(rs3_loading_spinner_default_backing);
-            cc_setsize(72, 72, ^setsize_abs, ^setsize_abs);
-            cc_setposition(0, -10, ^setpos_abs_centre, ^setpos_abs_centre);
-            .cc_setgraphic(rs3_loading_spinner_default);
-            .cc_setsize(72, 72, ^setsize_abs, ^setsize_abs);
-            .cc_setposition(0, -10, ^setpos_abs_centre, ^setpos_abs_centre);
-        }
-    }
-    if_setposition(0, 105, ^setpos_abs_centre, ^setpos_abs_top, $component10);
-    if_setontimer("login_popup_throbber", $component11);
+~login_setfocus(102);
+if (compare($string1, "") = 0) {
+    if_sethide(true, $component8);
 } else {
-    %varclient_1092 = 0;
-    if_setontimer(null, $component11);
-    if_setgraphic($graphic3, $component11);
-    if_setsize(76, 63, ^setsize_abs, ^setsize_abs, $component11);
-    if_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_top, $component11);
-    if_setposition(0, 123, ^setpos_abs_centre, ^setpos_abs_top, $component10);
+    if_sethide(false, $component8);
+    ~script9065($string1);
 }
-def_int $int22 = 0;
-$int21 = calc(if_gety($component10) + $int21);
-if ($int4 = 0 & $int6 = 0) {
-    $int22 = 12;
-    $int21 = calc($int21 + $int22);
-    if_sethide(true, $component12);
-    if_sethide(true, $component13);
-} else if ($int4 = 1 & $int6 = 0) {
-    $int22 = 41;
-    $int21 = calc($int21 + $int22);
-    if_setposition(0, 10, ^setpos_abs_centre, ^setpos_abs_bottom, $component12);
-    if_sethide(false, $component12);
-    if_sethide(true, $component13);
-    ~script9065($string1, 1, $component12, $component14, $component15, $component16);
-} else if ($int4 = 0 & $int6 = 1) {
-    $int22 = 41;
-    $int21 = calc($int21 + $int22);
-    if_setposition(0, 10, ^setpos_abs_centre, ^setpos_abs_bottom, $component13);
-    if_sethide(false, $component13);
-    if_sethide(true, $component12);
-    ~script9065($string2, 0, $component13, $component17, $component18, $component19);
-} else {
-    $int22 = 70;
-    $int21 = calc($int21 + $int22);
-    if ($int7 = 0) {
-        if_setposition(0, 40, ^setpos_abs_centre, ^setpos_abs_bottom, $component12);
-        if_setposition(0, 10, ^setpos_abs_centre, ^setpos_abs_bottom, $component13);
-    } else {
-        if_setposition(0, 10, ^setpos_abs_centre, ^setpos_abs_bottom, $component12);
-        if_setposition(0, 40, ^setpos_abs_centre, ^setpos_abs_bottom, $component13);
-    }
-    if_sethide(false, $component13);
-    if_sethide(false, $component12);
-    ~script9065($string1, 1, $component12, $component14, $component15, $component16);
-    ~script9065($string2, 0, $component13, $component17, $component18, $component19);
-}
-if_setsize(if_getwidth($component9), $int21, ^setsize_abs, ^setsize_abs, $component9);
-~script2952($component12, $component13, $int0);
-if_setposition(0, $int22, ^setpos_abs_centre, ^setpos_abs_bottom, $component10);
-if_sethide(false, $component8);
-if_sethide(false, $component9);
-if_sethide(true, interface_596:com_0);
-if_sethide(true, interface_724:com_1);
+~script15687(%varclient_1089);
+if_sethide(false, $component3);
+if_sethide(false, $component4);
+if_sethide(true, interface_744:com_104);
+if_settext($string0, $component5);
+%varclient_1092 = 0;
+if_setontimer(null, $component6);
+if_setgraphic($graphic2, $component7);
+def_int $int9 = 0;
+def_int $int10 = 0;
+if_setsize(76, 63, ^setsize_abs, ^setsize_abs, $component7);
+if_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_top, $component7);
+~script2952($component8, $int0);

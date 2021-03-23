@@ -1,32 +1,39 @@
 // 9028
-[proc,crs_details](struct $struct0)(string)
-if ($struct0 = null) {
+[proc,crs_details](struct $struct0, quest $quest1, achievement $achievement2)(string)
+if ($struct0 = null & $quest1 = null & $achievement2 = null) {
     return("");
 }
 def_string $string0 = "";
-if (struct_param($struct0, param_4253) ! null) {
-    $struct0 = struct_param($struct0, param_4253);
-}
-if ($struct0 = struct_11585) {
-    $struct0 = ~script8252;
-    if ($struct0 ! null & %varplayer_183 > 0 & string_length(struct_param($struct0, param_462)) > 0) {
-        return(struct_param($struct0, param_462));
+if ($quest1 ! null) {
+    return(quest_param($quest1, param_5968));
+} else if ($achievement2 ! null) {
+    return(~achievement_description($achievement2));
+} else if ($struct0 ! null) {
+    if (struct_param($struct0, param_4253) ! null) {
+        $struct0 = struct_param($struct0, param_4253);
     }
-} else if (struct_param($struct0, param_1345) > 0) {
-    if (string_length(quest_param(struct_param($struct0, param_1403), param_5968)) > 0) {
-        return(quest_param(struct_param($struct0, param_1403), param_5968));
+    if ($struct0 = struct_11585) {
+        $struct0 = ~script8252;
+        if ($struct0 ! null & %varplayer_183 > 0 & string_length(struct_param($struct0, param_462)) > 0) {
+            return(struct_param($struct0, param_462));
+        }
+    } else if (struct_param($struct0, param_1345) > 0) {
+        $quest1 = enum(int, quest, enum_2252, struct_param($struct0, param_1345));
+        if ($quest1 ! null) {
+            return(quest_param($quest1, param_5968));
+        }
+    } else if (struct_param($struct0, param_1346) > 0 & string_length(struct_param($struct0, param_6411)) > 0) {
+        return(struct_param($struct0, param_6411));
     }
-} else if (struct_param($struct0, param_1346) > 0 & string_length(struct_param($struct0, param_6411)) > 0) {
-    return(struct_param($struct0, param_6411));
-}
-if (string_length(struct_param($struct0, param_3631)) > 0) {
-    return(struct_param($struct0, param_3631));
-}
-$string0 = ~cheevo_details($struct0, 0);
-if (string_length($string0) = 0 & string_length(struct_param($struct0, param_1273)) > 0) {
-    $string0 = struct_param($struct0, param_1273);
-}
-if (struct_param($struct0, param_2235) > 0) {
-    $string0 = "<$string0>.";
+    if (string_length(struct_param($struct0, param_3631)) > 0) {
+        return(struct_param($struct0, param_3631));
+    }
+    $string0 = ~cheevo_details($struct0, 0);
+    if (string_length($string0) = 0 & string_length(struct_param($struct0, param_1273)) > 0) {
+        $string0 = struct_param($struct0, param_1273);
+    }
+    if (struct_param($struct0, param_2235) > 0) {
+        $string0 = "<$string0>.";
+    }
 }
 return($string0);

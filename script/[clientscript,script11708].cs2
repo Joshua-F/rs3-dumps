@@ -3,7 +3,14 @@
 if (%varplayerbit_32672 < 1) {
     return;
 }
-def_int $int1 = scale(%varplayerbit_28663, %varplayerbit_32672, 100);
+def_int $int1 = 0;
+if (%varplayerbit_48718 > 0 & %varplayerbit_48717 > 0) {
+    $int1 = scale(%varplayerbit_48717, %varplayerbit_48718, 100);
+    if_setcolour(struct_param(%varplayer_5776, param_8193), interface_1648:com_1);
+} else {
+    $int1 = scale(%varplayerbit_28663, %varplayerbit_32672, 100);
+    if_setcolour(struct_param(%varplayer_5776, param_8192), interface_1648:com_1);
+}
 def_int $int2 = scale(350, 100, $int1);
 if (if_getwidth(interface_1648:com_9) ! $int2) {
     if_setsize($int2, 33, ^setsize_abs, ^setsize_abs, interface_1648:com_9);

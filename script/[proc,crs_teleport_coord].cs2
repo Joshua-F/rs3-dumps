@@ -1,33 +1,39 @@
 // 7214
-[proc,crs_teleport_coord](struct $struct0)(coord)
-def_int $int1 = 0;
-def_struct $struct2 = null;
+[proc,crs_teleport_coord](struct $struct0, quest $quest1, achievement $achievement2)(coord)
 def_int $int3 = 0;
-def_int $int4 = 0;
-def_enum $enum5 = null;
-def_coord $coord6 = struct_param($struct0, param_2700);
-if ($coord6 = null & struct_param($struct0, param_1403) ! null) {
-    $coord6 = ~quest_lodestone($struct0);
-} else if (struct_param($struct0, param_1346) > 0) {
-    $coord6 = ~script7797(struct_param($struct0, param_1378));
-} else if ($struct0 = struct_11585) {
-    $coord6 = ~script7156(%varplayerbit_9072);
-} else if (struct_param($struct0, param_8072) ! null) {
-    $int1, $struct2 = ~script6301($struct0, 0, -1);
-    if ($struct2 ! null) {
-        $coord6 = ~crs_teleport_coord($struct2);
-    }
-    if ($coord6 = null) {
-        $int3 = 0;
-        $int4 = enum_getoutputcount(enum_15492);
-        while ($int3 < $int4) {
-            $enum5 = enum(int, enum, enum_15492, $int3);
-            if (enum_hasoutput(struct, $enum5, $struct0) = true) {
-                $coord6 = enum(int, coord, enum_6169, $int3);
-                $int3 = $int4;
+def_struct $struct4 = null;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_enum $enum7 = null;
+def_coord $coord8 = null;
+if ($quest1 ! null) {
+    $coord8 = ~quest_lodestone($quest1);
+} else if ($struct0 ! null) {
+    switch_int (~script7663($struct0, $quest1, $achievement2)) {
+        case 8 :
+            $coord8 = ~script7797(struct_param($struct0, param_1378));
+        case 7 :
+            $coord8 = ~script7156(%varplayerbit_9072);
+        case 3 :
+            $int3, $struct4 = ~script6301($struct0, 0, -1);
+            if ($struct4 ! null) {
+                $coord8 = ~crs_teleport_coord($struct4, null, null);
             }
-            $int3 = calc($int3 + 1);
-        }
+            if ($coord8 = null) {
+                $int5 = 0;
+                $int6 = enum_getoutputcount(enum_15492);
+                while ($int5 < $int6) {
+                    $enum7 = enum(int, enum, enum_15492, $int5);
+                    if (enum_hasoutput(struct, $enum7, $struct0) = true) {
+                        $coord8 = enum(int, coord, enum_6169, $int5);
+                        $int5 = $int6;
+                    }
+                    $int5 = calc($int5 + 1);
+                }
+            }
+    }
+    if ($coord8 = null) {
+        $coord8 = struct_param($struct0, param_2700);
     }
 }
-return($coord6);
+return($coord8);

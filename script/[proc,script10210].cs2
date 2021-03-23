@@ -1,8 +1,8 @@
 // 10210
 [proc,script10210](component $component0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8)
 if ($int7 = -3 & $int8 = 1) {
-    ~lobbyscreen_loginbutton_text(0);
-    ~lobby_popup($int7, 0, "Logging In - Please Wait", 1, null, 0, -1, "", "", 0, "", "");
+    ~lobbyscreen_loginbutton_text(false);
+    ~lobby_popup($int7, 0, "Logging In - Please Wait", 1, null, false, -1, "", "", false, "", "");
     %varclient_1100 = -3;
     return;
 }
@@ -24,7 +24,7 @@ if ($int7 = 21) {
     }
     ~lobbyscreen_mute_volume;
     %varclient_1100 = 21;
-    ~lobbyscreen_loginbutton_text(0);
+    ~lobbyscreen_loginbutton_text(false);
     if (%varclient_200 = 0 & %varclient_1745 = false) {
         %varclient_200 = login_hoptime;
         if (playermember = false & video_advert_play(6) = true) {
@@ -54,10 +54,10 @@ if ($int7 = 21) {
             %varclient_1745 = false;
         }
         if (%varclient_1745 = false | video_advert_has_finished = true) {
-            clientoption_set(^clientoption_volume_main_effects, $int2);
-            clientoption_set(^clientoption_volume_background_effects, $int4);
-            clientoption_set(^clientoption_volume_speech, $int5);
-            clientoption_set(^clientoption_volume_login_music, $int6);
+            detail_soundvol($int2);
+            detail_bgsoundvol($int4);
+            detail_speechvol($int5);
+            detail_loginvol($int6);
         }
         ~lobbyscreen_entergame($component0);
         return;
@@ -68,45 +68,45 @@ if ($int7 = 21) {
     } else {
         $string0 = "You have only just left another world. Your profile will be transferred in<br><tostring($int9)> seconds.";
     }
-    if (if_gethide(interface_906:com_562) = true) {
-        ~lobby_popup($int7, 0, $string0, 0, "loadingwheel,12", 1, 1, "Abort Login", "Abort Login", 0, "", "");
+    if (if_gethide(interface_906:com_133) = true) {
+        ~lobby_popup($int7, 0, $string0, 0, "loadingwheel,12", true, 1, "Abort Login", "Abort Login", false, "", "");
     } else {
         ~lobby_popup_text_update($string0);
     }
     return;
 }
 if ($int7 = 42) {
-    if_sethide(false, interface_906:com_119);
-    if_settext(tostring($int1), interface_906:com_123);
-    if_settext(tostring(login_queue_position), interface_906:com_124);
-    if (%varclient_1100 ! 42) {
-        ~lobby_popup($int7, 1, "World <tostring($int1)> is currently full.<br><br>You have been added to the queue for this world. You can track your progress in the queue from lower left corner of this screen.<br><br>You can continue playing RuneScape on a different world.", 0, "loadingwheel,12", 0, 0, "", "", 1, "OK", "OK");
+    if_sethide(false, interface_906:com_106);
+    if_settext(tostring($int1), interface_906:com_95);
+    if_settext(tostring(login_queue_position), interface_906:com_97);
+    if (%varclient_1100 ! 42 & %varclient_1100 ! 43 & %varclient_1100 ! -1) {
+        ~lobby_popup($int7, 1, "World <tostring($int1)> is currently full.<br><br>You have been added to the queue for this world.", 0, "loadingwheel,12", false, 0, "", "", true, "OK", "OK");
     }
     %varclient_1100 = 42;
     return;
 } else if ($int7 = 43) {
-    if_settext(tostring($int1), interface_906:com_123);
-    if_settext(tostring(login_queue_position), interface_906:com_124);
+    if_settext(tostring($int1), interface_906:com_95);
+    if_settext(tostring(login_queue_position), interface_906:com_97);
     %varclient_1100 = 43;
     return;
 } else {
-    if_sethide(true, interface_906:com_119);
+    if_sethide(true, interface_906:com_106);
 }
-if ($component0 = interface_906:com_1 | $component0 = interface_906:com_604) {
+if ($component0 = interface_906:com_0 | $component0 = interface_906:com_15) {
     ~lobbyscreen_load;
 }
 ~lobby_popup_close;
-~lobbyscreen_loginbutton_text(1);
+~lobbyscreen_loginbutton_text(true);
 if_setontimer(null, $component0);
 def_string $string4 = "";
 def_int $int14 = 1;
 def_int $int15 = 0;
 def_graphic $graphic16 = "loadingwheel,9";
-def_int $int17 = 0;
+def_boolean $boolean17 = false;
 def_int $int18 = 0;
 def_string $string5 = "";
 def_string $string6 = "";
-def_int $int19 = 1;
+def_boolean $boolean19 = true;
 def_string $string7 = "Back";
 def_string $string8 = "Back";
 def_int $int20 = login_disallowresult;
@@ -148,8 +148,8 @@ switch_int ($int7) {
             case 14 :
                 $int14 = 0;
                 $graphic16 = "loadingwheel,8";
-                $string4 = "You need a member's account to log in to this world. Click the banner above to opt into the open access weekend or use a different world.";
-                $int17 = 1;
+                $string4 = "You need a member's account to log in to this world. Select the banner above to opt into the open access weekend or use a different world.";
+                $boolean17 = true;
                 $string5 = "Subscribe";
                 $string6 = "Subscribe";
             case 15 :
@@ -242,7 +242,7 @@ switch_int ($int7) {
     case 1401 :
         $string4 = "Single Sign on failed because your token has expired. Please try re-entering your login details.";
     case 1402 :
-        $string4 = "Single Sign on failed because you exited without signing in.";
+        $string4 = "Single Sign on failed because you exited the Google login without signing in.";
     case 1403 :
         $string4 = "Could not connect. Please check your internet connection or try again later.";
     case 1404 :
@@ -250,113 +250,125 @@ switch_int ($int7) {
     case 1405 :
         $string4 = "Revoking token action unsuccessful.";
     case 1406 :
-        $string4 = "Single Sign on failed because your account creation was unsuccessful. Please ensure you have entered a valid date of birth.";
+        $string4 = "Single Sign on failed because your Google account creation was unsuccessful. Please ensure you have entered a valid date of birth.";
     case 1407 :
         $string4 = "Single Sign on failed because you have a pending transaction.";
     case 55 :
         $string4 = "Sorry, but your account is not eligible to play.<br>For more information, please take a look at our privacy policy.";
-        $int19 = 1;
+        $boolean19 = true;
         $string8 = "Back";
         $string7 = "Back";
-        $int17 = 1;
+        $boolean17 = true;
         $string6 = "Privacy Policy";
         $string5 = "Privacy Policy";
     case 35 :
-        $string4 = "Your session has expired. Please reload your client.";
+        $string4 = "Your session has expired. Please select 'Back' in your browser to renew it.";
         $string7 = "Close";
         $string8 = "Close";
     case 14 :
         $int14 = 0;
         $graphic16 = "loadingwheel,11";
-        $string4 = "The server is being updated. Please wait a few minutes and try again.";
+        if (~is_mobile_client = true) {
+            $string4 = "RuneScape is currently updating. Please wait a few minutes and restart the app to retry.";
+        } else {
+            $string4 = "RuneScape is currently updating. Please wait a few minutes and restart the game to retry.";
+        }
     case 6 :
         $int14 = 0;
         $graphic16 = "loadingwheel,11";
-        $string4 = "RuneScape has been updated! Please reload your client.";
+        if (~is_mobile_client = true) {
+            $string4 = "RuneScape has been updated! Please restart the app to retry.";
+        } else {
+            $string4 = "RuneScape has been updated! Please restart the game to retry.";
+        }
     case 4 :
         $string4 = "Your account has been involved in serious rule breaking.";
-        $int17 = 1;
+        $boolean17 = true;
         $string5 = "More info";
         $string6 = "More info";
     case 11 :
         $string4 = "Your password is an extremely common choice, and is not secure. You must change it before you can log in.";
-        $int17 = 1;
+        $boolean17 = true;
         $string5 = "Change Password";
         $string6 = "Change Password";
     case 18 :
         $graphic16 = "loadingwheel,13";
-        $string4 = "Your account has been locked. If you have not received an account recovery email, please select 'Recover Account'.";
-        $int17 = 1;
+        $string4 = "Your account has been locked due to suspicious activity. Please recover your account.";
+        $boolean17 = true;
         $string5 = "Recover Account";
         $string6 = "Recover Account";
     case 31 :
         $string4 = "You must change your account's display name before you can log in.";
-        $int17 = 1;
+        $boolean17 = true;
         $string5 = "Change Display Name";
         $string6 = "Change Display Name";
     case 30 :
         $string4 = "This is not a member's account. Please choose a 'free' world from the website to play on this account.";
-        $int17 = 1;
+        $boolean17 = true;
         $string5 = "Subscribe";
         $string6 = "Subscribe";
     case 19 :
         $string4 = "Fullscreen is currently a members-only feature. To log in, either exit fullscreen via the options menu or use a member's account.";
-        $int17 = 1;
+        $boolean17 = true;
         $string5 = "Subscribe";
         $string6 = "Subscribe";
     case 12 :
         $int14 = 0;
         $graphic16 = "loadingwheel,8";
         $string4 = "You need a member's account to log in to this world. Please subscribe or use a different world.";
-        $int17 = 1;
+        $boolean17 = true;
         $string5 = "Subscribe";
         $string6 = "Subscribe";
     case 40 :
         $int14 = 0;
         $graphic16 = "loadingwheel,8";
         $string4 = "You need a member's account to log in to this instance. Please subscribe or use a different world.";
-        $int17 = 1;
+        $boolean17 = true;
         $string5 = "Subscribe";
         $string6 = "Subscribe";
     case 32 :
-        $string4 = "Your attempt to log into your account was unsuccessful.  Don't worry, it's easy to sort this out quickly.";
-        $int17 = 1;
-        $string5 = "Click Here";
-        $string6 = "Click Here";
-        $int19 = 0;
+        $string4 = "The unpaid balance on your account needs to be settled before you can log into game.";
+        $boolean17 = true;
+        $string5 = "Unpaid Balance";
+        $string6 = "Unpaid Balance";
+        $boolean19 = false;
     case 47, 51 :
         $string4 = "You need to validate your email address to log in.";
-        if_sethide(false, interface_906:com_397);
+        if_sethide(false, interface_906:com_131);
     case 48 :
-        $string4 = "Your game session has now ended.<br><br>To play again, please close your game client and wait 5 minutes before reloading the game. ";
+        if (~is_mobile_client = true) {
+            $string4 = "Your game session has now ended.<br><br>To play again, please close the app and wait 5 minutes before reloading it. ";
+        } else {
+            $string4 = "Your game session has now ended.<br><br>To play again, please close your browser tab/window and wait 5 minutes before reloading the game. ";
+        }
     case 50 :
         $string4 = "The Jagex Account Guardian is protecting this account.<br><br>This device is not recognised.<br><br>No new devices can be added for up to 24 hours as too many failed attempts to answer the security questions have been made.<br><br>During this time access will still be granted to any devices already trusted.";
-        $int17 = 1;
+        $boolean17 = true;
         $string5 = "Back";
         $string6 = "Back";
         $graphic16 = "loadingwheel,16";
     case 52 :
         $string4 = "You need to validate this device to use with your account. Please follow the instructions in the window that will open shortly.";
-        $int17 = 1;
+        $boolean17 = true;
         $string5 = "Back";
         $string6 = "Back";
-        $int19 = 0;
+        $boolean19 = false;
         $graphic16 = "loadingwheel,16";
     case 49 :
         $string4 = "The device you are doing is no longer valid. You should have received an email to validate the device. Please follow the instructions there. Be sure to check your spam folder.";
-        $int17 = 1;
+        $boolean17 = true;
         $string5 = "Back";
         $string6 = "Back";
-        $int19 = 0;
+        $boolean19 = false;
         $graphic16 = "loadingwheel,16";
     case 58 :
         $string4 = "Jagex Account Guardian cannot be used with the NXT Beta Client. Please disable JAG via Account Settings before continuing.<br><br>We strongly suggest activating the RuneScape Authenticator to enhance the security of your account.";
-        $int17 = 1;
+        $boolean17 = true;
         $string5 = "Open Account Settings";
         $string6 = "Open Account Settings";
     case 59 :
         $string4 = "Jagex Account Guardian cannot be used with the NXT Beta Client. Please disable JAG via Account Settings before continuing.";
-        $int17 = 1;
+        $boolean17 = true;
         $string5 = "Open Account Settings";
         $string6 = "Open Account Settings";
     case 54 :
@@ -370,4 +382,4 @@ switch_int ($int7) {
     case default :
         $string4 = "Unexpected server response. Please try using a different world.";
 }
-~lobby_popup($int7, $int14, $string4, $int15, $graphic16, $int17, $int18, $string5, $string6, $int19, $string7, $string8);
+~lobby_popup($int7, $int14, $string4, $int15, $graphic16, $boolean17, $int18, $string5, $string6, $boolean19, $string7, $string8);

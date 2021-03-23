@@ -1,19 +1,19 @@
 // 13946
 [proc,script13946]
-cc_deleteall(interface_517:com_247);
 cc_deleteall(interface_517:com_248);
 cc_deleteall(interface_517:com_249);
-cc_deleteall(interface_517:com_253);
 cc_deleteall(interface_517:com_250);
+cc_deleteall(interface_517:com_254);
 cc_deleteall(interface_517:com_251);
 cc_deleteall(interface_517:com_252);
-cc_create(interface_517:com_247, ^iftype_text, 0);
-cc_create(interface_517:com_249, ^iftype_text, 0);
-cc_create(interface_517:com_253, ^iftype_text, 0);
+cc_deleteall(interface_517:com_253);
+cc_create(interface_517:com_248, ^iftype_text, 0);
 cc_create(interface_517:com_250, ^iftype_text, 0);
+cc_create(interface_517:com_254, ^iftype_text, 0);
 cc_create(interface_517:com_251, ^iftype_text, 0);
 cc_create(interface_517:com_252, ^iftype_text, 0);
-if_sethide(true, interface_517:com_256);
+cc_create(interface_517:com_253, ^iftype_text, 0);
+if_sethide(true, interface_517:com_257);
 def_int $int0 = 1;
 def_int $int1 = 0;
 def_int $int2 = 0;
@@ -33,71 +33,67 @@ while ($int0 <= 11) {
             $string0 = "Locked";
             $string1 = "This preset is only available to members.";
             $graphic5 = "rs3_bonds_icons_medium,0";
-        case 3 :
+        case 2 :
             $string0 = "Locked";
             $string1 = "This preset will be unlocked on members worlds.";
             $graphic5 = "rs3_bonds_icons_medium,0";
-        case 2 :
-            $string0 = "Locked";
-            $string1 = "This preset can be unlocked or rented for bonds.";
-            $graphic5 = invention_machine_icon_padlock_gold_36px;
     }
     $int2 = calc(1 - ~script7961($int0));
     $int3 = calc(1 - ~script8021($int0));
     $int4 = ~script8023($int0);
-    ~script14400(interface_517:com_247, 0, 30, 0, $int1, true, $int0);
+    ~script14400(interface_517:com_248, 0, 30, 0, $int1, true, $int0);
     cc_setonmouseover("script14390(event_com, event_comsubid)");
     cc_setonmouseleave("script14391(event_com, event_comsubid)");
     cc_setdragdeadtime(5);
     cc_setdragdeadzone(5);
     if ($int0 ! 11) {
-        ~cc_add_title_text(interface_517:com_248, 24, 30, 0, $int1, graphic_20280, tostring($int0));
+        ~cc_add_title_text(interface_517:com_249, 24, 30, 0, $int1, fontmetrics_20280, tostring($int0), 0);
         cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-        cc_setdraggable(interface_517:com_246, -1);
+        cc_setdraggable(interface_517:com_247, -1);
     } else {
-        ~script4512(interface_517:com_248, 24, 24, 3, calc($int1 + 3), child_tab_summon_familiar);
+        ~script4512(interface_517:com_249, 24, 24, 3, calc($int1 + 3), child_tab_summon_familiar);
     }
-    ~script14402(interface_517:com_249, $int0, 0, 30, 0, $int1);
+    ~script14402(interface_517:com_250, $int0, 0, 30, 0, $int1);
     if ($graphic5 = null) {
         cc_setop(2, "Load");
         cc_setop(3, "Reset");
     }
     cc_setonop("script13938(event_comsubid)");
-    cc_create(interface_517:com_253, ^iftype_graphic, $int0);
+    cc_create(interface_517:com_254, ^iftype_graphic, $int0);
     cc_setsize(30, 30, ^setsize_abs, ^setsize_abs);
     cc_setposition(0, $int1, ^setpos_abs_right, ^setpos_abs_top);
     cc_setgraphic($graphic5);
-    cc_create(interface_517:com_248, ^iftype_text, if_getnextsubid(interface_517:com_248));
+    cc_create(interface_517:com_249, ^iftype_text, if_getnextsubid(interface_517:com_249));
     cc_setsize(80, 30, ^setsize_minus, ^setsize_abs);
     cc_setposition(30, $int1, ^setpos_abs_left, ^setpos_abs_top);
     cc_settext($string0);
-    cc_settextfont(graphic_17813);
+    cc_settextfont(fontmetrics_17813);
     cc_settextshadow(true);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     ~script6888(2);
     if ($graphic5 = null) {
         if ($int0 ! 11) {
-            ~script14397(interface_517:com_250, 24, 24, 0, calc($int1 + 3), ^setpos_abs_left, ^setpos_abs_top, ~script14389(93, $int2));
+            ~script14397(interface_517:com_251, 24, 24, 0, calc($int1 + 3), ^setpos_abs_left, ^setpos_abs_top, ~script14389(93, $int2));
             cc_setop(1, "Toggle");
-            ~script14397(interface_517:com_251, 24, 24, 0, calc($int1 + 3), ^setpos_abs_left, ^setpos_abs_top, ~script14389(94, $int3));
+            ~script14397(interface_517:com_252, 24, 24, 0, calc($int1 + 3), ^setpos_abs_left, ^setpos_abs_top, ~script14389(94, $int3));
             cc_setop(1, "Toggle");
-            ~script14397(interface_517:com_252, 24, 24, 0, calc($int1 + 3), ^setpos_abs_left, ^setpos_abs_top, ~script14389(530, $int4));
+            ~script14397(interface_517:com_253, 24, 24, 0, calc($int1 + 3), ^setpos_abs_left, ^setpos_abs_top, ~script14389(530, $int4));
             cc_setop(1, "Toggle");
         } else {
-            cc_create(interface_517:com_250, ^iftype_text, $int0);
             cc_create(interface_517:com_251, ^iftype_text, $int0);
-            ~script14397(interface_517:com_252, 24, 24, 0, calc($int1 + 3), ^setpos_abs_left, ^setpos_abs_top, ~script14389(530, 1));
+            cc_create(interface_517:com_252, ^iftype_text, $int0);
+            ~script14397(interface_517:com_253, 24, 24, 0, calc($int1 + 3), ^setpos_abs_left, ^setpos_abs_top, ~script14389(530, 1));
             cc_setop(1, "Toggle");
         }
-        cc_create(interface_517:com_248, ^iftype_text, if_getnextsubid(interface_517:com_248));
+        cc_create(interface_517:com_249, ^iftype_text, if_getnextsubid(interface_517:com_249));
         cc_setsize(50, 30, ^setsize_abs, ^setsize_abs);
         cc_setposition(0, $int1, ^setpos_abs_right, ^setpos_abs_top);
         cc_setonmouserepeat("script8799($string2, event_com, event_comsubid)");
     } else {
-        cc_create(interface_517:com_250, ^iftype_text, $int0);
         cc_create(interface_517:com_251, ^iftype_text, $int0);
         cc_create(interface_517:com_252, ^iftype_text, $int0);
-        cc_create(interface_517:com_248, ^iftype_rectangle, if_getnextsubid(interface_517:com_248));
+        cc_create(interface_517:com_253, ^iftype_text, $int0);
+        cc_create(interface_517:com_249, ^iftype_rectangle, if_getnextsubid(interface_517:com_249));
         cc_setsize(0, 30, ^setsize_minus, ^setsize_abs);
         cc_setposition(0, $int1, ^setpos_abs_left, ^setpos_abs_top);
         cc_setcolour(^black);
@@ -108,4 +104,4 @@ while ($int0 <= 11) {
     $int0 = calc($int0 + 1);
 }
 $string1 = "If your preset has an augmented item this will only load the item with matching perks.<br><br>If the augmented item isn't loading, re-save your preset";
-~static_checkbox_create(interface_517:com_286, interface_517:com_287, "Exact Matching", $string1, $string1, %varplayerbit_45228);
+~static_checkbox_create(interface_517:com_287, interface_517:com_288, "Exact Matching", $string1, $string1, %varplayerbit_45228);

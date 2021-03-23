@@ -7,59 +7,46 @@ def_string $string1 = "";
 def_int $int3 = 0;
 def_int $int4 = 0;
 def_string $string2 = "";
-if_sethide(true, interface_906:com_397);
+if_sethide(true, interface_906:com_131);
 if (%varclient_1100 = 42 | %varclient_1100 = 43) {
     return(false);
 }
 if (worldlist_fetch = false) {
-    ~lobbyscreen_loginbutton_text(0);
+    ~lobbyscreen_loginbutton_text(false);
     if_setontimer("lobbyscreen_entergame($component0)", $component0);
     return(false);
 }
 $int1, $string0, $int2, $string1, $int3, $int4, $string2 = worldlist_specific(map_world);
 if ($int3 < 0) {
-    ~lobby_popup(-5, 1, "Could not connect you to the chosen world. Please choose another.", 0, "loadingwheel,9", 0, -1, "", "", 1, "Back", "Back");
-    ~lobbyscreen_loginbutton_text(1);
+    ~lobby_popup(-5, 1, "Could not connect you to the chosen world. Please choose another.", 0, "loadingwheel,9", false, -1, "", "", true, "Back", "Back");
+    ~lobbyscreen_loginbutton_text(true);
     if_setontimer(null, $component0);
     return(false);
 }
 %varclient_1322 = false;
-~lobbyscreen_loginbutton_text(1);
+~lobbyscreen_loginbutton_text(true);
 if_setontimer(null, $component0);
 ~lobby_popup_close;
 %varclient_1100 = -1;
-def_int $int5 = 0;
-def_int $int6 = 0;
-def_int $int7 = 0;
-def_int $int8 = 0;
 if (~script2727 = true & %varclient_547 = 0) {
-    ~script3076(interface_906:com_262);
-    ~script3074(interface_906:com_260);
-    ~script3026(interface_906:com_262);
-    ~script3025(interface_906:com_260);
-    if_sethide(false, interface_906:com_236);
+    if_sethide(false, interface_906:com_115);
     sound_jingle_volume(jingle_9265, 0, 160);
-    ~script3412(interface_906:com_255, interface_906:com_256);
-    $int7 = if_getwidth(interface_906:com_256);
-    $int8 = if_getwidth(interface_906:com_256);
-    $int5 = max(337, calc(stringwidth(if_gettext(interface_906:com_255), graphic_17813) + 30));
-    $int8 = max(152, calc(paraheight(if_gettext(interface_906:com_256), $int7, graphic_17813) * 16));
-    $int6 = max(243, calc($int8 + 91));
-    if_setsize($int7, $int8, ^setsize_abs, ^setsize_abs, interface_906:com_256);
-    if_setsize($int5, $int6, ^setsize_abs, ^setsize_abs, interface_906:com_244);
     return(false);
 }
 %varclient_200 = 0;
 %varclient_1745 = false;
-~lobbyscreen_loginbutton_text(0);
+~lobbyscreen_loginbutton_text(false);
 if (%varplayer_1747 > 0) {
     ~script5861(%varplayer_1747);
 }
 lobby_entergame(%varclient_4192, %varclient_4193);
-def_int $int9 = clientoption_get(^clientoption_volume_main_effects);
-def_int $int10 = clientoption_get(^clientoption_volume_main_music);
-def_int $int11 = clientoption_get(^clientoption_volume_background_effects);
-def_int $int12 = clientoption_get(^clientoption_volume_speech);
-def_int $int13 = clientoption_get(^clientoption_volume_login_music);
-if_setontimer("lobbyscreen_entergametimer($component0, map_world, $int9, $int10, $int11, $int12, $int13)", $component0);
+def_int $int5 = detailget_soundvol;
+def_int $int6 = detailget_musicvol;
+def_int $int7 = detailget_bgsoundvol;
+def_int $int8 = detailget_speechvol;
+if (%varclient_2581 = true) {
+    detail_loginvol(0);
+}
+def_int $int9 = detailget_loginvol;
+if_setontimer("lobbyscreen_entergametimer($component0, map_world, $int5, $int6, $int7, $int8, $int9)", $component0);
 return(true);

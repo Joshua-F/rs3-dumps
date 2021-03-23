@@ -1,5 +1,15 @@
 // 1172
 [clientscript,loginscreen_load]
+~script15717;
+if (~is_mobile_client = true) {
+    %varclientbit_43686 = 1;
+    %varplayerbit_22875 = 2;
+    %varclientbit_22876 = 2;
+} else {
+    %varclientbit_43686 = 1;
+    %varplayerbit_22875 = 0;
+    %varclientbit_22876 = 0;
+}
 ~loginscreen_steam_init;
 %varclient_6816 = 0;
 ~script2593;
@@ -8,29 +18,101 @@ if (%varclient_6799 = true & unknown_command_51 = false) {
     %varclient_6799 = false;
 }
 ~interface_zoom_reset;
-setup_messagebox(0, 0, 4, 3, 135, 30, loadingbox_border_corner, loadingbox_border_side, aif_small_load_back, 0xffa200, graphic_17813);
+setup_messagebox(0, 0, 4, 3, 135, 30, loadingbox_border_corner, loadingbox_border_side, aif_small_load_back, 0xffa200, fontmetrics_17813);
 if (%varclient_3698 < 0 | %varclient_3698 > 1) {
     %varclient_3698 = 1;
 }
-if_setonresize("login_resize", interface_744:com_1);
+if (~is_mobile_client = true) {
+    if_setonresize("script15677", interface_744:com_26);
+    ~script15678;
+    if_sethide(false, interface_744:com_1);
+    if_setonclick(null, interface_744:com_129);
+    if_setonclick(null, interface_744:com_158);
+    if_setonclick(null, interface_744:com_136);
+}
+if_setonresize("login_resize", interface_744:com_0);
+~login_resize;
+%varclient_6886 = 0;
+if (%varclient_1099 = -1) {
+    %varclient_1099 = 0;
+}
 ~script9083;
 %varclient_2577 = "";
+~script15699;
 %varclient_4192 = "";
+~script15700;
 %varclient_4193 = false;
+if (string_length(if_gettext(interface_744:com_109)) > 0) {
+    if_settrans(175, interface_744:com_107);
+}
+if (string_length(if_gettext(interface_744:com_122)) > 0) {
+    if_settrans(175, interface_744:com_120);
+}
+if (%varclient_6406 = -1) {
+    %varclient_6406 = 0;
+}
+if (%varclient_3681 = -1) {
+    %varclient_3681 = 0;
+}
+~loginscreen_audio_setup;
 video_advert_force_remove;
-map_preload(%varclient_2771);
+~script15668(48758970);
 ~toplevel_minimenu_setup;
-~script1011;
 ~script2618;
 ~push_notifications_init;
 %varclient_547 = 0;
 %varclient_1093 = false;
 ~cursors_login;
-%varclient_1240 = 4;
 ~loginscreen_load_overlay(-1);
-~login_resize;
 if (%varclient_1701 = -1) {
     %varclient_1701 = 1;
 }
 ~wof_login_client;
+~script15694(interface_744:com_260);
+if (~script6431 = true) {
+    if_sethide(true, interface_744:com_30);
+    if_sethide(false, interface_744:com_74);
+    if_sethide(false, interface_744:com_48);
+    if_sethide(true, interface_744:com_62);
+    if_sethide(false, interface_744:com_214);
+    if_sethide(false, interface_744:com_31);
+    if_sethide(true, interface_744:com_35);
+    ~script13993(interface_744:com_136, null, struct_28556, "Create Free Account");
+} else {
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_744:com_29);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_744:com_47);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, interface_744:com_47);
+    if_sethide(true, interface_744:com_74);
+    if_sethide(true, interface_744:com_48);
+    if_sethide(false, interface_744:com_62);
+    if_setposition(10, 10, ^setpos_abs_right, ^setpos_abs_top, interface_744:com_185);
+    if_setsize(364, 392, ^setsize_abs, ^setsize_abs, interface_744:com_60);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_744:com_60);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_744:com_167);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_744:com_167);
+    if_setposition(0, 32, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_174);
+    if_setsize(40, 130, ^setsize_minus, ^setsize_minus, interface_744:com_174);
+    if_setposition(0, 25, ^setpos_abs_centre, ^setpos_abs_bottom, interface_744:com_179);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, interface_744:com_104);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_744:com_104);
+    if_setposition(0, 35, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_105);
+    if_setposition(0, 75, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_111);
+    if_setposition(0, 100, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_118);
+    if_setposition(0, 140, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_124);
+    if_setposition(0, 166, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_125);
+    if_setposition(0, 216, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_131);
+    if_setposition(0, 226, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_132);
+    if_setposition(0, 250, ^setpos_abs_centre, ^setpos_abs_top, interface_744:com_133);
+    if_setposition(0, 26, ^setpos_abs_centre, ^setpos_abs_bottom, interface_744:com_136);
+    if_setsize(300, 27, ^setsize_abs, ^setsize_abs, interface_744:com_136);
+    ~script13969(interface_744:com_136, null, struct_28554, "Create Free Account");
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_744:com_137);
+    if_setsize(0, 20, ^setsize_minus, ^setsize_minus, interface_744:com_137);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_744:com_180);
+    if_setsize(0, 70, ^setsize_minus, ^setsize_abs, interface_744:com_180);
+    if_sethide(false, interface_744:com_181);
+    if_sethide(false, interface_744:com_229);
+    if_sethide(true, interface_744:com_31);
+    if_sethide(false, interface_744:com_35);
+}
 %varclient_6712 = 1;
