@@ -3,7 +3,7 @@ type=layer
 widthmode=minus
 heightmode=minus
 ymode=abs_centre
-onload=script8420(interface_1387:com_1, interface_1387:com_43, interface_1387:com_2, interface_1387:com_44, "Diango's Item Retrieval", struct_21218, 1017)
+onload=script8420(interface_1387:com_1, interface_1387:com_40, interface_1387:com_2, interface_1387:com_41, "Diango's Item Retrieval", struct_21218, 1017)
 
 [com_1]
 type=layer
@@ -25,24 +25,26 @@ heightmode=minus
 xmode=abs_centre
 layer=com_0
 onload=diango_items_init
-onvartransmit=diango_items_init{varplayer_9167, varplayer_5085}
+onvartransmit=diango_items_init{varplayer_9167}
 
 [com_3]
 type=layer
-height=50
+x=4
+width=8
+height=38
 widthmode=minus
-xmode=abs_centre
-ymode=abs_bottom
+heightmode=minus
 layer=com_2
 
 [com_4]
 type=layer
-x=8
-width=11
-height=40
+x=4
+y=4
+width=8
+height=30
 widthmode=minus
 ymode=abs_bottom
-layer=com_3
+layer=com_2
 
 [com_5]
 type=layer
@@ -51,12 +53,11 @@ heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
 layer=com_4
-onload=rs3_background_panel(event_com, struct_21364)
+onload=script13964(event_com, null, struct_24215)
 
 [com_6]
 type=layer
-width=16391
-widthmode=proportion
+widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
@@ -73,7 +74,7 @@ xmode=abs_right
 ymode=abs_centre
 layer=com_6
 hide=yes
-textfont=graphic_17813
+textfont=fontmetrics_17813
 fontmono=no
 textalignh=centre
 textalignv=centre
@@ -98,26 +99,23 @@ widthmode=minus
 xmode=abs_centre
 ymode=abs_centre
 layer=com_6
-textfont=graphic_17813
+textfont=fontmetrics_17813
 fontmono=no
-text=Interact here to search
+text=Search...
 textalignh=centre
 textalignv=centre
 textshadow=yes
 transmitop=1
 op1=Search
 opcursor0=cursor_56
-onmouseover=rs3_background_panel(interface_1387:com_5, struct_21366)
-onmouseleave=rs3_background_panel(interface_1387:com_5, struct_21364)
 onop=diango_search
-onclick=script7203(interface_1387:com_10, interface_1387:com_13)
+onmouserepeat=script10009("Search your items stored with Diango", event_com, event_comsubid)
+onclick=script7203(interface_1387:com_10, interface_1387:com_12)
 
 [com_10]
 type=layer
-width=16391
-height=16384
-widthmode=proportion
-heightmode=proportion
+widthmode=minus
+heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
 layer=com_6
@@ -126,95 +124,92 @@ noclickthrough=yes
 
 [com_11]
 type=graphic
-x=-2
-y=1
-width=37
-height=37
+x=4
+width=18
+height=18
 ymode=abs_centre
 layer=com_4
-graphic="bank_buttons_new1,0"
+graphic="trh_icon_search_query,0"
 
 [com_12]
 type=layer
-x=5
-y=1
+x=4
 width=16
 height=15
 xmode=abs_right
 ymode=abs_centre
 layer=com_4
+hide=yes
 
 [com_13]
-type=layer
-widthmode=minus
-heightmode=minus
+type=graphic
+width=16
+height=16
 xmode=abs_centre
 ymode=abs_centre
 layer=com_12
-hide=yes
-noclickthrough=yes
+graphic=rs3_contextual_input_error
+trans=50
 
 [com_14]
-type=graphic
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_12
-graphic="aif_bronze_close_button_1,0"
-
-[com_15]
-type=graphic
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_12
-graphic="aif_bronze_close_button_1,1"
-trans=255
-onmouseover=script4209(event_com, 0)
-onmouseleave=script4209(event_com, 1)
-
-[com_16]
-type=layer
-x=4
-width=8
-height=32
-widthmode=minus
-heightmode=minus
-layer=com_2
-
-[com_17]
 type=text
 width=10
 height=22
 widthmode=minus
 xmode=abs_centre
-layer=com_16
+layer=com_3
 hide=yes
-textfont=graphic_17814
+textfont=fontmetrics_17814
 fontmono=no
 text=Holiday items
 textalignv=centre
 textshadow=yes
 colour=0xffcb05
 
-[com_18]
+[com_15]
 type=layer
 x=-2
 y=-1
 height=48
 widthmode=minus
-layer=com_16
+layer=com_3
 onload=diango_bank_button
 onvartransmit=diango_bank_button{varplayer_7755}
 
-[com_19]
+[com_16]
 type=layer
 y=-5
 width=48
 height=48
-layer=com_18
+layer=com_15
+
+[com_17]
+type=graphic
+widthmode=minus
+heightmode=minus
+layer=com_16
+transmitop=1
+op1=Select
+opcursor0=cursor_46
+onop=script11150(0)
+onmouserepeat=script8799("All items", event_com, event_comsubid)
+
+[com_18]
+type=graphic
+x=6
+y=13
+width=36
+height=32
+layer=com_16
+graphic="bank_misc_graphics,0"
+
+[com_19]
+type=layer
+x=48
+y=-5
+width=48
+height=48
+layer=com_15
 
 [com_20]
 type=graphic
@@ -224,25 +219,25 @@ layer=com_19
 transmitop=1
 op1=Select
 opcursor0=cursor_46
-onop=script11150(0)
-onmouserepeat=script8799("All items", event_com, event_comsubid)
+onop=script11150(1)
+onmouserepeat=script8799("Holiday items", event_com, event_comsubid)
 
 [com_21]
 type=graphic
-x=6
+x=8
 y=13
-width=36
-height=32
+width=30
+height=30
 layer=com_19
-graphic="bank_misc_graphics,0"
+graphic="trh_icon_management_tab_holiday_items,0"
 
 [com_22]
 type=layer
-x=48
+x=96
 y=-5
 width=48
 height=48
-layer=com_18
+layer=com_15
 
 [com_23]
 type=graphic
@@ -252,8 +247,8 @@ layer=com_22
 transmitop=1
 op1=Select
 opcursor0=cursor_46
-onop=script11150(1)
-onmouserepeat=script8799("Holiday items", event_com, event_comsubid)
+onop=script11150(2)
+onmouserepeat=script8799("Weapons", event_com, event_comsubid)
 
 [com_24]
 type=graphic
@@ -262,15 +257,15 @@ y=13
 width=30
 height=30
 layer=com_22
-graphic="trh_icon_management_tab_holiday_items,0"
+graphic="trh_icon_management_tab_combat,0"
 
 [com_25]
 type=layer
-x=96
+x=144
 y=-5
 width=48
 height=48
-layer=com_18
+layer=com_15
 
 [com_26]
 type=graphic
@@ -280,8 +275,8 @@ layer=com_25
 transmitop=1
 op1=Select
 opcursor0=cursor_46
-onop=script11150(2)
-onmouserepeat=script8799("Weapons", event_com, event_comsubid)
+onop=script11150(3)
+onmouserepeat=script8799("Armour", event_com, event_comsubid)
 
 [com_27]
 type=graphic
@@ -290,15 +285,15 @@ y=13
 width=30
 height=30
 layer=com_25
-graphic="trh_icon_management_tab_combat,0"
+graphic="trh_icon_management_tab_armour,0"
 
 [com_28]
 type=layer
-x=144
+x=192
 y=-5
 width=48
 height=48
-layer=com_18
+layer=com_15
 
 [com_29]
 type=graphic
@@ -308,8 +303,8 @@ layer=com_28
 transmitop=1
 op1=Select
 opcursor0=cursor_46
-onop=script11150(3)
-onmouserepeat=script8799("Armour", event_com, event_comsubid)
+onop=script11150(4)
+onmouserepeat=script8799("Skill Sets", event_com, event_comsubid)
 
 [com_30]
 type=graphic
@@ -318,15 +313,15 @@ y=13
 width=30
 height=30
 layer=com_28
-graphic="trh_icon_management_tab_armour,0"
+graphic="trh_icon_management_tab_skills,0"
 
 [com_31]
 type=layer
-x=192
+x=240
 y=-5
 width=48
 height=48
-layer=com_18
+layer=com_15
 
 [com_32]
 type=graphic
@@ -336,8 +331,8 @@ layer=com_31
 transmitop=1
 op1=Select
 opcursor0=cursor_46
-onop=script11150(4)
-onmouserepeat=script8799("Skill Sets", event_com, event_comsubid)
+onop=script11150(5)
+onmouserepeat=script8799("Cosmetics", event_com, event_comsubid)
 
 [com_33]
 type=graphic
@@ -346,75 +341,46 @@ y=13
 width=30
 height=30
 layer=com_31
-graphic="trh_icon_management_tab_skills,0"
+graphic="trh_icon_management_tab_cosmetic,0"
 
 [com_34]
 type=layer
-x=240
-y=-5
-width=48
-height=48
-layer=com_18
-
-[com_35]
-type=graphic
-widthmode=minus
-heightmode=minus
-layer=com_34
-transmitop=1
-op1=Select
-opcursor0=cursor_46
-onop=script11150(5)
-onmouserepeat=script8799("Cosmetics", event_com, event_comsubid)
-
-[com_36]
-type=graphic
-x=8
-y=13
-width=30
-height=30
-layer=com_34
-graphic="trh_icon_management_tab_cosmetic,0"
-
-[com_37]
-type=layer
-y=-5
+y=-2
 width=165
 height=27
 xmode=abs_right
 ymode=abs_centre
-layer=com_18
+layer=com_15
 
-[com_38]
+[com_35]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_37
+layer=com_34
 transmitop=1
 op1=Select
 opcursor0=cursor_46
 onload=script13968(event_com, null, struct_28554, "Return to Bank")
 
-[com_39]
+[com_36]
 type=layer
-y=2
 height=40
 widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_bottom
-layer=com_16
+layer=com_3
 
-[com_40]
+[com_37]
 type=layer
 widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-layer=com_39
+layer=com_36
 onload=rs3_background_panel(event_com, struct_21361)
 
-[com_41]
+[com_38]
 type=layer
 x=4
 width=24
@@ -422,25 +388,25 @@ height=8
 widthmode=minus
 heightmode=minus
 ymode=abs_centre
-layer=com_39
+layer=com_36
 
-[com_42]
+[com_39]
 type=layer
-x=1
+x=4
+y=4
 width=16
-height=4
+height=8
 heightmode=minus
 xmode=abs_right
-ymode=abs_centre
-layer=com_39
+layer=com_36
 
-[com_43]
+[com_40]
 type=layer
 widthmode=minus
 heightmode=minus
 layer=com_0
 
-[com_44]
+[com_41]
 type=layer
 widthmode=minus
 heightmode=minus
@@ -449,4 +415,16 @@ layer=com_0
 transmitop=1
 op1=Close
 onop=closebutton_click
+
+[com_42]
+type=graphic
+width=16
+height=16
+xmode=abs_centre
+ymode=abs_centre
+layer=com_12
+graphic=rs3_contextual_input_error
+trans=255
+onmouseover=script4209(event_com, 0)
+onmouseleave=script4209(event_com, 1)
 
