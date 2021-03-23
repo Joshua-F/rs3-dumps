@@ -1,0 +1,31 @@
+// 15727
+[proc,mobile_shop_draw](int $int0)
+cc_deleteall(interface_828:com_2);
+cc_deleteall(interface_828:com_4);
+cc_deleteall(interface_828:com_5);
+cc_deleteall(interface_828:com_6);
+cc_deleteall(interface_828:com_8);
+%varclient_6892 = $int0;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_enum $enum3 = enum(int, enum, enum_15466, %varplayerbit_49038);
+def_int $int4 = 0;
+def_int $int5 = enum_getoutputcount($enum3);
+def_int $int6 = 0;
+def_int $int7 = 0;
+if (enum_hasoutput(int, $enum3, $int0) = true) {
+    $int7 = enum_getreverseindex(int, int, $enum3, $int0, 0);
+} else {
+    $int0 = 0;
+    $int7 = enum(int, int, $enum3, 0);
+}
+while ($int4 < $int5) {
+    $int1 = enum(int, int, $enum3, $int4);
+    if (shop_getproductcount($int1) > 0) {
+        $int6 = ~script15776(interface_828:com_2, $int6, enum(int, string, enum_15465, $int1), $int2, $int7);
+        .cc_setonop("script15726($int1)");
+        $int2 = calc($int2 + 1);
+    }
+    $int4 = calc($int4 + 1);
+}
+~mobile_shop_build_category(pow(2, $int0), interface_828:com_4);

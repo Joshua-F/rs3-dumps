@@ -10,11 +10,14 @@ if (~script6431 = true) {
     $int2 = 64;
 }
 if (string_length($string0) = 0) {
-    if (cc_find(interface_517:com_292, 14) = true) {
+    if (cc_find(interface_517:com_293, 14) = true) {
         cc_settext("Bank of Gielinor (no search entered)");
         cc_setmaxlines(1);
     }
     if_sethide(false, interface_517:com_181);
+    ~script10239;
+    ~bank_build_tabs($int0);
+    if_sethide(true, interface_517:com_187);
     while ($int1 < 1470) {
         if (cc_find(interface_517:com_186, $int1) = true) {
             cc_sethide(true);
@@ -22,10 +25,10 @@ if (string_length($string0) = 0) {
         $int1 = calc($int1 + 1);
     }
     ~bank_build_scrollbar(0);
-    ~script9302("Items found: <col=ffffff><tostring_localised(0, true)>");
+    ~script9302(0);
     return;
 } else {
-    if (cc_find(interface_517:com_292, 14) = true) {
+    if (cc_find(interface_517:com_293, 14) = true) {
         cc_settext("Bank of Gielinor (search: '<$string0>')");
         cc_setmaxlines(1);
     }
@@ -33,7 +36,7 @@ if (string_length($string0) = 0) {
 }
 def_int $int3 = ~script14337;
 def_int $int4 = 8;
-def_int $int5 = 5;
+def_int $int5 = calc(5 + 20);
 def_int $int6 = if_getwidth(interface_517:com_184);
 def_int $int7 = 0;
 def_string $string1 = "";
@@ -67,11 +70,14 @@ while ($int3 < 1470) {
     $int3 = calc($int3 + 1);
 }
 if ($int7 = 0) {
-    if_sethide(false, interface_517:com_183);
+    ~script10186(0, 0);
+    $int5 = 0;
+} else {
+    ~script9328(0, 5, "Search Results: Bank");
 }
 if_setscrollpos(0, 0, interface_517:com_184);
 if ($int4 > 8) {
     $int5 = calc($int5 + $int2);
 }
-~bank_build_scrollbar($int5);
-~script9302("Items found: <col=ffffff><tostring_localised($int7, true)>");
+if_setposition(0, $int5, ^setpos_abs_left, ^setpos_abs_top, interface_517:com_187);
+~script9302($int7);

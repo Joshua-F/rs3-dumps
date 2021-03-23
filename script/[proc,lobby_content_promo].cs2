@@ -11,13 +11,12 @@ def_int $int6 = enum_getoutputcount(enum_6177);
 def_struct $structarray0($int6);
 def_struct $struct7 = null;
 def_struct $struct8 = null;
-def_struct $struct9 = null;
-def_quest $quest10 = null;
+def_quest $quest9 = null;
+def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = 0;
 def_int $int13 = 0;
 def_int $int14 = 0;
-def_int $int15 = 0;
 def_string $string1 = "";
 def_string $string2 = "";
 def_string $string3 = "";
@@ -25,38 +24,44 @@ def_string $string4 = "";
 def_string $string5 = "";
 if ($int4 = 1) {
     ~script13264(6, 1, $int5);
-    if_settext("Latest Content", $component1);
+    if_settext("New Content", $component1);
 } else {
-    while ($int12 < $int6) {
-        $int11 = 0;
+    while ($int11 < $int6) {
+        $int10 = 0;
+        $int13 = 0;
         $int14 = 0;
-        $int15 = 0;
-        $struct7 = enum(int, struct, enum_6177, $int12);
+        $struct7 = enum(int, struct, enum_6177, $int11);
         $struct8 = struct_param($struct7, param_6390);
         if ($struct8 ! null) {
             if (~trh_state_lobby($struct8) = 1) {
+                $int13 = %varplayer_6601;
                 $int14 = %varplayer_6601;
-                $int15 = %varplayer_6601;
             } else {
-                $int11 = 1;
+                $int10 = 1;
             }
         } else {
-            $int14 = struct_param($struct7, param_6388);
-            $int15 = struct_param($struct7, param_6389);
+            $int13 = struct_param($struct7, param_6388);
+            $int14 = struct_param($struct7, param_6389);
         }
-        if ((%varplayer_6601 < $int14 | %varplayer_6601 > $int15) & $int14 ! 0) {
-            $int11 = 1;
+        if ((%varplayer_6601 < $int13 | %varplayer_6601 > $int14) & $int13 ! 0) {
+            $int10 = 1;
         }
-        if ($int11 = 0) {
-            $structarray0($int13) = $struct7;
-            $int13 = calc($int13 + 1);
+        switch_struct ($struct7) {
+            case struct_25 :
+                if (platformtype ! ^platformtype_default) {
+                    $int10 = 1;
+                }
         }
-        $int12 = calc($int12 + 1);
+        if ($int10 = 0) {
+            $structarray0($int12) = $struct7;
+            $int12 = calc($int12 + 1);
+        }
+        $int11 = calc($int11 + 1);
     }
-    if ($int13 = 0) {
+    if ($int12 = 0) {
         $struct7 = enum(int, struct, enum_6177, -1);
     } else {
-        $struct7 = $structarray0(random($int13));
+        $struct7 = $structarray0(random($int12));
     }
     if ($struct7 = struct_11515) {
         $struct7 = ~script6341;
@@ -119,32 +124,32 @@ if ($int4 = 1) {
             if_setonclick("script9036", $component0);
         case 3 :
             if (string_length($string0) = 0) {
-                $string0 = "Latest Content";
+                $string0 = "New Content";
             }
             if_setop(1, "Select", $component0);
             if_setonop("script12374($string1, $string2, $string2, struct_param($struct7, param_6395))", $component0);
             if_setonclick("script9036", $component0);
         case 9 :
             if (string_length($string0) = 0) {
-                $string0 = "Latest Content";
+                $string0 = "New Content";
             }
             if_setop(1, "Select", $component0);
             if_setonop("script2827($string3, 0)", $component0);
             if_setonclick("script9036", $component0);
         case 4 :
             if (string_length($string0) = 0) {
-                $string0 = "Latest Content";
+                $string0 = "New Content";
             }
             if_setop(1, "Select", $component0);
             if_setonop("script13252", $component0);
         case 5 :
             if (string_length($string0) = 0) {
-                $string0 = "Latest Content";
+                $string0 = "New Content";
             }
             ~script13264(5, 1, $int5);
         case 8 :
             if (string_length($string0) = 0) {
-                $string0 = "Latest Content";
+                $string0 = "Runecoins";
             }
             ~script13264(8, 1, $int5);
         case 10 :
@@ -154,15 +159,14 @@ if ($int4 = 1) {
             ~script13264(10, 1, $int5);
         case 11 :
             if (string_length($string0) = 0) {
-                $string0 = "Latest Content";
+                $string0 = "New Content";
             }
             ~script13264(11, 1, $int5);
             if (struct_param($struct7, param_1345) > 0) {
-                $struct9 = enum(int, struct, enum_2252, struct_param($struct7, param_1345));
-                $quest10 = struct_param($struct9, param_1403);
+                $quest9 = enum(int, quest, enum_2252, struct_param($struct7, param_1345));
             }
-            if ($struct9 ! null) {
-                $string5 = quest_param($quest10, param_5968);
+            if ($quest9 ! null) {
+                $string5 = quest_param($quest9, param_5968);
             } else {
                 $string5 = struct_param($struct7, param_1273);
             }
@@ -173,14 +177,14 @@ if ($int4 = 1) {
             ~script13264(12, 1, $int5);
         case 13 :
             if (string_length($string0) = 0) {
-                $string0 = "Latest Content";
+                $string0 = "New Content";
             }
             if_setop(1, "Select", $component0);
             if_setonop("script4253", $component0);
             if_setonclick("script9036", $component0);
         case default :
             if (string_length($string0) = 0) {
-                $string0 = "Latest Content";
+                $string0 = "New Content";
             }
             if_setop(1, "Select", $component0);
             if_setonop("script13252", $component0);
@@ -196,14 +200,14 @@ cc_deleteall($component2);
 if (compare($string4, "") = 0) {
     return;
 }
-def_int $int16 = 0;
-~script10047($component2, $int16);
-$int16 = calc($int16 + 1);
-cc_create($component2, ^iftype_text, $int16);
+def_int $int15 = 0;
+~script10047($component2, $int15);
+$int15 = calc($int15 + 1);
+cc_create($component2, ^iftype_text, $int15);
 cc_settext($string4);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
 cc_setsize(0, 32, ^setsize_minus, ^setsize_abs);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-cc_settextfont(graphic_17814);
+cc_settextfont(fontmetrics_17814);
 cc_setcolour(0xffcb05);
 cc_settextshadow(true);

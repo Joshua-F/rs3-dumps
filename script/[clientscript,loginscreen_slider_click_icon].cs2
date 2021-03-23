@@ -1,19 +1,15 @@
 // 2004
-[clientscript,loginscreen_slider_click_icon](component $component0, component $component1, component $component2)
-def_int $int3 = clientoption_get(^clientoption_volume_login_music);
-sound_vorbis_volume(sound_36961, 1, 0, 100);
-if ($int3 = 0) {
+[clientscript,loginscreen_slider_click_icon]
+def_int $int0 = clientoption_get(^clientoption_volume_login_music);
+if ($int0 = 0) {
     if (%varclient_1394 > 0 & %varclient_1394 <= 255) {
         clientoption_set(^clientoption_volume_login_music, %varclient_1394);
     } else {
         clientoption_set(^clientoption_volume_login_music, 127);
     }
-} else if ($int3 > 0) {
+} else if ($int0 > 0) {
     clientoption_set(^clientoption_volume_login_music, 0);
 }
-~script2007($component0, $component1, 0, 1);
-if (clientoption_get(^clientoption_volume_login_music) > 0) {
-    if_sethide(true, $component2);
-} else {
-    if_sethide(false, $component2);
-}
+%varclient_6888 = clientoption_get(^clientoption_volume_login_music);
+~script10452(interface_744:com_247, 0, 255, %varclient_6888);
+~script15657;

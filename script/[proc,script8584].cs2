@@ -1,12 +1,16 @@
 // 8584
-[proc,script8584](stat $stat0, int $int1, struct $struct2)(string, int)
-if (~ql4_getquestcomplete(struct_param($struct2, param_1345)) = true) {
+[proc,script8584](stat $stat0, int $int1, quest $quest2)(string, int)
+if ($quest2 = null) {
+    ~error("$quest for <tostring($int1)> <enum(stat, string, enum_680, $stat0)> is null");
+    return("", 0);
+}
+if (~ql4_getquestcomplete($quest2) = true) {
     return("", 0);
 }
 def_int $int3 = stat_base($stat0);
 def_int $int4 = 0;
 def_int $int5 = 0;
-if ($struct2 = struct_4322 & ($stat0 = strength | $stat0 = attack)) {
+if ($quest2 = quest_86 & ($stat0 = strength | $stat0 = attack)) {
     if ($stat0 = attack) {
         $int4 = stat_base_actual(strength);
         $int5 = %varclient_1470;
@@ -15,28 +19,23 @@ if ($struct2 = struct_4322 & ($stat0 = strength | $stat0 = attack)) {
         $int5 = %varclient_1469;
     }
     if (calc($int1 + $int5) < 130 & calc($int3 + $int4) >= 130) {
-        return(~script8583($stat0, $int3, $struct2));
+        return(~script8583($stat0, $int3, $quest2));
     } else {
         return("", 0);
     }
 }
-def_quest $quest6 = struct_param($struct2, param_1403);
-if ($quest6 = null) {
-    ~error("quest_id #<tostring(struct_param($struct2, param_1345))> is missing quest_struct_quest param.");
-    return("", 0);
-}
-def_int $int7 = quest_statreq_count($quest6);
-def_stat $stat8 = null;
+def_int $int6 = quest_statreq_count($quest2);
+def_stat $stat7 = null;
+def_int $int8 = 0;
 def_int $int9 = 0;
-def_int $int10 = 0;
-while ($int10 < $int7) {
-    $stat8, $int9 = ~script2112($struct2, calc($int10 + 1));
-    if ($stat8 = null) {
+while ($int9 < $int6) {
+    $stat7, $int8 = ~script2112($quest2, calc($int9 + 1));
+    if ($stat7 = null) {
         return("", 0);
     }
-    if ($stat8 = $stat0 & $int3 >= $int9 & $int1 < $int9) {
-        return(~script8582($stat0, $int9, $struct2));
+    if ($stat7 = $stat0 & $int3 >= $int8 & $int1 < $int8) {
+        return(~script8582($stat0, $int8, $quest2));
     }
-    $int10 = calc($int10 + 1);
+    $int9 = calc($int9 + 1);
 }
 return("", 0);

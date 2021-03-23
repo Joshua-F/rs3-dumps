@@ -16,16 +16,16 @@ if (struct_param($struct0, param_1345) > 0) {
         if (~task_kudos_available < quest_param($quest1, param_7860)) {
             return(0);
         }
-        if (quest_param($quest1, param_7862) = true & ~ql4_special_requirements(struct_param($struct0, param_1345)) = false) {
+        if (quest_param($quest1, param_7862) = true & ~ql4_special_requirements($quest1) = false) {
             return(0);
         }
         if (quest_param($quest1, param_7861) = true & %varplayerbit_9663 = 0) {
             return(0);
         }
-        if (~ql4_quest_requirements($struct0) = false) {
+        if (~ql4_quest_requirements($quest1) = false) {
             return(0);
         }
-        if (~ql4_skill_requirements($struct0) = false) {
+        if (~ql4_skill_requirements($quest1) = false) {
             return(0);
         }
         return(1);
@@ -43,8 +43,13 @@ def_struct $struct6 = null;
 while ($int2 < $int5) {
     switch_int ($int2) {
         case 0 :
-            $int3 = struct_param($struct0, param_1294);
-            $int4 = struct_param($struct0, param_1295);
+            if (~ironman_mode = false | struct_param($struct0, param_4589) = 0) {
+                $int3 = struct_param($struct0, param_1294);
+                $int4 = struct_param($struct0, param_1295);
+            } else {
+                $int3 = struct_param($struct0, param_4588);
+                $int4 = struct_param($struct0, param_4589);
+            }
         case 1 :
             $int3 = struct_param($struct0, param_1296);
             $int4 = struct_param($struct0, param_1297);
@@ -105,7 +110,7 @@ while ($int2 < $int5) {
     }
     switch_int ($int3) {
         case 61 :
-            if (~ql4_getprogress($int4) ! 2) {
+            if (~script7073($int4) ! 2) {
                 return(0);
             }
         case 60 :

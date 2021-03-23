@@ -2,6 +2,9 @@
 [clientscript,script2786](int $int0)
 if ($int0 = 2) {
     autosetup_setlow;
+    if (~is_mobile_client = true & clientoption_get(^clientoption_shadows) = 1) {
+        clientoption_set(^clientoption_shadows, 0);
+    }
     %varclient_6503 = 0;
     ~script2710;
 } else if ($int0 = 3 & %varclient_6503 = 0) {
@@ -9,8 +12,14 @@ if ($int0 = 2) {
     if_sethide(false, interface_324:com_16);
     if_sethide(false, interface_324:com_15);
     switch_toplevelinterface (if_gettop) {
+        case interface_744 :
+            ~autosetup(0);
         case interface_1477 :
-            ~autosetup(1);
+            if (if_hassuboverlay(interface_1477:com_762, interface_1420) = false) {
+                ~autosetup(1);
+            } else {
+                ~autosetup(4);
+            }
         case interface_906 :
             ~autosetup(2);
     }

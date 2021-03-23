@@ -1,82 +1,81 @@
 // 7470
-[proc,diango_items]
-cc_deleteall(interface_1387:com_41);
-def_int $int0 = if_getwidth(interface_1387:com_41);
-def_int $int1 = enum_getoutputcount(enum_6245);
-def_int $int2 = calc($int1 + enum_getoutputcount(enum_8842));
-def_enum $enum3 = enum_6245;
+[proc,diango_items](component $component0)
+cc_deleteall($component0);
+def_int $int1 = if_getwidth($component0);
+def_int $int2 = enum_getoutputcount(enum_6245);
+def_int $int3 = calc($int2 + enum_getoutputcount(enum_8842));
+def_enum $enum4 = enum_6245;
 if (%varplayer_9167 = 1) {
-    $enum3 = enum_14535;
-    $int2 = enum_getoutputcount(enum_14535);
-    $int1 = $int2;
+    $enum4 = enum_14535;
+    $int3 = enum_getoutputcount(enum_14535);
+    $int2 = $int3;
 }
-def_int $int4 = 0;
 def_int $int5 = 0;
-def_int $int6 = 0;
-def_obj $obj7 = null;
-def_int $int8 = 0;
-def_int $int9 = 36;
-def_int $int10 = 32;
-def_int $int11 = 45;
+def_int $int6 = 8;
+def_int $int7 = 5;
+def_obj $obj8 = null;
+def_int $int9 = 0;
+def_int $int10 = 36;
+def_int $int11 = 32;
+def_int $int12 = 44;
 if (~script6431 = true) {
-    $int9 = 46;
-    $int10 = 43;
-    $int11 = 55;
+    $int10 = 56;
+    $int11 = 52;
+    $int12 = 64;
 }
-while ($int4 < $int2) {
-    if ($int4 < $int1) {
-        $obj7 = enum(int, obj, $enum3, $int4);
+while ($int5 < $int3) {
+    if ($int5 < $int2) {
+        $obj8 = enum(int, obj, $enum4, $int5);
     } else {
-        $int8 = 1;
-        $obj7 = enum(int, obj, enum_8842, calc($int4 - $int1));
+        $int9 = 1;
+        $obj8 = enum(int, obj, enum_8842, calc($int5 - $int2));
     }
-    cc_create(interface_1387:com_41, ^iftype_graphic, $int4);
-    if (~script14437($obj7, $int8) = true) {
-        cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
-        cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
-        if ($obj7 ! obj_34027) {
-            $obj7 = ~script13794($obj7);
-            cc_setobject($obj7, 1);
-        } else {
-            cc_setobject($obj7, %varplayerbit_26879);
-        }
+    cc_create($component0, ^iftype_graphic, $int5);
+    if (~script14437($obj8, $int9) = true) {
+        cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int6, $int7, ^setpos_abs_left, ^setpos_abs_top);
+        $obj8 = ~script13794($obj8);
+        cc_setobject($obj8, 1);
         cc_setop(1, "Retrieve");
-        switch_category (oc_category($obj7)) {
+        switch_category (oc_category($obj8)) {
             case category_2739, category_3226, category_3227, category_3228, category_3229, category_3311, category_3312, category_3313, category_3314, category_3497, category_3498, category_3499, category_3500, category_3698, category_3699, category_3700, category_3701, category_3858, category_3856, category_3857, category_3859, category_3992, category_3993, category_3994, category_3995, category_3996, category_4097, category_4098, category_4099, category_4100, category_4158, category_4159, category_4155, category_4156, category_4157, category_4174, category_4175, category_4176, category_4177, category_4361, category_4362, category_4363, category_4364, category_4475, category_4610, category_4611, category_4917 :
                 cc_setop(2, "Retrieve all outfit pieces");
         }
         cc_setop(10, "Examine");
         cc_setonop("script1620(event_com, event_comsubid, 75, 0, 10)");
         cc_setoutline(1);
-        cc_setonmouserepeat("script9564($obj7, event_com, event_comsubid)");
+        cc_setonmouserepeat("script5495($obj8)");
+        cc_setonmouseleave("script5495(null)");
         cc_setparam(param_7540, 0);
-        cc_setparam(param_7541, $obj7);
-        ~script14420($obj7);
-        $int5 = calc($int5 + $int11);
-        if (calc($int5 + $int11) > $int0) {
-            $int5 = 0;
-            $int6 = calc($int6 + $int11);
+        cc_setparam(param_7541, $obj8);
+        ~script14420($obj8);
+        $int6 = calc($int6 + $int12);
+        if (calc($int6 + $int10) >= $int1) {
+            $int6 = 8;
+            $int7 = calc($int7 + $int12);
         }
     }
-    $int4 = calc($int4 + 1);
+    $int5 = calc($int5 + 1);
 }
-if ($int5 = 0 & $int6 = 0) {
-    cc_create(interface_1387:com_41, ^iftype_text, if_getnextsubid(interface_1387:com_41));
+if ($int6 = 0 & $int7 = 0) {
+    cc_create($component0, ^iftype_text, if_getnextsubid($component0));
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
-    cc_settextfont(graphic_17813);
+    cc_settextfont(fontmetrics_17813);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_setcolour(^white);
     cc_settextshadow(true);
     cc_settext("Nothing to retrieve.");
 }
-if ($int5 ! 0) {
-    $int6 = calc($int6 + $int11);
-}
-if ($int6 > if_getheight(interface_1387:com_41)) {
-    if_setscrollsize(0, $int6, interface_1387:com_41);
-    ~scrollbar_resize(interface_1387:com_42, interface_1387:com_41, if_getscrolly(interface_1387:com_41));
-} else {
-    if_setscrollsize(0, 0, interface_1387:com_41);
-    ~scrollbar_resize(interface_1387:com_42, interface_1387:com_41, 0);
+if ($component0 = interface_1387:com_38) {
+    if ($int6 > 8) {
+        $int7 = calc($int7 + $int12);
+    }
+    if ($int7 > if_getheight(interface_1387:com_38)) {
+        if_setscrollsize(0, $int7, interface_1387:com_38);
+        ~scrollbar_resize(interface_1387:com_39, interface_1387:com_38, if_getscrolly(interface_1387:com_38));
+    } else {
+        if_setscrollsize(0, 0, interface_1387:com_38);
+        ~scrollbar_resize(interface_1387:com_39, interface_1387:com_38, 0);
+    }
 }

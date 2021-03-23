@@ -2,6 +2,7 @@
 [proc,activity_tracker_draw_rewards](component $component0, int $int1, int $int2, int $int3, achievement $achievement4)(int)
 def_string $string0 = "";
 def_struct $struct5 = null;
+def_quest $quest6 = null;
 switch_int ($int2) {
     case 2 :
         $string0 = achievement_getreward($achievement4);
@@ -9,22 +10,25 @@ switch_int ($int2) {
         $struct5 = enum(int, struct, enum_12251, $int3);
         if ($struct5 ! null) {
             if (struct_param($struct5, param_1345) > 0) {
-                $string0 = ~script2134(struct_param($struct5, param_1403), "", "");
+                $quest6 = enum(int, quest, enum_2252, $int3);
+                if ($quest6 ! null) {
+                    $string0 = ~script2134($quest6, "", "");
+                }
             } else {
                 $string0 = struct_param($struct5, param_6414);
             }
         }
     case 1 :
-        $struct5 = enum(int, struct, enum_12251, $int3);
-        if ($struct5 ! null) {
-            $string0 = ~script2134(struct_param($struct5, param_1403), "", "");
+        $quest6 = enum(int, quest, enum_2252, $int3);
+        if ($quest6 ! null) {
+            $string0 = ~script2134($quest6, "", "");
         }
 }
 if (compare($string0, "") ! 0) {
     cc_create($component0, ^iftype_text, if_getnextsubid($component0));
     cc_setposition(0, $int1, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(0, 16, ^setsize_minus, ^setsize_abs);
-    cc_settextfont(graphic_17813);
+    cc_settextfont(fontmetrics_17813);
     ~script2731($component0, cc_getid, 2);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     cc_settext("Rewards");

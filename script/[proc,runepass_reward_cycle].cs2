@@ -1,0 +1,82 @@
+// 11096
+[proc,runepass_reward_cycle](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, component $component6)
+def_dbrow $dbrow7 = ~runepass_get_current;
+if ($dbrow7 = null) {
+    return;
+}
+def_int $int8 = 0;
+def_int $int9 = db_getfieldcount($dbrow7, dbtable_73:col20);
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_graphic $graphic12 = null;
+def_graphic $graphic13 = null;
+def_obj $obj14 = null;
+def_obj $obj15 = null;
+def_int $int16 = 0;
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_obj $obj19 = null;
+def_struct $struct20 = null;
+def_int $int21 = %varplayer_9062;
+if (calc($int21 & 170) = 0) {
+    $int21 = calc($int21 * 3);
+}
+$int8 = $int1;
+while ($int8 < $int9 & $int16 <= $int0) {
+    $int16, $int17, $obj19, $struct20, $int18 = db_getfield($dbrow7, dbtable_73:col20, $int8);
+    if (calc($int17 & 85) ! 0 & calc($int17 & %varplayer_9062) ! 0) {
+        if ($int4 > 0) {
+            if ($int10 = $int2) {
+                $graphic12 = ~runepass_get_reward_graphic($struct20, $obj19, 0);
+                $obj14 = $obj19;
+            }
+            $int10 = calc($int10 + 1);
+        }
+    } else if (calc($int17 & $int21) ! 0 & $int5 > 0) {
+        if ($int11 = $int3) {
+            $graphic13 = ~runepass_get_reward_graphic($struct20, $obj19, 0);
+            $obj15 = $obj19;
+        }
+        $int11 = calc($int11 + 1);
+    }
+    $int8 = calc($int8 + 1);
+}
+if ($graphic12 ! null) {
+    $obj14 = null;
+} else {
+    $graphic12 = runepass_reward_s_chest;
+}
+if ($graphic13 ! null) {
+    $obj15 = null;
+} else {
+    $graphic13 = runepass_reward_s_chest;
+}
+if (cc_find($component6, calc($int0 * 9 + 1)) = true) {
+    cc_setgraphic($graphic12);
+}
+if (cc_find($component6, calc($int0 * 9 + 2)) = true) {
+    cc_setgraphic($graphic13);
+}
+if (cc_find($component6, calc($int0 * 9 + 4)) = true) {
+    cc_setobject($obj14, -1);
+}
+if (cc_find($component6, calc($int0 * 9 + 5)) = true) {
+    cc_setobject($obj15, -1);
+}
+if (calc($int2 + 1) = $int4) {
+    $int2 = 0;
+} else {
+    $int2 = calc($int2 + 1);
+}
+if (calc($int3 + 1) = $int5) {
+    $int3 = 0;
+} else {
+    $int3 = calc($int3 + 1);
+}
+if (cc_find($component6, calc($int0 * 9)) = true) {
+    if ($int0 >= %varplayer_9078) {
+        cc_setontimer("runepass_reward_cycle($int0, $int1, $int2, $int3, $int4, $int5, $component6)");
+    } else {
+        cc_setontimer(null);
+    }
+}

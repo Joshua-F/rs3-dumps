@@ -1,24 +1,27 @@
 // 7663
-[proc,script7663](struct $struct0)(int)
-if ($struct0 = null) {
+[proc,script7663](struct $struct0, quest $quest1, achievement $achievement2)(int)
+if ($struct0 = null & $quest1 = null & $achievement2 = null) {
     return(-1);
 }
-if ($struct0 = struct_11585) {
-    return(7);
-}
-if (struct_param($struct0, param_2235) > 0) {
-    return(4);
-}
-if (struct_param($struct0, param_1345) > 0) {
+if ($quest1 ! null | struct_param($struct0, param_1345) > 0) {
     return(1);
-}
-if (struct_param($struct0, param_8072) ! null) {
-    return(3);
-}
-if (enum_hasoutput(struct, enum_6452, $struct0) = true) {
-    return(6);
-}
-if (enum_hasoutput(struct, enum_12251, $struct0) = true) {
+} else if ($achievement2 ! null) {
     return(2);
+} else if ($struct0 ! null) {
+    if (struct_param($struct0, param_1346) > 0) {
+        return(8);
+    }
+    if ($struct0 = struct_11585) {
+        return(7);
+    }
+    if (struct_param($struct0, param_2235) > 0) {
+        return(4);
+    }
+    if (struct_param($struct0, param_8072) ! null) {
+        return(3);
+    }
+    if (enum_hasoutput(struct, enum_6452, $struct0) = true) {
+        return(6);
+    }
 }
 return(0);

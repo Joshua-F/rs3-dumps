@@ -1,27 +1,28 @@
 // 3621
 [clientscript,script3621]
+if (%varclient_6739 = 0 & %varclient_6740 = 0) {
+    return;
+}
 def_int $int0 = 0;
 def_int $int1 = 0;
 def_int $int2 = 0;
-if_setgraphic(runepass_icon_scroll_default, interface_634:com_41);
-if_setmouseovercursor(cursor_46, interface_634:com_41);
-if (%varclient_6739 ! 0 | %varclient_6740 ! 0) {
-    $int1 = calc(%varclient_6739 - %varclient_6740);
-    if ($int1 ! 0) {
-        $int2 = calc(%varclient_6739 - if_getscrolly(interface_634:com_10));
-        $int0 = calc($int1 / 50);
-        $int0 = calc(2 * $int0 * $int2 / $int1);
-        if ($int0 > 0) {
-            $int0 = min(max(25, $int0), $int2);
-        } else {
-            $int0 = max(min(calc(0 - 25), $int0), $int2);
-        }
+if_setgraphic(runepass_icon_scroll_default, interface_634:com_42);
+if_setmouseovercursor(cursor_46, interface_634:com_42);
+$int1 = calc(%varclient_6739 - %varclient_6740);
+if ($int1 ! 0) {
+    $int2 = calc(%varclient_6739 - if_getscrolly(interface_634:com_10));
+    $int0 = calc($int1 / 50);
+    $int0 = calc(2 * $int0 * $int2 / $int1);
+    if ($int0 > 0) {
+        $int0 = min(max(25, $int0), $int2);
+    } else {
+        $int0 = max(min(calc(0 - 25), $int0), $int2);
     }
-    if (abs($int0) < 5) {
-        %varclient_6739 = 0;
-        %varclient_6740 = 0;
-    }
-    %varclient_6741 = if_getscrolly(interface_634:com_10);
-    if_setscrollpos(if_getscrollx(interface_634:com_10), calc(if_getscrolly(interface_634:com_10) + $int0), interface_634:com_10);
-    ~script3660(if_getscrolly(interface_634:com_10));
 }
+if (abs($int0) < 5) {
+    %varclient_6739 = 0;
+    %varclient_6740 = 0;
+}
+%varclient_6741 = if_getscrolly(interface_634:com_10);
+if_setscrollpos(if_getscrollx(interface_634:com_10), calc(if_getscrolly(interface_634:com_10) + $int0), interface_634:com_10);
+~script3660(if_getscrolly(interface_634:com_10));

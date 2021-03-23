@@ -1,47 +1,48 @@
 // 7845
-[proc,script7845](int $int0, string $string0, int $int1)
-def_component $component2 = null;
-def_string $string1 = "";
-switch_int ($int1) {
-    case default :
-        return;
-    case 93061217 :
-        %varclient_3688 = $int0;
-        $component2 = interface_1420:com_326;
-        $string1 = "Character names can be up to 12 characters long and may contain letters, numbers, spaces, underscores and dashes only.";
-        if (string_length($string0) ! 0) {
-            $string1 = $string0;
-        }
-    case 93061215 :
-        %varclient_3689 = $int0;
-        $component2 = interface_1420:com_325;
-        $string1 = "Please enter your age, in years, here.";
-    case 93061213 :
-        %varclient_3690 = $int0;
-        $component2 = interface_1420:com_320;
-        if (string_length($string0) ! 0) {
-            $string1 = $string0;
-        } else {
-            $string1 = "Please enter your email address here.";
-        }
-    case 93061211 :
-        %varclient_3691 = $int0;
-        $component2 = interface_1420:com_322;
-        $string1 = "Please enter your desired password here.";
-    case 93061689 :
-        $component2 = interface_1420:com_324;
-        $string1 = "Ironman mode means you cannot be helped by other players, either directly or indirectly. Hardcore mode means when you die, you can no longer use that account.";
+[proc,script7845](int $int0, string $string0)
+if_sethide(false, interface_786:com_10);
+if_sethide(true, interface_786:com_11);
+%varclient_3688 = $int0;
+if ($int0 = 4) {
+    if_settext($string0, interface_786:com_10);
+    if_setcolour(0xf99222, interface_786:com_10);
+    if_setgraphic(null, interface_786:com_17);
+} else if ($int0 = 1) {
+    if_settext("You have entered a valid character name which is available!", interface_786:com_10);
+    if_setcolour(0x2dba14, interface_786:com_10);
+    if_setgraphic("rs3_character_interface_register_ticks,1", interface_786:com_17);
+} else if ($int0 = 5) {
+    if_settext($string0, interface_786:com_10);
+    ~script2731(interface_786:com_10, -1, 2);
+    if_setgraphic(null, interface_786:com_17);
+} else if (string_length($string0) = 0) {
+    if ($int0 = 0) {
+        if_settext("The display name entered is invalid.", interface_786:com_10);
+        ~script2731(interface_786:com_10, -1, 6);
+        if_setgraphic("rs3_character_interface_register_ticks,2", interface_786:com_17);
+    } else {
+        if_settext("A display name is needed to play.<br>Your friends can use it to add you in-game!", interface_786:com_10);
+        ~script2731(interface_786:com_10, -1, 2);
+        if_setgraphic(null, interface_786:com_17);
+    }
+} else {
+    if_settext($string0, interface_786:com_10);
+    ~script2731(interface_786:com_10, -1, 6);
+    if_setgraphic("rs3_character_interface_register_ticks,2", interface_786:com_17);
 }
-switch_int ($int0) {
-    case default :
-        return;
+switch_int (%varclient_3688) {
     case 0 :
-        if_settext($string0, $component2);
+        if_setcolour(0xba2d14, interface_786:com_13);
+        if_sethide(false, interface_786:com_13);
+    case 4 :
+        if_setcolour(0xf99222, interface_786:com_13);
+        if_sethide(false, interface_786:com_13);
     case 1 :
-        if_settext("You have entered a valid input.", $component2);
+        if_setcolour(0x2dba14, interface_786:com_13);
+        if_sethide(false, interface_786:com_13);
     case 2 :
-        if_settext("Input is locked while attempting to create an account.", $component2);
-    case 3 :
-        if_settext($string1, $component2);
+        if_setcolour(0x010101, interface_786:com_13);
+        if_sethide(false, interface_786:com_13);
+    case default :
+        if_sethide(true, interface_786:com_13);
 }
-~script7847;

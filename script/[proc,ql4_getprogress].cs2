@@ -1,8 +1,65 @@
 // 2193
-[proc,ql4_getprogress](int $int0)(int)
-def_struct $struct1 = enum(int, struct, enum_2252, $int0);
-if ($struct1 = null) {
-    ~error("Quest #<tostring($int0)> missing from [ql4_quests]. enum.");
+[proc,ql4_getprogress](quest $quest0)(int)
+if ($quest0 = null) {
+    ~error("Quest .quest missing. Cannot determine quest_id.");
     return(0);
 }
-return(~script3982($struct1));
+switch_quest ($quest0) {
+    case quest_92 :
+        if (%varplayer_2615 > 6) {
+            return(2);
+        }
+        if (%varplayer_2615 = 0 & %varplayerbit_12894 = 0) {
+            return(0);
+        }
+        return(1);
+    case quest_140 :
+        if (%varplayer_2339 >= 80) {
+            return(2);
+        } else {
+            return(~script2157(%varplayerbit_10848, 65));
+        }
+    case quest_111 :
+        if (%varplayer_2695 >= 4) {
+            return(2);
+        } else {
+            return(~script2157(%varplayerbit_13366, 8));
+        }
+    case quest_275 :
+        if (testbit(%varplayer_2675, 20) = ^true) {
+            return(2);
+        } else if (testbit(%varplayer_2675, 1) = ^false) {
+            return(0);
+        } else {
+            return(1);
+        }
+    case quest_131 :
+        return(~script2157(%varplayer_1295, 1000));
+    case quest_70 :
+        if (%varplayer_2793 = 0 & ~obj_gettotal(obj_625) > 0) {
+            return(1);
+        } else {
+            return(~script2157(%varplayer_2793, 15));
+        }
+    case quest_270 :
+        if (%varplayer_2426 = 10) {
+            return(2);
+        } else if (testbit(%varplayer_2427, 11) = ^false) {
+            return(0);
+        } else {
+            return(1);
+        }
+    case quest_324 :
+        if (%varplayerbit_12349 >= 110) {
+            return(2);
+        } else {
+            return(~script2157(%varplayerbit_12334, 35));
+        }
+    case default :
+        if (quest_finished($quest0) = true) {
+            return(2);
+        } else if (quest_started($quest0) = true) {
+            return(1);
+        }
+}
+return(0);

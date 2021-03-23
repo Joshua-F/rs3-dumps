@@ -10,13 +10,13 @@ def_npc $npc9 = null;
 def_loc $loc10 = null;
 def_boolean $boolean11 = false;
 def_string $string0 = "";
-def_int $int12 = db_getfieldcount($dbrow3, dbtable_74:col9);
+def_int $int12 = db_getfieldcount($dbrow3, dbtable_74:col15);
 def_int $int13 = calc(if_getwidth($component1) - 5);
-if (if_gethide(interface_634:com_50) = true) {
+if (if_gethide(interface_634:com_51) = true) {
     $int13 = calc($int13 - 16);
 }
 $int13 = calc($int13 - 30);
-def_boolean $boolean14 = db_getfield($dbrow3, dbtable_74:col10, 0);
+def_boolean $boolean14 = db_getfield($dbrow3, dbtable_74:col16, 0);
 def_int $int15 = ~script3604($int2);
 cc_deleteall($component1);
 switch_int ($int2) {
@@ -29,28 +29,35 @@ if_settext("Task <$string0>", $component0);
 def_int $int16 = 0;
 def_int $int17 = ~script3606($int2, 0);
 def_int $int18 = ~script3606($int2, 1);
-def_int $int19 = db_getfield($dbrow3, dbtable_74:col4, 0);
+def_int $int19 = db_getfield($dbrow3, dbtable_74:col7, 0);
 def_int $int20 = 0;
-def_boolean $boolean21 = db_getfield($dbrow3, dbtable_74:col12, 0);
+def_boolean $boolean21 = db_getfield($dbrow3, dbtable_74:col18, 0);
 def_stat $stat22 = null;
+def_string $string1 = "";
+def_string $string2 = "";
+$string1, $string2 = db_getfield($dbrow3, dbtable_74:col6, 0);
 def_int $int23 = 0;
 def_int $int24 = 0;
-$stat22 = db_getfield($dbrow3, dbtable_74:col2, 0);
-if ($stat22 ! null) {
-    ~script8758($component1, $int16, enum(stat, string, enum_680, $stat22), $int24);
+if (string_length($string1) > 0) {
+    ~script8758($component1, $int16, $string1, $int24);
 } else {
-    ~script8758($component1, $int16, db_getfield($dbrow3, dbtable_74:col0, 0), $int24);
+    $stat22 = db_getfield($dbrow3, dbtable_74:col2, 0);
+    if ($stat22 ! null) {
+        ~script8758($component1, $int16, enum(stat, string, enum_680, $stat22), $int24);
+    } else {
+        ~script8758($component1, $int16, db_getfield($dbrow3, dbtable_74:col0, 0), $int24);
+    }
 }
 $int24 = calc($int24 + 1);
 $int16 = calc($int16 + 34);
 while ($int17 < $int12) {
-    $int6, $int5, $int7, $obj8, $npc9, $loc10, $boolean11, $string0 = db_getfield($dbrow3, dbtable_74:col9, $int17);
+    $int6, $int5, $int7, $obj8, $npc9, $loc10, $boolean11, $string0 = db_getfield($dbrow3, dbtable_74:col15, $int17);
     if (($boolean21 = true | $int6 <= $int4 & $int6 >= $int20) & $int17 ! $int19) {
         if ($boolean11 = true & calc($int5 & %varplayer_9062) ! 0) {
             if (string_length($string0) = 0 & $obj8 ! null) {
                 $string0 = oc_name($obj8);
             }
-            $int23 = calc(16 + max(24, ~script7593($string0, $int13, graphic_17814, -1)));
+            $int23 = calc(16 + max(24, ~script7593($string0, $int13, fontmetrics_17814, -1)));
             if (calc($int24 % 2) = 0) {
                 cc_create($component1, ^iftype_graphic, if_getnextsubid($component1));
                 cc_setgraphic(scroll_divider);
@@ -60,7 +67,7 @@ while ($int17 < $int12) {
             cc_create($component1, ^iftype_text, if_getnextsubid($component1));
             cc_setcolour(0x8eb9bc);
             cc_settext($string0);
-            cc_settextfont(graphic_17814);
+            cc_settextfont(fontmetrics_17814);
             cc_setposition(5, $int16, ^setpos_abs_left, ^setpos_abs_top);
             cc_setsize($int13, $int23, ^setsize_abs, ^setsize_abs);
             cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
@@ -84,13 +91,17 @@ while ($int17 < $int12) {
     } else if ($int18 > 0) {
         $int17 = $int18;
         $int4 = ~script3610($dbrow3, 1);
-        $boolean21 = db_getfield($dbrow3, dbtable_74:col13, 0);
+        $boolean21 = db_getfield($dbrow3, dbtable_74:col19, 0);
         $int18 = 0;
         $int19 = 0;
         $int20 = 0;
-        $stat22 = db_getfield($dbrow3, dbtable_74:col3, 0);
-        if ($stat22 ! null) {
-            ~script8758($component1, $int16, enum(stat, string, enum_680, $stat22), $int24);
+        if (string_length($string2) > 0) {
+            ~script8758($component1, $int16, $string2, $int24);
+        } else {
+            $stat22 = db_getfield($dbrow3, dbtable_74:col3, 0);
+            if ($stat22 ! null) {
+                ~script8758($component1, $int16, enum(stat, string, enum_680, $stat22), $int24);
+            }
         }
         $int24 = calc($int24 + 1);
         $int16 = calc($int16 + 34);
@@ -98,15 +109,15 @@ while ($int17 < $int12) {
         $int17 = $int12;
     }
 }
-if_setscrollsize(0, $int16, interface_634:com_54);
-if (if_getscrolly(interface_634:com_54) > if_getscrollheight(interface_634:com_54)) {
-    if_setscrollpos(0, if_getscrollheight(interface_634:com_54), interface_634:com_54);
+if_setscrollsize(0, $int16, interface_634:com_55);
+if (if_getscrolly(interface_634:com_55) > if_getscrollheight(interface_634:com_55)) {
+    if_setscrollpos(0, if_getscrollheight(interface_634:com_55), interface_634:com_55);
 }
-if ($int16 < if_getheight(interface_634:com_54)) {
-    if_sethide(true, interface_634:com_50);
-    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_634:com_54);
+if ($int16 < if_getheight(interface_634:com_55)) {
+    if_sethide(true, interface_634:com_51);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_634:com_55);
 } else {
-    if_sethide(false, interface_634:com_50);
-    if_setsize(16, 0, ^setsize_minus, ^setsize_minus, interface_634:com_54);
+    if_sethide(false, interface_634:com_51);
+    if_setsize(16, 0, ^setsize_minus, ^setsize_minus, interface_634:com_55);
 }
-~scrollbar_vertical_existing(interface_634:com_52, interface_634:com_50, interface_634:com_54);
+~scrollbar_vertical_existing(interface_634:com_53, interface_634:com_51, interface_634:com_55);

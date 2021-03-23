@@ -1,13 +1,20 @@
 // 11394
-[proc,script11394](obj $obj0, int $int1)
+[proc,script11394](obj $obj0, int $int1, int $int2)
 cc_setobject_nonum($obj0, 1);
 if (calc(%varplayer_5406 - 1) = $int1) {
     cc_setoutline(2);
 }
 cc_setonmouserepeat("script9564($obj0, event_com, event_comsubid)");
 cc_setop(1, "Select");
+if ($int2 = 1) {
+    cc_setop(2, "Withdraw");
+} else if ($int2 = 2) {
+    cc_setop(2, "Deposit");
+} else {
+    cc_setop(2, "");
+}
 cc_setop(10, "Examine");
-cc_setonop("script11397($int1)");
+cc_setonop("script11397($int1, event_op)");
 ~script14420($obj0);
 cc_setparam(param_7540, 0);
 cc_setparam(param_7541, $obj0);

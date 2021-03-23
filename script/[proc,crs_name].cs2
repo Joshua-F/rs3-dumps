@@ -1,18 +1,23 @@
 // 7216
-[proc,crs_name](struct $struct0)(string)
-if ($struct0 = null) {
+[proc,crs_name](struct $struct0, quest $quest1, achievement $achievement2)(string)
+if ($struct0 = null & $quest1 = null & $achievement2 = null) {
     return("");
 }
-if (struct_param($struct0, param_4253) ! null) {
-    $struct0 = struct_param($struct0, param_4253);
-}
-def_int $int1 = -1;
-def_int $int2 = -1;
-if ($struct0 = struct_11585) {
-    return(~script7802);
-}
-def_string $string0 = ~cheevo_name($struct0);
-if (string_length($string0) = 0 & string_length(struct_param($struct0, param_1266)) > 0) {
-    $string0 = struct_param($struct0, param_1266);
+def_string $string0 = "";
+if ($quest1 ! null) {
+    return(~quest_name($quest1));
+} else if ($achievement2 ! null) {
+    return(achievement_getname($achievement2));
+} else if ($struct0 ! null) {
+    if (struct_param($struct0, param_4253) ! null) {
+        $struct0 = struct_param($struct0, param_4253);
+    }
+    if ($struct0 = struct_11585) {
+        return(~script7802);
+    }
+    $string0 = ~cheevo_name($struct0);
+    if (string_length($string0) = 0 & string_length(struct_param($struct0, param_1266)) > 0) {
+        $string0 = struct_param($struct0, param_1266);
+    }
 }
 return($string0);

@@ -10,7 +10,6 @@ cc_deleteall($component0);
 cc_deleteall($component1);
 cc_deleteall($component2);
 cc_deleteall($component3);
-cc_deleteall($component6);
 def_int $int7 = 0;
 def_int $int8 = clan_getchatcount;
 def_int $int9 = 0;
@@ -26,53 +25,60 @@ def_int $int17 = 0;
 def_string $string1 = "";
 def_string $string2 = "";
 def_int $int18 = 0;
+def_int $int19 = calc(1 + 1);
+if (~script6431 = true) {
+    $int19 = calc($int19 + 7);
+    $int10 = 30;
+}
+if_setsize(0, $int10, ^setsize_minus, ^setsize_abs, interface_589:com_26);
 if ($int8 <= 0) {
-    if_settext("Not in chat", interface_589:com_13);
-    if_settext("None", interface_589:com_16);
-    if_settext("Join Chat Channel", interface_589:com_61);
-    if_setop(1, "Join Chat Channel", interface_589:com_58);
-    ~rs3_background_panel($component6, struct_21362);
+    if_settext("Not in chat", interface_589:com_9);
+    if_settext("None", interface_589:com_11);
+    ~script13993(interface_589:com_17, null, struct_28556, "Join Friends Chat Channel");
+    if_setop(1, "Join chat channel", interface_589:com_17);
+    if_sethide(false, $component6);
+    if_sethide(true, interface_589:com_24);
+    ~script13991($component6, null, struct_2830, true);
     ~script4560("You are not currently in a Friends Chat channel.<br><br>Use the button below if you wish to join a chat channel.", $component3);
-    if_setsize(if_getwidth(interface_589:com_47), 0, ^setsize_abs, ^setsize_abs, interface_589:com_47);
-    if_setscrollsize(0, 0, interface_589:com_41);
-    if_setscrollpos(0, 0, interface_589:com_41);
-    ~scrollbar_resize(interface_589:com_42, interface_589:com_41, 0);
+    if_setsize(if_getwidth(interface_589:com_30), 0, ^setsize_abs, ^setsize_abs, interface_589:com_30);
+    if_setscrollsize(0, 0, interface_589:com_23);
+    if_setscrollpos(0, 0, interface_589:com_23);
+    ~scrollbar_resize(interface_589:com_24, interface_589:com_23, 0);
 } else {
-    if_settext(clan_getchatdisplayname, interface_589:com_13);
-    if_settext(clan_getchatownername, interface_589:com_16);
-    if_settext("Leave chat channel", interface_589:com_61);
-    if_setop(1, "Leave chat channel", interface_589:com_58);
-    if_setsize(if_getwidth(interface_589:com_47), 0, ^setsize_abs, ^setsize_minus, interface_589:com_47);
+    if_settext(clan_getchatdisplayname, interface_589:com_9);
+    if_settext(clan_getchatownername, interface_589:com_11);
+    ~script13993(interface_589:com_17, null, struct_28556, "Leave Friends Chat Channel");
+    if_sethide(true, $component6);
+    if_sethide(false, interface_589:com_24);
+    if_setop(1, "Leave chat channel", interface_589:com_17);
+    if_setsize(if_getwidth(interface_589:com_30), 0, ^setsize_abs, ^setsize_minus, interface_589:com_30);
     while ($int9 < $int8) {
         $int17 = clan_getchatuserrank($int9);
         $string2 = clan_getchatusername_unfiltered($int9);
         $string0 = clan_getchatusername($int9);
-        ~cc_add_rect($component3, $int9, if_getwidth($component3), $int10, 0, $int13, 0, true, 0);
-        if (calc($int9 % 2) = 0) {
-            cc_setcolour(0x071820);
-        } else {
-            cc_setcolour(0x1c2c34);
-        }
-        $string1 = "Rank: <enum(int, string, enum_5853, $int17)>";
-        cc_setonmouseover("script4561($component3, $int9, $string1)");
-        cc_setonmouseleave("script4563($component3, $int9)");
-        cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
-        if (clan_isself($int9) = false) {
-            cc_setonop("script4564($string2, event_op)");
-            if (friend_test(removetags($string2)) = true) {
-                cc_setop(8, "Remove friend <$string0>");
-            } else if (ignore_test(removetags($string2)) = true) {
-                cc_setop(9, "Remove ignore <$string0>");
-            } else {
-                cc_setop(6, "Add friend <$string0>");
-                cc_setop(7, "Add ignore <$string0>");
+        ~script14400($component3, 0, $int10, 0, $int13, true, $int9);
+        if (cc_find($component3, $int9) = true) {
+            $string1 = "Rank: <enum(int, string, enum_5853, $int17)>";
+            cc_setonmouseover("script4561($component3, $int9, $string1)");
+            cc_setonmouseleave("script4563($component3, $int9)");
+            cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
+            if (clan_isself($int9) = false) {
+                cc_setonop("script4564($string2, event_op)");
+                if (friend_test(removetags($string2)) = true) {
+                    cc_setop(8, "Remove friend <$string0>");
+                } else if (ignore_test(removetags($string2)) = true) {
+                    cc_setop(9, "Remove ignore <$string0>");
+                } else {
+                    cc_setop(6, "Add friend <$string0>");
+                    cc_setop(7, "Add ignore <$string0>");
+                }
+            }
+            if (clan_getchatrank >= clan_getchatminkick & clan_getchatrank > $int17) {
+                cc_setop(10, "Kick/ban <$string0>");
             }
         }
-        if (clan_getchatrank >= clan_getchatminkick & clan_getchatrank > $int17) {
-            cc_setop(10, "Kick/ban <$string0>");
-        }
-        ~cc_add_graphic($component1, $int9, 9, 9, 5, calc($int13 + 2), ~script1599($int17), false, false, false, 0);
-        ~cc_add_text($component0, $int9, 0, $int10, $int11, $int13, $string0, 16777215, graphic_20452, ^settextalign_left, ^settextalign_centre, 0, true);
+        ~cc_add_graphic($component1, $int9, 9, 9, 5, calc($int13 + $int19), ~script1599($int17), false, false, false, 0);
+        ~cc_add_text($component0, $int9, 0, $int10, $int11, $int13, $string0, 16777215, fontmetrics_20452, ^settextalign_left, ^settextalign_centre, 0, true);
         cc_setsize($int11, $int10, ^setsize_minus, ^setsize_abs);
         cc_setmaxlines(1);
         $int14 = clan_getchatuserworld($int9);
@@ -93,7 +99,7 @@ if ($int8 <= 0) {
                 $int12 = 16776960;
             }
         }
-        ~cc_add_text($component2, $int9, 0, $int10, 5, $int13, $string0, $int12, graphic_20452, ^settextalign_left, ^settextalign_centre, 0, true);
+        ~cc_add_text($component2, $int9, 0, $int10, 5, $int13, $string0, $int12, fontmetrics_20452, ^settextalign_left, ^settextalign_centre, 0, true);
         cc_setsize(5, $int10, ^setsize_minus, ^setsize_abs);
         cc_setmaxlines(1);
         $int13 = calc($int13 + $int10);
@@ -102,12 +108,7 @@ if ($int8 <= 0) {
     $int15 = calc(if_getheight($component4) / $int10 + 1);
     if ($int15 > $int8) {
         while ($int9 < $int15) {
-            ~cc_add_rect($component3, $int9, if_getwidth($component3), $int10, 0, $int13, 0, true, 0);
-            if (calc($int9 % 2) = 0) {
-                cc_setcolour(0x071820);
-            } else {
-                cc_setcolour(0x1c2c34);
-            }
+            ~script14400($component3, 0, $int10, 0, $int13, true, $int9);
             $int13 = calc($int13 + $int10);
             $int9 = calc($int9 + 1);
         }
@@ -116,16 +117,16 @@ if ($int8 <= 0) {
         $int16 = $int13;
     }
     if ($int15 <= $int8) {
-        $int18 = if_getscrolly(interface_589:com_41);
-        if_setscrollsize(0, $int16, interface_589:com_41);
+        $int18 = if_getscrolly(interface_589:com_23);
+        if_setscrollsize(0, $int16, interface_589:com_23);
         if ($int18 > $int16) {
             $int18 = $int16;
         }
-        ~scrollbar_resize(interface_589:com_42, interface_589:com_41, $int18);
+        ~scrollbar_resize(interface_589:com_24, interface_589:com_23, $int18);
     } else {
-        if_setscrollsize(0, 0, interface_589:com_41);
-        if_setscrollpos(0, 0, interface_589:com_41);
-        ~scrollbar_resize(interface_589:com_42, interface_589:com_41, 0);
+        if_setscrollsize(0, 0, interface_589:com_23);
+        if_setscrollpos(0, 0, interface_589:com_23);
+        ~scrollbar_resize(interface_589:com_24, interface_589:com_23, 0);
     }
 }
 ~script4573;

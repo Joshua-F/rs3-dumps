@@ -1,77 +1,16 @@
 // 12402
-[proc,script12402]
-def_obj $obj0 = null;
-if_sethide(false, interface_1749:com_280);
-cc_deleteall(interface_1749:com_287);
-cc_create(interface_1749:com_287, ^iftype_graphic, 0);
-cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-switch_int (%varplayerbit_30976) {
-    case 1 :
-        $obj0 = obj_37119;
-    case 2 :
-        $obj0 = obj_37123;
-    case 3 :
-        $obj0 = obj_37125;
-    case 4 :
-        $obj0 = obj_37129;
-    case 5 :
-        $obj0 = obj_37130;
-    case 6 :
-        $obj0 = obj_37131;
-    case 7 :
-        $obj0 = obj_37132;
-    case 8 :
-        $obj0 = obj_37134;
-    case 9 :
-        $obj0 = obj_28017;
-    case 10 :
-        $obj0 = obj_28018;
-    case 11 :
-        $obj0 = obj_28019;
-    case 12 :
-        $obj0 = obj_28024;
-    case 13 :
-        $obj0 = obj_30760;
-    case 14 :
-        $obj0 = obj_30755;
-    case 15 :
-        $obj0 = obj_30750;
-    case 16 :
-        $obj0 = obj_28025;
-    case 17 :
-        $obj0 = obj_34028;
-    case 18 :
-        $obj0 = obj_34029;
-    case 19 :
-        $obj0 = obj_34030;
-    case 20 :
-        $obj0 = obj_34037;
-    case 21 :
-        $obj0 = obj_34038;
-    case 22 :
-        $obj0 = obj_34039;
-    case 23 :
-        $obj0 = obj_34049;
-    case 24 :
-        $obj0 = obj_34059;
-    case 25, 26, 27 :
-        cc_setgraphic(clan_avatar_buff_20_random);
-        if (%varplayerbit_30976 = 25) {
-            if_settext("Random Limited Rare", interface_1749:com_284);
-        } else if (%varplayerbit_30976 = 26) {
-            if_settext("Random Current Rare", interface_1749:com_284);
-        } else if (%varplayerbit_30976 = 27) {
-            if_settext("Random New Rare", interface_1749:com_284);
-        }
-    case default :
-        cc_deleteall(interface_1749:com_287);
-        if_sethide(true, interface_1749:com_280);
-        $obj0 = null;
-        return;
+[proc,script12402](dbrow $dbrow0)(int)
+def_int $int1 = 1;
+def_int $int2 = ~script13407(~script15319($dbrow0, 1));
+def_int $int3 = ~script13407(~script15319($dbrow0, 2));
+def_int $int4 = ~script13407(~script15319($dbrow0, 3));
+if (%varplayer_2481 = $int2 & %varplayer_2480 = $int3 & %varplayer_2479 = $int4) {
+    $int1 = 4;
 }
-if ($obj0 ! null) {
-    cc_setobject($obj0, 1);
-    if_settext(oc_name($obj0), interface_1749:com_284);
+if (%varplayer_2480 = $int2 & %varplayer_2479 = $int3) {
+    $int1 = 3;
 }
-sound_vorbis_volume(sound_14376, 1, 0, 200);
+if (%varplayer_2479 = $int2) {
+    $int1 = 2;
+}
+return($int1);

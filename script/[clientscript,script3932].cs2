@@ -9,4 +9,21 @@ while ($int2 ! 1) {
 if_setontimer(null, $component0);
 %varclient_5187 = true;
 %varclient_6503 = 1;
-~script15088($int2, $int1);
+~script2593;
+if (~is_mobile_client = true) {
+    if (clientoption_get(^clientoption_shadows) = 1) {
+        clientoption_set(^clientoption_shadows, 0);
+    }
+    if (clientoption_get(^clientoption_texturing) = 0) {
+        clientoption_set(^clientoption_texturing, 1);
+    }
+}
+if ($int1 = 3) {
+    ~loginscreen_load_overlay(-1);
+} else if ($int1 = 1 | $int1 = 2 | $int1 = 0 | $int1 = 4) {
+    if (~script6431 = false) {
+        ~graphics_options_rebuild(getwindowmode, ~graphics_options_reviewoptions, $int1);
+    } else {
+        ~script2710;
+    }
+}

@@ -1,24 +1,15 @@
 // 2194
-[proc,ql4_special_requirements](int $int0)(boolean)
+[proc,ql4_special_requirements](quest $quest0)(boolean)
 def_int $int1 = 1;
 def_string $string0 = "";
-def_int $int2 = 4092;
-def_struct $struct3 = enum(int, struct, enum_2252, $int0);
-def_string $string1 = "";
-if ($struct3 ! null) {
-    $int2 = struct_param($struct3, param_6413);
-    $string1 = ~quest_name($struct3);
-    if ($int2 ! -1) {
-        $int1, $string0 = ~cheevo_special_requirements($int2);
-        if ($int1 = 0) {
-            return(false);
-        }
-    } else {
-        ~error("Special quest #<tostring($int0)> [<$string1>] is missing cheevo_unique_id param.");
+if ($quest0 ! null) {
+    $int1, $string0 = ~ql4_special_requirements_string($quest0);
+    if ($int1 = 0) {
         return(false);
     }
 } else {
-    ~error("Special quest #<tostring($int0)> is missing from [ql4_quests] enum.");
+    $string0 = ~quest_name($quest0);
+    ~error("Special quest <$string0> is missing from [ql4_quests] enum.");
     return(false);
 }
 return(true);

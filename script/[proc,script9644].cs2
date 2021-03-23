@@ -23,15 +23,18 @@ if (cc_find($component1, $int2) = true | $int2 = -1 & if_find($component1) = tru
     $int12 = calc($int12 * $int13);
     $int12 = calc($int12 * -1);
     $int12 = calc($int12 + $int6);
-    if (cc_param(param_6373) = 0) {
+    if (cc_param(param_6373) = 1 | %varclient_1968 = 1) {
+        cc_setparam(param_6373, 1);
+        if ($int12 < -512) {
+            $int12 = max($int12, -512);
+        } else {
+            $int12 = min($int12, 512);
+        }
+    } else {
         $int12 = calc($int12 % $int14);
         if ($int12 >= $int14) {
             $int12 = calc($int12 - $int14);
         }
-    } else if ($int12 < -512) {
-        $int12 = max($int12, -512);
-    } else {
-        $int12 = min($int12, 512);
     }
     if ($int3 = -1) {
         cc_setmodelangle($int10, $int11, $int5, $int12, $int9, $int7);

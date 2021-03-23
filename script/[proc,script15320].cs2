@@ -1,6 +1,11 @@
 // 15320
-[proc,script15320](quest $quest0)(graphic)
-if ($quest0 = null) {
-    return(null);
+[proc,script15320](int $int0)(boolean)
+db_find(dbtable_121:col1, $int0);
+def_dbrow $dbrow1 = db_findnext;
+if ($dbrow1 = null) {
+    return(false);
 }
-return(quest_param($quest0, param_7829));
+if (string_length(db_getfield($dbrow1, dbtable_121:col3, 0)) = 0) {
+    return(false);
+}
+return(true);
