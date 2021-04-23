@@ -34,8 +34,8 @@ switch_int ($int2) {
         }
         $int10 = 5;
     case 2 :
-        $int7 = 204;
-        $int8 = 42;
+        $int7 = 208;
+        $int8 = 44;
         $int9 = calc(($int6 - $int4 * $int8) / ($int4 + 1));
         if (calc($int9 % 2) = 1) {
             $int9 = calc($int9 + 1);
@@ -73,6 +73,7 @@ def_int $int23 = 0;
 def_int $int24 = 0;
 def_int $int25 = 0;
 def_int $int26 = 0;
+def_graphic $graphic27 = null;
 while ($int24 < $int4) {
     $int20 = $intarray0($int24);
     $struct21 = enum(int, struct, enum_1467, $int20);
@@ -103,11 +104,30 @@ while ($int24 < $int4) {
                 cc_setonclick("script9061($int20)");
             }
         case 2 :
-            ~script10410($component0, null, struct_28557, $int25, $int26, $int7, $int8, -1, false, "");
-            ~script4512($component0, struct_param($struct21, param_3915), min($int8, struct_param($struct21, param_3916)), calc($int25 + 3), calc($int26 + 3), struct_param($struct21, param_3910));
-            ~cc_add_title_text($component0, calc($int7 - 40 - 10 - 10), $int8, calc($int25 + 40 + 10), $int26, fontmetrics_17814, struct_param($struct21, param_8263), 0);
-            cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
-            ~cc_add_colour_text($component1, $int7, $int8, $int25, $int26, fontmetrics_17813, "", 0);
+            if (compare(struct_param($struct21, param_8263), "") ! 0) {
+                ~script10410($component0, null, struct_28557, $int25, $int26, $int7, $int8, -1, false, "");
+                ~script4512($component0, struct_param($struct21, param_3915), min($int8, struct_param($struct21, param_3916)), calc($int25 + 3), calc($int26 + 3), struct_param($struct21, param_3910));
+                ~cc_add_title_text($component0, calc($int7 - 40 - 10 - 10), $int8, calc($int25 + 40 + 10), $int26, fontmetrics_28, struct_param($struct21, param_8263), 0);
+                cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+                ~cc_add_colour_text($component1, $int7, $int8, $int25, $int26, fontmetrics_26, "", 0);
+            } else {
+                $graphic27 = struct_param($struct21, param_8299);
+                switch_int (map_lang) {
+                    case 1 :
+                        if (struct_param($struct21, param_8300) ! null) {
+                            $graphic27 = struct_param($struct21, param_8300);
+                        }
+                    case 2 :
+                        if (struct_param($struct21, param_8301) ! null) {
+                            $graphic27 = struct_param($struct21, param_8301);
+                        }
+                    case 3 :
+                        if (struct_param($struct21, param_8302) ! null) {
+                            $graphic27 = struct_param($struct21, param_8302);
+                        }
+                }
+                ~script4512($component1, $int7, $int8, $int25, $int26, $graphic27);
+            }
             if (cc_find($component1, $int24) = true) {
                 cc_setonclick("script9061($int20)");
             }

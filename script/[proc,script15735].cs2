@@ -1,10 +1,10 @@
 // 15735
-[proc,script15735](component $component0, int $int1, int $int2, string $string0, string $string1, int $int3, string $string2)
+[proc,script15735](component $component0, int $int1, int $int2, string $string0, string $string1, int $int3, string $string2, string $string3)
 cc_create($component0, ^iftype_text, if_getnextsubid($component0));
 cc_settext($string0);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-cc_setsize(calc(255 - 10), scale(45, 430, $int2), ^setsize_abs, ^setsize_abs);
-cc_setposition(calc($int1 + 4), calc(20 + scale(291, 430, $int2)), ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(calc(255 - 20), scale(55, 430, $int2), ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int1 + 10), calc(20 + scale(280, 430, $int2)), ^setpos_abs_left, ^setpos_abs_top);
 cc_setcolour(0xe0d471);
 ~script15540(enum_15456, cc_gettext, 0);
 cc_create($component0, ^iftype_text, if_getnextsubid($component0));
@@ -15,19 +15,40 @@ cc_setposition(calc($int1 + 40), calc(20 + scale(356, 430, $int2)), ^setpos_abs_
 cc_setcolour(~rgb_to_hex(255, 255, 255));
 cc_setmaxlines(1);
 ~script15540(enum_15456, cc_gettext, 0);
-if ($int3 > 0) {
-    .cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
-    .cc_setgraphic(graphic_11701);
-    .cc_setaspect(.cc_getgraphicdimensions);
-    .cc_setsize(110, 1, ^setsize_abs, ^setsize_aspect);
-    .cc_setposition(calc($int1 + 255 - scale(92, 110, .cc_getwidth)), calc(20 - 10), ^setpos_abs_left, ^setpos_abs_top);
+def_string $string4 = "";
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 64;
+if ($int3 > 0 | string_length($string3) > 0) {
+    if ($int3 > 0) {
+        $string4 = "<tostring($int3)>%<br>off";
+    } else {
+        $string4 = $string3;
+    }
+    $int4 = parawidth($string4, 255, fontmetrics_58);
+    while ($int4 > $int6) {
+        $int6 = calc($int6 + 32);
+        $int5 = calc($int5 + 32);
+    }
+    cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+    cc_setgraphic(graphic_388);
+    cc_setsize(32, 64, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int1 + 242), calc(20 - 10), ^setpos_abs_left, ^setpos_abs_top);
+    cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+    cc_setgraphic(graphic_387);
+    cc_setsize(calc(64 + $int5), 64, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int1 + (178 - $int5)), calc(20 - 10), ^setpos_abs_left, ^setpos_abs_top);
+    cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+    cc_setgraphic(graphic_386);
+    cc_setsize(32, 64, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int1 + (146 - $int5)), calc(20 - 10), ^setpos_abs_left, ^setpos_abs_top);
     cc_create($component0, ^iftype_text, if_getnextsubid($component0));
-    cc_settext("<tostring($int3)>%<br>off");
-    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    cc_setsize(calc(.cc_getwidth / 2), scale(47, 71, .cc_getheight), ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc(.cc_getx + scale(36, 110, .cc_getwidth)), calc(.cc_gety + scale(5, 71, .cc_getheight)), ^setpos_abs_left, ^setpos_abs_top);
-    cc_setcolour(0xe0d471);
-    ~script15540(enum_15456, cc_gettext, 0);
+    cc_setsize(calc(132 + $int5), 64, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int1 + (146 - $int5)), calc(20 - 18), ^setpos_abs_left, ^setpos_abs_top);
+    cc_settext($string4);
+    cc_settextfont(fontmetrics_58);
+    cc_setcolour(~rgb_to_hex(224, 212, 113));
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 20);
 }
 if (compare($string2, "") ! 0) {
     .cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
