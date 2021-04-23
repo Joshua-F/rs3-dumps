@@ -32,7 +32,7 @@ if (%varplayer_3185 ! 4 & $int13 <= 5 & %varplayerbit_16464 = 2) {
     } else {
         if_settext("You have one day until you need to validate your email address.", interface_907:com_27);
     }
-    if_settextfont(fontmetrics_23422, interface_907:com_27);
+    if_settextfont(fontmetrics_58, interface_907:com_27);
     if_setcolour(^black, interface_907:com_27);
     if_settextalign(^settextalign_centre, ^settextalign_centre, 22, interface_907:com_27);
     if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_907:com_27);
@@ -43,7 +43,7 @@ if (%varplayer_3185 ! 4 & $int13 <= 5 & %varplayerbit_16464 = 2) {
 if_setsize(345, 35, ^setsize_abs, ^setsize_abs, interface_907:com_27);
 if_setposition(231, 5, ^setpos_abs_left, ^setpos_abs_top, interface_907:com_27);
 if_setcolour(0x0e1903, interface_907:com_27);
-if_settextfont(fontmetrics_473, interface_907:com_27);
+if_settextfont(fontmetrics_13, interface_907:com_27);
 if_settextalign(^settextalign_centre, ^settextalign_bottom, 0, interface_907:com_27);
 if_settext("", interface_907:com_28);
 if_setposition(231, 46, ^setpos_abs_left, ^setpos_abs_top, interface_907:com_28);
@@ -102,6 +102,10 @@ if (%varclient_3905 = true) {
                         if (platformtype ! ^platformtype_default) {
                             $int5 = 1;
                         }
+                    case struct_45009 :
+                        if (platformtype ! ^platformtype_default) {
+                            $int5 = 1;
+                        }
                     case struct_35237 :
                         if (date_minutes <= calc(date_minutes_fromruneday(6932) + 720) | date_minutes >= calc(date_minutes_fromruneday(6942) + 720)) {
                             $int5 = 1;
@@ -109,6 +113,14 @@ if (%varclient_3905 = true) {
                             $int5 = 1;
                         } else if ($int5 = 0) {
                             $struct3 = $struct2;
+                        }
+                    case struct_39630 :
+                        if ($int5 = 0) {
+                            if (random(4) = 0) {
+                                $int5 = 1;
+                            } else {
+                                $struct3 = $struct2;
+                            }
                         }
                 }
                 if ($int5 = 0) {
