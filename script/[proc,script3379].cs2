@@ -8,15 +8,19 @@ if (%varplayerbit_38842 = 1 & enum_getreversecount(int, enum_13330, $int0) > 0) 
 } else if (%varplayerbit_27169 = 1 & enum_getreversecount(int, enum_9011, $int0) > 0) {
     return;
 }
-if ($int0 = 32 & %varplayerbit_38842 = 1) {
-    if (%varclientbit_41275 = 1) {
+if (%varplayerbit_38842 = 1) {
+    if ($int0 = 32) {
+        if (%varclientbit_41275 = 1) {
+            return;
+        }
+        if (if_hassub(~script8875(4)) = true) {
+            return;
+        }
+        if (%varclientbit_44897 = 1) {
+            ~script8732;
+        }
+    } else if (~script15851($int0) = true) {
         return;
-    }
-    if (if_hassub(~script8875(4)) = true) {
-        return;
-    }
-    if (%varclientbit_44897 = 1) {
-        ~script8732;
     }
 }
 def_struct $struct3 = null;
@@ -52,18 +56,12 @@ if (~script8314($int0) = -1) {
     }
     if_sethide(false, $component4);
     if (%varplayerbit_38842 = 1) {
-        if (struct_param($struct3, param_3534) ! -1 & $int0 ! 32) {
-            if (%varclientbit_38847 = 1) {
-                if_setposition(45, calc(if_getheight(interface_1919:com_0) + 8), ^setpos_abs_right, ^setpos_abs_top, $component4);
-            } else {
-                if_setposition(45, 140, ^setpos_abs_right, ^setpos_abs_top, $component4);
-            }
+        if (struct_param($struct3, param_3534) ! -1 & $int0 ! 32 & ~script15851($int0) = false) {
             if (%varclientbit_38843 > 0 & %varclientbit_38843 ! calc($int0 + 1)) {
                 ~script8323(calc(%varclientbit_38843 - 1), 1);
             }
             %varclientbit_38843 = calc($int0 + 1);
         }
-        ~script14241;
         ~script2638;
         ~script8390($int0);
     } else if (%varplayerbit_27169 = 0) {

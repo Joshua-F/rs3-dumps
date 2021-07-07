@@ -1,0 +1,92 @@
+// 15821
+[proc,script15821](int $int0)
+def_struct $struct1 = null;
+def_struct $struct2 = null;
+def_graphic $graphic3 = null;
+def_graphic $graphic4 = null;
+def_int $int5 = 0;
+if ($int0 ! -1) {
+    $struct1, $struct2, $graphic3, $graphic4 = db_getfield(dbrow_4168, dbtable_135:col0, $int0);
+} else {
+    $int5 = 1;
+    $int0 = db_getfieldcount(dbrow_4168, dbtable_135:col0);
+    $struct1 = struct_45312;
+    $struct2 = struct_45312;
+    $graphic3 = struct_param($struct1, param_8346);
+    $graphic4 = $graphic3;
+}
+def_int $int6 = ~script6488($struct1);
+if (testbit(%varplayer_9884, $int0) = ^true) {
+    $int6 = 1;
+}
+def_int $int7 = 0;
+if ($int0 >= 2) {
+    $int7 = calc(255 + 30);
+}
+def_int $int8 = calc(100 + $int0 * (255 + 30) + $int7);
+def_int $int9 = 14;
+def_int $int10 = 430;
+def_component $component11 = interface_855:com_4;
+def_int $int12 = ~script15820($int0);
+def_string $string0 = "Select";
+def_int $int13 = 3;
+if ($int5 = 0) {
+    if ($int6 = 0) {
+        $int13 = 5;
+        $string0 = "Buy";
+    } else {
+        $int13 = 4;
+    }
+}
+def_graphic $graphic14 = null;
+if (gender = 1) {
+    $graphic14 = $graphic4;
+} else {
+    $graphic14 = $graphic3;
+}
+def_int $int15 = ~script15375($component11, $int8, $int9, 255, 430, $string0, $int13, $int0, $graphic14, struct_param($struct1, param_2533), "", "");
+cc_create($component11, ^iftype_text, $int15);
+if ($int6 = 0) {
+    cc_setposition(calc($int8 + 255 / 2), calc($int9 + $int10 - 32), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(calc(255 / 2), 25, ^setsize_abs, ^setsize_abs);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+} else {
+    cc_setposition(calc($int8 + 40), calc($int9 + $int10 - 30), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(calc(255 - 80), 25, ^setsize_abs, ^setsize_abs);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+}
+if ($int5 = 0) {
+    if ($int6 = 0) {
+        if ($int12 = 0) {
+            cc_settext("FREE!");
+        } else {
+            cc_settext(tostring($int12));
+        }
+    } else {
+        cc_settext("OWNED");
+    }
+} else {
+    cc_sethide(true);
+}
+cc_settextfont(fontmetrics_58);
+cc_setcolour(0xe0e0e0);
+$int15 = calc($int15 + 1);
+cc_create($component11, ^iftype_graphic, $int15);
+cc_setposition(calc($int8 + 255 / 2 - 28), calc($int9 + $int10 - 30), ^setpos_abs_left, ^setpos_abs_top);
+if ($int6 = 0) {
+    cc_setgraphic(mtx_store_icon_currency_runecoins_025px);
+}
+cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
+if ($int5 = 1) {
+    cc_sethide(true);
+}
+$int15 = calc($int15 + 1);
+cc_create($component11, ^iftype_graphic, $int15);
+cc_setposition(calc($int8 + 16), calc($int9 + 16), ^setpos_abs_left, ^setpos_abs_top);
+cc_setgraphic(mtx_store_icon_colour);
+cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+~script3537("This item can be recoloured.");
+if (struct_param($struct1, param_8348) = 0) {
+    cc_sethide(true);
+}
+$int15 = calc($int15 + 1);

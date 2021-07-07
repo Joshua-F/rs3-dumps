@@ -1,16 +1,16 @@
 // 659
 [proc,lore_magic_init_v2](component $component0, graphic $graphic1, graphic $graphic2, int $int3, string $string0, string $string1, obj $obj4, int $int5)
-if ($component0 ! null & cc_find($component0, 0) = true) {
-    cc_setontargetenter("lore_magic_entertargetmode(event_com)");
-    cc_setontargetleave("lore_magic_leavetargetmode(event_com)");
-    cc_setoninvtransmit("script11692(event_com, $graphic1, $graphic2, $int3, $string0, $string1, $obj4, $int5){inv_93}");
-    cc_setonstattransmit("script11692(event_com, $graphic1, $graphic2, $int3, $string0, $string1, $obj4, $int5){summoning}");
-    cc_setonvartransmit("script11692(event_com, $graphic1, $graphic2, $int3, $string0, $string1, $obj4, $int5){varplayer_1785, varplayer_1831, varplayer_4823}");
-    ~script11693($component0, $graphic1, $graphic2, $int3, $string0, $string1, $obj4, $int5);
+if ($component0 ! null) {
+    if_setontargetenter("lore_magic_entertargetmode(event_com)", $component0);
+    if_setontargetleave("lore_magic_leavetargetmode(event_com)", $component0);
+    if_setoninvtransmit("lore_updateicon_v2(event_com, $graphic1, $graphic2, $int3, $obj4, $int5){inv_93}", $component0);
+    if_setonstattransmit("lore_updateicon_v2(event_com, $graphic1, $graphic2, $int3, $obj4, $int5){summoning}", $component0);
+    if_setonvartransmit("lore_updateicon_v2(event_com, $graphic1, $graphic2, $int3, $obj4, $int5){varplayer_1785, varplayer_1831, varplayer_4823}", $component0);
+    ~lore_updateicon_v2($component0, $graphic1, $graphic2, $int3, $obj4, $int5);
 }
-if (if_find(interface_1923:com_36) = true) {
-    cc_setontargetenter("lore_topstat_magic_entertargetmode(interface_1923:com_15)");
-    cc_setontargetleave("lore_topstat_magic_leavetargetmode(interface_1923:com_15)");
+if (if_find(interface_1923:com_34) = true) {
+    cc_setontargetenter("lore_topstat_magic_entertargetmode(interface_1923:com_13)");
+    cc_setontargetleave("lore_topstat_magic_leavetargetmode(interface_1923:com_13)");
 }
 if (if_find(interface_1430:com_35) = true) {
     cc_setontargetenter("lore_topstat_magic_entertargetmode(interface_1430:com_22)");

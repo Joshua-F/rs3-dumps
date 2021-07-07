@@ -1,10 +1,187 @@
 // 9291
-[proc,script9291]
-switch_int (%varclientbit_41275) {
-    case 2 :
-        if_setop(1, "Reduce", interface_279:com_7);
-    case 0 :
-        if_setop(1, "Expand", interface_279:com_7);
-    case 1 :
-        if_setop(1, "Hide", interface_279:com_7);
+[proc,script9291](int $int0, achievement $achievement1)
+~cheevo_reset_goto;
+def_component $component2 = interface_1851:com_40;
+def_int $int3 = -1;
+if (if_find($component2) = true) {
+    $int3 = cc_param(param_7161);
 }
+if ($int3 > -1 & cc_find($component2, calc($int3 + 7)) = true) {
+    cc_setvflip(false);
+    %varclient_6918 = -1;
+    %varclient_6919 = null;
+}
+if_sethide(true, interface_1851:com_41);
+~script15343($int3, 0);
+def_int $int4 = 60;
+if (%varplayerbit_37059 = 1) {
+    $int4 = 35;
+}
+def_int $int5 = 0;
+if (cc_find($component2, $int0) = true) {
+    $int5 = cc_gety;
+}
+def_int $int6 = 0;
+def_int $int7 = calc(if_getnextsubid($component2) - 11);
+if (cc_find($component2, $int7) = true) {
+    $int6 = calc(cc_gety + $int4);
+}
+if ($int3 = $int0) {
+    if (if_find($component2) = true) {
+        cc_setparam(param_7161, -1);
+    }
+    ~script15341($component2, $int6, $int5);
+    return;
+}
+if (if_find($component2) = true) {
+    cc_setparam(param_7161, $int0);
+}
+if (cc_find($component2, calc($int0 + 7)) = true) {
+    cc_setvflip(true);
+    %varclient_6918 = $int0;
+    %varclient_6919 = $achievement1;
+}
+cc_deleteall(interface_1851:com_41);
+if (cc_find($component2, $int0) = true) {
+    if_setposition(0, calc(cc_gety + cc_getheight), ^setpos_abs_left, ^setpos_abs_top, interface_1851:com_41);
+}
+def_int $int8 = calc(if_getwidth(interface_1851:com_41) / 2 - 6);
+def_int $int9 = 0;
+def_string $string0 = "";
+def_int $int10 = -1;
+def_int $int11 = 0;
+def_int $int12 = achievement_reqstate($achievement1);
+def_int $int13 = 0;
+if ($int12 = -2) {
+    $int13 = 1;
+}
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = achievement_stat_req_count($achievement1);
+while ($int15 < $int16) {
+    $string0 = achievement_stat_req_name($achievement1, $int15);
+    if (compare($string0, "") ! 0) {
+        $int14 = ~script15334($int13, calc(~bool_to_int(achievement_stat_req_met($achievement1, $int15)) * -2));
+        if ($int14 ! -2 | %varplayerbit_48340 = 0) {
+            $int9 = ~script15335($int11, $int10, $int9, $int8, $string0, "", $int14, 0, 0);
+            $int10 = cc_getid;
+            $int11 = calc($int11 + 1);
+        } else {
+            cc_create(interface_1851:com_41, ^iftype_text, if_getnextsubid(interface_1851:com_41));
+        }
+    }
+    $int15 = calc($int15 + 1);
+}
+$int15 = 0;
+$int16 = achievement_varp_req_count($achievement1);
+while ($int15 < $int16) {
+    $string0 = achievement_varp_req_name($achievement1, $int15);
+    if (compare($string0, "") ! 0) {
+        $int14 = ~script15334($int13, calc(~bool_to_int(achievement_varp_req_met($achievement1, $int15)) * -2));
+        if ($int14 ! -2 | %varplayerbit_48340 = 0) {
+            $int9 = ~script15335($int11, $int10, $int9, $int8, $string0, "", $int14, 0, 0);
+            $int10 = cc_getid;
+            $int11 = calc($int11 + 1);
+        } else {
+            cc_create(interface_1851:com_41, ^iftype_text, if_getnextsubid(interface_1851:com_41));
+        }
+    }
+    $int15 = calc($int15 + 1);
+}
+$int15 = 0;
+$int16 = achievement_varbit_req_count($achievement1);
+while ($int15 < $int16) {
+    $string0 = achievement_varbit_req_name($achievement1, $int15);
+    if (compare($string0, "") ! 0) {
+        $int14 = ~script15334($int13, calc(~bool_to_int(achievement_varbit_req_met($achievement1, $int15)) * -2));
+        if ($int14 ! -2 | %varplayerbit_48340 = 0) {
+            $int9 = ~script15335($int11, $int10, $int9, $int8, $string0, "", $int14, 0, 0);
+            $int10 = cc_getid;
+            $int11 = calc($int11 + 1);
+        } else {
+            cc_create(interface_1851:com_41, ^iftype_text, if_getnextsubid(interface_1851:com_41));
+        }
+    }
+    $int15 = calc($int15 + 1);
+}
+$int15 = 0;
+$int16 = achievement_varp_testbit_req_count($achievement1);
+while ($int15 < $int16) {
+    $string0 = achievement_varp_testbit_req_name($achievement1, $int15);
+    if (compare($string0, "") ! 0) {
+        $int14 = ~script15334($int13, calc(~bool_to_int(achievement_varp_testbit_req_met($achievement1, $int15)) * -2));
+        if ($int14 ! -2 | %varplayerbit_48340 = 0) {
+            $int9 = ~script15335($int11, $int10, $int9, $int8, $string0, "", $int14, 0, 0);
+            $int10 = cc_getid;
+            $int11 = calc($int11 + 1);
+        } else {
+            cc_create(interface_1851:com_41, ^iftype_text, if_getnextsubid(interface_1851:com_41));
+        }
+    }
+    $int15 = calc($int15 + 1);
+}
+$int15 = 0;
+$int16 = achievement_varbit_testbit_req_count($achievement1);
+while ($int15 < $int16) {
+    $string0 = achievement_varbit_testbit_req_name($achievement1, $int15);
+    if (compare($string0, "") ! 0) {
+        $int14 = ~script15334($int13, calc(~bool_to_int(achievement_varbit_testbit_req_met($achievement1, $int15)) * -2));
+        if ($int14 ! -2 | %varplayerbit_48340 = 0) {
+            $int9 = ~script15335($int11, $int10, $int9, $int8, $string0, "", $int14, 0, 0);
+            $int10 = cc_getid;
+            $int11 = calc($int11 + 1);
+        } else {
+            cc_create(interface_1851:com_41, ^iftype_text, if_getnextsubid(interface_1851:com_41));
+        }
+    }
+    $int15 = calc($int15 + 1);
+}
+$int15 = 0;
+$int16 = achievement_quest_req_count($achievement1);
+def_quest $quest17 = null;
+while ($int15 < $int16) {
+    $quest17 = achievement_quest_req($achievement1, $int15);
+    if ($quest17 ! null) {
+        $int14 = ~script15334($int13, calc(~bool_to_int(achievement_quest_req_met($achievement1, $int15)) * -2));
+        if ($int14 ! -2 | %varplayerbit_48340 = 0) {
+            $int9 = ~script15335($int11, $int10, $int9, $int8, quest_getname($quest17), quest_param($quest17, param_5968), $int14, 0, 0);
+            $int10 = cc_getid;
+            $int11 = calc($int11 + 1);
+        } else {
+            cc_create(interface_1851:com_41, ^iftype_text, if_getnextsubid(interface_1851:com_41));
+        }
+    }
+    $int15 = calc($int15 + 1);
+}
+$int15 = 0;
+$int16 = achievement_achievement_req_count($achievement1);
+def_achievement $achievement18 = null;
+def_int $int19 = 0;
+while ($int15 < $int16) {
+    $achievement18 = achievement_achievement_req($achievement1, $int15);
+    $string0 = "";
+    $int19 = 0;
+    if ($achievement18 ! null) {
+        $int14 = ~script15334($int13, achievement_reqstate($achievement18));
+        if ($int14 ! -2 | %varplayerbit_48340 = 0) {
+            if (achievement_getgraceday($achievement18) > date_runeday) {
+                $int19 = 1;
+            }
+            $int9 = ~script15335($int11, $int10, $int9, $int8, achievement_getname($achievement18), ~achievement_description($achievement18), $int14, 1, $int19);
+            $int10 = cc_getid;
+            $int11 = calc($int11 + 1);
+        } else {
+            cc_create(interface_1851:com_41, ^iftype_text, if_getnextsubid(interface_1851:com_41));
+        }
+    }
+    $int15 = calc($int15 + 1);
+}
+if (calc($int11 % 2) = 1 & cc_find(interface_1851:com_41, $int10) = true) {
+    $int9 = calc($int9 + cc_getheight);
+}
+$int9 = calc($int9 + 2);
+if_setsize(0, $int9, ^setsize_minus, ^setsize_abs, interface_1851:com_41);
+if_sethide(false, interface_1851:com_41);
+~script15343($int0, if_getheight(interface_1851:com_41));
+$int6 = calc($int6 + if_getheight(interface_1851:com_41));
+~script15341($component2, $int6, $int5);

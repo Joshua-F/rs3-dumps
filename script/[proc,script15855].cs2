@@ -1,0 +1,33 @@
+// 15855
+[proc,script15855](int $int0)
+if_sethide(true, interface_857:com_19);
+if_settext("", interface_857:com_18);
+%varclient_6910 = 0;
+db_find(dbtable_136:col0, $int0);
+def_dbrow $dbrow1 = db_findnext;
+def_struct $struct2 = ~script10405($int0);
+def_component $component3 = enum(int, component, enum_10344, $int0);
+if ($dbrow1 ! null) {
+    if_setgraphic(struct_param($struct2, param_8097), $component3);
+    if_settext(db_getfield($dbrow1, dbtable_136:col1, 0), interface_857:com_17);
+    if (db_getfieldcount($dbrow1, dbtable_136:col2) > 0) {
+        if (if_find(interface_857:com_19) = true) {
+            cc_setparam(param_424, $dbrow1);
+        }
+        if_sethide(false, interface_857:com_19);
+        ~script15857($dbrow1);
+    } else if (if_find(interface_857:com_19) = true) {
+        cc_setparam(param_424, null);
+    }
+}
+def_int $int4 = ~script383($int0);
+if ($int4 ! 31) {
+    $struct2 = ~script10405(18);
+}
+if_sethide(false, struct_param($struct2, param_3503));
+%varplayerbit_49443 = enum_getreverseindex(int, int, enum_10155, $int0, 0);
+if ($int4 ! 31) {
+    ~chat_v2_rebuildchatbox(18);
+    ~script8551(18, ~script257($int0));
+    ~script1558(18, 0);
+}

@@ -1,8 +1,8 @@
 // 2946
 [clientscript,login_reply](int $int0)
 def_int $int1 = ~login_getreply;
-def_component $component2 = interface_744:com_151;
-def_component $component3 = interface_744:com_345;
+def_component $component2 = interface_744:com_123;
+def_component $component3 = interface_744:com_330;
 switch_int ($int1) {
     case 49 :
         if (%varclient_1100 ! 49) {
@@ -51,6 +51,10 @@ switch_int ($int1) {
         if_setonclick(null, $component2);
         ~script15662("Signing in...", -1, 0);
         %varclient_1100 = 63;
+        return;
+    case 1409 :
+        %varclient_1100 = 1409;
+        ~loginscreen_load_overlay(-1);
         return;
 }
 if (%varclient_1100 = -3) {
@@ -117,7 +121,7 @@ if ($int1 = 1) {
 }
 ~login_popup_close(0);
 if_setonclick("login_dologin", $component2);
-if_setontimer(null, interface_744:com_345);
+if_setontimer(null, interface_744:com_330);
 def_string $string2 = "";
 def_int $int6 = 1;
 def_int $int7 = 0;
@@ -232,7 +236,7 @@ switch_int ($int1) {
     case 20 :
         $string2 = "Invalid loginserver requested. Please try using a different world.";
     case 22 :
-        $string2 = "Malformed login packet. Please try again.";
+        $string2 = "Sorry, we had trouble logging you in. Please try again.";
     case 23 :
         $string2 = "No reply from login server. Please wait a minute and try again.";
     case 24 :
@@ -275,9 +279,15 @@ switch_int ($int1) {
             $string2 = "RuneScape has been updated! Please restart the game to retry.";
         }
     case 3 :
-        $string2 = "You may have used incorrect login information, please try again.<br><br>Your account may currently be protected pending restoration. We will be providing updates on our home page and social channels.";
+        if (%varclient_1414 = 1) {
+            $string2 = "Invalid username or password.<br><br>For accounts created after the 24th of November 2010, please use your email address to login. Otherwise please login with your username.";
+        } else if (%varclient_1414 = 2) {
+            $string2 = "Invalid email or password.<br><br>For accounts created after the 24th of November 2010, please use your email address to login. Otherwise please login with your username.";
+        } else {
+            $string2 = "Invalid login or password.<br><br>For accounts created after the 24th of November 2010, please use your email address to login. Otherwise please login with your username.";
+        }
         $string3 = "Forgotten your password?";
-        ~script1128("lfPMvO");
+        ~script380(dbrow_3989);
     case 4 :
         $string2 = "Your account has been involved in serious rule breaking.";
         $string3 = "More info";
@@ -290,22 +300,32 @@ switch_int ($int1) {
         $string3 = "Recover Account";
     case 30 :
         $string2 = "This is not a member's account; please choose a 'free' world from the website to play on this account.";
-        $string3 = "Subscribe";
+        if (~script6431 = false) {
+            $string3 = "Subscribe";
+        }
     case 31 :
         $string2 = "You must change your account's display name before you can login.";
         $string3 = "Change Display Name";
     case 19 :
         $string2 = "Fullscreen is currently a members-only feature. To log in, exit fullscreen via the options menu or use a member's account.";
-        $string3 = "Subscribe";
+        if (~script6431 = false) {
+            $string3 = "Subscribe";
+        }
     case 12 :
         $string2 = "You need a member's account to log in to this world. Please subscribe or use a different world.";
-        $string3 = "Subscribe";
+        if (~script6431 = false) {
+            $string3 = "Subscribe";
+        }
     case 40 :
         $string2 = "You need a member's account to log in to this world. Please subscribe or use a different world.";
-        $string3 = "Subscribe";
+        if (~script6431 = false) {
+            $string3 = "Subscribe";
+        }
     case 32 :
         $string2 = "The unpaid balance on your account needs to be settled before you can log into game.";
-        $string3 = "Unpaid balance";
+        if (~script6431 = false) {
+            $string3 = "Unpaid balance";
+        }
     case 47, 51 :
         $string2 = "You need to validate your email address to log in.";
     case 48 :
@@ -318,7 +338,7 @@ switch_int ($int1) {
         %varclient_200 = login_ban_duration;
         $int13, $int14, $int15 = ~ban_time_remaining(%varclient_200);
         $string2 = "Your ban will be lifted in<br><tostring($int13)> hours, <tostring($int14)> minutes, <tostring($int15)> seconds";
-        if_setontimer("script6715", interface_744:com_345);
+        if_setontimer("script6715", interface_744:com_330);
         $string3 = "More info";
     case 50 :
         $string2 = "The Jagex Account Guardian is protecting this account.<br><br>This device is not recognised.<br><br>No new devices can be added for up to 24 hours as too many failed attempts to answer the security questions have been made.<br><br>During this time access will still be granted to any devices already trusted.";
@@ -338,7 +358,7 @@ switch_int ($int1) {
     case 64 :
         $string2 = "Single Sign on timed out. Please try again in a few moments.";
     case 65 :
-        $string2 = "Single Sign on failed. Please try again in a few moments.<br><br>Your account may currently be protected pending restoration. We will be providing updates on our home page and social channels.";
+        $string2 = "Single Sign on failed. Please try again in a few moments.";
     case 1401 :
         $string2 = "Single Sign on failed because your token has expired. Please try re-entering your login details.";
     case 1402 :
@@ -357,6 +377,10 @@ switch_int ($int1) {
         $string2 = "Single Sign on failed because your account creation was unsuccessful. Please ensure you have entered a valid date of birth.";
     case 1407 :
         $string2 = "Single Sign on failed because you have a pending transaction.";
+    case 1408 :
+        $string2 = "Single Sign on failed as the browser was unable to open. Please check your internet connection or try again later.";
+    case 1410 :
+        $string2 = "Linking accounts failed as the browser was unable to open. Please check your internet connection or try again later.";
     case default :
         $string2 = "Unexpected server response. Please try using a different world.";
 }

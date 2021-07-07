@@ -1,3 +1,91 @@
 // 3093
-[proc,lobby_popup](int $int0, int $int1, string $string0, int $int2, graphic $graphic3, boolean $boolean4, int $int5, string $string1, string $string2, boolean $boolean6, string $string3, string $string4)
-~script2779($int0, $int1, $string0, $int2, $graphic3, $boolean4, $int5, $string1, $string2, $boolean6, $string3, $string4, 250);
+[proc,lobby_popup](int $int0, dbrow $dbrow1, string $string0, string $string1, graphic $graphic2, string $string2, string $string3)
+if (if_gethide(interface_906:com_154) = false) {
+    return;
+}
+~lobby_popup_close;
+def_int $int3 = 50;
+def_int $int4 = 140;
+def_int $int5 = 600;
+def_int $int6 = 450;
+def_int $int7 = 150;
+def_int $int8 = 20;
+def_int $int9 = 50;
+def_int $int10 = 20;
+def_int $int11 = 72;
+def_int $int12 = 10;
+def_int $int13 = 40;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = 0;
+def_int $int17 = 18;
+if (string_length($string2) > 0) {
+    $int14 = max($int7, calc(30 + parawidth($string2, 1000, fontmetrics_56)));
+} else {
+    if_sethide(true, interface_820:com_12);
+}
+if (string_length($string3) > 0) {
+    $int15 = max($int7, calc(30 + parawidth($string3, 1000, fontmetrics_56)));
+} else {
+    if_sethide(true, interface_820:com_13);
+}
+def_int $int18 = $int6;
+def_int $int19 = calc($int13 + $int8);
+if ($int14 > 0 & $int15 > 0) {
+    if (calc($int14 + $int15 + $int8) > calc($int5 - $int9)) {
+        $int14 = calc(($int5 - $int9 - $int8) / 2);
+        $int15 = $int14;
+        $int18 = $int5;
+    } else {
+        $int18 = max($int18, calc($int14 + $int15 + $int8 + $int9));
+    }
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, interface_820:com_12);
+    if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom, interface_820:com_13);
+    if_sethide(false, interface_820:com_12);
+    if_sethide(false, interface_820:com_13);
+} else if ($int14 > 0) {
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_820:com_12);
+    if_sethide(false, interface_820:com_12);
+    if_sethide(true, interface_820:com_13);
+} else if ($int15 > 0) {
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_820:com_13);
+    if_sethide(true, interface_820:com_12);
+    if_sethide(false, interface_820:com_13);
+} else {
+    if_sethide(true, interface_820:com_13);
+    if_sethide(true, interface_820:com_12);
+    $int19 = 0;
+}
+~lobby_popup_button(interface_820:com_12, $string2, db_getfield($dbrow1, dbtable_127:col1, 0));
+~lobby_popup_button(interface_820:com_13, $string3, db_getfield($dbrow1, dbtable_127:col2, 0));
+~script3095(interface_820:com_12, interface_820:com_13, $int0);
+if_setsize($int14, 0, ^setsize_abs, ^setsize_minus, interface_820:com_12);
+if_setsize($int15, 0, ^setsize_abs, ^setsize_minus, interface_820:com_13);
+if ($graphic2 ! null) {
+    $int19 = calc($int19 + ($int11 + $int12));
+    if ($graphic2 = rs3_loading_spinner_default) {
+        if_set2dangle(0, interface_820:com_8);
+        if_sethide(false, interface_820:com_6);
+        if_sethide(true, interface_820:com_9);
+    } else {
+        if_setgraphic($graphic2, interface_820:com_9);
+        if_sethide(true, interface_820:com_6);
+        if_sethide(false, interface_820:com_9);
+    }
+    if_setposition(0, calc($int11 + $int12), ^setpos_abs_centre, ^setpos_abs_top, interface_820:com_10);
+} else {
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, interface_820:com_10);
+    if_sethide(true, interface_820:com_6);
+    if_sethide(true, interface_820:com_9);
+}
+def_int $int20 = paraheight($string1, $int18, fontmetrics_30);
+$int19 = calc($int19 + $int20 * $int17);
+if_setsize($int10, calc($int20 * $int17), ^setsize_minus, ^setsize_abs, interface_820:com_10);
+$int18 = max($int18, parawidth($string0, $int5, if_getfontmetrics(interface_820:com_17)));
+$int19 = calc($int19 + $int4);
+$int18 = calc($int18 + $int3);
+if_setsize($int18, $int19, ^setsize_abs, ^setsize_abs, interface_820:com_2);
+if_settext($string0, interface_820:com_17);
+if_settext($string1, interface_820:com_10);
+if_setonkey("lobbyscreen_popup_keyboard(event_keycode)", interface_906:com_154);
+if_sethide(false, interface_906:com_154);

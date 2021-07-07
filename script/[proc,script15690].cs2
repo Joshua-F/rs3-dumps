@@ -1,6 +1,41 @@
 // 15690
-[proc,script15690]
-def_int $int0 = %varclient_6891;
-~script14140(interface_744:com_234, interface_744:com_235, enum_8808, -1, "", $int0, 1, false);
-def_string $string0 = "Change language";
-if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", interface_744:com_233);
+[proc,script15690](struct $struct0, int $int1, component $component2, int $int3)(int)
+def_boolean $boolean4 = false;
+def_boolean $boolean5 = false;
+if ($struct0 ! struct_4299 & $struct0 ! null) {
+    $boolean4 = struct_param($struct0, param_8295);
+    $boolean5 = false;
+} else {
+    $boolean5 = true;
+}
+cc_create($component2, ^iftype_graphic, $int1);
+cc_setgraphic(container_topbar_currency);
+cc_setsize(126, 36, ^setsize_abs, ^setsize_abs);
+cc_setposition($int3, 10, ^setpos_abs_right, ^setpos_abs_top);
+cc_sethide($boolean5);
+$int1 = calc($int1 + 1);
+cc_create($component2, ^iftype_graphic, $int1);
+cc_setsize(45, 45, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int3 + 104), 6, ^setpos_abs_right, ^setpos_abs_top);
+cc_sethide($boolean5);
+$int1 = calc($int1 + 1);
+cc_create($component2, ^iftype_text, $int1);
+cc_settextfont(fontmetrics_57);
+cc_setcolour(^white);
+cc_setsize(126, 36, ^setsize_abs, ^setsize_abs);
+cc_setposition($int3, 10, ^setpos_abs_right, ^setpos_abs_top);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 16);
+cc_sethide($boolean5);
+$int1 = calc($int1 + 1);
+cc_create($component2, ^iftype_graphic, $int1);
+~script15765($component2, $int1, mtx_store_btn_plus_active, mtx_store_btn_plus_hover);
+cc_setsize(39, 36, ^setsize_abs, ^setsize_abs);
+cc_setposition($int3, 9, ^setpos_abs_right, ^setpos_abs_top);
+cc_sethide(true);
+$int1 = calc($int1 + 1);
+if ($boolean4 = true & $boolean5 = false) {
+    cc_setop(1, "Select");
+    cc_sethide(false);
+}
+~script15760($struct0, $component2, calc($int1 - 3));
+return($int1);

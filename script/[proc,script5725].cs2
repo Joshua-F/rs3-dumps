@@ -1,135 +1,20 @@
 // 5725
-[proc,script5725](struct $struct0)(int)
-def_struct $struct1 = null;
-def_dbrow $dbrow2 = null;
-switch_struct ($struct0) {
-    case struct_28673 :
-        if (~ironman_mode = true) {
-            return(3);
-        } else {
-            return(0);
+[proc,script5725](dbrow $dbrow0)(boolean)
+if ($dbrow0 = null) {
+    return(false);
+}
+def_int $int1 = db_getfieldcount($dbrow0, dbtable_134:col3);
+def_int $int2 = 0;
+def_dbrow $dbrow3 = null;
+if ($int1 > 0) {
+    while ($int2 < $int1) {
+        $dbrow3 = db_getfield($dbrow0, dbtable_134:col3, $int2);
+        if ($dbrow3 ! null & ~script12115($dbrow3) = true) {
+            return(true);
         }
-    case struct_35589 :
-        if (~ironman_mode = true) {
-            return(3);
-        }
-        if (~script13087 = 1) {
-            if (%varplayerbit_35122 = 0) {
-                return(0);
-            } else {
-                return(1);
-            }
-        } else {
-            return(3);
-        }
-    case struct_33130 :
-        if (%varplayer_346 ! 0) {
-            return(3);
-        } else {
-            return(0);
-        }
-    case struct_33131 :
-        if (%varplayer_346 ! 0) {
-            if (testbit(%varplayer_346, 5) = ^true) {
-                if (max(%varplayer_6153, %varplayer_6154) > calc(date_minutes_fromruneday(7278) - date_minutes_fromruneday(0))) {
-                    return(1);
-                }
-                return(0);
-            }
-            if (testbit(%varplayer_346, 4) = ^true) {
-                if (max(%varplayer_6153, %varplayer_6154) > calc(date_minutes_fromruneday(6914) - date_minutes_fromruneday(0))) {
-                    return(1);
-                }
-                return(0);
-            }
-            if (testbit(%varplayer_346, 3) = ^true) {
-                if (max(%varplayer_6153, %varplayer_6154) > calc(date_minutes_fromruneday(6516) - date_minutes_fromruneday(0))) {
-                    return(1);
-                }
-                return(0);
-            }
-            if (testbit(%varplayer_346, 2) = ^true) {
-                if (max(%varplayer_6153, %varplayer_6154) > calc(date_minutes_fromruneday(6151) - date_minutes_fromruneday(0))) {
-                    return(1);
-                }
-                return(0);
-            } else if (testbit(%varplayer_346, 1) = ^true) {
-                if (max(%varplayer_6153, %varplayer_6154) > calc(date_minutes_fromruneday(5786) - date_minutes_fromruneday(0))) {
-                    return(1);
-                }
-                return(0);
-            } else {
-                return(3);
-            }
-        } else {
-            return(3);
-        }
-    case struct_39407, struct_35921, struct_39247, struct_39403, struct_39404, struct_39405, struct_39406 :
-        return(~script2475($struct0));
-    case struct_4284 :
-        if (~ironman_mode = true) {
-            return(3);
-        } else if (date_runeday < 6396) {
-            return(3);
-        } else {
-            return(0);
-        }
-    case struct_36727 :
-        if (%varplayerbit_30001 = 1 | playermember = false | date_runeday < 6361) {
-            return(3);
-        } else {
-            return(0);
-        }
-    case struct_6810 :
-        if (~script6544 = 1 & %varplayer_350 ! 19) {
-            if (%varplayerbit_44073 = 1) {
-                return(3);
-            } else {
-                return(0);
-            }
-        } else {
-            return(3);
-        }
-    case struct_34372, struct_34363, struct_34364, struct_34365, struct_34366, struct_34367, struct_34368, struct_34373, struct_34369, struct_34370, struct_34371 :
-        return(~script3542($struct0));
-    case struct_44558, struct_11215, struct_11216, struct_11217, struct_44554, struct_44555, struct_44556 :
-        return(~script15403($struct0));
-    case struct_43904 :
-        if (~script3654 = null) {
-            return(3);
-        } else {
-            return(0);
-        }
-    case struct_42935 :
-        if (~script3654 = null | ~script3616 = true) {
-            return(3);
-        } else {
-            return(0);
-        }
-    case struct_11777 :
-        if (%varplayerbit_34440 = 1 | playermember = false | ~obj_gettotal(obj_49280) >= 2000) {
-            return(3);
-        } else {
-            return(0);
-        }
-    case struct_11776 :
-        if (%varplayerbit_26430 = 1 | playermember = false) {
-            return(3);
-        } else if (%varplayerbit_44899 = 1 & %varplayerbit_45879 = 1) {
-            return(3);
-        } else {
-            return(0);
-        }
-    case struct_11567, struct_11568, struct_11569 :
-        $struct1 = ~script14441;
-        if ($struct1 ! null & struct_param($struct1, param_4284) = 1) {
-            return(0);
-        }
-        $dbrow2 = ~script15143;
-        if ($dbrow2 ! null) {
-            return(0);
-        }
-        return(3);
-    case default :
-        return(0);
+        $int2 = calc($int2 + 1);
+    }
+    return(false);
+} else {
+    return(~script12115($dbrow0));
 }

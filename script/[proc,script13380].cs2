@@ -3,13 +3,14 @@
 def_int $int1 = 0;
 def_int $int2 = 0;
 def_graphic $graphic3 = "trh119_icon_checkmarks,2";
+def_struct $struct4 = ~trh_promo_current;
 if (cc_find(interface_1870:com_18, $int0) = true) {
-    if (~trh_state(struct_40380) = 1 | ~trh_state(struct_38726) = 1) {
+    if ($struct4 = struct_40380 | $struct4 = struct_38726) {
         $int1 = ~script6954($int0);
         $graphic3 = treasurehunter_trh142_icon_crossbones;
-    } else if (~trh_state(struct_7229) = 1) {
+    } else if ($struct4 = struct_7229) {
         $int2 = ~script6397($int0);
-    } else if (~trh_state(struct_44604) = 1) {
+    } else if ($struct4 = struct_44604) {
         $int2 = ~script2662($int0);
         $graphic3 = trh172_icon_digsite_cross;
     }
@@ -18,7 +19,7 @@ if (cc_find(interface_1870:com_18, $int0) = true) {
             if ($int1 ! 0) {
                 cc_setgraphic(enum(int, graphic, enum_8520, $int1));
             } else if ($int2 ! 0) {
-                if (~trh_state(struct_44604) = 1) {
+                if ($struct4 = struct_44604) {
                     cc_setgraphic(enum(int, graphic, enum_1651, $int2));
                 } else {
                     cc_setgraphic(enum(int, graphic, enum_15149, $int2));

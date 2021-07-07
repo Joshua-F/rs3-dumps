@@ -1,0 +1,67 @@
+// 14486
+[proc,script14486](dbrow $dbrow0, int $int1)
+if (db_getfieldcount($dbrow0, dbtable_134:col16) > 0) {
+    switch_int (db_getfield($dbrow0, dbtable_134:col16, 0)) {
+        case 1 :
+            ~script14788($dbrow0, $int1);
+        case 2 :
+            ~script14947($dbrow0, $int1);
+        case 3 :
+            ~script14787($dbrow0, $int1);
+        case 4 :
+            ~script14487($dbrow0, $int1);
+    }
+    return;
+}
+def_string $string0 = "You've purchased <db_getfield($dbrow0, dbtable_134:col0, 0)>";
+def_string $string1 = "";
+if (db_getfieldcount($dbrow0, dbtable_134:col13) > 0) {
+    $string1 = db_getfield($dbrow0, dbtable_134:col13, 0);
+}
+def_string $string2 = "";
+if (db_getfieldcount($dbrow0, dbtable_134:col14) > 0) {
+    $string2 = db_getfield($dbrow0, dbtable_134:col14, 0);
+}
+def_string $string3 = "";
+if (db_getfieldcount($dbrow0, dbtable_134:col15) > 0) {
+    $string3 = db_getfield($dbrow0, dbtable_134:col15, 0);
+}
+if_sethide(false, interface_219:com_162);
+if_sethide(true, interface_219:com_172);
+if_setgraphic(db_getfield($dbrow0, dbtable_134:col10, 0), interface_219:com_123);
+switch_int ($int1) {
+    case 1 :
+        ~script13463("Sorry, we were unable to process your request. Please try again later.");
+        return;
+    case 2 :
+        if_settext($string0, interface_219:com_121);
+        if_settext($string1, interface_219:com_122);
+        if (string_length($string3) > 0) {
+            mes($string3);
+        } else {
+            mes($string0);
+        }
+    case 3 :
+        if_settext($string0, interface_219:com_121);
+        if_settext($string2, interface_219:com_122);
+        if (string_length($string3) > 0) {
+            mes($string3);
+        } else {
+            mes($string0);
+        }
+        if (string_length($string2) > 0) {
+            mes($string2);
+        }
+    case 4 :
+        if_sethide(true, interface_219:com_1);
+        ~script9554(interface_219:com_159, interface_219:com_160, interface_219:com_161, "Sorry", struct_21218);
+        if_settext("We were unable to process your request due to insufficient funds.", interface_219:com_121);
+        if_settext("Please try again later.", interface_219:com_122);
+        ~script1296("We were unable to process your request due to insufficient funds. Please try again later.");
+    case 5 :
+        if_sethide(true, interface_219:com_1);
+        ~script9554(interface_219:com_159, interface_219:com_160, interface_219:com_161, "Sorry", struct_21218);
+        if_settext("We were unable to process your request.", interface_219:com_121);
+        if_settext("Please try again later.", interface_219:com_122);
+        ~script1296("Sorry, we were unable to process your request. Please try again later.");
+}

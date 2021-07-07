@@ -4,64 +4,60 @@ def_component $component3 = ~script8552($int0);
 if ($component3 = null) {
     return;
 }
-def_int $int4 = 0;
-def_int $int5 = 0;
-def_string $string0 = "";
-def_string $string1 = "";
-def_string $string2 = "";
-def_string $string3 = "";
-def_string $string4 = "";
-def_chatphrase $chatphrase6 = null;
-def_string $string5 = "";
-def_int $int7 = -1;
-def_int $int8 = chat_getnextuid($int1);
-def_int $int9 = 0;
-if ($int8 = -1) {
+def_int $int4 = chat_getnextuid($int1);
+if ($int4 = -1) {
     if ($int1 = 0 & $int2 = 0 | $int1 < $int2) {
         ~rebuildchatbox($int0);
     }
     return;
 }
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
+def_string $string4 = "";
+def_chatphrase $chatphrase7 = null;
+def_string $string5 = "";
+def_int $int8 = -1;
+$int5, $string0, $int6, $string1, $string2, $string3, $string4, $chatphrase7, $string5, $int8 = chat_gethistory_byuid($int4);
+def_int $int9 = 0;
 def_int $intarray0(140);
-$int4, $string0, $int5, $string1, $string2, $string3, $string4, $chatphrase6, $string5, $int7 = chat_gethistory_byuid($int8);
-while ($int8 <= $int2) {
-    if ($int4 ! -1) {
-        if ($int5 = 100 & ($int4 = 125 | $int4 = 137 | $int4 = 138 | $int4 = 139)) {
+while ($int4 <= $int2) {
+    if ($int5 ! -1) {
+        if ($int6 = 100 & ($int5 = 125 | $int5 = 137 | $int5 = 138 | $int5 = 139)) {
             %varclient_5882 = 1;
             ~script15210(4);
         }
-        if (~script8507($int0, $int4, 0) = 1 & ~script8508($int0, $int4, $int5, $string2, $int7) = 1) {
+        if (~script8507($int0, $int5, 0) = 1 & ~script8508($int0, $int5, $int6, $string2, $int8) = 1) {
             $int9 = calc($int9 + 1);
-        } else if ($intarray0($int4) ! 1) {
-            ~script8538($int0, $int4, $int5, $string2, $int7);
-            $intarray0($int4) = 1;
+        } else if ($intarray0($int5) ! 1) {
+            ~script8538($int0, $int5, $int6, $string2, $int8);
+            $intarray0($int5) = 1;
         }
     }
-    $int8 = chat_getnextuid($int8);
-    if ($int8 ! -1) {
-        $int4, $string0, $int5, $string1, $string2, $string3, $string4, $chatphrase6, $string5, $int7 = chat_gethistory_byuid($int8);
+    $int4 = chat_getnextuid($int4);
+    if ($int4 ! -1) {
+        $int5, $string0, $int6, $string1, $string2, $string3, $string4, $chatphrase7, $string5, $int8 = chat_gethistory_byuid($int4);
     } else {
-        $int8 = calc($int2 + 1);
+        $int4 = calc($int2 + 1);
     }
 }
 if ($int9 = 0) {
     return;
 }
-$int8 = calc($int8 - 1);
+$int4 = calc($int4 - 1);
 def_int $int10 = if_getnextsubid($component3);
 def_int $int11 = min(100, calc($int10 + $int9));
-def_boolean $boolean12 = ~script6431;
-def_fontmetrics $fontmetrics13 = enum(int, fontmetrics, enum_1649, %varplayerbit_47982);
+def_fontmetrics $fontmetrics12 = enum(int, fontmetrics, enum_1649, %varplayerbit_47982);
+def_int $int13 = enum(int, int, enum_1647, %varplayerbit_47982);
 def_int $int14 = enum(int, int, enum_1648, %varplayerbit_47982);
-def_int $int15 = enum(int, int, enum_1647, %varplayerbit_47982);
-if ($boolean12 = true) {
-    $fontmetrics13 = fontmetrics_30;
-    $int15 = 18;
-}
+def_int $int15 = enum(int, int, enum_1648, %varplayerbit_47982);
 while ($int10 < $int11) {
     cc_create($component3, ^iftype_text, $int10);
-    cc_settextfont($fontmetrics13);
-    cc_settextalign(^settextalign_left, ^settextalign_top, $int15);
+    cc_settextfont($fontmetrics12);
+    cc_settextalign(^settextalign_left, ^settextalign_top, $int13);
     cc_settextshadow(true);
     $int10 = calc($int10 + 1);
 }
@@ -83,8 +79,8 @@ while ($int10 >= $int9) {
         .cc_setop(10, cc_getop(10));
         .cc_setparam(param_3443, cc_param(param_3443));
         .cc_setonop("chat_op($int0, event_op, event_comsubid)");
-        $int4, $string0, $int5, $string1, $string2, $string3, $string4, $chatphrase6, $string5, $int7 = chat_gethistory_byuid(cc_param(param_3443));
-        ~script10488($int4, $string3);
+        $int5, $string0, $int6, $string1, $string2, $string3, $string4, $chatphrase7, $string5, $int8 = chat_gethistory_byuid(cc_param(param_3443));
+        ~script10488($int5, $string3);
         if ($int0 = 1019) {
             ~script3927(1019);
         }
@@ -93,44 +89,56 @@ while ($int10 >= $int9) {
 }
 def_int $int16 = ~script4467;
 def_int $int17 = ~script1891;
-def_int $int18 = enum(int, int, enum_1648, %varplayerbit_47982);
-def_int $int19 = if_getwidth($component3);
-def_int $int20 = 0;
+def_int $int18 = if_getwidth($component3);
+def_int $int19 = 0;
 $int10 = 0;
-$int4, $string0, $int5, $string1, $string2, $string3, $string4, $chatphrase6, $string5, $int7 = chat_gethistory_byuid($int8);
-while ($int10 < $int9 & $int8 <= $int2) {
-    if ($int4 ! -1 & ~script8507($int0, $int4, 0) = 1 & ~script8508($int0, $int4, $int5, $string2, $int7) = 1) {
+$int5, $string0, $int6, $string1, $string2, $string3, $string4, $chatphrase7, $string5, $int8 = chat_gethistory_byuid($int4);
+def_boolean $boolean20 = ~script6431;
+def_int $int21 = if_gettrans(interface_137:com_2);
+if (if_gethide(interface_276:com_25) = false) {
+    $int21 = 0;
+}
+def_int $setposv22 = ^setpos_abs_bottom;
+if ($boolean20 = true) {
+    $setposv22 = ^setpos_abs_top;
+}
+while ($int10 < $int9 & $int4 <= $int2) {
+    if ($int5 ! -1 & ~script8507($int0, $int5, 0) = 1 & ~script8508($int0, $int5, $int6, $string2, $int8) = 1) {
         if (cc_find($component3, $int10) = true) {
-            ~script8505($int4, $string5, $int5, $string1, $string4, $chatphrase6, $string0, $int18, $boolean12);
-            ~script8506($int0, $int4, $string5, $int5, $string1, $string2, $chatphrase6, $int16, $int17);
-            cc_setparam(param_3443, $int8);
-            cc_setsize(2, calc(paraheight(cc_gettext, $int19, cc_getfontmetrics) * $int15), ^setsize_minus, ^setsize_abs);
-            $int18 = calc($int18 + cc_getheight);
-            ~script10487($int4, $string3);
-            switch_int ($int4) {
+            ~script8505($int5, $string5, $int6, $string1, $string4, $chatphrase7, $string0);
+            ~script8506($int0, $int5, $string5, $int6, $string1, $string2, $chatphrase7, $int16, $int17);
+            cc_setparam(param_3443, $int4);
+            cc_setsize(0, calc(paraheight(cc_gettext, $int18, cc_getfontmetrics) * $int13), ^setsize_minus, ^setsize_abs);
+            cc_setposition(0, $int15, ^setpos_abs_left, $setposv22);
+            $int15 = calc($int15 + cc_getheight);
+            if ($boolean20 = true) {
+                cc_settrans($int21);
+            }
+            ~script10487($int5, $string3);
+            switch_int ($int5) {
                 case 3, 6, 7, 18, 19 :
                     %varclient_2505 = removetags($string2);
             }
         }
-        if ($int4 ! 109) {
-            $int20 = calc($int20 + 1);
+        if ($int5 ! 109) {
+            $int19 = calc($int19 + 1);
         }
         $int10 = calc($int10 + 1);
     }
-    $int8 = chat_getprevuid($int8);
-    if ($int8 ! -1) {
-        $int4, $string0, $int5, $string1, $string2, $string3, $string4, $chatphrase6, $string5, $int7 = chat_gethistory_byuid($int8);
+    $int4 = chat_getprevuid($int4);
+    if ($int4 ! -1) {
+        $int5, $string0, $int6, $string1, $string2, $string3, $string4, $chatphrase7, $string5, $int8 = chat_gethistory_byuid($int4);
     } else {
-        $int8 = $int2;
+        $int4 = $int2;
     }
 }
-def_int $int21 = calc($int18 - $int14);
-def_int $int22 = 0;
-def_int $int23 = 0;
+def_int $int23 = calc($int15 - $int14);
 def_int $int24 = 0;
-$int22, $int23, $int24 = ~script8548($int0);
-if (calc($int22 - $int23) ! $int24 & $int23 ! 0) {
-    ~script8549($int0, $int22, calc($int23 - $int21), $int24);
+def_int $int25 = 0;
+def_int $int26 = 0;
+$int24, $int25, $int26 = ~script8548($int0);
+if (calc($int24 - $int25) ! $int26 & $int25 ! 0) {
+    ~script8549($int0, $int24, calc($int25 - $int23), $int26);
 }
-$int18 = ~script8503($component3, $int10, $int18);
-~script8504($int0, $int18);
+$int15 = ~script8503($component3, $int10, $int15);
+~script8504($int0, $int15);

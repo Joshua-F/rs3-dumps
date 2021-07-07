@@ -1,9 +1,12 @@
 // 380
-[proc,script380](string $string0)
-if (compare("", clan_getchatdisplayname) = 0) {
-    mes("You aren't in a Friends Chat channel in which you can announce your total wealth.");
+[proc,script380](dbrow $dbrow0)
+if (~is_mobile_client = false | $dbrow0 = null) {
     return;
-} else {
-    chat_setmode(1);
-    chat_sendpublic("My total wealth is <$string0>.");
+}
+def_string $string0 = db_getfield($dbrow0, dbtable_126:col0, 0);
+if (db_getfield($dbrow0, dbtable_126:col2, 0) = true) {
+    marketing_sendanalyticsevent($string0);
+}
+if (db_getfield($dbrow0, dbtable_126:col1, 0) = true) {
+    marketing_sendattributionevent($string0);
 }

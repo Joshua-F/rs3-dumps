@@ -1,182 +1,197 @@
 // 12158
 [proc,script12158](obj $obj0, component $component1, component $component2)
 cc_deleteall($component1);
-def_dbrow $dbrow3 = null;
-def_int $int4 = 0;
-def_int $int5 = enum_getoutputcount(enum_10742);
-def_int $int6 = 0;
-def_int $intarray0($int5);
-def_int $int7 = 0;
+def_int $int3 = 0;
+def_int $int4 = 1;
+def_int $int5 = -1;
+def_enum $enum6 = null;
+if ($obj0 ! null) {
+    $int5 = oc_param($obj0, param_7208);
+    $enum6 = oc_param($obj0, param_8345);
+    if (oc_param($obj0, param_8344) = true) {
+        $int3 = 1;
+        $int4 = 0;
+    }
+}
+def_dbrow $dbrow7 = null;
 def_int $int8 = 0;
-def_int $int9 = 0;
+def_int $int9 = enum_getoutputcount(enum_10742);
 def_int $int10 = 0;
+def_int $intarray0($int9);
 def_int $int11 = 0;
-def_int $int12 = 5;
-def_int $int13 = 5;
-while ($int6 < $int5) {
-    cc_create($component1, ^iftype_graphic, $int6);
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = 5;
+def_int $int17 = 5;
+while ($int10 < $int9) {
+    cc_create($component1, ^iftype_graphic, $int10);
     cc_sethide(true);
-    $dbrow3 = enum(int, dbrow, enum_10742, $int6);
-    if (~invent_material_dbrow_count($dbrow3) > 0) {
-        $intarray0($int4) = $int6;
-        $int4 = calc($int4 + 1);
-        cc_setparam_string(param_5441, lowercase(db_getfield($dbrow3, dbtable_4:col1, 0)));
-        cc_setparam(param_5529, $dbrow3);
-        switch_int (db_getfield($dbrow3, dbtable_4:col7, 0)) {
+    $dbrow7 = enum(int, dbrow, enum_10742, $int10);
+    if (($int3 = 1 | ~invent_material_dbrow_count($dbrow7) > 0) & ($enum6 = null | enum_hasoutput(dbrow, $enum6, $dbrow7) = true)) {
+        $intarray0($int8) = $int10;
+        $int8 = calc($int8 + 1);
+        cc_setparam_string(param_5441, lowercase(db_getfield($dbrow7, dbtable_4:col1, 0)));
+        cc_setparam(param_5529, $dbrow7);
+        switch_int (db_getfield($dbrow7, dbtable_4:col7, 0)) {
             case 2 :
                 cc_setparam(param_5535, 2);
-                $int7 = calc($int7 + 1);
+                $int11 = calc($int11 + 1);
             case 6, 3 :
                 cc_setparam(param_5535, 3);
-                $int8 = calc($int8 + 1);
+                $int12 = calc($int12 + 1);
             case 4 :
                 cc_setparam(param_5535, 4);
-                $int9 = calc($int9 + 1);
+                $int13 = calc($int13 + 1);
             case 5 :
                 cc_setparam(param_5535, 5);
-                $int10 = calc($int10 + 1);
+                $int14 = calc($int14 + 1);
             case default :
                 cc_setparam(param_5535, -1);
-                $int11 = calc($int11 + 1);
+                $int15 = calc($int15 + 1);
         }
     }
-    $int6 = calc($int6 + 1);
+    $int10 = calc($int10 + 1);
 }
-if ($int4 = 0) {
+if ($int8 = 0) {
     .cc_create($component1, ^iftype_text, if_getnextsubid($component1));
-    .cc_setsize($int12, 30, ^setsize_minus, ^setsize_abs);
-    .cc_setposition($int12, 5, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setsize($int16, 30, ^setsize_minus, ^setsize_abs);
+    .cc_setposition($int16, 5, ^setpos_abs_left, ^setpos_abs_top);
     .cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     .cc_settext("No Materials");
     ~script12108(3);
     .cc_settextfont(fontmetrics_57);
     .cc_create($component1, ^iftype_text, if_getnextsubid($component1));
-    .cc_setsize($int12, 30, ^setsize_minus, ^setsize_abs);
-    .cc_setposition($int12, 40, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setsize($int16, 30, ^setsize_minus, ^setsize_abs);
+    .cc_setposition($int16, 40, ^setpos_abs_left, ^setpos_abs_top);
     .cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     .cc_settext("You do not have any materials at the moment.<br><br>Materials are gained by disassembling items.");
     ~script12108(3);
     .cc_settextfont(fontmetrics_27);
     return;
 }
-~script12088(intarray0, $component1, 0, calc($int4 - 1));
+~script12088(intarray0, $component1, 0, calc($int8 - 1));
 if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component1);
-def_int $int14 = 0;
-def_int $int15 = 40;
-def_int $int16 = 60;
-def_int $int17 = 0;
-def_int $int18 = 40;
-$int17, $int18, $int12 = ~script12087(if_getwidth($component1), $int15, 5, 5);
-def_int $int19 = calc(($int7 + $int17 - 1) / $int17 + ($int8 + $int17 - 1) / $int17 + ($int9 + $int17 - 1) / $int17 + ($int10 + $int17 - 1) / $int17 + ($int11 + $int17 - 1) / $int17);
-def_int $int20 = 0;
-if ($int7 > 0) {
-    $int20 = calc($int20 + 1);
+def_int $int18 = 0;
+def_int $int19 = 40;
+def_int $int20 = 60;
+if ($int4 = 0) {
+    $int20 = 40;
 }
-if ($int8 > 0) {
-    $int20 = calc($int20 + 1);
-}
-if ($int9 > 0) {
-    $int20 = calc($int20 + 1);
-}
-if ($int10 > 0) {
-    $int20 = calc($int20 + 1);
-}
+def_int $int21 = 0;
+def_int $int22 = 40;
+$int21, $int22, $int16 = ~script12087(if_getwidth($component1), $int19, 5, 5);
+def_int $int23 = calc(($int11 + $int21 - 1) / $int21 + ($int12 + $int21 - 1) / $int21 + ($int13 + $int21 - 1) / $int21 + ($int14 + $int21 - 1) / $int21 + ($int15 + $int21 - 1) / $int21);
+def_int $int24 = 0;
 if ($int11 > 0) {
-    $int20 = calc($int20 + 1);
+    $int24 = calc($int24 + 1);
 }
-$int20 = calc($int20 * 30);
-if (if_getheight($component1) < calc($int19 * ($int16 + $int13) + $int13 + $int20)) {
+if ($int12 > 0) {
+    $int24 = calc($int24 + 1);
+}
+if ($int13 > 0) {
+    $int24 = calc($int24 + 1);
+}
+if ($int14 > 0) {
+    $int24 = calc($int24 + 1);
+}
+if ($int15 > 0) {
+    $int24 = calc($int24 + 1);
+}
+$int24 = calc($int24 * 30);
+if (if_getheight($component1) < calc($int23 * ($int20 + $int17) + $int17 + $int24)) {
     if_setsize(16, 0, ^setsize_minus, ^setsize_minus, $component1);
-    $int14 = 1;
-    $int17, $int18, $int12 = ~script12087(if_getwidth($component1), $int15, 5, 5);
-    $int19 = calc(($int7 + $int17 - 1) / $int17 + ($int8 + $int17 - 1) / $int17 + ($int9 + $int17 - 1) / $int17 + ($int10 + $int17 - 1) / $int17 + ($int11 + $int17 - 1) / $int17);
-    if_setscrollsize(0, calc($int19 * ($int16 + $int13) + $int13 + $int20), $component1);
+    $int18 = 1;
+    $int21, $int22, $int16 = ~script12087(if_getwidth($component1), $int19, 5, 5);
+    $int23 = calc(($int11 + $int21 - 1) / $int21 + ($int12 + $int21 - 1) / $int21 + ($int13 + $int21 - 1) / $int21 + ($int14 + $int21 - 1) / $int21 + ($int15 + $int21 - 1) / $int21);
+    if_setscrollsize(0, calc($int23 * ($int20 + $int17) + $int17 + $int24), $component1);
     ~rs3_scrollbar_vertical($component2, $component1);
     if_sethide(false, $component2);
 } else {
     if_sethide(true, $component2);
 }
-def_int $int21 = 0;
-def_int $int22 = 0;
-def_int $int23 = 0;
-def_int $int24 = 0;
 def_int $int25 = 0;
 def_int $int26 = 0;
-def_int $int27 = $int13;
-if ($int7 > 0) {
-    ~script12159($component1, $int12, $int27, "Common materials");
-    $int21 = calc($int27 + 30);
-    $int27 = calc($int27 + 30 + ($int7 + $int17 - 1) / $int17 * ($int16 + $int13));
-}
-if ($int8 > 0) {
-    ~script12159($component1, $int12, $int27, "Uncommon materials");
-    $int22 = calc($int27 + 30);
-    $int27 = calc($int27 + 30 + ($int8 + $int17 - 1) / $int17 * ($int16 + $int13));
-}
-if ($int9 > 0) {
-    ~script12159($component1, $int12, $int27, "Rare materials");
-    $int23 = calc($int27 + 30);
-    $int27 = calc($int27 + 30 + ($int9 + $int17 - 1) / $int17 * ($int16 + $int13));
-}
-if ($int10 > 0) {
-    ~script12159($component1, $int12, $int27, "Ancient materials");
-    $int24 = calc($int27 + 30);
-    $int27 = calc($int27 + 30 + ($int10 + $int17 - 1) / $int17 * ($int16 + $int13));
-}
-if ($int11 > 0) {
-    ~script12159($component1, $int12, $int27, "Other materials");
-    $int25 = calc($int27 + 30);
-    $int27 = calc($int27 + 30 + ($int11 + $int17 - 1) / $int17 * ($int16 + $int13));
-}
-$int7 = 0;
-$int8 = 0;
-$int9 = 0;
-$int10 = 0;
-$int11 = 0;
+def_int $int27 = 0;
 def_int $int28 = 0;
 def_int $int29 = 0;
-def_string $string0 = null;
 def_int $int30 = 0;
-def_int $int31 = 0;
+def_int $int31 = $int17;
+if ($int11 > 0) {
+    ~script12159($component1, $int16, $int31, "Common materials");
+    $int25 = calc($int31 + 30);
+    $int31 = calc($int31 + 30 + ($int11 + $int21 - 1) / $int21 * ($int20 + $int17));
+}
+if ($int12 > 0) {
+    ~script12159($component1, $int16, $int31, "Uncommon materials");
+    $int26 = calc($int31 + 30);
+    $int31 = calc($int31 + 30 + ($int12 + $int21 - 1) / $int21 * ($int20 + $int17));
+}
+if ($int13 > 0) {
+    ~script12159($component1, $int16, $int31, "Rare materials");
+    $int27 = calc($int31 + 30);
+    $int31 = calc($int31 + 30 + ($int13 + $int21 - 1) / $int21 * ($int20 + $int17));
+}
+if ($int14 > 0) {
+    ~script12159($component1, $int16, $int31, "Ancient materials");
+    $int28 = calc($int31 + 30);
+    $int31 = calc($int31 + 30 + ($int14 + $int21 - 1) / $int21 * ($int20 + $int17));
+}
+if ($int15 > 0) {
+    ~script12159($component1, $int16, $int31, "Other materials");
+    $int29 = calc($int31 + 30);
+    $int31 = calc($int31 + 30 + ($int15 + $int21 - 1) / $int21 * ($int20 + $int17));
+}
+$int11 = 0;
+$int12 = 0;
+$int13 = 0;
+$int14 = 0;
+$int15 = 0;
 def_int $int32 = 0;
 def_int $int33 = 0;
-def_dbrow $dbrow34 = null;
+def_string $string0 = null;
+def_int $int34 = 0;
+def_int $int35 = 0;
+def_int $int36 = 0;
+def_int $int37 = 0;
+def_dbrow $dbrow38 = null;
 def_string $string1 = "";
-def_int $int35 = -1;
-$int6 = 0;
-while ($int6 < $int4) {
-    if (cc_find($component1, $intarray0($int6)) = true) {
-        $dbrow3 = cc_param(param_5529);
-        $int28 = ~invent_material_count(db_getfield($dbrow3, dbtable_4:col0, 0));
-        $int30 = ~invent_material_unlocked($dbrow3);
-        $int35 = cc_param(param_5535);
-        switch_int ($int35) {
+def_int $int39 = -1;
+$int10 = 0;
+while ($int10 < $int8) {
+    if (cc_find($component1, $intarray0($int10)) = true) {
+        $dbrow7 = cc_param(param_5529);
+        $int32 = ~invent_material_count(db_getfield($dbrow7, dbtable_4:col0, 0));
+        $int34 = ~invent_material_unlocked($dbrow7);
+        $int39 = cc_param(param_5535);
+        switch_int ($int39) {
             case 2 :
-                $int29, $int7 = $int7, calc($int7 + 1);
-                $int27 = $int21;
+                $int33, $int11 = $int11, calc($int11 + 1);
+                $int31 = $int25;
             case 3 :
-                $int29, $int8 = $int8, calc($int8 + 1);
-                $int27 = $int22;
+                $int33, $int12 = $int12, calc($int12 + 1);
+                $int31 = $int26;
             case 4 :
-                $int29, $int9 = $int9, calc($int9 + 1);
-                $int27 = $int23;
+                $int33, $int13 = $int13, calc($int13 + 1);
+                $int31 = $int27;
             case 5 :
-                $int29, $int10 = $int10, calc($int10 + 1);
-                $int27 = $int24;
+                $int33, $int14 = $int14, calc($int14 + 1);
+                $int31 = $int28;
             case default :
-                $int29, $int11 = $int11, calc($int11 + 1);
-                $int27 = $int25;
+                $int33, $int15 = $int15, calc($int15 + 1);
+                $int31 = $int29;
         }
-        $int26 = calc($int12 + $int29 % $int17 * $int18);
-        $int27 = calc($int27 + $int29 / $int17 * ($int16 + $int13));
+        $int30 = calc($int16 + $int33 % $int21 * $int22);
+        $int31 = calc($int31 + $int33 / $int21 * ($int20 + $int17));
         .cc_create($component1, ^iftype_graphic, if_getnextsubid($component1));
-        .cc_setposition($int26, $int27, ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setposition($int30, $int31, ^setpos_abs_left, ^setpos_abs_top);
         .cc_setgraphic("rs3_icon_slot_40px,0");
         .cc_setsize(40, 40, ^setsize_abs, ^setsize_abs);
         cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int26 + 4), calc($int27 + 4), ^setpos_abs_left, ^setpos_abs_top);
-        cc_setgraphic(db_getfield($dbrow3, dbtable_4:col4, 0));
-        if ($int30 = 1) {
+        cc_setposition(calc($int30 + 4), calc($int31 + 4), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphic(db_getfield($dbrow7, dbtable_4:col4, 0));
+        if ($int34 = 1) {
             cc_sethide(false);
         } else {
             cc_sethide(true);
@@ -185,94 +200,98 @@ while ($int6 < $int4) {
         .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
         .cc_setgraphic(cc_getgraphic);
         .cc_setsize(cc_getwidth, cc_getheight, ^setsize_abs, ^setsize_abs);
-        if ($int30 = 0) {
+        if ($int34 = 0) {
             .cc_settrans(178);
         }
-        $string1 = db_getfield($dbrow3, dbtable_4:col1, 0);
-        $string0 = "<tostring_localised($int28, true)> x <db_getfield($dbrow3, dbtable_4:col1, 0)><br><br><db_getfield($dbrow3, dbtable_4:col2, 0)>";
-        if (db_getfieldcount($dbrow3, dbtable_4:col3) > 0) {
-            $string0 = "<$string0><br><br>Disassembly sources: <db_getfield($dbrow3, dbtable_4:col3, 0)>";
+        $string1 = db_getfield($dbrow7, dbtable_4:col1, 0);
+        $string0 = "<db_getfield($dbrow7, dbtable_4:col1, 0)><br><br><db_getfield($dbrow7, dbtable_4:col2, 0)>";
+        if ($int4 = 1) {
+            $string0 = "<tostring_localised($int32, true)> x <$string0>";
         }
-        if ($int30 = 0) {
+        if (db_getfieldcount($dbrow7, dbtable_4:col3) > 0) {
+            $string0 = "<$string0><br><br>Disassembly sources: <db_getfield($dbrow7, dbtable_4:col3, 0)>";
+        }
+        if ($int34 = 0) {
             $string0 = "<$string0><br><br><col=FF0000>You need to research this material before you can use it in a gizmo.";
         }
-        switch_int ($int35) {
+        switch_int ($int39) {
             case 5 :
-                switch_obj ($obj0) {
-                    case obj_50176, obj_50178, obj_50180 :
-                        $string0 = "<$string0><br><br>This material can only be used in ancient gizmos.</col>";
-                    case default :
-                        $string0 = "<$string0><br><br><col=FF0000>This material can only be used in ancient gizmos.</col>";
+                if ($int5 = 1) {
+                    $string0 = "<$string0><br><br>This material can only be used in ancient gizmos.</col>";
+                } else {
+                    $string0 = "<$string0><br><br><col=FF0000>This material can only be used in ancient gizmos.</col>";
                 }
         }
         if ($component1 = interface_1709:com_1) {
             .cc_setonclick("script6558($string1, $string0)");
         }
-        $int33 = db_getfieldcount($dbrow3, dbtable_4:col11);
-        if ($int33 > 0) {
+        $int37 = db_getfieldcount($dbrow7, dbtable_4:col11);
+        if ($int37 > 0) {
             $string0 = "<$string0><br><br>Armour Perks :";
         } else {
             $string0 = "<$string0><br><br>Armour Perks : None";
         }
-        while ($int33 > 0) {
-            $int31, $int32, $int32 = db_getfield($dbrow3, dbtable_4:col11, calc($int33 - 1));
-            db_find(dbtable_8:col0, $int31);
-            $dbrow34 = db_findnext;
-            $string0 = "<$string0> <db_getfield($dbrow34, dbtable_8:col1, 0)>";
-            if ($int33 > 1) {
+        while ($int37 > 0) {
+            $int35, $int36, $int36 = db_getfield($dbrow7, dbtable_4:col11, calc($int37 - 1));
+            db_find(dbtable_8:col0, $int35);
+            $dbrow38 = db_findnext;
+            $string0 = "<$string0> <db_getfield($dbrow38, dbtable_8:col1, 0)>";
+            if ($int37 > 1) {
                 $string0 = "<$string0>,";
             }
-            $int33 = calc($int33 - 1);
+            $int37 = calc($int37 - 1);
         }
-        $int33 = db_getfieldcount($dbrow3, dbtable_4:col10);
-        if ($int33 > 0) {
+        $int37 = db_getfieldcount($dbrow7, dbtable_4:col10);
+        if ($int37 > 0) {
             $string0 = "<$string0><br><br>Weapon Perks :";
         } else {
             $string0 = "<$string0><br><br>Weapon Perks : None";
         }
-        while ($int33 > 0) {
-            $int31, $int32, $int32 = db_getfield($dbrow3, dbtable_4:col10, calc($int33 - 1));
-            db_find(dbtable_8:col0, $int31);
-            $dbrow34 = db_findnext;
-            $string0 = "<$string0> <db_getfield($dbrow34, dbtable_8:col1, 0)>";
-            if ($int33 > 1) {
+        while ($int37 > 0) {
+            $int35, $int36, $int36 = db_getfield($dbrow7, dbtable_4:col10, calc($int37 - 1));
+            db_find(dbtable_8:col0, $int35);
+            $dbrow38 = db_findnext;
+            $string0 = "<$string0> <db_getfield($dbrow38, dbtable_8:col1, 0)>";
+            if ($int37 > 1) {
                 $string0 = "<$string0>,";
             }
-            $int33 = calc($int33 - 1);
+            $int37 = calc($int37 - 1);
         }
-        $int33 = db_getfieldcount($dbrow3, dbtable_4:col12);
-        if ($int33 > 0) {
+        $int37 = db_getfieldcount($dbrow7, dbtable_4:col12);
+        if ($int37 > 0) {
             $string0 = "<$string0><br><br>Tool Perks :";
         } else {
             $string0 = "<$string0><br><br>Tool Perks : None";
         }
-        while ($int33 > 0) {
-            $int31, $int32, $int32 = db_getfield($dbrow3, dbtable_4:col12, calc($int33 - 1));
-            db_find(dbtable_8:col0, $int31);
-            $dbrow34 = db_findnext;
-            $string0 = "<$string0> <db_getfield($dbrow34, dbtable_8:col1, 0)>";
-            if ($int33 > 1) {
+        while ($int37 > 0) {
+            $int35, $int36, $int36 = db_getfield($dbrow7, dbtable_4:col12, calc($int37 - 1));
+            db_find(dbtable_8:col0, $int35);
+            $dbrow38 = db_findnext;
+            $string0 = "<$string0> <db_getfield($dbrow38, dbtable_8:col1, 0)>";
+            if ($int37 > 1) {
                 $string0 = "<$string0>,";
             }
-            $int33 = calc($int33 - 1);
+            $int37 = calc($int37 - 1);
         }
         .cc_setonmouserepeat("script3876($string0, event_com, .cc_getid)");
         cc_setonclick("script6558($string1, $string0)");
         cc_sendtofront;
-        if ($int28 >= 10000000) {
-            $string0 = "<tostring(calc($int28 / 1000000))>M";
-        } else if ($int28 >= 10000) {
-            $string0 = "<tostring(calc($int28 / 1000))>K";
-        } else {
-            $string0 = tostring($int28);
+        if ($int4 = 1) {
+            if ($int32 >= 10000000) {
+                $string0 = "<tostring(calc($int32 / 1000000))>M";
+            } else if ($int32 >= 10000) {
+                $string0 = "<tostring(calc($int32 / 1000))>K";
+            } else {
+                $string0 = tostring($int32);
+            }
+            .cc_create($component1, ^iftype_text, if_getnextsubid($component1));
+            .cc_setsize(40, 15, ^setsize_abs, ^setsize_abs);
+            .cc_setposition($int30, calc($int31 + $int20 - 15), ^setpos_abs_left, ^setpos_abs_top);
+            .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+            .cc_settext($string0);
+            .cc_setcolour(^white);
+            .cc_settextfont(fontmetrics_27);
         }
-        .cc_create($component1, ^iftype_text, if_getnextsubid($component1));
-        .cc_setsize(40, 15, ^setsize_abs, ^setsize_abs);
-        .cc_setposition($int26, calc($int27 + $int16 - 15), ^setpos_abs_left, ^setpos_abs_top);
-        .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-        .cc_settext($string0);
-        .cc_setcolour(^white);
-        .cc_settextfont(fontmetrics_27);
     }
-    $int6 = calc($int6 + 1);
+    $int10 = calc($int10 + 1);
 }

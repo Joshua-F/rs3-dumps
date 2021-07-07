@@ -21,38 +21,28 @@ def_int $int9 = 0;
 def_int $int10 = 0;
 while ($achievement5 ! null) {
     $achievementarray0($int6) = $achievement5;
-    if (achievement_allprereqmet($achievement5) = false) {
-        if (achievement_gethide($achievement5) = 0) {
-            $intarray1($int6) = calc($int6 + $int2);
-            $int9 = calc($int9 + 1);
-        } else {
-            $intarray1($int6) = calc($int6 + $int3);
-            $int10 = calc($int10 + 1);
-        }
-    } else {
-        $int7 = achievement_reqstate($achievement5);
-        switch_int ($int7) {
-            case -2 :
-                $intarray1($int6) = calc($int6 + $int4);
-                $int8 = calc($int8 + 1);
-            case -1 :
-                if (achievement_gethide($achievement5) = 0) {
-                    $intarray1($int6) = calc($int6 + $int2);
-                    $int9 = calc($int9 + 1);
-                } else {
-                    $intarray1($int6) = calc($int6 + $int3);
-                    $int10 = calc($int10 + 1);
-                }
-            case -3 :
+    $int7 = achievement_reqstate($achievement5);
+    switch_int ($int7) {
+        case -2 :
+            $intarray1($int6) = calc($int6 + $int4);
+            $int8 = calc($int8 + 1);
+        case -1 :
+            if (achievement_gethide($achievement5) = 0) {
+                $intarray1($int6) = calc($int6 + $int2);
+                $int9 = calc($int9 + 1);
+            } else {
+                $intarray1($int6) = calc($int6 + $int3);
+                $int10 = calc($int10 + 1);
+            }
+        case -3 :
+            $intarray1($int6) = calc($int6 + 10000);
+        case default :
+            if (achievement_gethide($achievement5) < 2) {
                 $intarray1($int6) = calc($int6 + 10000);
-            case default :
-                if (achievement_gethide($achievement5) < 2) {
-                    $intarray1($int6) = calc($int6 + 10000);
-                } else {
-                    $intarray1($int6) = calc($int6 + $int3);
-                    $int10 = calc($int10 + 1);
-                }
-        }
+            } else {
+                $intarray1($int6) = calc($int6 + $int3);
+                $int10 = calc($int10 + 1);
+            }
     }
     $achievement5 = achievement_findnext;
     $int6 = calc($int6 + 1);
@@ -301,6 +291,15 @@ while ($int6 < $int0) {
     }
     $int23 = calc($int23 + ($int12 + 2));
     $int6 = calc($int6 + 1);
+}
+if (%varplayer_9607 = null) {
+    if (%varclient_6917 > 0) {
+        $int28 = %varclient_6917;
+    }
+    if (%varclient_6918 ! -1 & %varclient_6919 ! null) {
+        ~script9291(%varclient_6918, %varclient_6919);
+        return(true);
+    }
 }
 ~script15341($component1, $int23, $int28);
 return(true);

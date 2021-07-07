@@ -1,0 +1,38 @@
+// 14788
+[proc,script14788](dbrow $dbrow0, int $int1)
+if_sethide(false, interface_219:com_167);
+if_sethide(true, interface_219:com_172);
+if_sethide(false, interface_219:com_58);
+def_string $string0 = "";
+if (db_getfieldcount($dbrow0, dbtable_134:col17) > 0) {
+    $string0 = tostring(db_getfield($dbrow0, dbtable_134:col17, 0));
+}
+switch_int ($int1) {
+    case 1 :
+        ~script1296("Sorry, we were unable to process your request. Please try again later.");
+    case 2 :
+        if (~is_mobile_client = true) {
+            if_sethide(true, interface_219:com_67);
+            if_setposition(0, 115, ^setpos_abs_centre, ^setpos_abs_top, interface_219:com_59);
+        }
+        if_settext("You've gained <$string0> Runecoins.", interface_219:com_55);
+        if_settext("Current Runecoins : <~tostring_spacer_local(%varclient_4659)>", interface_219:com_56);
+        if_setonvarctransmit("script6189{varclient_4659}", interface_219:com_56);
+        ~script13463("You've gained <$string0> Runecoins.");
+    case 3 :
+        if_settext("You've purchased <$string0> Runecoins.", interface_219:com_55);
+        if_settext("They will be added to your account shortly.", interface_219:com_56);
+        ~script13463("Your Runecoins will be added to your account shortly.");
+    case 4 :
+        if_sethide(true, interface_219:com_1);
+        ~script9554(interface_219:com_159, interface_219:com_160, interface_219:com_161, "Sorry", struct_21218);
+        if_settext("We were unable to process your request.", interface_219:com_55);
+        if_settext("Please try again later.", interface_219:com_56);
+        ~script1296("Sorry, we were unable to process your request. Please try again later.");
+    case 5 :
+        if_sethide(true, interface_219:com_1);
+        ~script9554(interface_219:com_159, interface_219:com_160, interface_219:com_161, "Sorry", struct_21218);
+        if_settext("We were unable to process your request.", interface_219:com_55);
+        if_settext("Please try again later.", interface_219:com_56);
+        ~script1296("Sorry, we were unable to process your request. Please try again later.");
+}
