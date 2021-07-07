@@ -4,7 +4,8 @@ $int1 = max(0, $int1);
 $int2 = max(1, $int2);
 def_string $string0 = "";
 def_boolean $boolean6 = ~script11695($component0);
-if (cc_find($component0, 7) = true) {
+def_int $int7 = 0;
+if (cc_find($component0, 8) = true) {
     if ($int3 = 1 | $boolean6 = true) {
         if ($boolean6 = false) {
             cc_settext("");
@@ -26,6 +27,14 @@ if (cc_find($component0, 7) = true) {
             $string0 = "<tostring($int1)>%";
         } else {
             $string0 = "<tostring($int1)>/<tostring($int2)>";
+        }
+        $int7 = parawidth($string0, 1000, cc_getfontmetrics);
+        if ($int7 > cc_getwidth) {
+            if ($int4 = 1) {
+                $string0 = "<tostring($int1)>%";
+            } else {
+                $string0 = tostring($int1);
+            }
         }
         cc_settext($string0);
         if_setonmouserepeat(null, $component0);

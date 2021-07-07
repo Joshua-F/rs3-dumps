@@ -1,0 +1,44 @@
+// 4010
+[proc,lore_if_info](dbrow $dbrow0)(string)
+def_string $string0 = "";
+$string0 = append($string0, db_getfield($dbrow0, dbtable_85:col3, 0));
+def_obj $obj1 = db_getfield($dbrow0, dbtable_85:col6, 0);
+if ($obj1 ! null) {
+    $string0 = append($string0, "<br><br><oc_name($obj1)>");
+    $string0 = append($string0, "<br>");
+    $string0 = append($string0, "Familiar spell points");
+    $string0 = append($string0, ": <tostring(db_getfield($dbrow0, dbtable_85:col9, 0))>");
+    $string0 = append($string0, "<br><db_getfield($dbrow0, dbtable_85:col7, 0)>");
+}
+def_string $string1 = "";
+if (%varplayerbit_23196 ! 0) {
+    $string1 = enum(int, string, enum_1663, %varplayerbit_23196);
+} else {
+    switch_int (db_getfield($dbrow0, dbtable_85:col16, 0)) {
+        case default :
+            $string1 = "Aggressive";
+        case 1 :
+            $string1 = "Passive";
+        case 2 :
+            $string1 = "Cannot fight";
+    }
+}
+$string0 = append($string0, "<br><br>Current combat mode: <$string1>");
+if (db_getfield($dbrow0, dbtable_85:col11, 0) = true) {
+    if (db_getfield($dbrow0, dbtable_85:col8, 0) = true) {
+        if (%varplayerbit_25413 > 0) {
+            $string0 = append($string0, "<br>Autofire rate: <tostring(%varplayerbit_25413)>");
+        } else {
+            $string0 = append($string0, "<br>Autofire rate: Not set");
+        }
+        $string0 = append($string0, "<br>Autofire interval: Familiar attacks");
+    } else {
+        if (%varplayerbit_49035 > 0) {
+            $string0 = append($string0, "<br>Autofire rate: <tostring(~script2475(%varplayerbit_49035))>");
+        } else {
+            $string0 = append($string0, "<br>Autofire rate: Not set");
+        }
+        $string0 = append($string0, "<br>Autofire interval: Seconds");
+    }
+}
+return($string0);

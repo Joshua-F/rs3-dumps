@@ -1,37 +1,39 @@
 // 11371
-[proc,script11371](struct $struct0, component $component1)
-def_int $int2 = 0;
+[proc,script11371](struct $struct0, component $component1, component $component2)
 def_int $int3 = 0;
+def_int $int4 = 0;
 switch_struct ($struct0) {
     case struct_31326 :
         if (%varplayerbit_27738 > 0) {
-            $int2 = %varclient_4788;
+            $int3 = %varclient_4788;
         }
     case struct_31330 :
         if (%varplayerbit_27740 > 0) {
-            $int2 = %varclient_4790;
+            $int3 = %varclient_4790;
         }
     case struct_31331 :
         if (%varplayerbit_27739 > 0) {
-            $int2 = %varclient_4789;
+            $int3 = %varclient_4789;
         }
     case struct_31333 :
         if (%varplayerbit_27741 > 0) {
-            $int2 = %varclient_4791;
+            $int3 = %varclient_4791;
         }
     case struct_31328 :
         if (%varplayerbit_27742 > 0) {
-            $int2 = %varclient_4792;
+            $int3 = %varclient_4792;
         }
 }
-if ($int2 > clientclock) {
-    $int3 = calc(($int2 - clientclock) / 50);
-    if ($int3 > 60) {
-        if_settext("<tostring(calc($int3 / 60))>m", $component1);
+if ($int3 > clientclock) {
+    $int4 = calc(($int3 - clientclock) / 50);
+    if ($int4 > 60) {
+        if_settext("<tostring(calc($int4 / 60))>m", $component1);
     } else {
-        if_settext(tostring($int3), $component1);
+        if_settext(tostring($int4), $component1);
     }
-    if_setontimer("script11372($component1, $int2)", $component1);
+    if_sethide(false, $component2);
+    if_setontimer("script11372($component1, $component2, $int3)", $component1);
 } else {
     if_settext("", $component1);
+    if_sethide(true, $component2);
 }

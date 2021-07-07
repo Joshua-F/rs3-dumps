@@ -1,28 +1,85 @@
 // 12115
-[proc,script12115](component $component0, component $component1, component $component2, string $string0)
-cc_create($component1, ^iftype_rectangle, if_getnextsubid($component1));
-def_component $component3 = $component2;
-def_int $int4 = 0;
-def_int $int5 = 0;
-def_boolean $boolean6 = false;
-while ($component3 ! $component0 & $component3 ! null) {
-    $int4 = calc($int4 + if_getx($component3));
-    $int5 = calc($int5 + if_gety($component3));
-    if (if_gethide($component3) = true) {
-        $boolean6 = true;
-    }
-    $component3 = if_getparentlayer($component3);
+[proc,script12115](dbrow $dbrow0)(boolean)
+if ($dbrow0 = null) {
+    return(false);
 }
-cc_settrans(255);
-cc_setfill(true);
-if (string_length($string0) > 0) {
-    cc_setop(1, $string0);
-} else {
-    cc_setop(1, if_getop(1, $component2));
+if (db_getfield($dbrow0, dbtable_134:col20, 0) = false & ~ironman_mode = true) {
+    return(false);
 }
-cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(if_getwidth($component2), if_getheight($component2), ^setsize_abs, ^setsize_abs);
-cc_sethide($boolean6);
-if_setonop(null, $component2);
-if_setonclick(null, $component2);
-if_clearops($component2);
+if (db_getfield($dbrow0, dbtable_134:col21, 0) = false & playermember = false) {
+    return(false);
+}
+if (db_getfield($dbrow0, dbtable_134:col22, 0) = true & ~script12961($dbrow0) = true) {
+    return(false);
+}
+def_struct $struct1 = null;
+def_dbrow $dbrow2 = null;
+switch_dbrow ($dbrow0) {
+    case dbrow_4132, dbrow_4133, dbrow_4134 :
+        if (~script3608 = null) {
+            return(false);
+        } else if ($dbrow0 = dbrow_4132 & ~script3616 = true) {
+            return(false);
+        } else {
+            return(true);
+        }
+    case dbrow_4141 :
+        if (%varplayerbit_26430 = 1 | %varplayerbit_44899 = 1 & %varplayerbit_45879 = 1) {
+            return(false);
+        } else {
+            return(true);
+        }
+    case dbrow_4142 :
+        if (%varplayerbit_34440 = 1 | ~obj_gettotal(obj_49280) >= 2000) {
+            return(false);
+        } else {
+            return(true);
+        }
+    case dbrow_4143 :
+        if (%varplayerbit_30001 = 1) {
+            return(false);
+        } else {
+            return(true);
+        }
+    case dbrow_4147, dbrow_4148, dbrow_4149 :
+        if (~script12113 = true) {
+            return(false);
+        } else {
+            return(true);
+        }
+    case dbrow_4150 :
+        if (~script12113 = true & ~script12960 = false) {
+            return(true);
+        } else {
+            return(false);
+        }
+    case dbrow_4163, dbrow_4164, dbrow_4165 :
+        return(false);
+        $struct1 = ~script14441;
+        if ($struct1 ! null & struct_param($struct1, param_4284) = 1) {
+            return(true);
+        }
+        $dbrow2 = ~script15143;
+        if ($dbrow2 ! null) {
+            return(true);
+        }
+        return(false);
+    case dbrow_4167 :
+        return(false);
+        if (~script13087 = 1 & %varplayerbit_35122 = 0) {
+            return(true);
+        }
+        return(false);
+    case dbrow_4166 :
+        return(false);
+        if (~script13033(struct_73) = 1 & %varplayerbit_49336 = 0 & %varplayerbit_49338 = 0) {
+            return(true);
+        }
+        return(false);
+    case dbrow_4342 :
+        if (~script14948(24) = 1 & ~script14948(25) = 0) {
+            return(true);
+        }
+        return(false);
+}
+return(true);

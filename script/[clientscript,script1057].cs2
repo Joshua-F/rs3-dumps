@@ -22,16 +22,22 @@ switch_int (%varclient_6403) {
         if_setsize(0, 30, ^setsize_minus, ^setsize_minus, interface_387:com_7);
         $int2 = 30;
 }
-def_int $int4 = calc($int2 + 5);
+def_int $rgb4 = 0x0d2e3e;
+if (%varplayerbit_22875 = 1) {
+    $rgb4 = 0x41362a;
+} else if (%varplayerbit_22875 = 0) {
+    $rgb4 = 0x1c3b40;
+}
+def_int $int5 = calc($int2 + 5);
 def_string $string6 = "";
-def_int $int5 = calc(if_getheight(interface_387:com_22) - 10);
-$int5 = calc($int5 - $int0 * $int4);
-$int5 = calc($int5 - if_getheight(interface_387:com_4));
+def_int $int6 = calc(if_getheight(interface_387:com_22) - 10);
+$int6 = calc($int6 - $int0 * $int5);
+$int6 = calc($int6 - if_getheight(interface_387:com_4));
 cc_deleteall(interface_387:com_22);
 cc_deleteall(interface_387:com_23);
-def_int $int6 = 0;
 def_int $int7 = 0;
-$int6, $int6, $int7, $int6 = ~script2956;
+def_int $int8 = 0;
+$int7, $int7, $int8, $int7 = ~script2956;
 while ($int1 < $int0) {
     switch_int ($int1) {
         case 0 :
@@ -50,26 +56,36 @@ while ($int1 < $int0) {
     }
     cc_create(interface_387:com_22, ^iftype_graphic, if_getnextsubid(interface_387:com_22));
     cc_setsize(0, $int2, ^setsize_minus, ^setsize_abs);
-    cc_setposition(0, calc($int5 + $int4 * $int1), ^setpos_abs_right, ^setpos_abs_top);
+    cc_setposition(0, calc($int6 + $int5 * $int1), ^setpos_abs_right, ^setpos_abs_top);
     cc_setgraphic(gradient_square_white_heavy_rot);
-    cc_setcolour(0x0d2e3e);
+    cc_setcolour($rgb4);
     cc_sethflip(true);
     cc_setonresize("script1057($string0, $int0, $string1, $string2, $string3, $string4, $string5)");
+    if (%varplayerbit_38842 = 0) {
+        cc_create(interface_387:com_22, ^iftype_text, if_getnextsubid(interface_387:com_22));
+        cc_setsize(15, $int2, ^setsize_abs, ^setsize_abs);
+        cc_setposition(2, calc($int6 + $int5 * $int1), ^setpos_abs_left, ^setpos_abs_top);
+        cc_settext("<tostring(calc($int1 + 1))>.");
+        cc_setcolour(~script10495(0));
+        cc_settextfont(fontmetrics_31);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        cc_settextshadow(true);
+    }
     cc_create(interface_387:com_22, ^iftype_text, if_getnextsubid(interface_387:com_22));
-    cc_setsize(calc(60 + $int7), $int2, ^setsize_minus, ^setsize_abs);
-    cc_setposition(15, calc($int5 + $int4 * $int1), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(calc(60 + $int8), $int2, ^setsize_minus, ^setsize_abs);
+    cc_setposition(15, calc($int6 + $int5 * $int1), ^setpos_abs_left, ^setpos_abs_top);
     cc_settext($string6);
     cc_setcolour(^white);
     ~script1025(interface_387:com_22, cc_getid, fontmetrics_33, fontmetrics_30, fontmetrics_28);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, enum(fontmetrics, int, enum_8584, cc_getfontmetrics));
     cc_create(interface_387:com_22, ^iftype_graphic, if_getnextsubid(interface_387:com_22));
     cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
-    cc_setposition($int7, calc($int5 + $int4 * $int1 + ($int2 - 18) / 2), ^setpos_abs_right, ^setpos_abs_top);
+    cc_setposition($int8, calc($int6 + $int5 * $int1 + ($int2 - 18) / 2), ^setpos_abs_right, ^setpos_abs_top);
     cc_setgraphic(button_arrow_dialogue_select);
     cc_settrans(50);
     cc_create(interface_387:com_23, ^iftype_text, if_getnextsubid(interface_387:com_23));
-    cc_setsize($int7, $int2, ^setsize_minus, ^setsize_abs);
-    cc_setposition($int7, calc($int5 + $int4 * $int1), ^setpos_abs_right, ^setpos_abs_top);
+    cc_setsize($int8, $int2, ^setsize_minus, ^setsize_abs);
+    cc_setposition($int8, calc($int6 + $int5 * $int1), ^setpos_abs_right, ^setpos_abs_top);
     cc_setpausetext("Select");
     $int1 = calc($int1 + 1);
 }

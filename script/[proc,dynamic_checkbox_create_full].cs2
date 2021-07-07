@@ -3,25 +3,26 @@
 def_string $string4 = $string1;
 def_boolean $boolean10 = true;
 def_int $int11 = 0;
-def_int $int12 = -1;
+def_int $int12 = 0;
+def_int $int13 = -1;
 if ($int6 < 1) {
     $string4, $boolean10 = $string2, false;
 }
-def_struct $struct13 = struct_param($struct9, param_7526);
+def_struct $struct14 = struct_param($struct9, param_7526);
 if ($int6 >= 1) {
-    $struct13 = struct_param($struct9, param_7525);
+    $struct14 = struct_param($struct9, param_7525);
 }
-def_struct $struct14 = struct_param($struct13, param_4405);
-if ($struct14 ! null) {
-    $struct13 = $struct14;
+def_struct $struct15 = struct_param($struct14, param_4405);
+if ($struct15 ! null) {
+    $struct14 = $struct15;
 }
-def_struct $struct15 = ~script9984($struct13, 1);
-def_struct $struct16 = ~script9984($struct13, 2);
-def_struct $struct17 = $struct15;
+def_struct $struct16 = ~script9984($struct14, 1);
+def_struct $struct17 = ~script9984($struct14, 2);
+def_struct $struct18 = $struct16;
 if ($boolean7 = true) {
-    $struct17 = ~script9984($struct13, 5);
+    $struct18 = ~script9984($struct14, 5);
 }
-if ($struct17 = null) {
+if ($struct18 = null) {
     return($int3, $int5);
 }
 if ($boolean7 = true & string_length($string3) > 0) {
@@ -37,7 +38,11 @@ if ($boolean7 = true & string_length($string3) > 0) {
 }
 if (string_length($string0) > 0) {
     $int11 = ~script7593($string0, calc($int4 - 20), fontmetrics_26, -1);
-    if ($int4 >= 50 & $int11 < 40 & $int11 > 0) {
+    if ($int4 >= 50 & $int11 > 0) {
+        if ($int11 > if_getheight($component0)) {
+            $int11 = if_getheight($component0);
+            $int12 = max(1, calc($int11 / 12));
+        }
         cc_create($component0, ^iftype_text, if_getnextsubid($component0));
         cc_setsize(calc($int4 - 20), $int11, ^setsize_abs, ^setsize_abs);
         if ($int11 < 18) {
@@ -47,7 +52,7 @@ if (string_length($string0) > 0) {
         }
         cc_settext($string0);
         cc_settextfont(fontmetrics_26);
-        cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+        cc_settextalign(^settextalign_left, ^settextalign_centre, 12);
         cc_settextshadow(true);
         if ($boolean7 = true) {
             cc_setcolour(~script10495(5));
@@ -58,12 +63,13 @@ if (string_length($string0) > 0) {
             cc_setcolour(~script10495(3));
             cc_setonmouserepeat("script3876($string4, event_com, event_comsubid)");
         }
+        cc_setmaxlines($int12);
     } else {
         $int11 = 0;
     }
 }
-$int12 = if_getnextsubid($component0);
-cc_create($component0, ^iftype_graphic, $int12);
+$int13 = if_getnextsubid($component0);
+cc_create($component0, ^iftype_graphic, $int13);
 cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
 if ($int11 > 18) {
     cc_setposition($int2, calc($int3 + $int11 / 2 - 18 / 2), ^setpos_abs_left, ^setpos_abs_top);
@@ -72,7 +78,7 @@ if ($int11 > 18) {
 }
 cc_setparam(param_4513, $boolean7);
 cc_setparam(param_4512, $boolean10);
-cc_setgraphic(struct_param($struct17, param_3909));
+cc_setgraphic(struct_param($struct18, param_3909));
 if ($int8 = 1) {
     cc_create($component1, ^iftype_text, $int5);
     cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
@@ -82,7 +88,7 @@ if ($int8 = 1) {
         cc_setposition($int2, $int3, ^setpos_abs_left, ^setpos_abs_top);
     }
     if ($boolean7 = false) {
-        ~script14458($component1, $int5, $component0, $int12, $string1, $struct15, $string2, $struct16, $int6, $struct9);
+        ~script14458($component1, $int5, $component0, $int13, $string1, $struct16, $string2, $struct17, $int6, $struct9);
     } else {
         cc_setonmouseover(null);
         cc_setonmouseleave(null);
@@ -90,7 +96,7 @@ if ($int8 = 1) {
         cc_setonop(null);
     }
 } else if ($boolean7 = false) {
-    ~script14457($component1, -1, $component0, $int12, $string1, $struct15, $string2, $struct16, $int6, $struct9, $component1);
+    ~script14457($component1, -1, $component0, $int13, $string1, $struct16, $string2, $struct17, $int6, $struct9, $component1);
 } else {
     if_setonop(null, $component1);
 }

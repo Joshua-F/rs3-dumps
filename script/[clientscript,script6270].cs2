@@ -1,9 +1,12 @@
 // 6270
 [clientscript,script6270]
+def_string $string0 = "";
+if (~is_mobile_client = false) {
+    $string0 = "Subscribe";
+}
 if (%varplayerbit_18167 = 1) {
-    ~lobby_popup(-3, 0, "Your account has recently had a billing failure.  Please check that your payment method is valid.", 0, "loadingwheel,9", false, -1, "", "", true, "Continue", "Continue");
+    ~lobby_popup(-3, dbrow_4039, "Recent Billing Failure", "Your account has recently had a billing failure. Please check that your payment method is valid.", "loadingwheel,9", "", "Continue");
 }
 if (%varplayerbit_18167 = 2) {
-    ~lobby_popup(-3, 0, "Your membership has been cancelled due to billing failures. You will need to resubscribe.", 0, "loadingwheel,9", true, -1, "Subscribe", "Subscribe", true, "Close", "Close");
-    if_setonop("lobby_subscribe", interface_820:com_8);
+    ~lobby_popup(12, dbrow_4037, "Recent Billing Failure", "Your membership has been cancelled due to billing failures. You will need to resubscribe.", "loadingwheel,9", $string0, "Close");
 }

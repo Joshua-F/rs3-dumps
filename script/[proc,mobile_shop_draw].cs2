@@ -1,10 +1,10 @@
 // 15727
 [proc,mobile_shop_draw](int $int0)
-cc_deleteall(interface_828:com_2);
-cc_deleteall(interface_828:com_4);
-cc_deleteall(interface_828:com_5);
+cc_deleteall(interface_828:com_11);
 cc_deleteall(interface_828:com_6);
+cc_deleteall(interface_828:com_7);
 cc_deleteall(interface_828:com_8);
+cc_deleteall(interface_828:com_10);
 %varclient_6892 = $int0;
 def_int $int1 = 0;
 def_int $int2 = 0;
@@ -22,10 +22,12 @@ if (enum_hasoutput(int, $enum3, $int0) = true) {
 while ($int4 < $int5) {
     $int1 = enum(int, int, $enum3, $int4);
     if (shop_getproductcount($int1) > 0) {
-        $int6 = ~script15776(interface_828:com_2, $int6, enum(int, string, enum_15465, $int1), $int2, $int7);
-        .cc_setonop("script15726($int1)");
+        $int6 = ~script15809(interface_828:com_11, $int6, enum(int, string, enum_15465, $int1), $int2, $int7);
+        if (cc_find(interface_828:com_11, calc($int6 - 1)) = true) {
+            cc_setonop("mobile_shop_tab_click($int1)");
+        }
         $int2 = calc($int2 + 1);
     }
     $int4 = calc($int4 + 1);
 }
-~mobile_shop_build_category(pow(2, $int0), interface_828:com_4);
+~mobile_shop_build_category(pow(2, $int0), interface_828:com_6);

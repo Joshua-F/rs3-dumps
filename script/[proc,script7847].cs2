@@ -1,0 +1,30 @@
+// 7847
+[proc,script7847]
+def_component $component0 = interface_744:com_357;
+def_component $component1 = interface_744:com_358;
+cc_deleteall($component0);
+cc_deleteall($component1);
+def_int $int2 = enum_getoutputcount(enum_16352);
+def_int $int3 = if_getwidth($component0);
+def_int $int4 = if_getheight($component0);
+$int4 = calc($int4 / ($int2 - 1));
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+while ($int5 < $int2) {
+    if ($int5 ! %varclient_6891) {
+        $int7 = ~script10410($component0, $component1, struct_2830, 0, $int6, $int3, $int4, $int7, false, "");
+        if (cc_find($component1, calc($int7 - 1)) = true) {
+            cc_setonclick("script7848($int5)");
+        }
+        cc_create($component0, ^iftype_text, if_getnextsubid($component0));
+        cc_setposition(11, $int6, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(22, $int4, ^setsize_minus, ^setsize_abs);
+        cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+        cc_settextfont(fontmetrics_207);
+        cc_setcolour(~rgb_to_hex(255, 255, 255));
+        cc_settext(enum(int, string, enum_16352, $int5));
+        $int6 = calc($int6 + $int4);
+    }
+    $int5 = calc($int5 + 1);
+}

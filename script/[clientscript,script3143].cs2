@@ -1,5 +1,44 @@
 // 3143
-[clientscript,script3143]
-if (clienttype = enhanced_ios) {
-    if_setonop("script9539", interface_274:com_159);
+[clientscript,script3143](int $int0, int $int1, int $int2, int $int3)
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+if ($int2 = 0) {
+    if ($int3 = 1) {
+        $int4 = calc($int0 - $int1);
+        $int5 = calc($int4 / 1440);
+        $int6 = calc($int4 % 1440 / 60);
+        if_settext("Member", interface_274:com_73);
+        if ($int5 = 0) {
+            if_settext("Expires in <~script11479(0, $int6, $int5)>", interface_274:com_74);
+        } else {
+            if_settext("Expires in <tostring($int5)> days", interface_274:com_74);
+        }
+        if_setgraphic(rs3_icon_members_102px, interface_274:com_72);
+        ~script6865(interface_274:com_73, -1, 0);
+        ~script6865(interface_274:com_74, -1, 6);
+    } else {
+        if_settext("Non-Member", interface_274:com_73);
+        if_settext("", interface_274:com_74);
+        if_setgraphic(rs3_icon_non_members_102px, interface_274:com_72);
+        ~script6865(interface_274:com_73, -1, 0);
+    }
+} else {
+    if_settext("Member", interface_274:com_73);
+    if_settext("", interface_274:com_74);
+    if_setgraphic(rs3_icon_members_102px, interface_274:com_72);
+    ~script6865(interface_274:com_73, -1, 0);
+    ~script6865(interface_274:com_74, -1, 10611452);
 }
+def_int $int7 = calc(if_getx(interface_274:com_54) - if_getx(interface_274:com_53) - 10);
+def_int $int8 = parawidth(chat_playername, 1000, fontmetrics_60);
+if ($int8 <= $int7) {
+    if_settext(chat_playername, interface_274:com_60);
+} else {
+    if_settext("", interface_274:com_60);
+    if_setsize(25, 25, ^setsize_abs, ^setsize_abs, interface_274:com_61);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre, interface_274:com_61);
+    if_settextfont(fontmetrics_34, interface_274:com_62);
+    if_setposition(30, 0, ^setpos_abs_left, ^setpos_abs_centre, interface_274:com_62);
+}
+if_settext(tostring(map_world), interface_274:com_62);

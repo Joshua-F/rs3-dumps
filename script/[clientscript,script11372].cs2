@@ -1,16 +1,17 @@
 // 11372
-[clientscript,script11372](component $component0, int $int1)
-def_int $int2 = 0;
+[clientscript,script11372](component $component0, component $component1, int $int2)
+def_int $int3 = 0;
 if (if_find($component0) = true) {
-    if (clientclock > $int1 | cc_gethide = true) {
+    if (clientclock > $int2 | cc_gethide = true) {
         cc_setontimer(null);
         cc_settext("");
+        if_sethide(true, $component1);
     } else {
-        $int2 = calc(1 + ($int1 - clientclock) / 50);
-        if ($int2 > 60) {
-            cc_settext("<tostring(calc($int2 / 60))>m");
+        $int3 = calc(1 + ($int2 - clientclock) / 50);
+        if ($int3 > 60) {
+            cc_settext("<tostring(calc($int3 / 60))>m");
         } else {
-            cc_settext(tostring($int2));
+            cc_settext(tostring($int3));
         }
     }
 }

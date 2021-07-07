@@ -6,16 +6,16 @@ switch_int ($int0) {
         mes_typed(^chattype_console, 0, "Pending Transaction Debug: No transactions found state, login would move onto checking credit card expiry.");
     case 1 :
         mes_typed(^chattype_console, 0, "Pending Transaction Debug: Apply state. Calling popup");
-        ~script2779(1408, 0, "Pending transactions found! Apply?<br>", 0, "loadingwheel,9", true, 0, "Yes", "Yes", true, "No", "No", 350);
+        ~lobby_popup(10003, dbrow_4040, "Pending Transaction", "Pending transactions found!<br><br>Do you wish to apply them now?", "loadingwheel,9", "Yes", "No");
     case 2 :
         mes_typed(^chattype_console, 0, "Pending Transaction Debug: Applying in progress state. Calling popup");
-        ~script2779(1409, 0, "Attempting to apply transactions<br>", 1, "loadingwheel,9", false, 0, "", "", false, "Cancel", "Cancel", 350);
+        ~lobby_popup(10004, dbrow_4035, "Pending Transaction", "Attempting to apply transactions", rs3_loading_spinner_default, "", "Cancel");
     case 3 :
         mes_typed(^chattype_console, 0, "Pending Transaction Debug: Failed state. Calling popup");
-        ~script2779(1410, 0, "Pending transaction failed. Retry?<br>", 0, "loadingwheel,9", true, 0, "Yes", "Yes", true, "No", "No", 350);
+        ~lobby_popup(10005, dbrow_4037, "Pending Transaction", "Pending transaction failed to apply.<br><br>Do you wish to try again?", "loadingwheel,11", "Yes", "No");
     case 4 :
         mes_typed(^chattype_console, 0, "Pending Transaction Debug: Success state. Calling popup");
-        ~script2779(1411, 0, "Transactions applied!<br>", 0, "loadingwheel,8", false, 0, "", "", true, "OK", "OK", 350);
+        ~lobby_popup(10005, dbrow_4043, "Pending Transaction", "Transactions applied!", "loadingwheel,8", "", "OK");
     case default :
         mes_typed(^chattype_console, 0, "Pending Transaction Debug: Invalid state <tostring($int0)>. Use ^lobby_pendingtransaction_none_found = 0, ^lobby_pendingtransaction_need_apply = 1, ^lobby_pendingtransaction_applying = 2, ^lobby_pendingtransaction_failed = 3, ^lobby_pendingtransaction_success = 4");
 }

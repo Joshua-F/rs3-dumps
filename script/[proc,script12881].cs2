@@ -11,12 +11,12 @@ if ($enum1 ! null) {
     $int4 = enum_getoutputcount($enum1);
 }
 def_int $int5 = -1;
-def_component $component6 = interface_1802:com_153;
-def_component $component7 = interface_1802:com_156;
-def_component $component8 = interface_1802:com_155;
-def_component $component9 = interface_1802:com_164;
-def_component $component10 = interface_1802:com_161;
-def_component $component11 = interface_1802:com_157;
+def_component $component6 = interface_1802:com_158;
+def_component $component7 = interface_1802:com_161;
+def_component $component8 = interface_1802:com_160;
+def_component $component9 = interface_1802:com_169;
+def_component $component10 = interface_1802:com_166;
+def_component $component11 = interface_1802:com_162;
 cc_deleteall($component6);
 if ($struct0 = struct_9802 | $struct0 = struct_40974) {
     $component6 = interface_1930:com_67;
@@ -26,8 +26,9 @@ if ($struct0 = struct_9802 | $struct0 = struct_40974) {
     $component10 = interface_1930:com_232;
     $component11 = interface_1930:com_228;
 }
-if_setonvarctransmit("script12880($struct0){varclient_4968, varclient_4969, varclient_4659}", $component11);
-def_int $int12 = calc(%varclient_4968 + %varclient_4969);
+if_setonvartransmit("script12880($struct0){varplayer_9782, varplayer_9781}", $component11);
+if_setonvarctransmit("script12880($struct0){varclient_4659}", $component11);
+def_int $int12 = calc(%varplayer_9782 + %varplayer_9781);
 def_int $int13 = %varclient_4659;
 if_settext(~tostring_spacer_local($int12), $component9);
 if_settext(~tostring_spacer_local($int13), $component10);
@@ -42,25 +43,9 @@ if ($int4 = 0) {
     return;
 }
 def_struct $struct14 = null;
-def_obj $obj15 = null;
-def_int $int16 = 0;
-while (++$int5 < $int4) {
-    $struct14 = enum(int, struct, $enum1, $int5);
-    $obj15 = struct_param($struct14, param_4851);
-    if ($obj15 ! null & oc_category($obj15) = category_4039) {
-        $int16 = calc($int16 + 1);
-    }
-}
-def_int $int17 = calc((if_getwidth($component7) - ($int16 * (113 + 6 * 2) - 6 * 2)) / 2);
-def_int $int18 = 0;
+def_int $int15 = -1;
 $int5 = -1;
 while (++$int5 < $int4) {
     $struct14 = enum(int, struct, $enum1, $int5);
-    ~script583(struct_34906, $struct14, $component7, $component8, struct_2839, $int17, $int18, 113, 113, $int5);
-    if ($int5 = calc($int16 - 1)) {
-        $int17 = calc((if_getwidth($component7) - (($int4 - $int16) * (113 + 6 * 2) - 6 * 2)) / 2);
-        $int18 = calc(113 + 6 * 2);
-    } else {
-        $int17 = calc($int17 + (113 + 6 * 2));
-    }
+    ~script3412(struct_34906, $struct14, $component7, $component8, 5, $int5);
 }

@@ -1,13 +1,32 @@
 // 6474
-[clientscript,script6474](int $int0)
-switch_int ($int0) {
-    case 1 :
-        %varclientbit_41275 = calc((%varclientbit_41275 + 1) % 3);
-    case 2 :
-        %varclientbit_41275 = 2;
-    case 3 :
-        %varclientbit_41275 = 0;
-    case 4 :
-        %varclientbit_41275 = 1;
+[clientscript,script6474]
+def_struct $struct0 = ~script10405(18);
+if ($struct0 = null) {
+    return;
 }
-~script9292;
+def_component $component1 = struct_param($struct0, param_3503);
+if ($component1 = null) {
+    return;
+}
+if (if_gethide(interface_276:com_25) = true) {
+    if_sethide(false, interface_276:com_25);
+    if_setposition(~script3365(interface_857:com_27), ~script3366(interface_857:com_27), ^setpos_abs_left, ^setpos_abs_top, $component1);
+    if_setsize(if_getwidth(interface_857:com_27), if_getheight(interface_857:com_27), ^setsize_abs, ^setsize_abs, $component1);
+    if_sethide(true, $component1);
+    %varclient_6798 = 0;
+    ~dynamic_chat_fade(0);
+    ~script15855(enum(int, int, enum_10155, %varplayerbit_49443));
+} else {
+    if_sethide(true, interface_276:com_25);
+    ~script15854(enum(int, int, enum_10155, %varplayerbit_49443));
+    if_sethide(false, $component1);
+    if_setposition(0, 82, ^setpos_abs_left, ^setpos_abs_top, $component1);
+    if_setsize(300, 100, ^setsize_abs, ^setsize_abs, $component1);
+    ~script9292;
+}
+~script15881;
+~chat_v2_rebuildchatbox(18);
+~script1558(18, 0);
+~script15871;
+~mobile_toggle_hud_overlay;
+~mobile_toggle_hud;

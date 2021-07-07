@@ -1,66 +1,69 @@
 // 15355
-[proc,script15355](component $component0, component $component1, enum $enum2, category $category3, int $int4, int $int5)
-def_component $component6 = interface_1851:com_12;
-if_setonvartransmit("script15354($component0, $component1, $enum2, $category3, $int4){varplayer_7120}", $component6);
-def_component $component7 = interface_1851:com_13;
-def_component $component8 = interface_1851:com_21;
-cc_deleteall($component7);
+[proc,script15355](component $component0, component $component1, enum $enum2, category $category3, int $int4, int $int5, int $int6)
+def_component $component7 = interface_1851:com_12;
+if_setonvartransmit("script15354($component0, $component1, $enum2, $category3, $int4){varplayer_7120}", $component7);
+def_component $component8 = interface_1851:com_13;
+def_component $component9 = interface_1851:com_21;
 cc_deleteall($component8);
-def_int $int9 = enum_getoutputcount($enum2);
-def_int $int10 = calc(1 + enum_getreverseindex(category, int, enum_16072, $category3, 0));
-if_setposition(0, calc(3 + (45 + 3) * $int10), ^setpos_abs_centre, ^setpos_abs_top, $component6);
-def_int $int11 = 0;
+cc_deleteall($component9);
+def_int $int10 = enum_getoutputcount($enum2);
+def_int $int11 = calc(1 + enum_getreverseindex(category, int, enum_16072, $category3, 0));
+if_setposition(0, calc(3 + (45 + 3) * $int11), ^setpos_abs_centre, ^setpos_abs_top, $component7);
 def_int $int12 = 0;
 def_int $int13 = 0;
 def_int $int14 = 0;
 def_int $int15 = 0;
-def_achievement $achievement16 = null;
+def_int $int16 = 0;
+def_achievement $achievement17 = null;
 def_string $string0 = "";
-def_category $category17 = null;
-def_int $int18 = 0;
+def_category $category18 = null;
+def_int $int19 = 0;
 def_string $string1 = "";
-def_category $category19 = null;
+def_category $category20 = null;
 if (%varplayer_9607 ! null) {
-    $category19 = achievement_subcat(%varplayer_9607);
+    $category20 = achievement_subcat(%varplayer_9607);
 }
-while ($int11 < $int9) {
-    $category17 = enum(int, category, $enum2, $int11);
-    $int13 = achievement_findsubcat($category3, $category17);
-    $int14 = 0;
-    $achievement16 = achievement_findnext;
-    while ($achievement16 ! null) {
-        $int15 = achievement_reqstate($achievement16);
-        if ($int15 = -2) {
-            $int14 = calc($int14 + 1);
+while ($int12 < $int10) {
+    $category18 = enum(int, category, $enum2, $int12);
+    $int14 = achievement_findsubcat($category3, $category18);
+    $int15 = 0;
+    $achievement17 = achievement_findnext;
+    while ($achievement17 ! null) {
+        $int16 = achievement_reqstate($achievement17);
+        if ($int16 = -2) {
+            $int15 = calc($int15 + 1);
         }
-        $achievement16 = achievement_findnext;
+        $achievement17 = achievement_findnext;
     }
-    cc_create($component8, ^iftype_graphic, $int11);
-    cc_create($component7, ^iftype_rectangle, if_getnextsubid($component7));
-    cc_create($component7, ^iftype_text, if_getnextsubid($component7));
-    cc_create($component7, ^iftype_text, if_getnextsubid($component7));
-    if (%varplayerbit_48340 = 0 | %varplayerbit_48340 = 1 & $int14 < $int13) {
-        $int18 = calc($int12 * (25 + 3 + 2));
-        $int12 = calc($int12 + 1);
-        $string1 = enum(category, string, enum_16086, $category17);
-        if (cc_find($component8, $int11) = true) {
-            cc_setposition(0, $int18, ^setpos_abs_left, ^setpos_abs_top);
+    cc_create($component9, ^iftype_graphic, $int12);
+    cc_create($component8, ^iftype_rectangle, if_getnextsubid($component8));
+    cc_create($component8, ^iftype_text, if_getnextsubid($component8));
+    cc_create($component8, ^iftype_text, if_getnextsubid($component8));
+    if (%varplayerbit_48340 = 0 | %varplayerbit_48340 = 1 & $int15 < $int14) {
+        $int19 = calc($int13 * (25 + 3 + 2));
+        $int13 = calc($int13 + 1);
+        $string1 = enum(category, string, enum_16086, $category18);
+        if (cc_find($component9, $int12) = true) {
+            cc_setposition(0, $int19, ^setpos_abs_left, ^setpos_abs_top);
             cc_setsize(0, 25, ^setsize_minus, ^setsize_abs);
-            cc_setonop("script15358($category3, $category17, cc_gety)");
+            cc_setonop("script15358($category3, $category18, cc_gety)");
             cc_setop(1, "Select");
             cc_setopbase($string1);
-            if ($category17 = $category19 | calc(%varclient_6830 - 1) = enum_getreverseindex(category, int, $enum2, $category17, 0)) {
+            if ($category18 = $category20 | calc(%varclient_6830 - 1) = enum_getreverseindex(category, int, $enum2, $category18, 0)) {
                 ~script15360(cc_gety);
-                if ($category17 = $category19) {
-                    ~script15351($int4, $int11);
+                if ($int6 = 1) {
+                    $int5 = calc($int5 + cc_gety);
+                }
+                if ($category18 = $category20) {
+                    ~script15351($int4, $int12);
                 }
             }
         }
-        if (cc_find($component7, calc(if_getnextsubid($component7) - 3)) = true) {
-            cc_setposition(1, $int18, ^setpos_abs_left, ^setpos_abs_top);
+        if (cc_find($component8, calc(if_getnextsubid($component8) - 3)) = true) {
+            cc_setposition(1, $int19, ^setpos_abs_left, ^setpos_abs_top);
             cc_setsize(0, 25, ^setsize_minus, ^setsize_abs);
             cc_setfill(true);
-            if (calc($int12 % 2) = 0) {
+            if (calc($int13 % 2) = 0) {
                 cc_setcolour(~script10495(12));
                 cc_setonmouseover("cc_text_colour_swapper(event_com, cc_getid, ~script10495(13))");
                 cc_setonmouseleave("cc_text_colour_swapper(event_com, cc_getid, ~script10495(12))");
@@ -69,22 +72,22 @@ while ($int11 < $int9) {
                 cc_setonmouseover("cc_text_colour_swapper(event_com, cc_getid, ~script10495(10))");
                 cc_setonmouseleave("cc_text_colour_swapper(event_com, cc_getid, ~script10495(9))");
             }
-            $string0 = enum(category, string, enum_16087, $category17);
+            $string0 = enum(category, string, enum_16087, $category18);
             if (compare($string0, "") ! 0) {
-                cc_setonmouserepeat("script8799($string0, $component7, cc_getid)");
+                cc_setonmouserepeat("script8799($string0, $component8, cc_getid)");
             }
         }
-        if (cc_find($component7, calc(if_getnextsubid($component7) - 2)) = true) {
-            cc_setposition(5, calc($int18 + 2), ^setpos_abs_right, ^setpos_abs_top);
-            cc_settext("<tostring_localised($int14, true)>/<tostring_localised($int13, true)>");
+        if (cc_find($component8, calc(if_getnextsubid($component8) - 2)) = true) {
+            cc_setposition(5, calc($int19 + 2), ^setpos_abs_right, ^setpos_abs_top);
+            cc_settext("<tostring_localised($int15, true)>/<tostring_localised($int14, true)>");
             cc_settextshadow(true);
             cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
             cc_settextfont(fontmetrics_26);
             cc_setcolour(~script10495(3));
             cc_setsize(50, calc(25 - 2), ^setsize_abs, ^setsize_abs);
         }
-        if (cc_find($component7, calc(if_getnextsubid($component7) - 1)) = true) {
-            cc_setposition(5, calc($int18 + 2), ^setpos_abs_left, ^setpos_abs_top);
+        if (cc_find($component8, calc(if_getnextsubid($component8) - 1)) = true) {
+            cc_setposition(5, calc($int19 + 2), ^setpos_abs_left, ^setpos_abs_top);
             cc_setsize(85, 25, ^setsize_abs, ^setsize_abs);
             cc_setcolour(~script10495(3));
             cc_settextshadow(true);
@@ -93,12 +96,12 @@ while ($int11 < $int9) {
             cc_setmaxlines(2);
             cc_settext($string1);
         }
-    } else if (calc(%varclient_6830 - 1) = enum_getreverseindex(category, int, $enum2, $category17, 0)) {
+    } else if (calc(%varclient_6830 - 1) = enum_getreverseindex(category, int, $enum2, $category18, 0)) {
         if_sethide(true, interface_1851:com_22);
     }
-    $int11 = calc($int11 + 1);
+    $int12 = calc($int12 + 1);
 }
-if_setsize(if_getwidth($component6), calc(1 + $int12 * (25 + 3 + 2)), ^setsize_abs, ^setsize_abs, $component6);
-if_sethide(false, $component6);
-~script15357($component0, $component1, $int10, if_getheight($component6));
+if_setsize(if_getwidth($component7), calc(1 + $int13 * (25 + 3 + 2)), ^setsize_abs, ^setsize_abs, $component7);
+if_sethide(false, $component7);
+~script15357($component0, $component1, $int11, if_getheight($component7));
 ~script15356($component1, $int5);

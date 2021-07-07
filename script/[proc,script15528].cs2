@@ -1,0 +1,40 @@
+// 15528
+[proc,script15528](component $component0, int $int1, dbrow $dbrow2, int $int3, int $int4, int $int5, int $int6)
+$int3 = calc($int3 + $int1 * 270);
+def_string $string0 = "";
+if (db_getfieldcount($dbrow2, dbtable_134:col1) > 0) {
+    $string0 = db_getfield($dbrow2, dbtable_134:col1, 0);
+}
+def_int $int7 = db_getfield($dbrow2, dbtable_134:col5, 0);
+def_int $int8 = 1;
+if ($int6 = 1) {
+    $int8 = 2;
+}
+def_int $int9 = ~script15375($component0, $int3, $int4, 255, 430, "Select", 1, $int1, db_getfield($dbrow2, dbtable_134:col2, 0), removetags(db_getfield($dbrow2, dbtable_134:col0, 0)), $string0, db_getfield($dbrow2, dbtable_134:col4, 0));
+def_int $int10 = calc(430 - 30 + 5);
+if ($int6 = 1) {
+    $int10 = calc(60 + 430 - (30 + 10));
+}
+cc_create($component0, ^iftype_graphic, $int9);
+$int9 = calc($int9 + 1);
+cc_setgraphic("rs3_bonds_icons_large,8");
+cc_setsize(30, 30, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int3 + 255 / 2 - 30), $int10, ^setpos_abs_left, ^setpos_abs_top);
+if ($int7 < 0) {
+    cc_sethide(true);
+}
+cc_create($component0, ^iftype_text, $int9);
+$int9 = calc($int9 + 1);
+cc_setposition(calc($int3 + 255 / 2 + 4), $int10, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(calc(255 / 2 - 4), 30, ^setsize_abs, ^setsize_abs);
+cc_settextfont(fontmetrics_58);
+cc_setcolour(0xe0e0e0);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+if ($int7 < 0) {
+    cc_sethide(true);
+}
+def_string $string1 = "Free";
+if ($int7 > 0) {
+    $string1 = tostring($int7);
+}
+cc_settext($string1);

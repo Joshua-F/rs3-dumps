@@ -43,6 +43,7 @@ def_int $int35 = -1;
 def_int $int36 = -1;
 def_int $int37 = -1;
 def_int $int38 = $int1;
+def_boolean $boolean39 = ~script6431;
 $int7, $int8, $obj16 = ~script11797($int6, $int1);
 switch_int ($int0) {
     case 1430, 1436 :
@@ -84,9 +85,9 @@ if ($int0 = 1924) {
 } else if ($int0 = 1945 | $int0 = 1946) {
     $int26 = 1;
 }
-def_int $int39 = 0;
+def_int $int40 = 0;
 if (if_find($component28) = true) {
-    if (~is_mobile_client = false) {
+    if ($boolean39 = false) {
         cc_setdragdeadtime(15);
         cc_setdragdeadzone(15);
     } else {
@@ -94,13 +95,15 @@ if (if_find($component28) = true) {
         cc_setdragdeadtime(8);
     }
     if ($int22 = 1) {
-        cc_setgraphic(null);
+        cc_setgraphic(graphic_9885);
         cc_setobject(null, -1);
         cc_clearscripthooks;
         cc_clearops;
         cc_setopbase("");
         if ($int25 = 1) {
             cc_setsize(52, 52, ^setsize_abs, ^setsize_abs);
+        } else if ($boolean39 = true) {
+            cc_setsize(26, 26, ^setsize_abs, ^setsize_abs);
         } else {
             cc_setsize(30, 30, ^setsize_abs, ^setsize_abs);
         }
@@ -111,7 +114,7 @@ if (if_find($component28) = true) {
         cc_settargetverb("");
         cc_setondrag("script7969(event_com, event_comsubid)");
         cc_setondragcomplete("script7001(event_com, event_comsubid, event_com2)");
-        if (~is_mobile_client = false) {
+        if ($boolean39 = false) {
             cc_setdragdeadzone(10);
             cc_setdragdeadtime(10);
         } else {
@@ -176,19 +179,19 @@ if (if_find($component28) = true) {
                 return;
             case 1 :
                 $enum17 = enum_6734;
-                $int39 = 1;
+                $int40 = 1;
             case 2 :
                 $enum17 = enum_6735;
-                $int39 = 1;
+                $int40 = 1;
             case 3 :
                 $enum17 = enum_6736;
-                $int39 = 1;
+                $int40 = 1;
             case 5 :
                 $enum17 = enum_6738;
-                $int39 = 1;
+                $int40 = 1;
             case 4 :
                 $enum17 = enum_6737;
-                $int39 = 1;
+                $int40 = 1;
             case 7 :
                 $struct20 = enum(int, struct, enum_6739, $int8);
                 $struct20 = ~script8247($struct20);
@@ -210,7 +213,7 @@ if (if_find($component28) = true) {
                 } else {
                     $string1 = "Cast";
                 }
-                $int39 = 1;
+                $int40 = 1;
             case 11 :
                 $struct20 = enum(int, struct, enum_13200, $int8);
                 $struct20 = ~script8247($struct20);
@@ -251,12 +254,12 @@ if (if_find($component28) = true) {
                 $int9 = 20;
                 $int10 = 20;
             case 13 :
-                $struct20 = struct_14724;
+                $struct20 = enum(int, struct, enum_5178, $int8);
                 $struct20 = ~script8247($struct20);
                 $graphic18 = struct_param($struct20, param_2802);
                 $string0 = struct_param($struct20, param_2794);
-                $int9 = 20;
-                $int10 = 20;
+                $int9 = 30;
+                $int10 = 30;
             case 14 :
                 $struct20 = struct_4106;
                 $graphic18 = ~script8478(inv_94, $int8, 0);
@@ -282,6 +285,9 @@ if (if_find($component28) = true) {
         cc_setparam(param_3438, $struct20);
         if ($int25 = 1) {
             cc_setsize(52, 52, ^setsize_abs, ^setsize_abs);
+            cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+        } else if ($boolean39 = true) {
+            cc_setsize(26, 26, ^setsize_abs, ^setsize_abs);
             cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
         } else {
             cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
@@ -426,8 +432,37 @@ if (if_find($component28) = true) {
                 if (%varclient_6250 = false & %varclient_6252 = false & %varclient_6251 = false & %varclient_6248 = false & %varclient_6255 = false & %varclient_6254 = false & %varclient_6253 = false & %varclient_6249 = false) {
                     cc_setop(1, "Summon Pet");
                     cc_setop(2, "Open Pet Interface");
-                    cc_setop(3, "Select Follower Interaction");
+                    cc_setop(3, "Settings");
                 }
+            } else if ($struct20 = struct_27699) {
+                if (~follower_type ! 1) {
+                    cc_setop(1, "Cast Familiar Special Ability");
+                } else if (~script7034 = 5) {
+                    cc_setop(1, "Cast <col=00ff00><%varclient_2516></col>");
+                }
+                cc_setop(10, "Customise-keybind");
+                cc_setonop("script7023(event_com, event_op)");
+                if (~script340 = true) {
+                    $int21 = 1;
+                    if_sethide(false, $component29);
+                    if ($int23 = 1 & $int3 = 0 & ~script792 = false) {
+                        ~script3898($int11, $int12, $component29, -1);
+                    }
+                    if_setontargetenter("script7006(event_com)", $component29);
+                    if_setontargetleave("script7007(event_com)", $component29);
+                    if_settargetverb("Cast <col=00ff00><%varclient_2516></col>", $component29);
+                }
+            } else if ($struct20 = struct_27702) {
+                $int21 = 1;
+                cc_setop(10, "Customise-keybind <col=00ff00>Familiar attack</col>");
+                cc_setonop("script7023(event_com, event_op)");
+                if_sethide(false, $component29);
+                if ($int23 = 1 & $int3 = 0 & ~script792 = false) {
+                    ~script3898($int11, $int12, $component29, -1);
+                }
+                if_setontargetenter("script7006(event_com)", $component29);
+                if_setontargetleave("script7007(event_com)", $component29);
+                if_settargetverb("Attack Target", $component29);
             } else {
                 cc_setop(1, $string1);
                 switch_struct ($struct20) {
@@ -441,7 +476,7 @@ if (if_find($component28) = true) {
                         cc_setop(3, "Cast Lunar");
                 }
             }
-            if ($int23 = 1) {
+            if ($int23 = 1 & $struct20 ! struct_27699 & $struct20 ! struct_27702) {
                 cc_setop(10, "Customise-keybind");
                 cc_setonop("script7023(event_com, event_op)");
             }
@@ -467,8 +502,8 @@ if (if_find($component28) = true) {
             if_settrans(255, $component30);
             if_setontimer(null, $component30);
         }
-        if ($struct20 ! struct_14724) {
-            cc_setopbase("<col=00ff00><$string0>");
+        if ($struct20 ! struct_14724 & $struct20 ! struct_27699 & $struct20 ! struct_27702) {
+            cc_setopbase("<col=00ff00><$string0></col>");
         }
         cc_sethide(false);
         switch_int ($int7) {
@@ -512,7 +547,7 @@ if (if_find($component28) = true) {
     if ($int24 = 0) {
         cc_clearops;
     }
-    if ($int39 = 1) {
+    if ($int40 = 1) {
         ~script11816($struct20);
     }
 }
@@ -522,7 +557,6 @@ if ($component27 ! null & if_find($component27) = true) {
     } else {
         cc_setnoclickthrough(true);
     }
-    $int38 = ~script2102($int6, $int38);
     switch_int ($int6) {
         case 0 :
         case 1 :

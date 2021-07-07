@@ -1,27 +1,13 @@
 // 4695
-[proc,script4695](int $int0, int $int1)
-if_sethide(true, interface_219:com_171);
-if_sethide(false, interface_219:com_160);
-def_string $string0 = "";
-switch_int ($int0) {
-    case 180 :
-        $string0 = "You have purchased the Bronze Premier package.";
-    case 181, 183 :
-        $string0 = "You have purchased the Silver Premier package.";
-    case 182, 184, 185 :
-        $string0 = "You have purchased the Gold Premier package.";
+[proc,script4695]()(int)
+if (%varplayer_1784 = null) {
+    return(0);
 }
-switch_int ($int1) {
-    case 1, 4, 5 :
-        if_sethide(true, interface_219:com_0);
-        ~script9554(interface_219:com_158, interface_219:com_161, interface_219:com_159, "Sorry", struct_21218);
-        if_settext("We were unable to process your request.", interface_219:com_120);
-        mes("Sorry, we were unable to process your request. Please try again later.");
-        return;
-    case 2 :
-        if_settext($string0, interface_219:com_120);
-        mes($string0);
-    case 3 :
-        if_settext($string0, interface_219:com_120);
-        mes("<$string0> Please be patient while we process your request, your account will be credited shortly.");
+def_int $int0 = ~script5507(nc_param(%varplayer_1784, param_5051));
+if ($int0 = 24000) {
+    return(3);
+} else if ($int0 >= 9000) {
+    return(2);
+} else {
+    return(1);
 }

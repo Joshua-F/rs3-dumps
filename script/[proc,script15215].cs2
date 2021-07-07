@@ -1,0 +1,39 @@
+// 15215
+[proc,script15215](component $component0, enum $enum1, dbrow $dbrow2)(int)
+cc_deleteall($component0);
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+if ($enum1 ! null) {
+    $int3 = enum_getoutputcount($enum1);
+    $int4 = 0;
+    $int5 = 8;
+    $int6 = 15;
+    $int7 = 50;
+} else if ($dbrow2 ! null) {
+    $int3 = db_getfieldcount($dbrow2, dbtable_134:col3);
+    $int4 = 1;
+    $int5 = 8;
+    $int6 = 60;
+    $int7 = 150;
+} else {
+    return(0);
+}
+def_int $int8 = 0;
+def_dbrow $dbrow9 = null;
+def_int $int10 = 0;
+while ($int8 < $int3) {
+    if ($int4 = 0) {
+        $dbrow9 = enum(int, dbrow, $enum1, $int8);
+    } else {
+        $dbrow9 = db_getfield($dbrow2, dbtable_134:col3, $int8);
+    }
+    if ($dbrow9 ! null & ~script5725($dbrow9) = true) {
+        ~script15528($component0, $int10, $dbrow9, $int7, $int6, $int5, $int4);
+        $int10 = calc($int10 + 1);
+    }
+    $int8 = calc($int8 + 1);
+}
+return($int10);

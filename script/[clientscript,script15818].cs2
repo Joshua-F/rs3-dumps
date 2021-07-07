@@ -1,0 +1,26 @@
+// 15818
+[clientscript,script15818]
+def_component $component0 = interface_855:com_4;
+def_component $component1 = interface_855:com_6;
+def_int $int2 = db_getfieldcount(dbrow_4168, dbtable_135:col0);
+if_sethide(true, interface_855:com_7);
+def_int $int3 = 0;
+if (~is_mobile_client = false) {
+    $int2 = calc($int2 + 1);
+}
+$int3 = calc(1 + $int2 / 3);
+if_setsize(if_getwidth($component0), if_getheight($component0), ^setsize_abs, ^setsize_abs, $component1);
+if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom, $component1);
+def_int $int4 = calc((255 + 30) * 3);
+if_setscrollsize(calc(if_getwidth($component0) + ($int3 - 1) * $int4), 0, $component0);
+if_setscrollpos(0, 0, $component0);
+def_int $int5 = 0;
+if (%varplayer_9885 < 2) {
+    $int5 = calc(%varplayer_9885 / 3);
+} else {
+    $int5 = calc((%varplayer_9885 + 1) / 3);
+}
+~script15762($component0, $component1, $int3, $int4, $int5);
+~script15805(interface_855:com_10, interface_855:com_11, interface_855:com_12, "Details");
+~spinner_create(interface_855:com_37, 3, -1);
+return;
