@@ -177,50 +177,55 @@ if_setmodelanim(bas_getanim_ready(%varclient_4484), interface_753:com_69);
 if_setmodelangle(0, struct_param(%varclient_4485, param_3041), 0, 0, 0, struct_param(%varclient_4485, param_3040), interface_753:com_69);
 if_settext("Combat Level: <col=FFFFFF><tostring(struct_param(%varclient_4485, param_2238))></col>", interface_753:com_68);
 def_string $string1 = "";
-def_string $string2 = "";
 ~script12274;
 if_setposition(75, 0, ^setpos_abs_right, ^setpos_abs_centre, interface_753:com_35);
 if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre, interface_753:com_43);
 if_sethide(true, interface_753:com_73);
-switch_struct (%varclient_4485) {
-    case struct_45051 :
-        $string1 = "Total solo mode kills: ";
-    case default :
-        $string1 = "Total kills: ";
+def_int $int10 = -1;
+def_int $int11 = -1;
+$int10, $int11 = ~script15912(%varclient_4485);
+$string0 = "Total kills: ";
+switch_int ($int10) {
+    case 2 :
+        $string0 = "Total solo mode kills: ";
+    case 3 :
+        $string0 = "Total duo mode kills: ";
+    case 4 :
+        $string0 = "Total group mode kills: ";
 }
 if (%varclient_4486 = 60000) {
-    $string2 = "<col=FF0000>Lots!</col>";
+    $string1 = "<col=FF0000>Lots!</col>";
 } else {
-    $string2 = tostring_localised(%varclient_4486, true);
+    $string1 = tostring_localised(%varclient_4486, true);
 }
-$string1 = append($string1, $string2);
-if_setonmouserepeat("script8799($string1, interface_753:com_10, -1)", interface_753:com_43);
-if_settext($string2, interface_753:com_9);
-def_graphic $graphic10 = "aif_boss_slayer_icons,1";
+$string0 = append($string0, $string1);
+if_setonmouserepeat("script8799($string0, interface_753:com_10, -1)", interface_753:com_43);
+if_settext($string1, interface_753:com_9);
+def_graphic $graphic12 = null;
 if (%varclient_4487 ! -1) {
-    switch_struct (%varclient_4485) {
-        case struct_45051 :
-            $string1 = "Total duo mode kills: ";
-            $graphic10 = "aif_boss_slayer_icons,0";
-        case default :
-            if (struct_param(%varclient_4485, param_5704) = true) {
-                $string1 = "Total challenge mode kills: ";
-            } else {
-                $string1 = "Total hard mode kills: ";
-            }
+    $graphic12 = ~script15909(%varclient_4485);
+    switch_int ($int11) {
+        case 1 :
+            $string0 = "Total hard mode kills: ";
+        case 2 :
+            $string0 = "Total solo mode kills: ";
+        case 3 :
+            $string0 = "Total duo mode kills: ";
+        case 4 :
+            $string0 = "Total group mode kills: ";
     }
     if (%varclient_4487 = 60000) {
-        $string2 = "<col=FF0000>Lots!</col>";
+        $string1 = "<col=FF0000>Lots!</col>";
     } else {
-        $string2 = tostring_localised(%varclient_4487, true);
+        $string1 = tostring_localised(%varclient_4487, true);
     }
-    $string1 = append($string1, $string2);
-    if_setonmouserepeat("script8799($string1, interface_753:com_10, -1)", interface_753:com_73);
-    if_settext($string2, interface_753:com_7);
+    $string0 = append($string0, $string1);
+    if_setonmouserepeat("script8799($string0, interface_753:com_10, -1)", interface_753:com_73);
+    if_settext($string1, interface_753:com_7);
     if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre, interface_753:com_35);
     if_setposition(75, 0, ^setpos_abs_right, ^setpos_abs_centre, interface_753:com_43);
     if_sethide(false, interface_753:com_73);
-    if_setgraphic($graphic10, interface_753:com_8);
+    if_setgraphic($graphic12, interface_753:com_8);
 }
 cc_deleteall(interface_753:com_75);
 ~bslay_rewards_build(interface_753:com_75, interface_753:com_76, interface_753:com_74, %varclient_4485, 0, 0, 0);

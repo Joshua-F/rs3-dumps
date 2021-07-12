@@ -3,46 +3,41 @@
 def_int $int0 = 0;
 def_int $int1 = 0;
 def_int $int2 = 0;
-def_string $string0 = tostring($int0);
-def_string $string1 = tostring($int1);
-def_string $string2 = tostring($int2);
+def_string $string0 = "---";
+def_string $string1 = "---";
+def_string $string2 = "";
+def_int $int3 = -1;
+def_int $int4 = -1;
+$int3, $int4 = ~script15912(%varclient_4485);
 def_string $string3 = "You have not set a fastest time for this boss.";
-def_string $string4 = "";
-switch_struct (%varclient_4485) {
-    case struct_45051 :
+switch_int ($int3) {
+    case 2 :
         $string3 = "You have not set a fastest time for this boss in solo mode.";
+    case 3 :
+        $string3 = "You have not set a fastest time for this boss in duo mode.";
+    case 4 :
+        $string3 = "You have not set a fastest time for this boss in group mode.";
 }
-def_string $string5 = "---";
 if (%varclient_4488 ! -1) {
     if (%varclient_4488 > 0) {
         $int0, $int1, $int2 = ~script4705(%varclient_4488);
-        if ($int0 < 10) {
-            $string0 = "0<tostring($int0)>";
-        } else {
-            $string0 = tostring($int0);
+        $string0 = ~script3382(-1, $int0, $int1, $int2, 4, 0);
+        $string3 = "Fastest kill: <$string0>";
+        switch_int ($int3) {
+            case 2 :
+                $string3 = "Fastest solo mode kill: <$string0>";
+                $string2 = "(solo mode)";
+            case 3 :
+                $string3 = "Fastest duo mode kill: <$string0>";
+                $string2 = "(duo mode)";
+            case 4 :
+                $string3 = "Fastest group mode kill: <$string0>";
+                $string2 = "(group mode)";
         }
-        if ($int1 < 10) {
-            $string1 = "0<tostring($int1)>";
-        } else {
-            $string1 = tostring($int1);
-        }
-        if ($int2 < 10) {
-            $string2 = "0<tostring($int2)>";
-        } else {
-            $string2 = tostring($int2);
-        }
-        switch_struct (%varclient_4485) {
-            case struct_45051 :
-                $string3 = "Fastest solo mode kill: <$string0>:<$string1>:<$string2>";
-                $string4 = "(solo mode)";
-            case default :
-                $string3 = "Fastest kill: <$string0>:<$string1>:<$string2>";
-        }
-        $string5 = "<$string0>:<$string1>:<$string2>";
-        if_setop(2, "Announce to Local Chat <$string4>", interface_753:com_11);
-        if_setop(3, "Announce to Friends Chat <$string4>", interface_753:com_11);
-        if_setop(4, "Announce to Clan Chat <$string4>", interface_753:com_11);
-        if_setop(5, "Announce to Guest Clan Chat <$string4>", interface_753:com_11);
+        if_setop(2, "Announce to Local Chat <$string2>", interface_753:com_11);
+        if_setop(3, "Announce to Friends Chat <$string2>", interface_753:com_11);
+        if_setop(4, "Announce to Clan Chat <$string2>", interface_753:com_11);
+        if_setop(5, "Announce to Guest Clan Chat <$string2>", interface_753:com_11);
         if_setop(10, "Reset time", interface_753:com_11);
     } else {
         if_setop(2, "", interface_753:com_11);
@@ -54,44 +49,46 @@ if (%varclient_4488 ! -1) {
     if (%varclient_4489 > -1) {
         if (%varclient_4489 > 0) {
             $int0, $int1, $int2 = ~script4705(%varclient_4489);
-            if ($int0 < 10) {
-                $string0 = "0<tostring($int0)>";
+            $string1 = ~script3382(-1, $int0, $int1, $int2, 4, 0);
+            switch_int ($int4) {
+                case 1 :
+                    $string3 = append($string3, "<br>Fastest hard mode kill: <$string1>");
+                    $string2 = "(hard mode)";
+                case 2 :
+                    $string3 = append($string3, "<br>Fastest solo mode kill: <$string1>");
+                    $string2 = "(solo mode)";
+                case 3 :
+                    $string3 = append($string3, "<br>Fastest duo mode kill: <$string1>");
+                    $string2 = "(duo mode)";
+                case 4 :
+                    $string3 = append($string3, "<br>Fastest group mode kill: <$string1>");
+                    $string2 = "(group mode)";
+            }
+            if (%varclient_4485 = struct_45051) {
+                $string0 = append($string0, "<br><$string1>");
             } else {
-                $string0 = tostring($int0);
+                $string0 = append($string0, "<br><col=FF3030><$string1></col>");
             }
-            if ($int1 < 10) {
-                $string1 = "0<tostring($int1)>";
-            } else {
-                $string1 = tostring($int1);
-            }
-            if ($int2 < 10) {
-                $string2 = "0<tostring($int2)>";
-            } else {
-                $string2 = tostring($int2);
-            }
-            switch_struct (%varclient_4485) {
-                case struct_45051 :
-                    $string3 = append($string3, "<br>Fastest duo mode kill: <$string0>:<$string1>:<$string2>");
-                    $string5 = append($string5, "<br><$string0>:<$string1>:<$string2></col>");
-                    $string4 = "(duo mode)";
-                case default :
-                    $string3 = append($string3, "<br><col=FF3030>Fastest hardmode kill: <$string0>:<$string1>:<$string2></col>");
-                    $string5 = append($string5, "<br><col=FF3030><$string0>:<$string1>:<$string2></col>");
-                    $string4 = "(hard mode)";
-            }
-            if_setop(6, "Announce to Local Chat <$string4>", interface_753:com_11);
-            if_setop(7, "Announce to Friends Chat <$string4>", interface_753:com_11);
-            if_setop(8, "Announce to Clan Chat <$string4>", interface_753:com_11);
-            if_setop(9, "Announce to Guest Clan Chat <$string4>", interface_753:com_11);
+            if_setop(6, "Announce to Local Chat <$string2>", interface_753:com_11);
+            if_setop(7, "Announce to Friends Chat <$string2>", interface_753:com_11);
+            if_setop(8, "Announce to Clan Chat <$string2>", interface_753:com_11);
+            if_setop(9, "Announce to Guest Clan Chat <$string2>", interface_753:com_11);
             if_setop(10, "Reset time", interface_753:com_11);
         } else {
-            switch_struct (%varclient_4485) {
-                case struct_45051 :
+            switch_int ($int4) {
+                case 1 :
+                    $string3 = append($string3, "<br>You have not set a fastest time for this boss in hard mode.");
+                case 2 :
+                    $string3 = append($string3, "<br>You have not set a fastest time for this boss in solo mode.");
+                case 3 :
                     $string3 = append($string3, "<br>You have not set a fastest time for this boss in duo mode.");
-                    $string5 = append($string5, "<br>---");
-                case default :
-                    $string3 = append($string3, "<br><col=FF3030>You have not set a fastest time for this boss in hard mode.</col>");
-                    $string5 = append($string5, "<br><col=FF3030>---</col>");
+                case 4 :
+                    $string3 = append($string3, "<br>You have not set a fastest time for this boss in group mode.");
+            }
+            if (%varclient_4485 = struct_45051) {
+                $string0 = append($string0, "<br>---");
+            } else {
+                $string0 = append($string0, "<br><col=FF3030>---</col>");
             }
             if_setop(6, "", interface_753:com_11);
             if_setop(7, "", interface_753:com_11);
@@ -105,7 +102,7 @@ if (%varclient_4488 ! -1) {
         if_setop(9, "", interface_753:com_11);
     }
     if_setonmouserepeat("script8799($string3, interface_753:com_10, -1)", interface_753:com_35);
-    if_settext($string5, interface_753:com_6);
+    if_settext($string0, interface_753:com_6);
     if_sethide(false, interface_753:com_35);
 } else {
     if_sethide(true, interface_753:com_35);
