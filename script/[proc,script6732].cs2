@@ -12,6 +12,8 @@ def_component $component8 = null;
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_string $string0 = "Prestige";
+def_string $string1 = "";
+def_string $string2 = "";
 def_struct $struct11 = null;
 while ($int0 < enum_getoutputcount(enum_9031)) {
     $struct11 = enum(int, struct, enum_9031, $int0);
@@ -134,11 +136,11 @@ while ($int0 < enum_getoutputcount(enum_9031)) {
     cc_create($component8, ^iftype_text, if_getnextsubid($component8));
     cc_setsize(10, 25, ^setsize_minus, ^setsize_abs);
     cc_setposition(5, $int9, ^setpos_abs_left, ^setpos_abs_top);
-    switch_struct ($struct11) {
-        case struct_45051 :
-            cc_settext("<struct_param($struct11, param_1348)> (Solo Mode)");
-        case default :
-            cc_settext(struct_param($struct11, param_1348));
+    $string1, $string2 = ~script15910($struct11, 1);
+    if (struct_param($struct11, param_8271) ! 0) {
+        cc_settext("<struct_param($struct11, param_1348)> (<$string1>)");
+    } else {
+        cc_settext(struct_param($struct11, param_1348));
     }
     cc_settextfont(fontmetrics_26);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
@@ -175,16 +177,7 @@ while ($int0 < enum_getoutputcount(enum_9031)) {
         cc_create($component8, ^iftype_text, if_getnextsubid($component8));
         cc_setsize(10, 25, ^setsize_minus, ^setsize_abs);
         cc_setposition(5, $int9, ^setpos_abs_left, ^setpos_abs_top);
-        switch_struct ($struct11) {
-            case struct_45051 :
-                cc_settext("<struct_param($struct11, param_1348)> (Duo Mode)");
-            case default :
-                if (struct_param($struct11, param_5704) = true) {
-                    cc_settext("<struct_param($struct11, param_1348)> (Challenge Mode)");
-                } else {
-                    cc_settext("<struct_param($struct11, param_1348)> (Hard Mode)");
-                }
-        }
+        cc_settext("<struct_param($struct11, param_1348)> (<$string2>)");
         cc_settextfont(fontmetrics_26);
         cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         cc_setcolour(~script10495(3));
