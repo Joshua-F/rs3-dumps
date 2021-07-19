@@ -84,7 +84,9 @@ def_string $string2 = "";
 def_boolean $boolean25 = false;
 def_int $int26 = 1;
 def_int $int27 = 0;
-def_int $int28 = 0;
+def_achievement $achievement28 = null;
+def_int $int29 = -1;
+def_int $int30 = 0;
 while ($int6 < $int0) {
     $int16 = calc($int6 * 11);
     $achievement5 = $achievementarray0($int6);
@@ -286,20 +288,28 @@ while ($int6 < $int0) {
             }
         }
     }
+    if (~script15954 = true & %varclient_6919 = $achievement5) {
+        $achievement28 = $achievement5;
+        $int29 = $int16;
+    }
     if (%varplayer_9607 = $achievement5) {
-        $int28 = $int23;
+        $int30 = $int23;
     }
     $int23 = calc($int23 + ($int12 + 2));
     $int6 = calc($int6 + 1);
 }
 if (%varplayer_9607 = null) {
     if (%varclient_6917 > 0) {
-        $int28 = %varclient_6917;
+        $int30 = %varclient_6917;
     }
-    if (%varclient_6918 ! -1 & %varclient_6919 ! null) {
-        ~script9291(%varclient_6918, %varclient_6919);
+    if (~script15954 = true) {
+        if ($achievement28 ! null & $int29 ! -1) {
+            ~script9291($int29, $achievement28);
+        } else {
+            ~script9291(%varclient_6918, %varclient_6919);
+        }
         return(true);
     }
 }
-~script15341($component1, $int23, $int28);
+~script15341($component1, $int23, $int30);
 return(true);
