@@ -35,24 +35,30 @@ if (~script6431 = true) {
 %varclient_6563 = %varplayerbit_43789;
 %varclient_272 = enum_getoutputcount($enum3);
 def_string $string0 = "";
+def_int $int15 = 0;
+def_int $int16 = calc(if_getwidth($component4) - 20);
+def_int $int17 = ~script11432($fontmetrics12);
+def_boolean $boolean18 = ~script6431;
 while ($int7 < %varclient_272) {
     $quest8 = enum(int, quest, $enum3, $int6);
     cc_create($component4, ^iftype_text, $int6);
     if ($quest8 ! null) {
         $int7 = calc($int7 + 1);
         $int10 = ~ql4_getprogress($quest8);
-        cc_setsize(100, $int11, ^setsize_abs, ^setsize_abs);
-        cc_setsize(20, $int11, ^setsize_minus, ^setsize_abs);
         $string0 = ~quest_sortname($quest8);
-        if (~script6431 = true & ~script7593($string0, cc_getwidth, $fontmetrics12, 0) > 30) {
-            cc_setsize(20, calc($int11 + 20), ^setsize_minus, ^setsize_abs);
+        if ($boolean18 = true) {
+            $int15 = calc($int11 - $int17 + $int17 * max(1, min(2, paraheight($string0, $int16, $fontmetrics12))));
+            cc_setmaxlines(2);
+        } else {
+            $int15 = $int11;
+            cc_setmaxlines(1);
         }
+        cc_setsize(20, $int15, ^setsize_minus, ^setsize_abs);
         cc_setcolour(0x222222);
         cc_settextfont($fontmetrics12);
         cc_settextalign(^settextalign_left, ^settextalign_top, 0);
         cc_settextshadow(true);
         cc_settext($string0);
-        cc_setmaxlines(1);
         if ($int9 = -1 & $quest8 = quest_131 & $int1 = 1) {
             $int9 = cc_getid;
         }

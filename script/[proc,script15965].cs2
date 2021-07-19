@@ -1,0 +1,31 @@
+// 15965
+[proc,script15965](int $int0)
+def_component $component1 = interface_862:com_4;
+cc_deleteall($component1);
+if ($int0 = -1) {
+    ~cc_add_text($component1, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_4130, "Use the dropdown to select a component type.<br><br>This will use a db_find() to find any interface_skin tables with a template_type column matching the chosen type.<br><br>Use the name of the stylesheet this outputs in the appropriate ~cc_add_ wrapper script, the cc_set_stylesheet command or stylesheet_set onload in interface editor.");
+    return;
+}
+def_int $int2 = db_find_with_count(dbtable_132:col1, $int0);
+if ($int2 <= 0) {
+    ~cc_add_text($component1, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_4130, "No results found for:<br><~script15969($int0)>");
+    return;
+}
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_dbrow $dbrow7 = null;
+def_int $int8 = %varplayerbit_22875;
+while ($int4 < $int2) {
+    $dbrow7 = db_findnext;
+    %varplayerbit_22875 = 0;
+    $int3, $int6 = ~script15966($component1, $int3, $int5, $dbrow7, ^setpos_abs_left, $int0);
+    %varplayerbit_22875 = 1;
+    $int3, $int6 = ~script15966($component1, $int3, $int5, $dbrow7, ^setpos_abs_right, $int0);
+    $int5 = calc($int5 + ($int6 + 10));
+    $int4 = calc($int4 + 1);
+}
+%varplayerbit_22875 = $int8;
+if_setscrollsize(0, $int6, $component1);
+~rs3_scrollbar_vertical(interface_862:com_5, $component1);

@@ -44,6 +44,7 @@ def_quest $quest28 = null;
 def_int $int29 = -1;
 def_int $int30 = 0;
 def_int $int31 = 0;
+def_boolean $boolean32 = ~script6431;
 while ($int13 <= %varclient_273) {
     $intarray1($int13) = $int13;
     $quest28 = enum(int, quest, $enum10, $int13);
@@ -218,34 +219,34 @@ if ($int30 > 0) {
     array_sort(calc(%varclient_273 + 1), 0, 1);
 }
 $int13 = 0;
-def_int $int32 = 0;
 def_int $int33 = 0;
 def_int $int34 = 0;
-def_int $int35 = -1;
-$int34 = $intarray0($int13);
+def_int $int35 = 0;
+def_int $int36 = -1;
+$int35 = $intarray0($int13);
 $intarray0($int13) = $intarray1($int13);
-$intarray1($int13) = $int34;
-$int25 = $int34;
+$intarray1($int13) = $int35;
+$int25 = $int35;
 $int13 = 1;
 while ($int13 <= %varclient_273) {
-    $int34 = $intarray0($int13);
+    $int35 = $intarray0($int13);
     $intarray0($int13) = $intarray1($int13);
-    $intarray1($int13) = $int34;
-    if ($int25 ! $int34) {
-        $int35 = 1;
+    $intarray1($int13) = $int35;
+    if ($int25 ! $int35) {
+        $int36 = 1;
     } else if ($int13 = %varclient_273) {
-        $int35 = 0;
+        $int36 = 0;
     }
-    if ($int35 ! -1) {
+    if ($int36 ! -1) {
         if ($int30 = 0) {
-            $int33 = calc($int13 - $int35);
-            if ($int32 < $int33 & $int25 ! -1) {
-                ~ql4_quicksort(intarray0, $enum10, $int32, $int33);
+            $int34 = calc($int13 - $int36);
+            if ($int33 < $int34 & $int25 ! -1) {
+                ~ql4_quicksort(intarray0, $enum10, $int33, $int34);
             }
-            $int32 = $int13;
+            $int33 = $int13;
         }
-        $int25 = $int34;
-        $int35 = -1;
+        $int25 = $int35;
+        $int36 = -1;
     }
     $int13 = calc($int13 + 1);
 }
@@ -259,37 +260,37 @@ switch_int ($int1) {
         }
 }
 $int13 = 0;
-def_int $int36 = 5;
-def_int $int37 = 0;
-def_int $int38 = -1;
+def_int $int37 = 5;
+def_int $int38 = 0;
+def_int $int39 = -1;
 switch_int ($int1) {
     case 1 :
-        $int38 = %varplayerbit_3260;
+        $int39 = %varplayerbit_3260;
     case default :
         if (struct_param($struct9, param_693) > 0) {
-            $int38 = calc(%varplayerbit_320 - 1000 * (struct_param($struct9, param_693) - 1));
+            $int39 = calc(%varplayerbit_320 - 1000 * (struct_param($struct9, param_693) - 1));
         } else {
-            $int38 = calc(%varplayerbit_320 - 1000 * ($int1 - 1));
+            $int39 = calc(%varplayerbit_320 - 1000 * ($int1 - 1));
         }
 }
 while ($int3 = 0 & $int22 < $int21 | $int3 = 1 & $int22 >= 0) {
     $int25 = enum(int, int, $enum20, $int22);
     if (cc_find($component11, calc(%varclient_273 + $int22 + 1)) = true) {
-        cc_setposition(5, $int36, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition(5, $int37, ^setpos_abs_left, ^setpos_abs_top);
         $string0 = enum(int, string, $enum18, $int25);
         cc_settext($string0);
         cc_sethide(false);
-        $int36 = calc($int36 + cc_getheight);
+        $int37 = calc($int37 + cc_getheight);
     }
     $int16 = 0;
     while ($int13 <= %varclient_273) {
         if ($intarray1($int13) = $int25) {
             $quest28 = enum(int, quest, $enum10, $intarray0($int13));
             if ($quest28 ! null & cc_find($component11, $intarray0($int13)) = true) {
-                if (~script6431 = true) {
-                    cc_setposition(10, $int36, ^setpos_abs_left, ^setpos_abs_top);
+                if ($boolean32 = true) {
+                    cc_setposition(10, $int37, ^setpos_abs_left, ^setpos_abs_top);
                 } else {
-                    cc_setposition(15, $int36, ^setpos_abs_left, ^setpos_abs_top);
+                    cc_setposition(15, $int37, ^setpos_abs_left, ^setpos_abs_top);
                 }
                 cc_sethide(false);
                 if ($intarray2($int13) = 0) {
@@ -306,7 +307,7 @@ while ($int3 = 0 & $int22 < $int21 | $int3 = 1 & $int22 >= 0) {
                     cc_setop(3, "");
                 }
                 cc_setonmouseover("cc_text_colour_swapper(event_com, event_comsubid, 16777215)");
-                if ($intarray0($int13) = $int38) {
+                if ($intarray0($int13) = $int39) {
                     cc_setcolour(^cyan);
                     cc_setonmouseleave("script1949(event_com, event_comsubid, ^cyan)");
                 } else if ($intarray2($int13) = 0) {
@@ -319,12 +320,12 @@ while ($int3 = 0 & $int22 < $int21 | $int3 = 1 & $int22 >= 0) {
                     cc_setcolour(^green);
                     cc_setonmouseleave("script1949(event_com, event_comsubid, ^green)");
                 }
-                $int36 = calc($int36 + cc_getheight);
+                $int37 = calc($int37 + cc_getheight);
                 $int16 = calc($int16 + 1);
                 if (enum(int, int, $enum19, $int25) = 1 & compare(quest_param($quest28, param_7244), "") ! 0 & cc_find($component11, calc(%varclient_273 + $int22 + 1)) = true) {
                     cc_settext(quest_param($quest28, param_7244));
                 }
-                $int37 = calc($int37 + 1);
+                $int38 = calc($int38 + 1);
             }
         } else if ($intarray1($int13) > $int25) {
             $int13 = %varclient_273;
@@ -332,13 +333,13 @@ while ($int3 = 0 & $int22 < $int21 | $int3 = 1 & $int22 >= 0) {
         $int13 = calc($int13 + 1);
     }
     if ($int16 ! 0) {
-        $int36 = calc($int36 + 10);
+        $int37 = calc($int37 + 10);
     } else {
         if (cc_find($component11, calc(%varclient_273 + $int22 + 1)) = true) {
             cc_settext("");
             cc_sethide(true);
         }
-        $int36 = calc($int36 - 20);
+        $int37 = calc($int37 - 20);
     }
     $int13 = 0;
     if ($int3 = 0) {
@@ -349,20 +350,20 @@ while ($int3 = 0 & $int22 < $int21 | $int3 = 1 & $int22 >= 0) {
 }
 def_string $string1 = "";
 if ($int1 = 1) {
-    if ($int37 = calc(%varclient_272 - $int27)) {
+    if ($int38 = calc(%varclient_272 - $int27)) {
         $string1 = "Showing all <tostring(calc(%varclient_272 - $int27))> items";
     } else {
-        $string1 = "Showing <tostring($int37)> of <tostring(calc(%varclient_272 - $int27))> items";
+        $string1 = "Showing <tostring($int38)> of <tostring(calc(%varclient_272 - $int27))> items";
     }
     if_settext($string1, ~ql4_layer_status($component0));
 }
-if (%varclient_695 = 1 | $int24 ! calc($int36 + 5) | $int3 = 1 & %varclient_694 = 0 | $int3 = 0 & %varclient_694 = 1) {
-    if (calc($int36 + 5) >= if_getheight($component11)) {
-        if_setscrollsize(if_getwidth($component11), calc($int36 + 5), $component11);
+if (%varclient_695 = 1 | $int24 ! calc($int37 + 5) | $int3 = 1 & %varclient_694 = 0 | $int3 = 0 & %varclient_694 = 1) {
+    if (calc($int37 + 5) >= if_getheight($component11)) {
+        if_setscrollsize(if_getwidth($component11), calc($int37 + 5), $component11);
     } else {
         if_setscrollsize(if_getwidth($component11), 0, $component11);
     }
-    $int24 = $int36;
+    $int24 = $int37;
     if_setscrollpos(0, 0, $component11);
     ~scrollbar_vertical($component12, $component11, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
 } else {
