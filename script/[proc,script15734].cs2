@@ -1,20 +1,34 @@
 // 15734
-[proc,script15734](component $component0, graphic $graphic1, int $int2, int $int3, string $string0, string $string1, int $int4, string $string2, string $string3)
+[proc,script15734](component $component0, graphic $graphic1, graphic $graphic2, graphic $graphic3, graphic $graphic4, int $int5, int $int6, string $string0, string $string1, int $int7, string $string2, string $string3)
 cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
+switch_int (map_lang) {
+    case 1 :
+        if ($graphic2 ! dbrow_graphic_null) {
+            $graphic1 = $graphic2;
+        }
+    case 2 :
+        if ($graphic3 ! dbrow_graphic_null) {
+            $graphic1 = $graphic3;
+        }
+    case 3 :
+        if ($graphic4 ! dbrow_graphic_null) {
+            $graphic1 = $graphic4;
+        }
+}
 cc_setgraphic($graphic1);
 cc_setaspect(cc_getgraphicdimensions);
 cc_setsize(255, 1, ^setsize_abs, ^setsize_aspect);
-cc_setposition($int2, 15, ^setpos_abs_left, ^setpos_abs_top);
-def_int $int5 = cc_getheight;
+cc_setposition($int5, 15, ^setpos_abs_left, ^setpos_abs_top);
+def_int $int8 = cc_getheight;
 cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
 cc_setgraphic(container_bronze_large);
 cc_setaspect(cc_getgraphicdimensions);
 cc_setsize(255, 1, ^setsize_abs, ^setsize_aspect);
-cc_setposition($int2, 15, ^setpos_abs_left, ^setpos_abs_top);
+cc_setposition($int5, 15, ^setpos_abs_left, ^setpos_abs_top);
 cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
 cc_setgraphic(container_bronze_overlay_large);
 cc_setaspect(cc_getgraphicdimensions);
 cc_setsize(247, 1, ^setsize_abs, ^setsize_aspect);
-cc_setposition(calc($int2 + scale(4, 8, calc(255 - 247))), calc(15 + $int5 - cc_getheight - 4), ^setpos_abs_left, ^setpos_abs_top);
-if_setsize(max(if_getwidth($component0), calc($int2 + 255 + 15)), max(if_getheight($component0), calc($int3 + $int5)), ^setsize_abs, ^setsize_abs, $component0);
-~script15735($component0, $int2, $int5, $string0, $string1, $int4, $string2, $string3);
+cc_setposition(calc($int5 + scale(4, 8, calc(255 - 247))), calc(15 + $int8 - cc_getheight - 4), ^setpos_abs_left, ^setpos_abs_top);
+if_setsize(max(if_getwidth($component0), calc($int5 + 255 + 15)), max(if_getheight($component0), calc($int6 + $int8)), ^setsize_abs, ^setsize_abs, $component0);
+~script15735($component0, $int5, $int8, $string0, $string1, $int7, $string2, $string3);
