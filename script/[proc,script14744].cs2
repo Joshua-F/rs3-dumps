@@ -10,7 +10,8 @@ if (db_getfield($dbrow2, dbtable_86:col1, 0) ! 1) {
     return;
 }
 def_string $string0 = ~arch_site_get_name($dbrow2);
-def_string $string1 = ~arch_site_get_manager_name($dbrow2);
+def_string $string1 = ~script15985($dbrow2);
+def_string $string2 = ~arch_site_get_manager_name($dbrow2);
 def_boolean $boolean3 = db_getfield($dbrow2, dbtable_86:col4, 0);
 def_graphic $graphic4 = db_getfield($dbrow2, dbtable_86:col8, 0);
 def_dbrow $dbrow5 = ~arch_qualification_get_data(db_getfield($dbrow2, dbtable_86:col7, 0));
@@ -31,15 +32,15 @@ if ($graphic4 ! null) {
     ~script7924($component0, if_getnextsubid($component0), $int7, $int9, 0, $int11, $graphic4, false, false, false, 0);
     $int11 = calc($int11 + ($int9 + 2));
 }
-def_int $int12 = ~script7593(db_getfield($dbrow2, dbtable_86:col3, 0), $int7, $fontmetrics10, enum(fontmetrics, int, enum_8549, $fontmetrics10));
+def_int $int12 = ~script7593(db_getfield($dbrow2, dbtable_86:col3, 0), calc($int7 - 2 * 4), $fontmetrics10, enum(fontmetrics, int, enum_8549, $fontmetrics10));
 ~cc_add_colour_text($component0, calc($int7 - 2 * 4), $int12, 4, $int11, $fontmetrics10, db_getfield($dbrow2, dbtable_86:col3, 0), ~script10495(3));
 cc_settextalign(^settextalign_left, ^settextalign_top, enum(fontmetrics, int, enum_8549, $fontmetrics10));
 $int11 = calc($int11 + ($int12 + 2 * 2));
 if (map_members = false & $boolean3 = true) {
     $int11 = ~script14754($component0, $int11, ++$int8);
 }
-if (string_length($string1) > 0) {
-    $int11 = ~script14753($component0, $int11, ++$int8, "Manager", $string1);
+if (string_length($string2) > 0) {
+    $int11 = ~script14753($component0, $int11, ++$int8, $string1, $string2);
 }
 $int11 = ~script14753($component0, $int11, ++$int8, "Archaeology Level", tostring(db_getfield($dbrow2, dbtable_86:col6, 0)));
 if ($dbrow5 ! null) {
