@@ -20,6 +20,7 @@ def_int $int10 = if_getheight(interface_276:com_14);
 if_setsize(50, $int10, ^setsize_abs, ^setsize_minus, struct_param(struct_38884, param_3503));
 def_int $int11 = 0;
 def_int $int12 = 0;
+def_int $int13 = 0;
 while ($int1 < $int2) {
     $int0 = enum(int, int, enum_7717, $int1);
     $struct5 = ~script10405($int0);
@@ -145,8 +146,8 @@ while ($int1 < $int2) {
                                 $boolean9 = true;
                         }
                     case 9, 14, 15, 16, 27 :
-                        cc_setposition(53, 48, ^setpos_abs_left, ^setpos_abs_top);
-                        cc_setsize(285, 105, ^setsize_abs, ^setsize_minus);
+                        cc_setposition(53, 49, ^setpos_abs_left, ^setpos_abs_top);
+                        cc_setsize(285, 110, ^setsize_abs, ^setsize_minus);
                         if (~script14238($int0) = 1) {
                             cc_sendtofront;
                             $boolean9 = false;
@@ -177,6 +178,18 @@ while ($int1 < $int2) {
                 cc_sethide(true);
             }
         }
+        switch_int ($int0) {
+            case 9, 14, 15, 16, 27 :
+                $component7 = struct_param($struct5, param_3504);
+                $int13 = calc(if_getnextsubid($component7) - 1);
+                while ($int13 >= 0) {
+                    if (cc_find($component7, $int13) = true) {
+                        cc_setcolour(~rgb_to_hex(13, 46, 61));
+                        cc_settrans(128);
+                    }
+                    $int13 = calc($int13 - 1);
+                }
+        }
     }
     $int1 = calc($int1 + 1);
 }
@@ -193,5 +206,5 @@ if (if_hassub(interface_1448:com_3) = false) {
     ~script8288(%varplayerbit_18994);
 }
 ~script13893($int8);
-if_sethide(true, interface_1477:com_832);
+if_sethide(true, interface_1477:com_833);
 ~script8144;

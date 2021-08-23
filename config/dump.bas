@@ -27610,3 +27610,14 @@ walkanim_l=seq_821
 walkanim_r=seq_822
 readyanim=seq_34242,seq_819
 
+// 4559
+[bas_4559]
+readyanim_l=seq_34253
+readyanim_r=seq_34253
+walkturn_l=seq_34253
+walkturn_r=seq_34253
+runanim=seq_34252
+readyanim=null,seq_34253
+randomreadyanim=seq_34254,90
+randomreadyanim=seq_34255,10
+
