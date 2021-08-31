@@ -2,15 +2,16 @@
 [proc,script990](struct $struct0, int $int1, int $int2)
 def_enum $enum3 = struct_param($struct0, param_7425);
 def_struct $struct4 = enum(int, struct, $enum3, $int1);
-def_string $string0 = "";
+def_string $string0 = struct_param($struct4, param_7434);
 def_string $string1 = "";
+def_string $string2 = "";
 if ($int2 > 0) {
-    $string0, $string1 = "Congratulations!", "You've won the main prize!";
-    if_setontimer("script991(calc(clientclock + 108))", interface_204:com_112);
+    $string1, $string2 = "Congratulations!", "Category: <$string0><br>You've won a main prize!";
+    if_setontimer("script991(calc(clientclock + 108))", interface_204:com_78);
 } else {
-    $string0, $string1 = "Commiserations!", "Better luck next time!";
+    $string1, $string2 = "Commiserations!", "Category: <$string0><br>Better luck next time!";
 }
-if_settext("<$string1><br><br>Your prizes are shown below, and must be claimed before entering another raffle.", interface_204:com_124);
-~script13969(interface_204:com_121, null, struct_41028, $string0);
-~script13969(interface_204:com_126, interface_204:com_127, struct_28553, "Claim");
-if_setonvartransmit("script992($struct0, $struct4){varplayer_8043, varplayer_8043}", interface_204:com_112);
+if_settext("<$string2><br><br>Your prizes are shown below, and must be claimed before entering another Lucky Dip.", interface_204:com_90);
+~script13969(interface_204:com_87, null, struct_41028, $string1);
+~script13969(interface_204:com_92, interface_204:com_93, struct_28553, "Claim");
+if_setonvartransmit("script992($struct0, $struct4, $int1){varplayer_10167, varplayer_10168, varplayer_10169}", interface_204:com_78);
