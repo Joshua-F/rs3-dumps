@@ -1,62 +1,25 @@
 // 980
 [proc,script980](struct $struct0, int $int1)
 def_enum $enum2 = struct_param($struct0, param_7425);
-def_int $int3 = enum_getoutputcount($enum2);
-def_struct $struct4 = enum(int, struct, $enum2, $int1);
-def_component $component5 = null;
-def_component $component6 = null;
-def_component $component7 = null;
-def_struct $struct8 = null;
-def_struct $struct9 = null;
-def_struct $struct10 = null;
-def_int $int11 = -1;
-def_int $int12 = ~day(%varclient_6488);
-def_int $int13 = calc(struct_param($struct0, param_7421) - %varclient_6488);
-def_int $int14 = 0;
-def_int $int15 = 0;
-def_component $component16 = null;
-def_component $component17 = null;
-def_component $component18 = null;
-def_int $int19 = -1;
-while (++$int19 < $int3) {
-    if ($int19 >= $int13) {
-        $int14 = setbit($int14, calc(($int12 + $int19) % $int3));
-    }
-}
-$int19 = -1;
-while (++$int19 < $int3) {
-    $component16 = enum(int, component, enum_14285, $int19);
-    $component17 = enum(int, component, enum_14283, $int19);
-    $component18 = enum(int, component, enum_14284, $int19);
-    $component5, $component6, $component7 = ~script995($int19);
-    if ($int19 = $int12) {
-        $struct8, $struct9, $struct10, $int11 = struct_41044, struct_41046, struct_41048, 0;
-    } else {
-        $struct8, $struct9, $struct10, $int11 = struct_41013, struct_41018, struct_41023, 16777215;
-    }
-    ~script996($component5, null, $struct8, ~int_to_bool(testbit($int14, $int19)), ~equal_int($int19, $int1));
-    ~script996($component6, null, $struct9, ~int_to_bool(testbit($int14, $int19)), ~equal_int($int19, $int1));
-    ~script996($component7, null, $struct10, ~int_to_bool(testbit($int14, $int19)), ~equal_int($int19, $int1));
-    ~script2731($component16, -1, $int11);
-    if (testbit($int14, $int19) = ^true) {
-        if_setop(1, "", $component17);
-        if_setonop(null, $component17);
-        $int15 = 150;
-    } else {
-        if_setop(1, "Select", $component17);
-        if_setonop("script978($struct0, $int19)", $component17);
-        $int15 = 0;
-    }
-    if_settrans($int15, $component18);
-    if_settrans($int15, $component16);
-}
-~script994($struct4, interface_204:com_69);
-~script13969(interface_204:com_66, null, struct_41035, struct_param($struct4, param_7434));
-if_settext(struct_param($struct4, param_7435), interface_204:com_70);
-if_settext("Prizes Available: <tostring_localised(enum(int, int, struct_param($struct0, param_7426), $int1), true)>", interface_204:com_71);
-if ($int1 = $int12) {
-    ~script13969(interface_204:com_74, interface_204:com_75, struct_28553, "Enter Raffle");
+def_struct $struct3 = enum(int, struct, $enum2, $int1);
+def_string $string0 = "";
+def_int $int4 = struct_param($struct3, param_8363);
+def_int $int5 = ~script16026(22, %varclient_6488);
+~script16040($struct0, $int1);
+if_setposition(0, calc($int1 * (40 + 1)), ^setpos_abs_left, ^setpos_abs_top, interface_204:com_21);
+~script994($struct3, interface_204:com_38);
+~script13969(interface_204:com_35, null, struct_41035, struct_param($struct3, param_7434));
+if (string_length(%varclient_6971) = 0) {
+    $string0 = ~script16049($struct3);
 } else {
-    ~script13969(interface_204:com_74, interface_204:com_75, struct_28554, "Current Day");
+    $string0 = %varclient_6971;
+    %varclient_6971 = "";
 }
-if_settext("Days left: <tostring_localised(max(0, $int13), true)>", interface_204:com_77);
+def_string $string1 = struct_param($struct3, param_7435);
+if (struct_param($struct3, param_8365) ! null) {
+    $string1 = "<$string1> (<$string0>).";
+}
+if_settext($string1, interface_204:com_39);
+if_settext("Chance per ticket: 1/<tostring_localised($int4, true)>", interface_204:com_40);
+~script13969(interface_204:com_43, interface_204:com_44, struct_28553, "Enter Lucky Dip");
+if_settext("Days left: <tostring_localised(max(0, $int5), true)>", interface_204:com_46);
