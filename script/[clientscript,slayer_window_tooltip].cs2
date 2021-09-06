@@ -6,50 +6,30 @@ def_string $string0 = "";
 def_int $int4 = 0;
 def_int $int5 = 0;
 def_int $int6 = -1;
-def_string $string1 = %varclient_4967;
+def_string $string1 = "";
 def_string $string2 = "";
 $int2, $int3, $string0, $int4, $int5 = ~script11608;
 if ($int2 = 0) {
     if ($int1 = 1) {
         $string1 = ~script14060;
+    } else {
+        $string1 = ~script16090;
     }
-    if (compare($string1, "No task.") = 0) {
+    if (compare($string1, "No Task") = 0) {
         if ($int1 = 0) {
             ~script8800("You need to speak to a slayer master for a new assignment.", $component0, -1);
         } else {
             ~script8800("You need to speak to Death for a new assignment.", $component0, -1);
         }
-    } else {
-        if (%varplayerbit_36140 >= 45 & stat(slayer) >= 99) {
-            switch_int (%varplayer_185) {
-                case 152 :
-                    $string2 = ~script6425(enum_13751);
-                case 153 :
-                    $string2 = ~script6425(enum_13752);
-                case 139 :
-                    $string2 = ~script6425(enum_13753);
-                case 154 :
-                    $string2 = ~script6425(enum_13754);
-                case 160 :
-                    $string2 = ~script6425(enum_13755);
-                case 171 :
-                    $string2 = ~script6425(enum_15342);
-                case 172 :
-                    $string2 = ~script6425(enum_15343);
-                case default :
-                    if (~slayer_codex_check_monster(calc(%varplayer_185 - 1)) = ^false & enum(int, npc, enum_12737, %varplayer_185) ! null) {
-                        $string2 = "You have not yet claimed this creature's soul.";
-                    }
-            }
-        }
-        if ($int1 = 0) {
-            if (%varplayerbit_43667 = 1) {
-                $string1 = "<$string1> (Wilderness)";
-            }
+    } else if ($int1 = 0) {
+        $string2 = ~script16093;
+        if (string_length($string2) > 0) {
             ~script8800("<tostring(%varplayer_183)> <$string1> left. <$string2>", $component0, -1);
         } else {
-            ~script8800("<tostring(%varplayerbit_22902)> <$string1> left.", $component0, -1);
+            ~script8800("<tostring(%varplayer_183)> <$string1> left.", $component0, -1);
         }
+    } else {
+        ~script8800("<tostring(%varplayerbit_22902)> <$string1> left.", $component0, -1);
     }
 } else {
     ~script8800($string0, $component0, -1);

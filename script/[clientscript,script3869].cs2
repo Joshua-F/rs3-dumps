@@ -11,13 +11,16 @@ def_int $int2 = 0;
 def_int $int3 = 0;
 def_int $int4 = 0;
 def_int $int5 = 0;
-def_struct $struct6 = null;
-def_graphic $graphic7 = null;
 def_string $string0 = "";
-def_int $int8 = 1;
-def_obj $obj9 = null;
+def_int $int6 = 1;
+def_obj $obj7 = null;
+def_graphic $graphic8 = null;
+def_struct $struct9 = null;
+if (struct_param(%varclient_4485, param_6415) ! 1 & map_members = false) {
+    $int0, $int1 = ~bslay_req_add(false, null, "rs3_icon_members_32px,0", "To fight this boss, you must log into a members' world.", $int0, $int1);
+}
 while ($int2 < 12) {
-    $int8, $graphic7, $struct6 = 1, null, null;
+    $int6, $obj7, $graphic8, $struct9 = 1, null, null, null;
     switch_int ($int2) {
         case 0 :
             $int3, $int4 = struct_param(%varclient_4485, param_1294), struct_param(%varclient_4485, param_1295);
@@ -45,26 +48,26 @@ while ($int2 < 12) {
             $int3, $int4 = struct_param(%varclient_4485, param_2229), struct_param(%varclient_4485, param_2230);
     }
     if ($int3 > 0 & $int3 < 60) {
-        $graphic7, $string0 = enum(int, graphic, enum_8548, $int3), "You need level <tostring($int4)> <enum(int, string, enum_108, $int3)>.";
+        $graphic8, $string0 = enum(int, graphic, enum_8548, $int3), "You need level <tostring($int4)> <enum(int, string, enum_108, $int3)>.";
         if (stat_base(enum(int, stat, enum_681, $int3)) < $int4) {
-            $int8 = 0;
+            $int6 = 0;
         }
     } else if ($int3 = 60) {
-        $struct6 = ~task_get_data($int4);
-        if ($struct6 ! null) {
-            if (struct_param($struct6, param_1345) > 0) {
-                $graphic7 = ~quest_icon(enum(int, quest, enum_2252, struct_param($struct6, param_1345)));
+        $struct9 = ~task_get_data($int4);
+        if ($struct9 ! null) {
+            if (struct_param($struct9, param_1345) > 0) {
+                $graphic8 = ~quest_icon(enum(int, quest, enum_2252, struct_param($struct9, param_1345)));
             } else {
-                $graphic7 = struct_param($struct6, param_1271);
+                $graphic8 = struct_param($struct9, param_1271);
             }
-            $string0 = "You must have completed the task: '<struct_param($struct6, param_1266)>'.";
-            if (~task_get_progress(struct_param($struct6, param_1268)) ! 2) {
-                $int8 = 0;
+            $string0 = "You must have completed the task: '<struct_param($struct9, param_1266)>'.";
+            if (~task_get_progress(struct_param($struct9, param_1268)) ! 2) {
+                $int6 = 0;
             }
-            $struct6 = null;
+            $struct9 = null;
         }
     } else if ($int3 = 61) {
-        $graphic7 = ~quest_icon(enum(int, quest, enum_2252, $int4));
+        $graphic8 = ~quest_icon(enum(int, quest, enum_2252, $int4));
         $string0 = "You must have completed the quest: '<~quest_name(enum(int, quest, enum_2252, $int4))>'";
         if (%varclient_4485 = struct_28641) {
             if ($int4 = 176) {
@@ -77,10 +80,10 @@ while ($int2 < 12) {
             $string0 = append($string0, ".");
         }
         if (~script1524($int4) = false) {
-            $int8 = 0;
+            $int6 = 0;
         }
     } else if ($int3 = 66) {
-        $graphic7 = achievement_icon_default;
+        $graphic8 = achievement_icon_default;
         $string0 = "You must have completed the elite dungeon: ";
         switch_int ($int4) {
             case 49 :
@@ -91,64 +94,16 @@ while ($int2 < 12) {
                 $string0 = append($string0, "The Shadow Reef");
         }
     } else if ($int3 = 62) {
-        switch_int ($int4) {
-            case 1 :
-                $graphic7 = rs3_highscores_wilderness_pvp_icon;
-                $string0 = "This boss is located in the Wilderness.";
-            case 2 :
-                $graphic7, $string0 = "aif_magic_standard_icons,65", "You need level <tostring(60)> in Strength or Agility to enter the God Wars Dungeon.";
-                if (stat_base(strength) < 60 & stat_base(agility) < 60) {
-                    $int8 = 0;
-                }
-            case 3 :
-                $graphic7, $string0 = icon_spellbook_teleport_dinoisland, "You must first travel to Anachronia, via the boat at the dig site east of Varrock.";
-                if (%varplayerbit_44469 ! 50) {
-                    $int8 = 0;
-                }
-        }
+        $int6, $obj7, $graphic8, $string0 = ~script16084($int4);
     }
     if ($int3 = 0) {
         $int2 = 12;
     } else {
         $int2 = calc($int2 + 1);
     }
-    if ($graphic7 ! null) {
-        $int0, $int1 = ~bslay_req_add($int8, $obj9, $graphic7, $string0, $int0, $int1);
+    if ($graphic8 ! null | $obj7 ! null) {
+        $int0, $int1 = ~bslay_req_add(~int_to_bool($int6), $obj7, $graphic8, $string0, $int0, $int1);
     }
-}
-switch_struct (%varclient_4485) {
-    case struct_28656, struct_35367 :
-        $obj9, $string0 = obj_20120, "You must own a frozen key which has charges remaining.";
-    case struct_28642 :
-        $obj9, $string0 = obj_30004, "You must own a Barrows totem.";
-    case struct_28655 :
-        $string0 = "You must own an Ascension Keystone Primus to enter Laboratory Primus.";
-        $string0 = append($string0, "<br>You must own an Ascension Keystone Secundus to enter Laboratory Secundus.");
-        $string0 = append($string0, "<br>You must own an Ascension Keystone Tertius to enter Laboratory Tertius.");
-        $string0 = append($string0, "<br>You must own an Ascension Keystone Quartus to enter Laboratory Quartus.");
-        $string0 = append($string0, "<br>You must own an Ascension Keystone Quintus to enter Laboratory Quintus.");
-        $string0 = append($string0, "<br>You must own an Ascension Keystone Sextus to enter Laboratory Sextus.");
-        if (~obj_gettotal(obj_28445) > 0 | ~obj_gettotal(obj_28447) > 0 | ~obj_gettotal(obj_28449) > 0 | ~obj_gettotal(obj_28451) > 0 | ~obj_gettotal(obj_28453) > 0 | ~obj_gettotal(obj_28455) > 0) {
-            $int8 = 1;
-        } else {
-            $int8 = 0;
-        }
-        $int0, $int1 = ~bslay_req_add($int8, obj_28445, null, $string0, $int0, $int1);
-        $obj9 = null;
-    case struct_28649 :
-        $obj9, $string0 = obj_6570, "You must have previously sacrificed a fire cape.";
-    case struct_33661 :
-        $obj9, $string0 = obj_37614, "You must have found all parts and assembled the Ancient Sigil.";
-    case struct_37612 :
-        $obj9, $string0 = obj_40310, "You must own a Key to the Crossing.";
-}
-if ($obj9 ! null) {
-    if (~obj_gettotal($obj9) > 0 | %varclient_4485 = struct_28649 & %varplayerbit_3910 = 1 | %varclient_4485 = struct_33661 & %varplayerbit_32608 = 1) {
-        $int8 = 1;
-    } else {
-        $int8 = 0;
-    }
-    $int0, $int1 = ~bslay_req_add($int8, $obj9, null, $string0, $int0, $int1);
 }
 cc_deleteall(interface_753:com_31);
 if_setscrollpos(0, 0, interface_753:com_30);
