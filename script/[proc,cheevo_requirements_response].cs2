@@ -30,6 +30,8 @@ def_string $string1 = "";
 def_int $int5 = 20;
 def_int $int6 = 0;
 def_struct $struct7 = null;
+def_obj $obj8 = null;
+def_graphic $graphic9 = null;
 while ($int2 < $int5) {
     switch_int ($int2) {
         case 0 :
@@ -131,7 +133,14 @@ while ($int2 < $int5) {
                 }
                 $string0 = append($string0, "Varrock Museum Kudos: <~tostring_spacer_local($int4)><br>");
             case 62 :
-                $int4, $string1 = ~cheevo_special_requirements(struct_param($struct0, param_6413));
+                if (struct_param($struct0, param_1346) > 0) {
+                    $int4, $obj8, $graphic9, $string1 = ~script16084($int4);
+                    if (string_length($string1) > 0) {
+                        $string1 = append($string1, "<br>");
+                    }
+                } else {
+                    $int4, $string1 = ~cheevo_special_requirements(struct_param($struct0, param_6413));
+                }
                 $string0 = append($string0, $string1);
             case default :
                 if ($int3 < 60) {

@@ -1,0 +1,85 @@
+// 16084
+[proc,script16084](int $int0)(int, obj, graphic, string)
+def_int $int1 = 1;
+def_obj $obj2 = null;
+def_graphic $graphic3 = null;
+def_string $string0 = "";
+switch_int ($int0) {
+    case 1 :
+        $string0 = "This boss is located in the Wilderness.";
+        $graphic3 = rs3_highscores_wilderness_pvp_icon;
+        $int1 = 1;
+    case 2 :
+        $string0 = ~quest_name(quest_85);
+        $string0 = "Defeat Dad ('<$string0>' quest) to access Trollheim.";
+        $graphic3 = ~quest_icon(quest_85);
+        if (%varplayer_2347 < 20) {
+            $int1 = 0;
+        }
+    case 3 :
+        $string0 = "<tostring(60)> Strength or <tostring(60)> Agility to push the boulder.";
+        if (~script6431 = true) {
+            $graphic3 = struct_param(struct_28493, param_2802);
+        } else {
+            $graphic3 = struct_param(struct_28493, param_8120);
+        }
+        if (stat_base(strength) < 60 & stat_base(agility) < 60) {
+            $int1 = 0;
+        }
+    case 4 :
+        $string0 = "Obtain the dying knight's notes at the God Wars dungeon entrance.";
+        $obj2 = obj_11734;
+        if (%varplayerbit_15158 = 0) {
+            $int1 = 0;
+        }
+    case 5 :
+        $string0 = "You must first travel to Anachronia, via the boat at the dig site east of Varrock.";
+        $graphic3 = icon_spellbook_teleport_dinoisland;
+        if (%varplayerbit_44469 ! 50) {
+            $int1 = 0;
+        }
+    case 6 :
+        $string0 = "You must own a frozen key which has charges remaining, or sacrifice one ('<achievement_getname(achievement_1364)>' achievement).";
+        $obj2 = obj_20120;
+        if (~obj_gettotal($obj2) = 0 & %varplayerbit_48239 = 0) {
+            $int1 = 0;
+        }
+    case 7 :
+        $string0 = "You must own a Barrows totem.";
+        $obj2 = obj_30004;
+        if (~obj_gettotal($obj2) = 0) {
+            $int1 = 0;
+        }
+    case 8 :
+        $string0 = "You must own an Ascension Keystone Primus to enter Laboratory Primus.";
+        $string0 = append($string0, "<br>You must own an Ascension Keystone Secundus to enter Laboratory Secundus.");
+        $string0 = append($string0, "<br>You must own an Ascension Keystone Tertius to enter Laboratory Tertius.");
+        $string0 = append($string0, "<br>You must own an Ascension Keystone Quartus to enter Laboratory Quartus.");
+        $string0 = append($string0, "<br>You must own an Ascension Keystone Quintus to enter Laboratory Quintus.");
+        $string0 = append($string0, "<br>You must own an Ascension Keystone Sextus to enter Laboratory Sextus.");
+        $obj2 = obj_28445;
+        if (~obj_gettotal(obj_28445) > 0 | ~obj_gettotal(obj_28447) > 0 | ~obj_gettotal(obj_28449) > 0 | ~obj_gettotal(obj_28451) > 0 | ~obj_gettotal(obj_28453) > 0 | ~obj_gettotal(obj_28455) > 0) {
+            $int1 = 1;
+        } else {
+            $int1 = 0;
+        }
+    case 9 :
+        $string0 = "You must have previously sacrificed a fire cape.";
+        $obj2 = obj_6570;
+        if (%varplayerbit_3910 = 0) {
+            $int1 = 0;
+        }
+    case 10 :
+        $string0 = "You must have found all parts and assembled the Ancient Sigil.";
+        $obj2 = obj_37614;
+        if (%varplayerbit_32608 = 0) {
+            $int1 = 0;
+        }
+    case 11 :
+        $string0 = "You must own a Key to the Crossing.";
+        $obj2 = obj_40310;
+        if (~obj_gettotal($obj2) = 0) {
+            $int1 = 0;
+        }
+}
+return($int1, $obj2, $graphic3, $string0);
