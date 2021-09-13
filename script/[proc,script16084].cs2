@@ -4,15 +4,17 @@ def_int $int1 = 1;
 def_obj $obj2 = null;
 def_graphic $graphic3 = null;
 def_string $string0 = "";
+def_quest $quest4 = null;
 switch_int ($int0) {
     case 1 :
         $string0 = "This boss is located in the Wilderness.";
         $graphic3 = rs3_highscores_wilderness_pvp_icon;
         $int1 = 1;
     case 2 :
-        $string0 = ~quest_name(quest_85);
+        $quest4 = quest_85;
+        $string0 = ~quest_name($quest4);
         $string0 = "Defeat Dad ('<$string0>' quest) to access Trollheim.";
-        $graphic3 = ~quest_icon(quest_85);
+        $graphic3 = ~quest_icon($quest4);
         if (%varplayer_2347 < 20) {
             $int1 = 0;
         }
@@ -45,23 +47,23 @@ switch_int ($int0) {
             $int1 = 0;
         }
     case 7 :
-        $string0 = "You must own a Barrows totem.";
+        $string0 = "You need a Barrows totem.";
         $obj2 = obj_30004;
         if (~obj_gettotal($obj2) = 0) {
-            $int1 = 0;
+            $int1 = -1;
         }
     case 8 :
-        $string0 = "You must own an Ascension Keystone Primus to enter Laboratory Primus.";
-        $string0 = append($string0, "<br>You must own an Ascension Keystone Secundus to enter Laboratory Secundus.");
-        $string0 = append($string0, "<br>You must own an Ascension Keystone Tertius to enter Laboratory Tertius.");
-        $string0 = append($string0, "<br>You must own an Ascension Keystone Quartus to enter Laboratory Quartus.");
-        $string0 = append($string0, "<br>You must own an Ascension Keystone Quintus to enter Laboratory Quintus.");
-        $string0 = append($string0, "<br>You must own an Ascension Keystone Sextus to enter Laboratory Sextus.");
+        $string0 = "You need an Ascension Keystone Primus to enter Laboratory Primus.";
+        $string0 = append($string0, "<br>You need an Ascension Keystone Secundus to enter Laboratory Secundus.");
+        $string0 = append($string0, "<br>You need an Ascension Keystone Tertius to enter Laboratory Tertius.");
+        $string0 = append($string0, "<br>You need an Ascension Keystone Quartus to enter Laboratory Quartus.");
+        $string0 = append($string0, "<br>You need an Ascension Keystone Quintus to enter Laboratory Quintus.");
+        $string0 = append($string0, "<br>You need an Ascension Keystone Sextus to enter Laboratory Sextus.");
         $obj2 = obj_28445;
         if (~obj_gettotal(obj_28445) > 0 | ~obj_gettotal(obj_28447) > 0 | ~obj_gettotal(obj_28449) > 0 | ~obj_gettotal(obj_28451) > 0 | ~obj_gettotal(obj_28453) > 0 | ~obj_gettotal(obj_28455) > 0) {
             $int1 = 1;
         } else {
-            $int1 = 0;
+            $int1 = -1;
         }
     case 9 :
         $string0 = "You must have previously sacrificed a fire cape.";
@@ -76,9 +78,49 @@ switch_int ($int0) {
             $int1 = 0;
         }
     case 11 :
-        $string0 = "You must own a Key to the Crossing.";
+        $string0 = "You need a Key to the Crossing.";
         $obj2 = obj_40310;
         if (~obj_gettotal($obj2) = 0) {
+            $int1 = -1;
+        }
+    case 12 :
+        $quest4 = quest_276;
+        $string0 = ~quest_name($quest4);
+        $string0 = "This boss is located in Morytania, accessed during the '<$string0>' quest.";
+        $graphic3 = ~cheevo_icon(struct_37209);
+        if (%varplayerbit_9663 = 0) {
+            $int1 = -1;
+        }
+    case 13 :
+        $quest4 = quest_194;
+        $string0 = ~quest_name($quest4);
+        $string0 = "Optional quest: '<$string0>' to face Akrisae.";
+        $graphic3 = ~quest_icon($quest4);
+        if (~ql4_getquestcomplete($quest4) = false) {
+            $int1 = -1;
+        }
+    case 14 :
+        $quest4 = quest_384;
+        $string0 = ~quest_name($quest4);
+        $string0 = "Optional quest: '<$string0>' to face Linza.";
+        $graphic3 = ~quest_icon($quest4);
+        if (~ql4_getquestcomplete($quest4) = false) {
+            $int1 = -1;
+        }
+    case 15 :
+        $quest4 = quest_352;
+        $string0 = ~quest_name($quest4);
+        $string0 = "Optional quest: '<$string0>' to reduce incoming damage from the Queen Black Dragon.";
+        $graphic3 = ~quest_icon($quest4);
+        if (~ql4_getquestcomplete($quest4) = false) {
+            $int1 = -1;
+        }
+    case 16 :
+        $quest4 = quest_287;
+        $string0 = ~quest_name($quest4);
+        $string0 = "Partial completion of the quest '<$string0>' and 88 Slayer to access the Sophanem Slayer dungeon.";
+        $graphic3 = ~quest_icon($quest4);
+        if (%varplayerbit_10987 < 15 | stat_base(slayer) < 88) {
             $int1 = 0;
         }
 }

@@ -17,7 +17,7 @@ def_obj $obj7 = null;
 def_graphic $graphic8 = null;
 def_struct $struct9 = null;
 if (struct_param(%varclient_4485, param_6415) ! 1 & map_members = false) {
-    $int0, $int1 = ~bslay_req_add(false, null, "rs3_icon_members_32px,0", "To fight this boss, you must log into a members' world.", $int0, $int1);
+    $int0, $int1 = ~bslay_req_add(0, null, "rs3_icon_members_32px,0", "To fight this boss, you must log into a members' world.", $int0, $int1);
 }
 while ($int2 < 12) {
     $int6, $obj7, $graphic8, $struct9 = 1, null, null, null;
@@ -48,7 +48,7 @@ while ($int2 < 12) {
             $int3, $int4 = struct_param(%varclient_4485, param_2229), struct_param(%varclient_4485, param_2230);
     }
     if ($int3 > 0 & $int3 < 60) {
-        $graphic8, $string0 = enum(int, graphic, enum_8548, $int3), "You need level <tostring($int4)> <enum(int, string, enum_108, $int3)>.";
+        $graphic8, $string0 = enum(int, graphic, enum_8548, $int3), "You must have level <tostring($int4)> <enum(int, string, enum_108, $int3)>.";
         if (stat_base(enum(int, stat, enum_681, $int3)) < $int4) {
             $int6 = 0;
         }
@@ -60,7 +60,7 @@ while ($int2 < 12) {
             } else {
                 $graphic8 = struct_param($struct9, param_1271);
             }
-            $string0 = "You must have completed the task: '<struct_param($struct9, param_1266)>'.";
+            $string0 = "You must complete the task: '<struct_param($struct9, param_1266)>'.";
             if (~task_get_progress(struct_param($struct9, param_1268)) ! 2) {
                 $int6 = 0;
             }
@@ -68,23 +68,14 @@ while ($int2 < 12) {
         }
     } else if ($int3 = 61) {
         $graphic8 = ~quest_icon(enum(int, quest, enum_2252, $int4));
-        $string0 = "You must have completed the quest: '<~quest_name(enum(int, quest, enum_2252, $int4))>'";
-        if (%varclient_4485 = struct_28641) {
-            if ($int4 = 176) {
-                $string0 = append(append("Optional requirement: ", $string0), " to face Akrisae.");
-            }
-            if ($int4 = 221) {
-                $string0 = append(append("Optional requirement: ", $string0), " to face Linza.");
-            }
-        } else {
-            $string0 = append($string0, ".");
-        }
+        $string0 = "You must complete the quest: '<~quest_name(enum(int, quest, enum_2252, $int4))>'";
+        $string0 = append($string0, ".");
         if (~script1524($int4) = false) {
             $int6 = 0;
         }
     } else if ($int3 = 66) {
         $graphic8 = achievement_icon_default;
-        $string0 = "You must have completed the elite dungeon: ";
+        $string0 = "You must complete the elite dungeon: ";
         switch_int ($int4) {
             case 49 :
                 $string0 = append($string0, "The Temple of Aminishi");
@@ -102,7 +93,7 @@ while ($int2 < 12) {
         $int2 = calc($int2 + 1);
     }
     if ($graphic8 ! null | $obj7 ! null) {
-        $int0, $int1 = ~bslay_req_add(~int_to_bool($int6), $obj7, $graphic8, $string0, $int0, $int1);
+        $int0, $int1 = ~bslay_req_add($int6, $obj7, $graphic8, $string0, $int0, $int1);
     }
 }
 cc_deleteall(interface_753:com_31);

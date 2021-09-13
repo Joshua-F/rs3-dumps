@@ -36,14 +36,16 @@ while ($int7 <= $int1) {
         case ^chattype_gamemessage, ^chattype_engine, ^chattype_obj_examine, ^chattype_npc_examine, ^chattype_loc_examine, ^chattype_clanmessage, ^chattype_trade_notification, ^chattype_assist_notification, ^chattype_snapshotfeedback, ^chattype_friendnotification, ^chattype_ignorenotification, ^chattype_broadcast, ^chattype_system_broadcast, ^chattype_broadcast_global, ^chattype_broadcast_world, ^chattype_broadcast_friends, ^chattype_motd :
         case default :
             if (compare($string3, "") ! 0 & compare($string7, "") ! 0) {
+                $string1 = removetags($string4);
                 if ($chattype3 ! ^chattype_privatechatout & $chattype3 ! ^chattype_quickchat_private_outgoing) {
                     if ($chattype3 = ^chattype_clanchat | $chattype3 = ^chattype_clanguestchat | $chattype3 = ^chattype_friendschat) {
                         if (compare($string0, $string1) ! 0 & $chattype3 ! ^chattype_privatechatout & $chattype3 ! ^chattype_quickchat_private_outgoing) {
                             $int10 = 0;
+                            $string8 = "<col=<tostring($int10, 16)>>[</col><col=0000FF><$string6></col><col=<tostring($int10, 16)>>]<$string3>: <$string7>";
                         } else {
                             $int10 = 7829367;
+                            $string8 = "<col=<tostring($int10, 16)>>[<$string6>]<$string3>: <$string7>";
                         }
-                        $string8 = "<col=<tostring($int10, 16)>>[</col><col=0000FF><$string6></col><col=<tostring($int10, 16)>>]<$string3>: <$string7>";
                     } else {
                         $string8 = " <$string3>: <$string7>";
                     }
@@ -76,7 +78,6 @@ while ($int7 <= $int1) {
                 cc_setsize(5, calc(15 * $int9), ^setsize_minus, ^setsize_abs);
                 cc_settext($string8);
                 cc_setcolour(0x777777);
-                $string1 = removetags($string4);
                 if (compare($string0, $string1) ! 0 & $chattype3 ! ^chattype_privatechatout & $chattype3 ! ^chattype_quickchat_private_outgoing) {
                     cc_setopbase($string1);
                     cc_setop(1, "Report");
