@@ -27696,3 +27696,20 @@ runanim=seq_34351
 hillrotate=16,16
 readyanim=seq_34350,seq_34351
 
+// 4573
+[bas_4573]
+readyanim_l=seq_34412
+readyanim_r=seq_34412
+walkturn_l=seq_34414
+walkturn_r=seq_34414
+runanim=seq_34415
+runturn_l=seq_34415
+runturn_r=seq_34415
+readyanim=null,seq_34414
+randomreadyanim=seq_34412,90
+randomreadyanim=seq_34413,10
+
+// 4574
+[bas_4574]
+readyanim=seq_34222,null
+
