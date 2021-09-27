@@ -1,35 +1,22 @@
 // 11188
 [clientscript,trh_promo_info_toggle]
-if (if_hassubmodal(~script8074, interface_1253) = false) {
+if (if_hassubmodal(~script8074, interface_1253) = false | ~trh_controls_disabled(82116628) = true) {
     return;
 }
 ~script3904;
 sound_vorbis_volume(sound_36961, 1, 0, 100);
-if (if_gethide(interface_1253:com_1005) = false) {
-    if_sethide(true, interface_1253:com_1005);
+if (if_gethide(interface_1253:com_316) = false) {
+    if_sethide(true, interface_1253:com_316);
+    ~script16198(true, 82116628);
     ~wof_hotkey(1);
-    switch_int (~script11888) {
-        case 12 :
-            if (~trh87_get_progress(%varplayer_6200) = 32) {
-                ~script8056(interface_1745:com_26, -1, 1);
-            }
-        case 0 :
-        case default :
-            ~script3904;
-    }
 } else {
-    if_sethide(false, interface_1253:com_1005);
+    if_sethide(false, interface_1253:com_316);
+    ~script16198(false, 82116628);
     ~wof_hotkey(0);
-    if (if_getgraphic(interface_1253:com_75) = "rs3_info_button_base,1") {
-        if_setgraphic("rs3_info_button_base,0", interface_1253:com_75);
+    if (if_getgraphic(interface_1253:com_49) = "rs3_info_button_base,1") {
+        if_setgraphic("rs3_info_button_base,0", interface_1253:com_49);
     }
-    switch_int (~script11888) {
-        case 12 :
-            if (~trh87_get_progress(%varplayer_6200) = 32) {
-                ~if_highlight_clear_channel(1);
-            }
-        case 0 :
-        case default :
-            ~script3904;
-    }
+}
+if (~script11888 ! 0) {
+    ~script3904;
 }

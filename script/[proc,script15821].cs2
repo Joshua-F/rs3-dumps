@@ -1,129 +1,33 @@
 // 15821
-[proc,script15821](int $int0)
-def_struct $struct1 = null;
+[proc,script15821](int $int0, int $int1)(boolean)
 def_struct $struct2 = null;
-def_graphic $graphic3 = null;
+def_struct $struct3 = null;
 def_graphic $graphic4 = null;
-def_int $int5 = 0;
+def_graphic $graphic5 = null;
 def_dbrow $dbrow6 = null;
-if ($int0 ! -1) {
-    $struct1, $struct2, $graphic3, $graphic4, $dbrow6 = db_getfield(dbrow_4168, dbtable_135:col0, $int0);
-} else {
-    $int5 = 1;
-    $int0 = db_getfieldcount(dbrow_4168, dbtable_135:col0);
-    $struct1 = struct_45312;
-    $struct2 = struct_45312;
-    $graphic3 = struct_param($struct1, param_8346);
-    $graphic4 = $graphic3;
+$struct2, $struct3, $graphic4, $graphic5, $dbrow6 = db_getfield(dbrow_4168, dbtable_135:col0, $int0);
+if (~script3911($struct2, $int0) = false) {
+    return(false);
 }
-def_int $int7 = ~script6488($struct1);
+def_int $int7 = calc($int0 - $int1);
+if ($int7 >= 2) {
+    $int7 = calc($int7 + 1);
+}
+def_int $int8 = ~script6488($struct2);
 if (testbit(%varplayer_9884, $int0) = ^true) {
-    $int7 = 1;
+    $int8 = 1;
 }
-def_int $int8 = 0;
-if ($int0 >= 2) {
-    $int8 = calc(255 + 30);
-}
-def_int $int9 = calc(100 + $int0 * (255 + 30) + $int8);
-def_int $int10 = 14;
-def_int $int11 = 430;
-def_component $component12 = interface_855:com_4;
-def_int $int13 = ~script15820($int0);
-def_string $string0 = "Select";
-def_int $int14 = 3;
-if ($int5 = 0) {
-    if ($int7 = 0) {
-        $int14 = 5;
-        $string0 = "Buy";
-    } else {
-        $int14 = 4;
-    }
-}
-def_graphic $graphic15 = null;
-if (gender = 1) {
-    $graphic15 = $graphic4;
-} else {
-    $graphic15 = $graphic3;
-}
-def_int $int16 = ~script15375($component12, $int9, $int10, 255, 430, $string0, $int14, $int0, $graphic15, struct_param($struct1, param_2533), "", "");
-def_boolean $boolean17 = ~script15973($dbrow6, $int13);
-cc_create($component12, ^iftype_text, $int16++);
-if ($int7 = 0) {
-    cc_setposition(calc($int9 + 255 / 2), calc($int10 + $int11 - 32), ^setpos_abs_left, ^setpos_abs_top);
-    cc_setsize(calc(255 / 2), 25, ^setsize_abs, ^setsize_abs);
-    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-} else {
-    cc_setposition(calc($int9 + 40), calc($int10 + $int11 - 30), ^setpos_abs_left, ^setpos_abs_top);
-    cc_setsize(calc(255 - 80), 25, ^setsize_abs, ^setsize_abs);
-    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-}
-if ($int5 = 0) {
-    if ($int7 = 0) {
-        if ($int13 = 0) {
-            cc_settext("FREE!");
-        } else {
-            cc_settext(tostring($int13));
-        }
-    } else {
-        cc_settext("OWNED");
-    }
-} else {
-    cc_sethide(true);
-}
-cc_settextfont(fontmetrics_58);
-cc_setcolour(0xe0e0e0);
-cc_create($component12, ^iftype_graphic, $int16++);
-cc_setposition(calc($int9 + 255 / 2 - 28), calc($int10 + $int11 - 30), ^setpos_abs_left, ^setpos_abs_top);
-if ($int7 = 0) {
-    cc_setgraphic(mtx_store_icon_currency_runecoins_025px);
-}
-cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
-if ($int5 = 1) {
-    cc_sethide(true);
-}
-cc_create($component12, ^iftype_graphic, $int16++);
-cc_setposition(calc($int9 + 16), calc($int10 + 16), ^setpos_abs_left, ^setpos_abs_top);
-cc_setgraphic(mtx_store_icon_colour);
-cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
-~script3537("This item can be recoloured.");
-if (struct_param($struct1, param_8348) = 0) {
-    cc_sethide(true);
-}
+def_int $int9 = calc(100 + $int7 * (255 + 30));
+def_component $component10 = interface_855:com_5;
+def_int $int11 = ~script3921($int0);
+def_string $string0 = ~script3919($struct2, $int8);
+def_int $int12 = ~script3920($struct2, $int8);
 def_string $string1 = "";
-def_int $int18 = 0;
-if ($boolean17 = true) {
-    $string1 = "<tostring(db_getfield($dbrow6, dbtable_139:col2, 0))>% Off!";
-    $int18 = parawidth($string1, 512, fontmetrics_57);
+def_int $int13 = 0;
+def_graphic $graphic14 = $graphic4;
+def_string $string2 = struct_param($struct2, param_8572);
+if (gender = 1) {
+    $graphic14 = $graphic5;
 }
-cc_create($component12, ^iftype_graphic, $int16++);
-cc_setgraphic(graphic_386);
-cc_setsize(16, 28, ^setsize_abs, ^setsize_abs);
-cc_setposition(calc($int9 + 255 - $int18 - 21), $int10, ^setpos_abs_left, ^setpos_abs_top);
-if ($boolean17 = false) {
-    cc_sethide(true);
-}
-cc_create($component12, ^iftype_graphic, $int16++);
-cc_setgraphic(graphic_387);
-cc_setposition(calc($int9 + 255 - $int18 - 5), $int10, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize($int18, 28, ^setsize_abs, ^setsize_abs);
-if ($boolean17 = false) {
-    cc_sethide(true);
-}
-cc_create($component12, ^iftype_graphic, $int16++);
-cc_setgraphic(graphic_388);
-cc_setsize(12, 28, ^setsize_abs, ^setsize_abs);
-cc_setposition(calc($int9 + 255 - 5), $int10, ^setpos_abs_left, ^setpos_abs_top);
-cc_sendtofront;
-if ($boolean17 = false) {
-    cc_sethide(true);
-}
-cc_create($component12, ^iftype_text, $int16++);
-cc_settextfont(fontmetrics_57);
-cc_setcolour(0xe0d471);
-cc_setposition(calc($int9 + 255 - $int18 - 5), calc($int10 - 3), ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize($int18, 28, ^setsize_abs, ^setsize_abs);
-cc_settext($string1);
-cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-if ($boolean17 = false) {
-    cc_sethide(true);
-}
+~script4219($component10, $int9, 14, 255, 430, $string0, $int12, $int0, $graphic14, struct_param($struct2, param_2533), "", $string2, $struct2, $int8, $int11, 0, $dbrow6);
+return(true);
