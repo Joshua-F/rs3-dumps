@@ -1,34 +1,25 @@
 // 9704
 [proc,script9704](int $int0)
-def_int $int1 = 1;
-def_int $int2 = 0;
-~script9716;
-~script4579;
 if ($int0 = 0) {
-    %varclient_3997 = calc(1 + random(%varclient_3994));
+    %varclient_3997 = 0;
 } else {
     %varclient_3997 = ~script5233(10);
 }
-def_component $component3 = null;
-def_int $int4 = 1;
-def_int $int5 = %varclient_4139;
-while ($int4 <= 10) {
-    ~script4767($int4, ~script9715(%varclient_3997));
-    $component3 = ~script5819($int4);
-    if_setposition($int5, 0, ^setpos_abs_left, ^setpos_abs_centre, $component3);
-    $int5 = calc($int5 + 90);
-    $int4 = calc($int4 + 1);
-    if (%varclient_3997 = %varclient_3994) {
-        %varclient_3997 = 1;
-    } else {
-        %varclient_3997 = calc(%varclient_3997 + 1);
+def_int $int1 = 0;
+def_int $int2 = %varclient_4139;
+while (++$int1 <= 10) {
+    ~script4767($int1, %varclient_3997);
+    if_setposition($int2, 0, ^setpos_abs_left, ^setpos_abs_centre, ~script5819($int1));
+    $int2 = calc($int2 + 90);
+    if (++%varclient_3997 >= ~script16172) {
+        %varclient_3997 = 0;
     }
 }
 if (~is_mobile_client = true) {
-    if_setonmouseleave(null, interface_1253:com_232);
-    if_setdraggable(interface_1253:com_232, -1, interface_1253:com_316);
-    if_sethide(false, interface_1253:com_316);
+    if_setonmouseleave(null, interface_1253:com_96);
+    if_setdraggable(interface_1253:com_96, -1, interface_1253:com_131);
+    if_sethide(false, interface_1253:com_131);
 } else {
-    if_sethide(true, interface_1253:com_316);
+    if_sethide(true, interface_1253:com_131);
     ~script5821;
 }

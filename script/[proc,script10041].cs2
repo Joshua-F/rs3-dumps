@@ -6,100 +6,54 @@ if_clearops($component0);
 if_setonop(null, $component0);
 if_setonclick(null, $component0);
 ~script13264(-1, 0, $int5);
-def_int $int6 = enum_getoutputcount(enum_6673);
-def_struct $structarray0($int6);
-def_struct $struct7 = null;
-def_struct $struct8 = null;
-def_int $int9 = 0;
-def_int $int10 = 0;
-def_int $int11 = 0;
-def_int $int12 = 0;
-def_int $int13 = 0;
-def_int $int14 = 0;
-def_int $int15 = 0;
-def_int $int16 = 0;
-def_int $int17 = 0;
+def_struct $struct6 = null;
 def_string $string1 = "";
 def_string $string2 = "";
 def_string $string3 = "";
-def_string $string4 = "";
-def_string $string5 = "";
-def_string $string6 = "";
-def_string $string7 = "";
-def_int $int18 = 0;
+def_int $int7 = 0;
 if ($int4 = 1) {
     ~script13264(1, 1, $int5);
     if_settext("Treasure Hunter", $component1);
 } else {
-    while ($int10 < $int6) {
-        $int9 = 0;
-        $int12 = 0;
-        $int13 = 0;
-        $struct7 = enum(int, struct, enum_6673, $int10);
-        $struct8 = struct_param($struct7, param_6390);
-        if ($struct8 ! null) {
-            if (~trh_state_lobby($struct8) = 1) {
-                $int12 = %varplayer_6601;
-                $int13 = %varplayer_6601;
-            } else {
-                $int9 = 1;
-            }
-        } else {
-            $int12 = struct_param($struct7, param_6388);
-            $int13 = struct_param($struct7, param_6389);
-        }
-        if (%varplayer_6601 < $int12 | %varplayer_6601 > $int13) {
-            $int9 = 1;
-        }
-        if (struct_param($struct7, param_7491) = true & platformtype ! ^platformtype_default) {
-            $int9 = 1;
-        }
-        if ($int9 = 0) {
-            $structarray0($int11) = $struct7;
-            $int11 = calc($int11 + 1);
-        }
-        $int10 = calc($int10 + 1);
-    }
-    if ($int11 = 0) {
-        $struct7 = enum(int, struct, enum_6673, -1);
-    } else {
-        $struct7 = $structarray0(random($int11));
+    $struct6 = ~trh_promo_on_date(%varplayer_6601);
+    if ($struct6 = null) {
+        $struct6 = struct_33620;
     }
     switch_int (map_lang) {
         case 1 :
-            $string2 = struct_param($struct7, param_6962);
-            $string3 = struct_param($struct7, param_5558);
-            $string1 = struct_param($struct7, param_7961);
+            $string2 = struct_param($struct6, param_6962);
+            $string3 = struct_param($struct6, param_5558);
+            $string1 = struct_param($struct6, param_7961);
         case 2 :
-            $string2 = struct_param($struct7, param_6963);
-            $string3 = struct_param($struct7, param_7892);
-            $string1 = struct_param($struct7, param_7962);
+            $string2 = struct_param($struct6, param_6963);
+            $string3 = struct_param($struct6, param_7892);
+            $string1 = struct_param($struct6, param_7962);
         case 3 :
-            $string2 = struct_param($struct7, param_6964);
-            $string3 = struct_param($struct7, param_7893);
-            $string1 = struct_param($struct7, param_7963);
+            $string2 = struct_param($struct6, param_6964);
+            $string3 = struct_param($struct6, param_7893);
+            $string1 = struct_param($struct6, param_7963);
     }
     if (string_length($string2) = 0) {
-        $string2 = struct_param($struct7, param_6394);
+        $string2 = struct_param($struct6, param_6394);
     }
     if (string_length($string3) = 0) {
-        $string3 = struct_param($struct7, param_65);
+        $string3 = struct_param($struct6, param_65);
     }
     if (string_length($string1) = 0) {
-        $string1 = struct_param($struct7, param_6393);
+        $string1 = struct_param($struct6, param_6393);
     }
-    $string0 = struct_param($struct7, param_6391);
+    $string0 = struct_param($struct6, param_6391);
     switch_int (map_lang) {
         case 0 :
-            if_setgraphic(struct_param($struct7, param_6381), $component0);
+            if_setgraphic(struct_param($struct6, param_6381), $component0);
         case 1 :
-            if_setgraphic(struct_param($struct7, param_6385), $component0);
+            if_setgraphic(struct_param($struct6, param_6385), $component0);
         case 2 :
-            if_setgraphic(struct_param($struct7, param_6386), $component0);
+            if_setgraphic(struct_param($struct6, param_6386), $component0);
         case 3 :
-            if_setgraphic(struct_param($struct7, param_6387), $component0);
+            if_setgraphic(struct_param($struct6, param_6387), $component0);
     }
-    switch_int (struct_param($struct7, param_6392)) {
+    switch_int (struct_param($struct6, param_6392)) {
         case 1 :
             if (string_length($string0) = 0) {
                 $string0 = "Treasure Hunter";
@@ -114,15 +68,15 @@ if ($int4 = 1) {
             if (string_length($string0) = 0) {
                 $string0 = "Treasure Hunter";
             }
-            $int18 = 1;
+            $int7 = 1;
             if_setop(1, "Select", $component0);
-            if_setonop("script12374($string1, $string2, $string2, struct_param($struct7, param_6395))", $component0);
+            if_setonop("script12374($string1, $string2, $string2, struct_param($struct6, param_6395))", $component0);
             if_setonclick("script9036", $component0);
         case 9 :
             if (string_length($string0) = 0) {
                 $string0 = "Treasure Hunter";
             }
-            $int18 = 1;
+            $int7 = 1;
             if_setop(1, "Select", $component0);
             if_setonop("script2827($string3, 0)", $component0);
             if_setonclick("script9036", $component0);
@@ -130,38 +84,38 @@ if ($int4 = 1) {
             if (string_length($string0) = 0) {
                 $string0 = "Treasure Hunter";
             }
-            $int18 = 1;
+            $int7 = 1;
             if_setop(1, "Select", $component0);
             if_setonop("script13252", $component0);
         case 5 :
             if (string_length($string0) = 0) {
                 $string0 = "Treasure Hunter";
             }
-            $int18 = 1;
+            $int7 = 1;
             ~script13264(5, 1, $int5);
         case 8 :
             if (string_length($string0) = 0) {
                 $string0 = "Runecoins";
             }
-            $int18 = 1;
+            $int7 = 1;
             ~script13264(8, 1, $int5);
         case 10 :
             if (string_length($string0) = 0) {
                 $string0 = "Bonds";
             }
-            $int18 = 1;
+            $int7 = 1;
             ~script13264(10, 1, $int5);
         case 12 :
             if (string_length($string0) = 0) {
                 $string0 = "Yak Track";
             }
-            $int18 = 1;
+            $int7 = 1;
             ~script13264(12, 1, $int5);
         case 13 :
             if (string_length($string0) = 0) {
                 $string0 = "Treasure Hunter";
             }
-            $int18 = 1;
+            $int7 = 1;
             if_setop(1, "Select", $component0);
             if_setonop("script4253", $component0);
             if_setonclick("script9036", $component0);
@@ -169,7 +123,7 @@ if ($int4 = 1) {
             if (string_length($string0) = 0) {
                 $string0 = "Marketplace";
             }
-            $int18 = 1;
+            $int7 = 1;
             ~script13264(14, 1, $int5);
         case default :
             if (string_length($string0) = 0) {
@@ -181,50 +135,28 @@ if ($int4 = 1) {
     }
 }
 cc_deleteall($component2);
-if ($int18 = 1) {
+if ($int7 = 1) {
     return;
 }
-def_int $int19 = 0;
-def_int $int20 = if_getwidth($component2);
-def_int $int21 = 50;
-def_string $string8 = "";
-~script10047($component2, $int19);
-$int19 = calc($int19 + 1);
-$string8 = "Keys";
-cc_create($component2, ^iftype_text, $int19);
+def_int $int8 = 0;
+def_int $int9 = if_getwidth($component2);
+def_int $int10 = 50;
+def_string $string4 = "";
+~script10047($component2, $int8++);
+$string4 = "Keys";
+cc_create($component2, ^iftype_text, $int8++);
 if (%varclient_4266 > -1) {
     cc_settext(tostring(%varclient_4266));
 }
 cc_setonvarctransmit("script10050(event_com, event_comsubid, 0){varclient_4266}");
-cc_setposition($int21, 0, ^setpos_abs_left, ^setpos_abs_bottom);
-cc_setsize(calc($int20 / 2 - $int21), 32, ^setsize_abs, ^setsize_abs);
+cc_setposition($int10, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+cc_setsize(calc($int9 / 2 - $int10), 32, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_settextfont(fontmetrics_28);
 cc_setcolour(~script10495(3));
 cc_settextshadow(true);
-$int19 = calc($int19 + 1);
-.cc_create($component2, ^iftype_graphic, $int19);
+.cc_create($component2, ^iftype_graphic, $int8++);
 .cc_setgraphic(rs3_icon_th_keys);
 .cc_setsize(40, 35, ^setsize_abs, ^setsize_abs);
 .cc_setposition(calc(cc_getx - 20 - .cc_getwidth / 2), -1, ^setpos_abs_left, ^setpos_abs_bottom);
-.cc_setonmouserepeat("script8799($string8, event_com, event_comsubid)");
-$int19 = calc($int19 + 1);
-$string8 = "Hearts of Ice";
-cc_create($component2, ^iftype_text, $int19);
-if (%varclient_4267 > -1) {
-    cc_settext(tostring(%varclient_4267));
-}
-cc_setonvarctransmit("script10050(event_com, event_comsubid, 1){varclient_4267}");
-cc_setposition(calc($int20 / 2 + $int21), 0, ^setpos_abs_left, ^setpos_abs_bottom);
-cc_setsize(calc($int20 / 2 - $int21), 32, ^setsize_abs, ^setsize_abs);
-cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-cc_settextfont(fontmetrics_28);
-cc_setcolour(~script10495(3));
-cc_settextshadow(true);
-$int19 = calc($int19 + 1);
-.cc_create($component2, ^iftype_graphic, $int19);
-.cc_setgraphic(rs3_icon_th_frozen_hearts);
-.cc_setsize(30, 35, ^setsize_abs, ^setsize_abs);
-.cc_setposition(calc(cc_getx - 20 - .cc_getwidth / 2), -1, ^setpos_abs_left, ^setpos_abs_bottom);
-.cc_setonmouserepeat("script8799($string8, event_com, event_comsubid)");
-$int19 = calc($int19 + 1);
+.cc_setonmouserepeat("script8799($string4, event_com, event_comsubid)");

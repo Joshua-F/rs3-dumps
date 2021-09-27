@@ -1,0 +1,45 @@
+// 16189
+[proc,script16189](dbrow $dbrow0, int $int1, int $int2, int $int3, int $int4, int $int5, component $component6)
+def_int $int7 = 0;
+def_dbrow $dbrow8 = null;
+def_int $int9 = 0;
+def_obj $obj10 = null;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = -1;
+def_int $int16 = -1;
+$int7, $dbrow8, $int9 = db_getfield($dbrow0, dbtable_147:col0, $int1);
+def_int $int17 = ~script16166($dbrow0);
+def_int $int18 = ~script16168($dbrow8);
+def_int $int19 = calc(~script16169($dbrow8) * 4);
+def_int $int20 = 0;
+while (++$int16 < $int19) {
+    $int20 = calc($int3 + $int16);
+    switch_int (calc($int16 % 4)) {
+        case 0 :
+            $obj10, $int11, $int12, $int13, $int15 = ~script16170($dbrow8, $int15);
+            if (if_createnested(^iftype_graphic, $int2, $int20, $int4, $int5, $component6) = 1) {
+                cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+                cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+                cc_setobject($obj10, $int11);
+            }
+        case 1 :
+            if (if_createnested(^iftype_text, $int2, $int20, $int4, $int5, $component6) = 1) {
+                ~script16190;
+                cc_settext(oc_name($obj10));
+            }
+        case 2 :
+            if (if_createnested(^iftype_graphic, $int2, $int20, $int4, $int5, $component6) = 1) {
+                cc_setgraphic(enum(int, graphic, enum_15866, $int12));
+                cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+                cc_setsize(scale(80, 118, 50), 50, ^setsize_abs, ^setsize_abs);
+            }
+        case 3 :
+            if (if_createnested(^iftype_text, $int2, $int20, $int4, $int5, $component6) = 1) {
+                ~script16190;
+                cc_settext("<~tostring_decimal(~script16167($int9, $int17, $int13, $int18, 100000), 3, 3, 1, 0)> %");
+            }
+    }
+}

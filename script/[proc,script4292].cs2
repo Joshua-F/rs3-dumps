@@ -1,47 +1,30 @@
 // 4292
-[proc,script4292]()(int)
-def_int $int0 = 0;
-def_graphic $graphic1 = null;
-def_string $string0 = null;
-if (%varplayerbit_42976 < 6) {
-    $int0 = calc($int0 + 1);
+[proc,script4292](int $int0)(int)
+if ($int0 < 0) {
+    return(0);
 }
-if (%varplayerbit_42978 < 6) {
-    $int0 = calc($int0 + 1);
-}
-if (%varplayerbit_42977 < 6) {
-    $int0 = calc($int0 + 1);
-}
-switch_int (%varplayerbit_44000) {
-    case 2 :
-        $string0 = "Clairvoyance has revealed a <col=FFFF00>yellow prize</col> in one of your next chests.";
-        $graphic1 = ~script4419(%varplayerbit_44000);
-    case 3 :
-        $string0 = "Clairvoyance has revealed a <col=FF6600>orange prize</col> in one of your next chests.";
-        $graphic1 = ~script4419(%varplayerbit_44000);
-    case 4 :
-        $string0 = "Clairvoyance has revealed a <col=FF0000>red prize</col> in one of your next chests.";
-        $graphic1 = ~script4419(%varplayerbit_44000);
-    case 5 :
-        $string0 = "Clairvoyance has revealed a <col=6600FF>purple prize</col> in one of your next chests.";
-        $graphic1 = ~script4419(%varplayerbit_44000);
-    case default :
-        $string0 = "Clairvoyance has revealed <tostring($int0)> of the prizes in your next chests.";
-        if ($int0 = 2) {
-            $graphic1 = icon_multiplier_x2;
-        } else if ($int0 = 3) {
-            $graphic1 = icon_multiplier_x3;
+def_int $int1 = 0;
+def_int $int2 = ~script3909;
+def_struct $struct3 = null;
+def_struct $struct4 = null;
+def_graphic $graphic5 = null;
+def_graphic $graphic6 = null;
+def_dbrow $dbrow7 = null;
+def_int $int8 = 0;
+while ($int1 < $int2) {
+    $struct3, $struct4, $graphic5, $graphic6, $dbrow7 = db_getfield(dbrow_4168, dbtable_135:col0, $int1);
+    if (~script3911($struct3, $int1) = true) {
+        $int8 = calc($int8 + 1);
+    }
+    if ($int1 = $int0) {
+        if ($int8 >= 2) {
+            $int8 = calc($int8 + 1);
         }
+        if (calc($int8 % 3) = 0) {
+            return(calc($int8 / 3 - 1));
+        }
+        return(calc($int8 / 3));
+    }
+    $int1 = calc($int1 + 1);
 }
-if_settext($string0, interface_1253:com_198);
-if_sethide(false, interface_1253:com_196);
-if_sethide(true, interface_1253:com_197);
-if_setgraphic($graphic1, interface_1253:com_196);
-if ($graphic1 = icon_multiplier_x2 | $graphic1 = icon_multiplier_x3) {
-    if_setsize(60, 50, ^setsize_abs, ^setsize_abs, interface_1253:com_196);
-    if_setposition(-2, 35, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1253:com_196);
-} else {
-    if_setsize(80, 113, ^setsize_abs, ^setsize_abs, interface_1253:com_196);
-    if_setposition(-2, 5, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1253:com_196);
-}
-return(1);
+return(0);
