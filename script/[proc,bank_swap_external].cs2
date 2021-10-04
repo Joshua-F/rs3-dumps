@@ -71,6 +71,7 @@ def_int $int18 = -1;
 def_int $int19 = 0;
 def_int $int20 = 0;
 def_int $int21 = 1;
+def_int $int22 = 0;
 $boolean3 = ~script5175($boolean3, $obj5);
 if ($int11 = 1 | oc_stackable($obj5) = true) {
     $int18 = ~bank_find_inv($inv1, $obj12, 0);
@@ -106,7 +107,10 @@ if ($int21 = 0) {
             }
             return(false);
         }
-        if (~script2347($obj7, $obj10, $int16, $int8, $int16, -1, $inv1, $int2, 1, 1) = 0) {
+        %varplayerbit_45912 = 1;
+        $int22 = ~script2347($obj7, $obj10, $int16, $int8, $int16, -1, $inv1, $int2, 1, 1);
+        %varplayerbit_45912 = 0;
+        if ($int22 = 0) {
             return(false);
         }
         if (~bank_get_invobject($inv1, $int2) ! null) {
@@ -132,7 +136,10 @@ if (%varplayer_8970 ! -1 & ~script14337 >= ~bank_get_size) {
     $int0 = calc($int0 - ~bank_freespace_range(0, $int0));
     ~bank_compress;
 }
-if (~script2347($obj7, $obj10, $int16, $int8, calc($int0 + 1), ~bank_get_tab($int0), $inv1, $int2, 1, 1) = 0) {
+%varplayerbit_45912 = 1;
+$int22 = ~script2347($obj7, $obj10, $int16, $int8, calc($int0 + 1), ~bank_get_tab($int0), $inv1, $int2, 1, 1);
+%varplayerbit_45912 = 0;
+if ($int22 = 0) {
     return(false);
 }
 if ($int18 ! -1) {
