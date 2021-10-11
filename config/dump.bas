@@ -23172,3 +23172,25 @@ walkturn_r=seq_34442
 runanim=seq_34442
 readyanim=seq_34444,seq_34442
 
+[bas_4580]
+readyanim_l=seq_10004
+readyanim_r=seq_10004
+walkturn_l=seq_25004
+walkturn_r=seq_25004
+walkanim_l=seq_25004
+walkanim_r=seq_25004
+runanim=seq_10006
+hillrotate=32,32
+readyanim=null,seq_25004
+randomreadyanim=seq_10004,90
+randomreadyanim=seq_10005,10
+
+[bas_4581]
+readyanim=seq_30146,seq_30146
+
+[bas_4582]
+readyanim=seq_28291,seq_28291
+
+[bas_4583]
+readyanim=seq_34461,null
+
