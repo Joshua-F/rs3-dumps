@@ -27778,3 +27778,28 @@ readyanim=seq_28291,seq_28291
 [bas_4583]
 readyanim=seq_34461,null
 
+// 4584
+[bas_4584]
+readyanim_l=seq_34478
+readyanim_r=seq_34478
+walkturn_l=seq_34478
+walkturn_r=seq_34478
+runanim=seq_34479
+hillrotate=32,32
+readyanim=null,seq_34478
+randomreadyanim=seq_34476,90
+randomreadyanim=seq_34477,10
+
+// 4585
+[bas_4585]
+readyanim_l=seq_34489
+readyanim_r=seq_34489
+walkturn_l=seq_34489
+walkturn_r=seq_34489
+walkanim_l=seq_34489
+walkanim_r=seq_34489
+hillrotate=32,32
+readyanim=null,seq_34489
+randomreadyanim=seq_34487,90
+randomreadyanim=seq_34488,10
+
