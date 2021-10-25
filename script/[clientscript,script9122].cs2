@@ -1,5 +1,5 @@
 // 9122
-[clientscript,script9122](int $int0, int $int1, obj $obj2, obj $obj3, obj $obj4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, int $int11, int $int12, int $int13, int $int14, int $int15, int $int16, int $int17, int $int18, int $int19, int $int20, int $int21, int $int22, int $int23, string $string0, string $string1, string $string2)
+[clientscript,script9122](int $int0, int $int1, obj $obj2, obj $obj3, obj $obj4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, int $int11, int $int12, int $int13, int $int14, int $int15, int $int16, int $int17, int $int18, int $int19, int $int20, int $int21, int $int22, int $int23, int $int24, string $string0, string $string1, string $string2)
 %varplayerbit_4323 = $int0;
 %varclient_1790 = $int13;
 %varclient_4080 = $int14;
@@ -16,26 +16,26 @@
 %varplayerbit_27090 = $int19;
 %varplayerbit_27092 = $int20;
 %varplayerbit_27091 = $int21;
-def_obj $obj24 = null;
-def_int $int25 = 0;
+def_obj $obj25 = null;
+def_int $int26 = 0;
 switch_int ($int1) {
     case 0 :
-        $obj24 = $obj2;
-        $int25 = $int5;
+        $obj25 = $obj2;
+        $int26 = $int5;
     case 1 :
-        $obj24 = $obj3;
-        $int25 = $int6;
+        $obj25 = $obj3;
+        $int26 = $int6;
     case 2 :
-        $obj24 = $obj4;
-        $int25 = $int7;
+        $obj25 = $obj4;
+        $int26 = $int7;
     case default :
-        $obj24 = $obj2;
-        $int25 = $int5;
+        $obj25 = $obj2;
+        $int26 = $int5;
 }
 if (%varplayerbit_4323 <= 0) {
-    if_sethide(true, interface_1253:com_210);
+    if_sethide(true, interface_1253:com_211);
     if (~trh_state(struct_33919) = 1 | ~script15406(struct_33919, %varplayer_3079) = true) {
-        if_sethide(false, interface_1253:com_78);
+        if_sethide(false, interface_1253:com_79);
     }
     return;
 }
@@ -56,72 +56,86 @@ switch_int (%varclient_1928) {
                 %varclient_6507, $string6 = ~script12909($int9, $int12);
         }
     case 28 :
-        %varclient_6507, $string6 = ~script1286($int9, $int25);
+        %varclient_6507, $string6 = ~script1286($int9, $int26);
 }
-if_sethide(false, interface_1253:com_219);
-def_int $int26 = 0;
-switch_int ($int9) {
-    case 1 :
-        $int26 = 25;
-    case 2 :
-        $int26 = 60;
-    case 3 :
-        $int26 = 120;
-    case 4 :
-        $int26 = 300;
-    case 5 :
-        $int26 = 850;
-    case 6 :
-        $int26 = 1000;
+if_sethide(false, interface_1253:com_220);
+def_string $string7 = "Convert Value";
+def_int $int27 = 0;
+switch_int ($int24) {
+    case 40932 :
+        $string7 = "Oddments Value";
+        switch_int ($int9) {
+            case 1 :
+                $int27 = 25;
+            case 2 :
+                $int27 = 60;
+            case 3 :
+                $int27 = 120;
+            case 4 :
+                $int27 = 300;
+            case 5 :
+                $int27 = 850;
+            case 6 :
+                $int27 = 1000;
+        }
+        $int27 = calc($int27 * %varclient_6507);
+    case 52555 :
+        $string7 = "H'oddments Value";
+        $int27 = 50;
 }
-if_settext(tostring_localised(calc($int26 * %varclient_6507), true), interface_1253:com_238);
+if_settext($string7, interface_1253:com_238);
+if ($int27 = 0) {
+    if_settext("-", interface_1253:com_239);
+} else {
+    if_settext(tostring_localised($int27, true), interface_1253:com_239);
+}
 if (%varclient_6507 > 1) {
     $string3 = append("<$string6><tostring(%varclient_6507)></col>x ", $string3);
     $string4 = append("<$string6><tostring(%varclient_6507)></col>x ", $string4);
     $string5 = append("<$string6><tostring(%varclient_6507)></col>x ", $string5);
 }
-~script14944(interface_1253:com_220, %varclient_6507, $int9, $int10, $obj2, $int5);
-~script14943(interface_1253:com_217, $string3, $string0, oc_members($obj2), $int10);
+~script14944(interface_1253:com_221, %varclient_6507, $int9, $int10, $obj2, $int5);
+~script14943(interface_1253:com_218, $string3, $string0, oc_members($obj2), $int10);
 if ($int23 = 1 & $obj3 ! null & $obj4 ! null) {
-    if_sethide(false, interface_1253:com_223);
-    if_sethide(false, interface_1253:com_229);
-    if_sethide(false, interface_1253:com_292);
-    if_setposition(0, 17, ^setpos_abs_centre, ^setpos_abs_centre, interface_1253:com_281);
-    if_setsize(480, 507, ^setsize_abs, ^setsize_abs, interface_1253:com_214);
-    if_setposition(0, 40, ^setpos_abs_centre, ^setpos_abs_centre, interface_1253:com_214);
-    if_setposition(10, 235, ^setpos_abs_right, ^setpos_abs_top, interface_1253:com_281);
-    if_setposition(10, 202, ^setpos_abs_right, ^setpos_abs_top, interface_1253:com_241);
-    ~script14944(interface_1253:com_226, %varclient_6507, $int9, 0, $obj3, $int6);
-    ~script14944(interface_1253:com_232, %varclient_6507, $int9, 0, $obj4, $int7);
-    ~script14943(interface_1253:com_223, $string4, $string1, oc_members($obj3), 0);
-    ~script14943(interface_1253:com_229, $string5, $string2, oc_members($obj4), 0);
+    if_sethide(false, interface_1253:com_224);
+    if_sethide(false, interface_1253:com_230);
+    if_sethide(false, interface_1253:com_293);
+    if_setposition(0, 17, ^setpos_abs_centre, ^setpos_abs_centre, interface_1253:com_282);
+    if_setsize(480, 507, ^setsize_abs, ^setsize_abs, interface_1253:com_215);
+    if_setposition(0, 40, ^setpos_abs_centre, ^setpos_abs_centre, interface_1253:com_215);
+    if_setposition(10, 235, ^setpos_abs_right, ^setpos_abs_top, interface_1253:com_282);
+    if_setposition(10, 202, ^setpos_abs_right, ^setpos_abs_top, interface_1253:com_242);
+    ~script14944(interface_1253:com_227, %varclient_6507, $int9, 0, $obj3, $int6);
+    ~script14944(interface_1253:com_233, %varclient_6507, $int9, 0, $obj4, $int7);
+    ~script14943(interface_1253:com_224, $string4, $string1, oc_members($obj3), 0);
+    ~script14943(interface_1253:com_230, $string5, $string2, oc_members($obj4), 0);
 } else {
-    if_sethide(true, interface_1253:com_223);
-    if_sethide(true, interface_1253:com_229);
-    if_sethide(true, interface_1253:com_292);
-    if_setposition(0, -40, ^setpos_abs_centre, ^setpos_abs_centre, interface_1253:com_281);
-    if_setsize(480, 245, ^setsize_abs, ^setsize_abs, interface_1253:com_214);
-    if_setposition(0, -10, ^setpos_abs_centre, ^setpos_abs_centre, interface_1253:com_214);
-    if_setposition(10, 170, ^setpos_abs_left, ^setpos_abs_top, interface_1253:com_281);
-    if_setposition(0, 10, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1253:com_241);
+    if_sethide(true, interface_1253:com_224);
+    if_sethide(true, interface_1253:com_230);
+    if_sethide(true, interface_1253:com_293);
+    if_setposition(0, -40, ^setpos_abs_centre, ^setpos_abs_centre, interface_1253:com_282);
+    if_setsize(480, 245, ^setsize_abs, ^setsize_abs, interface_1253:com_215);
+    if_setposition(0, -10, ^setpos_abs_centre, ^setpos_abs_centre, interface_1253:com_215);
+    if_setposition(10, 170, ^setpos_abs_left, ^setpos_abs_top, interface_1253:com_282);
+    if_setposition(0, 10, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1253:com_242);
 }
-def_int $int27 = 0;
+def_int $int28 = 0;
 if (%varplayerbit_4322 > 0 | %varclient_2045 > 1) {
-    $int27 = calc(%varclient_2045 - %varplayerbit_4322);
+    $int28 = calc(%varclient_2045 - %varplayerbit_4322);
     if (~trh_state(struct_33522) = 1) {
-        if_sethide(true, interface_1253:com_241);
+        if_sethide(true, interface_1253:com_242);
     } else {
-        if_sethide(false, interface_1253:com_241);
+        if_sethide(false, interface_1253:com_242);
     }
-    if_settext("<tostring(max(1, $int27))>/<tostring(max(1, %varclient_2045))>", interface_1253:com_244);
+    if_settext("<tostring(max(1, $int28))>/<tostring(max(1, %varclient_2045))>", interface_1253:com_245);
 } else {
-    if_settext("1/1", interface_1253:com_244);
-    if_sethide(true, interface_1253:com_241);
+    if_settext("1/1", interface_1253:com_245);
+    if_sethide(true, interface_1253:com_242);
 }
-~wof_button_setup_claim($obj24, $int25);
-~wof_button_setup_claim_bank($obj24, $int25);
-~wof_button_setup_claim_inv($obj24, $int25);
-~wof_button_setup_discard($obj24, $int25);
+~wof_button_setup_claim($obj25, $int26);
+~wof_button_setup_claim_bank($obj25, $int26);
+~wof_button_setup_claim_inv($obj25, $int26);
+~wof_button_setup_discard($obj25, $int26);
 if (%varclient_4083 = 2) {
     ~script6566;
 } else {

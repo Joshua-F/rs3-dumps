@@ -5,7 +5,7 @@ def_component $componentarray1(20);
 def_component $componentarray2(20);
 def_component $componentarray3(20);
 if (struct_param(%varclient_4745, param_4913) = false) {
-    if_settext("Promotional Prizes - Day <tostring(calc($int0 + 1))>", interface_1253:com_344);
+    if_settext("Promotional Prizes - Day <tostring(calc($int0 + 1))>", interface_1253:com_345);
 }
 switch_struct (%varclient_4745) {
     case struct_38726 :
@@ -80,17 +80,39 @@ while ($int2 < 20) {
             case 74 :
                 if_setgraphic("trh173_mosaic_crystal_gem_purple,0", $componentarray0($int2));
                 if_setsize(72, 72, ^setsize_abs, ^setsize_abs, $componentarray0($int2));
-        }
-        if ($int4 > 1) {
-            if_setobject(enum(int, obj, %varclient_4748, $int2), $int4, $componentarray1($int2));
-        } else {
-            if_setobject_nonum(enum(int, obj, %varclient_4748, $int2), 1, $componentarray1($int2));
+            case 75 :
+                if_setgraphic(trh175_background_extra_gravestone_2, $componentarray0($int2));
+                if_setsize(100, 100, ^setsize_abs, ^setsize_abs, $componentarray0($int2));
+                if_sethflip(true, $componentarray0($int2));
+            case 76 :
+                if_setgraphic(trh175_background_extra_gravestone_2, $componentarray0($int2));
+                if_setsize(100, 100, ^setsize_abs, ^setsize_abs, $componentarray0($int2));
         }
         $obj6 = enum(int, obj, %varclient_4748, $int2);
+        switch_obj ($obj6) {
+            case obj_52556 :
+                if_setgraphic(~script9718(4), $componentarray1($int2));
+                if_setsize(30, 43, ^setsize_abs, ^setsize_abs, $componentarray1($int2));
+                if_setontimer("script11771($componentarray1($int2), enum_16614)", $componentarray1($int2));
+                if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $componentarray1($int2));
+            case obj_52557 :
+                if_setgraphic(~script10980(2), $componentarray1($int2));
+                if_setsize(28, 25, ^setsize_abs, ^setsize_abs, $componentarray1($int2));
+                if_setontimer("script11771($componentarray1($int2), enum_16615)", $componentarray1($int2));
+            case obj_52558 :
+                if_setobject_nonum(obj_52554, 1, $componentarray1($int2));
+                if_setontimer("script11772($componentarray1($int2), enum_16616)", $componentarray1($int2));
+            case default :
+                if ($int4 > 1) {
+                    if_setobject($obj6, $int4, $componentarray1($int2));
+                } else {
+                    if_setobject_nonum($obj6, 1, $componentarray1($int2));
+                }
+        }
         if ($int4 > 1) {
-            if_setobject(enum(int, obj, %varclient_4748, $int2), $int4, $componentarray2($int2));
+            if_setobject($obj6, $int4, $componentarray2($int2));
         } else {
-            if_setobject_nonum(enum(int, obj, %varclient_4748, $int2), 1, $componentarray2($int2));
+            if_setobject_nonum($obj6, 1, $componentarray2($int2));
         }
         $seq5 = oc_param($obj6, param_7757);
         if ($seq5 ! null) {
@@ -124,11 +146,11 @@ if ($int1 < 9) {
         if_setontimer("script11192($componentarray3($int2), calc(10 + random(5)))", $componentarray3($int2));
         $int2 = calc($int2 + 1);
     }
-    if_setontimer(null, interface_1253:com_346);
+    if_setontimer(null, interface_1253:com_347);
 } else {
     while ($int2 < $int1) {
         if_setposition(calc($int2 * 90), 1, ^setpos_abs_left, ^setpos_abs_centre, $componentarray3($int2));
         $int2 = calc($int2 + 1);
     }
-    if_setontimer("script11215", interface_1253:com_346);
+    if_setontimer("script11215", interface_1253:com_347);
 }

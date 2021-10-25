@@ -346,7 +346,13 @@ if (oc_wearpos($obj0) ! -1) {
     $struct38 = oc_param($obj0, param_6186);
     if ($struct38 ! null) {
         if (compare(struct_param($struct38, param_2794), "") ! 0) {
-            $int41 = ~script7235("<struct_param($struct38, param_2794)> : <struct_param($struct38, param_2795)>", $string3, $struct2, $component3, $component4, $int41);
+            if (%varplayerbit_27168 = 1 & compare(struct_param($struct38, param_7998), "") ! 0) {
+                $int41 = ~script7235("<struct_param($struct38, param_2794)> : <struct_param($struct38, param_7998)>", $string3, $struct2, $component3, $component4, $int41);
+            } else {
+                $int41 = ~script7235("<struct_param($struct38, param_2794)> : <struct_param($struct38, param_2795)>", $string3, $struct2, $component3, $component4, $int41);
+            }
+        } else if (%varplayerbit_27168 = 1 & compare(struct_param($struct38, param_7998), "") ! 0) {
+            $int41 = ~script7235(struct_param($struct38, param_7998), $string3, $struct2, $component3, $component4, $int41);
         } else {
             $int41 = ~script7235(struct_param($struct38, param_2795), $string3, $struct2, $component3, $component4, $int41);
         }
@@ -360,7 +366,13 @@ if (oc_wearpos($obj0) ! -1) {
     $struct38 = oc_param($obj0, param_6186);
     if ($struct38 ! null) {
         if (compare(struct_param($struct38, param_2794), "") ! 0) {
-            $int41 = ~script7235("<struct_param($struct38, param_2794)> : <struct_param($struct38, param_2795)>", $string3, $struct2, $component3, $component4, $int41);
+            if (%varplayerbit_27168 = 1 & compare(struct_param($struct38, param_7998), "") ! 0) {
+                $int41 = ~script7235("<struct_param($struct38, param_2794)> : <struct_param($struct38, param_7998)>", $string3, $struct2, $component3, $component4, $int41);
+            } else {
+                $int41 = ~script7235("<struct_param($struct38, param_2794)> : <struct_param($struct38, param_2795)>", $string3, $struct2, $component3, $component4, $int41);
+            }
+        } else if (%varplayerbit_27168 = 1 & compare(struct_param($struct38, param_7998), "") ! 0) {
+            $int41 = ~script7235(struct_param($struct38, param_7998), $string3, $struct2, $component3, $component4, $int41);
         } else {
             $int41 = ~script7235(struct_param($struct38, param_2795), $string3, $struct2, $component3, $component4, $int41);
         }
@@ -779,11 +791,9 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                         if ($obj0 = obj_42787) {
                             $int41 = ~script7235("Increases critical chance by 12% and increases the damage cap to 15000 up from 12000.", $string3, $struct2, $component3, $component4, $int41);
                         }
-                    case category_3455 :
-                        $int33 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_27088);
-                        if ($int33 > 0) {
-                            $int41 = ~script7235(oc_name(enum(int, obj, enum_9769, inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_27087))), $string3, $struct2, $component3, $component4, $int41);
-                        }
+                    case category_5087 :
+                        $int41 = ~script9716($obj0, %varclient_5121, %varclient_5122, $component3, $component4, $int41, $int7);
+                        $int41 = ~script10290($obj0, %varclient_5121, %varclient_5122, $struct2, $component3, $component4, $int41, $string3);
                     case category_2771, category_2769, category_2770 :
                         $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_3652);
                         $int17 = scale($int17, 15000, 1000);
