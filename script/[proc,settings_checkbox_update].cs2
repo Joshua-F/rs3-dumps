@@ -9,19 +9,44 @@ if ($int0 > db_getfieldcount($dbrow2, dbtable_31:col2)) {
 }
 def_struct $struct3 = db_getfield($dbrow2, dbtable_31:col2, $int0);
 if (struct_param($struct3, param_7537) = false) {
-    if ($struct3 = struct_1451) {
-        if ($int1 = 1) {
-            %varclient_6785 = 3;
-            clientoption_set(^clientoption_entity_highlights, 1);
-            if (~is_mobile_client = true) {
-                unknown_command_48(true);
+    switch_struct ($struct3) {
+        case struct_1451 :
+            if ($int1 = 1) {
+                %varclient_6785 = 3;
+                clientoption_set(^clientoption_entity_highlights, 1);
+                if (~is_mobile_client = true) {
+                    unknown_command_48(true);
+                }
+            } else {
+                %varclient_6785 = 2;
+                unknown_command_48(false);
             }
-        } else {
-            %varclient_6785 = 2;
-            unknown_command_48(false);
-        }
-    } else if ($struct3 = struct_44852) {
-        clientoption_set(^clientoption_rich_presence, $int1);
+        case struct_44852 :
+            clientoption_set(^clientoption_rich_presence, $int1);
+        case struct_45811 :
+            ~script11756(dbrow_2292, $int1);
+        case struct_45812 :
+            ~script11756(dbrow_2293, $int1);
+        case struct_45813 :
+            ~script11756(dbrow_2294, $int1);
+        case struct_45814 :
+            ~script11756(dbrow_2295, $int1);
+        case struct_45815 :
+            ~script11756(dbrow_2296, $int1);
+        case struct_45816 :
+            ~script11756(dbrow_2628, $int1);
+        case struct_45817 :
+            ~script11756(dbrow_4668, $int1);
+        case struct_45818 :
+            ~script11756(dbrow_4669, $int1);
+        case struct_45819 :
+            ~script11756(dbrow_4671, $int1);
+        case struct_45820 :
+            ~script11756(dbrow_4672, $int1);
+        case struct_45821 :
+            ~script11756(dbrow_4673, $int1);
+        case struct_45822 :
+            ~script11756(dbrow_4674, $int1);
     }
     return;
 }

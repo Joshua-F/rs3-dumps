@@ -1,0 +1,14 @@
+// 11756
+[proc,script11756](dbrow $dbrow0, int $int1)
+if ($dbrow0 = null) {
+    return;
+}
+def_int $int2 = db_getfield($dbrow0, dbtable_67:col6, 0);
+switch_int (calc($int2 / 32)) {
+}
+if ($int1 = 1) {
+    %varclient_6996 = setbit(%varclient_6996, $int2);
+} else {
+    %varclient_6996 = clearbit(%varclient_6996, $int2);
+    ~local_notification_cancel($dbrow0);
+}
