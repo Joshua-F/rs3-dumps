@@ -1,0 +1,36 @@
+// 16241
+[clientscript,script16241](struct $struct0, struct $struct1, int $int2, int $int3, int $int4)
+def_string $string0 = struct_param($struct1, param_4858);
+def_component $component5 = interface_843:com_14;
+def_component $component6 = interface_843:com_17;
+def_component $component7 = interface_843:com_19;
+def_component $component8 = interface_843:com_10;
+if_settext($string0, interface_843:com_18);
+if_setsize(370, 223, ^setsize_abs, ^setsize_abs, $component8);
+def_int $int9 = ~script7593($string0, if_getwidth(interface_843:com_18), fontmetrics_35, 0);
+if_setsize(40, $int9, ^setsize_minus, ^setsize_abs, interface_843:com_18);
+if_setsize(if_getwidth($component8), calc(if_getheight($component8) + $int9), ^setsize_abs, ^setsize_abs, $component8);
+def_string $string1 = ~script13337($struct1);
+if_settext($string1, $component5);
+cc_deleteall($component6);
+cc_create($component6, ^iftype_graphic, 0);
+if (struct_param($struct1, param_4852) ! null) {
+    cc_setsize(min(struct_param($struct1, param_4860), 32), min(struct_param($struct1, param_4861), 32), ^setsize_abs, ^setsize_abs);
+    cc_setgraphic(struct_param($struct1, param_4852));
+    if ($int2 > 1) {
+        if_settext("<$string1> X<tostring($int2)>", $component5);
+    }
+} else if (struct_param($struct1, param_4851) ! null) {
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_setobject(~script14453($struct1, struct_param($struct1, param_4851)), $int2);
+}
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+sound_vorbis_volume(sound_34371, 1, 0, 150);
+if (struct_param($struct1, param_7140) = 1) {
+    if_settext("You are about to claim this item", $component7);
+} else if ($int3 <= 0 & $int4 <= 0) {
+    if_settext("Cost: Free!", $component7);
+} else {
+    if_settext("Cost: <~script12658($struct0, $int3, $int4, 1)>", $component7);
+}
+sound_vorbis_volume(sound_34371, 1, 0, 150);

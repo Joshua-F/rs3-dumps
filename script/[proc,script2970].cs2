@@ -31,7 +31,7 @@ if ($boolean18 = true) {
 def_int $int20 = 0;
 def_int $int21 = 0;
 def_int $int22 = 0;
-def_int $int23 = 0;
+def_boolean $boolean23 = false;
 def_int $int24 = 0;
 while ($int6 < $int7) {
     $struct8 = db_getfield($dbrow3, dbtable_31:col2, $int6);
@@ -110,26 +110,29 @@ while ($int6 < $int7) {
         case default :
             $int22 = 0;
     }
-    $int23 = 1;
+    $boolean23 = true;
     switch_int (struct_param($struct8, param_7529)) {
         case 0 :
             if ($boolean11 = true & struct_param($struct8, param_7534) = true) {
-                $int23 = 0;
+                $boolean23 = false;
             }
         case 1 :
             if ($boolean18 = true) {
-                $int23 = 0;
+                $boolean23 = false;
             }
         case 2 :
             if ($boolean18 = false) {
-                $int23 = 0;
+                $boolean23 = false;
             }
         case 3 :
             if (platformtype ! ^platformtype_steam) {
-                $int23 = 0;
+                $boolean23 = false;
             }
     }
-    if ($int23 = 0) {
+    if ($boolean23 = true & struct_param($struct8, param_4736) > -1) {
+        $boolean23 = clientoption_exists(struct_param($struct8, param_4736));
+    }
+    if ($boolean23 = false) {
         cc_create($component1, ^iftype_text, $int6);
     } else {
         if ($int9 ! 11 & $int9 ! 2) {

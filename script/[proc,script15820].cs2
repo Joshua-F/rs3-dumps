@@ -1,0 +1,53 @@
+// 15820
+[proc,script15820](dbrow $dbrow0, int $int1, string $string0, string $string1, int $int2)
+def_component $component3 = interface_891:com_35;
+def_component $component4 = interface_891:com_13;
+def_component $component5 = interface_891:com_14;
+def_struct $struct6 = null;
+def_struct $struct7 = null;
+def_graphic $graphic8 = null;
+def_int $int9 = 0;
+def_int $int10 = -1;
+def_dbrow $dbrow11 = null;
+def_string $string2 = "";
+def_string $string3 = "";
+def_string $string4 = "";
+def_string $string5 = "";
+if ($dbrow0 ! null) {
+    if (db_getrowtable($dbrow0) = dbtable_122) {
+        $string2 = db_getfield($dbrow0, dbtable_122:col4, 0);
+        $string3 = ~script16013($string3, db_getfield($dbrow0, dbtable_122:col5, 0), ~script15973(db_getfield($dbrow0, dbtable_122:col6, 0), shop_getcategorydescription($int2)));
+        $string3 = ~script16013($string3, db_getfield($dbrow0, dbtable_122:col7, 0), db_getfield($dbrow0, dbtable_122:col8, 0));
+        $string3 = ~script16013($string3, "You currently own:", ~script16080(db_getfield($dbrow0, dbtable_122:col11, 0)));
+        if_setonop("script15743($string1)", interface_891:com_18);
+    }
+    if_sethide(true, interface_891:com_20);
+    if_settext($string0, interface_891:com_19);
+} else {
+    $struct6, $struct7, $graphic8, $graphic8, $dbrow11 = db_getfield(dbrow_4168, dbtable_135:col0, $int1);
+    $int10 = struct_param($struct6, param_2531);
+    $string2 = ~script15973(struct_param($struct7, param_2533), struct_param($struct6, param_2533));
+    $string3 = struct_param($struct6, param_8347);
+    $string3 = ~script16013($string3, "", ~script16193($struct6, $int10));
+    $string3 = ~script16013($string3, "", ~script16092($struct6, $int10));
+    $string3 = ~script16013($string3, "Membership Benefits:", ~script16205($struct6, $int1));
+    $string0 = ~script12689($int1);
+    if_setonop(null, interface_891:com_18);
+    if_sethide(false, interface_891:com_20);
+    if_settext("", interface_891:com_19);
+    if_settext($string0, interface_891:com_22);
+    if_setsize(calc(30 + parawidth($string0, 200, fontmetrics_173)), 0, ^setsize_abs, ^setsize_minus, interface_891:com_20);
+}
+if_settext($string2, interface_891:com_11);
+if_settext($string3, interface_891:com_15);
+~script16201($struct6, $int10, $component3);
+~script16206($dbrow0);
+def_int $int12 = ~script15891($string3, if_getwidth(interface_891:com_15), if_getfontmetrics(interface_891:com_15), 0);
+if ($int12 >= if_getheight($component5)) {
+    if_setscrollsize(0, $int12, $component5);
+    if_sethide(false, $component4);
+    ~rs3_scrollbar_vertical($component4, $component5);
+} else {
+    if_setscrollsize(0, 0, $component5);
+    if_sethide(true, $component4);
+}
