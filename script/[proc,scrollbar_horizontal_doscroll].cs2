@@ -1,15 +1,7 @@
 // 1702
 [proc,scrollbar_horizontal_doscroll](component $component0, component $component1, int $int2, int $int3)
-def_int $int4 = calc(if_getscrollwidth($component1) - if_getwidth($component1));
-if ($int4 = 0) {
-    $int4 = 1;
-}
-if ($int2 < 0) {
-    $int2 = 0;
-}
-if ($int2 > $int4) {
-    $int2 = $int4;
-}
+def_int $int4 = max(1, calc(if_getscrollwidth($component1) - if_getwidth($component1)));
+$int2 = min(max(0, $int2), $int4);
 def_int $int5 = if_getscrollx($component1);
 if_setscrollpos($int2, if_getscrolly($component1), $component1);
 switch_component ($component1) {
@@ -17,10 +9,14 @@ switch_component ($component1) {
         ~telemetry_set_scroll_horizontal($component1, $int2, $int3);
     case interface_1843:com_261 :
         ~script13174($int5, $int2);
+    case interface_853:com_4, interface_855:com_5, interface_843:com_4 :
+        ~script16220($component1, $int2);
+    case interface_828:com_5 :
+        ~script13065($component1, $int2);
 }
 def_int $int6 = 0;
 if (cc_find($component0, 1) = true) {
-    if (%varplayerbit_22875 = 2) {
+    if (%varplayerbit_22875 = 2 | cc_param(param_7986) = 2) {
         $int6 = calc(if_getwidth($component0) - cc_getwidth);
         cc_setposition(scale($int2, $int4, $int6), 4, ^setpos_abs_left, ^setpos_abs_top);
     } else {

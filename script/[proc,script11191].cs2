@@ -9,9 +9,9 @@ if (struct_param(%varclient_4745, param_4913) = false) {
 }
 switch_struct (%varclient_4745) {
     case struct_38726 :
-        %varclient_4748, %varclient_4749 = ~script13728(%varplayerbit_44001);
+        %varclient_7011 = ~script13728(%varplayerbit_44001);
 }
-def_int $int1 = enum_getoutputcount(%varclient_4748);
+def_int $int1 = db_getfieldcount(%varclient_7011, dbtable_154:col0);
 def_int $int2 = 0;
 def_int $int3 = 1;
 def_int $int4 = 1;
@@ -23,12 +23,7 @@ while ($int2 < 20) {
     $componentarray2($int2) = enum(int, component, enum_10080, $int2);
     $componentarray3($int2) = enum(int, component, enum_10081, $int2);
     if ($int2 < $int1) {
-        $int3 = enum(int, int, %varclient_4749, $int2);
-        if (%varclient_4952 ! null) {
-            $int4 = enum(int, int, %varclient_4952, $int2);
-        } else {
-            $int4 = 1;
-        }
+        $obj6, $int4, $int3 = db_getfield(%varclient_7011, dbtable_154:col0, $int2);
         switch_int ($int3) {
             case 0 :
                 if_setgraphic(trh_icon_gem_holder, $componentarray0($int2));
@@ -88,7 +83,6 @@ while ($int2 < 20) {
                 if_setgraphic(trh175_background_extra_gravestone_2, $componentarray0($int2));
                 if_setsize(100, 100, ^setsize_abs, ^setsize_abs, $componentarray0($int2));
         }
-        $obj6 = enum(int, obj, %varclient_4748, $int2);
         switch_obj ($obj6) {
             case obj_52556 :
                 if_setgraphic(~script9718(4), $componentarray1($int2));
@@ -130,17 +124,9 @@ $int2 = 0;
 def_int $int8 = 0;
 if ($int1 < 9) {
     while ($int2 < $int1) {
-        if (calc($int1 % 2) = 1) {
-            $int8 = calc($int2 - $int7);
-            $int8 = calc($int8 * 90);
-        } else if ($int2 = calc($int7 - 1)) {
-            $int8 = -45;
-        } else if ($int2 = $int7) {
-            $int8 = 45;
-        } else if ($int2 < calc($int7 - 1)) {
-            $int8 = calc(($int2 - ($int7 - 1)) * 90 - 45);
-        } else if ($int2 > $int7) {
-            $int8 = calc(($int2 - $int7) * 90 + 45);
+        $int8 = calc(($int2 - $int7) * 90);
+        if (calc($int1 % 2) = 0) {
+            $int8 = calc($int8 + 45);
         }
         if_setposition($int8, calc(-90 - randominc(100)), ^setpos_abs_centre, ^setpos_abs_top, $componentarray3($int2));
         if_setontimer("script11192($componentarray3($int2), calc(10 + random(5)))", $componentarray3($int2));

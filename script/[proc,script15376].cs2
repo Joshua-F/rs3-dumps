@@ -1,0 +1,35 @@
+// 15376
+[proc,script15376](component $component0, int $int1, dbrow $dbrow2, int $int3, int $int4, int $int5)
+$int3 = calc($int3 + $int1 * 270);
+def_string $string0 = "";
+if (db_getfieldcount($dbrow2, dbtable_134:col1) > 0) {
+    $string0 = db_getfield($dbrow2, dbtable_134:col1, 0);
+}
+def_int $int6 = db_getfield($dbrow2, dbtable_134:col6, 0);
+def_string $string1 = ~script5820($dbrow2);
+def_int $int7 = 1;
+if ($int5 = 1) {
+    $int7 = 2;
+}
+def_graphic $graphic8 = db_getfield($dbrow2, dbtable_134:col2, 0);
+def_graphic $graphic9 = null;
+def_graphic $graphic10 = null;
+def_graphic $graphic11 = null;
+if (db_getfieldcount($dbrow2, dbtable_134:col3) > 0) {
+    $graphic9, $graphic10, $graphic11 = db_getfield($dbrow2, dbtable_134:col3, 0);
+    switch_int (map_lang) {
+        case 1 :
+            if ($graphic9 ! null) {
+                $graphic8 = $graphic9;
+            }
+        case 2 :
+            if ($graphic10 ! null) {
+                $graphic8 = $graphic10;
+            }
+        case 3 :
+            if ($graphic11 ! null) {
+                $graphic8 = $graphic11;
+            }
+    }
+}
+~script15083($component0, $int3, $int4, 255, 430, "Select", 1, $int1, $graphic8, removetags(db_getfield($dbrow2, dbtable_134:col0, 0)), $string0, db_getfield($dbrow2, dbtable_134:col5, 0), null, 0, $int6, $int6, 1);

@@ -5,13 +5,13 @@ if_setsize(if_getwidth($component2), if_getheight($component2), ^setsize_abs, ^s
 def_int $int3 = 0;
 def_int $int4 = shop_getindexforcategoryid($int0);
 def_int $int5 = shop_getproductcount($int4);
-if_setsize(15, 0, ^setsize_abs, ^setsize_minus, interface_828:com_7);
 if_setsize(15, 0, ^setsize_abs, ^setsize_minus, interface_828:com_8);
 if_setsize(15, 0, ^setsize_abs, ^setsize_minus, interface_828:com_9);
 if_setsize(15, 0, ^setsize_abs, ^setsize_minus, interface_828:com_10);
-if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, interface_828:com_8);
+if_setsize(15, 0, ^setsize_abs, ^setsize_minus, interface_828:com_11);
 if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, interface_828:com_9);
 if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, interface_828:com_10);
+if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, interface_828:com_11);
 def_int $int6 = 0;
 if (~mobile_shop_block_category($int0) = 0) {
     while ($int3 < $int5) {
@@ -23,23 +23,21 @@ if ($int6 = 0) {
     cc_create($component1, ^iftype_text, if_getnextsubid($component1));
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
-    cc_settextfont(fontmetrics_33);
+    cc_settextfont(fontmetrics_180);
     $string0 = ~script16142($int0);
     cc_settext($string0);
-    cc_setcolour(~rgb_to_hex(255, 0, 0));
+    cc_setcolour(0xe0d471);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 }
-if_setscrollsize(0, 0, $component2);
 if_setscrollpos(0, 0, $component2);
 if (if_getwidth($component1) > if_getwidth($component2)) {
     if_setscrollsize(if_getwidth($component1), 0, $component2);
-    if_setposition(calc(min(if_getscrollx($component2), 300) / 3 - 100), 0, ^setpos_abs_left, ^setpos_abs_top, interface_828:com_15);
-    if_setposition(calc(min(calc(max(1, calc(if_getscrollwidth($component2) - if_getwidth($component2))) - if_getscrollx($component2)), 300) / 3 - 100), 0, ^setpos_abs_right, ^setpos_abs_top, interface_828:com_14);
-    if (~swipe_enabled_check($component2) = true) {
-        ~script14191($component2, 20, 10, 8, 3);
-        if_setonswipehorizontal("script15730($component2, event_mousex)", $component2);
-    }
+    ~scrollbar_horizontal_mobile(interface_828:com_6, $component2, struct_30756);
+    if_setposition(calc(min(if_getscrollx($component2), 300) / 3 - 100), 0, ^setpos_abs_left, ^setpos_abs_top, interface_828:com_16);
+    if_setposition(calc(min(calc(max(1, calc(if_getscrollwidth($component2) - if_getwidth($component2))) - if_getscrollx($component2)), 300) / 3 - 100), 0, ^setpos_abs_right, ^setpos_abs_top, interface_828:com_15);
 } else {
-    if_setposition(calc(0 - 100), 0, ^setpos_abs_left, ^setpos_abs_top, interface_828:com_15);
-    if_setposition(calc(0 - 100), 0, ^setpos_abs_right, ^setpos_abs_top, interface_828:com_14);
+    if_setscrollsize(0, 0, $component2);
+    cc_deleteall(interface_828:com_6);
+    if_setposition(calc(0 - 100), 0, ^setpos_abs_left, ^setpos_abs_top, interface_828:com_16);
+    if_setposition(calc(0 - 100), 0, ^setpos_abs_right, ^setpos_abs_top, interface_828:com_15);
 }
