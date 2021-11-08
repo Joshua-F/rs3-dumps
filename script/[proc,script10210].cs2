@@ -1,8 +1,12 @@
 // 10210
 [proc,script10210](component $component0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8)
+def_string $string0 = "Joining World";
 if ($int7 = -3 & $int8 = 1) {
     ~lobbyscreen_loginbutton_text(false);
-    ~lobby_popup($int7, dbrow_4035, "Logging In", "Please Wait", rs3_loading_spinner_default, "", "");
+    if (map_world ! -1) {
+        $string0 = "Joining World <tostring(map_world)>";
+    }
+    ~lobby_popup($int7, dbrow_4035, $string0, "Please Wait", rs3_loading_spinner_default, "", "");
     %varclient_1100 = -3;
     return;
 }
@@ -10,14 +14,14 @@ if (%varclient_1100 = -3 & $int8 = 1) {
     ~lobby_popup_close;
 }
 def_int $int9 = 0;
-def_string $string0 = "";
-def_int $int10 = 0;
 def_string $string1 = "";
-def_int $int11 = 0;
+def_int $int10 = 0;
 def_string $string2 = "";
+def_int $int11 = 0;
+def_string $string3 = "";
 def_int $int12 = 0;
 def_int $int13 = 0;
-def_string $string3 = "";
+def_string $string4 = "";
 if ($int7 = 21) {
     if ($int8 = 1) {
         if_setontimer("lobbyscreen_entergamelogin($component0, $int1, $int2, $int3, $int4, $int5, $int6)", $component0);
@@ -43,8 +47,8 @@ if ($int7 = 21) {
             return;
         }
         if ($int1 > 0) {
-            $int10, $string1, $int11, $string2, $int12, $int13, $string3 = worldlist_specific($int1);
-            if (worldlist_switch($int1, $string3) = true) {
+            $int10, $string2, $int11, $string3, $int12, $int13, $string4 = worldlist_specific($int1);
+            if (worldlist_switch($int1, $string4) = true) {
                 $int10 = 0;
             }
         }
@@ -64,14 +68,14 @@ if ($int7 = 21) {
     }
     $int9 = calc(%varclient_200 / 50);
     if ($int9 = 1) {
-        $string0 = "You have only just left another world. Your profile will be transferred in<br>1 second.";
+        $string1 = "You have only just left another world. Your profile will be transferred in<br>1 second.";
     } else {
-        $string0 = "You have only just left another world. Your profile will be transferred in<br><tostring($int9)> seconds.";
+        $string1 = "You have only just left another world. Your profile will be transferred in<br><tostring($int9)> seconds.";
     }
     if (if_gethide(interface_906:com_154) = true) {
-        ~lobby_popup($int7, dbrow_4042, "World Change", $string0, "loadingwheel,12", "Abort Login", "");
+        ~lobby_popup($int7, dbrow_4042, "World Change", $string1, "loadingwheel,12", "Abort Login", "");
     } else {
-        ~lobby_popup_text_update($string0);
+        ~lobby_popup_text_update($string1);
     }
     return;
 }
@@ -98,7 +102,7 @@ if ($component0 = interface_906:com_0 | $component0 = interface_906:com_16) {
 ~lobby_popup_close;
 ~lobbyscreen_loginbutton_text(true);
 if_setontimer(null, $component0);
-def_string $string4 = "";
+$string0 = "";
 def_graphic $graphic14 = "loadingwheel,9";
 def_string $string5 = "";
 def_string $string6 = "Back";
@@ -111,237 +115,237 @@ switch_int ($int7) {
     case 29 :
         switch_int ($int15) {
             case 0 :
-                $string4 = "You must have a Combat Level of at least 20 (not including Summoning) to enter a Bounty Hunter world.";
+                $string0 = "You must have a Combat Level of at least 20 (not including Summoning) to enter a Bounty Hunter world.";
             case 1 :
-                $string4 = "You are currently carrying lent items and cannot enter a PvP world.";
+                $string0 = "You are currently carrying lent items and cannot enter a PvP world.";
             case 2 :
-                $string4 = "You must be standing in the Wilderness or Edgeville to enter this bounty world.";
+                $string0 = "You must be standing in the Wilderness or Edgeville to enter this bounty world.";
             case 3 :
-                $string4 = "You must have a total skill level of 1,000 or greater to enter this world.";
+                $string0 = "You must have a total skill level of 1,000 or greater to enter this world.";
             case 5 :
-                $string4 = "You must have a total skill level of 1,500 or greater to enter this world.";
+                $string0 = "You must have a total skill level of 1,500 or greater to enter this world.";
             case 6 :
-                $string4 = "You must have a total skill level of 2,000 or greater to enter this world.";
+                $string0 = "You must have a total skill level of 2,000 or greater to enter this world.";
             case 7 :
-                $string4 = "You must have a total skill level of 2,600 or greater to enter this world.";
+                $string0 = "You must have a total skill level of 2,600 or greater to enter this world.";
             case 4 :
-                $string4 = "You must move to a safe area before you can log in to a Bounty Hunter world.";
+                $string0 = "You must move to a safe area before you can log in to a Bounty Hunter world.";
             case 8 :
-                $string4 = "VIP server access is only available to Gold Premier Club members.";
+                $string0 = "VIP server access is only available to Gold Premier Club members.";
                 $graphic14 = "loadingwheel,8";
             case 9 :
-                $string4 = "This server is for staff only.";
+                $string0 = "This server is for staff only.";
             case 10 :
-                $string4 = "You cannot enter a legacy world while in the tutorial.";
+                $string0 = "You cannot enter a legacy world while in the tutorial.";
             case 12 :
-                $string4 = "Your account has been involved in serious rule breaking, and so has been temporarily disabled.";
+                $string0 = "Your account has been involved in serious rule breaking, and so has been temporarily disabled.";
             case 13 :
-                $string4 = "You are standing in a members-only area. To play on this world, move to a free area first.";
+                $string0 = "You are standing in a members-only area. To play on this world, move to a free area first.";
             case 14 :
-                $string4 = "You need a member's account to log in to this world. Select the banner above to opt into the open access weekend or use a different world.";
+                $string0 = "You need a member's account to log in to this world. Select the banner above to opt into the open access weekend or use a different world.";
                 $graphic14 = "loadingwheel,8";
                 $string5 = "Subscribe";
             case 15 :
-                $string4 = "You can not login to a Legacy world on mobile.";
+                $string0 = "You can not login to a Legacy world on mobile.";
             case 17 :
-                $string4 = "Your account may currently be protected pending restoration. We will be providing updates on our home page and social channels.";
+                $string0 = "Your account may currently be protected pending restoration. We will be providing updates on our home page and social channels.";
             case default :
-                $string4 = "Unexpected server response. Please try using a different world.";
+                $string0 = "Unexpected server response. Please try using a different world.";
         }
     case 46 :
-        $string4 = "This instance is marked for deletion/rebuild. Please try using a different world.";
+        $string0 = "This instance is marked for deletion/rebuild. Please try using a different world.";
     case 45 :
         switch_int ($int16) {
             case 0 :
                 switch_int ($int15) {
                     case 0 :
-                        $string4 = "You must be near the TzHaar Fight Pit entrance to enter a global match.";
+                        $string0 = "You must be near the TzHaar Fight Pit entrance to enter a global match.";
                     case default :
-                        $string4 = "Unable to log in. Please try using a different world.";
+                        $string0 = "Unable to log in. Please try using a different world.";
                 }
             case 1 :
                 switch_int ($int15) {
                     case 1 :
-                        $string4 = "There was an error connecting to your meeting room. Please try again.";
+                        $string0 = "There was an error connecting to your meeting room. Please try again.";
                     case 2 :
-                        $string4 = "You need a higher rank to enter that private tent.";
+                        $string0 = "You need a higher rank to enter that private tent.";
                     case 3 :
-                        $string4 = "You need an invitation to enter that private room.";
+                        $string0 = "You need an invitation to enter that private room.";
                     case default :
-                        $string4 = "Unable to log in. Please try using a different world.";
+                        $string0 = "Unable to log in. Please try using a different world.";
                 }
             case 5 :
                 switch_int ($int15) {
                     case 0 :
-                        $string4 = "The instance you attempted to join is full.";
+                        $string0 = "The instance you attempted to join is full.";
                     case 1 :
-                        $string4 = "You can't join that instance as you or your follower are carrying items.";
+                        $string0 = "You can't join that instance as you or your follower are carrying items.";
                     case default :
-                        $string4 = "Unable to log in. Please try using a different world.";
+                        $string0 = "Unable to log in. Please try using a different world.";
                 }
             case default :
-                $string4 = "Unable to log in. Please try using a different world.";
+                $string0 = "Unable to log in. Please try using a different world.";
         }
     case -5 :
-        $string4 = "Connection timed out. Please try using a different world.";
+        $string0 = "Connection timed out. Please try using a different world.";
     case -4 :
-        $string4 = "Error connecting to server.";
+        $string0 = "Error connecting to server.";
     case -1 :
-        $string4 = "No response from server. Please try using a different world.";
+        $string0 = "No response from server. Please try using a different world.";
     case 5 :
-        $string4 = "Your account has not logged out from its last session or the server is too busy to handle your request. Please try again in a few minutes or try a different server.";
+        $string0 = "Your account has not logged out from its last session or the server is too busy to handle your request. Please try again in a few minutes or try a different server.";
     case 7 :
-        $string4 = "This world is full. Please use a different world.";
+        $string0 = "This world is full. Please use a different world.";
     case 8 :
-        $string4 = "Unable to connect: login server offline.";
+        $string0 = "Unable to connect: login server offline.";
     case 9 :
-        $string4 = "Login limit exceeded: too many connections from your address.";
+        $string0 = "Login limit exceeded: too many connections from your address.";
     case 10 :
-        $string4 = "Unable to connect: bad session id.";
+        $string0 = "Unable to connect: bad session id.";
     case 13 :
-        $string4 = "Could not complete login. Please try using a different world.";
+        $string0 = "Could not complete login. Please try using a different world.";
     case 16 :
-        $string4 = "Too many logins from your address. Please wait 5 minutes before trying again.";
+        $string0 = "Too many logins from your address. Please wait 5 minutes before trying again.";
     case 17 :
-        $string4 = "You are standing in a members-only area. To play on this world, move to a free area first.";
+        $string0 = "You are standing in a members-only area. To play on this world, move to a free area first.";
     case 20 :
-        $string4 = "Invalid loginserver requested. Please try using a different world.";
+        $string0 = "Invalid loginserver requested. Please try using a different world.";
     case 22 :
-        $string4 = "Sorry, we had trouble logging you in. Please try again.";
+        $string0 = "Sorry, we had trouble logging you in. Please try again.";
     case 23 :
-        $string4 = "No reply from login server. Please wait a minute and try again.";
+        $string0 = "No reply from login server. Please wait a minute and try again.";
     case 24 :
-        $string4 = "Error loading your profile. Please contact customer support.";
+        $string0 = "Error loading your profile. Please contact customer support.";
     case 25 :
-        $string4 = "Unexpected loginserver response. Please try using a different world.";
+        $string0 = "Unexpected loginserver response. Please try using a different world.";
     case 26 :
-        $string4 = "This computer's address has been blocked, as it was used to break our rules.";
+        $string0 = "This computer's address has been blocked, as it was used to break our rules.";
     case 27 :
-        $string4 = "Service unavailable.";
+        $string0 = "Service unavailable.";
     case 3 :
-        $string4 = "Your password has been updated. Please leave the lobby and log in again.";
+        $string0 = "Your password has been updated. Please leave the lobby and log in again.";
     case 36 :
-        $string4 = "Unable to connect: authentication server offline.";
+        $string0 = "Unable to connect: authentication server offline.";
     case 37, 62 :
-        $string4 = "Your account is currently inaccessible. Please try again in a few minutes.";
+        $string0 = "Your account is currently inaccessible. Please try again in a few minutes.";
     case 39 :
-        $string4 = "The instance you tried to join no longer exists. Please try using a different world.";
+        $string0 = "The instance you tried to join no longer exists. Please try using a different world.";
     case 41 :
-        $string4 = "The instance you tried to join is full. Please try back later or try using a different world.";
+        $string0 = "The instance you tried to join is full. Please try back later or try using a different world.";
     case 44 :
-        $string4 = "Our systems are currently unavailable. Please try again in a few minutes.";
+        $string0 = "Our systems are currently unavailable. Please try again in a few minutes.";
     case 1401 :
-        $string4 = "Single Sign on failed because your token has expired. Please try re-entering your login details.";
+        $string0 = "Single Sign on failed because your token has expired. Please try re-entering your login details.";
     case 1402 :
-        $string4 = "Single Sign on failed because you exited the Google login without signing in.";
+        $string0 = "Single Sign on failed because you exited the Google login without signing in.";
     case 1403 :
-        $string4 = "Could not connect. Please check your internet connection or try again later.";
+        $string0 = "Could not connect. Please check your internet connection or try again later.";
     case 1404 :
-        $string4 = "Single Sign on failed because your access is unauthorized. Please try re-entering your login details.";
+        $string0 = "Single Sign on failed because your access is unauthorized. Please try re-entering your login details.";
     case 1405 :
-        $string4 = "Revoking token action unsuccessful.";
+        $string0 = "Revoking token action unsuccessful.";
     case 1406 :
-        $string4 = "Single Sign on failed because your Google account creation was unsuccessful. Please ensure you have entered a valid date of birth.";
+        $string0 = "Single Sign on failed because your Google account creation was unsuccessful. Please ensure you have entered a valid date of birth.";
     case 1407 :
-        $string4 = "Single Sign on failed because you have a pending transaction.";
+        $string0 = "Single Sign on failed because you have a pending transaction.";
     case 55 :
-        $string4 = "Sorry, but your account is not eligible to play.<br>For more information, please take a look at our privacy policy.";
+        $string0 = "Sorry, but your account is not eligible to play.<br>For more information, please take a look at our privacy policy.";
         $string6 = "Back";
         $string5 = "Privacy Policy";
     case 35 :
-        $string4 = "Your session has expired. Please select 'Back' in your browser to renew it.";
+        $string0 = "Your session has expired. Please select 'Back' in your browser to renew it.";
         $string6 = "Close";
     case 14 :
         if (~is_mobile_client = true) {
-            $string4 = "RuneScape is currently updating. Please wait a few minutes and restart the app to retry.";
+            $string0 = "RuneScape is currently updating. Please wait a few minutes and restart the app to retry.";
         } else {
-            $string4 = "RuneScape is currently updating. Please wait a few minutes and restart the game to retry.";
+            $string0 = "RuneScape is currently updating. Please wait a few minutes and restart the game to retry.";
         }
         $graphic14 = "loadingwheel,11";
     case 6 :
         if (~is_mobile_client = true) {
-            $string4 = "RuneScape has been updated! Please restart the app to retry.";
+            $string0 = "RuneScape has been updated! Please restart the app to retry.";
         } else {
-            $string4 = "RuneScape has been updated! Please restart the game to retry.";
+            $string0 = "RuneScape has been updated! Please restart the game to retry.";
         }
         $graphic14 = "loadingwheel,11";
     case 4 :
-        $string4 = "Your account has been involved in serious rule breaking.";
+        $string0 = "Your account has been involved in serious rule breaking.";
         $string5 = "More info";
     case 11 :
-        $string4 = "Your password is an extremely common choice, and is not secure. You must change it before you can log in.";
+        $string0 = "Your password is an extremely common choice, and is not secure. You must change it before you can log in.";
         $string5 = "Change Password";
     case 18 :
-        $string4 = "Your account has been locked due to suspicious activity. Please recover your account.";
+        $string0 = "Your account has been locked due to suspicious activity. Please recover your account.";
         $graphic14 = "loadingwheel,13";
         $string5 = "Recover Account";
     case 31 :
-        $string4 = "You must change your account's display name before you can log in.";
+        $string0 = "You must change your account's display name before you can log in.";
         $string5 = "Change Display Name";
     case 30 :
-        $string4 = "This is not a member's account. Please choose a 'free' world from the website to play on this account.";
+        $string0 = "This is not a member's account. Please choose a 'free' world from the website to play on this account.";
         if (~script6431 = false) {
             $string5 = "Subscribe";
         }
     case 19 :
-        $string4 = "Fullscreen is currently a members-only feature. To log in, either exit fullscreen via the options menu or use a member's account.";
+        $string0 = "Fullscreen is currently a members-only feature. To log in, either exit fullscreen via the options menu or use a member's account.";
         if (~script6431 = false) {
             $string5 = "Subscribe";
         }
     case 12 :
-        $string4 = "You need a member's account to log in to this world. Please use a free to play world.";
+        $string0 = "You need a member's account to log in to this world. Please use a free to play world.";
         $graphic14 = "loadingwheel,15";
     case 40 :
-        $string4 = "You need a member's account to log in to this instance. Please subscribe or use a different world.";
+        $string0 = "You need a member's account to log in to this instance. Please subscribe or use a different world.";
         $graphic14 = "loadingwheel,15";
         if (~script6431 = false) {
             $string5 = "Subscribe";
         }
     case 32 :
-        $string4 = "The unpaid balance on your account needs to be settled before you can log into game.";
+        $string0 = "The unpaid balance on your account needs to be settled before you can log into game.";
         if (~script6431 = false) {
             $string5 = "Unpaid Balance";
         }
         $string6 = "";
     case 47, 51 :
-        $string4 = "You need to validate your email address to log in.";
+        $string0 = "You need to validate your email address to log in.";
         if_sethide(false, interface_906:com_152);
     case 48 :
         if (~is_mobile_client = true) {
-            $string4 = "Your game session has now ended.<br><br>To play again, please close the app and wait 5 minutes before reloading it. ";
+            $string0 = "Your game session has now ended.<br><br>To play again, please close the app and wait 5 minutes before reloading it. ";
         } else {
-            $string4 = "Your game session has now ended.<br><br>To play again, please close your browser tab/window and wait 5 minutes before reloading the game. ";
+            $string0 = "Your game session has now ended.<br><br>To play again, please close your browser tab/window and wait 5 minutes before reloading the game. ";
         }
     case 50 :
-        $string4 = "The Jagex Account Guardian is protecting this account.<br><br>This device is not recognised.<br><br>No new devices can be added for up to 24 hours as too many failed attempts to answer the security questions have been made.<br><br>During this time access will still be granted to any devices already trusted.";
+        $string0 = "The Jagex Account Guardian is protecting this account.<br><br>This device is not recognised.<br><br>No new devices can be added for up to 24 hours as too many failed attempts to answer the security questions have been made.<br><br>During this time access will still be granted to any devices already trusted.";
         $string5 = "Back";
         $string6 = "";
         $graphic14 = "loadingwheel,16";
     case 52 :
-        $string4 = "You need to validate this device to use with your account. Please follow the instructions in the window that will open shortly.";
+        $string0 = "You need to validate this device to use with your account. Please follow the instructions in the window that will open shortly.";
         $string5 = "Back";
         $string6 = "";
         $graphic14 = "loadingwheel,16";
     case 49 :
-        $string4 = "The device you are doing is no longer valid. You should have received an email to validate the device. Please follow the instructions there. Be sure to check your spam folder.";
+        $string0 = "The device you are doing is no longer valid. You should have received an email to validate the device. Please follow the instructions there. Be sure to check your spam folder.";
         $string5 = "Back";
         $string6 = "";
         $graphic14 = "loadingwheel,16";
     case 58 :
-        $string4 = "Jagex Account Guardian cannot be used with the NXT Beta Client. Please disable JAG via Account Settings before continuing.<br><br>We strongly suggest activating the RuneScape Authenticator to enhance the security of your account.";
+        $string0 = "Jagex Account Guardian cannot be used with the NXT Beta Client. Please disable JAG via Account Settings before continuing.<br><br>We strongly suggest activating the RuneScape Authenticator to enhance the security of your account.";
         $string5 = "Account Settings";
     case 59 :
-        $string4 = "Jagex Account Guardian cannot be used with the NXT Beta Client. Please disable JAG via Account Settings before continuing.";
+        $string0 = "Jagex Account Guardian cannot be used with the NXT Beta Client. Please disable JAG via Account Settings before continuing.";
         $string5 = "Account Settings";
     case 54 :
-        $string4 = "Activity on this account has been exceeded.<br><br>Please try again tomorrow.";
+        $string0 = "Activity on this account has been exceeded.<br><br>Please try again tomorrow.";
     case 38 :
-        $string4 = "Your account does not currently have access to the NXT Beta.";
+        $string0 = "Your account does not currently have access to the NXT Beta.";
     case 60 :
-        $string4 = "Connection timed out. Please try again.";
+        $string0 = "Connection timed out. Please try again.";
     case 61 :
-        $string4 = "You need to set your date of birth to continue. Please log into the website to do so.";
+        $string0 = "You need to set your date of birth to continue. Please log into the website to do so.";
     case default :
-        $string4 = "Unexpected server response. Please try using a different world.";
+        $string0 = "Unexpected server response. Please try using a different world.";
 }
-~lobby_popup($int7, dbrow_4035, "Login Failed", $string4, $graphic14, $string5, $string6);
+~lobby_popup($int7, dbrow_4035, "Login Failed", $string0, $graphic14, $string5, $string6);

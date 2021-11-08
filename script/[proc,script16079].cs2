@@ -1,19 +1,35 @@
 // 16079
-[proc,script16079](int $int0)(boolean)
+[proc,script16079](int $int0, int $int1, dbrow $dbrow2)(boolean)
 if (%varplayerbit_20806 = 1) {
     return(false);
 }
-if (%varplayer_3079 < 7131 | %varplayer_3079 > 7150) {
-    return(false);
-}
-def_int $int1 = 0;
-def_int $int2 = 0;
 def_int $int3 = 0;
 def_int $int4 = 0;
+if ($dbrow2 = null) {
+    return(false);
+}
+if (db_getfieldcount($dbrow2, dbtable_134:col24) = 0) {
+    ~error("$bundle_data does not have a start_date attached, assume is out of bounds");
+    return(false);
+}
+if (db_getfieldcount($dbrow2, dbtable_134:col25) = 0) {
+    ~error("$bundle_data does not have a end_date attached, assume is out of bounds");
+    return(false);
+}
+$int3 = db_getfield($dbrow2, dbtable_134:col24, 0);
+$int4 = db_getfield($dbrow2, dbtable_134:col25, 0);
+if (%varplayer_3079 < $int3 | %varplayer_3079 > $int4) {
+    return(false);
+}
 def_int $int5 = 0;
-$int1, $int2, $int3 = date_runeday_todate($int0);
-$int1, $int4, $int5 = date_runeday_todate(%varplayer_3079);
-if ($int2 = $int4 & $int3 = $int5) {
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+$int5, $int6, $int7 = date_runeday_todate($int0);
+$int5, $int8, $int9 = date_runeday_todate(%varplayer_3079);
+def_int $int10 = db_getfield($dbrow2, dbtable_134:col26, 0);
+if ($int6 = $int8 & $int7 = $int9 & $int10 <= $int1) {
     return(false);
 } else {
     return(true);
