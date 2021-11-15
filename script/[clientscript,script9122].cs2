@@ -8,7 +8,7 @@
 %varclient_4141 = $int11;
 %varclient_1781 = $int0;
 %varclient_4077 = $int9;
-%varplayerbit_4322 = $int17;
+%varplayerbit_4321 = $int17;
 %varplayerbit_25803 = $int18;
 %varplayerbit_4346 = $int16;
 %varclient_4097 = $int22;
@@ -33,7 +33,7 @@ switch_int ($int1) {
         $int26 = $int5;
 }
 if (%varplayerbit_4323 <= 0) {
-    if_sethide(true, interface_1253:com_211);
+    if_sethide(true, interface_1253:com_209);
     if (~trh_state(struct_33919) = 1 | ~script15406(struct_33919, %varplayer_3079) = true) {
         if_sethide(false, interface_1253:com_79);
     }
@@ -58,12 +58,11 @@ switch_int (%varclient_1928) {
     case 28 :
         %varclient_6507, $string6 = ~script1286($int9, $int26);
 }
-if_sethide(false, interface_1253:com_220);
-def_string $string7 = "Convert Value";
+if_sethide(false, interface_1253:com_218);
+def_string $string7 = "Or convert to Oddments :";
 def_int $int27 = 0;
 switch_int ($int24) {
     case 40932 :
-        $string7 = "Oddments Value";
         switch_int ($int9) {
             case 1 :
                 $int27 = 25;
@@ -80,58 +79,50 @@ switch_int ($int24) {
         }
         $int27 = calc($int27 * %varclient_6507);
     case 52555 :
-        $string7 = "H'oddments Value";
+        $string7 = "Or convert to H'Oddments :";
         $int27 = 50;
 }
-if_settext($string7, interface_1253:com_238);
+if_settext($string7, interface_1253:com_265);
 if ($int27 = 0) {
-    if_settext("-", interface_1253:com_239);
+    if_settext("-", interface_1253:com_275);
 } else {
-    if_settext(tostring_localised($int27, true), interface_1253:com_239);
+    if_settext("+<tostring_localised($int27, true)>", interface_1253:com_275);
 }
 if (%varclient_6507 > 1) {
     $string3 = append("<$string6><tostring(%varclient_6507)></col>x ", $string3);
     $string4 = append("<$string6><tostring(%varclient_6507)></col>x ", $string4);
     $string5 = append("<$string6><tostring(%varclient_6507)></col>x ", $string5);
 }
-~script14944(interface_1253:com_221, %varclient_6507, $int9, $int10, $obj2, $int5);
-~script14943(interface_1253:com_218, $string3, $string0, oc_members($obj2), $int10);
+~script14944(interface_1253:com_219, %varclient_6507, $int9, $int10, $obj2, $int5);
+~script14943(interface_1253:com_216, $string3, $string0, oc_members($obj2), $int10);
 if ($int23 = 1 & $obj3 ! null & $obj4 ! null) {
-    if_sethide(false, interface_1253:com_224);
-    if_sethide(false, interface_1253:com_230);
-    if_sethide(false, interface_1253:com_293);
-    if_setposition(0, 17, ^setpos_abs_centre, ^setpos_abs_centre, interface_1253:com_282);
-    if_setsize(480, 507, ^setsize_abs, ^setsize_abs, interface_1253:com_215);
-    if_setposition(0, 40, ^setpos_abs_centre, ^setpos_abs_centre, interface_1253:com_215);
-    if_setposition(10, 235, ^setpos_abs_right, ^setpos_abs_top, interface_1253:com_282);
-    if_setposition(10, 202, ^setpos_abs_right, ^setpos_abs_top, interface_1253:com_242);
-    ~script14944(interface_1253:com_227, %varclient_6507, $int9, 0, $obj3, $int6);
-    ~script14944(interface_1253:com_233, %varclient_6507, $int9, 0, $obj4, $int7);
-    ~script14943(interface_1253:com_224, $string4, $string1, oc_members($obj3), 0);
-    ~script14943(interface_1253:com_230, $string5, $string2, oc_members($obj4), 0);
+    if_sethide(false, interface_1253:com_222);
+    if_sethide(false, interface_1253:com_228);
+    ~script14399;
+    if_sethide(false, interface_1253:com_234);
+    if_settrans(0, interface_1253:com_234);
+    if_setontimer("script10534(event_com, 20)", interface_1253:com_234);
+    if_setsize(480, 503, ^setsize_abs, ^setsize_abs, interface_1253:com_213);
+    if (~is_mobile_client = false) {
+        if_setposition(0, 50, ^setpos_abs_centre, ^setpos_abs_centre, interface_1253:com_213);
+    } else {
+        if_setposition(0, 30, ^setpos_abs_centre, ^setpos_abs_centre, interface_1253:com_213);
+    }
+    if_setposition(5, 5, ^setpos_abs_left, ^setpos_abs_top, interface_1253:com_216);
+    ~script14944(interface_1253:com_225, %varclient_6507, $int9, 0, $obj3, $int6);
+    ~script14944(interface_1253:com_231, %varclient_6507, $int9, 0, $obj4, $int7);
+    ~script14943(interface_1253:com_222, $string4, $string1, oc_members($obj3), 0);
+    ~script14943(interface_1253:com_228, $string5, $string2, oc_members($obj4), 0);
 } else {
-    if_sethide(true, interface_1253:com_224);
-    if_sethide(true, interface_1253:com_230);
-    if_sethide(true, interface_1253:com_293);
-    if_setposition(0, -40, ^setpos_abs_centre, ^setpos_abs_centre, interface_1253:com_282);
-    if_setsize(480, 245, ^setsize_abs, ^setsize_abs, interface_1253:com_215);
-    if_setposition(0, -10, ^setpos_abs_centre, ^setpos_abs_centre, interface_1253:com_215);
-    if_setposition(10, 170, ^setpos_abs_left, ^setpos_abs_top, interface_1253:com_282);
-    if_setposition(0, 10, ^setpos_abs_centre, ^setpos_abs_bottom, interface_1253:com_242);
+    if_sethide(true, interface_1253:com_222);
+    if_sethide(true, interface_1253:com_228);
+    if_sethide(true, interface_1253:com_234);
+    if_setontimer(null, interface_1253:com_234);
+    if_setsize(480, 280, ^setsize_abs, ^setsize_abs, interface_1253:com_213);
+    if_setposition(0, -10, ^setpos_abs_centre, ^setpos_abs_centre, interface_1253:com_213);
+    if_setposition(5, 0, ^setpos_abs_left, ^setpos_abs_centre, interface_1253:com_216);
 }
 def_int $int28 = 0;
-if (%varplayerbit_4322 > 0 | %varclient_2045 > 1) {
-    $int28 = calc(%varclient_2045 - %varplayerbit_4322);
-    if (~trh_state(struct_33522) = 1) {
-        if_sethide(true, interface_1253:com_242);
-    } else {
-        if_sethide(false, interface_1253:com_242);
-    }
-    if_settext("<tostring(max(1, $int28))>/<tostring(max(1, %varclient_2045))>", interface_1253:com_245);
-} else {
-    if_settext("1/1", interface_1253:com_245);
-    if_sethide(true, interface_1253:com_242);
-}
 ~wof_button_setup_claim($obj25, $int26);
 ~wof_button_setup_claim_bank($obj25, $int26);
 ~wof_button_setup_claim_inv($obj25, $int26);

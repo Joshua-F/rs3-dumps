@@ -1,0 +1,33 @@
+// 16312
+[proc,script16312](struct $struct0)
+def_int $int1 = 0;
+def_int $int2 = 0;
+$int1 = ~script12869($struct0);
+$int2 = min(scale($int1, calc(struct_param($struct0, param_6142) * struct_param($struct0, param_6144)), if_getwidth(interface_1343:com_168)), if_getwidth(interface_1343:com_168));
+if (cc_find(interface_1343:com_168, 0) = true) {
+    cc_settext("<~tostring_spacer_local(calc($int1 / struct_param($struct0, param_4926)))>/<~tostring_spacer_local(calc(struct_param($struct0, param_6142) * struct_param($struct0, param_6144) / struct_param($struct0, param_4926)))>");
+}
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_obj $obj6 = null;
+def_graphic $graphic7 = null;
+def_enum $enum8 = struct_param($struct0, param_6146);
+def_component $component9 = interface_1343:com_169;
+while ($int3 < 7) {
+    if (cc_find($component9, $int3) = true) {
+        $obj6 = enum(int, obj, $enum8, $int3);
+        $int5, $int4 = ~script16311($int3, 1);
+        $graphic7 = oc_param($obj6, param_6276);
+        if ($int1 >= $int4 & $int5 = 0) {
+            $graphic7 = oc_param($obj6, param_4909);
+        } else if ($int1 < $int4) {
+            $int5 = 2;
+            $graphic7 = oc_param($obj6, param_4912);
+        }
+        cc_setgraphic($graphic7);
+        ~script15824($struct0, $component9, $graphic7, $obj6, 1, $int4, $int5);
+    }
+    $int3 = calc($int3 + 1);
+}
+if_setontimer("script12886(interface_1343:com_170, interface_1343:com_156, interface_1343:com_157, $int2)", interface_1343:com_170);

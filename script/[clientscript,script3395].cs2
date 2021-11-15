@@ -10,41 +10,46 @@ if (%varplayer_7102 > 0) {
 if (%varplayer_9853 ! null) {
     $int2 = 1;
 }
-def_int $int4 = 40;
+def_int $int4 = 41;
+def_boolean $boolean5 = ~is_mobile_client;
 if ($int1 = 1) {
     if ($struct0 = struct_38726) {
         $int3 = calc($int3 * 2);
     }
     switch_obj (%varplayer_7101) {
         case obj_52555 :
-            if_setmodel(model_124450, interface_1253:com_320);
-            if_settext(oc_name(%varplayer_7101), interface_1253:com_322);
-            if_settext("to spend in the H'oddments Store.", interface_1253:com_323);
+            if_settext(oc_name(%varplayer_7101), interface_1253:com_310);
+            if_settext("to spend in the H'oddments Store.", interface_1253:com_311);
         case default :
-            if_setmodel(model_119977, interface_1253:com_320);
-            if_settext(oc_name(obj_40932), interface_1253:com_322);
-            if_settext("to spend in the Oddments Store.", interface_1253:com_323);
+            if_settext(oc_name(obj_40932), interface_1253:com_310);
+            if_settext("to spend in the Oddments Store.", interface_1253:com_311);
     }
-    if_settext("+<tostring($int3)>", interface_1253:com_321);
-    if_sethide(false, interface_1253:com_314);
-    if ($int2 = 1) {
-        if_setposition($int4, -85, ^setpos_abs_right, ^setpos_abs_centre, interface_1253:com_314);
+    if_settext("+<tostring($int3)>", interface_1253:com_309);
+    if_sethide(false, interface_1253:com_302);
+    if ($int2 = 0 & ~script443(~trh_promo_current) = false) {
+        if_setposition($int4, 2, ^setpos_abs_left, ^setpos_abs_centre, interface_1253:com_302);
+    } else if ($boolean5 = false) {
+        if_setposition($int4, -70, ^setpos_abs_left, ^setpos_abs_centre, interface_1253:com_302);
     } else {
-        if_setposition($int4, -31, ^setpos_abs_right, ^setpos_abs_centre, interface_1253:com_314);
+        if_setposition($int4, -88, ^setpos_abs_left, ^setpos_abs_centre, interface_1253:com_302);
     }
 } else {
-    if_sethide(true, interface_1253:com_314);
+    if_sethide(true, interface_1253:com_302);
 }
 if ($int2 = 1) {
-    if_sethide(false, interface_1253:com_324);
-    if_setgraphic(if_getgraphic(interface_1253:com_204), interface_1253:com_327);
-    if_setobject(%varplayer_9853, %varplayer_9854, interface_1253:com_328);
-    ~script3394(%varplayer_9853, interface_1253:com_328);
+    if_sethide(false, interface_1253:com_312);
+    if_setgraphic(if_getgraphic(interface_1253:com_202), interface_1253:com_315);
+    if_setobject(%varplayer_9853, %varplayer_9854, interface_1253:com_316);
+    ~script3394(%varplayer_9853, interface_1253:com_316);
     if ($int1 = 1) {
-        if_setposition($int4, 100, ^setpos_abs_right, ^setpos_abs_centre, interface_1253:com_324);
+        if ($boolean5 = false) {
+            if_setposition($int4, 108, ^setpos_abs_left, ^setpos_abs_centre, interface_1253:com_312);
+        } else {
+            if_setposition($int4, 90, ^setpos_abs_left, ^setpos_abs_centre, interface_1253:com_312);
+        }
     } else {
-        if_setposition($int4, -31, ^setpos_abs_right, ^setpos_abs_centre, interface_1253:com_324);
+        if_setposition($int4, 2, ^setpos_abs_left, ^setpos_abs_centre, interface_1253:com_312);
     }
 } else {
-    if_sethide(true, interface_1253:com_324);
+    if_sethide(true, interface_1253:com_312);
 }

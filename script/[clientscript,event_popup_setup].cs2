@@ -1,7 +1,7 @@
 // 4608
-[clientscript,event_popup_setup](graphic $graphic0, obj $obj1, int $int2, int $int3, int $int4)
+[clientscript,event_popup_setup](struct $struct0, graphic $graphic1, obj $obj2, int $int3, int $int4, int $int5)
 def_string $string0 = "";
-switch_int ($int4) {
+switch_int ($int5) {
     case 2 :
         $string0 = "<col=FF0000>Locked";
     case 0 :
@@ -9,11 +9,14 @@ switch_int ($int4) {
     case 1 :
         $string0 = "<col=00FF00>Claimed";
 }
-if_sethide(false, interface_1802:com_146);
-if_settext(oc_name($obj1), interface_1802:com_156);
-if ($graphic0 = null) {
-    if_setobject($obj1, $int2, interface_1802:com_154);
-} else {
-    if_setgraphic($graphic0, interface_1802:com_154);
+if (struct_param($struct0, param_4926) > 1) {
+    $int4 = calc($int4 / struct_param($struct0, param_4926));
 }
-if_settext("Unlocked at : <tostring_localised($int3, true)><br> Current state : <$string0>", interface_1802:com_157);
+if_sethide(false, interface_1802:com_146);
+if_settext(oc_name($obj2), interface_1802:com_156);
+if ($graphic1 = null) {
+    if_setobject($obj2, $int3, interface_1802:com_154);
+} else {
+    if_setgraphic($graphic1, interface_1802:com_154);
+}
+if_settext("Unlocked at : <tostring_localised($int4, true)><br> Current state : <$string0>", interface_1802:com_157);

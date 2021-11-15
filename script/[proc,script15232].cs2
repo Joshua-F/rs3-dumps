@@ -23,6 +23,19 @@ switch_int ($int0) {
         if (platformtype = ^platformtype_default) {
             openurl("www", "l=<tostring(clientoption_get(^clientoption_language))>/members_benefits", false);
         }
+    case 20 :
+        if (platformtype = ^platformtype_default | platformtype = ^platformtype_steam) {
+            switch_int (map_lang) {
+                case default :
+                    openurlraw("https://rs.runescape.com/premier-club", true);
+                case 1 :
+                    openurlraw("https://rs.runescape.com/de-DE/premier-club", true);
+                case 2 :
+                    openurlraw("https://rs.runescape.com/fr-FR/premier-club", true);
+                case 3 :
+                    openurlraw("https://rs.runescape.com/pt-BR/premier-club", true);
+            }
+        }
     case 8 :
         switch_client_type (clienttype) {
             case enhanced_android :
@@ -126,7 +139,7 @@ switch_int ($int0) {
             openurl("billing_core", "userdetails.ws", true);
         }
     case default :
-        if ($int0 >= 1000 & $int0 <= 1017) {
+        if ($int0 >= 1000 & $int0 <= 1018) {
             ~script15234($int0);
         }
 }
