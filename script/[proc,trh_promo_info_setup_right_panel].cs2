@@ -1,0 +1,112 @@
+// 15074
+[proc,trh_promo_info_setup_right_panel](dbrow $dbrow0)
+def_int $int1 = 0;
+~if_add_child_background(interface_1253:com_328, 0, $int1, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_4471, 1);
+def_int $int2 = db_getfieldcount($dbrow0, dbtable_156:col9);
+if ($int2 = 0) {
+    return;
+}
+def_int $int3 = 0;
+def_int $int4 = 10;
+def_int $int5 = -1;
+def_dbrow $dbrow6 = null;
+def_string $string0 = "";
+def_int $int7 = 0;
+def_int $int8 = -1;
+def_dbrow $dbrow9 = null;
+def_string $string1 = "";
+def_obj $obj10 = null;
+def_graphic $graphic11 = null;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 10;
+def_string $string2 = "";
+def_string $string3 = "";
+def_int $int15 = 0;
+def_int $int16 = 0;
+def_int $int17 = 0;
+~if_add_child_layer(interface_1253:com_328, 1, $int1++, 0, 10, ^setpos_abs_centre, ^setpos_abs_top, 20, 18, ^setsize_minus, ^setsize_abs);
+~cc_add_child_text(1, $int1, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_4129, db_getfield($dbrow0, dbtable_156:col8, 0));
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_setcolour(0x9ccce5);
+$int1 = 0;
+~if_add_child_layer(interface_1253:com_329, 0, $int1++, 10, 0, ^setpos_abs_left, ^setpos_abs_top, calc(10 + 16), 0, ^setsize_minus, ^setsize_minus);
+def_int $int18 = cc_getwidth;
+def_int $int19 = $int1;
+def_int $int20 = 10;
+while (++$int5 < $int2) {
+    $dbrow6 = db_getfield($dbrow0, dbtable_156:col9, $int5);
+    if ($dbrow6 = null) {
+        return;
+    }
+    $int19 = $int1;
+    ~cc_add_child_rect(0, $int1++, 0, $int3, ^setpos_abs_centre, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_4127);
+    $int3 = calc($int3 + 10);
+    $string0 = db_getfield($dbrow6, dbtable_157:col0, 0);
+    if (string_length($string0) > 0) {
+        ~cc_add_child_text(0, $int1++, $int4, $int3, ^setpos_abs_left, ^setpos_abs_top, 20, 17, ^setsize_minus, ^setsize_abs, dbrow_4130, $string0);
+        cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+        $int20 = calc($int20 + 17);
+        $int3 = calc($int3 + 20);
+    }
+    $int7 = db_getfieldcount($dbrow6, dbtable_157:col1);
+    while (++$int8 < $int7) {
+        $dbrow9 = db_getfield($dbrow6, dbtable_157:col1, $int8);
+        $string1 = db_getfield($dbrow9, dbtable_158:col0, 0);
+        $obj10 = db_getfield($dbrow9, dbtable_158:col1, 0);
+        $graphic11, $int12, $int13 = db_getfield($dbrow9, dbtable_158:col2, 0);
+        $int14 = db_getfield($dbrow9, dbtable_158:col3, 0);
+        $string2 = db_getfield($dbrow9, dbtable_158:col4, 0);
+        $string3 = db_getfield($dbrow9, dbtable_158:col5, 0);
+        if (string_length($string1) > 0) {
+            if ($int16 > 0) {
+                $int16 = 0;
+                $int4 = 10;
+                $int3 = calc($int3 + ($int17 + 10));
+                $int20 = calc($int20 + ($int17 + 10));
+            }
+            $int1, $int17 = ~script15075($string1, $int1, $int4, $int3, $int18);
+            $int15 = 1;
+        } else if ($graphic11 ! dbrow_graphic_null) {
+            $int1, $int4, $int16, $int17 = ~script15088($graphic11, $int1, $int4, $int3, $int12, $int13, $int17, $int16, $string2, $int14, $string3);
+            if ($int16 = 3) {
+                $int15 = 1;
+            }
+        } else {
+            $int1, $int4, $int16, $int17 = ~script15215($obj10, $int1, $int4, $int3, $int17, $int16, $string2, $int14, $string3);
+            if ($int16 = 3) {
+                $int15 = 1;
+            }
+        }
+        if ($int15 = 1) {
+            $int15 = 0;
+            $int16 = 0;
+            $int3 = calc($int3 + ($int17 + 10));
+            $int20 = calc($int20 + ($int17 + 10));
+            $int4 = 10;
+        }
+    }
+    if ($int16 ! 0) {
+        $int16 = 0;
+        $int3 = calc($int3 + ($int17 + 10));
+        $int20 = calc($int20 + ($int17 + 10));
+        $int17 = 0;
+        $int4 = 10;
+    }
+    if (.cc_findbycategory(interface_1253:com_329, 0, $int19) = 1) {
+        .cc_setsize(0, $int20, ^setsize_minus, ^setsize_abs);
+    }
+    $int8 = -1;
+    $int20 = 10;
+    $int3 = calc($int3 + 10);
+}
+if (cc_findbycategory(interface_1253:com_329, 0, 0) = 1) {
+    if ($int3 > 492) {
+        cc_setsize(calc(10 + 16), $int3, ^setsize_minus, ^setsize_abs);
+        if_setscrollpos(0, 0, interface_1253:com_329);
+        if_setscrollsize(380, $int3, interface_1253:com_329);
+        ~rs3_scrollbar_vertical(interface_1253:com_330, interface_1253:com_329);
+    } else {
+        cc_setsize(20, $int3, ^setsize_minus, ^setsize_abs);
+    }
+}

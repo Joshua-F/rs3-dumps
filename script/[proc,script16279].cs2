@@ -1,0 +1,78 @@
+// 16279
+[proc,script16279](int $int0)
+~mtx_benefits_draw_title($int0, "Treasure Hunter Keys");
+def_string $string0 = "The current Treasure Hunter promotion is :";
+def_struct $struct1 = ~trh_promo_current;
+if ($struct1 ! null) {
+    $string0 = "<$string0> <col=FFFFFF><struct_param($struct1, param_4911)></col>";
+} else {
+    $string0 = "There isn't currently an active Treasure Hunter promotion.";
+}
+~script16268($int0, "You currently have <col=FFFFFF><tostring(~script6950)></col> Treasure Hunter keys. Spend them within Treasure Hunter");
+~script16268($int0, $string0);
+~script16268($int0, "You currently earn <col=FFFFFF><tostring(~script11207)></col> Treasure Hunter keys each day.");
+~script16267($int0, "Standard Daily Keys");
+def_string $string1 = ~text_plural(1, "key", "keys");
+~script16268($int0, "By default, you're given <col=FFFFFF><tostring(1)></col> daily <$string1>.");
+$string1 = ~text_plural(calc(2 - 1), "key", "keys");
+if (playermember = true) {
+    ~script16268($int0, "As you're a member, you earn <col=FFFFFF>+<tostring(calc(2 - 1))></col> extra daily <$string1>.");
+} else {
+    ~script16269($int0, "If you were a member, you'd earn <col=FFFFFF>+<tostring(calc(2 - 1))></col> extra daily <$string1>.", "Purchase<br>Membership", 1);
+}
+if (~script11210 = true) {
+    ~script16268($int0, "As you've purchased the Teatime Max Pack, you earn <col=FFFFFF>+1</col> extra daily key.");
+} else {
+    ~script16269($int0, "Purchase the Teatime Max Pack to earn <col=FFFFFF>+1</col> extra daily key.", "Purchase Teatime Max Pack", 10);
+}
+if (~script11211 = true) {
+    ~script16268($int0, "As you're a Premier Club member, you earn <col=FFFFFF>+1</col> extra daily key.");
+} else {
+    ~script16292($int0, "If you were a Premier Club member, you'd earn <col=FFFFFF>+1</col> extra daily key.");
+}
+if (~script16249 = 2 | ~script16250 = 2) {
+    if (~script16251 = true) {
+        ~script16268($int0, "As Customer Support Week is active and you've set a bank pin, you earn <col=FFFFFF>+1</col> extra daily key.");
+    } else {
+        ~script16268($int0, "Customer Support Week is active, so if you set up a bank pin you could earn <col=FFFFFF>+1</col> extra daily key.");
+    }
+    if (~script13063(19) = true) {
+        ~script16268($int0, "As Customer Support Week is active and you've set up an authenticator, you earn <col=FFFFFF>+1</col> extra daily key.");
+    } else {
+        ~script16268($int0, "Customer Support Week is active, so if you set up an authenticator you could earn <col=FFFFFF>+1</col> extra daily key.");
+    }
+}
+~script16267($int0, "Doubling Daily Keys");
+def_int $int2 = ~script11209;
+def_string $string2 = "";
+if ($int2 > 0) {
+    $string2 = ~text_plural($int2, "once", "<tostring($int2)> times!");
+    ~script16268($int0, "Each day, your daily keys get doubled <col=FFFFFF><$string2></col>");
+} else {
+    ~script16268($int0, "You don't have anything doubling your current daily keys.");
+}
+def_int $int3 = ~script11208;
+~script16268($int0, "Doubling your daily keys is multiplicative. Your first Doubling benefit would net you <col=FFFFFF><tostring(calc($int3 * 2))></col> daily keys. However, if you had two doubling benefits active, that would net you <col=FFFFFF><tostring(calc($int3 * 4))></col> daily keys.");
+def_int $int4 = 0;
+if (~script13727(25) = 1) {
+    $int4 = calc(~script13728(25) - date_runeday);
+    $string2 = ~script985($int4, "However, this is the last day that this benefit will remain active.", "However there is only <col=FFFFFF>one</col> day of this benefit remaining.", "This benefit lasts for <col=FFFFFF><tostring($int4)></col> more days.");
+    ~script16268($int0, "As you've purchased the Double Daily Keys Package, you're doubling your daily keys. <$string2>");
+} else {
+    ~script16269($int0, "Double up on your daily Treasure Hunter keys!", "Purchase Double Daily Keys", 11);
+}
+if (~script11213 = true) {
+    ~script16268($int0, "As you've activated the Mobile Founders Pack, you're doubling your daily keys!");
+} else {
+    ~script16269($int0, "Pick up the Mobile Founders' Pack for double the daily Treasure Hunter keys!", "Claim Mobile Founders Pack", 12);
+}
+if (~script11215 = true) {
+    $string2 = ~text_plural(~script11565, "You have 1 day left of this benefit.", "You have <tostring(~script11565)> days left of this benefit.");
+    ~script16268($int0, "As you're a Premier member and you're within your first 30 days of Premier membership, you're doubling your daily keys! <$string2>");
+} else if (~script15757 = false) {
+    ~script16292($int0, "If you purchase Premier Club you would double your daily keys for the first 30 days!");
+}
+if (~script11214 = true) {
+    ~script16268($int0, "An event is earning you double daily keys!");
+}
+~script16271($int0, "Open<br>Treasure Hunter", 8, struct_45564, mtx_store_benefits_art_tertiary_treasure_hunter, "Purchase Keys<br>via Shop", 7, struct_45564, mtx_store_benefits_art_tertiary_purchase_treasure_hunter_keys, "Purchase Keys<br>via Bonds", 13, struct_45564, mtx_store_benefits_art_tertiary_purchase_use_bonds);

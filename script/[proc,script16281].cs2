@@ -1,0 +1,31 @@
+// 16281
+[proc,script16281](dbrow $dbrow0, int $int1)(graphic, string)
+if ($dbrow0 = null | db_getrowtable($dbrow0) ! dbtable_160) {
+    $dbrow0 = dbrow_4972;
+}
+def_int $int2 = -1;
+def_int $int3 = -1;
+def_int $int4 = -1;
+def_graphic $graphic5 = db_getfield($dbrow0, dbtable_160:col4, 0);
+$int3 = db_getfield($dbrow0, dbtable_160:col1, 0);
+$int4 = db_getfield($dbrow0, dbtable_160:col0, 0);
+if ($int3 = -1 | $int4 = -1 | $dbrow0 = dbrow_4972) {
+    $int2, $int3, $int4 = date_runeday_todate($int1);
+}
+def_int $int6 = ~script11569($int4, $int3);
+def_string $string0 = "View<br>";
+switch_int ($int6) {
+    case 1 :
+        if ($int4 < date_year) {
+            $string0 = "Claim<br>";
+        } else if ($int4 = date_year & $int3 <= ~date_month) {
+            $string0 = "Claim<br>";
+        }
+        $string0 = "<$string0><enum(int, string, enum_10037, $int3)> <tostring($int4)><br>monthly drop.";
+    case 2 :
+        $graphic5 = mtx_store_benefits_art_tertiary_drops_greyscale;
+        $string0 = "<$string0><enum(int, string, enum_10037, $int3)> <tostring($int4)><br>monthly drop. (Already claimed)";
+    case default :
+        $string0 = "<$string0><enum(int, string, enum_10037, $int3)> <tostring($int4)><br>monthly drop.";
+}
+return($graphic5, $string0);

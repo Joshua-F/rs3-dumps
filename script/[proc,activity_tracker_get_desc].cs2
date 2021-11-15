@@ -26,20 +26,10 @@ switch_int ($int0) {
     case 4 :
         $struct4 = ~task_get_struct($int1);
         if ($struct4 ! null) {
-            $int11 = struct_param($struct4, param_2235);
-            $string0 = struct_param($struct4, param_1273);
-            if (~script9851($int1) = 1) {
-                $string0 = ~script10524($string0, $int11, $struct4);
-                $int11 = calc($int11 * 2);
-            }
-            if (~script8242($int1) >= $int11) {
-                $string0 = "Daily challenge complete! Return to Challenge Mistress";
-            }
-            if (struct_param($struct4, param_3292) = 0) {
-                $int6 = ~script8243($int1);
-                if ($int6 < 6) {
-                    $string0 = append($string0, "<br>Days Left: <~script3944(calc(6 - $int6))>");
-                }
+            if (~script8242($int1) >= struct_param($struct4, param_2235) & ~script10583(~script9851($int1)) = 1) {
+                $string0 = "Claim your reward in the Challenges tab of Adventures";
+            } else {
+                $string0 = ~challenge_details($struct4, ~script9851($int1));
             }
         }
         return($string0);

@@ -1,0 +1,70 @@
+// 16272
+[proc,mtx_benefits_draw_button](component $component0, int $int1, string $string0, int $int2, fontmetrics $fontmetrics3, int $int4, struct $struct5, graphic $graphic6, int $setposh7, int $int8, int $int9, int $int10, int $int11)(int)
+def_int $int12 = if_getnextcategorysubid($int1, $component0);
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = struct_param($struct5, param_4929);
+def_int $int16 = struct_param($struct5, param_4930);
+def_int $int17 = 0;
+def_int $int18 = 0;
+if (cc_findbycategory($component0, $int18, $int4) = 1) {
+    $int18 = 234;
+    while (cc_findbycategory($component0, $int18, $int4) = 1 & $int18 > 200) {
+        $int18 = calc($int18 - 1);
+    }
+}
+if (cc_findbycategory($component0, $int1, 0) = 1) {
+    $int13 = cc_param(param_4934);
+    $int14 = $int13;
+    $int13 = calc($int13 + $int9);
+    if ($int11 = 1) {
+        $setposh7 = ^setpos_abs_centre;
+        $int8 = 0;
+        ~cc_add_child_button($int18, $int4, $int8, $int13, ^setpos_abs_centre, ^setpos_abs_top, 450, 40, ^setsize_abs, ^setsize_abs, dbrow_5001, $string0);
+        cc_setop(1, "Select");
+        cc_setopcursor(1, cursor_46);
+        cc_setonscrollwheel("scrollbar_vertical_wheel(interface_908:com_7, interface_908:com_6, event_mousey)");
+        $int13 = calc($int13 + 40);
+        $int13 = calc($int13 + 7);
+    } else {
+        cc_createchild(^iftype_layer, $int1, $int12);
+        cc_setposition($int8, $int13, $setposh7, ^setpos_abs_top);
+        cc_setsize($int16, $int15, ^setsize_abs, ^setsize_abs);
+        $int13 = calc($int13 + $int15);
+        $int12 = calc($int12 + 1);
+        cc_createchild(^iftype_graphic, $int18, $int4);
+        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+        cc_setgraphic(mtx_store_package_small_background);
+        cc_setop(1, "Select");
+        cc_setopcursor(1, cursor_46);
+        cc_setonclick("graphic_swapper_dynamic_category(event_com, $int1, calc($int12 + 1), struct_param($struct5, param_8199))");
+        cc_setonrelease("graphic_swapper_dynamic_category(event_com, $int1, calc($int12 + 1), struct_param($struct5, param_8197))");
+        cc_setonmouseover("graphic_swapper_dynamic_category(event_com, $int1, calc($int12 + 1), struct_param($struct5, param_8198))");
+        cc_setonmouseleave("graphic_swapper_dynamic_category(event_com, $int1, calc($int12 + 1), struct_param($struct5, param_8197))");
+        cc_sendtoback;
+        cc_createchild(^iftype_graphic, $int1, $int12);
+        $int12 = calc($int12 + 1);
+        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+        cc_setgraphic($graphic6);
+        cc_createchild(^iftype_graphic, $int1, $int12);
+        $int12 = calc($int12 + 1);
+        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+        cc_setgraphic(struct_param($struct5, param_8197));
+        cc_createchild(^iftype_text, $int1, $int12);
+        $int12 = calc($int12 + 1);
+        $int17 = ~script15891($string0, $int16, $fontmetrics3, 0);
+        cc_setposition(0, $int2, ^setpos_abs_left, ^setpos_abs_bottom);
+        cc_setsize(0, $int17, ^setsize_minus, ^setsize_abs);
+        cc_settextfont($fontmetrics3);
+        cc_setcolour(0xffeaac);
+        cc_settext($string0);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 20);
+    }
+}
+if (cc_findbycategory($component0, $int1, 0) = 1 & $int10 = 1) {
+    cc_setparam(param_4934, $int13);
+}
+return(calc($int13 - $int14));

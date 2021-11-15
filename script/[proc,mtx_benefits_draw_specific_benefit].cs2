@@ -1,0 +1,31 @@
+// 16259
+[proc,mtx_benefits_draw_specific_benefit](int $int0)
+if (~script16256($int0) = false) {
+    return;
+}
+def_boolean $boolean1 = ~script16258($int0);
+def_int $int2 = 0;
+def_int $int3 = 0;
+if (if_find(interface_908:com_6) = true) {
+    $int2 = cc_param(param_4934);
+}
+if_createchild(^iftype_layer, $int0, 0, interface_908:com_6);
+cc_setposition(0, $int2, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(676, $int3, ^setsize_abs, ^setsize_abs);
+if ($boolean1 = true) {
+    cc_setparam_int(param_4935, 1);
+}
+~script16277($int0);
+if (cc_findbycategory(interface_908:com_6, $int0, 0) = 1) {
+    if ($boolean1 = true) {
+        cc_setparam_int(param_4935, 1);
+        $int3 = 52;
+    } else {
+        cc_setparam_int(param_4935, 0);
+        $int3 = cc_param(param_4934);
+    }
+    $int3 = calc($int3 + 6);
+    cc_setsize(676, $int3, ^setsize_abs, ^setsize_abs);
+}
+def_int $int4 = calc($int2 + $int3);
+if_setparam_int(param_4934, $int4, interface_908:com_6);

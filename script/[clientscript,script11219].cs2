@@ -1,10 +1,18 @@
 // 11219
 [clientscript,script11219](int $int0, int $int1, int $int2, int $int3)
-def_string $string0 = format_datetime_from_minutes(calc($int1 - $int2 + date_minutes));
+def_string $string0 = "";
+def_string $string1 = "";
+def_graphic $graphic4 = menu_icon_premium_normal;
+$string0 = format_datetime_from_minutes(calc($int1 - $int2 + date_minutes));
 if ($int3 = 1) {
-    if_settext("You have an active recurring subscription.", interface_1607:com_23);
+    $string1 = "You have an active recurring subscription.";
+    $graphic4 = menu_icon_premium_normal;
 } else if ($int2 < $int1) {
-    if_settext("Member Until:<br><$string0>", interface_1607:com_23);
+    $string1 = "Member Until:<br><$string0>";
+    $graphic4 = menu_icon_premium_normal;
 } else {
-    if_settext("You are currently not a Member.", interface_1607:com_23);
+    $string1 = "You are not currently a Member.";
+    $graphic4 = rs3_menu_icon_premium_locked;
 }
+if_settext($string1, interface_1607:com_23);
+if_setgraphic($graphic4, interface_1607:com_22);

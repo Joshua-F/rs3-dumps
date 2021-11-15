@@ -2,22 +2,6 @@
 [proc,script3943](struct $struct0, int $int1, int $int2)
 def_struct $struct3 = $struct0;
 def_int $int4 = 0;
-def_int $int5 = 0;
-if (%varplayerbit_16574 > 0) {
-    $int5 = calc($int5 + 1);
-}
-if (%varplayerbit_16578 > 0) {
-    $int5 = calc($int5 + 1);
-}
-if (%varplayerbit_16582 > 0) {
-    $int5 = calc($int5 + 1);
-}
-if (%varplayerbit_16586 > 0) {
-    $int5 = calc($int5 + 1);
-}
-if (%varplayerbit_16590 > 0) {
-    $int5 = calc($int5 + 1);
-}
 if ($struct3 ! null) {
     if (~script6783(1) = $struct0) {
         if (%varplayerbit_16576 >= struct_param($struct0, param_2235) & ~script10583(1) = 1) {
@@ -49,146 +33,107 @@ if ($struct3 ! null) {
         } else {
             $int4 = 1;
         }
-    } else if (~script6783(7) = $struct0) {
-        if (struct_param($struct0, param_4797) ! null) {
-            $struct3 = struct_param($struct0, param_4797);
-        }
-        if (%varplayerbit_21379 >= struct_param($struct0, param_2235)) {
-            $int4 = 4;
-        } else {
-            $int4 = 3;
-        }
     }
 }
-def_struct $struct6 = struct_28556;
-if (%varplayerbit_24212 = 1) {
-    $struct6 = struct_28932;
-    $int4 = 0;
-    if ($int1 = calc(%varplayerbit_24209 - 1) & %varplayer_3232 = %varplayerbit_24208) {
-        $int4 = 10;
-    }
-}
+def_int $int5 = 28556;
+def_int $int6 = 0;
 def_int $int7 = 0;
 def_int $int8 = 0;
-def_int $int9 = 0;
+def_int $int9 = 50;
 def_int $int10 = 50;
-def_int $int11 = 50;
-def_graphic $graphic12 = null;
-def_int $int13 = 1;
-def_int $int14 = 0;
-def_boolean $boolean15 = false;
-def_int $int16 = 0;
+def_graphic $graphic11 = null;
+def_int $int12 = 1;
+def_int $int13 = 0;
+def_boolean $boolean14 = false;
+def_int $int15 = 0;
 if ($struct3 = null) {
-    $boolean15 = true;
-    if (~cheevo_obtain_progress(struct_44018) ! -2) {
-        $int16 = -2;
+    $boolean14 = true;
+    if (~script15773 = true) {
+        $int15 = -2;
     } else if (date_runeday > %varplayer_3079) {
-        $int16 = -1;
+        $int15 = -1;
     }
 }
-if (%varplayer_8745 = dbrow_2095) {
-    $boolean15 = true;
+def_boolean $boolean16 = false;
+def_int $int17 = %varplayer_3233;
+if (calc($int17 - 1) = $int1) {
+    $boolean16 = true;
 }
-def_boolean $boolean17 = false;
-def_int $int18 = %varplayer_3233;
-if (calc($int18 - 1) = $int1) {
-    $boolean17 = true;
+def_string $string0 = "";
+def_fontmetrics $fontmetrics18 = fontmetrics_168;
+if ($struct3 = null) {
+    switch_int ($int15) {
+        case -2 :
+            $string0 = "Complete all Basic Challenges";
+        case -1 :
+            $string0 = "Logout to Refresh";
+        case default :
+            $string0 = ~script3544(~script3944);
+    }
+    $fontmetrics18 = fontmetrics_207;
+} else {
+    $string0 = ~script15761($struct3);
 }
-if (cc_find(interface_1343:com_10, $int1) = true) {
-    cc_setparam(param_4545, $struct6);
-    cc_setparam(param_4236, $boolean15);
-    cc_setonvartransmit("script10511($struct0, $int1, $int2){varplayer_3814}");
-    $int14 = calc(0 + (43 + 3) * $int2);
+if (cc_find(interface_1343:com_17, $int1) = true) {
+    $int13 = calc(0 + (49 + 10) * $int2);
+    ~cc_add_child_button($int1, 0, $int12, $int13, ^setpos_abs_left, ^setpos_abs_top, calc(254 - 3), 49, ^setsize_abs, ^setsize_abs, dbrow_4476, $string0);
+    ~script7872(~negate_bool($boolean14), true, true, $boolean16);
+    cc_settextfont($fontmetrics18);
+    cc_settextshadow(false);
     cc_sethide(false);
-    $int7 = ~script13998(interface_1343:com_10, interface_1343:com_14, $struct6, $int13, $int14, calc(254 - 3), 43, $int1, $boolean15, "", ~bool_to_int($boolean17));
-}
-if (cc_find(interface_1343:com_11, $int1) = true) {
-    $graphic12 = struct_param($struct0, param_1271);
-    if ($struct3 = null & $int16 ! -2) {
-        $graphic12 = aif_bug_reporting_hourglass;
-    }
-    cc_sethide(false);
-    cc_setgraphic($graphic12);
-    if ($graphic12 ! null) {
-        $int8 = calc(35 - $int10);
-        $int9 = calc(35 - $int11);
-    } else {
-        $int8 = 0;
-        $int9 = 0;
-        $int10 = 35;
-        $int11 = 35;
-    }
-    if ($int10 >= 35 | $int11 >= 35) {
-        cc_setsize(35, 35, ^setsize_abs, ^setsize_abs);
-        cc_setposition(4, calc(3 + (43 + 3) * $int2), ^setpos_abs_left, ^setpos_abs_top);
-    } else {
-        cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc(4 + $int8 / 2), calc($int9 / 2 + 3 + (43 + 3) * $int2), ^setpos_abs_left, ^setpos_abs_top);
-    }
 }
 def_int $int19 = 0;
-if (cc_find(interface_1343:com_12, $int1) = true) {
-    cc_setparam(param_4545, $struct6);
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_int $int22 = 0;
+if (cc_find(interface_1343:com_18, $int1) = true) {
+    $graphic11 = struct_param($struct0, param_1271);
+    if ($struct3 = null & $int15 ! -2) {
+        $graphic11 = aif_bug_reporting_hourglass;
+    }
     cc_sethide(false);
-    cc_settextfont(fontmetrics_26);
-    if ($boolean17 = true) {
-        cc_setcolour(~script10495(4));
+    cc_setgraphic($graphic11);
+    if ($graphic11 ! null) {
+        $int7 = calc(35 - $int9);
+        $int8 = calc(35 - $int10);
     } else {
-        cc_setcolour(~script10495(3));
+        $int7 = 0;
+        $int8 = 0;
+        $int9 = 35;
+        $int10 = 35;
     }
-    if ($struct3 = null) {
-        switch_int ($int16) {
-            case -2 :
-                cc_settext("Complete all Basic Challenges");
-            case -1 :
-                cc_settext("Logout to Refresh");
-            case default :
-                $int19 = ~script9170;
-                $int19 = calc($int19 + ($int2 - $int5) * 24 * 60);
-                cc_settext("New Challenge in<br><~script9171($int19, 0)> hours");
-        }
+    if ($int9 >= 35 | $int10 >= 35) {
+        cc_setsize(35, 35, ^setsize_abs, ^setsize_abs);
+        cc_setposition(4, calc(7 + (49 + 10) * $int2), ^setpos_abs_left, ^setpos_abs_top);
     } else {
-        cc_settext(struct_param($struct3, param_1266));
+        cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc(4 + $int7 / 2), calc($int8 / 2 + 7 + (49 + 10) * $int2), ^setpos_abs_left, ^setpos_abs_top);
     }
-    cc_settextalign(^settextalign_centre, ^settextalign_centre, 12);
-    cc_setsize(179, 43, ^setsize_abs, ^setsize_abs);
-    cc_setposition(40, calc(2 + (43 + 3) * $int2), ^setpos_abs_left, ^setpos_abs_top);
+    $int19 = cc_getx;
+    $int20 = cc_gety;
+    $int21 = cc_getwidth;
+    $int22 = cc_getheight;
 }
-def_graphic $graphic20 = null;
-if (cc_find(interface_1343:com_13, $int1) = true) {
+def_graphic $graphic23 = null;
+if (cc_find(interface_1343:com_20, $int1) = true) {
     switch_int ($int4) {
-        case 10 :
-            $graphic20 = rs3_menu_icon_active_task_normal;
-        case 1 :
-            $graphic20 = "rs3_icon_daily_challenge,0";
         case 2 :
-            $graphic20 = "rs3_icon_daily_challenge,1";
-        case 3 :
-            $graphic20 = "rs3_icon_lucky_challenge,0";
-        case 4 :
-            $graphic20 = "rs3_icon_lucky_challenge,1";
-        case default :
-            switch_int ($int16) {
-                case -2 :
-                    $graphic20 = null;
-                case default :
-                    $graphic20 = aif_bug_reporting_hourglass;
-            }
+            $graphic23 = ~cheevo_status_icon(-2);
     }
-    if ($graphic20 = null) {
+    if ($graphic23 = null) {
         cc_sethide(true);
     } else {
         cc_sethide(false);
-        cc_setgraphic($graphic20);
-        cc_setsize(35, 35, ^setsize_abs, ^setsize_abs);
-        cc_setposition(215, calc(3 + (43 + 3) * $int2), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphic($graphic23);
+        cc_setsize($int21, $int22, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int19, $int20, ^setpos_abs_left, ^setpos_abs_top);
     }
 }
-if ($struct3 ! null & cc_find(interface_1343:com_14, $int1) = true) {
+if ($struct3 ! null & cc_find(interface_1343:com_21, $int1) = true) {
     cc_sethide(false);
-    cc_setsize(254, 43, ^setsize_abs, ^setsize_abs);
-    cc_setposition(1, calc(0 + (43 + 3) * $int2), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(254, 49, ^setsize_abs, ^setsize_abs);
+    cc_setposition(1, calc(0 + (49 + 10) * $int2), ^setpos_abs_left, ^setpos_abs_top);
     cc_settrans(255);
     cc_setop(1, "Select");
-    cc_setonop("job_button_onop(88014858, 88014860, event_comsubid)");
+    cc_setonop("job_button_onop(88014865, 88014867, event_comsubid)");
 }
