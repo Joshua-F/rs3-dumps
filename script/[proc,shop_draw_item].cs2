@@ -78,7 +78,7 @@ if ($inv0 = %varplayer_305) {
     if ($int19 >= 500) {
         cc_setop(6, "Take 500");
     }
-    if ($int19 > 0) {
+    if ($int19 > 1) {
         cc_setop(7, "Take All");
     }
 } else if ($inv0 = inv_93) {
@@ -112,7 +112,7 @@ if ($inv0 = %varplayer_305) {
     if ($int19 >= 500) {
         cc_setop(6, "Buy 500");
     }
-    if ($int19 > 0) {
+    if ($int19 > 1) {
         cc_setop(7, "Buy All");
     }
 }
@@ -139,15 +139,7 @@ if ($int3 = 0) {
 } else {
     cc_setposition(calc($int13 + 10), calc($int14 + (52 - 22) / 2), ^setpos_abs_left, ^setpos_abs_top);
 }
-def_int $int20 = 0;
-if (oc_param($obj18, param_258) = 1 | oc_param($obj18, param_259) = 1) {
-    $int20 = 1;
-}
-if ($int20 = 1) {
-    cc_setobject_nonum($obj18, inv_getnum($inv0, $int1));
-} else {
-    cc_setobject_alwaysnum($obj18, inv_getnum($inv0, $int1));
-}
+cc_setobject_alwaysnum($obj18, inv_getnum($inv0, $int1));
 cc_setoutline(1);
 cc_create($component8, ^iftype_text, $int1);
 cc_setcolour(0xe5b051);
@@ -155,26 +147,26 @@ cc_setsize(31, 12, ^setsize_abs, ^setsize_abs);
 cc_setposition(calc($int13 + $int15 - 33), calc($int14 + 40), ^setpos_abs_left, ^setpos_abs_top);
 cc_settextfont(fontmetrics_66);
 cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
-def_int $int21 = ~buyprice($obj18);
-if ($int21 = -1) {
+def_int $int20 = ~buyprice($obj18);
+if ($int20 = -1) {
     cc_settext("N/A");
 } else if ($inv0 = %varplayer_305) {
     cc_settext("Free!");
 } else if ($inv0 = inv_93) {
     if (testbit(%varclient_1879, $int1) = ^false) {
-        $int21 = -1;
+        $int20 = -1;
         cc_settext("N/A");
     } else {
-        $int21 = ~sellprice(%varplayer_306, $obj18, %varplayer_304);
-        cc_settext(~script940($int21));
+        $int20 = ~sellprice(%varplayer_306, $obj18, %varplayer_304);
+        cc_settext(~script940($int20));
     }
 } else {
-    cc_settext(~script940($int21));
+    cc_settext(~script940($int20));
 }
 if ($inv0 ! %varplayer_305) {
-    if ($int21 > 100000) {
+    if ($int20 > 100000) {
         cc_setcolour(^white);
-    } else if ($int21 > 10000000) {
+    } else if ($int20 > 10000000) {
         cc_setcolour(0x00ff88);
     }
 }

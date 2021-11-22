@@ -68,11 +68,18 @@ if ($int11 = -1 | $int12 = -1 | $int14 > 0 & ~bank_freespace < $int14) {
 }
 def_int $int15 = 0;
 if ($int9 ! -1) {
-    %varplayerbit_45912 = 1;
-    $int15 = ~bank_deposit(inv_94, $obj8, $int10, $int9);
-    %varplayerbit_45912 = 0;
-    if ($int15 = 0) {
-        return(4, $int1);
+    if ($obj6 = null & $boolean4 = false) {
+        if (~bank_swap_external($int2, inv_94, $int5, $int9, $boolean4) = true) {
+            return(5, $int1);
+        }
+        return(6, $int1);
+    } else {
+        %varplayerbit_45912 = 1;
+        $int15 = ~script2347($obj8, oc_uncert($obj8), ~bank_find_bank($obj8, 0, 1), ~bank_get_invnum(inv_94, $int9), calc($int2 + 1), ~bank_get_tab($int2), inv_94, $int9, 1, 1);
+        %varplayerbit_45912 = 0;
+        if ($int15 = 0) {
+            return(4, $int1);
+        }
     }
 }
 if ($obj6 ! null & ($obj6 ! $obj0 | ~script3802($obj6) = true)) {
@@ -85,7 +92,7 @@ if ($obj6 ! null & ($obj6 ! $obj0 | ~script3802($obj6) = true)) {
         }
         return(0, $int1);
     }
-    if (~bank_swap_external($int2, inv_94, $int5, $boolean4) = true) {
+    if (~bank_swap_external($int2, inv_94, $int5, $int5, $boolean4) = true) {
         return(5, $int1);
     }
     return(6, $int1);
