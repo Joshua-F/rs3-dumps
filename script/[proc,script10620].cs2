@@ -1,48 +1,42 @@
 // 10620
-[proc,script10620](struct $struct0)
-def_graphic $graphic1 = "achievement_icon_pin_14px,0";
-def_boolean $boolean2 = false;
-def_boolean $boolean3 = true;
+[proc,script10620](struct $struct0, int $int1)
+def_graphic $graphic2 = "achievement_icon_pin_14px,0";
+def_boolean $boolean3 = false;
+def_boolean $boolean4 = true;
 def_string $string0 = "Track";
 def_string $string1 = "Add this challenge to your activity tracker.";
-def_int $int4 = ~script8227(4);
-def_int $int5 = 1;
-if ($int4 > -1) {
-    $boolean2 = true;
-    if (~task_get_struct(~script8226($int4)) = $struct0) {
-        $graphic1 = "achievement_icon_pin_14px,3";
-        $string0 = "Untrack";
-        $string1 = "Remove this challenge from your activity tracker.";
-        $int5 = 2;
-    } else {
-        $graphic1 = "achievement_icon_pin_14px,1";
-        $string0 = "Update";
-        $string1 = "Replace the challenge in your activity tracker with this challenge.";
-    }
+def_int $int5 = ~script8229(4, $int1);
+def_int $int6 = 1;
+if ($int5 > -1) {
+    $boolean3 = true;
+    $graphic2 = "achievement_icon_pin_14px,3";
+    $string0 = "Untrack";
+    $string1 = "Remove this challenge from your activity tracker.";
+    $int6 = 2;
 } else if (~script8230 = false) {
-    $graphic1 = "achievement_icon_pin_14px,4";
-    $boolean3 = false;
+    $graphic2 = "achievement_icon_pin_14px,4";
+    $boolean4 = false;
     $string1 = "You are already tracking the maximum of 5 activities.";
-    $int5 = 0;
+    $int6 = 0;
 }
-if_setgraphic($graphic1, interface_1343:com_69);
-if_button_settoggled($boolean2, interface_1343:com_68);
+if_setgraphic($graphic2, interface_1343:com_69);
+if_button_settoggled($boolean3, interface_1343:com_68);
 if_clearops(interface_1343:com_68);
-if ($int5 > 0) {
-    if_setop($int5, $string0, interface_1343:com_68);
+if ($int6 > 0) {
+    if_setop($int6, $string0, interface_1343:com_68);
 }
-if_setenabled($boolean3, interface_1343:com_68);
+if_setenabled($boolean4, interface_1343:com_68);
 if_setonop(null, interface_1343:com_68);
 ~script16247(interface_1343:com_68, -1);
-def_boolean $boolean6 = ~script6431;
-if (string_length($string1) > 0 & ($boolean6 = true & $boolean3 = false | $boolean6 = false)) {
+def_boolean $boolean7 = ~script6431;
+if (string_length($string1) > 0 & ($boolean7 = true & $boolean4 = false | $boolean7 = false)) {
     ~script3536($string1, interface_1343:com_68, -1);
 }
 if (struct_param($struct0, param_2700) ! null) {
     if_sethide(false, interface_1343:com_46);
     $string1 = "Teleport to a lodestone near where you can complete this challenge.";
     ~script16247(interface_1343:com_223, -1);
-    if ($boolean6 = false) {
+    if ($boolean7 = false) {
         ~script3536($string1, interface_1343:com_223, -1);
     }
 } else {
