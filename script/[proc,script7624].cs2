@@ -2,26 +2,29 @@
 [proc,script7624](int $int0)
 def_string $string0 = "";
 def_string $string1 = "";
-def_int $int1 = 0;
+def_int $int1 = -1;
+def_boolean $boolean2 = false;
+def_int $int3 = 0;
 if (cc_find(interface_850:com_2, $int0) = true) {
     $string0 = cc_param(param_4618);
     $string1 = cc_param(param_4617);
-    $int1 = cc_param(param_8342);
+    $int3 = cc_param(param_8342);
 }
 if_settext($string0, interface_709:com_9);
 ~script7831;
 if_settext($string1, interface_709:com_13);
-~script7655;
-~script1458(interface_709:com_15, null, struct_28553, "Select", ~int_to_bool($int1));
-if ($int1 = 1) {
+~script1458(interface_709:com_15, null, struct_28553, "Select", ~int_to_bool($int3));
+if ($int3 = 1) {
     if_sethide(false, interface_709:com_16);
 } else {
     if_sethide(true, interface_709:com_16);
 }
-if ($int0 = 0 & %varplayer_9864 ! null & db_getfield(%varplayer_9864, dbtable_130:col1, 0) = true) {
-    if_setsize(8, 30, ^setsize_minus, ^setsize_minus, interface_709:com_10);
+$int1, $boolean2, $string0, $string1 = db_getfield(%varplayer_9864, dbtable_130:col0, $int0);
+if (%varplayer_9864 ! null & $boolean2 = true) {
+    if_setsize(8, 50, ^setsize_minus, ^setsize_minus, interface_709:com_10);
     if_sethide(true, interface_709:com_15);
 } else {
     if_setsize(8, 60, ^setsize_minus, ^setsize_minus, interface_709:com_10);
     if_sethide(false, interface_709:com_15);
 }
+~script7655;
