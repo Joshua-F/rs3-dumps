@@ -310,6 +310,34 @@ if (oc_param($obj0, param_6295) = 1 | oc_param($obj0, param_7393) = 1) {
                 }
                 $int12 = $int22;
             }
+        case obj_52824 :
+            $int21 = enum_getoutputcount(enum_8487);
+            $int22 = 0;
+            $int20 = -1;
+            $int12 = 1;
+            while (++$int20 < $int21) {
+                $obj10 = enum(int, obj, enum_8487, $int20);
+                if (~script16377($obj10) = 1) {
+                    cc_create($component2, ^iftype_graphic, $int3++);
+                    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+                    cc_setobject($obj10, -1);
+                    $int22 = calc($int22 + 1);
+                }
+            }
+            if ($int22 > 0) {
+                $int20 = 0;
+                $int9 = max($int9, calc(min(6, $int22) * 36 + 16));
+                $int8 = calc(32 * (1 + ($int22 - 1) / 6));
+                $int4 = calc(($int9 - min(6, $int22) * 36) / 2);
+                while ($int23 < $int3) {
+                    if (cc_find($component2, $int23++) = true) {
+                        cc_setposition(calc($int4 + $int20 % 6 * 36), calc($int6 + $int20 / 6 * 32), ^setpos_abs_left, ^setpos_abs_top);
+                    }
+                    if (calc(++$int20 % 6) = 0) {
+                        $int4 = calc(($int9 - min(6, calc($int22 - $int20)) * 36) / 2);
+                    }
+                }
+            }
         case default :
             switch_category (oc_category($obj0)) {
                 case category_4222 :
