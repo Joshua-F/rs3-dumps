@@ -2,11 +2,15 @@
 [proc,script443](struct $struct0)(boolean)
 if ($struct0 = null) {
     return(true);
-} else if (struct_param($struct0, param_6510) = 1) {
-    return(true);
-} else if ($struct0 = struct_38726 & struct_param(~trh130_get_promo_struct(%varplayerbit_44001), param_6510) = 1) {
-    return(true);
-} else if ($struct0 = struct_40619 & struct_param(~script16161, param_6510) = 1) {
-    return(true);
+}
+if (struct_param($struct0, param_6510) = 1) {
+    switch_struct ($struct0) {
+        case struct_38726, struct_40619 :
+            if (struct_param(~script16161, param_6510) = 1) {
+                return(true);
+            }
+        case default :
+            return(true);
+    }
 }
 return(false);

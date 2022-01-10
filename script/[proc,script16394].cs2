@@ -1,0 +1,219 @@
+// 16394
+[proc,script16394]
+if (%varplayer_8745 = null | %varplayer_8746 = null) {
+    return;
+}
+def_string $string0 = db_getfield(%varplayer_8746, dbtable_72:col3, 0);
+if (string_length($string0) = 0) {
+    if_sethide(true, interface_955:com_6);
+    return;
+}
+def_string $string1 = db_getfield(%varplayer_8745, dbtable_71:col0, 0);
+def_string $string2 = "";
+def_int $rgb0 = ^black;
+def_obj $obj1 = db_getfield(%varplayer_8746, dbtable_72:col19, 0);
+def_graphic $graphic2 = db_getfield(%varplayer_8746, dbtable_72:col15, 0);
+def_graphic $graphic3 = db_getfield(%varplayer_8746, dbtable_72:col16, 0);
+def_graphic $graphic4 = db_getfield(%varplayer_8746, dbtable_72:col17, 0);
+def_int $int5 = db_getfield(%varplayer_8746, dbtable_72:col7, 0);
+def_int $int6 = db_getfield(%varplayer_8746, dbtable_72:col8, 0);
+def_int $int7 = 1;
+def_int $int8 = 1;
+def_component $component9 = %varplayer_8752;
+def_int $int10 = %varplayer_8753;
+def_int $int11 = db_getfield(%varplayer_8746, dbtable_72:col9, 0);
+if ($component9 = null) {
+    $component9 = db_getfield(%varplayer_8746, dbtable_72:col5, 0);
+    $int10 = db_getfield(%varplayer_8746, dbtable_72:col6, 0);
+}
+if (db_getfield(%varplayer_8745, dbtable_71:col11, 0) = true) {
+    $int7 = ~script16380(%varplayer_8745);
+    $int8 = ~script16382(%varplayer_8745, %varplayer_8747);
+}
+$string2, $rgb0 = db_getfield(%varplayer_8746, dbtable_72:col4, 0);
+~script9554(interface_955:com_8, interface_955:com_16, interface_955:com_9, $string1, struct_21217);
+switch_int ($int11) {
+    case 1 :
+        if_sethide(true, interface_955:com_18);
+        if_sethide(true, interface_955:com_15);
+    case 2 :
+        if_sethide(true, interface_955:com_18);
+        if_sethide(false, interface_955:com_15);
+    case default :
+        if ($int8 <= 1) {
+            if_sethide(false, interface_955:com_18);
+            if_sethide(false, interface_955:com_15);
+        } else {
+            if_sethide(false, interface_955:com_18);
+            if_sethide(true, interface_955:com_15);
+        }
+}
+~script16395($int7, $int8);
+if (%varplayerbit_22874 = 1 & ~script6431 = false) {
+    $graphic2 = ~script16413($graphic2);
+    $graphic3 = ~script16413($graphic3);
+    $graphic4 = ~script16413($graphic4);
+}
+$graphic2 = ~script16414($graphic2);
+$graphic3 = ~script16414($graphic3);
+$graphic4 = ~script16414($graphic4);
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+$int12, $int13, $int14, $int15 = ~script14244;
+def_int $int16 = 0;
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_int $int19 = 0;
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_int $int22 = 0;
+def_int $int23 = 0;
+def_int $int24 = 0;
+def_int $int25 = 0;
+def_int $int26 = 0;
+def_int $settextalignh27 = ^settextalign_centre;
+def_int $int28 = calc(min(575, calc($int14 - $int12)) - $int23);
+def_fontmetrics $fontmetrics29 = null;
+def_int $int30 = 0;
+def_int $int31 = enum_getoutputcount(enum_8488);
+def_int $int32 = 0;
+if (%varclient_6403 ! 0) {
+    $int28 = calc(min(375, calc($int14 - $int12)) - $int23);
+    $int32 = calc($int32 + 2);
+}
+if ($graphic2 ! null | $obj1 ! null) {
+    $int26 = 10;
+    $int28 = calc($int28 - 10);
+    $int17, $int18 = ~script16415($graphic2, $obj1);
+    if ($graphic3 ! null) {
+        $int19, $int20 = ~script16415($graphic3, null);
+        if ($graphic4 ! null) {
+            $int16 = 3;
+            $int21, $int22 = ~script16415($graphic4, null);
+            $int23 = max(max($int17, $int19), $int21);
+            $int24 = calc($int18 + $int20 + $int22);
+            $int25 = 10;
+        } else {
+            $int16 = 2;
+            $int23 = max($int17, $int19);
+            $int24 = calc($int18 + $int20);
+            $int25 = 5;
+        }
+    } else {
+        $int16 = 1;
+        $int23 = $int17;
+        $int24 = $int18;
+    }
+    $int28 = calc($int28 - $int23);
+}
+while ($int32 < $int31) {
+    $fontmetrics29 = enum(int, fontmetrics, enum_8488, $int32);
+    $int30 = stringwidth($string2, $fontmetrics29);
+    if ($int30 < $int28) {
+        $int32 = $int31;
+    }
+    $int32 = calc($int32 + 1);
+}
+if (%varclient_6403 ! 0) {
+    $int32 = 2;
+} else {
+    $int32 = 0;
+}
+def_fontmetrics $fontmetrics33 = fontmetrics_208;
+def_int $int34 = calc(300 - min(1, $int30) * 20);
+def_int $int35 = 0;
+def_int $int36 = 0;
+def_int $int37 = 0;
+while ($int32 < $int31) {
+    $fontmetrics33 = enum(int, fontmetrics, enum_8488, $int32);
+    $int35 = ~script11432($fontmetrics33);
+    $int36 = parawidth($string0, $int28, $fontmetrics33);
+    $int37 = ~script7593($string0, $int28, $fontmetrics33, $int35);
+    if ($int37 < $int34) {
+        $int32 = $int31;
+    }
+    $int32 = calc($int32 + 1);
+}
+def_int $int38 = 0;
+def_int $int39 = max(calc($int24 + $int25), calc($int37 + min(1, $int30) * 20));
+if ($int36 < $int28) {
+    $int38 = calc($int23 + 10 + max($int36, $int30));
+} else {
+    $int38 = calc($int23 + 10 + $int28);
+}
+if (if_gethide(interface_955:com_14) = false) {
+    if ($int38 < if_getwidth(interface_955:com_14)) {
+        $int38 = calc(if_getwidth(interface_955:com_14) + 30);
+    }
+    $int38 = calc($int38 + 50);
+    $int39 = calc($int39 + 123);
+} else if (if_gethide(interface_955:com_15) = false) {
+    if ($int38 < if_getwidth(interface_955:com_15)) {
+        $int38 = calc(if_getwidth(interface_955:com_15) + 30);
+    }
+    $int38 = calc($int38 + 50);
+    $int39 = calc($int39 + 123);
+} else {
+    $int38 = calc($int38 + 50);
+    $int39 = calc($int39 + 78);
+}
+if_setsize($int38, $int39, ^setsize_abs, ^setsize_abs, interface_955:com_6);
+if_setposition(0, calc($int13 + 33), ^setpos_abs_centre, ^setpos_abs_top, interface_955:com_6);
+if_sethide(false, interface_955:com_6);
+cc_deleteall(interface_955:com_13);
+cc_deleteall(interface_955:com_7);
+def_int $int40 = 0;
+if ($int30 > 0) {
+    cc_create(interface_955:com_13, ^iftype_text, $int40++);
+    cc_setsize(calc($int23 + $int26), 20, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
+    cc_settext($string2);
+    cc_setmaxlines(1);
+    cc_setcolour($rgb0);
+    cc_settextfont($fontmetrics29);
+    cc_settextalign($settextalignh27, ^settextalign_centre, 0);
+}
+cc_create(interface_955:com_13, ^iftype_text, $int40++);
+cc_setsize(calc($int23 + $int26), calc(min($int30, 1) * 20), ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom);
+cc_settext($string0);
+cc_setcolour(^white);
+cc_settextfont($fontmetrics33);
+cc_settextalign($settextalignh27, ^settextalign_centre, $int35);
+if ($int16 > 0) {
+    cc_create(interface_955:com_13, ^iftype_graphic, $int40++);
+    cc_setsize($int17, $int18, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    if ($graphic2 ! null) {
+        cc_setgraphic($graphic2);
+        cc_setontimer("script16417(event_comsubid, event_com)");
+    } else if ($obj1 ! null) {
+        cc_setobject($obj1, -1);
+        cc_setontimer("script16418(event_comsubid, $obj1, event_com)");
+    }
+    if ($int16 >= 2) {
+        cc_setposition(max(0, calc($int23 / 2 - $int17 / 2)), 0, ^setpos_abs_left, ^setpos_abs_top);
+        cc_create(interface_955:com_13, ^iftype_graphic, $int40++);
+        cc_setsize($int19, $int20, ^setsize_abs, ^setsize_abs);
+        cc_setposition(max(0, calc($int23 / 2 - $int19 / 2)), 0, ^setpos_abs_left, ^setpos_abs_bottom);
+        cc_setgraphic($graphic3);
+        cc_setontimer("script16417(event_comsubid, event_com)");
+        if ($int16 >= 3) {
+            cc_setposition(cc_getx, 0, ^setpos_abs_left, ^setpos_abs_centre);
+            cc_create(interface_955:com_13, ^iftype_graphic, $int40++);
+            cc_setsize($int21, $int22, ^setsize_abs, ^setsize_abs);
+            cc_setposition(max(0, calc($int23 / 2 - $int21 / 2)), 0, ^setpos_abs_left, ^setpos_abs_bottom);
+            cc_setgraphic($graphic4);
+            cc_setontimer("script16417(event_comsubid, event_com)");
+        }
+    }
+}
+~script16416(255);
+if_setontimer("script16408", interface_955:com_4);
+if ($component9 ! null) {
+    if_setontimer("script16400($int38, $int39, $int5, $int6, $component9, $int10)", interface_955:com_3);
+} else if (~script6431 = true) {
+    if_setontimer("script16402($int38, $int39)", interface_955:com_3);
+}
