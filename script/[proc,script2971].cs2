@@ -2,57 +2,62 @@
 [proc,script2971](dbrow $dbrow0, int $int1, int $int2, int $int3, int $int4)(int)
 def_int $int5 = 24;
 def_int $int6 = 3;
-if (~script6431 = true) {
+def_boolean $boolean7 = ~script6431;
+if ($boolean7 = true) {
     $int5 = 30;
     $int6 = 6;
 }
-def_int $int7 = 1;
+def_int $int8 = 1;
 switch_int (db_getfield($dbrow0, dbtable_31:col4, 0)) {
     case 0 :
     case 1 :
-        if (~script6431 = true) {
-            $int7 = 0;
+        if ($boolean7 = true) {
+            $int8 = 0;
         }
     case 2 :
-        if (~script6431 = false) {
-            $int7 = 0;
+        if ($boolean7 = false) {
+            $int8 = 0;
+        }
+    case 4 :
+        if (clienttype ! enhanced_ios) {
+            $int8 = 0;
         }
     case 3 :
         if (platformtype ! ^platformtype_steam) {
-            $int7 = 0;
+            $int8 = 0;
         }
     case default :
-        $int7 = 0;
+        $int8 = 0;
 }
-def_int $int8 = enum_getreverseindex(dbrow, int, enum_14569, $dbrow0, 0);
-if ($int7 = 0) {
-    cc_create(interface_365:com_11, ^iftype_text, $int8);
+def_int $int9 = enum_getreverseindex(dbrow, int, enum_14569, $dbrow0, 0);
+if ($int8 = 0) {
+    cc_create(interface_365:com_11, ^iftype_text, $int9);
     cc_sethide(true);
     return($int2);
 }
 def_string $string0 = db_getfield($dbrow0, dbtable_31:col0, 0);
 def_string $string1 = db_getfield($dbrow0, dbtable_31:col1, 0);
-def_struct $struct9 = struct_28577;
-def_int $int10 = 30;
-def_graphic $graphic11 = null;
+def_struct $struct10 = struct_28577;
+def_int $int11 = 30;
+def_graphic $graphic12 = null;
 switch_int ($int4) {
     case default :
-        $int4 = ~equal_int($int8, $int4);
-        $struct9 = struct_28556;
-        $int10 = $int5;
+        $int4 = ~equal_int($int9, $int4);
+        $struct10 = struct_28556;
+        $int11 = $int5;
     case -1 :
         $int4 = 0;
-        $graphic11 = "rs3_icon_sort,0";
+        $graphic12 = "rs3_icon_sort,0";
     case -2 :
         $int4 = 1;
-        $graphic11 = "rs3_icon_sort,5";
+        $graphic12 = "rs3_icon_sort,5";
 }
-~script13998(interface_365:com_10, interface_365:com_11, $struct9, $int1, $int2, $int3, $int10, $int8, false, $string0, $int4);
-if ($graphic11 ! null) {
-    ~script4512(interface_365:com_10, 15, 15, 5, calc($int2 + 8), $graphic11);
-    ~script4512(interface_365:com_10, 15, 15, calc($int3 - 20), calc($int2 + 8), $graphic11);
+~script13998(interface_365:com_10, interface_365:com_11, $struct10, $int1, $int2, $int3, $int11, $int9, false, $string0, $int4);
+if ($graphic12 ! null) {
+    ~script4512(interface_365:com_10, 15, 15, 5, calc($int2 + 8), $graphic12);
+    ~script4512(interface_365:com_10, 15, 15, calc($int3 - 20), calc($int2 + 8), $graphic12);
 }
-if (cc_find(interface_365:com_11, $int8) = true) {
-    cc_setonop("script2930($int8)");
+if (cc_find(interface_365:com_11, $int9) = true) {
+    cc_setonop("script2930($int9)");
 }
-return(calc($int2 + $int10 + $int6));
+return(calc($int2 + $int11 + $int6));
