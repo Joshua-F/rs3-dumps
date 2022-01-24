@@ -66,8 +66,8 @@ if (%varplayerbit_37059 = 1) {
     $int13 = 1;
     $int12 = 35;
 }
-def_int $int14 = 7829367;
-def_int $int15 = 7829367;
+def_int $rgb14 = 0x777777;
+def_int $rgb15 = 0x777777;
 def_int $int16 = 0;
 $int6 = 0;
 def_int $int17 = 0;
@@ -87,6 +87,7 @@ def_int $int27 = 0;
 def_achievement $achievement28 = null;
 def_int $int29 = -1;
 def_int $int30 = 0;
+def_int $int31 = ~script15721;
 while ($int6 < $int0) {
     $int16 = calc($int6 * 11);
     $achievement5 = $achievementarray0($int6);
@@ -97,17 +98,26 @@ while ($int6 < $int0) {
     }
     switch_int ($int7) {
         case -2 :
-            $int14 = 16777215;
-            $int15 = ~script10495(0);
+            $rgb15 = 0xffcb05;
+            $rgb14 = 0xaed0e0;
+            if ($int31 = 1) {
+                $rgb14 = 0xd1b28d;
+            }
         case -1 :
-            $int14 = ~script10495(6);
-            $int15 = ~script10495(6);
+            $rgb15 = 0xa5a5a5;
+            $rgb14 = 0xa5a5a5;
         case -3 :
-            $int14 = 7829367;
-            $int15 = 16355874;
+            $rgb15 = 0xffa747;
+            $rgb14 = 0xaed0e0;
+            if ($int31 = 1) {
+                $rgb14 = 0xd1b28d;
+            }
         case default :
-            $int15 = 7829367;
-            $int14 = 7829367;
+            $rgb15 = ^white;
+            $rgb14 = 0xaed0e0;
+            if ($int31 = 1) {
+                $rgb14 = 0xd1b28d;
+            }
     }
     $string0 = achievement_getname($achievement5);
     $string1 = ~achievement_description($achievement5);
@@ -131,7 +141,7 @@ while ($int6 < $int0) {
     }
     $int22 = achievement_getgraceday($achievement5);
     if ($int7 ! -2 & $int22 > ~date_runeday) {
-        $string1 = append($string1, " <col=F99222>Grace period ends: <~fromdate($int22)></col>");
+        $string1 = append($string1, " <col=FFA747>Grace period ends: <~fromdate($int22)></col>");
     }
     $int21 = compare($string2, "");
     if (cc_find($component1, $int16) = true) {
@@ -177,7 +187,7 @@ while ($int6 < $int0) {
         if (cc_find($component1, calc($int16 + 6)) = true) {
             cc_setposition(calc($int18 + 2), $int23, ^setpos_abs_left, ^setpos_abs_top);
             cc_setsize(calc($int18 + 2 * 2 + 15), $int12, ^setsize_minus, ^setsize_abs);
-            cc_setcolour($int14);
+            cc_setcolour($rgb14);
             cc_settext($string1);
             cc_settextshadow(true);
             cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
@@ -243,12 +253,12 @@ while ($int6 < $int0) {
             cc_setsize($int18, 15, ^setsize_minus, ^setsize_abs);
             cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
             cc_settextfont(fontmetrics_55);
-            cc_setcolour($int15);
+            cc_setcolour($rgb15);
         }
         if (cc_find($component1, calc($int16 + 6)) = true) {
             cc_setposition(calc($int17 + 2), calc($int23 + 15), ^setpos_abs_left, ^setpos_abs_top);
             cc_setsize(calc($int17 + 13), calc($int12 - 15), ^setsize_minus, ^setsize_abs);
-            cc_setcolour($int14);
+            cc_setcolour($rgb14);
             cc_settext($string1);
             cc_settextshadow(true);
             cc_settextalign(^settextalign_left, ^settextalign_top, 0);
