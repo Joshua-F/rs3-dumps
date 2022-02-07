@@ -7,6 +7,8 @@ if ($struct0 = null | $struct0 = struct_45918) {
 }
 $graphic5 = struct_param($struct0, param_8655);
 def_string $string0 = "<struct_param($struct0, param_8651)> - <struct_param($struct0, param_8652)>";
+def_struct $struct7 = null;
+def_obj $obj8 = null;
 if (cc_find($component1, $int3) = true) {
     switch_struct ($struct0) {
         case struct_45919 :
@@ -26,27 +28,33 @@ if (cc_find($component1, $int3) = true) {
             $int6 = calc(inv_total(inv_93, obj_40932) + inv_total(inv_795, obj_40932));
             cc_setoninvtransmit("script16212($struct0, $component1, $int2, $int3, 0){inv_93, inv_795}");
         case struct_45924 :
-            $int6 = calc(inv_total(inv_93, obj_52555) + inv_total(inv_795, obj_52555));
+            $struct7 = ~trh_promo_current;
+            if ($struct7 ! null) {
+                $obj8 = struct_param($struct7, param_5396);
+                if ($obj8 ! null) {
+                    $int6 = ~script15078($obj8, 1, 1);
+                }
+            }
             cc_setoninvtransmit("script16212($struct0, $component1, $int2, $int3, 0){inv_93, inv_795}");
     }
     cc_setgraphic($graphic5);
     cc_setsize(45, 45, ^setsize_abs, ^setsize_abs);
     ~script3537($string0);
 }
-def_int $int7 = 1;
-def_int $int8 = 0;
+def_int $int9 = 1;
+def_int $int10 = 0;
 if (cc_findbycategory($component1, $int2, 0) = 1) {
-    $int8 = cc_param(param_6408);
-    if ($int4 = 1 | $int6 < $int8) {
+    $int10 = cc_param(param_6408);
+    if ($int4 = 1 | $int6 < $int10) {
         cc_setparam(param_6408, $int6);
         cc_setparam(param_6409, $int6);
         cc_setparam(param_5945, 0);
     } else if (cc_param(param_6408) < $int6) {
-        if (calc($int6 - $int8) > 7) {
-            $int7 = max(2, calc(($int6 - $int8) / 7));
+        if (calc($int6 - $int10) > 7) {
+            $int9 = max(2, calc(($int6 - $int10) / 7));
         }
         cc_setparam(param_6409, $int6);
-        cc_setontimer("script16214(event_com, event_comsubid, $graphic5, calc($int3 + 1), $int7, 0, 1)");
+        cc_setontimer("script16214(event_com, event_comsubid, $graphic5, calc($int3 + 1), $int9, 0, 1)");
         return;
     }
 }

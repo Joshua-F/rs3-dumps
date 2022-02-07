@@ -1,5 +1,6 @@
 // 9122
 [clientscript,script9122](int $int0, int $int1, obj $obj2, obj $obj3, obj $obj4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, int $int11, int $int12, int $int13, int $int14, int $int15, int $int16, int $int17, int $int18, int $int19, int $int20, int $int21, int $int22, int $int23, int $int24, string $string0, string $string1, string $string2)
+def_struct $struct25 = ~trh_promo_current;
 %varplayerbit_4323 = $int0;
 %varclient_1790 = $int13;
 %varclient_4080 = $int14;
@@ -16,21 +17,21 @@
 %varplayerbit_27090 = $int19;
 %varplayerbit_27092 = $int20;
 %varplayerbit_27091 = $int21;
-def_obj $obj25 = null;
-def_int $int26 = 0;
+def_obj $obj26 = null;
+def_int $int27 = 0;
 switch_int ($int1) {
     case 0 :
-        $obj25 = $obj2;
-        $int26 = $int5;
+        $obj26 = $obj2;
+        $int27 = $int5;
     case 1 :
-        $obj25 = $obj3;
-        $int26 = $int6;
+        $obj26 = $obj3;
+        $int27 = $int6;
     case 2 :
-        $obj25 = $obj4;
-        $int26 = $int7;
+        $obj26 = $obj4;
+        $int27 = $int7;
     case default :
-        $obj25 = $obj2;
-        $int26 = $int5;
+        $obj26 = $obj2;
+        $int27 = $int5;
 }
 if (%varplayerbit_4323 <= 0) {
     if_sethide(true, interface_1253:com_211);
@@ -56,37 +57,36 @@ switch_int (%varclient_1928) {
                 %varclient_6507, $string6 = ~script12909($int9, $int12);
         }
     case 28 :
-        %varclient_6507, $string6 = ~script1286($int9, $int26);
+        %varclient_6507, $string6 = ~script1286($int9, $int27);
 }
 if_sethide(false, interface_1253:com_220);
-def_string $string7 = "Or convert to Oddments :";
-def_int $int27 = 0;
+def_int $int28 = 0;
 switch_int ($int24) {
     case 40932 :
         switch_int ($int9) {
             case 1 :
-                $int27 = 25;
+                $int28 = 25;
             case 2 :
-                $int27 = 60;
+                $int28 = 60;
             case 3 :
-                $int27 = 120;
+                $int28 = 120;
             case 4 :
-                $int27 = 300;
+                $int28 = 300;
             case 5 :
-                $int27 = 850;
+                $int28 = 850;
             case 6 :
-                $int27 = 1000;
+                $int28 = 1000;
         }
-        $int27 = calc($int27 * %varclient_6507);
-    case 52555 :
-        $string7 = "Or convert to H'Oddments :";
-        $int27 = 50;
+        $int28 = calc($int28 * %varclient_6507);
+    case default :
+        $int28 = ~script14485($int24);
 }
-if_settext($string7, interface_1253:com_267);
-if ($int27 = 0) {
+if_setgraphic(~script14484($struct25, 32), interface_1253:com_276);
+if_settext(~script14482($struct25), interface_1253:com_267);
+if ($int28 = 0) {
     if_settext("-", interface_1253:com_277);
 } else {
-    if_settext("+<tostring_localised($int27, true)>", interface_1253:com_277);
+    if_settext("+<tostring_localised($int28, true)>", interface_1253:com_277);
 }
 if (%varclient_6507 > 1) {
     $string3 = append("<$string6><tostring(%varclient_6507)></col>x ", $string3);
@@ -122,11 +122,11 @@ if ($int23 = 1 & $obj3 ! null & $obj4 ! null) {
     if_setposition(0, -10, ^setpos_abs_centre, ^setpos_abs_centre, interface_1253:com_215);
     if_setposition(5, 0, ^setpos_abs_left, ^setpos_abs_centre, interface_1253:com_218);
 }
-def_int $int28 = 0;
-~wof_button_setup_claim($obj25, $int26);
-~wof_button_setup_claim_bank($obj25, $int26);
-~wof_button_setup_claim_inv($obj25, $int26);
-~wof_button_setup_discard($obj25, $int26);
+def_int $int29 = 0;
+~wof_button_setup_claim($obj26, $int27);
+~wof_button_setup_claim_bank($obj26, $int27);
+~wof_button_setup_claim_inv($obj26, $int27);
+~wof_button_setup_discard($obj26, $int27);
 if (%varclient_4083 = 2) {
     ~script6566;
 } else {

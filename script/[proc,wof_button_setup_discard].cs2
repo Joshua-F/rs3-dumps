@@ -3,21 +3,26 @@
 if (%varclient_4141 = -1) {
     return;
 }
-def_boolean $boolean2 = true;
-def_string $string0 = "Convert your prize to oddments.";
-def_string $string1 = "This prize cannot be converted to oddments.";
+def_struct $struct2 = ~trh_promo_current;
+def_obj $obj3 = obj_40932;
+if ($struct2 ! null & struct_param($struct2, param_5396) ! obj_40932) {
+    $obj3 = struct_param($struct2, param_5396);
+}
+def_boolean $boolean4 = true;
+def_string $string0 = "Convert your prize to : <oc_name($obj3)>.";
+def_string $string1 = "This prize cannot be converted to : <oc_name($obj3)>.";
 if (%varclient_1790 = 7) {
     $string0 = "Treasure Hunter is not available at the moment. Please try later.";
     $string1 = "Treasure Hunter is not available at the moment. Please try later.";
-    $boolean2 = false;
+    $boolean4 = false;
 } else if (%varclient_1790 = 10) {
     $string0 = "Loading...";
     $string1 = "Loading...";
-    $boolean2 = false;
+    $boolean4 = false;
 } else if (~script273($obj0) = 1) {
-    $boolean2 = false;
+    $boolean4 = false;
 }
 if_setonmouserepeat("script3876($string0, event_com, -1)", interface_1253:com_273);
 if_setonmouserepeat("script3876($string1, event_com, -1)", interface_1253:com_274);
-if_setop(1, "Convert to Oddments", interface_1253:com_273);
-if_sethide($boolean2, interface_1253:com_274);
+if_setop(1, "Convert to : <oc_name($obj3)>", interface_1253:com_273);
+if_sethide($boolean4, interface_1253:com_274);
