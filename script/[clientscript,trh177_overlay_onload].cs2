@@ -1,0 +1,32 @@
+// 16430
+[clientscript,trh177_overlay_onload]
+cc_deleteall(interface_1253:com_438);
+def_int $int0 = 0;
+while ($int0 < 8) {
+    cc_create(interface_1253:com_438, ^iftype_graphic, $int0);
+    $int0 = calc($int0 + 1);
+}
+if_setonvartransmit("script16435{varplayer_10387, varplayer_10387}", interface_669:com_23);
+if_setonvartransmit("script16433{varplayer_10390, varplayer_10391}", interface_669:com_20);
+db_listall(dbtable_168);
+def_dbrow $dbrow1 = db_findnext;
+def_component $component2 = null;
+def_material $material3 = null;
+while ($dbrow1 ! null) {
+    if (db_getfieldcount($dbrow1, dbtable_168:col10) > 0) {
+        $component2, $material3 = db_getfield($dbrow1, dbtable_168:col10, 0);
+        if (if_find($component2) = true) {
+            cc_setonop("script16434($dbrow1)");
+            cc_setop(1, "Examine");
+            cc_setopbase("<col=43BCBC><db_getfield($dbrow1, dbtable_168:col1, 0)></col>");
+            cc_setretex(0, material_14513, $material3);
+        }
+    }
+    $dbrow1 = db_findnext;
+}
+~cc_add_background(interface_669:com_3, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_4471, 1);
+~cc_add_button(interface_669:com_62, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_4479, "Cost : <tostring(500)>");
+cc_setop(1, "Purchase with Heartments");
+cc_setonop("trh177_overlay_op(3, 1)");
+~cc_add_background(interface_669:com_12, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_4471, 1);
+~script13310(interface_669:com_16, interface_669:com_17, 53, calc(8 * 1000));
