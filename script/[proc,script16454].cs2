@@ -1,0 +1,154 @@
+// 16454
+[proc,script16454]
+def_component $component0 = interface_1486:com_22;
+def_int $int1 = cc_param(param_4261);
+db_find(dbtable_171:col0, $int1);
+def_dbrow $dbrow2 = db_findnext;
+if ($dbrow2 = null) {
+    return;
+}
+if (db_getfield($dbrow2, dbtable_171:col0, 0) <= 0) {
+    return;
+}
+def_struct $struct3 = null;
+def_int $int4 = 0;
+def_int $int5 = 1;
+$struct3, $int4 = db_getfield($dbrow2, dbtable_171:col3, 0);
+if ($struct3 ! null) {
+    $int5 = db_getfieldcount($dbrow2, dbtable_171:col3);
+}
+def_int $int6 = 200;
+def_int $int7 = 0;
+def_int $int8 = -1;
+if (~script6431 = true) {
+    $int6 = 300;
+}
+def_int $int9 = $int5;
+$int6 = calc($int6 + 5 * ($int9 - 1));
+def_struct $struct10 = db_getfield($dbrow2, dbtable_171:col2, 0);
+def_int $int11 = 0;
+def_string $string0 = "";
+def_int $int12 = -1;
+if ($struct10 ! null) {
+    $int11, $string0, $int12 = ~script16461($struct10, 0);
+}
+def_string $string1 = db_getfield($dbrow2, dbtable_172:col1, 0);
+$int7 = ~script14747($component0, 0, $int7, calc($int6 * $int9), $string1, $int12, 0);
+$int7 = ~script14748($component0, 0, $int7);
+if (string_length($string0) > 0) {
+    $int7 = ~script16462($component0, 0, $int7, calc($int6 * $int9), $int11, $string0);
+    $int7 = ~script14748($component0, 0, $int7);
+}
+def_string $string2 = "";
+def_string $string3 = "";
+def_obj $obj13 = null;
+def_obj $obj14 = null;
+def_int $int15 = 0;
+def_int $int16 = $int7;
+def_int $int17 = $int7;
+$int8 = -1;
+while (++$int8 < $int5) {
+    $struct3, $int4 = db_getfield($dbrow2, dbtable_171:col3, $int8);
+    if ($int8 > 0) {
+        if ($int8 < $int9) {
+            $int7 = $int16;
+            $int15 = calc($int15 + $int6);
+            $int15 = ~script16463($component0, $int15, $int7);
+        } else {
+            $int7 = ~script14748($component0, $int15, $int7);
+        }
+    }
+    $int11 = 1;
+    $string0 = "";
+    $int12 = -1;
+    $obj14 = null;
+    switch_int ($int4) {
+        case 1 :
+            $obj13 = obj_52868;
+            $string2 = "Net";
+        case 2 :
+            $obj13 = obj_52869;
+            $string2 = "Net";
+        case 4, 5 :
+            $obj13 = obj_309;
+            $string2 = "Lure";
+        case 3 :
+            switch_int ($int1) {
+                case 9 :
+                    $obj13 = obj_1585;
+                case 8 :
+                    $obj13 = obj_11323;
+                case 37 :
+                    $obj13 = obj_3157;
+                case default :
+                    $obj13 = obj_307;
+            }
+            $string2 = "Bait";
+        case 6 :
+            $obj13 = obj_311;
+            $string2 = "Harpoon";
+        case 7 :
+            $obj13 = obj_13431;
+            $string2 = "Cage";
+        case 8 :
+            $obj13 = obj_301;
+            $string2 = "Cage";
+        case default :
+            if ($struct3 ! null & struct_param($struct3, param_1998) = seq_24932) {
+                $obj13 = obj_52869;
+                $string2 = "Net";
+            } else {
+                switch_int ($int1) {
+                    case 25 :
+                        $obj13 = obj_52869;
+                        $string2 = "Net";
+                    case 36 :
+                        $obj13 = obj_311;
+                        $string2 = "Harpoon/Cage";
+                    case default :
+                        $obj13 = obj_307;
+                        $string2 = "Catch";
+                }
+            }
+    }
+    if ($struct3 ! null) {
+        $int11, $string0, $int12 = ~script16461($struct3, struct_param($struct3, param_2190));
+        $obj14 = struct_param($struct3, param_2004);
+        if ($obj14 = null & $int4 = 3) {
+            $obj14 = obj_313;
+        }
+        switch_int ($int1) {
+            case 37 :
+                $obj14 = obj_3150;
+            case 24 :
+                switch_struct ($struct3) {
+                    case struct_39515 :
+                        $obj14 = obj_42238;
+                    case struct_39517 :
+                        $obj14 = obj_42240;
+                    case struct_39516 :
+                        $obj14 = obj_42239;
+                }
+        }
+    }
+    if ($obj14 ! null) {
+        $string3 = oc_name($obj14);
+        if (string_length($string3) < 16) {
+            $string2 = append($string2, "<br>(");
+        } else {
+            $string2 = append($string2, " (");
+        }
+        $string2 = append($string2, $string3);
+        $string2 = append($string2, ")");
+    }
+    $int7 = ~script16460($component0, $int15, $int7, $int6, $obj13, $string2, $obj14, $int12);
+    if (string_length($string0) > 0) {
+        $int7 = ~script16462($component0, $int15, $int7, $int6, $int11, $string0);
+        $int7 = ~script14748($component0, $int15, $int7);
+    }
+    $int7 = ~script16456($component0, $int15, $int7, $int6, $struct3, $int1);
+    if ($int7 > $int17) {
+        $int17 = $int7;
+    }
+}
+if_setsize(calc($int6 * $int9), calc($int17 - 2), ^setsize_abs, ^setsize_abs, $component0);

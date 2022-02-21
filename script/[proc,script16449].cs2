@@ -1,0 +1,75 @@
+// 16449
+[proc,script16449]
+def_component $component0 = interface_1486:com_22;
+def_int $int1 = cc_param(param_4261);
+db_find(dbtable_170:col0, $int1);
+def_dbrow $dbrow2 = db_findnext;
+if ($dbrow2 = null) {
+    return;
+}
+def_int $int3 = 200;
+def_int $int4 = -1;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = -1;
+def_int $int8 = 35;
+def_int $int9 = 4;
+def_int $int10 = 0;
+def_enum $enum11 = db_getfield($dbrow2, dbtable_170:col2, 0);
+def_int $int12 = enum_getoutputcount($enum11);
+if ($int12 <= 0) {
+    return;
+}
+def_struct $struct13 = enum(int, struct, $enum11, max(calc($int12 - 1), 0));
+if ($struct13 = null) {
+    return;
+}
+def_int $int14 = 0;
+def_string $string0 = "";
+def_int $int15 = 0;
+$int14, $string0, $int15 = ~script16461($struct13, ~bool_to_int(struct_param($struct13, param_2217)));
+$int14, $string0, $int15 = ~script16451($dbrow2, $int14, $string0, $int15);
+def_string $string1 = db_getfield($dbrow2, dbtable_170:col1, 0);
+if (string_length($string1) = 0) {
+    $string1 = struct_param($struct13, param_2210);
+}
+def_int $int16 = 6;
+if (string_length($string1) > 0) {
+    $int16 = calc($int16 - 1);
+}
+if (string_length($string0) > 0) {
+    $int16 = calc($int16 - 2);
+}
+if ($int12 > $int16) {
+    $int3 = calc($int3 * 2);
+    $int10 = 1;
+}
+~script7924($component0, if_getnextsubid($component0), $int8, $int8, 0, 0, enum(int, graphic, enum_8548, 21), false, false, false, 0);
+$int6 = ~script14747($component0, calc($int8 + $int9 * 2), $int6, calc($int3 - $int8 - $int9 * 2), $string1, $int15, 40);
+$int6 = ~script14748($component0, 0, $int6);
+if (string_length($string0) > 0) {
+    $int6 = ~script16462($component0, 0, $int6, $int3, $int14, $string0);
+    $int6 = ~script14748($component0, 0, $int6);
+}
+$int7 = -1;
+def_int $int17 = 0;
+def_int $int18 = $int6;
+def_int $int19 = 0;
+def_int $int20 = -1;
+while (++$int7 < $int12) {
+    $struct13 = enum(int, struct, $enum11, $int7);
+    if ($struct13 ! null) {
+        $int6, $int17, $int20 = ~script16450($component0, $int6, ++$int4, $int3, $struct13, $int12, $int10, $int19, $int18, $int20);
+        if (calc($int4 % 2) = 1) {
+            $int18 = $int6;
+            $int19 = $int17;
+        }
+    }
+}
+def_string $string2 = "Unlock the <col=EBE076>Remote Farming Device</col> at your player-owned farm.";
+if (%varplayerbit_45420 = 1) {
+    $string2 = ~script15204($int1, ~script3214($int1));
+}
+$int6 = ~script14748($component0, 0, $int6);
+$int6 = ~script14751($component0, $int6, $int3, "Patch state: <$string2>");
+if_setsize($int3, calc($int6 - 2), ^setsize_abs, ^setsize_abs, $component0);
