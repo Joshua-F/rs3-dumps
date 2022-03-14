@@ -1,6 +1,5 @@
 // 2833
-[proc,inventory_setophelds](obj $obj0, int $int1, int $int2)
-def_int $int3 = oc_param($obj0, param_3861);
+[proc,inventory_setophelds](obj $obj0, int $int1, int $int2, int $int3)
 if ($int1 = 1) {
     cc_setopbase("<~script4033($obj0)><oc_name($obj0)>");
 }
@@ -10,12 +9,6 @@ if ($int1 = 0 & oc_param($obj0, param_3921) = 1) {
     cc_setontargetenter("script7006(event_com)");
     cc_setontargetleave("script7007(event_com)");
     cc_settargetcursors(cursor_46, cursor_158);
-} else if (oc_param($obj0, param_2875) = 1 & $int3 > 0) {
-    cc_settargetverb(oc_iop($obj0, $int3));
-    cc_settargetopcursor(oc_icursor($obj0, $int3));
-    cc_setontargetenter("script7006(event_com)");
-    cc_setontargetleave("script7007(event_com)");
-    cc_settargetcursors(oc_icursor($obj0, $int3), cursor_158);
 }
 cc_setparam(param_7540, 0);
 cc_setparam(param_7541, $obj0);
@@ -105,6 +98,9 @@ switch_category (oc_category($obj0)) {
     case category_1825 :
         ~script13505($obj0, $int1, $int2);
         return;
+    case category_4568 :
+        ~script16473($obj0, $int1, $int3);
+        return;
 }
 if ($int1 = 1) {
     if (oc_uncert($obj0) ! $obj0 & %varplayerbit_3617 = 1) {
@@ -123,26 +119,4 @@ def_cursor $cursor5 = oc_icursor($obj0, 2);
 def_cursor $cursor6 = oc_icursor($obj0, 3);
 def_cursor $cursor7 = oc_icursor($obj0, 4);
 def_cursor $cursor8 = oc_icursor($obj0, 5);
-if (oc_param($obj0, param_2875) = 1 & oc_param($obj0, param_3861) > 0 & $int1 = 0) {
-    if ($int3 = 1) {
-        $string0 = "";
-        $cursor4 = null;
-    }
-    if ($int3 = 2) {
-        $string1 = "";
-        $cursor5 = null;
-    }
-    if ($int3 = 3) {
-        $string2 = "";
-        $cursor6 = null;
-    }
-    if ($int3 = 4) {
-        $string3 = "";
-        $cursor7 = null;
-    }
-    if ($int3 = 5) {
-        $string4 = "";
-        $cursor8 = null;
-    }
-}
 ~script2410($string0, $cursor4, $string1, $cursor5, $string2, $cursor6, $string3, $cursor7, $string4, $cursor8, oc_name($obj0), $int1);

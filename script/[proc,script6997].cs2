@@ -16,20 +16,28 @@ if (if_find($component0) = true) {
         } else {
             cc_setcolour(^white);
             ~script7968($component4, 1);
-            ~script9380($obj2, 94);
+            ~script9380($obj2, 0, 94);
         }
     } else {
         $obj13, $int15, $int16 = ~script947($obj2);
         if ($int15 ! -1) {
             cc_setcolour(^white);
             ~script7968($component4, 1);
-            cc_setobject($obj13, -1);
-            ~script9380($obj2, $int3);
+            if ($int10 > 0) {
+                cc_setobject_alwaysnum($obj13, $int10);
+            } else {
+                cc_setobject($obj13, -1);
+            }
+            ~script9380($obj2, $int10, $int3);
         } else {
             cc_setcolour(0x333333);
             ~script7968($component4, 0);
-            cc_setobject($obj2, -1);
-            ~script9380($obj2, $int3);
+            if ($int10 > 0) {
+                cc_setobject_alwaysnum($obj2, $int10);
+            } else {
+                cc_setobject($obj2, -1);
+            }
+            ~script9380($obj2, $int10, $int3);
         }
     }
     if ($int5 = 1) {
@@ -39,7 +47,7 @@ if (if_find($component0) = true) {
     ~script7033;
     if ($int6 = 0 & ~script792 = false) {
         $int14 = ~script7000($obj2, $int3);
-        if (oc_param($obj2, param_3921) = 1 & $int14 > 3 | oc_param($obj2, param_2875) = 1 & oc_param($obj2, param_3861) > 0) {
+        if (oc_param($obj2, param_3921) = 1 & ($int14 > 3 | ~script16476 = true)) {
             cc_setoptkey($int7, $int8);
             cc_setoptkeyrate(6, 50);
         } else {

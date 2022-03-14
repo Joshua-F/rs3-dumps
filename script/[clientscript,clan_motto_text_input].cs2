@@ -1,26 +1,26 @@
 // 4379
-[clientscript,clan_motto_text_input](component $component0, component $component1, char $char2, int $key3, component $component4)
+[clientscript,clan_motto_text_input](component $component0, component $component1, char $char2, int $int3, component $component4)
 %varclient_2538 = if_gettext($component0);
-switch_int ($key3) {
-    case ^key_return :
+switch_int ($int3) {
+    case 84 :
         ~clan_motto_return;
-    case ^key_escape :
+    case 13 :
         if (~cancel_targetmode = true) {
             return;
         }
         ~clan_motto_abort;
-    case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
+    case 96, 97, 98, 99, 102, 103 :
         if (keyheld_shift = false) {
             return;
         }
-        ~script1553($key3, %varclient_1496, %varclient_2538);
-    case ^key_backspace :
+        ~script1553($int3, %varclient_1496, %varclient_2538);
+    case 85 :
         if (string_length(%varclient_2538) > 0) {
             %varclient_2538 = substring(%varclient_2538, 0, calc(string_length(%varclient_2538) - 1));
         }
     case default :
         if (string_length(%varclient_2538) < 80) {
-            %varclient_2538 = ~add_to_inputstring(%varclient_2538, 0, $key3, $char2);
+            %varclient_2538 = ~add_to_inputstring(%varclient_2538, 0, $int3, $char2);
         }
 }
 %varclient_1496 = ~script1552(%varclient_1496, %varclient_2538, fontmetrics_25, $component0, -1);

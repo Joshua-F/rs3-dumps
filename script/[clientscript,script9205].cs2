@@ -1,26 +1,26 @@
 // 9205
-[clientscript,script9205](int $key0, char $char1, component $component2, component $component3)
+[clientscript,script9205](int $int0, char $char1, component $component2, component $component3)
 if ($char1 = '<') {
     return;
 }
 def_string $string0 = if_gettext($component2);
 def_string $string1 = $string0;
 def_string $string2 = "";
-switch_int ($key0) {
-    case ^key_left :
+switch_int ($int0) {
+    case 96 :
         if (%varclient_3782 > 0) {
             %varclient_3782 = calc(%varclient_3782 - 1);
         }
-    case ^key_right :
+    case 97 :
         if (%varclient_3782 < string_length($string0)) {
             %varclient_3782 = calc(%varclient_3782 + 1);
         }
-    case ^key_home :
+    case 102 :
         %varclient_3782 = 0;
-    case ^key_end :
+    case 103 :
         %varclient_3782 = string_length($string0);
     case default :
-        $string1, %varclient_3782 = ~script802(%varclient_3782, $string0, 7, $key0, $char1);
+        $string1, %varclient_3782 = ~script802(%varclient_3782, $string0, 7, $int0, $char1);
 }
 if_settext(~script1602($string1), $component2);
 def_int $int4 = stringwidth(substring($string1, 0, %varclient_3782), if_getfontmetrics($component2));

@@ -1,30 +1,30 @@
 // 4369
-[clientscript,clan_qfc_text_input](component $component0, char $char1, int $key2, component $component3)
+[clientscript,clan_qfc_text_input](component $component0, char $char1, int $int2, component $component3)
 %varclient_2539 = if_gettext($component0);
-switch_int ($key2) {
-    case ^key_return :
+switch_int ($int2) {
+    case 84 :
         ~clan_qfc_return(1);
-    case ^key_escape :
+    case 13 :
         if (~cancel_targetmode = true) {
             return;
         }
         ~clan_qfc_return(1);
-    case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
+    case 96, 97, 98, 99, 102, 103 :
         if (keyheld_shift = false) {
             return;
         }
-        ~script1553($key2, %varclient_1498, %varclient_2539);
-    case ^key_backspace :
+        ~script1553($int2, %varclient_1498, %varclient_2539);
+    case 85 :
         if (string_length(%varclient_2539) > 0) {
             %varclient_2539 = substring(%varclient_2539, 0, calc(string_length(%varclient_2539) - 1));
         }
     case default :
-        if ($key2 = ^key_v & keyheld_ctrl = true) {
+        if ($int2 = 67 & keyheld_ctrl = true) {
             ~script4367;
             return;
         }
         if (string_length(%varclient_2539) < 13) {
-            %varclient_2539 = ~add_to_inputstring(%varclient_2539, 0, $key2, $char1);
+            %varclient_2539 = ~add_to_inputstring(%varclient_2539, 0, $int2, $char1);
         }
 }
 %varclient_1498 = ~script1552(%varclient_1498, %varclient_2539, fontmetrics_25, $component0, -1);

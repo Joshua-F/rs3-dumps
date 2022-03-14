@@ -1,5 +1,5 @@
 // 7664
-[clientscript,bugreport_input_keyboard](int $key0, char $char1, component $component2, int $int3)
+[clientscript,bugreport_input_keyboard](int $int0, char $char1, component $component2, int $int3)
 def_int $int4 = 0;
 def_int $int5 = 0;
 def_int $int6 = 0;
@@ -8,53 +8,53 @@ if (~script11370 = 0) {
     mes("Chat is not available until your date of birth is recorded. Please enter your DOB above.");
     return;
 }
-switch_int ($key0) {
-    case ^key_return :
+switch_int ($int0) {
+    case 84 :
         if (~is_mobile_client = false) {
             ~script7666(%varclient_2753, $component2);
             ~script7665(%varclient_2753);
         }
         return;
-    case ^key_escape :
+    case 13 :
         if (~cancel_targetmode = true) {
             return;
         }
         ~script675;
         ~bugreport_input_close;
         return;
-    case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
+    case 96, 97, 98, 99, 102, 103 :
         if (~is_mobile_client = true) {
             return;
         }
-        if (keyheld_shift = false & $key0 ! ^key_home & $key0 ! ^key_end) {
+        if (keyheld_shift = false & $int0 ! 102 & $int0 ! 103) {
             return;
         }
         if (%varclient_2753 = 1) {
-            %varclient_2749 = ~script7673($key0, %varclient_2749, %varclient_2758, $component2);
+            %varclient_2749 = ~script7673($int0, %varclient_2749, %varclient_2758, $component2);
             ~script7671(interface_1405:com_12, interface_1405:com_15, %varclient_2758);
             return;
         } else if (%varclient_2753 = 2) {
-            %varclient_2750 = ~script7673($key0, %varclient_2750, %varclient_2759, $component2);
+            %varclient_2750 = ~script7673($int0, %varclient_2750, %varclient_2759, $component2);
             ~script7671(interface_1405:com_26, interface_1405:com_27, %varclient_2759);
             return;
         }
     case default :
         $string0 = "";
         $string0 = append_char($string0, $char1);
-        if (char_isprintable($char1) = true | $key0 = ^key_backspace | $key0 = ^key_del) {
+        if (char_isprintable($char1) = true | $int0 = 85 | $int0 = 101) {
             if ($char1 = '<') {
                 return;
             }
             if (%varclient_2753 = 1) {
-                if ($key0 ! ^key_backspace & $key0 ! ^key_del & string_length(removetags(%varclient_2758)) >= 500) {
+                if ($int0 ! 85 & $int0 ! 101 & string_length(removetags(%varclient_2758)) >= 500) {
                     ~script7667(interface_1405:com_14);
                     return;
                 }
                 $int4, $int5 = if_getcharposatindex(string_length(%varclient_2758), $component2);
-                if ($int5 >= if_getheight($component2) & $key0 ! ^key_backspace & $key0 ! ^key_del) {
+                if ($int5 >= if_getheight($component2) & $int0 ! 85 & $int0 ! 101) {
                     return;
                 }
-                %varclient_2758, %varclient_2749 = ~script802(%varclient_2749, %varclient_2758, $int3, $key0, $char1);
+                %varclient_2758, %varclient_2749 = ~script802(%varclient_2749, %varclient_2758, $int3, $int0, $char1);
                 if_settext(%varclient_2758, $component2);
                 if (compare(if_gettext($component2), "Fox Mulder") = 0) {
                     if_settext("Keep searching for the Truth.", $component2);
@@ -70,15 +70,15 @@ switch_int ($key0) {
                 }
                 ~script7671(interface_1405:com_12, interface_1405:com_15, %varclient_2758);
             } else if (%varclient_2753 = 2) {
-                if ($key0 ! ^key_backspace & $key0 ! ^key_del & string_length(removetags(%varclient_2759)) >= 500) {
+                if ($int0 ! 85 & $int0 ! 101 & string_length(removetags(%varclient_2759)) >= 500) {
                     ~script7667(interface_1405:com_29);
                     return;
                 }
                 $int4, $int5 = if_getcharposatindex(string_length(%varclient_2759), $component2);
-                if ($int5 >= if_getheight($component2) & $key0 ! ^key_backspace & $key0 ! ^key_del) {
+                if ($int5 >= if_getheight($component2) & $int0 ! 85 & $int0 ! 101) {
                     return;
                 }
-                %varclient_2759, %varclient_2750 = ~script802(%varclient_2750, %varclient_2759, $int3, $key0, $char1);
+                %varclient_2759, %varclient_2750 = ~script802(%varclient_2750, %varclient_2759, $int3, $int0, $char1);
                 if_settext(%varclient_2759, $component2);
                 ~script7671(interface_1405:com_26, interface_1405:com_27, %varclient_2759);
             }
