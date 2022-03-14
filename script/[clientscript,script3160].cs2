@@ -1,5 +1,5 @@
 // 3160
-[clientscript,script3160](int $key0, char $char1)
+[clientscript,script3160](int $int0, char $char1)
 if (userdetail_quickchat = true | ~script5280 = true) {
     return;
 }
@@ -11,8 +11,8 @@ def_int $int6 = -1;
 def_int $int7 = -1;
 def_int $int8 = -1;
 $int2, $int3, $int4, $int5, $int6, $int7, $int8 = ~script4590;
-switch_int ($key0) {
-    case ^key_return :
+switch_int ($int0) {
+    case 84 :
         if ($int2 < 0) {
             mes_typed(^chattype_clanmessage, 0, "You are not in a Clan.");
         } else if ($int3 < $int4) {
@@ -28,12 +28,12 @@ switch_int ($key0) {
         if_settext(escape(%varclient_2479), interface_912:com_18);
         %varclient_1098 = string_length(%varclient_2479);
         ~script1390(interface_912:com_18, interface_912:com_19, %varclient_2479);
-    case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
-        %varclient_1098 = ~script1553($key0, %varclient_1098, %varclient_2479);
+    case 96, 97, 98, 99, 102, 103 :
+        %varclient_1098 = ~script1553($int0, %varclient_1098, %varclient_2479);
         ~script1390(interface_912:com_18, interface_912:com_19, %varclient_2479);
     case default :
-        if (char_isprintable($char1) = true | $key0 = ^key_backspace | $key0 = ^key_del) {
-            %varclient_2479, %varclient_1098 = ~script802(%varclient_1098, %varclient_2479, 0, $key0, $char1);
+        if (char_isprintable($char1) = true | $int0 = 85 | $int0 = 101) {
+            %varclient_2479, %varclient_1098 = ~script802(%varclient_1098, %varclient_2479, 0, $int0, $char1);
             if_settext(escape(%varclient_2479), interface_912:com_18);
             ~script1390(interface_912:com_18, interface_912:com_19, %varclient_2479);
         }

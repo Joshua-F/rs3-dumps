@@ -1,22 +1,22 @@
 // 1866
-[clientscript,worldmap_search_onkey](int $key0, char $char1, component $component2)
-if ($key0 = ^key_return) {
+[clientscript,worldmap_search_onkey](int $int0, char $char1, component $component2)
+if ($int0 = 84) {
     if (%varclient_3703 ! null) {
         worldmap_jumptodisplaycoord(%varclient_3703);
     }
     %varclient_2545 = "";
     ~script308($component2);
     return;
-} else if ($key0 = ^key_escape) {
+} else if ($int0 = 13) {
     if (~cancel_targetmode = true) {
         return;
     }
     ~script308($component2);
     return;
-} else if ($key0 ! ^key_backspace & char_isprintable($char1) = false) {
+} else if ($int0 ! 85 & char_isprintable($char1) = false) {
     return;
 }
-def_string $string0 = removetags(~add_to_inputstring(%varclient_2545, 4, $key0, $char1));
+def_string $string0 = removetags(~add_to_inputstring(%varclient_2545, 4, $int0, $char1));
 if (string_indexof_string($string0, "  ", 0) ! -1) {
     return;
 }

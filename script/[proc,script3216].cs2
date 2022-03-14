@@ -1,5 +1,5 @@
 // 3216
-[proc,script3216](int $key0, char $char1)
+[proc,script3216](int $int0, char $char1)
 if (create_connect_reply = -3) {
     return;
 }
@@ -9,7 +9,7 @@ if (create_reply = -3) {
 if (create_email_validate_reply = -3) {
     return;
 }
-if ($key0 = ^key_escape & %varclient_174 ! 111) {
+if ($int0 = 13 & %varclient_174 ! 111) {
     ~script7879;
     return;
 }
@@ -24,9 +24,9 @@ def_int $int5 = 0;
 def_string $string1 = "";
 $string1 = append_char($string1, $char1);
 if (%varclient_174 = 111) {
-    switch_int ($key0) {
-        case ^key_escape, ^key_return :
-            if (string_length(%varclient_2563) > 0 & $key0 = ^key_escape) {
+    switch_int ($int0) {
+        case 13, 84 :
+            if (string_length(%varclient_2563) > 0 & $int0 = 13) {
                 %varclient_2563 = "";
             } else {
                 if_sethide(true, interface_786:com_16);
@@ -35,18 +35,18 @@ if (%varclient_174 = 111) {
                 ~script1594;
                 return;
             }
-        case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
+        case 96, 97, 98, 99, 102, 103 :
             if (string_indexof_char("124678", $char1, 0) = -1) {
-                %varclient_1099 = ~script1553($key0, %varclient_1099, %varclient_2563);
+                %varclient_1099 = ~script1553($int0, %varclient_1099, %varclient_2563);
                 ~script3218(interface_786:com_14, interface_786:com_15, interface_786:com_16, %varclient_2563, 111);
                 return;
             }
     }
-    if (string_length(%varclient_2563) >= 12 & $key0 ! ^key_backspace & $key0 ! ^key_del & $key0 ! ^key_escape) {
+    if (string_length(%varclient_2563) >= 12 & $int0 ! 85 & $int0 ! 101 & $int0 ! 13) {
         return;
     }
-    if (string_indexof_char("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789  _-", $char1, 0) ! -1 | $key0 = ^key_backspace | $key0 = ^key_del | $key0 = ^key_escape) {
-        %varclient_2563, %varclient_1099 = ~script802(%varclient_1099, %varclient_2563, 3, $key0, $char1);
+    if (string_indexof_char("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789  _-", $char1, 0) ! -1 | $int0 = 85 | $int0 = 101 | $int0 = 13) {
+        %varclient_2563, %varclient_1099 = ~script802(%varclient_1099, %varclient_2563, 3, $int0, $char1);
         if_settext(%varclient_2563, interface_786:com_15);
         ~script3218(interface_786:com_14, interface_786:com_15, interface_786:com_16, %varclient_2563, 111);
         ~create_validate_displayname(0, 1);

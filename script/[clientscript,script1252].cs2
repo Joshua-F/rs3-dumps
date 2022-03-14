@@ -1,27 +1,27 @@
 // 1252
-[clientscript,script1252](int $key0, char $char1, int $int2)
+[clientscript,script1252](int $int0, char $char1, int $int2)
 if (%varclient_1412 = true) {
     return;
 }
 def_component $component3 = interface_64:com_50;
 def_component $component4 = interface_64:com_51;
 def_component $component5 = interface_64:com_52;
-switch_int ($key0) {
-    case ^key_escape :
+switch_int ($int0) {
+    case 13 :
         return;
-    case ^key_return :
+    case 84 :
         %varclient_1412 = true;
         return;
-    case ^key_left, ^key_right, ^key_up, ^key_down, ^key_home, ^key_end :
-        %varclient_1099 = ~script1553($key0, %varclient_1099, %varclient_2563);
+    case 96, 97, 98, 99, 102, 103 :
+        %varclient_1099 = ~script1553($int0, %varclient_1099, %varclient_2563);
         ~script3218($component3, $component4, $component5, %varclient_2563, 111);
         return;
 }
-if (string_length(%varclient_2563) >= 12 & $key0 ! ^key_backspace & $key0 ! ^key_del) {
+if (string_length(%varclient_2563) >= 12 & $int0 ! 85 & $int0 ! 101) {
     return;
 }
-if (string_indexof_char("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789  _-", $char1, 0) ! -1 | $key0 = ^key_backspace | $key0 = ^key_del) {
-    %varclient_2563, %varclient_1099 = ~script802(%varclient_1099, %varclient_2563, 2, $key0, $char1);
+if (string_indexof_char("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789  _-", $char1, 0) ! -1 | $int0 = 85 | $int0 = 101) {
+    %varclient_2563, %varclient_1099 = ~script802(%varclient_1099, %varclient_2563, 2, $int0, $char1);
     if_settext(%varclient_2563, $component4);
     if (string_length(%varclient_2563) <= 0) {
         if_sethide(false, interface_64:com_86);
