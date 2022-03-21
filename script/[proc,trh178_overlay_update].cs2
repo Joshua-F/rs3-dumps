@@ -1,0 +1,43 @@
+// 16487
+[proc,trh178_overlay_update]
+def_int $int0 = -1;
+def_graphic $graphic1 = null;
+def_graphic $graphic2 = null;
+def_graphic $graphic3 = null;
+def_dbrow $dbrow4 = null;
+def_int $rgb5 = ^black;
+~trh178_set_chest;
+switch_int (%varplayerbit_51126) {
+    case 44 :
+        $graphic1 = "trh178_progress_bar,1";
+        $graphic3 = trh178_emerald_lock;
+        $graphic2 = trh178_emerald_lock_open;
+        $dbrow4 = dbrow_5909;
+        $rgb5 = ^green;
+    case 45 :
+        $graphic1 = "trh178_progress_bar,2";
+        $graphic3 = trh178_ruby_lock;
+        $graphic2 = trh178_ruby_lock_open;
+        $dbrow4 = dbrow_5910;
+        $rgb5 = ^red;
+    case 46 :
+        $graphic1 = "trh178_progress_bar,3";
+        $graphic3 = trh178_diamond_lock;
+        $graphic2 = trh178_diamond_lock_open;
+        $dbrow4 = dbrow_5911;
+        $rgb5 = ^white;
+    case default :
+        return;
+}
+def_string $string0 = db_getfield(~trh_chest_get_dbrow(%varplayerbit_51126), dbtable_123:col1, 0);
+~script16498($dbrow4, interface_959:com_3);
+if_setgraphic($graphic1, interface_959:com_44);
+if_settext("You open your <$string0> and receive", interface_959:com_32);
+if_setcolour($rgb5, interface_959:com_23);
+if_setcolour($rgb5, interface_959:com_22);
+if (%varplayerbit_51127 = 0) {
+    if_setgraphic($graphic2, interface_959:com_7);
+} else {
+    if_setgraphic($graphic3, interface_959:com_7);
+}
+~trh178_chest_setup;

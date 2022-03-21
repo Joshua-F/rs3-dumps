@@ -1,0 +1,45 @@
+// 16489
+[proc,script16489](dbrow $dbrow0, obj $obj1, int $int2)
+def_component $component3 = db_getfield($dbrow0, dbtable_173:col0, 0);
+def_component $component4 = db_getfield($dbrow0, dbtable_173:col1, 0);
+def_component $component5 = db_getfield($dbrow0, dbtable_173:col2, 0);
+def_component $component6 = db_getfield($dbrow0, dbtable_173:col3, 0);
+def_component $component7 = db_getfield($dbrow0, dbtable_173:col4, 0);
+def_component $component8 = db_getfield($dbrow0, dbtable_173:col5, 0);
+def_component $component9 = db_getfield($dbrow0, dbtable_173:col6, 0);
+def_component $component10 = db_getfield($dbrow0, dbtable_173:col7, 0);
+def_struct $struct11 = oc_param($obj1, param_5404);
+def_struct $struct12 = oc_param($obj1, param_5405);
+def_dbrow $dbrow13 = oc_param($obj1, param_5407);
+def_dbrow $dbrow14 = oc_param($obj1, param_5408);
+if_sethide(true, $component5);
+if_sethide(true, $component6);
+if_sethide(true, $component4);
+if_sethide(true, $component3);
+if_sethide(false, $component9);
+if ($struct12 ! null) {
+    if_sethide(false, interface_959:com_30);
+    if_sethide(false, $component7);
+    ~mtx_outfit_preview($component7, $component3, $component8, $component9);
+    if_setmodelanim(struct_param($struct12, param_5406), $component3);
+} else if ($struct11 ! null) {
+    if_sethide(false, interface_959:com_30);
+    if_sethide(false, $component7);
+    ~mtx_anim_preview($struct11, $component7, $component4, $component8, $component9);
+} else {
+    if_sethide(true, $component7);
+    if_sethide(true, $component9);
+    ~trh178_cancel_load($component8);
+    if ($dbrow13 ! null) {
+        ~script16490($dbrow13, $int2, $component5);
+        if_sethide(false, $component5);
+    } else if ($dbrow14 ! null) {
+        if_setmodel(db_getfield($dbrow14, dbtable_175:col0, 0), $component6);
+        if_setmodelangle(db_getfield($dbrow14, dbtable_175:col1, 0), $component6);
+        if_sethide(false, $component6);
+    } else {
+        if_setobject($obj1, $int2, $component5);
+        if_sethide(false, $component5);
+    }
+}
+if_settext(~text_plural($int2, oc_name($obj1), "<~script11601($int2, true)> <oc_name($obj1)>"), $component10);
