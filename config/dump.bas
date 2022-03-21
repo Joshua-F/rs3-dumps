@@ -28055,3 +28055,46 @@ readyanim=null,seq_34688
 randomreadyanim=seq_34687,90
 randomreadyanim=seq_34686,10
 
+// 4611
+[bas_4611]
+readyanim_l=seq_34639
+readyanim_r=seq_34639
+runanim=seq_34698
+readyanim=seq_34697,seq_34639
+
+// 4612
+[bas_4612]
+readyanim_l=seq_34701
+readyanim_r=seq_34701
+walkturn_l=seq_34701
+walkturn_r=seq_34701
+runanim=seq_34702
+hillrotate=32,32
+readyanim=null,seq_34701
+randomreadyanim=seq_34699,90
+randomreadyanim=seq_34700,10
+
+// 4613
+[bas_4613]
+readyanim_l=seq_34719
+readyanim_r=seq_34719
+walkturn_l=seq_34719
+walkturn_r=seq_34719
+runanim=seq_34718
+hillrotate=32,32
+readyanim=null,seq_34719
+randomreadyanim=seq_34715,90
+randomreadyanim=seq_34716,10
+
+// 4614
+[bas_4614]
+readyanim_l=seq_34726
+readyanim_r=seq_34726
+walkturn_l=seq_34726
+walkturn_r=seq_34726
+runanim=seq_34725
+hillrotate=32,32
+readyanim=null,seq_34726
+randomreadyanim=seq_34723,90
+randomreadyanim=seq_34724,10
+
