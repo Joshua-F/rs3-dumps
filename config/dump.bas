@@ -23527,3 +23527,20 @@ readyanim=seq_34758,null
 [bas_4624]
 readyanim=seq_34759,null
 
+[bas_4625]
+readyanim_l=seq_34763
+readyanim_r=seq_34763
+runanim=seq_34764
+readyanim=seq_34762,seq_34763
+
+[bas_4626]
+readyanim_l=seq_34772
+readyanim_r=seq_34772
+walkturn_l=seq_34772
+walkturn_r=seq_34772
+runanim=seq_34771
+hillrotate=32,32
+readyanim=null,seq_34772
+randomreadyanim=seq_34769,90
+randomreadyanim=seq_34770,10
+
