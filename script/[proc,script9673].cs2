@@ -6,9 +6,15 @@ if ($obj2 = null) {
 def_component $component9 = interface_1253:com_403;
 def_component $component10 = interface_1253:com_425;
 if_sethide(false, $component9);
+if_setobject($obj2, $int3, interface_1253:com_422);
 if_settext(oc_name($obj2), interface_1253:com_418);
 if_settext($string0, interface_1253:com_419);
-if_setobject($obj2, $int3, interface_1253:com_422);
+def_int $int11 = calc(paraheight($string0, if_getwidth(interface_1253:com_419), fontmetrics_26) * ~script11432(fontmetrics_26));
+if ($int11 > 56) {
+    if_setsize(if_getwidth(interface_1253:com_403), calc(220 + ($int11 - 56)), ^setsize_abs, ^setsize_abs, interface_1253:com_403);
+} else {
+    if_setsize(if_getwidth(interface_1253:com_403), 220, ^setsize_abs, ^setsize_abs, interface_1253:com_403);
+}
 switch_int ($int4) {
     case 1 :
         if_settext("Common", interface_1253:com_420);
@@ -40,58 +46,58 @@ if (~script5828("", $obj2, null, struct_27827, $component10, interface_1253:com_
 } else {
     if_sethide(true, interface_1253:com_425);
 }
-def_int $int11 = 0;
 def_int $int12 = 0;
 def_int $int13 = 0;
 def_int $int14 = 0;
-def_component $component15 = if_getlayer($component9);
-if ($component15 ! null) {
-    $int11 = ~script3365($component15);
-    $int13 = ~script3366($component15);
-    $int12 = calc($int11 + if_getwidth($component15));
-    $int14 = calc($int13 + if_getheight($component15));
-} else if ($component15 ! null) {
-    $int12, $int14 = if_getwidth($component15), if_getheight($component15);
+def_int $int15 = 0;
+def_component $component16 = if_getlayer($component9);
+if ($component16 ! null) {
+    $int12 = ~script3365($component16);
+    $int14 = ~script3366($component16);
+    $int13 = calc($int12 + if_getwidth($component16));
+    $int15 = calc($int14 + if_getheight($component16));
+} else if ($component16 ! null) {
+    $int13, $int15 = if_getwidth($component16), if_getheight($component16);
 } else {
-    $int12, $int14 = 765, 503;
+    $int13, $int15 = 765, 503;
 }
-def_int $int16 = 0;
 def_int $int17 = 0;
 def_int $int18 = 0;
 def_int $int19 = 0;
 def_int $int20 = 0;
 def_int $int21 = 0;
 def_int $int22 = 0;
-def_int $int23 = if_getheight($component9);
-def_int $int24 = if_getwidth($component9);
+def_int $int23 = 0;
+def_int $int24 = if_getheight($component9);
+def_int $int25 = if_getwidth($component9);
 if (cc_find($component0, $int1) = true | $int1 = -1 & if_find($component0) = true) {
-    $int16, $int17, $int18, $int19 = ~script1743, ~script1744, cc_getwidth, cc_getheight;
-    $int20 = calc($int16 + $int18 / 2 - $int24 / 2);
-    $int21 = calc($int17 - $int23 + 10);
-    if ($int20 < $int11) {
-        $int22 = calc($int20 - $int11);
-        $int20 = calc($int20 - $int22);
-        $int22 = max($int22, calc(0 - ($int24 - 35) / 2));
-    } else if (calc($int20 + $int24) > $int12) {
-        $int22 = calc($int20 + $int24 - $int12);
-        $int20 = calc($int20 - $int22);
-        $int22 = min($int22, calc(($int24 - 35) / 2));
+    $int17, $int18, $int19, $int20 = ~script1743, ~script1744, cc_getwidth, cc_getheight;
+    $int21 = calc($int17 + $int19 / 2 - $int25 / 2);
+    $int22 = calc($int18 - $int24 + 10);
+    if ($int21 < $int12) {
+        $int23 = calc($int21 - $int12);
+        $int21 = calc($int21 - $int23);
+        $int23 = max($int23, calc(0 - ($int25 - 35) / 2));
+    } else if (calc($int21 + $int25) > $int13) {
+        $int23 = calc($int21 + $int25 - $int13);
+        $int21 = calc($int21 - $int23);
+        $int23 = min($int23, calc(($int25 - 35) / 2));
     }
-    $int22 = calc($int22 + $int24 / 2 - 9);
-    if_setposition($int22, 0, ^setpos_abs_left, ^setpos_abs_bottom, interface_1253:com_415);
-    if_setsize(calc($int22 - 17), 18, ^setsize_abs, ^setsize_abs, interface_1253:com_412);
-    if_setsize(calc($int24 - $int22 - 34), 18, ^setsize_abs, ^setsize_abs, interface_1253:com_413);
+    $int23 = calc($int23 + $int25 / 2 - 9);
+    if_setposition($int23, 0, ^setpos_abs_left, ^setpos_abs_bottom, interface_1253:com_415);
+    if_setsize(calc($int23 - 17), 18, ^setsize_abs, ^setsize_abs, interface_1253:com_412);
+    if_setsize(calc($int25 - $int23 - 34), 18, ^setsize_abs, ^setsize_abs, interface_1253:com_413);
 } else {
     if_sethide(true, $component9);
 }
-def_int $int25 = if_getwidth(if_getparentlayer($component9));
-def_int $int26 = calc($int20 - $int11);
-def_int $int27 = calc($int21 - $int13);
-$int26 = min(max(0, $int26), calc($int25 - $int24));
-$int27 = min(max(0, $int27), calc(if_getheight(if_getparentlayer($component9)) - $int23));
-if_setposition($int26, $int27, ^setpos_abs_left, ^setpos_abs_top, $component9);
-def_int $int28 = calc($int26 + $int24 - 3);
-if ($int28 > calc($int25 - if_getwidth($component10))) {
-    $int28 = calc($int26 - if_getwidth($component10) + 3);
+def_int $int26 = if_getwidth(if_getparentlayer($component9));
+def_int $int27 = calc($int21 - $int12);
+def_int $int28 = calc($int22 - $int14);
+$int27 = min(max(0, $int27), calc($int26 - $int25));
+$int28 = min(max(0, $int28), calc(if_getheight(if_getparentlayer($component9)) - $int24));
+if_setposition($int27, $int28, ^setpos_abs_left, ^setpos_abs_top, $component9);
+def_int $int29 = calc($int27 + $int25 - 3);
+if ($int29 > calc($int26 - if_getwidth($component10))) {
+    $int29 = calc($int27 - if_getwidth($component10) + 3);
 }
-if_setposition($int28, calc($int27 + 40), ^setpos_abs_left, ^setpos_abs_top, $component10);
+if_setposition($int29, calc($int28 + 40), ^setpos_abs_left, ^setpos_abs_top, $component10);
