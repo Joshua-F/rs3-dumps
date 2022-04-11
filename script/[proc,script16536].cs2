@@ -1,0 +1,39 @@
+// 16536
+[proc,script16536]
+if (~script16513 = false) {
+    return;
+}
+def_component $component0 = interface_970:com_43;
+def_component $component1 = interface_970:com_44;
+def_component $component2 = interface_970:com_51;
+def_component $component3 = interface_970:com_62;
+if_sethide(false, interface_970:com_26);
+cc_deleteall($component2);
+cc_deleteall($component3);
+if_settext("Egg Hunt<br>Bonus", interface_970:com_52);
+def_dbrow $dbrow4 = ~script16519(%varplayerbit_51240);
+def_string $string0 = db_getfield($dbrow4, dbtable_177:col1, 0);
+if_settext("Next <tostring(8)> eggs:</col><br><$string0>", interface_970:com_53);
+~script16537($component2, $dbrow4);
+def_obj $obj5 = null;
+def_int $int6 = 0;
+def_string $string1 = "";
+if (calc(%varplayer_10425 % 3) = 0) {
+    if_setsize(350, 280, ^setsize_abs, ^setsize_abs, interface_970:com_37);
+    if_sethide(false, $component1);
+    if_setposition(5, 0, ^setpos_abs_left, ^setpos_abs_centre, $component0);
+    if_setposition(5, 0, ^setpos_abs_right, ^setpos_abs_centre, $component1);
+    $obj5, $int6 = ~script16515;
+    if_settext("Reward Item", interface_970:com_63);
+    if (oc_param($obj5, param_2531) = 2) {
+        $string1 = "Cosmetic Override:</col><br><oc_name($obj5)>";
+    } else {
+        $string1 = "<tostring($int6)> x <oc_name($obj5)>";
+    }
+    if_settext($string1, interface_970:com_64);
+    ~script16538($component3, $obj5, $int6);
+} else {
+    if_setsize(260, 280, ^setsize_abs, ^setsize_abs, interface_970:com_37);
+    if_sethide(true, $component1);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component0);
+}

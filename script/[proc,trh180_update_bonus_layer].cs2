@@ -1,0 +1,29 @@
+// 16531
+[proc,trh180_update_bonus_layer]
+def_dbrow $dbrow0 = null;
+def_string $string0 = "None";
+if (%varplayerbit_51239 > 0) {
+    $dbrow0 = ~script16519(%varplayerbit_51239);
+    $string0 = db_getfield($dbrow0, dbtable_177:col1, 0);
+    ~script3536(db_getfield($dbrow0, dbtable_177:col3, 0), interface_970:com_17, -1);
+}
+if_settext($string0, interface_970:com_30);
+def_component $component1 = interface_970:com_10;
+if (%varplayerbit_51240 > 0) {
+    $dbrow0 = ~script16519(%varplayerbit_51240);
+    $string0 = db_getfield($dbrow0, dbtable_177:col1, 0);
+    ~script3536(db_getfield($dbrow0, dbtable_177:col3, 0), interface_970:com_33, -1);
+    if_setmodel(db_getfield($dbrow0, dbtable_177:col2, 0), $component1);
+    if (~script16513 = true) {
+        if_setmodelanim(seq_34768, $component1);
+        if_setonmouseover("trh180_egg_mouseover($component1)", $component1);
+        if_setonmouseleave("trh180_egg_mouseleave($component1, seq_34768)", $component1);
+    } else {
+        if_setmodelanim(null, $component1);
+        if_setonmouseover(null, $component1);
+        if_setonmouseleave(null, $component1);
+    }
+} else {
+    $string0 = "None";
+}
+if_settext($string0, interface_970:com_36);
