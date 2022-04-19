@@ -1,0 +1,51 @@
+// 16568
+[proc,script16568](dbrow $dbrow0, int $int1)(string, int)
+def_string $string0 = db_getfield($dbrow0, dbtable_28:col0, 0);
+def_int $rgb2 = ^white;
+switch_int ($int1) {
+    case 1 :
+        $string0, $rgb2 = ~money_pouch_int_to_string(%varclient_6480);
+    case 2 :
+        switch_dbrow ($dbrow0) {
+            case dbrow_1202 :
+                $string0 = "<tostring_localised(runweight_visible, true)>kg";
+            case dbrow_1016 :
+                $string0, $rgb2 = ~money_pouch_int_to_string(%varclient_6480);
+            case dbrow_6007 :
+                $string0 = ~notes_get_count_string;
+        }
+    case default :
+        switch_dbrow ($dbrow0) {
+            case dbrow_6001 :
+                if (%varplayerbit_45115 = 1) {
+                    $string0 = "Filter Prayers";
+                } else {
+                    $string0 = "Show all Prayers";
+                }
+            case dbrow_6002 :
+                if (%varplayerbit_27344 = 0) {
+                    $string0 = "Filter unavailable abilities";
+                } else {
+                    $string0 = "Show unavailable abilities";
+                }
+            case dbrow_6003 :
+                if (%varplayerbit_50989 = 0) {
+                    $string0 = "Filter locked abilities";
+                } else {
+                    $string0 = "Show locked abilities";
+                }
+            case dbrow_6004 :
+                if (%varplayerbit_50990 = 0) {
+                    $string0 = "Filter lodestone teleports";
+                } else {
+                    $string0 = "Show lodestone teleports";
+                }
+            case dbrow_6005 :
+                if (%varplayerbit_44637 = 0) {
+                    $string0 = "Filter spells";
+                } else {
+                    $string0 = "Show all spells";
+                }
+        }
+}
+return($string0, $rgb2);

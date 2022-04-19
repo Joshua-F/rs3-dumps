@@ -15,12 +15,17 @@ if (%varclient_3692 = 1 | %varclient_3693 = 1) {
 }
 %varclientbit_19930 = 191;
 ~script8411(1002, 0);
-if_sethide(false, interface_276:com_14);
-def_int $int10 = if_getheight(interface_276:com_14);
+if_sethide(false, interface_276:com_15);
+def_int $int10 = if_getheight(interface_276:com_15);
 if_setsize(50, $int10, ^setsize_abs, ^setsize_minus, struct_param(struct_38884, param_3503));
 def_int $int11 = 0;
 def_int $int12 = 0;
 def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = 0;
+def_int $int17 = 0;
+$int14, $int15, $int16, $int17 = window_getinsets;
 while ($int1 < $int2) {
     $int0 = enum(int, int, enum_7717, $int1);
     $struct5 = ~script10405($int0);
@@ -43,8 +48,8 @@ while ($int1 < $int2) {
                     case 1044 :
                         ~script13901;
                     case 1048 :
-                        cc_setsize(50, 400, ^setsize_abs, ^setsize_abs);
-                        cc_setposition(calc(50 + 290), $int10, ^setpos_abs_right, ^setpos_abs_top);
+                        cc_setsize(65, 410, ^setsize_abs, ^setsize_abs);
+                        cc_setposition(calc(50 + 250 - 4), $int10, ^setpos_abs_right, ^setpos_abs_top);
                         $boolean9 = true;
                     case 1009 :
                         cc_setsize(calc((~script11319 + 1) * 6 + 10), calc((~script11319 + 1) * 1 + 10), ^setsize_abs, ^setsize_abs);
@@ -89,14 +94,14 @@ while ($int1 < $int2) {
                         cc_setposition(0, 150, ^setpos_abs_left, ^setpos_abs_top);
                         cc_setsize(116, 75, ^setsize_abs, ^setsize_abs);
                     case 1008 :
-                        cc_setsize(290, 400, ^setsize_abs, ^setsize_abs);
+                        cc_setsize(250, 410, ^setsize_abs, ^setsize_abs);
                         cc_setposition(50, $int10, ^setpos_abs_right, ^setpos_abs_top);
                         if (if_hassub(~script8073) = false) {
                             $boolean9 = true;
                         }
                     case 1028 :
-                        cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-                        cc_setsize(380, 260, ^setsize_abs, ^setsize_abs);
+                        cc_setposition(calc($int14 + 5), calc($int15 + 82 + 5), ^setpos_abs_left, ^setpos_abs_top);
+                        cc_setsize(300, 251, ^setsize_abs, ^setsize_abs);
                     case 1024, 1030 :
                         cc_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top);
                     case 1002 :
@@ -109,7 +114,7 @@ while ($int1 < $int2) {
                     case 1018, 1039 :
                         cc_setposition(0, 96, ^setpos_abs_centre, ^setpos_abs_top);
                     case 1029 :
-                        cc_setposition(calc(50 + 290), 0, ^setpos_abs_right, ^setpos_abs_top);
+                        cc_setposition(calc(50 + 250), 0, ^setpos_abs_right, ^setpos_abs_top);
                     case 2008 :
                         cc_setsize(cc_getwidth, 100, ^setsize_abs, ^setsize_abs);
                         cc_setposition(0, calc(185 + 100), ^setpos_abs_left, ^setpos_abs_top);
@@ -119,17 +124,17 @@ while ($int1 < $int2) {
                     case 32 :
                         cc_setposition(0, 185, ^setpos_abs_left, ^setpos_abs_top);
                         ~script15870;
-                        if (%varclientbit_44897 = 1 | if_gethide(interface_276:com_25) = false) {
+                        if (%varclientbit_44897 = 1 | if_gethide(interface_276:com_26) = false) {
                             $boolean9 = true;
                         }
                         ~script10162;
                         ~mobile_toggle_hud_overlay;
                     case 1036 :
-                        cc_setposition(calc(8 + if_getx(interface_279:com_11) + if_getwidth(interface_279:com_11)), if_gety(interface_279:com_11), ^setpos_abs_left, ^setpos_abs_top);
+                        cc_setposition(calc(8 + if_getx(interface_279:com_12) + if_getwidth(interface_279:com_12)), if_gety(interface_279:com_12), ^setpos_abs_left, ^setpos_abs_top);
                     case 1051 :
-                        cc_setposition(calc(70 + if_getx(interface_279:com_9) + if_getwidth(interface_279:com_9)), 0, ^setpos_abs_left, ^setpos_abs_top);
+                        cc_setposition(calc(70 + if_getx(interface_279:com_10) + if_getwidth(interface_279:com_10)), 0, ^setpos_abs_left, ^setpos_abs_top);
                     case 18 :
-                        if (if_gethide(interface_276:com_25) = true) {
+                        if (if_gethide(interface_276:com_26) = true) {
                             cc_setposition(0, 82, ^setpos_abs_left, ^setpos_abs_top);
                             cc_setsize(300, 100, ^setsize_abs, ^setsize_abs);
                         } else {
@@ -162,14 +167,23 @@ while ($int1 < $int2) {
                             cc_setsize($int3, $int4, ^setsize_abs, ^setsize_abs);
                         }
                         if (struct_param($struct5, param_3534) ! -1) {
-                            cc_setsize(290, $int10, ^setsize_abs, ^setsize_minus);
-                            cc_setposition(50, $int10, ^setpos_abs_right, ^setpos_abs_top);
+                            if (calc(if_getheight(interface_1477:com_57) - $int10) < 410) {
+                                cc_setsize(250, $int10, ^setsize_abs, ^setsize_minus);
+                                cc_setposition(50, $int10, ^setpos_abs_right, ^setpos_abs_top);
+                            } else {
+                                cc_setsize(250, 410, ^setsize_abs, ^setsize_abs);
+                                cc_setposition(50, $int10, ^setpos_abs_right, ^setpos_abs_top);
+                            }
                             $boolean9 = true;
                         }
                 }
                 cc_sethide($boolean9);
                 if (struct_param($struct5, param_3521) = true) {
-                    ~script8361($int0);
+                    if (~script16577($int0) = false) {
+                        ~script8361($int0);
+                    } else {
+                        ~script8350(14, $int0, 0);
+                    }
                 }
                 if (struct_param($struct5, param_3533) = true) {
                     ~script8393($int0, 0);
