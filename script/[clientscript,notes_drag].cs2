@@ -3,27 +3,31 @@
 def_int $int4 = 0;
 def_int $int5 = 0;
 $int3 = calc($int3 - ~script8408($component1));
+def_component $component6 = ~script7799($int0, interface_34:com_11);
+def_component $component7 = ~script7799($int0, interface_34:com_12);
+def_component $component8 = ~script7799($int0, interface_34:com_6);
+def_component $component9 = ~script7799($int0, interface_34:com_14);
 if (cc_find($component1, $int2) = true) {
-    if_sethide(true, ~script7799($int0, interface_34:com_16));
-    if_sethide(false, ~script7799($int0, interface_34:com_14));
+    if_sethide(true, $component9);
+    if_sethide(false, $component7);
     $int5 = cc_getheight;
-    if_setposition(cc_getx, $int3, ^setpos_abs_left, ^setpos_abs_top, ~script7799($int0, interface_34:com_14));
-    if_setsize(cc_getwidth, $int5, ^setsize_abs, ^setsize_abs, ~script7799($int0, interface_34:com_14));
+    if_setposition(cc_getx, $int3, ^setpos_abs_left, ^setpos_abs_top, $component7);
+    if_setsize(cc_getwidth, $int5, ^setsize_abs, ^setsize_abs, $component7);
     $int4 = calc($int3 + $int5 / 2);
 }
-def_int $int6 = 0;
-def_int $int7 = if_gety(~script7799($int0, interface_34:com_13));
-def_int $int8 = calc($int7 + $int5);
-def_int $int9 = calc($int7 + if_getheight(~script7799($int0, interface_34:com_13)));
-def_int $int10 = calc($int9 - $int5);
-if ($int4 >= $int7 & $int4 <= $int8) {
-    $int6 = -4;
-} else if ($int4 >= $int10 & $int4 <= $int9) {
-    $int6 = 4;
+def_int $int10 = 0;
+def_int $int11 = if_gety($component6);
+def_int $int12 = calc($int11 + $int5);
+def_int $int13 = calc($int11 + if_getheight($component6));
+def_int $int14 = calc($int13 - $int5);
+if ($int4 >= $int11 & $int4 <= $int12) {
+    $int10 = -4;
+} else if ($int4 >= $int14 & $int4 <= $int13) {
+    $int10 = 4;
 } else {
     %varclient_821 = 0;
     return;
 }
 if (++%varclient_821 > 5) {
-    ~scrollbar_ondrag_doscroll(~script7799($int0, interface_34:com_9), ~script7799($int0, interface_34:com_13), calc(if_getscrolly(~script7799($int0, interface_34:com_13)) + $int6), 1);
+    ~scrollbar_ondrag_doscroll($component8, $component6, calc(if_getscrolly($component6) + $int10), 1);
 }

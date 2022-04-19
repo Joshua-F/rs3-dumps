@@ -1,42 +1,35 @@
 // 11997
 [proc,script11997](component $component0, component $component1, component $component2, struct $struct3)
-def_int $int4 = 1;
-def_int $int5 = if_getwidth(if_getlayer($component0));
-def_int $int6 = if_getheight(if_getlayer($component0));
-def_int $int7 = calc($int5 - scale(8, 4, 4));
-def_int $int8 = calc($int6 - 4 * 2);
-def_boolean $boolean9 = ~script6431;
+def_int $int4 = if_getwidth(if_getlayer($component0));
+def_int $int5 = if_getheight(if_getlayer($component0));
+def_boolean $boolean6 = ~script6431;
 if ($component0 = struct_param($struct3, param_8136) | $component0 = struct_param($struct3, param_8131)) {
-    if ($boolean9 = true) {
-        if_setsize(calc(4 * 2), calc(scale(50, 100, $int8) - $int4), ^setsize_minus, ^setsize_abs, $component0);
-        if ($component0 = struct_param($struct3, param_8136)) {
-            if_setposition(0, 4, ^setpos_abs_centre, ^setpos_abs_top, $component0);
-        } else {
-            if_setposition(0, 4, ^setpos_abs_centre, ^setpos_abs_bottom, $component0);
-        }
-    } else if ($component0 = struct_param($struct3, param_8136)) {
-        if_setsize(24, 24, ^setsize_abs, ^setsize_abs, $component0);
-        if_setposition(calc(24 + scale(3, 2, 4)), 4, ^setpos_abs_right, ^setpos_abs_bottom, $component0);
+    if ($boolean6 = true) {
+        if_sethide(true, $component0);
     } else {
-        if_setsize(24, 24, ^setsize_abs, ^setsize_abs, $component0);
-        if_setposition(4, 4, ^setpos_abs_right, ^setpos_abs_bottom, $component0);
+        if_sethide(false, $component0);
+        if ($component0 = struct_param($struct3, param_8136)) {
+            if_setsize(24, 24, ^setsize_abs, ^setsize_abs, $component0);
+            if_setposition(calc(24 + scale(3, 2, 4)), 4, ^setpos_abs_right, ^setpos_abs_bottom, $component0);
+        } else {
+            if_setsize(24, 24, ^setsize_abs, ^setsize_abs, $component0);
+            if_setposition(4, 4, ^setpos_abs_right, ^setpos_abs_bottom, $component0);
+        }
     }
 }
 cc_deleteall($component1);
 cc_deleteall($component2);
-$int5 = if_getwidth($component0);
-$int6 = if_getheight($component0);
-def_int $int10 = -1;
+$int4 = if_getwidth($component0);
+$int5 = if_getheight($component0);
+def_int $int7 = -1;
 if ($struct3 ! struct_37672) {
-    if ($boolean9 = false & %varplayerbit_27169 = 1) {
+    if ($boolean6 = false & %varplayerbit_27169 = 1) {
         if ($component0 = struct_param($struct3, param_8136) | $component0 = struct_param($struct3, param_8131)) {
             ~script11624($component1, $component2, struct_28749, 0, 0, 0, 1);
         } else {
-            ~script13980($component1, $component2, struct_28554, 0, 0, $int5, 0, false, "");
+            ~script13980($component1, $component2, struct_28554, 0, 0, $int4, 0, false, "");
         }
-    } else if ($boolean9 = true & $struct3 = struct_37671 & ($component0 = struct_param($struct3, param_8136) | $component0 = struct_param($struct3, param_8131))) {
-        ~script10410($component1, $component2, struct_28557, 10, 0, calc($int5 - 20), $int6, 0, false, "");
     } else {
-        ~script10410($component1, $component2, struct_28557, 0, 0, $int5, $int6, 0, false, "");
+        ~script10410($component1, $component2, struct_28557, 0, 0, $int4, $int5, 0, false, "");
     }
 }

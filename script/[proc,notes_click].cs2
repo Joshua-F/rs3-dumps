@@ -1,26 +1,29 @@
 // 2449
 [proc,notes_click](int $int0, int $int1)
 def_int $int2 = 0;
-while (cc_find(~script7799($int0, interface_34:com_13), $int2) = true) {
+def_component $component3 = ~script7799($int0, interface_34:com_11);
+def_component $component4 = ~script7799($int0, interface_34:com_6);
+def_component $component5 = ~script7799($int0, interface_34:com_14);
+while (cc_findbycategory($component3, $int2, 0) = 1) {
     cc_setop(1, "Select");
     $int2 = calc($int2 + 1);
 }
-if (cc_find(~script7799($int0, interface_34:com_13), %varplayer_98) = true) {
+if (%varplayer_98 ! -1 & cc_findbycategory($component3, %varplayer_98, 0) = 1) {
     cc_setop(1, "Unselect");
-    if (if_gethide(~script7799($int0, interface_34:com_14)) = false) {
-        if_sethide(true, ~script7799($int0, interface_34:com_16));
+    if (if_gethide(~script7799($int0, interface_34:com_12)) = false) {
+        if_sethide(true, $component5);
         return;
     }
-    if_sethide(false, ~script7799($int0, interface_34:com_16));
-    if_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top, ~script7799($int0, interface_34:com_16));
-    if_setsize(cc_getwidth, cc_getheight, ^setsize_abs, ^setsize_abs, ~script7799($int0, interface_34:com_16));
+    if_sethide(false, $component5);
+    if_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top, $component5);
+    if_setsize(0, cc_getheight, ^setsize_minus, ^setsize_abs, $component5);
     if ($int1 = 1) {
-        if (cc_gety < if_getscrolly(~script7799($int0, interface_34:com_13))) {
-            ~scrollbar_ondrag_doscroll(~script7799($int0, interface_34:com_9), ~script7799($int0, interface_34:com_13), calc(cc_gety - 5), 1);
-        } else if (calc(cc_gety + cc_getheight) > calc(if_getscrolly(~script7799($int0, interface_34:com_13)) + if_getheight(~script7799($int0, interface_34:com_13)))) {
-            ~scrollbar_ondrag_doscroll(~script7799($int0, interface_34:com_9), ~script7799($int0, interface_34:com_13), calc(cc_gety - if_getheight(~script7799($int0, interface_34:com_13)) + cc_getheight + 5), 1);
+        if (cc_gety < if_getscrolly($component3)) {
+            ~scrollbar_ondrag_doscroll($component4, $component3, calc(cc_gety - 5), 1);
+        } else if (calc(cc_gety + cc_getheight) > calc(if_getscrolly($component3) + if_getheight($component3))) {
+            ~scrollbar_ondrag_doscroll($component4, $component3, calc(cc_gety - if_getheight($component3) + cc_getheight + 5), 1);
         }
     }
 } else {
-    if_sethide(true, ~script7799($int0, interface_34:com_16));
+    if_sethide(true, $component5);
 }

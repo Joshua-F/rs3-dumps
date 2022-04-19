@@ -1,17 +1,21 @@
 // 12107
 [proc,script12107](component $component0)
+def_int $int1 = if_getwidth($component0);
+def_string $string0 = "Turn off Active Prayers";
 if (~script12015($component0) = true) {
-    if (if_getwidth($component0) > 190) {
-        if_settext("Turn off Active Prayers", $component0);
-    } else if (if_getwidth($component0) > 95) {
-        if_settext("Turn off", $component0);
-    } else {
-        if_settext("Off", $component0);
+    if (stringwidth($string0, fontmetrics_209) > $int1) {
+        $string0 = "Turn off";
+        if (stringwidth($string0, fontmetrics_209) > $int1) {
+            $string0 = "Off";
+        }
     }
-} else if (if_getwidth($component0) > 190) {
-    if_settext("Activate Quick Prayers", $component0);
-} else if (if_getwidth($component0) > 95) {
-    if_settext("Activate QP", $component0);
 } else {
-    if_settext("QP", $component0);
+    $string0 = "Activate Quick Prayers";
+    if (stringwidth($string0, fontmetrics_209) > $int1) {
+        $string0 = "Activate QP";
+        if (stringwidth($string0, fontmetrics_209) > $int1) {
+            $string0 = "QP";
+        }
+    }
 }
+if_settext($string0, $component0);
