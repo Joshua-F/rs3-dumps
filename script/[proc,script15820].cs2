@@ -1,53 +1,68 @@
 // 15820
-[proc,script15820](dbrow $dbrow0, int $int1, string $string0, string $string1, int $int2)
-def_component $component3 = interface_891:com_36;
-def_component $component4 = interface_891:com_13;
-def_component $component5 = interface_891:com_14;
-def_struct $struct6 = null;
-def_struct $struct7 = null;
-def_graphic $graphic8 = null;
-def_int $int9 = 0;
-def_int $int10 = -1;
-def_dbrow $dbrow11 = null;
-def_string $string2 = "";
-def_string $string3 = "";
+[proc,script15820](dbrow $dbrow0, int $int1, struct $struct2, struct $struct3, obj $obj4, int $int5, string $string0, string $string1, string $string2, string $string3, int $int6)
+def_graphic $graphic7 = null;
+def_int $int8 = 0;
+def_dbrow $dbrow9 = null;
 def_string $string4 = "";
 def_string $string5 = "";
-if ($dbrow0 ! null) {
-    if (db_getrowtable($dbrow0) = dbtable_122) {
-        $string2 = db_getfield($dbrow0, dbtable_122:col4, 0);
-        $string3 = ~script16013($string3, db_getfield($dbrow0, dbtable_122:col5, 0), ~script15973(db_getfield($dbrow0, dbtable_122:col6, 0), shop_getcategorydescription($int2)));
-        $string3 = ~script16013($string3, db_getfield($dbrow0, dbtable_122:col7, 0), db_getfield($dbrow0, dbtable_122:col8, 0));
-        $string3 = ~script16013($string3, "You currently own:", ~script16080(db_getfield($dbrow0, dbtable_122:col11, 0)));
-        if_setonop("script15743($string1)", interface_891:com_18);
-    }
-    if_sethide(true, interface_891:com_20);
-    if_settext($string0, interface_891:com_19);
-} else {
-    $struct6, $struct7, $graphic8, $graphic8, $dbrow11 = db_getfield(dbrow_4168, dbtable_135:col0, $int1);
-    $int10 = struct_param($struct6, param_2531);
-    $string2 = ~script15973(struct_param($struct7, param_2533), struct_param($struct6, param_2533));
-    $string3 = struct_param($struct6, param_8347);
-    $string3 = ~script16013($string3, "", ~script16193($struct6, $int10));
-    $string3 = ~script16013($string3, "", ~script16092($struct6, $int10));
-    $string3 = ~script16013($string3, "Membership Benefits:", ~script16205($struct6, $int1));
-    $string0 = ~script12689($int1);
-    if_setonop(null, interface_891:com_18);
-    if_sethide(false, interface_891:com_20);
-    if_settext("", interface_891:com_19);
-    if_settext($string0, interface_891:com_22);
-    if_setsize(calc(30 + parawidth($string0, 200, fontmetrics_173)), 0, ^setsize_abs, ^setsize_minus, interface_891:com_20);
+switch_int (%varplayerbit_51273) {
+    case 1 :
+        if ($dbrow0 ! null) {
+            if (db_getrowtable($dbrow0) = dbtable_122) {
+                if (string_length($string0) = 0) {
+                    $string0 = db_getfield($dbrow0, dbtable_122:col4, 0);
+                }
+                $string1 = ~script14145($string1, db_getfield($dbrow0, dbtable_122:col5, 0), ~script11623(db_getfield($dbrow0, dbtable_122:col6, 0), shop_getcategorydescription($int6)));
+                $string1 = ~script14145($string1, db_getfield($dbrow0, dbtable_122:col7, 0), db_getfield($dbrow0, dbtable_122:col8, 0));
+                $string1 = ~script14145($string1, "You currently own:", ~script14241(db_getfield($dbrow0, dbtable_122:col11, 0)));
+                if_setonop("script15743($string3)", interface_891:com_22);
+            }
+            if_sethide(true, interface_891:com_24);
+            if_settext($string2, interface_891:com_23);
+        }
+    case 0 :
+        $struct2, $struct3, $graphic7, $graphic7, $dbrow9 = db_getfield(dbrow_4168, dbtable_135:col0, $int1);
+        if ($struct2 ! null) {
+            if ($int5 = -1 | $int5 = 0) {
+                $int5 = struct_param($struct2, param_2531);
+            }
+            $string1 = struct_param($struct2, param_8347);
+            $string1 = ~script14145($string1, "", ~script16022($struct2, $int5));
+            if (struct_param($struct2, param_8665) = 0) {
+                $string1 = ~script14145($string1, "", ~script15527($struct2, $int5));
+            }
+            if ($int1 ! -1) {
+                $string1 = ~script14145($string1, "Membership Benefits:", ~script16579($struct2, $int1));
+                $string2 = ~script12689($int1);
+            }
+        }
+        ~script11538(mtx_store_icon_currency_runecoins_025px, $string2);
+    case 2 :
+        if ($struct2 ! null) {
+            if ($int5 = -1 | $int5 = 0) {
+                $int5 = struct_param($struct2, param_2531);
+            }
+            $string1 = ~script14145($string1, "", ~script16022($struct2, $int5));
+            if (struct_param($struct2, param_8665) = 0) {
+                $string1 = ~script14145($string1, "", ~script15527($struct2, $int5));
+            }
+        }
+        if_setsize(20, 20, ^setsize_abs, ^setsize_abs, interface_891:com_25);
+        ~script11538(struct_param(%varplayer_5148, param_8661), $string2);
 }
-if_settext($string2, interface_891:com_11);
-if_settext($string3, interface_891:com_15);
-~script16201($struct6, $int10, $component3);
+if ($struct2 ! null & $struct3 ! null & string_length($string0) = 0) {
+    $string0 = ~script11623(struct_param($struct3, param_2533), struct_param($struct2, param_2533));
+}
+if_settext($string0, interface_891:com_12);
+if_settext($string1, interface_891:com_16);
+~script11539($struct2, $int5, $obj4);
 ~script16206($dbrow0);
-def_int $int12 = ~script15891($string3, if_getwidth(interface_891:com_15), if_getfontmetrics(interface_891:com_15), 0);
-if ($int12 >= if_getheight($component5)) {
-    if_setscrollsize(0, $int12, $component5);
-    if_sethide(false, $component4);
-    ~rs3_scrollbar_vertical($component4, $component5);
+def_int $int10 = ~script15891($string1, if_getwidth(interface_891:com_16), if_getfontmetrics(interface_891:com_16), 0);
+if ($int10 >= if_getheight(interface_891:com_15)) {
+    if_setscrollsize(0, $int10, interface_891:com_15);
+    if_sethide(false, interface_891:com_14);
+    ~rs3_scrollbar_vertical(interface_891:com_14, interface_891:com_15);
 } else {
-    if_setscrollsize(0, 0, $component5);
-    if_sethide(true, $component4);
+    if_setscrollsize(0, 0, interface_891:com_15);
+    if_sethide(true, interface_891:com_14);
 }

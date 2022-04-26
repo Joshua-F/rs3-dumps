@@ -1,51 +1,15 @@
 // 11163
-[proc,script11163](component $component0, inv $inv1)
-cc_deleteall($component0);
-def_int $int2 = calc(inv_size($inv1) - inv_freespace($inv1));
-if ($int2 = 0) {
-    cc_create($component0, ^iftype_text, if_getnextsubid($component0));
-    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
-    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-    cc_settextfont(fontmetrics_26);
-    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    cc_setcolour(^white);
-    cc_settextshadow(true);
-    cc_settext("Nothing to retrieve.");
-    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component0);
-    return;
-}
-def_int $int3 = -1;
-def_int $int4 = -1;
-def_int $int5 = -1;
-def_int $int6 = -1;
-$int3, $int4, $int5, $int6 = ~script11161(if_getwidth($component0));
-def_int $int7 = 0;
-def_obj $obj8 = null;
-def_int $int9 = ~script11186($component0);
-while ($int7 < $int2) {
-    $obj8 = inv_getobj($inv1, $int7);
-    if ($obj8 ! null) {
-        cc_create($component0, ^iftype_graphic, $int7);
-        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-        ~script11162($int7, $int3, $int4, $int5, $int6);
-        cc_setobject($obj8, inv_getnum($inv1, $int7));
-        cc_setopbase(append("<col=ff9040>", oc_name($obj8)));
-        cc_setop(1, "Info");
-        cc_setonop("script11165($int9, event_comsubid, event_op)");
-        cc_setoutline(1);
-        cc_setonmouserepeat("script5495($obj8)");
-        cc_setonmouseleave("script5495(null)");
-        $int7 = calc($int7 + 1);
-    } else {
-        $int7 = $int2;
-    }
-}
-def_int $int10 = calc(($int2 - 1) / $int3 + 1);
-def_int $int11 = calc($int10 * $int6 + $int4);
-if_setsize(0, $int11, ^setsize_minus, ^setsize_abs, $component0);
-if (%varclient_4755 = $int9) {
-    if (%varclient_2236 > 0) {
-        ~script11179("", clientclock);
-    }
-    ~script11167(%varplayer_5192, %varplayer_5193, 0);
+[proc,script11163]()(string)
+switch_int (platformtype) {
+    case ^platformtype_apple :
+        return("ios");
+    case ^platformtype_android :
+        return("android");
+    case ^platformtype_steam :
+        return("steam");
+    case ^platformtype_default :
+        return("desktop");
+    case default :
+        ~error("Unhandled platform type, URL will be invalid.");
+        return("invalid");
 }

@@ -1,6 +1,20 @@
 // 273
-[proc,script273](obj $obj0)(int)
-if (enum_getreversecount(obj, enum_8938, $obj0) > 0) {
-    return(1);
+[proc,script273](dbrow $dbrow0)(boolean)
+def_int $int1 = 0;
+switch_dbrow ($dbrow0) {
+    case dbrow_4529 :
+        $int1 = %varplayerbit_4327;
+    case dbrow_4530 :
+        $int1 = %varplayerbit_4328;
+    case dbrow_4535 :
+        $int1 = %varplayerbit_4329;
+    case dbrow_4539 :
+        $int1 = %varplayerbit_4330;
+    case default :
+        ~error("Invalid data, dbrow entry may be missing from list.");
+        return(false);
 }
-return(0);
+if ($int1 = 1) {
+    return(true);
+}
+return(false);

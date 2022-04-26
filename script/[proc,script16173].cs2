@@ -1,6 +1,6 @@
 // 16173
 [proc,script16173](struct $struct0)(int)
-def_dbrow $dbrow1 = struct_param($struct0, param_8543);
+def_dbrow $dbrow1 = ~script9304($struct0);
 if ($dbrow1 = null) {
     ~error("We are trying to bulid the TRH prizes but got a null $promo_data dbrow, falling back to default table.");
     $dbrow1 = dbrow_4562;
@@ -20,7 +20,7 @@ def_int $int7 = -1;
 while (++$int7 < $int2) {
     $int3, $dbrow5, $int6 = db_getfield($dbrow1, dbtable_147:col0, $int7);
     switch_int ($int3) {
-        case 1, 2, 3, 4, 5, 6, 7 :
+        case 1, 2, 4, 5, 6, 7 :
             $int4 = calc($int4 + ~script16165($int3, $dbrow1));
     }
     $intarray0($int7) = $int4;
@@ -30,12 +30,12 @@ if ($int4 = 0) {
     ~error("We found a dbrow defined for the current promo but it had no prize data, so are now using the default drop table.");
     $dbrow1 = dbrow_4562;
     $int3 = 0;
-    $int2 = db_getfieldcount($dbrow1, dbtable_147:col0);
     $int7 = -1;
+    $int2 = db_getfieldcount($dbrow1, dbtable_147:col0);
     while (++$int7 < $int2) {
         $int3, $dbrow5, $int6 = db_getfield($dbrow1, dbtable_147:col0, $int7);
         switch_int ($int3) {
-            case 1, 2, 3, 4, 5, 6, 7 :
+            case 1, 2, 4, 5, 6, 7 :
                 $int4 = calc($int4 + ~script16165($int3, $dbrow1));
         }
         $intarray0($int7) = $int4;

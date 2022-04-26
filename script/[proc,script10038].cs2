@@ -6,55 +6,76 @@ def_component $component4 = null;
 def_component $component5 = null;
 def_int $int6 = -1;
 def_int $int7 = 1;
+def_dbrow $dbrow8 = null;
+def_boolean $boolean9 = false;
+switch_int ($int0) {
+    case 1 :
+        $dbrow8 = dbrow_4529;
+    case 0 :
+        $dbrow8 = dbrow_4530;
+    case 2 :
+        $dbrow8 = dbrow_4535;
+}
+if ($dbrow8 ! null) {
+    $boolean9 = ~script11156($dbrow8);
+}
 switch_int ($int0) {
     case 0 :
-        if (%varclient_4263 = $int1) {
+        if ($boolean9 = false & %varclient_4263 = $int1) {
             return;
         }
-        if_setonvarctransmit("script10037(0, %varclient_4263){varclient_4263}", interface_907:com_55);
-        $component2 = interface_907:com_61;
-        $component3 = interface_907:com_56;
-        $component4 = interface_907:com_73;
-        $component5 = interface_907:com_74;
-        if (%varclient_4263 = -1) {
-            $int7 = 0;
-            $int6 = 1;
-        } else {
-            $int6 = %varclient_4263;
+        if_setonvarctransmit("script10037(0, %varclient_4263){varclient_4263}", interface_907:com_56);
+        $component2 = interface_907:com_63;
+        $component3 = interface_907:com_57;
+        $component4 = interface_907:com_75;
+        $component5 = interface_907:com_76;
+        if ($boolean9 = false) {
+            if (%varclient_4263 = -1) {
+                $int7 = 0;
+                $int6 = 1;
+            } else {
+                $int6 = %varclient_4263;
+            }
         }
     case 1 :
-        if (%varclient_4264 = $int1) {
+        if ($boolean9 = false & %varclient_4264 = $int1) {
             return;
         }
         if_setonvarctransmit("script10037(1, %varclient_4264){varclient_4264}", interface_907:com_28);
         $component2 = interface_907:com_34;
         $component3 = interface_907:com_29;
-        $component4 = interface_907:com_45;
-        $component5 = interface_907:com_46;
-        if (%varclient_4264 = -1) {
-            $int7 = 0;
-        } else {
-            $int6 = %varclient_4264;
+        $component4 = interface_907:com_46;
+        $component5 = interface_907:com_47;
+        if ($boolean9 = false) {
+            if (%varclient_4264 = -1) {
+                $int7 = 0;
+            } else {
+                $int6 = %varclient_4264;
+            }
         }
     case 2 :
-        if (%varclient_4265 = $int1) {
+        if ($boolean9 = false & %varclient_4265 = $int1) {
             return;
         }
-        if_setonvarctransmit("script10037(2, %varclient_4265){varclient_4265}", interface_907:com_75);
-        $component2 = interface_907:com_81;
-        $component3 = interface_907:com_76;
-        $component4 = interface_907:com_93;
-        $component5 = interface_907:com_94;
-        if (%varclient_4265 = -1) {
-            $int7 = 0;
-            $int6 = 2;
-        } else {
-            $int6 = %varclient_4265;
+        if_setonvarctransmit("script10037(2, %varclient_4265){varclient_4265}", interface_907:com_77);
+        $component2 = interface_907:com_84;
+        $component3 = interface_907:com_78;
+        $component4 = interface_907:com_96;
+        $component5 = interface_907:com_97;
+        if ($boolean9 = false) {
+            if (%varclient_4265 = -1) {
+                $int7 = 0;
+                $int6 = 2;
+            } else {
+                $int6 = %varclient_4265;
+            }
         }
     case default :
         return;
 }
-if ($int7 = 0) {
+if ($boolean9 = true) {
+    if_settext(~script11160($dbrow8, "title_text", "Special Offer"), $component3);
+} else if ($int7 = 0) {
     if_settext("", $component3);
     if_setgraphic(null, $component2);
 }
@@ -65,14 +86,18 @@ if_setop(1, "", $component2);
 if_setonop(null, $component2);
 if_setonmouserepeat(null, $component2);
 if_setonclick(null, $component2);
-switch_int ($int6) {
-    case 0 :
-        ~lobby_custom_promo($component2, $component3, $component4, $component5, $int0);
-    case 1 :
-        ~script10041($component2, $component3, $component4, $component5, $int7, $int0);
-    case 2 :
-        ~lobby_mtx_promo($component2, $component3, $component4, $component5, $int7, $int0);
-    case -1 :
-        ~lobby_content_promo($component2, $component3, $component4, $component5, $int7, $int0);
+if ($boolean9 = false) {
+    switch_int ($int6) {
+        case 0 :
+            ~lobby_custom_promo($component2, $component3, $component4, $component5, $int0);
+        case 1 :
+            ~script10041($component2, $component3, $component4, $component5, $int7, $int0);
+        case 2 :
+            ~lobby_mtx_promo($component2, $component3, $component4, $component5, $int7, $int0);
+        case -1 :
+            ~lobby_content_promo($component2, $component3, $component4, $component5, $int7, $int0);
+    }
+} else if ($int0 = 0) {
+    ~script11164($component4);
 }
 ~script10051;
