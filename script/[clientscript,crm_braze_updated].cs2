@@ -1,0 +1,21 @@
+// 1526
+[clientscript,crm_braze_updated](component $component0, int $int1, int $int2, dbrow $dbrow3, string $string0)
+def_int $int4 = 0;
+if ($int1 = -1 & if_find($component0) = true | cc_find($component0, $int1) = true) {
+    cc_setparam(param_2264, $int2);
+    switch_int ($int2) {
+        case 0, 1 :
+        case 2 :
+            ~script1625($dbrow3, $component0);
+            $int4 = 1;
+        case 3 :
+            ~script1626($dbrow3, $component0, "No response was received. Endpoint: <$string0>");
+        case 4 :
+            ~script1626($dbrow3, $component0, "Received a response but no data. Endpoint: <$string0>");
+        case 5 :
+            ~script1626($dbrow3, $component0, "Received data from the endpoint with missing or incorrectly formatted data. Endpoint: <$string0>");
+        case default :
+            ~script1626($dbrow3, $component0, "Unexpected response (<tostring($int2)>) in update for endpoint: <$string0>.");
+    }
+    ~script3209($dbrow3, $int4);
+}
