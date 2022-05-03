@@ -29,6 +29,7 @@ def_int $int25 = 0;
 def_int $int26 = 0;
 def_struct $struct27 = null;
 def_boolean $boolean28 = false;
+def_int $int29 = 0;
 cc_deleteall($component12);
 cc_deleteall($component14);
 ~script10084("Brightness", $int4, $int7, $component12, 26);
@@ -46,51 +47,59 @@ while ($int22 < $int19) {
     $struct23 = enum(int, struct, enum_10849, $int22);
     if (struct_param($struct23, param_7529) ! 2) {
         $enum24 = struct_param($struct23, param_683);
-        if ($int4 = 0) {
-            $int4 = 1;
-            $int7 = $int10;
-        } else {
-            $int4 = 0;
-            $int7 = $int9;
-        }
-        $int11 = ~script10084(struct_param($struct23, param_1344), $int4, $int7, $component12, 26);
-        if (($int3 = 1 | $int3 = 0) & cc_find($component12, $int11) = true) {
-            cc_setonmouserepeat("script3876(struct_param($struct23, param_5727), event_com, event_comsubid)");
-        }
-        $int5 = calc(cc_getx - 6);
-        $int6 = calc(cc_getwidth + 6);
-        $int8 = cc_getheight;
         $int21 = ~graphics_options_detailget($struct23);
         if ($int21 <= -1) {
             if (cc_find($component12, $int11) = true) {
                 cc_setcolour(~script10495(3));
             }
             $boolean28 = true;
+            if (struct_param($struct23, param_4201) = true) {
+                $int29 = 1;
+            } else {
+                $int29 = 0;
+            }
             $struct27 = struct_2839;
         } else {
             $boolean28 = false;
+            $int29 = 0;
             $struct27 = struct_2830;
         }
-        ~script10410($component14, null, $struct27, $int5, $int7, $int6, $int8, -1, false, "");
-        switch_enum ($enum24) {
-            case enum_1577, enum_421, enum_6121 :
-                $int25, $int26 = ~dynamic_checkbox_create_disable($component12, $component13, calc($int5 + $int6 - 3 - 18), calc($int7 + 4), $int26, $int21, $boolean28);
-            case default :
-                $int25, $int26 = ~dynamic_dropdown_create_disable($component12, $component13, calc($int5 + $int6 - $int20 - 2), calc($int7 + 2), $int20, $int26, $enum24, null, "", $int21, 0, $boolean28);
-        }
-        $int7 = calc($int7 + (26 + 3));
-        if ($int4 = 1) {
-            $int10 = $int7;
-        } else {
-            $int9 = $int7;
+        if ($int29 = 0) {
+            if ($int4 = 0) {
+                $int4 = 1;
+                $int7 = $int10;
+            } else {
+                $int4 = 0;
+                $int7 = $int9;
+            }
+            $int11 = ~script10084(struct_param($struct23, param_1344), $int4, $int7, $component12, 26);
+            if (($int3 = 1 | $int3 = 0) & cc_find($component12, $int11) = true) {
+                cc_setonmouserepeat("script3876(struct_param($struct23, param_5727), event_com, event_comsubid)");
+            }
+            $int5 = calc(cc_getx - 6);
+            $int6 = calc(cc_getwidth + 6);
+            $int8 = cc_getheight;
+            ~script10410($component14, null, $struct27, $int5, $int7, $int6, $int8, -1, false, "");
+            switch_enum ($enum24) {
+                case enum_1577, enum_421, enum_6121 :
+                    $int25, $int26 = ~dynamic_checkbox_create_disable($component12, $component13, calc($int5 + $int6 - 3 - 18), calc($int7 + 4), $int26, $int21, $boolean28);
+                case default :
+                    $int25, $int26 = ~dynamic_dropdown_create_disable($component12, $component13, calc($int5 + $int6 - $int20 - 2), calc($int7 + 2), $int20, $int26, $enum24, null, "", $int21, 0, $boolean28);
+            }
+            $int7 = calc($int7 + (26 + 3));
+            if ($int4 = 1) {
+                $int10 = $int7;
+            } else {
+                $int9 = $int7;
+            }
         }
     }
     $int22 = calc($int22 + 1);
 }
-def_int $int29 = calc(if_gety(interface_1513:com_36) + if_gety(interface_1513:com_39) + max($int9, $int10));
+def_int $int30 = calc(if_gety(interface_1513:com_36) + if_gety(interface_1513:com_39) + max($int9, $int10));
 switch_int ($int3) {
     case 0, 4 :
-        $int29 = calc(if_gety(interface_882:com_10) + $int29 + 10);
-        if_setsize(if_getwidth(interface_882:com_3), $int29, ^setsize_abs, ^setsize_abs, interface_882:com_3);
+        $int30 = calc(if_gety(interface_882:com_10) + $int30 + 10);
+        if_setsize(if_getwidth(interface_882:com_3), $int30, ^setsize_abs, ^setsize_abs, interface_882:com_3);
         if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_882:com_3);
 }
