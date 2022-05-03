@@ -3,17 +3,26 @@
 if ($dbrow0 = null) {
     return(false);
 }
-if (db_getfield($dbrow0, dbtable_134:col21, 0) = false & ~ironman_mode = true) {
+if (db_getfield($dbrow0, dbtable_134:col22, 0) = false & ~ironman_mode = true) {
     return(false);
 }
-if (db_getfield($dbrow0, dbtable_134:col22, 0) = false & playermember = false) {
+if (db_getfield($dbrow0, dbtable_134:col23, 0) = false & playermember = false) {
     return(false);
 }
-if (db_getfield($dbrow0, dbtable_134:col23, 0) = true & ~script12961($dbrow0) = true) {
+if (db_getfield($dbrow0, dbtable_134:col24, 0) = true & ~script12961($dbrow0) = true) {
     return(false);
 }
-def_struct $struct1 = null;
-def_dbrow $dbrow2 = null;
+def_int $int1 = 0;
+def_int $int2 = 0;
+if (db_getfield($dbrow0, dbtable_134:col18, 0) > 0) {
+    $int2 = calc(db_getfield($dbrow0, dbtable_134:col18, 0) * 1440);
+    $int1 = ~script11174;
+    if (calc($int1 + $int2 + %varplayer_10435) > 1314000) {
+        return(false);
+    }
+}
+def_struct $struct3 = null;
+def_dbrow $dbrow4 = null;
 switch_dbrow ($dbrow0) {
     case dbrow_4132, dbrow_4133, dbrow_4134 :
         if (~script3608 = null) {
@@ -48,19 +57,19 @@ switch_dbrow ($dbrow0) {
             return(true);
         }
     case dbrow_4150 :
-        if (~script15757 = true & ~script12960 = false) {
+        if (~script15757 = true & ~script11171 = false) {
             return(true);
         } else {
             return(false);
         }
     case dbrow_4163, dbrow_4164, dbrow_4165 :
         return(false);
-        $struct1 = ~script14441;
-        if ($struct1 ! null & struct_param($struct1, param_4284) = 1) {
+        $struct3 = ~script14441;
+        if ($struct3 ! null & struct_param($struct3, param_4284) = 1) {
             return(true);
         }
-        $dbrow2 = ~script15143;
-        if ($dbrow2 ! null) {
+        $dbrow4 = ~script15143;
+        if ($dbrow4 ! null) {
             return(true);
         }
         return(false);
@@ -76,7 +85,7 @@ switch_dbrow ($dbrow0) {
             return(true);
         }
         return(false);
-    case dbrow_4970 :
+    case dbrow_4970, dbrow_6020 :
         if (~script11568 = false) {
             return(false);
         }
