@@ -1,0 +1,43 @@
+// 16240
+[clientscript,script16240](int $int0)
+def_int $int1 = 0;
+def_obj $obj2 = null;
+def_int $int3 = 0;
+def_component $component4 = null;
+def_component $component5 = null;
+def_component $component6 = null;
+def_int $int7 = calc(3 - $int0);
+cc_deleteall(interface_485:com_18);
+switch_int (map_lang) {
+    case 0 :
+        if_setgraphic(trh181_gemfall_title_en, interface_485:com_9);
+    case 1 :
+        if_setgraphic(trh181_gemfall_title_de, interface_485:com_9);
+    case 2 :
+        if_setgraphic(trh181_gemfall_title_fr, interface_485:com_9);
+    case 3 :
+        if_setgraphic(trh181_gemfall_title_pt, interface_485:com_9);
+}
+~script16204;
+~script16205;
+if ($int7 = 0) {
+    if_sethide(true, interface_485:com_21);
+} else {
+    if_sethide(false, interface_485:com_21);
+    if_settext("You also receive : <col=FF00><tostring($int7)> gem rerolls", interface_485:com_21);
+}
+while (++$int1 < 7) {
+    $obj2, $int3 = ~script11184($int1);
+    $component4 = ~script11185($int1);
+    $component5 = ~script11187($int1);
+    $component6 = ~script11609($int1);
+    if_setgraphic(~script16202(%varplayerbit_27092, 0), $component5);
+    if ($obj2 = null) {
+        if_sethide(true, $component4);
+    } else {
+        if_setopbase(oc_name($obj2), $component4);
+        if_settext(oc_name($obj2), $component6);
+        if_setobject($obj2, $int3, ~script11186($int1));
+        if_sethide(false, $component4);
+    }
+}
