@@ -1,27 +1,27 @@
 // 3503
-[proc,script3503](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8)
+[proc,script3503](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9)
 if (%varclient_1963 = 0) {
     return;
 }
-def_int $int9 = 0;
+def_int $int10 = 0;
 if (%varclient_1968 = 1) {
-    $int2 = 200;
-    $int9 = 850;
+    $int3 = 200;
+    $int10 = 850;
     $int1 = 80;
 } else {
-    $int9 = calc(300 + $int0);
+    $int10 = calc(300 + $int0);
     if (%varclient_1963 ! 5) {
         $int1 = calc(100 + $int1);
     } else {
         $int1 = calc(60 + $int1);
     }
 }
-if (cc_find(interface_1311:com_344, 0) = true & $int3 = 0) {
-    $int2 = cc_getmodelangle_y;
-    $int9 = cc_getmodelzoom;
+if (cc_find(interface_1311:com_344, 0) = true & $int4 = 0) {
+    $int3 = cc_getmodelangle_y;
+    $int10 = cc_getmodelzoom;
     $int1 = cc_getmodelyof;
 }
-if ($int4 = 1) {
+if ($int5 = 1) {
     cc_deleteall(interface_1311:com_344);
 }
 cc_create(interface_1311:com_344, ^iftype_model, if_getnextsubid(interface_1311:com_344));
@@ -40,27 +40,27 @@ if (%varclient_1963 ! 5) {
 if (%varclient_1963 ! 5) {
     if (%varclient_1968 = 1) {
         cc_setplayerhead_self;
-        if ($int2 > 1024) {
-            $int2 = max($int2, 1572);
+        if ($int3 > 1024) {
+            $int3 = max($int3, 1572);
         } else {
-            $int2 = min($int2, 512);
+            $int3 = min($int3, 512);
         }
     } else {
         cc_setplayermodel_self;
     }
 } else {
     cc_setnpcmodel(%varclient_2692);
-    if ($int6 = -1) {
-        $int6 = ~script1530(%varclient_6714);
+    if ($int7 = -1) {
+        $int7 = ~script1530(%varclient_6714);
     }
     if (struct_param(%varclient_6714, param_3847) = 1) {
-        ~script2738(%varclient_6714, $int5, $int6);
+        ~script2738(%varclient_6714, $int6, $int7);
     }
     if (%varclient_2692 ! null & nc_param(%varclient_2692, param_477) = 0) {
         ~script7411(%varclient_3756);
     }
 }
-cc_setmodelangle(0, $int1, 10, $int2, 10, $int9);
+cc_setmodelangle(0, $int1, $int2, $int3, 10, $int10);
 if (%varclient_1963 ! 5) {
     if (%varclient_1968 = 1) {
         cc_setmodelanim(seq_12287);
@@ -80,12 +80,12 @@ if (%varclient_1963 ! 5) {
         cc_setmodelanim(seq_21964);
     }
 }
-def_component $component10 = interface_1311:com_344;
-def_component $component11 = interface_1311:com_363;
+def_component $component11 = interface_1311:com_344;
+def_component $component12 = interface_1311:com_363;
 if (%varclient_1963 = 5 & %varclient_2692 = null) {
-    if_setondrag(null, $component11);
-    if_setmouseovercursor(null, $component11);
+    if_setondrag(null, $component12);
+    if_setmouseovercursor(null, $component12);
 } else {
-    if_setondrag("script9319(event_com, $component10, 0, 1)", $component11);
-    if_setmouseovercursor(cursor_188, $component11);
+    if_setondrag("script9319(event_com, $component11, 0, 1)", $component12);
+    if_setmouseovercursor(cursor_188, $component12);
 }

@@ -28171,3 +28171,34 @@ readyanim=null,seq_34772
 randomreadyanim=seq_34769,90
 randomreadyanim=seq_34770,10
 
+// 4627
+[bas_4627]
+readyanim=seq_34791,null
+
+// 4628
+[bas_4628]
+readyanim_l=seq_34602
+readyanim_r=seq_34602
+walkturn_l=seq_34603
+walkturn_r=seq_34603
+runanim=seq_34807
+hillrotate=32,32
+readyanim=null,seq_34603
+randomreadyanim=seq_34602,90
+randomreadyanim=seq_34806,10
+
+// 4629
+[bas_4629]
+readyanim_l=seq_34810
+readyanim_r=seq_34810
+walkanim_b=seq_34810
+walkanim_l=seq_34810
+walkanim_r=seq_34810
+walkturn_l=seq_34810
+walkturn_r=seq_34810
+runanim=seq_34811
+hillrotate=32,32
+readyanim=null,seq_34810
+randomreadyanim=seq_34808,90
+randomreadyanim=seq_34809,10
+

@@ -1,41 +1,41 @@
 // 437
-[proc,script437](dbrow $dbrow0, int $int1, int $int2, int $int3)(int)
+[proc,script437](dbrow $dbrow0, int $int1, int $int2, int $int3, int $int4, int $int5)(int)
 if ($dbrow0 = null) {
-    ~error("$data was null, returning null.");
+    ~error("$probability_dbrow was null, returning null.");
     return(-1);
 }
 if (db_getrowtable($dbrow0) ! dbtable_35) {
-    ~error("$data was not of dbtable probability_distribution, returning null.");
+    ~error("$probability_dbrow was not of dbtable probability_distribution, returning null.");
     return(-1);
 }
 if (db_getfieldcount($dbrow0, dbtable_35:col0) = 0) {
     ~error("The non-null dbrow we are using has no outcomes, returning null.");
     return(-1);
 }
-def_int $int4 = db_getfieldcount($dbrow0, dbtable_35:col0);
-def_int $intarray0($int4);
-def_int $intarray1($int4);
-def_int $int5 = 0;
-def_int $int6 = 0;
-def_int $int7 = -1;
-def_int $int8 = -1;
-while (++$int8 < $int4) {
-    $int6, $int7 = db_getfield($dbrow0, dbtable_35:col0, $int8);
-    if ($int6 ! $int1 & $int6 ! $int2 & $int6 ! $int3) {
-        $int5 = calc($int5 + $int7);
-        $intarray0($int8) = $int5;
-        $intarray1($int8) = $int6;
+def_int $int6 = db_getfieldcount($dbrow0, dbtable_35:col0);
+def_int $intarray0($int6);
+def_int $intarray1($int6);
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = -1;
+def_int $int10 = -1;
+while (++$int10 < $int6) {
+    $int8, $int9 = db_getfield($dbrow0, dbtable_35:col0, $int10);
+    if ($int8 ! $int1 & $int8 ! $int2 & $int8 ! $int3 & $int8 ! $int4 & $int8 ! $int5) {
+        $int7 = calc($int7 + $int9);
+        $intarray0($int10) = $int7;
+        $intarray1($int10) = $int8;
     }
 }
-if ($int5 = 0) {
+if ($int7 = 0) {
     ~error("We found a dbrow defined for the distribtuion but it had no probability data, returning null.");
     return(-1);
 }
-def_int $int9 = random($int5);
-$int8 = -1;
-while (++$int8 < $int4) {
-    if ($int9 < $intarray0($int8)) {
-        return($intarray1($int8));
+def_int $int11 = random($int7);
+$int10 = -1;
+while (++$int10 < $int6) {
+    if ($int11 < $intarray0($int10)) {
+        return($intarray1($int10));
     }
 }
 ~error("Unable to find outcome for dbrow, returning null");
