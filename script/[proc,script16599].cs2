@@ -1,0 +1,15 @@
+// 16599
+[proc,script16599]()(int)
+def_int $int0 = -1;
+def_int $int1 = 0;
+def_dbrow $dbrow2 = null;
+while (++$int0 < enum_getoutputcount(enum_11249)) {
+    db_find(dbtable_183:col0, enum(int, int, enum_11249, $int0));
+    $dbrow2 = db_findnext;
+    if ($dbrow2 ! null) {
+        $int1 = calc($int1 + db_getfield($dbrow2, dbtable_183:col3, 0));
+    } else {
+        ~error("Invalid modifier ID: <tostring(enum(int, int, enum_11249, $int0))>, at index <tostring($int0)> in enum");
+    }
+}
+return($int1);
