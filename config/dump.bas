@@ -28202,3 +28202,15 @@ readyanim=null,seq_34810
 randomreadyanim=seq_34808,90
 randomreadyanim=seq_34809,10
 
+// 4630
+[bas_4630]
+readyanim_l=seq_34821
+readyanim_r=seq_34821
+walkanim_b=seq_34821
+walkturn_l=seq_34821
+walkturn_r=seq_34821
+walkanim_l=seq_34821
+walkanim_r=seq_34821
+runanim=seq_34822
+readyanim=seq_29876,seq_34821
+
