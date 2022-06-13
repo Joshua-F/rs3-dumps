@@ -23583,3 +23583,6 @@ walkanim_r=seq_34821
 runanim=seq_34822
 readyanim=seq_29876,seq_34821
 
+[bas_4631]
+readyanim=seq_34834,null
+
