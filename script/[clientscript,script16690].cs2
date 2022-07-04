@@ -1,0 +1,36 @@
+// 16690
+[clientscript,script16690](int $int0, int $int1, int $int2, int $int3, int $int4)
+def_int $int5 = if_getwidth(interface_1648:com_13);
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_component $component9 = interface_1648:com_0;
+while ($int8 ! -1) {
+    switch_int (++$int6) {
+        case 1 :
+            $int8 = $int0;
+            $component9 = interface_1648:com_0;
+        case 2 :
+            $int8 = $int1;
+            $component9 = interface_1648:com_1;
+        case 3 :
+            $int8 = $int2;
+            $component9 = interface_1648:com_2;
+        case 4 :
+            $int8 = $int3;
+            $component9 = interface_1648:com_3;
+        case 5 :
+            $int8 = $int4;
+            $component9 = interface_1648:com_4;
+        case default :
+            $component9 = null;
+            $int8 = -1;
+    }
+    if ($int8 > 0) {
+        $int7 = calc(scale($int5, 100, $int8) - 7);
+        if_setposition($int7, 20, ^setpos_abs_left, ^setpos_abs_top, $component9);
+        if_setonmouserepeat("script12867($component9, $int8)", $component9);
+    } else if ($component9 ! null) {
+        if_sethide(true, $component9);
+    }
+}
