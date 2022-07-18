@@ -23,24 +23,29 @@ if_setontimer(null, interface_1253:com_20);
 if_setontimer(null, interface_1253:com_25);
 if_setontimer(null, interface_1253:com_15);
 if_setontimer(null, interface_1253:com_10);
+def_struct $struct0 = ~script16161;
 if (%varplayerbit_25803 = 1) {
     ~wof_show_reward;
 } else if (%varclient_4083 = 2) {
     %varclient_4083 = 3;
-    switch_int (%varclient_1928) {
-        case 34 :
-            if_setontimer("script5898(event_com, 300)", interface_1253:com_0);
-        case 54 :
-            if (%varplayerbit_47441 = 1) {
-                if_setmodelanim(seq_33402, interface_696:com_5);
-                if_setontimer("script5898(event_com, 60)", interface_1253:com_0);
-            } else {
+    if ($struct0 ! null & struct_param($struct0, param_8676) = true) {
+        ~trh_reward_screen_delay(~script16774($struct0));
+    } else {
+        switch_int (%varclient_1928) {
+            case 34 :
                 if_setontimer("script5898(event_com, 300)", interface_1253:com_0);
-            }
-        case 56, 60 :
-            if_setontimer("script5898(event_com, 300)", interface_1253:com_0);
-        case default :
-            if_setontimer("script5898(event_com, 0)", interface_1253:com_0);
+            case 54 :
+                if (%varplayerbit_47441 = 1) {
+                    if_setmodelanim(seq_33402, interface_696:com_5);
+                    if_setontimer("script5898(event_com, 60)", interface_1253:com_0);
+                } else {
+                    if_setontimer("script5898(event_com, 300)", interface_1253:com_0);
+                }
+            case 56, 60 :
+                if_setontimer("script5898(event_com, 300)", interface_1253:com_0);
+            case default :
+                if_setontimer("script5898(event_com, 0)", interface_1253:com_0);
+        }
     }
 }
 ~wof_reward_clear;

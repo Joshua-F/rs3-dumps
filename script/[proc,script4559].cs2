@@ -14,7 +14,7 @@ def_int $int7 = 0;
 def_int $int8 = clan_getchatcount;
 def_int $int9 = 0;
 def_string $string0 = "";
-def_int $int10 = 15;
+def_int $int10 = 20;
 def_int $int11 = 17;
 def_int $int12 = 0;
 def_int $int13 = 0;
@@ -25,33 +25,32 @@ def_int $int17 = 0;
 def_string $string1 = "";
 def_string $string2 = "";
 def_int $int18 = 0;
-def_int $int19 = calc(1 + 1);
 if (~script6431 = true) {
-    $int19 = calc($int19 + 7);
     $int10 = 30;
 }
-if_setsize(0, $int10, ^setsize_minus, ^setsize_abs, interface_589:com_26);
+def_int $int19 = calc($int10 / 2 - 4);
+if_setsize(0, $int10, ^setsize_minus, ^setsize_abs, interface_589:com_28);
 if ($int8 <= 0) {
-    if_settext("Not in chat", interface_589:com_9);
-    if_settext("None", interface_589:com_11);
-    ~script13993(interface_589:com_17, null, struct_28556, "Join Friends Chat Channel");
-    if_setop(1, "Join chat channel", interface_589:com_17);
+    if_settext("Not in chat", interface_589:com_10);
+    if_settext("None", interface_589:com_12);
+    if_settext("Join Friends Chat Channel", interface_589:com_16);
+    if_setop(1, "Join chat channel", interface_589:com_16);
     if_sethide(false, $component6);
-    if_sethide(true, interface_589:com_24);
+    if_sethide(true, interface_589:com_26);
     ~script13991($component6, null, struct_2830, true);
     ~script4560("You are not currently in a Friends Chat channel.<br><br>Use the button below if you wish to join a chat channel.", $component3);
-    if_setsize(if_getwidth(interface_589:com_30), 0, ^setsize_abs, ^setsize_abs, interface_589:com_30);
-    if_setscrollsize(0, 0, interface_589:com_23);
-    if_setscrollpos(0, 0, interface_589:com_23);
-    ~scrollbar_resize(interface_589:com_24, interface_589:com_23, 0);
+    if_setsize(if_getwidth(interface_589:com_32), 0, ^setsize_abs, ^setsize_abs, interface_589:com_32);
+    if_setscrollsize(0, 0, interface_589:com_25);
+    if_setscrollpos(0, 0, interface_589:com_25);
+    ~scrollbar_resize(interface_589:com_26, interface_589:com_25, 0);
 } else {
-    if_settext(clan_getchatdisplayname, interface_589:com_9);
-    if_settext(clan_getchatownername, interface_589:com_11);
-    ~script13993(interface_589:com_17, null, struct_28556, "Leave Friends Chat Channel");
+    if_settext(clan_getchatdisplayname, interface_589:com_10);
+    if_settext(clan_getchatownername, interface_589:com_12);
+    if_settext("Leave Friends Chat Channel", interface_589:com_16);
     if_sethide(true, $component6);
-    if_sethide(false, interface_589:com_24);
-    if_setop(1, "Leave chat channel", interface_589:com_17);
-    if_setsize(if_getwidth(interface_589:com_30), 0, ^setsize_abs, ^setsize_minus, interface_589:com_30);
+    if_sethide(false, interface_589:com_26);
+    if_setop(1, "Leave chat channel", interface_589:com_16);
+    if_setsize(if_getwidth(interface_589:com_32), 0, ^setsize_abs, ^setsize_minus, interface_589:com_32);
     while ($int9 < $int8) {
         $int17 = clan_getchatuserrank($int9);
         $string2 = clan_getchatusername_unfiltered($int9);
@@ -78,7 +77,7 @@ if ($int8 <= 0) {
             }
         }
         ~script7924($component1, $int9, 9, 9, 5, calc($int13 + $int19), ~script1599($int17), false, false, false, 0);
-        ~script10629($component0, $int9, 0, $int10, $int11, $int13, $string0, 16777215, fontmetrics_27, ^settextalign_left, ^settextalign_centre, 0, true);
+        ~script10629($component0, $int9, 0, $int10, $int11, $int13, $string0, 16777215, fontmetrics_206, ^settextalign_left, ^settextalign_centre, 0, true);
         cc_setsize($int11, $int10, ^setsize_minus, ^setsize_abs);
         cc_setmaxlines(1);
         $int14 = clan_getchatuserworld($int9);
@@ -99,7 +98,7 @@ if ($int8 <= 0) {
                 $int12 = 16776960;
             }
         }
-        ~script10629($component2, $int9, 0, $int10, 5, $int13, $string0, $int12, fontmetrics_27, ^settextalign_left, ^settextalign_centre, 0, true);
+        ~script10629($component2, $int9, 0, $int10, 5, $int13, $string0, $int12, fontmetrics_206, ^settextalign_left, ^settextalign_centre, 0, true);
         cc_setsize(5, $int10, ^setsize_minus, ^setsize_abs);
         cc_setmaxlines(1);
         $int13 = calc($int13 + $int10);
@@ -117,16 +116,16 @@ if ($int8 <= 0) {
         $int16 = $int13;
     }
     if ($int15 <= $int8) {
-        $int18 = if_getscrolly(interface_589:com_23);
-        if_setscrollsize(0, $int16, interface_589:com_23);
+        $int18 = if_getscrolly(interface_589:com_25);
+        if_setscrollsize(0, $int16, interface_589:com_25);
         if ($int18 > $int16) {
             $int18 = $int16;
         }
-        ~scrollbar_resize(interface_589:com_24, interface_589:com_23, $int18);
+        ~scrollbar_resize(interface_589:com_26, interface_589:com_25, $int18);
     } else {
-        if_setscrollsize(0, 0, interface_589:com_23);
-        if_setscrollpos(0, 0, interface_589:com_23);
-        ~scrollbar_resize(interface_589:com_24, interface_589:com_23, 0);
+        if_setscrollsize(0, 0, interface_589:com_25);
+        if_setscrollpos(0, 0, interface_589:com_25);
+        ~scrollbar_resize(interface_589:com_26, interface_589:com_25, 0);
     }
 }
 ~script4573;

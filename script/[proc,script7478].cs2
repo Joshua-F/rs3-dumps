@@ -22,7 +22,16 @@ if (struct_param($struct1, param_2811) = 1) {
             $string3 = "Requires dual-wielded magic weapons.";
         case default :
             $graphic5 = "combatv2_attribute_requirement_icons,2";
-            $string3 = "Requires dual-wielded melee weapons.";
+            switch_struct ($struct1) {
+                case struct_1488 :
+                    $string3 = "Requires dual-wielded melee weapons or skilling tools.";
+                    if (~script6688($struct1) = true) {
+                        $string0 = "<col=00ff00>";
+                    }
+                    $string2 = "<$string0>2x*</col>";
+                case default :
+                    $string3 = "Requires dual-wielded melee weapons.";
+            }
     }
 } else if (struct_param($struct1, param_2812) = 1) {
     if (oc_wearpos($obj3) > 0 & oc_wearpos2($obj3) > 0 & ($int6 = 3 & oc_param($obj3, param_2826) = 1 | $int6 = 4 & oc_param($obj3, param_2827) = 1 | $int6 ! 3 & $int6 ! 4 & oc_param($obj3, param_2825) = 1)) {
