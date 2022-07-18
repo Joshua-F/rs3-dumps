@@ -1,0 +1,55 @@
+// 16768
+[proc,script16768]
+if_sethide(false, interface_1022:com_39);
+if_settext("Level - <tostring(%varplayerbit_51594)>", interface_1022:com_47);
+def_dbrow $dbrow0 = dbrow_6419;
+def_obj $obj1 = null;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = db_getfieldcount($dbrow0, dbtable_98:col1);
+def_int $int7 = 40;
+def_component $component8 = interface_1022:com_50;
+cc_deleteall($component8);
+def_string $string0 = "";
+def_int $int9 = 1;
+while ($int5 < $int6) {
+    $obj1, $int2, $int3 = db_getfield($dbrow0, dbtable_98:col1, $int5);
+    if ($int3 <= %varplayerbit_51595) {
+        $int4 = 1;
+    } else {
+        $int4 = 0;
+    }
+    ~cc_add_layer($component8, $int5, 0, calc($int5 * $int7), ^setpos_abs_left, ^setpos_abs_top, 0, $int7, ^setsize_minus, ^setsize_abs);
+    if (calc($int5 % 2) = 0) {
+        ~script15958($component8, calc($int5 + 1), $int9, 0, $int5, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_6413, $int4);
+    }
+    $int9 = calc($int9 + 1);
+    if ($int4 = 0) {
+        $string0 = "At character level <tostring($int3)> you'll unlock: <oc_name($obj1)> x <tostring($int2)>.";
+    } else {
+        $string0 = "At character level <tostring($int3)> you unlocked: <oc_name($obj1)> x <tostring($int2)>.";
+    }
+    cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
+    ~script10507($component8, calc($int5 + 1), $int9, 0, $int5, 5, 0, ^setpos_abs_left, ^setpos_abs_top, -5, 0, ^setsize_minus, ^setsize_minus, dbrow_2099, "<col=FFFFFF>Level <tostring($int3)></col>");
+    $int9 = calc($int9 + 1);
+    cc_settextshadow(true);
+    ~script7920($component8, calc($int5 + 1), $int9, 0, $int5, 4, 0, ^setpos_abs_right, ^setpos_abs_centre, 32, 32, ^setsize_abs, ^setsize_abs, trh182_reward_object_frame);
+    $int9 = calc($int9 + 1);
+    ~script10024($component8, calc($int5 + 1), $int9, 0, $int5, 4, 0, ^setpos_abs_right, ^setpos_abs_centre, 32, 32, ^setsize_abs, ^setsize_abs, $obj1, $int2, 1, 0);
+    $int9 = calc($int9 + 1);
+    ~script10507($component8, calc($int5 + 1), $int9, 0, $int5, 41, 0, ^setpos_abs_right, ^setpos_abs_centre, 50, 0, ^setsize_abs, ^setsize_minus, dbrow_2099, "<col=FFFF00>x<tostring($int2)></col>");
+    $int9 = calc($int9 + 1);
+    cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+    cc_settextshadow(true);
+    if ($int4 = 1) {
+        ~script7920($component8, calc($int5 + 1), $int9, 0, $int5, 4, 0, ^setpos_abs_right, ^setpos_abs_centre, 32, 32, ^setsize_abs, ^setsize_abs, rs3_icon_tick);
+        $int9 = calc($int9 + 1);
+    }
+    $int5 = calc($int5 + 1);
+}
+def_int $int10 = calc($int6 * $int7);
+if_setscrollpos(0, 0, $component8);
+if_setscrollsize(if_getwidth($component8), $int10, $component8);
+~rs3_scrollbar_vertical(interface_1022:com_49, $component8);

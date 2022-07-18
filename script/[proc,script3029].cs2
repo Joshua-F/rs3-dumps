@@ -28,21 +28,20 @@ def_int $int17 = 200;
 if (playermember = true) {
     $int17 = 400;
 }
-def_int $int18 = 15;
-def_int $int19 = 1;
+def_int $int18 = 20;
 if (~script6431 = true) {
     $int18 = 30;
-    $int19 = calc($int19 + 7);
 }
-if_setsize(0, $int18, ^setsize_minus, ^setsize_abs, interface_909:com_20);
+def_int $int19 = calc($int18 / 2 - 7);
+if_setsize(0, $int18, ^setsize_minus, ^setsize_abs, interface_909:com_18);
 if ($int7 = -2) {
-    ~script15595("Loading Friends List.<br><br>Please wait.", $component6, $component3, interface_909:com_24, interface_909:com_25, interface_909:com_18);
+    ~script15595("Loading Friends List.<br><br>Please wait.", $component6, $component3, interface_909:com_22, interface_909:com_23, interface_909:com_16);
 } else if ($int7 = -1) {
-    ~script15595("Connecting to server.<br><br>Please wait.", $component6, $component3, interface_909:com_24, interface_909:com_25, interface_909:com_18);
+    ~script15595("Connecting to server.<br><br>Please wait.", $component6, $component3, interface_909:com_22, interface_909:com_23, interface_909:com_16);
 } else if ($int7 > 0) {
     if_sethide(true, $component6);
-    if_sethide(false, interface_909:com_24);
-    if_settext("Name (<tostring($int7)>/<tostring($int17)>)", interface_909:com_16);
+    if_sethide(false, interface_909:com_22);
+    if_settext("Name (<tostring($int7)>/<tostring($int17)>)", interface_909:com_14);
     while ($int8 < $int7) {
         $string0, $string1 = friend_getname($int8);
         $int10 = friend_getworld($int8);
@@ -52,7 +51,7 @@ if ($int7 = -2) {
             cc_setonmouseleave("script3035");
             if (string_length($string1) > 0) {
                 $int16 = calc(stringwidth("Last known as: <$string1>", fontmetrics_66) + 8);
-                if ($int16 > if_getwidth(interface_909:com_10)) {
+                if ($int16 > if_getwidth(interface_909:com_7)) {
                     $string3 = "Last known as:<br><$string1>";
                 } else {
                     $string3 = "Last known as: <$string1>";
@@ -79,7 +78,7 @@ if ($int7 = -2) {
             $int13 = 5;
         }
         $string2 = $string0;
-        ~script10629($component0, $int8, 0, $int18, $int13, $int9, $string2, 16777215, fontmetrics_27, ^settextalign_left, ^settextalign_centre, 0, true);
+        ~script10629($component0, $int8, 0, $int18, $int13, $int9, $string2, 16777215, fontmetrics_206, ^settextalign_left, ^settextalign_centre, 0, true);
         cc_setsize($int13, $int18, ^setsize_minus, ^setsize_abs);
         cc_setmaxlines(1);
         if ($int10 = 0) {
@@ -99,7 +98,7 @@ if ($int7 = -2) {
                 $int14 = 16776960;
             }
         }
-        ~script10629($component2, $int8, 0, $int18, 5, $int9, $string2, $int14, fontmetrics_27, ^settextalign_left, ^settextalign_centre, 0, true);
+        ~script10629($component2, $int8, 0, $int18, 5, $int9, $string2, $int14, fontmetrics_206, ^settextalign_left, ^settextalign_centre, 0, true);
         cc_setsize(5, $int18, ^setsize_minus, ^setsize_abs);
         cc_setmaxlines(1);
         $int9 = calc($int9 + $int18);
@@ -117,17 +116,17 @@ if ($int7 = -2) {
         $int12 = $int9;
     }
     if ($int11 <= $int7) {
-        $int15 = if_getscrolly(interface_909:com_18);
-        if_setscrollsize(0, $int12, interface_909:com_18);
+        $int15 = if_getscrolly(interface_909:com_16);
+        if_setscrollsize(0, $int12, interface_909:com_16);
         if ($int15 > $int12) {
             $int15 = $int12;
         }
-        ~scrollbar_resize(interface_909:com_25, interface_909:com_18, $int15);
+        ~scrollbar_resize(interface_909:com_23, interface_909:com_16, $int15);
     } else {
-        if_setscrollsize(0, 0, interface_909:com_18);
-        if_setscrollpos(0, 0, interface_909:com_18);
-        ~scrollbar_resize(interface_909:com_25, interface_909:com_18, 0);
+        if_setscrollsize(0, 0, interface_909:com_16);
+        if_setscrollpos(0, 0, interface_909:com_16);
+        ~scrollbar_resize(interface_909:com_23, interface_909:com_16, 0);
     }
 } else if ($int7 = 0) {
-    ~script15595("You have not added any friends to your list.", $component6, $component3, interface_909:com_24, interface_909:com_25, interface_909:com_18);
+    ~script15595("You have not added any friends to your list.", $component6, $component3, interface_909:com_22, interface_909:com_23, interface_909:com_16);
 }
