@@ -1,0 +1,33 @@
+// 16779
+[clientscript,script16779](int $int0)
+if (~trh_state(struct_39853) = 2) {
+    ~script1296("Please logout and log back in to continue playing Treasure Hunter.");
+    return;
+}
+if (%varclient_7076 = true) {
+    return;
+}
+%varclient_7076 = true;
+def_int $int1 = 0;
+def_dbrow $dbrow2 = null;
+def_component $component3 = null;
+def_int $int4 = -1;
+switch_int ($int0) {
+    case 0 :
+        %varclient_7077 = 1;
+    case 1 :
+        $int1 = %varplayerbit_51611;
+        $component3 = interface_1023:com_44;
+    case 2 :
+        $int1 = %varplayerbit_51612;
+        $component3 = interface_1023:com_49;
+    case 3 :
+        $int1 = %varplayerbit_51613;
+        $component3 = interface_1023:com_37;
+}
+if (%varclient_7077 = 0) {
+    $dbrow2 = ~trh_get_monster($int1);
+    if_setmodelanim(db_getfield($dbrow2, dbtable_194:col4, 0), $component3);
+    sound_vorbis_volume(sound_20397, 1, 0, 190);
+    sound_vorbis_volume(sound_32769, 1, 40, 150);
+}
