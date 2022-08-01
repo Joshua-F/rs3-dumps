@@ -9,11 +9,13 @@ def_int $int2 = -1;
 def_struct $struct3 = null;
 def_int $int4 = %varplayer_1297;
 def_int $int5 = %varplayer_423;
+def_quest $quest6 = null;
 if (~script6488($struct0) = 0) {
     $int2 = struct_param($struct0, param_2546);
     $struct3 = struct_param($struct0, param_4419);
     $string0 = struct_param($struct0, param_4751);
     $int1 = string_length($string0);
+    $quest6 = struct_param($struct0, param_8684);
     if (~script6214($struct0) = 1) {
         $string0 = "You need to be a member to activate this customisation.";
     } else if ($struct3 ! null & (~script6488($struct3) = 1 | $int1 > 0)) {
@@ -135,7 +137,13 @@ if (~script6488($struct0) = 0) {
                     $string0 = "You don't meet the requirements for this item.";
                 }
             case 5 :
-                $string0 = "You can unlock this customisation by playing the game.";
+                if ($quest6 ! null) {
+                    $string0 = "You can unlock this customisation by completing the '";
+                    $string0 = append($string0, ~quest_name($quest6));
+                    $string0 = append($string0, "' quest.");
+                } else {
+                    $string0 = "You can unlock this customisation by playing the game.";
+                }
             case 6 :
                 $string0 = "You can unlock this customisation by joining a clan of 5 people or more.";
             case 8 :
