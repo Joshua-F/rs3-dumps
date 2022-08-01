@@ -1,0 +1,32 @@
+// 16809
+[proc,minigame_ability_cooldown_get](dbrow $dbrow0)(int)
+if ($dbrow0 = null) {
+    return(0);
+}
+if (db_getrowtable($dbrow0) ! dbtable_197) {
+    return(0);
+}
+def_int $int1 = db_getfield($dbrow0, dbtable_197:col6, 0);
+switch_dbrow ($dbrow0) {
+    case dbrow_6545 :
+        return(%varclient_6987);
+    case dbrow_6546 :
+        return(%varclient_6988);
+    case dbrow_6547 :
+        return(%varclient_6989);
+    case dbrow_6548 :
+        return(%varclient_6990);
+    case default :
+        switch_int ($int1) {
+            case 1 :
+                return(%varclient_7078);
+            case 2 :
+                return(%varclient_7079);
+            case 3 :
+                return(%varclient_7080);
+            case 4 :
+                return(%varclient_7081);
+            case default :
+                ~error("Undefined variable slot <tostring($int1)> in minigame_ability_cooldown_get");
+        }
+}
