@@ -28324,3 +28324,10 @@ walkturn_r=seq_34740
 runanim=seq_34741
 readyanim=seq_34979,seq_34740
 
+// 4643
+[bas_4643]
+readyanim_r=seq_18020
+readyanim_l=seq_18020
+runanim=seq_18021
+readyanim=seq_34989,seq_18020
+
