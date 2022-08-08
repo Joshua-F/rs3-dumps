@@ -18,6 +18,7 @@ def_int $int14 = 0;
 def_int $int15 = enum_getoutputcount($enum0);
 cc_deleteall($component4);
 cc_deleteall($component5);
+cc_deleteall($component7);
 if ($int2 = 1) {
     if_sethide(false, $component8);
     if (if_find($component6) = true) {
@@ -65,7 +66,11 @@ while (++$int10 < $int15) {
         $int11 = calc($int11 + (40 + 2));
     }
 }
-cc_deleteall($component7);
-if_setscrollpos(0, if_getscrolly($component6), $component6);
-if_setscrollsize(0, max(if_getheight($component6), calc($int12 + 36 + 2)), $component6);
-~rs3_scrollbar_vertical($component7, $component6);
+$int12 = calc($int12 + (36 + 2));
+if ($int12 > if_getheight($component6)) {
+    if_setscrollpos(0, if_getscrolly($component6), $component6);
+    if_setscrollsize(0, $int12, $component6);
+    ~rs3_scrollbar_vertical($component7, $component6);
+} else {
+    if_setposition(0, 3, ^setpos_abs_centre, ^setpos_abs_top, $component6);
+}
