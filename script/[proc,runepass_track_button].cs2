@@ -1,5 +1,5 @@
 // 3658
-[proc,runepass_track_button](int $int0, int $int1, int $int2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, boolean $boolean9, int $int10, boolean $boolean11, int $int12)(int)
+[proc,runepass_track_button](int $int0, int $int1, int $int2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, boolean $boolean9, int $int10, boolean $boolean11, int $int12, int $int13)(int)
 $int1 = calc($int1 + -24);
 $int2 = calc($int2 + -49);
 if ($boolean9 = false) {
@@ -15,9 +15,13 @@ cc_setopcursor(1, cursor_46);
 cc_create($component3, ^iftype_text, calc($int0 * 2 + 1));
 cc_setsize(57, 57, ^setsize_abs, ^setsize_abs);
 cc_setposition(calc($int1 + 2), calc($int2 + -10), ^setpos_abs_left, ^setpos_abs_top);
-cc_settext(tostring(calc($int0 + 1)));
+if ($int13 = 1) {
+    cc_settext("¶");
+} else {
+    cc_settext(tostring(calc($int0 + 1)));
+}
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-cc_settextfont(fontmetrics_58);
+cc_settextfont(fontmetrics_72);
 cc_setcolour(0xf5fb83);
 cc_create($component5, ^iftype_graphic, calc($int0 * 2));
 cc_setsize(45, 58, ^setsize_abs, ^setsize_abs);
@@ -42,11 +46,11 @@ cc_setsize(304, 108, ^setsize_abs, ^setsize_abs);
 cc_setposition(calc($int1 + -121), calc($int2 + -75), ^setpos_abs_left, ^setpos_abs_top);
 cc_setgraphic(prize_windows_default);
 cc_sethide($boolean11);
-def_int $int13 = 0;
 def_int $int14 = 0;
 def_int $int15 = 0;
+def_int $int16 = 0;
 if ($int0 >= %varplayer_9078) {
-    $int12, $int13, $int14, $int15 = ~runepass_reward_timer_setup($int0, $component7, $int12);
+    $int12, $int14, $int15, $int16 = ~runepass_reward_timer_setup($int0, $component7, $int12);
 }
 cc_create($component7, ^iftype_graphic, calc($int0 * 11 + 1));
 cc_setsize(145, 144, ^setsize_abs, ^setsize_abs);
@@ -98,5 +102,5 @@ if (~script3616 = true | $boolean11 = true) {
 cc_setonop("runepass_task_selected($int0, 1)");
 cc_setopcursor(1, cursor_46);
 cc_sethide($boolean11);
-~runepass_reward_cycle($int0, $int13, 0, 0, $int14, $int15, $component7);
+~runepass_reward_cycle($int0, $int14, 0, 0, $int15, $int16, $component7);
 return($int12);

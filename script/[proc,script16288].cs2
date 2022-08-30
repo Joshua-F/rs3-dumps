@@ -1,13 +1,14 @@
 // 16288
 [proc,script16288](int $int0)
 def_dbrow $dbrow1 = ~runepass_get_current;
+def_int $int2 = ~runepass_get_state($dbrow1);
 def_string $string0 = "";
-def_int $int2 = 0;
 def_int $int3 = 0;
 def_int $int4 = 0;
+def_int $int5 = 0;
 def_string $string1 = "";
 ~mtx_benefits_draw_title($int0, "Yak Track");
-if ($dbrow1 = null) {
+if ($int2 ! 1) {
     if (~script15757 = true) {
         ~script16268($int0, "As you're a Premier member you automatically unlock the Premier Pass for Yak Tracks. If you're still a Premier Member when the next Yak Track is active, you'll automatically receive this benefit.");
     } else {
@@ -15,9 +16,9 @@ if ($dbrow1 = null) {
     }
 } else {
     $string0 = "<col=FFFFFF><db_getfield($dbrow1, dbtable_73:col1, 0)></col>";
-    $int2, $int3 = db_getfield($dbrow1, dbtable_73:col2, 0);
-    $int4 = calc($int3 - date_runeday);
-    $string1 = ~script985($int4, "Today is the last day of the track!", "The track ends tomorrow", "The track ends in <col=FFFFFF><tostring($int4)></col> days.");
+    $int3, $int4 = db_getfield($dbrow1, dbtable_73:col2, 0);
+    $int5 = calc($int4 - date_runeday);
+    $string1 = ~script985($int5, "Today is the last day of the track!", "The track ends tomorrow", "The track ends in <col=FFFFFF><tostring($int5)></col> days.");
     ~script16269($int0, "The current Yak Track is <$string0>. <$string1>", "Open <$string0>", 19);
     if (~script3616 = true) {
         if (~script15757 = true) {
