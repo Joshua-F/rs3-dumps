@@ -20,6 +20,8 @@ def_string $string2 = "";
 def_string $string3 = "";
 def_int $intarray1(4);
 def_int $int14 = 0;
+def_int $int15 = ~script16343;
+def_boolean $boolean16 = ~script1017;
 if ($int4 = 1) {
     if_settext("Solomon's Store", $component1);
     $string1 = "mtxn_rs_shop";
@@ -54,6 +56,12 @@ if ($int4 = 1) {
             $int9 = 1;
         }
         if (struct_param($struct7, param_7491) = true & platformtype ! ^platformtype_default) {
+            $int9 = 1;
+        }
+        if (struct_param($struct7, param_8702) = false & ~script248 = true & $boolean16 = true) {
+            $int9 = 1;
+        }
+        if (struct_param($struct7, param_8703) = true & $boolean16 = false) {
             $int9 = 1;
         }
         switch_struct ($struct7) {
@@ -366,6 +374,12 @@ if ($int4 = 1) {
             }
             $int14 = 1;
             ~script13264(15, 1, $int5);
+        case 16 :
+            $int14 = 1;
+            ~script13264(16, 1, $int5);
+        case 17 :
+            $int14 = 1;
+            ~script13264(17, 1, $int5);
         case default :
             if (string_length($string0) = 0) {
                 $string0 = "Solomon's Store";
@@ -379,41 +393,41 @@ cc_deleteall($component2);
 if ($int14 = 1) {
     return;
 }
-def_int $int15 = 0;
-def_int $int16 = if_getwidth($component2);
-def_int $int17 = 50;
+def_int $int17 = 0;
+def_int $int18 = if_getwidth($component2);
+def_int $int19 = 50;
 def_string $string4 = "";
-~script10047($component2, $int15++);
+~script10047($component2, $int17++);
 $string4 = "Loyalty Points";
-cc_create($component2, ^iftype_text, $int15++);
+cc_create($component2, ^iftype_text, $int17++);
 if (%varclient_4660 > -1) {
     cc_settext(tostring(%varclient_4660));
 }
 cc_setonvarctransmit("script10050(event_com, event_comsubid, 2){varclient_4660}");
-cc_setposition($int17, 0, ^setpos_abs_left, ^setpos_abs_bottom);
-cc_setsize(calc($int16 / 2 - $int17), 32, ^setsize_abs, ^setsize_abs);
+cc_setposition($int19, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+cc_setsize(calc($int18 / 2 - $int19), 32, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_settextfont(fontmetrics_208);
 cc_setcolour(~script10495(3));
 cc_settextshadow(true);
-.cc_create($component2, ^iftype_graphic, $int15++);
+.cc_create($component2, ^iftype_graphic, $int17++);
 .cc_setgraphic(rs3_icon_general_store_loyalty);
 .cc_setsize(34, 35, ^setsize_abs, ^setsize_abs);
 .cc_setposition(calc(cc_getx - 20 - .cc_getwidth / 2), -1, ^setpos_abs_left, ^setpos_abs_bottom);
 .cc_setonmouserepeat("script8799($string4, event_com, event_comsubid)");
 $string4 = "Runecoins";
-cc_create($component2, ^iftype_text, $int15++);
+cc_create($component2, ^iftype_text, $int17++);
 if (%varclient_4659 > -1) {
     cc_settext(tostring(%varclient_4659));
 }
 cc_setonvarctransmit("script10050(event_com, event_comsubid, 3){varclient_4659}");
-cc_setposition(calc($int16 / 2 + $int17), 0, ^setpos_abs_left, ^setpos_abs_bottom);
-cc_setsize(calc($int16 / 2 - $int17), 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int18 / 2 + $int19), 0, ^setpos_abs_left, ^setpos_abs_bottom);
+cc_setsize(calc($int18 / 2 - $int19), 32, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_settextfont(fontmetrics_208);
 cc_setcolour(~script10495(3));
 cc_settextshadow(true);
-.cc_create($component2, ^iftype_graphic, $int15++);
+.cc_create($component2, ^iftype_graphic, $int17++);
 .cc_setgraphic(rs3_icon_general_store_runecoin);
 .cc_setsize(34, 35, ^setsize_abs, ^setsize_abs);
 .cc_setposition(calc(cc_getx - 20 - .cc_getwidth / 2), -1, ^setpos_abs_left, ^setpos_abs_bottom);

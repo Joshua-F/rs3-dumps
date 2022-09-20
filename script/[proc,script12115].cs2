@@ -6,23 +6,31 @@ if ($dbrow0 = null) {
 if (db_getfield($dbrow0, dbtable_134:col22, 0) = false & ~ironman_mode = true) {
     return(false);
 }
+if (db_getfield($dbrow0, dbtable_134:col24, 0) = false & ~script248 = true) {
+    return(false);
+}
 if (db_getfield($dbrow0, dbtable_134:col23, 0) = false & playermember = false) {
     return(false);
 }
-if (db_getfield($dbrow0, dbtable_134:col24, 0) = true & ~script12961($dbrow0) = true) {
+if (db_getfield($dbrow0, dbtable_134:col25, 0) = true & ~script12961($dbrow0) = true) {
     return(false);
 }
-def_int $int1 = 0;
-def_int $int2 = 0;
+def_int $int1 = db_getfield($dbrow0, dbtable_134:col26, 0);
+def_int $int2 = db_getfield($dbrow0, dbtable_134:col27, 0);
+if (%varplayer_3079 < $int1 | %varplayer_3079 > $int2) {
+    return(false);
+}
+def_int $int3 = 0;
+def_int $int4 = 0;
 if (db_getfield($dbrow0, dbtable_134:col18, 0) > 0) {
-    $int2 = calc(db_getfield($dbrow0, dbtable_134:col18, 0) * 1440);
-    $int1 = ~script11174;
-    if (calc($int1 + $int2 + %varplayer_10435) > 1314000) {
+    $int4 = calc(db_getfield($dbrow0, dbtable_134:col18, 0) * 1440);
+    $int3 = ~script11174;
+    if (calc($int3 + $int4 + %varplayer_10435) > 1314000) {
         return(false);
     }
 }
-def_struct $struct3 = null;
-def_dbrow $dbrow4 = null;
+def_struct $struct5 = null;
+def_dbrow $dbrow6 = null;
 switch_dbrow ($dbrow0) {
     case dbrow_4132, dbrow_4133, dbrow_4134 :
         if (~runepass_get_state(~script3608) ! 1) {
@@ -64,12 +72,12 @@ switch_dbrow ($dbrow0) {
         }
     case dbrow_4163, dbrow_4164, dbrow_4165 :
         return(false);
-        $struct3 = ~script14441;
-        if ($struct3 ! null & struct_param($struct3, param_4284) = 1) {
+        $struct5 = ~script14441;
+        if ($struct5 ! null & struct_param($struct5, param_4284) = 1) {
             return(true);
         }
-        $dbrow4 = ~script15143;
-        if ($dbrow4 ! null) {
+        $dbrow6 = ~script15143;
+        if ($dbrow6 ! null) {
             return(true);
         }
         return(false);

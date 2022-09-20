@@ -1,8 +1,8 @@
 // 2133
-[proc,quest_points](quest $quest0)(string)
+[proc,quest_points](quest $quest0)(string, int)
 if ($quest0 = null) {
     ~error("Null .quest.");
-    return("");
+    return("", -1);
 }
 def_int $int1 = quest_points($quest0);
 switch_quest ($quest0) {
@@ -37,9 +37,9 @@ switch_quest ($quest0) {
 }
 switch_int ($int1) {
     case 0 :
-        return("");
+        return("", $int1);
     case 1 :
-        return("1 Quest Point");
+        return("1 Quest Point", $int1);
     case default :
-        return("<tostring($int1)> Quest Points");
+        return("<tostring($int1)> Quest Points", $int1);
 }
