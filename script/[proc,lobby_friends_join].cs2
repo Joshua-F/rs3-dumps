@@ -13,9 +13,15 @@ def_string $string1 = "";
 $int2, $string0, $int1, $string0, $int1, $int1, $string1 = worldlist_specific($int0);
 if ($int2 = -1) {
     mes("Sorry, you can't join that person.");
+} else if (testbit($int2, 30) = ^true & ~script16823 = false & staffmodlevel < 2) {
+    mes("This world is for seasonal players only.");
+    return;
+} else if (testbit($int2, 30) = ^false & ~script16823 = true & staffmodlevel < 2) {
+    mes("This world is for non-seasonal players only.");
+    return;
 } else if (worldlist_switch($int0, $string1) = true) {
     %varclient_547 = 0;
-    ~lobbyscreen_entergame(interface_906:com_83);
+    ~lobbyscreen_entergame(interface_906:com_76);
 } else {
     ~info_box_coord_draw("Sorry, we couldn't contact world <tostring($int0)>.<br>Please choose a different world.", 0, 0, 1);
     mes("Sorry, we couldn't contact world <tostring($int0)>. Please choose a different world.");
