@@ -1,0 +1,15 @@
+// 403
+[proc,script403](int $int0, dbrow $dbrow1)(boolean)
+if (db_getrowtable($dbrow1) ! dbtable_101) {
+    ~error("Invalid dbtable.");
+    return(false);
+}
+def_int $int2 = 0;
+def_int $int3 = db_getfieldcount($dbrow1, dbtable_101:col0);
+while ($int2 < $int3) {
+    if (db_getfield($dbrow1, dbtable_101:col0:2, $int2) = $int0) {
+        return(true);
+    }
+    $int2 = calc($int2 + 1);
+}
+return(false);
