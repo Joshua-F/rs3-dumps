@@ -1,6 +1,6 @@
 // 16754
 [clientscript,trh182_draw_monster]
-def_component $component0 = interface_1022:com_28;
+def_component $component0 = interface_1022:com_31;
 def_dbrow $dbrow1 = ~trh182_get_monster_dbrow;
 if ($dbrow1 = null) {
     ~error("Null monster.");
@@ -12,13 +12,29 @@ $npc2, $seq3 = db_getfield($dbrow1, dbtable_193:col1, 0);
 %varclient_7073 = $seq3;
 if_setnpcmodel($npc2, $component0);
 if_setmodelangle(db_getfield($dbrow1, dbtable_193:col2, 0), $component0);
-if_setontimer(null, interface_1022:com_28);
+if_setontimer(null, interface_1022:com_31);
 if_setmodelanim($seq3, $component0);
-def_string $string0 = db_getfield($dbrow1, dbtable_193:col6, 0);
-if_settext($string0, interface_1022:com_83);
-if_settext("Level<br><tostring(db_getfield($dbrow1, dbtable_193:col4, 0))>", interface_1022:com_84);
+def_string $string0 = db_getfield($dbrow1, dbtable_193:col7, 0);
+if_settext($string0, interface_1022:com_86);
+def_int $int4 = db_getfield($dbrow1, dbtable_193:col4, 0);
+if_settext("Level<br><tostring($int4)>", interface_1022:com_87);
+if ($int4 >= 10000) {
+    if_settextfont(fontmetrics_90, interface_1022:com_87);
+} else if ($int4 >= 1000) {
+    if_settextfont(fontmetrics_92, interface_1022:com_87);
+} else {
+    if_settextfont(fontmetrics_96, interface_1022:com_87);
+}
+if (db_getfield($dbrow1, dbtable_193:col8, 0) = 1) {
+    if_setgraphic(trh182_background_swirly_red, interface_1022:com_2);
+    if_setgraphic(trh182_background_red, interface_1022:com_3);
+    sound_jingle_volume(jingle_80615, 1000, 200);
+} else {
+    if_setgraphic(trh182_background_swirly, interface_1022:com_2);
+    if_setgraphic(trh182_background, interface_1022:com_3);
+}
 ~script16762;
-if_sethide(true, interface_1022:com_31);
-if_setop(5, "Examine", interface_1022:com_29);
-if_setopbase("<col=FFFF00><~script16737($string0)></col>", interface_1022:com_29);
-if_setonop("script16755", interface_1022:com_29);
+if_sethide(true, interface_1022:com_34);
+if_setop(5, "Examine", interface_1022:com_32);
+if_setopbase("<col=FFFF00><~script16737($string0)></col>", interface_1022:com_32);
+if_setonop("script16755", interface_1022:com_32);
