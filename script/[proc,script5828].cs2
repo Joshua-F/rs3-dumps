@@ -549,7 +549,7 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                 $int41 = ~script7235("<col=ff0000>Empty slot", $string3, $struct2, $component3, $component4, $int41);
             }
         }
-        if ($obj0 ! obj_44540 & oc_category($obj0) ! category_4058 & oc_category($obj0) ! category_4431) {
+        if ($obj0 ! obj_44540 & oc_category($obj0) ! category_4058 & oc_category($obj0) ! category_4431 & (oc_category($obj0) ! category_4430 | ~script12676(obj_44542) = 0)) {
             $int33 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_30214);
             $int41 = ~script7236("Charges remaining", $int33, $int7, "", $struct2, $component3, $component4, $int41);
         }
@@ -873,7 +873,7 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                         $int41 = ~script7235("Item Charge: <$string2><$string1>%", $string3, $struct2, $component3, $component4, $int41);
                     case category_3021 :
                         if ($obj0 = obj_44550) {
-                            $int41 = ~script7235(~text_boolean(~int_to_bool(%varplayerbit_35985), "Stored sign of the porter (disabled) charges: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_30214))>/<tostring(500)>", "Stored sign of the porter charges: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_30214))>/<tostring(500)>"), $string3, $struct2, $component3, $component4, $int41);
+                            $int41 = ~script7235(~text_boolean(~int_to_bool(%varplayerbit_35985), "Stored sign of the porter (disabled) charges: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_30214))>/<tostring(~script17012)>", "Stored sign of the porter charges: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_30214))>/<tostring(~script17012)>"), $string3, $struct2, $component3, $component4, $int41);
                         } else {
                             $int41 = ~script7235("Charges remaining: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_20171))>", $string3, $struct2, $component3, $component4, $int41);
                         }
@@ -970,6 +970,9 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                         $int41 = ~script7235(oc_param($obj0, param_2265), $string3, $struct2, $component3, $component4, $int41);
                         $string11 = "Meals eaten: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_4333))>/<tostring(3)>";
                         $int41 = ~script7235($string11, $string3, $struct2, $component3, $component4, $int41);
+                    case category_5235 :
+                        $int17 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_18411);
+                        $int41 = ~script7235("Corruption stored: <tostring($int17)>", $string3, $struct2, $component3, $component4, $int41);
                     case default :
                         if (oc_param($obj0, param_369) = 3) {
                             $int17 = min(max(scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_6139), oc_param($obj0, param_368), 100), 1), 99);
