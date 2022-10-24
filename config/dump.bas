@@ -28421,3 +28421,15 @@ readyanim=null,seq_35063
 randomreadyanim=seq_35058,90
 randomreadyanim=seq_35059,10
 
+// 4650
+[bas_4650]
+walkanim_b=seq_35081
+runanim=seq_35082
+readyanim_l=seq_35081
+readyanim_r=seq_35081
+walkturn_l=seq_35081
+walkturn_r=seq_35081
+walkanim_l=seq_35081
+walkanim_r=seq_35081
+readyanim=seq_35080,seq_35081
+
