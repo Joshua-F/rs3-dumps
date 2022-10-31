@@ -1632,15 +1632,6 @@ readyanim=seq_24376,seq_24377
 [bas_315]
 readyanim=seq_24329,seq_24328
 
-// 316
-[bas_316]
-readyanim=seq_3309,seq_3313
-
-// 317
-[bas_317]
-hillrotate=32,32
-readyanim=seq_3309,seq_3313
-
 // 318
 [bas_318]
 readyanim=seq_208,seq_208
