@@ -1632,6 +1632,18 @@ readyanim=seq_24376,seq_24377
 [bas_315]
 readyanim=seq_24329,seq_24328
 
+// 316
+[bas_316]
+readyanim_l=seq_35086
+readyanim_r=seq_35086
+walkturn_l=seq_35086
+walkturn_r=seq_35086
+runanim=seq_35085
+hillrotate=32,32
+readyanim=null,seq_35086
+randomreadyanim=seq_3320,90
+randomreadyanim=seq_35084,10
+
 // 318
 [bas_318]
 readyanim=seq_208,seq_208
