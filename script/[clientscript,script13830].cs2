@@ -9,61 +9,66 @@ if_setontimer(null, interface_517:com_238);
 def_int $int1 = 0;
 def_int $int2 = 0;
 def_int $int3 = 0;
-$int2, $int1, $int3 = ~script5779;
-$int2 = calc($int2 - $int1);
 def_int $int4 = 0;
-def_obj $obj5 = null;
-def_int $int6 = 0;
+$int2, $int1, $int3, $int4 = ~script5779;
+$int2 = calc($int2 - $int1);
+def_int $int5 = 0;
+def_obj $obj6 = null;
 def_int $int7 = 0;
-while ($int4 < 1470) {
-    $obj5 = inv_getobj(inv_95, $int4);
-    if ($obj5 ! null) {
-        $int6 = calc($int6 + 1);
-        if (oc_members($obj5) = 0) {
-            $int7 = calc($int7 + 1);
+def_int $int8 = 0;
+while ($int5 < 1720) {
+    $obj6 = inv_getobj(inv_95, $int5);
+    if ($obj6 ! null) {
+        $int7 = calc($int7 + 1);
+        if (oc_members($obj6) = 0) {
+            $int8 = calc($int8 + 1);
         }
     }
-    $int4 = calc($int4 + 1);
+    $int5 = calc($int5 + 1);
 }
-def_int $int8 = calc($int6 - $int7);
-def_boolean $boolean9 = false;
-def_boolean $boolean10 = true;
+def_int $int9 = calc($int7 - $int8);
+def_boolean $boolean10 = false;
+def_boolean $boolean11 = true;
 if_sethide(false, interface_517:com_239);
 def_string $string0 = "Get more bank space!";
 def_string $string1 = "Total number of bank spaces used and available.";
 def_string $string2 = "";
 if (calc(14 - $int3) > 0) {
-    $boolean9 = false;
+    $boolean10 = false;
     if (playermember = true) {
         $string1 = "<$string1><br><br>You may purchase an additional <tostring(calc((14 - $int3) * 50))> bank spaces from Solomon's Store.";
     }
 }
+if (calc(1 - $int4) > 0) {
+    $boolean10 = false;
+    $string1 = "<$string1><br><br>You may purchase an additional <tostring(calc((1 - $int4) * 250))> bank spaces from the Bonds tab in the Marketplace.";
+}
 if (playermember = true) {
-    if_settext(tostring_localised($int6, true), interface_517:com_242);
+    if_settext(tostring_localised($int7, true), interface_517:com_242);
     if_settext(tostring_localised(~bank_get_members_size, true), interface_517:com_243);
 } else {
-    if ($int8 > 500) {
-        $int7 = calc($int7 + ($int8 - 500));
-        $int8 = 500;
+    if ($int9 > 500) {
+        $int8 = calc($int8 + ($int9 - 500));
+        $int9 = 500;
     }
     $string1 = "<$string1><br><br>Free spaces are displayed on the left and members spaces to the right.<br>Items within the members spaces do not count towards your limit for non-members items.";
+    $string2 = ~script13865($string2, $int9);
     $string2 = ~script13865($string2, $int8);
-    $string2 = ~script13865($string2, $int7);
-    if_settext("<tostring_localised($int7, true)>       <$string2><tostring_localised($int8, true)>", interface_517:com_242);
+    if_settext("<tostring_localised($int8, true)>       <$string2><tostring_localised($int9, true)>", interface_517:com_242);
     if_settext("<tostring_localised(~script5778, true)>       <tostring_localised(500, true)>", interface_517:com_243);
 }
 if_setonmouserepeat("script8799($string1, event_com, event_comsubid)", interface_517:com_239);
 if (~script15532 = true) {
-    $boolean9 = true;
+    $boolean10 = true;
     $string0 = "";
 }
-~script13959(interface_517:com_245, struct_28222, $boolean9);
-~script13959(interface_517:com_246, struct_31846, $boolean9);
-if ($boolean9 = false) {
-    $boolean10 = false;
+~script13959(interface_517:com_245, struct_28222, $boolean10);
+~script13959(interface_517:com_246, struct_31846, $boolean10);
+if ($boolean10 = false) {
+    $boolean11 = false;
     if_setop(1, "Select", interface_517:com_244);
 } else {
     if_clearops(interface_517:com_244);
 }
-if_sethide($boolean10, interface_517:com_247);
+if_sethide($boolean11, interface_517:com_247);
 if_setonmouserepeat("script8799($string0, event_com, event_comsubid)", interface_517:com_244);
