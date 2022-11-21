@@ -1,5 +1,5 @@
-// 14937
-[proc,script14937](dbrow $dbrow0)
+// 17045
+[proc,script17045](dbrow $dbrow0)
 def_int $int1 = db_getfield($dbrow0, dbtable_100:col2, 0);
 if ($int1 = -1) {
     return;
@@ -11,8 +11,8 @@ if ($int2 = $int1) {
 }
 def_int $int3 = 0;
 def_int $int4 = 0;
-$int3, $int4 = ~script5757($dbrow0);
-if ($int3 <= 0) {
+$int3, $int4 = ~script17031($dbrow0);
+if ($int3 <= 0 & ~script5747($dbrow0) <= 0) {
     ~script14938($int2, $int1, true);
     return;
 }
@@ -20,7 +20,7 @@ if (db_getfield($dbrow0, dbtable_100:col4, 0) = true) {
     if ($int2 ! -1) {
         ~script14938($int2, $int1, false);
         return;
-    } else if (db_getfield($dbrow0, dbtable_100:col6, 0) = true) {
+    } else if (db_getfield($dbrow0, dbtable_100:col8, 0) = true) {
         $int2 = ~script8314(18);
         if ($int2 ! -1 & $int4 > 0) {
             ~script14938($int2, 18, false);
@@ -28,7 +28,14 @@ if (db_getfield($dbrow0, dbtable_100:col4, 0) = true) {
         }
     }
 }
+def_component $component5 = null;
+def_component $component6 = null;
+def_enum $enum7 = null;
 if (db_getfield($dbrow0, dbtable_100:col5, 0) = true) {
-    ~script14935(interface_1431:com_0, interface_1431:com_12, enum_getreverseindex(int, int, enum_13319, $int1, 0), $dbrow0);
-    return;
+    $component5 = db_getfield($dbrow0, dbtable_100:col6, 0);
+    $component6 = db_getfield($dbrow0, dbtable_100:col9, 0);
+    $enum7 = db_getfield($dbrow0, dbtable_100:col7, 0);
+    if ($component5 ! null & $component6 ! null & $enum7 ! null) {
+        ~script14935($component5, $component6, enum_getreverseindex(int, int, $enum7, $int1, 0), $dbrow0);
+    }
 }
