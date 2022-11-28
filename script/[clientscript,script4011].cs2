@@ -78,7 +78,7 @@ if (map_lang ! 0 & has_nxt = true) {
 }
 def_string $string1 = ~ql4_intro_suggested_quest_requirement($quest0);
 if (string_length($string1) > 0) {
-    $int2 = ~script4249("<col=EBE076>Suggested Requirements:</col>", $string1, interface_1500:com_348, interface_1500:com_349, interface_1500:com_350, null, null, $int1, $int2);
+    $int2 = ~script4249("<col=EBE076>Follows events of:</col>", $string1, interface_1500:com_348, interface_1500:com_349, interface_1500:com_350, null, null, $int1, $int2);
     ~script13742($string1, interface_1500:com_351, interface_1500:com_350, quest_param($quest0, param_7840), quest_param($quest0, param_7841), quest_param($quest0, param_7842), quest_param($quest0, param_7843), quest_param($quest0, param_7844), quest_param($quest0, param_7845), quest_param($quest0, param_7846), quest_param($quest0, param_7847), quest_param($quest0, param_7848), quest_param($quest0, param_7849), quest_param($quest0, param_7850), quest_param($quest0, param_7851));
     if_sethide(false, interface_1500:com_348);
     if (~script6431 = true) {
@@ -90,7 +90,7 @@ if (string_length($string1) > 0) {
         case 1 :
             $int2 = ~script4249("", "To fully appreciate the backstory and events of this quest, and unlock the full rewards, we strongly recommend you first complete the above suggested quests. You may complete the quest without these prerequisites, and claim the rewards at a later date.", interface_1500:com_352, interface_1500:com_353, interface_1500:com_354, null, null, $int1, $int2);
         case 0 :
-            $int2 = ~script4249("", "To fully appreciate the backstory and characters of this quest, we strongly recommend you first complete the above suggested quests.", interface_1500:com_352, interface_1500:com_353, interface_1500:com_354, null, null, $int1, $int2);
+            $int2 = ~script4249("", "", interface_1500:com_352, interface_1500:com_353, interface_1500:com_354, null, null, $int1, $int2);
     }
     if_sethide(false, interface_1500:com_352);
 } else {
@@ -125,28 +125,37 @@ switch_quest ($quest0) {
         $string0 = ~script2134($quest0, "", "");
 }
 $int2 = ~script4249("<col=EBE076>Rewards:</col>", $string0, interface_1500:com_373, interface_1500:com_374, interface_1500:com_375, interface_1500:com_376, interface_1500:com_381, $int1, $int2);
-if (quest_param($quest0, param_7831) ! 1 | string_length(quest_param($quest0, param_7839)) > 0) {
+def_string $string4 = "";
+switch_int (quest_param($quest0, param_7831)) {
+    case 0 :
+        $string4 = "This is a Fifth Age quest, and takes place in the past, before the gods returned to Gielinor.";
+    case 2 :
+        if ($quest0 = quest_361) {
+            $string4 = "The events of this quest trigger the end of the Fifth Age and begins the Sixth Age.<br>It is recommended, but not necessary, to complete Fifth Age quests before Sixth Age quests to fully understand the story of the Sixth Age.";
+        } else if (quest_param($quest0, param_1345) <= 321) {
+            $string4 = "This is a Sixth Age quest, and takes place after the events of The World Wakes.<br>The gods are free to return to Gielinor. You are the World Guardian.";
+        }
+}
+if (string_length($string4) > 0 | string_length(quest_param($quest0, param_7839)) > 0) {
     if (string_length(quest_param($quest0, param_7839)) > 0) {
         $int2 = ~script673($int2);
     } else {
-        $int2 = ~script13771($int2, $quest0);
-    }
-    switch_int (quest_param($quest0, param_7831)) {
-        case 0 :
-            if_sethide(false, interface_1500:com_387);
-            if_sethide(true, interface_1500:com_390);
-        case 2 :
-            if_sethide(true, interface_1500:com_387);
-            if_sethide(false, interface_1500:com_390);
-        case default :
-            if_sethide(true, interface_1500:com_387);
-            if_sethide(true, interface_1500:com_390);
+        $int2 = ~script13771($int2, $string4);
     }
     if_sethide(false, interface_1500:com_382);
 } else {
     if_sethide(true, interface_1500:com_382);
-    if_sethide(true, interface_1500:com_387);
-    if_sethide(true, interface_1500:com_390);
+}
+switch_int (quest_param($quest0, param_7831)) {
+    case 0 :
+        if_sethide(false, interface_1500:com_387);
+        if_sethide(true, interface_1500:com_390);
+    case 2, 3 :
+        if_sethide(true, interface_1500:com_387);
+        if_sethide(false, interface_1500:com_390);
+    case default :
+        if_sethide(true, interface_1500:com_387);
+        if_sethide(true, interface_1500:com_390);
 }
 if_setscrollpos(0, 0, interface_1500:com_334);
 if ($int2 > if_getheight(interface_1500:com_334)) {
