@@ -1,0 +1,29 @@
+// 17077
+[clientscript,script17077](dbrow $dbrow0, int $int1)
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+$int2, $int3 = ~script3526($dbrow0);
+if ($int2 = -1) {
+    return;
+}
+unknown_command_44($int2);
+if (notifications_islocalscheduled($int2) = 1) {
+    switch_dbrow ($dbrow0) {
+        case default :
+            return;
+        case dbrow_7011, dbrow_7012 :
+            if ($dbrow0 = dbrow_7012) {
+                $int4 = 2;
+            }
+            if (calc($int1 - %varclient_7099) > $int4) {
+                ~local_notification_cancel($dbrow0);
+            }
+        case dbrow_7014 :
+            if ($int1 = 1) {
+                ~local_notification_cancel($dbrow0);
+            }
+    }
+} else {
+    ~local_notification_cancel($dbrow0);
+}

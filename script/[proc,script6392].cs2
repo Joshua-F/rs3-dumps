@@ -6,6 +6,7 @@ def_obj $obj25 = null;
 def_int $int26 = 0;
 def_string $string16 = "";
 def_string $string17 = "";
+def_string $string18 = "";
 while ($int24 <= 12) {
     switch_int ($int24) {
         case 1 :
@@ -110,14 +111,17 @@ while ($int24 <= 12) {
                         }
                     case default :
                         if (string_length($string17) = 0) {
-                            $string15 = append($string15, "<tostring_localised(calc(oc_param($obj25, param_58) / 10), true)> ");
-                            $string15 = ~script6389($obj25, $string15);
-                            $string15 = append($string15, " XP");
+                            $string15 = append($string15, tostring_localised(calc(oc_param($obj25, param_58) / 10), true));
                         } else {
                             $string15 = append($string15, $string17);
-                            $string15 = ~script6389($obj25, $string15);
-                            $string15 = append($string15, " XP");
                         }
+                        $string15 = append($string15, " ");
+                        $string18 = ~script6389($obj25, "");
+                        if (string_length($string18) > 0) {
+                            $string15 = append($string15, $string18);
+                            $string15 = append($string15, " ");
+                        }
+                        $string15 = append($string15, "XP");
                 }
                 if (oc_param($obj25, param_124) > 1) {
                     $string15 = append($string15, " - requires level <tostring(oc_param($obj25, param_124))>");
