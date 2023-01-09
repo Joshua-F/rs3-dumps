@@ -1,0 +1,40 @@
+// 17094
+[proc,script17094](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6)
+cc_deleteall(interface_1626:com_52);
+def_int $int7 = stringwidth(tostring_localised(^max_32bit_int, true), fontmetrics_168);
+def_int $int8 = if_getwidth(interface_1626:com_52);
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = ~script15891("Carried wealth:", 1000, fontmetrics_208, 0);
+def_string $string0 = "Values shown here are a summary of the combined items being carried.";
+def_string $string1 = "Items will be reclaimed to your backpack or worn equipment.";
+if ($int0 ! 0) {
+    $string1 = "";
+}
+$int9, $int10 = ~script17095($int9, $int10, $int7, $int11, "Coins available:", 0, ~script11882(inv_total(inv_623, obj_995), inv_total(inv_93, obj_995)));
+if (%varplayerbit_52406 = 2) {
+    $int9, $int10 = ~script17095($int9, $int10, $int7, $int11, "Used slots:", 0, calc(50 - inv_freespace(inv_930)));
+    $int9, $int10 = ~script17095($int9, $int10, $int7, $int11, "Max slots:", 0, 50);
+    $string0 = "Reclaim items from Death's overflow storage. When the storage is full, the cheapest items will be replaced.<br><br>You can destroy items from storage, or reclaim for 10x the normal reclaim cost.";
+    $string1 = "Items will be reclaimed to your bank.";
+}
+$int10 = max(60, calc($int10 + 5));
+def_int $int12 = ~script15891($string0, $int8, fontmetrics_208, 0);
+~cc_add_text(interface_1626:com_52, $int9++, 0, $int10, ^setpos_abs_left, ^setpos_abs_top, 0, $int12, ^setsize_minus, ^setsize_abs, dbrow_2099, $string0);
+$int10 = calc($int10 + $int12 + 5);
+if (%varplayerbit_52406 ! 2) {
+    ~cc_add_text(interface_1626:com_52, $int9++, 0, $int10, ^setpos_abs_left, ^setpos_abs_top, 0, $int11, ^setsize_minus, ^setsize_abs, dbrow_7072, "Coins:");
+    cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+    $int10 = calc($int10 + $int11 + 5);
+    $int9, $int10 = ~script17095($int9, $int10, $int7, $int11, "Carried wealth:", 1, $int1);
+    $int9, $int10 = ~script17095($int9, $int10, $int7, $int11, "Carried wealth at risk:", 1, $int2);
+    if ($int0 = 0) {
+        $int9, $int10 = ~script17095($int9, $int10, $int7, $int11, "Base reclaim cost:", 1, $int3);
+        $int9, $int10 = ~script17095($int9, $int10, $int7, $int11, "Death's deal:", 1, calc(0 - $int4));
+        $int9, $int10 = ~script17095($int9, $int10, $int7, $int11, "Gravestone:", 1, calc(0 - $int5));
+        $int9, $int10 = ~script17095($int9, $int10, $int7, $int11, "Final reclaim cost:", 1, $int6);
+    }
+}
+$int10 = calc($int10 + 5);
+$int12 = ~script15891($string1, $int8, fontmetrics_208, 0);
+~cc_add_text(interface_1626:com_52, $int9++, 0, $int10, ^setpos_abs_left, ^setpos_abs_top, 0, $int12, ^setsize_minus, ^setsize_abs, dbrow_2099, $string1);

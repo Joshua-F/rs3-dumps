@@ -1,29 +1,33 @@
 // 11465
-[clientscript,death_item_tooltip](component $component0, int $int1, obj $obj2, int $int3)
+[clientscript,death_item_tooltip](component $component0, int $int1, obj $obj2, int $int3, int $int4, int $int5)
 if (%varclient_4827 ! null & %varclient_4828 ! -1) {
     return;
 }
 if ($obj2 = null) {
     return;
 }
-def_int $int4 = ~script11472($int3);
-~script12094($obj2, inv_676, $int3);
-switch_int ($int4) {
+def_int $int6 = ~script11472($int3);
+def_inv $inv7 = inv_676;
+if (%varplayerbit_52406 = 2) {
+    $inv7 = inv_930;
+}
+~script12094($obj2, $inv7, $int3);
+switch_int ($int6) {
     case -4 :
-        ~script11600($component0, $int1, $obj2, "<col=00FF00>Always free to protect, unless in the wilderness!");
+        ~script11600($component0, $int1, $obj2, "<col=00FF00>Always free to protect, unless in a dangerous situation!");
         return;
     case -6 :
         ~script11600($component0, $int1, $obj2, "<col=00FF00>Always free to protect!");
         return;
     case -3 :
-        ~script11600($component0, $int1, $obj2, "<col=FF0000>This is a members' only item. As you died on a members' world you must be on a members' world to save this item.");
+        ~script11600($component0, $int1, $obj2, "<col=FF0000>This is a members-only item. As you died on a members' world you must be on a members' world to save this item.");
         return;
     case -5 :
         if (%varplayerbit_28118 = 2) {
-            ~script11600($component0, $int1, $obj2, "<col=00FF00>This is a members' only item. If you died on a free world, it would be free to reclaim.");
+            ~script11600($component0, $int1, $obj2, "<col=00FF00>This is a members-only item. If you died on a free world, it would be free to reclaim.");
             return;
         } else {
-            ~script11600($component0, $int1, $obj2, "<col=00FF00>This is a members' only item. As you died on a free world, it is free to reclaim.");
+            ~script11600($component0, $int1, $obj2, "<col=00FF00>This is a members-only item. As you died on a free world, it is free to reclaim.");
             return;
         }
     case -2 :
@@ -32,35 +36,39 @@ switch_int ($int4) {
     case -7 :
         return;
     case default :
-        if ($int3 >= inv_size(inv_676)) {
-            ~script11600($component0, $int1, $obj2, "<col=FF0000>Your beast of burden is carrying this item. It will be lost on death.");
-            return;
+        if ($int3 >= 47 & %varplayerbit_52406 ! 2) {
+            if ($int4 ! -1 & $int3 = 47) {
+                ~script11600($component0, $int1, $obj2, "<col=FF0000>In dangerous PvP, individual items are protected, so you will lose some of this item stack.");
+                $int6 = ~script11472($int4);
+                ~script12094($obj2, $inv7, $int4);
+            } else {
+                ~script11600($component0, $int1, $obj2, "<col=FF0000>Your beast of burden is carrying this item. It will be lost on death.");
+                return;
+            }
         }
 }
-def_int $int5 = inv_getnum(inv_676, $int3);
-def_int $int6 = ~script11466($obj2, $int4, $int5, 1);
-def_int $int7 = 0;
-def_int $int8 = 0;
-def_int $int9 = 0;
-def_string $string0 = "";
-if (oc_param($obj2, param_5089) = -1) {
-    $string0 = "<col=00FF00>Item value: <tostring_localised($int4, true)>";
-    if ($int6 > $int4) {
-        $string0 = append($string0, "<col=00FF00> (<tostring_localised($int6, true)>)");
+def_int $int8 = inv_getnum($inv7, $int3);
+if (cc_find($component0, $int1) = true) {
+    $int8 = cc_getinvcount;
+}
+def_int $int9 = ~script11466($obj2, $int6, $int8, 1);
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_string $string0 = "<col=00FF00>Item value: <tostring_localised($int6, true)>";
+if ($int9 > $int6) {
+    $string0 = append($string0, "<col=00FF00> (<tostring_localised($int9, true)>)");
+}
+if (%varplayerbit_52406 = 2) {
+    $int10, $int11, $int12 = ~script11467($obj2, $int6, $int8, 7);
+    $string0 = append($string0, "<br><col=00FF00>Overflow reclaim cost: <tostring_localised($int10, true)>");
+} else if ($int5 = 0) {
+    $int10, $int11, $int12 = ~script11467($obj2, $int6, $int8, 2);
+    $string0 = append($string0, "<br><col=00FF00>Cost to save: <tostring_localised($int10, true)>");
+    if ($int3 < %varplayerbit_28114) {
+        $string0 = append($string0, " (Protected for free)");
+    } else if ($int11 = 1) {
+        $string0 = append($string0, "<br><col=00FF00>Death's Deal saves: <tostring_localised($int12, true)>");
     }
-} else {
-    $string0 = "<col=00FF00>Item has fixed reclaim value.";
 }
-$int7, $int8, $int9 = ~script11467($obj2, $int4, $int5, 2);
-$string0 = append($string0, "<br><col=00FF00>Cost to save: <tostring_localised($int7, true)>");
-if ($int3 < %varplayerbit_28114) {
-    $string0 = append($string0, " (Protected for free)");
-} else if ($int8 = 1) {
-    $string0 = append($string0, "<br><col=00FF00>Death's Deal saves: <tostring_localised($int9, true)>");
-}
-$int7, $int8, $int9 = ~script11467($obj2, $int4, $int5, 3);
-$string0 = append($string0, "<br><col=00FF00>Sacrifice value: <tostring_localised($int7, true)>");
-%varclient_4645 = $string0;
-if (%varplayerbit_42094 = 1) {
-    ~script8800("<oc_name($obj2)><br><$string0>", $component0, $int1);
-}
+~script11600($component0, $int1, $obj2, $string0);
