@@ -2,49 +2,61 @@
 [proc,script15966](component $component0, int $int1, int $int2, dbrow $dbrow3, int $setposh4, int $int5)(int, int)
 def_string $string0 = db_getfield($dbrow3, dbtable_132:col2, 0);
 def_stylesheet $stylesheet6 = db_getfield($dbrow3, dbtable_132:col0, 0);
-def_int $int7 = ~script15967($int5, $stylesheet6);
+def_int $int7 = 0;
 def_int $int8 = 0;
+$int7, $int8 = db_getfield($dbrow3, dbtable_132:col3, 0);
+if ($int7 <= 0 | $int8 <= 0) {
+    $int7 = 0;
+    $int8 = ~script15967($int5, $stylesheet6);
+}
+def_int $int9 = 0;
 switch_int ($int5) {
     case 4 :
-        ~cc_add_text($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int7, ^setsize_rel, ^setsize_abs, $dbrow3, $string0);
+        ~cc_add_text($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int8, ^setsize_rel, ^setsize_abs, $dbrow3, $string0);
         cc_setonvartransmit(null);
-        $int8 = ~script11432(cc_getfontmetrics);
-        if ($int8 > $int7) {
-            $int7 = $int8;
-            cc_setsize(7373, $int7, ^setsize_rel, ^setsize_abs);
+        $int9 = ~script11432(cc_getfontmetrics);
+        if ($int9 > $int8) {
+            $int8 = $int9;
+            cc_setsize(7373, $int8, ^setsize_rel, ^setsize_abs);
         }
     case 3 :
-        ~cc_add_rect($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int7, ^setsize_rel, ^setsize_abs, $dbrow3);
+        ~cc_add_rect($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int8, ^setsize_rel, ^setsize_abs, $dbrow3);
         cc_setonvartransmit(null);
-        ~cc_add_text($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int7, ^setsize_rel, ^setsize_abs, dbrow_2100, $string0);
+        ~cc_add_text($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int8, ^setsize_rel, ^setsize_abs, dbrow_2100, $string0);
     case 10 :
-        ~cc_add_button($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int7, ^setsize_rel, ^setsize_abs, $dbrow3, $string0);
-        cc_setonvartransmit(null);
+        if ($int7 > 0) {
+            ~cc_add_button($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, $int7, $int8, ^setsize_abs, ^setsize_abs, $dbrow3, "");
+            cc_setonvartransmit(null);
+            ~cc_add_text($component0, $int1++, $int7, $int2, $setposh4, ^setpos_abs_top, calc(scale(if_getwidth($component0), 16384, 7373) - $int7), $int8, ^setsize_abs, ^setsize_abs, dbrow_2100, $string0);
+        } else {
+            ~cc_add_button($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int8, ^setsize_rel, ^setsize_abs, $dbrow3, $string0);
+            cc_setonvartransmit(null);
+        }
     case 1000 :
-        ~cc_add_background($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int7, ^setsize_rel, ^setsize_abs, $dbrow3, 1);
+        ~cc_add_background($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int8, ^setsize_rel, ^setsize_abs, $dbrow3, 1);
         cc_settext($string0);
         cc_setonvartransmit(null);
-        ~cc_add_background($component0, $int1++, 0, calc($int2 + $int7 + 10), $setposh4, ^setpos_abs_top, 7373, $int7, ^setsize_rel, ^setsize_abs, $dbrow3, 0);
+        ~cc_add_background($component0, $int1++, 0, calc($int2 + $int8 + 10), $setposh4, ^setpos_abs_top, 7373, $int8, ^setsize_rel, ^setsize_abs, $dbrow3, 0);
         cc_settext("<$string0> (disabled)");
         cc_setonvartransmit(null);
-        $int7 = calc($int7 + ($int7 + 10));
+        $int8 = calc($int8 + ($int8 + 10));
     case 12 :
-        ~cc_add_checkbox($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int7, ^setsize_rel, ^setsize_abs, $dbrow3, $string0);
+        ~cc_add_checkbox($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int8, ^setsize_rel, ^setsize_abs, $dbrow3, $string0);
         cc_setonvartransmit(null);
     case 13 :
-        ~cc_add_text($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int7, ^setsize_rel, ^setsize_abs, dbrow_2100, $string0);
-        $int8 = ~script11432(cc_getfontmetrics);
-        cc_setsize(7373, $int8, ^setsize_rel, ^setsize_abs);
-        $int2 = calc($int2 + $int8);
-        ~cc_add_input($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int7, ^setsize_rel, ^setsize_abs, $dbrow3);
+        ~cc_add_text($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int8, ^setsize_rel, ^setsize_abs, dbrow_2100, $string0);
+        $int9 = ~script11432(cc_getfontmetrics);
+        cc_setsize(7373, $int9, ^setsize_rel, ^setsize_abs);
+        $int2 = calc($int2 + $int9);
+        ~cc_add_input($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int8, ^setsize_rel, ^setsize_abs, $dbrow3);
         cc_setonvartransmit(null);
-        $int7 = calc($int7 + $int8);
+        $int8 = calc($int8 + $int9);
     case 16 :
-        ~cc_add_dropdown($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int7, ^setsize_rel, ^setsize_abs, $dbrow3);
+        ~cc_add_dropdown($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int8, ^setsize_rel, ^setsize_abs, $dbrow3);
         cc_setonvartransmit(null);
         cc_list_addentry(0, $string0, -1);
         cc_list_addentry(1, $string0, -1);
         cc_list_addentry(2, $string0, -1);
         cc_list_addentry(3, $string0, -1);
 }
-return($int1, $int7);
+return($int1, $int8);

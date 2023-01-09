@@ -1,0 +1,63 @@
+// 17088
+[proc,death_update_tabs](int $int0)(string)
+if_button_settoggled(false, interface_1626:com_19);
+if_button_settoggled(false, interface_1626:com_80);
+if_button_settoggled(false, interface_1626:com_82);
+if_button_settoggled(false, interface_1626:com_84);
+def_string $string0 = "Death";
+def_string $string1 = "Death";
+switch_int (%varplayerbit_52406) {
+    case 0 :
+        if_button_settoggled(true, interface_1626:com_19);
+        $string0 = "Death Cost Overview";
+        $string1 = "What happens when you die?";
+    case 1 :
+        if_button_settoggled(true, interface_1626:com_80);
+        if (%varplayerbit_28118 = 1) {
+            $string0 = "Death Reclaim";
+            $string1 = "Pay to reclaim these items.";
+        } else if ($int0 = 3) {
+            $string0 = "Death Preview (Dangerous PvP)";
+            $string1 = "Items will not be stored with death.";
+        } else if ($int0 = 2) {
+            $string0 = "Death Preview (Safe Area)";
+            $string1 = "You are in a safe death area.";
+        } else {
+            $string0 = "Death Preview";
+            $string1 = "Reclaim costs if you died.";
+        }
+    case 2 :
+        if_button_settoggled(true, interface_1626:com_82);
+        $string0 = "Overflow Storage";
+        $string1 = "Reclaim items from overflow.";
+    case 3 :
+        if_button_settoggled(true, interface_1626:com_84);
+        $string0 = "Death Preview";
+        $string1 = "If you died in dangerous PvP.";
+}
+~script16930(interface_1626:com_19, -1, 2, "View information about the death system.");
+if (%varplayerbit_28118 = 1) {
+    ~script16930(interface_1626:com_80, -1, 2, "View items you can reclaim from death.");
+    if_setopbase("Item Reclaim", interface_1626:com_80);
+} else {
+    ~script16930(interface_1626:com_80, -1, 2, "View how much you would pay to reclaim items if you were to die where you are now.");
+    if_setopbase("Death Preview", interface_1626:com_80);
+}
+~script16930(interface_1626:com_82, -1, 2, "View your overflow storage.");
+~script16930(interface_1626:com_84, -1, 2, "View which items you would lose if you died in dangerous PvP.");
+~script9554(interface_1626:com_58, interface_1626:com_65, interface_1626:com_59, $string0, struct_21218);
+if (%varplayerbit_28117 = 1) {
+    $string1 = "Loading...";
+}
+if_settext($string1, interface_1626:com_25);
+if_setenabled(true, interface_1626:com_19);
+if_setenabled(true, interface_1626:com_80);
+if_setenabled(true, interface_1626:com_82);
+if (%varplayerbit_28118 = 1 | $int0 = 2 | $int0 = 3) {
+    if_setenabled(false, interface_1626:com_84);
+    if_setgraphic(rs_icon_death_ui_danger_area_disable, interface_1626:com_85);
+} else {
+    if_setenabled(true, interface_1626:com_84);
+    if_setgraphic(rs_icon_death_ui_danger_area_active, interface_1626:com_85);
+}
+~script17087(%varplayer_10745);

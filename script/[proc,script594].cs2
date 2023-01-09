@@ -77,13 +77,13 @@ if ($obj1 = null) {
     if_settext(oc_name($obj1), interface_105:com_214);
     if (%varplayer_135 ! null) {
         $string0 = tostring_localised(%varplayer_140, true);
-        if_settext("<$string0> gp", interface_105:com_223);
+        if_settext($string0, interface_105:com_223);
     } else {
         if_settext("Retrieving details...", interface_105:com_215);
         if_settext("N/A", interface_105:com_223);
     }
     if ($int2 > 0) {
-        ~script13971(interface_105:com_322, interface_105:com_323, struct_28553, "Confirm Offer", false);
+        ~script13971(interface_105:com_324, interface_105:com_325, struct_28553, "Confirm Offer", false);
     }
 }
 def_int $int6 = 0;
@@ -104,6 +104,30 @@ if (%varclient_82 <= 0) {
 }
 if (%varclient_83 <= 0) {
     $string0 = tostring_localised($int3, true);
-    if_settext("<$string0> gp", interface_105:com_278);
+    if_settext($string0, interface_105:com_278);
     %varclient_85 = %varplayer_137;
 }
+def_int $int10 = -1;
+def_int $int11 = 0;
+if ($int3 = 0) {
+    $int10 = 0;
+} else if ($int2 <= calc(^max_32bit_int / $int3)) {
+    $int10 = calc($int3 * $int2);
+    $int11 = ~script12802(%varplayer_138, $int2, $int10);
+}
+def_boolean $boolean12 = true;
+if ($int10 = -1) {
+    if_settext("Too high!", interface_105:com_321);
+} else if ($int0 = 1) {
+    if_settext("<tostring_localised(calc($int10 - $int11), true)> coins", interface_105:com_321);
+    $string2 = "Minimum total value of sale.";
+    if ($int11 > 0) {
+        $string2 = "<$string2><br><br>A sales tariff of <tostring(2)>% applies to any items sold for 50 coins or more and is automatically applied.";
+        $boolean12 = false;
+    }
+} else {
+    $string2 = "Maximum total cost of purchase.";
+    if_settext("<tostring_localised($int10, true)> coins", interface_105:com_321);
+}
+if_sethide($boolean12, interface_105:com_319);
+~script3536($string2, interface_105:com_320, -1);

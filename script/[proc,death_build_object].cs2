@@ -1,82 +1,52 @@
 // 11457
-[proc,death_build_object](int $int0, component $component1, component $component2, obj $obj3, int $int4, int $int5, int $int6, int $int7, int $int8)(int, int)
-if ($int0 = -1 & $component1 = null & $component2 = null) {
-    return($int5, $int6);
+[proc,death_build_object](int $int0, component $component1, obj $obj2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9)(int, int)
+if ($int0 = -1 & $component1 = null) {
+    return($int4, $int5);
 }
-def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
-if (%varplayerbit_28118 = 2 & %varplayerbit_1675 = 1) {
-    $int11 = 1;
-}
 if ($component1 ! null) {
-    if (calc($int5 + 44) >= if_getwidth($component1)) {
-        $int5, $int6 = 10, calc($int6 + 44);
+    if (calc($int4 + 39) > if_getwidth($component1)) {
+        $int4 = 0;
+        $int5 = calc($int5 + 39);
     }
-    cc_create($component1, ^iftype_graphic, $int8);
+    cc_create($component1, ^iftype_graphic, $int7);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top);
-    if ($obj3 ! null) {
-        if (oc_members($obj3) = 1 & map_members = false) {
-            $int9 = 1;
+    cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
+    if ($obj2 ! null) {
+        if (oc_members($obj2) = 1 & map_members = false) {
+            $int10 = 1;
         }
-        cc_setopbase("<col=FF981F><oc_name($obj3)>");
-        if ($int11 = 1) {
-            if ($component1 = interface_1626:com_59) {
+        cc_setopbase("<col=FF981F><oc_name($obj2)>");
+        if ($int9 = 1 | $int9 = 3) {
+            if ($component1 = interface_1626:com_63) {
                 cc_setop(1, "Examine");
             } else {
-                cc_setop(10, "Examine");
+                cc_setop(1, "Examine");
             }
         } else {
             switch_component ($component1) {
-                case interface_1626:com_19 :
-                    cc_setop(1, "Save");
-                    cc_setop(2, "Sacrifice");
-                    cc_setop(10, "Examine");
-                case interface_1626:com_55 :
-                    cc_setop(2, "Sacrifice");
-                    if (%varplayerbit_28114 > 0) {
-                        cc_setop(3, "Protect");
-                    }
-                    if (~script11481(inv_676, $obj3, %varplayerbit_28114, %varplayerbit_28115) = true) {
-                        cc_setop(4, "Sacrifice all");
-                    }
-                    cc_setop(10, "Examine");
-                case interface_1626:com_7 :
-                    if ($int9 = 0 & $component2 ! null & ~script11472($int7) ! -2) {
-                        cc_setop(1, "Save");
-                        cc_setop(3, "Protect");
-                        if (~script11481(inv_676, $obj3, %varplayerbit_28115, %varplayerbit_28116) = true) {
-                            cc_setop(5, "Save all");
-                        }
-                    }
-                    cc_setop(10, "Examine");
-                case interface_1626:com_59 :
+                case interface_1626:com_10 :
                     cc_setop(1, "Examine");
+                case interface_1626:com_56 :
+                    cc_setop(1, "Examine");
+                case interface_1626:com_4 :
+                    cc_setop(1, "Examine");
+                case interface_1626:com_96 :
+                    cc_setop(1, "Examine");
+                case interface_1626:com_63 :
+                    cc_setop(1, "Examine");
+                case interface_1626:com_79 :
+                    cc_setop(1, "Select");
+                    cc_setop(3, "Examine");
+                    cc_setonop("script17086(event_comsubid, event_op)");
             }
         }
-        cc_setobject($obj3, $int4);
-        cc_setonmouserepeat("death_item_tooltip(event_com, event_comsubid, $obj3, $int7)");
+        cc_setobject($obj2, $int3);
+        cc_setonmouserepeat("death_item_tooltip(event_com, event_comsubid, $obj2, $int6, $int8, $int9)");
         cc_setonmouseleave("script11471(event_com, event_comsubid)");
-        if ($component1 ! interface_1626:com_59 & $int9 = 0 & $int11 = 0 & $component2 ! null) {
-            cc_setonmouseover("script11460(event_com, event_comsubid, 1)");
-            cc_setdragdeadzone(5);
-            cc_setdragdeadtime(0);
-            cc_setondrag("death_drag(event_com, event_comsubid)");
-            cc_setondragcomplete("death_drag_complete");
-        }
         cc_setoutline(1);
     }
 }
-if ($component2 ! null) {
-    .cc_create($component2, ^iftype_graphic, $int8);
-    .cc_setcolour(^cyan);
-    if ($component2 ! interface_1626:com_58) {
-        .cc_setonmouseover("script11460(event_com, event_comsubid, 1)");
-        .cc_setonmouseleave("script11460(event_com, -1, 1)");
-    }
-    .cc_setsize(calc(44 - 36), 32, ^setsize_abs, ^setsize_abs);
-    .cc_setposition(calc($int5 - (44 - 36)), $int6, ^setpos_abs_left, ^setpos_abs_top);
-}
-$int5 = calc($int5 + 44);
-return($int5, $int6);
+$int4 = calc($int4 + 39);
+return($int4, $int5);
