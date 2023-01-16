@@ -1,9 +1,9 @@
 // 4555
-[clientscript,script4555](int $int0, char $char1)
+[clientscript,script4555](component $component0, component $component1, int $int2, char $char3)
 if (clan_getchatcount <= 0 | userdetail_quickchat = true | ~script5280 = true) {
     return;
 }
-switch_int ($int0) {
+switch_int ($int2) {
     case 84 :
         if (clan_getchatcount > 0) {
             if (string_length(%varclient_2480) > 0) {
@@ -15,16 +15,16 @@ switch_int ($int0) {
             mes_typed(^chattype_friendschatnotification, 0, "You are not in a Friends Chat Channel.");
         }
         %varclient_2480 = "";
-        if_settext(escape(%varclient_2480), interface_589:com_39);
+        if_settext(escape(%varclient_2480), $component0);
         %varclient_1507 = string_length(%varclient_2480);
-        ~script4571(interface_589:com_39, interface_589:com_40, %varclient_2480);
+        ~script4571($component0, $component1, %varclient_2480);
     case 96, 97, 98, 99, 102, 103 :
-        %varclient_1507 = ~script1553($int0, %varclient_1507, %varclient_2480);
-        ~script4571(interface_589:com_39, interface_589:com_40, %varclient_2480);
+        %varclient_1507 = ~script1553($int2, %varclient_1507, %varclient_2480);
+        ~script4571($component0, $component1, %varclient_2480);
     case default :
-        if (char_isprintable($char1) = true | $int0 = 85 | $int0 = 101) {
-            %varclient_2480, %varclient_1507 = ~script802(%varclient_1507, %varclient_2480, 0, $int0, $char1);
-            if_settext(escape(%varclient_2480), interface_589:com_39);
-            ~script4571(interface_589:com_39, interface_589:com_40, %varclient_2480);
+        if (char_isprintable($char3) = true | $int2 = 85 | $int2 = 101) {
+            %varclient_2480, %varclient_1507 = ~script802(%varclient_1507, %varclient_2480, 0, $int2, $char3);
+            if_settext(escape(%varclient_2480), $component0);
+            ~script4571($component0, $component1, %varclient_2480);
         }
 }

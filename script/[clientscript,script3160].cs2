@@ -1,23 +1,23 @@
 // 3160
-[clientscript,script3160](int $int0, char $char1)
+[clientscript,script3160](int $int0, char $char1, component $component2, component $component3)
 if (userdetail_quickchat = true | ~script5280 = true) {
     return;
 }
-def_int $int2 = -1;
-def_int $int3 = -1;
 def_int $int4 = -1;
 def_int $int5 = -1;
 def_int $int6 = -1;
 def_int $int7 = -1;
 def_int $int8 = -1;
-$int2, $int3, $int4, $int5, $int6, $int7, $int8 = ~script4590;
+def_int $int9 = -1;
+def_int $int10 = -1;
+$int4, $int5, $int6, $int7, $int8, $int9, $int10 = ~script4590;
 switch_int ($int0) {
     case 84 :
-        if ($int2 < 0) {
+        if ($int4 < 0) {
             mes_typed(^chattype_clanmessage, 0, "You are not in a Clan.");
-        } else if ($int3 < $int4) {
+        } else if ($int5 < $int6) {
             mes_typed(^chattype_clanmessage, 0, "Your rank is not high enough to talk in your Clan Chat.");
-        } else if ($int5 = 1) {
+        } else if ($int7 = 1) {
             mes_typed(^chattype_clanmessage, 0, "You've been muted by your Clan and can't talk in your Clan Chat.");
         } else if (string_length(%varclient_2479) > 0) {
             chat_setmode(2);
@@ -25,16 +25,16 @@ switch_int ($int0) {
             ~script1594;
         }
         %varclient_2479 = "";
-        if_settext(escape(%varclient_2479), interface_912:com_17);
+        if_settext(escape(%varclient_2479), $component2);
         %varclient_1098 = string_length(%varclient_2479);
-        ~script1390(interface_912:com_17, interface_912:com_18, %varclient_2479);
+        ~script1390($component2, $component3, %varclient_2479);
     case 96, 97, 98, 99, 102, 103 :
         %varclient_1098 = ~script1553($int0, %varclient_1098, %varclient_2479);
-        ~script1390(interface_912:com_17, interface_912:com_18, %varclient_2479);
+        ~script1390($component2, $component3, %varclient_2479);
     case default :
         if (char_isprintable($char1) = true | $int0 = 85 | $int0 = 101) {
             %varclient_2479, %varclient_1098 = ~script802(%varclient_1098, %varclient_2479, 0, $int0, $char1);
-            if_settext(escape(%varclient_2479), interface_912:com_17);
-            ~script1390(interface_912:com_17, interface_912:com_18, %varclient_2479);
+            if_settext(escape(%varclient_2479), $component2);
+            ~script1390($component2, $component3, %varclient_2479);
         }
 }

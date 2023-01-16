@@ -15,12 +15,12 @@ if_setonvartransmit("script11926{varplayer_6681}", interface_906:com_16);
 if (%varplayerbit_16467 < 1 & userdetail_quickchat = false & %varclient_3708 = 0) {
     if_setonvartransmit("script5937{varplayer_3185}", interface_906:com_12);
 }
-if_settrans(0, interface_906:com_170);
+if_settrans(0, interface_906:com_168);
 switch_int (userdetail_dob) {
     case -8388608, -8388607, 8388607, 8388605 :
-        if_sethide(false, interface_906:com_146);
+        if_sethide(false, interface_906:com_144);
     case default :
-        if_sethide(true, interface_906:com_146);
+        if_sethide(true, interface_906:com_144);
 }
 if_sethide(false, interface_906:com_22);
 if_setonresize("lobby_resize", interface_906:com_0);
@@ -33,10 +33,14 @@ if ($int0 = -1) {
 ~lobby_popup_close;
 %varclient_4270 = -1;
 ~script15612;
-~script10031(2);
-~script10031(3);
-~script10031(4);
-if_setonchattransmit("lobbyscreen_chat_handler(interface_909:com_24, interface_912:com_4, interface_589:com_3)", interface_906:com_0);
+if (~is_mobile_client = false) {
+    ~script10031(2);
+    ~script10031(3);
+    ~script10031(4);
+    if_setonchattransmit("lobbyscreen_chat_handler(interface_909:com_39, interface_912:com_25, interface_589:com_32)", interface_906:com_0);
+} else {
+    if_setonchattransmit("lobbyscreen_chat_handler(interface_1044:com_8, null, null)", interface_906:com_0);
+}
 %varclient_1275, %varclient_1276, %varclient_1510 = ~lobbyscreen_chat_count;
 ~lobbyscreen_tabswitch(0);
 ~lobbyscreen_loginbutton_text(true);
@@ -54,13 +58,13 @@ if_setonkey("script1328(event_keycode)", interface_906:com_0);
 if_setontimer("event_job(interface_906:com_5)", interface_906:com_5);
 if_setonmisctransmit("script1868(interface_906:com_54)", interface_906:com_20);
 ~lobby_resize;
-if_setontimer("lobbyscreen_blackout_timer(interface_906:com_170)", interface_906:com_19);
+if_setontimer("lobbyscreen_blackout_timer(interface_906:com_168)", interface_906:com_19);
 if (login_reply ! 0 & login_reply ! 2 & login_reply ! 15) {
     ~script10210(interface_906:com_76, map_world, clientoption_get(^clientoption_volume_main_effects), clientoption_get(^clientoption_volume_main_music), clientoption_get(^clientoption_volume_background_effects), clientoption_get(^clientoption_volume_speech), clientoption_get(^clientoption_volume_login_music), login_reply, 2);
 }
 if (lobby_entergamereply ! -2) {
     if_sendtoback(interface_906:com_21);
-    ~script10210(interface_906:com_164, map_world, clientoption_get(^clientoption_volume_main_effects), clientoption_get(^clientoption_volume_main_music), clientoption_get(^clientoption_volume_background_effects), clientoption_get(^clientoption_volume_speech), clientoption_get(^clientoption_volume_login_music), lobby_entergamereply, 1);
+    ~script10210(interface_906:com_162, map_world, clientoption_get(^clientoption_volume_main_effects), clientoption_get(^clientoption_volume_main_music), clientoption_get(^clientoption_volume_background_effects), clientoption_get(^clientoption_volume_speech), clientoption_get(^clientoption_volume_login_music), lobby_entergamereply, 1);
     login_resetreply;
     return;
 }
