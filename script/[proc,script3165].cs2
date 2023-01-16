@@ -1,7 +1,7 @@
 // 3165
-[proc,script3165](component $component0, component $component1, component $component2, component $component3, component $component4, int $int5, component $component6)
+[proc,script3165](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7)
 if (minimenuopen($component3, -1) = true) {
-    if_setontimer("script3164($component0, $component1, $component2, $component3, $component4, $int5, $component6)", $component4);
+    if_setontimer("script3164($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7)", $component4);
     return;
 } else {
     if_setontimer(null, $component4);
@@ -10,111 +10,94 @@ cc_deleteall($component0);
 cc_deleteall($component1);
 cc_deleteall($component2);
 cc_deleteall($component3);
-cc_deleteall($component6);
-def_int $int7 = 0;
-def_int $int8 = activeclanchannel_getusercount;
-def_int $int9 = 0;
+if ($component6 ! null) {
+    cc_deleteall($component6);
+}
+def_int $int8 = 0;
+def_int $int9 = activeclanchannel_getusercount;
+def_int $int10 = 0;
 def_string $string0 = "";
-def_int $int10 = 20;
-def_int $int11 = 17;
-def_int $int12 = 0;
-def_int $int13 = 0;
+def_int $int11 = 20;
+def_int $int12 = 17;
+def_int $rgb13 = ^black;
 def_int $int14 = 0;
 def_int $int15 = 0;
 def_int $int16 = 0;
 def_int $int17 = 0;
-def_string $string1 = "";
-def_string $string2 = "";
 def_int $int18 = 0;
+def_string $string1 = "";
 def_int $int19 = ~script4468;
 def_int $int20 = activeclanchannel_getuserslot(removetags(chat_playername_unfiltered));
 def_int $int21 = 0;
 if ($int20 ! -1) {
     $int21 = activeclanchannel_getuserrank($int20);
 }
-if (~script6431 = true) {
-    $int10 = 30;
+def_int $int22 = calc(1 + 1);
+def_boolean $boolean23 = ~is_mobile_client;
+if ($boolean23 = false) {
+    if_setsize(if_getwidth($component7), 0, ^setsize_abs, ^setsize_minus, $component7);
+    if_settext(activeclanchannel_getclanname, interface_912:com_22);
+    if_setsize(0, $int11, ^setsize_minus, ^setsize_abs, interface_912:com_9);
+} else {
+    $int11 = 40;
+    $int22 = calc($int22 + 7);
 }
-def_int $int22 = calc($int10 / 2 - 4);
-if_setsize(0, $int10, ^setsize_minus, ^setsize_abs, interface_912:com_31);
-if_sethide(true, interface_912:com_25);
-if_settext(activeclanchannel_getclanname, interface_912:com_9);
-if_setsize(if_getwidth(interface_912:com_35), 0, ^setsize_abs, ^setsize_minus, interface_912:com_35);
-while ($int9 < $int8) {
-    $int17 = activeclanchannel_getuserrank($int9);
-    $string2 = activeclanchannel_getuserdisplayname($int9);
-    $string0 = $string2;
-    ~script14400($component3, 0, $int10, 0, $int13, true, $int9);
-    if (cc_find($component3, $int9) = true) {
-        $string1 = "Rank: <enum(int, string, enum_3715, $int17)>";
-        cc_setonmouseover("script3167($component3, $int9, $string1)");
-        cc_setonmouseleave("script3169($component3, $int9)");
-        cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
-        if (activeclanchannel_getuserslot(removetags(chat_playername_unfiltered)) ! $int9) {
-            cc_setonop("script3170($string2, event_op)");
-            if (friend_test(removetags($string2)) = true) {
-                cc_setop(8, "Remove friend <$string0>");
-            } else if (ignore_test(removetags($string2)) = true) {
-                cc_setop(9, "Remove ignore <$string0>");
-            } else {
-                cc_setop(6, "Add friend <$string0>");
-                cc_setop(7, "Add ignore <$string0>");
+def_int $int24 = calc($int11 / 2 - 4);
+while ($int10 < $int9) {
+    $int18 = activeclanchannel_getuserrank($int10);
+    $string1 = activeclanchannel_getuserdisplayname($int10);
+    $string0 = $string1;
+    $int15 = activeclanchannel_getuserworld($int10);
+    ~script14400($component3, 0, $int11, 0, $int14, true, $int10);
+    if (cc_find($component3, $int10) = true) {
+        if ($boolean23 = false) {
+            ~script11462($int18, $component3, $int10);
+        }
+        if (activeclanchannel_getuserslot(removetags(chat_playername_unfiltered)) ! $int10) {
+            cc_setopbase($string1);
+            if ($boolean23 = true) {
+                if ($int15 > 0) {
+                    cc_setop(1, "Select");
+                }
+                ~script17124($int10);
             }
+            if (friend_test(removetags($string1)) = true) {
+                cc_setop(8, "Remove friend");
+            } else if (ignore_test(removetags($string1)) = true) {
+                cc_setop(9, "Remove ignore");
+            } else {
+                cc_setop(6, "Add friend");
+                cc_setop(7, "Add ignore");
+            }
+            cc_setonop("script3170($string1, event_op, $int10)");
         }
-        if ($int19 = 1 & $int21 > $int17) {
-            cc_setop(10, "Kick/ban <$string0>");
+        if ($int19 = 1 & $int21 > $int18) {
+            cc_setop(10, "Kick/ban");
         }
     }
-    ~script7924($component1, $int9, 9, 9, 5, calc($int13 + $int22), enum(int, graphic, enum_3712, $int17), false, false, false, 0);
-    ~script10629($component0, $int9, 0, $int10, $int11, $int13, $string0, 16777215, fontmetrics_206, ^settextalign_left, ^settextalign_centre, 0, true);
-    cc_setsize($int11, $int10, ^setsize_minus, ^setsize_abs);
+    ~cc_add_graphic($component1, $int10, 5, calc($int14 + $int24), ^setpos_abs_left, ^setpos_abs_top, 9, 9, ^setsize_abs, ^setsize_abs, enum(int, graphic, enum_3712, $int18));
+    ~cc_add_text($component0, $int10, $int12, $int14, ^setpos_abs_left, ^setpos_abs_top, $int12, $int11, ^setsize_minus, ^setsize_abs, dbrow_2101, $string0);
+    cc_setcolour(^white);
+    cc_settextshadow(true);
     cc_setmaxlines(1);
-    $int14 = activeclanchannel_getuserworld($int9);
-    if ($int14 = 0) {
-        $string0 = "Offline";
-        $int12 = 16711680;
-    } else {
-        if ($int14 >= 1149 & $int14 < 1200) {
-            $string0 = "Beta lobby";
-        } else if ($int14 >= 1100) {
-            $string0 = "Lobby <tostring(calc($int14 - 1099))>";
-        } else if ($int14 >= 200 & $int14 < 210) {
-            $string0 = "Beta <tostring($int14)>";
-        } else {
-            $string0 = "World <tostring($int14)>";
-        }
-        if ($int14 = map_world) {
-            $int12 = 65280;
-        } else {
-            $int12 = 16776960;
-        }
-    }
-    ~script10629($component2, $int9, 0, $int10, 5, $int13, $string0, $int12, fontmetrics_206, ^settextalign_left, ^settextalign_centre, 0, true);
-    cc_setsize(5, $int10, ^setsize_minus, ^setsize_abs);
+    $rgb13, $string0 = ~script17129($int15);
+    ~cc_add_text($component2, $int10, 5, $int14, ^setpos_abs_left, ^setpos_abs_top, 5, $int11, ^setsize_minus, ^setsize_abs, dbrow_2101, $string0);
+    cc_setcolour($rgb13);
+    cc_settextshadow(true);
     cc_setmaxlines(1);
-    $int13 = calc($int13 + $int10);
-    $int9 = calc($int9 + 1);
+    $int14 = calc($int14 + $int11);
+    $int10 = calc($int10 + 1);
 }
-$int15 = calc(if_getheight($component4) / $int10 + 1);
-if ($int15 > $int8) {
-    while ($int9 < $int15) {
-        ~script14400($component3, 0, $int10, 0, $int13, true, $int9);
-        $int13 = calc($int13 + $int10);
-        $int9 = calc($int9 + 1);
+def_int $int25 = if_getheight($component4);
+$int16 = calc($int25 / $int11 + 1);
+if ($int16 > $int9) {
+    while ($int10 < $int16) {
+        ~script14400($component3, 0, $int11, 0, $int14, true, $int10);
+        $int14 = calc($int14 + $int11);
+        $int10 = calc($int10 + 1);
     }
-    $int16 = if_getheight($component4);
+    $int17 = $int25;
 } else {
-    $int16 = $int13;
+    $int17 = $int14;
 }
-if ($int15 <= $int8) {
-    $int18 = if_getscrolly(interface_912:com_28);
-    if_setscrollsize(0, $int16, interface_912:com_28);
-    if ($int18 > $int16) {
-        $int18 = $int16;
-    }
-    ~scrollbar_resize(interface_912:com_29, interface_912:com_28, $int18);
-} else {
-    if_setscrollsize(0, 0, interface_912:com_28);
-    if_setscrollpos(0, 0, interface_912:com_28);
-    ~scrollbar_resize(interface_912:com_29, interface_912:com_28, 0);
-}
+~script17128($component4, $component5, $int16, $int9, $int17);

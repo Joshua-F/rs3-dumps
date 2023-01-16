@@ -1,19 +1,29 @@
 // 17042
-[proc,script17042](int $int0, component $component1, int $int2, int $int3)
-if (cc_find($component1, $int2) = true) {
+[proc,script17042](int $int0, component $component1, int $int2, int $int3, int $int4)
+if ($int3 = -1) {
+    $int3 = ui_getdynid($int2);
+    $int2 = ui_getcategory($int2);
+}
+if (cc_findbycategory($component1, $int2, $int3) = 1) {
     if ($int0 < 0) {
         cc_settext("");
         return;
     }
     if ($int0 > 99) {
-        cc_settextfont(fontmetrics_26);
+        cc_settextfont(fontmetrics_70);
         cc_settext("99+");
         return;
     }
-    if ($int0 > 9 & $int3 < 35) {
-        cc_settextfont(fontmetrics_26);
+    if ($int4 < 35) {
+        if ($int0 < 9) {
+            cc_settextfont(fontmetrics_210);
+        } else {
+            cc_settextfont(fontmetrics_207);
+        }
+    } else if ($int4 > 35) {
+        cc_settextfont(fontmetrics_215);
     } else {
-        cc_settextfont(fontmetrics_30);
+        cc_settextfont(fontmetrics_213);
     }
     cc_settext(tostring($int0));
 }

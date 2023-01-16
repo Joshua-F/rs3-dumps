@@ -15,7 +15,9 @@ if (struct_param($struct1, param_8113) = true) {
         $int2 = ~script11073($struct1);
         $int3 = calc(1 + ($int2 - clientclock) / 50);
         if ($int3 > 0) {
-            if ($int3 > 14400) {
+            if ($int3 > 86400) {
+                $string2 = "<tostring(calc($int3 / 86400))>d";
+            } else if ($int3 > 14400) {
                 $string2 = "<tostring(calc($int3 / 3600))>hr";
             } else if ($int3 > 60) {
                 $string2 = "<tostring(calc($int3 / 60))>m";
@@ -63,7 +65,7 @@ if (.cc_find($component0, 1) = true) {
                 $string1 = $string3;
             }
             if (string_length($string1) > 3 & ~script11319 ! 29) {
-                .cc_settextfont(fontmetrics_31);
+                .cc_settextfont(~script12028(fontmetrics_31, fontmetrics_31, fontmetrics_29, $string1, .cc_getwidth, .cc_getheight));
             }
         }
     }
