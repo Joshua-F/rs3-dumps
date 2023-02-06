@@ -2,8 +2,16 @@
 [proc,wof_button_setup_discard](obj $obj0, int $int1)
 def_struct $struct2 = ~trh_promo_current;
 def_obj $obj3 = obj_40932;
-if ($struct2 ! null & struct_param($struct2, param_5396) ! obj_40932) {
-    $obj3 = struct_param($struct2, param_5396);
+if ($struct2 ! null) {
+    if (%varplayer_7101 = obj_52555 | %varplayer_7101 = obj_52860) {
+        $obj3 = %varplayer_7101;
+    } else if (struct_param($struct2, param_5396) ! obj_40932) {
+        if (%varplayer_7101 ! null) {
+            $obj3 = %varplayer_7101;
+        } else {
+            $obj3 = struct_param($struct2, param_5396);
+        }
+    }
 }
 def_boolean $boolean4 = true;
 def_string $string0 = "Convert your prize to : <oc_name($obj3)>.";
