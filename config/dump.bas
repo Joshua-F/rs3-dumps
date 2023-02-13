@@ -23860,3 +23860,6 @@ randomreadyanim=seq_35121,10
 runanim=seq_35138
 readyanim=seq_35136,seq_35137
 
+[bas_4661]
+readyanim=seq_18019,null
+
