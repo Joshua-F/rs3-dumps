@@ -20,10 +20,12 @@ if (if_find(interface_1177:com_0) = true) {
     if (compare(%varclient_2251, "") ! 0) {
         cc_setsize(min(200, calc(20 + parawidth(%varclient_2251, 180, fontmetrics_29))), calc(22 + 15 * paraheight(%varclient_2251, 180, fontmetrics_29)), ^setsize_abs, ^setsize_abs);
     }
-    $int0 = calc($int0 - cc_getwidth / 2 - $int8);
-    $int1 = calc($int1 - cc_getheight / 2 - 20 - $int9);
-    $int0 = min(max($int0, 0), calc($int10 - cc_getwidth));
-    $int1 = min(max($int1, 0), calc($int11 - cc_getheight));
+    switch_int (%varclient_7118) {
+        case 1, 2 :
+            $int0, $int1 = ~script17185($int0, $int1, $int8, $int9, $int10, $int11, cc_getwidth, cc_getheight);
+        case default :
+            $int0, $int1 = ~script17184($int0, $int1, $int8, $int9, $int10, $int11, cc_getwidth, cc_getheight);
+    }
     cc_setposition($int0, $int1, ^setpos_abs_left, ^setpos_abs_top);
     if (%varclient_1695 = true) {
         %varclient_1695 = false;
