@@ -28525,3 +28525,26 @@ readyanim=seq_35136,seq_35137
 [bas_4661]
 readyanim=seq_18019,null
 
+// 4662
+[bas_4662]
+readyanim_l=seq_35145
+readyanim_r=seq_35145
+walkanim_b=seq_35150
+walkanim_l=seq_35150
+walkanim_r=seq_35150
+runanim=seq_35147
+hillrotate=32,32
+readyanim=null,seq_35150
+randomreadyanim=seq_35145,90
+randomreadyanim=seq_35146,10
+
+// 4663
+[bas_4663]
+readyanim_l=seq_35158
+readyanim_r=seq_35158
+runanim=seq_35159
+walkanim_l=seq_35158
+walkanim_r=seq_35158
+walkanim_b=seq_35158
+readyanim=seq_35163,seq_35158
+
