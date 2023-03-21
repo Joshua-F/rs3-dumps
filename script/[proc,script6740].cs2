@@ -10,12 +10,20 @@ if_sethide(true, interface_1343:com_56);
 if_sethide(true, interface_1343:com_59);
 if_sethide(true, interface_1343:com_80);
 ~script6735;
+def_string $string0 = "You have completed all available Daily Challenges.";
 if ($boolean0 = false) {
     if_sethide(false, interface_1343:com_80);
     if_settext("Challenges Completed!", interface_1343:com_42);
-    if_settext("You have completed all available Daily Challenges.<br>Come back tomorrow for new tasks to complete!", interface_1343:com_148);
+    if (%varplayerbit_52723 = 1) {
+        $string0 = "You have completed all available Returner Challenges.";
+    }
+    if_settext("<$string0><br>Come back tomorrow for new tasks to complete!", interface_1343:com_148);
 } else if (%varplayer_3233 = 0) {
     if_sethide(false, interface_1343:com_80);
     if_settext("Choose a Challenge", interface_1343:com_42);
-    if_settext("Select a daily challenge from the list on the left.", interface_1343:com_148);
+    if (%varplayerbit_52723 = 1) {
+        if_settext("Select a returner challenge from the list on the left.", interface_1343:com_148);
+    } else {
+        if_settext("Select a daily challenge from the list on the left.", interface_1343:com_148);
+    }
 }
