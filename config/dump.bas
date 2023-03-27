@@ -28596,3 +28596,15 @@ randomreadyanim=seq_18038,90
 runanim=seq_27110
 readyanim=seq_23434,seq_27109
 
+// 4675
+[bas_4675]
+runanim=seq_6819
+readyanim=seq_6813,seq_6819
+
+// 4676
+[bas_4676]
+readyanim_r=seq_18016
+readyanim_l=seq_18016
+runanim=seq_18017
+readyanim=seq_35168,seq_18016
+

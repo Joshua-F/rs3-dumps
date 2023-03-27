@@ -1,55 +1,76 @@
 // 4924
-[proc,script4924](struct $struct0)(string)
+[proc,script4924](struct $struct0, int $int1)(string)
 def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
-def_int $int1 = 0;
 def_int $int2 = 0;
 def_int $int3 = 0;
 def_int $int4 = 0;
-def_stat $stat5 = null;
-def_int $int6 = enum_getoutputcount(enum_681);
-while (++$int1 <= $int6) {
-    $stat5 = enum(int, stat, enum_681, $int1);
-    if (~script951($struct0, $stat5) = 0) {
-        $int4 = ~script5003($struct0, $stat5);
-        if ($int4 > 0) {
-            $string2 = enum(stat, string, enum_680, $stat5);
-            if ($int2 > 0) {
-                $string0 = append($string0, "<br>");
+def_int $int5 = 0;
+def_string $string3 = "";
+def_stat $stat6 = null;
+def_int $int7 = enum_getoutputcount(enum_681);
+while (++$int2 <= $int7) {
+    $stat6 = enum(int, stat, enum_681, $int2);
+    if (~script951($struct0, $stat6) = 0) {
+        if ($int1 = 1) {
+            $int5 = ~script5003($struct0, $stat6);
+            if ($int5 > 0) {
+                $string2 = enum(stat, string, enum_680, $stat6);
+                if ($int3 > 0) {
+                    $string0 = append($string0, "<br>");
+                }
+                $string0 = append($string0, "<col=00ff00><$string2> +<tostring($int5)>");
+                $int3 = calc($int3 + 1);
+            } else if ($int5 < 0) {
+                $string2 = enum(int, string, enum_108, $int2);
+                if ($int4 > 0) {
+                    $string1 = append($string1, "<br>");
+                }
+                $string1 = append($string1, "<col=ff0000><$string2> <tostring($int5)>");
+                $int4 = calc($int4 + 1);
             }
-            $string0 = append($string0, "<col=00ff00><$string2> +<tostring($int4)>");
-            $int2 = calc($int2 + 1);
-        } else if ($int4 < 0) {
-            $string2 = enum(int, string, enum_108, $int1);
-            if ($int3 > 0) {
-                $string1 = append($string1, "<br>");
+        } else {
+            $int5, $string3 = ~script17272($struct0, $stat6);
+            if ($int5 > 0) {
+                $string2 = enum(stat, string, enum_680, $stat6);
+                if ($int3 > 0) {
+                    $string0 = append($string0, "<br>");
+                }
+                $string0 = append($string0, "<col=00ff00><$string2> by <$string3>");
+                $int3 = calc($int3 + 1);
+            } else if ($int5 < 0) {
+                $string2 = enum(int, string, enum_108, $int2);
+                if ($int4 > 0) {
+                    $string1 = append($string1, "<br>");
+                }
+                $string1 = append($string1, "<col=ff0000><$string2> by <$string3>");
+                $int4 = calc($int4 + 1);
             }
-            $string1 = append($string1, "<col=ff0000><$string2> <tostring($int4)>");
-            $int3 = calc($int3 + 1);
         }
     }
-    $int4 = 0;
-    $stat5 = null;
-}
-if ($int2 > 1) {
-    $string0 = append("Temporarily increases:<br>", $string0);
-} else if ($int2 > 0) {
-    $string0 = append("Temporarily increases ", $string0);
+    $int5 = 0;
+    $string3 = "";
+    $stat6 = null;
 }
 if ($int3 > 1) {
-    $string1 = append("Temporarily reduces:<br>", $string1);
+    $string0 = append("Temporarily increases:<br>", $string0);
 } else if ($int3 > 0) {
+    $string0 = append("Temporarily increases ", $string0);
+}
+if ($int4 > 1) {
+    $string1 = append("Temporarily reduces:<br>", $string1);
+} else if ($int4 > 0) {
     $string1 = append("Temporarily reduces ", $string1);
 }
-def_string $string3 = "";
+def_string $string4 = "";
 if (string_length($string0) > 0) {
-    $string3 = $string0;
+    $string4 = $string0;
 }
 if (string_length($string1) > 0) {
     if (string_length($string0) > 0) {
-        $string3 = append($string3, "<br>");
+        $string4 = append($string4, "<br>");
     }
-    $string3 = append($string3, $string1);
+    $string4 = append($string4, $string1);
 }
-return($string3);
+return($string4);

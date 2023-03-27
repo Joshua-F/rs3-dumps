@@ -4,6 +4,10 @@ def_component $component2 = if_getlayer($component0);
 if ($component0 = null | $component2 = null) {
     return;
 }
+def_struct $struct3 = null;
+def_enum $enum4 = null;
+def_bas $bas5 = null;
+def_int $int6 = -1;
 if (if_find($component1) = true) {
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
@@ -22,13 +26,7 @@ if (if_find($component1) = true) {
                 cc_setmodelangle(0, 80, 10, 200, 10, 850);
                 cc_setmodelanim(seq_12287);
             } else {
-                if (%varplayer_6868 ! null) {
-                    cc_setmodelanim(bas_getanim_ready(%varplayer_6867));
-                } else if (gender = 1) {
-                    cc_setmodelanim(bas_getanim_ready(bas_2703));
-                } else {
-                    cc_setmodelanim(bas_getanim_ready(bas_2698));
-                }
+                ~script17271(%varplayer_6867);
                 if (%varclientbit_35134 = 1) {
                     cc_setmodelangle(0, 100, 0, 200, 0, 240);
                 } else {
@@ -45,11 +43,17 @@ if (if_find($component1) = true) {
                 ~script10455($component2);
             }
         case interface_1843:com_252, interface_1843:com_253, interface_1843:com_254, interface_1843:com_255, interface_1843:com_256, interface_1843:com_257, interface_1843:com_258, interface_1843:com_259, interface_1477:com_866 :
-            if (gender = 1) {
-                cc_setmodelanim(bas_getanim_ready(bas_2703));
-            } else {
-                cc_setmodelanim(bas_getanim_ready(bas_2698));
+            $int6 = ~script17270(if_getparentlayer($component2));
+            if ($int6 > -1 & .cc_find(interface_1843:com_183, $int6) = true) {
+                $struct3 = .cc_param(param_4414);
+                if ($struct3 ! null) {
+                    $enum4 = struct_param($struct3, param_2542);
+                    if ($enum4 ! null) {
+                        $bas5 = ~script17267(enum(int, obj, $enum4, 5), enum(int, obj, $enum4, 3));
+                    }
+                }
             }
+            ~script17271($bas5);
             if (.if_find($component2) = true) {
                 .cc_setparam(param_6374, 2);
                 .cc_setparam(param_6375, 600);

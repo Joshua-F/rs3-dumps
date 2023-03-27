@@ -5,12 +5,8 @@ def_int $int1 = enum_getoutputcount(enum_8300);
 def_struct $structarray0(max($int0, $int1));
 def_struct $struct2 = null;
 def_struct $struct3 = null;
-def_struct $struct4 = null;
+def_int $int4 = 0;
 def_int $int5 = 0;
-def_int $int6 = 0;
-def_int $int7 = 0;
-def_int $int8 = 0;
-def_int $int9 = 0;
 ~script10592(null, 0);
 ~script10593(0);
 if_setonop(null, interface_907:com_35);
@@ -19,16 +15,16 @@ if_setop(1, "", interface_907:com_36);
 if_setontimer(null, interface_906:com_9);
 cc_deleteall(interface_907:com_37);
 if_settext("", interface_907:com_38);
-def_int $int10 = 0;
-def_int $int11 = 0;
-def_boolean $boolean12 = false;
-$int10, $int11, $boolean12 = userdetail_lobby_membership;
-def_int $int13 = calc(date_runeday - %varplayer_1749);
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_boolean $boolean8 = false;
+$int6, $int7, $boolean8 = userdetail_lobby_membership;
+def_int $int9 = calc(date_runeday - %varplayer_1749);
 def_string $string0 = "";
-if (%varplayer_3185 ! 4 & $int13 <= 5 & %varplayerbit_16464 = 2) {
-    $int13 = calc(5 - $int13);
-    if ($int13 > 1) {
-        if_settext("You have <tostring($int13)> days until you need to validate your email address.", interface_907:com_38);
+if (%varplayer_3185 ! 4 & $int9 <= 5 & %varplayerbit_16464 = 2) {
+    $int9 = calc(5 - $int9);
+    if ($int9 > 1) {
+        if_settext("You have <tostring($int9)> days until you need to validate your email address.", interface_907:com_38);
     } else {
         if_settext("You have one day until you need to validate your email address.", interface_907:com_38);
     }
@@ -49,7 +45,7 @@ if_settext("", interface_907:com_39);
 if_setposition(231, 46, ^setpos_abs_left, ^setpos_abs_top, interface_907:com_39);
 if_setsize(345, 70, ^setsize_abs, ^setsize_abs, interface_907:com_39);
 if_setcolour(0x0e1903, interface_907:com_39);
-def_int $int14 = 0;
+def_int $int10 = 0;
 def_string $string1 = "";
 def_string $string2 = "";
 def_string $string3 = "";
@@ -58,7 +54,7 @@ if (%varclient_3905 = true) {
     ~script10592(interface_907:com_22, 1);
     ~script10593(1);
 } else {
-    if ((playermember = false | $boolean12 = false & $int11 < 2880) & random(5) = 0 & ~script13491(%varplayer_6601) = false) {
+    if ((playermember = false | $boolean8 = false & $int7 < 2880) & random(5) = 0 & ~script13491(%varplayer_6601) = false) {
         switch_int (map_lang) {
             case 0 :
                 if_setgraphic(rs3_lobby_primary_default_bonds_banner_en, interface_907:com_36);
@@ -73,65 +69,26 @@ if (%varclient_3905 = true) {
     }
     if (%varplayer_6601 = 7660 & date_minutes >= calc(date_minutes_fromruneday(7660) + 720) | %varplayer_6601 > 7660 | %varplayer_6601 < 6732 | random(2) = 0 | %varplayerbit_48641 = 0) {
         if (%varplayer_6601 > 0) {
-            while ($int6 < $int0) {
-                $int5 = 0;
-                $int8 = 0;
-                $int9 = 0;
-                $struct2 = enum(int, struct, enum_7783, $int6);
-                $struct4 = struct_param($struct2, param_6390);
-                if ($struct4 ! null) {
-                    if (~trh_state_lobby($struct4) = 1) {
-                        $int8 = %varplayer_6601;
-                        $int9 = %varplayer_6601;
-                    } else {
-                        $int5 = 1;
-                    }
-                } else {
-                    $int8 = struct_param($struct2, param_6388);
-                    $int9 = struct_param($struct2, param_6389);
-                }
-                if (%varplayer_6601 < $int8 | %varplayer_6601 > $int9) {
-                    $int5 = 1;
-                }
-                if (struct_param($struct2, param_7491) = true & platformtype ! ^platformtype_default & platformtype ! ^platformtype_jagex) {
-                    $int5 = 1;
-                }
-                if (struct_param($struct2, param_8716) = true & platformtype ! ^platformtype_steam) {
-                    $int5 = 1;
-                }
-                if (struct_param($struct2, param_1345) > 0 & ~script7073(struct_param($struct2, param_1345)) = 2) {
-                    $int5 = 1;
-                }
-                switch_struct ($struct2) {
-                    case struct_35237 :
-                        if (date_minutes <= calc(date_minutes_fromruneday(7660) + 720) | date_minutes >= calc(date_minutes_fromruneday(7670) + 720)) {
-                            $int5 = 1;
-                        } else if (%varplayerbit_45314 = 14 & %varplayer_9017 = -1) {
-                            $int5 = 1;
-                        } else if (random(2) = 0) {
-                            $int5 = 1;
-                        } else if ($int5 = 0) {
+            while ($int4 < $int0) {
+                $struct2 = enum(int, struct, enum_7783, $int4);
+                if (~script17266($struct2) = true) {
+                    switch_struct ($struct2) {
+                        case struct_35237 :
                             $struct3 = $struct2;
-                        }
-                    case struct_11965 :
-                        if (map_lang ! 0 & map_lang ! 1) {
-                            $int5 = 1;
-                        }
+                    }
+                    $structarray0($int5) = $struct2;
+                    $int5 = calc($int5 + 1);
                 }
-                if ($int5 = 0) {
-                    $structarray0($int7) = $struct2;
-                    $int7 = calc($int7 + 1);
-                }
-                $int6 = calc($int6 + 1);
+                $int4 = calc($int4 + 1);
             }
         }
         if ($struct3 ! null) {
             $struct2 = $struct3;
-        } else if ($int7 = 0) {
+        } else if ($int5 = 0) {
             $struct2 = enum(int, struct, enum_8300, calc(%varplayer_6601 % $int1));
             $string4 = "Featured Content";
         } else {
-            $struct2 = $structarray0(random($int7));
+            $struct2 = $structarray0(random($int5));
         }
         switch_int (map_lang) {
             case 1 :
@@ -164,17 +121,17 @@ if (%varclient_3905 = true) {
         }
         switch_int (map_lang) {
             case 0 :
-                $int6 = 1;
+                $int4 = 1;
                 if (struct_param($struct2, param_6382) ! null) {
-                    $int6 = calc($int6 + 1);
+                    $int4 = calc($int4 + 1);
                     if (struct_param($struct2, param_6383) ! null) {
-                        $int6 = calc($int6 + 1);
+                        $int4 = calc($int4 + 1);
                         if (struct_param($struct2, param_6384) ! null) {
-                            $int6 = calc($int6 + 1);
+                            $int4 = calc($int4 + 1);
                         }
                     }
                 }
-                switch_int (random($int6)) {
+                switch_int (random($int4)) {
                     case 0 :
                         if_setgraphic(struct_param($struct2, param_6381), interface_907:com_36);
                     case 1 :
@@ -259,8 +216,8 @@ if (%varclient_3905 = true) {
                 ~script10592(interface_907:com_31, 1);
         }
     } else {
-        $int14 = calc(date_minutes_fromruneday(7660) + 720 - 1);
-        ~script3568(interface_907:com_37, interface_906:com_9, $int14, date_minutes, -1, -1, 0, 0);
-        if_setontimer("script12275(interface_907:com_37, interface_906:com_9, $int14, date_minutes, -1, -1, 0, 0)", interface_906:com_9);
+        $int10 = calc(date_minutes_fromruneday(7660) + 720 - 1);
+        ~script3568(interface_907:com_37, interface_906:com_9, $int10, date_minutes, -1, -1, 0, 0);
+        if_setontimer("script12275(interface_907:com_37, interface_906:com_9, $int10, date_minutes, -1, -1, 0, 0)", interface_906:com_9);
     }
 }

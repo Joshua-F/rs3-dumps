@@ -66,7 +66,10 @@ while (++$int2 < $int3) {
     $int15 = -1;
     $int14 = 25;
     switch_int ($int5) {
-        case default :
+        case -1 :
+            ~cc_add_child_text($int2, $int8, 0, $int14, ^setpos_abs_centre, ^setpos_abs_top, 0, $int14, ^setsize_minus, ^setsize_minus, dbrow_2100, "Building not available.");
+            cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        case 0 :
             ~cc_add_child_text($int2, $int8, 0, $int14, ^setpos_abs_centre, ^setpos_abs_top, 0, $int14, ^setsize_minus, ^setsize_minus, dbrow_2100, "Building yet to be constructed.");
             cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
         case 1 :
@@ -82,6 +85,12 @@ while (++$int2 < $int3) {
                 $int14, $int8 = ~script16821($int2, $int14, $int8, $int13, $string0);
             }
         case 3 :
+            $int16 = db_getfieldcount($dbrow4, dbtable_217:col5);
+            while (++$int15 < $int16) {
+                $string0 = db_getfield($dbrow4, dbtable_217:col5, $int15);
+                $int14, $int8 = ~script16821($int2, $int14, $int8, $int13, $string0);
+            }
+        case default :
             $int16 = db_getfieldcount($dbrow4, dbtable_217:col5);
             while (++$int15 < $int16) {
                 $string0 = db_getfield($dbrow4, dbtable_217:col5, $int15);
