@@ -1,0 +1,13 @@
+// 17260
+[proc,script17260](dbrow $dbrow0)(boolean)
+if (db_getrowtable($dbrow0) ! dbtable_199) {
+    ~error("Received a popup linked dbrow which was not in the popup table.");
+    return(false);
+}
+if ((db_getfield($dbrow0, dbtable_199:col8, 0) = 1 | db_getfield($dbrow0, dbtable_199:col9, 0) = 1 | db_getfield($dbrow0, dbtable_199:col10, 0) = 1) & ~script242($dbrow0) = 1) {
+    return(false);
+}
+if (platformtype = ^platformtype_default | platformtype = ^platformtype_jagex | db_getfield($dbrow0, dbtable_199:col6, 0) = 1) {
+    return(true);
+}
+return(false);
