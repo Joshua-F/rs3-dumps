@@ -4375,7 +4375,7 @@ readyanim=seq_4386,seq_4383
 
 // 877
 [bas_877]
-readyanim=seq_808,seq_1306
+readyanim=seq_808,seq_35273
 
 // 878
 [bas_878]
@@ -28607,4 +28607,110 @@ readyanim_r=seq_18016
 readyanim_l=seq_18016
 runanim=seq_18017
 readyanim=seq_35168,seq_18016
+
+// 4677
+[bas_4677]
+readyanim_r=seq_35195
+readyanim_l=seq_35195
+runanim=seq_35196
+readyanim=seq_35194,seq_35195
+
+// 4678
+[bas_4678]
+readyanim_r=seq_35199
+readyanim_l=seq_35199
+runanim=seq_35200
+readyanim=seq_35198,seq_35199
+
+// 4679
+[bas_4679]
+readyanim_r=seq_17996
+readyanim_l=seq_17996
+runanim=seq_35202
+readyanim=seq_17996,seq_35201
+
+// 4680
+[bas_4680]
+readyanim_r=seq_35195
+readyanim_l=seq_35195
+runanim=seq_35197
+readyanim=seq_35194,seq_35195
+
+// 4681
+[bas_4681]
+readyanim_l=seq_35220
+readyanim_r=seq_35220
+walkanim_l=seq_35220
+walkanim_r=seq_35220
+walkturn_l=seq_35220
+walkturn_r=seq_35220
+runanim=seq_35215
+readyanim=null,seq_35220
+randomreadyanim=seq_35213,90
+randomreadyanim=seq_35214,10
+
+// 4682
+[bas_4682]
+readyanim_l=seq_35244
+readyanim_r=seq_35244
+walkanim_l=seq_35244
+walkanim_r=seq_35244
+walkturn_l=seq_35244
+walkturn_r=seq_35244
+runanim=seq_35239
+readyanim=null,seq_35244
+randomreadyanim=seq_35237,90
+randomreadyanim=seq_35238,10
+
+// 4683
+[bas_4683]
+readyanim_l=seq_35226
+readyanim_r=seq_35226
+walkanim_l=seq_35226
+walkanim_r=seq_35226
+walkturn_l=seq_35226
+walkturn_r=seq_35226
+runanim=seq_35225
+readyanim=null,seq_35226
+randomreadyanim=seq_35237,90
+randomreadyanim=seq_35238,10
+
+// 4684
+[bas_4684]
+readyanim_l=seq_35226
+readyanim_r=seq_35226
+walkanim_l=seq_35226
+walkanim_r=seq_35226
+walkturn_l=seq_35226
+walkturn_r=seq_35226
+runanim=seq_35225
+readyanim=null,seq_35226
+randomreadyanim=seq_35237,90
+randomreadyanim=seq_35238,10
+
+// 4685
+[bas_4685]
+readyanim_l=seq_1306
+readyanim_r=seq_1306
+walkanim_l=seq_1306
+walkanim_r=seq_1306
+walkturn_l=seq_1306
+walkturn_r=seq_1306
+runanim=seq_35255
+readyanim=null,seq_1306
+randomreadyanim=seq_35252,90
+randomreadyanim=seq_35253,10
+
+// 4686
+[bas_4686]
+readyanim_l=seq_35270
+readyanim_r=seq_35270
+walkanim_l=seq_35270
+walkanim_r=seq_35270
+walkturn_l=seq_35270
+walkturn_r=seq_35270
+runanim=seq_35267
+readyanim=null,seq_35270
+randomreadyanim=seq_35264,90
+randomreadyanim=seq_35265,10
 
