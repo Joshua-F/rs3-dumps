@@ -28727,3 +28727,10 @@ readyanim=null,seq_35277
 randomreadyanim=seq_33036,90
 randomreadyanim=seq_33037,10
 
+// 4688
+[bas_4688]
+readyanim_l=seq_35289
+readyanim_r=seq_35289
+runanim=seq_35290
+readyanim=seq_35288,seq_35289
+
