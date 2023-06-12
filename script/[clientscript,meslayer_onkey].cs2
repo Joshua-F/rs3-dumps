@@ -4,10 +4,11 @@ if (%varclient_2873 ! 10) {
     return;
 }
 def_int $int2 = 0;
+def_int $int3 = 1;
 switch_int ($int0) {
     case 84 :
         switch_int (%varclient_5) {
-            case 7 :
+            case 7, 17 :
                 if (string_length(%varclient_2506) <= 0) {
                     return;
                 }
@@ -54,15 +55,23 @@ switch_int ($int0) {
                     }
                     ~meslayer_close(%varclient_5);
                 case 7 :
-                    %varclient_2506 = ~script2332(%varclient_2506, "K", "000");
-                    %varclient_2506 = ~script2332(%varclient_2506, "k", "000");
-                    %varclient_2506 = ~script2332(%varclient_2506, "M", "000000");
-                    %varclient_2506 = ~script2332(%varclient_2506, "m", "000000");
-                    if (map_lang = 1) {
-                        %varclient_2506 = ~script2332(%varclient_2506, "T", "000");
-                        %varclient_2506 = ~script2332(%varclient_2506, "t", "000");
+                    %varclient_2506 = ~script17391(%varclient_2506);
+                    if (keyheld_shift = true) {
+                        %varclient_2506 = ~script17397(%varclient_2506);
+                        %varclient_1029 = string_length(%varclient_2506);
+                        $int3 = 0;
+                    } else {
+                        resume_countdialog(~script17397(%varclient_2506));
                     }
-                    resume_countdialog(~script5390(%varclient_2506));
+                case 17 :
+                    %varclient_2506 = ~script17393(%varclient_2506);
+                    if (keyheld_shift = true) {
+                        %varclient_2506 = ~script17398(%varclient_2506);
+                        %varclient_1029 = string_length(%varclient_2506);
+                        $int3 = 0;
+                    } else {
+                        resume_countdialog_long(~script17398(%varclient_2506));
+                    }
                 case 8 :
                     %varclient_2507 = escape(%varclient_2506);
                     %varclient_1026 = true;
@@ -86,8 +95,10 @@ switch_int ($int0) {
             ~music_search_close_both;
             return;
         }
-        ~meslayer_close(0);
-        return;
+        if ($int3 = 1) {
+            ~meslayer_close(0);
+            return;
+        }
     case 13 :
         if (~cancel_targetmode = true) {
             return;
@@ -118,6 +129,8 @@ switch_int ($int0) {
                 $int2 = 0;
             case 7 :
                 $int2 = 6;
+            case 17 :
+                $int2 = 10;
             case 13 :
                 $int2 = 5;
             case 14 :

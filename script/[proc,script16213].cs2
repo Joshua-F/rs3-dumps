@@ -2,6 +2,7 @@
 [proc,script16213](struct $struct0, component $component1, int $int2, int $int3, int $int4)
 def_graphic $graphic5 = null;
 def_int $int6 = 0;
+def_long $long0 = 0;
 if ($struct0 = null | $struct0 = struct_45918) {
     return;
 }
@@ -22,7 +23,7 @@ if (cc_find($component1, $int3) = true) {
             cc_setonvartransmit("script16212($struct0, $component1, $int2, $int3, 0){varplayer_1448, varplayer_1448, varplayer_1448}");
             cc_setonvarctransmit("script16212($struct0, $component1, $int2, $int3, 0){varclient_1800}");
         case struct_45922 :
-            $int6 = inv_getnum(inv_623, 0);
+            $long0 = ~script17400;
             cc_setoninvtransmit("script16212($struct0, $component1, $int2, $int3, 0){inv_623}");
         case struct_45923 :
             $int6 = calc(inv_total(inv_93, obj_40932) + inv_total(inv_795, obj_40932));
@@ -46,7 +47,7 @@ if (cc_find($component1, $int3) = true) {
 }
 def_int $int9 = 1;
 def_int $int10 = 0;
-if (cc_findbycategory($component1, $int2, 0) = 1) {
+if (cc_findbycategory($component1, $int2, 0) = 1 & $long0 = 0) {
     $int10 = cc_param(param_6408);
     if ($int4 = 1 | $int6 < $int10) {
         cc_setparam(param_6408, $int6);
@@ -62,5 +63,9 @@ if (cc_findbycategory($component1, $int2, 0) = 1) {
     }
 }
 if (cc_find($component1, calc($int3 + 1)) = true) {
-    cc_settext(~script361($int6, 0));
+    if ($long0 > 0) {
+        cc_settext(~script17372($long0, 3, 1));
+    } else {
+        cc_settext(~script361($int6, 0));
+    }
 }

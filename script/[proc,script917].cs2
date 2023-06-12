@@ -3,12 +3,7 @@
 cc_deleteall(interface_449:com_3);
 %varclient_742 = 0;
 def_int $int0 = inv_total(inv_93, %varclient_743);
-def_int $int1 = -1;
-if (calc(^max_32bit_int - inv_total(inv_93, obj_995) - inv_total(inv_623, obj_995)) > 0) {
-    $int1 = calc(inv_total(inv_93, obj_995) + inv_total(inv_623, obj_995));
-} else {
-    $int1 = ^max_32bit_int;
-}
+def_int $int1 = ~script17404;
 if (%varclient_743 ! null) {
     if (%varclient_743 = obj_995) {
         $int0 = $int1;
@@ -20,22 +15,20 @@ if (%varclient_743 ! null) {
     if_setobject_nonum(null, -1, interface_449:com_9);
     if_sethide(true, interface_449:com_7);
     if_setsize(16384, 187, ^setsize_rel, ^setsize_abs, interface_449:com_2);
-    if (%varplayer_135 ! null & ~pouch_total(obj_995, calc(%varplayer_137 * %varplayer_136)) = 0) {
+    if (%varplayer_135 ! null & ~script17400 < ~script17377(%varplayer_137, int_to_long(%varplayer_136))) {
         if_setcolour(^red, interface_449:com_11);
     } else {
         if_setcolour(%varclient_1241, interface_449:com_11);
     }
 }
-if (%varclient_743 = null) {
+if (%varclient_743 = null | %varclient_743 = obj_995) {
     switch_int ($int1) {
         case 0 :
             if_settext("You have no coins.", interface_449:com_11);
         case 1 :
             if_settext("You have one coin.", interface_449:com_11);
-        case ^max_32bit_int :
-            if_settext("You have more than <~script940($int1)> coins!", interface_449:com_11);
         case default :
-            if_settext("You have <~script940($int1)> coins.", interface_449:com_11);
+            if_settext("You have <~script17372(~script17400, 3, 1)> coins.", interface_449:com_11);
     }
 } else {
     switch_int ($int0) {
