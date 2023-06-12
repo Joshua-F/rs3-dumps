@@ -5,20 +5,42 @@ def_int $int3 = calc((if_getwidth($component0) - 5 * 36) / 6);
 def_int $int4 = 0;
 def_obj $obj5 = null;
 def_int $int6 = 0;
+def_long $long0 = 0;
+def_long $long1 = 0;
+def_long $long2 = 0;
 def_int $int7 = 0;
-def_int $int8 = 0;
-def_int $int9 = 0;
-def_int $int10 = inv_size(inv_90);
-if (inv_freespace(inv_90) < $int10) {
-    while ($int4 < $int10) {
+def_int $int8 = inv_size(inv_90);
+def_string $string0 = "";
+def_int $int9 = calc(stringwidth(tostring_localised(^max_32bit_int, true), fontmetrics_206) + 4);
+def_int $int10 = ~script15891("0<br>0<br>0<br>", 1000, fontmetrics_206, 0);
+def_int $int11 = 16;
+def_int $int12 = 0;
+def_int $int13 = 0;
+if (inv_freespace(inv_90) < $int8) {
+    while ($int4 < $int8) {
         $int6 = inv_getnum(inv_90, $int4);
         cc_create($component0, ^iftype_graphic, calc($int4 * 2));
         .cc_create($component0, ^iftype_text, calc($int4 * 2 + 1));
         if ($int6 > 0) {
             $obj5 = inv_getobj(inv_90, $int4);
+            $long0 = ~script2185($int4);
+            if ($int6 > 1) {
+                $long2 = calc(9223372036854775807 / $long0);
+                if ($long0 > 0 & ~script17138($long2) < $int6) {
+                    $string0 = "<tostring_localised($int6, true)> x <tostring_localised_long($long0, true)><br>=<br>LOTS";
+                } else {
+                    $string0 = "<tostring_localised($int6, true)> x <tostring_localised_long($long0, true)><br>=<br><tostring_localised_long(calc(int_to_long($int6) * $long0), true)>";
+                }
+            } else {
+                $string0 = tostring_localised_long($long0, true);
+            }
+            $int12 = max($int9, parawidth($string0, 10000, fontmetrics_206));
+            if (calc($int11 + $int12) > if_getwidth($component0)) {
+                $int11 = 16;
+                $int13 = calc($int13 + 32 + $int10 + 4);
+            }
             cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-            $int9 = calc($int4 / 5 * (32 + 40) + 2);
-            cc_setposition(calc($int4 % 5 * (36 + $int3) + $int3), $int9, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setposition(calc($int11 + $int12 / 2 - 36 / 2), $int13, ^setpos_abs_left, ^setpos_abs_top);
             cc_sethide(false);
             cc_setobject($obj5, $int6);
             cc_setoutline(1);
@@ -29,23 +51,15 @@ if (inv_freespace(inv_90) < $int10) {
             cc_setop(5, "Remove-X");
             cc_setop(10, "Examine");
             cc_setopbase("<col=ff9040><oc_name($obj5)>");
-            .cc_setsize(calc(36 + $int3 - 6), 40, ^setsize_abs, ^setsize_abs);
-            .cc_setposition(calc($int4 % 5 * (36 + $int3) + $int3 / 2 + 3), calc($int9 + 32), ^setpos_abs_left, ^setpos_abs_top);
+            .cc_setsize($int12, $int10, ^setsize_abs, ^setsize_abs);
+            .cc_setposition($int11, calc($int13 + 2 + 32), ^setpos_abs_left, ^setpos_abs_top);
             .cc_sethide(false);
             .cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
-            .cc_settextfont(fontmetrics_66);
+            .cc_settextfont(fontmetrics_206);
             ~script12108(3);
             .cc_settextshadow(true);
-            $int7 = ~script2185($int4);
-            if ($int6 > 1) {
-                if ($int7 > 0 & calc(^max_32bit_int / $int7) < $int6) {
-                    .cc_settext("<tostring_localised($int6, true)> x <tostring_localised($int7, true)><br>= LOTS");
-                } else {
-                    .cc_settext("<tostring_localised($int6, true)> x <tostring_localised($int7, true)><br>= <tostring_localised(calc($int6 * $int7), true)>");
-                }
-            } else {
-                .cc_settext(tostring_localised($int7, true));
-            }
+            .cc_settext($string0);
+            $int11 = calc($int11 + $int12 + 4 * 3);
         } else {
             cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
             cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
@@ -63,12 +77,12 @@ if (inv_freespace(inv_90) < $int10) {
     ~script11024(3);
     cc_settextshadow(true);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    cc_settextfont(fontmetrics_26);
+    cc_settextfont(fontmetrics_206);
     cc_settext("Interact with items in your inventory to check their values.");
 }
-$int9 = calc($int9 + 32 + 40);
-if ($int9 > if_getheight($component0)) {
-    if_setscrollsize(0, $int9, $component0);
+$int13 = calc($int13 + 32 + $int10 + 4);
+if ($int13 > if_getheight($component0)) {
+    if_setscrollsize(0, $int13, $component0);
     if_setposition(-8, if_gety($component0), ^setpos_abs_centre, ^setpos_abs_top, $component0);
     ~scrollbar_vertical($component1, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
     if (cc_find($component1, 1) = true) {
@@ -80,8 +94,8 @@ if ($int9 > if_getheight($component0)) {
     cc_deleteall($component1);
     if_setposition(0, if_gety($component0), ^setpos_abs_centre, ^setpos_abs_top, $component0);
 }
-if (%varclient_728 < 0) {
+if (%varclient_7153 < 0) {
     if_settext("Total value:<br>---", $component2);
 } else {
-    if_settext("Total value:<br><tostring_localised(%varclient_728, true)>", $component2);
+    if_settext("Total value:<br><tostring_localised_long(%varclient_7153, true)>", $component2);
 }

@@ -98,6 +98,7 @@ if (oc_param($obj1, param_2989) ! null) {
 }
 $int4 = oc_param($obj1, param_2653);
 def_int $int11 = 0;
+def_long $long0 = 0;
 def_string $string2 = "Sell to Store Gold Value";
 def_string $string3 = "Grand Exchange Gold Value";
 def_string $string4 = "";
@@ -113,17 +114,17 @@ if (stat_base(magic) >= 55) {
 } else {
     $string4 = "Low Alchemy Gold Value";
 }
-if (oc_cost($obj1) > 0) {
+if (~script17369($obj1) > 0) {
     if (oc_tradeable($obj1) = true) {
         $int12 = 0;
-        $int11 = calc($int4 * max(1, scale(oc_cost($obj1), 100, 30)));
+        $int11 = calc($int4 * max(1, scale(~script17369($obj1), 100, 30)));
         $string5 = ~script940($int11);
-        $string2 = "<$string2>: <tostring($int11)>";
+        $string2 = "<$string2>: <tostring_localised($int11, true)>";
         if (%varclient_2224 ! -1) {
             $int14 = 0;
-            $int11 = calc($int4 * %varclient_2224);
-            $string6 = ~script940($int11);
-            $string3 = "<$string3>: <tostring($int11)>";
+            $long0 = calc(int_to_long($int4) * %varclient_2224);
+            $string6 = ~script17370($long0);
+            $string3 = "<$string3>: <tostring_localised_long($long0, true)>";
         } else {
             $int15 = 0;
             $int14 = 1;
@@ -139,12 +140,12 @@ if (oc_cost($obj1) > 0) {
     if (oc_param($obj1, param_689) = 0) {
         $int13 = 0;
         if (stat_base(magic) >= 55) {
-            $int11 = calc($int4 * scale(60, 100, oc_cost($obj1)));
+            $int11 = calc($int4 * scale(60, 100, ~script17369($obj1)));
         } else {
-            $int11 = calc($int4 * scale(40, 100, oc_cost($obj1)));
+            $int11 = calc($int4 * scale(40, 100, ~script17369($obj1)));
         }
         $string7 = ~script940($int11);
-        $string4 = "<$string4>: <tostring($int11)>";
+        $string4 = "<$string4>: <tostring_localised($int11, true)>";
     } else {
         $int13 = 1;
         $string7 = "-";

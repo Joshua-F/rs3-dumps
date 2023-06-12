@@ -6,13 +6,13 @@ if (%varclient_4827 ! null & %varclient_4828 ! -1) {
 if ($obj2 = null) {
     return;
 }
-def_int $int6 = ~script11472($int3);
-def_inv $inv7 = inv_676;
+def_long $long0 = ~script11472($int3);
+def_inv $inv6 = inv_676;
 if (%varplayerbit_52406 = 2) {
-    $inv7 = inv_930;
+    $inv6 = inv_930;
 }
-~script12094($obj2, $inv7, $int3);
-switch_int ($int6) {
+~script12094($obj2, $inv6, $int3);
+switch_int (~script17138($long0)) {
     case -4 :
         ~script11600($component0, $int1, $obj2, "<col=00FF00>Always free to protect, unless in a dangerous situation!");
         return;
@@ -39,36 +39,36 @@ switch_int ($int6) {
         if ($int3 >= 47 & %varplayerbit_52406 ! 2) {
             if ($int4 ! -1 & $int3 = 47) {
                 ~script11600($component0, $int1, $obj2, "<col=FF0000>In dangerous PvP, individual items are protected, so you will lose some of this item stack.");
-                $int6 = ~script11472($int4);
-                ~script12094($obj2, $inv7, $int4);
+                $long0 = ~script11472($int4);
+                ~script12094($obj2, $inv6, $int4);
             } else {
                 ~script11600($component0, $int1, $obj2, "<col=FF0000>Your beast of burden is carrying this item. It will be lost on death.");
                 return;
             }
         }
 }
-def_int $int8 = inv_getnum($inv7, $int3);
+def_int $int7 = inv_getnum($inv6, $int3);
 if (cc_find($component0, $int1) = true) {
-    $int8 = cc_getinvcount;
+    $int7 = cc_getinvcount;
 }
-def_int $int9 = ~script11466($obj2, $int6, $int8, 1);
-def_int $int10 = 0;
-def_int $int11 = 0;
-def_int $int12 = 0;
-def_string $string0 = "<col=00FF00>Item value: <tostring_localised($int6, true)>";
-if ($int9 > $int6) {
-    $string0 = append($string0, "<col=00FF00> (<tostring_localised($int9, true)>)");
+def_long $long1 = ~script11466($obj2, $long0, $int7, 1);
+def_long $long2 = 0;
+def_int $int8 = 0;
+def_long $long3 = 0;
+def_string $string0 = "<col=00FF00>Item value: <tostring_localised_long($long0, true)>";
+if ($long1 > $long0) {
+    $string0 = append($string0, "<col=00FF00> (<tostring_localised_long($long1, true)>)");
 }
 if (%varplayerbit_52406 = 2) {
-    $int10, $int11, $int12 = ~script11467($obj2, $int6, $int8, 7);
-    $string0 = append($string0, "<br><col=00FF00>Overflow reclaim cost: <tostring_localised($int10, true)>");
+    $long2, $int8, $long3 = ~script11467($obj2, $long0, $int7, 7);
+    $string0 = append($string0, "<br><col=00FF00>Overflow reclaim cost: <tostring_localised_long($long2, true)>");
 } else if ($int5 = 0) {
-    $int10, $int11, $int12 = ~script11467($obj2, $int6, $int8, 2);
-    $string0 = append($string0, "<br><col=00FF00>Cost to save: <tostring_localised($int10, true)>");
+    $long2, $int8, $long3 = ~script11467($obj2, $long0, $int7, 2);
+    $string0 = append($string0, "<br><col=00FF00>Cost to save: <tostring_localised_long($long2, true)>");
     if ($int3 < %varplayerbit_28114) {
         $string0 = append($string0, " (Protected for free)");
-    } else if ($int11 = 1) {
-        $string0 = append($string0, "<br><col=00FF00>Death's Deal saves: <tostring_localised($int12, true)>");
+    } else if ($int8 = 1) {
+        $string0 = append($string0, "<br><col=00FF00>Death's Deal saves: <tostring_localised_long($long3, true)>");
     }
 }
 ~script11600($component0, $int1, $obj2, $string0);

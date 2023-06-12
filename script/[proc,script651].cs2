@@ -9,7 +9,7 @@ def_int $int5 = stockmarket_getoffertype($int0, 0);
 def_int $int6 = stockmarket_getoffercount($int0, 0);
 def_int $int7 = stockmarket_getoffercompletedcount($int0, 0);
 def_obj $obj8 = stockmarket_getofferitem($int0, 0);
-def_int $int9 = stockmarket_getofferprice($int0, 0);
+def_long $long0 = stockmarket_getofferprice($int0, 0);
 if (oc_param($obj8, param_3758) ! null & $int5 = 0) {
     $obj8 = oc_param($obj8, param_3758);
 }
@@ -31,7 +31,7 @@ cc_setfill(true);
 cc_setcolour(^white);
 cc_settrans(255);
 ~script584($component1, $string0);
-def_int $int10 = if_getnextsubid($component1);
+def_int $int9 = if_getnextsubid($component1);
 if_setonmouseover("script629($int0)", $component1);
 if_setonmouseleave("script631($int0)", $component1);
 if (stockmarket_isofferempty($int0, 0) = true) {
@@ -60,122 +60,122 @@ if (stockmarket_isofferempty($int0, 0) = true) {
     }
 }
 def_string $string1 = tostring_localised($int6, true);
-def_string $string2 = tostring_localised($int9, true);
-def_string $string3 = ~script11601($int9, true);
+def_string $string2 = tostring_localised_long($long0, true);
+def_string $string3 = ~script17371($long0);
+def_int $int10 = 0;
 def_int $int11 = 0;
-def_int $int12 = 0;
-def_component $component13 = ~script627($int0);
-def_component $component14 = ~script15039($int0);
-def_component $component15 = ~script15040($int0);
-def_component $component16 = ~script15041($int0);
-if_sethide(true, $component13);
+def_component $component12 = ~script627($int0);
+def_component $component13 = ~script15039($int0);
+def_component $component14 = ~script15040($int0);
+def_component $component15 = ~script15041($int0);
+if_sethide(true, $component12);
 def_string $string4 = "";
+def_int $int16 = 0;
 def_int $int17 = 0;
-def_int $int18 = 0;
 if (stockmarket_isofferempty($int0, 0) = true) {
     if ($int0 < 3 | playermember = true) {
-        if_sethide(false, $component13);
+        if_sethide(false, $component12);
     }
+    if_sethide(true, $component13);
     if_sethide(true, $component14);
-    if_sethide(true, $component15);
     if ($int0 >= 3 & playermember = false) {
-        if_sethide(true, $component16);
+        if_sethide(true, $component15);
     } else {
-        if_sethide(false, $component16);
+        if_sethide(false, $component15);
     }
 } else {
-    $int11 = 7;
-    $int12 = calc($int4 - 30);
+    $int10 = 7;
+    $int11 = calc($int4 - 30);
     if (stockmarket_isofferadding($int0, 0) = true) {
-        $int10 = if_getnextsubid($component1);
-        .cc_create($component1, ^iftype_text, $int10);
-        .cc_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top);
+        $int9 = if_getnextsubid($component1);
+        .cc_create($component1, ^iftype_text, $int9);
+        .cc_setposition($int10, $int11, ^setpos_abs_left, ^setpos_abs_top);
         .cc_setsize(calc($int3 - 14), 15, ^setsize_abs, ^setsize_abs);
         .cc_settextfont(fontmetrics_26);
         .cc_setcolour(0xdbd884);
         .cc_settext("Submitting...");
         .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     } else {
-        ~script652($int11, $int12, calc($int3 - 14), 15, $int0, $component1, $int10, 0, 1, 1);
+        ~script652($int10, $int11, calc($int3 - 14), 15, $int0, $component1, $int9, 0, 1, 1);
     }
     if (stockmarket_isofferfinished($int0, 0) = true) {
-        if_sethide(true, $component14);
+        if_sethide(true, $component13);
         $string4 = "Collect and repeat offer";
-        if_setonmouseover("script1256(event_com)", $component15);
-        if_setonmouserepeat("script8799($string4, event_com, event_comsubid)", $component15);
-        if_setonmouseleave("script1257(event_com)", $component15);
-        if_setonclick("script1257(event_com)", $component15);
-        if_setgraphic(aif_cust_avatar_return_item, $component15);
-        if_setop(1, "Collect and repeat", $component15);
-        if_sethide(false, $component15);
-    } else {
+        if_setonmouseover("script1256(event_com)", $component14);
+        if_setonmouserepeat("script8799($string4, event_com, event_comsubid)", $component14);
+        if_setonmouseleave("script1257(event_com)", $component14);
+        if_setonclick("script1257(event_com)", $component14);
+        if_setgraphic(aif_cust_avatar_return_item, $component14);
+        if_setop(1, "Collect and repeat", $component14);
         if_sethide(false, $component14);
+    } else {
+        if_sethide(false, $component13);
         $string4 = "Abort offer";
-        if_setonmouseover("script617(event_com)", $component15);
-        if_setonmouserepeat("script8799($string4, event_com, event_comsubid)", $component15);
-        if_setonmouseleave("script618(event_com)", $component15);
-        if_setonclick("script618(event_com)", $component15);
-        if_setgraphic("grand_exchange_cancelled_buttons,0", $component15);
-        if_setop(1, "Abort Offer", $component15);
-        if_sethide(false, $component15);
+        if_setonmouseover("script617(event_com)", $component14);
+        if_setonmouserepeat("script8799($string4, event_com, event_comsubid)", $component14);
+        if_setonmouseleave("script618(event_com)", $component14);
+        if_setonclick("script618(event_com)", $component14);
+        if_setgraphic("grand_exchange_cancelled_buttons,0", $component14);
+        if_setop(1, "Abort Offer", $component14);
+        if_sethide(false, $component14);
     }
-    if_sethide(true, $component16);
-    $int10 = if_getnextsubid($component1);
-    cc_create($component1, ^iftype_graphic, $int10);
-    $int10 = calc($int10 + 1);
+    if_sethide(true, $component15);
+    $int9 = if_getnextsubid($component1);
+    cc_create($component1, ^iftype_graphic, $int9);
+    $int9 = calc($int9 + 1);
     cc_setposition(6, 30, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(40, 36, ^setsize_abs, ^setsize_abs);
     cc_setgraphic(rs3_inventory_slot);
-    cc_create($component1, ^iftype_graphic, $int10);
+    cc_create($component1, ^iftype_graphic, $int9);
     cc_setposition(8, 32, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setobject($obj8, $int6);
     $string0 = tostring_localised($int6, true);
     cc_setonmouserepeat("script5495($obj8)");
     cc_setonmouseleave("script5495(null)");
-    $int10 = calc($int10 + 1);
-    cc_create($component1, ^iftype_text, $int10);
+    $int9 = calc($int9 + 1);
+    cc_create($component1, ^iftype_text, $int9);
     cc_setposition(48, 30, ^setpos_abs_left, ^setpos_abs_top);
     $string0 = oc_name($obj8);
-    $int18 = calc($int3 - 53);
-    $int17 = parawidth($string0, $int18, fontmetrics_27);
-    if ($int17 > $int18) {
-        $int11 = string_length($string0);
-        while ($int17 > $int18 & $int11 > 0) {
-            $int11 = calc($int11 - 1);
-            $string0 = "<substring($string0, 0, $int11)>...";
-            $int17 = parawidth($string0, $int18, fontmetrics_27);
+    $int17 = calc($int3 - 53);
+    $int16 = parawidth($string0, $int17, fontmetrics_27);
+    if ($int16 > $int17) {
+        $int10 = string_length($string0);
+        while ($int16 > $int17 & $int10 > 0) {
+            $int10 = calc($int10 - 1);
+            $string0 = "<substring($string0, 0, $int10)>...";
+            $int16 = parawidth($string0, $int17, fontmetrics_27);
         }
     }
-    $int10 = calc($int10 + 1);
-    $int4 = calc(paraheight($string0, $int18, fontmetrics_27) * 14);
-    $string0 = ~script3930(oc_name($obj8), $int18, 3, fontmetrics_27);
+    $int9 = calc($int9 + 1);
+    $int4 = calc(paraheight($string0, $int17, fontmetrics_27) * 14);
+    $string0 = ~script3930(oc_name($obj8), $int17, 3, fontmetrics_27);
     if ($int4 < 22) {
         $int4 = 22;
     }
-    cc_setsize($int18, $int4, ^setsize_abs, ^setsize_abs);
+    cc_setsize($int17, $int4, ^setsize_abs, ^setsize_abs);
     cc_setcolour(0xffcb05);
     cc_settextfont(fontmetrics_27);
     cc_settextalign(^settextalign_left, ^settextalign_top, 0);
     cc_settextshadow(true);
     cc_settext($string0);
-    cc_create($component1, ^iftype_text, $int10);
+    cc_create($component1, ^iftype_text, $int9);
     cc_setposition(48, min(64, calc(32 + $int4)), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc($int3 - 53), 15, ^setsize_abs, ^setsize_abs);
     cc_setcolour(^white);
     cc_settextfont(fontmetrics_26);
     cc_settextalign(^settextalign_left, ^settextalign_top, 15);
     cc_settextshadow(true);
-    if ($int9 < 10000) {
+    if ($long0 < 10000) {
         cc_settext($string2);
     } else {
         cc_settext($string3);
-        cc_setonmouserepeat("script8799($string2, $component1, $int10)");
+        cc_setonmouserepeat("script8799($string2, $component1, $int9)");
     }
-    $int10 = calc($int10 + 1);
-    cc_create($component1, ^iftype_graphic, $int10);
+    $int9 = calc($int9 + 1);
+    cc_create($component1, ^iftype_graphic, $int9);
     cc_setposition(4, 2, ^setpos_abs_right, ^setpos_abs_top);
     cc_setsize(20, 20, ^setsize_abs, ^setsize_abs);
     cc_setgraphic(null);
-    $int10 = calc($int10 + 1);
+    $int9 = calc($int9 + 1);
 }

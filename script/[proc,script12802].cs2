@@ -1,6 +1,6 @@
 // 12802
-[proc,script12802](int $int0, int $int1, int $int2, int $int3)(int)
-if ($int2 <= 0 | $int1 <= 0 | $int3 = 0) {
+[proc,script12802](int $int0, int $int1, long $long0, int $int2)(long)
+if ($long0 <= 0 | $int1 <= 0 | $int2 = 0) {
     return(0);
 }
 if (oc_param(stockmarket_getofferitem($int0, 0), param_8740) = 1) {
@@ -9,7 +9,8 @@ if (oc_param(stockmarket_getofferitem($int0, 0), param_8740) = 1) {
 if (~script17081($int0) < 1) {
     return(0);
 }
-if (calc($int2 / $int1) < 50) {
+def_long $long1 = calc($long0 / int_to_long($int1));
+if ($long1 < 50) {
     return(0);
 }
-return(scale($int2, 100, 2));
+return(long_scale($long0, 100, 2));

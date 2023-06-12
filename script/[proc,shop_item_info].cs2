@@ -34,17 +34,7 @@ if ($inv0 = inv_93) {
     if_settext("Price:", interface_1265:com_133);
     if_settext("Buy", interface_1265:com_147);
 }
-def_int $int4 = ~script12750(%varplayer_306);
-if ($int4 = 0) {
-    if_settext("None!", interface_1265:com_132);
-    if_setgraphic("km_shopitems,0", interface_1265:com_131);
-} else {
-    if_settext(~script940($int4), interface_1265:com_132);
-    if_setgraphic(enum(int, graphic, enum_200, %varplayer_306), interface_1265:com_131);
-}
-def_int $int5 = parawidth(if_gettext(interface_1265:com_132), if_getwidth(interface_1265:com_129), fontmetrics_26);
-$int5 = calc($int5 + 2 + if_getwidth(interface_1265:com_131));
-if_setsize($int5, 15, ^setsize_abs, ^setsize_abs, interface_1265:com_130);
+~script17395;
 if ($int3 = -1) {
     if_settext("N/A", interface_1265:com_137);
     if_setgraphic("km_shopitems,0", interface_1265:com_136);
@@ -55,22 +45,22 @@ if ($int3 = -1) {
     if_settext(~script940($int3), interface_1265:com_137);
     if_setgraphic(enum(int, graphic, enum_200, %varplayer_306), interface_1265:com_136);
 }
-$int5 = parawidth(if_gettext(interface_1265:com_137), if_getwidth(interface_1265:com_134), fontmetrics_26);
+def_int $int4 = parawidth(if_gettext(interface_1265:com_137), if_getwidth(interface_1265:com_134), fontmetrics_26);
 if ($inv0 ! %varplayer_305) {
-    $int5 = calc($int5 + 2 + if_getwidth(interface_1265:com_136));
+    $int4 = calc($int4 + 2 + if_getwidth(interface_1265:com_136));
 }
-if_setsize($int5, 15, ^setsize_abs, ^setsize_abs, interface_1265:com_135);
+if_setsize($int4, 15, ^setsize_abs, ^setsize_abs, interface_1265:com_135);
 if ($int3 ! -1) {
     if_sethide(true, interface_1265:com_148);
     if_sethide(true, interface_1265:com_145);
 }
-def_component $component6 = interface_1265:com_20;
+def_component $component5 = interface_1265:com_20;
 if (%varclient_1881 ! null & %varclient_1880 ! -1) {
     if_sethide(true, interface_1266:com_3);
     if (%varclient_1881 = %varplayer_305) {
-        $component6 = interface_1265:com_14;
+        $component5 = interface_1265:com_14;
     }
-    if (cc_find($component6, %varclient_1880) = true) {
+    if (cc_find($component5, %varclient_1880) = true) {
         cc_setonmouseover("shop_item_hover(%varplayerbit_987, 0, 1, event_com, event_comsubid)");
         cc_setonmouseleave("shop_item_hover(%varplayerbit_987, 0, 0, event_com, event_comsubid)");
         if (%varplayerbit_987 = 0) {
@@ -80,16 +70,16 @@ if (%varclient_1881 ! null & %varclient_1880 ! -1) {
         }
     }
 }
-$component6 = interface_1265:com_20;
+$component5 = interface_1265:com_20;
 if (%varplayer_299 = %varplayer_305) {
-    $component6 = interface_1265:com_14;
+    $component5 = interface_1265:com_14;
 }
 if ($inv0 = %varplayer_299) {
     if ($inv0 = inv_93 & cc_find(interface_1266:com_0, $int1) = true) {
         if_setposition(calc(cc_getx + 2 - 2), calc(cc_gety + 2 - 2), ^setpos_abs_left, ^setpos_abs_top, interface_1266:com_3);
         if_sethide(false, interface_1266:com_3);
     }
-    if (cc_find($component6, $int1) = true & ($inv0 ! inv_93 | %varplayer_303 = 1)) {
+    if (cc_find($component5, $int1) = true & ($inv0 ! inv_93 | %varplayer_303 = 1)) {
         cc_setonmouseover("shop_item_hover(%varplayerbit_987, 1, 1, event_com, event_comsubid)");
         cc_setonmouseleave("shop_item_hover(%varplayerbit_987, 1, 0, event_com, event_comsubid)");
         if (%varplayerbit_987 = 0) {
