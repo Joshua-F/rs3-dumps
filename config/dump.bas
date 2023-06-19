@@ -27142,7 +27142,6 @@ walkanim_r=seq_33762
 walkturn_l=seq_33762
 walkturn_r=seq_33762
 runanim=seq_33840
-hillrotate=32,32
 readyanim=null,seq_33762
 randomreadyanim=seq_33760,90
 randomreadyanim=seq_33761,10

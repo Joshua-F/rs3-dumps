@@ -3,11 +3,18 @@
 if (calc(clientclock % 15) ! 0) {
     return;
 }
+def_int $int3 = -1;
 if (cc_find($component2, $int0) = true) {
     switch_obj ($obj1) {
         case default :
-            cc_setontimer(null);
-            return;
+            if (enum_hasoutput(obj, enum_6397, $obj1) = true) {
+                $int3 = enum_getreverseindex(obj, int, enum_6397, $obj1, 0);
+                $int3 = calc(($int3 + 1) % enum_getoutputcount(enum_6397));
+                $obj1 = enum(int, obj, enum_6397, $int3);
+            } else {
+                cc_setontimer(null);
+                return;
+            }
         case obj_526 :
             $obj1 = obj_532;
         case obj_532 :
@@ -82,22 +89,6 @@ if (cc_find($component2, $int0) = true) {
             $obj1 = obj_39;
         case obj_39 :
             $obj1 = obj_1777;
-        case obj_1351 :
-            $obj1 = obj_1349;
-        case obj_1349 :
-            $obj1 = obj_1353;
-        case obj_1353 :
-            $obj1 = obj_1355;
-        case obj_1355 :
-            $obj1 = obj_1357;
-        case obj_1357 :
-            $obj1 = obj_1359;
-        case obj_1359 :
-            $obj1 = obj_6739;
-        case obj_6739 :
-            $obj1 = obj_32645;
-        case obj_32645 :
-            $obj1 = obj_1351;
         case obj_5318 :
             $obj1 = obj_5319;
         case obj_5319 :
