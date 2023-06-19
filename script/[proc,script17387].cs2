@@ -1,9 +1,21 @@
 // 17387
 [proc,script17387](long $long0)
-def_long $long1 = calc(long_scale($long0, 100, %varclient_85) - %varclient_85);
-if ($long1 >= 0) {
-    ~script17389(long_max(1, $long1));
+def_long $long1 = 0;
+def_long $long2 = 0;
+if ($long0 = 95 | $long0 = 105) {
+    $long1 = calc(%varclient_85 / 20);
+} else if ($long0 = 80 | $long0 = 120) {
+    $long1 = calc(%varclient_85 / 5);
 } else {
-    $long1 = calc($long1 * -1);
-    ~script17390(long_max(1, $long1));
+    return;
+}
+if ($long0 >= 100) {
+    $long1 = long_min(calc(2147483649147483647 - %varclient_85), $long1);
+    ~script17389($long1);
+} else {
+    $long2 = calc(%varclient_85 - $long1);
+    if ($long2 < 0) {
+        $long1 = %varclient_85;
+    }
+    ~script17390($long1);
 }
