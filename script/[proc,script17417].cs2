@@ -1,0 +1,22 @@
+// 17417
+[proc,script17417](dbrow $dbrow0, component $component1)
+def_int $int2 = -1;
+def_obj $obj3 = null;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_string $string0 = "";
+def_int $int7 = db_getfieldcount($dbrow0, dbtable_101:col0);
+if_grid_setlayoutparams(false, $int7, 1, $component1);
+cc_deleteall($component1);
+if (if_find($component1) = true) {
+    while (++$int2 < $int7) {
+        $obj3, $int4, $int5, $int6, $int6, $int6, $int6, $int6 = db_getfield($dbrow0, dbtable_101:col0, $int2);
+        ~cc_add_child_obj_full(0, $int2, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 36, 32, ^setsize_abs, ^setsize_abs, $obj3, $int4, 0, 1);
+        $string0 = oc_name($obj3);
+        cc_setop(1, "Select");
+        cc_setonop("script17418($dbrow0, $int2)");
+        cc_setopcursor(1, cursor_46);
+        cc_setonmouserepeat("script3876($string0, event_com, event_comsubid)");
+    }
+}
