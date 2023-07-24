@@ -19,6 +19,7 @@ def_int $int21 = ~script16166($dbrow0);
 def_int $int22 = ~script16168($dbrow9);
 def_int $int23 = calc(~script16169($dbrow9) * 4);
 def_int $int24 = 0;
+def_int $int25 = 0;
 while (++$int20 < $int23) {
     $int24 = calc($int3 + $int20);
     switch_int (calc($int20 % 4)) {
@@ -48,9 +49,14 @@ while (++$int20 < $int23) {
                 ~script16190;
                 if ($int14 > 0) {
                     if (db_getfield($dbrow0, dbtable_147:col5, 0) = 1) {
-                        cc_settext("<~tostring_decimal(~script16480($int10, $int21, $int14, $int22, 100000), 3, 3, 1, 0)> %");
+                        $int25 = ~script16480($int10, $int21, $int14, $int22, 100000);
                     } else {
-                        cc_settext("<~tostring_decimal(~script16167($int10, $int21, $int14, $int22, 100000), 3, 3, 1, 0)> %");
+                        $int25 = ~script16167($int10, $int21, $int14, $int22, 100000);
+                    }
+                    if ($int25 > 0) {
+                        cc_settext("<~tostring_decimal($int25, 3, 3, 1, 0)> %");
+                    } else {
+                        cc_settext("<lt> 0.001 %");
                     }
                 } else {
                     cc_settext("");
