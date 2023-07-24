@@ -1484,6 +1484,21 @@ readyanim=seq_5188,seq_5187
 [bas_286]
 readyanim=seq_5280,seq_5279
 
+// 287
+[bas_287]
+readyanim_l=seq_2830
+readyanim_r=seq_2830
+walkanim_b=seq_2830
+walkanim_l=seq_2830
+walkanim_r=seq_2830
+walkturn_l=seq_2830
+walkturn_r=seq_2830
+runanim=seq_2832
+hillrotate=32,32
+readyanim=null,seq_2830
+randomreadyanim=seq_2822,90
+randomreadyanim=seq_2828,10
+
 // 288
 [bas_288]
 readyanim=seq_8574,seq_8573
@@ -11079,6 +11094,12 @@ readyanim=seq_3085,null
 readyanim_l=seq_3083
 readyanim_r=seq_3083
 readyanim=seq_3086,null
+
+// 2122
+[bas_2122]
+readyanim_l=seq_20824
+readyanim_r=seq_20824
+readyanim=seq_20817,seq_20824
 
 // 2123
 [bas_2123]
