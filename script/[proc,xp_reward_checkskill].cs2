@@ -3,6 +3,13 @@
 if ($obj2 = obj_54603) {
     return(true);
 }
+if ($stat0 = necromancy) {
+    if ($int3 = 1) {
+        mes("You cannot use this on the currently embargoed skill.");
+        sound_vorbis_volume(sound_10046, 1, 0, 150);
+    }
+    return(false);
+}
 if (map_members = false & enum_hasoutput(stat, enum_5472, $stat0) = true & stat_base($stat0) >= ~script12038($stat0) & oc_category($obj2) ! category_3074 & $obj2 ! obj_31822) {
     if ($int3 = 1) {
         if (playermember = false) {
@@ -674,6 +681,10 @@ switch_obj ($obj2) {
                 if (%varplayer_9208 > 0) {
                     return(true);
                 }
+            case necromancy :
+                if (%varplayer_10956 > 0) {
+                    return(true);
+                }
         }
         return(false);
     case obj_39669 :
@@ -910,6 +921,10 @@ if (oc_param($obj2, param_4762) = 1) {
             }
         case archaeology :
             if (~script10926(archaeology, oc_param($obj2, param_5986), $int3) = 0) {
+                return(false);
+            }
+        case necromancy :
+            if (~script10926(necromancy, oc_param($obj2, param_8873), $int3) = 0) {
                 return(false);
             }
     }

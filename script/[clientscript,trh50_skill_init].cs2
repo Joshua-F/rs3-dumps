@@ -6,6 +6,18 @@ def_struct $struct4 = struct_21363;
 def_struct $struct5 = struct_29006;
 def_int $int6 = 0;
 cc_deleteall($component1);
+if ($stat0 = necromancy) {
+    $enum3 = enum_3495;
+    switch_stat ($stat0) {
+        case archaeology :
+            if_sethide(false, interface_1632:com_55);
+        case necromancy :
+            if_sethide(false, interface_1632:com_56);
+    }
+} else if ($stat0 = invention & ~invent_skill_unlocked = false) {
+    $enum3 = enum_3495;
+    if_sethide(false, interface_1632:com_54);
+}
 cc_create($component1, ^iftype_rectangle, $int6);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
@@ -31,10 +43,4 @@ if (%varplayerbit_45287 = 1) {
     }
 } else if (%varplayerbit_45287 = 2 & testbit(%varplayer_9013, $int2) = ^true) {
     cc_setgraphic("mob_cross_icon,0");
-}
-if (~invent_skill_unlocked = false) {
-    if_sethide(false, interface_1632:com_53);
-}
-if ($stat0 = null & $stat0 = archaeology) {
-    if_sethide(false, interface_1632:com_54);
 }

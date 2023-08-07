@@ -13,6 +13,7 @@ if ($int1 > 0) {
     return($int1);
 }
 def_dbrow $dbrow2 = struct_param($struct0, param_6569);
+def_struct $struct3 = struct_param($struct0, param_8877);
 if ($dbrow2 ! null) {
     switch_dbtable (db_getrowtable($dbrow2)) {
         case dbtable_5 :
@@ -21,6 +22,12 @@ if ($dbrow2 ! null) {
             $int1 = db_getfield($dbrow2, dbtable_86:col6, 0);
         case dbtable_88 :
             $int1 = db_getfield($dbrow2, dbtable_88:col4, 0);
+        case dbtable_235 :
+            if (db_getfield($dbrow2, dbtable_235:col5:0, 0) = enum(int, stat, enum_681, ~skillguide_skill($struct0))) {
+                $int1 = db_getfield($dbrow2, dbtable_235:col5:1, 0);
+            }
     }
+} else if ($struct3 ! null & struct_param($struct3, param_2793) > 0) {
+    $int1 = struct_param($struct3, param_2807);
 }
 return($int1);

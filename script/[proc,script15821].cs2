@@ -26,14 +26,18 @@ def_string $string1 = "";
 def_int $int13 = 0;
 def_graphic $graphic14 = $graphic4;
 def_string $string2 = struct_param($struct2, param_8572);
-def_int $int15 = struct_param($struct2, param_4742);
-def_int $int16 = ~script12660($dbrow6, $int11);
+def_boolean $boolean15 = struct_param($struct2, param_4162);
+def_int $int16 = struct_param($struct2, param_4742);
+def_int $int17 = struct_param($struct2, param_4743);
+def_int $int18 = ~script12660($dbrow6, $int11);
 def_string $string3 = struct_param($struct2, param_2533);
-def_struct $struct17 = struct_param($struct2, param_4543);
-if (string_length($string2) = 0 & calc($int15 + 30) >= date_runeday) {
+def_struct $struct19 = struct_param($struct2, param_4543);
+if ((string_length($string2) = 0 | $boolean15 = true) & calc($int16 + 30) >= date_runeday) {
     $string2 = "New!";
+} else if ((string_length($string2) = 0 | $boolean15 = true) & calc($int17 - 14) < date_runeday) {
+    $string2 = "Ending Soon!";
 }
-if ($int11 ! $int16) {
+if ($int11 ! $int18) {
     if (string_length($string2) = 0) {
         $string2 = "<tostring(db_getfield($dbrow6, dbtable_139:col2, 0))>% Off!";
     } else {
@@ -44,5 +48,5 @@ if (gender = 1) {
     $graphic14 = $graphic5;
 }
 $graphic14 = ~script17339($graphic14);
-~script15083($component10, $int9, 14, 255, 430, $string0, $int12, $int0, $graphic14, $string3, "", $string2, $struct17, $struct2, $int8, $int11, $int16, 0);
+~script15083($component10, $int9, 14, 255, 430, $string0, $int12, $int0, $graphic14, $string3, "", $string2, $struct19, $struct2, $int8, $int11, $int18, 0);
 return(true);

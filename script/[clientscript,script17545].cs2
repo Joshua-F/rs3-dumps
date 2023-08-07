@@ -1,0 +1,29 @@
+// 17545
+[clientscript,script17545]
+if (%varplayerbit_53294 < 1) {
+    return;
+}
+def_int $int0 = 0;
+def_int $rgb1 = struct_param(%varplayer_10946, param_8860);
+def_int $rgb2 = struct_param(%varplayer_10946, param_8861);
+if (%varplayerbit_53296 > 0 & %varplayerbit_53295 > 0) {
+    $int0 = scale(%varplayerbit_53295, %varplayerbit_53296, 100);
+    if_setcolour(struct_param(%varplayer_10946, param_8862), interface_1171:com_5);
+} else if (%varplayerbit_53298 > 0 & %varplayerbit_53297 > 0) {
+    $int0 = scale(%varplayerbit_53297, %varplayerbit_53298, 100);
+    if (%varplayer_10945 ! null) {
+        $rgb2 = %varplayer_10945;
+    }
+    if_setcolour($rgb2, interface_1171:com_5);
+} else {
+    if (%varplayer_10944 ! null) {
+        $rgb2 = %varplayer_10944;
+    }
+    $int0 = scale(%varplayerbit_53292, %varplayerbit_53294, 100);
+    if_setcolour($rgb1, interface_1171:com_5);
+}
+def_int $int3 = scale(350, 100, $int0);
+if (if_getwidth(interface_1171:com_13) ! $int3) {
+    if_setsize($int3, 33, ^setsize_abs, ^setsize_abs, interface_1171:com_13);
+    if_setontimer("script17546($int3, $int0)", interface_1171:com_25);
+}
