@@ -1,6 +1,91 @@
 // 6575
-[proc,script6575](boolean $boolean0, int $rgb1)
-if_sethide($boolean0, interface_755:com_2);
-if ($rgb1 ! null) {
-    if_setcolour($rgb1, interface_755:com_10);
+[proc,script6575]
+db_find(dbtable_238:col0, %varplayerbit_54002);
+def_dbrow $dbrow0 = db_findnext;
+if ($dbrow0 = null) {
+    error("Null dbrow");
+    return;
 }
+def_dbrow $dbrow1 = null;
+def_category $category2 = null;
+def_component $component3 = null;
+def_component $component4 = null;
+def_achievement $achievement5 = null;
+def_achievement $achievement6 = null;
+def_achievement $achievement7 = null;
+def_string $string0 = "";
+def_graphic $graphic8 = null;
+def_obj $obj9 = null;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = db_getfieldcount($dbrow0, dbtable_238:col3);
+def_int $int13 = db_getfield($dbrow0, dbtable_238:col2, 0);
+def_int $int14 = 0;
+while ($int14 < 4) {
+    $dbrow1 = ~script7480($int14);
+    if ($dbrow1 = null) {
+        error("Null progress bar data for <tostring($int14)>");
+        return;
+    }
+    if_settext(enum(int, string, enum_17001, calc($int13 + $int14)), db_getfield($dbrow1, dbtable_239:col2, 0));
+    $component3 = db_getfield($dbrow1, dbtable_239:col1, 0);
+    if ($int14 < $int12) {
+        $category2 = ~script11706($dbrow0, $int14);
+    }
+    if ($category2 ! null) {
+        $string0, $int10, $int11, $achievement5, $achievement6 = ~script11708($category2, $achievement5, $achievement6);
+        if_sethide(false, $component3);
+        if_settext($string0, db_getfield($dbrow1, dbtable_239:col4, 0));
+        if_setsize(scale($int10, $int11, 16384), 16384, ^setsize_rel, ^setsize_rel, db_getfield($dbrow1, dbtable_239:col3, 0));
+        $achievement7 = ~script8438($dbrow0, $int14);
+        $graphic8 = achievement_sprite($achievement7);
+        if_setgraphic($graphic8, db_getfield($dbrow1, dbtable_239:col5, 0));
+        $obj9 = ~script11707($dbrow0, $int14);
+        $component4 = db_getfield($dbrow1, dbtable_239:col6, 0);
+        if_setobject_nonum($obj9, 1, $component4);
+        if_setsize(36, 32, ^setsize_abs, ^setsize_abs, $component4);
+        ~script3536(achievement_getreward($achievement7), $component4, -1);
+    } else {
+        if_sethide(true, $component3);
+    }
+    $category2 = null;
+    $int14 = calc($int14 + 1);
+}
+if ($achievement5 ! null) {
+    achievement_findparents($achievement5);
+    $achievement7 = achievement_findnext;
+    if_settext("Recommended Task: <achievement_getname($achievement5)>", interface_755:com_4);
+    if_settext("<achievement_getname($achievement7)><br>Task Description: <~achievement_description($achievement5)>", interface_755:com_5);
+    if_setgraphic(achievement_sprite($achievement5), interface_755:com_3);
+} else if ($achievement6 ! null) {
+    achievement_findparents($achievement6);
+    $achievement7 = achievement_findnext;
+    if_settext("Recommended Task: <achievement_getname($achievement6)>", interface_755:com_4);
+    if_settext("<achievement_getname($achievement7)><br>Task Description: <~achievement_description($achievement6)>", interface_755:com_5);
+    if_setgraphic(achievement_sprite($achievement6), interface_755:com_3);
+} else {
+    if_settext("All tasks completed!", interface_755:com_4);
+    if_settext("", interface_755:com_5);
+    if_setgraphic($graphic8, interface_755:com_3);
+}
+def_int $int15 = -1;
+$int14 = $int12;
+$achievement7 = null;
+while (--$int14 >= 0) {
+    $achievement7 = ~script8438($dbrow0, $int14);
+    if (achievement_reqstate($achievement7) ! -2) {
+        $int15 = $int14;
+    }
+}
+if ($int15 = -1) {
+    $int15 = calc($int12 - 1);
+}
+if_settext(enum(int, string, enum_17002, calc($int15 + $int13)), interface_755:com_29);
+~script1025(interface_755:com_29, -1, fontmetrics_209, fontmetrics_208, fontmetrics_207);
+$achievement7 = ~script8438($dbrow0, $int15);
+$obj9 = ~script11707($dbrow0, $int15);
+if_setobject_highres($obj9, interface_755:com_31);
+~script3536(achievement_getreward($achievement7), interface_755:com_31, -1);
+if_settext(~oc_name($obj9), interface_755:com_32);
+if_settext(~achievement_description($achievement7), interface_755:com_33);
+~script1025(interface_755:com_33, -1, fontmetrics_208, fontmetrics_207, fontmetrics_206);

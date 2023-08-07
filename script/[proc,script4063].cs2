@@ -57,7 +57,7 @@ switch_int ($int1) {
     case 40 :
         $int2 = ~script12422(%varclientbit_44286, ~script2072, 65536);
     case 49 :
-        $int2 = ~script12422(%varplayer_9675, max(1, %varplayer_9676), 65536);
+        $int2 = ~script12422(%varplayer_10947, max(1, %varplayer_10948), 65536);
     case 50 :
         $int2 = ~script12422(%varplayerbit_50392, 12, 65536);
         if_settext("<tostring(%varplayerbit_50392)>/<tostring(12)>", interface_886:com_52);
@@ -70,5 +70,16 @@ switch_int ($int1) {
     case 54 :
         $int2 = ~script12422(%varplayerbit_51270, 12, 65536);
         if_settext("<tostring(%varplayerbit_51270)>/<tostring(12)>", interface_300:com_35);
+    case 58 :
+        if (%varclient_7219 = -1) {
+            $int2 = 65536;
+            if_settext("MAX", interface_1222:com_20);
+        } else {
+            $int2 = ~script12422(%varclient_7218, %varclient_7219, 65536);
+            switch_dbrow (%varplayer_11091) {
+                case dbrow_7599 :
+                    if_settext("<tostring_localised(calc(%varclient_7218 / 10), true)>/<tostring_localised(calc(%varclient_7219 / 10), true)> XP", interface_1222:com_20);
+            }
+        }
 }
 ~script13313($component0, -1, $int2);

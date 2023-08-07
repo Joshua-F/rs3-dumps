@@ -8,6 +8,7 @@ if (struct_param($struct0, param_2213) ! null) {
     $string0 = oc_name(struct_param($struct0, param_2213));
 }
 def_dbrow $dbrow1 = struct_param($struct0, param_6569);
+def_struct $struct2 = struct_param($struct0, param_8877);
 if ($dbrow1 ! null) {
     switch_dbtable (db_getrowtable($dbrow1)) {
         case dbtable_5 :
@@ -38,6 +39,18 @@ if ($dbrow1 ! null) {
             }
         case dbtable_94 :
             $string0 = oc_name(db_getfield($dbrow1, dbtable_94:col9, 0));
+        case dbtable_235 :
+            $string0 = "Ritual: <db_getfield($dbrow1, dbtable_235:col0, 0)>";
+    }
+} else if ($struct2 ! null) {
+    if (struct_param($struct2, param_2799) = 4) {
+        return("Passive: <struct_param($struct2, param_2794)>");
+    }
+    if (struct_param($struct2, param_2793) > 0) {
+        if (struct_param($struct2, param_2806) = 29 & struct_param($struct2, param_5542) ! 11) {
+            return("Incantation: <struct_param($struct2, param_2794)>");
+        }
+        return("Ability: <struct_param($struct2, param_2794)>");
     }
 }
 return($string0);

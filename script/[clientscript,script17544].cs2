@@ -1,0 +1,78 @@
+// 17544
+[clientscript,script17544](int $int0)
+def_int $int1 = struct_param(%varplayer_10946, param_8869);
+def_int $int2 = struct_param(%varplayer_10946, param_8870);
+def_int $int3 = 10;
+def_int $int4 = 125;
+def_int $int5 = 200;
+def_int $int6 = 300;
+def_int $int7 = 400;
+def_int $int8 = 500;
+if ($int1 = 1) {
+    $int5 = 0;
+    $int6 = 100;
+    $int7 = 200;
+    $int8 = 300;
+}
+def_int $int9 = scale(calc(clientclock - $int0), $int8, $int8);
+def_int $int10 = -1;
+if ($int1 = 0 & $int9 < $int3) {
+    if_sethide(false, interface_1171:com_21);
+    if_sethide(false, interface_1171:com_20);
+    if_setmodelanim(seq_28171, interface_1171:com_21);
+    if_setmodelanim(seq_28123, interface_1171:com_20);
+} else if ($int1 = 0 & $int9 = $int4) {
+    if_sethide(false, interface_1171:com_18);
+    if_sethide(false, interface_1171:com_19);
+} else if ($int9 = $int5) {
+    if ($int1 = 0) {
+        if_sethide(true, interface_1171:com_21);
+        if_sethide(true, interface_1171:com_20);
+    }
+    if ($int2 = 0 & %varplayer_10946 ! null) {
+        if_settext(%varclient_7157, interface_1171:com_29);
+        if_setsize(min(400, calc(stringwidth(if_gettext(interface_1171:com_29), fontmetrics_55) + 60)), 33, ^setsize_abs, ^setsize_abs, interface_1171:com_16);
+    }
+} else if ($int2 = 0 & $int9 > $int5 & $int9 <= $int6) {
+    $int9 = calc(255 - scale(255, 100, calc($int9 - $int5)));
+    if_settrans($int9, interface_1171:com_7);
+    if_settrans($int9, interface_1171:com_8);
+    if_settrans($int9, interface_1171:com_6);
+    if_settrans($int9, interface_1171:com_29);
+} else if ($int9 > $int6 & $int9 < $int7) {
+    $int9 = calc(255 - scale(255, 100, calc($int9 - $int6)));
+    if_settrans($int9, interface_1171:com_22);
+    if_settrans($int9, interface_1171:com_9);
+    if_settrans($int9, interface_1171:com_23);
+    if_settrans($int9, interface_1171:com_25);
+    if_settrans($int9, interface_1171:com_24);
+    if_settrans($int9, interface_1171:com_5);
+    if_settrans($int9, interface_1171:com_28);
+    if (%varplayer_10946 ! null) {
+        if_setcolour(struct_param(%varplayer_10946, param_8860), interface_1171:com_5);
+        if_setcolour(struct_param(%varplayer_10946, param_8860), interface_1171:com_24);
+        if_setcolour(struct_param(%varplayer_10946, param_8860), interface_1171:com_25);
+    }
+} else if ($int9 > $int7 & $int9 < $int8) {
+    if ($int2 = 0) {
+        $int9 = calc($int9 - $int7);
+        if_setmodelzoom(calc(2000 + scale(1500, 100, $int9)), interface_1171:com_18);
+        if_setmodelzoom(calc(2000 + scale(1500, 100, $int9)), interface_1171:com_19);
+        $int9 = calc(255 - scale(255, 100, $int9));
+        if (~script17757 = false) {
+            if_settrans(calc(255 - $int9), interface_1171:com_7);
+            if_settrans(calc(255 - $int9), interface_1171:com_8);
+            if_settrans(calc(255 - $int9), interface_1171:com_6);
+            if_settrans(calc(255 - $int9), interface_1171:com_29);
+        }
+    }
+    if_sethide(false, interface_1171:com_15);
+} else if ($int9 >= $int8) {
+    if_sethide(true, interface_1171:com_18);
+    if_sethide(true, interface_1171:com_19);
+    if_sethide(false, interface_1171:com_12);
+    if (%varplayer_10946 ! null) {
+        if_setonvartransmit("script17545{varplayer_10937, varplayer_10938, varplayer_10939, varplayer_10940, varplayer_10941, varplayer_10942, varplayer_10943}", interface_1171:com_25);
+    }
+    if_setontimer(null, interface_1171:com_26);
+}
