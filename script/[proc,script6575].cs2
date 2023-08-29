@@ -3,7 +3,7 @@
 db_find(dbtable_238:col0, %varplayerbit_54002);
 def_dbrow $dbrow0 = db_findnext;
 if ($dbrow0 = null) {
-    error("Null dbrow");
+    ~error("Null dbrow");
     return;
 }
 def_dbrow $dbrow1 = null;
@@ -24,7 +24,7 @@ def_int $int14 = 0;
 while ($int14 < 4) {
     $dbrow1 = ~script7480($int14);
     if ($dbrow1 = null) {
-        error("Null progress bar data for <tostring($int14)>");
+        ~error("Null progress bar data for <tostring($int14)>");
         return;
     }
     if_settext(enum(int, string, enum_17001, calc($int13 + $int14)), db_getfield($dbrow1, dbtable_239:col2, 0));
@@ -44,29 +44,37 @@ while ($int14 < 4) {
         $component4 = db_getfield($dbrow1, dbtable_239:col6, 0);
         if_setobject_nonum($obj9, 1, $component4);
         if_setsize(36, 32, ^setsize_abs, ^setsize_abs, $component4);
-        ~script3536(achievement_getreward($achievement7), $component4, -1);
+        if_setonop("script17834($achievement7, $obj9)", $component4);
     } else {
         if_sethide(true, $component3);
     }
     $category2 = null;
     $int14 = calc($int14 + 1);
 }
+if ($achievement5 = null & $achievement6 ! null) {
+    $achievement5 = $achievement6;
+}
+cc_deleteall(interface_755:com_6);
 if ($achievement5 ! null) {
     achievement_findparents($achievement5);
     $achievement7 = achievement_findnext;
     if_settext("Recommended Task: <achievement_getname($achievement5)>", interface_755:com_4);
     if_settext("<achievement_getname($achievement7)><br>Task Description: <~achievement_description($achievement5)>", interface_755:com_5);
     if_setgraphic(achievement_sprite($achievement5), interface_755:com_3);
-} else if ($achievement6 ! null) {
-    achievement_findparents($achievement6);
-    $achievement7 = achievement_findnext;
-    if_settext("Recommended Task: <achievement_getname($achievement6)>", interface_755:com_4);
-    if_settext("<achievement_getname($achievement7)><br>Task Description: <~achievement_description($achievement6)>", interface_755:com_5);
-    if_setgraphic(achievement_sprite($achievement6), interface_755:com_3);
+    if (if_find(interface_755:com_6) = true) {
+        cc_create(interface_755:com_6, ^iftype_graphic, 0);
+        cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
+        cc_setnoclickthrough(true);
+        ~cheevo_update_pin(interface_755:com_6, 0, $achievement5);
+    }
+    if_sethide(false, interface_755:com_6);
+    if_setposition(60, 4, ^setpos_abs_left, ^setpos_abs_top, interface_755:com_4);
 } else {
     if_settext("All tasks completed!", interface_755:com_4);
     if_settext("", interface_755:com_5);
     if_setgraphic($graphic8, interface_755:com_3);
+    if_sethide(true, interface_755:com_6);
+    if_setposition(45, 4, ^setpos_abs_left, ^setpos_abs_top, interface_755:com_4);
 }
 def_int $int15 = -1;
 $int14 = $int12;
@@ -80,12 +88,12 @@ while (--$int14 >= 0) {
 if ($int15 = -1) {
     $int15 = calc($int12 - 1);
 }
-if_settext(enum(int, string, enum_17002, calc($int15 + $int13)), interface_755:com_29);
-~script1025(interface_755:com_29, -1, fontmetrics_209, fontmetrics_208, fontmetrics_207);
+if_settext(enum(int, string, enum_17002, calc($int15 + $int13)), interface_755:com_79);
+~script1025(interface_755:com_79, -1, fontmetrics_209, fontmetrics_208, fontmetrics_207);
 $achievement7 = ~script8438($dbrow0, $int15);
 $obj9 = ~script11707($dbrow0, $int15);
-if_setobject_highres($obj9, interface_755:com_31);
-~script3536(achievement_getreward($achievement7), interface_755:com_31, -1);
-if_settext(~oc_name($obj9), interface_755:com_32);
-if_settext(~achievement_description($achievement7), interface_755:com_33);
-~script1025(interface_755:com_33, -1, fontmetrics_208, fontmetrics_207, fontmetrics_206);
+if_setobject_highres($obj9, interface_755:com_81);
+if_settext(~oc_name($obj9), interface_755:com_82);
+if_settext(~achievement_description($achievement7), interface_755:com_83);
+~script1025(interface_755:com_83, -1, fontmetrics_208, fontmetrics_207, fontmetrics_206);
+if_setonop("script17834($achievement7, $obj9)", interface_755:com_84);
