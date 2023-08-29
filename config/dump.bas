@@ -29043,3 +29043,17 @@ readyanim=seq_34039,seq_35559
 [bas_4729]
 readyanim=seq_35566,null
 
+// 4730
+[bas_4730]
+readyanim_l=seq_35575
+readyanim_r=seq_35575
+runanim=seq_35576
+readyanim=seq_35574,seq_35575
+
+// 4731
+[bas_4731]
+readyanim_l=seq_35578
+readyanim_r=seq_35578
+runanim=seq_35577
+readyanim=seq_35579,seq_35578
+
