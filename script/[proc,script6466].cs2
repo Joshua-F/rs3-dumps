@@ -41,6 +41,12 @@ def_bas $bas18 = bas_1426;
 def_int $int19 = 0;
 def_int $int20 = 0;
 def_enum $enum21 = null;
+def_dbrow $dbrow22 = struct_param($struct0, param_5418);
+def_int $int23 = 0;
+def_string $string0 = "0";
+def_struct $struct24 = null;
+def_int $int25 = 0;
+def_int $int26 = 0;
 if (~script6488($struct0) = 0) {
     if (~script7388($struct0) = 1) {
         $graphic11 = "rs3_btn_wardrobe_selection,6";
@@ -100,30 +106,41 @@ if (~script6488($struct0) = 0) {
             $rgb13 = ^white;
         }
     }
+} else if ($int5 = 3 & $dbrow22 ! null) {
+    $int25 = db_getfieldcount($dbrow22, dbtable_256:col0);
+    while ($int26 < $int25 & $graphic11 ! "rs3_btn_wardrobe_selection,4") {
+        $int23, $string0, $struct24 = db_getfield($dbrow22, dbtable_256:col0, $int26);
+        if (~script6489($struct24) = 1) {
+            $graphic11 = "rs3_btn_wardrobe_selection,4";
+            $graphic12 = "rs3_btn_wardrobe_selection,5";
+            $rgb13 = ^white;
+        }
+        $int26 = calc($int26 + 1);
+    }
 }
-def_int $int22 = 0;
+def_int $int27 = 0;
 switch_int ($int5) {
     case 1 :
-        $int22 = 155;
+        $int27 = 155;
     case 5 :
-        $int22 = 205;
+        $int27 = 205;
     case 2 :
-        $int22 = 285;
+        $int27 = 285;
     case default :
-        $int22 = 225;
+        $int27 = 225;
 }
 cc_create($component7, ^iftype_graphic, $int8);
 cc_setgraphic($graphic11);
 if ($int3 = 1) {
-    cc_setsize(calc($int22 - 10), calc(26 - 0), ^setsize_abs, ^setsize_abs);
+    cc_setsize(calc($int27 - 10), calc(26 - 0), ^setsize_abs, ^setsize_abs);
 } else {
     cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
 }
-cc_setposition(calc($int2 * $int22 + ($int22 - cc_getwidth) / 2), calc($int1 + (26 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setposition(calc($int2 * $int27 + ($int27 - cc_getwidth) / 2), calc($int1 + (26 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
 cc_setop(1, "Preview");
-if ($graphic11 = "rs3_btn_wardrobe_selection,4" & $int5 ! 1 & $int5 ! 5) {
+if ($graphic11 = "rs3_btn_wardrobe_selection,4" & $int5 ! 1 & $int5 ! 5 & $dbrow22 = null) {
     cc_setop(2, "Deactivate");
-} else if ($int19 = 0 & $int20 = 0 & ($graphic11 = "rs3_btn_wardrobe_selection,2" | $graphic11 = "rs3_btn_wardrobe_selection,7") & $int5 ! 5) {
+} else if ($int19 = 0 & $int20 = 0 & ($graphic11 = "rs3_btn_wardrobe_selection,2" | $graphic11 = "rs3_btn_wardrobe_selection,7") & $int5 ! 5 & $dbrow22 = null) {
     cc_setop(2, "Activate");
 } else if ($int5 = 5 & struct_param($struct0, param_6973) = 1) {
     cc_setop(2, "Recolour");
@@ -140,46 +157,46 @@ if ($int5 = 2 & $int6 = 19) {
         cc_setop(3, "");
     }
 }
-def_string $string0 = "";
 def_string $string1 = "";
-def_enum $enum23 = null;
+def_string $string2 = "";
+def_enum $enum28 = null;
 if ($int5 = 1) {
     if ($int6 = 1 | $int6 = 3 | $int6 = 4) {
         if (gender = 1) {
-            $enum23 = enum_2341;
+            $enum28 = enum_2341;
         } else {
-            $enum23 = enum_2338;
+            $enum28 = enum_2338;
         }
-        $string0 = struct_param(enum(int, struct, $enum23, struct_param($struct0, param_2772)), param_792);
+        $string1 = struct_param(enum(int, struct, $enum28, struct_param($struct0, param_2772)), param_792);
     } else if ($int6 = 2 | $int6 = 5) {
-        $string0 = enum(int, string, enum_2340, struct_param($struct0, param_2772));
+        $string1 = enum(int, string, enum_2340, struct_param($struct0, param_2772));
     }
 } else if ($int6 = 19) {
     if (~script9964($struct0) = null) {
-        $string0 = struct_param($struct0, param_2533);
+        $string1 = struct_param($struct0, param_2533);
     } else {
-        $string0 = "Cosmetic <lowercase(oc_name(~script9964($struct0)))>";
-        if (string_length($string0) > 27) {
-            $string1 = $string0;
-            $string0 = "<substring($string0, 0, 24)>...";
+        $string1 = "Cosmetic <lowercase(oc_name(~script9964($struct0)))>";
+        if (string_length($string1) > 27) {
+            $string2 = $string1;
+            $string1 = "<substring($string1, 0, 24)>...";
         }
     }
 } else {
-    $string0 = struct_param($struct0, param_2533);
+    $string1 = struct_param($struct0, param_2533);
 }
 cc_create($component7, ^iftype_text, calc($int8 + 1));
-cc_settext($string0);
+cc_settext($string1);
 cc_settextfont(fontmetrics_26);
 cc_setcolour($rgb13);
 if ($int3 = 1) {
-    cc_setsize(calc($int22 - 10), calc(26 - 0), ^setsize_abs, ^setsize_abs);
+    cc_setsize(calc($int27 - 10), calc(26 - 0), ^setsize_abs, ^setsize_abs);
 } else {
     cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
 }
-cc_setposition(calc($int2 * $int22 + ($int22 - cc_getwidth) / 2), calc($int1 + (26 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setposition(calc($int2 * $int27 + ($int27 - cc_getwidth) / 2), calc($int1 + (26 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
-if (string_length($string1) > 1) {
-    ~script14990(0, $string1);
+if (string_length($string2) > 1) {
+    ~script14990(0, $string2);
 }
 cc_create($component7, ^iftype_graphic, calc($int8 + 2));
 cc_setgraphic(struct_param($struct0, param_2534));
@@ -188,7 +205,7 @@ if ($int3 = 1) {
 } else {
     cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
 }
-cc_setposition(calc($int2 * $int22 + ($int22 - cc_getwidth) / 2), calc($int1 + (26 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setposition(calc($int2 * $int27 + ($int27 - cc_getwidth) / 2), calc($int1 + (26 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
 if ($int3 = 1) {
     if_setsize(0, calc($int1 + 26), ^setsize_minus, ^setsize_abs, $component7);
     $int1 = calc($int1 + 26);

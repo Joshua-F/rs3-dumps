@@ -33,8 +33,15 @@ if (%varplayer_9853 ! null) {
     if_settext("as a bonus reward.", interface_1253:com_263);
     $int2 = 1;
 }
-if (~trh_promo_current = struct_39801 & ~script16422 > 0) {
-    $int3 = 1;
+switch_struct ($struct0) {
+    case struct_39801 :
+        if (~script16422 > 0) {
+            $int3 = 1;
+        }
+    case struct_21098 :
+        if (~script6735 > 0) {
+            $int3 = 1;
+        }
 }
 def_boolean $boolean7 = ~is_mobile_client;
 if ($int1 = 1) {
@@ -74,7 +81,7 @@ if ($int2 = 1) {
     if_sethide(true, interface_1253:com_256);
 }
 if ($int3 = 1) {
-    ~script16442;
+    ~script6754($struct0);
     if_sethide(false, interface_1253:com_264);
 } else {
     if_sethide(true, interface_1253:com_264);

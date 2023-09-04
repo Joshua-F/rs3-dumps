@@ -1,0 +1,88 @@
+// 18115
+[clientscript,script18115]
+def_graphic $graphic0 = null;
+def_int $int1 = 0;
+def_int $int2 = 0;
+~script17927;
+switch_int (map_lang) {
+    case default :
+        $graphic0 = bp3_heropass_title;
+        $int1 = 1337;
+        $int2 = 178;
+    case 1 :
+        $graphic0 = bp3_heropass_title_de;
+        $int1 = 1321;
+        $int2 = 147;
+    case 2 :
+        $graphic0 = bp3_heropass_title_fr;
+        $int1 = 1481;
+        $int2 = 165;
+    case 3 :
+        $graphic0 = bp3_heropass_title_pt;
+        $int1 = 1529;
+        $int2 = 145;
+}
+$int1 = calc($int1 / 2);
+$int2 = calc($int2 / 2);
+if_setgraphic($graphic0, interface_1229:com_10);
+if_setsize($int1, $int2, ^setsize_abs, ^setsize_abs, interface_1229:com_10);
+~script17927;
+~cc_add_button(interface_1229:com_6, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, ~script17989(27), "");
+cc_setop(1, "Begin Hero Pass");
+~cc_add_text(interface_1229:com_6, 1, 0, 0, ^setpos_abs_left, ^setpos_abs_bottom, 0, 80, ^setsize_minus, ^setsize_abs, dbrow_2195, "Begin<br>Hero Pass");
+cc_settextfont(fontmetrics_95);
+cc_setcolour(0xe0d471);
+cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
+cc_settextshadow(true);
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 450;
+def_component $component6 = interface_1229:com_5;
+cc_deleteall($component6);
+~cc_add_graphic($component6, 1, $int3, $int4, ^setpos_abs_centre, ^setpos_abs_centre, $int5, $int5, ^setsize_abs, ^setsize_abs, bp3_vfx_spiral_gold);
+cc_setontimer("script17942($component6, 1, -1500)");
+cc_set2dangle(16384);
+~cc_add_graphic($component6, 2, $int3, $int4, ^setpos_abs_centre, ^setpos_abs_centre, $int5, $int5, ^setsize_abs, ^setsize_abs, bp3_vfx_spiral_gold);
+cc_setontimer("script17942($component6, 2, -1500)");
+cc_set2dangle(49152);
+$component6 = interface_1229:com_7;
+cc_deleteall($component6);
+~cc_add_graphic($component6, 1, $int3, $int4, ^setpos_abs_centre, ^setpos_abs_centre, $int5, $int5, ^setsize_abs, ^setsize_abs, bp3_vfx_spiral_gold);
+cc_setontimer("script17942($component6, 1, -1500)");
+cc_settrans(204);
+cc_set2dangle(16384);
+~cc_add_graphic($component6, 2, $int3, $int4, ^setpos_abs_centre, ^setpos_abs_centre, $int5, $int5, ^setsize_abs, ^setsize_abs, bp3_vfx_spiral_gold);
+cc_setontimer("script17942($component6, 2, -1500)");
+cc_settrans(204);
+cc_set2dangle(49152);
+def_int $int7 = 0;
+def_int $int8 = 0;
+$int7 = 529;
+$int8 = 1920;
+~script4264(interface_1229:com_1, 2, 2);
+~script1636(interface_1229:com_1, bp3_vfx_cloud_layer_middle_purple, $int7, $int8, 2, 25, ^setpos_abs_centre, 0);
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+$int9, $int10, $int11 = ~script18040(~script17853);
+def_string $string0 = "You're currently level <col=2EF8FF><tostring_localised($int9, true)></col> with <col=2EF8FF><tostring_localised($int10, true)></col> / <col=2EF8FF><tostring_localised($int11, true)></col> Hero points.<br>";
+if ((%varplayer_11331 > 0 | %varplayer_11332 > 0) & %varplayer_11333 = ~script17857(~script17853)) {
+    if (%varplayer_11331 > 0) {
+        $string0 = append($string0, "<br> - Your Yak Track skips have converted to <col=2EF8FF><tostring_localised(%varplayer_11331, true)></col> levels.");
+    }
+    if (%varplayer_11332 > 0) {
+        $string0 = append($string0, "<br> - Your Challenge skip tokens have converted to <col=2EF8FF><tostring_localised(%varplayer_11332, true)></col> Hero points.");
+    }
+}
+if (~script17894 = true) {
+    if (~script17854 = null) {
+        $string0 = append($string0, "<br> - Your progress booster from Forinthry Frontier Yak Track earnt you <col=2EF8FF><tostring_localised(10, true)></col> levels.");
+    } else {
+        $string0 = append($string0, "<br> - Your progress booster from <~script17888(~script17854)> earnt you <col=2EF8FF><tostring_localised(10, true)></col> levels.");
+    }
+} else if (~script17854 = null) {
+    $string0 = append($string0, "<br> - If unlocked, the progress booster from Forinthry Frontier Yak Track would've awarded <tostring_localised(10, true)> levels.");
+} else {
+    $string0 = append($string0, "<br> - If unlocked, the progrss booster from <~script17888(~script17854)> would've awarded <tostring_localised(10, true)> levels.");
+}
+if_settext($string0, interface_1229:com_22);

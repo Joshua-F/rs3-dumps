@@ -5,18 +5,11 @@ if (~script5759($dbrow0) = false) {
 }
 def_int $int1 = 0;
 switch_dbrow ($dbrow0) {
-    case dbrow_3467 :
-        if (%varplayerbit_52284 > 0) {
-            $int1 = max(0, calc(%varplayerbit_52284 - %varplayerbit_52285));
-        }
-        return(calc($int1 + %varplayerbit_52285 + %varplayerbit_50444), 0);
-    case dbrow_6582 :
-        return(%varplayerbit_52285, 0);
-    case dbrow_6583 :
-        return(%varplayerbit_50444, 0);
     case dbrow_5347 :
         if (platformtype = ^platformtype_apple | platformtype = ^platformtype_android) {
             $int1 = %varplayerbit_52420;
+        } else {
+            $int1 = calc($int1 + bitcount(%varplayer_11334));
         }
         return(calc($int1 + %varplayerbit_52419 + %varplayerbit_54074), 0);
     case dbrow_5348 :
@@ -27,6 +20,20 @@ switch_dbrow ($dbrow0) {
         return(%varplayerbit_54074, 0);
     case dbrow_7880 :
         return(%varplayerbit_54074, 0);
+    case dbrow_7881 :
+        if (platformtype = ^platformtype_apple | platformtype = ^platformtype_android) {
+            $int1 = 0;
+        } else {
+            $int1 = calc($int1 + bitcount(%varplayer_11334));
+        }
+        return($int1, 0);
+    case dbrow_7882 :
+        if (platformtype = ^platformtype_apple | platformtype = ^platformtype_android) {
+            $int1 = calc($int1 + bitcount(%varplayer_11334));
+        } else {
+            $int1 = 0;
+        }
+        return($int1, 0);
     case dbrow_3461 :
         if (~ironman_mode = true | ~script248 = true) {
             return(0, 0);
