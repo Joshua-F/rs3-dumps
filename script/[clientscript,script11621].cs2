@@ -1,38 +1,63 @@
 // 11621
-[clientscript,script11621](struct $struct0, int $int1, int $int2, int $int3, component $component4, component $component5, component $component6)
+[clientscript,script11621](struct $struct0, int $int1, int $int2, int $int3, component $component4, component $component5, component $component6, dbrow $dbrow7)
 if_setontimer(null, $component4);
 if ($int2 ! 0) {
     $int2 = calc($int2 - 1);
-    if_setontimer("script11621($struct0, $int1, $int2, $int3, $component4, $component5, $component6)", $component4);
+    if_setontimer("script11621($struct0, $int1, $int2, $int3, $component4, $component5, $component6, $dbrow7)", $component4);
     return;
 }
-def_int $int7 = 0;
 def_int $int8 = 0;
 def_int $int9 = 0;
-$int7, $int8, $int9 = ~script16789($struct0);
-def_int $int10 = struct_param($struct0, param_8667);
-def_int $int11 = struct_param($struct0, param_2997);
-if ($int11 = 0) {
-    $int11 = if_getmodelyof($component5);
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+$int13, $int9, $int11 = ~script16789($struct0);
+if ($dbrow7 ! null) {
+    if (db_getrowtable($dbrow7) ! dbtable_254) {
+        ~error("Invalid table in positional data.");
+        return;
+    }
+    $int8 = db_getfield($dbrow7, dbtable_254:col0, 0);
+    $int9 = db_getfield($dbrow7, dbtable_254:col1, 0);
+    $int10 = db_getfield($dbrow7, dbtable_254:col2, 0);
+    $int11 = db_getfield($dbrow7, dbtable_254:col3, 0);
+    $int12 = db_getfield($dbrow7, dbtable_254:col4, 0);
+    $int13 = db_getfield($dbrow7, dbtable_254:col5, 0);
 }
-def_int $int12 = struct_param($struct0, param_8746);
-def_int $int13 = struct_param($struct0, param_8747);
-def_int $int14 = struct_param($struct0, param_8748);
-def_int $int15 = 0;
+def_int $int14 = 0;
 switch_int ($int1) {
     case 2 :
+        if ($dbrow7 = null) {
+            $int8 = 0;
+            $int10 = 0;
+            $int12 = 0;
+        }
         if_sethide(false, $component5);
-        if_setmodelangle(0, $int8, 0, $int9, 0, $int7, $component5);
+        if_setmodelangle($int8, $int9, $int10, $int11, $int12, $int13, $component5);
     case 5 :
+        if ($dbrow7 = null) {
+            $int8 = struct_param($struct0, param_8667);
+            $int9 = if_getmodelyof($component5);
+            $int10 = struct_param($struct0, param_8746);
+            $int11 = struct_param($struct0, param_8747);
+            $int12 = struct_param($struct0, param_8748);
+            $int13 = if_getmodelzoom($component5);
+        }
         if_sethide(false, $component5);
-        if_setmodelangle($int10, $int11, $int12, $int13, $int14, if_getmodelzoom($component5), $component5);
+        if_setmodelangle($int8, $int9, $int10, $int11, $int12, $int13, $component5);
     case 4 :
         if_sethide(false, $component5);
-        while ($int15 < $int3) {
-            if (cc_findbycategory($component5, 0, $int15) = 1) {
-                cc_setmodelangle(0, $int8, 0, $int9, 0, $int7);
+        if ($dbrow7 = null) {
+            $int8 = 0;
+            $int10 = 0;
+            $int12 = 0;
+        }
+        while ($int14 < $int3) {
+            if (cc_findbycategory($component5, 0, $int14) = 1) {
+                cc_setmodelangle($int8, $int9, $int10, $int11, $int12, $int13);
             }
-            $int15 = calc($int15 + 1);
+            $int14 = calc($int14 + 1);
         }
     case default :
         if_sethide(false, $component5);

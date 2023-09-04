@@ -1,0 +1,28 @@
+// 18116
+[proc,script18116](struct $struct0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7)
+if (%varclient_1963 = 0) {
+    return;
+}
+def_enum $enum8 = struct_param($struct0, param_5166);
+def_npc $npc9 = enum(int, npc, $enum8, $int1);
+def_int $int10 = 0;
+if (cc_find(interface_1311:com_344, 0) = true & $int6 = 0) {
+    $int5 = cc_getmodelangle_y;
+    $int10 = cc_getmodelzoom;
+    $int3 = cc_getmodelyof;
+} else {
+    $int10 = calc(300 + $int2);
+    $int3 = calc(100 + $int3);
+}
+if ($int7 = 1) {
+    cc_deleteall(interface_1311:com_344);
+}
+cc_create(interface_1311:com_344, ^iftype_model, if_getnextsubid(interface_1311:com_344));
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setnpcmodel($npc9);
+cc_setmodelangle(0, $int3, $int4, $int5, 10, $int10);
+cc_setmodelanim(struct_param($struct0, param_5167));
+if_sethide(true, interface_1311:com_466);
+def_enum $enum11 = struct_param($struct0, param_6126);
+~script18117(enum_getoutputcount($enum11), $int1);

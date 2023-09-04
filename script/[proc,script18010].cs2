@@ -1,0 +1,42 @@
+// 18010
+[proc,script18010]
+if (%varplayer_11339 = null) {
+    return;
+}
+def_dbrow $dbrow0 = %varplayer_11339;
+if (db_getrowtable($dbrow0) ! dbtable_242) {
+    ~error("Invalid table.");
+    return;
+}
+~script18030($dbrow0);
+def_component $component1 = interface_1227:com_40;
+cc_deleteall($component1);
+def_component $component2 = interface_1227:com_41;
+cc_deleteall($component2);
+def_int $int3 = db_getfield($dbrow0, dbtable_242:col3, 0);
+def_int $int4 = 100;
+def_int $int5 = ~script18011;
+~cc_add_panel($component2, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, false, $int5);
+~cc_add_panel($component1, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, false, $int5);
+def_int $int6 = ~script18020;
+def_int $int7 = 1;
+def_int $int8 = 0;
+while ($int7 <= $int6) {
+    $int8 = ~script18017($int7);
+    if (cc_findbycategory($component2, 0, 0) = 1) {
+        ~cc_add_child_layer(1, $int7, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus);
+        ~cc_add_child_layer(2, $int8, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus);
+    }
+    if (cc_findbycategory($component1, 0, 0) = 1) {
+        ~cc_add_child_layer(1, $int7, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus);
+        ~cc_add_child_layer(2, $int8, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus);
+    }
+    $int7 = calc($int7 + 1);
+}
+def_component $component9 = interface_1227:com_36;
+~script17927;
+def_int $int10 = calc($int6 * ($int4 + $int5));
+if_setscrollpos(0, 0, $component9);
+if_setscrollsize($int10, if_getheight($component9), $component9);
+~rs3_scrollbar_horizontal(interface_1227:com_35, $component9);
+if_setontimer("script18012(15, 1, $dbrow0, 0, 3, 0, 3, 0)", interface_1227:com_33);

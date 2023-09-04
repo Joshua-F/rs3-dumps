@@ -4,24 +4,14 @@ switch_int (%varplayerbit_51273) {
     case 1 :
         if_sethide(true, interface_891:com_10);
         if_sethide(false, interface_891:com_21);
-    case default :
-        if_sethide(true, interface_891:com_13);
-        if (%varplayerbit_51272 = 1) {
-            if_sethide(true, interface_891:com_10);
-            if_sethide(false, interface_891:com_21);
-        } else {
-            switch_int (%varplayerbit_51273) {
-                case 0 :
-                    if_settext("You do not have enough RuneCoins.", interface_891:com_10);
-                case 2 :
-                    if (%varplayer_5148 = null) {
-                        ~error("Couldn't set the correct Oddments currency name when telling players they don't have enough of it, because %rewardshop_struct was null.");
-                        if_settext("You cannot afford this item.", interface_891:com_10);
-                    } else {
-                        if_settext("You do not have enough <struct_param(%varplayer_5148, param_4844)>.", interface_891:com_10);
-                    }
-            }
-            if_sethide(false, interface_891:com_10);
+    case 2 :
+        if (%varplayerbit_54119 = 0) {
             if_sethide(true, interface_891:com_21);
+            if_sethide(false, interface_891:com_10);
+            if_settext("You do not meet the requirements to claim this item.", interface_891:com_10);
+        } else {
+            ~script18122;
         }
+    case default :
+        ~script18122;
 }
