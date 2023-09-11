@@ -9,6 +9,8 @@ def_int $int8 = 0;
 def_int $int9 = 0;
 def_stat $stat10 = null;
 def_int $int11 = 0;
+def_dbrow $dbrow12 = null;
+def_string $string1 = "";
 switch_int ($int0) {
     case default :
         return("");
@@ -52,5 +54,12 @@ switch_int ($int0) {
             return("<tostring(~script3603($int1))>/<tostring(~script3605($int1))>");
         }
     case 10 :
-        return("<db_getfield(db_getfield(~script17905($int1), dbtable_249:col2:0, 0), dbtable_250:col1, 0)> <br><br> <tostring(~script17903($int1))>/<tostring(db_getfield(~script17905($int1), dbtable_249:col4, 0))>");
+        $dbrow12 = ~script17905($int1);
+        $string0 = db_getfield(db_getfield($dbrow12, dbtable_249:col2:0, 0), dbtable_250:col1, 0);
+        $string1 = ~script18073($dbrow12);
+        if (string_length($string1) > 0) {
+            $string0 = append($string0, "<br><$string1>");
+        }
+        $string0 = append($string0, "<br><br><tostring(~script17903($int1))>/<tostring(db_getfield($dbrow12, dbtable_249:col4, 0))>");
+        return($string0);
 }
