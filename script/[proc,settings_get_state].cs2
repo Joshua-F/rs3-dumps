@@ -856,10 +856,10 @@ switch_struct ($struct0) {
         return(%varplayerbit_53847);
     case struct_47643 :
         return(%varplayerbit_54038);
-    case struct_45622 :
-        return(%varplayerbit_54457);
     case struct_26438 :
         return(%varplayerbit_54442);
+    case struct_47194 :
+        return(%varplayerbit_54463);
 }
 def_int $int1 = struct_param($struct0, param_7538);
 if ($int1 >= 0) {
@@ -869,6 +869,10 @@ if ($int1 >= 0) {
     return(0);
 }
 if (struct_param($struct0, param_7536) = false) {
-    ~error("GET: The struct for '<struct_param($struct0, param_7527)>' does not have an entry.");
+    if ($struct0 ! null & struct_param($struct0, param_8966) ! null) {
+        return(var_reference_get(struct_param($struct0, param_8966)));
+    } else {
+        ~error("GET: The struct for '<struct_param($struct0, param_7527)>' does not have an entry, and doesn't use settings_var_reference");
+    }
 }
 return(0);

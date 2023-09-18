@@ -1,0 +1,30 @@
+// 10619
+[proc,script10619](int $int0, component $component1, component $component2, dbrow $dbrow3)
+def_obj $obj4 = null;
+def_int $int5 = 0;
+def_int $int6 = calc(~script10582($int0) + 1);
+$obj4, $int5 = ~script10516($int0);
+if ($obj4 = null) {
+    if_setgraphic(icon_tick, $component1);
+    if_settext("Collected", $component2);
+    if (if_find($component1) = true) {
+        cc_setop(1, null);
+        cc_setonop(null);
+        cc_setopcursor(1, null);
+        cc_setonmouserepeat(null);
+    }
+    return;
+}
+if_setobject($obj4, $int5, $component1);
+def_string $string0 = oc_name($obj4);
+if (if_find($component1) = true) {
+    cc_setop(1, "Select");
+    cc_setonop("script16499($dbrow3, 0)");
+    cc_setopcursor(1, cursor_46);
+    cc_setonmouserepeat("script3876($string0, event_com, event_comsubid)");
+}
+if ($int6 > 1) {
+    if_settext("in <tostring($int6)> more", $component2);
+} else {
+    if_settext("in next", $component2);
+}
