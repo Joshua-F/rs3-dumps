@@ -195,16 +195,24 @@ switch_int ($int1) {
             ~dynamic_dropdown_open($component0, -1, null, -1, enum_12199, null, calc(enum_getoutputcount(enum_12199) - 1), -1, 0, 0);
         }
     case 5 :
-        %varclientbit_35134 = 1;
-        ~script13163;
-        ~script13171(max(if_getheight(interface_1843:com_183), if_getscrollheight(interface_1843:com_183)));
-        ~script13176;
+        if (%varclientbit_35134 ! 1) {
+            %varclientbit_35134 = 1;
+            ~script13163;
+            if (if_find(interface_1843:com_183) = true) {
+                ~script13171(cc_getscrollheight, 1);
+            }
+            ~script13176;
+        }
         return(true);
     case 6 :
-        %varclientbit_35134 = 0;
-        ~script13163;
-        ~script13172(if_getscrollwidth(interface_1843:com_261));
-        ~script13177;
+        if (%varclientbit_35134 ! 0) {
+            %varclientbit_35134 = 0;
+            ~script13163;
+            if (if_find(interface_1843:com_261) = true) {
+                ~script13172(cc_getscrollwidth, 1);
+            }
+            ~script13177;
+        }
         return(true);
     case default :
         return(false);

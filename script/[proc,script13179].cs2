@@ -1,35 +1,40 @@
 // 13179
-[proc,script13179](component $component0, struct $struct1)
-if ($component0 = null | $struct1 = null) {
+[proc,script13179](component $component0, dbrow $dbrow1)
+def_struct $struct2 = null;
+def_struct $struct3 = null;
+def_graphic $graphic4 = null;
+$struct2, $struct3, $graphic4 = ~script13178($dbrow1);
+if ($component0 = null | $struct2 = null) {
     return;
 }
-def_struct $struct2 = ~script9984($struct1, 6);
-if ($struct2 = null) {
+def_struct $struct5 = ~script9984($struct2, 6);
+if ($struct5 = null) {
     return;
 }
-def_fontmetrics $fontmetrics3 = struct_param($struct2, param_3810);
-def_int $rgb4 = struct_param($struct2, param_3811);
-def_int $int5 = calc(2 + 1);
-def_int $int6 = calc(if_getwidth($component0) - $int5 * 2);
-def_int $int7 = calc(if_getheight($component0) - $int5 * 2);
-def_int $int8 = inv_size(inv_675);
-def_int $int9 = if_getnextsubid($component0);
-cc_settextfont($fontmetrics3);
+def_fontmetrics $fontmetrics6 = struct_param($struct5, param_3810);
+def_int $rgb7 = struct_param($struct5, param_3811);
+def_int $int8 = calc(2 + 1);
+def_int $int9 = calc(if_getwidth($component0) - $int8 * 2);
+def_int $int10 = calc(if_getheight($component0) - $int8 * 2);
+def_int $int11 = inv_size(inv_675);
+def_int $int12 = if_getnextsubid($component0);
+cc_create($component0, ^iftype_text, $int12++);
+cc_settextfont($fontmetrics6);
 cc_settextshadow(true);
-cc_setposition($int5, $int5, ^setpos_abs_left, ^setpos_abs_top);
+cc_setposition($int8, $int8, ^setpos_abs_left, ^setpos_abs_top);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-cc_setsize($int6, $int7, ^setsize_abs, ^setsize_abs);
-cc_setcolour($rgb4);
+cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
+cc_setcolour($rgb7);
 def_string $string0 = "";
 if (%varclient_5939 = 0) {
     $string0 = "The Keepsake Box can store wearable items as cosmetic overrides.";
 } else {
-    $string0 = "Keepsake slots available:<br><tostring(calc($int8 - %varclient_5939))> / <tostring($int8)>";
+    $string0 = "Keepsake slots available:<br><tostring(calc($int11 - %varclient_5939))> / <tostring($int11)>";
 }
-def_int $int10 = 34;
-def_int $int11 = 35;
-def_int $int12 = 0;
-.cc_create($component0, ^iftype_graphic, $int9++);
+def_int $int13 = 34;
+def_int $int14 = 35;
+def_int $int15 = 0;
+.cc_create($component0, ^iftype_graphic, $int12++);
 if (%varplayer_6808 = 0) {
     $string0 = "<$string0><br><br>To add an item you'll need a Keepsake Key.";
     .cc_setgraphic(wardrobe_icon_keepsake_currency);
@@ -38,18 +43,18 @@ if (%varplayer_6808 = 0) {
     .cc_setgraphic(wardrobe_icon_drop_item);
 }
 cc_settext($string0);
-.cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
-$int12 = ~script7593($string0, $int6, $fontmetrics3, 0);
-$int7 = calc($int7 - $int11 - 4);
-if ($int12 > $int7) {
-    cc_settext(~script3930($string0, $int6, calc($int7 / enum(fontmetrics, int, enum_8549, $fontmetrics3)), $fontmetrics3));
-    $int12 = min($int7, ~script7593(cc_gettext, $int6, $fontmetrics3, 0));
+.cc_setsize($int13, $int14, ^setsize_abs, ^setsize_abs);
+$int15 = ~script7593($string0, $int9, $fontmetrics6, 0);
+$int10 = calc($int10 - $int14 - 4);
+if ($int15 > $int10) {
+    cc_settext(~script3930($string0, $int9, calc($int10 / enum(fontmetrics, int, enum_8549, $fontmetrics6)), $fontmetrics6));
+    $int15 = min($int10, ~script7593(cc_gettext, $int9, $fontmetrics6, 0));
 }
-cc_setsize($int6, $int12, ^setsize_abs, ^setsize_abs);
-cc_setposition(cc_getx, calc($int5 + ($int7 - $int12) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize($int9, $int15, ^setsize_abs, ^setsize_abs);
+cc_setposition(cc_getx, calc($int8 + ($int10 - $int15) / 2), ^setpos_abs_left, ^setpos_abs_top);
 .cc_setposition(0, cc_gety, ^setpos_abs_centre, ^setpos_abs_bottom);
 if (%varplayer_6808 = 0) {
-    cc_create($component0, ^iftype_graphic, $int9++);
+    cc_create($component0, ^iftype_graphic, $int12++);
     cc_setgraphic(rs3_btn_add_currency_sml_nml);
     cc_setsize(11, 11, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc(.cc_getx + .cc_getwidth - cc_getwidth), calc(.cc_gety + .cc_getheight - cc_getheight), ^setpos_abs_left, ^setpos_abs_top);

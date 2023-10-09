@@ -3,33 +3,46 @@
 if ($struct0 = null) {
     return(-1);
 }
-def_int $int2 = -1;
+def_dbrow $dbrow2 = ~script15769($struct0);
+if ($dbrow2 = null & $struct0 ! struct_35691) {
+    ~error("Non-null $item_struct lacks a dbrow - <struct_param($struct0, param_2533)>");
+    return(-1);
+}
 def_int $int3 = -1;
-def_enum $enum4 = null;
-def_int $int5 = 0;
-def_int $int6 = -1;
-while (++$int2 <= 6) {
-    if ($int1 = 1 | ~script13106(~script13156, $int2) = true) {
-        $int3 = -1;
-        while (++$int3 <= 21) {
-            if ($int2 = 2) {
-                $enum4 = enum(int, enum, enum_8464, $int3);
+def_int $int4 = -1;
+def_enum $enum5 = null;
+def_int $int6 = 0;
+def_int $int7 = -1;
+while (++$int3 <= 6) {
+    if ($int1 = 1 | ~script13106(~script13156, $int3) = true) {
+        $int4 = -1;
+        while (++$int4 <= 21) {
+            if ($int3 = 2) {
+                $enum5 = enum(int, enum, enum_8464, $int4);
+                if ($enum5 ! null) {
+                    $int6 = enum_getoutputcount($enum5);
+                    if (enum_getreversecount(dbrow, $enum5, $dbrow2) = 0) {
+                        $int7 = calc($int7 + $int6);
+                    } else {
+                        return(calc($int7 + 1 + enum_getreverseindex(dbrow, int, $enum5, $dbrow2, 0)));
+                    }
+                }
             } else {
-                $enum4 = enum(int, enum, enum_5958, $int2);
-                $int3 = 21;
-            }
-            if ($enum4 ! null) {
-                $int5 = enum_getoutputcount($enum4);
-                if (enum_getreversecount(struct, $enum4, $struct0) = 0) {
-                    $int6 = calc($int6 + $int5);
-                } else {
-                    return(calc($int6 + 1 + enum_getreverseindex(struct, int, $enum4, $struct0, 0)));
+                $enum5 = enum(int, enum, enum_5958, $int3);
+                $int4 = 21;
+                if ($enum5 ! null) {
+                    $int6 = enum_getoutputcount($enum5);
+                    if (enum_getreversecount(struct, $enum5, $struct0) = 0) {
+                        $int7 = calc($int7 + $int6);
+                    } else {
+                        return(calc($int7 + 1 + enum_getreverseindex(struct, int, $enum5, $struct0, 0)));
+                    }
                 }
             }
         }
     }
 }
 if ($struct0 = struct_35691) {
-    return($int6);
+    return($int7);
 }
 return(-1);

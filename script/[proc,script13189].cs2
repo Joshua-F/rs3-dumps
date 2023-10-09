@@ -3,23 +3,24 @@
 if ($inv1 = null | $int2 < 0 | $int2 >= inv_size($inv1) | $obj3 = null | $int4 < 1) {
     return;
 }
-def_struct $struct5 = null;
-def_int $int6 = -1;
+def_int $int5 = -1;
+def_dbrow $dbrow6 = null;
 def_int $int7 = -1;
-if (if_find($component0) = true & cc_find(interface_1843:com_183, cc_param(param_6361)) = true) {
-    $struct5 = cc_param(param_4414);
-    if ($struct5 ! null & struct_param($struct5, param_2531) = 2 & calc(struct_param($struct5, param_2532) & struct_param($struct5, param_4397)) > -1) {
-        $int7 = struct_param($struct5, param_4397);
-        if ($int7 < inv_size(inv_675)) {
-            if (inv_getobj(inv_675, $int7) = null) {
-                if ($int7 = 0 | inv_getobj(inv_675, calc($int7 - 1)) ! null) {
+def_int $int8 = -1;
+if (if_find($component0) = true) {
+    $dbrow6 = ~script15768(cc_param(param_6361));
+    if ($dbrow6 ! null & ~script18206($dbrow6) = true) {
+        $int8 = db_getfield($dbrow6, dbtable_163:col15, 0);
+        if ($int8 < inv_size(inv_675)) {
+            if (inv_getobj(inv_675, $int8) = null) {
+                if ($int8 = 0 | inv_getobj(inv_675, calc($int8 - 1)) ! null) {
                     cc_deleteall(interface_1843:com_185);
-                    while (++$int6 < $int2) {
-                        cc_create(interface_1843:com_185, ^iftype_graphic, $int6);
+                    while (++$int7 < $int2) {
+                        cc_create(interface_1843:com_185, ^iftype_graphic, $int7);
                     }
-                    cc_create(interface_1843:com_185, ^iftype_graphic, $int6);
+                    cc_create(interface_1843:com_185, ^iftype_graphic, $int7);
                     cc_setobject($obj3, $int4);
-                    if_triggerop(interface_1843:com_185, $int6, 1);
+                    if_triggerop(interface_1843:com_185, $int7, 1);
                     return;
                 } else {
                     return;

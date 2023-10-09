@@ -1,0 +1,30 @@
+// 18167
+[proc,script18167](int $int0)
+def_string $string0 = "";
+def_string $string1 = "(Active)";
+def_string $string2 = "(Active)";
+def_int $int1 = 0;
+def_int $int2 = 0;
+if (%varclient_6728 > 0 | %varclient_6727 > 0) {
+    $int1 = 1;
+}
+if ((%varclient_7340 > 0 | %varclient_7339 > 0) & ~script15206 = false) {
+    $int2 = 1;
+}
+if (%varplayerbit_54479 = 1 & $int2 = 1 | %varplayerbit_47683 = 1 | $int0 = 1) {
+    $string1 = "(Paused)";
+}
+if (%varplayerbit_54479 = 0 & $int1 = 1 | %varplayerbit_47683 = 1 | $int0 = 1) {
+    $string2 = "(Paused)";
+}
+if ($int1 = 1) {
+    $string0 = "<$string0>Double XP Live time <$string1>: <~time_to_string(calc(%varclient_6727 / 60), calc(%varclient_6727 % 60), %varclient_6728, true, true)>";
+}
+if ($int2 = 1) {
+    if (string_length($string0) > 0) {
+        $string0 = "<$string0><br>";
+    }
+    $string0 = "<$string0>Double XP buff time <$string2>: <~time_to_string(calc(%varclient_7339 / 60), calc(%varclient_7339 % 60), %varclient_7340, true, true)>";
+    $string0 = "<$string0><br>Double XP buff days left: <tostring_localised(calc(%varplayerbit_54478 - date_runeday), true)>";
+}
+~script18172($string0, interface_584:com_3, -1);
