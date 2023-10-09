@@ -24325,3 +24325,22 @@ readyanim_r=seq_35578
 runanim=seq_35577
 readyanim=seq_35579,seq_35578
 
+[bas_4732]
+readyanim=seq_35611,null
+
+[bas_4733]
+readyanim=null,null
+randomreadyanim=seq_35609,90
+randomreadyanim=seq_35610,10
+
+[bas_4734]
+readyanim_l=seq_35622
+readyanim_r=seq_35622
+walkanim_l=seq_35622
+walkanim_r=seq_35622
+walkturn_l=seq_35622
+walkturn_r=seq_35622
+readyanim=null,seq_35622
+randomreadyanim=seq_35619,90
+randomreadyanim=seq_35620,10
+
