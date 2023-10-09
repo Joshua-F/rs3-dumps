@@ -1,29 +1,23 @@
 // 13181
-[clientscript,script13181](int $int0, int $int1, int $int2, component $component3)
+[clientscript,script13181](int $int0, int $int1, component $component2)
 if (%varclient_5938 ! ~script441(1)) {
     ~script13230;
     return;
 }
-def_struct $struct4 = null;
-def_int $int5 = -1;
-if ($int2 = 2) {
-    $int0 = $int1;
-}
-if (cc_find(interface_1843:com_183, $int0) = true) {
-    if ($int2 = 2) {
-        cc_triggerop(10);
-    } else {
-        $struct4 = cc_param(param_4414);
-        if ($struct4 ! null) {
-            $int5 = struct_param($struct4, param_4397);
-        }
-        if ($int5 ! -1 & string_length(cc_gettext) = 0) {
-            ~dynamic_dropdown_open($component3, -1, null, -1, enum_12244, null, calc(28 + 3 - 1), -1, 0, 0);
-            if (cc_find(interface_1843:com_183, $int0) = true) {
-                cc_triggerop(1);
-            }
+def_dbrow $dbrow3 = null;
+if ($int1 = 2) {
+    ~script13193($int0);
+    ~script18205($int0, 10);
+} else {
+    $dbrow3 = ~script15768($int0);
+    if ($dbrow3 ! null) {
+        if ($dbrow3 = ~script18190) {
+            ~dynamic_dropdown_open($component2, -1, null, -1, enum_12244, null, calc(28 + 3 - 1), -1, 0, 0);
+            ~script18205($int0, 1);
         } else {
-            cc_triggerop(1);
+            ~script18205($int0, 1);
         }
+    } else {
+        ~script18205($int0, 1);
     }
 }

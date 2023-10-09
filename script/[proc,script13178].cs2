@@ -1,39 +1,41 @@
 // 13178
-[proc,script13178]()(struct, struct, graphic)
-def_struct $struct0 = struct_35515;
-def_graphic $graphic1 = rs3_ragdoll_glow_unavailable;
-def_struct $struct2 = struct_35559;
-if (cc_param(param_2531) = 2 & cc_param(param_2532) = 19) {
-    $struct0 = struct_35508;
-    $graphic1 = rs3_ragdoll_glow_available;
-    $struct2 = struct_35554;
-} else if (testbit(cc_param(param_6371), 1) = ^true) {
-    $struct0 = struct_35508;
-    $graphic1 = rs3_ragdoll_glow_available;
-    if (cc_param(param_2546) = 12) {
-        $struct2 = struct_35558;
-    } else if (testbit(cc_param(param_6371), 2) = ^true) {
-        $struct2 = struct_35555;
-    }
-} else {
-    switch_int (cc_param(param_2546)) {
-        case 1, 2 :
-            $struct0 = struct_35522;
-            $graphic1 = rs3_ragdoll_glow_buyable;
-        case 3 :
-            $struct0 = struct_35529;
-            $graphic1 = rs3_ragdoll_glow_treasure_hunter;
-            $struct2 = struct_35557;
-        case 8, 9, 4 :
-            $struct0 = struct_35529;
-            $graphic1 = rs3_ragdoll_glow_treasure_hunter;
-        case 12 :
-            $struct0 = struct_35508;
-            $graphic1 = rs3_ragdoll_glow_available;
-            $struct2 = struct_35558;
-    }
-    if ($struct2 = struct_35559 & testbit(cc_param(param_6371), 4) = ^true) {
-        $struct2 = struct_35556;
+[proc,script13178](dbrow $dbrow0)(struct, struct, graphic)
+def_struct $struct1 = struct_35515;
+def_graphic $graphic2 = rs3_ragdoll_glow_unavailable;
+def_struct $struct3 = struct_35559;
+if ($dbrow0 ! null) {
+    if (db_getfield($dbrow0, dbtable_163:col4, 0) = 2 & db_getfield($dbrow0, dbtable_163:col5, 0) = 19) {
+        $struct1 = struct_35508;
+        $graphic2 = rs3_ragdoll_glow_available;
+        $struct3 = struct_35554;
+    } else if (var_reference_get(db_getfield($dbrow0, dbtable_163:col23, 0)) >= db_getfield($dbrow0, dbtable_163:col24, 0)) {
+        $struct1 = struct_35508;
+        $graphic2 = rs3_ragdoll_glow_available;
+        if (db_getfield($dbrow0, dbtable_163:col7, 0) = 12) {
+            $struct3 = struct_35558;
+        } else if (db_getfield($dbrow0, dbtable_163:col25, 0) = 1 & playermember = false) {
+            $struct3 = struct_35555;
+        }
+    } else {
+        switch_int (db_getfield($dbrow0, dbtable_163:col7, 0)) {
+            case 1, 2 :
+                $struct1 = struct_35522;
+                $graphic2 = rs3_ragdoll_glow_buyable;
+            case 3 :
+                $struct1 = struct_35529;
+                $graphic2 = rs3_ragdoll_glow_treasure_hunter;
+                $struct3 = struct_35557;
+            case 8, 9, 4 :
+                $struct1 = struct_35529;
+                $graphic2 = rs3_ragdoll_glow_treasure_hunter;
+            case 12 :
+                $struct1 = struct_35508;
+                $graphic2 = rs3_ragdoll_glow_available;
+                $struct3 = struct_35558;
+        }
+        if ($struct3 = struct_35559 & db_getfield($dbrow0, dbtable_163:col20, 0) > calc(~date_runeday - 14) & db_getfield($dbrow0, dbtable_163:col20, 0) <= ~date_runeday) {
+            $struct3 = struct_35556;
+        }
     }
 }
-return($struct0, $struct2, $graphic1);
+return($struct1, $struct3, $graphic2);

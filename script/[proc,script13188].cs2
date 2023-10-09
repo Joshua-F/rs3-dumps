@@ -17,6 +17,7 @@ def_int $int11 = 0;
 def_int $int12 = -1;
 def_int $int13 = -1;
 def_int $int14 = 0;
+def_dbrow $dbrow15 = null;
 if ($int0 = 1) {
     cc_deleteall($component6);
     if (.if_find(interface_1843:com_273) = true) {
@@ -67,10 +68,11 @@ if ($int0 = 1) {
             $int10 = 1;
             $int11 = 1;
         case default :
-            if (.cc_find(interface_1843:com_183, $int1) = true) {
-                if (.cc_param(param_2531) = 2) {
-                    if (.cc_param(param_2532) = 20) {
-                        $string0 = .cc_gettext;
+            $dbrow15 = ~script15768($int1);
+            if ($dbrow15 ! null) {
+                if (db_getfield($dbrow15, dbtable_163:col4, 0) = 2) {
+                    if (db_getfield($dbrow15, dbtable_163:col5, 0) = 20) {
+                        $string0 = ~script18200($dbrow15);
                     } else {
                         $string0 = "Custom outfit";
                     }
@@ -79,6 +81,8 @@ if ($int0 = 1) {
                 } else {
                     return;
                 }
+            } else {
+                return;
             }
     }
     cc_settext(~script3930($string0, $int8, 1, cc_getfontmetrics));
