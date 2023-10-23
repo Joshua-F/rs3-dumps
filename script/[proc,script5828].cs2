@@ -385,6 +385,11 @@ if (oc_wearpos($obj0) ! -1) {
     if (oc_param($obj0, param_5416) = 1) {
         $int45 = ~script7235("Acts as a shield", $string3, $struct2, $component3, $component4, $int45);
     }
+    if (oc_param($obj0, param_8899) = 1) {
+        $int45 = ~script7235("Underworld Conduit", $string3, $struct2, $component3, $component4, $int45);
+    } else if (oc_param($obj0, param_8571) = 1) {
+        $int45 = ~script7235("Underworld Connection", $string3, $struct2, $component3, $component4, $int45);
+    }
     if (oc_param($obj0, param_8928) ! null) {
         $int45 = ~script7235("Passive : <struct_param(oc_param($obj0, param_8928), param_2794)><br><~script17663($obj0)>", $string3, $struct2, $component3, $component4, $int45);
     }
@@ -1181,8 +1186,6 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                 $int45 = ~script7235("Charges available: <tostring(%varplayer_3216)>", $string1, $struct2, $component3, $component4, $int45);
             case obj_43358 :
                 $int45 = ~script7235("Call upon elvish dark magic to restore 37% of your total prayer points over 30 seconds. 5 Minute cooldown between each use.", $string3, $struct2, $component3, $component4, $int45);
-            case obj_13738, obj_13740, obj_13742 :
-                $int45 = ~script7235("Reduces damage received by <col=ffffff>30%</col>, reducing prayer points by <col=ffffff>50%</col> of the blocked damage.", $string1, $struct2, $component3, $component4, $int45);
             case obj_28015 :
                 $int45 = ~script7235("Charges remaining: <tostring(100)>", $string3, $struct2, $component3, $component4, $int45);
             case obj_24135, obj_24136, obj_24137 :
@@ -1391,7 +1394,11 @@ if ($int31 = 0 & oc_param($obj0, param_8696) = true & ~script16823 = true) {
 }
 if (compare(oc_param($obj0, param_3200), "") ! 0) {
     $string9 = ~script8240(null, $obj0);
-    $int45 = ~script7235("<$string9><oc_param($obj0, param_3200)>", $string3, $struct2, $component3, $component4, $int45);
+    if (~ironman_mode = true & compare(oc_param($obj0, param_8572), "") ! 0) {
+        $int45 = ~script7235("<$string9><oc_param($obj0, param_8572)>", $string3, $struct2, $component3, $component4, $int45);
+    } else {
+        $int45 = ~script7235("<$string9><oc_param($obj0, param_3200)>", $string3, $struct2, $component3, $component4, $int45);
+    }
 }
 if (oc_param($obj0, param_8839) ! 0) {
     $int45 = ~script7235("Time until expiry: <col=00ffff><~script3354(oc_param($obj0, param_8839), 1, "Expired!")> ", $string3, $struct2, $component3, $component4, $int45);
