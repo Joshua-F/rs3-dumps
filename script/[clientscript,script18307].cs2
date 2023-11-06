@@ -1,0 +1,30 @@
+// 18307
+[clientscript,script18307]
+if (%varplayerbit_54640 = 0) {
+    if_settext("<col=941212>You have not purchased this bundle.</col>", interface_1256:com_18);
+    if_settext("Buy", interface_1256:com_19);
+    if_setop(1, "Buy", interface_1256:com_19);
+    if_setenabled(true, interface_1256:com_19);
+} else if (%varplayerbit_54642 = %varplayer_3079) {
+    if_settext("<col=00FF00>You have already claimed all available rewards for today.</col>", interface_1256:com_18);
+    if_settext("Claimed", interface_1256:com_19);
+    if_setop(1, "", interface_1256:com_19);
+    if_setenabled(false, interface_1256:com_19);
+} else {
+    if_settext("<col=00FF00>Your rewards are ready to claim!</col>", interface_1256:com_18);
+    if_settext("Claim", interface_1256:com_19);
+    if_setop(1, "Claim", interface_1256:com_19);
+    if_setenabled(true, interface_1256:com_19);
+}
+def_int $int0 = max(1, calc(%varplayer_3079 - %varplayerbit_54642));
+def_int $int1 = calc(2 * $int0);
+def_int $int2 = calc(1 * $int0);
+def_int $int3 = calc(1 * $int0);
+def_int $int4 = calc(1 * $int0);
+def_int $int5 = calc(10 * $int0);
+def_int $int6 = calc(10 * $int0);
+def_int $int7 = calc(50 * $int0);
+def_int $int8 = calc(50 * $int0);
+def_int $int9 = calc(1000 * $int0);
+def_string $string0 = "<tostring($int1)>x Earned Treasure Hunter key<br><tostring($int2)>x Large prismatic star<br><tostring($int3)>x Medium protean pack<br><tostring($int4)>x Medium skill dummy crate<br><tostring($int5)>x Advanced pulse core<br><tostring($int6)>x Cinder core<br><tostring($int7)>x Tight springs<br><tostring($int8)>x Silverhawk down<br><tostring($int9)>x Double XP Tokens";
+if_settext($string0, interface_1256:com_16);
