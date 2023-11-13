@@ -1,6 +1,7 @@
 // 11088
 [proc,script11088](struct $struct0)(string)
 def_string $string0 = "";
+def_int $int1 = 0;
 switch_struct ($struct0) {
     case struct_28639 :
         $string0 = "<oc_name(inv_getobj(inv_94, 14))> : ";
@@ -16,7 +17,11 @@ switch_struct ($struct0) {
     case struct_43723 :
         $string0 = "<struct_param($struct0, param_2794)><br>Your masterwork armour has stalled <tostring(%varplayerbit_43240)> damage. You'll take <tostring(~script2544)> or more damage every <col=ffffff>1.2</col> seconds until the pool is empty.";
     case struct_40797 :
-        $string0 = "Attuning to the Avatar Habitat has granted you a <col=33cc33><tostring(%varplayerbit_41298)>%</col> XP boost.";
+        $int1 = calc(10080 - (date_minutes - %varplayer_2008) + 1);
+        if ($int1 > 0) {
+            $string0 = "<br>This boost will expire in <~script11479(calc($int1 / 1440), calc($int1 % 1440 / 60), calc($int1 % 60))>.";
+        }
+        $string0 = append("Attuning to the Avatar Habitat has granted you a <col=33cc33><tostring(%varplayerbit_41298)>%</col> XP boost.", $string0);
     case struct_1304 :
         $string0 = "<col=FFFFFF>Cloud of destiny</col> - complete your fortune to get a reward from fate. <col=5A5AFF><enum(int, string, enum_12413, %varplayerbit_35528)></col>";
     case struct_44226 :
