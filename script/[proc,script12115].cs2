@@ -6,18 +6,21 @@ if ($dbrow0 = null) {
 if (db_getfield($dbrow0, dbtable_134:col22, 0) = false & ~ironman_mode = true) {
     return(false);
 }
-if (db_getfield($dbrow0, dbtable_134:col24, 0) = false & ~script248 = true) {
+if (db_getfield($dbrow0, dbtable_134:col25, 0) = false & ~script248 = true) {
     return(false);
 }
 if (db_getfield($dbrow0, dbtable_134:col23, 0) = false & playermember = false) {
     return(false);
 }
-~script18306;
-if (db_getfield($dbrow0, dbtable_134:col25, 0) = true & ~script12961($dbrow0) = true) {
+if (db_getfield($dbrow0, dbtable_134:col24, 0) = false & playermember = true) {
     return(false);
 }
-def_int $int1 = db_getfield($dbrow0, dbtable_134:col26, 0);
-def_int $int2 = db_getfield($dbrow0, dbtable_134:col27, 0);
+~script18306;
+if (db_getfield($dbrow0, dbtable_134:col26, 0) = true & ~script12961($dbrow0) = true) {
+    return(false);
+}
+def_int $int1 = db_getfield($dbrow0, dbtable_134:col27, 0);
+def_int $int2 = db_getfield($dbrow0, dbtable_134:col28, 0);
 if (%varplayer_3079 < $int1 | %varplayer_3079 > $int2) {
     return(false);
 }
@@ -137,11 +140,18 @@ switch_dbrow ($dbrow0) {
     case dbrow_4842 :
         return(~script16079(%varplayerbit_34085, %varplayerbit_50401, dbrow_4842));
     case dbrow_7003 :
-        if (%varplayerbit_52327 = 0) {
-            return(true);
-        } else {
+        if (%varplayer_3079 >= db_getfield(dbrow_12788, dbtable_134:col27, 0) & %varplayer_3079 <= db_getfield(dbrow_12788, dbtable_134:col28, 0)) {
             return(false);
         }
+        if (%varplayerbit_52327 = 1) {
+            return(false);
+        }
+        return(true);
+    case dbrow_12788 :
+        if (%varplayerbit_52327 = 1) {
+            return(false);
+        }
+        return(true);
     case dbrow_7004 :
         if (%varplayerbit_34440 = 1 | ~obj_gettotal(obj_49280) >= 2000) {
             return(false);
@@ -172,6 +182,12 @@ switch_dbrow ($dbrow0) {
         }
     case dbrow_12768 :
         if (%varplayerbit_54640 = 1) {
+            return(false);
+        } else {
+            return(true);
+        }
+    case dbrow_12789, dbrow_12790, dbrow_12791, dbrow_12792 :
+        if (%varplayerbit_24930 = 1) {
             return(false);
         } else {
             return(true);

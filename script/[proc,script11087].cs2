@@ -2,6 +2,7 @@
 [proc,script11087](struct $struct0)(string)
 def_string $string0 = "";
 def_obj $obj1 = null;
+def_int $int2 = 0;
 switch_struct ($struct0) {
     case struct_45326 :
         $string0 = " - <tostring(calc(~script2102(struct_param($struct0, param_4677)) * 2))>% Support XP Boost";
@@ -39,7 +40,11 @@ switch_struct ($struct0) {
             $string0 = "You have <tostring(%varplayer_2735)> cannonballs remaining in your Cannon.";
         }
     case struct_40798 :
-        $string0 = "Attuning to the Avatar Habitat has granted you a <col=33cc33><tostring(%varplayerbit_41299)>%</col> boost in resources gathered at Citadel skill plots.";
+        $int2 = calc(10080 - (date_minutes - %varplayer_2008) + 1);
+        if ($int2 > 0) {
+            $string0 = "<br>This boost will expire in <~script11479(calc($int2 / 1440), calc($int2 % 1440 / 60), calc($int2 % 60))>.";
+        }
+        $string0 = append("Attuning to the Avatar Habitat has granted you a <col=33cc33><tostring(%varplayerbit_41299)>%</col> boost in resources gathered at Citadel skill plots.", $string0);
     case struct_44996 :
         $string0 = " - You are taking an additional <col=33cc33><tostring(calc(%varplayerbit_49291 * 20))>%</col> damage.";
     case struct_45275 :
