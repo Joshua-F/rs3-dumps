@@ -1,0 +1,44 @@
+// 18335
+[clientscript,script18335](struct $struct0, int $int1)
+if (%varplayer_10850 = null) {
+    return;
+}
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_var_int $var_int4 = null;
+def_var_int $var_int5 = null;
+if ($struct0 = null) {
+    $string0 = "Information";
+    $string1 = struct_param(%varplayer_10850, param_6136);
+} else {
+    $string0 = struct_param($struct0, param_8809);
+    $string1 = struct_param($struct0, param_8810);
+    $string2 = struct_param($struct0, param_8811);
+    $string3 = struct_param($struct0, param_9020);
+    $int2 = ~script17260($struct0);
+    $var_int4 = struct_param($struct0, param_9024);
+    $var_int5 = struct_param($struct0, param_9022);
+    if (string_length($string1) > 0) {
+        $string1 = "<$string1> <col=FF00><tostring(struct_param($struct0, param_8775))> x <oc_name(obj_56147)></col>";
+        if ($var_int4 ! null) {
+            $int3 = var_reference_get($var_int4);
+            $string1 = "<$string1><br><br>This is a <col=00ffff>repeatable task</col>.<br>Task completed: <tostring_localised($int3, true)> <~script985($int3, "times", "time", "times")>";
+        }
+        if (string_length($string2) > 0) {
+            $string1 = "<$string1><br><br><$string2>";
+        }
+        if (~script17259 = false & ($var_int4 ! null | ~script17349($struct0) = 0) & $var_int5 ! null & $int2 ! -1) {
+            $string1 = "<$string1><br><br><$string3>: <tostring_localised(var_reference_get($var_int5), true)>/<tostring_localised($int2, true)>";
+        }
+    }
+}
+~script17359($string1);
+if_settext($string0, interface_1802:com_293);
+if_settext($string1, interface_1802:com_292);
+~script18336($int1);
+~script17358($struct0);
+sound_vorbis_volume(sound_36961, 1, 0, 180);

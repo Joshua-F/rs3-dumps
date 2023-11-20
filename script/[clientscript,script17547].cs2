@@ -1,23 +1,31 @@
 // 17547
-[clientscript,script17547]
-def_int $int0 = %varplayerbit_53295;
-def_int $int1 = %varplayerbit_53292;
-def_int $int2 = %varplayerbit_53297;
+[clientscript,script17547](component $component0)
+def_component $component1 = ~script18321($component0, interface_1171:com_15);
+def_int $int2 = %varplayerbit_53295;
+def_int $int3 = %varplayerbit_53292;
+def_int $int4 = %varplayerbit_53297;
+def_int $int5 = %varplayer_11535;
 if (%varplayerbit_27168 = 1 & struct_param(%varplayer_10946, param_8867) = 1) {
-    $int0 = calc(%varplayerbit_53295 / 10);
-    $int1 = calc(%varplayerbit_53292 / 10);
-    $int2 = calc(%varplayerbit_53297 / 10);
+    $int2 = calc($int2 / 10);
+    $int3 = calc($int3 / 10);
+    $int4 = calc($int4 / 10);
+    $int5 = calc($int5 / 10);
 }
 def_string $string0 = "";
+if (~script18321($component0, interface_1171:com_26) ! interface_1171:com_26) {
+    $string0 = tostring_localised($int5, true);
+    if_settext($string0, $component1);
+    return;
+}
 if (%varplayerbit_53295 > 0) {
-    $string0 = ~tostring_spacer($int0, ",");
+    $string0 = tostring_localised($int2, true);
 } else if (%varplayerbit_53297 > 0) {
-    $string0 = ~tostring_spacer($int2, ",");
+    $string0 = tostring_localised($int4, true);
 } else {
-    $string0 = ~tostring_spacer($int1, ",");
+    $string0 = tostring_localised($int3, true);
 }
 if (%varplayerbit_53295 > 0 | %varplayerbit_53292 > 0 & %varplayerbit_53293 = 0) {
-    if_settext($string0, interface_1171:com_15);
+    if_settext($string0, $component1);
 } else {
-    if_settext("", interface_1171:com_15);
+    if_settext("", $component1);
 }

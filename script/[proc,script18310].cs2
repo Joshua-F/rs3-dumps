@@ -1,16 +1,11 @@
 // 18310
 [proc,script18310](obj $obj0, int $int1)
-if (oc_category($obj0) = category_91) {
-    if ($int1 > 4000 | $int1 < 0) {
-        ~error("Attempted to set quantity of <oc_debugname> to <tostring($int1)>. Absolute max is <tostring(4000)>.");
-        $int1 = ~clamp($int1, 4000, 0);
-    }
-    if (oc_uncert($obj0) ! null) {
-        $obj0 = oc_uncert($obj0);
-    }
+if (oc_category($obj0) = category_91 & ($int1 > 4000 | $int1 < 0)) {
+    ~error("Attempted to set quantity of <oc_debugname> to <tostring($int1)>. Absolute max is <tostring(4000)>.");
+    $int1 = ~clamp($int1, 4000, 0);
 }
 if (oc_category($obj0) = category_4449 & ($int1 > ^max_32bit_int | $int1 < 0)) {
-    ~error("Attempted to set quantity of <oc_debugname> to <tostring($int1)>. TEST Absolute max is <tostring(^max_32bit_int)>.");
+    ~error("Attempted to set quantity of <oc_debugname> to <tostring($int1)>. Absolute max is <tostring(^max_32bit_int)>.");
     $int1 = ~clamp($int1, ^max_32bit_int, 0);
 }
 switch_obj ($obj0) {
