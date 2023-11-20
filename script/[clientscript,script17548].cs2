@@ -1,8 +1,13 @@
 // 17548
 [clientscript,script17548]
-if_sethide(true, interface_1181:com_1);
+if (%varplayer_10946 = null) {
+    if_setontimer("script17548", interface_1181:com_2);
+    return;
+}
+if_setontimer(null, interface_1181:com_2);
+if_sethide(true, interface_1181:com_3);
+if_sethide(true, interface_1181:com_6);
 if_sethide(true, interface_1181:com_4);
-if_sethide(true, interface_1181:com_2);
 def_int $int0 = 180;
 switch_int (~script11319) {
     case 29 :
@@ -12,25 +17,22 @@ switch_int (~script11319) {
     case 38 :
         $int0 = 195;
 }
-if_setsize($int0, if_getheight(interface_1181:com_3), ^setsize_abs, ^setsize_abs, interface_1181:com_3);
-switch_struct (%varplayer_10946) {
-    case struct_45037 :
-        ~script17549;
-        ~script17550;
-        ~script17555(0x413741, "", 1);
-    case struct_32142, struct_32143 :
-        ~script17549;
-        ~script17550;
-        if (%varplayer_10946 = struct_32142) {
-            ~script17555(0xffb400, "Burn: ", 1);
-        } else if (%varplayer_10948 > 0) {
-            ~script17555(^green, "Acidity level: ", 1);
-        }
-    case struct_45409, struct_45780, struct_46256, struct_47805 :
-        ~script17549;
-        ~script17550;
-    case struct_45585, struct_47804 :
-        ~script17550;
-    case struct_7044 :
-        ~script17555(0xc95924, "", 1);
+if_setsize($int0, if_getheight(interface_1181:com_5), ^setsize_abs, ^setsize_abs, interface_1181:com_5);
+def_int $int1 = 0;
+if (struct_param(%varplayer_10946, param_8991) > 0) {
+    $int1 = calc(clientclock + struct_param(%varplayer_10946, param_8991) * 30);
+    if_setontimer("script18323($int1)", interface_1181:com_0);
+} else {
+    ~script18324;
+}
+if (struct_param(%varplayer_10946, param_8990) ! null) {
+    if_sethide(false, interface_1181:com_1);
+    if_setposition(0, 25, ^setpos_abs_centre, ^setpos_abs_top, interface_1171:com_27);
+    if_setposition(0, 40, ^setpos_abs_centre, ^setpos_abs_top, interface_1181:com_2);
+    if_setsize(0, 99, ^setsize_minus, ^setsize_abs, interface_1171:com_27);
+} else {
+    if_sethide(true, interface_1181:com_1);
+    if_setposition(0, 40, ^setpos_abs_centre, ^setpos_abs_top, interface_1171:com_27);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, interface_1181:com_2);
+    if_setsize(118, 99, ^setsize_minus, ^setsize_abs, interface_1171:com_27);
 }

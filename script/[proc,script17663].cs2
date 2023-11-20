@@ -1,11 +1,22 @@
 // 17663
 [proc,script17663](obj $obj0)(string)
 def_string $string0 = "";
+def_string $string1 = "";
+if (oc_param($obj0, param_9001) ! null) {
+    $string1 = ~script15973(oc_param($obj0, param_7382), 1);
+    if (var_reference_get(oc_param($obj0, param_9001)) = 2) {
+        $string0 = "<$string0><br>- <col=00ff00>Charged (<$string1>)</col> - Passive active.";
+    } else {
+        $string0 = "<$string0><br>- <col=ffffff>Charging (<$string1>)</col> - Passive will be active after item has been equipped for <col=ffffff><$string1></col>";
+    }
+}
 switch_struct (oc_param($obj0, param_8928)) {
     case struct_48396 :
         $string0 = "<$string0>- <sprite=30015><nbsp><col=ffffff><struct_param(struct_48293, param_2794)>:</col> Generates <col=ffffff>1 <sprite=30128><nbsp><struct_param(struct_48350, param_2794)></col> stack.";
         $string0 = "<$string0><br>- At <col=ffffff><tostring(~script17464)></col> stacks your <sprite=30015><nbsp><col=ffffff><struct_param(struct_48293, param_2794)></col> is empowered and deals <~script17717(200)></col>.";
     case struct_48397 :
         $string0 = "<$string0>- Maximum number of <col=ffffff><sprite=30123><nbsp><struct_param(struct_48334, param_2794)></col> stacks is increased by <col=ffffff><tostring(2)></col>.";
+    case struct_49089 :
+        $string0 = "<$string0>- Increases the level of <col=ffffff><sprite=30099><nbsp><struct_param(struct_48340, param_2794)></col> by <col=ffffff>15</col>.";
 }
 return($string0);
