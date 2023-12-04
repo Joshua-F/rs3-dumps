@@ -2,29 +2,33 @@
 [proc,script18273](component $component0)
 cc_deleteall($component0);
 def_int $int1 = db_listall(dbtable_263);
-if (%varplayerbit_54610 > 0) {
+if (%varplayerbit_54610 > 1) {
     $int1 = db_find_refine(dbtable_263:col2, %varplayerbit_54610);
 }
 if_setparam_int(param_8348, $int1, $component0);
 def_dbrow $dbrow2 = db_findnext;
 def_int $int3 = 0;
+def_int $int4 = 0;
 while ($dbrow2 ! null) {
     $int3 = db_getfield($dbrow2, dbtable_263:col3, 0);
-    if (%varplayerbit_34815 = 0) {
-        ~if_add_child_graphic($component0, $int3, 0, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 0, 0, ^setsize_minus, ^setsize_minus, db_getfield($dbrow2, dbtable_263:col1, 0));
-        cc_setop(1, db_getfield($dbrow2, dbtable_263:col0, 0));
-        if (~script450($dbrow2) = 0) {
-            cc_setcolour(0x404040);
+    $int4 = ~script450($dbrow2);
+    if (%varplayerbit_54610 ! 1 | $int4 = 1) {
+        if (%varplayerbit_34815 = 0) {
+            ~if_add_child_graphic($component0, $int3, 0, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 0, 0, ^setsize_minus, ^setsize_minus, db_getfield($dbrow2, dbtable_263:col1, 0));
+            cc_setop(1, db_getfield($dbrow2, dbtable_263:col0, 0));
+            if (~script450($dbrow2) = 0) {
+                cc_setcolour(0x404040);
+            } else {
+                cc_setcolour(^white);
+            }
         } else {
-            cc_setcolour(^white);
-        }
-    } else {
-        ~if_add_child_text($component0, $int3, 0, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_2100, db_getfield($dbrow2, dbtable_263:col0, 0));
-        cc_setop(1, db_getfield($dbrow2, dbtable_263:col0, 0));
-        if (~script450($dbrow2) = 0) {
-            ~script11024(3);
-        } else {
-            ~script11024(5);
+            ~if_add_child_text($component0, $int3, 0, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_2100, db_getfield($dbrow2, dbtable_263:col0, 0));
+            cc_setop(1, db_getfield($dbrow2, dbtable_263:col0, 0));
+            if (~script450($dbrow2) = 0) {
+                ~script11024(3);
+            } else {
+                ~script11024(5);
+            }
         }
     }
     $dbrow2 = db_findnext;
