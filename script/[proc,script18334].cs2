@@ -1,17 +1,23 @@
 // 18334
-[proc,script18334](struct $struct0, int $int1)(graphic)
-def_graphic $graphic2 = "rs3_icon_check_mark_24px,1";
-def_int $int3 = ~script17348($int1);
-def_var_int $var_int4 = struct_param($struct0, param_9024);
-if ($var_int4 = null & $int3 = 1) {
-    $graphic2 = "rs3_icon_check_mark_24px,0";
-} else if ($var_int4 ! null) {
-    if (~script17259 = true) {
-        $graphic2 = "rs3_icon_repeatable_task_24px,2";
-    } else if ($int3 = 1) {
-        $graphic2 = "rs3_icon_repeatable_task_24px,1";
-    } else {
-        $graphic2 = "rs3_icon_repeatable_task_24px,0";
-    }
+[proc,script18334](struct $struct0, string $string0, int $int1)(string)
+def_int $int2 = 25;
+def_int $int3 = 6;
+def_int $int4 = 200;
+switch_struct ($struct0) {
+    case struct_44235 :
+        $int2 = 21;
+        $int3 = 4;
+    case struct_14729 :
+        if (%varplayerbit_30982 > 0) {
+            $int2 = calc($int2 + scale($int2, 100, calc(%varplayerbit_30982 * 6)));
+            $int3 = calc($int3 + scale($int3, 100, calc(%varplayerbit_30982 * 6)));
+            $int4 = 150;
+        }
 }
-return($graphic2);
+$string0 = "<$string0><br>- <~script17720($struct0, $int2, calc($int2 + $int3), 0, $int1)> per hit every <col=ffffff><~script15973(2, 1)></col>.";
+$string0 = "<$string0><br>- <col=ffffff><tostring(5)></col> hits.";
+$string0 = "<$string0><br>- <col=ffffff>Damage over time</col>.";
+if ($struct0 = struct_14729) {
+    $string0 = "<$string0><br>- Deals <~script17717($int4)> if the target moves.";
+}
+return($string0);

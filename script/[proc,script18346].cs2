@@ -1,17 +1,29 @@
 // 18346
-[proc,script18346]
-%varplayerbit_54764 = max(1, %varplayerbit_54764);
-def_graphic $graphic0 = null;
-if (%varplayerbit_54764 < 2) {
-    if_sethide(true, interface_1271:com_61);
-    if_sethide(true, interface_1271:com_104);
-    if_sethide(true, interface_1271:com_107);
-} else {
-    $graphic0 = ~script10980(%varplayerbit_54764);
-    if_setgraphic($graphic0, interface_1271:com_61);
-    if_setgraphic($graphic0, interface_1271:com_104);
-    if_setgraphic($graphic0, interface_1271:com_107);
-    if_sethide(false, interface_1271:com_61);
-    if_sethide(false, interface_1271:com_104);
-    if_sethide(false, interface_1271:com_107);
+[proc,script18346](struct $struct0, string $string0, int $int1)(string)
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 2;
+switch_struct ($struct0) {
+    case struct_44238 :
+        $int2 = 32;
+        $int3 = 8;
+    case struct_19343 :
+        $int2 = 40;
+        $int3 = 10;
+        $int4 = 5;
+    case struct_45450 :
+        $int2 = 42;
+        $int3 = 10;
+        $int4 = 6;
+        $int6 = 1;
 }
+$string0 = "<$string0><br>- <~script17720($struct0, $int2, calc($int2 + $int3), 0, $int1)> per hit every <col=ffffff><~script15973($int6, 1)></col>.";
+$string0 = "<$string0><br>- <col=ffffff><tostring(calc(2 + 1))></col> hits.";
+$string0 = "<$string0><br>- <col=ffffff>Channeled</col>.";
+if ($struct0 ! struct_44238) {
+    $string0 = "<$string0><br>- Deals an additional <~script17719($struct0, -1, $int4, 0, $int1)> with each hit.";
+    $string0 = "<$string0><br>- Grants <col=ffffff><tostring(5)>%</col> stacking <col=ffffff>Critical Strike Chance</col> on your next attack with each hit.";
+}
+return($string0);
