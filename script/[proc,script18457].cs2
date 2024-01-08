@@ -1,0 +1,33 @@
+// 18457
+[proc,script18457](struct $struct0)
+if ($struct0 = null) {
+    return;
+}
+if_sethide(false, interface_1280:com_36);
+if_sethide(false, interface_1280:com_39);
+if_sethide(true, interface_1280:com_38);
+def_string $string0 = "";
+if (if_find(interface_1280:com_41) = true) {
+    cc_settext(struct_param($struct0, param_6135));
+}
+def_int $int1 = 0;
+def_component $component2 = interface_1280:com_43;
+def_component $component3 = interface_1280:com_42;
+if (if_find(interface_1280:com_44) = true) {
+    $string0 = struct_param($struct0, param_6136);
+    if (~script18412 = true) {
+        $string0 = "<$string0><br><br>Ironman accounts cannot gain buffs from this event, but can log in each day to make progress toward unlocking the reward.";
+    } else if (playermember = false & ~script18419($struct0) = true) {
+        $string0 = "<$string0><br><br>Free players cannot gain buffs from this event, but can log in each day to make progress toward unlocking the reward.";
+    }
+    cc_settext($string0);
+    $int1 = ~script7593($string0, cc_getwidth, fontmetrics_207, 0);
+    if ($int1 > if_getheight($component2)) {
+        if_sethide(false, $component3);
+        if_setscrollsize(0, max(if_getheight($component2), $int1), $component2);
+        if_setscrollpos(0, 0, $component2);
+        ~rs3_scrollbar_vertical($component3, $component2);
+    } else {
+        if_sethide(true, $component3);
+    }
+}

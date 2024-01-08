@@ -1,41 +1,21 @@
 // 15335
-[proc,script15335](int $int0, int $int1, int $int2, int $int3, string $string0, string $string1, int $int4, int $int5, int $int6)(int)
-def_fontmetrics $fontmetrics7 = fontmetrics_26;
-def_int $int8 = calc(paraheight($string0, $int3, $fontmetrics7) * 14 + 2);
-def_int $int9 = 7829367;
-if ($int4 = -2) {
-    $int9 = 16777215;
-} else if ($int4 = -1) {
-    $int9 = ~script10495(6);
+[proc,script15335](int $int0, string $string0, string $string1, int $int1, int $int2, int $int3)
+def_fontmetrics $fontmetrics4 = fontmetrics_206;
+def_int $int5 = if_grid_getcellwidth(interface_1851:com_43);
+def_int $int6 = ~script15891($string0, $int5, $fontmetrics4, 0);
+def_int $int7 = 7829367;
+if ($int1 = -2) {
+    $int7 = 16777215;
+} else if ($int1 = -1) {
+    $int7 = ~script10495(6);
 }
-if ($int6 = 1) {
-    $int9 = 16355874;
+if ($int3 = 1) {
+    $int7 = 16355874;
 }
-cc_create(interface_1851:com_41, ^iftype_text, if_getnextsubid(interface_1851:com_41));
-if (calc($int0 % 2) = 0) {
-    cc_setposition(3, $int2, ^setpos_abs_left, ^setpos_abs_top);
-} else {
-    cc_setposition(3, $int2, ^setpos_abs_right, ^setpos_abs_top);
-}
-cc_setsize($int3, $int8, ^setsize_abs, ^setsize_abs);
-cc_settext($string0);
-cc_settextshadow(true);
-cc_settextalign(^settextalign_left, ^settextalign_top, 0);
-cc_settextfont(fontmetrics_26);
-cc_setcolour($int9);
-if ($int5 = 1) {
+~cc_add_text(interface_1851:com_43, $int0, 0, 0, ^setpos_abs_centre, ^setpos_abs_top, 0, $int6, ^setsize_minus, ^setsize_abs, dbrow_2100, $string0);
+cc_setcolour($int7);
+if ($int2 = 1) {
     cc_setop(1, "Go To");
     cc_setopbase($string0);
     cc_setopcursor(1, cursor_210);
 }
-if (compare($string1, "") ! 0) {
-    cc_setonmouserepeat("script8799($string1, interface_1851:com_41, cc_getid)");
-}
-if (calc($int0 % 2) = 1) {
-    if (.cc_find(interface_1851:com_41, $int1) = true) {
-        $int2 = calc($int2 + max(cc_getheight, .cc_getheight));
-    } else {
-        $int2 = calc($int2 + cc_getheight);
-    }
-}
-return($int2);
