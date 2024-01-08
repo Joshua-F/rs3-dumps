@@ -15,16 +15,20 @@ if (struct_param($struct0, param_4852) ! null) {
     if_setobject(~script14453($struct0, struct_param($struct0, param_4851)), struct_param($struct0, param_4448), interface_1594:com_72);
 }
 if_setposition(134, 70, ^setpos_abs_left, ^setpos_abs_top, interface_1594:com_72);
-def_int $int2 = ~script7593(if_gettext($component1), if_getwidth($component1), if_getfontmetrics($component1), 0);
-if_setsize(10, $int2, ^setsize_minus, ^setsize_abs, $component1);
-$int2 = calc(if_gety($component1) + if_getheight($component1));
+def_int $int2 = if_getwidth(interface_1594:com_66);
+def_int $int3 = ~script7593(if_gettext($component1), calc($int2 - 10), if_getfontmetrics($component1), 0);
+if_setsize(10, $int3, ^setsize_minus, ^setsize_abs, $component1);
+def_int $int4 = calc(if_gety($component1) + $int3);
 cc_deleteall(interface_1594:com_75);
 if_setsize(0, 45, ^setsize_minus, ^setsize_minus, interface_1594:com_68);
 if_setscrollsize(0, 0, interface_1594:com_68);
 if_setscrollpos(0, 0, interface_1594:com_68);
-if ($int2 > if_getheight(interface_1594:com_68)) {
+if ($int4 > if_getheight(interface_1594:com_68)) {
+    $int3 = ~script7593(if_gettext($component1), calc($int2 - 26), if_getfontmetrics($component1), 0);
+    if_setsize(10, $int3, ^setsize_minus, ^setsize_abs, $component1);
+    $int4 = calc(if_gety($component1) + $int3);
     if_setsize(16, 45, ^setsize_minus, ^setsize_minus, interface_1594:com_68);
-    if_setscrollsize(0, $int2, interface_1594:com_68);
+    if_setscrollsize(0, $int4, interface_1594:com_68);
     ~rs3_scrollbar_vertical(interface_1594:com_75, interface_1594:com_68);
     if_setposition(128, 73, ^setpos_abs_left, ^setpos_abs_top, interface_1594:com_72);
 }
