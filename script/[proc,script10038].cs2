@@ -1,107 +1,92 @@
 // 10038
-[proc,script10038](int $int0, int $int1)
-def_component $component2 = null;
+[proc,script10038](int $int0, int $int1, int $int2)
 def_component $component3 = null;
 def_component $component4 = null;
 def_component $component5 = null;
-def_int $int6 = -1;
-def_int $int7 = 1;
+def_component $component6 = null;
+def_int $int7 = -1;
 def_dbrow $dbrow8 = null;
-def_boolean $boolean9 = false;
-switch_int ($int0) {
-    case 1 :
-        $dbrow8 = dbrow_4529;
-    case 0 :
-        $dbrow8 = dbrow_4530;
-    case 2 :
-        $dbrow8 = dbrow_4535;
-}
-if ($dbrow8 ! null) {
-    $boolean9 = ~script11156($dbrow8);
-}
 switch_int ($int0) {
     case 0 :
-        if ($boolean9 = false & %varclient_4263 = $int1) {
-            return;
-        }
-        if_setonvarctransmit("script10037(0, %varclient_4263){varclient_4263}", interface_907:com_71);
-        $component2 = interface_907:com_78;
-        $component3 = interface_907:com_72;
-        $component4 = interface_907:com_95;
-        $component5 = interface_907:com_96;
-        if ($boolean9 = false) {
-            if (%varclient_4263 = -1) {
-                $int7 = 0;
-                $int6 = 1;
-            } else {
-                $int6 = %varclient_4263;
-            }
-        }
+        $dbrow8 = dbrow_13088;
     case 1 :
-        if ($boolean9 = false & %varclient_4264 = $int1) {
-            return;
-        }
-        if_setonvarctransmit("script10037(1, %varclient_4264){varclient_4264}", interface_907:com_44);
-        $component2 = interface_907:com_50;
-        $component3 = interface_907:com_45;
-        $component4 = interface_907:com_67;
-        $component5 = interface_907:com_68;
-        if ($boolean9 = false) {
-            if (%varclient_4264 = -1) {
-                $int7 = 0;
-            } else {
-                $int6 = %varclient_4264;
-            }
-        }
+        $dbrow8 = dbrow_13087;
     case 2 :
-        if ($boolean9 = false & %varclient_4265 = $int1) {
-            return;
-        }
-        if_setonvarctransmit("script10037(2, %varclient_4265){varclient_4265}", interface_907:com_97);
-        $component2 = interface_907:com_104;
-        $component3 = interface_907:com_98;
-        $component4 = interface_907:com_121;
-        $component5 = interface_907:com_122;
-        if ($boolean9 = false) {
-            if (%varclient_4265 = -1) {
-                $int7 = 0;
-                $int6 = 2;
-            } else {
-                $int6 = %varclient_4265;
-            }
-        }
+        $dbrow8 = dbrow_13089;
     case default :
+        ~error("Unexpected slot type when setting the secondary slots in the lobby.");
         return;
 }
-if ($boolean9 = true) {
-    if_settext(~script11160($dbrow8, "title_text", "Special Offer"), $component3);
-} else if ($int7 = 0) {
-    if_settext("", $component3);
-    if_setgraphic(null, $component2);
-}
-~script4161($component5, 255);
-if_setontimer(null, $component5);
-if_sethide(true, $component5);
-if_setop(1, "", $component2);
-if_setonop(null, $component2);
-if_setonmouserepeat(null, $component2);
-if_setonclick(null, $component2);
-if ($boolean9 = false) {
-    switch_int ($int6) {
+if ($int2 = -1) {
+    switch_int ($int0) {
         case 0 :
-            ~lobby_custom_promo($component2, $component3, $component4, $component5, $int0);
+            $dbrow8 = dbrow_13088;
         case 1 :
-            ~script10041($component2, $component3, $component4, $component5, $int7, $int0);
+            $dbrow8 = dbrow_13087;
         case 2 :
-            ~lobby_mtx_promo($component2, $component3, $component4, $component5, $int7, $int0);
-        case -1 :
-            ~lobby_content_promo($component2, $component3, $component4, $component5, $int7, $int0);
+            $dbrow8 = dbrow_13089;
+        case default :
+            ~error("Unexpected slot type when setting the secondary slots in the lobby.");
+            return;
     }
-} else if ($int0 = 0) {
-    if (~script10946 = false) {
-        ~script11164($component4);
+    if (~script18461($dbrow8) = true) {
+        ~script18464($dbrow8);
     } else {
-        cc_deleteall($component4);
+        if (cc_find(db_getfield($dbrow8, dbtable_179:col0, 0), 0) = true) {
+            cc_delete;
+        }
+        ~script10038($int0, 0, 0);
+    }
+    ~script10051;
+    return;
+} else {
+    switch_int ($int0) {
+        case 0 :
+            if_setonvarctransmit("script10037(0, %varclient_4263){varclient_4263}", interface_907:com_71);
+            $component3 = interface_907:com_78;
+            $component4 = interface_907:com_72;
+            $component5 = interface_907:com_95;
+            $component6 = interface_907:com_96;
+            $int7 = 1;
+        case 1 :
+            if_setonvarctransmit("script10037(1, %varclient_4264){varclient_4264}", interface_907:com_44);
+            $component3 = interface_907:com_50;
+            $component4 = interface_907:com_45;
+            $component5 = interface_907:com_67;
+            $component6 = interface_907:com_68;
+        case 2 :
+            if_setonvarctransmit("script10037(2, %varclient_4265){varclient_4265}", interface_907:com_97);
+            $component3 = interface_907:com_104;
+            $component4 = interface_907:com_98;
+            $component5 = interface_907:com_121;
+            $component6 = interface_907:com_122;
+            $int7 = 2;
+        case default :
+            return;
+    }
+}
+~script4161($component6, 255);
+if_setontimer(null, $component6);
+if_sethide(true, $component6);
+if_setop(1, "", $component3);
+if_setonop(null, $component3);
+if_setonmouserepeat(null, $component3);
+if_setonclick(null, $component3);
+switch_int ($int7) {
+    case 0 :
+        ~lobby_custom_promo($component3, $component4, $component5, $component6, $int0);
+    case 1 :
+        ~script10041($component3, $component4, $component5, $component6, $int0);
+    case 2 :
+        ~lobby_mtx_promo($component3, $component4, $component5, $component6, $int0);
+    case -1 :
+        ~lobby_content_promo($component3, $component4, $component5, $component6, $int0);
+}
+if ($int0 = 0) {
+    if (~script10946 = false) {
+        ~script11164($component5);
+    } else {
+        cc_deleteall($component5);
     }
 }
 ~script10051;
