@@ -3,7 +3,7 @@
 if ($obj2 = obj_54603) {
     return(true);
 }
-if ($stat0 = necromancy & ~script16690($stat0, $obj2) = false) {
+if ($stat0 = null & ~script16690($stat0, $obj2) = false) {
     if ($int3 = 1) {
         mes("You cannot use this on the currently embargoed skill.");
         sound_vorbis_volume(sound_10046, 1, 0, 150);
@@ -269,7 +269,7 @@ switch_obj ($obj2) {
         }
     case obj_25977 :
         switch_stat ($stat0) {
-            case attack, strength, defence, hitpoints, ranged, magic, prayer, summoning, herblore, slayer :
+            case attack, strength, defence, hitpoints, ranged, magic, prayer, summoning, herblore, slayer, necromancy :
             case default :
                 if ($int3 = 1) {
                     mes("You may only use this to increase combat related skills.");
@@ -279,7 +279,7 @@ switch_obj ($obj2) {
         }
     case obj_34835 :
         switch_stat ($stat0) {
-            case attack, strength, defence, hitpoints, ranged, magic, prayer, summoning, herblore, slayer :
+            case attack, strength, defence, hitpoints, ranged, magic, prayer, summoning, herblore, slayer, necromancy :
             case default :
                 if ($int3 = 1) {
                     mes("You may only use this to increase combat related skills.");
@@ -289,7 +289,7 @@ switch_obj ($obj2) {
         }
     case obj_25070 :
         switch_stat ($stat0) {
-            case attack, strength, defence, hitpoints, ranged, magic :
+            case attack, strength, defence, hitpoints, ranged, magic, necromancy :
             case default :
                 if ($int3 = 1) {
                     mes("You may only choose a combat skill.");
@@ -299,7 +299,7 @@ switch_obj ($obj2) {
         }
     case obj_29752, obj_36835 :
         switch_stat ($stat0) {
-            case attack, strength, defence, hitpoints, ranged, magic :
+            case attack, strength, defence, hitpoints, ranged, magic, necromancy :
             case default :
                 if ($int3 = 1) {
                     mes("You may only use this to increase basic combat skills.");
@@ -309,7 +309,7 @@ switch_obj ($obj2) {
         }
     case obj_31076 :
         switch_stat ($stat0) {
-            case attack, strength, defence, hitpoints, ranged, magic :
+            case attack, strength, defence, hitpoints, ranged, magic, necromancy :
             case default :
                 if ($int3 = 1) {
                     mes("You may only choose a combat skill.");
@@ -428,7 +428,7 @@ switch_obj ($obj2) {
         }
     case obj_27362 :
         switch_stat ($stat0) {
-            case hitpoints, attack, strength, defence, ranged, magic :
+            case hitpoints, attack, strength, defence, ranged, magic, necromancy :
             case default :
                 if ($int3 = 1) {
                     mes("You may only use this book to increase combat related skills.");
@@ -719,7 +719,7 @@ switch_obj ($obj2) {
         }
         return(~skill_unlocked($stat0));
 }
-if (oc_param($obj2, param_4018) = 1 | oc_param($obj2, param_4019) = 1 | oc_param($obj2, param_4020) = 1 | oc_param($obj2, param_4021) = 1 | oc_param($obj2, param_4022) = 1 | oc_param($obj2, param_4023) = 1 | oc_param($obj2, param_4024) = 1 | oc_param($obj2, param_4025) = 1 | oc_param($obj2, param_4026) = 1 | oc_param($obj2, param_4027) = 1) {
+if (oc_param($obj2, param_4018) = 1 | oc_param($obj2, param_4019) = 1 | oc_param($obj2, param_4020) = 1 | oc_param($obj2, param_4021) = 1 | oc_param($obj2, param_4022) = 1 | oc_param($obj2, param_4023) = 1 | oc_param($obj2, param_4024) = 1 | oc_param($obj2, param_4025) = 1 | oc_param($obj2, param_4026) = 1 | oc_param($obj2, param_4027) = 1 | oc_param($obj2, param_7946) = 1) {
     switch_stat ($stat0) {
         case attack :
             if (oc_param($obj2, param_4018) = 0) {
@@ -797,6 +797,14 @@ if (oc_param($obj2, param_4018) = 1 | oc_param($obj2, param_4019) = 1 | oc_param
             if (oc_param($obj2, param_4027) = 0) {
                 if ($int3 = 1) {
                     mes("You cannot use this to increase your Slayer skill.");
+                    sound_vorbis_volume(sound_10046, 1, 0, 150);
+                }
+                return(false);
+            }
+        case necromancy :
+            if (oc_param($obj2, param_7946) = 0) {
+                if ($int3 = 1) {
+                    mes("You cannot use this to increase your Necromancy skill.");
                     sound_vorbis_volume(sound_10046, 1, 0, 150);
                 }
                 return(false);
