@@ -1,6 +1,10 @@
 // 17258
-[proc,script17258]()(boolean)
-if (%varplayer_10850 = null) {
-    return(false);
+[proc,script17258]()(string)
+if (%varplayerbit_54993 <= 0) {
+    return("https://crmintegration.production.rs.aws.jagex.com/");
+} else if (%varplayerbit_54993 = 1) {
+    return("https://crmintegration.development.rs.aws.jagex.network/");
+} else {
+    ~error("Unknown %crm_braze_endpoint_url_environment: <tostring(%varplayerbit_54993)> when trying to pull Braze attribution URL. Returning Live URL.");
+    return("https://crmintegration.production.rs.aws.jagex.com/");
 }
-return(struct_param(%varplayer_10850, param_9014));

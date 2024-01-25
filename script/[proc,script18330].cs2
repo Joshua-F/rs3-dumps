@@ -1,68 +1,25 @@
 // 18330
-[proc,script18330](inv $inv0, int $int1, int $int2, component $component3, int $int4, int $int5, int $int6)(int, int, int, int)
-def_int $int7 = 0;
-def_int $int8 = 0;
-def_obj $obj9 = null;
-def_int $int10 = inv_size($inv0);
-if ($int10 ! 0) {
-    while ($int8 < $int10) {
-        $obj9 = inv_getobj($inv0, $int8);
-        $int7 = inv_getnum($inv0, $int8);
-        if ($int7 > 0) {
-            cc_create($component3, ^iftype_graphic, $int4++);
-            cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-            cc_setobject_alwaysnum($obj9, $int7);
-        }
-        $int8 = calc($int8 + 1);
-    }
-    $int8 = 0;
-    $int7 = calc($int4 - $int5);
-    while ($int5 < $int4) {
-        if (cc_find($component3, $int5++) = true) {
-            switch_int (calc(min($int7, 4) % 4)) {
-                case 1 :
-                    cc_setposition(0, calc($int6 + 35 * ($int8 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
-                case 2 :
-                    switch_int (calc($int8 % 4)) {
-                        case 0 :
-                            cc_setposition(calc((0 - 36) / 2), calc($int6 + 35 * ($int8 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
-                        case 1 :
-                            cc_setposition(calc(36 / 2), calc($int6 + 35 * ($int8 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
-                    }
-                case 3 :
-                    switch_int (calc($int8 % 4)) {
-                        case 0 :
-                            cc_setposition(calc(0 - 36), calc($int6 + 35 * ($int8 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
-                        case 1 :
-                            cc_setposition(0, calc($int6 + 35 * ($int8 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
-                        case 2 :
-                            cc_setposition(36, calc($int6 + 35 * ($int8 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
-                    }
-                case 0 :
-                    switch_int (calc($int8 % 4)) {
-                        case 0 :
-                            cc_setposition(scale(calc(0 - 36), 2, 3), calc($int6 + 35 * ($int8 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
-                        case 1 :
-                            cc_setposition(calc((0 - 36) / 2), calc($int6 + 35 * ($int8 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
-                        case 2 :
-                            cc_setposition(calc(36 / 2), calc($int6 + 35 * ($int8 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
-                        case 3 :
-                            cc_setposition(scale(36, 2, 3), calc($int6 + 35 * ($int8 / 4)), ^setpos_abs_centre, ^setpos_abs_top);
-                    }
-            }
-            if (calc($int8 % 4) = 3) {
-                $int7 = calc($int7 - 4);
-                $int7 = abs($int7);
-            }
-            $int8 = calc($int8 + 1);
-        }
-    }
-    if ($int8 > 0) {
-        $int2 = calc(35 + 35 * (($int8 - 1) / 4));
-        $int1 = max($int1, calc(36 * min(4, $int8) + 20));
-    } else {
-        $int2 = 0;
-    }
-    $int7 = calc($int7 + 1);
+[proc,script18330](struct $struct0, string $string0, int $int1)(string)
+def_int $int2 = 90;
+def_int $int3 = 20;
+switch_struct ($struct0) {
+    case struct_44900 :
+        $int2 = 180;
+        $int3 = 40;
 }
-return($int7, $int1, $int2, $int4);
+if (%varplayerbit_30357 > 0) {
+    $int2 = calc($int2 - scale($int2, 100, 20));
+    $int3 = calc($int3 - scale($int3, 100, 20));
+}
+switch_struct ($struct0) {
+    case struct_14725 :
+        $string0 = "<$string0><br>- <~script17720(struct_14725, $int2, calc($int2 + $int3), 0, $int1)>.";
+        $string0 = "<$string0><br>- Damage is increased by <col=ffffff><tostring(30)>%</col> if the target is <col=ffffff>Stunned</col> or <col=ffffff>Bound</col>.";
+    case struct_44900 :
+        $string0 = "<$string0><br>- <~script17720(struct_44900, $int2, calc($int2 + $int3), 0, $int1)>.";
+        $string0 = "<$string0><br>- Damage is increased by <col=ffffff>60%</col> if the target is <col=ffffff>Stunned</col> or <col=ffffff>Bound</col>.";
+        $string0 = "<$string0><br>- Generates <col=ffffff><tostring(1)> <sprite=14765><nbsp><col=ffffff><struct_param(struct_44898, param_2794)></col> stack with each hit.";
+        $string0 = "<$string0><br>- Consumes all <sprite=14765><nbsp><col=ffffff><struct_param(struct_44820, param_2794)></col> stacks.";
+        $string0 = "<$string0><br>- Reverts to <sprite=11338><nbsp><col=ffffff><struct_param(struct_14725, param_2794)></col>.";
+}
+return($string0);
