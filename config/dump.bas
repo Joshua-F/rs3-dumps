@@ -21343,7 +21343,7 @@ readyanim=seq_32296,seq_32297
 
 [bas_4307]
 runanim=seq_32311
-readyanim=seq_32310,seq_31159
+readyanim=seq_32310,seq_35750
 
 [bas_4308]
 readyanim=seq_32314,seq_32315
