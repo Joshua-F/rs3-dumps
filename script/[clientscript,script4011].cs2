@@ -18,12 +18,8 @@ if (if_gethide(interface_1500:com_419) = true) {
     if_setsize(424, 0, ^setsize_minus, ^setsize_minus, interface_1500:com_425);
 }
 def_string $string0 = ~quest_name($quest0);
-def_int $int2 = stringwidth($string0, if_getfontmetrics(interface_1500:com_331));
-if_setsize(calc($int2 + 30), if_getheight(interface_1500:com_330), ^setsize_abs, ^setsize_abs, interface_1500:com_330);
-if_settext($string0, interface_1500:com_331);
-if (map_lang ! 0) {
-    if_settextfont(fontmetrics_57, interface_1500:com_331);
-}
+if_setsize(calc(stringwidth($string0, if_getfontmetrics(interface_1500:com_331)) + 30), if_getheight(interface_1500:com_330), ^setsize_abs, ^setsize_abs, interface_1500:com_330);
+~script18490($string0, interface_1500:com_331, interface_1500:com_333);
 if (quest_getmembers($quest0) = true) {
     if_sethide(false, interface_1500:com_335);
     if_sethide(true, interface_1500:com_336);
@@ -35,8 +31,7 @@ def_string $string1 = "<quest_getname($quest0)>/Quick guide";
 if_setonbuttonpressed("wiki($string1)", interface_1500:com_333);
 if_setgraphic(quest_param($quest0, param_7829), interface_1500:com_391);
 if_settext(tostring(quest_param($quest0, param_7834)), interface_1500:com_390);
-$int2 = 0;
-$int2 = ~script4249("<col=EBE076>Start Point:</col>", quest_param($quest0, param_7814), interface_1500:com_343, interface_1500:com_344, interface_1500:com_345, null, null, $int1, $int2);
+def_int $int2 = ~script4249("<col=EBE076>Start Point:</col>", quest_param($quest0, param_7814), interface_1500:com_343, interface_1500:com_344, interface_1500:com_345, null, null, $int1, 0);
 $string0 = "";
 if (quest_param($quest0, param_7836) ! 0) {
     switch_int (map_lang) {
