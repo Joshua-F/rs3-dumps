@@ -29081,65 +29081,65 @@ randomreadyanim=seq_35620,10
 
 // 4735
 [bas_4735]
-readyanim=seq_35719,null
+readyanim=seq_35740,null
 
 // 4736
 [bas_4736]
-readyanim=seq_35720,null
+readyanim=seq_35741,null
 
 // 4737
 [bas_4737]
-readyanim_l=seq_35688
-readyanim_r=seq_35688
-walkanim_b=seq_35688
-walkanim_l=seq_35688
-walkanim_r=seq_35688
-walkturn_l=seq_35688
-walkturn_r=seq_35688
-runanim=seq_35686
-readyanim=null,seq_35688
-randomreadyanim=seq_35684,90
+readyanim_l=seq_35690
+readyanim_r=seq_35690
+walkturn_l=seq_35690
+walkturn_r=seq_35690
+runanim=seq_35687
+runturn_l=seq_35687
+runturn_r=seq_35687
+readyanim=null,seq_35690
+randomreadyanim=seq_35691,90
 randomreadyanim=seq_35685,10
 
 // 4738
 [bas_4738]
-readyanim_l=seq_35691
-readyanim_r=seq_35691
-walkanim_b=seq_35691
-walkanim_l=seq_35691
-walkanim_r=seq_35691
-walkturn_l=seq_35691
-walkturn_r=seq_35691
-runanim=seq_35692
-crawlanim=seq_35690
-readyanim=seq_35609,seq_35691
+readyanim_l=seq_35699
+readyanim_r=seq_35699
+walkanim_b=seq_35699
+walkanim_l=seq_35699
+walkanim_r=seq_35699
+walkturn_l=seq_35699
+walkturn_r=seq_35699
+runanim=seq_35697
+readyanim=null,seq_35699
+randomreadyanim=seq_35695,90
+randomreadyanim=seq_35696,10
 
 // 4739
 [bas_4739]
-readyanim_l=seq_35730
-readyanim_r=seq_35730
-walkturn_l=seq_35730
-walkturn_r=seq_35730
-runanim=seq_35727
-runturn_l=seq_35727
-runturn_r=seq_35727
-readyanim=null,seq_35730
-randomreadyanim=seq_35731,90
-randomreadyanim=seq_35725,10
+readyanim_l=seq_35702
+readyanim_r=seq_35702
+walkanim_b=seq_35702
+walkanim_l=seq_35702
+walkanim_r=seq_35702
+walkturn_l=seq_35702
+walkturn_r=seq_35702
+runanim=seq_35703
+crawlanim=seq_35701
+readyanim=seq_35609,seq_35702
 
 // 4740
 [bas_4740]
-readyanim_l=seq_35734
-readyanim_r=seq_35734
-walkanim_b=seq_35734
-walkanim_l=seq_35734
-walkanim_r=seq_35734
-walkturn_l=seq_35734
-walkturn_r=seq_35734
-runanim=seq_35735
-readyanim=null,seq_35734
+readyanim_l=seq_35731
+readyanim_r=seq_35731
+walkanim_b=seq_35731
+walkanim_l=seq_35731
+walkanim_r=seq_35731
+walkturn_l=seq_35731
+walkturn_r=seq_35731
+runanim=seq_35732
+readyanim=null,seq_35731
 randomreadyanim=seq_33763,90
-randomreadyanim=seq_35733,10
+randomreadyanim=seq_35730,10
 
 // 4741
 [bas_4741]
