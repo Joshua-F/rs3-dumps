@@ -1,23 +1,7 @@
 // 18319
-[proc,script18319]()(int)
-if (~script13048 = true) {
-    return(1);
+[proc,script18319](int $int0, dbrow $dbrow1)(boolean)
+if ($int0 ! -1 & $dbrow1 ! null & db_getfieldcount($dbrow1, dbtable_272:col0) >= $int0) {
+    return(true);
 }
-if (~script13727(45) = 1) {
-    return(0);
-}
-if (playermember = false) {
-    return(0);
-}
-def_boolean $boolean0 = false;
-def_int $int1 = 0;
-def_int $int2 = 0;
-def_int $int3 = 0;
-$int2, $int1, $int3, $boolean0 = ~script11179;
-if ($boolean0 = true) {
-    return(1);
-}
-if (calc($int1 - $int3) > 788400) {
-    return(1);
-}
-return(0);
+~error("The currently running buff_select_event has reached a day on which the current event's row on the buff_select_event_schedule dbtable doesn't have buffs to populate.");
+return(false);
