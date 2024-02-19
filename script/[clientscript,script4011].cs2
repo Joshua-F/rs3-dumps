@@ -81,29 +81,41 @@ if (string_length($string2) > 0) {
     } else {
         $int2 = calc($int2 - 20);
     }
+    if_sethide(false, interface_1500:com_357);
     switch_int (quest_param($quest0, param_7853)) {
         case 1 :
             $int2 = ~script4249("", "To fully appreciate the backstory and events of this quest, and unlock the full rewards, we strongly recommend you first complete the above suggested quests. You may complete the quest without these prerequisites, and claim the rewards at a later date.", interface_1500:com_357, interface_1500:com_358, interface_1500:com_359, null, null, $int1, $int2);
         case 0 :
             $int2 = ~script4249("", "", interface_1500:com_357, interface_1500:com_358, interface_1500:com_359, null, null, $int1, $int2);
+            if_sethide(true, interface_1500:com_357);
     }
-    if_sethide(false, interface_1500:com_357);
 } else {
     if_sethide(true, interface_1500:com_353);
     if_sethide(true, interface_1500:com_357);
 }
-def_string $string3 = ~script6392(quest_param($quest0, param_949), quest_param($quest0, param_887), quest_param($quest0, param_3822), quest_param($quest0, param_950), quest_param($quest0, param_888), quest_param($quest0, param_4061), quest_param($quest0, param_951), quest_param($quest0, param_889), quest_param($quest0, param_4472), quest_param($quest0, param_952), quest_param($quest0, param_890), quest_param($quest0, param_4812), quest_param($quest0, param_1212), quest_param($quest0, param_891), quest_param($quest0, param_4867), quest_param($quest0, param_1270), quest_param($quest0, param_892), quest_param($quest0, param_5481), quest_param($quest0, param_1330), quest_param($quest0, param_893), quest_param($quest0, param_6529), quest_param($quest0, param_1360), quest_param($quest0, param_894), quest_param($quest0, param_6532), quest_param($quest0, param_1361), quest_param($quest0, param_895), quest_param($quest0, param_6830), quest_param($quest0, param_1362), quest_param($quest0, param_896), quest_param($quest0, param_6831), quest_param($quest0, param_1363), quest_param($quest0, param_898), quest_param($quest0, param_6850), quest_param($quest0, param_3291), quest_param($quest0, param_948), quest_param($quest0, param_6851), quest_param($quest0, param_7815), "None.", ", ");
-$int2 = ~script4249("<col=EBE076>Required Items:</col>", $string3, interface_1500:com_366, interface_1500:com_367, interface_1500:com_368, interface_1500:com_369, interface_1500:com_374, $int1, $int2);
-def_string $string4 = quest_param($quest0, param_7816);
+def_string $string3 = "";
+def_string $string4 = "";
+if (quest_param($quest0, param_7852) = true) {
+    $string3, $string4 = ~script18529($quest0);
+}
+if (string_length($string4) > 0) {
+    $int2 = ~script4249("<col=EBE076><$string3></col>", $string4, interface_1500:com_360, interface_1500:com_361, interface_1500:com_362, null, null, $int1, $int2);
+    if_sethide(false, interface_1500:com_360);
+} else {
+    if_sethide(true, interface_1500:com_360);
+}
+def_string $string5 = ~script6392(quest_param($quest0, param_949), quest_param($quest0, param_887), quest_param($quest0, param_3822), quest_param($quest0, param_950), quest_param($quest0, param_888), quest_param($quest0, param_4061), quest_param($quest0, param_951), quest_param($quest0, param_889), quest_param($quest0, param_4472), quest_param($quest0, param_952), quest_param($quest0, param_890), quest_param($quest0, param_4812), quest_param($quest0, param_1212), quest_param($quest0, param_891), quest_param($quest0, param_4867), quest_param($quest0, param_1270), quest_param($quest0, param_892), quest_param($quest0, param_5481), quest_param($quest0, param_1330), quest_param($quest0, param_893), quest_param($quest0, param_6529), quest_param($quest0, param_1360), quest_param($quest0, param_894), quest_param($quest0, param_6532), quest_param($quest0, param_1361), quest_param($quest0, param_895), quest_param($quest0, param_6830), quest_param($quest0, param_1362), quest_param($quest0, param_896), quest_param($quest0, param_6831), quest_param($quest0, param_1363), quest_param($quest0, param_898), quest_param($quest0, param_6850), quest_param($quest0, param_3291), quest_param($quest0, param_948), quest_param($quest0, param_6851), quest_param($quest0, param_7815), "None.", ", ");
+$int2 = ~script4249("<col=EBE076>Required Items:</col>", $string5, interface_1500:com_366, interface_1500:com_367, interface_1500:com_368, interface_1500:com_369, interface_1500:com_374, $int1, $int2);
+def_string $string6 = quest_param($quest0, param_7816);
 def_int $int3 = quest_param($quest0, param_857);
-if (string_length($string4) = string_length("None.") & $int3 > 0) {
+if (string_length($string6) = string_length("None.") & $int3 > 0) {
     if ($int3 = 5) {
-        $string4 = "<$string4> Combat is scaled and you should bring appropriate equipment and food for your level.";
+        $string6 = "<$string6> Combat is scaled and you should bring appropriate equipment and food for your level.";
     } else {
-        $string4 = "You must defeat an enemy of at least: <enum(int, string, enum_3613, $int3)>.";
+        $string6 = "You must defeat an enemy of at least: <enum(int, string, enum_3613, $int3)>.";
     }
 }
-$int2 = ~script4249("<col=EBE076>Combat:</col>", $string4, interface_1500:com_375, interface_1500:com_376, interface_1500:com_377, null, null, $int1, $int2);
+$int2 = ~script4249("<col=EBE076>Combat:</col>", $string6, interface_1500:com_375, interface_1500:com_376, interface_1500:com_377, null, null, $int1, $int2);
 $string0 = "<enum(int, string, enum_13354, quest_param($quest0, param_7855))>.";
 $int2 = ~script4249("<col=EBE076>Length:</col>", $string0, interface_1500:com_363, interface_1500:com_364, interface_1500:com_365, null, null, $int1, $int2);
 switch_quest ($quest0) {
@@ -118,22 +130,22 @@ switch_quest ($quest0) {
         $string0 = ~script2134($quest0, "", "");
 }
 $int2 = ~script4249("<col=EBE076>Rewards:</col>", $string0, interface_1500:com_378, interface_1500:com_379, interface_1500:com_380, interface_1500:com_381, interface_1500:com_386, $int1, $int2);
-def_string $string5 = "";
+def_string $string7 = "";
 switch_int (quest_param($quest0, param_7831)) {
     case 0 :
-        $string5 = "This is a Fifth Age quest, and takes place in the past, before the gods returned to Gielinor.";
+        $string7 = "This is a Fifth Age quest, and takes place in the past, before the gods returned to Gielinor.";
     case 2 :
         if ($quest0 = quest_361) {
-            $string5 = "The events of this quest trigger the end of the Fifth Age and begins the Sixth Age.<br>It is recommended, but not necessary, to complete Fifth Age quests before Sixth Age quests to fully understand the story of the Sixth Age.";
+            $string7 = "The events of this quest trigger the end of the Fifth Age and begins the Sixth Age.<br>It is recommended, but not necessary, to complete Fifth Age quests before Sixth Age quests to fully understand the story of the Sixth Age.";
         } else if (quest_param($quest0, param_1345) <= 321) {
-            $string5 = "This is a Sixth Age quest, and takes place after the events of The World Wakes.<br>The gods are free to return to Gielinor. You are the World Guardian.";
+            $string7 = "This is a Sixth Age quest, and takes place after the events of The World Wakes.<br>The gods are free to return to Gielinor. You are the World Guardian.";
         }
 }
-if (string_length($string5) > 0 | string_length(quest_param($quest0, param_7839)) > 0) {
+if (string_length($string7) > 0 | string_length(quest_param($quest0, param_7839)) > 0) {
     if (string_length(quest_param($quest0, param_7839)) > 0) {
         $int2 = ~script673($int2);
     } else {
-        $int2 = ~script13771($int2, $string5);
+        $int2 = ~script13771($int2, $string7);
     }
     if_sethide(false, interface_1500:com_387);
 } else {
