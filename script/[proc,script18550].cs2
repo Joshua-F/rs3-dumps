@@ -1,0 +1,144 @@
+// 18550
+[proc,script18550](component $component0, int $int1, struct $struct2, struct $struct3, struct $struct4)
+def_int $int5 = calc($int1 * 11);
+def_int $int6 = calc(2 * 3);
+def_int $int7 = $int1;
+def_int $int8 = calc($int7 % 2);
+def_int $int9 = calc($int7 % $int6 / 2);
+def_int $int10 = calc(15 + $int1 / 2 * (255 + 15));
+def_int $int11 = 15;
+if ($int8 = 1) {
+    $int11 = calc($int11 + (15 + 205));
+}
+if (struct_param($struct3, param_9077) = 1) {
+    while ($int5 < calc(($int1 + 1) * 11)) {
+        if (cc_find($component0, $int5++) = true) {
+            cc_delete;
+        }
+    }
+    return;
+}
+def_obj $obj12 = struct_param($struct3, param_4851);
+def_struct $struct13 = null;
+def_struct $struct14 = null;
+def_int $int15 = 0;
+$struct13, $struct14, $int15 = ~script326($struct3);
+def_npc $npc16 = null;
+def_boolean $boolean17 = ~script13501($struct3);
+cc_create($component0, ^iftype_graphic, $int5++);
+cc_setgraphic(mtx_store_package_small_background_table);
+cc_setaspect(cc_getgraphicdimensions);
+cc_setsize(255, 1, ^setsize_abs, ^setsize_aspect);
+cc_setposition($int10, $int11, ^setpos_abs_left, ^setpos_abs_top);
+def_int $int18 = cc_getheight;
+cc_create($component0, ^iftype_graphic, $int5);
+cc_setgraphic(container_gold_small);
+cc_setaspect(cc_getgraphicdimensions);
+cc_setsize(255, 1, ^setsize_abs, ^setsize_aspect);
+cc_setposition($int10, $int11, ^setpos_abs_left, ^setpos_abs_top);
+cc_setonmouseover("cc_graphic_swapper($component0, $int5, container_gold_small_over)");
+cc_setonmouseleave("cc_graphic_swapper($component0, $int5, container_gold_small)");
+cc_setonclick("cc_graphic_swapper($component0, $int5, container_gold_small_pressed)");
+cc_setonrelease("cc_graphic_swapper($component0, $int5, container_gold_small_over)");
+$int5 = calc($int5 + 1);
+cc_create($component0, ^iftype_graphic, $int5++);
+cc_setgraphic(container_overlay_small);
+cc_setaspect(cc_getgraphicdimensions);
+cc_setsize(251, 1, ^setsize_abs, ^setsize_aspect);
+cc_setposition($int10, calc($int11 + $int18 - cc_getheight - scale(1, 205, $int18)), ^setpos_abs_left, ^setpos_abs_top);
+def_int $int19 = calc($int10 + 255 / 2 - 120 / 2);
+def_int $int20 = calc($int11 + 10);
+if (struct_param($struct3, param_4852) ! null) {
+    cc_create($component0, ^iftype_graphic, $int5);
+    cc_setgraphic(struct_param($struct3, param_4852));
+    cc_setposition($int19, $int20, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(120, 120, ^setsize_abs, ^setsize_abs);
+} else if ($obj12 ! null) {
+    if (struct_param($struct3, param_9078) = 1) {
+        if ($int15 = 5) {
+            $npc16 = struct_param($struct14, param_3152);
+            cc_create($component0, ^iftype_model, $int5);
+            cc_setmodelorthog(false);
+            cc_setnpcmodel($npc16);
+            cc_setmodelangle(struct_param($struct3, param_9081), struct_param($struct3, param_9082), struct_param($struct3, param_9083), struct_param($struct3, param_9084), struct_param($struct3, param_9085), struct_param($struct3, param_9080));
+            cc_setposition($int19, $int20, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize(120, 120, ^setsize_abs, ^setsize_abs);
+        } else if (struct_param($struct3, param_9079) ! null) {
+            cc_create($component0, ^iftype_model, $int5);
+            cc_setposition($int19, $int20, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setmodel(struct_param($struct3, param_9079));
+            cc_setmodelorthog(true);
+            cc_setmodelangle(struct_param($struct3, param_9081), struct_param($struct3, param_9082), struct_param($struct3, param_9083), struct_param($struct3, param_9084), struct_param($struct3, param_9085), struct_param($struct3, param_9080));
+            cc_setposition($int19, $int20, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setsize(120, 120, ^setsize_abs, ^setsize_abs);
+        } else {
+            ~error("rewardshop struct: <~script13337($struct3)> has param rewardshop_draw_model, but is not a pet or has an override specified.");
+        }
+    } else {
+        cc_create($component0, ^iftype_graphic, $int5);
+        $obj12 = ~script14453($struct3, $obj12);
+        cc_setobject_highres($obj12);
+        cc_setposition($int19, $int20, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(120, 120, ^setsize_abs, ^setsize_abs);
+    }
+}
+$int5 = calc($int5 + 1);
+def_string $string0 = ~script13337($struct3);
+def_int $int21 = struct_param($struct3, param_4448);
+$string0 = ~script325($int21, $string0, true, 0);
+$string0 = ~script3930($string0, calc(255 - 10), 2, fontmetrics_90);
+cc_create($component0, ^iftype_text, $int5);
+cc_settext($string0);
+cc_settextfont(fontmetrics_90);
+cc_setcolour(0xe0d471);
+cc_setsize(calc(255 - 10), scale(205, 100, 30), ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int10 + 5), calc($int11 + scale(205, 100, 55)), ^setpos_abs_left, ^setpos_abs_top);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 10);
+$int5 = calc($int5 + 1);
+cc_create($component0, ^iftype_text, $int5);
+def_int $int22 = ~script9095($struct3, $boolean17);
+def_string $string1 = tostring_localised($int22, true);
+if ($int22 = 0) {
+    $string1 = "FREE!";
+}
+cc_settext($string1);
+cc_settextfont(fontmetrics_91);
+cc_setcolour(0xe0e0e0);
+cc_setsize(255, scale(205, 100, 15), ^setsize_abs, ^setsize_abs);
+cc_setposition($int10, calc($int11 + scale(205, 100, 83)), ^setpos_abs_left, ^setpos_abs_top);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 20);
+$int5 = calc($int5 + 1);
+cc_create($component0, ^iftype_graphic, $int5);
+cc_setgraphic(struct_param($struct2, param_8661));
+cc_setsize(scale(205, 100, 15), scale(205, 100, 15), ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int10 + 40), calc($int11 + scale(205, 100, 83)), ^setpos_abs_left, ^setpos_abs_top);
+if ($int22 = 0) {
+    cc_sethide(true);
+}
+$int5 = calc($int5 + 1);
+cc_create($component0, ^iftype_graphic, $int5);
+cc_setgraphic(struct_param($struct4, param_4738));
+cc_setsize(16, 28, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int10 + 255 - 16), calc($int11 - 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_sethide(true);
+$int5 = calc($int5 + 1);
+cc_create($component0, ^iftype_graphic, $int5);
+cc_setgraphic(struct_param($struct4, param_4739));
+cc_setsize(0, 28, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int10 + 255), calc($int11 - 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_sethide(true);
+$int5 = calc($int5 + 1);
+cc_create($component0, ^iftype_graphic, $int5);
+cc_setgraphic(struct_param($struct4, param_4740));
+cc_setsize(12, 28, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int10 + 255), calc($int11 - 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_sethide(true);
+$int5 = calc($int5 + 1);
+cc_create($component0, ^iftype_text, $int5);
+cc_settextfont(fontmetrics_90);
+cc_setcolour(^white);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_setsize(0, 23, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int10 + 255), calc($int11 - 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_sethide(true);
+$int5 = calc($int5 + 1);
