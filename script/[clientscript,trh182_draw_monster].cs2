@@ -1,6 +1,6 @@
 // 16754
 [clientscript,trh182_draw_monster]
-def_component $component0 = interface_1022:com_33;
+def_component $component0 = interface_1022:com_34;
 def_dbrow $dbrow1 = ~trh182_get_monster_dbrow;
 if ($dbrow1 = null) {
     ~error("Null monster.");
@@ -12,37 +12,40 @@ $npc2, $seq3 = db_getfield($dbrow1, dbtable_193:col1, 0);
 %varclient_7073 = $seq3;
 if_setnpcmodel($npc2, $component0);
 if_setmodelangle(db_getfield($dbrow1, dbtable_193:col2, 0), $component0);
-if_setontimer(null, interface_1022:com_33);
+if_setontimer(null, interface_1022:com_34);
 if_setmodelanim($seq3, $component0);
 def_string $string0 = db_getfield($dbrow1, dbtable_193:col7, 0);
-if_settext($string0, interface_1022:com_99);
+if_settext($string0, interface_1022:com_101);
 def_int $int4 = db_getfield($dbrow1, dbtable_193:col4, 0);
-if_settext("Level<br><tostring($int4)>", interface_1022:com_100);
+if_settext("Level<br><tostring($int4)>", interface_1022:com_102);
 if ($int4 >= 10000) {
-    if_settextfont(fontmetrics_90, interface_1022:com_100);
+    if_settextfont(fontmetrics_90, interface_1022:com_102);
 } else if ($int4 >= 1000) {
-    if_settextfont(fontmetrics_92, interface_1022:com_100);
+    if_settextfont(fontmetrics_92, interface_1022:com_102);
 } else {
-    if_settextfont(fontmetrics_96, interface_1022:com_100);
+    if_settextfont(fontmetrics_96, interface_1022:com_102);
 }
-def_graphic $graphic5 = db_getfield($dbrow1, dbtable_193:col12, 0);
-def_graphic $graphic6 = db_getfield($dbrow1, dbtable_193:col13, 0);
-def_graphic $graphic7 = db_getfield($dbrow1, dbtable_193:col14, 0);
-def_graphic $graphic8 = db_getfield($dbrow1, dbtable_193:col15, 0);
-def_jingle $jingle9 = db_getfield($dbrow1, dbtable_193:col16, 0);
-if_setgraphic($graphic5, interface_1022:com_3);
-if_setgraphic($graphic6, interface_1022:com_2);
+def_graphic $graphic5 = db_getfield($dbrow1, dbtable_193:col11, 0);
+def_graphic $graphic6 = db_getfield($dbrow1, dbtable_193:col12, 0);
+def_graphic $graphic7 = db_getfield($dbrow1, dbtable_193:col13, 0);
+def_graphic $graphic8 = db_getfield($dbrow1, dbtable_193:col14, 0);
+if (~script18534 = true) {
+    $graphic5, $graphic6, $graphic7, $graphic8 = ~script18549($dbrow1, $graphic5, $graphic6, $graphic7, $graphic8);
+}
+def_jingle $jingle9 = db_getfield($dbrow1, dbtable_193:col15, 0);
+if_setgraphic($graphic5, interface_1022:com_4);
+if_setgraphic($graphic6, interface_1022:com_3);
+if_setgraphic($graphic7, interface_1022:com_69);
 if_setgraphic($graphic7, interface_1022:com_66);
 if_setgraphic($graphic7, interface_1022:com_63);
-if_setgraphic($graphic7, interface_1022:com_60);
-if_setgraphic($graphic8, interface_1022:com_24);
-if_setgraphic($graphic8, interface_1022:com_20);
-if_setgraphic($graphic8, interface_1022:com_16);
+if_setgraphic($graphic8, interface_1022:com_25);
+if_setgraphic($graphic8, interface_1022:com_21);
+if_setgraphic($graphic8, interface_1022:com_17);
 if ($jingle9 ! null) {
     sound_jingle_volume($jingle9, 1000, 200);
 }
 ~script16762;
-if_sethide(true, interface_1022:com_36);
-if_setop(5, "Examine", interface_1022:com_34);
-if_setopbase("<col=FFFF00><~script16737($string0)></col>", interface_1022:com_34);
-if_setonop("script16755", interface_1022:com_34);
+if_sethide(true, interface_1022:com_37);
+if_setop(5, "Examine", interface_1022:com_35);
+if_setopbase("<col=FFFF00><~script16737($string0)></col>", interface_1022:com_35);
+if_setonop("script16755", interface_1022:com_35);

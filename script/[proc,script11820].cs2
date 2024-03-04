@@ -29,13 +29,15 @@ if ($int5 >= $int4) {
         $int6 = min($int6, 138);
         $graphic7 = ~script7988($int6);
     }
-    if (%varplayerbit_25401 = 1) {
-        $int3 = calc(($int4 + 50 - $int5) / 50);
-        if ($int3 > 59) {
-            $string0 = "<tostring(calc($int3 / 60))>m";
-        } else {
-            $string0 = tostring($int3);
+    $int3 = calc(($int4 + 50 - $int5) / 50);
+    if ($int3 > 59) {
+        $string0 = "<tostring(calc($int3 / 60))>:";
+        if (calc($int3 % 60) < 10) {
+            $string0 = "<$string0>0";
         }
+        $string0 = "<$string0><tostring(calc($int3 % 60))>";
+    } else {
+        $string0 = tostring($int3);
     }
 }
 return($int5, $int4, $graphic7, $string0);
