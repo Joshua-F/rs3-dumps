@@ -1,22 +1,15 @@
 // 9191
-[clientscript,barrows2_time_remaining](int $int0, int $int1, int $int2)
-def_int $int3 = calc(($int0 - clientclock) / 50);
-if ($int3 < 0) {
+[clientscript,barrows2_time_remaining](int $int0, int $int1)
+def_int $int2 = calc(($int0 - clientclock) / 50);
+if ($int2 < 0) {
     if_setontimer(null, interface_312:com_10);
     return;
 }
 def_string $string0 = "<col=EBE1BE>";
-if ($int3 < 11) {
+if ($int2 < 11) {
     $string0 = "<col=EB3232>";
-} else if ($int3 < 21) {
+} else if ($int2 < 21) {
     $string0 = "<col=EB9632>";
 }
-if_settext("Total collapse in: <$string0><tostring($int3)></col>", interface_312:com_10);
-if ($int3 < 10) {
-    if ($int2 = -1) {
-        $int2 = cam2_addeffect_ztilt(0);
-    }
-    ~script9193($int2, $int1);
-    $int1 = max(-2000, calc($int1 - 4));
-}
-if_setontimer("barrows2_time_remaining($int0, $int1, $int2)", interface_312:com_10);
+if_settext("Total collapse in: <$string0><tostring($int2)></col>", interface_312:com_10);
+if_setontimer("barrows2_time_remaining($int0, $int1)", interface_312:com_10);

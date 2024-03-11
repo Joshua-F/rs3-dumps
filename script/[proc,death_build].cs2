@@ -218,6 +218,7 @@ def_long $long8 = ~script12798;
 $long7 = calc($long7 - $long4);
 def_long $long9 = long_scale($long7, 100, $long8);
 $long7 = calc($long7 - $long9);
+def_long $long10 = $long7;
 def_string $string6 = "...";
 if (%varplayerbit_28117 = 0) {
     if (%varplayerbit_52406 = 2) {
@@ -233,16 +234,21 @@ if (%varplayerbit_28117 = 0) {
         } else {
             if_setenabled(true, interface_1626:com_47);
         }
-        $string6 = ~script17372($long7, 9, 1);
+        if (%varplayerbit_1942 = 3) {
+            $string6 = "Free";
+            $long7 = calc($long7 - $long10);
+        } else {
+            $string6 = ~script17372($long7, 9, 1);
+        }
     }
 } else {
     if_setenabled(false, interface_1626:com_47);
 }
 if_settext($string6, interface_1626:com_51);
-def_long $long10 = ~script17375(~script17375($long3, $long5), %varclient_4876);
-def_long $long11 = ~script17375($long1, $long10);
+def_long $long11 = ~script17375(~script17375($long3, $long5), %varclient_4876);
+def_long $long12 = ~script17375($long1, $long11);
 ~script17096;
-~script17094($int0, $long11, $long10, $long2, $long4, $long9, $long7);
+~script17094($int0, $long12, $long11, $long2, $long4, $long9, $long10, $long7);
 if_settext("Confirm", interface_1626:com_71);
 if_settext("Yes", interface_1626:com_72);
 if_settext("No", interface_1626:com_73);
