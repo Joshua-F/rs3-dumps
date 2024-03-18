@@ -1,0 +1,56 @@
+// 18809
+[proc,script18809](int $int0)
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+switch_int (%varplayerbit_55284) {
+    case 0 :
+        db_find(dbtable_279:col0, $int0);
+        if (~script18787 = 0) {
+            $string2 = "Speak to Nougat Bunny in the Blooming Burrow to unlock this clue.";
+        } else {
+            $string0 = "Gielinor Egg Hunt - Week 1<br>Clue <tostring(calc($int0 + 1))>";
+            $string2 = db_getfield(db_findnext, dbtable_279:col2, 0);
+        }
+    case 1 :
+        db_find(dbtable_279:col0, $int0);
+        if (~date_runeday < 8062) {
+            $string2 = "The week 2 Gielinor Egg Hunt will be available from Monday 25th March.";
+        } else if (~script18788 = 0) {
+            $string2 = "Speak to Nougat Bunny in the Blooming Burrow to unlock this clue.";
+        } else {
+            $string0 = "Gielinor Egg Hunt - Week 2<br>Clue <tostring(calc($int0 + 1 - 12))>";
+            $string2 = db_getfield(db_findnext, dbtable_279:col2, 0);
+        }
+    case 2 :
+        db_find(dbtable_280:col0, $int0);
+        if (~date_runeday < 8061 | ~date_runeday = 8061 & calc(%varplayer_11489 % 1440) < 1200) {
+            $string2 = "The week 1 Community Egg Hunt will be available from Sunday 24th March, at 20:00 game time.";
+        } else if (~script18789 = 0) {
+            $string2 = "Speak to Nougat Bunny in the Blooming Burrow to unlock this clue.";
+        } else if (calc($int0 + 1) > %varplayerbit_55273) {
+            $string2 = "Solve the previous community clue to unlock this clue.";
+        } else {
+            $string0 = "Community Egg Hunt - Week 1<br>Clue <tostring(calc($int0 + 1))>";
+            $string2 = db_getfield(db_findnext, dbtable_280:col2, 0);
+        }
+    case 3 :
+        db_find(dbtable_280:col0, $int0);
+        if (~date_runeday < 8068 | ~date_runeday = 8068 & calc(%varplayer_11489 % 1440) < 1200) {
+            $string2 = "The week 2 Community Egg Hunt will be available from Sunday 31st March, at 20:00 game time.";
+        } else if (~script18790 = 0) {
+            $string2 = "Speak to Nougat Bunny in the Blooming Burrow to unlock this clue.";
+        } else if (calc($int0 + 1 - 5) > %varplayerbit_55274) {
+            $string2 = "Solve the previous community clue to unlock this clue.";
+        } else {
+            $string0 = "Community Egg Hunt - Week 2<br>Clue <tostring(calc($int0 + 1 - 5))>";
+            $string2 = db_getfield(db_findnext, dbtable_280:col2, 0);
+        }
+}
+if (string_length($string0) > 0) {
+    if_setsize(if_getwidth(interface_1174:com_27), 138, ^setsize_abs, ^setsize_abs, interface_1174:com_27);
+} else {
+    if_setsize(if_getwidth(interface_1174:com_27), calc(138 + if_getheight(interface_1174:com_26) + 4), ^setsize_abs, ^setsize_abs, interface_1174:com_27);
+}
+if_settext($string0, interface_1174:com_26);
+if_settext($string2, interface_1174:com_27);
