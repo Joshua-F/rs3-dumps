@@ -29146,3 +29146,12 @@ randomreadyanim=seq_35733,10
 runanim=seq_33798
 readyanim=seq_33795,seq_33797
 
+// 4742
+[bas_4742]
+readyanim_l=seq_11502
+readyanim_r=seq_11502
+walkanim_b=seq_31523
+walkanim_l=seq_31523
+walkanim_r=seq_31523
+readyanim=seq_11502,seq_31523
+

@@ -5,34 +5,58 @@ def_int $int1 = db_listall(dbtable_263);
 if (%varplayerbit_54610 > 1) {
     $int1 = db_find_refine(dbtable_263:col2, %varplayerbit_54610);
 }
-if_setparam_int(param_8348, $int1, $component0);
 def_dbrow $dbrow2 = db_findnext;
 def_int $int3 = 0;
 def_int $int4 = 0;
+def_int $int5 = 0;
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "This emote has other appearances available. Right click to customise.";
+if (~script6431 = true) {
+    $string2 = "This emote has other appearances available. Long press to customise.";
+}
 while ($dbrow2 ! null) {
-    $int3 = db_getfield($dbrow2, dbtable_263:col3, 0);
-    $int4 = ~script450($dbrow2);
-    if (%varplayerbit_54610 ! 1 | $int4 = 1) {
-        if (%varplayerbit_34815 = 0) {
-            ~if_add_child_graphic($component0, $int3, 0, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 0, 0, ^setsize_minus, ^setsize_minus, db_getfield($dbrow2, dbtable_263:col1, 0));
-            cc_setop(1, db_getfield($dbrow2, dbtable_263:col0, 0));
-            if (~script450($dbrow2) = 0) {
-                cc_setcolour(0x404040);
+    if (db_getfieldcount($dbrow2, dbtable_263:col8) <= 0) {
+        $int5 = ~script17716($dbrow2);
+        if ($int5 > 0) {
+            $dbrow2 = ~script18779($dbrow2);
+        }
+        $int3 = db_getfield($dbrow2, dbtable_263:col3, 0);
+        $int4, $string1 = ~script450($dbrow2);
+        $string0 = ~script18302($dbrow2);
+        if (%varplayerbit_54610 ! 1 | $int4 = 1) {
+            if (%varplayerbit_34815 = 0) {
+                ~if_add_child_graphic($component0, $int3, 0, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 0, 0, ^setsize_minus, ^setsize_minus, ~script18301($dbrow2));
+                cc_setop(1, $string0);
+                if ($int5 > 0) {
+                    cc_setop(2, "Customise");
+                    cc_setonmouserepeat("script8799($string2, event_com, event_comsubid)");
+                }
+                if ($int4 = 0) {
+                    cc_setcolour(0x404040);
+                } else {
+                    cc_setcolour(^white);
+                }
             } else {
-                cc_setcolour(^white);
-            }
-        } else {
-            ~if_add_child_text($component0, $int3, 0, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_2100, db_getfield($dbrow2, dbtable_263:col0, 0));
-            cc_setop(1, db_getfield($dbrow2, dbtable_263:col0, 0));
-            if (~script450($dbrow2) = 0) {
-                ~script11024(3);
-            } else {
-                ~script11024(5);
+                ~if_add_child_text($component0, $int3, 0, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_2100, $string0);
+                cc_setop(1, $string0);
+                if ($int5 > 0) {
+                    cc_setop(2, "Customise");
+                    cc_setonmouserepeat("script8799($string2, event_com, event_comsubid)");
+                }
+                if ($int4 = 0) {
+                    ~script11024(3);
+                } else {
+                    ~script11024(5);
+                }
             }
         }
+    } else {
+        $int1 = calc($int1 - 1);
     }
     $dbrow2 = db_findnext;
 }
+if_setparam_int(param_8348, $int1, $component0);
 if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component0);
 if_setsize(16, 0, ^setsize_minus, ^setsize_minus, $component0);
 ~script5863($component0);
