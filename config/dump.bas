@@ -29155,3 +29155,13 @@ walkanim_l=seq_31523
 walkanim_r=seq_31523
 readyanim=seq_11502,seq_31523
 
+// 4743
+[bas_4743]
+walkanim_b=seq_35799
+walkanim_l=seq_35799
+walkanim_r=seq_35799
+runanim=seq_35800
+readyanim=null,seq_35799
+randomreadyanim=seq_35801,90
+randomreadyanim=seq_35802,10
+

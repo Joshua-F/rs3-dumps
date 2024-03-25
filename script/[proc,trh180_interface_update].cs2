@@ -16,6 +16,7 @@ def_int $int12 = struct_param($struct5, param_8012);
 def_int $int13 = struct_param($struct5, param_8013);
 def_int $int14 = struct_param($struct5, param_8014);
 def_material $material15 = struct_param($struct5, param_8015);
+def_string $string0 = "";
 while (++$int0 <= 8) {
     $dbrow3 = ~script16520($int0);
     $component2 = db_getfield($dbrow3, dbtable_176:col1, 0);
@@ -29,6 +30,10 @@ while (++$int0 <= 8) {
         if_setontimer("script16528($component2, calc(200 + random(200)), true)", $component2);
         if_setonmouseover("trh180_egg_mouseover($component2)", $component2);
         if_setonmouseleave("trh180_egg_mouseleave($component2, null)", $component2);
+        if (~is_mobile_client = false & $int1 > 0) {
+            $string0 = "<~script18341($int1)><~script10876($int1)> Easter egg</col>";
+            if_setonmouserepeat("script12111($string0, $component2, -1)", $component2);
+        }
     } else {
         if_clearops($component2);
         if_setmodel(db_getfield($dbrow4, dbtable_123:col7, 0), $component2);
@@ -36,6 +41,7 @@ while (++$int0 <= 8) {
         if_setontimer(null, $component2);
         if_setonmouseover(null, $component2);
         if_setonmouseleave(null, $component2);
+        if_setonmouserepeat(null, $component2);
     }
     if_setmodellighting($int6, $int7, $int8, $int9, $int10, $int11, $int12, $int13, $int14, $material15, $component2);
 }
