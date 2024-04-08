@@ -13,6 +13,7 @@ def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = 0;
+def_int $int13 = 0;
 if (stat_base_actual(dungeoneering) < 120 & $stat1 ! dungeoneering & $stat2 ! dungeoneering & $stat3 ! dungeoneering & $stat4 ! dungeoneering & $stat5 ! dungeoneering) {
     $int7 = 1;
 }
@@ -28,6 +29,9 @@ if (stat_base_actual(herblore) < 120 & $stat1 ! herblore & $stat2 ! herblore & $
 if (stat_base_actual(archaeology) < 120 & $stat1 ! archaeology & $stat2 ! archaeology & $stat3 ! archaeology & $stat4 ! archaeology & $stat5 ! archaeology) {
     $int12 = 1;
 }
+if (stat_base_actual(necromancy) < 120 & $stat1 ! necromancy & $stat2 ! necromancy & $stat3 ! necromancy & $stat4 ! necromancy & $stat5 ! necromancy) {
+    $int13 = 1;
+}
 if (stat_base_actual(invention) < 120 & $stat1 ! invention & $stat2 ! invention & $stat3 ! invention & $stat4 ! invention & $stat5 ! invention) {
     if (~invent_skill_unlocked = true) {
         $int8 = 1;
@@ -35,44 +39,49 @@ if (stat_base_actual(invention) < 120 & $stat1 ! invention & $stat2 ! invention 
         return(false);
     }
 }
-def_stat $statarray0(6);
-def_int $intarray1(6);
-def_int $int13 = 0;
+def_stat $statarray0(7);
+def_int $intarray1(7);
 def_int $int14 = 0;
+def_int $int15 = 0;
 if (stat_base_actual($stat6) = 99) {
     if ($int8 = 1) {
-        $statarray0($int13) = invention;
-        $intarray1($int13) = stat_base_actual(invention);
-        $int13 = calc($int13 + 1);
+        $statarray0($int14) = invention;
+        $intarray1($int14) = stat_base_actual(invention);
+        $int14 = calc($int14 + 1);
     }
     if ($int9 = 1) {
-        $statarray0($int13) = slayer;
-        $intarray1($int13) = stat_base_actual(slayer);
-        $int13 = calc($int13 + 1);
+        $statarray0($int14) = slayer;
+        $intarray1($int14) = stat_base_actual(slayer);
+        $int14 = calc($int14 + 1);
     }
     if ($int7 = 1) {
-        $statarray0($int13) = dungeoneering;
-        $intarray1($int13) = stat_base_actual(dungeoneering);
-        $int13 = calc($int13 + 1);
+        $statarray0($int14) = dungeoneering;
+        $intarray1($int14) = stat_base_actual(dungeoneering);
+        $int14 = calc($int14 + 1);
     }
     if ($int10 = 1) {
-        $statarray0($int13) = farming;
-        $intarray1($int13) = stat_base_actual(farming);
-        $int13 = calc($int13 + 1);
+        $statarray0($int14) = farming;
+        $intarray1($int14) = stat_base_actual(farming);
+        $int14 = calc($int14 + 1);
     }
     if ($int11 = 1) {
-        $statarray0($int13) = herblore;
-        $intarray1($int13) = stat_base_actual(herblore);
-        $int13 = calc($int13 + 1);
+        $statarray0($int14) = herblore;
+        $intarray1($int14) = stat_base_actual(herblore);
+        $int14 = calc($int14 + 1);
     }
     if ($int12 = 1) {
-        $statarray0($int13) = archaeology;
-        $intarray1($int13) = stat_base_actual(archaeology);
-        $int13 = calc($int13 + 1);
+        $statarray0($int14) = archaeology;
+        $intarray1($int14) = stat_base_actual(archaeology);
+        $int14 = calc($int14 + 1);
     }
-    array_sort($int13, 1, 0);
-    while ($int14 < $int13) {
-        switch_int ($int14) {
+    if ($int13 = 1) {
+        $statarray0($int14) = necromancy;
+        $intarray1($int14) = stat_base_actual(necromancy);
+        $int14 = calc($int14 + 1);
+    }
+    array_sort($int14, 1, 0);
+    while ($int15 < $int14) {
+        switch_int ($int15) {
             case 0 :
                 $stat5 = $statarray0(0);
             case 1 :
@@ -84,7 +93,7 @@ if (stat_base_actual($stat6) = 99) {
             case 4 :
                 $stat1 = $statarray0(4);
         }
-        $int14 = calc($int14 + 1);
+        $int15 = calc($int15 + 1);
     }
 }
 if ($stat0 = $stat1 | $stat0 = $stat2 | $stat0 = $stat3 | $stat0 = $stat4 | $stat0 = $stat5) {
