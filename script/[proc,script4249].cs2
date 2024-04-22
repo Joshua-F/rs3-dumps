@@ -6,25 +6,22 @@ if (~script6431 = true) {
     $fontmetrics7 = fontmetrics_28;
     $int8 = 25;
 }
-def_int $int9 = calc(stringwidth($string0, $fontmetrics7) + 3);
 if_settext($string0, $component1);
 if_settextfont($fontmetrics7, $component1);
 if ($component3 ! null) {
     if_setposition(0, 12, ^setpos_abs_left, ^setpos_abs_top, $component3);
 }
-$int9 = calc(if_getwidth($component0) - $int9);
+def_int $int9 = if_getwidth($component0);
 def_int $int10 = max(calc(paraheight($string1, $int9, $fontmetrics7) * 15 + $int8), $int8);
-if ($component3 ! null) {
-    if_setposition(0, 15, ^setpos_abs_left, ^setpos_abs_top, $component3);
-    $int10 = calc($int10 + 5);
-}
-if_setsize(0, $int10, ^setsize_minus, ^setsize_abs, $component0);
-if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component2);
 if_setposition(0, 15, ^setpos_abs_left, ^setpos_abs_top, $component2);
-if ($component2 = interface_1500:com_345) {
-    if_setsize(370, 0, ^setsize_abs, ^setsize_minus, $component2);
-    $int10 = max(calc(paraheight($string1, 370, $fontmetrics7) * 15 + $int8), $int8);
-    if_setsize(0, $int10, ^setsize_minus, ^setsize_abs, $component0);
+switch_component ($component2) {
+    case interface_1500:com_345, interface_1500:com_342 :
+        $int10 = max(calc(paraheight($string1, 410, $fontmetrics7) * 15 + $int8), $int8);
+        if_setsize(0, $int10, ^setsize_minus, ^setsize_abs, $component0);
+        if_setsize(410, 0, ^setsize_abs, ^setsize_minus, $component2);
+    case default :
+        if_setsize(0, $int10, ^setsize_minus, ^setsize_abs, $component0);
+        if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component2);
 }
 if_settext($string1, $component2);
 if_settextfont($fontmetrics7, $component2);
