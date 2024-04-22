@@ -18534,7 +18534,7 @@ readyanim=seq_20062,null
 
 // 3268
 [bas_3268]
-readyanim=seq_20095,null
+readyanim=seq_35809,null
 
 // 3269
 [bas_3269]
@@ -29164,4 +29164,20 @@ runanim=seq_35800
 readyanim=null,seq_35799
 randomreadyanim=seq_35801,90
 randomreadyanim=seq_35802,10
+
+// 4744
+[bas_4744]
+readyanim=null,null
+randomreadyanim=seq_35812,90
+randomreadyanim=seq_35813,5
+randomreadyanim=seq_35814,10
+randomreadyanim=seq_35815,10
+
+// 4745
+[bas_4745]
+readyanim=seq_35811,null
+
+// 4746
+[bas_4746]
+readyanim=seq_35820,null
 
