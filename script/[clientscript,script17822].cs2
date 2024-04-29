@@ -1,13 +1,27 @@
 // 17822
-[clientscript,script17822](obj $obj0)
-def_int $int1 = -1;
+[clientscript,script17822](obj $obj0, component $component1)
+if (%varplayerbit_51627 = 1 | ~script7851 = true) {
+    ~script1296("Please claim your prize before continuing.");
+    return;
+}
+def_dbrow $dbrow2 = null;
+def_int $int3 = 1;
+switch_component ($component1) {
+    case interface_1023:com_86 :
+        $dbrow2 = dbrow_13479;
+        $int3 = 2;
+    case default :
+        $dbrow2 = dbrow_6533;
+        $int3 = 1;
+}
+def_int $int4 = -1;
 ~script17823(false);
-def_int $int2 = db_getfieldcount(dbrow_6533, dbtable_101:col0);
-def_int $int3 = 0;
-def_obj $obj4 = null;
-while (++$int1 < $int2) {
-    $obj4, $int3, $int3, $int3, $int3, $int3, $int3, $int3 = db_getfield(dbrow_6533, dbtable_101:col0, $int1);
-    if ($obj0 = $obj4) {
-        ~script17024(1, $int1, dbrow_6530, dbrow_6489);
+def_int $int5 = db_getfieldcount($dbrow2, dbtable_101:col0);
+def_int $int6 = 0;
+def_obj $obj7 = null;
+while (++$int4 < $int5) {
+    $obj7, $int6, $int6, $int6, $int6, $int6, $int6, $int6 = db_getfield($dbrow2, dbtable_101:col0, $int4);
+    if ($obj0 = $obj7) {
+        ~script17024($int3, $int4, dbrow_6530, dbrow_6489);
     }
 }

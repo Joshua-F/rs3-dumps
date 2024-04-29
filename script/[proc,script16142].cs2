@@ -5,8 +5,11 @@ switch_int ($int0) {
         if (~ironman_mode = true) {
             return("This type of package is unavailable for Ironmen.");
         }
-        if (~script14944 = 0) {
-            return("Treasure Hunter keys are not available to purchase by players under the age of 18.");
+        switch_int (~script14944) {
+            case 0 :
+                return("Treasure Hunter keys are not available to purchase by players under the age of 18.");
+            case 2 :
+                return("Treasure Hunter keys are not available to purchase by players who have not set their date of birth.");
         }
     case 4 :
         return("You already have an active membership subscription.");
