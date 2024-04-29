@@ -1,3 +1,15 @@
 // 10920
-[proc,script10920]()(int)
-return(%varplayerbit_6163);
+[proc,script10920](int $int0)(int)
+if ($int0 <= 0) {
+    return(^false);
+}
+def_int $int1 = calc($int0 % 32);
+switch_int (calc($int0 / 32)) {
+    case 0 :
+        return(testbit(.%varplayerbit_14752, $int1));
+    case 1 :
+        return(testbit(.%varplayerbit_15050, $int1));
+    case default :
+        ~error("Unable to get xpblock status of skill with ^stat_ #<tostring($int0)>");
+}
+return(^false);
