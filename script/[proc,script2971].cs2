@@ -1,63 +1,30 @@
 // 2971
 [proc,script2971](dbrow $dbrow0, int $int1, int $int2, int $int3, int $int4)(int)
-def_int $int5 = 24;
-def_int $int6 = 3;
-def_boolean $boolean7 = ~script6431;
-if ($boolean7 = true) {
-    $int5 = 30;
-    $int6 = 6;
-}
-def_int $int8 = 1;
-switch_int (db_getfield($dbrow0, dbtable_31:col4, 0)) {
-    case 0 :
-    case 1 :
-        if ($boolean7 = true) {
-            $int8 = 0;
-        }
-    case 2 :
-        if ($boolean7 = false) {
-            $int8 = 0;
-        }
-    case 4 :
-        if (clienttype ! enhanced_ios) {
-            $int8 = 0;
-        }
-    case 3 :
-        if (platformtype ! ^platformtype_steam) {
-            $int8 = 0;
-        }
-    case default :
-        $int8 = 0;
-}
-def_int $int9 = enum_getreverseindex(dbrow, int, enum_14569, $dbrow0, 0);
-if ($int8 = 0) {
-    cc_create(interface_365:com_11, ^iftype_text, $int9);
+def_int $int5 = enum_getreverseindex(dbrow, int, enum_14569, $dbrow0, 0);
+if (~script18934($dbrow0) = false) {
+    cc_create(interface_365:com_14, ^iftype_text, $int5);
     cc_sethide(true);
     return($int2);
 }
 def_string $string0 = db_getfield($dbrow0, dbtable_31:col0, 0);
 def_string $string1 = db_getfield($dbrow0, dbtable_31:col1, 0);
-def_struct $struct10 = struct_28577;
-def_int $int11 = 30;
-def_graphic $graphic12 = null;
+def_dbrow $dbrow6 = dbrow_13583;
+def_boolean $boolean7 = true;
+def_int $int8 = 36;
 switch_int ($int4) {
     case default :
-        $int4 = ~equal_int($int9, $int4);
-        $struct10 = struct_28556;
-        $int11 = $int5;
+        $int4 = ~equal_int($int5, $int4);
+        $dbrow6 = dbrow_4480;
+        $int8 = 30;
     case -1 :
         $int4 = 0;
-        $graphic12 = "rs3_icon_sort,0";
     case -2 :
         $int4 = 1;
-        $graphic12 = "rs3_icon_sort,5";
+    case -3 :
+        $int4 = 0;
+        $boolean7 = false;
 }
-~script13998(interface_365:com_10, interface_365:com_11, $struct10, $int1, $int2, $int3, $int11, $int9, false, $string0, $int4);
-if ($graphic12 ! null) {
-    ~script4512(interface_365:com_10, 15, 15, 5, calc($int2 + 8), $graphic12);
-    ~script4512(interface_365:com_10, 15, 15, calc($int3 - 20), calc($int2 + 8), $graphic12);
-}
-if (cc_find(interface_365:com_11, $int9) = true) {
-    cc_setonop("script2930($int9)");
-}
-return(calc($int2 + $int11 + $int6));
+~cc_add_button_full(interface_365:com_14, $int5, $int1, $int2, ^setpos_abs_left, ^setpos_abs_top, $int3, $int8, ^setsize_abs, ^setsize_abs, $dbrow6, $string0, $boolean7, true, true, ~int_to_bool($int4));
+cc_setop(1, "Select");
+cc_setonop("script2930($int5)");
+return(calc($int2 + $int8 + 6));

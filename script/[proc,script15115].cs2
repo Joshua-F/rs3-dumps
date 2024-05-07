@@ -1,0 +1,49 @@
+// 15115
+[proc,script15115](dbrow $dbrow0, int $int1)(string)
+def_dbtable $dbtable2 = db_getrowtable($dbrow0);
+def_string $string0 = "";
+def_int $int3 = -1;
+def_dbrow $dbrow4 = null;
+def_struct $struct5 = null;
+def_quest $quest6 = null;
+if ($dbrow0 ! null) {
+    switch_dbtable ($dbtable2) {
+        case dbtable_285 :
+            $string0 = ~script18921($dbrow0, 5);
+            if (string_length($string0) > 0) {
+                if ($int1 = 0) {
+                    $string0 = append("This Week in RuneScape:<br>", $string0);
+                }
+                return($string0);
+            }
+            $int3 = ~script18920($dbrow0, 4);
+            $string0 = enum(int, string, enum_11809, $int3);
+            if (string_length($string0) > 0) {
+                return($string0);
+            }
+            $dbrow4 = ~script18923($dbrow0, 14);
+            if ($dbrow4 ! null) {
+                return(~script15115($dbrow4, $int1));
+            }
+            $struct5 = ~script18924($dbrow0, 15);
+            if ($struct5 ! null) {
+                return(~script18846($struct5));
+            }
+            $quest6 = ~script18925($dbrow0, 16);
+            if ($quest6 ! null) {
+                return(~quest_name($quest6));
+            }
+        case dbtable_77 :
+            $string0 = db_getfield($dbrow0, dbtable_77:col0, 0);
+            if (string_length($string0) > 0) {
+                return($string0);
+            }
+        case dbtable_113 :
+            $string0 = db_getfield($dbrow0, dbtable_113:col9, 0);
+            if (string_length($string0) > 0) {
+                return($string0);
+            }
+    }
+}
+~error("Could not find a valid name for entry dbrow. Defaulting to \"Entry\"");
+return("Entry");

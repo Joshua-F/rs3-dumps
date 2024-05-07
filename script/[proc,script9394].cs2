@@ -1,0 +1,69 @@
+// 9394
+[proc,script9394](component $component0, int $int1)
+def_string $string0 = lowercase(if_gettext($component0));
+def_int $int2 = -1;
+def_int $int3 = enum_getoutputcount(enum_14568);
+def_int $int4 = -1;
+def_int $int5 = 0;
+def_int $int6 = -1;
+def_int $int7 = 0;
+def_dbrow $dbrow8 = null;
+def_dbrow $dbrow9 = null;
+def_struct $struct10 = null;
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
+def_string $string4 = "";
+def_string $string5 = "";
+def_string $string6 = "";
+def_int $int11 = 0;
+def_boolean $boolean12 = false;
+def_int $int13 = 0;
+def_int $int14 = if_getwidth(interface_365:com_17);
+def_int $int15 = 0;
+def_int $int16 = 20;
+def_int $int17 = 0;
+while (++$int2 < $int3) {
+    $dbrow8 = enum(int, dbrow, enum_14568, $int2);
+    $int4 = -1;
+    $int5 = db_getfieldcount($dbrow8, dbtable_31:col3);
+    $string3 = db_getfield($dbrow8, dbtable_31:col0, 0);
+    if (~script18934($dbrow8) = true) {
+        while (++$int4 < $int5) {
+            $dbrow9 = db_getfield($dbrow8, dbtable_31:col3, $int4);
+            if (~script18934($dbrow9) = true) {
+                $int6 = -1;
+                $int7 = db_getfieldcount($dbrow9, dbtable_31:col2);
+                $string4 = db_getfield($dbrow9, dbtable_31:col0, 0);
+                $int11 = 0;
+                $int13 = enum_getreverseindex(dbrow, int, enum_14569, $dbrow9, 0);
+                while (++$int6 < $int7) {
+                    $struct10 = db_getfield($dbrow9, dbtable_31:col2, $int6);
+                    $string1 = lowercase(struct_param($struct10, param_7527));
+                    $string5 = lowercase("<$string3> <$string4>");
+                    if (string_length($string1) > 0) {
+                        $string2 = lowercase(struct_param($struct10, param_7528));
+                        if (string_indexof_string($string1, $string0, 0) > -1 | string_indexof_string($string2, $string0, 0) > -1 | string_indexof_string($string5, $string0, 0) > -1) {
+                            $boolean12 = ~script9395($struct10);
+                            if (~script16146($struct10, $boolean12) = true & .cc_findbycategory(interface_365:com_20, $int13, $int6) = 0) {
+                                if ($int11 = 0) {
+                                    $string6 = "<$string3><col=ffffff> > </col><$string4>";
+                                    $int15 = ~script15891($string6, $int14, fontmetrics_91, 0);
+                                    ~cc_add_text(interface_365:com_18, $int13, 0, $int16, ^setpos_abs_left, ^setpos_abs_top, $int14, $int15, ^setsize_abs, ^setsize_abs, dbrow_2195, $string6);
+                                    cc_setop(10, "Go to <$string6>");
+                                    $int16 = calc($int16 + ($int15 + 5));
+                                    $int11 = 1;
+                                }
+                                $int16 = ~script18933(interface_365:com_19, interface_365:com_20, interface_365:com_21, $struct10, $int13, $int6, $int17, $int16, $int14, $boolean12);
+                                $int17 = calc($int17 + 1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+%varclient_7769 = $string0;
+~script2681(interface_365:com_19, $int14, 18, 0, 0, fontmetrics_208, "Displaying <tostring($int17)> <~text_plural($int17, "result", "results")> containing '<$string0>'.", 0);
+~script5713($int1, $int16);

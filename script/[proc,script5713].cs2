@@ -1,7 +1,12 @@
 // 5713
-[proc,script5713]
-cc_deleteall(interface_136:com_13);
-cc_deleteall(interface_136:com_12);
-cc_deleteall(interface_136:com_16);
-cc_deleteall(interface_136:com_15);
-cc_deleteall(interface_136:com_10);
+[proc,script5713](int $int0, int $int1)
+if ($int0 = 1) {
+    if_setscrollpos(0, 0, interface_365:com_17);
+}
+if ($int1 > if_getheight(interface_365:com_17)) {
+    if_setscrollsize(0, $int1, interface_365:com_17);
+    ~rs3_scrollbar_vertical(interface_365:com_25, interface_365:com_17);
+} else {
+    if_setscrollsize(0, 0, interface_365:com_17);
+    cc_deleteall(interface_365:com_25);
+}
