@@ -1,53 +1,47 @@
 // 2830
-[proc,script2830](component $component0, component $component1, component $component2, struct $struct3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9, boolean $boolean10)
+[proc,script2830](component $component0, component $component1, component $component2, struct $struct3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, boolean $boolean11)
 if ($struct3 = null) {
     return;
 }
-def_enum $enum11 = struct_param($struct3, param_7514);
-if (~is_mobile_client = true & struct_param($struct3, param_8051) ! null) {
-    $enum11 = struct_param($struct3, param_8051);
-}
 switch_int (struct_param($struct3, param_7513)) {
     case 1 :
-        cc_create($component1, ^iftype_text, $int8);
-        cc_sethide(true);
         ~cc_add_title_text($component0, $int6, $int7, $int4, $int5, struct_param($struct3, param_7522), struct_param($struct3, param_7518), 0);
     case 2 :
-        cc_create($component1, ^iftype_text, $int8);
-        cc_sethide(true);
         ~script6201($component0, $int6, $int7, $int4, $int5, struct_param($struct3, param_7522), struct_param($struct3, param_7518));
     case 3 :
         if (struct_param($struct3, param_7524) = true) {
-            $int9 = calc(1 - min($int9, 1));
+            $int10 = calc(1 - min($int10, 1));
         }
-        ~dynamic_checkbox_create_disable($component0, $component1, $int4, $int5, $int8, $int9, $boolean10);
+        ~if_add_child_checkbox_full($component1, $int8, $int9, $int4, $int5, ^setpos_abs_left, ^setpos_abs_top, $int6, $int7, ^setsize_abs, ^setsize_abs, dbrow_4486, "", ~negate_bool($boolean11), true, ~int_to_bool($int10));
+        cc_setop(1, "Toggle");
+        cc_setonop("script5590(event_com, event_comsubid, $int10)");
     case 4, 5 :
-        ~script3376($component0, $component1, $int4, $int5, $int6, $int8, $enum11, struct_param($struct3, param_7515), struct_param($struct3, param_7517), struct_param($struct3, param_7512), $int9, 1, 0, struct_param($struct3, param_7518), $boolean10);
+        ~if_add_child_dropdown($component1, $int8, $int9, $int4, $int5, ^setpos_abs_left, ^setpos_abs_top, $int6, $int7, ^setsize_abs, ^setsize_abs, dbrow_4487);
+        cc_setontimer("script5181(event_com, event_comsubid, $struct3, $boolean11, $int10)");
+        cc_setonselectionchanged("script5591(event_com, event_comsubid, event_mousex, event_mousey)");
     case 6 :
-        ~dynamic_slider_disabled($component0, $component1, $component2, struct_40049, struct_param($struct3, param_7519), struct_param($struct3, param_7520), $int9, $int4, $int5, $int6, $int7, $int8, $boolean10);
+        ~dynamic_slider_disabled($component0, $component1, $component2, struct_40049, struct_param($struct3, param_7519), struct_param($struct3, param_7520), $int10, $int4, $int5, $int6, $int7, $int8, $int9, $boolean11);
     case 7 :
-        ~dynamic_slider_disabled($component0, $component1, $component2, struct_41496, struct_param($struct3, param_7519), struct_param($struct3, param_7520), $int9, $int4, $int5, $int6, $int7, $int8, $boolean10);
+        ~dynamic_slider_disabled($component0, $component1, $component2, struct_41496, struct_param($struct3, param_7519), struct_param($struct3, param_7520), $int10, $int4, $int5, $int6, $int7, $int8, $int9, $boolean11);
     case 8 :
-        ~dynamic_graphic_slider_disabled($component0, $component1, $component2, struct_40050, struct_param($struct3, param_7519), struct_param($struct3, param_7520), $int9, $int4, $int5, $int6, $int7, $int8, $enum11, $boolean10);
+        ~dynamic_graphic_slider_disabled($component0, $component1, $component2, struct_40050, struct_param($struct3, param_7519), struct_param($struct3, param_7520), $int10, $int4, $int5, $int6, $int7, $int8, $int9, ~script5178($struct3), $boolean11);
     case 9 :
         ~script10066($component0, if_getnextsubid($component0), $int6, $int7, $int4, $int5, ~script2832($struct3), true, 0);
         ~script10066($component0, if_getnextsubid($component0), $int6, $int7, $int4, $int5, 16777215, false, 0);
-        cc_create($component1, ^iftype_text, $int8);
+        cc_create($component1, ^iftype_text, $int9);
         cc_setsize($int6, $int7, ^setsize_abs, ^setsize_abs);
         cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
         cc_setop(1, "Select");
         cc_setonop("script3069($component0, calc(if_getnextsubid($component0) - 2), $struct3)");
     case 10 :
-        ~script10410($component0, $component1, struct_28556, $int4, $int5, $int6, $int7, $int8, $boolean10, struct_param($struct3, param_7518));
+        ~if_add_child_button($component1, $int8, $int9, $int4, $int5, ^setpos_abs_left, ^setpos_abs_top, $int6, $int7, ^setsize_abs, ^setsize_abs, dbrow_4480, struct_param($struct3, param_7518));
+        cc_setop(1, "Select");
     case 1000 :
-        ~script2831($component1, interface_365:com_22, interface_365:com_26, interface_365:com_18, $int8, $int9, $int4, $int5, $int6, $int7);
+        ~script2831($component1, interface_365:com_26, interface_365:com_30, interface_365:com_22, $int9, $int10, $int4, $int5, $int6, $int7);
     case 1001 :
-        ~script2831($component1, interface_365:com_28, interface_365:com_32, interface_365:com_19, $int8, $int9, $int4, $int5, $int6, $int7);
+        ~script2831($component1, interface_365:com_32, interface_365:com_36, interface_365:com_23, $int9, $int10, $int4, $int5, $int6, $int7);
     case 1002 :
-        ~script2831($component1, interface_365:com_34, interface_365:com_38, interface_365:com_20, $int8, $int9, $int4, $int5, $int6, $int7);
+        ~script2831($component1, interface_365:com_38, interface_365:com_42, interface_365:com_24, $int9, $int10, $int4, $int5, $int6, $int7);
     case 11 :
         ~cc_add_title_text($component1, $int6, $int7, $int4, $int5, fontmetrics_28, struct_param($struct3, param_5390), 0);
-    case default :
-        cc_create($component1, ^iftype_text, $int8);
-        cc_sethide(true);
 }

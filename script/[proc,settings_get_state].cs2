@@ -1,8 +1,5 @@
 // 2526
 [proc,settings_get_state](struct $struct0)(int)
-if (struct_param($struct0, param_7513) = 11 | struct_param($struct0, param_7513) = 10) {
-    return(0);
-}
 switch_struct ($struct0) {
     case null :
         ~error("Received a null struct");
@@ -387,6 +384,8 @@ switch_struct ($struct0) {
         return(%varplayerbit_18564);
     case struct_41656 :
         return(%varplayerbit_32404);
+    case struct_21160 :
+        return(%varplayerbit_55452);
     case struct_41657, struct_41658 :
         return(%varplayerbit_20188);
     case struct_41659 :
@@ -879,10 +878,15 @@ if ($int1 >= 0) {
     return(0);
 }
 if (struct_param($struct0, param_7536) = false) {
-    if ($struct0 ! null & struct_param($struct0, param_8966) ! null) {
-        return(var_reference_get(struct_param($struct0, param_8966)));
-    } else {
-        ~error("GET: The struct for '<struct_param($struct0, param_7527)>' does not have an entry, and doesn't use settings_var_reference");
+    switch_int (struct_param($struct0, param_7513)) {
+        case 11, 10 :
+            return(0);
+        case default :
+            if ($struct0 ! null & struct_param($struct0, param_8966) ! null) {
+                return(var_reference_get(struct_param($struct0, param_8966)));
+            } else {
+                ~error("GET: The struct for '<struct_param($struct0, param_7527)>' does not have an entry, and doesn't use settings_var_reference");
+            }
     }
 }
 return(0);

@@ -1,0 +1,36 @@
+// 18875
+[proc,script18875](dbrow $dbrow0, struct $struct1, int $int2)(graphic)
+def_graphic $graphic3 = null;
+def_graphic $graphic4 = null;
+if ($dbrow0 ! null) {
+    $graphic3 = ~script18922($dbrow0, 7);
+    switch_int (map_lang) {
+        case 1 :
+            $graphic4 = ~script18922($dbrow0, 8);
+        case 2 :
+            $graphic4 = ~script18922($dbrow0, 9);
+        case 3 :
+            $graphic4 = ~script18922($dbrow0, 10);
+    }
+} else if ($struct1 ! null) {
+    $graphic3 = struct_param($struct1, param_9102);
+    switch_int (map_lang) {
+        case 1 :
+            $graphic4 = struct_param($struct1, param_9103);
+        case 2 :
+            $graphic4 = struct_param($struct1, param_9104);
+        case 3 :
+            $graphic4 = struct_param($struct1, param_9105);
+    }
+}
+if ($graphic4 ! null) {
+    return($graphic4);
+} else if ($graphic3 ! null) {
+    return($graphic3);
+}
+db_find(dbtable_284:col0, $int2);
+def_dbrow $dbrow5 = db_findnext;
+if ($dbrow5 ! null) {
+    $graphic3 = db_getfield($dbrow5, dbtable_284:col2, 0);
+}
+return($graphic3);

@@ -1,0 +1,26 @@
+// 18910
+[proc,script18910](int $int0, dbrow $dbrow1, int $int2, int $int3, int $int4)(int)
+def_int $int5 = %varclient_7418;
+def_int $int6 = %varclient_7418;
+def_int $int7 = ~script15113;
+def_int $int8 = calc($int7 - ~day($int7) + 7 - 1);
+def_struct $struct9 = ~trh_promo_on_date($int5);
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+while ($int5 <= $int3) {
+    if ($struct9 ! null) {
+        $int10 = ~script18929($struct9, %varclient_7418);
+        $int11 = ~script18930($struct9, %varclient_7418);
+        if ($int10 <= $int8) {
+            ~script18914($struct9, $int4, $int10, $int11, $int2, $int3, $int0, $dbrow1);
+        }
+    } else {
+        $int11 = $int5;
+    }
+    $int5 = max(calc($int6 + 1), calc($int11 + 1));
+    $int6 = $int5;
+    $struct9 = ~trh_promo_on_date($int5);
+}
+$int4 = calc($int4 + (41 + 4));
+return($int4);
