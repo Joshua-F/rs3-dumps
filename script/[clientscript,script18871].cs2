@@ -29,21 +29,25 @@ if_setscrollpos(0, 0, interface_1284:com_45);
 cc_setop(1, "Back");
 cc_setonop("script18880");
 def_string $string2 = ~script18877($int2, $dbrow0);
-def_int $int5 = calc(4 + $int2 * 599 + db_getfield($dbrow0, dbtable_285:col0, 0));
+def_int $int5 = db_getfield($dbrow0, dbtable_285:col0, 0);
 if ($int2 = 3 & $struct1 ! null) {
-    $int5 = calc($int5 + struct_param($struct1, param_8202));
+    $int5 = struct_param($struct1, param_8202);
 }
-~cc_add_button(interface_1284:com_44, $int5, 104, 0, ^setpos_abs_centre, ^setpos_abs_centre, 176, 30, ^setsize_abs, ^setsize_abs, dbrow_4477, $string2);
+if ($int2 = 3 & $int5 <= 0) {
+    $int5 = 300;
+}
+def_int $int6 = calc(4 + $int2 * 599 + $int5);
+~cc_add_button(interface_1284:com_44, $int6, 104, 0, ^setpos_abs_centre, ^setpos_abs_centre, 176, 30, ^setsize_abs, ^setsize_abs, dbrow_4477, $string2);
 cc_setop(1, $string2);
-def_boolean $boolean6 = ~script18876($dbrow0, $struct1, $int2);
-if ($boolean6 = false) {
+def_boolean $boolean7 = ~script18876($dbrow0, $struct1, $int2);
+if ($boolean7 = false) {
     cc_setenabled(false);
     cc_sethide(true);
     if (cc_find(interface_1284:com_44, 3) = true) {
         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     }
 }
-.cc_create(interface_1284:com_23, ^iftype_layer, $int5);
+.cc_create(interface_1284:com_23, ^iftype_layer, $int6);
 .cc_setop(1, "Select");
 .cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
-if_triggerop(interface_1284:com_23, $int5, 1);
+if_triggerop(interface_1284:com_23, $int6, 1);
