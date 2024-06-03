@@ -47,6 +47,7 @@ def_string $string0 = "0";
 def_struct $struct24 = null;
 def_int $int25 = 0;
 def_int $int26 = 0;
+def_int $int27 = 0;
 if (~script6488($struct0) = 0) {
     if (~script7388($struct0) = 1) {
         $graphic11 = "rs3_btn_wardrobe_selection,6";
@@ -108,35 +109,40 @@ if (~script6488($struct0) = 0) {
     }
 } else if ($int5 = 3 & $dbrow22 ! null) {
     $int25 = db_getfieldcount($dbrow22, dbtable_256:col0);
-    while ($int26 < $int25 & $graphic11 ! "rs3_btn_wardrobe_selection,4") {
-        $int23, $string0, $struct24 = db_getfield($dbrow22, dbtable_256:col0, $int26);
+    $int26 = db_getfieldcount($dbrow22, dbtable_256:col1);
+    while ($int27 < calc($int25 + $int26) & $graphic11 ! "rs3_btn_wardrobe_selection,4") {
+        if ($int27 < $int25) {
+            $int23, $string0, $struct24 = db_getfield($dbrow22, dbtable_256:col0, $int27);
+        } else {
+            $int23, $int23, $string0, $struct24 = db_getfield($dbrow22, dbtable_256:col1, calc($int27 - $int25));
+        }
         if (~script6489($struct24) = 1) {
             $graphic11 = "rs3_btn_wardrobe_selection,4";
             $graphic12 = "rs3_btn_wardrobe_selection,5";
             $rgb13 = ^white;
         }
-        $int26 = calc($int26 + 1);
+        $int27 = calc($int27 + 1);
     }
 }
-def_int $int27 = 0;
+def_int $int28 = 0;
 switch_int ($int5) {
     case 1 :
-        $int27 = 155;
+        $int28 = 155;
     case 5 :
-        $int27 = 205;
+        $int28 = 205;
     case 2 :
-        $int27 = 285;
+        $int28 = 285;
     case default :
-        $int27 = 225;
+        $int28 = 225;
 }
 cc_create($component7, ^iftype_graphic, $int8);
 cc_setgraphic($graphic11);
 if ($int3 = 1) {
-    cc_setsize(calc($int27 - 10), calc(26 - 0), ^setsize_abs, ^setsize_abs);
+    cc_setsize(calc($int28 - 10), calc(26 - 0), ^setsize_abs, ^setsize_abs);
 } else {
     cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
 }
-cc_setposition(calc($int2 * $int27 + ($int27 - cc_getwidth) / 2), calc($int1 + (26 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setposition(calc($int2 * $int28 + ($int28 - cc_getwidth) / 2), calc($int1 + (26 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
 cc_setop(1, "Preview");
 if ($graphic11 = "rs3_btn_wardrobe_selection,4" & $int5 ! 1 & $int5 ! 5 & $dbrow22 = null) {
     cc_setop(2, "Deactivate");
@@ -159,15 +165,15 @@ if ($int5 = 2 & $int6 = 19) {
 }
 def_string $string1 = "";
 def_string $string2 = "";
-def_enum $enum28 = null;
+def_enum $enum29 = null;
 if ($int5 = 1) {
     if ($int6 = 1 | $int6 = 3 | $int6 = 4) {
         if (gender = 1) {
-            $enum28 = enum_2341;
+            $enum29 = enum_2341;
         } else {
-            $enum28 = enum_2338;
+            $enum29 = enum_2338;
         }
-        $string1 = struct_param(enum(int, struct, $enum28, struct_param($struct0, param_2772)), param_792);
+        $string1 = struct_param(enum(int, struct, $enum29, struct_param($struct0, param_2772)), param_792);
     } else if ($int6 = 2 | $int6 = 5) {
         $string1 = enum(int, string, enum_2340, struct_param($struct0, param_2772));
     }
@@ -189,11 +195,11 @@ cc_settext($string1);
 cc_settextfont(fontmetrics_26);
 cc_setcolour($rgb13);
 if ($int3 = 1) {
-    cc_setsize(calc($int27 - 10), calc(26 - 0), ^setsize_abs, ^setsize_abs);
+    cc_setsize(calc($int28 - 10), calc(26 - 0), ^setsize_abs, ^setsize_abs);
 } else {
     cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
 }
-cc_setposition(calc($int2 * $int27 + ($int27 - cc_getwidth) / 2), calc($int1 + (26 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setposition(calc($int2 * $int28 + ($int28 - cc_getwidth) / 2), calc($int1 + (26 - cc_getheight) / 2), ^setpos_abs_left, ^setpos_abs_top);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
 if (string_length($string2) > 1) {
     ~script14990(0, $string2);
