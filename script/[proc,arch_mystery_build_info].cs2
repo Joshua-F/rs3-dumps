@@ -22,15 +22,33 @@ if ($dbrow12 ! null) {
 ~cc_add_text_custom($component0, if_getnextsubid($component0), $int11, 28, ^setsize_abs, ^setsize_abs, $int9, calc($int10 + 16), ^setpos_abs_left, ^setpos_abs_top, $string0, ^black, fontmetrics_26, ^settextalign_left, ^settextalign_top, enum(fontmetrics, int, enum_8584, fontmetrics_26), false);
 $int10 = calc($int10 + (16 + 28));
 def_int $int17 = db_getfieldcount($dbrow2, dbtable_92:col4);
-def_dbrow $dbrow18 = null;
+def_int $int18 = db_getfieldcount($dbrow2, dbtable_92:col5);
+def_dbrow $dbrow19 = null;
+def_obj $obj20 = null;
+def_int $int21 = 0;
 def_string $string1 = "";
 def_string $string2 = "";
 def_string $string3 = "";
-def_int $int19 = -1;
-while (++$int19 < $int17) {
-    $dbrow18 = db_getfield($dbrow2, dbtable_92:col4, $int19);
-    $string1 = ~book_get_title($dbrow18);
-    $string2 = ~script14792($dbrow18);
+def_string $string4 = "";
+def_graphic $graphic22 = null;
+def_int $int23 = -1;
+while (++$int23 < calc($int17 + $int18)) {
+    if ($int23 < $int17) {
+        $dbrow19 = db_getfield($dbrow2, dbtable_92:col4, $int23);
+        $obj20 = ~script18962($dbrow19);
+        $string1 = ~book_get_title($dbrow19);
+        $int21 = ~script13022($dbrow19);
+        $string4 = "Read";
+        $graphic22 = "arch_icon_mysteries_lore,1";
+    } else {
+        $dbrow19 = db_getfield($dbrow2, dbtable_92:col5, calc($int23 - $int17));
+        $obj20 = ~script18968($dbrow19);
+        $string1 = ~script18967($dbrow19);
+        $int21 = ~script18965($dbrow19);
+        $string4 = "Play";
+        $graphic22 = "arch_icon_mysteries_lore,2";
+    }
+    $string2 = ~script18977($dbrow19);
     if (string_length($string2) = 0) {
         $string3 = $string1;
     } else {
@@ -38,14 +56,14 @@ while (++$int19 < $int17) {
     }
     ~script7924($component0, if_getnextsubid($component0), 20, 20, $int9, $int10, "arch_icon_mysteries_lore,0", false, false, false, 0);
     cc_setsize(20, 20, ^setsize_abs, ^setsize_abs);
-    .cc_create($component1, ^iftype_text, calc($int7 + $int19));
+    .cc_create($component1, ^iftype_text, calc($int7 + $int23));
     .cc_setsize(cc_getwidth, cc_getheight, ^setsize_abs, ^setsize_abs);
     .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
-    if (~script13022($dbrow18) = 1) {
-        cc_setgraphic("arch_icon_mysteries_lore,1");
-        cc_setonmouserepeat("script3876($string3, event_com, event_comsubid)");
+    if ($int21 = 1) {
         .cc_setopbase($string1);
-        .cc_setop(1, "Read");
+        cc_setgraphic($graphic22);
+        cc_setonmouserepeat("script3876($string3, event_com, event_comsubid)");
+        .cc_setop(1, $string4);
         .cc_setopcursor(1, cursor_50);
     } else {
         ~script3537($string3);
