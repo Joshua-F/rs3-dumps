@@ -1,0 +1,92 @@
+// 19008
+[clientscript,script19008]
+def_int $int0 = 40;
+def_int $int1 = 6;
+def_int $int2 = 6;
+def_graphic $graphic3 = "trh119_icon_checkmarks,1";
+def_graphic $graphic4 = "trh119_icon_checkmarks,0";
+def_enum $enum5 = null;
+def_struct $struct6 = ~script16161;
+def_int $int7 = 190;
+def_int $int8 = 52;
+switch_struct ($struct6) {
+    case struct_1515 :
+        $graphic3 = "trh119_icon_checkmarks,1";
+        $graphic4 = "trh119_icon_checkmarks,0";
+        $int1 = 6;
+        $int2 = 6;
+        $int7 = 230;
+        $int8 = 52;
+    case struct_40380 :
+        $int7 = 134;
+        $int8 = 47;
+        $graphic3 = treasurehunter_trh142_icon_crossbones;
+        $graphic4 = treasurehunter_trh142_container_grid;
+        $int1 = 6;
+        $int2 = 6;
+    case struct_7229 :
+        $int7 = 318;
+        $int8 = 47;
+        $graphic3 = "trh119_icon_checkmarks,1";
+        $graphic4 = treasurehunter_trh157_container_grid;
+        $int1 = 10;
+        $int2 = 6;
+        $enum5 = enum_17513;
+    case struct_44604 :
+        $int7 = 318;
+        $int8 = 47;
+        $graphic3 = trh172_icon_digsite_cross_highlight;
+        $graphic4 = trh172_grid_digsite_normal;
+        $int1 = 10;
+        $int2 = 6;
+        $enum5 = enum_1652;
+    case struct_49941 :
+        $int7 = 413;
+        $int8 = 25;
+        if_setonvartransmit("script18996{varplayer_11753}", interface_1870:com_16);
+        $int1 = 7;
+        $int2 = 7;
+        $enum5 = enum_17514;
+        $int0 = 43;
+    case default :
+        ~error("Unexpected promo trying to draw buried treasure grid <~script16345($struct6)>");
+}
+if_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_16);
+if_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_18);
+if_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top, interface_1870:com_17);
+if_setsize(calc($int1 * $int0), calc($int2 * $int0), ^setsize_abs, ^setsize_abs, interface_1870:com_16);
+if_setsize(calc($int1 * $int0), calc($int2 * $int0), ^setsize_abs, ^setsize_abs, interface_1870:com_18);
+if_setsize(calc($int1 * $int0), calc($int2 * $int0), ^setsize_abs, ^setsize_abs, interface_1870:com_17);
+def_int $int9 = calc(0 - $int0);
+def_int $int10 = 0;
+def_int $int11 = $int9;
+def_int $int12 = $int10;
+def_int $int13 = 0;
+cc_deleteall(interface_1870:com_16);
+cc_deleteall(interface_1870:com_18);
+cc_deleteall(interface_1870:com_17);
+cc_deleteall(interface_1870:com_25);
+cc_deleteall(interface_1253:com_511);
+def_int $int14 = 0;
+def_int $int15 = ~script18992($struct6);
+def_int $int16 = calc($int9 + $int1 * $int0);
+while ($int14 < $int15) {
+    if ($enum5 ! null) {
+        $int11 = calc($int11 + $int0 * (enum(int, int, $enum5, $int14) + 1));
+    }
+    if ($int11 > $int16) {
+        $int11 = calc($int9 + $int11 % $int16);
+        $int12 = calc($int12 + $int0);
+    }
+    ~script19009($struct6, $int14, $int0, $int11, $int12, $graphic4, $graphic3);
+    cc_create(interface_1253:com_511, ^iftype_graphic, $int14);
+    $int14 = calc($int14 + 1);
+}
+cc_create(interface_1253:com_511, ^iftype_graphic, $int14);
+if_setonop("script19007($int14, 1)", interface_1870:com_21);
+switch_struct ($struct6) {
+    case struct_1515 :
+        ~script18995;
+    case struct_40380, struct_7229, struct_44604, struct_49941 :
+        ~script19010($struct6);
+}
