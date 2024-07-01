@@ -8,6 +8,7 @@ def_component $component3 = null;
 def_component $component4 = null;
 def_int $int5 = -1;
 def_string $string0 = "";
+def_int $int6 = -1;
 while (++$int5 < 4) {
     switch_int ($int5) {
         case 0 :
@@ -18,7 +19,7 @@ while (++$int5 < 4) {
             $component4 = interface_35:com_21;
         case 1 :
             $struct0 = enum(int, struct, enum_1932, %varplayerbit_42982);
-            $component1 = interface_35:com_11;
+            $component1 = interface_35:com_12;
             $component2 = interface_35:com_26;
             $component3 = interface_35:com_25;
             $component4 = interface_35:com_24;
@@ -30,7 +31,7 @@ while (++$int5 < 4) {
             $component4 = interface_35:com_18;
         case 3 :
             $struct0 = enum(int, struct, enum_1932, %varplayerbit_42984);
-            $component1 = interface_35:com_7;
+            $component1 = interface_35:com_10;
             $component2 = interface_35:com_4;
             $component3 = interface_35:com_3;
             $component4 = interface_35:com_2;
@@ -38,15 +39,22 @@ while (++$int5 < 4) {
     if_setmodel(struct_param($struct0, param_7750), $component1);
     if_setmodelangle(0, 0, 19, 29, 0, 450, $component1);
     if_setmodelanim(struct_param($struct0, param_7751), $component1);
-    $string0 = struct_param($struct0, param_7745);
     if ($struct0 = struct_28662) {
-        if_setgraphic(enum(int, graphic, enum_16540, ~trh_get_slot_category($int5)), $component2);
+        $int6 = ~trh_get_slot_category($int5);
+        if_setgraphic(enum(int, graphic, enum_16540, $int6), $component2);
+        $string0 = "A firework which gives a prize from the <enum(int, string, enum_16539, $int6)> category.";
     } else {
         if_setgraphic(struct_param($struct0, param_7746), $component2);
+        $string0 = struct_param($struct0, param_7745);
     }
     if_setsize(struct_param($struct0, param_7747), struct_param($struct0, param_7748), ^setsize_abs, ^setsize_abs, $component2);
     if_setgraphic(struct_param($struct0, param_7749), $component3);
-    if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component4);
+    if (~is_mobile_client = true) {
+        if_setop(1, "Information", $component4);
+        if_setonop("script7774($string0, event_com, event_comsubid, 0)", $component4);
+    } else {
+        if_setonmouserepeat("script3876($string0, event_com, event_comsubid)", $component4);
+    }
     if_setonmouseover("trh153_chest_mouseover($component1, struct_param($struct0, param_7752), struct_param($struct0, param_7744))", $component1);
     if_setonmouseleave("trh153_chest_mouseleave($component1, struct_param($struct0, param_7751))", $component1);
 }
