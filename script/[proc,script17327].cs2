@@ -3,26 +3,40 @@
 def_obj $obj0 = null;
 def_int $int1 = 0;
 def_string $string0 = "";
+def_graphic $graphic2 = null;
 $obj0, $int1, $string0 = ~script17297;
 if_sethide(false, interface_1152:com_70);
 if_sethide(true, interface_1152:com_69);
 if ($obj0 ! null) {
-    if_settext("<tostring($int1)> x <oc_name($obj0)>", interface_1152:com_71);
-    if ($int1 > 0) {
-        if ($int1 = 1) {
-            if_setobject_highres($obj0, interface_1152:com_70);
-        } else {
-            if_setobject($obj0, $int1, interface_1152:com_70);
-        }
+    if ($int1 > 1) {
+        if_settext("<tostring($int1)> x <oc_name($obj0)>", interface_1152:com_71);
+    } else {
+        if_settext(oc_name($obj0), interface_1152:com_71);
     }
-    if ($obj0 = obj_54776) {
-        if_sethide(false, interface_1152:com_69);
-        if_sethide(true, interface_1152:com_70);
+    switch_obj ($obj0) {
+        case obj_28906 :
+            $graphic2 = icon_lamp_huge;
+        case obj_29923 :
+            $graphic2 = icon_prismaticstar;
+        case obj_54776 :
+            if_sethide(false, interface_1152:com_69);
+            if_sethide(true, interface_1152:com_70);
+    }
+    if ($graphic2 ! null) {
+        if_setgraphic($graphic2, interface_1152:com_70);
+    } else if ($int1 = 1) {
+        if_setobject_highres($obj0, interface_1152:com_70);
+    } else {
+        if_setobject($obj0, $int1, interface_1152:com_70);
     }
     if (~script17296 = 19) {
-        if_setgraphic("trh_rarity_gems,2", interface_1152:com_86);
+        if_setgraphic("trh_rarity_gems,3", interface_1152:com_86);
         if_sethide(true, interface_1152:com_87);
         if_sethide(false, interface_1152:com_86);
+    } else if ($graphic2 ! null) {
+        if_setgraphic($graphic2, interface_1152:com_86);
+        if_sethide(false, interface_1152:com_86);
+        if_sethide(true, interface_1152:com_87);
     } else {
         if_setobject($obj0, $int1, interface_1152:com_87);
         if_sethide(true, interface_1152:com_86);
