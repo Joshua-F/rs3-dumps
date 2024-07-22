@@ -1,7 +1,15 @@
 // 17557
 [proc,script17557](string $string0, int $int0)
-def_string $string1 = "<$string0><tostring_localised(%varplayer_10947, true)>";
-if ($int0 = 1) {
-    $string1 = "<$string0><tostring_localised(scale(%varplayer_10947, max(1, %varplayer_10948), 100), true)>%";
+def_string $string1 = "";
+switch_struct (%varplayer_10946) {
+    case struct_49997 :
+        if (calc(%varplayer_10948 - %varplayer_10947) > 0) {
+            $string1 = "<$string0><~script14945(calc(%varplayer_10948 - %varplayer_10947), 1)>";
+        }
+    case default :
+        $string1 = "<$string0><tostring_localised(%varplayer_10947, true)>";
+        if ($int0 = 1) {
+            $string1 = "<$string0><tostring_localised(scale(%varplayer_10947, max(1, %varplayer_10948), 100), true)>%";
+        }
 }
 if_settext($string1, interface_1181:com_13);
