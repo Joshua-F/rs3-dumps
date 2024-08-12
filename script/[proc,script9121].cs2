@@ -14,6 +14,8 @@ def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = 0;
 def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
 if (stat_base_actual(dungeoneering) < 120 & $stat1 ! dungeoneering & $stat2 ! dungeoneering & $stat3 ! dungeoneering & $stat4 ! dungeoneering & $stat5 ! dungeoneering) {
     $int7 = 1;
 }
@@ -39,49 +41,65 @@ if (stat_base_actual(invention) < 120 & $stat1 ! invention & $stat2 ! invention 
         return(false);
     }
 }
-def_stat $statarray0(7);
-def_int $intarray1(7);
-def_int $int14 = 0;
-def_int $int15 = 0;
+if (stat_base_actual(smithing) < enum(stat, int, enum_10865, smithing) & $stat1 ! smithing & $stat2 ! smithing & $stat3 ! smithing & $stat4 ! smithing & $stat5 ! smithing) {
+    $int14 = 1;
+}
+if (stat_base_actual(mining) < enum(stat, int, enum_10865, mining) & $stat1 ! mining & $stat2 ! mining & $stat3 ! mining & $stat4 ! mining & $stat5 ! mining) {
+    $int15 = 1;
+}
+def_stat $statarray0(9);
+def_int $intarray1(9);
+def_int $int16 = 0;
+def_int $int17 = 0;
 if (stat_base_actual($stat6) = 99) {
     if ($int8 = 1) {
-        $statarray0($int14) = invention;
-        $intarray1($int14) = stat_base_actual(invention);
-        $int14 = calc($int14 + 1);
+        $statarray0($int16) = invention;
+        $intarray1($int16) = stat_base_actual(invention);
+        $int16 = calc($int16 + 1);
     }
     if ($int9 = 1) {
-        $statarray0($int14) = slayer;
-        $intarray1($int14) = stat_base_actual(slayer);
-        $int14 = calc($int14 + 1);
+        $statarray0($int16) = slayer;
+        $intarray1($int16) = stat_base_actual(slayer);
+        $int16 = calc($int16 + 1);
     }
     if ($int7 = 1) {
-        $statarray0($int14) = dungeoneering;
-        $intarray1($int14) = stat_base_actual(dungeoneering);
-        $int14 = calc($int14 + 1);
+        $statarray0($int16) = dungeoneering;
+        $intarray1($int16) = stat_base_actual(dungeoneering);
+        $int16 = calc($int16 + 1);
     }
     if ($int10 = 1) {
-        $statarray0($int14) = farming;
-        $intarray1($int14) = stat_base_actual(farming);
-        $int14 = calc($int14 + 1);
+        $statarray0($int16) = farming;
+        $intarray1($int16) = stat_base_actual(farming);
+        $int16 = calc($int16 + 1);
     }
     if ($int11 = 1) {
-        $statarray0($int14) = herblore;
-        $intarray1($int14) = stat_base_actual(herblore);
-        $int14 = calc($int14 + 1);
+        $statarray0($int16) = herblore;
+        $intarray1($int16) = stat_base_actual(herblore);
+        $int16 = calc($int16 + 1);
     }
     if ($int12 = 1) {
-        $statarray0($int14) = archaeology;
-        $intarray1($int14) = stat_base_actual(archaeology);
-        $int14 = calc($int14 + 1);
+        $statarray0($int16) = archaeology;
+        $intarray1($int16) = stat_base_actual(archaeology);
+        $int16 = calc($int16 + 1);
     }
     if ($int13 = 1) {
-        $statarray0($int14) = necromancy;
-        $intarray1($int14) = stat_base_actual(necromancy);
-        $int14 = calc($int14 + 1);
+        $statarray0($int16) = necromancy;
+        $intarray1($int16) = stat_base_actual(necromancy);
+        $int16 = calc($int16 + 1);
     }
-    array_sort($int14, 1, 0);
-    while ($int15 < $int14) {
-        switch_int ($int15) {
+    if ($int14 = 1) {
+        $statarray0($int16) = smithing;
+        $intarray1($int16) = stat_base_actual(smithing);
+        $int16 = calc($int16 + 1);
+    }
+    if ($int15 = 1) {
+        $statarray0($int16) = mining;
+        $intarray1($int16) = stat_base_actual(mining);
+        $int16 = calc($int16 + 1);
+    }
+    array_sort($int16, 1, 0);
+    while ($int17 < $int16) {
+        switch_int ($int17) {
             case 0 :
                 $stat5 = $statarray0(0);
             case 1 :
@@ -93,7 +111,7 @@ if (stat_base_actual($stat6) = 99) {
             case 4 :
                 $stat1 = $statarray0(4);
         }
-        $int15 = calc($int15 + 1);
+        $int17 = calc($int17 + 1);
     }
 }
 if ($stat0 = $stat1 | $stat0 = $stat2 | $stat0 = $stat3 | $stat0 = $stat4 | $stat0 = $stat5) {
