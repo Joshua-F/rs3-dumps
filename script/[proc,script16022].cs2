@@ -5,27 +5,31 @@ def_string $string1 = struct_param($struct0, param_8847);
 if (playermember = false & string_length($string1) > 0) {
     $string0 = $string1;
 }
-def_enum $enum2 = null;
-def_int $int3 = 0;
-def_obj $obj4 = null;
-def_int $int5 = 0;
+def_dbrow $dbrow2 = null;
+def_dbrow $dbrow3 = null;
+def_int $int4 = 0;
+def_obj $obj5 = null;
+def_int $int6 = 0;
 if (string_length($string0) = 0) {
     switch_int ($int1) {
         case 2 :
-            $enum2 = struct_param($struct0, param_2542);
-            $int3 = enum_getoutputcount($enum2);
-            if ($int3 > 1) {
-                $string0 = "This outfit contains:";
-                while ($int5 < 19) {
-                    $obj4 = enum(int, obj, $enum2, $int5);
-                    if ($obj4 ! null) {
-                        $string0 = "<$string0><br>- <oc_name($obj4)>";
+            $dbrow2 = ~script15769($struct0);
+            if (db_getfield($dbrow2, dbtable_163:col6, 0) = 20 & db_getfieldcount($dbrow2, dbtable_163:col13) > 0) {
+                $int4 = db_filter_find(db_filter_combine(db_filter_combine(db_filter_value(dbtable_163:col13, db_getfield($dbrow2, dbtable_163:col13, 0), ^filterop_eq, 0), db_filter_unknown(db_filter_value(dbtable_163:col6, 20, ^filterop_eq, 0))), db_filter_value(dbtable_163:col20, 0, ^filterop_eq, 0)), dbtable_163:col6, true, -1, 0);
+                $dbrow3 = db_findnext;
+                if ($int4 > 1) {
+                    $string0 = "This outfit contains:";
+                }
+                while ($dbrow3 ! null) {
+                    $obj5 = db_getfield($dbrow3, dbtable_163:col4, 0);
+                    if ($obj5 ! null) {
+                        $string0 = "<$string0><br>- <oc_name($obj5)>";
                     }
-                    $int5 = calc($int5 + 1);
+                    $dbrow3 = db_findnext;
                 }
             }
             if (struct_param($struct0, param_8970) = 1) {
-                $string0 = "<$string0><br>This <~text_plural($int3, "override", "outfit")> can be recoloured.";
+                $string0 = "<$string0><br>This <~text_plural($int4, "override", "outfit")> can be recoloured.";
             }
         case 5 :
             $string0 = enum(int, string, enum_10638, struct_param($struct0, param_2532));
