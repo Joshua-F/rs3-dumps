@@ -78,9 +78,9 @@ def_int $int13 = 0;
 def_enum $enum14 = null;
 def_int $int15 = 0;
 def_struct $struct16 = null;
-def_enum $enum17 = null;
-def_obj $obj18 = null;
-def_struct $struct19 = null;
+def_int $int17 = -1;
+def_int $int18 = -1;
+def_int $int19 = -1;
 def_int $int20 = ~script10495(9);
 def_int $int21 = ~script10495(12);
 def_int $int22 = enum(fontmetrics, int, enum_8549, $fontmetrics10);
@@ -98,28 +98,23 @@ if ($enum14 = null) {
 def_int $int25 = 0;
 def_struct $struct26 = null;
 def_string $string1 = "";
+def_dbrow $dbrow27 = null;
 while ($struct16 ! null) {
-    $int13 = -1;
-    $enum17 = struct_param($struct16, param_5544);
-    if ($enum17 = null) {
-        $enum17 = struct_param($struct16, param_2542);
+    if (struct_param($struct16, param_2531) = 2) {
+        $dbrow27 = ~script15769($struct16);
     }
-    if ($enum17 ! null) {
-        while ($int13 < 19) {
-            $obj18 = enum(int, obj, $enum17, $int13);
-            if ($obj18 ! null) {
-                $struct19 = oc_param($obj18, param_4414);
-                if ($struct19 ! null & struct_param($struct19, param_6349) = false) {
-                    $string1 = struct_param($struct19, param_2533);
-                    $int5, $int7 = ~script11369($struct19, $component1, $int5, $int7, enum(int, graphic, enum_9995, $int13), "");
-                    $int25 = 1;
-                    $struct19 = struct_param($struct19, param_6322);
-                    if ($struct19 ! null & struct_param($struct19, param_6349) = false & compare($string1, struct_param($struct19, param_2533)) ! 0) {
-                        $int5, $int7 = ~script11369($struct19, $component1, $int5, $int7, enum(int, graphic, enum_9995, $int13), "");
-                    }
-                }
-            }
-            $int13 = calc($int13 + 1);
+    if ($dbrow27 ! null & (db_getfieldcount($dbrow27, dbtable_163:col13) = 1 | db_getfieldcount($dbrow27, dbtable_163:col4) = 1)) {
+        db_find(dbtable_163:col0, db_getfield($dbrow27, dbtable_163:col0, 0));
+        if (db_getfieldcount($dbrow27, dbtable_163:col13) = 1) {
+            unknown_command_77(db_filter_combine(db_filter_combine(db_filter_value(dbtable_163:col13, db_getfield($dbrow27, dbtable_163:col13, 0), ^filterop_eq, 0), db_filter_value(dbtable_163:col21, 0, ^filterop_eq, 0)), db_filter_value(dbtable_163:col20, 0, ^filterop_eq, 0)), dbtable_163:col6, true);
+            $dbrow27 = db_findnext;
+        } else {
+            $dbrow27 = db_findnext;
+        }
+        $int25 = 1;
+        while ($dbrow27 ! null) {
+            $int5, $int7 = ~script11369(~script15770($dbrow27), $component1, $int5, $int7, enum(int, graphic, enum_9995, $int13), ~script19118($dbrow27, 1));
+            $dbrow27 = db_findnext;
         }
     } else {
         $struct26 = struct_param($struct16, param_5153);
@@ -140,16 +135,16 @@ while ($struct16 ! null) {
         $struct16 = enum(int, struct, $enum14, $int15);
     }
 }
-def_int $int27 = 0;
+def_int $int28 = 0;
 if ($int7 < if_getheight($component1)) {
     if_setscrollsize(0, 0, $component1);
-    $int27 = calc($int5 / 3);
+    $int28 = calc($int5 / 3);
     while ($int7 < if_getheight($component1)) {
-        $int27 = calc($int27 + 1);
+        $int28 = calc($int28 + 1);
         .cc_create($component1, ^iftype_rectangle, $int5);
         .cc_setposition(0, $int7, ^setpos_abs_left, ^setpos_abs_top);
         .cc_setsize(0, max($int22, $int23), ^setsize_minus, ^setsize_abs);
-        if (calc($int27 % 2) = 1) {
+        if (calc($int28 % 2) = 1) {
             .cc_setcolour($int20);
         } else {
             .cc_setcolour($int21);

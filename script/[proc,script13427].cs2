@@ -1,71 +1,36 @@
 // 13427
-[proc,script13427](obj $obj0, inv $inv1, struct $struct2, int $int3)(obj)
+[proc,script13427](obj $obj0, inv $inv1)(obj)
 if ($obj0 = null) {
     return(null);
 }
-def_obj $obj4 = $obj0;
+def_obj $obj2 = $obj0;
 if (oc_param($obj0, param_4949) = 1) {
-    $obj4 = enum_getreverseindex(obj, obj, enum_9904, $obj0, 0);
+    $obj2 = enum_getreverseindex(obj, obj, enum_9904, $obj0, 0);
 }
-def_obj $obj5 = null;
-def_obj $obj6 = null;
-def_int $int7 = -1;
-def_int $int8 = calc(inv_size(inv_675) - 1);
+def_obj $obj3 = null;
+def_obj $obj4 = null;
+def_int $int5 = -1;
+def_int $int6 = calc(inv_size(inv_675) - 1);
 if (~script15072($obj0) ! null & %varplayerbit_37571 = 1) {
     if ($inv1 ! null) {
-        $obj5 = inv_getobj(inv_94, oc_wearpos($obj0));
-        if ($obj5 ! null & oc_param($obj5, param_5525) = $obj0) {
-            return($obj5);
+        $obj3 = inv_getobj(inv_94, oc_wearpos($obj0));
+        if ($obj3 ! null & oc_param($obj3, param_5525) = $obj0) {
+            return($obj3);
         }
-        if ($int3 = 1) {
-            if (testbit(%varplayer_11761, oc_wearpos($obj0)) = ^true & ~script15072($obj0) ! null) {
-                return(~script15072($obj0));
-            }
-            return($obj0);
-        }
-        if ($struct2 ! null) {
-            if (struct_param($struct2, param_4397) ! -1) {
-                $obj6 = ~script9964($struct2);
-                if ($obj6 ! null & testbit(%varplayer_3529, oc_wearpos($obj0)) = ^true) {
-                    $obj4 = $obj6;
-                }
-            }
-        } else if (testbit(%varplayer_3529, oc_wearpos($obj0)) = ^true) {
-            while ($int7++ < $int8) {
-                $obj6 = inv_getobj(inv_675, $int7);
-                if ($obj6 ! null) {
-                    if (oc_param($obj6, param_5525) = $obj0) {
-                        return($obj6);
-                    }
-                } else {
-                    $int7 = $int8;
-                }
-            }
+        if (testbit(%varplayer_11761, oc_wearpos($obj0)) = ^true & ~script15072($obj0) ! null) {
+            return(~script15072($obj0));
         }
     }
-} else if ($int3 = 1) {
-    if (testbit(%varplayer_11761, oc_wearpos($obj0)) = ^true) {
-        while ($int7++ < $int8) {
-            $obj6 = inv_getobj(inv_675, $int7);
-            if ($obj6 ! null) {
-                if (oc_param($obj6, param_5525) = $obj0) {
-                    return($obj6);
-                }
-            } else {
-                $int7 = $int8;
-            }
-        }
-    }
-} else if (testbit(%varplayer_3529, oc_wearpos($obj0)) = ^true) {
-    while ($int7++ < $int8) {
-        $obj6 = inv_getobj(inv_675, $int7);
-        if ($obj6 ! null) {
-            if (oc_param($obj6, param_5525) = $obj0) {
-                return($obj6);
+} else if (testbit(%varplayer_11761, oc_wearpos($obj0)) = ^true) {
+    while ($int5++ < $int6) {
+        $obj4 = inv_getobj(inv_675, $int5);
+        if ($obj4 ! null) {
+            if (oc_param($obj4, param_5525) = $obj0) {
+                return($obj4);
             }
         } else {
-            $int7 = $int8;
+            $int5 = $int6;
         }
     }
 }
-return($obj4);
+return($obj2);
