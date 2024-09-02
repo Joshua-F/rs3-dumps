@@ -29315,3 +29315,29 @@ runanim=seq_36027
 hillrotate=32,32
 readyanim=seq_36025,seq_36026
 
+// 4761
+[bas_4761]
+readyanim_l=seq_24194
+readyanim_r=seq_24194
+readyanim=seq_24192,seq_24191
+
+// 4762
+[bas_4762]
+readyanim_l=seq_36205
+readyanim_r=seq_36205
+walkanim_b=seq_36206
+walkanim_l=seq_36205
+walkanim_r=seq_36205
+runanim=seq_36207
+readyanim=seq_36204,seq_36205
+
+// 4763
+[bas_4763]
+readyanim_l=seq_36210
+readyanim_r=seq_36210
+walkanim_b=seq_36211
+walkanim_l=seq_36210
+walkanim_r=seq_36210
+runanim=seq_36212
+readyanim=seq_36204,seq_36210
+
