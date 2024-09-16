@@ -36,74 +36,81 @@ $int1 = 0;
 def_int $int20 = cc_getwidth;
 def_int $int21 = $int1;
 def_int $int22 = 10;
+def_boolean $boolean23 = false;
 while (++$int5 < $int2) {
     $dbrow6 = db_getfield($dbrow0, dbtable_156:col9, $int5);
     if ($dbrow6 = null) {
         return;
     }
-    $int21 = $int1;
-    ~cc_add_child_rect(0, $int1++, 0, $int3, ^setpos_abs_centre, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_4127);
-    $int3 = calc($int3 + 10);
-    $string0 = db_getfield($dbrow6, dbtable_157:col0, 0);
-    if (string_length($string0) > 0) {
-        ~cc_add_child_text(0, $int1++, $int4, $int3, ^setpos_abs_left, ^setpos_abs_top, 20, 17, ^setsize_minus, ^setsize_abs, dbrow_2141, $string0);
-        cc_setcolour(~script10495(0));
-        cc_settextalign(^settextalign_left, ^settextalign_top, 0);
-        $int22 = calc($int22 + 17);
-        $int3 = calc($int3 + 20);
-    }
-    $int7 = db_getfieldcount($dbrow6, dbtable_157:col1);
-    while (++$int8 < $int7) {
-        $dbrow9 = db_getfield($dbrow6, dbtable_157:col1, $int8);
-        $string1 = db_getfield($dbrow9, dbtable_158:col0, 0);
-        $obj10 = db_getfield($dbrow9, dbtable_158:col1, 0);
-        $int11 = db_getfield($dbrow9, dbtable_158:col2, 0);
-        $graphic12, $int13, $int14 = db_getfield($dbrow9, dbtable_158:col3, 0);
-        $int15 = db_getfield($dbrow9, dbtable_158:col4, 0);
-        $string2 = db_getfield($dbrow9, dbtable_158:col5, 0);
-        $string3 = db_getfield($dbrow9, dbtable_158:col6, 0);
-        $boolean16 = db_getfield($dbrow9, dbtable_158:col7, 0);
-        if (string_length($string1) > 0) {
-            if ($int18 > 0) {
-                $int18 = 0;
-                $int4 = 10;
-                $int3 = calc($int3 + ($int19 + 10));
-                $int22 = calc($int22 + ($int19 + 10));
-            }
-            $int1, $int19 = ~script15075($string1, $int1, $int4, $int3, $int20);
-            $int17 = 1;
-        } else if ($graphic12 ! dbrow_graphic_null) {
-            $int1, $int4, $int18, $int19 = ~script15088($graphic12, $int1, $int4, $int3, $int13, $int14, $int18, $string2, $int15, $string3, $boolean16);
-            if ($int18 = 3) {
-                $int17 = 1;
-            }
-        } else {
-            $int1, $int4, $int18, $int19 = ~script15215($obj10, $int11, $int1, $int4, $int3, $int18, $string2, $int15, $string3);
-            if ($int18 = 3) {
-                $int17 = 1;
+    $boolean23 = db_getfield($dbrow6, dbtable_157:col2, 0);
+    if ($boolean23 = false | playermember = true) {
+        $int21 = $int1;
+        ~cc_add_child_rect(0, $int1++, 0, $int3, ^setpos_abs_centre, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_4127);
+        $int3 = calc($int3 + 10);
+        $string0 = db_getfield($dbrow6, dbtable_157:col0, 0);
+        if (string_length($string0) > 0) {
+            ~cc_add_child_text(0, $int1++, $int4, $int3, ^setpos_abs_left, ^setpos_abs_top, 20, 17, ^setsize_minus, ^setsize_abs, dbrow_2141, $string0);
+            cc_setcolour(~script10495(0));
+            cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+            $int22 = calc($int22 + 17);
+            $int3 = calc($int3 + 20);
+        }
+        $int7 = db_getfieldcount($dbrow6, dbtable_157:col1);
+        while (++$int8 < $int7) {
+            $dbrow9 = db_getfield($dbrow6, dbtable_157:col1, $int8);
+            $boolean23 = db_getfield($dbrow9, dbtable_158:col8, 0);
+            if ($boolean23 = false | playermember = true) {
+                $string1 = db_getfield($dbrow9, dbtable_158:col0, 0);
+                $obj10 = db_getfield($dbrow9, dbtable_158:col1, 0);
+                $int11 = db_getfield($dbrow9, dbtable_158:col2, 0);
+                $graphic12, $int13, $int14 = db_getfield($dbrow9, dbtable_158:col3, 0);
+                $int15 = db_getfield($dbrow9, dbtable_158:col4, 0);
+                $string2 = db_getfield($dbrow9, dbtable_158:col5, 0);
+                $string3 = db_getfield($dbrow9, dbtable_158:col6, 0);
+                $boolean16 = db_getfield($dbrow9, dbtable_158:col7, 0);
+                if (string_length($string1) > 0) {
+                    if ($int18 > 0) {
+                        $int18 = 0;
+                        $int4 = 10;
+                        $int3 = calc($int3 + ($int19 + 10));
+                        $int22 = calc($int22 + ($int19 + 10));
+                    }
+                    $int1, $int19 = ~script15075($string1, $int1, $int4, $int3, $int20);
+                    $int17 = 1;
+                } else if ($graphic12 ! dbrow_graphic_null) {
+                    $int1, $int4, $int18, $int19 = ~script15088($graphic12, $int1, $int4, $int3, $int13, $int14, $int18, $string2, $int15, $string3, $boolean16);
+                    if ($int18 = 3) {
+                        $int17 = 1;
+                    }
+                } else if (playermember = true | oc_members($obj10) = 0) {
+                    $int1, $int4, $int18, $int19 = ~script15215($obj10, $int11, $int1, $int4, $int3, $int18, $string2, $int15, $string3);
+                    if ($int18 = 3) {
+                        $int17 = 1;
+                    }
+                }
+                if ($int17 = 1) {
+                    $int17 = 0;
+                    $int18 = 0;
+                    $int3 = calc($int3 + ($int19 + 10));
+                    $int22 = calc($int22 + ($int19 + 10));
+                    $int4 = 10;
+                }
             }
         }
-        if ($int17 = 1) {
-            $int17 = 0;
+        if ($int18 ! 0) {
             $int18 = 0;
             $int3 = calc($int3 + ($int19 + 10));
             $int22 = calc($int22 + ($int19 + 10));
+            $int19 = 0;
             $int4 = 10;
         }
+        if (.cc_findbycategory(interface_1253:com_407, 0, $int21) = 1) {
+            .cc_setsize(0, $int22, ^setsize_minus, ^setsize_abs);
+        }
+        $int8 = -1;
+        $int22 = 10;
+        $int3 = calc($int3 + 10);
     }
-    if ($int18 ! 0) {
-        $int18 = 0;
-        $int3 = calc($int3 + ($int19 + 10));
-        $int22 = calc($int22 + ($int19 + 10));
-        $int19 = 0;
-        $int4 = 10;
-    }
-    if (.cc_findbycategory(interface_1253:com_407, 0, $int21) = 1) {
-        .cc_setsize(0, $int22, ^setsize_minus, ^setsize_abs);
-    }
-    $int8 = -1;
-    $int22 = 10;
-    $int3 = calc($int3 + 10);
 }
 if (cc_findbycategory(interface_1253:com_407, 0, 0) = 1) {
     if ($int3 > 492) {

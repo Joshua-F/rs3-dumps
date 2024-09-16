@@ -1,14 +1,20 @@
 // 19030
-[proc,script19030](struct $struct0, int $int1)(string)
-switch_struct ($struct0) {
-    case struct_47035 :
-        if ($int1 = 137) {
-            return(~script11888(1));
-        }
-        if ($int1 = 138) {
-            return(~script11888(2));
-        }
-        return(enum(int, string, enum_16539, $int1));
-    case default :
-        return(enum(int, string, enum_16539, $int1));
+[proc,script19030]()(int)
+def_dbrow $dbrow0 = null;
+def_var_int $var_int1 = null;
+def_int $int2 = -1;
+def_int $int3 = db_filter_find(db_filter_combine(db_filter_value(dbtable_293:col5, stat_base(runecraft), ^filterop_lte, 0), db_filter_value(dbtable_293:col3, 0, ^filterop_eq, 0)), dbtable_293:col0, true, -1, 0);
+unknown_command_81(random($int3));
+$dbrow0 = db_findnext;
+while ($dbrow0 ! null) {
+    $var_int1, $int2 = db_getfield($dbrow0, dbtable_293:col6, 0);
+    if ($var_int1 = null) {
+        return(db_getfield($dbrow0, dbtable_293:col0, 0));
+    } else if (var_reference_get($var_int1) >= $int2) {
+        return(db_getfield($dbrow0, dbtable_293:col0, 0));
+    }
+    $int3 = db_filter_find(db_filter_combine(db_filter_value(dbtable_293:col5, calc(db_getfield($dbrow0, dbtable_293:col5, 0) - 1), ^filterop_lte, 0), db_filter_value(dbtable_293:col3, 0, ^filterop_eq, 0)), dbtable_293:col0, true, -1, 0);
+    unknown_command_81(random($int3));
+    $dbrow0 = db_findnext;
 }
+error("No valid altars found. This should be impossible!");
