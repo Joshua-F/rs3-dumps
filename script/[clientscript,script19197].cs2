@@ -1,0 +1,40 @@
+// 19197
+[clientscript,script19197](struct $struct0)
+def_dbrow $dbrow1 = null;
+def_stat $stat2 = null;
+def_int $int3 = -1;
+def_component $component4 = interface_1288:com_18;
+def_component $component5 = interface_1288:com_15;
+def_graphic $graphic6 = null;
+def_int $int7 = 0;
+def_int $int8 = 25;
+switch_struct ($struct0) {
+    case struct_50263 :
+        $dbrow1 = ~script19150($struct0);
+        if (db_getfieldcount($dbrow1, dbtable_294:col1) > 0) {
+            $stat2 = db_getfield($dbrow1, dbtable_294:col1, 0);
+            $int3 = enum(stat, int, enum_1482, $stat2);
+            $graphic6 = enum(int, graphic, enum_745, $int3);
+            switch_stat ($stat2) {
+                case mining :
+                    $int7 = 3;
+                    $int8 = 27;
+                case runecraft :
+                    $int7 = 1;
+                    $int8 = 24;
+                case divination :
+                    $int7 = 1;
+                    $int8 = 26;
+            }
+        }
+    case default :
+        error("Missed plugin point for promo ID <tostring(struct_param($struct0, param_8202))>");
+        return;
+}
+if ($graphic6 ! null) {
+    if_setgraphic($graphic6, $component4);
+    if_setposition($int7, $int8, ^setpos_abs_centre, ^setpos_abs_bottom, $component4);
+    if_sethide(false, $component5);
+} else {
+    if_sethide(true, $component5);
+}

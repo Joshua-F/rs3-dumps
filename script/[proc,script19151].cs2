@@ -1,0 +1,16 @@
+// 19151
+[proc,script19151](dbrow $dbrow0)(npc, seq)
+def_npc $npc1 = null;
+def_seq $seq2 = null;
+switch_dbtable (db_getrowtable($dbrow0)) {
+    case dbtable_193 :
+        $npc1, $seq2 = db_getfield($dbrow0, dbtable_193:col1, 0);
+    case dbtable_294 :
+        $npc1 = db_getfield($dbrow0, dbtable_294:col2, 0);
+        if (db_getfieldcount($dbrow0, dbtable_294:col3) > 0) {
+            $seq2 = db_getfield($dbrow0, dbtable_294:col3, 0);
+        }
+    case default :
+        error("Missed plugin point for DBTable.");
+}
+return($npc1, $seq2);

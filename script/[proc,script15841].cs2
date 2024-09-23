@@ -1,5 +1,6 @@
 // 15841
 [proc,script15841](int $int0)
+def_string $string0 = ~script8521($int0);
 %varclient_1028 = string_length(escape(~script8521($int0)));
 if (~script6968($int0) = true) {
     return;
@@ -103,17 +104,20 @@ if (%varplayerbit_21242 = 0 & $boolean1 = false & string_length(~script8521($int
                     mes("You aren't in a group. You can create one using the button on this window.");
                 }
         }
-        if ($int11 ! -1 & string_length(~script8521($int0)) > 0) {
+        if ($int11 ! -1 & string_length($string0) > 0) {
             switch_int ($int11) {
                 case 101 :
                     return;
                 case 100 :
-                    chat_sendprivate(%varclient_2367, ~script8521($int0));
+                    chat_sendprivate(%varclient_2367, $string0);
                 case 6 :
-                    $int9 = ttv_chat_sendmessage(~script8521($int0));
+                    $int9 = ttv_chat_sendmessage($string0);
+                case 2 :
+                    chat_setmode_affined_clan(0);
+                    chat_sendpublic($string0);
                 case default :
                     chat_setmode($int11);
-                    chat_sendpublic(~script8521($int0));
+                    chat_sendpublic($string0);
             }
         }
         ~script8517($int0);
