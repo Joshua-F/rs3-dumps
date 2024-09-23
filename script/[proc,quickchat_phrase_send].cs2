@@ -100,6 +100,7 @@ activechatphrase_prepare($chatphrase0);
 def_int $int6 = 0;
 def_int $int7 = chatphrase_getdynamiccommandcount($chatphrase0);
 def_int $int8 = -1;
+def_string $string0 = "";
 def_int $int9 = -1;
 def_int $int10 = -1;
 def_int $int11 = -1;
@@ -122,11 +123,13 @@ while ($int6 < $int7 & $int6 < 10) {
 }
 switch_int (~script8613($int1)) {
     case 0, 4 :
-        activechatphrase_send(0);
+        chat_setmode(0);
+        activechatphrase_send;
     case 1 :
-        $int8 = ~quickchat_friend_status(~script8605($int1));
+        $string0 = ~script8605($int1);
+        $int8 = ~quickchat_friend_status($string0);
         if ($int8 = 1) {
-            activechatphrase_sendprivate(removetags(~script8605($int1)));
+            activechatphrase_sendprivate(removetags($string0));
             ~script1089;
         } else if ($int8 = -1) {
             mes("Sorry, this user is not on your Friends List.");
@@ -137,23 +140,28 @@ switch_int (~script8613($int1)) {
         activechatphrase_sendprivate(removetags(~script8605($int1)));
         ~script1089;
     case 2, 6 :
-        activechatphrase_send(1);
+        chat_setmode(1);
+        activechatphrase_send;
     case 8, 9 :
         $int9, $int10, $int11, $int12, $int13, $int14, $int15 = ~script4590;
-        if ($int9 >= 0 & $int10 >= $int11 & $int12 ! 1 & activeclanchannel_find_affined = true) {
-            activechatphrase_send(2);
+        if ($int9 >= 0 & $int10 >= $int11 & $int12 ! 1 & activeclanchannel_find_affined(0) = true) {
+            chat_setmode_affined_clan(0);
+            activechatphrase_send;
         }
     case 10, 11 :
         if (activeclanchannel_find_listened = true) {
-            activechatphrase_send(3);
+            chat_setmode(3);
+            activechatphrase_send;
         }
     case 13, 14 :
         if (player_group_find = true) {
-            activechatphrase_send(4);
+            chat_setmode(4);
+            activechatphrase_send;
         }
     case 15, 16 :
         if (player_group_find = true) {
-            activechatphrase_send(5);
+            chat_setmode(5);
+            activechatphrase_send;
         }
 }
 ~script8624($int1, $chatphrase2);
