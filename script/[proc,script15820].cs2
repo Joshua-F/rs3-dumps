@@ -1,8 +1,8 @@
 // 15820
-[proc,script15820](dbrow $dbrow0, int $int1, struct $struct2, struct $struct3, obj $obj4, int $int5, string $string0, string $string1, string $string2, string $string3, int $int6)
-def_graphic $graphic7 = null;
-def_int $int8 = 0;
-def_dbrow $dbrow9 = null;
+[proc,script15820](dbrow $dbrow0, int $int1, struct $struct2, struct $struct3, obj $obj4, int $int5, string $string0, string $string1, string $string2, string $string3, int $int6, int $int7)
+def_graphic $graphic8 = null;
+def_int $int9 = 0;
+def_dbrow $dbrow10 = null;
 def_string $string4 = "";
 def_string $string5 = "";
 switch_int (%varplayerbit_51273) {
@@ -18,13 +18,13 @@ switch_int (%varplayerbit_51273) {
                 $string1 = ~script14145($string1, db_getfield($dbrow0, dbtable_122:col7, 0), ~script11623(db_getfield($dbrow0, dbtable_122:col8, 0), shop_getcategorydescription($int6)));
                 $string1 = ~script14145($string1, db_getfield($dbrow0, dbtable_122:col9, 0), db_getfield($dbrow0, dbtable_122:col10, 0));
                 $string1 = ~script14145($string1, "You currently own:", ~script14241(db_getfield($dbrow0, dbtable_122:col13, 0)));
-                if_setonop("script15743($string3)", interface_891:com_22);
+                if_setonop("script15743($string3)", interface_891:com_24);
             }
-            if_sethide(true, interface_891:com_24);
-            if_settext($string2, interface_891:com_23);
+            if_sethide(true, interface_891:com_26);
+            if_settext($string2, interface_891:com_25);
         }
     case 0 :
-        $struct2, $struct3, $graphic7, $graphic7, $dbrow9 = db_getfield(dbrow_4168, dbtable_135:col0, $int1);
+        $struct2, $struct3, $graphic8, $graphic8, $dbrow10 = db_getfield(dbrow_4168, dbtable_135:col0, $int1);
         if ($struct2 ! null) {
             if ($int5 = -1 | $int5 = 0) {
                 $int5 = struct_param($struct2, param_2531);
@@ -40,6 +40,22 @@ switch_int (%varplayerbit_51273) {
             }
         }
         ~script11538(mtx_store_icon_currency_runecoins_025px, $string2);
+        if ($int7 > 0) {
+            switch_int (~script16763) {
+                case 161, 15, 22, 97, 54, 63, 69, 74, 56, 88, 101, 108, 132, 130, 131, 148, 179, 196, 194, 67 :
+                    ~script16759(0, $int7);
+                case 77 :
+                    ~script16759(1, $int7);
+                case 225 :
+                    ~script16759(2, $int7);
+                case default :
+                    if_sethide(true, interface_891:com_21);
+                    if_setsize(578, 424, ^setsize_abs, ^setsize_abs, interface_891:com_4);
+            }
+        } else {
+            if_sethide(true, interface_891:com_21);
+            if_setsize(578, 424, ^setsize_abs, ^setsize_abs, interface_891:com_4);
+        }
     case 2 :
         if ($struct2 ! null) {
             if ($int5 = -1 | $int5 = 0) {
@@ -50,7 +66,7 @@ switch_int (%varplayerbit_51273) {
                 $string1 = ~script14145($string1, "", ~script15527($struct2, $int5));
             }
         }
-        if_setsize(20, 20, ^setsize_abs, ^setsize_abs, interface_891:com_25);
+        if_setsize(20, 20, ^setsize_abs, ^setsize_abs, interface_891:com_27);
         ~script11538(struct_param(%varplayer_5148, param_8661), $string2);
 }
 if ($struct2 ! null & $struct3 ! null & string_length($string0) = 0) {
@@ -60,9 +76,9 @@ if_settext($string0, interface_891:com_12);
 if_settext($string1, interface_891:com_16);
 ~script11539($struct2, $int5, $obj4);
 ~script16206($dbrow0);
-def_int $int10 = ~script15891($string1, if_getwidth(interface_891:com_16), if_getfontmetrics(interface_891:com_16), 0);
-if ($int10 >= if_getheight(interface_891:com_15)) {
-    if_setscrollsize(0, $int10, interface_891:com_15);
+def_int $int11 = ~script15891($string1, if_getwidth(interface_891:com_16), if_getfontmetrics(interface_891:com_16), 0);
+if ($int11 >= if_getheight(interface_891:com_15)) {
+    if_setscrollsize(0, $int11, interface_891:com_15);
     if_sethide(false, interface_891:com_14);
     ~rs3_scrollbar_vertical(interface_891:com_14, interface_891:com_15);
 } else {
