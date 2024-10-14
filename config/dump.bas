@@ -29409,3 +29409,39 @@ walkturn_r=seq_36252
 runanim=seq_36253
 readyanim=seq_36251,seq_36252
 
+// 4771
+[bas_4771]
+crawlanim=seq_36287
+readyanim=null,null
+randomreadyanim=seq_36294,80
+randomreadyanim=seq_36293,20
+
+// 4772
+[bas_4772]
+readyanim_l=seq_36285
+readyanim_r=seq_36285
+walkanim_l=seq_36285
+walkanim_r=seq_36285
+walkturn_l=seq_36285
+walkturn_r=seq_36285
+runanim=seq_36286
+readyanim=null,seq_36285
+randomreadyanim=seq_16430,60
+randomreadyanim=seq_36294,20
+randomreadyanim=seq_36293,20
+
+// 4773
+[bas_4773]
+readyanim_l=seq_36301
+readyanim_r=seq_36301
+walkanim_b=seq_36301
+walkanim_l=seq_36301
+walkanim_r=seq_36301
+walkturn_l=seq_36301
+walkturn_r=seq_36301
+runanim=seq_36302
+hillrotate=32,32
+readyanim=null,seq_36301
+randomreadyanim=seq_36297,90
+randomreadyanim=seq_36298,10
+
