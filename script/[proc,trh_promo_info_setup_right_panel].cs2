@@ -2,7 +2,7 @@
 [proc,trh_promo_info_setup_right_panel](dbrow $dbrow0)
 def_int $int1 = 0;
 ~if_add_child_background(interface_1253:com_406, 0, $int1, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_4471, true);
-def_int $int2 = db_getfieldcount($dbrow0, dbtable_156:col9);
+def_int $int2 = db_getfieldcount($dbrow0, dbtable_156:col10);
 if ($int2 = 0) {
     return;
 }
@@ -28,7 +28,7 @@ def_int $int17 = 0;
 def_int $int18 = 0;
 def_int $int19 = 0;
 ~if_add_child_layer(interface_1253:com_406, 1, $int1++, 0, 10, ^setpos_abs_centre, ^setpos_abs_top, 20, 18, ^setsize_minus, ^setsize_abs);
-~cc_add_child_text(1, $int1, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_1897, db_getfield($dbrow0, dbtable_156:col8, 0));
+~cc_add_child_text(1, $int1, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_1897, db_getfield($dbrow0, dbtable_156:col9, 0));
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_setcolour(0x9ccce5);
 $int1 = 0;
@@ -37,8 +37,9 @@ def_int $int20 = cc_getwidth;
 def_int $int21 = $int1;
 def_int $int22 = 10;
 def_boolean $boolean23 = false;
+def_boolean $boolean24 = false;
 while (++$int5 < $int2) {
-    $dbrow6 = db_getfield($dbrow0, dbtable_156:col9, $int5);
+    $dbrow6 = db_getfield($dbrow0, dbtable_156:col10, $int5);
     if ($dbrow6 = null) {
         return;
     }
@@ -59,7 +60,8 @@ while (++$int5 < $int2) {
         while (++$int8 < $int7) {
             $dbrow9 = db_getfield($dbrow6, dbtable_157:col1, $int8);
             $boolean23 = db_getfield($dbrow9, dbtable_158:col8, 0);
-            if ($boolean23 = false | playermember = true) {
+            $boolean24 = db_getfield($dbrow9, dbtable_158:col9, 0);
+            if (playermember = true & $boolean24 = false | playermember = false & $boolean23 = false) {
                 $string1 = db_getfield($dbrow9, dbtable_158:col0, 0);
                 $obj10 = db_getfield($dbrow9, dbtable_158:col1, 0);
                 $int11 = db_getfield($dbrow9, dbtable_158:col2, 0);
