@@ -33,6 +33,14 @@ switch_chatphrase ($chatphrase0) {
             ~script3686("You cannot send this message as you are not a Hardcore Ironman.");
             return;
         }
+    case chatphrase_2983 :
+        if (~script19316 = false) {
+            ~script3686("You cannot send this message as you are not a Group Ironman.");
+            return;
+        }
+        if (~script19320 = true) {
+            $chatphrase0 = chatphrase_2984;
+        }
     case chatphrase_1728 :
         $chatphrase0 = enum(int, chatphrase, enum_13490, calc(~script8633($int1) + 1));
     case chatphrase_1729 :
@@ -161,6 +169,11 @@ switch_int (~script8613($int1)) {
     case 15, 16 :
         if (player_group_find = true) {
             chat_setmode(5);
+            activechatphrase_send;
+        }
+    case 17, 18 :
+        if (activeclanchannel_find_affined(1) = true) {
+            chat_setmode_affined_clan(1);
             activechatphrase_send;
         }
 }

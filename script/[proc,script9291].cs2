@@ -45,13 +45,7 @@ cc_deleteall(interface_1851:com_43);
 if (cc_find($component2, $int0) = true) {
     if_setposition(0, calc(cc_gety + cc_getheight), ^setpos_abs_left, ^setpos_abs_top, interface_1851:com_41);
 }
-def_int $int8 = achievement_stat_req_count($achievement1);
-$int8 = calc($int8 + achievement_varp_req_count($achievement1));
-$int8 = calc($int8 + achievement_varbit_req_count($achievement1));
-$int8 = calc($int8 + achievement_varp_testbit_req_count($achievement1));
-$int8 = calc($int8 + achievement_varbit_testbit_req_count($achievement1));
-$int8 = calc($int8 + achievement_quest_req_count($achievement1));
-$int8 = calc($int8 + achievement_achievement_req_count($achievement1));
+def_int $int8 = achievement_req_count($achievement1);
 def_int $int9 = 2;
 def_int $int10 = calc($int8 / $int9);
 def_int $int11 = calc($int8 - $int10 * $int9);
@@ -99,7 +93,11 @@ $int15 = 0;
 $int16 = achievement_varbit_req_count($achievement1);
 while ($int15 < $int16) {
     $string0 = achievement_varbit_req_name($achievement1, $int15);
+    $string0 = ~script19624($achievement1, $int15, $string0);
     if (compare($string0, "") ! 0) {
+        if (achievement_category($achievement1) = category_5483) {
+            $string0 = ~script19394($string0);
+        }
         $int14 = calc(~bool_to_int(achievement_varbit_req_met($achievement1, $int15)) * -2);
         if (%varplayerbit_48340 = 0 | $int14 ! -2) {
             ~script15335($int13, $string0, "", $int14, 0, 0);

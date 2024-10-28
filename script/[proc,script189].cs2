@@ -2,13 +2,14 @@
 [proc,script189](int $int0, int $int1)
 switch_int ($int0) {
     case 9 :
-        if ($int1 = 3) {
-            ~script8820(1);
-            ~script2254;
-        } else if ($int1 = 4) {
-            ~music_search_close_both;
-        } else if ($int1 = 1) {
-            ~script8841(11, 0);
+        switch_int ($int1) {
+            case 3 :
+                ~script8820(1);
+                ~script2254;
+            case 4 :
+                ~music_search_close_both;
+            case 1 :
+                ~script8841(11, 0);
         }
     case 4 :
         if ($int1 = 5) {
@@ -38,16 +39,21 @@ switch_int ($int0) {
                 ~script15006;
         }
     case 0 :
-        if ($int1 = 1 | $int1 = 3) {
-            ~script3123;
-        } else if ($int1 = 2) {
-            %varclient_6483 = 0;
-            %varclient_6484 = 0;
-        } else if ($int1 = 4) {
-            if (if_getscrolly(interface_1851:com_40) > 0) {
-                %varclient_6917 = if_getscrolly(interface_1851:com_40);
-            }
-            ~cheevo_reset_goto;
+        switch_int ($int1) {
+            case 1 :
+                ~script3123;
+            case 3 :
+                ~script3123;
+            case 2 :
+                %varclient_6483 = 0;
+                %varclient_6484 = 0;
+            case 4 :
+                if (if_getscrolly(interface_1851:com_40) > 0) {
+                    %varclient_6917 = if_getscrolly(interface_1851:com_40);
+                }
+                ~cheevo_reset_goto;
+            case 5 :
+                ~script19424;
         }
     case 5 :
         if ($int1 = 1) {
@@ -69,8 +75,8 @@ switch_int ($int0) {
 if (%varplayer_8745 = null) {
     return;
 }
-def_int $int2 = db_getfield(%varplayer_8745, dbtable_71:col8, 0);
-def_int $int3 = db_getfield(%varplayer_8745, dbtable_71:col9, 0);
+def_int $int2 = db_getfield(%varplayer_8745, dbtable_71:col10, 0);
+def_int $int3 = db_getfield(%varplayer_8745, dbtable_71:col11, 0);
 if ($int2 = $int0 & $int3 = $int1) {
     ~script16411;
 }

@@ -1,9 +1,9 @@
 // 8505
-[proc,script8505](int $int0, string $string0, int $int1, string $string1, string $string2, chatphrase $chatphrase2, string $string3)
+[proc,script8505](int $int0, string $string0, int $int1, string $string1, string $string2, int $int2, chatphrase $chatphrase3, string $string3)
 cc_setcolour(^white);
 $string3 = ~script11298($string3);
 switch_int ($int0) {
-    case 0, 4, 27, 28, 29, 11, 43, 46, 103, 119, 104, 109, 110, 26, 30, 31, 120, 121, 122, 123, 124, 126, 128, 129, 130, 133, 134, 142 :
+    case 0, 4, 27, 28, 29, 11, 43, 46, 103, 119, 104, 109, 110, 26, 30, 31, 120, 121, 122, 123, 124, 126, 128, 129, 130, 133, 134, 142, 144 :
         cc_settext("<$string3><$string0>");
     case 1, 2 :
         cc_settext("<$string3><col=ffffff><$string1>:</col> <enum(int, string, enum_10293, %varplayerbit_30165)><$string0></col>");
@@ -27,14 +27,33 @@ switch_int ($int0) {
         cc_setcolour(0x01e1f3);
         cc_settext("<$string3><$string1> <$string0>");
     case 41 :
-        cc_setcolour(enum(int, int, enum_3724, %varplayerbit_1188));
-        switch_int (%varplayerbit_30172) {
-            case default :
-                cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff><$string2></col><col=ffffff>] <$string1>: </col><$string0>");
+        switch_int ($int2) {
+            case 0 :
+                cc_setcolour(enum(int, int, enum_3724, %varplayerbit_1188));
+                switch_int (%varplayerbit_30172) {
+                    case default :
+                        cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff><$string2></col><col=ffffff>] <$string1>: </col><$string0>");
+                    case 1 :
+                        cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff>CC</col><col=ffffff>] <$string1>: </col><$string0>");
+                    case 2 :
+                        cc_settext("<$string3><col=ffffff><$string1>: </col><$string0>");
+                }
             case 1 :
-                cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff>CC</col><col=ffffff>] <$string1>: </col><$string0>");
-            case 2 :
-                cc_settext("<$string3><col=ffffff><$string1>: </col><$string0>");
+                if (%varplayerbit_22875 = 1 & %varplayerbit_56249 = 0) {
+                    cc_setcolour(0xffff64);
+                } else {
+                    cc_setcolour(enum(int, int, enum_6054, %varplayerbit_56249));
+                }
+                switch_int (%varplayerbit_30172) {
+                    case default :
+                        cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff><$string2></col><col=ffffff>] <$string1>: </col><$string0>");
+                    case 1 :
+                        cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff>GIM</col><col=ffffff>] <$string1>: </col><$string0>");
+                    case 2 :
+                        cc_settext("<$string3><col=ffffff><$string1>: </col><$string0>");
+                }
+            case default :
+                cc_settext("<$string3><$string1> <$string0>");
         }
     case 9 :
         cc_setcolour(enum(int, int, enum_3723, %varplayerbit_1190));
@@ -66,14 +85,14 @@ switch_int ($int0) {
         cc_setcolour(0x93cbf4);
         cc_settext("<$string3><$string1> <$string0>");
     case 17 :
-        if (compare(removetags(chat_playername), removetags($string1)) ! 0 & chatphrase_getautoresponsecount($chatphrase2) > 0) {
+        if (compare(removetags(chat_playername), removetags($string1)) ! 0 & chatphrase_getautoresponsecount($chatphrase3) > 0) {
             cc_settext("<$string3><col=ffffff><$string1><img=<3>>:</col> <enum(int, string, enum_10293, %varplayerbit_30165)><$string0></col>");
         } else {
             cc_settext("<$string3><col=ffffff><$string1>:</col> <enum(int, string, enum_10293, %varplayerbit_30165)><$string0></col>");
         }
     case 18 :
         cc_setcolour(enum(int, int, enum_3056, %varplayer_457));
-        if (compare(removetags(chat_playername), removetags($string1)) ! 0 & chatphrase_getautoresponsecount($chatphrase2) > 0) {
+        if (compare(removetags(chat_playername), removetags($string1)) ! 0 & chatphrase_getautoresponsecount($chatphrase3) > 0) {
             cc_settext("<$string3><col=ffffff>From <$string1><img=<3>>:</col> <$string0>");
         } else {
             cc_settext("<$string3><col=ffffff>From <$string1>:</col> <$string0>");
@@ -82,29 +101,59 @@ switch_int ($int0) {
         cc_setcolour(enum(int, int, enum_3056, %varplayer_457));
         cc_settext("<$string3><col=ffffff>To <$string1>:</col> <$string0>");
     case 42 :
-        cc_setcolour(enum(int, int, enum_3724, %varplayerbit_1188));
-        if (compare(removetags(chat_playername), removetags($string1)) ! 0 & chatphrase_getautoresponsecount($chatphrase2) > 0) {
-            switch_int (%varplayerbit_30172) {
-                case default :
-                    cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff><$string2></col><col=ffffff>] <$string1><img=<3>>: </col><$string0>");
-                case 1 :
-                    cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff>CC</col><col=ffffff>] <$string1><img=<3>>: </col><$string0>");
-                case 2 :
-                    cc_settext("<$string3><col=ffffff><$string1><img=<3>>: </col><$string0>");
-            }
-        } else {
-            switch_int (%varplayerbit_30172) {
-                case default :
-                    cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff><$string2></col><col=ffffff>] <$string1>: </col><$string0>");
-                case 1 :
-                    cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff>CC</col><col=ffffff>] <$string1>: </col><$string0>");
-                case 2 :
-                    cc_settext("<$string3><col=ffffff><$string1>: </col><$string0>");
-            }
+        switch_int ($int2) {
+            case 0 :
+                cc_setcolour(enum(int, int, enum_3724, %varplayerbit_1188));
+                if (compare(removetags(chat_playername), removetags($string1)) ! 0 & chatphrase_getautoresponsecount($chatphrase3) > 0) {
+                    switch_int (%varplayerbit_30172) {
+                        case default :
+                            cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff><$string2></col><col=ffffff>] <$string1><img=<3>>: </col><$string0>");
+                        case 1 :
+                            cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff>CC</col><col=ffffff>] <$string1><img=<3>>: </col><$string0>");
+                        case 2 :
+                            cc_settext("<$string3><col=ffffff><$string1><img=<3>>: </col><$string0>");
+                    }
+                } else {
+                    switch_int (%varplayerbit_30172) {
+                        case default :
+                            cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff><$string2></col><col=ffffff>] <$string1>: </col><$string0>");
+                        case 1 :
+                            cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff>CC</col><col=ffffff>] <$string1>: </col><$string0>");
+                        case 2 :
+                            cc_settext("<$string3><col=ffffff><$string1>: </col><$string0>");
+                    }
+                }
+            case 1 :
+                if (%varplayerbit_22875 = 1 & %varplayerbit_56249 = 0) {
+                    cc_setcolour(0xffff64);
+                } else {
+                    cc_setcolour(enum(int, int, enum_6054, %varplayerbit_56249));
+                }
+                if (compare(removetags(chat_playername), removetags($string1)) ! 0 & chatphrase_getautoresponsecount($chatphrase3) > 0) {
+                    switch_int (%varplayerbit_30172) {
+                        case default :
+                            cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff><$string2></col><col=ffffff>] <$string1><img=<3>>: </col><$string0>");
+                        case 1 :
+                            cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff>GIM</col><col=ffffff>] <$string1><img=<3>>: </col><$string0>");
+                        case 2 :
+                            cc_settext("<$string3><col=ffffff><$string1><img=<3>>: </col><$string0>");
+                    }
+                } else {
+                    switch_int (%varplayerbit_30172) {
+                        case default :
+                            cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff><$string2></col><col=ffffff>] <$string1>: </col><$string0>");
+                        case 1 :
+                            cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff>GIM</col><col=ffffff>] <$string1>: </col><$string0>");
+                        case 2 :
+                            cc_settext("<$string3><col=ffffff><$string1>: </col><$string0>");
+                    }
+                }
+            case default :
+                cc_settext("<$string3><$string1> <$string0>");
         }
     case 45 :
         cc_setcolour(enum(int, int, enum_3726, %varplayerbit_1191));
-        if (compare(removetags(chat_playername), removetags($string1)) ! 0 & chatphrase_getautoresponsecount($chatphrase2) > 0) {
+        if (compare(removetags(chat_playername), removetags($string1)) ! 0 & chatphrase_getautoresponsecount($chatphrase3) > 0) {
             switch_int (%varplayerbit_30172) {
                 case default :
                     cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff><$string2></col><col=ffffff>] <$string1><img=<3>>: </col><$string0>");
@@ -125,7 +174,7 @@ switch_int ($int0) {
         }
     case 20 :
         cc_setcolour(enum(int, int, enum_3723, %varplayerbit_1190));
-        if (compare(removetags(chat_playername), removetags($string1)) ! 0 & chatphrase_getautoresponsecount($chatphrase2) > 0) {
+        if (compare(removetags(chat_playername), removetags($string1)) ! 0 & chatphrase_getautoresponsecount($chatphrase3) > 0) {
             switch_int (%varplayerbit_30172) {
                 case default :
                     cc_settext("<$string3><col=ffffff>[</col><col=7fa9ff><$string2></col><col=ffffff>] <$string1><img=<3>>: </col><$string0>");

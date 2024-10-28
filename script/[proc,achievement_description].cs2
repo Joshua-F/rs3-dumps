@@ -10,6 +10,23 @@ if (~ironman_mode = true) {
     if (string_length($string1) > 0) {
         $string0 = $string1;
     }
+    if (~script19316 = true) {
+        switch_int (%varplayerbit_56588) {
+            case 2 :
+                $string1 = achievement_getdesc($achievement0, 2);
+            case 3 :
+                $string1 = achievement_getdesc($achievement0, 3);
+            case 4 :
+                $string1 = achievement_getdesc($achievement0, 4);
+            case 5 :
+                $string1 = achievement_getdesc($achievement0, 5);
+            case default :
+                $string1 = "";
+        }
+        if (string_length($string1) > 0) {
+            $string0 = $string1;
+        }
+    }
 }
 if ($achievement0 = achievement_2852) {
     if (%varplayerbit_11754 = 0) {
@@ -23,5 +40,11 @@ def_int $int2 = 0;
 $int1, $int2 = ~achievement_tally($achievement0);
 if ($int2 > 0) {
     $string0 = append($string0, " (<tostring_localised($int1, true)>/<tostring_localised($int2, true)>)");
+} else {
+    $int2 = ~script19622($achievement0);
+    if ($int2 > 1) {
+        $int1 = ~script19623($achievement0);
+        $string0 = append($string0, " (<tostring_localised($int1, true)>/<tostring_localised($int2, true)>)");
+    }
 }
 return($string0);
