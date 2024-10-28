@@ -5,7 +5,7 @@ height=555
 noclickthrough=yes
 candrop=yes
 opbase=  
-onload=script8420(interface_517:com_1, interface_517:com_305, null, interface_517:com_306, "Bank of Gielinor", struct_28241, 1017)
+onload=script8420(interface_517:com_1, interface_517:com_312, null, interface_517:com_318, "Bank of Gielinor", struct_28241, 1017)
 
 [com_1]
 type=layer
@@ -414,38 +414,6 @@ ymode=abs_bottom
 layer=com_37
 
 [com_48]
-type=layer
-x=6273
-width=30
-heightmode=minus
-xmode=proportion_centre
-ymode=abs_bottom
-layer=com_37
-noclickthrough=yes
-
-[com_49]
-type=graphic
-widthmode=minus
-heightmode=minus
-layer=com_48
-graphic=button_30px_on
-transmitop=1
-op1=Toggle tab switching
-onload=script6520
-onvartransmit=script6520{varplayer_10243}
-onop=script6298
-onmouserepeat=script10009("Toggle automatic tab switching when depositing items", event_com, event_comsubid)
-
-[com_50]
-type=graphic
-width=30
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_48
-graphic=rs3_icon_bank_tab_switch_auto
-
-[com_51]
 type=graphic
 widthmode=minus
 heightmode=minus
@@ -457,7 +425,7 @@ onload=script13914(event_com, struct_28222)
 onop=bank_deposit_pouch
 onmouserepeat=script8799("Empty your money pouch into your bank", event_com, event_comsubid)
 
-[com_52]
+[com_49]
 type=graphic
 x=1
 width=29
@@ -465,6 +433,38 @@ height=21
 ymode=abs_centre
 layer=com_47
 graphic="bank_bob_button,4"
+
+[com_50]
+type=layer
+x=6273
+width=30
+heightmode=minus
+xmode=proportion_centre
+ymode=abs_bottom
+layer=com_37
+noclickthrough=yes
+
+[com_51]
+type=graphic
+widthmode=minus
+heightmode=minus
+layer=com_50
+graphic=button_30px_on
+transmitop=1
+op1=Toggle tab switching
+onload=script6520
+onvartransmit=script6520{varplayer_10243}
+onop=script6298
+onmouserepeat=script10009("Toggle automatic tab switching when depositing items", event_com, event_comsubid)
+
+[com_52]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_50
+graphic=rs3_icon_bank_tab_switch_auto
 
 [com_53]
 type=layer
@@ -1079,7 +1079,7 @@ heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
 layer=com_109
-onvarctransmit=script7202(event_com, interface_517:com_112, interface_517:com_113, interface_517:com_114, interface_517:com_322){varclient_2235, varclient_2236}
+onvarctransmit=script7202(event_com, interface_517:com_112, interface_517:com_113, interface_517:com_114, interface_517:com_341){varclient_2235, varclient_2236}
 
 [com_112]
 type=text
@@ -1127,7 +1127,7 @@ op1=Change
 onload=script10496(event_com, event_comsubid, 19)
 onop=script8903(event_com)
 onmouserepeat=script10009("Enter the value to be withdrawn when 'X' is selected.", event_com, event_comsubid)
-onclick=script7203(interface_517:com_115, interface_517:com_322)
+onclick=script7203(interface_517:com_115, interface_517:com_341)
 
 [com_115]
 type=layer
@@ -1142,7 +1142,7 @@ hide=yes
 noclickthrough=yes
 transmitop=1
 op1=Cancel Input
-onop=script7205(interface_517:com_111, interface_517:com_112, interface_517:com_113, interface_517:com_114, interface_517:com_322)
+onop=script7205(interface_517:com_111, interface_517:com_112, interface_517:com_113, interface_517:com_114, interface_517:com_341)
 
 [com_116]
 type=layer
@@ -1203,9 +1203,9 @@ graphic=button_30px_on
 transmitop=1,2
 op1=Toggle Placeholder
 op2=Delete All Placeholders
-onload=bank_placeholder_button
-onvartransmit=bank_placeholder_button{varplayer_8958}
-onop=bank_placeholder_onop(event_op)
+onload=bank_placeholder_button(event_com, interface_517:com_124, interface_517:com_125)
+onvartransmit=bank_placeholder_button(event_com, interface_517:com_124, interface_517:com_125){varplayer_8958}
+onop=bank_placeholder_onop(event_com, interface_517:com_124, interface_517:com_125, event_op)
 onmouserepeat=script10009("When withdrawing all items from a bank leave a count of 0 behind to retain the position in the bank.", event_com, event_comsubid)
 
 [com_124]
@@ -1242,9 +1242,9 @@ layer=com_126
 graphic=button_30px_on
 transmitop=1
 op1=Toggle item/note withdrawl
-onload=bank_cert_button
-onvartransmit=bank_cert_button{varplayer_160}
-onop=bank_cert_click
+onload=bank_cert_button(event_com, interface_517:com_128)
+onvartransmit=bank_cert_button(event_com, interface_517:com_128){varplayer_160}
+onop=bank_cert_click(event_com, interface_517:com_128)
 onmouserepeat=script10009("Toggle between item and note withdrawal modes", event_com, event_comsubid)
 
 [com_128]
@@ -1270,13 +1270,64 @@ graphic=decoration_progressbar_short_qps_inactive_vertical
 
 [com_130]
 type=layer
+x=70
+width=30
+height=30
+xmode=abs_right
+layer=com_121
+hide=yes
+
+[com_131]
+type=graphic
+widthmode=minus
+heightmode=minus
+layer=com_130
+graphic=button_30px_on
+transmitop=1
+op1=Group Ironman Storage
+onload=script19527(event_com, interface_517:com_130)
+onmouserepeat=script8799("Open Group Ironman storage", event_com, event_comsubid)
+
+[com_132]
+type=graphic
+width=24
+height=24
+xmode=abs_centre
+ymode=abs_centre
+layer=com_130
+graphic=rs3_icon_ironman_group_storage
+
+[com_133]
+type=layer
 x=35
 width=30
 height=30
 xmode=abs_right
 layer=com_121
 
-[com_131]
+[com_134]
+type=graphic
+widthmode=minus
+heightmode=minus
+layer=com_133
+graphic=button_30px_on
+transmitop=1
+op1=Bank Pin Settings
+onload=script13914(event_com, struct_28222)
+onop=bankpin_button_onop
+onmouserepeat=script8799("Bank Pin", event_com, event_comsubid)
+
+[com_135]
+type=graphic
+x=4
+y=4
+width=29
+height=21
+ymode=abs_bottom
+layer=com_133
+graphic="aif_bank_loadout_icons,0"
+
+[com_136]
 type=layer
 x=29
 width=1
@@ -1285,71 +1336,30 @@ xmode=abs_right
 layer=com_121
 hide=yes
 
-[com_132]
+[com_137]
 type=layer
 height=30
 widthmode=minus
-layer=com_131
+layer=com_136
 noclickthrough=yes
 onload=script10896(event_com, null, struct_6203)
 
-[com_133]
-type=layer
-width=30
-height=30
-xmode=abs_right
-layer=com_121
-
-[com_134]
-type=layer
-width=30
-height=30
-layer=com_131
-
-[com_135]
-type=layer
-x=35
-width=30
-height=30
-layer=com_131
-
-[com_136]
-type=layer
-x=70
-width=30
-height=30
-layer=com_131
-
-[com_137]
-type=graphic
-widthmode=minus
-heightmode=minus
-layer=com_134
-graphic=button_30px_on
-transmitop=1
-op1=Open Costume Room
-onload=bank_poh_button
-onmouserepeat=script10009("Access the Costume Room of your Player Owned House.", event_com, event_comsubid)
-
 [com_138]
-type=graphic
-width=29
-height=21
-xmode=abs_centre
-ymode=abs_centre
-layer=com_134
-graphic="aif_bank_loadout_icons,2"
+type=layer
+width=30
+height=30
+layer=com_136
 
 [com_139]
 type=graphic
 widthmode=minus
 heightmode=minus
-layer=com_135
+layer=com_138
 graphic=button_30px_on
 transmitop=1
-op1=Open Diango
-onload=script13914(event_com, struct_28222)
-onmouserepeat=script10009("Access Diango's holiday item and outfit retrieval.", event_com, event_comsubid)
+op1=Open Costume Room
+onload=bank_poh_button
+onmouserepeat=script10009("Access the Costume Room of your Player Owned House.", event_com, event_comsubid)
 
 [com_140]
 type=graphic
@@ -1357,32 +1367,92 @@ width=29
 height=21
 xmode=abs_centre
 ymode=abs_centre
-layer=com_135
-graphic="aif_bank_loadout_icons,1"
+layer=com_138
+graphic="aif_bank_loadout_icons,2"
 
 [com_141]
-type=graphic
-widthmode=minus
-heightmode=minus
-layer=com_130
-graphic=button_30px_on
-transmitop=1
-op1=Bank Pin Settings
-onload=script13914(event_com, struct_28222)
-onop=bankpin_button_onop
-onmouserepeat=script8799("Bank Pin", event_com, event_comsubid)
+type=layer
+x=35
+width=30
+height=30
+layer=com_136
 
 [com_142]
 type=graphic
-x=4
-y=4
-width=29
-height=21
-ymode=abs_bottom
-layer=com_130
-graphic="aif_bank_loadout_icons,0"
+widthmode=minus
+heightmode=minus
+layer=com_141
+graphic=button_30px_on
+transmitop=1
+op1=Open Diango
+onload=script13914(event_com, struct_28222)
+onmouserepeat=script10009("Access Diango's holiday item and outfit retrieval.", event_com, event_comsubid)
 
 [com_143]
+type=graphic
+width=29
+height=21
+xmode=abs_centre
+ymode=abs_centre
+layer=com_141
+graphic="aif_bank_loadout_icons,1"
+
+[com_144]
+type=layer
+x=70
+width=30
+height=30
+layer=com_136
+
+[com_145]
+type=graphic
+widthmode=minus
+heightmode=minus
+layer=com_144
+graphic=button_30px_on
+transmitop=1
+op1=Open Metal Bank
+onload=script13914(event_com, struct_28222)
+onmouserepeat=script10009("Access your metal bank to view its contents.", event_com, event_comsubid)
+
+[com_146]
+type=graphic
+width=22
+height=22
+xmode=abs_centre
+ymode=abs_centre
+layer=com_144
+graphic="rs3_icon_bank_metals_storage,0"
+
+[com_147]
+type=layer
+width=30
+height=30
+xmode=abs_right
+layer=com_121
+
+[com_148]
+type=graphic
+widthmode=minus
+heightmode=minus
+layer=com_147
+graphic=button_30px_on
+transmitop=1
+op1=View More Storage
+onload=script13914(event_com, struct_28222)
+onop=script16587
+onmouserepeat=script8799("More Storage", event_com, event_comsubid)
+
+[com_149]
+type=graphic
+width=24
+height=24
+xmode=abs_centre
+ymode=abs_centre
+layer=com_147
+graphic="rs3_icon_bank_extras,0"
+
+[com_150]
 type=layer
 width=10
 height=114
@@ -1392,107 +1462,107 @@ xmode=abs_centre
 layer=com_66
 onvartransmit=script13746(-1){varplayer_8958}
 
-[com_144]
+[com_151]
 type=layer
 width=8192
 height=24
 widthmode=proportion
 ymode=abs_bottom
-layer=com_143
+layer=com_150
 transmitop=1
 op1=Select
 opcursor0=cursor_46
 onop=script13746(0)
 
-[com_145]
+[com_152]
 type=layer
 width=8192
 height=24
 widthmode=proportion
 xmode=abs_right
-layer=com_143
+layer=com_150
 transmitop=1
 op1=Select
 opcursor0=cursor_46
 onop=script13746(1)
 
-[com_146]
+[com_153]
 type=layer
 width=217
 widthmode=minus
 heightmode=minus
 layer=com_2
 
-[com_147]
+[com_154]
 type=layer
 height=35
 widthmode=minus
 heightmode=minus
-layer=com_146
+layer=com_153
 
-[com_148]
+[com_155]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_147
+layer=com_154
 
-[com_149]
+[com_156]
 type=layer
 width=38
 heightmode=minus
-layer=com_147
+layer=com_154
 onvartransmit=script14375{varplayer_5212, varplayer_8957}
 oninvtransmit=script14375{inv_95}
 
-[com_150]
+[com_157]
 type=rectangle
 x=1
 width=1
 heightmode=minus
 xmode=abs_right
 ymode=abs_bottom
-layer=com_149
+layer=com_156
 colour=0x374043
 fill=yes
 
-[com_151]
+[com_158]
 type=rectangle
 width=1
 heightmode=minus
 xmode=abs_right
 ymode=abs_bottom
-layer=com_149
+layer=com_156
 colour=0x050708
 fill=yes
 
-[com_152]
+[com_159]
 type=layer
 width=1
 height=23
 widthmode=minus
-layer=com_149
+layer=com_156
 transmitop=1
 op1=Scroll Up
 onop=script10514
 onmouserepeat=script10009("View previous tabs", event_com, event_comsubid)
 
-[com_153]
+[com_160]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_152
+layer=com_159
 onload=script10896(event_com, null, struct_28557)
 
-[com_154]
+[com_161]
 type=graphic
 width=18
 height=11
 xmode=abs_centre
 ymode=abs_centre
-layer=com_152
+layer=com_159
 graphic="bank_arrow_up,0"
 
-[com_155]
+[com_162]
 type=layer
 x=1
 width=1
@@ -1500,35 +1570,35 @@ height=23
 widthmode=minus
 xmode=abs_right
 ymode=abs_bottom
-layer=com_149
+layer=com_156
 transmitop=1
 op1=Scroll Down
 onop=script10528
 onmouserepeat=script10009("View more tabs", event_com, event_comsubid)
 
-[com_156]
+[com_163]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_155
+layer=com_162
 onload=script10896(event_com, null, struct_28557)
 
-[com_157]
+[com_164]
 type=graphic
 width=18
 height=11
 xmode=abs_centre
 ymode=abs_centre
-layer=com_155
+layer=com_162
 graphic="bank_arrow_up,0"
 vflip=yes
 
-[com_158]
+[com_165]
 type=layer
 y=24
 width=38
 height=48
-layer=com_149
+layer=com_156
 transmitop=1,2,3
 candrop=yes
 op1=View all
@@ -1537,150 +1607,93 @@ op3=Reset tab order
 onop=bank_tab_onop(event_op, 1)
 onmouserepeat=script8796(event_com, event_comsubid)
 
-[com_159]
+[com_166]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_158
+layer=com_165
 
-[com_160]
+[com_167]
 type=graphic
 width=36
 height=32
 xmode=abs_centre
 ymode=abs_centre
-layer=com_158
+layer=com_165
 graphic="bank_misc_graphics,0"
 
-[com_161]
+[com_168]
 type=layer
 y=72
 height=96
 widthmode=minus
 heightmode=minus
-layer=com_149
+layer=com_156
 
-[com_162]
+[com_169]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_161
+layer=com_168
 
-[com_163]
+[com_170]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_161
+layer=com_168
 
-[com_164]
+[com_171]
 type=layer
 y=68
 height=84
 widthmode=minus
 heightmode=minus
-layer=com_149
+layer=com_156
 
-[com_165]
+[com_172]
 type=layer
 width=38
 height=48
-layer=com_149
-
-[com_166]
-type=layer
-height=12
-widthmode=minus
-layer=com_165
-hide=yes
-
-[com_167]
-type=rectangle
-widthmode=minus
-heightmode=minus
-layer=com_166
-colour=0xfff500
-
-[com_168]
-type=graphic
-x=4
-width=12
-height=12
-ymode=abs_centre
-layer=com_166
-graphic="rs3_character_interface_arrow_scroll,0"
-
-[com_169]
-type=graphic
-x=4
-width=12
-height=12
-xmode=abs_right
-ymode=abs_centre
-layer=com_166
-graphic="rs3_character_interface_arrow_scroll,0"
-
-[com_170]
-type=layer
-height=12
-widthmode=minus
-layer=com_165
-hide=yes
-
-[com_171]
-type=rectangle
-widthmode=minus
-heightmode=minus
-layer=com_170
-colour=0xfff500
-
-[com_172]
-type=graphic
-x=4
-width=12
-height=12
-ymode=abs_centre
-layer=com_170
-graphic="rs3_character_interface_arrow_scroll,0"
-vflip=yes
+layer=com_156
 
 [com_173]
+type=layer
+height=12
+widthmode=minus
+layer=com_172
+hide=yes
+
+[com_174]
+type=rectangle
+widthmode=minus
+heightmode=minus
+layer=com_173
+colour=0xfff500
+
+[com_175]
+type=graphic
+x=4
+width=12
+height=12
+ymode=abs_centre
+layer=com_173
+graphic="rs3_character_interface_arrow_scroll,0"
+
+[com_176]
 type=graphic
 x=4
 width=12
 height=12
 xmode=abs_right
 ymode=abs_centre
-layer=com_170
+layer=com_173
 graphic="rs3_character_interface_arrow_scroll,0"
-vflip=yes
-
-[com_174]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_165
-hide=yes
-
-[com_175]
-type=rectangle
-x=1
-y=12
-width=36
-height=36
-layer=com_174
-colour=0xfff500
-
-[com_176]
-type=layer
-width=48
-height=38
-layer=com_149
 
 [com_177]
 type=layer
-width=12
-heightmode=minus
-layer=com_176
+height=12
+widthmode=minus
+layer=com_172
 hide=yes
 
 [com_178]
@@ -1692,94 +1705,151 @@ colour=0xfff500
 
 [com_179]
 type=graphic
-y=4
+x=4
 width=12
 height=12
-xmode=abs_centre
+ymode=abs_centre
 layer=com_177
 graphic="rs3_character_interface_arrow_scroll,0"
-2dangle=16384
+vflip=yes
 
 [com_180]
 type=graphic
-y=4
+x=4
 width=12
 height=12
-xmode=abs_centre
-ymode=abs_bottom
+xmode=abs_right
+ymode=abs_centre
 layer=com_177
 graphic="rs3_character_interface_arrow_scroll,0"
-2dangle=16384
+vflip=yes
 
 [com_181]
 type=layer
-width=12
+widthmode=minus
 heightmode=minus
-layer=com_176
+layer=com_172
 hide=yes
 
 [com_182]
 type=rectangle
-widthmode=minus
-heightmode=minus
+x=1
+y=12
+width=36
+height=36
 layer=com_181
 colour=0xfff500
 
 [com_183]
+type=layer
+width=48
+height=38
+layer=com_156
+
+[com_184]
+type=layer
+width=12
+heightmode=minus
+layer=com_183
+hide=yes
+
+[com_185]
+type=rectangle
+widthmode=minus
+heightmode=minus
+layer=com_184
+colour=0xfff500
+
+[com_186]
 type=graphic
 y=4
 width=12
 height=12
 xmode=abs_centre
-layer=com_181
+layer=com_184
 graphic="rs3_character_interface_arrow_scroll,0"
-2dangle=49152
+2dangle=16384
 
-[com_184]
+[com_187]
 type=graphic
 y=4
 width=12
 height=12
 xmode=abs_centre
 ymode=abs_bottom
-layer=com_181
+layer=com_184
+graphic="rs3_character_interface_arrow_scroll,0"
+2dangle=16384
+
+[com_188]
+type=layer
+width=12
+heightmode=minus
+layer=com_183
+hide=yes
+
+[com_189]
+type=rectangle
+widthmode=minus
+heightmode=minus
+layer=com_188
+colour=0xfff500
+
+[com_190]
+type=graphic
+y=4
+width=12
+height=12
+xmode=abs_centre
+layer=com_188
 graphic="rs3_character_interface_arrow_scroll,0"
 2dangle=49152
 
-[com_185]
+[com_191]
+type=graphic
+y=4
+width=12
+height=12
+xmode=abs_centre
+ymode=abs_bottom
+layer=com_188
+graphic="rs3_character_interface_arrow_scroll,0"
+2dangle=49152
+
+[com_192]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_176
+layer=com_183
 hide=yes
 
-[com_186]
+[com_193]
 type=rectangle
 x=6
 y=1
 width=36
 height=36
-layer=com_185
+layer=com_192
 colour=0xfff500
 
-[com_187]
+[com_194]
 type=layer
 width=38
 widthmode=minus
 heightmode=minus
 xmode=abs_right
 ymode=abs_bottom
-layer=com_147
+layer=com_154
 
-[com_188]
+[com_195]
 type=layer
 widthmode=minus
 heightmode=minus
 ymode=abs_bottom
-layer=com_187
+layer=com_194
 onload=script10896(event_com, null, struct_28218)
 
-[com_189]
+[com_196]
 type=layer
 x=4
 y=4
@@ -1787,15 +1857,15 @@ width=16
 height=8
 heightmode=minus
 xmode=abs_right
-layer=com_187
+layer=com_194
 
-[com_190]
+[com_197]
 type=text
 y=50
 width=200
 height=18
 xmode=abs_centre
-layer=com_187
+layer=com_194
 hide=yes
 textfont=fontmetrics_29
 fontmono=no
@@ -1804,14 +1874,14 @@ textalignh=centre
 textshadow=yes
 colour=0x999999
 
-[com_191]
+[com_198]
 type=text
 y=50
 width=20
 height=18
 widthmode=minus
 xmode=abs_centre
-layer=com_187
+layer=com_194
 hide=yes
 textfont=fontmetrics_29
 fontmono=no
@@ -1820,13 +1890,13 @@ textalignh=centre
 textshadow=yes
 colour=0x999999
 
-[com_192]
+[com_199]
 type=text
 y=50
 width=200
 height=18
 xmode=abs_centre
-layer=com_187
+layer=com_194
 hide=yes
 textfont=fontmetrics_29
 fontmono=no
@@ -1835,7 +1905,7 @@ textalignh=centre
 textshadow=yes
 colour=0x999999
 
-[com_193]
+[com_200]
 type=layer
 x=4
 width=24
@@ -1843,200 +1913,200 @@ height=8
 widthmode=minus
 heightmode=minus
 ymode=abs_centre
-layer=com_187
+layer=com_194
 
-[com_194]
+[com_201]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_193
+layer=com_200
 
-[com_195]
+[com_202]
 type=layer
 widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-layer=com_193
+layer=com_200
 scrollwidth=336
 scrollheight=1905
 onload=bank_build_init
 onvartransmit=bank_tabtransmit{varplayer_4759, varplayer_4760, varplayer_4761, varplayer_4762, varplayer_8971, varplayer_8959, varplayer_8960, varplayer_8961, varplayer_8962, varplayer_8963, varplayer_8964, varplayer_8965, varplayer_8966}
 oninvtransmit=bank_invtransmit{inv_95}
 
-[com_196]
+[com_203]
 type=layer
 widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-layer=com_193
+layer=com_200
 hide=yes
 scrollwidth=336
 scrollheight=1905
 onload=bank_diango_items_init
 
-[com_197]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_193
-
-[com_198]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_193
-
-[com_199]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_193
-
-[com_200]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_193
-
-[com_201]
-type=layer
-width=36
-height=32
-layer=com_193
-hide=yes
-
-[com_202]
-type=rectangle
-widthmode=minus
-heightmode=minus
-layer=com_201
-colour=0x04ff15
-
-[com_203]
-type=layer
-x=109
-y=58
-width=12
-height=36
-layer=com_193
-hide=yes
-
 [com_204]
-type=rectangle
+type=layer
 widthmode=minus
 heightmode=minus
-layer=com_203
-colour=0xffcb05
+layer=com_200
 
 [com_205]
 type=layer
 widthmode=minus
 heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_203
-hide=yes
+layer=com_200
 
 [com_206]
-type=graphic
-y=2
-width=12
-height=12
-xmode=abs_centre
-layer=com_205
-graphic="rs3_character_interface_arrow_scroll,0"
-2dangle=49152
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_200
 
 [com_207]
-type=graphic
-y=2
-width=12
-height=12
-xmode=abs_centre
-ymode=abs_bottom
-layer=com_205
-graphic="rs3_character_interface_arrow_scroll,0"
-2dangle=49152
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_200
 
 [com_208]
 type=layer
+width=36
+height=32
+layer=com_200
+hide=yes
+
+[com_209]
+type=rectangle
+widthmode=minus
+heightmode=minus
+layer=com_208
+colour=0x04ff15
+
+[com_210]
+type=layer
+x=109
+y=58
+width=12
+height=36
+layer=com_200
+hide=yes
+
+[com_211]
+type=rectangle
+widthmode=minus
+heightmode=minus
+layer=com_210
+colour=0xffcb05
+
+[com_212]
+type=layer
 widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-layer=com_203
+layer=com_210
 hide=yes
 
-[com_209]
+[com_213]
 type=graphic
 y=2
 width=12
 height=12
 xmode=abs_centre
-layer=com_208
+layer=com_212
 graphic="rs3_character_interface_arrow_scroll,0"
-2dangle=16384
+2dangle=49152
 
-[com_210]
+[com_214]
 type=graphic
 y=2
 width=12
 height=12
 xmode=abs_centre
 ymode=abs_bottom
-layer=com_208
+layer=com_212
 graphic="rs3_character_interface_arrow_scroll,0"
-2dangle=16384
+2dangle=49152
 
-[com_211]
+[com_215]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_193
+xmode=abs_centre
+ymode=abs_centre
+layer=com_210
+hide=yes
 
-[com_212]
+[com_216]
+type=graphic
+y=2
+width=12
+height=12
+xmode=abs_centre
+layer=com_215
+graphic="rs3_character_interface_arrow_scroll,0"
+2dangle=16384
+
+[com_217]
+type=graphic
+y=2
+width=12
+height=12
+xmode=abs_centre
+ymode=abs_bottom
+layer=com_215
+graphic="rs3_character_interface_arrow_scroll,0"
+2dangle=16384
+
+[com_218]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_200
+
+[com_219]
 type=layer
 width=345
 height=400
 ymode=abs_centre
-layer=com_187
+layer=com_194
 hide=yes
 noclickthrough=yes
 
-[com_213]
+[com_220]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_212
+layer=com_219
 onload=script10896(event_com, null, struct_28220)
 
-[com_214]
+[com_221]
 type=layer
 y=5
 width=100
 height=30
 widthmode=minus
 xmode=abs_centre
-layer=com_212
+layer=com_219
 
-[com_215]
+[com_222]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_214
+layer=com_221
 
-[com_216]
+[com_223]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_214
+layer=com_221
 transmitop=1
 op1=Select
 opcursor0=cursor_46
 
-[com_217]
+[com_224]
 type=layer
 x=4
 y=44
@@ -2044,21 +2114,21 @@ width=24
 height=88
 widthmode=minus
 heightmode=minus
-layer=com_212
+layer=com_219
 
-[com_218]
+[com_225]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_217
+layer=com_224
 
-[com_219]
+[com_226]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_217
+layer=com_224
 
-[com_220]
+[com_227]
 type=layer
 x=4
 y=44
@@ -2066,22 +2136,22 @@ width=16
 height=88
 heightmode=minus
 xmode=abs_right
-layer=com_212
+layer=com_219
 
-[com_221]
+[com_228]
 type=layer
 x=10
 y=4
 width=150
 height=30
 ymode=abs_bottom
-layer=com_212
+layer=com_219
 transmitop=1
 op1=Select
 opcursor0=cursor_46
 onload=script6233(event_com, null, struct_28228, "Default")
 
-[com_222]
+[com_229]
 type=layer
 x=10
 y=4
@@ -2089,68 +2159,68 @@ width=150
 height=30
 xmode=abs_right
 ymode=abs_bottom
-layer=com_212
+layer=com_219
 transmitop=1
 op1=Select
 opcursor0=cursor_46
 onload=script6233(event_com, null, struct_28228, "Close")
 onop=script8909
 
-[com_223]
+[com_230]
 type=layer
 width=473
 height=30
 xmode=abs_centre
 ymode=abs_bottom
-layer=com_146
+layer=com_153
 
-[com_224]
+[com_231]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_223
+layer=com_230
 
-[com_225]
+[com_232]
 type=layer
 width=170
 height=30
 ymode=abs_centre
-layer=com_224
+layer=com_231
 
-[com_226]
+[com_233]
 type=layer
 widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-layer=com_225
+layer=com_232
 onload=script13964(event_com, null, struct_24215)
 
-[com_227]
+[com_234]
 type=graphic
 x=4
 width=18
 height=18
 ymode=abs_centre
-layer=com_225
+layer=com_232
 graphic="trh_icon_search_query,0"
 
-[com_228]
+[com_235]
 type=layer
 width=16391
 widthmode=proportion
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-layer=com_225
+layer=com_232
 
-[com_229]
+[com_236]
 type=text
 height=21
 widthmode=minus
 xmode=abs_right
 ymode=abs_centre
-layer=com_228
+layer=com_235
 hide=yes
 textfont=fontmetrics_26
 fontmono=no
@@ -2159,24 +2229,24 @@ textalignv=centre
 textshadow=yes
 colour=0xfffefe
 
-[com_230]
+[com_237]
 type=rectangle
 width=2
 height=14
 xmode=abs_centre
 ymode=abs_centre
-layer=com_228
+layer=com_235
 hide=yes
 colour=0xe2dede
 fill=yes
 
-[com_231]
+[com_238]
 type=text
 height=21
 widthmode=minus
 xmode=abs_right
 ymode=abs_centre
-layer=com_228
+layer=com_235
 textfont=fontmetrics_26
 fontmono=no
 text=Search...
@@ -2189,9 +2259,9 @@ opcursor0=cursor_56
 onload=script10496(event_com, event_comsubid, 19)
 onop=bank_search
 onmouserepeat=script10009("Search your bank", event_com, event_comsubid)
-onclick=script7203(interface_517:com_232, interface_517:com_233)
+onclick=script7203(interface_517:com_239, interface_517:com_240)
 
-[com_232]
+[com_239]
 type=layer
 width=16391
 height=16384
@@ -2199,97 +2269,97 @@ widthmode=proportion
 heightmode=proportion
 xmode=abs_centre
 ymode=abs_centre
-layer=com_228
+layer=com_235
 hide=yes
 noclickthrough=yes
 transmitop=1
 op1=Cancel Search
 onop=bank_search_abort
-
-[com_233]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_228
-hide=yes
-noclickthrough=yes
-transmitop=1
-op1=Cancel Search
-onop=bank_search_abort
-
-[com_234]
-type=layer
-width=170
-height=30
-xmode=abs_right
-ymode=abs_centre
-layer=com_224
-onvartransmit=bank_filter_transmit{varplayer_110}
-
-[com_235]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_234
-onload=script10896(event_com, null, struct_28218)
-
-[com_236]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_234
-
-[com_237]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_234
-transmitop=1
-op1=Select
-opcursor0=cursor_46
-
-[com_238]
-type=layer
-width=120
-height=30
-xmode=abs_centre
-ymode=abs_centre
-layer=com_224
-onvartransmit=script13829{varplayer_8968, varplayer_8969}
-oninvtransmit=script13829{inv_95}
-onvarctransmit=script13829{varclient_6706}
-
-[com_239]
-type=layer
-width=30
-height=30
-widthmode=minus
-ymode=abs_centre
-layer=com_238
 
 [com_240]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_239
-onload=script10896(event_com, null, struct_28218)
+xmode=abs_centre
+ymode=abs_centre
+layer=com_235
+hide=yes
+noclickthrough=yes
+transmitop=1
+op1=Cancel Search
+onop=bank_search_abort
 
 [com_241]
+type=layer
+width=170
+height=30
+xmode=abs_right
+ymode=abs_centre
+layer=com_231
+onvartransmit=bank_filter_transmit{varplayer_110}
+
+[com_242]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_241
+onload=script10896(event_com, null, struct_28218)
+
+[com_243]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_241
+
+[com_244]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_241
+transmitop=1
+op1=Select
+opcursor0=cursor_46
+
+[com_245]
+type=layer
+width=120
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_231
+onvartransmit=script13829{varplayer_8968, varplayer_8969}
+oninvtransmit=script13829{inv_95}
+onvarctransmit=script13829{varclient_6706}
+
+[com_246]
+type=layer
+width=30
+height=30
+widthmode=minus
+ymode=abs_centre
+layer=com_245
+
+[com_247]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_246
+onload=script10896(event_com, null, struct_28218)
+
+[com_248]
 type=graphic
 height=1
 widthmode=minus
 xmode=abs_centre
 ymode=abs_centre
-layer=com_239
+layer=com_246
 graphic=decoration_progressbar_short_qps_inactive
 
-[com_242]
+[com_249]
 type=text
 height=15
 widthmode=minus
-layer=com_239
+layer=com_246
 textfont=fontmetrics_26
 fontmono=no
 text=-
@@ -2297,12 +2367,12 @@ textalignh=centre
 textalignv=centre
 onload=script2732(event_com, event_comsubid, 21)
 
-[com_243]
+[com_250]
 type=text
 height=15
 widthmode=minus
 ymode=abs_bottom
-layer=com_239
+layer=com_246
 textfont=fontmetrics_26
 fontmono=no
 text=-
@@ -2311,61 +2381,61 @@ textalignv=centre
 onload=script2732(event_com, event_comsubid, 21)
 onmouseleave=script8805
 
-[com_244]
+[com_251]
 type=layer
 width=30
 height=30
 xmode=abs_right
 ymode=abs_centre
-layer=com_238
+layer=com_245
 transmitop=1
 op1=Select
 opcursor0=cursor_46
 
-[com_245]
+[com_252]
 type=graphic
 width=30
 height=30
-layer=com_244
+layer=com_251
 graphic=button_30px_on
 
-[com_246]
+[com_253]
 type=graphic
 width=16
 height=16
 xmode=abs_centre
 ymode=abs_centre
-layer=com_244
+layer=com_251
 graphic="rs3_icon_purchase_more,0"
 
-[com_247]
+[com_254]
 type=layer
 widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-layer=com_244
+layer=com_251
 
-[com_248]
+[com_255]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_238
+layer=com_245
 hide=yes
 noclickthrough=yes
 
-[com_249]
+[com_256]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_248
+layer=com_255
 onload=script10896(event_com, null, struct_28218)
 
-[com_250]
+[com_257]
 type=text
 widthmode=minus
 heightmode=minus
-layer=com_248
+layer=com_255
 textfont=fontmetrics_26
 fontmono=no
 text=Items found: 0
@@ -2375,361 +2445,361 @@ textshadow=yes
 colour=0xaed0e0
 onload=script10496(event_com, event_comsubid, 2)
 
-[com_251]
+[com_258]
 type=layer
 width=170
 height=30
-layer=com_224
+layer=com_231
 hide=yes
 noclickthrough=yes
-
-[com_252]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_251
-noclickthrough=yes
-onload=script10896(event_com, null, struct_28220)
-
-[com_253]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_251
-transmitop=1
-op1=Select
-opcursor0=cursor_46
-
-[com_254]
-type=layer
-height=499
-widthmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=com_146
-hide=yes
-
-[com_255]
-type=layer
-widthmode=minus
-heightmode=minus
-ymode=abs_centre
-layer=com_254
-onvartransmit=script13940{varplayer_9932, varplayer_7752, varplayer_7753}
-oninvtransmit=script13940{inv_741, inv_706, inv_708, inv_710, inv_712, inv_714, inv_716, inv_718, inv_720, inv_722, inv_724, inv_896, inv_898, inv_900, inv_902, inv_904, inv_947, inv_949, inv_951, inv_707, inv_709, inv_711, inv_713, inv_715, inv_717, inv_719, inv_721, inv_723, inv_725, inv_897, inv_899, inv_901, inv_903, inv_905, inv_947, inv_949, inv_951}
-
-[com_256]
-type=layer
-x=1
-y=1
-width=213
-height=353
-widthmode=minus
-layer=com_255
-onload=script10896(event_com, null, struct_28218)
-
-[com_257]
-type=layer
-x=6
-y=5
-width=233
-height=345
-widthmode=minus
-layer=com_255
-
-[com_258]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_257
 
 [com_259]
 type=layer
-x=1
-width=2
-height=355
 widthmode=minus
-layer=com_257
+heightmode=minus
+layer=com_258
+noclickthrough=yes
+onload=script10896(event_com, null, struct_28220)
 
 [com_260]
 type=layer
 widthmode=minus
 heightmode=minus
 layer=com_258
+transmitop=1
+op1=Select
+opcursor0=cursor_46
 
 [com_261]
 type=layer
+height=499
 widthmode=minus
-heightmode=minus
-layer=com_258
+xmode=abs_centre
+ymode=abs_centre
+layer=com_153
+hide=yes
 
 [com_262]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_258
+ymode=abs_centre
+layer=com_261
+onvartransmit=script13940{varplayer_9932, varplayer_7752, varplayer_7753}
+oninvtransmit=script13940{inv_741, inv_706, inv_708, inv_710, inv_712, inv_714, inv_716, inv_718, inv_720, inv_722, inv_724, inv_896, inv_898, inv_900, inv_902, inv_904, inv_947, inv_949, inv_951, inv_707, inv_709, inv_711, inv_713, inv_715, inv_717, inv_719, inv_721, inv_723, inv_725, inv_897, inv_899, inv_901, inv_903, inv_905, inv_947, inv_949, inv_951}
 
 [com_263]
 type=layer
-x=48
-width=24
-heightmode=minus
-xmode=abs_right
-layer=com_258
-noclickthrough=yes
+x=1
+y=1
+width=213
+height=353
+widthmode=minus
+layer=com_262
+onload=script10896(event_com, null, struct_28218)
 
 [com_264]
 type=layer
-x=24
-width=24
-heightmode=minus
-xmode=abs_right
-layer=com_258
-noclickthrough=yes
+x=6
+y=5
+width=233
+height=345
+widthmode=minus
+layer=com_262
 
 [com_265]
 type=layer
-width=24
+widthmode=minus
 heightmode=minus
-xmode=abs_right
-layer=com_258
-noclickthrough=yes
+layer=com_264
 
 [com_266]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_258
+layer=com_265
 
 [com_267]
-type=rectangle
-y=20
-height=32
+type=layer
 widthmode=minus
-layer=com_259
-colour=0xece041
+heightmode=minus
+layer=com_265
 
 [com_268]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_265
+
+[com_269]
+type=layer
+x=48
+width=24
+heightmode=minus
+xmode=abs_right
+layer=com_265
+noclickthrough=yes
+
+[com_270]
+type=layer
+x=24
+width=24
+heightmode=minus
+xmode=abs_right
+layer=com_265
+noclickthrough=yes
+
+[com_271]
+type=layer
+width=24
+heightmode=minus
+xmode=abs_right
+layer=com_265
+noclickthrough=yes
+
+[com_272]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_265
+
+[com_273]
+type=layer
+x=1
+width=2
+height=355
+widthmode=minus
+layer=com_264
+
+[com_274]
 type=rectangle
 y=20
 height=32
 widthmode=minus
-layer=com_259
+layer=com_273
+colour=0xece041
+
+[com_275]
+type=rectangle
+y=20
+height=32
+widthmode=minus
+layer=com_273
 hide=yes
 colour=0xffffff
 
-[com_269]
+[com_276]
 type=layer
 x=211
 y=2
 width=16
 height=353
 xmode=abs_right
-layer=com_255
+layer=com_262
 
-[com_270]
+[com_277]
 type=layer
 y=1
 width=198
 height=265
 xmode=abs_right
-layer=com_255
-
-[com_271]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_270
-noclickthrough=yes
-onload=script10896(event_com, null, struct_28218)
-
-[com_272]
-type=layer
-height=6
-widthmode=minus
-heightmode=minus
-ymode=abs_centre
-layer=com_270
-
-[com_273]
-type=layer
-height=6
-widthmode=minus
-heightmode=minus
-ymode=abs_centre
-layer=com_270
-
-[com_274]
-type=layer
-width=198
-height=228
-xmode=abs_right
-ymode=abs_bottom
-layer=com_255
-
-[com_275]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_274
-noclickthrough=yes
-onload=script10896(event_com, null, struct_28218)
-
-[com_276]
-type=layer
-x=4
-widthmode=minus
-heightmode=minus
-ymode=abs_bottom
-layer=com_274
-
-[com_277]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_276
+layer=com_262
 
 [com_278]
 type=layer
 widthmode=minus
 heightmode=minus
 layer=com_277
+noclickthrough=yes
+onload=script10896(event_com, null, struct_28218)
 
 [com_279]
 type=layer
+height=6
 widthmode=minus
 heightmode=minus
+ymode=abs_centre
 layer=com_277
-candrop=yes
 
 [com_280]
 type=layer
+height=6
 widthmode=minus
 heightmode=minus
-layer=com_279
+ymode=abs_centre
+layer=com_277
 
 [com_281]
 type=layer
-widthmode=minus
-heightmode=minus
-layer=com_279
+width=198
+height=228
+xmode=abs_right
+ymode=abs_bottom
+layer=com_262
 
 [com_282]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_279
+layer=com_281
+noclickthrough=yes
+onload=script10896(event_com, null, struct_28218)
 
 [com_283]
 type=layer
+x=4
 widthmode=minus
 heightmode=minus
-layer=com_279
-candrop=yes
+ymode=abs_bottom
+layer=com_281
 
 [com_284]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_279
+layer=com_283
 
 [com_285]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_284
+
+[com_286]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_284
+candrop=yes
+
+[com_287]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_286
+
+[com_288]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_286
+
+[com_289]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_286
+
+[com_290]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_286
+candrop=yes
+
+[com_291]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_286
+
+[com_292]
 type=layer
 x=1
 width=213
 height=143
 widthmode=minus
 ymode=abs_bottom
-layer=com_255
+layer=com_262
 
-[com_286]
+[com_293]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_285
+layer=com_292
 onload=script10896(event_com, null, struct_28218)
 
-[com_287]
+[com_294]
 type=layer
 y=3
 height=32
 widthmode=minus
-layer=com_285
+layer=com_292
 
-[com_288]
+[com_295]
 type=graphic
 x=23
 width=30
 height=30
 ymode=abs_centre
-layer=com_287
+layer=com_294
 graphic="rs3_icon_bank_preset_backpack_30px,0"
 onload=script15932(event_com, event_comsubid, "rs3_icon_bank_preset_backpack_30px,0", icon_mobile_backpack)
 onmouserepeat=script8799("Toggle whether preset loads the backpack inventory.", event_com, event_comsubid)
 
-[com_289]
+[com_296]
 type=graphic
 x=55
 width=18
 height=18
 ymode=abs_centre
-layer=com_287
+layer=com_294
 graphic="rs3_btn_checkbox,0"
 transmitop=1
 op1=Toggle
 onvartransmit=script3855{varplayer_4338}
 
-[com_290]
+[com_297]
 type=graphic
 x=-5
 width=30
 height=30
 xmode=abs_centre
 ymode=abs_centre
-layer=com_287
+layer=com_294
 graphic="rs3_icon_bank_preset_worn_equipment_30px,0"
 onload=script15932(event_com, event_comsubid, "rs3_icon_bank_preset_worn_equipment_30px,0", icon_mobile_wornequipment)
 onmouserepeat=script8799("Toggle whether preset loads the worn inventory.", event_com, event_comsubid)
 
-[com_291]
+[com_298]
 type=graphic
 x=21
 width=18
 height=18
 xmode=abs_centre
 ymode=abs_centre
-layer=com_287
+layer=com_294
 graphic="rs3_btn_checkbox,0"
 transmitop=1
 op1=Toggle
 onvartransmit=script3857{varplayer_4338}
 
-[com_292]
+[com_299]
 type=graphic
 x=40
 width=30
 height=30
 xmode=abs_right
 ymode=abs_centre
-layer=com_287
+layer=com_294
 graphic="rs3_icon_bank_preset_beast_of_burden_30px,0"
 onload=script15932(event_com, event_comsubid, "rs3_icon_bank_preset_beast_of_burden_30px,0", icon_mobile_familiar)
 onmouserepeat=script8799("Toggle whether preset loads the beast of burden inventory.", event_com, event_comsubid)
 
-[com_293]
+[com_300]
 type=graphic
 x=20
 width=18
 height=18
 xmode=abs_right
 ymode=abs_centre
-layer=com_287
+layer=com_294
 graphic="rs3_btn_checkbox,0"
 transmitop=1
 op1=Toggle
 onvartransmit=script10754{varplayer_4915}
 
-[com_294]
+[com_301]
 type=layer
 x=15
 y=45
@@ -2737,38 +2807,38 @@ width=50
 height=30
 widthmode=minus
 xmode=abs_centre
-layer=com_285
+layer=com_292
 onvartransmit=script13372{varplayer_7751, varplayer_9932}
 
-[com_295]
+[com_302]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_294
+layer=com_301
 
-[com_296]
+[com_303]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_294
+layer=com_301
 transmitop=1
 op1=Select
 opcursor0=cursor_46
 
-[com_297]
+[com_304]
 type=layer
 y=80
 width=80
 height=30
 widthmode=minus
 xmode=abs_centre
-layer=com_285
+layer=com_292
 transmitop=1
 op1=Select
 opcursor0=cursor_46
 onload=script6233(event_com, null, struct_28228, "Overwrite")
 
-[com_298]
+[com_305]
 type=layer
 y=5
 width=80
@@ -2776,23 +2846,23 @@ height=20
 widthmode=minus
 xmode=abs_centre
 ymode=abs_bottom
-layer=com_285
+layer=com_292
 
-[com_299]
+[com_306]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_298
+layer=com_305
 
-[com_300]
+[com_307]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_298
+layer=com_305
 transmitop=1
 op1=Toggle
 
-[com_301]
+[com_308]
 type=layer
 width=282
 height=397
@@ -2801,51 +2871,42 @@ ymode=abs_bottom
 layer=com_2
 hide=yes
 
-[com_302]
+[com_309]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_301
+layer=com_308
 noclickthrough=yes
 onload=script10896(event_com, null, struct_28218)
 
-[com_303]
+[com_310]
 type=layer
 y=4
 width=8
 height=354
 widthmode=minus
 xmode=abs_centre
-layer=com_301
+layer=com_308
 
-[com_304]
+[com_311]
 type=layer
 y=4
 width=150
 height=30
 xmode=abs_centre
 ymode=abs_bottom
-layer=com_301
+layer=com_308
 transmitop=1
 op1=Close
 onload=script6233(event_com, null, struct_28228, "Close")
 
-[com_305]
+[com_312]
 type=layer
 widthmode=minus
 heightmode=minus
 layer=com_0
 
-[com_306]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=com_0
-transmitop=1
-op1=Close
-onop=bank_close
-
-[com_307]
+[com_313]
 type=layer
 x=50
 y=15
@@ -2855,58 +2916,90 @@ xmode=abs_right
 layer=com_0
 noclickthrough=yes
 
-[com_308]
+[com_314]
 type=graphic
 widthmode=minus
 heightmode=minus
 xmode=abs_right
-layer=com_307
+layer=com_313
 graphic="rs3_btn_custom_modal,3"
 transmitop=1
 op1=Help
 onmouseover=graphic_swapper(event_com, "rs3_btn_custom_modal,4")
 onmouseleave=graphic_swapper(event_com, "rs3_btn_custom_modal,3")
 
-[com_309]
+[com_315]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_0
+hide=yes
+
+[com_316]
+type=rectangle
+widthmode=minus
+heightmode=minus
+layer=com_315
+colour=0x000000
+fill=yes
+trans=75
+
+[com_317]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_315
+onload=spinner_create(event_com, 3, -1)
+
+[com_318]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=com_0
+transmitop=1
+op1=Close
+onop=bank_close
+
+[com_319]
 type=layer
 widthmode=minus
 heightmode=minus
 hide=yes
 noclickthrough=yes
 
-[com_310]
+[com_320]
 type=rectangle
 widthmode=minus
 heightmode=minus
-layer=com_309
+layer=com_319
 colour=0x000000
 fill=yes
 trans=85
 
-[com_311]
+[com_321]
 type=layer
 width=308
 height=132
 xmode=abs_centre
 ymode=abs_centre
-layer=com_309
+layer=com_319
 noclickthrough=yes
 
-[com_312]
+[com_322]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_311
+layer=com_321
 onload=script10896(event_com, null, struct_28218)
 
-[com_313]
+[com_323]
 type=text
 x=8
 y=8
 width=16
 height=32
 widthmode=minus
-layer=com_311
+layer=com_321
 textfont=fontmetrics_28
 fontmono=no
 textalignh=centre
@@ -2915,7 +3008,7 @@ textshadow=yes
 colour=0xffcb05
 onload=script10496(event_com, event_comsubid, 0)
 
-[com_314]
+[com_324]
 type=layer
 y=40
 width=16
@@ -2923,23 +3016,23 @@ height=48
 widthmode=minus
 heightmode=minus
 xmode=abs_centre
-layer=com_311
+layer=com_321
 
-[com_315]
+[com_325]
 type=layer
 height=42
 widthmode=minus
 heightmode=minus
-layer=com_314
+layer=com_324
 
-[com_316]
+[com_326]
 type=text
 x=45
 width=45
 widthmode=minus
 heightmode=minus
 ymode=abs_centre
-layer=com_315
+layer=com_325
 textfont=fontmetrics_27
 fontmono=no
 text=The item you are about to drop has a high value.
@@ -2947,141 +3040,88 @@ textalignh=centre
 textalignv=centre
 textshadow=yes
 
-[com_317]
+[com_327]
 type=graphic
 width=40
 height=36
 ymode=abs_centre
-layer=com_315
+layer=com_325
 graphic=rs3_inventory_slot
 
-[com_318]
+[com_328]
 type=graphic
 x=2
 width=36
 height=32
 ymode=abs_centre
-layer=com_315
+layer=com_325
 
-[com_319]
+[com_329]
 type=layer
 x=75
 width=90
 height=27
 xmode=abs_centre
 ymode=abs_bottom
-layer=com_314
+layer=com_324
 pausebutton=yes
 pausetext=Drop
 onload=script13976(event_com, null, struct_28553, "Drop")
 onclick=bank_close_drop_confirm
 
-[com_320]
+[com_330]
 type=layer
 x=-75
 width=90
 height=27
 xmode=abs_centre
 ymode=abs_bottom
-layer=com_314
+layer=com_324
 pausebutton=yes
 pausetext=Cancel
 onload=script13976(event_com, null, struct_28555, "Cancel")
 onclick=bank_close_drop_confirm
 
-[com_321]
+[com_331]
 type=layer
 widthmode=minus
 heightmode=minus
 hide=yes
 noclickthrough=yes
 
-[com_322]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-hide=yes
-noclickthrough=yes
-transmitop=1
-op1=Cancel Input
-onop=script7205(interface_517:com_111, interface_517:com_112, interface_517:com_113, interface_517:com_114, interface_517:com_322)
-
-[com_323]
-type=graphic
-widthmode=minus
-heightmode=minus
-layer=com_133
-graphic=button_30px_on
-transmitop=1
-op1=View More Storage
-onload=script13914(event_com, struct_28222)
-onop=script16587
-onmouserepeat=script8799("More Storage", event_com, event_comsubid)
-
-[com_324]
-type=graphic
-width=24
-height=24
-xmode=abs_centre
-ymode=abs_centre
-layer=com_133
-graphic="rs3_icon_bank_extras,0"
-
-[com_325]
-type=graphic
-widthmode=minus
-heightmode=minus
-layer=com_136
-graphic=button_30px_on
-transmitop=1
-op1=Open Metal Bank
-onload=script13914(event_com, struct_28222)
-onmouserepeat=script10009("Access your metal bank to view its contents.", event_com, event_comsubid)
-
-[com_326]
-type=graphic
-width=22
-height=22
-xmode=abs_centre
-ymode=abs_centre
-layer=com_136
-graphic="rs3_icon_bank_metals_storage,0"
-
-[com_327]
+[com_332]
 type=rectangle
 widthmode=minus
 heightmode=minus
-layer=com_321
+layer=com_331
 colour=0x000000
 fill=yes
 trans=85
 
-[com_328]
+[com_333]
 type=layer
 width=308
 height=250
 xmode=abs_centre
 ymode=abs_centre
-layer=com_321
+layer=com_331
 noclickthrough=yes
 
-[com_329]
+[com_334]
 type=layer
 widthmode=minus
 heightmode=minus
-layer=com_328
+layer=com_333
 onload=script10896(event_com, null, struct_28218)
 
-[com_330]
+[com_335]
 type=text
 x=8
 y=8
 width=16
 height=32
 widthmode=minus
-layer=com_328
+layer=com_333
 textfont=fontmetrics_28
 fontmono=no
 text=Withdraw Item
@@ -3091,7 +3131,7 @@ textshadow=yes
 colour=0xffcb05
 onload=script10496(event_com, event_comsubid, 0)
 
-[com_331]
+[com_336]
 type=layer
 y=40
 width=16
@@ -3099,52 +3139,64 @@ height=48
 widthmode=minus
 heightmode=minus
 xmode=abs_centre
-layer=com_328
+layer=com_333
 
-[com_332]
+[com_337]
 type=layer
 height=42
 widthmode=minus
 heightmode=minus
-layer=com_331
+layer=com_336
 
-[com_333]
+[com_338]
 type=text
 width=8
 widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-layer=com_332
+layer=com_337
 textfont=fontmetrics_27
 fontmono=no
 textalignh=centre
 textalignv=centre
 textshadow=yes
 
-[com_334]
+[com_339]
 type=layer
 x=75
 width=110
 height=27
 xmode=abs_centre
 ymode=abs_bottom
-layer=com_331
+layer=com_336
 pausebutton=yes
 pausetext=Drop
 onload=script13976(event_com, null, struct_28553, "Drop")
 onclick=bank_close_withdraw_confirm
 
-[com_335]
+[com_340]
 type=layer
 x=-75
 width=110
 height=27
 xmode=abs_centre
 ymode=abs_bottom
-layer=com_331
+layer=com_336
 pausebutton=yes
 pausetext=Cancel
 onload=script13976(event_com, null, struct_28555, "Cancel")
 onclick=bank_close_withdraw_confirm
+
+[com_341]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+hide=yes
+noclickthrough=yes
+transmitop=1
+op1=Cancel Input
+onop=script7205(interface_517:com_111, interface_517:com_112, interface_517:com_113, interface_517:com_114, interface_517:com_341)
 
