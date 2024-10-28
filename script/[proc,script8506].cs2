@@ -1,7 +1,7 @@
 // 8506
-[proc,script8506](int $int0, int $int1, string $string0, int $int2, string $string1, string $string2, chatphrase $chatphrase3, int $int4, int $int5)
-def_int $int6 = -1;
-def_int $int7 = 0;
+[proc,script8506](int $int0, int $int1, string $string0, int $int2, string $string1, string $string2, chatphrase $chatphrase3, int $int4, int $int5, int $int6)
+def_int $int7 = -1;
+def_int $int8 = 0;
 cc_clearops;
 cc_setonop("chat_op($int0, event_op, event_comsubid)");
 cc_setopbase("<col=ffffff><removetags($string1)>");
@@ -13,7 +13,7 @@ switch_int ($int1) {
         if (compare(removetags(chat_playername), removetags($string1)) = 0 | compare(removetags(chat_playername_unfiltered), removetags($string2)) = 0) {
         } else {
             if (friend_test(removetags($string2)) = true) {
-                $int7 = 1;
+                $int8 = 1;
                 if (map_quickchat = false & userdetail_quickchat = false) {
                     cc_setop(6, "Message");
                 }
@@ -22,15 +22,15 @@ switch_int ($int1) {
                 cc_setop(7, "Add ignore");
             }
             if (player_group_find = true) {
-                $int6 = ~script10275;
+                $int7 = ~script10275;
                 if ($int1 = 24 | $int1 = 22) {
-                    if (~script10279($int6) = true) {
+                    if (~script10279($int7) = true) {
                         cc_setop(10, "Kick/ban");
                     }
-                } else if (~script10281($int6) = true) {
+                } else if (~script10281($int7) = true) {
                     switch_int ($int1) {
                         case 3, 7 :
-                            if ($int7 = 1) {
+                            if ($int8 = 1) {
                                 cc_setop(9, "Invite to group");
                             }
                         case 9 :
@@ -43,7 +43,7 @@ switch_int ($int1) {
                 cc_setop(8, "Report");
             }
             if ($int1 = 41) {
-                if ($int4 = 1) {
+                if ($int4 = 1 & $int6 = 0) {
                     cc_setop(10, "Kick/ban");
                 }
             } else if ($int1 = 9 & $int5 = 1) {

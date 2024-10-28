@@ -1,5 +1,5 @@
 // 4009
-[proc,bank_get_destroy_mes](obj $obj0, int $int1)(boolean, string)
+[proc,bank_get_destroy_mes](obj $obj0, inv $inv1, int $int2)(boolean, string)
 switch_obj ($obj0) {
     case obj_30920 :
         return(false, "<oc_name($obj0)> will lose all of its charges. Do you wish to continue?");
@@ -16,8 +16,8 @@ if (~diango_retrievable($obj0) = true) {
     } else if (oc_param($obj0, param_3382) ! null & enum(obj, boolean, enum_15589, $obj0) = false) {
         return(false, "<oc_name($obj0)> will be returned in a broken state from Diango and will cost up to <tostring_localised(oc_param($obj0, param_3383), true)> coins to repair. Do you wish to continue?");
     } else {
-        return(true, "<oc_name($obj0)> (x<tostring(inv_getnum(inv_95, $int1))>) will be <col=ffcb05>destroyed</col> and can be reclaimed at Diango.<br><br>Do you wish to continue?");
+        return(true, "<oc_name($obj0)> (x<tostring(inv_getnum($inv1, $int2))>) will be <col=ffcb05>destroyed</col> and can be reclaimed at Diango.<br><br>Do you wish to continue?");
     }
 } else {
-    return(true, "<oc_name($obj0)> (x<tostring(inv_getnum(inv_95, $int1))>) will be <col=ffcb05>destroyed</col> and will need to be re-obtained if you want another in future.<br><br>Do you wish to continue?");
+    return(true, "<oc_name($obj0)> (x<tostring(inv_getnum($inv1, $int2))>) will be <col=ffcb05>destroyed</col> and will need to be re-obtained if you want another in future.<br><br>Do you wish to continue?");
 }

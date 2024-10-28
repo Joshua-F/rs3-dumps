@@ -84,10 +84,11 @@ def_string $string2 = "";
 def_boolean $boolean25 = false;
 def_int $int26 = 1;
 def_int $int27 = 0;
-def_achievement $achievement28 = null;
-def_int $int29 = -1;
-def_int $int30 = 0;
-def_int $int31 = ~script15721;
+def_boolean $boolean28 = false;
+def_achievement $achievement29 = null;
+def_int $int30 = -1;
+def_int $int31 = 0;
+def_int $int32 = ~script15721;
 while ($int6 < $int0) {
     $int16 = calc($int6 * 11);
     $achievement5 = $achievementarray0($int6);
@@ -96,7 +97,7 @@ while ($int6 < $int0) {
         case -2 :
             $rgb15 = 0xffcb05;
             $rgb14 = 0xaed0e0;
-            if ($int31 = 1) {
+            if ($int32 = 1) {
                 $rgb14 = 0xd1b28d;
             }
         case -1 :
@@ -105,13 +106,13 @@ while ($int6 < $int0) {
         case -3 :
             $rgb15 = 0xffa747;
             $rgb14 = 0xaed0e0;
-            if ($int31 = 1) {
+            if ($int32 = 1) {
                 $rgb14 = 0xd1b28d;
             }
         case default :
             $rgb15 = ^white;
             $rgb14 = 0xaed0e0;
-            if ($int31 = 1) {
+            if ($int32 = 1) {
                 $rgb14 = 0xd1b28d;
             }
     }
@@ -134,157 +135,57 @@ while ($int6 < $int0) {
         $int26 = 0;
         $boolean25 = false;
         $int24 = 0;
-    }
-    $int22 = achievement_getgraceday($achievement5);
-    if ($int7 ! -2 & $int22 > ~date_runeday) {
-        $string1 = append($string1, " <col=FFA747>Grace period ends: <~fromdate($int22)></col>");
-    }
-    $int21 = compare($string2, "");
-    if (cc_find($component1, $int16) = true) {
-        cc_setposition(0, $int23, ^setpos_abs_left, ^setpos_abs_top);
-        cc_setparam(param_8167, $int23);
-        cc_setsize(0, $int12, ^setsize_minus, ^setsize_abs);
-        cc_setfill(true);
-        cc_setcolour(~script10495(12));
-        ~cheevo_resolve_tooltip($achievement5);
-        if ($boolean25 = true) {
-            cc_setonop("cheevo_toggle_dropdown(cc_getid, $achievement5)");
-            cc_setop(5, "Toggle");
-            cc_setopcursor(5, cursor_46);
-        }
-    }
-    if ($int13 = 1) {
-        if ($int26 = 1 & cc_find($component1, calc($int16 + 4)) = true) {
-            cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
-            if ($int24 > 0) {
-                cc_setposition(calc($int17 + 2), calc($int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
-            } else {
-                cc_setposition(calc($int17 + 2), calc($int23 + ($int12 / 2 - cc_getheight / 2)), ^setpos_abs_left, ^setpos_abs_top);
-            }
-            cc_setnoclickthrough(true);
-            if ($int7 = -2) {
-                ~script13618($component1, cc_getid, $achievement5);
-            } else {
-                ~cheevo_update_pin($component1, cc_getid, $achievement5);
-            }
-            $int18 = calc(cc_getx + cc_getwidth);
+        if (~script2457(achievement_category($achievement5)) = true) {
+            $boolean28 = true;
         } else {
-            $int18 = 0;
+            $boolean28 = false;
         }
-        if ($int24 > 0 & cc_find($component1, calc($int16 + 10)) = true) {
-            cc_setposition(calc($int17 + 1 + 2), calc($int23 + 14 + 2 * 2), ^setpos_abs_left, ^setpos_abs_top);
-            cc_setsize(14, 12, ^setsize_abs, ^setsize_abs);
-            cc_setcolour(~script10495(3));
-            cc_settext(tostring_localised($int24, true));
-            cc_settextshadow(true);
-            cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-            cc_settextfont(fontmetrics_26);
+    }
+    if ($boolean28 = false) {
+        $int22 = achievement_getgraceday($achievement5);
+        if ($int7 ! -2 & $int22 > ~date_runeday) {
+            $string1 = append($string1, " <col=FFA747>Grace period ends: <~fromdate($int22)></col>");
         }
-        if (cc_find($component1, calc($int16 + 6)) = true) {
-            cc_setposition(calc($int18 + 2), $int23, ^setpos_abs_left, ^setpos_abs_top);
-            cc_setsize(calc($int18 + 2 * 2 + 15), $int12, ^setsize_minus, ^setsize_abs);
-            cc_setcolour($rgb14);
-            cc_settext($string1);
-            cc_settextshadow(true);
-            cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-            cc_settextfont(fontmetrics_26);
-        }
-        if ($int21 ! 0 & cc_find($component1, calc($int16 + 8)) = true) {
-            cc_setposition(2, calc($int23 + 2), ^setpos_abs_right, ^setpos_abs_top);
-            cc_setgraphic("achievement_icon_rewards_14px,0");
-            cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
-            ~script3537($string2);
-            cc_setmouseovercursor(cursor_172);
-            cc_setnoclickthrough(true);
-        }
-        if ($boolean25 = true & cc_find($component1, calc($int16 + 7)) = true) {
-            cc_setsize(13, 13, ^setsize_abs, ^setsize_abs);
-            if ($int21 = 0) {
-                cc_setposition(2, calc($int23 + ($int12 / 2 - cc_getheight / 2)), ^setpos_abs_right, ^setpos_abs_top);
-            } else {
-                cc_setposition(2, calc($int23 + ($int12 - cc_getheight)), ^setpos_abs_right, ^setpos_abs_top);
+        $int21 = compare($string2, "");
+        if (cc_find($component1, $int16) = true) {
+            cc_setposition(0, $int23, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setparam(param_8167, $int23);
+            cc_setsize(0, $int12, ^setsize_minus, ^setsize_abs);
+            cc_setfill(true);
+            cc_setcolour(~script10495(12));
+            cc_sethide($boolean28);
+            ~cheevo_resolve_tooltip($achievement5);
+            if ($boolean25 = true) {
+                cc_setonop("cheevo_toggle_dropdown(cc_getid, $achievement5)");
+                cc_setop(5, "Toggle");
+                cc_setopcursor(5, cursor_46);
             }
-            cc_setgraphic("rs3_icon_accordion,0");
+            if (enum_hasoutput(achievement, enum_5983, $achievement5) = true) {
+                cc_setop(5, "Go To");
+                cc_setopbase(achievement_getname(enum_getreverseindex(achievement, achievement, enum_5983, $achievement5, 0)));
+                cc_setopcursor(5, cursor_210);
+            }
         }
-    } else {
-        if (cc_find($component1, calc($int16 + 1)) = true) {
-            cc_setposition(2, calc($int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
-            cc_setsize(28, 28, ^setsize_abs, ^setsize_abs);
-            cc_setgraphic(achievement_sprite($achievement5));
-            $int17 = calc(cc_getx + cc_getwidth);
-        }
-        if (($int7 = -1 | $int7 = -2) & cc_find($component1, calc($int16 + 3)) = true) {
-            cc_setposition(2, calc($int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
-            cc_setsize(28, 28, ^setsize_abs, ^setsize_abs);
-            if ($int7 = -2) {
-                cc_setgraphic(mad_may_16_icon_case_complete);
-            } else {
-                cc_setgraphic(mad_may_16_icon_case_locked);
-                if (.cc_find($component1, calc($int16 + 2)) = true) {
-                    .cc_setposition(2, calc($int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
-                    .cc_setsize(28, 28, ^setsize_abs, ^setsize_abs);
-                    .cc_setfill(true);
-                    .cc_setcolour(0x808080);
-                    .cc_settrans(128);
+        if ($int13 = 1) {
+            if ($int26 = 1 & cc_find($component1, calc($int16 + 4)) = true) {
+                cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
+                if ($int24 > 0) {
+                    cc_setposition(calc($int17 + 2), calc($int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
+                } else {
+                    cc_setposition(calc($int17 + 2), calc($int23 + ($int12 / 2 - cc_getheight / 2)), ^setpos_abs_left, ^setpos_abs_top);
                 }
-            }
-        }
-        if ($int26 = 1 & cc_find($component1, calc($int16 + 4)) = true) {
-            cc_setposition(calc($int17 + 2), $int23, ^setpos_abs_left, ^setpos_abs_top);
-            cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
-            cc_setnoclickthrough(true);
-            if ($int7 = -2) {
-                ~script13618($component1, cc_getid, $achievement5);
+                cc_setnoclickthrough(true);
+                if ($int7 = -2) {
+                    ~script13618($component1, cc_getid, $achievement5);
+                } else {
+                    ~cheevo_update_pin($component1, cc_getid, $achievement5);
+                }
+                $int18 = calc(cc_getx + cc_getwidth);
             } else {
-                ~cheevo_update_pin($component1, cc_getid, $achievement5);
+                $int18 = 0;
             }
-            $int18 = calc(cc_getx + cc_getwidth);
-        } else {
-            $int18 = calc($int17 + 2);
-        }
-        if (cc_find($component1, calc($int16 + 5)) = true) {
-            cc_setposition(calc($int18 + 2), $int23, ^setpos_abs_left, ^setpos_abs_top);
-            cc_settextshadow(true);
-            cc_settext($string0);
-            cc_setsize($int18, 15, ^setsize_minus, ^setsize_abs);
-            cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-            cc_settextfont(fontmetrics_55);
-            cc_setcolour($rgb15);
-        }
-        if (cc_find($component1, calc($int16 + 6)) = true) {
-            cc_setposition(calc($int17 + 2), calc($int23 + 15), ^setpos_abs_left, ^setpos_abs_top);
-            cc_setsize(calc($int17 + 13), calc($int12 - 15), ^setsize_minus, ^setsize_abs);
-            cc_setcolour($rgb14);
-            cc_settext($string1);
-            cc_settextshadow(true);
-            cc_settextalign(^settextalign_left, ^settextalign_top, 0);
-            cc_settextfont(fontmetrics_26);
-            $int19 = cc_gety;
-            $int20 = calc(cc_getheight / 2);
-        }
-        if ($boolean25 = true & cc_find($component1, calc($int16 + 7)) = true) {
-            cc_setsize(13, 13, ^setsize_abs, ^setsize_abs);
-            cc_setposition(2, calc($int19 + ($int20 - cc_getheight / 2)), ^setpos_abs_right, ^setpos_abs_top);
-            cc_setgraphic("rs3_icon_accordion,0");
-        }
-        if ($int21 ! 0 & cc_find($component1, calc($int16 + 8)) = true) {
-            cc_setposition(2, calc($int23 + 2), ^setpos_abs_right, ^setpos_abs_top);
-            cc_setgraphic("achievement_icon_rewards_14px,0");
-            cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
-            ~script3537($string2);
-            cc_setmouseovercursor(cursor_172);
-            cc_setnoclickthrough(true);
-        }
-        if ($int24 > 0) {
-            if (cc_find($component1, calc($int16 + 9)) = true) {
-                cc_setposition(calc($int17 - 15), calc($int23 + 2 + 28 - 12), ^setpos_abs_left, ^setpos_abs_top);
-                cc_setsize(15, 12, ^setsize_abs, ^setsize_abs);
-                cc_setcolour(^black);
-                cc_settrans(128);
-                cc_setfill(true);
-            }
-            if (cc_find($component1, calc($int16 + 10)) = true) {
-                cc_setposition(calc($int17 - 15), calc($int23 + $int17 - 12), ^setpos_abs_left, ^setpos_abs_top);
+            if ($int24 > 0 & cc_find($component1, calc($int16 + 10)) = true) {
+                cc_setposition(calc($int17 + 1 + 2), calc($int23 + 14 + 2 * 2), ^setpos_abs_left, ^setpos_abs_top);
                 cc_setsize(14, 12, ^setsize_abs, ^setsize_abs);
                 cc_setcolour(~script10495(3));
                 cc_settext(tostring_localised($int24, true));
@@ -292,30 +193,143 @@ while ($int6 < $int0) {
                 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
                 cc_settextfont(fontmetrics_26);
             }
+            if (cc_find($component1, calc($int16 + 6)) = true) {
+                cc_setposition(calc($int18 + 2), $int23, ^setpos_abs_left, ^setpos_abs_top);
+                cc_setsize(calc($int18 + 2 * 2 + 15), $int12, ^setsize_minus, ^setsize_abs);
+                cc_setcolour($rgb14);
+                cc_settext($string1);
+                cc_settextshadow(true);
+                cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+                cc_settextfont(fontmetrics_26);
+            }
+            if ($int21 ! 0 & cc_find($component1, calc($int16 + 8)) = true) {
+                cc_setposition(2, calc($int23 + 2), ^setpos_abs_right, ^setpos_abs_top);
+                cc_setgraphic("achievement_icon_rewards_14px,0");
+                cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
+                ~script3537($string2);
+                cc_setmouseovercursor(cursor_172);
+                cc_setnoclickthrough(true);
+            }
+            if ($boolean25 = true & cc_find($component1, calc($int16 + 7)) = true) {
+                cc_setsize(13, 13, ^setsize_abs, ^setsize_abs);
+                if ($int21 = 0) {
+                    cc_setposition(2, calc($int23 + ($int12 / 2 - cc_getheight / 2)), ^setpos_abs_right, ^setpos_abs_top);
+                } else {
+                    cc_setposition(2, calc($int23 + ($int12 - cc_getheight)), ^setpos_abs_right, ^setpos_abs_top);
+                }
+                cc_setgraphic("rs3_icon_accordion,0");
+            }
+        } else {
+            if (cc_find($component1, calc($int16 + 1)) = true) {
+                cc_setposition(2, calc($int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
+                cc_setsize(28, 28, ^setsize_abs, ^setsize_abs);
+                cc_setgraphic(achievement_sprite($achievement5));
+                $int17 = calc(cc_getx + cc_getwidth);
+            }
+            if (($int7 = -1 | $int7 = -2) & cc_find($component1, calc($int16 + 3)) = true) {
+                cc_setposition(2, calc($int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
+                cc_setsize(28, 28, ^setsize_abs, ^setsize_abs);
+                if ($int7 = -2) {
+                    cc_setgraphic(mad_may_16_icon_case_complete);
+                } else {
+                    cc_setgraphic(mad_may_16_icon_case_locked);
+                    if (.cc_find($component1, calc($int16 + 2)) = true) {
+                        .cc_setposition(2, calc($int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
+                        .cc_setsize(28, 28, ^setsize_abs, ^setsize_abs);
+                        .cc_setfill(true);
+                        .cc_setcolour(0x808080);
+                        .cc_settrans(128);
+                    }
+                }
+            }
+            if ($int26 = 1 & cc_find($component1, calc($int16 + 4)) = true) {
+                cc_setposition(calc($int17 + 2), $int23, ^setpos_abs_left, ^setpos_abs_top);
+                cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
+                cc_setnoclickthrough(true);
+                if ($int7 = -2) {
+                    ~script13618($component1, cc_getid, $achievement5);
+                } else {
+                    ~cheevo_update_pin($component1, cc_getid, $achievement5);
+                }
+                $int18 = calc(cc_getx + cc_getwidth);
+            } else {
+                $int18 = calc($int17 + 2);
+            }
+            if (cc_find($component1, calc($int16 + 5)) = true) {
+                cc_setposition(calc($int18 + 2), $int23, ^setpos_abs_left, ^setpos_abs_top);
+                cc_settextshadow(true);
+                cc_settext($string0);
+                cc_setsize($int18, 15, ^setsize_minus, ^setsize_abs);
+                cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+                cc_settextfont(fontmetrics_55);
+                cc_setcolour($rgb15);
+            }
+            if (cc_find($component1, calc($int16 + 6)) = true) {
+                cc_setposition(calc($int17 + 2), calc($int23 + 15), ^setpos_abs_left, ^setpos_abs_top);
+                cc_setsize(calc($int17 + 13), calc($int12 - 15), ^setsize_minus, ^setsize_abs);
+                cc_setcolour($rgb14);
+                cc_settext($string1);
+                cc_settextshadow(true);
+                cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+                cc_settextfont(fontmetrics_26);
+                $int19 = cc_gety;
+                $int20 = calc(cc_getheight / 2);
+            }
+            if ($boolean25 = true & cc_find($component1, calc($int16 + 7)) = true) {
+                cc_setsize(13, 13, ^setsize_abs, ^setsize_abs);
+                cc_setposition(2, calc($int19 + ($int20 - cc_getheight / 2)), ^setpos_abs_right, ^setpos_abs_top);
+                cc_setgraphic("rs3_icon_accordion,0");
+            }
+            if ($int21 ! 0 & cc_find($component1, calc($int16 + 8)) = true) {
+                cc_setposition(2, calc($int23 + 2), ^setpos_abs_right, ^setpos_abs_top);
+                cc_setgraphic("achievement_icon_rewards_14px,0");
+                cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
+                ~script3537($string2);
+                cc_setmouseovercursor(cursor_172);
+                cc_setnoclickthrough(true);
+            }
+            if ($int24 > 0) {
+                if (cc_find($component1, calc($int16 + 9)) = true) {
+                    cc_setposition(calc($int17 - 15), calc($int23 + 2 + 28 - 12), ^setpos_abs_left, ^setpos_abs_top);
+                    cc_setsize(15, 12, ^setsize_abs, ^setsize_abs);
+                    cc_setcolour(^black);
+                    cc_settrans(128);
+                    cc_setfill(true);
+                }
+                if (cc_find($component1, calc($int16 + 10)) = true) {
+                    cc_setposition(calc($int17 - 15), calc($int23 + $int17 - 12), ^setpos_abs_left, ^setpos_abs_top);
+                    cc_setsize(14, 12, ^setsize_abs, ^setsize_abs);
+                    cc_setcolour(~script10495(3));
+                    cc_settext(tostring_localised($int24, true));
+                    cc_settextshadow(true);
+                    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+                    cc_settextfont(fontmetrics_26);
+                }
+            }
         }
+        if (~script15954 = true & %varclient_6919 = $achievement5) {
+            $achievement29 = $achievement5;
+            $int30 = $int16;
+        }
+        if (%varplayer_9607 = $achievement5) {
+            $int31 = $int23;
+        }
+        $int23 = calc($int23 + ($int12 + 2));
     }
-    if (~script15954 = true & %varclient_6919 = $achievement5) {
-        $achievement28 = $achievement5;
-        $int29 = $int16;
-    }
-    if (%varplayer_9607 = $achievement5) {
-        $int30 = $int23;
-    }
-    $int23 = calc($int23 + ($int12 + 2));
     $int6 = calc($int6 + 1);
 }
 if (%varplayer_9607 = null) {
     if (%varclient_6917 > 0) {
-        $int30 = %varclient_6917;
+        $int31 = %varclient_6917;
     }
     if (~script15954 = true) {
-        if ($achievement28 ! null & $int29 ! -1) {
-            ~script9291($int29, $achievement28);
+        if ($achievement29 ! null & $int30 ! -1) {
+            ~script9291($int30, $achievement29);
         } else {
             ~script9291(%varclient_6918, %varclient_6919);
         }
         return(true);
     }
 }
-~script15341($component1, $int23, $int30);
+~script15341($component1, $int23, $int31);
 return(true);

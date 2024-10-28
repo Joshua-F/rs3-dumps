@@ -1,19 +1,41 @@
 // 15585
 [proc,script15585]
+if (%varplayerbit_56619 = 0) {
+    if_setposition(0, 2, ^setpos_abs_centre, ^setpos_abs_top, interface_798:com_22);
+    if (cc_find(interface_798:com_6, 0) = true) {
+        cc_settext("Select Mode");
+    }
+} else {
+    if_setposition(-160, 2, ^setpos_abs_centre, ^setpos_abs_top, interface_798:com_22);
+    if_setposition(160, 2, ^setpos_abs_centre, ^setpos_abs_top, interface_798:com_33);
+    if (cc_find(interface_798:com_6, 0) = true) {
+        cc_settext("Select Difficulty");
+    }
+}
+if_sethide(~int_to_bool(%varplayerbit_56619), interface_798:com_12);
+if_sethide(~script6427(%varplayerbit_56619), interface_798:com_33);
+if_sethide(~int_to_bool(%varplayerbit_56619), interface_798:com_32);
 def_component $component0 = null;
 switch_int (%varplayerbit_25406) {
     case 0 :
-        $component0 = interface_798:com_11;
+        $component0 = interface_798:com_12;
     case 1 :
-        $component0 = interface_798:com_21;
+        $component0 = interface_798:com_22;
     case 2 :
-        $component0 = interface_798:com_31;
+        $component0 = interface_798:com_33;
+    case 3 :
+        $component0 = interface_798:com_32;
 }
 def_int $int1 = if_getx($component0);
 $int1 = calc($int1 - 2);
-if_setposition($int1, 0, ^setpos_abs_left, ^setpos_abs_top, interface_798:com_32);
+if_setposition($int1, 0, ^setpos_abs_left, ^setpos_abs_top, interface_798:com_34);
+if (%varplayerbit_56619 = 0) {
+    if_settext("Choose Game Mode", interface_798:com_51);
+} else {
+    if_settext("Choose Difficulty", interface_798:com_51);
+}
 ~script15586;
-def_boolean $boolean2 = ~equal_int_bool(%varplayerbit_25406, 3);
+def_boolean $boolean2 = ~equal_int_bool(%varplayerbit_25406, 5);
 if (~script9096 = true) {
     ~script13994(interface_1420:com_81, interface_1420:com_82, struct_28557, "", $boolean2);
     ~script13959(interface_1420:com_83, struct_655, $boolean2);
@@ -21,8 +43,10 @@ if (~script9096 = true) {
         case 0 :
             if_setgraphic(null, interface_1420:com_84);
         case 1 :
-            if_setgraphic(graphic_12855, interface_1420:com_84);
+            if_setgraphic(rs3_icon_badge_ironman, interface_1420:com_84);
         case 2 :
-            if_setgraphic(graphic_12856, interface_1420:com_84);
+            if_setgraphic(rs3_icon_badge_ironman_hardcore, interface_1420:com_84);
+        case 3 :
+            if_setgraphic(rs3_icon_badge_ironman_group, interface_1420:com_84);
     }
 }

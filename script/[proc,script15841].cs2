@@ -1,7 +1,7 @@
 // 15841
 [proc,script15841](int $int0)
 def_string $string0 = ~script8521($int0);
-%varclient_1028 = string_length(escape(~script8521($int0)));
+%varclient_1028 = string_length(escape($string0));
 if (~script6968($int0) = true) {
     return;
 }
@@ -18,7 +18,7 @@ $int2, $int3, $int4, $int5, $int6, $int7, $int8 = ~script4590;
 def_int $int10 = -1;
 def_int $int11 = -1;
 def_string $string1 = "";
-if (%varplayerbit_21242 = 0 & $boolean1 = false & string_length(~script8521($int0)) <= 0) {
+if (%varplayerbit_21242 = 0 & $boolean1 = false & string_length($string0) <= 0) {
     ~script8517($int0);
     switch_int ($int0) {
         case 18 :
@@ -39,32 +39,36 @@ if (%varplayerbit_21242 = 0 & $boolean1 = false & string_length(~script8521($int
             } else {
                 ~quickchat_open(15, "", $int0);
             }
+        case 46 :
+            ~quickchat_open(17, "", $int0);
         case default :
             return;
     }
 } else {
-    if (compare(~script8521($int0), "/?") = 0) {
+    if (compare($string0, "/?") = 0) {
         ~script8527($int0);
         ~script8522($int0, "");
         ~script8517($int0);
         return;
     }
     if ($boolean1 = false) {
-        if (compare(~script8521($int0), "/") = 0) {
+        if (compare($string0, "/") = 0) {
             ~quickchat_open(2, "", $int0);
-        } else if (compare(~script8521($int0), "//") = 0) {
+        } else if (compare($string0, "//") = 0) {
             ~quickchat_open(8, "", $int0);
-        } else if (compare(~script8521($int0), "///") = 0) {
+        } else if (compare($string0, "///") = 0) {
             ~quickchat_open(10, "", $int0);
-        } else if (compare(~script8521($int0), "////") = 0) {
+        } else if (compare($string0, "////") = 0) {
             ~quickchat_open(13, "", $int0);
-        } else if (compare(~script8521($int0), "/////") = 0) {
+        } else if (compare($string0, "/////") = 0) {
             ~quickchat_open(15, "", $int0);
+        } else if (compare($string0, "/#") = 0 & ~script19316 = true) {
+            ~quickchat_open(17, "", $int0);
         }
     }
-    $int10 = ~script8519(~script8521($int0));
+    $int10 = ~script8519($string0);
     if ($int10 ! -1 & $int0 ! 24) {
-        %varclient_1028 = string_length(~script8521($int0));
+        %varclient_1028 = string_length($string0);
         ~script8522($int0, "");
         ~script8514($int0, $int10);
         if ($int10 = 18 & %varplayerbit_27169 = 0) {
@@ -104,6 +108,11 @@ if (%varplayerbit_21242 = 0 & $boolean1 = false & string_length(~script8521($int
                     $int11 = -1;
                     mes("You aren't in a group. You can create one using the button on this window.");
                 }
+            case 102 :
+                if (~script19316 = false | activeclanchannel_find_affined(1) = false) {
+                    $int11 = -1;
+                    mes("Group Ironman chat is currently unavailable.");
+                }
         }
         $string0 = ~script8521($int0);
         if (~script13692($string0) = false) {
@@ -119,6 +128,9 @@ if (%varplayerbit_21242 = 0 & $boolean1 = false & string_length(~script8521($int
                     $int9 = ttv_chat_sendmessage($string0);
                 case 2 :
                     chat_setmode_affined_clan(0);
+                    chat_sendpublic($string0);
+                case 102 :
+                    chat_setmode_affined_clan(1);
                     chat_sendpublic($string0);
                 case default :
                     chat_setmode($int11);

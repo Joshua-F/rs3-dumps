@@ -1,6 +1,6 @@
 // 13826
 [proc,bank_bankitemdrag](inv $inv0, component $component1, int $int2, int $int3)
-if (~script6354(interface_517:com_195) = false) {
+if (~script6354(interface_517:com_202) = false) {
     return;
 }
 if (cc_find($component1, $int2) = true) {
@@ -18,15 +18,15 @@ def_int $int5 = 0;
 def_int $int6 = 0;
 def_int $int7 = 0;
 def_obj $obj8 = null;
-def_int $int9 = ~script8403(interface_517:com_193);
-def_int $int10 = ~script8404(interface_517:com_193);
-def_int $int11 = if_getheight(interface_517:com_193);
-def_int $int12 = if_getwidth(interface_517:com_193);
-def_int $int13 = if_getscrolly(interface_517:com_193);
+def_int $int9 = ~script8403(interface_517:com_200);
+def_int $int10 = ~script8404(interface_517:com_200);
+def_int $int11 = if_getheight(interface_517:com_200);
+def_int $int12 = if_getwidth(interface_517:com_200);
+def_int $int13 = if_getscrolly(interface_517:com_200);
 def_int $int14 = 1;
 if (%varplayerbit_45140 ! 0 | $int9 < 0 | $int9 > $int12 | $int10 < 0 | $int10 > $int11) {
-    if_sethide(true, interface_517:com_203);
-    if_sethide(true, interface_517:com_201);
+    if_sethide(true, interface_517:com_210);
+    if_sethide(true, interface_517:com_208);
     %varclient_6686 = 0;
     $int14 = 0;
 }
@@ -48,34 +48,34 @@ if ($inv0 = inv_95) {
         %varclient_6708 = 0;
     } else {
         if ($int14 = 1) {
-            if (if_gethide(interface_517:com_203) = true & if_gethide(interface_517:com_201) = true) {
+            if (if_gethide(interface_517:com_210) = true & if_gethide(interface_517:com_208) = true) {
                 $int4 = ~bank_get_tab($int7);
                 $int5 = ~script14374($int4);
                 if (%varplayerbit_45141 ! 1 & %varplayerbit_45141 ! $int4 & $int7 ! -1) {
                     if (%varplayerbit_45911 = 0) {
-                        if_triggerop(interface_517:com_162, $int4, 1);
+                        if_triggerop(interface_517:com_169, $int4, 1);
                     }
                     return;
                 }
-                if ($int6 ! -1 & .cc_find(interface_517:com_195, $int6) = true) {
+                if ($int6 ! -1 & .cc_find(interface_517:com_202, $int6) = true) {
                     %varclient_6707 = -1;
                     %varclient_6708 = 1;
-                    ~script13827(interface_517:com_203);
+                    ~script13827(interface_517:com_210);
                 }
-                if ($int7 ! -1 & .cc_find(interface_517:com_195, $int7) = true) {
+                if ($int7 ! -1 & .cc_find(interface_517:com_202, $int7) = true) {
                     if ($int6 = -1) {
                         %varclient_6707 = calc(1820 + 1);
                         %varclient_6708 = 0;
-                        ~script13827(interface_517:com_201);
+                        ~script13827(interface_517:com_208);
                     }
                     ~bank_set_tab_scrollpos(%varplayerbit_45141, max(0, max(calc(.cc_gety + .cc_getheight + 2 - $int11 / 2), min(calc(.cc_gety - 2 - $int11 / 2), $int13))));
-                    ~scrollbar_ondrag_doscroll(interface_517:com_189, interface_517:com_193, ~bank_get_tab_scrollpos(%varplayerbit_45141), 1);
+                    ~scrollbar_ondrag_doscroll(interface_517:com_196, interface_517:com_200, ~bank_get_tab_scrollpos(%varplayerbit_45141), 1);
                 }
             }
         } else {
             %varclient_6708 = 0;
-            if_sethide(true, interface_517:com_203);
-            if_sethide(true, interface_517:com_201);
+            if_sethide(true, interface_517:com_210);
+            if_sethide(true, interface_517:com_208);
         }
         return;
     }
@@ -100,5 +100,5 @@ if ($int10 < 30) {
 }
 if (++%varclient_6686 > 5 & $int15 ! 0) {
     ~bank_set_tab_scrollpos(%varplayerbit_45141, calc($int13 + $int15));
-    ~scrollbar_ondrag_doscroll(interface_517:com_189, interface_517:com_193, calc($int13 + $int15), 1);
+    ~scrollbar_ondrag_doscroll(interface_517:com_196, interface_517:com_200, calc($int13 + $int15), 1);
 }
