@@ -29445,3 +29445,33 @@ readyanim=null,seq_36301
 randomreadyanim=seq_36297,90
 randomreadyanim=seq_36298,10
 
+// 4774
+[bas_4774]
+readyanim_l=seq_36358
+readyanim_r=seq_36358
+walkanim_b=seq_36358
+walkanim_l=seq_36358
+walkanim_r=seq_36358
+runanim=seq_36359
+runanim_b=seq_36359
+runanim_l=seq_36359
+runanim_r=seq_36359
+readyanim=null,seq_36358
+randomreadyanim=seq_36360,70
+randomreadyanim=seq_36361,30
+
+// 4775
+[bas_4775]
+readyanim_l=seq_36375
+readyanim_r=seq_36375
+walkanim_b=seq_36375
+walkanim_l=seq_36375
+walkanim_r=seq_36375
+walkturn_l=seq_36375
+walkturn_r=seq_36375
+runanim=seq_36376
+hillrotate=32,32
+readyanim=null,seq_36375
+randomreadyanim=seq_36370,90
+randomreadyanim=seq_36371,10
+
