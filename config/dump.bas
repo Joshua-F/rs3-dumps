@@ -29475,3 +29475,19 @@ readyanim=null,seq_36375
 randomreadyanim=seq_36370,90
 randomreadyanim=seq_36371,10
 
+// 4776
+[bas_4776]
+readyanim=seq_36404,null
+
+// 4777
+[bas_4777]
+readyanim=null,null
+randomreadyanim=seq_36397,185
+randomreadyanim=seq_36398,70
+
+// 4778
+[bas_4778]
+readyanim=null,null
+randomreadyanim=seq_36397,185
+randomreadyanim=seq_36398,70
+
