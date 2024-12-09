@@ -843,9 +843,16 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                 $obj40 = enum(int, obj, enum_15095, inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43222));
                 if ($obj40 ! null) {
                     $int47 = ~script7235("Item being created: <oc_name($obj40)>", $string3, $struct2, $component3, $component4, $int47);
-                    $int47 = ~script7235("Current heat: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43225))>/<tostring(~script2547($obj40))> (<tostring(scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43225), ~script2547($obj40), 100))>%)", $string3, $struct2, $component3, $component4, $int47);
-                    $int47 = ~script7235("Current progress: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43223))>/<tostring(oc_param($obj40, param_7801))> (<tostring(scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43223), oc_param($obj40, param_7801), 100))>%) ", $string3, $struct2, $component3, $component4, $int47);
-                    $int47 = ~script7235("Experience left in item: <tostring(calc(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43224) / 10))>", $string3, $struct2, $component3, $component4, $int47);
+                    $int47 = ~script7235("Current heat: <tostring_localised(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43225), true)>/<tostring_localised(~script2547($obj40), true)> (<tostring_localised(scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43225), ~script2547($obj40), 100), true)>%)", $string3, $struct2, $component3, $component4, $int47);
+                    $int47 = ~script7235("Current progress: <tostring_localised(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43223), true)>/<tostring_localised(oc_param($obj40, param_7801), true)> (<tostring_localised(scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43223), oc_param($obj40, param_7801), 100), true)>%) ", $string3, $struct2, $component3, $component4, $int47);
+                    $int47 = ~script7235("Experience left in item: <tostring_localised(calc(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43224) / 10), true)>", $string3, $struct2, $component3, $component4, $int47);
+                }
+            case obj_58111 :
+                $obj40 = enum(int, obj, enum_6535, inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_56966));
+                if ($obj40 ! null) {
+                    $int47 = ~script7235("Item being created: <oc_name($obj40)>", $string3, $struct2, $component3, $component4, $int47);
+                    $int47 = ~script7235("Current progress: <tostring_localised(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_56967), true)>/<tostring_localised(oc_param($obj40, param_9218), true)> (<tostring_localised(scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_56967), oc_param($obj40, param_9218), 100), true)>%) ", $string3, $struct2, $component3, $component4, $int47);
+                    $int47 = ~script7235("Experience left in item: <tostring_localised(calc(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_56968) / 10), true)>", $string3, $struct2, $component3, $component4, $int47);
                 }
             case obj_45990 :
                 $int47 = ~script7235("Folding progress: <tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43229))>/1001", $string3, $struct2, $component3, $component4, $int47);
@@ -899,7 +906,7 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                         if (oc_param($obj0, param_7804) = 2) {
                             $int47 = ~script7235("<tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43230))>/<tostring(oc_param($obj0, param_2665))> rivets applied.", $string3, $struct2, $component3, $component4, $int47);
                         }
-                    case category_5442 :
+                    case category_5442, category_5506 :
                         if (oc_param($obj0, param_9122) > 0) {
                             if (oc_param($obj0, param_9123) ! null) {
                                 $int47 = ~script7235("Item to craft: <oc_name(oc_param($obj0, param_9123))>", $string3, $struct2, $component3, $component4, $int47);
@@ -1323,6 +1330,18 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                 $int47 = ~script7235("- With Icthlarin's Aid speed 3: <col=00FFFF><tostring_localised(scale($int46, 100, calc(100 + 10)), true)></col>.", $string3, $struct2, $component3, $component4, $int47);
                 $int47 = ~script7235("- With Icthlarin's Aid speed 2: <col=00FFFF><tostring_localised(scale($int46, 100, calc(100 + 15)), true)></col>.", $string3, $struct2, $component3, $component4, $int47);
                 $int47 = ~script7235("- With Icthlarin's Aid speed 1: <col=00FFFF><tostring_localised(scale($int46, 100, calc(100 + 25)), true)></col>.", $string3, $struct2, $component3, $component4, $int47);
+            case obj_58256 :
+                switch_int (%varplayerbit_56949) {
+                    case 0 :
+                        $string12 = "not attuned";
+                    case 1 :
+                        $string12 = "attuned to attract nests with seeds";
+                    case 2 :
+                        $string12 = "attuned to attract nests with rings";
+                    case 3 :
+                        $string12 = "attuned to attract nests with eggs";
+                }
+                $int47 = ~script7235("Your bird whistle is <$string12>.", $string3, $struct2, $component3, $component4, $int47);
             case default :
                 switch_category (oc_category($obj0)) {
                     case category_5383 :
