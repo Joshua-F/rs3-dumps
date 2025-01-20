@@ -379,7 +379,13 @@ if (oc_wearpos($obj0) ! -1) {
         if (oc_param($obj0, param_8563) = 1) {
             $int19 = oc_param($obj0, param_750);
         }
-        $int47 = ~script7236("Tier", $int19, $int7, $string7, $struct2, $component3, $component4, $int47);
+        switch_category (oc_category($obj0)) {
+            case category_35 :
+                $string12 = "Level";
+            case default :
+                $string12 = "Tier";
+        }
+        $int47 = ~script7236($string12, $int19, $int7, $string7, $struct2, $component3, $component4, $int47);
     }
     if (%varclient_5121 ! null & %varclient_5122 ! -1) {
         $int45 = ~script11942($obj0);
@@ -1094,6 +1100,12 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                             $string12 = "<col=FF00>";
                         }
                         $int47 = ~script7235("Charges remaining: <$string12><tostring_localised(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_18550), true)>", $string3, $struct2, $component3, $component4, $int47);
+                    case category_35 :
+                        $string12 = tostring(enum(obj, int, enum_6560, $obj0));
+                        if ((oc_param($obj0, param_485) = 1100 | oc_param($obj0, param_485) = 1130) & stat_base(woodcutting) >= struct_param(struct_28972, param_2212)) {
+                            $string12 = tostring(calc(enum(obj, int, enum_6560, $obj0) + 2));
+                        }
+                        $int47 = ~script7235("Cutting power: Tier <$string12>", $string3, $struct2, $component3, $component4, $int47);
                     case default :
                         if (oc_param($obj0, param_369) = 3) {
                             $int18 = min(max(scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_6139), oc_param($obj0, param_368), 100), 1), 99);
@@ -1518,6 +1530,12 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                         $int47 = ~script7235("Is automatically consumed on death if equipped.", $string3, $struct2, $component3, $component4, $int47);
                     case category_3019 :
                         $int47 = ~script7235("Is automatically consumed on death if equipped, or if you equip it while you have an active gravestone.", $string3, $struct2, $component3, $component4, $int47);
+                    case category_35 :
+                        $string12 = tostring(enum(obj, int, enum_6560, $obj0));
+                        if ((oc_param($obj0, param_485) = 1100 | oc_param($obj0, param_485) = 1130) & stat_base(woodcutting) >= struct_param(struct_28972, param_2212)) {
+                            $string12 = tostring(calc(enum(obj, int, enum_6560, $obj0) + 2));
+                        }
+                        $int47 = ~script7235("Cutting power: Tier <$string12>", $string3, $struct2, $component3, $component4, $int47);
                     case default :
                         if (oc_param($obj0, param_3203) = struct_39402) {
                             $int18 = calc(3 + ~script3862);
