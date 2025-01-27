@@ -12,6 +12,13 @@ if (~map_members = false & oc_members($obj0) = 1) {
     ~bank_mes("You need to be on a members' world to withdraw that item.");
     return(false);
 }
+switch_obj ($obj0) {
+    case obj_36725, obj_36720, obj_36719, obj_36599 :
+        if (~script13692 = 0) {
+            ~bank_mes("You need to complete the invention tutorial to withdraw that item.");
+            return(false);
+        }
+}
 def_boolean $boolean7 = false;
 if (%varplayer_160 = 1) {
     if (oc_cert($obj0) = $obj0) {
