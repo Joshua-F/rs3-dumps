@@ -1,0 +1,43 @@
+// 19712
+[proc,script19712](int $int0)
+def_int $int1 = 0;
+if ($int0 = 0 | $int0 = 3) {
+    if_sethide(true, interface_1475:com_8);
+    if_sethide(false, interface_1475:com_10);
+    if_sethide(false, interface_1475:com_17);
+    if ($int0 = 3) {
+        $int1 = min(150, ~script19706);
+        if_setsize(220, calc(320 + $int1), ^setsize_abs, ^setsize_abs, interface_1475:com_40);
+        if_sethide(false, interface_1475:com_12);
+        if_settext(%varclient_8264, interface_1475:com_22);
+    } else {
+        if_setsize(220, 320, ^setsize_abs, ^setsize_abs, interface_1475:com_40);
+        if_sethide(true, interface_1475:com_12);
+        if_settext("", interface_1475:com_22);
+    }
+    ~script19722;
+    ~script6593(0);
+    if_settext("Advanced Options", interface_1475:com_4);
+    return;
+}
+def_string $string0 = "Preset Options";
+if_sethide(false, interface_1475:com_8);
+if_sethide(true, interface_1475:com_10);
+if_setsize(220, max(330, if_getheight(interface_1475:com_40)), ^setsize_abs, ^setsize_abs, interface_1475:com_40);
+~script19722;
+switch_int ($int0) {
+    case 1 :
+        if_sethide(false, interface_1475:com_17);
+        if_setsize(10, 128, ^setsize_minus, ^setsize_minus, interface_1475:com_8);
+        ~script6487;
+        if (~script19705 = true) {
+            $string0 = "<%varclient_8264> Presets";
+        }
+    case 2 :
+        if_sethide(true, interface_1475:com_17);
+        if_setsize(10, 48, ^setsize_minus, ^setsize_minus, interface_1475:com_8);
+        ~script19714;
+    case default :
+        ~error("Unrecognised layout: <tostring($int0)>");
+}
+if_settext("Preset Options", interface_1475:com_4);
