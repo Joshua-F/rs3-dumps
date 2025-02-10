@@ -1,0 +1,28 @@
+// 19766
+[proc,script19766](int $int0)(int, obj, int, struct, graphic)
+def_int $int1 = %varplayerbit_57155;
+def_int $int2 = %varplayerbit_57156;
+if ($int0 = 1) {
+    $int1 = calc($int1 + 1);
+} else {
+    $int2 = calc($int2 + 1);
+}
+def_int $int3 = -1;
+def_int $int4 = 0;
+def_obj $obj5 = null;
+def_int $int6 = 0;
+def_struct $struct7 = null;
+def_graphic $graphic8 = null;
+def_int $int9 = db_getfieldcount(dbrow_14848, dbtable_312:col0);
+if ($int9 <= 0) {
+    return(0, null, 0, null, null);
+}
+while (++$int3 < $int9) {
+    if (testbit(%varplayerbit_57157, $int3) = ^false) {
+        $int4 = db_getfield(dbrow_14848, dbtable_312:col0:0, $int3);
+        if ($int1 >= $int4 & $int2 >= $int4) {
+            $int4, $obj5, $int6, $struct7, $graphic8 = db_getfield(dbrow_14848, dbtable_312:col0, $int3);
+            return(1, $obj5, $int6, $struct7, $graphic8);
+        }
+    }
+}
