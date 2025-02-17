@@ -4,20 +4,25 @@ def_string $string0 = struct_param(%varclient_4485, param_6411);
 def_string $string1 = "";
 def_string $string2 = "";
 def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_component $component3 = interface_753:com_27;
+def_component $component4 = interface_753:com_30;
+def_component $component5 = interface_753:com_29;
+cc_deleteall($component3);
+cc_deleteall($component4);
+cc_deleteall($component5);
 if (struct_param(%varclient_4485, param_4830) = 1) {
     switch_struct (%varclient_4485) {
         case struct_24975 :
-            $int0 = calc(date_runeday % 12);
-            if ($int0 <= 3) {
-                $string0 = append($string0, "<br><br><col=FFFFFF>This encounter has mechanics that may change based on what day it is.<br><br>Current blocked tunnel: <col=FFFFFF>spider minions");
-            } else if ($int0 <= 7 & $int0 > 3) {
-                $string0 = append($string0, "<br><br><col=FFFFFF>This encounter has mechanics that may change based on what day it is.<br><br>Current blocked tunnel: <col=FFFFFF>acid pool");
-            } else {
-                $string0 = append($string0, "<br><br><col=FFFFFF>This encounter has mechanics that may change based on what day it is.<br><br>Current blocked tunnel: <col=FFFFFF>darkness");
-            }
+            $string0 = append($string0, "<br><br><col=FFFFFF>This encounter has mechanics that may change based on what day it is.<br><br>");
+            $string0 = append($string0, "Current blocked tunnel: <col=FFFFFF><~script19824(0)>");
             $string0 = append($string0, "<br>Current enrage: <col=FFFFFF><tostring(calc(%varplayerbit_23045 * 20))>%");
+            if (%varplayer_12121 >= 3) {
+                $int2 = 1;
+            }
         case struct_28642 :
-            $int0 = enum(int, int, enum_7655, calc(date_runeday % 20));
+            $int0 = ~script19847(0);
             $string0 = append($string0, "<br><br><col=FFFFFF>This boss has mechanics that may change based on what day it is.<br>Current brother positions:</col>");
             $string1 = "<col=FFFFFF><br>West side: ";
             $string2 = "<col=FFFFFF><br>East side: ";
@@ -53,21 +58,14 @@ if (struct_param(%varclient_4485, param_4830) = 1) {
             }
             $string1 = append($string1, $string2);
             $string0 = append($string0, $string1);
+            if (%varplayer_12121 >= 3) {
+                $int2 = 1;
+            }
         case struct_28659 :
-            $int0 = calc((date_runeday + 21) / 7 % 6);
-            switch_int ($int0) {
-                case 0 :
-                    $string0 = append($string0, "<br><br><col=FFFFFF>This boss has mechanics that may change based on what day it is.<br><br>Current rotation: <col=FFFFFF>Ceiling Collapse");
-                case 1 :
-                    $string0 = append($string0, "<br><br><col=FFFFFF>This boss has mechanics that may change based on what day it is.<br><br>Current rotation: <col=FFFFFF>Scopulus");
-                case 2 :
-                    $string0 = append($string0, "<br><br><col=FFFFFF>This boss has mechanics that may change based on what day it is.<br><br>Current rotation: <col=FFFFFF>Vitalis");
-                case 3 :
-                    $string0 = append($string0, "<br><br><col=FFFFFF>This boss has mechanics that may change based on what day it is.<br><br>Current rotation: <col=FFFFFF>Green Bomb");
-                case 4 :
-                    $string0 = append($string0, "<br><br><col=FFFFFF>This boss has mechanics that may change based on what day it is.<br><br>Current rotation: <col=FFFFFF>Team Split");
-                case 5 :
-                    $string0 = append($string0, "<br><br><col=FFFFFF>This boss has mechanics that may change based on what day it is.<br><br>Current rotation: <col=FFFFFF>The End");
+            $string0 = append($string0, "<br><br><col=FFFFFF>This boss has mechanics that may change based on what day it is.<br><br>");
+            $string0 = append($string0, "Current rotation: <col=FFFFFF><~script14604(0)>");
+            if (%varplayer_12121 >= 4) {
+                $int2 = 1;
             }
         case struct_31988, struct_31987 :
             $int0 = min(2, max(0, calc(%varplayer_11708 - date_runeday)));
@@ -89,4 +87,18 @@ if (struct_param(%varclient_4485, param_4830) = 1) {
             $string0 = append($string0, "<br>Highest hard mode enrage: <col=FFFFFF><tostring_localised(%varplayerbit_50178, true)>%");
     }
 }
-if_settext($string0, interface_753:com_27);
+if_settext($string0, interface_753:com_28);
+$int1 = calc($int1 + ~script15891(if_gettext(interface_753:com_28), if_getwidth(interface_753:com_28), if_getfontmetrics(interface_753:com_28), 0));
+if ($int2 = 1) {
+    $int1 = calc($int1 + ~script19863($component3, $component5, $int1));
+}
+if ($int1 >= if_getheight(interface_753:com_26)) {
+    if_sethide(false, $component4);
+    if_setscrollsize(0, $int1, $component3);
+    if_setscrollpos(0, 0, $component3);
+    ~rs3_scrollbar_vertical($component4, $component3);
+} else {
+    if_sethide(true, $component4);
+    if_setscrollsize(0, 0, $component3);
+    if_setscrollpos(0, 0, $component3);
+}
