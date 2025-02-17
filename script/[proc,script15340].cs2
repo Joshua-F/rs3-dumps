@@ -1,240 +1,266 @@
 // 15340
-[proc,script15340](int $int0)(boolean)
+[proc,script15340](int $int0, category $category1, category $category2)(boolean)
 ~cheevo_reset_dropdown;
-def_component $component1 = interface_1851:com_40;
-cc_deleteall($component1);
+def_component $component3 = interface_1851:com_40;
+cc_deleteall($component3);
 def_achievement $achievementarray0($int0);
 def_int $intarray1($int0);
-def_int $int2 = 15000;
-def_int $int3 = 20000;
-def_int $int4 = 25000;
+def_int $int4 = 15000;
+def_int $int5 = 20000;
+def_int $int6 = 25000;
 if (%varplayerbit_48340 < %varplayerbit_48341) {
-    $int4 = 15000;
-    $int3 = 20000;
-    $int2 = 25000;
+    $int6 = 15000;
+    $int5 = 20000;
+    $int4 = 25000;
 }
-def_achievement $achievement5 = achievement_findnext;
-def_int $int6 = 0;
-def_int $int7 = 0;
-def_int $int8 = 0;
+def_enum $enum7 = null;
+def_enum $enum8 = null;
+if ($category1 ! null) {
+    if ($category2 ! null) {
+        $enum7 = enum(category, enum, enum_7255, $category1);
+        if ($enum7 ! null) {
+            $enum8 = enum(category, enum, $enum7, $category2);
+        }
+    } else {
+        $enum8 = enum(category, enum, enum_7212, $category1);
+    }
+}
+if ($enum8 ! null & enum_getoutputcount($enum8) ! $int0) {
+    ~error("Display list enum output count does not match: got <tostring(enum_getoutputcount($enum8))> expected <tostring($int0)>");
+    return(false);
+}
 def_int $int9 = 0;
-def_int $int10 = 0;
-while ($achievement5 ! null) {
-    $achievementarray0($int6) = $achievement5;
-    $int7 = achievement_reqstate($achievement5);
-    switch_int ($int7) {
+def_achievement $achievement10 = null;
+if ($enum8 ! null) {
+    $achievement10 = enum(int, achievement, $enum8, $int9++);
+} else {
+    $achievement10 = achievement_findnext;
+}
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+while ($achievement10 ! null) {
+    $achievementarray0($int11) = $achievement10;
+    $int12 = achievement_reqstate($achievement10);
+    switch_int ($int12) {
         case -2 :
-            $intarray1($int6) = calc($int6 + $int4);
-            $int8 = calc($int8 + 1);
+            $intarray1($int11) = calc($int11 + $int6);
+            $int13 = calc($int13 + 1);
         case -1 :
-            if (achievement_gethide($achievement5) = 0) {
-                $intarray1($int6) = calc($int6 + $int2);
-                $int9 = calc($int9 + 1);
+            if (achievement_gethide($achievement10) = 0) {
+                $intarray1($int11) = calc($int11 + $int4);
+                $int14 = calc($int14 + 1);
             } else {
-                $intarray1($int6) = calc($int6 + $int3);
-                $int10 = calc($int10 + 1);
+                $intarray1($int11) = calc($int11 + $int5);
+                $int15 = calc($int15 + 1);
             }
         case -3 :
-            $intarray1($int6) = calc($int6 + 10000);
+            $intarray1($int11) = calc($int11 + 10000);
         case default :
-            if (achievement_gethide($achievement5) < 2) {
-                $intarray1($int6) = calc($int6 + 10000);
+            if (achievement_gethide($achievement10) < 2) {
+                $intarray1($int11) = calc($int11 + 10000);
             } else {
-                $intarray1($int6) = calc($int6 + $int3);
-                $int10 = calc($int10 + 1);
+                $intarray1($int11) = calc($int11 + $int5);
+                $int15 = calc($int15 + 1);
             }
     }
-    $achievement5 = achievement_findnext;
-    $int6 = calc($int6 + 1);
+    if ($enum8 ! null) {
+        $achievement10 = enum(int, achievement, $enum8, $int9++);
+    } else {
+        $achievement10 = achievement_findnext;
+    }
+    $int11 = calc($int11 + 1);
 }
 array_sort($int0, 1, 0);
-def_int $int11 = $int0;
+def_int $int16 = $int0;
 if (%varplayerbit_48340 = 1) {
-    $int0 = calc($int0 - $int8);
+    $int0 = calc($int0 - $int13);
 }
 if (%varplayerbit_48341 = 1) {
-    $int0 = calc($int0 - $int9);
-    $int0 = calc($int0 - $int10);
+    $int0 = calc($int0 - $int14);
+    $int0 = calc($int0 - $int15);
 }
 if ($int0 = 0) {
     return(false);
 }
-~script15336($component1, $int0);
-def_int $int12 = 60;
-def_int $int13 = 0;
-if (%varplayerbit_37059 = 1) {
-    $int13 = 1;
-    $int12 = 35;
-}
-def_int $rgb14 = 0x777777;
-def_int $rgb15 = 0x777777;
-def_int $int16 = 0;
-$int6 = 0;
-def_int $int17 = 0;
+~script15336($component3, $int0);
+def_int $int17 = 60;
 def_int $int18 = 0;
-def_int $int19 = 0;
-def_int $int20 = 0;
+if (%varplayerbit_37059 = 1) {
+    $int18 = 1;
+    $int17 = 35;
+}
+def_int $rgb19 = 0x777777;
+def_int $rgb20 = 0x777777;
 def_int $int21 = 0;
-def_string $string0 = "";
-def_string $string1 = "";
+$int11 = 0;
 def_int $int22 = 0;
 def_int $int23 = 0;
 def_int $int24 = 0;
-def_string $string2 = "";
-def_boolean $boolean25 = false;
-def_int $int26 = 1;
+def_int $int25 = 0;
+def_int $int26 = 0;
+def_string $string0 = "";
+def_string $string1 = "";
 def_int $int27 = 0;
-def_boolean $boolean28 = false;
-def_achievement $achievement29 = null;
-def_int $int30 = -1;
-def_int $int31 = 0;
-def_int $int32 = ~script15721;
-while ($int6 < $int0) {
-    $int16 = calc($int6 * 11);
-    $achievement5 = $achievementarray0($int6);
-    $int7 = achievement_reqstate($achievement5);
-    switch_int ($int7) {
+def_int $int28 = 0;
+def_int $int29 = 0;
+def_string $string2 = "";
+def_boolean $boolean30 = false;
+def_int $int31 = 1;
+def_int $int32 = 0;
+def_boolean $boolean33 = false;
+def_achievement $achievement34 = null;
+def_int $int35 = -1;
+def_int $int36 = 0;
+def_int $int37 = ~script15721;
+while ($int11 < $int0) {
+    $int21 = calc($int11 * 11);
+    $achievement10 = $achievementarray0($int11);
+    $int12 = achievement_reqstate($achievement10);
+    switch_int ($int12) {
         case -2 :
-            $rgb15 = 0xffcb05;
-            $rgb14 = 0xaed0e0;
-            if ($int32 = 1) {
-                $rgb14 = 0xd1b28d;
+            $rgb20 = 0xffcb05;
+            $rgb19 = 0xaed0e0;
+            if ($int37 = 1) {
+                $rgb19 = 0xd1b28d;
             }
         case -1 :
-            $rgb15 = 0xa5a5a5;
-            $rgb14 = 0xa5a5a5;
+            $rgb20 = 0xa5a5a5;
+            $rgb19 = 0xa5a5a5;
         case -3 :
-            $rgb15 = 0xffa747;
-            $rgb14 = 0xaed0e0;
-            if ($int32 = 1) {
-                $rgb14 = 0xd1b28d;
+            $rgb20 = 0xffa747;
+            $rgb19 = 0xaed0e0;
+            if ($int37 = 1) {
+                $rgb19 = 0xd1b28d;
             }
         case default :
-            $rgb15 = ^white;
-            $rgb14 = 0xaed0e0;
-            if ($int32 = 1) {
-                $rgb14 = 0xd1b28d;
+            $rgb20 = ^white;
+            $rgb19 = 0xaed0e0;
+            if ($int37 = 1) {
+                $rgb19 = 0xd1b28d;
             }
     }
-    $string0 = achievement_getname($achievement5);
-    $string1 = ~achievement_description($achievement5);
-    $int24 = achievement_runescore($achievement5);
-    $string2 = achievement_getreward($achievement5);
-    $boolean25 = ~script15342($achievement5);
-    $int26 = 1;
-    $int27 = 0;
-    if ($int7 ! -2 & achievement_gethide($achievement5) = 2) {
-        $int27 = 1;
-    } else if ($int7 = -1 & achievement_gethide($achievement5) = 1) {
-        $int27 = 1;
+    $string0 = achievement_getname($achievement10);
+    $string1 = ~achievement_description($achievement10);
+    $int29 = achievement_runescore($achievement10);
+    $string2 = ~script19862($achievement10);
+    $boolean30 = ~script15342($achievement10);
+    $int31 = 1;
+    $int32 = 0;
+    if ($int12 ! -2 & achievement_gethide($achievement10) = 2) {
+        $int32 = 1;
+    } else if ($int12 = -1 & achievement_gethide($achievement10) = 1) {
+        $int32 = 1;
     }
-    if ($int27 = 1) {
+    if ($int32 = 1) {
         $string0 = "This Achievement is hidden";
         $string1 = "Play more of the game to unlock this achievement.";
         $string2 = "";
-        $int26 = 0;
-        $boolean25 = false;
-        $int24 = 0;
-        if (~script2457(achievement_category($achievement5)) = true) {
-            $boolean28 = true;
+        $int31 = 0;
+        $boolean30 = false;
+        $int29 = 0;
+        if (~script2457(achievement_category($achievement10)) = true) {
+            $boolean33 = true;
         } else {
-            $boolean28 = false;
+            $boolean33 = false;
         }
     }
-    if ($boolean28 = false) {
-        $int22 = achievement_getgraceday($achievement5);
-        if ($int7 ! -2 & $int22 > ~date_runeday) {
-            $string1 = append($string1, " <col=FFA747>Grace period ends: <~fromdate($int22)></col>");
+    if ($boolean33 = false) {
+        $int27 = achievement_getgraceday($achievement10);
+        if ($int12 ! -2 & $int27 > ~date_runeday) {
+            $string1 = append($string1, " <col=FFA747>Grace period ends: <~fromdate($int27)></col>");
         }
-        $int21 = compare($string2, "");
-        if (cc_find($component1, $int16) = true) {
-            cc_setposition(0, $int23, ^setpos_abs_left, ^setpos_abs_top);
-            cc_setparam(param_8167, $int23);
-            cc_setsize(0, $int12, ^setsize_minus, ^setsize_abs);
+        $int26 = compare($string2, "");
+        if (cc_find($component3, $int21) = true) {
+            cc_setposition(0, $int28, ^setpos_abs_left, ^setpos_abs_top);
+            cc_setparam(param_8167, $int28);
+            cc_setsize(0, $int17, ^setsize_minus, ^setsize_abs);
             cc_setfill(true);
             cc_setcolour(~script10495(12));
-            cc_sethide($boolean28);
-            ~cheevo_resolve_tooltip($achievement5);
-            if ($boolean25 = true) {
-                cc_setonop("cheevo_toggle_dropdown(cc_getid, $achievement5)");
+            cc_sethide($boolean33);
+            ~cheevo_resolve_tooltip($achievement10);
+            if ($boolean30 = true) {
+                cc_setonop("cheevo_toggle_dropdown(cc_getid, $achievement10)");
                 cc_setop(5, "Toggle");
                 cc_setopcursor(5, cursor_46);
             }
-            if (enum_hasoutput(achievement, enum_5983, $achievement5) = true) {
+            if (enum_hasoutput(achievement, enum_5983, $achievement10) = true) {
                 cc_setop(5, "Go To");
-                cc_setopbase(achievement_getname(enum_getreverseindex(achievement, achievement, enum_5983, $achievement5, 0)));
+                cc_setopbase(achievement_getname(enum_getreverseindex(achievement, achievement, enum_5983, $achievement10, 0)));
                 cc_setopcursor(5, cursor_210);
             }
         }
-        if ($int13 = 1) {
-            if ($int26 = 1 & cc_find($component1, calc($int16 + 4)) = true) {
+        if ($int18 = 1) {
+            if ($int31 = 1 & cc_find($component3, calc($int21 + 4)) = true) {
                 cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
-                if ($int24 > 0) {
-                    cc_setposition(calc($int17 + 2), calc($int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
+                if ($int29 > 0) {
+                    cc_setposition(calc($int22 + 2), calc($int28 + 2), ^setpos_abs_left, ^setpos_abs_top);
                 } else {
-                    cc_setposition(calc($int17 + 2), calc($int23 + ($int12 / 2 - cc_getheight / 2)), ^setpos_abs_left, ^setpos_abs_top);
+                    cc_setposition(calc($int22 + 2), calc($int28 + ($int17 / 2 - cc_getheight / 2)), ^setpos_abs_left, ^setpos_abs_top);
                 }
                 cc_setnoclickthrough(true);
-                if ($int7 = -2) {
-                    ~script13618($component1, cc_getid, $achievement5);
+                if ($int12 = -2) {
+                    ~script13618($component3, cc_getid, $achievement10);
                 } else {
-                    ~cheevo_update_pin($component1, cc_getid, $achievement5);
+                    ~cheevo_update_pin($component3, cc_getid, $achievement10);
                 }
-                $int18 = calc(cc_getx + cc_getwidth);
+                $int23 = calc(cc_getx + cc_getwidth);
             } else {
-                $int18 = 0;
+                $int23 = 0;
             }
-            if ($int24 > 0 & cc_find($component1, calc($int16 + 10)) = true) {
-                cc_setposition(calc($int17 + 1 + 2), calc($int23 + 14 + 2 * 2), ^setpos_abs_left, ^setpos_abs_top);
+            if ($int29 > 0 & cc_find($component3, calc($int21 + 10)) = true) {
+                cc_setposition(calc($int22 + 1 + 2), calc($int28 + 14 + 2 * 2), ^setpos_abs_left, ^setpos_abs_top);
                 cc_setsize(14, 12, ^setsize_abs, ^setsize_abs);
                 cc_setcolour(~script10495(3));
-                cc_settext(tostring_localised($int24, true));
+                cc_settext(tostring_localised($int29, true));
                 cc_settextshadow(true);
                 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
                 cc_settextfont(fontmetrics_26);
             }
-            if (cc_find($component1, calc($int16 + 6)) = true) {
-                cc_setposition(calc($int18 + 2), $int23, ^setpos_abs_left, ^setpos_abs_top);
-                cc_setsize(calc($int18 + 2 * 2 + 15), $int12, ^setsize_minus, ^setsize_abs);
-                cc_setcolour($rgb14);
+            if (cc_find($component3, calc($int21 + 6)) = true) {
+                cc_setposition(calc($int23 + 2), $int28, ^setpos_abs_left, ^setpos_abs_top);
+                cc_setsize(calc($int23 + 2 * 2 + 15), $int17, ^setsize_minus, ^setsize_abs);
+                cc_setcolour($rgb19);
                 cc_settext($string1);
                 cc_settextshadow(true);
                 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
                 cc_settextfont(fontmetrics_26);
             }
-            if ($int21 ! 0 & cc_find($component1, calc($int16 + 8)) = true) {
-                cc_setposition(2, calc($int23 + 2), ^setpos_abs_right, ^setpos_abs_top);
+            if ($int26 ! 0 & cc_find($component3, calc($int21 + 8)) = true) {
+                cc_setposition(2, calc($int28 + 2), ^setpos_abs_right, ^setpos_abs_top);
                 cc_setgraphic("achievement_icon_rewards_14px,0");
                 cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
                 ~script3537($string2);
                 cc_setmouseovercursor(cursor_172);
                 cc_setnoclickthrough(true);
             }
-            if ($boolean25 = true & cc_find($component1, calc($int16 + 7)) = true) {
+            if ($boolean30 = true & cc_find($component3, calc($int21 + 7)) = true) {
                 cc_setsize(13, 13, ^setsize_abs, ^setsize_abs);
-                if ($int21 = 0) {
-                    cc_setposition(2, calc($int23 + ($int12 / 2 - cc_getheight / 2)), ^setpos_abs_right, ^setpos_abs_top);
+                if ($int26 = 0) {
+                    cc_setposition(2, calc($int28 + ($int17 / 2 - cc_getheight / 2)), ^setpos_abs_right, ^setpos_abs_top);
                 } else {
-                    cc_setposition(2, calc($int23 + ($int12 - cc_getheight)), ^setpos_abs_right, ^setpos_abs_top);
+                    cc_setposition(2, calc($int28 + ($int17 - cc_getheight)), ^setpos_abs_right, ^setpos_abs_top);
                 }
                 cc_setgraphic("rs3_icon_accordion,0");
             }
         } else {
-            if (cc_find($component1, calc($int16 + 1)) = true) {
-                cc_setposition(2, calc($int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
+            if (cc_find($component3, calc($int21 + 1)) = true) {
+                cc_setposition(2, calc($int28 + 2), ^setpos_abs_left, ^setpos_abs_top);
                 cc_setsize(28, 28, ^setsize_abs, ^setsize_abs);
-                cc_setgraphic(achievement_sprite($achievement5));
-                $int17 = calc(cc_getx + cc_getwidth);
+                cc_setgraphic(achievement_sprite($achievement10));
+                $int22 = calc(cc_getx + cc_getwidth);
             }
-            if (($int7 = -1 | $int7 = -2) & cc_find($component1, calc($int16 + 3)) = true) {
-                cc_setposition(2, calc($int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
+            if (($int12 = -1 | $int12 = -2) & cc_find($component3, calc($int21 + 3)) = true) {
+                cc_setposition(2, calc($int28 + 2), ^setpos_abs_left, ^setpos_abs_top);
                 cc_setsize(28, 28, ^setsize_abs, ^setsize_abs);
-                if ($int7 = -2) {
+                if ($int12 = -2) {
                     cc_setgraphic(mad_may_16_icon_case_complete);
                 } else {
                     cc_setgraphic(mad_may_16_icon_case_locked);
-                    if (.cc_find($component1, calc($int16 + 2)) = true) {
-                        .cc_setposition(2, calc($int23 + 2), ^setpos_abs_left, ^setpos_abs_top);
+                    if (.cc_find($component3, calc($int21 + 2)) = true) {
+                        .cc_setposition(2, calc($int28 + 2), ^setpos_abs_left, ^setpos_abs_top);
                         .cc_setsize(28, 28, ^setsize_abs, ^setsize_abs);
                         .cc_setfill(true);
                         .cc_setcolour(0x808080);
@@ -242,94 +268,94 @@ while ($int6 < $int0) {
                     }
                 }
             }
-            if ($int26 = 1 & cc_find($component1, calc($int16 + 4)) = true) {
-                cc_setposition(calc($int17 + 2), $int23, ^setpos_abs_left, ^setpos_abs_top);
+            if ($int31 = 1 & cc_find($component3, calc($int21 + 4)) = true) {
+                cc_setposition(calc($int22 + 2), $int28, ^setpos_abs_left, ^setpos_abs_top);
                 cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
                 cc_setnoclickthrough(true);
-                if ($int7 = -2) {
-                    ~script13618($component1, cc_getid, $achievement5);
+                if ($int12 = -2) {
+                    ~script13618($component3, cc_getid, $achievement10);
                 } else {
-                    ~cheevo_update_pin($component1, cc_getid, $achievement5);
+                    ~cheevo_update_pin($component3, cc_getid, $achievement10);
                 }
-                $int18 = calc(cc_getx + cc_getwidth);
+                $int23 = calc(cc_getx + cc_getwidth);
             } else {
-                $int18 = calc($int17 + 2);
+                $int23 = calc($int22 + 2);
             }
-            if (cc_find($component1, calc($int16 + 5)) = true) {
-                cc_setposition(calc($int18 + 2), $int23, ^setpos_abs_left, ^setpos_abs_top);
+            if (cc_find($component3, calc($int21 + 5)) = true) {
+                cc_setposition(calc($int23 + 2), $int28, ^setpos_abs_left, ^setpos_abs_top);
                 cc_settextshadow(true);
                 cc_settext($string0);
-                cc_setsize($int18, 15, ^setsize_minus, ^setsize_abs);
+                cc_setsize($int23, 15, ^setsize_minus, ^setsize_abs);
                 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
                 cc_settextfont(fontmetrics_55);
-                cc_setcolour($rgb15);
+                cc_setcolour($rgb20);
             }
-            if (cc_find($component1, calc($int16 + 6)) = true) {
-                cc_setposition(calc($int17 + 2), calc($int23 + 15), ^setpos_abs_left, ^setpos_abs_top);
-                cc_setsize(calc($int17 + 13), calc($int12 - 15), ^setsize_minus, ^setsize_abs);
-                cc_setcolour($rgb14);
+            if (cc_find($component3, calc($int21 + 6)) = true) {
+                cc_setposition(calc($int22 + 2), calc($int28 + 15), ^setpos_abs_left, ^setpos_abs_top);
+                cc_setsize(calc($int22 + 13), calc($int17 - 15), ^setsize_minus, ^setsize_abs);
+                cc_setcolour($rgb19);
                 cc_settext($string1);
                 cc_settextshadow(true);
                 cc_settextalign(^settextalign_left, ^settextalign_top, 0);
                 cc_settextfont(fontmetrics_26);
-                $int19 = cc_gety;
-                $int20 = calc(cc_getheight / 2);
+                $int24 = cc_gety;
+                $int25 = calc(cc_getheight / 2);
             }
-            if ($boolean25 = true & cc_find($component1, calc($int16 + 7)) = true) {
+            if ($boolean30 = true & cc_find($component3, calc($int21 + 7)) = true) {
                 cc_setsize(13, 13, ^setsize_abs, ^setsize_abs);
-                cc_setposition(2, calc($int19 + ($int20 - cc_getheight / 2)), ^setpos_abs_right, ^setpos_abs_top);
+                cc_setposition(2, calc($int24 + ($int25 - cc_getheight / 2)), ^setpos_abs_right, ^setpos_abs_top);
                 cc_setgraphic("rs3_icon_accordion,0");
             }
-            if ($int21 ! 0 & cc_find($component1, calc($int16 + 8)) = true) {
-                cc_setposition(2, calc($int23 + 2), ^setpos_abs_right, ^setpos_abs_top);
+            if ($int26 ! 0 & cc_find($component3, calc($int21 + 8)) = true) {
+                cc_setposition(2, calc($int28 + 2), ^setpos_abs_right, ^setpos_abs_top);
                 cc_setgraphic("achievement_icon_rewards_14px,0");
                 cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
                 ~script3537($string2);
                 cc_setmouseovercursor(cursor_172);
                 cc_setnoclickthrough(true);
             }
-            if ($int24 > 0) {
-                if (cc_find($component1, calc($int16 + 9)) = true) {
-                    cc_setposition(calc($int17 - 15), calc($int23 + 2 + 28 - 12), ^setpos_abs_left, ^setpos_abs_top);
+            if ($int29 > 0) {
+                if (cc_find($component3, calc($int21 + 9)) = true) {
+                    cc_setposition(calc($int22 - 15), calc($int28 + 2 + 28 - 12), ^setpos_abs_left, ^setpos_abs_top);
                     cc_setsize(15, 12, ^setsize_abs, ^setsize_abs);
                     cc_setcolour(^black);
                     cc_settrans(128);
                     cc_setfill(true);
                 }
-                if (cc_find($component1, calc($int16 + 10)) = true) {
-                    cc_setposition(calc($int17 - 15), calc($int23 + $int17 - 12), ^setpos_abs_left, ^setpos_abs_top);
+                if (cc_find($component3, calc($int21 + 10)) = true) {
+                    cc_setposition(calc($int22 - 15), calc($int28 + $int22 - 12), ^setpos_abs_left, ^setpos_abs_top);
                     cc_setsize(14, 12, ^setsize_abs, ^setsize_abs);
                     cc_setcolour(~script10495(3));
-                    cc_settext(tostring_localised($int24, true));
+                    cc_settext(tostring_localised($int29, true));
                     cc_settextshadow(true);
                     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
                     cc_settextfont(fontmetrics_26);
                 }
             }
         }
-        if (~script15954 = true & %varclient_6919 = $achievement5) {
-            $achievement29 = $achievement5;
-            $int30 = $int16;
+        if (~script15954 = true & %varclient_6919 = $achievement10) {
+            $achievement34 = $achievement10;
+            $int35 = $int21;
         }
-        if (%varplayer_9607 = $achievement5) {
-            $int31 = $int23;
+        if (%varplayer_9607 = $achievement10) {
+            $int36 = $int28;
         }
-        $int23 = calc($int23 + ($int12 + 2));
+        $int28 = calc($int28 + ($int17 + 2));
     }
-    $int6 = calc($int6 + 1);
+    $int11 = calc($int11 + 1);
 }
 if (%varplayer_9607 = null) {
     if (%varclient_6917 > 0) {
-        $int31 = %varclient_6917;
+        $int36 = %varclient_6917;
     }
     if (~script15954 = true) {
-        if ($achievement29 ! null & $int30 ! -1) {
-            ~script9291($int30, $achievement29);
+        if ($achievement34 ! null & $int35 ! -1) {
+            ~script9291($int35, $achievement34);
         } else {
             ~script9291(%varclient_6918, %varclient_6919);
         }
         return(true);
     }
 }
-~script15341($component1, $int23, $int31);
+~script15341($component3, $int28, $int36);
 return(true);
