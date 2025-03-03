@@ -15,23 +15,21 @@ if (~script6431 = true) {
     $int3 = 300;
 }
 def_int $int7 = db_getfieldcount($dbrow2, dbtable_180:col2);
-if ($int7 <= 0) {
-    return;
-}
 def_struct $struct8 = db_getfield($dbrow2, dbtable_180:col2, max(calc($int7 - 1), 0));
-if ($struct8 = null) {
-    return;
-}
 def_int $int9 = 0;
 def_string $string0 = "";
-def_int $int10 = 0;
-$int9, $string0, $int10 = ~script16461($struct8, ~bool_to_int(struct_param($struct8, param_2217)));
+def_int $int10 = -1;
+if ($struct8 ! null) {
+    $int9, $string0, $int10 = ~script16461($struct8, ~bool_to_int(struct_param($struct8, param_2217)));
+}
 def_string $string1 = db_getfield($dbrow2, dbtable_180:col1, 0);
-if (string_length($string1) = 0) {
+if (string_length($string1) = 0 & $struct8 ! null) {
     $string1 = struct_param($struct8, param_2210);
 }
 $int5 = ~script14747($component0, 0, $int5, $int3, $string1, $int10, 0);
-$int5 = ~script14748($component0, 0, $int5);
+if ($struct8 ! null) {
+    $int5 = ~script14748($component0, 0, $int5);
+}
 if (string_length($string0) > 0) {
     $int5 = ~script16462($component0, 0, $int5, $int3, $int9, $string0);
     $int5 = ~script14748($component0, 0, $int5);
