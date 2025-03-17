@@ -12,19 +12,32 @@ cc_deleteall($component2);
 cc_deleteall($component3);
 def_int $int15 = calc(if_getwidth($component5) - 50);
 def_int $int16 = calc(if_getwidth($component0) / 100);
-def_enum $enum17 = struct_param($struct6, param_6146);
-def_int $int18 = enum_getoutputcount($enum17);
-def_obj $obj19 = null;
-def_int $int20 = -1;
+def_dbrow $dbrow17 = struct_param($struct6, param_9245);
+def_enum $enum18 = struct_param($struct6, param_6146);
+def_int $int19 = 0;
+if ($dbrow17 ! null) {
+    $int19 = db_getfieldcount($dbrow17, dbtable_316:col1);
+} else if ($enum18 ! null) {
+    $int19 = enum_getoutputcount($enum18);
+} else {
+    ~error("No valid data.");
+    return;
+}
+def_obj $obj20 = null;
 def_int $int21 = -1;
-def_graphic $graphic22 = null;
-def_model $model23 = null;
-def_enum $enum24 = struct_param($struct6, param_6147);
-def_enum $enum25 = struct_param($struct6, param_6148);
-def_struct $struct26 = null;
+def_int $int22 = -1;
+def_graphic $graphic23 = null;
+def_model $model24 = null;
+def_enum $enum25 = null;
+def_enum $enum26 = null;
+if ($enum18 ! null) {
+    $enum25 = struct_param($struct6, param_6147);
+    $enum26 = struct_param($struct6, param_6148);
+}
+def_struct $struct27 = null;
 cc_deleteall($component5);
 cc_deleteall($component4);
-def_int $int27 = min(scale($int14, calc(struct_param($struct6, param_6142) * struct_param($struct6, param_6144)), if_getwidth($component0)), if_getwidth($component0));
+def_int $int28 = min(scale($int14, calc(struct_param($struct6, param_6142) * struct_param($struct6, param_6144)), if_getwidth($component0)), if_getwidth($component0));
 if (if_getnextsubid($component0) = 0) {
     cc_create($component0, ^iftype_text, if_getnextsubid($component0));
     cc_settextfont(fontmetrics_31);
@@ -56,7 +69,7 @@ if (if_getnextsubid($component1) = 0) {
     cc_setsize(12, 0, ^setsize_abs, ^setsize_minus);
     cc_setposition(0, $int9, ^setpos_abs_right, ^setpos_abs_top);
 }
-if_setontimer("script12886($component1, $component2, $component3, $int27)", $component1);
+if_setontimer("script12886($component1, $component2, $component3, $int28)", $component1);
 if (if_getnextsubid($component5) = 0) {
     cc_create($component5, ^iftype_graphic, if_getnextsubid($component5));
     cc_setgraphic(trh72_progress_bar_back_end);
@@ -71,16 +84,20 @@ if (if_getnextsubid($component5) = 0) {
     cc_setposition(calc($int8 + 25), $int9, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize($int15, 25, ^setsize_abs, ^setsize_abs);
 }
-while ($int7 < $int18) {
-    $obj19 = enum(int, obj, $enum17, $int7);
-    $graphic22 = oc_param($obj19, param_6276);
-    $model23 = oc_param($obj19, param_4916);
-    $int11 = enum(int, int, $enum24, $int7);
-    $int12 = enum(int, int, $enum25, $int7);
+while ($int7 < $int19) {
+    if ($dbrow17 ! null) {
+        $obj20, $int12, $int11 = ~script19880($dbrow17, $int7);
+    } else {
+        $obj20 = enum(int, obj, $enum18, $int7);
+        $int11 = enum(int, int, $enum25, $int7);
+        $int12 = enum(int, int, $enum26, $int7);
+    }
+    $graphic23 = oc_param($obj20, param_6276);
+    $model24 = oc_param($obj20, param_4916);
     $int13 = ~script12879($struct6, $int7);
     $int8 = $int16;
     $int8 = calc($int8 * scale($int11, calc(struct_param($struct6, param_6142) * struct_param($struct6, param_6144)), 100));
-    if ($int7 ! calc($int18 - 1) & if_getnextsubid($component5) ! calc($int18 + 2)) {
+    if ($int7 ! calc($int19 - 1) & if_getnextsubid($component5) ! calc($int19 + 2)) {
         cc_create($component5, ^iftype_graphic, if_getnextsubid($component5));
         cc_setgraphic(trh72_progress_bar_back_link);
         cc_setposition(calc($int8 - 7), $int9, ^setpos_abs_left, ^setpos_abs_top);
@@ -100,44 +117,44 @@ while ($int7 < $int18) {
     }
     if (if_getnextsubid($component4) = $int10) {
         if ($int14 >= $int11 & $int13 = 0) {
-            $struct26 = struct_28303;
-            if (oc_param($obj19, param_4909) ! null) {
-                $graphic22 = oc_param($obj19, param_4909);
+            $struct27 = struct_28303;
+            if (oc_param($obj20, param_4909) ! null) {
+                $graphic23 = oc_param($obj20, param_4909);
             }
-            $model23 = oc_param($obj19, param_4915);
+            $model24 = oc_param($obj20, param_4915);
         } else {
-            $struct26 = struct_29356;
+            $struct27 = struct_29356;
             if ($int14 < $int11) {
-                $struct26 = struct_21363;
+                $struct27 = struct_21363;
                 $int13 = 2;
-                if (oc_param($obj19, param_4912) ! null) {
-                    $graphic22 = oc_param($obj19, param_4912);
+                if (oc_param($obj20, param_4912) ! null) {
+                    $graphic23 = oc_param($obj20, param_4912);
                 }
-                $model23 = oc_param($obj19, param_4917);
+                $model24 = oc_param($obj20, param_4917);
             }
         }
-        if (struct_param($struct6, param_4927) = true & oc_param($obj19, param_4927) = true) {
-            ~rs3_background_panel_dynamic($component4, $struct26, calc($int8 - 20), $int9, calc(36 + 4), calc(32 + 4), null);
+        if (struct_param($struct6, param_4927) = true & oc_param($obj20, param_4927) = true) {
+            ~rs3_background_panel_dynamic($component4, $struct27, calc($int8 - 20), $int9, calc(36 + 4), calc(32 + 4), null);
         }
-        if ($model23 = null) {
+        if ($model24 = null) {
             cc_create($component4, ^iftype_graphic, if_getnextsubid($component4));
-            cc_setsize(oc_param($obj19, param_4913), oc_param($obj19, param_4914), ^setsize_abs, ^setsize_abs);
-            if ($graphic22 = null) {
-                cc_setobject($obj19, $int12);
+            cc_setsize(oc_param($obj20, param_4913), oc_param($obj20, param_4914), ^setsize_abs, ^setsize_abs);
+            if ($graphic23 = null) {
+                cc_setobject($obj20, $int12);
                 cc_setposition(calc($int8 - 16), calc($int9 + 2), ^setpos_abs_left, ^setpos_abs_top);
             } else {
-                cc_setgraphic($graphic22);
-                cc_setposition(calc($int8 + oc_param($obj19, param_4924)), calc($int9 + oc_param($obj19, param_4925)), ^setpos_abs_left, ^setpos_abs_top);
-                cc_setsize(oc_param($obj19, param_4913), oc_param($obj19, param_4914), ^setsize_abs, ^setsize_abs);
+                cc_setgraphic($graphic23);
+                cc_setposition(calc($int8 + oc_param($obj20, param_4924)), calc($int9 + oc_param($obj20, param_4925)), ^setpos_abs_left, ^setpos_abs_top);
+                cc_setsize(oc_param($obj20, param_4913), oc_param($obj20, param_4914), ^setsize_abs, ^setsize_abs);
             }
-            $int10 = ~script15824($struct6, $component4, $graphic22, $obj19, $int12, $int11, $int13);
+            $int10 = ~script15824($struct6, $component4, $graphic23, $obj20, $int12, $int11, $int13);
         } else {
             cc_create($component4, ^iftype_model, if_getnextsubid($component4));
             cc_setsize(40, 44, ^setsize_abs, ^setsize_abs);
-            cc_setposition(calc($int8 + oc_param($obj19, param_4924)), calc($int9 + oc_param($obj19, param_4925)), ^setpos_abs_left, ^setpos_abs_bottom);
-            cc_setmodel($model23);
-            cc_setmodelangle(0, oc_param($obj19, param_4925), oc_param($obj19, param_4918), oc_param($obj19, param_4919), oc_param($obj19, param_4922), oc_param($obj19, param_4923));
-            $int10 = ~script15824($struct6, $component4, $graphic22, $obj19, $int12, $int11, $int13);
+            cc_setposition(calc($int8 + oc_param($obj20, param_4924)), calc($int9 + oc_param($obj20, param_4925)), ^setpos_abs_left, ^setpos_abs_bottom);
+            cc_setmodel($model24);
+            cc_setmodelangle(0, oc_param($obj20, param_4925), oc_param($obj20, param_4918), oc_param($obj20, param_4919), oc_param($obj20, param_4922), oc_param($obj20, param_4923));
+            $int10 = ~script15824($struct6, $component4, $graphic23, $obj20, $int12, $int11, $int13);
         }
     }
     $int7 = calc($int7 + 1);
