@@ -24778,3 +24778,14 @@ readyanim=null,seq_36596
 randomreadyanim=seq_36360,70
 randomreadyanim=seq_36361,30
 
+[bas_4785]
+readyanim_l=seq_36692
+readyanim_r=seq_36692
+walkturn_l=seq_36688
+walkturn_r=seq_36688
+walkanim_l=seq_36692
+walkanim_r=seq_36692
+walkanim_b=seq_36688
+runanim=seq_36690
+readyanim=seq_36686,seq_36688
+
