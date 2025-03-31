@@ -1,29 +1,32 @@
 // 17047
 [clientscript,trh189_overlay_setup]
-def_int $int0 = 0;
+def_int $int0 = 1;
 cc_deleteall(interface_1253:com_513);
 def_int $int1 = -1;
 while (++$int1 <= 30) {
     cc_create(interface_1253:com_513, ^iftype_graphic, $int1);
 }
+~script19904;
 def_dbrow $dbrow2 = ~script1626(1, %varplayerbit_54973);
 def_dbrow $dbrow3 = ~script1626(2, %varplayerbit_54974);
 ~script11157($dbrow2, $dbrow3, 0);
+~script19909;
 ~script17048;
-~spinner_create(interface_1082:com_117, 3, -1);
-~spinner_create(interface_1082:com_98, 3, -1);
+~spinner_create(interface_1082:com_121, 3, -1);
+~spinner_create(interface_1082:com_102, 3, -1);
 if (%varplayer_10733 = null) {
-    ~script16663(dbrow_6974, struct_param(struct_47035, param_5409), 1);
+    ~script16663(dbrow_6974, ~script10513, 1);
 } else {
     ~script16663(dbrow_6974, %varplayer_10733, %varplayer_10734);
 }
 if ($int0 = 1) {
-    if_setnpcmodel(npc_12360, interface_1082:com_38);
-    if_setmodelangle(0, 0, 0, 512, 0, 800, interface_1082:com_38);
-    if_setmodelanim(seq_35564, interface_1082:com_38);
-    if_setnpcmodel(npc_13091, interface_1082:com_37);
-    if_setmodelangle(0, 0, 0, 512, 0, 800, interface_1082:com_37);
-    if_setmodelanim(seq_35566, interface_1082:com_37);
-    if_setontimer("script11709(100, interface_1082:com_34)", interface_1082:com_34);
+    $dbrow2 = ~script1626(1, 0);
+    if_setnpcmodel(db_getfield($dbrow2, dbtable_240:col6, 0), interface_1082:com_41);
+    if_setmodelangle(0, 0, 0, 512, 0, 800, interface_1082:com_41);
+    if_setmodelanim(seq_35564, interface_1082:com_41);
+    if_setnpcmodel(npc_13091, interface_1082:com_40);
+    if_setmodelangle(0, 0, 0, 512, 0, 800, interface_1082:com_40);
+    if_setmodelanim(seq_35566, interface_1082:com_40);
+    if_setontimer("script11709(100, interface_1082:com_37)", interface_1082:com_37);
 }
 ~script19028;

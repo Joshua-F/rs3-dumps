@@ -22,7 +22,16 @@ if (%varplayerbit_53295 > 0) {
 } else if (%varplayerbit_53297 > 0) {
     $string0 = tostring_localised($int4, true);
 } else {
-    $string0 = tostring_localised($int3, true);
+    switch_struct (%varplayer_10946) {
+        case struct_51468 :
+            if ($int3 < %varplayerbit_53294) {
+                $string0 = "<tostring_localised(scale($int3, max(1, %varplayerbit_53294), 100), true)>%";
+            } else {
+                $string0 = "Training Complete";
+            }
+        case default :
+            $string0 = tostring_localised($int3, true);
+    }
 }
 if (%varplayerbit_53295 > 0 | %varplayerbit_53292 > 0 & %varplayerbit_53293 = 0) {
     if_settext($string0, $component1);
