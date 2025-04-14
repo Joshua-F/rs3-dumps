@@ -1,0 +1,85 @@
+// 19948
+[proc,script19948](int $int0)
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = null;
+def_int $int1 = 0;
+def_int $int2 = db_getfield(dbrow_15220, dbtable_318:col1, 0);
+def_int $int3 = db_getfield(dbrow_15221, dbtable_318:col1, 0);
+def_int $int4 = db_getfield(dbrow_15221, dbtable_318:col2, 0);
+db_find(dbtable_319:col0, $int0);
+def_dbrow $dbrow5 = db_findnext;
+def_int $int6 = ~script19930($dbrow5);
+def_int $int7 = ~script19931($dbrow5);
+def_component $component8 = enum(int, component, enum_8220, $int7);
+switch_int (%varplayerbit_57881) {
+    case 0 :
+        if ($int6 ! 0) {
+            $component8 = interface_1336:com_28;
+            $string2 = "Speak to Nougat Bunny in the Blooming Burrow to unlock this clue.";
+        } else {
+            $string0 = "Gielinor Egg Hunt - Week 1<br>Clue <tostring(calc($int7 + 1))>";
+        }
+    case 1 :
+        if (~date_runeday < $int2) {
+            $component8 = interface_1336:com_28;
+            $string2 = "The week 2 Gielinor Egg Hunt will be available from <~script19936($int2, 0)>.";
+        } else if ($int6 ! 0) {
+            $component8 = interface_1336:com_28;
+            $string2 = "Speak to Nougat Bunny in the Blooming Burrow to unlock this clue.";
+        } else {
+            $string0 = "Gielinor Egg Hunt - Week 2<br>Clue <tostring(calc($int7 + 1))>";
+        }
+    case 2 :
+        if (~date_runeday < $int3 | ~date_runeday = $int3 & calc(%varplayer_11489 % 1440) < $int4) {
+            $component8 = interface_1336:com_28;
+            $string2 = "The week 1 Community Egg Hunt will be available from <~script19936($int3, $int4)>.";
+        } else if ($int6 = 3) {
+            $component8 = interface_1336:com_28;
+            $string2 = "Speak to Nougat Bunny in the Blooming Burrow to unlock this clue.";
+        } else if ($int6 = 4) {
+            $component8 = interface_1336:com_28;
+            $string2 = "Solve the previous community clue to unlock this clue.";
+        } else {
+            $string0 = "Community Egg Hunt - Week 1<br>Clue <tostring(calc($int7 + 1))>";
+        }
+    case 3 :
+        $int3 = db_getfield(dbrow_15222, dbtable_318:col1, 0);
+        $int4 = db_getfield(dbrow_15222, dbtable_318:col2, 0);
+        if (~date_runeday < $int3 | ~date_runeday = $int3 & calc(%varplayer_11489 % 1440) < $int4) {
+            $component8 = interface_1336:com_28;
+            $string2 = "The week 2 Community Egg Hunt will be available from <~script19936($int3, $int4)>.";
+        } else if ($int6 = 3) {
+            $component8 = interface_1336:com_28;
+            $string2 = "Speak to Nougat Bunny in the Blooming Burrow to unlock this clue.";
+        } else if ($int6 = 4) {
+            $component8 = interface_1336:com_28;
+            $string2 = "Solve the previous community clue to unlock this clue.";
+        } else {
+            $string0 = "Community Egg Hunt - Week 2<br>Clue <tostring(calc($int7 + 1))>";
+        }
+}
+if (string_length($string0) > 0) {
+    if_setsize(if_getwidth(interface_1336:com_28), 138, ^setsize_abs, ^setsize_abs, interface_1336:com_28);
+} else {
+    if_setsize(if_getwidth(interface_1336:com_28), calc(138 + if_getheight(interface_1336:com_75) + 4), ^setsize_abs, ^setsize_abs, interface_1336:com_28);
+}
+if_settext($string0, interface_1336:com_75);
+~script19949;
+$int1 = calc(paraheight(if_gettext($component8), 276, fontmetrics_207) * 16);
+if ($int1 > 138) {
+    if_sethide(false, interface_1336:com_17);
+    if_setsize(16, 138, ^setsize_abs, ^setsize_abs, interface_1336:com_17);
+    if_setscrollpos(0, 0, interface_1336:com_18);
+    if_setscrollsize(0, $int1, interface_1336:com_18);
+    ~rs3_scrollbar_vertical(interface_1336:com_17, interface_1336:com_18);
+} else {
+    if_sethide(true, interface_1336:com_17);
+    if_setscrollsize(0, 0, interface_1336:com_18);
+}
+if ($component8 ! interface_1336:com_28) {
+    if_sethide(false, $component8);
+} else {
+    if_sethide(false, interface_1336:com_28);
+    if_settext($string2, interface_1336:com_28);
+}

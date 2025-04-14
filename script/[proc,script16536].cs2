@@ -3,35 +3,43 @@
 if (~script16513 = false) {
     return;
 }
-def_component $component0 = interface_970:com_53;
-def_component $component1 = interface_970:com_54;
-def_component $component2 = interface_970:com_61;
-def_component $component3 = interface_970:com_72;
+def_component $component0 = interface_970:com_54;
+def_component $component1 = interface_970:com_55;
+def_component $component2 = interface_970:com_56;
+def_component $component3 = interface_970:com_63;
+def_component $component4 = interface_970:com_74;
+def_component $component5 = interface_970:com_100;
 if_sethide(false, interface_970:com_32);
-cc_deleteall($component2);
 cc_deleteall($component3);
-if_settext("Egg Hunt<br>Bonus", interface_970:com_62);
-def_dbrow $dbrow4 = ~script16519(%varplayerbit_51240);
-def_string $string0 = db_getfield($dbrow4, dbtable_177:col1, 0);
-if_settext("Next <tostring(8)> eggs:</col><br><$string0>", interface_970:com_63);
-~script16537($component2, $dbrow4);
-def_obj $obj5 = null;
-def_int $int6 = 0;
+cc_deleteall($component4);
+cc_deleteall($component5);
+if_settext("Egg Hunt<br>Bonus", interface_970:com_64);
+def_dbrow $dbrow6 = ~script16519(%varplayerbit_51240);
+def_string $string0 = db_getfield($dbrow6, dbtable_177:col1, 0);
+if_settext("Next <tostring(6)> eggs:</col><br><$string0>", interface_970:com_65);
+~script16537($component3, $dbrow6);
+if_settext("Bonus Prize", interface_970:com_101);
+if_settext("1x Mystery Egg", interface_970:com_102);
+~script16538($component5, obj_58755, 1);
+def_obj $obj7 = null;
+def_int $int8 = 0;
 def_string $string1 = "";
-if (calc(%varplayer_10425 % 3) = 0) {
+if (calc(%varplayer_10425 % 2) = 0) {
     if_sethide(false, $component1);
-    if_setposition(120, 0, ^setpos_abs_left, ^setpos_abs_centre, $component0);
-    if_setposition(120, 0, ^setpos_abs_right, ^setpos_abs_centre, $component1);
-    $obj5, $int6 = ~script16515;
-    if_settext("Reward Item", interface_970:com_73);
-    if (oc_param($obj5, param_2531) = 2) {
-        $string1 = "Cosmetic Override:</col><br><oc_name($obj5)>";
+    if_setposition(40, 0, ^setpos_abs_left, ^setpos_abs_centre, $component0);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component1);
+    if_setposition(40, 0, ^setpos_abs_right, ^setpos_abs_centre, $component2);
+    $obj7, $int8 = ~script16515;
+    if_settext("Reward Item", interface_970:com_75);
+    if (oc_param($obj7, param_2531) = 2) {
+        $string1 = "Cosmetic Override:</col><br><oc_name($obj7)>";
     } else {
-        $string1 = "<tostring($int6)> x <oc_name($obj5)>";
+        $string1 = "<tostring($int8)> x <oc_name($obj7)>";
     }
-    if_settext($string1, interface_970:com_74);
-    ~script16538($component3, $obj5, $int6);
+    if_settext($string1, interface_970:com_76);
+    ~script16538($component4, $obj7, $int8);
 } else {
     if_sethide(true, $component1);
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $component0);
+    if_setposition(120, 0, ^setpos_abs_left, ^setpos_abs_centre, $component0);
+    if_setposition(120, 0, ^setpos_abs_right, ^setpos_abs_centre, $component2);
 }
