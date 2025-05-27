@@ -29675,6 +29675,16 @@ readyanim=null,seq_36744
 randomreadyanim=seq_36741,70
 randomreadyanim=seq_36742,30
 
+// 4796
+[bas_4796]
+runanim=seq_36774
+readyanim=seq_36772,seq_36773
+
+// 4797
+[bas_4797]
+runanim=seq_36777
+readyanim=seq_36775,seq_36776
+
 // 4798
 [bas_4798]
 readyanim=seq_5839,seq_36766
