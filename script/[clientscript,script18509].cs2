@@ -1,6 +1,12 @@
 // 18509
-[clientscript,script18509](int $int0, int $int1, int $int2, int $int3)
-%varclient_7382 = calc(date_minutes_fromruneday(calc($int1 + 1)) - ($int2 + 1));
+[clientscript,script18509](struct $struct0, int $int1, int $int2, int $int3)
+def_dbrow $dbrow4 = struct_param($struct0, param_9075);
+switch_dbtable (db_getrowtable($dbrow4)) {
+    case dbtable_280 :
+        %varclient_7382 = calc(date_minutes_fromruneday(calc(~trh_promo_end_runeday($struct0) + 1)) - ($int2 + 1));
+    case dbtable_26 :
+        %varclient_7382 = calc(date_minutes_fromruneday(calc($int1 + 1)) - ($int2 + 1));
+}
 %varclient_7383 = $int3;
-def_component $component4 = interface_1253:com_336;
-if_setontimer("script18510($component4, $int1)", $component4);
+def_component $component5 = interface_1253:com_336;
+if_setontimer("script18510($component5, $int1)", $component5);
