@@ -919,11 +919,23 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                 }
             case default :
                 switch_category (oc_category($obj0)) {
+                    case category_5568, category_5569, category_5570 :
+                        $obj40 = enum(int, obj, enum_8465, inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_58104));
+                        if ($obj40 ! null) {
+                            $int47 = ~script7235("Item being created: <oc_name($obj40)>", $string3, $struct2, $component3, $component4, $int47);
+                            if (inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_58107) >= ~script20006($obj40)) {
+                                $int47 = ~script7235("<col=ff0000>You have damaged this item. Until you repair it, your progress when working on this item is halved.", $string3, $struct2, $component3, $component4, $int47);
+                            } else {
+                                $int47 = ~script7235("Current miscuts: <tostring_localised(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_58107), true)>/<tostring_localised(~script20006($obj40), true)> (<tostring_localised(scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_58107), ~script20006($obj40), 100), true)>%)", $string3, $struct2, $component3, $component4, $int47);
+                            }
+                            $int47 = ~script7235("Current progress: <tostring_localised(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_58105), true)>/<tostring_localised(~script20005(oc_param($obj40, param_9300), $obj40), true)> (<tostring_localised(scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_58105), ~script20005(oc_param($obj40, param_9300), $obj40), 100), true)>%) ", $string3, $struct2, $component3, $component4, $int47);
+                            $int47 = ~script7235("Experience left in item: <tostring_localised(calc(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_58106) / 10), true)>", $string3, $struct2, $component3, $component4, $int47);
+                        }
                     case category_4452 :
                         if (oc_param($obj0, param_7804) = 2) {
                             $int47 = ~script7235("<tostring(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_43230))>/<tostring(oc_param($obj0, param_2665))> rivets applied.", $string3, $struct2, $component3, $component4, $int47);
                         }
-                    case category_5442, category_5506 :
+                    case category_5442, category_5506, category_5572 :
                         if (oc_param($obj0, param_9122) > 0) {
                             if (oc_param($obj0, param_9123) ! null) {
                                 $int47 = ~script7235("Item to craft: <oc_name(oc_param($obj0, param_9123))>", $string3, $struct2, $component3, $component4, $int47);
@@ -1114,7 +1126,7 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                         }
                         $int47 = ~script7235("Cutting power: Tier <$string12>", $string3, $struct2, $component3, $component4, $int47);
                     case default :
-                        if (oc_param($obj0, param_369) = 3) {
+                        if (oc_param($obj0, param_369) = 4) {
                             $int18 = min(max(scale(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_6139), oc_param($obj0, param_368), 100), 1), 99);
                             $int47 = ~script7235("<oc_param($obj0, param_6170)> filled: <tostring($int18)>%", $string3, $struct2, $component3, $component4, $int47);
                         } else if (oc_param($obj0, param_4563) = 1) {
@@ -1141,32 +1153,37 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                             if (oc_param($obj0, param_5527) = null) {
                                 if (oc_param($obj0, param_3385) >= 1) {
                                     $int18 = ~script670(%varclient_5121, %varclient_5122, $obj0);
-                                    if ($int18 = 0) {
-                                        $int18 = 1000;
+                                    if (oc_param($obj0, param_9308) = 1) {
+                                        $int18 = max(0, calc(oc_param($obj0, param_3385) - $int18));
+                                        $int47 = ~script7235("Charges remaining: <tostring($int18)>", $string3, $struct2, $component3, $component4, $int47);
                                     } else {
-                                        $int18 = calc(1000 - $int18 / (oc_param($obj0, param_3385) / 1000));
-                                        if ($int18 = 0 & oc_param($obj0, param_5772) = 0) {
-                                            $int18 = 1;
+                                        if ($int18 = 0) {
+                                            $int18 = 1000;
+                                        } else {
+                                            $int18 = calc(1000 - $int18 / (oc_param($obj0, param_3385) / 1000));
+                                            if ($int18 = 0 & oc_param($obj0, param_5772) = 0) {
+                                                $int18 = 1;
+                                            }
+                                            if ($int18 = 1000) {
+                                                $int18 = 999;
+                                            }
                                         }
-                                        if ($int18 = 1000) {
-                                            $int18 = 999;
+                                        if ($int18 = 0) {
+                                            $string1 = "0.0";
+                                        } else {
+                                            $string1 = tostring(calc($int18 / 10));
+                                            $string1 = append($string1, ".<tostring(calc($int18 % 10))>");
                                         }
+                                        $string2 = "<col=ffffff>";
+                                        if ($int18 <= 250) {
+                                            $string2 = "<col=ff0000>";
+                                        } else if ($int18 <= 650) {
+                                            $string2 = "<col=FFA500>";
+                                        } else {
+                                            $string2 = "<col=00ff00>";
+                                        }
+                                        $int47 = ~script7235("Item Charge: <$string2><$string1>%", $string3, $struct2, $component3, $component4, $int47);
                                     }
-                                    if ($int18 = 0) {
-                                        $string1 = "0.0";
-                                    } else {
-                                        $string1 = tostring(calc($int18 / 10));
-                                        $string1 = append($string1, ".<tostring(calc($int18 % 10))>");
-                                    }
-                                    $string2 = "<col=ffffff>";
-                                    if ($int18 <= 250) {
-                                        $string2 = "<col=ff0000>";
-                                    } else if ($int18 <= 650) {
-                                        $string2 = "<col=FFA500>";
-                                    } else {
-                                        $string2 = "<col=00ff00>";
-                                    }
-                                    $int47 = ~script7235("Item Charge: <$string2><$string1>%", $string3, $struct2, $component3, $component4, $int47);
                                 } else if (oc_param($obj0, param_6880) = 0) {
                                     if (oc_param($obj0, param_5777) ! null & oc_param($obj0, param_5778) ! null) {
                                         if (oc_wearpos($obj0) = 3) {
@@ -1325,6 +1342,28 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                     $string12 = "<$string12>, Keldagrim";
                 }
                 $string12 = "<$string12> and the Tree Gnome Stronghold.";
+                $int47 = ~script7235($string12, $string3, $struct2, $component3, $component4, $int47);
+            case obj_59216 :
+                if (%varplayerbit_58116 < 1) {
+                    $string12 = "Damage remaining: <tostring_localised(10000, true)>";
+                } else {
+                    $string12 = "Damage remaining: <tostring_localised(%varplayerbit_58116, true)>";
+                }
+                $int47 = ~script7235($string12, $string3, $struct2, $component3, $component4, $int47);
+            case obj_59218 :
+                $string12 = "Damage remaining: <tostring_localised(%varplayerbit_58117, true)>";
+                $int47 = ~script7235($string12, $string3, $struct2, $component3, $component4, $int47);
+            case obj_59221 :
+                $string12 = "Charges remaining: <tostring_localised(50, true)>";
+                $int47 = ~script7235($string12, $string3, $struct2, $component3, $component4, $int47);
+            case obj_59226 :
+                $string12 = "Charges remaining: <tostring_localised(10, true)>";
+                $int47 = ~script7235($string12, $string3, $struct2, $component3, $component4, $int47);
+            case obj_59233 :
+                $string12 = "Charges remaining: <tostring_localised(250, true)>";
+                $int47 = ~script7235($string12, $string3, $struct2, $component3, $component4, $int47);
+            case obj_59238 :
+                $string12 = "Charges remaining: <tostring_localised(10, true)>";
                 $int47 = ~script7235($string12, $string3, $struct2, $component3, $component4, $int47);
             case obj_53754 :
                 $string12 = "A box that can be activated once a day, allowing you to deposit items from your backpack to your bank for one hour.";
