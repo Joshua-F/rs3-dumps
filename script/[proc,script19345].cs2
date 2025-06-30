@@ -4,7 +4,14 @@ if (~script19362($obj1) = true) {
     if (oc_members($obj1) = 1 & ~map_members = false) {
         ~bank_mes("You need to be on a members' world to store that item.");
     } else {
-        ~bank_mes("<oc_name($obj0)> can not be stored in group storage.");
+        switch_obj ($obj1) {
+            case obj_50805 :
+                if (calc(%varplayerbit_48172 + %varplayerbit_48173 + %varplayerbit_48174 + %varplayerbit_48175 + %varplayerbit_48176) ! 0) {
+                    ~bank_mes("<oc_name($obj0)> can not be stored in group storage whilst it has gems stored in it.");
+                }
+            case default :
+                ~bank_mes("<oc_name($obj0)> can not be stored in group storage.");
+        }
     }
     return(0);
 }

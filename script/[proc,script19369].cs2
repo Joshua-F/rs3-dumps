@@ -18,6 +18,16 @@ switch_obj ($obj0) {
             ~bank_mes("You need to complete the invention tutorial to withdraw that item.");
             return(false);
         }
+    case obj_50805 :
+        if (calc(%varplayerbit_48172 + %varplayerbit_48173 + %varplayerbit_48174 + %varplayerbit_48175 + %varplayerbit_48176) ! 0) {
+            ~error("Player has artificers measure vars set but no measure.");
+            ~bank_mes("You can only have one of those at a time.");
+            return(false);
+        }
+        if (~script11197(obj_50805, clearbit(-1, 0)) = true | ~inv_find(inv_964, obj_50805, 0) ! -1) {
+            ~bank_mes("You can only have one of those at a time.");
+            return(false);
+        }
 }
 def_boolean $boolean7 = false;
 if (%varplayer_160 = 1) {
