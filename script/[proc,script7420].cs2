@@ -26,31 +26,43 @@ def_string $string3 = "";
 def_graphic $graphic22 = null;
 def_int $int23 = 0;
 def_int $int24 = 0;
-def_int $int25 = 22;
+def_int $int25 = 0;
+def_int $int26 = 22;
 if (~script6431 = true) {
-    $int25 = 44;
+    $int26 = 44;
 }
-def_component $component26 = $component1;
-def_component $component27 = $component2;
+def_component $component27 = $component1;
+def_component $component28 = $component2;
 if (~script7421(%varclient_998) = true) {
-    $int24 = calc($int24 + $int25);
+    $int25 = calc($int25 + $int26);
 }
 if (~script7421(%varclient_999) = true) {
-    $int24 = calc($int24 + $int25);
+    $int25 = calc($int25 + $int26);
 }
 if (~script7421(%varclient_4272) = true) {
-    $int24 = calc($int24 + $int25);
+    $int25 = calc($int25 + $int26);
 }
-if_setsize(if_getwidth($component4), $int24, ^setsize_abs, ^setsize_abs, $component4);
-if_setsize($int18, calc(65 + $int24), ^setsize_abs, ^setsize_minus, $component0);
-if_setposition(0, calc(if_gety($component4) + $int24), ^setpos_abs_left, ^setpos_abs_top, $component0);
-def_int $int28 = calc(if_getwidth(interface_1587:com_0) - 800 - 16);
+if (~script20079 = 1) {
+    $int25 = ~script20081($int25, $int26);
+}
+if_setsize(if_getwidth($component4), $int25, ^setsize_abs, ^setsize_abs, $component4);
+if_setsize($int18, calc(65 + $int25), ^setsize_abs, ^setsize_minus, $component0);
+if_setposition(0, calc(if_gety($component4) + $int25), ^setpos_abs_left, ^setpos_abs_top, $component0);
+def_int $int29 = calc(if_getwidth(interface_1587:com_0) - 800 - 16);
 while ($int8 ! -1) {
     if (~script7421($int8) = true) {
         if ($int8 = %varclient_998 | $int8 = %varclient_999 | $int8 = %varclient_4272) {
             $int19, $int13, $int23, $graphic22 = ~script11037($int20), 1, "rs3_icon_lobby_favorite_small,0";
-            $component26 = $component5;
-            $component27 = $component6;
+            $component27 = $component5;
+            $component28 = $component6;
+        } else if (~script20079 = 1 & ~script20082($int8) = true) {
+            $int19 = ~script20083($int8, $int26);
+            $int13 = 18;
+            $graphic22 = "rs3_icon_lobby_favorite_small,2";
+            $component27 = $component5;
+            $component28 = $component6;
+            $int24 = 1;
+            $int23 = 0;
         } else {
             $int19, $int23, $graphic22 = $int17, 0, "rs3_icon_lobby_favorite_small,2";
             if (calc($int15 % 2) = 0) {
@@ -58,8 +70,8 @@ while ($int8 ! -1) {
             } else {
                 $int13 = 9;
             }
-            $component26 = $component1;
-            $component27 = $component2;
+            $component27 = $component1;
+            $component28 = $component2;
         }
         if (map_world = $int8) {
             $int13 = 17;
@@ -70,15 +82,15 @@ while ($int8 ! -1) {
         } else {
             $int14 = 1;
         }
-        ~script11015($component26, $int13, 0, $int19, $int18);
+        ~script11015($component27, $int13, 0, $int19, $int18);
         cc_setonmouseover("script7427(event_com, event_comsubid)");
         cc_setonmouseleave("script7429(event_com, event_comsubid, $int13)");
-        ~script7742($component26, $graphic22, 2, calc($int19 + ($int25 - 21) / 2), 21, 21);
+        ~script7742($component27, $graphic22, 2, calc($int19 + ($int26 - 21) / 2), 21, 21);
         cc_setop(1, "Toggle favourite");
         cc_setonop("script7426(event_com, event_comsubid, $int23, $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $int8)");
         cc_setonmouseover("script7437(event_com, event_comsubid, $int8)");
         cc_setonmouseleave("script7438(event_com, event_comsubid, $int8)");
-        ~script11014($component26, tostring($int8), $int14, 30, $int19, 64);
+        ~script11014($component27, tostring($int8), $int14, 30, $int19, 64);
         if ($int11 >= 1980) {
             $string3 = "FULL";
         } else if ($int11 >= 0) {
@@ -86,7 +98,7 @@ while ($int8 ! -1) {
         } else {
             $string3 = "OFFLINE";
         }
-        ~script11014($component26, $string3, $int14, 105, $int19, 70);
+        ~script11014($component27, $string3, $int14, 105, $int19, 70);
         switch_int (map_lang) {
             case default :
                 $graphic22 = enum(int, graphic, enum_1810, $int10);
@@ -109,40 +121,41 @@ while ($int8 ! -1) {
         if (string_length($string0) = 0) {
             $string0 = "-";
         }
-        ~script7742($component26, $graphic22, 409, calc($int19 + ($int25 - 12) / 2), 12, 24);
-        ~script11014($component26, $string0, $int14, 180, $int19, 225);
-        ~script11014($component26, $string1, $int14, 435, $int19, 214);
+        ~script7742($component27, $graphic22, 409, calc($int19 + ($int26 - 12) / 2), 12, 24);
+        ~script11014($component27, $string0, $int14, 180, $int19, 225);
+        ~script11014($component27, $string1, $int14, 435, $int19, 214);
         if (testbit($int9, 0) = ^false) {
-            ~script11014($component26, "Free", $int14, calc(655 + $int28), $int19, 65);
+            ~script11014($component27, "Free", $int14, calc(655 + $int29), $int19, 65);
         } else {
-            ~script11014($component26, "Members", $int14, calc(655 + $int28), $int19, 65);
+            ~script11014($component27, "Members", $int14, calc(655 + $int29), $int19, 65);
         }
         if (testbit($int9, 3) = ^true) {
-            ~script7742($component26, rs3_contextual_input_accept, calc(736 + $int28), calc($int19 + ($int25 - 16) / 2), 16, 16);
+            ~script7742($component27, rs3_contextual_input_accept, calc(736 + $int29), calc($int19 + ($int26 - 16) / 2), 16, 16);
         } else {
-            ~script7742($component26, rs3_contextual_input_minus, calc(736 + $int28), calc($int19 + ($int25 - 16) / 2), 16, 16);
+            ~script7742($component27, rs3_contextual_input_minus, calc(736 + $int29), calc($int19 + ($int26 - 16) / 2), 16, 16);
         }
-        if (cc_find($component27, $int8) = true) {
+        if (cc_find($component28, $int8) = true) {
             cc_setop(1, "Select");
             cc_setop(2, "Quick-hop");
             cc_setposition(calc(30 - 5), $int19, ^setpos_abs_left, ^setpos_abs_top);
-            cc_setsize(calc($int18 - 30 + 5), $int25, ^setsize_abs, ^setsize_abs);
+            cc_setsize(calc($int18 - 30 + 5), $int26, ^setsize_abs, ^setsize_abs);
             cc_sethide(false);
         }
-        if ($int23 = 0) {
-            $int17 = calc($int17 + $int25);
-        } else {
+        if ($int23 = 0 & $int24 = 0) {
+            $int17 = calc($int17 + $int26);
+        } else if ($int23 = 1) {
             $int20 = calc($int20 + 1);
         }
+        $int24 = 0;
         $int15 = calc($int15 + 1);
     }
     $int8, $int9, $string0, $int10, $string1, $int11, $int12, $string2 = worldlist_next;
 }
-def_int $int29 = if_getheight($component0);
-if ($int17 > $int29) {
+def_int $int30 = if_getheight($component0);
+if ($int17 > $int30) {
     if_setscrollsize(0, $int17, $component0);
     if ($int21 ! 0) {
-        if_setscrollpos(0, max(0, min($int17, calc($int21 - $int29 / 2))), $component0);
+        if_setscrollpos(0, max(0, min($int17, calc($int21 - $int30 / 2))), $component0);
     }
 } else {
     if_setscrollsize(0, 0, $component0);
