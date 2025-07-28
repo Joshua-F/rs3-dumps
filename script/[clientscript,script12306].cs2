@@ -1,27 +1,27 @@
 // 12306
 [clientscript,script12306]
 if (~script12328 = false) {
-    cc_deleteall(interface_1477:com_12);
     cc_deleteall(interface_1477:com_13);
+    cc_deleteall(interface_1477:com_14);
     return;
 }
 def_int $int0 = -1;
 def_boolean $boolean1 = false;
-if_setparam_int(param_5641, clientclock, interface_1477:com_12);
+if_setparam_int(param_5641, clientclock, interface_1477:com_13);
 if (%varclient_5156 ! 0 | calc((clientclock - %varclient_5159) % %varclient_5157) = 0) {
     if (%varclient_5157 > 0) {
         $int0 = calc((clientclock - %varclient_5159) / %varclient_5157 % 256);
     }
-    if (%varclient_5156 = 0 & cc_find(interface_1477:com_12, $int0) = true) {
-        ~script12309(interface_1477:com_12, $int0, 0);
+    if (%varclient_5156 = 0 & cc_find(interface_1477:com_13, $int0) = true) {
+        ~script12309(interface_1477:com_13, $int0, 0);
         ~script12308;
-        ~script12309(interface_1477:com_13, 0, 1);
+        ~script12309(interface_1477:com_14, 0, 1);
     } else if (%varclient_5156 = 1 | %varclient_5156 = 2 & calc(clientclock % 25) = 0) {
         ~script12307;
         $int0 = calc((clientclock - %varclient_5159) / %varclient_5157 % 256);
-        $boolean1 = ~script12309(interface_1477:com_12, $int0, 1);
+        $boolean1 = ~script12309(interface_1477:com_13, $int0, 1);
         if ($boolean1 = true) {
-            ~script12309(interface_1477:com_13, 0, 1);
+            ~script12309(interface_1477:com_14, 0, 1);
         }
         if ($boolean1 = true) {
             %varclient_5156 = 0;
@@ -34,5 +34,5 @@ if (%varclient_5156 ! 0 | calc((clientclock - %varclient_5159) % %varclient_5157
         }
     }
 } else if (calc((clientclock - %varclient_5159) % %varclient_5157 % %varclient_5158) = 0) {
-    ~script12309(interface_1477:com_13, 1, 0);
+    ~script12309(interface_1477:com_14, 1, 0);
 }

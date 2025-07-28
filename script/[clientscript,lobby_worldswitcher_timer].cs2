@@ -81,8 +81,8 @@ if_setsize(0, calc($int7 - $int8), ^setsize_minus, ^setsize_abs, interface_910:c
 $int1 = calc($int1 + ($int7 + max(4, $int3)));
 if_setsize(16, $int1, ^setsize_minus, ^setsize_minus, interface_910:com_61);
 if_setposition(0, $int1, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_61);
-if_setsize(16, calc($int1 - 3), ^setsize_abs, ^setsize_minus, interface_910:com_85);
-if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom, interface_910:com_85);
+if_setsize(16, calc($int1 - 3), ^setsize_abs, ^setsize_minus, interface_910:com_86);
+if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom, interface_910:com_86);
 def_component $component13 = interface_910:com_63;
 def_component $component14 = interface_910:com_65;
 def_component $component15 = interface_910:com_66;
@@ -96,7 +96,8 @@ def_component $component22 = interface_910:com_73;
 def_component $component23 = interface_910:com_74;
 def_component $component24 = interface_910:com_75;
 def_component $component25 = interface_910:com_76;
-def_component $component26 = interface_910:com_85;
+def_component $component26 = interface_910:com_86;
+def_component $component27 = interface_910:com_85;
 cc_deleteall($component13);
 cc_deleteall($component14);
 cc_deleteall($component15);
@@ -110,135 +111,157 @@ cc_deleteall($component22);
 cc_deleteall($component23);
 cc_deleteall($component24);
 cc_deleteall($component25);
-def_int $int27 = 0;
+cc_deleteall($component27);
 def_int $int28 = 0;
-def_string $string0 = "";
 def_int $int29 = 0;
-def_string $string1 = "";
+def_string $string0 = "";
 def_int $int30 = 0;
+def_string $string1 = "";
 def_int $int31 = 0;
-def_graphic $graphic32 = null;
-def_int $int33 = 0;
+def_int $int32 = 0;
+def_graphic $graphic33 = null;
 def_int $int34 = 0;
 def_int $int35 = 0;
+def_int $int36 = 0;
 def_string $string2 = "";
 def_string $string3 = "";
 def_string $string4 = "";
-def_graphic $graphic36 = null;
 def_graphic $graphic37 = null;
+def_graphic $graphic38 = null;
 def_string $string5 = "";
 def_string $string6 = "";
-def_int $int38 = -1;
 def_int $int39 = -1;
 def_int $int40 = -1;
-$int27, $int28, $string0, $int29, $string1, $int30, $int31, $string2 = worldlist_start;
-if ($int27 = -1) {
+def_int $int41 = -1;
+$int28, $int29, $string0, $int30, $string1, $int31, $int32, $string2 = worldlist_start;
+if ($int28 = -1) {
     if_settext("The world list could not be loaded.<br><br>Please accept our apologies for the<br>inconvenience, and try again later.", interface_910:com_10);
     return;
 }
-def_int $int41 = 0;
 def_int $int42 = 0;
 def_int $int43 = 0;
+def_int $int44 = -1;
 def_string $string7 = "";
-def_int $int44 = 0;
 def_int $int45 = 0;
 def_int $int46 = 0;
+def_int $int47 = 0;
 $int0 = 0;
-def_boolean $boolean47 = ~script16823;
+def_boolean $boolean48 = ~script16823;
+def_int $int49 = 0;
+if (~script20080 = 1) {
+    $int43 = calc(~script20084 * ($int2 + $int3));
+}
 while ($int0 = 0) {
-    if ($int27 = -1) {
+    if ($int28 = -1) {
         $int0 = 1;
-    } else if ($int27 >= 170 & $int30 < 0) {
-        $int27, $int28, $string0, $int29, $string1, $int30, $int31, $string2 = worldlist_next;
-    } else if (testbit($int28, 12) = ^true) {
-        $int27, $int28, $string0, $int29, $string1, $int30, $int31, $string2 = worldlist_next;
-    } else if (testbit($int28, 30) = ^true & $boolean47 = false & staffmodlevel < 2) {
-        $int27, $int28, $string0, $int29, $string1, $int30, $int31, $string2 = worldlist_next;
-    } else if (testbit($int28, 30) = ^false & $boolean47 = true & staffmodlevel < 2) {
-        $int27, $int28, $string0, $int29, $string1, $int30, $int31, $string2 = worldlist_next;
+    } else if ($int28 >= 170 & $int31 < 0) {
+        $int28, $int29, $string0, $int30, $string1, $int31, $int32, $string2 = worldlist_next;
+    } else if (testbit($int29, 12) = ^true) {
+        $int28, $int29, $string0, $int30, $string1, $int31, $int32, $string2 = worldlist_next;
+    } else if (testbit($int29, 30) = ^true & $boolean48 = false & staffmodlevel < 2) {
+        $int28, $int29, $string0, $int30, $string1, $int31, $int32, $string2 = worldlist_next;
+    } else if (testbit($int29, 30) = ^false & $boolean48 = true & staffmodlevel < 2) {
+        $int28, $int29, $string0, $int30, $string1, $int31, $int32, $string2 = worldlist_next;
     } else {
-        $graphic36, $string3, $string4, $int34, $graphic37, $int33, $graphic32, $string5, $string6 = ~script3117($int27, $int28, $int41, $string0, $string1, $int30, $int29);
-        if (~is_mobile_client = true) {
-            if ($int34 = 16777215) {
-                $int35 = 7705248;
-            } else {
-                $int35 = $int34;
+        if (~script20080 = 1 & ~script20082($int28) = true) {
+            $int44 = $int43;
+            $int43 = calc($int49 * ($int2 + $int3));
+            if (++$int49 = 1) {
+                ~cc_add_line($component27, if_getnextsubid($component27), 0, $int43, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_abs, 16777215);
+            } else if ($int49 = ~script20084) {
+                ~cc_add_line($component27, if_getnextsubid($component27), 0, calc($int43 + $int2 + $int3), ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_abs, 16777215);
             }
-            $int34 = 7705248;
+        }
+        $graphic37, $string3, $string4, $int35, $graphic38, $int34, $graphic33, $string5, $string6 = ~script3117($int28, $int29, $int42, $string0, $string1, $int31, $int30);
+        if (~is_mobile_client = true) {
+            if ($int35 = 16777215) {
+                $int36 = 7705248;
+            } else {
+                $int36 = $int35;
+            }
+            $int35 = 7705248;
         } else {
-            $int35 = $int34;
+            $int36 = $int35;
         }
-        if ($int27 = %varclient_998) {
-            $int44 = 1;
-        } else if ($int27 = %varclient_999) {
+        if ($int28 = %varclient_998) {
             $int45 = 1;
-        } else if ($int27 = %varclient_4272) {
+        } else if ($int28 = %varclient_999) {
             $int46 = 1;
+        } else if ($int28 = %varclient_4272) {
+            $int47 = 1;
         }
-        ~script14400($component13, 0, $int2, 0, $int42, true, $int41);
-        ~script7924($component14, $int41, $int10, $int10, 0, $int42, $graphic32, false, false, false, 0);
-        cc_setposition(0, calc($int42 + $int6), ^setpos_abs_centre, ^setpos_abs_top);
-        ~script10629($component15, $int41, calc(if_getwidth($component15) - 6), $int2, 3, $int42, tostring($int27), $int34, $fontmetrics12, ^settextalign_left, ^settextalign_centre, 0, true);
-        ~script10629($component17, $int41, calc(if_getwidth($component17) - 6), $int2, 3, $int42, $string6, $int34, $fontmetrics12, ^settextalign_left, ^settextalign_centre, 0, true);
-        ~script10629($component18, $int41, calc(if_getwidth($component18) - 6), $int2, 3, $int42, $string4, $int34, $fontmetrics12, ^settextalign_left, ^settextalign_centre, 0, true);
-        ~script7924($component20, $int41, 24, 12, 4, calc($int42 + $int4), $graphic36, false, false, false, 0);
-        ~script10629($component19, $int41, 30, $int2, 30, $int42, $string3, $int34, $fontmetrics12, ^settextalign_left, ^settextalign_centre, 0, true);
+        if (~script20080 = 1 & ~script20082($int28) = true) {
+            ~script14401($component13, 0, $int2, 0, $int43, true, struct_51835);
+        } else {
+            ~script14400($component13, 0, $int2, 0, $int43, true, $int42);
+        }
+        ~script7924($component14, $int42, $int10, $int10, 0, $int43, $graphic33, false, false, false, 0);
+        cc_setposition(0, calc($int43 + $int6), ^setpos_abs_centre, ^setpos_abs_top);
+        ~script10629($component15, $int42, calc(if_getwidth($component15) - 6), $int2, 3, $int43, tostring($int28), $int35, $fontmetrics12, ^settextalign_left, ^settextalign_centre, 0, true);
+        ~script10629($component17, $int42, calc(if_getwidth($component17) - 6), $int2, 3, $int43, $string6, $int35, $fontmetrics12, ^settextalign_left, ^settextalign_centre, 0, true);
+        ~script10629($component18, $int42, calc(if_getwidth($component18) - 6), $int2, 3, $int43, $string4, $int35, $fontmetrics12, ^settextalign_left, ^settextalign_centre, 0, true);
+        ~script7924($component20, $int42, 24, 12, 4, calc($int43 + $int4), $graphic37, false, false, false, 0);
+        ~script10629($component19, $int42, 30, $int2, 30, $int43, $string3, $int35, $fontmetrics12, ^settextalign_left, ^settextalign_centre, 0, true);
         cc_setsize(30, $int2, ^setsize_minus, ^setsize_abs);
-        ~script10629($component21, $int41, calc(if_getwidth($component21) - 10), $int2, 5, $int42, $string5, $int35, $fontmetrics12, ^settextalign_left, ^settextalign_centre, 0, true);
-        ~script7924($component22, $int41, $int11, $int11, 0, calc($int42 + $int5), $graphic37, false, false, false, 0);
-        cc_setposition(0, calc($int42 + $int5), ^setpos_abs_centre, ^setpos_abs_top);
-        if ($int31 = -1) {
+        ~script10629($component21, $int42, calc(if_getwidth($component21) - 10), $int2, 5, $int43, $string5, $int36, $fontmetrics12, ^settextalign_left, ^settextalign_centre, 0, true);
+        ~script7924($component22, $int42, $int11, $int11, 0, calc($int43 + $int5), $graphic38, false, false, false, 0);
+        cc_setposition(0, calc($int43 + $int5), ^setpos_abs_centre, ^setpos_abs_top);
+        if ($int32 = -1) {
             $string7 = "-";
-        } else if ($int31 >= 1000) {
+        } else if ($int32 >= 1000) {
             $string7 = "N/A";
         } else {
-            $string7 = tostring($int31);
+            $string7 = tostring($int32);
         }
-        ~script10629($component23, $int41, calc(if_getwidth($component23) - 10), $int2, 5, $int42, $string7, $int34, $fontmetrics12, ^settextalign_left, ^settextalign_centre, 0, true);
-        ~script10629($component24, $int41, if_getwidth($component24), $int2, 0, $int42, "", 0, $fontmetrics12, ^settextalign_left, ^settextalign_centre, 0, true);
+        ~script10629($component23, $int42, calc(if_getwidth($component23) - 10), $int2, 5, $int43, $string7, $int35, $fontmetrics12, ^settextalign_left, ^settextalign_centre, 0, true);
+        ~script10629($component24, $int42, if_getwidth($component24), $int2, 0, $int43, "", 0, $fontmetrics12, ^settextalign_left, ^settextalign_centre, 0, true);
         cc_setop(1, "Select");
-        cc_setopbase("World <tostring($int27)>");
-        cc_setonop("script3129(event_op, $int41, $int27, $string2)");
-        ~script10629($component25, $int41, if_getwidth($component25), $int2, 0, $int42, "", 0, $fontmetrics12, ^settextalign_left, ^settextalign_centre, 0, true);
-        cc_setonmouseover("script3130($component14, $component25, $int41, $int27)");
-        cc_setonmouseleave("script3132($component14, $int41, $int27)");
+        cc_setopbase("World <tostring($int28)>");
+        cc_setonop("script3129(event_op, $int42, $int28, $string2)");
+        ~script10629($component25, $int42, if_getwidth($component25), $int2, 0, $int43, "", 0, $fontmetrics12, ^settextalign_left, ^settextalign_centre, 0, true);
+        cc_setonmouseover("script3130($component14, $component25, $int42, $int28)");
+        cc_setonmouseleave("script3132($component14, $int42, $int28)");
         cc_setop(1, "Alter");
         cc_setopbase("Favourite");
-        cc_setonop("script3128(event_com, event_comsubid, event_op, $int41, $int27)");
+        cc_setonop("script3128(event_com, event_comsubid, event_op, $int42, $int28)");
         cc_setonclick("script10036");
-        if ($int27 = map_world) {
+        if ($int28 = map_world) {
             if_sethide(false, interface_910:com_64);
-            if_setposition(0, $int42, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_64);
+            if_setposition(0, $int43, ^setpos_abs_left, ^setpos_abs_top, interface_910:com_64);
         }
-        if ($int27 = %varclient_998) {
-            $int38 = $int41;
+        if ($int28 = %varclient_998) {
+            $int39 = $int42;
         }
-        if ($int27 = %varclient_999) {
-            $int39 = $int41;
+        if ($int28 = %varclient_999) {
+            $int40 = $int42;
         }
-        if ($int27 = %varclient_4272) {
-            $int40 = $int41;
+        if ($int28 = %varclient_4272) {
+            $int41 = $int42;
         }
-        $int27, $int28, $string0, $int29, $string1, $int30, $int31, $string2 = worldlist_next;
-        $int42 = calc($int42 + ($int2 + $int3));
-        $int43 = calc($int43 + 1);
-        $int41 = calc($int41 + 1);
+        $int28, $int29, $string0, $int30, $string1, $int31, $int32, $string2 = worldlist_next;
+        if ($int44 ! -1) {
+            $int43 = $int44;
+            $int44 = -1;
+        } else {
+            $int43 = calc($int43 + ($int2 + $int3));
+        }
+        $int42 = calc($int42 + 1);
     }
 }
-if_setscrollsize(0, calc($int42 + if_gety(interface_910:com_62)), interface_910:com_61);
+if_setscrollsize(0, calc($int43 + if_gety(interface_910:com_62)), interface_910:com_61);
 ~scrollbar_vertical($component26, interface_910:com_61, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 if (%varclient_998 > 0) {
-    ~script3118(%varclient_998, interface_910:com_16, $int38, $int44);
+    ~script3118(%varclient_998, interface_910:com_16, $int39, $int45);
 } else {
     ~script3119(interface_910:com_16, 1);
 }
 if (%varclient_999 > 0) {
-    ~script3118(%varclient_999, interface_910:com_17, $int39, $int45);
+    ~script3118(%varclient_999, interface_910:com_17, $int40, $int46);
 } else {
     ~script3119(interface_910:com_17, 0);
 }
 if (%varclient_4272 > 0) {
-    ~script3118(%varclient_4272, interface_910:com_18, $int40, $int46);
+    ~script3118(%varclient_4272, interface_910:com_18, $int41, $int47);
 } else {
     ~script3119(interface_910:com_18, 0);
 }

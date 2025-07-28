@@ -1,7 +1,7 @@
 // 13824
 [clientscript,optext_timer]
 if (%varplayerbit_42094 = 1 | ~script6431 = true) {
-    if_setontimer(null, interface_1477:com_901);
+    if_setontimer(null, interface_1477:com_902);
     return;
 }
 def_int $int0 = 0;
@@ -66,12 +66,17 @@ if (string_length($string0) > 0) {
 }
 switch_int ($int0) {
     case 4 :
-        if (%varclient_173 <= 0 & %varplayerbit_3028 = 0 & npc_find_active_minimenu_entry = true & compare($string1, "Attack") = 0) {
-            if (is_targeted_entity = false) {
-                ~script8876(removetags($string0), nc_param(npc_type, param_2848), nc_param(npc_type, param_26));
-                ~script7234($string5);
+        if (npc_find_active_minimenu_entry = true) {
+            if (%varclient_173 <= 0 & %varplayerbit_3028 = 0 & (compare($string1, "Attack") = 0 | nc_param(npc_type, param_9321) = 1)) {
+                if (is_targeted_entity = false) {
+                    ~script8876(removetags($string0), nc_param(npc_type, param_2848), nc_param(npc_type, param_26));
+                    ~script7234($string5);
+                } else {
+                    ~script8880;
+                }
             } else {
                 ~script8880;
+                ~script7234($string5);
             }
         } else {
             ~script8880;

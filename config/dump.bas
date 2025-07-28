@@ -29717,3 +29717,144 @@ readyanim=null,seq_36755
 randomreadyanim=seq_36756,90
 randomreadyanim=seq_36757,10
 
+// 4802
+[bas_4802]
+readyanim=seq_36844,null
+
+// 4803
+[bas_4803]
+readyanim_l=seq_36849
+readyanim_r=seq_36849
+walkanim_b=seq_36849
+walkanim_l=seq_36849
+walkanim_r=seq_36849
+crawlanim=seq_36847
+crawlanim_b=seq_36847
+crawlanim_l=seq_36847
+crawlanim_r=seq_36847
+runanim=seq_36848
+runanim_b=seq_36848
+runanim_l=seq_36848
+runanim_r=seq_36848
+readyanim=seq_36845,seq_36849
+
+// 4804
+[bas_4804]
+walkanim_b=seq_36849
+walkanim_l=seq_36849
+walkanim_r=seq_36849
+crawlanim=seq_36847
+crawlanim_b=seq_36847
+crawlanim_l=seq_36847
+crawlanim_r=seq_36847
+runanim=seq_36848
+runanim_b=seq_36848
+runanim_l=seq_36848
+runanim_r=seq_36848
+readyanim=seq_36845,seq_36849
+
+// 4805
+[bas_4805]
+readyanim_l=seq_36850
+readyanim_r=seq_36850
+readyanim=seq_36850,null
+
+// 4806
+[bas_4806]
+readyanim=seq_36846,null
+
+// 4807
+[bas_4807]
+readyanim_l=seq_36857
+readyanim_r=seq_36857
+readyanim=seq_36857,null
+
+// 4808
+[bas_4808]
+readyanim_l=seq_36879
+readyanim_r=seq_36879
+readyanim=seq_36879,null
+
+// 4809
+[bas_4809]
+readyanim_l=seq_36882
+readyanim_r=seq_36882
+walkanim_b=seq_36882
+walkanim_l=seq_36882
+walkanim_r=seq_36882
+walkturn_l=seq_36882
+walkturn_r=seq_36882
+runanim=seq_36883
+hillrotate=32,32
+readyanim=seq_36881,seq_36882
+
+// 4810
+[bas_4810]
+readyanim_l=seq_36890
+readyanim_r=seq_36890
+walkanim_b=seq_36890
+walkanim_l=seq_36890
+walkanim_r=seq_36890
+walkturn_l=seq_36890
+walkturn_r=seq_36890
+runanim=seq_36891
+readyanim=seq_36888,seq_36890
+
+// 4811
+[bas_4811]
+readyanim=seq_36889,null
+
+// 4812
+[bas_4812]
+readyanim_l=seq_36893
+readyanim_r=seq_36893
+walkanim_b=seq_36893
+walkanim_l=seq_36893
+walkanim_r=seq_36893
+walkturn_l=seq_36893
+walkturn_r=seq_36893
+runanim=seq_36894
+readyanim=seq_36892,seq_36893
+
+// 4813
+[bas_4813]
+readyanim=seq_36898,null
+
+// 4814
+[bas_4814]
+readyanim=seq_36900,seq_36900
+
+// 4815
+[bas_4815]
+readyanim_r=seq_36909
+readyanim_l=seq_36909
+runanim=seq_36910
+readyanim=seq_18015,seq_36909
+
+// 4816
+[bas_4816]
+readyanim_r=seq_30848
+readyanim_l=seq_30848
+runanim=seq_20973
+readyanim=seq_18023,seq_30848
+
+// 4817
+[bas_4817]
+readyanim=seq_29936,null
+
+// 4818
+[bas_4818]
+readyanim=seq_36905,null
+
+// 4819
+[bas_4819]
+readyanim=seq_36906,null
+
+// 4820
+[bas_4820]
+readyanim=seq_36907,null
+
+// 4821
+[bas_4821]
+readyanim=seq_36908,null
+
