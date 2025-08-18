@@ -32,6 +32,7 @@ if (db_getfield(%varplayer_8745, dbtable_71:col13, 0) = true) {
 }
 $string2, $rgb0 = db_getfield(%varplayer_8746, dbtable_72:col4, 0);
 ~script9554(interface_955:com_8, interface_955:com_16, interface_955:com_9, $string1, struct_21217);
+def_fontmetrics $fontmetrics12 = struct_param(struct_21217, param_3823);
 switch_int ($int11) {
     case 1 :
         if_sethide(true, interface_955:com_18);
@@ -57,12 +58,11 @@ if (%varplayerbit_22874 = 1 & ~script6431 = false) {
 $graphic2 = ~script16414($graphic2);
 $graphic3 = ~script16414($graphic3);
 $graphic4 = ~script16414($graphic4);
-def_int $int12 = 0;
 def_int $int13 = 0;
 def_int $int14 = 0;
 def_int $int15 = 0;
-$int12, $int13, $int14, $int15 = ~script14244;
 def_int $int16 = 0;
+$int13, $int14, $int15, $int16 = ~script14244;
 def_int $int17 = 0;
 def_int $int18 = 0;
 def_int $int19 = 0;
@@ -73,125 +73,131 @@ def_int $int23 = 0;
 def_int $int24 = 0;
 def_int $int25 = 0;
 def_int $int26 = 0;
-def_int $settextalignh27 = ^settextalign_centre;
-def_int $int28 = calc(min(575, calc($int14 - $int12)) - $int23);
-def_fontmetrics $fontmetrics29 = null;
-def_int $int30 = 0;
-def_int $int31 = enum_getoutputcount(enum_8488);
-def_int $int32 = 0;
+def_int $int27 = 0;
+def_int $settextalignh28 = ^settextalign_centre;
+def_int $int29 = calc(min(575, calc($int15 - $int13)) - $int24);
+def_fontmetrics $fontmetrics30 = null;
+def_int $int31 = 0;
+def_int $int32 = enum_getoutputcount(enum_8488);
+def_int $int33 = 0;
 if (~script6431 = false) {
-    $int32 = 2;
+    $int33 = 2;
 }
 if (%varclient_6403 ! 0) {
-    $int28 = calc(min(375, calc($int14 - $int12)) - $int23);
-    $int32 = calc($int32 + 2);
+    $int29 = calc(min(375, calc($int15 - $int13)) - $int24);
+    $int33 = calc($int33 + 2);
 }
 if ($graphic2 ! null | $obj1 ! null) {
-    $int26 = 10;
-    $int28 = calc($int28 - 10);
-    $int17, $int18 = ~script16415($graphic2, $obj1);
+    $int27 = 10;
+    $int29 = calc($int29 - 10);
+    $int18, $int19 = ~script16415($graphic2, $obj1);
     if ($graphic3 ! null) {
-        $int19, $int20 = ~script16415($graphic3, null);
+        $int20, $int21 = ~script16415($graphic3, null);
         if ($graphic4 ! null) {
-            $int16 = 3;
-            $int21, $int22 = ~script16415($graphic4, null);
-            $int23 = max(max($int17, $int19), $int21);
-            $int24 = calc($int18 + $int20 + $int22);
-            $int25 = 10;
+            $int17 = 3;
+            $int22, $int23 = ~script16415($graphic4, null);
+            $int24 = max(max($int18, $int20), $int22);
+            $int25 = calc($int19 + $int21 + $int23);
+            $int26 = 10;
         } else {
-            $int16 = 2;
-            $int23 = max($int17, $int19);
-            $int24 = calc($int18 + $int20);
-            $int25 = 5;
+            $int17 = 2;
+            $int24 = max($int18, $int20);
+            $int25 = calc($int19 + $int21);
+            $int26 = 5;
         }
     } else {
-        $int16 = 1;
-        $int23 = $int17;
+        $int17 = 1;
         $int24 = $int18;
+        $int25 = $int19;
     }
-    $int28 = calc($int28 - $int23);
+    $int29 = calc($int29 - $int24);
 }
-while ($int32 < $int31) {
-    $fontmetrics29 = enum(int, fontmetrics, enum_8488, $int32);
-    $int30 = stringwidth($string2, $fontmetrics29);
-    if ($int30 < $int28) {
-        $int32 = $int31;
+while ($int33 < $int32) {
+    $fontmetrics30 = enum(int, fontmetrics, enum_8488, $int33);
+    $int31 = stringwidth($string2, $fontmetrics30);
+    if ($int31 < $int29) {
+        $int33 = $int32;
     }
-    $int32 = calc($int32 + 1);
+    $int33 = calc($int33 + 1);
 }
 if (~script6431 = true) {
     if (%varclient_6403 ! 0) {
-        $int32 = 2;
+        $int33 = 2;
     } else {
-        $int32 = 0;
+        $int33 = 0;
     }
 } else {
-    $int32 = 2;
+    $int33 = 2;
 }
-def_fontmetrics $fontmetrics33 = fontmetrics_207;
-def_int $int34 = calc(300 - min(1, $int30) * 20);
-def_int $int35 = 0;
+def_fontmetrics $fontmetrics34 = fontmetrics_207;
+def_int $int35 = calc(300 - min(1, $int31) * 20);
 def_int $int36 = 0;
 def_int $int37 = 0;
-while ($int32 < $int31) {
-    $fontmetrics33 = enum(int, fontmetrics, enum_8488, $int32);
-    $int35 = ~script11432($fontmetrics33);
-    $int36 = parawidth($string0, $int28, $fontmetrics33);
-    $int37 = ~script7593($string0, $int28, $fontmetrics33, $int35);
-    if ($int37 < $int34) {
-        $int32 = $int31;
-    }
-    $int32 = calc($int32 + 1);
-}
 def_int $int38 = 0;
-def_int $int39 = max(calc($int24 + $int25), calc($int37 + min(1, $int30) * 20));
-if ($int36 < $int28) {
-    $int38 = calc($int23 + 10 + max($int36, $int30));
+while ($int33 < $int32) {
+    $fontmetrics34 = enum(int, fontmetrics, enum_8488, $int33);
+    $int36 = ~script11432($fontmetrics34);
+    $int37 = parawidth($string0, $int29, $fontmetrics34);
+    $int38 = ~script7593($string0, $int29, $fontmetrics34, $int36);
+    if ($int38 < $int35) {
+        $int33 = $int32;
+    }
+    $int33 = calc($int33 + 1);
+}
+def_int $int39 = 0;
+def_int $int40 = max(calc($int25 + $int26), calc($int38 + min(1, $int31) * 20));
+if ($int37 < $int29) {
+    $int39 = calc($int24 + 10 + max($int37, $int31));
 } else {
-    $int38 = calc($int23 + 10 + $int28);
+    $int39 = calc($int24 + 10 + $int29);
 }
 if (if_gethide(interface_955:com_14) = false) {
-    if ($int38 < if_getwidth(interface_955:com_14)) {
-        $int38 = calc(if_getwidth(interface_955:com_14) + 30);
+    if ($int39 < if_getwidth(interface_955:com_14)) {
+        $int39 = calc(if_getwidth(interface_955:com_14) + 30);
     }
-    $int38 = calc($int38 + 50);
-    $int39 = calc($int39 + 123);
+    $int39 = calc($int39 + 50);
+    $int40 = calc($int40 + 123);
 } else if (if_gethide(interface_955:com_15) = false) {
-    if ($int38 < if_getwidth(interface_955:com_15)) {
-        $int38 = calc(if_getwidth(interface_955:com_15) + 30);
+    if ($int39 < if_getwidth(interface_955:com_15)) {
+        $int39 = calc(if_getwidth(interface_955:com_15) + 30);
     }
-    $int38 = calc($int38 + 50);
-    $int39 = calc($int39 + 123);
+    $int39 = calc($int39 + 50);
+    $int40 = calc($int40 + 123);
 } else {
-    $int38 = calc($int38 + 50);
-    $int39 = calc($int39 + 78);
+    $int39 = calc($int39 + 50);
+    $int40 = calc($int40 + 78);
 }
-if_setsize($int38, $int39, ^setsize_abs, ^setsize_abs, interface_955:com_6);
-if_setposition(0, calc($int13 + 33), ^setpos_abs_centre, ^setpos_abs_top, interface_955:com_6);
+if_setsize($int39, $int40, ^setsize_abs, ^setsize_abs, interface_955:com_6);
+if_setposition(0, calc($int14 + 33), ^setpos_abs_centre, ^setpos_abs_top, interface_955:com_6);
 if_sethide(false, interface_955:com_6);
+if (calc(stringwidth($string1, $fontmetrics12) + if_getwidth(interface_955:com_17)) > if_getwidth(interface_955:com_13)) {
+    if_sethide(true, interface_955:com_17);
+} else {
+    if_sethide(false, interface_955:com_17);
+}
 cc_deleteall(interface_955:com_13);
 cc_deleteall(interface_955:com_7);
-def_int $int40 = 0;
-if ($int30 > 0) {
-    cc_create(interface_955:com_13, ^iftype_text, $int40++);
-    cc_setsize(calc($int23 + $int26), 20, ^setsize_minus, ^setsize_abs);
+def_int $int41 = 0;
+if ($int31 > 0) {
+    cc_create(interface_955:com_13, ^iftype_text, $int41++);
+    cc_setsize(calc($int24 + $int27), 20, ^setsize_minus, ^setsize_abs);
     cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
     cc_settext($string2);
     cc_setmaxlines(1);
     cc_setcolour($rgb0);
-    cc_settextfont($fontmetrics29);
-    cc_settextalign($settextalignh27, ^settextalign_centre, 0);
+    cc_settextfont($fontmetrics30);
+    cc_settextalign($settextalignh28, ^settextalign_centre, 0);
 }
-cc_create(interface_955:com_13, ^iftype_text, $int40++);
-cc_setsize(calc($int23 + $int26), calc(min($int30, 1) * 20), ^setsize_minus, ^setsize_minus);
+cc_create(interface_955:com_13, ^iftype_text, $int41++);
+cc_setsize(calc($int24 + $int27), calc(min($int31, 1) * 20), ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom);
 cc_settext($string0);
 cc_setcolour(^white);
-cc_settextfont($fontmetrics33);
-cc_settextalign($settextalignh27, ^settextalign_centre, $int35);
-if ($int16 > 0) {
-    cc_create(interface_955:com_13, ^iftype_graphic, $int40++);
-    cc_setsize($int17, $int18, ^setsize_abs, ^setsize_abs);
+cc_settextfont($fontmetrics34);
+cc_settextalign($settextalignh28, ^settextalign_centre, $int36);
+if ($int17 > 0) {
+    cc_create(interface_955:com_13, ^iftype_graphic, $int41++);
+    cc_setsize($int18, $int19, ^setsize_abs, ^setsize_abs);
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
     if ($graphic2 ! null) {
         cc_setgraphic($graphic2);
@@ -200,18 +206,18 @@ if ($int16 > 0) {
         cc_setobject($obj1, -1);
         cc_setontimer("script16418(event_comsubid, $obj1, event_com)");
     }
-    if ($int16 >= 2) {
-        cc_setposition(max(0, calc($int23 / 2 - $int17 / 2)), 0, ^setpos_abs_left, ^setpos_abs_top);
-        cc_create(interface_955:com_13, ^iftype_graphic, $int40++);
-        cc_setsize($int19, $int20, ^setsize_abs, ^setsize_abs);
-        cc_setposition(max(0, calc($int23 / 2 - $int19 / 2)), 0, ^setpos_abs_left, ^setpos_abs_bottom);
+    if ($int17 >= 2) {
+        cc_setposition(max(0, calc($int24 / 2 - $int18 / 2)), 0, ^setpos_abs_left, ^setpos_abs_top);
+        cc_create(interface_955:com_13, ^iftype_graphic, $int41++);
+        cc_setsize($int20, $int21, ^setsize_abs, ^setsize_abs);
+        cc_setposition(max(0, calc($int24 / 2 - $int20 / 2)), 0, ^setpos_abs_left, ^setpos_abs_bottom);
         cc_setgraphic($graphic3);
         cc_setontimer("script16417(event_comsubid, event_com)");
-        if ($int16 >= 3) {
+        if ($int17 >= 3) {
             cc_setposition(cc_getx, 0, ^setpos_abs_left, ^setpos_abs_centre);
-            cc_create(interface_955:com_13, ^iftype_graphic, $int40++);
-            cc_setsize($int21, $int22, ^setsize_abs, ^setsize_abs);
-            cc_setposition(max(0, calc($int23 / 2 - $int21 / 2)), 0, ^setpos_abs_left, ^setpos_abs_bottom);
+            cc_create(interface_955:com_13, ^iftype_graphic, $int41++);
+            cc_setsize($int22, $int23, ^setsize_abs, ^setsize_abs);
+            cc_setposition(max(0, calc($int24 / 2 - $int22 / 2)), 0, ^setpos_abs_left, ^setpos_abs_bottom);
             cc_setgraphic($graphic4);
             cc_setontimer("script16417(event_comsubid, event_com)");
         }
@@ -220,7 +226,7 @@ if ($int16 > 0) {
 ~script16416(255);
 if_setontimer("script16408", interface_955:com_4);
 if ($component9 ! null) {
-    if_setontimer("script16400($int38, $int39, $int5, $int6, $component9, $int10)", interface_955:com_3);
+    if_setontimer("script16400($int39, $int40, $int5, $int6, $component9, $int10)", interface_955:com_3);
 } else if (~script6431 = true) {
-    if_setontimer("script16402($int38, $int39)", interface_955:com_3);
+    if_setontimer("script16402($int39, $int40)", interface_955:com_3);
 }
