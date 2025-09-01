@@ -21,38 +21,50 @@ def_int $int16 = 0;
 if (if_find($component0) = true) {
     $int15 = cc_param(param_8236);
 }
-$int11 = calc($int1 * 9);
+$int11 = calc($int1 * 10);
 cc_create($component0, ^iftype_graphic, $int11);
 cc_setgraphic(container_oddments_default);
 cc_setsize(126, 126, ^setsize_abs, ^setsize_abs);
 $int16 = calc($int1 + $int15 * (6 - 1));
 $int14 = calc($int16 % 3);
 $int6 = calc(20 + $int14 * 20 + $int14 * 126);
+def_int $int17 = struct_param($struct2, param_9331);
+if (~date_runeday <= $int17) {
+    $int6 = calc($int6 + 20);
+}
 $int13 = calc($int16 % $int8 / 3);
 $int7 = calc(100 + $int16 / $int8 * 660 + $int13 * (660 / 5));
 cc_setposition($int7, $int6, ^setpos_abs_left, ^setpos_abs_top);
 $int11 = calc($int11 + 1);
-def_int $int17 = -1;
 def_int $int18 = -1;
+def_int $int19 = -1;
 cc_create($component0, ^iftype_graphic, $int11);
 if (struct_param($struct3, param_4852) ! null) {
-    $int17 = calc($int7 + 126 / 2 - 72 / 2 + 3);
-    $int18 = calc($int6 + scale(126, 100, 2));
+    $int18 = calc($int7 + 126 / 2 - 72 / 2);
+    $int19 = calc($int6 + scale(126, 100, 2));
     cc_setgraphic(struct_param($struct3, param_4852));
-    cc_setposition($int17, $int18, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition($int18, $int19, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(72, 72, ^setsize_abs, ^setsize_abs);
 } else if ($obj9 ! null) {
-    $int17 = calc($int7 + 126 / 2 - 44 / 2);
-    $int18 = calc($int6 + scale(126, 100, 12));
+    $int18 = calc($int7 + 126 / 2 - 44 / 2);
+    $int19 = calc($int6 + scale(126, 100, 12));
     $obj9 = ~script14453($struct3, $obj9);
     cc_setobject($obj9, struct_param($struct3, param_4448));
-    cc_setposition($int17, $int18, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition($int18, $int19, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(44, 39, ^setsize_abs, ^setsize_abs);
 }
 $int11 = calc($int11 + 1);
+def_graphic $graphic20 = struct_param($struct3, param_9332);
+if ($graphic20 ! null) {
+    cc_create($component0, ^iftype_graphic, $int11);
+    cc_setposition(calc($int7 + 2), calc($int6 + 2), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(122, 72, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic($graphic20);
+}
+$int11 = calc($int11 + 1);
 def_string $string0 = ~script13337($struct3);
-def_int $int19 = struct_param($struct3, param_4448);
-$string0 = ~script325($int19, $string0, true, 0);
+def_int $int21 = struct_param($struct3, param_4448);
+$string0 = ~script325($int21, $string0, true, 0);
 $string0 = ~script3930($string0, calc(126 - 10), 2, fontmetrics_87);
 cc_create($component0, ^iftype_text, $int11);
 cc_settext($string0);
@@ -64,6 +76,9 @@ cc_settextalign(^settextalign_centre, ^settextalign_centre, 10);
 $int11 = calc($int11 + 1);
 cc_create($component0, ^iftype_text, $int11);
 $int12 = ~script9095($struct3, $boolean10);
+if (playermember = false & struct_param($struct3, param_5147) > 0) {
+    $int12 = struct_param($struct3, param_5147);
+}
 def_string $string1 = tostring_localised($int12, true);
 if ($int12 = 0) {
     $string1 = "FREE!";

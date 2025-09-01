@@ -140,17 +140,13 @@ if ($int28 = -1) {
 }
 def_int $int42 = 0;
 def_int $int43 = 0;
-def_int $int44 = -1;
+def_int $int44 = 0;
 def_string $string7 = "";
 def_int $int45 = 0;
 def_int $int46 = 0;
 def_int $int47 = 0;
 $int0 = 0;
 def_boolean $boolean48 = ~script16823;
-def_int $int49 = 0;
-if (~script20080 = 1) {
-    $int43 = calc(~script20084 * ($int2 + $int3));
-}
 while ($int0 = 0) {
     if ($int28 = -1) {
         $int0 = 1;
@@ -163,15 +159,6 @@ while ($int0 = 0) {
     } else if (testbit($int29, 30) = ^false & $boolean48 = true & staffmodlevel < 2) {
         $int28, $int29, $string0, $int30, $string1, $int31, $int32, $string2 = worldlist_next;
     } else {
-        if (~script20080 = 1 & ~script20082($int28) = true) {
-            $int44 = $int43;
-            $int43 = calc($int49 * ($int2 + $int3));
-            if (++$int49 = 1) {
-                ~cc_add_line($component27, if_getnextsubid($component27), 0, $int43, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_abs, 16777215);
-            } else if ($int49 = ~script20084) {
-                ~cc_add_line($component27, if_getnextsubid($component27), 0, calc($int43 + $int2 + $int3), ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_abs, 16777215);
-            }
-        }
         $graphic37, $string3, $string4, $int35, $graphic38, $int34, $graphic33, $string5, $string6 = ~script3117($int28, $int29, $int42, $string0, $string1, $int31, $int30);
         if (~is_mobile_client = true) {
             if ($int35 = 16777215) {
@@ -190,11 +177,7 @@ while ($int0 = 0) {
         } else if ($int28 = %varclient_4272) {
             $int47 = 1;
         }
-        if (~script20080 = 1 & ~script20082($int28) = true) {
-            ~script14401($component13, 0, $int2, 0, $int43, true, struct_51835);
-        } else {
-            ~script14400($component13, 0, $int2, 0, $int43, true, $int42);
-        }
+        ~script14400($component13, 0, $int2, 0, $int43, true, $int42);
         ~script7924($component14, $int42, $int10, $int10, 0, $int43, $graphic33, false, false, false, 0);
         cc_setposition(0, calc($int43 + $int6), ^setpos_abs_centre, ^setpos_abs_top);
         ~script10629($component15, $int42, calc(if_getwidth($component15) - 6), $int2, 3, $int43, tostring($int28), $int35, $fontmetrics12, ^settextalign_left, ^settextalign_centre, 0, true);
@@ -239,12 +222,8 @@ while ($int0 = 0) {
             $int41 = $int42;
         }
         $int28, $int29, $string0, $int30, $string1, $int31, $int32, $string2 = worldlist_next;
-        if ($int44 ! -1) {
-            $int43 = $int44;
-            $int44 = -1;
-        } else {
-            $int43 = calc($int43 + ($int2 + $int3));
-        }
+        $int43 = calc($int43 + ($int2 + $int3));
+        $int44 = calc($int44 + 1);
         $int42 = calc($int42 + 1);
     }
 }
