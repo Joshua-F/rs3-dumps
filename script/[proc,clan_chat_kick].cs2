@@ -21,7 +21,9 @@ if ($int3 < activeclanchannel_getrankkick) {
 }
 if ($int1 > -1) {
     mes_typed(^chattype_clanmessage, 0, "You can only temporarily ban guests.");
-    mes_typed(^chattype_clanmessage, 0, "A clan admin can remove your clanmate.");
+    if ($int3 < 100) {
+        mes_typed(^chattype_clanmessage, 0, "A clan admin can remove your clanmate.");
+    }
 } else if ($int3 > $int1) {
     activeclanchannel_kickuser(activeclanchannel_getuserslot($string0));
     activechatphrase_prepare(chatphrase_821);

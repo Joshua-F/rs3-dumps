@@ -40,7 +40,18 @@ if (%varplayerbit_30615 = 1) {
     $graphic18 = rs3_contextual_input_green_check_mark;
 }
 def_int $int19 = 0;
-if (%varplayer_6155 = true) {
+if (~script20115 = true) {
+    if_settext("-", $component1);
+    if_settext("-", $component3);
+    if_sethide(false, $component2);
+    if_sethide(false, $component4);
+    $string0 = "Unlocked on this world";
+    $string6 = "No web app access";
+    $string7 = "";
+    $graphic16 = rs3_contextual_input_green_check_mark;
+    $graphic17 = rs3_contextual_input_error;
+    $graphic18 = rs3_contextual_input_error;
+} else if (%varplayer_6155 = true) {
     if_settext("Manage Subscription", $component1);
     if_settext("Top up with Bonds", $component3);
     if_sethide(true, $component2);
@@ -86,6 +97,11 @@ if (%varplayer_6155 = true) {
         $graphic17 = rs3_contextual_input_warning;
         $graphic18 = rs3_contextual_input_error;
     }
+}
+if (~script20116 = false & ~script20115 = false) {
+    $string6 = "Web access disabled";
+    $string7 = "";
+    $graphic18 = rs3_contextual_input_green_check_mark;
 }
 .cc_create($component0, ^iftype_graphic, $int11++);
 .cc_setposition(0, $int10, ^setpos_abs_left, ^setpos_abs_top);
