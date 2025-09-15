@@ -1,0 +1,63 @@
+// 20195
+[proc,script20195](int $int0)
+def_dbrow $dbrow1 = ~script20117(%varplayer_12314);
+if ($dbrow1 = null | ~script20129 = false) {
+    ~script20207;
+    return;
+}
+def_enum $enum2 = db_getfield($dbrow1, dbtable_326:col19, 0);
+~script20206;
+def_int $int3 = 0;
+def_int $int4 = enum_getoutputcount(enum_9053);
+def_int $int5 = -1;
+def_boolean $boolean6 = false;
+def_boolean $boolean7 = false;
+def_graphic $graphic8 = null;
+def_component $component9 = null;
+def_component $component10 = null;
+def_string $string0 = "";
+def_dbrow $dbrow11 = null;
+def_int $int12 = 0;
+while ($int3 < $int4) {
+    $int5 = enum(int, int, enum_9053, $int3);
+    $component9 = enum(int, component, enum_9080, $int5);
+    $component10 = enum(int, component, enum_9081, $int5);
+    $string0 = enum(int, string, enum_9057, $int5);
+    $boolean6 = ~script20133($enum2, $int5);
+    $boolean7 = ~equal_int_bool($int5, %varplayerbit_58391);
+    if ($boolean6 = true) {
+        $dbrow11 = dbrow_4477;
+    } else {
+        $dbrow11 = dbrow_4476;
+    }
+    if ($component9 ! null & $component10 ! null) {
+        if (.if_find($component10) = true) {
+            $graphic8 = .cc_getgraphic;
+        }
+        ~if_add_child_layer(interface_1409:com_25, $int5, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 40, ^setsize_minus, ^setsize_abs);
+        ~cc_add_child_button_full($int5, 1, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, $dbrow11, $string0, true, true, true, $boolean7);
+        cc_setonmouserepeat("script20198(event_com, event_comsubid)");
+        cc_margin_set(0, 40, 4, 4, 4);
+        cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+        cc_setop(1, "Select");
+        ~cc_add_child_graphic($int5, 2, 0, 0, ^setpos_abs_left, ^setpos_abs_centre, 40, 40, ^setsize_abs, ^setsize_abs, $graphic8);
+        if ($boolean6 = true) {
+            if_sethide(false, $component9);
+            if_setcolour(^white, $component9);
+        }
+    }
+    $int12 = calc($int12 + 44);
+    $int3 = calc($int3 + 1);
+}
+if ($int0 = 1) {
+    if_setscrollpos(0, calc(max(0, calc(%varplayerbit_58391 - 2)) * 44), interface_1409:com_25);
+}
+~script19620(interface_1409:com_26, interface_1409:com_25, $int12, null, -1, 0, 0, 40);
+if (%varplayerbit_58390 = 0) {
+    if_sethide(false, interface_1409:com_7);
+    if_sethide(true, interface_1409:com_23);
+} else {
+    if_sethide(true, interface_1409:com_7);
+    if_sethide(false, interface_1409:com_23);
+    ~script20205;
+}

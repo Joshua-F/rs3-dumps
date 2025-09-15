@@ -7,23 +7,25 @@ def_int $int3 = enum_getoutputcount(enum_7717);
 def_boolean $boolean4 = false;
 def_int $int5 = 0;
 def_int $int6 = 0;
-def_int $int7 = 0;
+def_dbrow $dbrow7 = ~script20117(1);
 def_int $int8 = 0;
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
+def_int $int12 = 0;
+def_boolean $boolean13 = if_gethide(struct_param(struct_37398, param_3503));
 if (if_getwidth(interface_1477:com_25) <= calc(552 + ~script19630(0))) {
-    $int7 = 1;
-}
-$int9, $int10 = ~script9950;
-if (%varclient_3692 = 1 | %varclient_3693 = 1) {
     $int8 = 1;
+}
+$int10, $int11 = ~script9950;
+if (%varclient_3692 = 1 | %varclient_3693 = 1) {
+    $int9 = 1;
 }
 while ($int2 < $int3) {
     $int0 = enum(int, int, enum_7717, $int2);
     $struct1 = ~script10405($int0);
     if ($struct1 ! null) {
-        if (enum_getreversecount(int, enum_9010, $int0) > 0 & ($int8 = 0 | ~script9932($int0) = false)) {
+        if (enum_getreversecount(int, enum_9010, $int0) > 0 & ($int9 = 0 | ~script9932($int0) = false)) {
             $boolean4 = false;
         } else {
             $boolean4 = true;
@@ -34,8 +36,25 @@ while ($int2 < $int3) {
             if_setsize($int5, $int6, ^setsize_abs, ^setsize_abs, struct_param($struct1, param_3503));
         }
         if (struct_param($struct1, param_3534) ! -1) {
-            if_setsize(210, 286, ^setsize_abs, ^setsize_abs, struct_param($struct1, param_3503));
-            if_setposition($int9, $int10, ^setpos_abs_right, ^setpos_abs_bottom, struct_param($struct1, param_3503));
+            if ($dbrow7 ! null & $int0 = 32) {
+                if_sethide($boolean13, struct_param($struct1, param_3503));
+                if ($int8 = 0) {
+                    if_setposition(calc($int10 + 210), $int11, ^setpos_abs_right, ^setpos_abs_bottom, struct_param($struct1, param_3503));
+                    if_setsize(calc(~script19630($int8) - 210), 286, ^setsize_abs, ^setsize_abs, struct_param($struct1, param_3503));
+                } else {
+                    $int6 = calc(if_getheight(interface_1477:com_25) - 232 - 286 - $int11);
+                    if ($int6 >= 286) {
+                        if_setposition($int10, calc($int11 + 286 + ($int6 - 286) / 2), ^setpos_abs_right, ^setpos_abs_bottom, struct_param($struct1, param_3503));
+                        if_setsize(~script19630($int8), 286, ^setsize_abs, ^setsize_abs, struct_param($struct1, param_3503));
+                    } else {
+                        if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, struct_param($struct1, param_3503));
+                        if_setsize(350, 286, ^setsize_abs, ^setsize_abs, struct_param($struct1, param_3503));
+                    }
+                }
+            } else {
+                if_setsize(210, 286, ^setsize_abs, ^setsize_abs, struct_param($struct1, param_3503));
+                if_setposition($int10, $int11, ^setpos_abs_right, ^setpos_abs_bottom, struct_param($struct1, param_3503));
+            }
         }
         if (struct_param($struct1, param_3533) = true) {
             ~script8393($int0, 0);
@@ -52,7 +71,7 @@ while ($int2 < $int3) {
 if (calc(%varclientbit_22877 - 1) = 28) {
     %varclientbit_22877 = calc(2 + 1);
 }
-if (%varclientbit_22877 ! 0 & $int8 = 0) {
+if (%varclientbit_22877 ! 0 & $int9 = 0) {
     ~script10535(calc(%varclientbit_22877 - 1));
 }
 if (if_hassub(interface_1448:com_3) = false) {
@@ -92,12 +111,12 @@ if_setposition(calc(248 + 150), 0, ^setpos_abs_right, ^setpos_abs_top, struct_pa
 $struct1 = ~script10405(1016);
 if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, struct_param($struct1, param_3503));
 if (map_members = false) {
-    $int11 = if_getheight(struct_param($struct1, param_3503));
+    $int12 = if_getheight(struct_param($struct1, param_3503));
 } else {
-    $int11 = 0;
+    $int12 = 0;
 }
 $struct1 = ~script10405(1024);
-if_setposition(0, $int11, ^setpos_abs_left, ^setpos_abs_top, struct_param($struct1, param_3503));
+if_setposition(0, $int12, ^setpos_abs_left, ^setpos_abs_top, struct_param($struct1, param_3503));
 $struct1 = ~script10405(1001);
 if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, struct_param($struct1, param_3503));
 $struct1 = ~script10405(1017);
@@ -113,13 +132,13 @@ if_setsize(248, 189, ^setsize_minus, ^setsize_minus, struct_param($struct1, para
 ~script9951;
 if_sendtofront(struct_param($struct1, param_3503));
 $struct1 = ~script10405(17);
-if_setposition($int9, $int10, ^setpos_abs_right, ^setpos_abs_bottom, struct_param($struct1, param_3503));
+if_setposition($int10, $int11, ^setpos_abs_right, ^setpos_abs_bottom, struct_param($struct1, param_3503));
 if_setsize(210, 286, ^setsize_abs, ^setsize_abs, struct_param($struct1, param_3503));
 $struct1 = ~script10405(12);
-if_setposition($int9, $int10, ^setpos_abs_right, ^setpos_abs_bottom, struct_param($struct1, param_3503));
+if_setposition($int10, $int11, ^setpos_abs_right, ^setpos_abs_bottom, struct_param($struct1, param_3503));
 if_setsize(210, 286, ^setsize_abs, ^setsize_abs, struct_param($struct1, param_3503));
 $struct1 = ~script10405(9);
-if_setposition($int9, $int10, ^setpos_abs_right, ^setpos_abs_bottom, struct_param($struct1, param_3503));
+if_setposition($int10, $int11, ^setpos_abs_right, ^setpos_abs_bottom, struct_param($struct1, param_3503));
 if_setsize(210, 286, ^setsize_abs, ^setsize_abs, struct_param($struct1, param_3503));
 $struct1 = ~script10405(1009);
 if_setposition(0, calc(232 + 10), ^setpos_abs_right, ^setpos_abs_top, struct_param($struct1, param_3503));
@@ -141,11 +160,11 @@ if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, struct_param($struct1, p
 if_setsize(0, 0, ^setsize_minus, ^setsize_minus, struct_param($struct1, param_3503));
 $struct1 = ~script10405(1002);
 if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom, struct_param($struct1, param_3503));
-if_setsize(~script19631($int7), ^setsize_abs, ^setsize_abs, struct_param($struct1, param_3503));
+if_setsize(~script19631($int8), ^setsize_abs, ^setsize_abs, struct_param($struct1, param_3503));
 $struct1 = ~script10405(1010);
 if_setposition(140, 200, ^setpos_abs_right, ^setpos_abs_top, struct_param($struct1, param_3503));
 $struct1 = ~script10405(1012);
-if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre, struct_param($struct1, param_3503));
+if_setposition(0, 96, ^setpos_abs_centre, ^setpos_abs_top, struct_param($struct1, param_3503));
 $struct1 = ~script10405(1013);
 if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, struct_param($struct1, param_3503));
 $struct1 = ~script10405(1052);
@@ -172,6 +191,6 @@ $struct1 = ~script10405(1051);
 if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, struct_param($struct1, param_3503));
 $struct1 = ~script10405(1053);
 if_setposition(0, 192, ^setpos_abs_centre, ^setpos_abs_centre, struct_param($struct1, param_3503));
-if ($int8 = 1) {
+if ($int9 = 1) {
     ~script9944;
 }

@@ -1,6 +1,25 @@
 // 16919
 [proc,script16919]
-if_sethide(true, interface_906:com_62);
-if_settext("World: Auto", interface_906:com_61);
-if_setcolour(0xffcb05, interface_906:com_61);
-if_settextalign(^settextalign_centre, ^settextalign_centre, 0, interface_906:com_61);
+if (map_world <= 0) {
+    if_settext("World: Auto", interface_906:com_63);
+    if_sethide(true, interface_906:com_64);
+    if_setcolour(0xffcb05, interface_906:com_63);
+    if_settextalign(^settextalign_centre, ^settextalign_centre, 0, interface_906:com_63);
+    return;
+}
+def_int $int0 = worldlist_specific_thisworld;
+if (testbit($int0, 24) = ^true) {
+    if_setgraphic(rs3_icon_menu_leagues_active, interface_906:com_64);
+    if_sethide(false, interface_906:com_64);
+} else {
+    if (testbit($int0, 0) = ^true) {
+        if_setgraphic("rs3_icon_members_32px,0", interface_906:com_64);
+        if_setcolour(0xffcb05, interface_906:com_63);
+    } else {
+        if_setgraphic("rs3_icon_non_members_32px,0", interface_906:com_64);
+        if_setcolour(^white, interface_906:com_63);
+    }
+    if_sethide(false, interface_906:com_64);
+}
+if_settext("World <tostring(map_world)>", interface_906:com_63);
+~lobbyscreen_loginbutton_text(true);

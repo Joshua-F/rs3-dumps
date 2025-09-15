@@ -29873,3 +29873,9 @@ readyanim=null,seq_36955
 randomreadyanim=seq_36950,90
 randomreadyanim=seq_36949,10
 
+// 4823
+[bas_4823]
+readyanim=null,null
+randomreadyanim=seq_36964,90
+randomreadyanim=seq_36965,10
+

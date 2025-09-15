@@ -1,0 +1,55 @@
+// 20318
+[clientscript,script20318](component $component0, component $component1, component $component2, component $component3, component $component4, dbrow $dbrow5, int $int6, int $int7, int $int8)
+def_int $int9 = scale(255, 350, $int7);
+if ($int7 <= 350) {
+    if (cc_findbycategory($component0, ~script20173(calc(3000 + $int6))) = 1) {
+        cc_settrans($int9);
+    }
+    if (cc_findbycategory($component0, ~script20173(calc(3000 * 2 + $int6))) = 1) {
+        cc_settrans($int9);
+    }
+    if (cc_findbycategory($component0, ~script20173(calc(3000 * 3 + $int6))) = 1) {
+        cc_settrans($int9);
+    }
+    if (cc_findbycategory($component0, ~script20173(calc(3000 * 4 + $int6))) = 1) {
+        cc_settrans($int9);
+    }
+    if (cc_findbycategory($component0, ~script20173(calc(3000 * 5 + $int6))) = 1) {
+        cc_settrans($int9);
+    }
+    if (cc_find($component3, $int6) = true) {
+        cc_setontimer("script20318($component0, $component1, $component2, $component3, $component4, $dbrow5, $int6, calc($int7 + 1), $int8)");
+    }
+    return;
+}
+def_int $int10 = 0;
+def_int $int11 = 0;
+if (cc_find($component0, $int6) = true) {
+    cc_find_parent;
+    if (.cc_find($component0, $int6) = true) {
+        $int10 = calc(cc_param(param_9334) - .cc_getheight - 4);
+        $int11 = calc(cc_param(param_9336) - 1);
+        cc_setparam(param_9334, $int10);
+        cc_setparam(param_9336, $int11);
+        if (db_getfield($dbrow5, dbtable_334:col5, 0) = 0) {
+            cc_setparam(param_9337, calc(cc_param(param_9337) - 1));
+        }
+        if (~script20171($int8, calc(200 - ui_getcategory(cc_getid))) = 0) {
+            cc_setsize(0, $int10, ^setsize_minus, ^setsize_abs);
+        }
+        if (if_find($component0) = true) {
+            cc_setparam(param_9338, max(0, calc(cc_param(param_9338) - 1)));
+            cc_setparam(param_9339, max(0, calc(cc_param(param_9339) - 1)));
+        }
+        .cc_delete;
+        if (.cc_find($component3, $int6) = true) {
+            .cc_delete;
+        }
+        if ($int11 <= 0 & $component0 ! interface_1479:com_19) {
+            if_setonresize("script20285", $component4);
+            if_callonresize($component4);
+        } else if (~script20320($component0, $component2) = false) {
+            ~script20309($component0, $component1, $component2);
+        }
+    }
+}
