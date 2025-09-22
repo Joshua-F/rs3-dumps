@@ -21,19 +21,19 @@ if_setsize(0, max(40, calc($int5 + 8)), ^setsize_minus, ^setsize_abs, interface_
 def_int $int7 = calc(clientclock - $int1);
 def_int $int8 = 0;
 if ($int7 <= 50) {
-    $int8 = calc(255 - scale(255, 50, $int7));
+    $int8 = max(0, calc(255 - scale(255, 50, $int7)));
     if_settrans($int8, interface_1361:com_14);
     if_settrans($int8, interface_1361:com_15);
     if_settrans($int8, interface_1361:com_16);
     ~script4161(interface_1361:com_17, $int8);
 } else if ($int7 >= 300) {
     $int7 = calc($int7 - 300);
-    $int8 = scale(255, 50, $int7);
+    $int8 = min(255, scale(255, 50, $int7));
     if_settrans($int8, interface_1361:com_14);
     if_settrans($int8, interface_1361:com_15);
     if_settrans($int8, interface_1361:com_16);
     ~script4161(interface_1361:com_17, $int8);
-    if ($int8 = 255) {
+    if ($int8 >= 255) {
         if_setontimer(null, interface_1361:com_13);
     }
 }
