@@ -29879,3 +29879,15 @@ readyanim=null,null
 randomreadyanim=seq_36964,90
 randomreadyanim=seq_36965,10
 
+// 4824
+[bas_4824]
+readyanim_l=seq_37021
+readyanim_r=seq_37021
+walkturn_l=seq_37024
+walkturn_r=seq_37024
+runanim=seq_37025
+hillrotate=32,32
+readyanim=null,seq_37024
+randomreadyanim=seq_37021,90
+randomreadyanim=seq_37023,10
+
