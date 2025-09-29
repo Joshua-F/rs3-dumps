@@ -1,28 +1,82 @@
 // 17821
 [proc,script17821](boolean $boolean0)
-def_obj $obj1 = obj_41622;
-if ($boolean0 = true) {
-    if_setobject($obj1, -1, interface_1023:com_87);
-    if_setop(1, "Select", interface_1023:com_87);
-    if_setopcursor(1, cursor_46, interface_1023:com_87);
-    if_setonop("script17822($obj1, interface_1023:com_87)", interface_1023:com_87);
-    if_sethide(false, interface_1023:com_87);
-    if_sethide(false, interface_1023:com_86);
-} else {
-    if_sethide(true, interface_1023:com_87);
-    if_sethide(true, interface_1023:com_86);
-    ~script12679($boolean0);
+def_dbrow $dbrow1 = ~script10061;
+def_dbrow $dbrow2 = null;
+def_int $int3 = 2;
+def_obj $obj4 = null;
+def_int $int5 = 0;
+def_boolean $boolean6 = false;
+def_int $int7 = 0;
+def_int $int8 = -1;
+def_component $component9 = null;
+def_int $int10 = -1;
+def_obj $obj11 = null;
+if_sethide(true, interface_1023:com_92);
+if_sethide(true, interface_1023:com_90);
+if_sethide(true, interface_1023:com_88);
+if_sethide(true, interface_1023:com_87);
+if_sethide(true, interface_1023:com_89);
+if_sethide(true, interface_1023:com_91);
+if_sethide(true, interface_1023:com_93);
+while (++$int10 < db_getfieldcount($dbrow1, dbtable_340:col5)) {
+    $obj4, $int5, $int8, $boolean6 = db_getfield($dbrow1, dbtable_340:col5, $int10);
+    $obj11 = $obj4;
+    if ($obj4 ! null) {
+        switch_int ($int5) {
+            case 1 :
+                $component9 = interface_1023:com_87;
+                if (%varplayer_11329 ! null) {
+                    $obj11 = %varplayer_11329;
+                    $dbrow2 = ~script20351(~script20349);
+                    if (~script15109 = true) {
+                        $int3 = 3;
+                    }
+                }
+            case 2 :
+                $component9 = interface_1023:com_89;
+                if (%varplayer_11700 ! null) {
+                    $obj11 = %varplayer_11700;
+                    $dbrow2 = ~script20351($obj4);
+                    $int3 = 3;
+                }
+            case 3 :
+                $component9 = interface_1023:com_91;
+            case 4 :
+                $component9 = interface_1023:com_93;
+        }
+        if ($int8 = 0) {
+            $int8 = -1;
+        }
+        if_setobject($obj11, $int8, $component9);
+        if ($component9 ! null) {
+            if_sethide(false, $component9);
+        }
+        if ($boolean6 = true & $dbrow2 ! null) {
+            if_setop(1, "Select", $component9);
+            if_setopcursor(1, cursor_46, $component9);
+            if_setonop("script17822($obj11, $component9, $dbrow2, $int3)", $component9);
+            if_sethide(false, $component9);
+        }
+    }
 }
-if (~script15109 = false) {
-    if_sethide(false, interface_1023:com_86);
-    if_sethide(false, interface_1023:com_87);
-    if_sethide(true, interface_1023:com_84);
-    if_sethide(true, interface_1023:com_88);
-} else {
-    if_sethide(false, interface_1023:com_87);
-    if_sethide(false, interface_1023:com_84);
-    if_sethide(false, interface_1023:com_86);
+~script12679($boolean0);
+if (calc($int10 - 1) > 3) {
+    if_sethide(false, interface_1023:com_92);
+    if_sethide(false, interface_1023:com_90);
     if_sethide(false, interface_1023:com_88);
-    if_setobject(obj_28907, 1, interface_1023:com_87);
-    if_setobject(obj_29896, 1, interface_1023:com_89);
+}
+if (calc($int10 - 1) = 2) {
+    if_sethide(false, interface_1023:com_90);
+    if_sethide(false, interface_1023:com_88);
+}
+if (calc($int10 - 1) = 1) {
+    if_sethide(false, interface_1023:com_88);
+}
+switch_int ($int10) {
+    case 1 :
+        if_setposition(115, 287, ^setpos_abs_centre, ^setpos_abs_top, interface_1023:com_24);
+    case 2 :
+        if_setposition(60, 287, ^setpos_abs_centre, ^setpos_abs_top, interface_1023:com_24);
+    case 3 :
+        if_setposition(40, 287, ^setpos_abs_centre, ^setpos_abs_top, interface_1023:com_24);
 }
