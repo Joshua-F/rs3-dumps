@@ -29891,3 +29891,22 @@ readyanim=null,seq_37024
 randomreadyanim=seq_37021,90
 randomreadyanim=seq_37023,10
 
+// 4825
+[bas_4825]
+readyanim_l=seq_37052
+readyanim_r=seq_37052
+walkanim_l=seq_37052
+walkanim_r=seq_37052
+walkturn_l=seq_37052
+walkturn_r=seq_37052
+runanim=seq_37049
+hillrotate=32,32
+readyanim=null,seq_37052
+randomreadyanim=seq_37047,90
+randomreadyanim=seq_37048,10
+
+// 4826
+[bas_4826]
+runanim=seq_37055
+readyanim=seq_37053,seq_37054
+

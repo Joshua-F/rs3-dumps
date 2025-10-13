@@ -6,17 +6,31 @@ def_int $int4 = 0;
 def_int $int5 = 0;
 def_int $int6 = 0;
 def_string $string0 = "";
-def_int $int7 = db_getfieldcount($dbrow0, dbtable_101:col0);
-if_grid_setlayoutparams(false, $int7, 1, $component1);
+def_int $int7 = 0;
+def_int $int8 = db_getfieldcount($dbrow0, dbtable_101:col0);
+def_int $int9 = 0;
+if_grid_setlayoutparams(false, $int8, 1, $component1);
+if_setsize(calc(60 * $int8), 80, ^setsize_abs, ^setsize_abs, $component1);
 cc_deleteall($component1);
+def_int $int10 = 0;
 if (if_find($component1) = true) {
-    while (++$int2 < $int7) {
+    while (++$int2 < $int8) {
         $obj3, $int4, $int5, $int6, $int6, $int6, $int6, $int6 = db_getfield($dbrow0, dbtable_101:col0, $int2);
-        ~cc_add_child_obj_full(0, $int2, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 36, 32, ^setsize_abs, ^setsize_abs, $obj3, $int4, 0, 1);
-        $string0 = oc_name($obj3);
-        cc_setop(1, "Select");
-        cc_setonop("script17418($dbrow0, $int2)");
-        cc_setopcursor(1, cursor_46);
-        cc_setonmouserepeat("script3876($string0, event_com, event_comsubid)");
+        if (~script10613($obj3) = 0 & (playermember = true | oc_members($obj3) = 0 & playermember = false)) {
+            ~cc_add_layer($component1, $int2, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 61, 75, ^setsize_abs, ^setsize_abs);
+            if ($int5 ! 7) {
+                ~script7920($component1, calc($int2 + 1), $int9, 0, $int2, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 61, 75, ^setsize_abs, ^setsize_abs, ~script227($int5));
+                $int9 = calc($int9 + 1);
+            } else {
+                ~script16708($component1, $int5, ~script8948($int5), calc($int2 + 1), $int9, 0, -2, ^setpos_abs_centre, ^setpos_abs_centre, 60, 79, ^setsize_abs, ^setsize_abs);
+                $int9 = calc($int9 + 3);
+            }
+            ~script10024($component1, calc($int2 + 1), $int9, 0, $int2, 1, 0, ^setpos_abs_centre, ^setpos_abs_centre, 27, 24, ^setsize_abs, ^setsize_abs, $obj3, $int4, 0, 1);
+            ~script20379($int2, $dbrow0, $obj3, $int4);
+            $int9 = 0;
+        } else {
+            $int10 = calc($int10 + 1);
+        }
     }
 }
+if_grid_setlayoutparams(false, calc($int8 - $int10), 1, $component1);
