@@ -2,16 +2,22 @@
 [proc,script18872](dbrow $dbrow0, int $int1)(string)
 def_dbtable $dbtable2 = db_getrowtable($dbrow0);
 def_string $string0 = "";
-def_dbrow $dbrow3 = null;
-def_struct $struct4 = null;
-def_quest $quest5 = null;
+def_int $int3 = 1;
+def_dbrow $dbrow4 = null;
+def_struct $struct5 = null;
+def_quest $quest6 = null;
 if ($dbrow0 ! null) {
     switch_dbtable ($dbtable2) {
         case dbtable_285 :
             $string0 = ~script18921($dbrow0, 6);
+            $int3 = ~script18920($dbrow0, 33);
             switch_int ($int1) {
                 case 0 :
-                    $string0 = append($string0, "<br><br>For more information, press the button below to read about everything going on in RuneScape this week.");
+                    if ($int3 = 1) {
+                        $string0 = append($string0, "<br><br>For more information, press the button below to read about everything going on in RuneScape this week.");
+                    } else {
+                        $string0 = append($string0, "<br><br>For more information, press the button below to read on.");
+                    }
                 case 4 :
                     $string0 = append($string0, "<br><br>Start Time: <~script18847($dbrow0, -1, -1)>");
                     switch_int (~script18920($dbrow0, 13)) {
@@ -26,17 +32,17 @@ if ($dbrow0 ! null) {
             if (string_length($string0) > 0) {
                 return($string0);
             }
-            $dbrow3 = ~script18923($dbrow0, 14);
-            if ($dbrow3 ! null) {
-                return(~script18872($dbrow3, $int1));
+            $dbrow4 = ~script18923($dbrow0, 14);
+            if ($dbrow4 ! null) {
+                return(~script18872($dbrow4, $int1));
             }
-            $struct4 = ~script18924($dbrow0, 15);
-            if ($struct4 ! null) {
-                return(~script18873($struct4, $int1));
+            $struct5 = ~script18924($dbrow0, 15);
+            if ($struct5 ! null) {
+                return(~script18873($struct5, $int1));
             }
-            $quest5 = ~script18925($dbrow0, 16);
-            if ($quest5 ! null) {
-                return(~script18851($quest5));
+            $quest6 = ~script18925($dbrow0, 16);
+            if ($quest6 ! null) {
+                return(~script18851($quest6));
             }
         case dbtable_77 :
             $string0 = db_getfield($dbrow0, dbtable_77:col1, 0);
