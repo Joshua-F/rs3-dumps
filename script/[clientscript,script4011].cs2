@@ -33,15 +33,19 @@ if_setgraphic(quest_param($quest0, param_7829), interface_1500:com_391);
 if_settext(tostring(quest_param($quest0, param_7834)), interface_1500:com_390);
 def_int $int2 = ~script4249("<col=EBE076>Start Point:</col>", quest_param($quest0, param_7814), interface_1500:com_343, interface_1500:com_344, interface_1500:com_345, null, null, $int1, 0);
 $string0 = "";
-if (quest_param($quest0, param_7836) ! 0) {
-    switch_int (map_lang) {
-        case 0 :
-            $string0 = "<enum(int, string, enum_3618, quest_param($quest0, param_7836))> #<tostring(quest_param($quest0, param_7837))>. (<enum(int, string, enum_13275, quest_param($quest0, param_7831))>.)";
-        case 2 :
-            $string0 = "<enum(int, string, enum_3618, quest_param($quest0, param_7836))> n°<tostring(quest_param($quest0, param_7837))>. (<enum(int, string, enum_13275, quest_param($quest0, param_7831))>.)";
-        case default :
-            $string0 = "<enum(int, string, enum_3618, quest_param($quest0, param_7836))> <tostring(quest_param($quest0, param_7837))>. (<enum(int, string, enum_13275, quest_param($quest0, param_7831))>.)";
+if (quest_param($quest0, param_7836) ! 41) {
+    $string0 = enum(int, string, enum_3618, quest_param($quest0, param_7836));
+    if (quest_param($quest0, param_7837) > 0) {
+        switch_int (map_lang) {
+            case 0 :
+                $string0 = "<$string0> #<tostring(quest_param($quest0, param_7837))>.";
+            case 2 :
+                $string0 = "<$string0> n°<tostring(quest_param($quest0, param_7837))>.";
+            case default :
+                $string0 = "<$string0> <tostring(quest_param($quest0, param_7837))>.";
+        }
     }
+    $string0 = "<$string0> (<enum(int, string, enum_13275, quest_param($quest0, param_7831))>.)";
     if (string_length(quest_param($quest0, param_7888)) > 0) {
         $string0 = "<$string0><br><quest_param($quest0, param_7888)>";
     }
