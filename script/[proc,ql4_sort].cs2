@@ -44,169 +44,146 @@ def_quest $quest27 = null;
 def_int $int28 = 0;
 def_int $int29 = -1;
 def_int $int30 = 0;
-def_int $int31 = 0;
-def_boolean $boolean32 = ~script6431;
 while ($int12 <= %varclient_273) {
     $intarray1($int12) = $int12;
     $quest27 = enum(int, quest, $enum9, $int12);
-    $int28 = ~quest_difficulty($quest27);
     $int25 = -1;
     if ($quest27 ! null) {
-        switch_int ($int1) {
-            case 1 :
-                $int29 = ~ql4_getprogress($quest27);
-            case default :
-                $int29 = 0;
-        }
-        switch_int ($int2) {
-            case 0 :
-                $int25 = ~script1056(quest_param($quest27, param_7219));
-            case 4 :
-                switch_int (quest_type($quest27)) {
-                    case 1 :
-                        if ($int1 = 1) {
-                            $int25 = 5;
-                        } else {
-                            $int25 = 4;
-                        }
-                    case 6 :
-                        if (%varplayer_1295 = 1000) {
-                            $int25 = 6;
-                        }
-                    case default :
-                        if (quest_getmembers($quest27) = true) {
-                            if (quest_param($quest27, param_7889) = 1 | quest_param($quest27, param_7889) = 2) {
-                                $int25 = 2;
-                            } else {
-                                $int25 = 3;
-                            }
-                        } else if (quest_param($quest27, param_7889) = 1 | quest_param($quest27, param_7889) = 2) {
-                            $int25 = 1;
-                        } else {
-                            $int25 = 0;
-                        }
-                }
-            case 6 :
-                $int25 = $int29;
-            case 2 :
-                $int25 = quest_param($quest27, param_857);
-            case 5 :
-                $int25 = quest_param($quest27, param_7855);
-            case 1 :
-                $int25 = quest_param($quest27, param_7854);
-                $int30 = 900000000;
-                $intarray2($int12) = calc($int30 + $int25 * 100000);
-                $intarray2($int12) = calc($intarray2($int12) + max(calc(quest_param($quest27, param_7831) - 1), 0) * 10000);
-                $intarray2($int12) = calc($intarray2($int12) + $int28 * 1000);
-                $intarray2($int12) = calc($intarray2($int12) + quest_param($quest27, param_7837) * 100);
-                $intarray2($int12) = calc($intarray2($int12) + quest_param($quest27, param_7855));
-            case 8 :
-                $int25 = quest_param($quest27, param_7836);
-                $int30 = 1000;
-                $intarray2($int12) = calc($int25 * 1000);
-                $intarray2($int12) = calc($intarray2($int12) + quest_param($quest27, param_7837));
-            case 7 :
-                $int25 = calc(quest_param($quest27, param_7834) - 2000);
-                $int30 = 2000;
-                $intarray2($int12) = calc((2000 + $int25) * 1000);
-                if (quest_param($quest27, param_7835) > 0) {
-                    $intarray2($int12) = calc($intarray2($int12) + quest_param($quest27, param_7835));
-                } else {
-                    $intarray2($int12) = calc($intarray2($int12) + quest_param($quest27, param_1345));
-                }
-            case 3 :
-                $int25 = quest_param($quest27, param_7831);
-                $int30 = 2000;
-                $intarray2($int12) = calc(($int25 + 1) * 10000000 + quest_param($quest27, param_7834) * 1000);
-                if (quest_param($quest27, param_7835) > 0) {
-                    $intarray2($int12) = calc($intarray2($int12) + quest_param($quest27, param_7835));
-                } else {
-                    $intarray2($int12) = calc($intarray2($int12) + quest_param($quest27, param_1345));
-                }
-            case 9 :
-                if (quest_param($quest27, param_7159) ! -1) {
-                    $int25 = quest_param($quest27, param_7159);
-                } else if (quest_param($quest27, param_7831) = 2 & quest_param($quest27, param_1345) <= 321) {
-                    $int25 = 6;
-                } else if (quest_param($quest27, param_7834) >= 2022) {
-                    $int25 = 7;
-                } else {
-                    switch_int ($int28) {
-                        case 0 :
-                            if (quest_statreq_count($quest27) = 0 & quest_questreq_count($quest27) = 0 & quest_param($quest27, param_7859) = 0 & quest_pointsreq($quest27) = 0 | $quest27 = quest_356 | $quest27 = quest_359) {
-                                $int25 = 0;
-                            } else {
-                                $int25 = 1;
-                            }
-                        case 1 :
-                            $int25 = 2;
-                        case 2, 5 :
-                            $int25 = 3;
-                        case 3 :
-                            $int25 = 4;
-                        case 4 :
-                            $int25 = 5;
-                    }
-                }
-                $int30 = 1;
-                $intarray2($int12) = calc(($int25 + 1) * 10000000);
-                if (quest_param($quest27, param_7160) ! -1) {
-                    $intarray2($int12) = calc($intarray2($int12) + quest_param($quest27, param_7160));
-                } else {
-                    $intarray2($int12) = calc($intarray2($int12) + quest_param($quest27, param_7834) * 1000);
-                    if (quest_param($quest27, param_7835) > 0) {
-                        $intarray2($int12) = calc($intarray2($int12) + quest_param($quest27, param_7835));
-                    } else {
-                        $intarray2($int12) = calc($intarray2($int12) + quest_param($quest27, param_1345));
-                    }
-                }
-        }
-        if ($int25 > -1 & ~script18798($quest27) = 1) {
-            $int25 = -1;
-            $intarray2($int12) = 0;
+        if (~script18798($quest27) = 1) {
             $int26 = calc($int26 + 1);
-        }
-        if ($int25 > -1 & $int4 = 0 & $int29 = 0) {
-            $boolean14 = ~script2149($quest27);
-            if ($boolean14 = false) {
+        } else {
+            $int29 = ~ql4_getprogress($quest27);
+            $int28 = ~quest_difficulty($quest27);
+            switch_int ($int2) {
+                case 0 :
+                    $int25 = ~script1056(quest_param($quest27, param_7219));
+                case 3 :
+                    switch_int (quest_type($quest27)) {
+                        case 1 :
+                            $int25 = 4;
+                        case default :
+                            if (quest_getmembers($quest27) = true) {
+                                if (quest_param($quest27, param_7889) = 1 | quest_param($quest27, param_7889) = 2) {
+                                    $int25 = 2;
+                                } else {
+                                    $int25 = 3;
+                                }
+                            } else if (quest_param($quest27, param_7889) = 1 | quest_param($quest27, param_7889) = 2) {
+                                $int25 = 1;
+                            } else {
+                                $int25 = 0;
+                            }
+                    }
+                case 5 :
+                    $int25 = $int29;
+                case 1 :
+                    $int25 = quest_param($quest27, param_857);
+                case 4 :
+                    $int25 = quest_param($quest27, param_7855);
+                case 7 :
+                    $int25 = quest_param($quest27, param_7836);
+                    $intarray2($int12) = calc(($int25 + 1) * 1000000);
+                    if ($int25 = 41) {
+                        $intarray2($int12) += calc((~script20419($quest27, $int28) + 1) * 100000);
+                        if (quest_param($quest27, param_7160) ! -1) {
+                            $intarray2($int12) += calc(quest_param($quest27, param_7160) + 1);
+                        } else {
+                            $intarray2($int12) += calc((quest_param($quest27, param_7834) - 1999) * 1000);
+                            if (quest_param($quest27, param_7835) > 0) {
+                                $intarray2($int12) += calc(quest_param($quest27, param_7835) + 1);
+                            } else {
+                                $intarray2($int12) += calc(quest_param($quest27, param_1345) + 1);
+                            }
+                        }
+                    } else if (quest_param($quest27, param_7837) > 0) {
+                        $intarray2($int12) += calc(quest_param($quest27, param_7837) + 1);
+                    } else {
+                        $intarray2($int12) += calc(quest_param($quest27, param_1345) + 1);
+                    }
+                    $int30 = 1;
+                case 6 :
+                    $int25 = calc(quest_param($quest27, param_7834) - 2000);
+                    $intarray2($int12) = calc(($int25 + 1) * 1000);
+                    if (quest_param($quest27, param_7835) > 0) {
+                        $intarray2($int12) += calc(quest_param($quest27, param_7835) + 1);
+                    } else {
+                        $intarray2($int12) += calc(quest_param($quest27, param_1345) + 1);
+                    }
+                    $int30 = 1;
+                case 2 :
+                    $int25 = quest_param($quest27, param_7831);
+                    $intarray2($int12) = calc(($int25 + 1) * 100000);
+                    $intarray2($int12) += calc((quest_param($quest27, param_7834) - 1999) * 1000);
+                    if (quest_param($quest27, param_7835) > 0) {
+                        $intarray2($int12) += calc(quest_param($quest27, param_7835) + 1);
+                    } else {
+                        $intarray2($int12) += calc(quest_param($quest27, param_1345) + 1);
+                    }
+                    $int30 = 1;
+                case 8 :
+                    $int25 = quest_param($quest27, param_9393);
+                    $intarray2($int12) = calc(($int25 + 1) * 10000000);
+                    $intarray2($int12) += calc((max(calc(quest_param($quest27, param_7831) - 1), 0) + 1) * 1000000);
+                    $intarray2($int12) += calc(($int28 + 1) * 100000);
+                    $intarray2($int12) += calc((quest_param($quest27, param_7837) + 1) * 10000);
+                    $intarray2($int12) += calc((quest_param($quest27, param_7855) + 1) * 1000);
+                    $intarray2($int12) += $int12;
+                    $int30 = 1;
+                case 9 :
+                    $int25 = ~script20419($quest27, $int28);
+                    $intarray2($int12) = calc(($int25 + 1) * 100000);
+                    if (quest_param($quest27, param_7160) ! -1) {
+                        $intarray2($int12) += calc(quest_param($quest27, param_7160) + 1);
+                    } else {
+                        $intarray2($int12) += calc((quest_param($quest27, param_7834) - 1999) * 1000);
+                        if (quest_param($quest27, param_7835) > 0) {
+                            $intarray2($int12) += calc(quest_param($quest27, param_7835) + 1);
+                        } else {
+                            $intarray2($int12) += calc(quest_param($quest27, param_1345) + 1);
+                        }
+                    }
+                    $int30 = 1;
+            }
+            if ($int25 > -1 & $int5 = 1 & $int29 = 2) {
                 $int25 = -1;
                 $intarray2($int12) = 0;
             }
-        }
-        if ($int25 > -1 & $int5 = 1 & $int29 = 2) {
-            $int25 = -1;
-            $intarray2($int12) = 0;
-        }
-        if ($int25 > -1 & $int6 = 1 & quest_param($quest27, param_7889) = 0) {
-            $int25 = -1;
-            $intarray2($int12) = 0;
-        }
-        if ($int25 > -1 & $int7 = 1 & quest_param($quest27, param_7889) ! 0) {
-            $int25 = -1;
-            $intarray2($int12) = 0;
+            if ($int25 > -1 & $int6 = 1 & quest_param($quest27, param_7889) = 0) {
+                $int25 = -1;
+                $intarray2($int12) = 0;
+            }
+            if ($int25 > -1 & $int7 = 1 & quest_param($quest27, param_7889) ! 0) {
+                $int25 = -1;
+                $intarray2($int12) = 0;
+            }
+            if ($int25 > -1 & $int4 = 0 & $int29 = 0) {
+                $boolean14 = ~script2149($quest27);
+                if ($boolean14 = false) {
+                    $int25 = -1;
+                    $intarray2($int12) = 0;
+                }
+            }
         }
     }
     $intarray0($int12) = $int25;
     $int12 = calc($int12 + 1);
 }
 $int12 = 0;
-if ($int30 > 0) {
+if ($int30 = 1) {
     array_sort(calc(%varclient_273 + 1), 2, 1);
     $int12 = 1;
     while ($int12 <= %varclient_273) {
-        if ($intarray2($int12) <= $int30) {
-            $intarray0($int12) = -1;
-        } else {
-            switch_int ($int2) {
-                case 9 :
-                    $intarray0($int12) = calc($intarray2($int12) / 10000000 - 1);
-                case 1 :
-                    $intarray0($int12) = calc(($intarray2($int12) - $int30) / 100000);
-                case 3 :
-                    $intarray0($int12) = calc($intarray2($int12) / 10000000 % 1000000 - 1);
-                case default :
-                    $intarray0($int12) = calc($intarray2($int12) / 1000 % 100);
-            }
+        switch_int ($int2) {
+            case 7 :
+                $intarray0($int12) = calc($intarray2($int12) / 1000000 - 1);
+            case 6 :
+                $intarray0($int12) = calc($intarray2($int12) / 1000 - 1);
+            case 2 :
+                $intarray0($int12) = calc($intarray2($int12) / 100000 - 1);
+            case 8 :
+                $intarray0($int12) = calc($intarray2($int12) / 10000000 - 1);
+            case 9 :
+                $intarray0($int12) = calc($intarray2($int12) / 100000 - 1);
         }
         $int12 = calc($int12 + 1);
     }
@@ -214,34 +191,34 @@ if ($int30 > 0) {
     array_sort(calc(%varclient_273 + 1), 0, 1);
 }
 $int12 = 0;
+def_int $int31 = 0;
+def_int $int32 = 0;
 def_int $int33 = 0;
-def_int $int34 = 0;
-def_int $int35 = 0;
-def_int $int36 = -1;
-$int35 = $intarray0($int12);
+def_int $int34 = -1;
+$int33 = $intarray0($int12);
 $intarray0($int12) = $intarray1($int12);
-$intarray1($int12) = $int35;
-$int24 = $int35;
+$intarray1($int12) = $int33;
+$int24 = $int33;
 $int12 = 1;
 while ($int12 <= %varclient_273) {
-    $int35 = $intarray0($int12);
+    $int33 = $intarray0($int12);
     $intarray0($int12) = $intarray1($int12);
-    $intarray1($int12) = $int35;
-    if ($int24 ! $int35) {
-        $int36 = 1;
+    $intarray1($int12) = $int33;
+    if ($int24 ! $int33) {
+        $int34 = 1;
     } else if ($int12 = %varclient_273) {
-        $int36 = 0;
+        $int34 = 0;
     }
-    if ($int36 ! -1) {
+    if ($int34 ! -1) {
         if ($int30 = 0) {
-            $int34 = calc($int12 - $int36);
-            if ($int33 < $int34 & $int24 ! -1) {
-                ~ql4_quicksort(intarray0, $enum9, $int33, $int34);
+            $int32 = calc($int12 - $int34);
+            if ($int31 < $int32 & $int24 ! -1) {
+                ~ql4_quicksort(intarray0, $enum9, $int31, $int32);
             }
-            $int33 = $int12;
+            $int31 = $int12;
         }
-        $int24 = $int35;
-        $int36 = -1;
+        $int24 = $int33;
+        $int34 = -1;
     }
     $int12 = calc($int12 + 1);
 }
@@ -259,37 +236,38 @@ switch_int ($int1) {
         }
 }
 $int12 = 0;
-def_int $int37 = 5;
-def_int $int38 = 0;
-def_int $int39 = -1;
+def_int $int35 = 5;
+def_int $int36 = 0;
+def_int $int37 = -1;
 switch_int ($int1) {
     case 1 :
-        $int39 = %varplayerbit_3260;
+        $int37 = %varplayerbit_3260;
     case default :
         if (struct_param($struct8, param_693) > 0) {
-            $int39 = calc(%varplayerbit_320 - 1000 * (struct_param($struct8, param_693) - 1));
+            $int37 = calc(%varplayerbit_320 - 1000 * (struct_param($struct8, param_693) - 1));
         } else {
-            $int39 = calc(%varplayerbit_320 - 1000 * ($int1 - 1));
+            $int37 = calc(%varplayerbit_320 - 1000 * ($int1 - 1));
         }
 }
+def_boolean $boolean38 = ~script6431;
 while ($int3 = 0 & $int21 < $int20 | $int3 = 1 & $int21 >= 0) {
     $int24 = enum(int, int, $enum19, $int21);
     if (cc_find($component10, calc(%varclient_273 + $int21 + 1)) = true) {
-        cc_setposition(5, $int37, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition(5, $int35, ^setpos_abs_left, ^setpos_abs_top);
         $string0 = enum(int, string, $enum17, $int24);
         cc_settext($string0);
         cc_sethide(false);
-        $int37 = calc($int37 + cc_getheight);
+        $int35 = calc($int35 + cc_getheight);
     }
     $int15 = 0;
     while ($int12 <= %varclient_273) {
         if ($intarray1($int12) = $int24) {
             $quest27 = enum(int, quest, $enum9, $intarray0($int12));
             if ($quest27 ! null & cc_find($component10, $intarray0($int12)) = true) {
-                if ($boolean32 = true) {
-                    cc_setposition(10, $int37, ^setpos_abs_left, ^setpos_abs_top);
+                if ($boolean38 = true) {
+                    cc_setposition(10, $int35, ^setpos_abs_left, ^setpos_abs_top);
                 } else {
-                    cc_setposition(15, $int37, ^setpos_abs_left, ^setpos_abs_top);
+                    cc_setposition(15, $int35, ^setpos_abs_left, ^setpos_abs_top);
                 }
                 cc_sethide(false);
                 if ($intarray2($int12) = 0) {
@@ -306,7 +284,7 @@ while ($int3 = 0 & $int21 < $int20 | $int3 = 1 & $int21 >= 0) {
                     cc_setop(3, "");
                 }
                 cc_setonmouseover("cc_text_colour_swapper(event_com, event_comsubid, 16777215)");
-                if ($intarray0($int12) = $int39) {
+                if ($intarray0($int12) = $int37) {
                     cc_setcolour(^cyan);
                     cc_setonmouseleave("script1949(event_com, event_comsubid, ^cyan)");
                 } else if ($intarray2($int12) = 0) {
@@ -319,12 +297,12 @@ while ($int3 = 0 & $int21 < $int20 | $int3 = 1 & $int21 >= 0) {
                     cc_setcolour(^green);
                     cc_setonmouseleave("script1949(event_com, event_comsubid, ^green)");
                 }
-                $int37 = calc($int37 + cc_getheight);
+                $int35 = calc($int35 + cc_getheight);
                 $int15 = calc($int15 + 1);
                 if (enum(int, int, $enum18, $int24) = 1 & compare(quest_param($quest27, param_7244), "") ! 0 & cc_find($component10, calc(%varclient_273 + $int21 + 1)) = true) {
                     cc_settext(quest_param($quest27, param_7244));
                 }
-                $int38 = calc($int38 + 1);
+                $int36 = calc($int36 + 1);
             }
         } else if ($intarray1($int12) > $int24) {
             $int12 = %varclient_273;
@@ -332,13 +310,13 @@ while ($int3 = 0 & $int21 < $int20 | $int3 = 1 & $int21 >= 0) {
         $int12 = calc($int12 + 1);
     }
     if ($int15 ! 0) {
-        $int37 = calc($int37 + 10);
+        $int35 = calc($int35 + 10);
     } else {
         if (cc_find($component10, calc(%varclient_273 + $int21 + 1)) = true) {
             cc_settext("");
             cc_sethide(true);
         }
-        $int37 = calc($int37 - 20);
+        $int35 = calc($int35 - 20);
     }
     $int12 = 0;
     if ($int3 = 0) {
@@ -349,20 +327,23 @@ while ($int3 = 0 & $int21 < $int20 | $int3 = 1 & $int21 >= 0) {
 }
 def_string $string1 = "";
 if ($int1 = 1) {
-    if ($int38 = calc(%varclient_272 - $int26)) {
+    if ($int36 = calc(%varclient_272 - $int26)) {
         $string1 = "Showing all <tostring(calc(%varclient_272 - $int26))> items";
     } else {
-        $string1 = "Showing <tostring($int38)> of <tostring(calc(%varclient_272 - $int26))> items";
+        $string1 = "Showing <tostring($int36)> of <tostring(calc(%varclient_272 - $int26))> items";
+    }
+    if ($int3 = 1) {
+        $string1 = append($string1, " (reversed)");
     }
     if_settext($string1, ~ql4_layer_status($component0));
 }
-if (%varclient_695 = 1 | $int23 ! calc($int37 + 5) | $int3 = 1 & %varclient_694 = 0 | $int3 = 0 & %varclient_694 = 1) {
-    if (calc($int37 + 5) >= if_getheight($component10)) {
-        if_setscrollsize(if_getwidth($component10), calc($int37 + 5), $component10);
+if (%varclient_695 = 1 | $int23 ! calc($int35 + 5) | $int3 = 1 & %varclient_694 = 0 | $int3 = 0 & %varclient_694 = 1) {
+    if (calc($int35 + 5) >= if_getheight($component10)) {
+        if_setscrollsize(if_getwidth($component10), calc($int35 + 5), $component10);
     } else {
         if_setscrollsize(if_getwidth($component10), 0, $component10);
     }
-    $int23 = $int37;
+    $int23 = $int35;
     if_setscrollpos(0, 0, $component10);
     ~scrollbar_vertical($component11, $component10, "aif_scrollbar_dragger_2,3", "aif_scrollbar_dragger_2,0", "aif_scrollbar_dragger_2,1", "aif_scrollbar_dragger_2,2", "aif_scrollbar_arrow_2,1", "aif_scrollbar_arrow_2,0");
 } else {
