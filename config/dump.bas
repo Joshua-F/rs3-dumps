@@ -29975,3 +29975,18 @@ readyanim=null,seq_37178
 randomreadyanim=seq_37171,90
 randomreadyanim=seq_37172,10
 
+// 4834
+[bas_4834]
+readyanim_l=seq_35086
+readyanim_r=seq_35086
+walkturn_l=seq_35086
+walkturn_r=seq_35086
+runanim=seq_35085
+hillrotate=32,32
+readyanim=null,seq_35086
+randomreadyanim=seq_3320,90
+
+// 4835
+[bas_4835]
+readyanim=seq_37207,seq_37207
+
