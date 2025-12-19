@@ -8,19 +8,33 @@ def_obj $obj3 = inv_getobj(inv_94, 5);
 def_int $int4 = 0;
 def_int $int5 = 0;
 def_int $int6 = 0;
-if ($obj2 ! null) {
-    $int6 = calc(oc_param($obj2, param_14) + -1);
-    switch_int ($int1) {
-        case 29 :
-            if (oc_param($obj2, param_8898) = 1) {
-                $int4 = 90;
-                $int5 = 20;
-            }
-    }
-    if ($int4 > 0 | $int5 > 0) {
-        $int4 = scale($int6, 3, $int4);
-        $int5 = scale($int6, 3, $int5);
-        $string1 = "<$string1><br>- <~script17720($struct0, $int4, calc($int4 + $int5), 0, 1)>.";
-    }
+def_int $int7 = 1;
+$int6 = ~script19663($obj2);
+switch_int ($int1) {
+    case 29 :
+        $int4 = 90;
+        $int5 = 20;
+    case 1 :
+        $int4 = 90;
+        $int5 = 20;
+    case 4 :
+        $int4 = 90;
+        $int5 = 20;
+    case 3 :
+        $int4 = 90;
+        $int5 = 20;
+        if ($obj2 ! null & oc_param($obj2, param_8928) = struct_52672) {
+            $int4 = 45;
+            $int5 = 10;
+            $int7 = 2;
+        }
+}
+$int4 = scale($int6, 3, $int4);
+$int5 = scale($int6, 3, $int5);
+if ($int7 > 1) {
+    $string1 = "<$string1><br>- <~script17720($struct0, $int4, calc($int4 + $int5), 0, 1)> per hit.";
+    $string1 = "<$string1><br>- <col=ffffff><tostring($int7)></col> hits.";
+} else {
+    $string1 = "<$string1><br>- <~script17720($struct0, $int4, calc($int4 + $int5), 0, 1)>.";
 }
 return($string0, $string1);
