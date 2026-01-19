@@ -1,0 +1,35 @@
+// 20607
+[proc,script20607](struct $struct0, int $int1, int $int2, string $string0, int $int3)
+def_string $string1 = ~script20608($struct0, $int1);
+if (string_length($string1) > 0) {
+    if (string_length($string0) > 0) {
+        $string0 = append($string0, "<br><br>");
+    }
+    $string0 = append($string0, $string1);
+}
+switch_int ($int2) {
+    case 0 :
+        if (playermember = true) {
+            switch_struct ($struct0) {
+                case struct_31861, struct_31867, struct_31868, struct_31869 :
+                    $string0 = append($string0, "<br><br>As you're a member, this item is free for you!");
+                case default :
+                    $string0 = append($string0, "<br><br>As you're a member, this item is 10% cheaper for you! We've already added that discount to the price.");
+            }
+        }
+}
+if ($int3 = 1) {
+    $string0 = append("<$string0><br><br>", "If you already own part of this package, the price will not be reduced to reflect this.");
+}
+if_settext($string0, interface_1495:com_35);
+def_int $int4 = ~script15891($string0, if_getwidth(interface_1495:com_35), if_getfontmetrics(interface_1495:com_35), 0);
+if ($int4 > if_getheight(interface_1495:com_34)) {
+    if_setsize(30, 20, ^setsize_minus, ^setsize_minus, interface_1495:com_34);
+    $int4 = ~script15891($string0, if_getwidth(interface_1495:com_35), if_getfontmetrics(interface_1495:com_35), 0);
+    if_setscrollsize(0, $int4, interface_1495:com_34);
+    ~rs3_scrollbar_vertical(interface_1495:com_36, interface_1495:com_34);
+} else {
+    if_setscrollsize(0, 0, interface_1495:com_34);
+    if_setsize(20, 20, ^setsize_minus, ^setsize_minus, interface_1495:com_34);
+    cc_deleteall(interface_1495:com_36);
+}

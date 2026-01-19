@@ -18,9 +18,13 @@ def_int $int13 = struct_param($struct7, param_3562);
 def_int $int14 = struct_param($struct7, param_3586);
 def_int $int15 = struct_param($struct7, param_3547);
 def_int $int16 = struct_param($struct7, param_3549);
-def_int $int17 = struct_param($struct7, param_3577);
-def_int $int18 = struct_param($struct7, param_8350);
-def_int $int19 = struct_param($struct7, param_8656);
+def_int $int17 = struct_param($struct7, param_3578);
+def_int $int18 = struct_param($struct7, param_3577);
+def_int $int19 = struct_param($struct7, param_8350);
+def_int $int20 = struct_param($struct7, param_8656);
+def_int $int21 = 0;
+def_int $int22 = 0;
+def_int $int23 = 0;
 if ($int0 = 1) {
     if_sethide(true, $component3);
     if_sethide(true, $component4);
@@ -53,7 +57,7 @@ if ($int0 = 1) {
                 cc_setposition(0, calc($int11 + $int14), ^setpos_abs_right, ^setpos_abs_top);
                 cc_setsize($int9, calc($int13 + $int11 + $int14), ^setsize_abs, ^setsize_minus);
             }
-        case 1 :
+        case 1, 2 :
             if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component3);
             if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component4);
             if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component6);
@@ -82,25 +86,36 @@ if ($int0 = 1) {
     switch_int (struct_param($struct7, param_8296)) {
         case default :
             if (cc_find($component5, 0) = true) {
-                cc_setposition(0, $int17, ^setpos_abs_left, ^setpos_abs_top);
-                cc_setsize(0, $int17, ^setsize_minus, ^setsize_minus);
+                cc_setposition(0, $int18, ^setpos_abs_left, ^setpos_abs_top);
+                cc_setsize(0, $int18, ^setsize_minus, ^setsize_minus);
             }
             if (cc_find($component6, 6) = true) {
-                cc_setposition(0, calc($int10 + $int17 + $int14), ^setpos_abs_left, ^setpos_abs_top);
-                cc_setsize($int8, calc($int12 + $int10 + $int17 + $int14), ^setsize_abs, ^setsize_minus);
+                cc_setposition(0, calc($int10 + $int18 + $int14), ^setpos_abs_left, ^setpos_abs_top);
+                cc_setsize($int8, calc($int12 + $int10 + $int18 + $int14), ^setsize_abs, ^setsize_minus);
             }
             if (cc_find($component6, 7) = true) {
-                cc_setposition(0, calc($int11 + $int17 + $int14), ^setpos_abs_right, ^setpos_abs_top);
-                cc_setsize($int9, calc($int13 + $int11 + $int17 + $int14), ^setsize_abs, ^setsize_minus);
+                cc_setposition(0, calc($int11 + $int18 + $int14), ^setpos_abs_right, ^setpos_abs_top);
+                cc_setsize($int9, calc($int13 + $int11 + $int18 + $int14), ^setsize_abs, ^setsize_minus);
             }
         case 1 :
-            if_setposition($int18, 0, ^setpos_abs_left, ^setpos_abs_top, $component3);
-            if_setsize(calc($int18 * 2), $int17, ^setsize_minus, ^setsize_abs, $component3);
-            if_setposition($int18, 0, ^setpos_abs_left, ^setpos_abs_top, $component4);
-            if_setsize(calc($int18 * 2), $int17, ^setsize_minus, ^setsize_abs, $component3);
-            if_setposition(0, calc($int17 - $int19), ^setpos_abs_left, ^setpos_abs_top, $component6);
-            if_setsize(0, calc($int17 - $int19), ^setsize_minus, ^setsize_minus, $component6);
-            if_setposition($int8, calc($int17 + $int15 - $int19), ^setpos_abs_left, ^setpos_abs_top, $component5);
-            if_setsize(calc($int8 + $int9), calc($int17 + $int15 + $int16 - $int19), ^setsize_minus, ^setsize_minus, $component5);
+            if_setposition($int19, 0, ^setpos_abs_left, ^setpos_abs_top, $component3);
+            if_setsize(calc($int19 * 2), $int18, ^setsize_minus, ^setsize_abs, $component3);
+            if_setposition($int19, 0, ^setpos_abs_left, ^setpos_abs_top, $component4);
+            if_setsize(calc($int19 * 2), $int18, ^setsize_minus, ^setsize_abs, $component3);
+            if_setposition(0, calc($int18 - $int20), ^setpos_abs_left, ^setpos_abs_top, $component6);
+            if_setsize(0, calc($int18 - $int20), ^setsize_minus, ^setsize_minus, $component6);
+            if_setposition($int8, calc($int18 + $int15 - $int20), ^setpos_abs_left, ^setpos_abs_top, $component5);
+            if_setsize(calc($int8 + $int9), calc($int18 + $int15 + $int16 - $int20), ^setsize_minus, ^setsize_minus, $component5);
+        case 2 :
+            if_setposition(calc($int8 + $int19), calc($int16 + $int20), ^setpos_abs_left, ^setpos_abs_bottom, $component3);
+            if_setsize(calc($int8 + $int9 + $int19 * 2), $int18, ^setsize_minus, ^setsize_abs, $component3);
+            $int21 = ~script8374($component3);
+            $int22 = max(1, calc(if_getwidth($component3) / $int17));
+            $int23 = max(1, calc($int21 / $int22 + min(1, calc($int21 % $int22))));
+            ~script20534($component3, $int21, $int22, $int17, $int18, $int19);
+            $int18 = calc($int23 * $int18);
+            if_setsize(calc($int19 * 2), $int18, ^setsize_minus, ^setsize_abs, $component3);
+            if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, $component4);
+            if_setsize(0, calc($int16 * 2 + $int18 + $int20 * 2), ^setsize_minus, ^setsize_abs, $component4);
     }
 }

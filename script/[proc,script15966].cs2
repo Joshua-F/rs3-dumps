@@ -1,17 +1,27 @@
 // 15966
 [proc,script15966](component $component0, int $int1, int $int2, dbrow $dbrow3, int $setposh4, int $int5, boolean $boolean6)(int, int)
-def_string $string0 = db_getfield($dbrow3, dbtable_132:col2, 0);
-def_stylesheet $stylesheet7 = db_getfield($dbrow3, dbtable_132:col0, 0);
+def_string $string0 = ~script20494($dbrow3, $int5);
+if (string_length($string0) = 0) {
+    return($int1, -10);
+}
+def_stylesheet $stylesheet7 = ~script20495($dbrow3, $int5);
 def_int $int8 = 0;
 def_int $int9 = 0;
-$int8, $int9 = db_getfield($dbrow3, dbtable_132:col3, 0);
-if ($int8 <= 0 | $int9 <= 0) {
+$int8, $int9 = ~script20496($dbrow3, $int5);
+if ($int8 <= 0 & $int9 <= 0) {
     $int8, $int9 = ~script17669($int5, $stylesheet7);
 }
 def_int $int10 = scale(if_getwidth($component0), 16384, 7373);
 def_int $int11 = 0;
 switch_int ($int5) {
     case 4 :
+        $int11 = ~script20497($dbrow3);
+        if ($int11 = 0) {
+            ~cc_add_rect($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int9, ^setsize_rel, ^setsize_abs, dbrow_4128);
+            cc_setonvartransmit(null);
+            cc_setcolour(^white);
+            cc_settrans(128);
+        }
         ~cc_add_text($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int9, ^setsize_rel, ^setsize_abs, $dbrow3, $string0);
         cc_setonvartransmit(null);
         $int11 = ~script11432(cc_getfontmetrics);
@@ -27,10 +37,14 @@ switch_int ($int5) {
         if ($int8 > 0) {
             ~cc_add_button($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, $int8, $int9, ^setsize_abs, ^setsize_abs, $dbrow3, "");
             cc_setonvartransmit(null);
+            cc_setenabled($boolean6);
             ~cc_add_text($component0, $int1++, $int8, $int2, $setposh4, ^setpos_abs_top, calc(scale(if_getwidth($component0), 16384, 7373) - $int8), $int9, ^setsize_abs, ^setsize_abs, dbrow_2100, $string0);
+            cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
         } else {
             ~cc_add_button($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int9, ^setsize_rel, ^setsize_abs, $dbrow3, $string0);
             cc_setonvartransmit(null);
+            cc_setenabled($boolean6);
+            cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
         }
     case 12 :
         ~cc_add_checkbox($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int9, ^setsize_rel, ^setsize_abs, $dbrow3, $string0);
@@ -108,15 +122,18 @@ switch_int ($int5) {
         cc_radiogroup_addoption(1, "<$string0> (Entry 2)");
         cc_radiogroup_addoption(2, "<$string0> (Entry 3)");
         cc_radiogroup_addoption(3, "<$string0> (Entry 4)");
-    case 23 :
-        ~script17600($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int9, ^setsize_rel, ^setsize_abs, $dbrow3, $string0);
+    case 23, 1001, 1002, 1003, 1004 :
+        ~script17600($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, 7373, $int9, ^setsize_rel, ^setsize_abs, $dbrow3, "Title");
         cc_setenabled($boolean6);
         cc_setonvartransmit(null);
         ~cc_add_child_rect(0, $int1++, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_4128);
         cc_setcolour(^green);
         cc_setfill(false);
         cc_setonvartransmit(null);
-        ~cc_add_child_text(0, $int1++, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_2100, "<$string0> -- Child content area.");
+        if ($int5 ! 23) {
+            $string0 = "<$string0><br>Child content area (green box) offset automatically for child components.";
+        }
+        ~cc_add_child_text(0, $int1++, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_2100, $string0);
     case 24 :
         ~cc_add_rect($component0, $int1++, 0, $int2, $setposh4, ^setpos_abs_top, $int9, $int9, ^setsize_abs, ^setsize_abs, dbrow_4128);
         cc_setonvartransmit(null);

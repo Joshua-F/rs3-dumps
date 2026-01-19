@@ -12,14 +12,14 @@ if_sethide(true, interface_276:com_16);
 ~script8792;
 if (%varplayerbit_38842 = 1) {
     %varclientbit_32705 = 0;
-    if_setcolour(^black, interface_1477:com_25);
+    if_setcolour(^black, interface_1477:com_26);
     ~script8352;
     ~script13892;
     ~script8784;
     return;
 } else if (%varplayerbit_27169 = 1) {
     %varclientbit_32705 = 0;
-    if_setcolour(^black, interface_1477:com_25);
+    if_setcolour(^black, interface_1477:com_26);
     ~script9943;
     ~script8784;
     return;
@@ -41,9 +41,17 @@ def_struct $struct14 = null;
 def_component $component15 = null;
 def_component $component16 = null;
 %varclient_3474 = 0;
-if_setcolour(^black, interface_1477:com_25);
+if_setcolour(^black, interface_1477:com_26);
 ~script8352;
 $int12 = calc(enum_getoutputcount(enum_7717) - 1);
+def_int $int17 = $int0;
+if ($int0 = 8 & %varclient_3477 = false) {
+    switch_int (%varclient_8372) {
+        case 15, 16, 17 :
+            $int0 = ~script16635(15, 0);
+            $int17 = 8;
+    }
+}
 while ($int12 >= 0) {
     $int13 = enum(int, int, enum_7717, $int12);
     $struct14 = ~script10405($int13);
@@ -51,7 +59,8 @@ while ($int12 >= 0) {
         $component15 = struct_param($struct14, param_3503);
         if ($component15 ! null) {
             $int1, $int2, $int3, $int4, $int5, $int6, $int7, $int8, $int9, $int10, $int11 = ~script8701($int0, $int13);
-            if (struct_param($struct14, param_3526) = true | struct_param($struct14, param_3527) ! 0) {
+            $int9 = ~script20525($int13, $int0, $int17, $int9);
+            if (struct_param($struct14, param_3526) = true | ~script20451($struct14) ! 0) {
                 $component16 = ~script1886($int13);
                 ~script16000($int0, $int13);
                 switch_int ($int13) {
@@ -99,7 +108,7 @@ while ($int12 >= 0) {
                         if ($int10 = 1) {
                             ~script8361($int13);
                         } else {
-                            ~script8350($int0, $int13, 1);
+                            ~script8350($int17, $int13, 1);
                         }
                     }
                     if ($int13 ! 1008) {

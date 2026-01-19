@@ -1,8 +1,15 @@
 // 19706
 [proc,script19706]()(int)
-cc_deleteall(interface_1475:com_28);
-cc_deleteall(interface_1475:com_29);
-cc_deleteall(interface_1475:com_15);
+cc_deleteall(interface_1475:com_39);
+cc_deleteall(interface_1475:com_40);
+cc_deleteall(interface_1475:com_27);
+if (~script19705 = false) {
+    if_sethide(true, interface_1475:com_24);
+    if_settext("", interface_1475:com_33);
+    return(0);
+}
+if_sethide(false, interface_1475:com_24);
+if_settext(%varclient_8264, interface_1475:com_33);
 def_int $int0 = -1;
 def_int $int1 = 0;
 def_int $int2 = enum_getoutputcount(enum_10781);
@@ -14,17 +21,17 @@ def_int $int7 = 19;
 def_string $string0 = "";
 def_string $string1 = "";
 def_boolean $boolean8 = false;
-if_settext("Load <%varclient_8264> Layouts:", interface_1475:com_13);
+if_settext("Load <%varclient_8264> Layouts:", interface_1475:com_25);
 while ($int0 < $int2) {
     if (~script19689($int3) = 1) {
         $int4 = ~script19690($int3);
         $int5 = ~script19691($int3);
         if ($int4 <= 0 | $int5 <= 0) {
-            $string0 = ~script453($int3, 0, 0);
+            $string0 = ~script453($int3, 0, 0, 0);
             $string1 = "Resolution unavailable. <%varclient_8264> may not be sharing resolution or the preset was saved before resolution information was tracked.";
             $int6 = 24;
         } else {
-            $string0 = "<~script453($int3, 0, 0)><br><tostring_localised($int4, true)> x <tostring_localised($int5, true)>";
+            $string0 = "<~script453($int3, 0, 0, 0)><br><tostring_localised($int4, true)> x <tostring_localised($int5, true)>";
             $string1 = "<$string0> resolution (width x height) when preset was saved.";
             $int6 = 32;
         }
@@ -33,7 +40,7 @@ while ($int0 < $int2) {
         } else {
             $boolean8 = false;
         }
-        ~cc_add_button_full(interface_1475:com_29, $int3, 0, $int1, ^setpos_abs_centre, ^setpos_abs_top, 10, $int6, ^setsize_minus, ^setsize_abs, dbrow_13474, $string0, true, true, true, $boolean8);
+        ~cc_add_button_full(interface_1475:com_40, $int3, 0, $int1, ^setpos_abs_centre, ^setpos_abs_top, 0, $int6, ^setsize_minus, ^setsize_abs, dbrow_4476, $string0, true, true, true, $boolean8);
         cc_setop(1, "Load");
         cc_setonop("script19708(event_com, event_comsubid)");
         cc_setonmouserepeat("script8799($string1, event_com, event_comsubid)");
@@ -42,6 +49,6 @@ while ($int0 < $int2) {
     $int0 = calc($int0 + 1);
     $int3 = enum(int, int, enum_10781, $int0);
 }
-if_setsize(0, min(150, calc($int1 + $int7)), ^setsize_minus, ^setsize_abs, interface_1475:com_12);
-~script19620(interface_1475:com_15, interface_1475:com_14, $int1, null, -1, 0, 0, $int7);
+if_setsize(0, min(150, calc($int1 + $int7)), ^setsize_minus, ^setsize_abs, interface_1475:com_24);
+~script19620(interface_1475:com_27, interface_1475:com_26, $int1, null, -1, 0, 0, $int7);
 return(calc($int1 + $int7));

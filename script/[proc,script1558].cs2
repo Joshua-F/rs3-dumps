@@ -3,7 +3,7 @@
 if ($int0 <= 0 | $int0 = 1019) {
     return;
 }
-if (%varplayerbit_27169 = 1 & $int0 ! 18) {
+if ((%varplayerbit_27169 = 1 | %varplayerbit_38842 = 0 & %varplayerbit_60441 = 1) & $int0 ! 18) {
     return;
 }
 def_component $component2 = ~script8557($int0);
@@ -45,27 +45,17 @@ if (~script6431 = false) {
 }
 if_sethide(false, $component4);
 if_sethide(false, $component3);
-if (%varplayerbit_27169 = 1) {
+if (%varplayerbit_27169 = 1 | %varplayerbit_38842 = 0 & %varplayerbit_60441 = 1) {
     if_sethide(true, ~script13539($int0));
-    if_setsize(0, 26, ^setsize_minus, ^setsize_minus, if_getparentlayer($component5));
-    if_setposition(0, 26, ^setpos_abs_left, ^setpos_abs_bottom, if_getparentlayer($component5));
+    if_sethide(true, ~script13540($int0));
+    if_setposition(0, 29, ^setpos_abs_left, ^setpos_abs_bottom, if_getparentlayer($component5));
+    if_setsize(0, 31, ^setsize_minus, ^setsize_minus, if_getparentlayer($component5));
 } else {
     if_setsize(16, 0, ^setsize_abs, ^setsize_minus, $component6);
     if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom, $component6);
 }
 if ($component7 ! null) {
     if_sethide(true, $component7);
-}
-if ($int1 = 1 & (userdetail_quickchat = true | map_quickchat = true) & $int0 ! 24) {
-    if ($boolean11 = true) {
-        if_settext("Tap here to enter Public Quick Chat or tap and hold for Friends Channel Quick Chat.", $component4);
-    } else {
-        if_settext("Left-click here to enter Public Quick Chat or right-click for Friends Channel Quick Chat.", $component4);
-    }
-    if_setonclick(null, $component4);
-    if_setontimer(null, $component4);
-    if_sethide(true, $component2);
-    return;
 }
 def_string $string0 = "<chat_playername><img=<3>>:";
 switch_int (~script19312) {
@@ -81,44 +71,70 @@ switch_int (~script19312) {
         $string0 = "<img=<11>><$string0>";
 }
 def_string $string1 = "";
-switch_int ($int10) {
-    case 100 :
-        if (string_length(%varclient_2367) > 0) {
-            $string0 = "To <%varclient_2367>:";
-        }
-        $string1 = "Private Chat";
-    case 1 :
-        $string1 = "Friends Chat";
-    case 2 :
-        $string1 = "Clan Chat";
-    case 3 :
-        $string1 = "Guest Clan Chat";
-    case 6 :
-        $string1 = "Twitch Chat";
-    case 4 :
-        $string1 = "Group Chat";
-    case 5 :
-        $string1 = "Group Chat (Team)";
-    case 102 :
-        $string1 = "Group Ironman";
-    case default :
-        if (%varclient_6858 = true) {
-            $string0 = "Search Wiki<img=<3>>:";
-        } else {
-            $string1 = "Public Chat";
-        }
+if (%varplayerbit_27169 = 0 & (%varplayerbit_38842 = 1 | %varplayerbit_60441 = 0)) {
+    switch_int ($int10) {
+        case 100 :
+            if (string_length(%varclient_2367) > 0) {
+                $string0 = "To <%varclient_2367>:";
+            }
+            $string1 = "Private Chat";
+        case 1 :
+            $string1 = "Friends Chat";
+        case 2 :
+            $string1 = "Clan Chat";
+        case 3 :
+            $string1 = "Guest Clan Chat";
+        case 6 :
+            $string1 = "Twitch Chat";
+        case 4 :
+            $string1 = "Group Chat";
+        case 5 :
+            $string1 = "Group Chat (Team)";
+        case 102 :
+            $string1 = "Group Ironman";
+        case default :
+            if (%varclient_6858 = true) {
+                $string0 = "Search Wiki<img=<3>>:";
+            } else {
+                $string1 = "Public Chat";
+            }
+    }
+} else {
+    switch_int (%varplayerbit_22846) {
+        case 3 :
+            $string1 = "Private Chat";
+        case 4 :
+            $string1 = "Friends Chat";
+        case 5 :
+            $string1 = "Clan Chat";
+        case 6 :
+            $string1 = "Guest Clan Chat";
+        case 10 :
+            $string1 = "Group Chat";
+        case 11 :
+            $string1 = "Group Ironman";
+        case default :
+            if (%varclient_6858 = true) {
+                $string0 = "Search Wiki<img=<3>>:";
+            } else {
+                $string1 = "Public Chat";
+            }
+    }
+    if (string_length(%varclient_2367) > 0 & $int10 = 100) {
+        $string0 = "To <%varclient_2367>:";
+    }
 }
 if_settext($string0, $component8);
 if (string_length($string1) > 0) {
     $string1 = "<$string1> - ";
 }
 if ($boolean11 = false) {
-    if_settextfont(fontmetrics_27, $component4);
+    if_settextfont(fontmetrics_26, $component4);
 } else {
     if_settextfont(fontmetrics_30, $component4);
 }
 if_setcolour(0x7fa9ff, $component4);
-if_settextfont(fontmetrics_27, $component8);
+if_settextfont(fontmetrics_26, $component8);
 if_setcolour(^white, $component8);
 if_settextshadow(true, $component8);
 if_setcolour(^white, $component2);
@@ -142,7 +158,7 @@ if (string_length(~script8521($int0)) > 0 | %varclient_2873 = 8 & %varclient_223
 }
 ~script7172($int0);
 def_int $setposv12 = ^setpos_abs_bottom;
-def_int $int13 = stringwidth(if_gettext($component8), fontmetrics_27);
+def_int $int13 = stringwidth(if_gettext($component8), fontmetrics_26);
 if ($boolean11 = true) {
     $setposv12 = ^setpos_abs_centre;
 }

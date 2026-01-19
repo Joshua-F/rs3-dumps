@@ -21,43 +21,12 @@ def_int $int4 = shop_isproductavailable($int0, $int1);
 if (~script15747($int4, $dbrow3) = 0) {
     return(0);
 }
-def_component $component5 = null;
-def_int $int6 = 15;
-def_int $int7 = 0;
-def_int $int8 = 0;
-switch_int (~mobile_shop_card_type($dbrow3, shop_isproductrecommended($int0, $int1))) {
-    case 1 :
-        $component5 = interface_828:com_8;
-        $int7 = if_getnextsubid($component5);
-        ~script15733($component5, db_getfield($dbrow3, dbtable_122:col4, 0), db_getfield($dbrow3, dbtable_122:col5, 0), if_getwidth($component5), $int6, db_getfield($dbrow3, dbtable_122:col6, 0), $string3, $int2, $string6, db_getfield($dbrow3, dbtable_122:col15, 0));
-    case 3 :
-        $component5 = interface_828:com_9;
-        $int7 = if_getnextsubid($component5);
-        ~script15734($component5, db_getfield($dbrow3, dbtable_122:col4, 0), db_getfield($dbrow3, dbtable_122:col5, 0), if_getwidth($component5), $int6, db_getfield($dbrow3, dbtable_122:col6, 0), $string3, $int2, $string6, db_getfield($dbrow3, dbtable_122:col15, 0));
-    case 4 :
-        $component5 = interface_828:com_11;
-        $int7 = if_getnextsubid($component5);
-        $int8 = calc($int7 / 9);
-        if (calc($int8 % 2) = 1) {
-            $int6 = calc($int6 + (15 + 205));
-        }
-        ~script15737($component5, db_getfield($dbrow3, dbtable_122:col2, 0), db_getfield($dbrow3, dbtable_122:col3, 0), calc(15 + $int8 / 2 * (255 + 15)), $int6, db_getfield($dbrow3, dbtable_122:col6, 0), $string3, $int2, $string6, db_getfield($dbrow3, dbtable_122:col15, 0));
-    case 2 :
-        $component5 = interface_828:com_10;
-        $int7 = if_getnextsubid($component5);
-        $int8 = calc($int7 / 9);
-        if (calc($int8 % 2) = 1) {
-            $int6 = calc($int6 + (15 + 205));
-        }
-        ~script15736($component5, db_getfield($dbrow3, dbtable_122:col2, 0), db_getfield($dbrow3, dbtable_122:col3, 0), calc(15 + $int8 / 2 * (255 + 15)), $int6, db_getfield($dbrow3, dbtable_122:col6, 0), $string3, $int2, $string6, db_getfield($dbrow3, dbtable_122:col15, 0));
+def_string $string7 = db_getfield($dbrow3, dbtable_122:col6, 0);
+if (string_length($string7) > 0) {
+    $string0 = $string7;
 }
-def_string $string7 = "This product is unavailable. You already have an active membership.";
-if (cc_find($component5, $int7) = true) {
-    cc_setonop("script15739($string3, $dbrow3, $string1, $int0, ~script3921($int1))");
-    cc_setop(1, "Buy");
-}
-if_setposition(calc(if_getwidth(interface_828:com_8) - 15), 0, ^setpos_abs_left, ^setpos_abs_top, interface_828:com_9);
-if_setposition(calc(if_getx(interface_828:com_9) + if_getwidth(interface_828:com_9) - 15), 0, ^setpos_abs_left, ^setpos_abs_top, interface_828:com_10);
-if_setposition(calc(if_getx(interface_828:com_10) + if_getwidth(interface_828:com_10) - 15), 0, ^setpos_abs_left, ^setpos_abs_top, interface_828:com_11);
-if_setsize(calc(if_getx(interface_828:com_11) + if_getwidth(interface_828:com_11)), 0, ^setsize_abs, ^setsize_minus, interface_828:com_7);
+~if_add_child_layer(interface_828:com_6, ui_getcategory(if_getnextsubid(interface_828:com_6)), ui_getdynid(if_getnextsubid(interface_828:com_6)), 0, 0, ^setpos_abs_centre, ^setpos_abs_top, 176, 176, ^setsize_abs, ^setsize_abs);
+cc_setonop("script15739($string3, $dbrow3, $string1, $int0, ~script3921($int1))");
+cc_setop(1, "Buy");
+~script20616(interface_828:com_6, $string0, db_getfield($dbrow3, dbtable_122:col4, 0), $string3, 1, db_getfield($dbrow3, dbtable_122:col15, 0), 6, 6, ^setsize_minus, ^setsize_minus, true, 0);
 return(1);

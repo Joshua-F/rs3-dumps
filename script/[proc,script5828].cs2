@@ -16,9 +16,9 @@ if ($struct1 = struct_28977) {
     $string5 = $string3;
     $string6 = $string2;
 } else {
-    $int7 = 15458492;
+    $int7 = 14931919;
     $string3 = get_col_tag($int7);
-    $string1 = "<col=EBE0BC>";
+    $string1 = $string3;
     $string2 = $string3;
     $string4 = $string3;
     $string5 = "<col=969696>";
@@ -76,8 +76,13 @@ $int36 = oc_param($obj0, param_963);
 $int37 = oc_param($obj0, param_2951);
 cc_deleteall($component4);
 def_int $int47 = 0;
+def_int $int48 = -1;
 if ($obj0 ! null & $struct1 ! null & string_length($string0) > 0) {
     $int47 = ~script7235($string0, $string7, $struct1, $component3, $component4, $int47);
+    if ($component3 = interface_1477:com_906 & $component4 = interface_1477:com_909) {
+        $int47 = ~script20487($component3, $component4, $int47);
+        $int48 = $int47;
+    }
 }
 if (oc_wearpos($obj0) ! -1) {
     %varclient_2239 = inv_getobj(inv_94, oc_wearpos($obj0));
@@ -547,6 +552,9 @@ if (oc_wearpos($obj0) ! -1) {
     }
     $struct41 = oc_param($obj0, param_3203);
     if ($struct41 ! null) {
+        if ($int47 > $int48) {
+            $int47 = ~script13258(1, struct_param($struct2, param_4205), $component3, $component4, $int47);
+        }
         $int47 = ~script7235("Item Set: <struct_param($struct41, param_2794)>", $string3, $struct2, $component3, $component4, $int47);
         $int47 = ~script6554($int47, $struct2, $component3, $component4, $struct41, $string8, $string4, $string5, $int19, $obj0);
     }
@@ -644,7 +652,7 @@ if (oc_param($obj0, param_3683) ! 0) {
 if (oc_param($obj0, param_3675) ! 0) {
     $int47 = ~script7235("Will offer to open a Daemonheim skill door which has requirements you don't meet, within <tostring(oc_param($obj0, param_3675))> skill levels.", $string3, $struct2, $component3, $component4, $int47);
 }
-def_dbrow $dbrow48 = null;
+def_dbrow $dbrow49 = null;
 if (oc_param($obj0, param_3697) ! 0) {
     $int12 = scale(oc_param($obj0, param_3697), 100, 60);
     $int47 = ~script7235("Extends the duration of your gravestone by <tostring($int12)> seconds, up to a maximum of 5 minutes.", $string3, $struct2, $component3, $component4, $int47);
@@ -653,16 +661,16 @@ if (oc_param($obj0, param_3699) ! 0) {
     $int47 = ~script7235("When equipped, will transport up to <tostring(oc_param($obj0, param_3699))> received items to the bank before depleting.", $string3, $struct2, $component3, $component4, $int47);
 }
 db_find(dbtable_85:col5, $obj0);
-$dbrow48 = db_findnext;
-if ($dbrow48 ! null) {
-    $int47 = ~script7235(~lore_pouch_tooltip($dbrow48), $string3, $struct2, $component3, $component4, $int47);
-    $dbrow48 = null;
+$dbrow49 = db_findnext;
+if ($dbrow49 ! null) {
+    $int47 = ~script7235(~lore_pouch_tooltip($dbrow49), $string3, $struct2, $component3, $component4, $int47);
+    $dbrow49 = null;
 }
 db_find(dbtable_85:col6, $obj0);
-$dbrow48 = db_findnext;
-if ($dbrow48 ! null) {
-    $int47 = ~script7235(~lore_scroll_tooltip($dbrow48), $string3, $struct2, $component3, $component4, $int47);
-    $dbrow48 = null;
+$dbrow49 = db_findnext;
+if ($dbrow49 ! null) {
+    $int47 = ~script7235(~lore_scroll_tooltip($dbrow49), $string3, $struct2, $component3, $component4, $int47);
+    $dbrow49 = null;
 }
 if (%varclient_5121 ! null & %varclient_5122 >= 0) {
     if (oc_param($obj0, param_5553) ! 0) {
@@ -1776,5 +1784,11 @@ if ($obj5 ! null & $obj5 ! $obj0) {
 }
 if (oc_param($obj0, param_3824) = true & string_length(oc_desc($obj0)) > 0) {
     $int47 = ~script7235(oc_desc($obj0), $string3, $struct2, $component3, $component4, $int47);
+}
+if ($int48 ! -1 & $int47 = $int48) {
+    $int47 = calc($int47 - 1);
+    if (cc_find(if_getparentlayer($component4), calc(if_getnextsubid(if_getparentlayer($component4)) - 1)) = true) {
+        cc_delete;
+    }
 }
 return($int47);
