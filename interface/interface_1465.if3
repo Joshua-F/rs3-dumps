@@ -2,6 +2,7 @@
 [com_0]
 type=layer
 contenttype=1338
+height=60
 widthmode=minus
 heightmode=minus
 noclickthrough=yes
@@ -15,10 +16,13 @@ heightmode=minus
 // 1465:2
 [com_2]
 type=graphic
-width=60
-height=61
+height=39
+widthmode=minus
+ymode=abs_bottom
 layer=com_1
-graphic=navigation_inset_top
+noclickthrough=yes
+graphic=rs3_minimap_square_footer
+tiling=yes
 colour=0xffffff
 clickmask=no
 
@@ -27,10 +31,8 @@ clickmask=no
 type=graphic
 width=60
 height=61
-xmode=abs_right
 layer=com_1
 graphic=navigation_inset_top
-hflip=yes
 colour=0xffffff
 clickmask=no
 
@@ -39,15 +41,29 @@ clickmask=no
 type=graphic
 width=60
 height=61
-ymode=abs_bottom
+xmode=abs_right
 layer=com_1
-graphic=navigation_inset_bottom
+graphic=navigation_inset_top
+hflip=yes
 colour=0xffffff
 clickmask=no
 
 // 1465:5
 [com_5]
 type=graphic
+y=39
+width=60
+height=61
+ymode=abs_bottom
+layer=com_1
+graphic=navigation_inset_bottom
+colour=0xffffff
+clickmask=no
+
+// 1465:6
+[com_6]
+type=graphic
+y=39
 width=60
 height=61
 xmode=abs_right
@@ -58,33 +74,21 @@ hflip=yes
 colour=0xffffff
 clickmask=no
 
-// 1465:6
-[com_6]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_right
-
 // 1465:7
 [com_7]
 type=layer
 widthmode=minus
 heightmode=minus
-onload=script9902
-onvartransmit=script9902
-onvartransmitlist=varplayer_3680,varplayer_5091
+xmode=abs_right
 
 // 1465:8
 [com_8]
 type=layer
-x=5
-y=4
-width=30
-height=30
-xmode=abs_right
-ymode=abs_bottom
-layer=com_7
-noclickthrough=yes
+widthmode=minus
+heightmode=minus
+onload=script9902
+onvartransmit=script9902
+onvartransmitlist=varplayer_3680,varplayer_5091,varplayer_5839
 
 // 1465:9
 [com_9]
@@ -93,7 +97,20 @@ widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-layer=com_8
+layer=com_21
+graphic=rs3_minimap_classic_ring_38px
+colour=0xffffff
+
+// 1465:10
+[com_10]
+type=graphic
+width=8
+height=8
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_21
 graphic=navigation_icon_worldmap_on
 colour=0xffffff
 clickmask=no
@@ -108,92 +125,112 @@ onvartransmit=worldmap_button(event_com)
 onmouserepeat=script8799("World Map", event_com, -1)
 onvartransmitlist=varplayer_2391,varplayer_2807,varplayer_3680
 
-// 1465:10
-[com_10]
-type=layer
-x=470
-y=-2
-width=44
-height=44
-layer=com_7
-noclickthrough=yes
-
 // 1465:11
 [com_11]
+type=layer
+width=41
+height=41
+layer=com_8
+noclickthrough=yes
+
+// 1465:12
+[com_12]
+type=layer
+width=42
+height=42
+xmode=abs_right
+layer=com_8
+noclickthrough=yes
+
+// 1465:13
+[com_13]
 type=graphic
-x=5
-y=5
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_12
+graphic=rs3_minimap_classic_ring_41px
+colour=0xffffff
+
+// 1465:14
+[com_14]
+type=graphic
 width=34
 height=34
-layer=com_10
+xmode=abs_centre
+ymode=abs_centre
+layer=com_12
 graphic=navigation_backing_energy
 colour=0xffffff
-op1=Turn Run mode on
-op2=Rest
+op1=Toggle Run
+op2=Toggle Rest
 onload=topstat_run_button_init(event_com)
 onmouseleave=script8805
 onmouserepeat=script8799("Run Energy", event_com, -1)
 onvarctransmit=topstat_run_button_update(event_com)
 onvarctransmitlist=varclient_119
 
-// 1465:12
-[com_12]
+// 1465:15
+[com_15]
 type=graphic
-x=5
-y=5
 width=34
 height=34
-layer=com_10
+xmode=abs_centre
+ymode=abs_centre
+layer=com_12
 graphic=navigation_backing_energy
 colour=0xffffff
 
-// 1465:13
-[com_13]
+// 1465:16
+[com_16]
 type=graphic
-x=4
-y=4
 width=36
 height=36
-layer=com_10
+xmode=abs_centre
+ymode=abs_centre
+layer=com_12
 graphic=navigation_energy_click_area
 colour=0xffffff
 onmouseover=graphic_swapper(event_com, navigation_highlight_energy)
 onmouseleave=graphic_swapper(event_com, navigation_energy_click_area)
 onclick=graphic_swapper(event_com, null)
 
-// 1465:14
-[com_14]
+// 1465:17
+[com_17]
 type=graphic
-x=8
-y=8
 width=28
 height=28
-layer=com_10
+xmode=abs_centre
+ymode=abs_centre
+layer=com_12
 graphic=navigation_level_energy_circle
 tiling=yes
 colour=0xffffff
 
-// 1465:15
-[com_15]
+// 1465:18
+[com_18]
 type=graphic
 width=22
 height=28
 xmode=abs_centre
 ymode=abs_centre
-layer=com_10
+layer=com_12
 graphic=navigation_icon_energy_off
 colour=0xffffff
-onload=script2304(interface_1465:com_11, interface_1465:com_14, interface_1465:com_16)
+onload=script2304(interface_1465:com_14, interface_1465:com_17, interface_1465:com_19)
 ondragcomplete=script7001(event_com, event_comsubid, event_com2)
 
-// 1465:16
-[com_16]
+// 1465:19
+[com_19]
 type=text
-x=2
-width=42
-height=44
-layer=com_10
-textfont=fontmetrics_26
+y=-1
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_12
+textfont=fontmetrics_206
 text=100%
 textalignh=1
 textalignv=1
@@ -201,34 +238,310 @@ textshadow=yes
 colour=0xffffff
 onload=script1019(event_com)
 
-// 1465:17
-[com_17]
+// 1465:20
+[com_20]
 type=layer
-x=5
-y=6
-width=30
-height=30
+y=40
+width=38
+height=38
 ymode=abs_bottom
-layer=com_7
+layer=com_8
 noclickthrough=yes
 
-// 1465:18
-[com_18]
+// 1465:21
+[com_21]
+type=layer
+y=40
+width=38
+height=38
+xmode=abs_right
+ymode=abs_bottom
+layer=com_8
+noclickthrough=yes
+
+// 1465:22
+[com_22]
+type=layer
+y=2
+width=94
+height=32
+xmode=abs_centre
+ymode=abs_bottom
+layer=com_8
+noclickthrough=yes
+
+// 1465:23
+[com_23]
+type=layer
+width=94
+height=32
+layer=com_22
+noclickthrough=yes
+onload=script3421(event_com, -1, 1004)
+
+// 1465:24
+[com_24]
 type=graphic
-width=30
-height=30
+width=94
+height=32
 xmode=abs_centre
 ymode=abs_centre
-layer=com_17
-graphic=navigation_icon_teleport_on
+layer=com_22
+noclickthrough=yes
+graphic=rs3_minimap_classic_ring_clock
 colour=0xffffff
 clickmask=no
-op1=Teleport
-op2=Previous destination
+
+// 1465:25
+[com_25]
+type=layer
+x=44
+y=1
+width=34
+height=34
+ymode=abs_bottom
+layer=com_8
+hide=yes
+noclickthrough=yes
+op1=Toggle Slayer Counter
+onmouseleave=script8805
+onmouserepeat=script8799("Slayer Counter", event_com, -1)
+
+// 1465:26
+[com_26]
+type=layer
+x=4
+y=1
+width=34
+height=34
+ymode=abs_bottom
+layer=com_8
+hide=yes
+noclickthrough=yes
+op1=RuneMetrics Settings
+op2=Toggle Metrics
+op3=Open Graphs
+op4=Open Drops
+onmouseleave=script8805
+onvartransmit=script20498
+onop=script12601(event_op)
+onmouserepeat=script8799("RuneMetrics", event_com, -1)
+onvartransmitlist=varplayer_94
+
+// 1465:27
+[com_27]
+type=layer
+x=4
+y=1
+width=34
+height=34
+ymode=abs_bottom
+layer=com_8
+hide=yes
+noclickthrough=yes
+op1=Toggle Metrics
+op2=Toggle XP Popups
+op3=Metrics Settings
+onmouseleave=script8805
+onop=script9897(event_op)
+onmouserepeat=script8799("Metrics", event_com, -1)
+
+// 1465:28
+[com_28]
+type=layer
+width=4
+height=8
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_22
+onload=script18280(interface_1465:com_30)
+onvartransmit=script18281(interface_1465:com_30)
+onvartransmitlist=varplayer_5839,varplayer_11489
+
+// 1465:29
+[com_29]
+type=layer
+x=5
+width=18
+height=18
+xmode=abs_right
+ymode=abs_centre
+layer=com_22
+noclickthrough=yes
+onmouserepeat=script1272(event_com)
+
+// 1465:30
+[com_30]
+type=text
+x=26
+width=48
+height=26
+widthmode=minus
+ymode=abs_centre
+layer=com_28
+noclickthrough=yes
+textfont=fontmetrics_209
+text=23:59
+textalignh=1
+textalignv=1
+textshadow=yes
+colour=0xffffff
+onmouserepeat=script11066(event_com)
+
+// 1465:31
+[com_31]
+type=graphic
+width=26
+height=26
+ymode=abs_centre
+layer=com_28
+noclickthrough=yes
+graphic="sept16_icon_calendar,0"
+colour=0xffffff
+clickmask=no
+op1=Open Calendar
+onmouseover=graphic_swapper(event_com, "sept16_icon_calendar,1")
+onmouseleave=graphic_swapper(event_com, "sept16_icon_calendar,0")
+onmouserepeat=script8799("Calendar", event_com, -1)
+
+// 1465:32
+[com_32]
+type=graphic
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_20
+graphic=rs3_minimap_classic_ring_38px
+colour=0xffffff
+
+// 1465:33
+[com_33]
+type=graphic
+width=4
+height=4
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_20
+graphic="aif_magic_standard_icons,1"
+colour=0xffffff
+clickmask=no
+op1=Open Lodestone Network
+op2=Teleport Previous Destination
 onload=script5841(event_com)
 onmouseover=graphic_swapper(event_com, navigation_icon_teleport_over)
 onmouseleave=graphic_swapper(event_com, navigation_icon_teleport_on)
 onvartransmit=script5841(event_com)
 onmouserepeat=script8799("Home Teleport", event_com, -1)
 onvartransmitlist=varplayer_3
+
+// 1465:34
+[com_34]
+type=graphic
+widthmode=minus
+heightmode=minus
+layer=com_29
+graphic=rs3_icon_info
+colour=0xffffff
+clickmask=no
+
+// 1465:35
+[com_35]
+type=text
+widthmode=minus
+heightmode=minus
+layer=com_29
+hide=yes
+textfont=fontmetrics_66
+textshadow=yes
+colour=0xffffff
+
+// 1465:36
+[com_36]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_25
+graphic=rs3_minimap_classic_ring_30px
+colour=0xffffff
+onmouseover=graphic_swapper(interface_1465:com_37, "trh56_icon_slayer_xp,1")
+onmouseleave=graphic_swapper(interface_1465:com_37, "trh56_icon_slayer_xp,0")
+
+// 1465:37
+[com_37]
+type=graphic
+width=20
+height=20
+xmode=abs_centre
+ymode=abs_centre
+layer=com_25
+graphic="trh56_icon_slayer_xp,0"
+colour=0xffffff
+
+// 1465:38
+[com_38]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_27
+graphic=rs3_minimap_classic_ring_30px
+colour=0xffffff
+onmouseover=graphic_swapper(interface_1465:com_39, "rs3_icon_menu_runemetrics_metrics,1")
+onmouseleave=graphic_swapper(interface_1465:com_39, "rs3_icon_menu_runemetrics_metrics,0")
+
+// 1465:39
+[com_39]
+type=graphic
+width=26
+height=22
+xmode=abs_centre
+ymode=abs_centre
+layer=com_27
+graphic="rs3_icon_menu_runemetrics_metrics,0"
+colour=0xffffff
+
+// 1465:40
+[com_40]
+type=graphic
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com_11
+graphic=rs3_minimap_classic_ring_41px
+colour=0xffffff
+clickmask=no
+
+// 1465:41
+[com_41]
+type=graphic
+width=30
+height=30
+xmode=abs_centre
+ymode=abs_centre
+layer=com_26
+graphic=rs3_minimap_classic_ring_30px
+colour=0xffffff
+
+// 1465:42
+[com_42]
+type=graphic
+width=24
+height=24
+xmode=abs_centre
+ymode=abs_centre
+layer=com_26
+graphic="rs3_icon_menu_tab_runemetrics,0"
+colour=0xffffff
+clickmask=no
+onmouseover=graphic_swapper(event_com, "rs3_icon_menu_tab_runemetrics,1")
+onmouseleave=graphic_swapper(event_com, "rs3_icon_menu_tab_runemetrics,0")
 

@@ -1,18 +1,32 @@
 // 19715
-[proc,script19715](int $int0, string $string0)
-def_int $int1 = 1;
-def_int $int2 = ~script19718($int0);
+[proc,script19715](int $int0, int $int1)
+def_int $int2 = 1;
+def_string $string0 = "Custom";
 def_string $string1 = "";
-def_int $int3 = 1;
-cc_list_addentry(0, $string0, -1);
-while ($int1 <= 255) {
+if (enum_hasoutput(int, enum_10781, $int0) = true) {
+    $int0 = enum_getreverseindex(int, int, enum_10781, $int0, 0);
+    $string0 = enum(int, string, enum_10780, $int0);
+} else {
     $string1 = enum(int, string, enum_6629, $int1);
-    if (string_length($string1) > 0) {
-        cc_list_addentry($int1, $string1, -1);
-        if ($int1 = $int2) {
-            cc_list_setisselected($int3, true, false);
-        }
-        $int3 = calc($int3 + 1);
+}
+def_int $int3 = 1;
+if (if_find(interface_1475:com_43) = true) {
+    cc_list_clear;
+    if ($int1 = 0) {
+        cc_list_addentry(0, "As: <$string0>", -1);
+        cc_list_setisselected(0, true, false);
+    } else {
+        cc_list_addentry(0, $string1, -1);
     }
-    $int1 = calc($int1 + 1);
+    while ($int2 <= 255) {
+        $string1 = enum(int, string, enum_6629, $int2);
+        if (string_length($string1) > 0) {
+            cc_list_addentry($int2, "As: <$string1>", -1);
+            if ($int2 = $int1) {
+                cc_list_setisselected($int3, true, false);
+            }
+            $int3 = calc($int3 + 1);
+        }
+        $int2 = calc($int2 + 1);
+    }
 }

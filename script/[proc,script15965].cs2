@@ -1,37 +1,30 @@
 // 15965
-[proc,script15965](int $int0, boolean $boolean1)
-def_component $component2 = interface_862:com_5;
-cc_deleteall($component2);
+[proc,script15965](int $int0, boolean $boolean1, boolean $boolean2)
+def_component $component3 = interface_862:com_8;
+cc_deleteall($component3);
 if ($int0 = -1) {
-    ~cc_add_text($component2, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_2099, "Use the dropdown to select a component type.<br><br>This will use a db_find() to find any interface_skin tables with a template_type column matching the chosen type.<br><br>Use the name of the stylesheet this outputs in the appropriate ~cc_add_ wrapper script, the cc_set_stylesheet command or stylesheet_set onload in interface editor.");
-    return;
-}
-def_int $int3 = db_find_with_count(dbtable_132:col1, $int0);
-if ($int3 <= 0) {
-    ~cc_add_text($component2, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_2099, "No results found for:<br><~script15969($int0)>");
+    ~cc_add_text($component3, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_2100, "Use the dropdown to select a component type.<br><br>This will use a db_find() to find any interface_skin tables with a template_type column matching the chosen type.<br><br>Use the name of the stylesheet this outputs in the appropriate ~cc_add_ wrapper script, the cc_set_stylesheet command or stylesheet_set onload in interface editor.");
     return;
 }
 if ($int0 = 24) {
-    if_settext("Fill mode", interface_862:com_4);
+    if_settext("Fill mode", interface_862:com_6);
 } else {
-    if_settext("Show disabled", interface_862:com_4);
+    if_settext("Show disabled", interface_862:com_6);
+}
+def_int $int4 = 1;
+if ($boolean2 = true) {
+    if_settext("Skin mode. Now: Mobile", interface_862:com_7);
+    $int4 = 2;
+} else {
+    if_settext("Skin mode. Now: Legacy", interface_862:com_7);
 }
 $boolean1 = ~negate_bool($boolean1);
-def_int $int4 = 0;
 def_int $int5 = 0;
-def_int $int6 = 0;
-def_int $int7 = 0;
-def_dbrow $dbrow8 = null;
-def_int $int9 = %varplayerbit_22875;
-while ($int5 < $int3) {
-    $dbrow8 = db_findnext;
-    %varplayerbit_22875 = 0;
-    $int4, $int7 = ~script15966($component2, $int4, $int6, $dbrow8, ^setpos_abs_left, $int0, $boolean1);
-    %varplayerbit_22875 = 1;
-    $int4, $int7 = ~script15966($component2, $int4, $int6, $dbrow8, ^setpos_abs_right, $int0, $boolean1);
-    $int6 = calc($int6 + ($int7 + 10));
-    $int5 = calc($int5 + 1);
+switch_int ($int0) {
+    case 4 :
+        $int5 = db_find_with_count(dbtable_344:col1, $int0);
+        ~script20492($component3, $int0, $boolean1, $int4, $int5);
+    case default :
+        $int5 = db_find_with_count(dbtable_132:col1, $int0);
+        ~script20492($component3, $int0, $boolean1, $int4, $int5);
 }
-%varplayerbit_22875 = $int9;
-if_setscrollsize(0, $int6, $component2);
-~rs3_scrollbar_vertical(interface_862:com_6, $component2);

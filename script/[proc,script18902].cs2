@@ -7,6 +7,7 @@ def_int $int3 = -1;
 def_int $int4 = -1;
 def_int $int5 = -1;
 def_int $int6 = 0;
+def_string $string0 = "";
 ~script18899(true, $int6);
 while ($int6 < $int0) {
     $int2 = calc(%varclient_7418 + $int6);
@@ -20,8 +21,13 @@ while ($int6 < $int0) {
     }
     if (cc_findbycategory(interface_1284:com_17, 1, $int6) = 1) {
         $int3, $int4, $int5 = date_runeday_todate($int2);
-        cc_settext("<enum(int, string, enum_13931, calc($int6 % 7))><br><tostring($int3)>");
-        ~cc_set_stylesheet_text(dbrow_13570);
+        $string0 = "<enum(int, string, enum_13931, calc($int6 % 7))><br><tostring($int3)>";
+        if (stringwidth($string0, ~script20491(dbrow_17514)) > cc_getwidth) {
+            $string0 = "<enum(int, string, enum_6250, calc($int6 % 7))><br><tostring($int3)>";
+        }
+        cc_settext($string0);
+        ~cc_set_stylesheet_text(dbrow_17514, 1, 0);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
         if ($int2 = $int1) {
             cc_setcolour(~script10495(4));
         }

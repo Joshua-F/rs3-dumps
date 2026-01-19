@@ -141,20 +141,31 @@ if ($int9 > $int8) {
             cc_setsize(590, $int19, ^setsize_abs, ^setsize_abs);
             cc_setposition(0, $int3, ^setpos_abs_left, ^setpos_abs_top);
             $int3 = calc($int3 + 41);
-            if (%varplayerbit_22875 = 1) {
-                if ($int18 = 1) {
-                    cc_setgraphic("aif_skill_select_btn_2,1");
-                    $int18 = 0;
-                } else {
-                    cc_setgraphic("aif_skill_select_btn_2,0");
-                    $int18 = 1;
-                }
-            } else if ($int18 = 1) {
-                cc_setgraphic("aif_skill_select_btn_1,1");
-                $int18 = 0;
-            } else {
-                cc_setgraphic("aif_skill_select_btn_1,0");
-                $int18 = 1;
+            switch_int (%varplayerbit_22875) {
+                case 1 :
+                    if ($int18 = 1) {
+                        cc_setgraphic("aif_skill_select_btn_2,1");
+                        $int18 = 0;
+                    } else {
+                        cc_setgraphic("aif_skill_select_btn_2,0");
+                        $int18 = 1;
+                    }
+                case 2 :
+                    if ($int18 = 1) {
+                        cc_setgraphic("aif_skill_select_btn_1_mobile,1");
+                        $int18 = 0;
+                    } else {
+                        cc_setgraphic("aif_skill_select_btn_1_mobile,0");
+                        $int18 = 1;
+                    }
+                case default :
+                    if ($int18 = 1) {
+                        cc_setgraphic("aif_skill_select_btn_1,1");
+                        $int18 = 0;
+                    } else {
+                        cc_setgraphic("aif_skill_select_btn_1,0");
+                        $int18 = 1;
+                    }
             }
         }
         $int7 = calc($int7 + 1);
@@ -207,28 +218,43 @@ while ($int7 < $int6) {
     cc_create(interface_1218:com_245, ^iftype_graphic, if_getnextsubid(interface_1218:com_245));
     cc_setsize(590, $int19, ^setsize_abs, ^setsize_abs);
     cc_setposition(0, calc(41 * ($int7 - $int20)), ^setpos_abs_left, ^setpos_abs_top);
-    if (%varplayerbit_22875 = 1) {
-        if ($int18 = 1) {
-            cc_setgraphic("aif_skill_select_btn_2,1");
-            if ($int19 ! 0) {
-                $int18 = 0;
+    switch_int (%varplayerbit_22875) {
+        case 1 :
+            if ($int18 = 1) {
+                cc_setgraphic("aif_skill_select_btn_2,1");
+                if ($int19 ! 0) {
+                    $int18 = 0;
+                }
+            } else {
+                cc_setgraphic("aif_skill_select_btn_2,0");
+                if ($int19 ! 0) {
+                    $int18 = 1;
+                }
             }
-        } else {
-            cc_setgraphic("aif_skill_select_btn_2,0");
-            if ($int19 ! 0) {
-                $int18 = 1;
+        case 2 :
+            if ($int18 = 1) {
+                cc_setgraphic("aif_skill_select_btn_1_mobile,1");
+                if ($int19 ! 0) {
+                    $int18 = 0;
+                }
+            } else {
+                cc_setgraphic("aif_skill_select_btn_1_mobile,0");
+                if ($int19 ! 0) {
+                    $int18 = 1;
+                }
             }
-        }
-    } else if ($int18 = 1) {
-        cc_setgraphic("aif_skill_select_btn_1,1");
-        if ($int19 ! 0) {
-            $int18 = 0;
-        }
-    } else {
-        cc_setgraphic("aif_skill_select_btn_1,0");
-        if ($int19 ! 0) {
-            $int18 = 1;
-        }
+        case default :
+            if ($int18 = 1) {
+                cc_setgraphic("aif_skill_select_btn_1,1");
+                if ($int19 ! 0) {
+                    $int18 = 0;
+                }
+            } else {
+                cc_setgraphic("aif_skill_select_btn_1,0");
+                if ($int19 ! 0) {
+                    $int18 = 1;
+                }
+            }
     }
     $intarray0($int7) = $int7;
     $int7 = calc($int7 + 1);

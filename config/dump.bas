@@ -17184,19 +17184,6 @@ runanim=seq_22556
 readyanim=null,seq_22556
 randomreadyanim=seq_22554,200
 
-// 3050
-[bas_3050]
-readyanim=null,null
-randomreadyanim=seq_22416,220
-randomreadyanim=seq_22423,220
-randomreadyanim=seq_22424,150
-randomreadyanim=seq_22417,80
-randomreadyanim=seq_22418,110
-randomreadyanim=seq_22419,110
-randomreadyanim=seq_22420,100
-randomreadyanim=seq_22421,110
-randomreadyanim=seq_22422,60
-
 // 3051
 [bas_3051]
 readyanim=null,null

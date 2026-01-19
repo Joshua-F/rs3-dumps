@@ -1,44 +1,29 @@
 // 16287
 [proc,script16287](int $int0)
 ~mtx_benefits_draw_title($int0, "Premier Items");
-def_string $string0 = "It has various activatable perks including :<br> - A <col=FFFFFF>50%</col> chance to act as a Sign of the Porter for an hour.<br> - A <col=FFFFFF>+10%</col> XP gain for an hour. (Not available to Ironmen)<br> - Allows you to refresh the cooldown of an aura.<br> - An increase to hit chance by <col=FFFFFF>20%</col> on enemies below <col=FFFFFF>15%</col> health (does not work in PVP) and a <col=FFFFFF>10%</col> chance to stop slayer count decreasing for an hour.";
-def_string $string1 = "";
+def_string $string0 = "";
 def_int $int1 = -1;
-def_string $string2 = "";
-~script16267($int0, "Premier Artefact");
-if (~script15757 = true) {
-    ~script16268($int0, "As you're a Premier member, you can use the Premier Artefact!<br><$string0>");
-    $int1 = ~obj_returninv(obj_44472);
-    $string1 = ~script15458($int1);
-    if ($int1 = -1) {
-        $string2 = "Diango currently has your Premier Artefact. You can visit him to reclaim it and start using it.";
-    } else if (string_length($string1) > 0) {
-        $string2 = "Your Premier Artefact is currently tucked away in your <col=FFFFFF><$string1></col>. Don't forget to use it!";
-    }
-    ~script16268($int0, $string2);
-} else {
-    ~script16292($int0, "Become a Premier member to access the Premier Artefact.<br><$string0>");
-}
+def_string $string1 = "";
 $int1 = ~script11191(category_5096);
 if ($int1 ! -1 | %varplayerbit_50563 > 0 | ~script15757 = false & ~script11568 = true) {
     ~script16267($int0, "Premier Tokens");
 }
 if (%varplayerbit_50563 > 0) {
     if (%varplayerbit_50563 = 1) {
-        $string2 = "You've got 1 more Premier reward token to claim.";
+        $string1 = "You've got 1 more Premier reward token to claim.";
     } else {
-        $string2 = "You've got <tostring(%varplayerbit_50563)> more Premier reward tokens to claim.";
+        $string1 = "You've got <tostring(%varplayerbit_50563)> more Premier reward tokens to claim.";
     }
-    ~script16269($int0, $string2, "Claim Premier Reward Token", 9);
+    ~script16269($int0, $string1, "Claim Premier Reward Token", 9);
 }
 if ($int1 ! -1) {
-    $string1 = ~script15458($int1);
-    if (string_length($string1) > 0) {
-        $string2 = "You've got some left-over Premier Reward Tokens tucked away in your <col=FFFFFF><$string1></col>. You can use them to claim various cosmetic rewards.";
+    $string0 = ~script15458($int1);
+    if (string_length($string0) > 0) {
+        $string1 = "You've got some left-over Premier Reward Tokens tucked away in your <col=FFFFFF><$string0></col>. You can use them to claim various cosmetic rewards.";
     } else {
-        $string2 = "You've got some left-over Premier Reward Tokens. You can use them to claim various cosmetic rewards.";
+        $string1 = "You've got some left-over Premier Reward Tokens. You can use them to claim various cosmetic rewards.";
     }
-    ~script16268($int0, $string2);
+    ~script16268($int0, $string1);
 }
 if (~script15757 = false) {
     ~script16292($int0, "Premier members get three Premier Reward tokens, allowing them access to three cosmetic items from past Premier events!");

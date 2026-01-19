@@ -1,10 +1,6 @@
 // 15727
 [proc,mobile_shop_draw](int $int0)
-cc_deleteall(interface_828:com_12);
-cc_deleteall(interface_828:com_7);
-cc_deleteall(interface_828:com_8);
-cc_deleteall(interface_828:com_9);
-cc_deleteall(interface_828:com_11);
+cc_deleteall(interface_828:com_4);
 %varclient_6892 = $int0;
 def_int $int1 = 0;
 def_int $int2 = 0;
@@ -38,18 +34,20 @@ while ($int4 < $int5) {
     $int10 = shop_getindexforcategoryid($int9);
     if (shop_getproductcount($int10) > 0) {
         if ($int0 ! $int8 & (~mobile_shop_block_category($int9) = 1 | ~script16140($int9) = 1)) {
-            $int6 = ~script16227(interface_828:com_12, $int6, $string0, $int2, $int7, 1);
-            if (cc_find(interface_828:com_12, calc($int6 - 1)) = true) {
-                cc_setonop("mobile_shop_tab_click($int8)");
-            }
+            ~script20619(interface_828:com_4, $int4, $string0);
+            cc_setonop("mobile_shop_tab_click($int8)");
+            cc_button_settoggled(false);
         } else {
-            $int6 = ~script16227(interface_828:com_12, $int6, $string0, $int2, $int7, 0);
-            if (cc_find(interface_828:com_12, calc($int6 - 1)) = true) {
-                cc_setonop("mobile_shop_tab_click($int8)");
+            ~script20618(interface_828:com_4, $int4, $string0);
+            cc_setonop("mobile_shop_tab_click($int8)");
+            if ($int0 = $int8) {
+                cc_button_settoggled(true);
+            } else {
+                cc_button_settoggled(false);
             }
         }
         $int2 = calc($int2 + 1);
     }
     $int4 = calc($int4 + 1);
 }
-~mobile_shop_build_category(~script17963($int0), interface_828:com_7);
+~mobile_shop_build_category(~script17963($int0));
