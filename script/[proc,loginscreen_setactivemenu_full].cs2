@@ -11,20 +11,20 @@ if (%varclient_1090 ! 3 & %varclient_1090 ! 4 & %varclient_1090 ! 19) {
     %varclient_1091 = %varclient_1090;
     if_setonop("loginscreen_setactivemenu(%varclient_1091)", interface_882:com_12);
 }
+if_sethide(true, interface_744:com_245);
 if_sethide(true, interface_744:com_244);
-if_sethide(true, interface_744:com_243);
-if_sethide(true, interface_744:com_346);
-if_closesubclient(interface_744:com_346);
-if_sethide(true, interface_744:com_257);
-if_sethide(true, interface_744:com_202);
-if_sethide(true, interface_744:com_190);
-if_setonresize(null, interface_744:com_190);
+if_sethide(true, interface_744:com_347);
+if_closesubclient(interface_744:com_347);
+if_sethide(true, interface_744:com_258);
+if_sethide(true, interface_744:com_203);
+if_sethide(true, interface_744:com_191);
+if_setonresize(null, interface_744:com_191);
 if_setonresize(null, interface_882:com_1);
-if_sethide(true, interface_744:com_192);
-if (if_find(interface_744:com_199) = true) {
+if_sethide(true, interface_744:com_193);
+if (if_find(interface_744:com_200) = true) {
     cc_setonbuttonpressed(null);
 }
-if (if_find(interface_744:com_200) = true) {
+if (if_find(interface_744:com_201) = true) {
     cc_setonbuttonpressed(null);
 }
 def_int $int3 = 0;
@@ -51,23 +51,23 @@ switch_int ($int0) {
         ~script15676;
         ~login_setfocus(12);
         ~script12352;
-        if_sethide(false, interface_744:com_244);
+        if_sethide(false, interface_744:com_245);
     case 18 :
         ~login_setfocus(18);
         if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_744:com_29);
         if_sethide(true, interface_744:com_39);
-        if_sethide(false, interface_744:com_191);
-        if_sethide(false, interface_744:com_257);
+        if_sethide(false, interface_744:com_192);
+        if_sethide(false, interface_744:com_258);
     case 0 :
         if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_744:com_29);
         if_sethide(true, interface_744:com_39);
         ~firstrun;
-        if_sethide(false, interface_744:com_346);
+        if_sethide(false, interface_744:com_347);
     case 8 :
         ~script15676;
         ~script15643;
         %varclient_547 = 0;
-        if_setonclick("login_dologin", interface_744:com_133);
+        if_setonclick("login_dologin", interface_744:com_134);
         ~script15687(8);
         %varclient_1089 = -1;
         if (~is_mobile_client = false) {
@@ -92,7 +92,7 @@ switch_int ($int0) {
         ~script15676;
         ~script15687(17);
         ~login_setfocus(17);
-        if_opensubclient(interface_744:com_166, interface_724);
+        if_opensubclient(interface_744:com_167, interface_724);
         %varclient_1089 = -1;
         %varclient_547 = 0;
         ~loginscreen_steam_panel_load;
@@ -115,7 +115,11 @@ switch_int ($int0) {
         } else {
             if_settext("Welcome back!", interface_744:com_84);
         }
-        if_settext("Play<br><sso_displayname>", interface_744:com_85);
+        if (string_length(sso_displayname) = 0) {
+            if_settext("", interface_744:com_85);
+        } else {
+            if_settext("You are currently signed in as:<br><col=ffffff><sso_displayname></col>", interface_744:com_85);
+        }
     case 3 :
         sound_vorbis_volume(sound_7200, 1, 0, 180);
         ~login_setfocus(3);
@@ -123,12 +127,12 @@ switch_int ($int0) {
     case 4 :
         sound_vorbis_volume(sound_36961, 1, 0, 120);
         ~login_setfocus(4);
-        if_opensubclient(interface_744:com_190, interface_882);
+        if_opensubclient(interface_744:com_191, interface_882);
         ~graphics_options_init(0);
-        if_sethide(false, interface_744:com_190);
+        if_sethide(false, interface_744:com_191);
     case 7 :
         ~login_setfocus(108);
-        if_sethide(false, interface_744:com_192);
+        if_sethide(false, interface_744:com_193);
     case 14 :
         ~script15676;
         ~login_setfocus(14);
@@ -138,14 +142,14 @@ switch_int ($int0) {
         }
     case 15 :
         ~script15676;
-        if_sethide(false, interface_744:com_306);
+        if_sethide(false, interface_744:com_307);
         ~login_setfocus(15);
         if (~is_mobile_client = false) {
             ~login_open(113);
         }
     case 19 :
         ~login_setfocus(19);
-        if_sethide(false, interface_744:com_240);
+        if_sethide(false, interface_744:com_241);
 }
 if ($int0 ! 7) {
     %varclient_1090 = $int0;
