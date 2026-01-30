@@ -1,4 +1,38 @@
 // 20458
-[proc,script20458](struct $struct0, int $int1)(int)
-def_int $int2 = ~script20465($struct0, $int1);
-return($int2);
+[proc,script20458](struct $struct0, dbrow $dbrow1, int $int2, int $int3)(boolean, int)
+if ($int2 = 0 & ~script20625($struct0) = false) {
+    if ($int3 = 1) {
+        ~script1296("This item is not available to purchase.");
+    }
+    return(false, 0);
+}
+if ($dbrow1 ! null & db_getrowtable($dbrow1) = dbtable_348 & ~script20462(db_getfield($dbrow1, dbtable_348:col1, 0)) = false) {
+    if ($int3 = 1) {
+        ~script1296("This item is not available to purchase.");
+    }
+    return(false, 0);
+}
+if ($int2 = 1) {
+    return(true, -1);
+}
+if ($int2 = 0 & $struct0 ! null & %varplayer_12605 = $struct0) {
+    if (struct_param($struct0, param_2531) ! 6) {
+        return(false, 1);
+    }
+    if (struct_param($struct0, param_2532) ! 2) {
+        return(false, 1);
+    }
+}
+if ($int2 = 2 & $dbrow1 ! null & ~script5725($dbrow1) = false) {
+    if ($int3 = 1) {
+        ~script1296("This item is not available to purchase.");
+    }
+    return(false, -1);
+}
+if ($struct0 ! null & ~script6488($struct0) = 1) {
+    if ($int3 = 1) {
+        ~script1296("This item is not available to purchase.");
+    }
+    return(false, 1);
+}
+return(true, -1);

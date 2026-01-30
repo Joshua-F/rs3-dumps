@@ -1,19 +1,47 @@
 // 20644
-[proc,script20644](int $int0, boolean $boolean1)(dbfilter)
-def_dbfilter $dbfilter2 = null;
-if ($int0 = 0) {
-    $dbfilter2 = db_filter_value(dbtable_348:col1, 0, ^filterop_gte, 0);
-} else {
-    $dbfilter2 = db_filter_value(dbtable_348:col1, $int0, ^filterop_eq, 0);
+[proc,script20644](int $int0)
+cc_deleteall(interface_1498:com_2);
+cc_deleteall(interface_1498:com_5);
+if (string_length(%varclient_8383) > 0) {
+    ~script20649($int0);
+    return;
 }
-def_dbfilter $dbfilter3 = null;
-def_dbfilter $dbfilter4 = null;
-if (string_length(%varclient_8377) > 0) {
-    $dbfilter3 = db_filter_substring(dbtable_348:col3, %varclient_8377, 0);
-    $dbfilter4 = ~script20645;
-    $dbfilter3 = unknown_command_79($dbfilter3, $dbfilter4);
-    $dbfilter2 = db_filter_combine($dbfilter2, $dbfilter3);
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = db_filter_find(~script20655($int0, true), dbtable_348:col0, false, -1, 0);
+if ($int5 > 0) {
+    $int4 = $int1;
+    $int1 = calc($int1 + 20);
+    if ($int0 ! 0) {
+        $int2 = ~script20646($int1);
+        $int3 = ~script20653($int2);
+        $int1 = ~script20648($int1, $int3, $int2);
+    } else {
+        $int3, $int1 = ~script20650($int1);
+    }
+    if ($int3 > 0) {
+        ~script20652("Featured", $int4);
+    } else {
+        $int1 = $int4;
+    }
 }
-def_dbfilter $dbfilter5 = db_filter_value(dbtable_348:col2, $boolean1, ^filterop_eq, 0);
-$dbfilter2 = db_filter_combine($dbfilter2, $dbfilter5);
-return($dbfilter2);
+def_int $int6 = db_filter_find(~script20655($int0, false), dbtable_348:col0, false, -1, 0);
+if ($int6 > 0) {
+    if ($int0 ! 0) {
+        $int4 = $int1;
+        $int1 = calc($int1 + 20);
+        $int2 = ~script20646($int1);
+        $int3 = ~script20653($int2);
+        $int1 = ~script20648($int1, $int3, $int2);
+        if ($int3 > 0) {
+            ~script20652(~script20662($int0), $int4);
+        } else {
+            $int1 = $int4;
+        }
+    } else {
+        $int1 = ~script20651($int1);
+    }
+}
+~script20645($int1);

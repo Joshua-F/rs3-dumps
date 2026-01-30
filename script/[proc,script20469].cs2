@@ -1,38 +1,41 @@
 // 20469
-[proc,script20469](struct $struct0, dbrow $dbrow1, int $int2, int $int3)(boolean, int)
-if ($int2 = 0 & ~script20614($struct0) = false) {
-    if ($int3 = 1) {
-        ~script1296("This item is not available to purchase.");
-    }
-    return(false, 0);
+[proc,script20469](dbrow $dbrow0, string $string0)(boolean, boolean, string)
+def_stat $stat1 = db_getfield($dbrow0, dbtable_343:col1, 0);
+def_int $int2 = db_getfield($dbrow0, dbtable_343:col2, 0);
+def_int $int3 = var_reference_get(db_getfield($dbrow0, dbtable_343:col3, 0));
+def_string $string1 = oc_name(enum(stat, obj, enum_14603, $stat1));
+if (~script20435 = 1) {
+    $string1 = oc_name(enum(stat, obj, enum_14604, $stat1));
 }
-if ($dbrow1 ! null & db_getrowtable($dbrow1) = dbtable_348 & ~script20473(db_getfield($dbrow1, dbtable_348:col1, 0)) = false) {
-    if ($int3 = 1) {
-        ~script1296("This item is not available to purchase.");
-    }
-    return(false, 0);
+def_int $int4 = var_reference_get(db_getfield($dbrow0, dbtable_343:col4, 0));
+def_string $string2 = oc_name(enum(int, obj, enum_14624, $int2));
+def_int $int5 = enum(stat, int, enum_10865, $stat1);
+def_string $string3 = "virtual level 120";
+def_int $int6 = ~script20434($stat1);
+def_int $int7 = ~script20480;
+if (map_members = false) {
+    return(false, true, "You must be on a members' world to unlock this cape.");
 }
-if ($int2 = 1) {
-    return(true, -1);
-}
-if ($int2 = 0 & $struct0 ! null & %varplayer_12587 = $struct0) {
-    if (struct_param($struct0, param_2531) ! 6) {
-        return(false, 1);
-    }
-    if (struct_param($struct0, param_2532) ! 2) {
-        return(false, 1);
+if (~script20482 = 1) {
+    if ($int3 = 1 & $int4 = 0 & $int6 = 1 & ~script20436($int2) = 1) {
+        return(true, false, "As you have already earned your <$string1> this year, you can now earn your <$string2>!");
+    } else {
+        return(false, true, "You have already focussed on four skills this year.");
     }
 }
-if ($int2 = 2 & $dbrow1 ! null & ~script5725($dbrow1) = false) {
-    if ($int3 = 1) {
-        ~script1296("This item is not available to purchase.");
-    }
-    return(false, -1);
+if ($int3 = 1 & $int4 = 1) {
+    return(false, true, "You have already unlocked the <$string1> and <$string2>.");
 }
-if ($struct0 ! null & ~script6488($struct0) = 1) {
-    if ($int3 = 1) {
-        ~script1296("This item is not available to purchase.");
-    }
-    return(false, 1);
+if (stat_base_actual($stat1) < 99) {
+    return(false, true, "You need to have achieved level 99 <$string0> to unlock the <$string1>.");
 }
-return(true, -1);
+if ($int6 = 0 & $int3 = 1) {
+    if ($int5 = 120) {
+        $string3 = "level 120";
+    }
+    return(false, true, "You have already unlocked the <$string1>. You need to have achieved <$string3> <$string0> to unlock the <$string2>.");
+}
+if ($int7 = 1) {
+    return(false, true, "You have earned all the capes you can this year.");
+}
+return(true, false, "");

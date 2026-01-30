@@ -1,22 +1,14 @@
 // 20493
-[proc,script20493](component $component0, int $int1, int $int2, int $int3)(int, int)
-def_string $string0 = "";
-switch_int ($int3) {
-    case 1000 :
-        $string0 = "Deprecated. Use groupboxes instead.";
-    case 23 :
-        $string0 = "Groupboxes used for everything other than backgrounds (eg progress bar)";
-    case 1001 :
-        $string0 = "Use for non-scrolling contents.";
-    case 1002 :
-        $string0 = "Start and end your content at a $y offset of ^spacing_default. The contents will then be cut off by box edges when scrolling.";
-    case 1003 :
-        $string0 = "Use for non-scrolling contents. The title can be updated via if/cc_settext.";
-    case 1004 :
-        $string0 = "Start and end your content at a $y offset of ^spacing_default. The contents will then be cut off by box edges when scrolling. The title can be updated via if/cc_settext.";
-    case default :
-        return($int1, $int2);
+[proc,script20493](component $component0, component $component1, int $int2)(int)
+def_int $int3 = 0;
+if ($int2 > 0 & cc_find($component1, calc($int2 - 1)) = true) {
+    $int3 = calc(cc_gety + cc_getheight);
 }
-def_int $int4 = ~script20478($string0, if_getwidth($component0), dbrow_2100, 0);
-~cc_add_text($component0, $int1++, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, $int4, ^setsize_minus, ^setsize_abs, dbrow_2100, $string0);
-return($int1, calc($int2 + $int4 + 10));
+cc_create(interface_1477:com_886, ^iftype_graphic, if_getnextsubid(interface_1477:com_886));
+cc_setsize(0, 2, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, calc($int3 + 5), ^setpos_abs_centre, ^setpos_abs_top);
+cc_setgraphic(aif_overlay_frame_thin_separator);
+cc_create($component1, ^iftype_text, $int2++);
+cc_setsize(0, 8, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_top);
+return($int2);

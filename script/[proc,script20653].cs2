@@ -1,10 +1,62 @@
 // 20653
-[proc,script20653]
-def_int $int0 = calc(%varplayer_3870 * %varplayer_3869);
-def_int $int1 = calc(inv_total(inv_93, obj_29494) + %varplayerbit_23016);
-if_settext(~script17372(~script17400, 9, 0), interface_853:com_39);
-if_settext(tostring($int1), interface_853:com_24);
-if_settext(tostring(%varplayerbit_23015), interface_853:com_46);
-if_settext(tostring(%varplayer_3870), interface_853:com_36);
-if_settext(tostring_localised($int0, true), interface_853:com_42);
-if_setonvartransmit("script15377{varplayer_3870, varplayer_3869}", interface_853:com_12);
+[proc,script20653](int $int0)(int)
+def_dbrow $dbrow1 = db_findnext;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_string $string0 = "";
+def_graphic $graphic4 = null;
+def_dbrow $dbrow5 = null;
+def_struct $struct6 = null;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_string $string1 = "";
+def_string $string2 = "";
+def_boolean $boolean9 = true;
+def_int $int10 = -1;
+def_boolean $boolean11 = false;
+while ($dbrow1 ! null) {
+    if (db_getfieldcount($dbrow1, dbtable_348:col6) > 0) {
+        $struct6 = db_getfield($dbrow1, dbtable_348:col6, 0);
+    }
+    $int7 = db_getfield($dbrow1, dbtable_348:col7, 0);
+    $boolean9, $int10 = ~script20458($struct6, $dbrow1, $int7, 0);
+    if ($boolean9 = true | $boolean9 = false & $int10 = 1) {
+        $int3 = db_getfield($dbrow1, dbtable_348:col0, 0);
+        $string0 = db_getfield($dbrow1, dbtable_348:col3, 0);
+        $graphic4 = ~script20463($dbrow1);
+        if (db_getfieldcount($dbrow1, dbtable_348:col10) > 0) {
+            $dbrow5 = db_getfield($dbrow1, dbtable_348:col10, 0);
+        }
+        if (cc_find(interface_1498:com_2, $int0) = true) {
+            ~cc_add_child_layer(ui_getcategory(if_getnextsubid(interface_1498:com_2)), ui_getdynid(if_getnextsubid(interface_1498:com_2)), 0, 0, ^setpos_abs_centre, ^setpos_abs_top, 176, 176, ^setsize_abs, ^setsize_abs);
+        }
+        if ($boolean9 = true) {
+            cc_setop(1, "Preview");
+            cc_setonop("script20654($int3)");
+        }
+        $int8 = ~script20454($struct6, $int7);
+        if ($int8 = 0 & $int7 ! 1) {
+            $boolean11 = true;
+        } else {
+            $boolean11 = false;
+        }
+        $string1 = ~script20455($int8, $dbrow5, $int7);
+        if (db_getfieldcount($dbrow1, dbtable_348:col16) > 0) {
+            $string2 = db_getfield($dbrow1, dbtable_348:col16, 0);
+        } else {
+            $string2 = "";
+        }
+        ~script20627(interface_1498:com_2, $string0, $graphic4, $string1, $int7, $string2, 6, 6, ^setsize_minus, ^setsize_minus, $boolean9, $boolean11);
+        if ($boolean9 = false) {
+            ~cc_add_child_rect(ui_getcategory(if_getnextsubid(interface_1498:com_2)), ui_getdynid(if_getnextsubid(interface_1498:com_2)), 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_4127);
+            cc_setcolour(0x0f0d0d);
+            cc_settrans(75);
+            ~cc_add_child_text(ui_getcategory(if_getnextsubid(interface_1498:com_2)), ui_getdynid(if_getnextsubid(interface_1498:com_2)), 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_2195, "Owned");
+            cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+            cc_setcolour(^white);
+        }
+        $int2 = calc($int2 + 1);
+    }
+    $dbrow1 = db_findnext;
+}
+return($int2);

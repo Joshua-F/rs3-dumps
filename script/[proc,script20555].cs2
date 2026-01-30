@@ -1,42 +1,29 @@
 // 20555
-[proc,script20555]
-cc_deleteall(interface_853:com_6);
-cc_deleteall(interface_853:com_4);
-if_setsize(0, -8, ^setsize_minus, ^setsize_minus, interface_853:com_6);
-def_int $int0 = enum_getoutputcount(enum_16365);
-if ($int0 <= 0) {
-    return;
+[proc,script20555](string $string0, string $string1, int $int0, string $string2, graphic $graphic1, int $int2, boolean $boolean3)
+~spinner_create(interface_1495:com_19, 3, -1);
+~script20614(null, 0, $graphic1, 0);
+~script9554(interface_1495:com_6, interface_1495:com_20, interface_1495:com_7, $string0, struct_1006);
+def_string $string3 = "";
+def_graphic $graphic4 = null;
+if ($int0 = 1 & string_length($string1) = 0) {
+    $string1 = "Purchase";
 }
-def_int $int1 = -1;
-def_dbrow $dbrow2 = null;
-def_int $int3 = 0;
-def_int $int4 = 0;
-def_string $string0 = "";
-def_graphic $graphic5 = null;
-def_int $int6 = 0;
-while (++$int1 < $int0) {
-    $dbrow2 = enum(int, dbrow, enum_16365, $int1);
-    if (~script12115($dbrow2) = true) {
-        $string0 = db_getfield($dbrow2, dbtable_134:col0, 0);
-        $graphic5 = db_getfield($dbrow2, dbtable_134:col2, 0);
-        $int6 = db_getfield($dbrow2, dbtable_134:col6, 0);
-        ~if_add_child_layer(interface_853:com_6, ui_getcategory(if_getnextsubid(interface_853:com_6)), ui_getdynid(if_getnextsubid(interface_853:com_6)), 0, 0, ^setpos_abs_centre, ^setpos_abs_top, 176, 176, ^setsize_abs, ^setsize_abs);
-        cc_setop(1, "Preview");
-        cc_setonop("script20556($int1)");
-        ~script20615(interface_853:com_6, $string0, $graphic5, ~script20466($int6, null, 2), 2, true, false);
-        $int3 = calc($int3 + 1);
-    }
+if_settext($string1, interface_1495:com_41);
+$string3 = ~script20619($int2, $int0);
+if (string_length($string3) > 0) {
+    if_settext($string3, interface_1495:com_42);
+    if_setposition(0, 10, ^setpos_abs_centre, ^setpos_abs_centre, interface_1495:com_43);
 }
-def_int $int7 = ~divide_up($int3, 3);
-def_int $int8 = calc($int7 * 176 + ($int7 + 1) * 8);
-if ($int8 > if_getheight(interface_853:com_6)) {
-    if_setscrollsize(0, $int8, interface_853:com_6);
-    ~rs3_scrollbar_vertical(interface_853:com_4, interface_853:com_6);
-    if_sethide(true, interface_853:com_50);
-    if_sethide(false, interface_853:com_51);
+$graphic4 = ~script20631($int0);
+if ($graphic4 ! null) {
+    if_setgraphic(~script20631($int0), interface_1495:com_40);
 } else {
-    if_setscrollsize(0, 0, interface_853:com_6);
-    if_setsize(0, $int8, ^setsize_minus, ^setsize_abs, interface_853:com_6);
-    if_sethide(true, interface_853:com_50);
-    if_sethide(true, interface_853:com_51);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_1495:com_41);
+    if_settextalign(^settextalign_centre, ^settextalign_centre, 0, interface_1495:com_41);
+}
+~script20617(null, 0, $int0, $string2, 0);
+if ($boolean3 = true) {
+    if_sethide(false, interface_1495:com_23);
+} else {
+    if_sethide(true, interface_1495:com_23);
 }
