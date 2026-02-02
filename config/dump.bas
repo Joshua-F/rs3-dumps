@@ -14134,6 +14134,14 @@ runanim=seq_22556
 readyanim=null,seq_22556
 randomreadyanim=seq_22554,200
 
+[bas_3050]
+readyanim_l=seq_22417
+readyanim_r=seq_22417
+walkturn_l=seq_22417
+walkturn_r=seq_22417
+hillrotate=32,32
+readyanim=seq_22416,seq_22417
+
 [bas_3051]
 readyanim=null,null
 randomreadyanim=seq_18015,250
