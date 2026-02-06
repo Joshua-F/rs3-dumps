@@ -1,8 +1,13 @@
 // 20478
-[proc,script20478](string $string0, int $int0, dbrow $dbrow1, int $int2)(int)
-def_fontmetrics $fontmetrics3 = ~script20491($dbrow1);
-def_int $int4 = paraheight($string0, $int0, $fontmetrics3);
-if ($int2 <= 0) {
-    $int2 = ~script11432($fontmetrics3);
+[proc,script20478](stat $stat0, component $component1)
+db_find(dbtable_343:col1, $stat0);
+def_dbrow $dbrow2 = null;
+def_graphic $graphic3 = null;
+$dbrow2 = db_findnext;
+if ($dbrow2 = null) {
+    return;
 }
-return(calc($int4 * $int2));
+$graphic3 = enum(int, graphic, enum_745, db_getfield($dbrow2, dbtable_343:col2, 0));
+if_setgraphic($graphic3, $component1);
+if_setonmouserepeat("script8799(db_getfield($dbrow2, dbtable_343:col0, 0), event_com, -1)", $component1);
+if_setonmouseleave("script8805", $component1);

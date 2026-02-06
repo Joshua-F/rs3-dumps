@@ -1,25 +1,15 @@
 // 20492
-[proc,script20492](component $component0, int $int1, boolean $boolean2, int $int3, int $int4)
-if ($int4 <= 0) {
-    ~cc_add_text($component0, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_2100, "No results found for:<br><~script15969($int1)>");
-    return;
+[proc,script20492](component $component0, dbrow $dbrow1, int $int2, int $setsize3, int $int4, string $string0)
+def_fontmetrics $fontmetrics5 = ~script20497($dbrow1);
+def_int $int6 = 1;
+if ($setsize3 ! ^setsize_abs) {
+    $int6 = paraheight($string0, if_getwidth($component0), $fontmetrics5);
+} else {
+    $int6 = paraheight($string0, $int2, $fontmetrics5);
 }
-def_int $int5 = 0;
-def_int $int6 = 0;
-def_int $int7 = 4;
-def_int $int8 = 0;
-def_dbrow $dbrow9 = null;
-def_int $int10 = %varplayerbit_22875;
-$int5, $int7 = ~script20493($component0, $int5, $int7, $int1);
-while ($int6 < $int4) {
-    $dbrow9 = db_findnext;
-    %varplayerbit_22875 = 0;
-    $int5, $int8 = ~script15966($component0, $int5, $int7, $dbrow9, ^setpos_abs_left, $int1, $boolean2);
-    %varplayerbit_22875 = $int3;
-    $int5, $int8 = ~script15966($component0, $int5, $int7, $dbrow9, ^setpos_abs_right, $int1, $boolean2);
-    $int7 = calc($int7 + ($int8 + 10));
-    $int6 = calc($int6 + 1);
+if ($int6 > $int4) {
+    if_setmaxlines($int4, $component0);
+    $int6 = $int4;
 }
-%varplayerbit_22875 = $int10;
-if_setscrollsize(0, $int7, $component0);
-~rs3_scrollbar_vertical(interface_862:com_9, $component0);
+if_settext($string0, $component0);
+if_setsize($int2, calc($int6 * ~script11432($fontmetrics5)), $setsize3, ^setsize_abs, $component0);
