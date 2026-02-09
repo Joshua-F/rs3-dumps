@@ -113,8 +113,8 @@ def_string $string5 = ~script6392(quest_param($quest0, param_949), quest_param($
 $int3 = ~script4249("<col=<tostring($int2, 16)>>Required Items:</col>", $string5, interface_1500:com_366, interface_1500:com_367, interface_1500:com_368, interface_1500:com_369, interface_1500:com_374, $int1, $int3);
 def_string $string6 = quest_param($quest0, param_7816);
 def_int $int4 = quest_param($quest0, param_857);
-if (string_length($string6) = string_length("None.") & $int4 > 0) {
-    if ($int4 = 5) {
+if (string_length($string6) = string_length("None.") & $int4 > 1) {
+    if ($int4 = 6) {
         $string6 = "<$string6> Combat is scaled and you should bring appropriate equipment and food for your level.";
     } else {
         $string6 = "You must defeat an enemy of at least: <enum(int, string, enum_3613, $int4)>.";
@@ -137,9 +137,9 @@ switch_quest ($quest0) {
 $int3 = ~script4249("<col=<tostring($int2, 16)>>Rewards:</col>", $string0, interface_1500:com_378, interface_1500:com_379, interface_1500:com_380, interface_1500:com_381, interface_1500:com_386, $int1, $int3);
 def_string $string7 = "";
 switch_int (quest_param($quest0, param_7831)) {
-    case 0 :
+    case 1 :
         $string7 = "This is a Fifth Age quest, and takes place in the past, before the gods returned to Gielinor.";
-    case 2 :
+    case 3 :
         if ($quest0 = quest_361) {
             $string7 = "The events of this quest trigger the end of the Fifth Age and begins the Sixth Age.<br>It is recommended, but not necessary, to complete Fifth Age quests before Sixth Age quests to fully understand the story of the Sixth Age.";
         } else if (quest_param($quest0, param_1345) <= 321) {
@@ -157,10 +157,10 @@ if (string_length($string7) > 0 | string_length(quest_param($quest0, param_7839)
     if_sethide(true, interface_1500:com_387);
 }
 switch_int (quest_param($quest0, param_7831)) {
-    case 0 :
+    case 1 :
         if_sethide(false, interface_1500:com_392);
         if_sethide(true, interface_1500:com_395);
-    case 2, 3 :
+    case 3, 4 :
         if_sethide(true, interface_1500:com_392);
         if_sethide(false, interface_1500:com_395);
     case default :
