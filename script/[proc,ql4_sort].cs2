@@ -44,6 +44,16 @@ def_quest $quest27 = null;
 def_int $int28 = 0;
 def_int $int29 = -1;
 def_int $int30 = 0;
+switch_int ($int2) {
+    case 6 :
+        $int30 = 1000;
+    case 2, 9 :
+        $int30 = 100000;
+    case 7 :
+        $int30 = 1000000;
+    case 8 :
+        $int30 = 10000000;
+}
 while ($int12 <= %varclient_273) {
     $intarray1($int12) = $int12;
     $quest27 = enum(int, quest, $enum9, $int12);
@@ -56,7 +66,28 @@ while ($int12 <= %varclient_273) {
             $int28 = ~quest_difficulty($quest27);
             switch_int ($int2) {
                 case 0 :
-                    $int25 = ~script1056(quest_param($quest27, param_7219));
+                    switch_int (quest_type($quest27)) {
+                        case 1 :
+                            $int25 = 0;
+                        case default :
+                            $int25 = ~script1056(quest_param($quest27, param_7219));
+                    }
+                case 1 :
+                    switch_int (quest_type($quest27)) {
+                        case 1 :
+                            $int25 = 0;
+                        case default :
+                            $int25 = quest_param($quest27, param_857);
+                    }
+                case 2 :
+                    switch_int (quest_type($quest27)) {
+                        case 1 :
+                            $int25 = 0;
+                        case default :
+                            $int25 = quest_param($quest27, param_7831);
+                    }
+                    $intarray2($int12) = calc(($int25 + 1) * $int30);
+                    $intarray2($int12) += ~script6268($quest27, 1);
                 case 3 :
                     switch_int (quest_type($quest27)) {
                         case 1 :
@@ -74,75 +105,65 @@ while ($int12 <= %varclient_273) {
                                 $int25 = 0;
                             }
                     }
-                case 5 :
-                    $int25 = $int29;
-                case 1 :
-                    $int25 = quest_param($quest27, param_857);
                 case 4 :
-                    $int25 = quest_param($quest27, param_7855);
+                    switch_int (quest_type($quest27)) {
+                        case 1 :
+                            $int25 = 0;
+                        case default :
+                            $int25 = quest_param($quest27, param_7855);
+                    }
+                case 5 :
+                    switch_int (quest_type($quest27)) {
+                        case 1 :
+                            $int25 = 3;
+                        case default :
+                            $int25 = $int29;
+                    }
+                case 6 :
+                    switch_int (quest_type($quest27)) {
+                        case 1 :
+                            $int25 = 0;
+                        case default :
+                            $int25 = calc(quest_param($quest27, param_7834) - 2000);
+                    }
+                    $intarray2($int12) = calc(($int25 + 1) * $int30);
+                    $intarray2($int12) += ~script6268($quest27, 0);
                 case 7 :
                     $int25 = quest_param($quest27, param_7836);
-                    $intarray2($int12) = calc(($int25 + 1) * 1000000);
+                    $intarray2($int12) = calc(($int25 + 1) * $int30);
                     if ($int25 = 41) {
                         $intarray2($int12) += calc((~script20419($quest27, $int28) + 1) * 100000);
                         if (quest_param($quest27, param_7160) ! -1) {
                             $intarray2($int12) += calc(quest_param($quest27, param_7160) + 1);
                         } else {
-                            $intarray2($int12) += calc((quest_param($quest27, param_7834) - 1999) * 1000);
-                            if (quest_param($quest27, param_7835) > 0) {
-                                $intarray2($int12) += calc(quest_param($quest27, param_7835) + 1);
-                            } else {
-                                $intarray2($int12) += calc(quest_param($quest27, param_1345) + 1);
-                            }
+                            $intarray2($int12) += ~script6268($quest27, 1);
                         }
                     } else if (quest_param($quest27, param_7837) > 0) {
                         $intarray2($int12) += calc(quest_param($quest27, param_7837) + 1);
                     } else {
                         $intarray2($int12) += calc(quest_param($quest27, param_1345) + 1);
                     }
-                    $int30 = 1;
-                case 6 :
-                    $int25 = calc(quest_param($quest27, param_7834) - 2000);
-                    $intarray2($int12) = calc(($int25 + 1) * 1000);
-                    if (quest_param($quest27, param_7835) > 0) {
-                        $intarray2($int12) += calc(quest_param($quest27, param_7835) + 1);
-                    } else {
-                        $intarray2($int12) += calc(quest_param($quest27, param_1345) + 1);
-                    }
-                    $int30 = 1;
-                case 2 :
-                    $int25 = quest_param($quest27, param_7831);
-                    $intarray2($int12) = calc(($int25 + 1) * 100000);
-                    $intarray2($int12) += calc((quest_param($quest27, param_7834) - 1999) * 1000);
-                    if (quest_param($quest27, param_7835) > 0) {
-                        $intarray2($int12) += calc(quest_param($quest27, param_7835) + 1);
-                    } else {
-                        $intarray2($int12) += calc(quest_param($quest27, param_1345) + 1);
-                    }
-                    $int30 = 1;
                 case 8 :
                     $int25 = quest_param($quest27, param_9393);
-                    $intarray2($int12) = calc(($int25 + 1) * 10000000);
+                    $intarray2($int12) = calc(($int25 + 1) * $int30);
                     $intarray2($int12) += calc((max(calc(quest_param($quest27, param_7831) - 1), 0) + 1) * 1000000);
                     $intarray2($int12) += calc(($int28 + 1) * 100000);
                     $intarray2($int12) += calc((quest_param($quest27, param_7837) + 1) * 10000);
                     $intarray2($int12) += calc((quest_param($quest27, param_7855) + 1) * 1000);
                     $intarray2($int12) += $int12;
-                    $int30 = 1;
                 case 9 :
                     $int25 = ~script20419($quest27, $int28);
-                    $intarray2($int12) = calc(($int25 + 1) * 100000);
+                    $intarray2($int12) = calc(($int25 + 1) * $int30);
+                    if (quest_param($quest27, param_9404) ! -1) {
+                        $intarray2($int12) += calc((quest_param($quest27, param_9404) - 1999) * 1000);
+                    } else {
+                        $intarray2($int12) += calc((quest_param($quest27, param_7834) - 1999) * 1000);
+                    }
                     if (quest_param($quest27, param_7160) ! -1) {
                         $intarray2($int12) += calc(quest_param($quest27, param_7160) + 1);
                     } else {
-                        $intarray2($int12) += calc((quest_param($quest27, param_7834) - 1999) * 1000);
-                        if (quest_param($quest27, param_7835) > 0) {
-                            $intarray2($int12) += calc(quest_param($quest27, param_7835) + 1);
-                        } else {
-                            $intarray2($int12) += calc(quest_param($quest27, param_1345) + 1);
-                        }
+                        $intarray2($int12) += ~script6268($quest27, 0);
                     }
-                    $int30 = 1;
             }
             if ($int25 > -1 & $int5 = 1 & $int29 = 2) {
                 $int25 = -1;
@@ -169,22 +190,11 @@ while ($int12 <= %varclient_273) {
     $int12 = calc($int12 + 1);
 }
 $int12 = 0;
-if ($int30 = 1) {
+if ($int30 > 0) {
     array_sort(calc(%varclient_273 + 1), 2, 1);
     $int12 = 1;
     while ($int12 <= %varclient_273) {
-        switch_int ($int2) {
-            case 7 :
-                $intarray0($int12) = calc($intarray2($int12) / 1000000 - 1);
-            case 6 :
-                $intarray0($int12) = calc($intarray2($int12) / 1000 - 1);
-            case 2 :
-                $intarray0($int12) = calc($intarray2($int12) / 100000 - 1);
-            case 8 :
-                $intarray0($int12) = calc($intarray2($int12) / 10000000 - 1);
-            case 9 :
-                $intarray0($int12) = calc($intarray2($int12) / 100000 - 1);
-        }
+        $intarray0($int12) = calc($intarray2($int12) / $int30 - 1);
         $int12 = calc($int12 + 1);
     }
 } else {
