@@ -1,12 +1,20 @@
 // 20473
-[proc,script20473](int $int0)(boolean)
-switch_int ($int0) {
-    case 6 :
-        if (platformtype = ^platformtype_apple | platformtype = ^platformtype_android) {
-            return(false);
-        }
-        if (~ironman_mode = true) {
-            return(false);
-        }
+[proc,script20473](int $int0)
+def_dbrow $dbrow1 = ~script20429($int0);
+def_string $string0 = "";
+def_string $string1 = "";
+def_obj $obj2 = null;
+def_obj $obj3 = null;
+if (~script20480 = 1) {
+    ~script20431;
+    ~script20474(-1, "You have earned all the capes you can this year.", 0, null, null, obj_53699);
+    return;
 }
-return(true);
+if ($dbrow1 = null | ~script20432($int0) = false) {
+    ~script20431;
+    ~script20474(-1, "Choose a skill to focus on!", 0, null, null, obj_53699);
+} else {
+    $string0 = db_getfield($dbrow1, dbtable_343:col0, 0);
+    $obj2, $obj3, $string1 = ~script20433($dbrow1);
+    ~script20474($int0, $string0, 1, $string1, $obj2, $obj3);
+}

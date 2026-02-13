@@ -1,13 +1,14 @@
 // 20445
-[proc,script20445](stat $stat0, component $component1)
-db_find(dbtable_343:col1, $stat0);
-def_dbrow $dbrow2 = null;
-def_graphic $graphic3 = null;
-$dbrow2 = db_findnext;
-if ($dbrow2 = null) {
-    return;
+[proc,script20445](stat $stat0)(int)
+if (~script20577($stat0) = false) {
+    return(0);
 }
-$graphic3 = enum(int, graphic, enum_745, db_getfield($dbrow2, dbtable_343:col2, 0));
-if_setgraphic($graphic3, $component1);
-if_setonmouserepeat("script8799(db_getfield($dbrow2, dbtable_343:col0, 0), event_com, -1)", $component1);
-if_setonmouseleave("script8805", $component1);
+def_int $int1 = ~script11151($stat0);
+if ($int1 >= 50000000) {
+    return(0);
+}
+def_int $int2 = calc(50000000 - $int1);
+def_int $int3 = stat_base($stat0);
+def_int $int4 = min(calc($int2 / ~script20443($int3) + 1), %varplayer_12600);
+$int4 = min(999, $int4);
+return($int4);

@@ -1,6 +1,19 @@
 // 4533
-[proc,script4533]
-~script11620(interface_1495:com_18);
-if_setmodelanim(seq_18020, interface_1495:com_15);
-if_setmodelangle(100, 120, if_getmodelangle_x(interface_1495:com_15), 513, if_getmodelangle_z(interface_1495:com_15), if_getmodelzoom(interface_1495:com_15), interface_1495:com_15);
-if_setontimer("script5924(100)", interface_1495:com_15);
+[proc,script4533](string $string0)(string)
+def_obj $obj0 = inv_getobj(inv_94, 3);
+def_int $int1 = 0;
+if (oc_param($obj0, param_2825) = 1) {
+    $int1 = ~script1108($obj0);
+}
+switch_int ($int1) {
+    case 2 :
+        $string0 = "<$string0><br>- <col=ffffff>2h <sprite=14903>:</col> Deliver a powerful blow to the target.";
+        $string0 = "<$string0><br><col=969696>- 2x <sprite=14904>: Sweep the target with both weapons.</col>";
+    case 1 :
+        $string0 = "<$string0><br><col=969696>- 2h <sprite=14903>: Deliver a powerful blow to the target.</col>";
+        $string0 = "<$string0><br><col=ffffff>- 2x <sprite=14904>: Sweep the target with both weapons.</col>";
+    case default :
+        $string0 = "<$string0><br><col=969696>- 2h <sprite=14903>: Deliver a powerful blow to the target.</col>";
+        $string0 = "<$string0><br><col=969696>- 2x <sprite=14904>: Sweep the target with both weapons.</col>";
+}
+return($string0);
