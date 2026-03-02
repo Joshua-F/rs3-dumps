@@ -1,18 +1,37 @@
 // 18638
 [proc,script18638](struct $struct0, string $string0, int $int1)(string)
 def_int $int2 = 25;
-def_int $int3 = 6;
-switch_struct ($struct0) {
-    case struct_44243 :
-        $int2 = 21;
-        $int3 = 4;
-    case struct_44244 :
-        if (%varplayerbit_30982 > 0) {
-            $int2 = calc($int2 + scale($int2, 100, calc(%varplayerbit_30982 * 6)));
-            $int3 = calc($int3 + scale($int3, 100, calc(%varplayerbit_30982 * 6)));
-        }
+def_int $int3 = 10;
+if (%varplayerbit_30982 > 0) {
+    $int2 = calc($int2 + scale($int2, 100, calc(10 + %varplayerbit_30982 * 3)));
+    $int3 = calc($int3 + scale($int3, 100, calc(10 + %varplayerbit_30982 * 3)));
 }
-$string0 = "<$string0><br>- <~script17720($struct0, $int2, calc($int2 + $int3), 0, $int1)> per hit every <col=ffffff><~script15973(2, 1)></col>.";
-$string0 = "<$string0><br>- <col=ffffff><tostring(5)></col> hits.";
-$string0 = "<$string0><br>- <col=ffffff>Damage over time</col>.";
+switch_struct ($struct0) {
+    case struct_44244 :
+        $string0 = "<$string0><br>- <~script17720($struct0, $int2, calc($int2 + $int3), 0, $int1)> per hit every <col=ffffff><~script15973(2, 1)></col>.";
+        $string0 = "<$string0><br>- <col=ffffff><tostring(8)></col> hits.";
+        $string0 = "<$string0><br>- <col=ffffff>Damage over time</col>.";
+        $string0 = "<$string0><br>- Heals you for <col=ffffff><tostring(10)>%</col> of the damage dealt.";
+        if (~script15411(struct_52788) = 1) {
+            $string0 = "<$string0><br>- Can be <col=ffffff>recast</col> within <col=ffffff><~script14945(40, 1)></col> of the previous cast.";
+            $string0 = "<$string0><br><br><col=ffffff>Second Cast:</col> <struct_param(struct_52788, param_2795)>";
+        }
+        if (~script15411(struct_52789) = 1) {
+            $string0 = "<$string0><br><col=ffffff>Third Cast:</col> <struct_param(struct_52789, param_2795)>";
+        }
+    case struct_52788 :
+        $string0 = "<$string0><br>- <~script17720($struct0, 90, calc(90 + 20), 0, $int1)> per hit every <col=ffffff><~script15973(3, 1)></col>.";
+        $string0 = "<$string0><br>- <col=ffffff><tostring(6)></col> hits.";
+        $string0 = "<$string0><br>- <col=ffffff>Damage over time</col>.";
+        $string0 = "<$string0><br>- Heals you for <col=ffffff><tostring(10)>%</col> of the damage dealt.";
+        if (~script15411(struct_52789) = 1) {
+            $string0 = "<$string0><br><br><col=ffffff>Third Cast:</col> <struct_param(struct_52789, param_2795)>";
+        }
+    case struct_52789 :
+        $string0 = "<$string0><br>- <~script17720($struct0, 110, calc(110 + 20), 0, $int1)> on first hit.";
+        $string0 = "<$string0><br>- <~script17718($struct0, 120, 0, $int1)> per hit every <col=ffffff><~script15973(4, 1)></col>.";
+        $string0 = "<$string0><br>- <col=ffffff><tostring(calc(6 + 1))></col> hits.";
+        $string0 = "<$string0><br>- <col=ffffff>Damage over time</col>.";
+        $string0 = "<$string0><br>- Heals you for <col=ffffff><tostring(10)>%</col> of the damage dealt.";
+}
 return($string0);
