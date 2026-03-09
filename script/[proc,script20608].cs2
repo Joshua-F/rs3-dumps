@@ -28,13 +28,18 @@ switch_int ($int1) {
                 $dbrow2 = db_findnext;
             }
         }
-        if (struct_param($struct0, param_8970) = 1) {
-            $string0 = "<$string0><br>This <~text_plural($int3, "override", "outfit")> can be recoloured.";
+        if (struct_param($struct0, param_1331) = true) {
+            $string0 = "<$string0><br><br>This <~text_plural($int3, "override", "outfit")> can be recoloured.";
         }
     case 5 :
         $string0 = enum(int, string, enum_10638, struct_param($struct0, param_2532));
+        if (struct_param($struct0, param_1331) = true) {
+            $string0 = "<$string0><br><br>This pet can be recoloured.";
+        }
     case 4 :
-        $string0 = enum(int, string, enum_10637, struct_param($struct0, param_2532));
+        if (struct_param($struct0, param_2532) = 7 & struct_param($struct0, param_5166) ! null & enum_getoutputcount(struct_param($struct0, param_5166)) > 1) {
+            $string0 = "One of these variants will be selected at random each time you use the ability.";
+        }
     case default :
         return("");
 }
