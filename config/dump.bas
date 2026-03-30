@@ -2137,10 +2137,10 @@ readyanim=seq_11499,null
 [bas_408]
 readyanim_l=seq_11502
 readyanim_r=seq_11502
-walkanim_b=seq_11503
-walkanim_l=seq_11503
-walkanim_r=seq_11503
-readyanim=seq_11502,seq_11503
+walkanim_b=seq_31523
+walkanim_l=seq_31523
+walkanim_r=seq_31523
+readyanim=seq_11502,seq_31523
 
 // 409
 [bas_409]

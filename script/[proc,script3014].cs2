@@ -53,177 +53,162 @@ def_string $string4 = "Featured Content";
 if_settext($string4, interface_907:com_18);
 if ($int0 = 1 & ~script18461(dbrow_13086) = true) {
     ~script18464(dbrow_13086);
-} else {
-    if ((playermember = false | $boolean9 = false & $int8 < 2880) & random(5) = 0 & ~script13491(%varplayer_6601) = false) {
-        switch_int (map_lang) {
-            case 0 :
-                if_setgraphic(rs3_lobby_primary_default_bonds_banner_en, interface_907:com_38);
-            case 1 :
-                if_setgraphic(rs3_lobby_primary_default_bonds_banner_de, interface_907:com_38);
-            case 2 :
-                if_setgraphic(rs3_lobby_primary_default_bonds_banner_fr, interface_907:com_38);
-            case 3 :
-                if_setgraphic(rs3_lobby_primary_default_bonds_banner_pt, interface_907:com_38);
+} else if (%varplayer_6601 = 8661 & date_minutes >= calc(date_minutes_fromruneday(8661) + 720) | %varplayer_6601 > 8661 | %varplayer_6601 < 7922 | random(2) = 0 & %varplayer_6601 >= 7924 | %varplayerbit_48641 = 0) {
+    if (%varplayer_6601 > 0) {
+        while ($int5 < $int1) {
+            $struct3 = enum(int, struct, enum_7783, $int5);
+            if (~script17266($struct3) = true) {
+                switch_struct ($struct3) {
+                    case struct_35237 :
+                        $struct4 = $struct3;
+                }
+                $structarray0($int6) = $struct3;
+                $int6 = calc($int6 + 1);
+            }
+            $int5 = calc($int5 + 1);
         }
-        return;
     }
-    if (%varplayer_6601 = 8661 & date_minutes >= calc(date_minutes_fromruneday(8661) + 720) | %varplayer_6601 > 8661 | %varplayer_6601 < 7922 | random(2) = 0 & %varplayer_6601 >= 7924 | %varplayerbit_48641 = 0) {
-        if (%varplayer_6601 > 0) {
-            while ($int5 < $int1) {
-                $struct3 = enum(int, struct, enum_7783, $int5);
-                if (~script17266($struct3) = true) {
-                    switch_struct ($struct3) {
-                        case struct_35237 :
-                            $struct4 = $struct3;
-                    }
-                    $structarray0($int6) = $struct3;
-                    $int6 = calc($int6 + 1);
-                }
-                $int5 = calc($int5 + 1);
-            }
-        }
-        if ($struct4 ! null) {
-            $struct3 = $struct4;
-        } else if ($int6 = 0) {
-            $struct3 = enum(int, struct, enum_7783, -1);
-            if ($struct3 = struct_34505) {
-                $struct3 = enum(int, struct, enum_8300, calc(%varplayer_6601 % $int2));
-                $string4 = "Featured Content";
-            }
-        } else {
-            $struct3 = $structarray0(random($int6));
-        }
-        switch_int (map_lang) {
-            case 1 :
-                $string2 = struct_param($struct3, param_6962);
-                $string3 = struct_param($struct3, param_5558);
-                $string1 = struct_param($struct3, param_7961);
-            case 2 :
-                $string2 = struct_param($struct3, param_6963);
-                $string3 = struct_param($struct3, param_7892);
-                $string1 = struct_param($struct3, param_7962);
-            case 3 :
-                $string2 = struct_param($struct3, param_6964);
-                $string3 = struct_param($struct3, param_7893);
-                $string1 = struct_param($struct3, param_7963);
-        }
-        if (string_length($string2) = 0) {
-            $string2 = struct_param($struct3, param_6394);
-        }
-        if (string_length($string3) = 0) {
-            $string3 = struct_param($struct3, param_65);
-        }
-        if (string_length($string1) = 0) {
-            $string1 = struct_param($struct3, param_6393);
-        }
-        if (string_length(struct_param($struct3, param_6391)) > 0) {
-            $string4 = struct_param($struct3, param_6391);
-        }
-        if (string_length($string4) > 0) {
-            if_settext($string4, interface_907:com_18);
-        }
-        switch_int (map_lang) {
-            case 0 :
-                $int5 = 1;
-                if (struct_param($struct3, param_9361) ! null) {
-                    $int5 = calc($int5 + 1);
-                    if (struct_param($struct3, param_9362) ! null) {
-                        $int5 = calc($int5 + 1);
-                        if (struct_param($struct3, param_9363) ! null) {
-                            $int5 = calc($int5 + 1);
-                        }
-                    }
-                }
-                switch_int (random($int5)) {
-                    case 0 :
-                        if_setgraphic(~script19254($struct3, 0), interface_907:com_38);
-                    case 1 :
-                        if_setgraphic(struct_param($struct3, param_9361), interface_907:com_38);
-                    case 2 :
-                        if_setgraphic(struct_param($struct3, param_9362), interface_907:com_38);
-                    case 3 :
-                        if_setgraphic(struct_param($struct3, param_9363), interface_907:com_38);
-                }
-            case default :
-                if_setgraphic(~script19254($struct3, map_lang), interface_907:com_38);
-        }
-        if_settext($string4, interface_907:com_18);
-        ~script10593(1);
-        switch_int (struct_param($struct3, param_6392)) {
-            case 1 :
-                ~script10592(interface_907:com_24, 1);
-                if_setonop("script13252", interface_907:com_24);
-            case 2 :
-                ~script10592(interface_907:com_27, 1);
-                $string1 = "mtxn_rs_shop";
-                if (string_length($string2) = 0) {
-                    $string2 = "index";
-                }
-                if (~is_mobile_client = true) {
-                    if_setonop("script13252", interface_907:com_27);
-                } else {
-                    if_setonop("script10029($string1, $string2, $string2, true)", interface_907:com_27);
-                }
-            case 18 :
-                ~script10592(interface_907:com_28, 1);
-                $string1 = "mtxn_rs_shop";
-                if (string_length($string2) = 0) {
-                    $string2 = "index";
-                }
-                if (~is_mobile_client = true) {
-                    if_setonop("script13252", interface_907:com_28);
-                } else {
-                    if_setonop("script10029($string1, $string2, $string2, true)", interface_907:com_28);
-                }
-            case 3 :
-                if_setop(1, "Select", interface_907:com_38);
-                if (struct_param($struct3, param_6395) = true) {
-                    if_setonop("script3434($string1, $string2)", interface_907:com_38);
-                } else {
-                    if_setonop("script7397($string1, $string2)", interface_907:com_38);
-                }
-            case 9 :
-                if_setop(1, "Select", interface_907:com_38);
-                if_setonop("script2828($string3)", interface_907:com_38);
-            case 4 :
-                if_setop(1, "Select", interface_907:com_38);
-                if_setonop("script13252", interface_907:com_38);
-            case 5 :
-                ~script10592(interface_907:com_25, 1);
-                if_setonop("script13252", interface_907:com_25);
-            case 7 :
-                if_setop(1, "Select", interface_907:com_38);
-            case 8 :
-                ~script10592(interface_907:com_26, 1);
-            case 10 :
-                ~script10592(interface_907:com_29, 1);
-                if_setonop("script13252", interface_907:com_29);
-            case 12 :
-                ~script10592(interface_907:com_30, 1);
-                if_setonop("script13252", interface_907:com_30);
-            case 13 :
-                if (platformtype ! ^platformtype_default & platformtype ! ^platformtype_jagex) {
-                    ~script10592(interface_907:com_31, 1);
-                    if_setonop("script13252", interface_907:com_31);
-                } else {
-                    if_setop(1, "Select", interface_907:com_38);
-                    if_setonop("script15228(19)", interface_907:com_38);
-                }
-            case 14 :
-                ~script10592(interface_907:com_31, 1);
-                if_setonop("script13252", interface_907:com_31);
-            case 19 :
-                ~script10592(interface_907:com_32, 1);
-                if_setonop("script13252", interface_907:com_32);
-            case 15 :
-                ~script10592(interface_907:com_33, 1);
-            case 11 :
-                ~script10592(interface_907:com_23, 1);
-                if_setonop("script13252", interface_907:com_23);
+    if ($struct4 ! null) {
+        $struct3 = $struct4;
+    } else if ($int6 = 0) {
+        $struct3 = enum(int, struct, enum_7783, -1);
+        if ($struct3 = struct_34505) {
+            $struct3 = enum(int, struct, enum_8300, calc(%varplayer_6601 % $int2));
+            $string4 = "Featured Content";
         }
     } else {
-        $int11 = calc(date_minutes_fromruneday(8661) + 720 - 1);
-        ~script3568(interface_907:com_39, interface_906:com_11, $int11, date_minutes, -1, -1, 0, 0);
-        if_setontimer("script12275(interface_907:com_39, interface_906:com_11, $int11, date_minutes, -1, -1, 0, 0)", interface_906:com_11);
+        $struct3 = $structarray0(random($int6));
     }
+    switch_int (map_lang) {
+        case 1 :
+            $string2 = struct_param($struct3, param_6962);
+            $string3 = struct_param($struct3, param_5558);
+            $string1 = struct_param($struct3, param_7961);
+        case 2 :
+            $string2 = struct_param($struct3, param_6963);
+            $string3 = struct_param($struct3, param_7892);
+            $string1 = struct_param($struct3, param_7962);
+        case 3 :
+            $string2 = struct_param($struct3, param_6964);
+            $string3 = struct_param($struct3, param_7893);
+            $string1 = struct_param($struct3, param_7963);
+    }
+    if (string_length($string2) = 0) {
+        $string2 = struct_param($struct3, param_6394);
+    }
+    if (string_length($string3) = 0) {
+        $string3 = struct_param($struct3, param_65);
+    }
+    if (string_length($string1) = 0) {
+        $string1 = struct_param($struct3, param_6393);
+    }
+    if (string_length(struct_param($struct3, param_6391)) > 0) {
+        $string4 = struct_param($struct3, param_6391);
+    }
+    if (string_length($string4) > 0) {
+        if_settext($string4, interface_907:com_18);
+    }
+    switch_int (map_lang) {
+        case 0 :
+            $int5 = 1;
+            if (struct_param($struct3, param_9361) ! null) {
+                $int5 = calc($int5 + 1);
+                if (struct_param($struct3, param_9362) ! null) {
+                    $int5 = calc($int5 + 1);
+                    if (struct_param($struct3, param_9363) ! null) {
+                        $int5 = calc($int5 + 1);
+                    }
+                }
+            }
+            switch_int (random($int5)) {
+                case 0 :
+                    if_setgraphic(~script19254($struct3, 0), interface_907:com_38);
+                case 1 :
+                    if_setgraphic(struct_param($struct3, param_9361), interface_907:com_38);
+                case 2 :
+                    if_setgraphic(struct_param($struct3, param_9362), interface_907:com_38);
+                case 3 :
+                    if_setgraphic(struct_param($struct3, param_9363), interface_907:com_38);
+            }
+        case default :
+            if_setgraphic(~script19254($struct3, map_lang), interface_907:com_38);
+    }
+    if_settext($string4, interface_907:com_18);
+    ~script10593(1);
+    switch_int (struct_param($struct3, param_6392)) {
+        case 1 :
+            ~script10592(interface_907:com_24, 1);
+            if_setonop("script13252", interface_907:com_24);
+        case 2 :
+            ~script10592(interface_907:com_27, 1);
+            $string1 = "mtxn_rs_shop";
+            if (string_length($string2) = 0) {
+                $string2 = "index";
+            }
+            if (~is_mobile_client = true) {
+                if_setonop("script13252", interface_907:com_27);
+            } else {
+                if_setonop("script10029($string1, $string2, $string2, true)", interface_907:com_27);
+            }
+        case 18 :
+            ~script10592(interface_907:com_28, 1);
+            $string1 = "mtxn_rs_shop";
+            if (string_length($string2) = 0) {
+                $string2 = "index";
+            }
+            if (~is_mobile_client = true) {
+                if_setonop("script13252", interface_907:com_28);
+            } else {
+                if_setonop("script10029($string1, $string2, $string2, true)", interface_907:com_28);
+            }
+        case 3 :
+            if_setop(1, "Select", interface_907:com_38);
+            if (struct_param($struct3, param_6395) = true) {
+                if_setonop("script3434($string1, $string2)", interface_907:com_38);
+            } else {
+                if_setonop("script7397($string1, $string2)", interface_907:com_38);
+            }
+        case 9 :
+            if_setop(1, "Select", interface_907:com_38);
+            if_setonop("script2828($string3)", interface_907:com_38);
+        case 4 :
+            if_setop(1, "Select", interface_907:com_38);
+            if_setonop("script13252", interface_907:com_38);
+        case 5 :
+            ~script10592(interface_907:com_25, 1);
+            if_setonop("script13252", interface_907:com_25);
+        case 7 :
+            if_setop(1, "Select", interface_907:com_38);
+        case 8 :
+            ~script10592(interface_907:com_26, 1);
+        case 10 :
+            ~script10592(interface_907:com_29, 1);
+            if_setonop("script13252", interface_907:com_29);
+        case 12 :
+            ~script10592(interface_907:com_30, 1);
+            if_setonop("script13252", interface_907:com_30);
+        case 13 :
+            if (platformtype ! ^platformtype_default & platformtype ! ^platformtype_jagex) {
+                ~script10592(interface_907:com_31, 1);
+                if_setonop("script13252", interface_907:com_31);
+            } else {
+                if_setop(1, "Select", interface_907:com_38);
+                if_setonop("script15228(19)", interface_907:com_38);
+            }
+        case 14 :
+            ~script10592(interface_907:com_31, 1);
+            if_setonop("script13252", interface_907:com_31);
+        case 19 :
+            ~script10592(interface_907:com_32, 1);
+            if_setonop("script13252", interface_907:com_32);
+        case 15 :
+            ~script10592(interface_907:com_33, 1);
+        case 11 :
+            ~script10592(interface_907:com_23, 1);
+            if_setonop("script13252", interface_907:com_23);
+    }
+} else {
+    $int11 = calc(date_minutes_fromruneday(8661) + 720 - 1);
+    ~script3568(interface_907:com_39, interface_906:com_11, $int11, date_minutes, -1, -1, 0, 0);
+    if_setontimer("script12275(interface_907:com_39, interface_906:com_11, $int11, date_minutes, -1, -1, 0, 0)", interface_906:com_11);
 }
