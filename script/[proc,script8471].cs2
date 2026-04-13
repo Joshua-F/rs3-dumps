@@ -205,7 +205,7 @@ def_int $int30 = inv_size($inv2);
 def_int $int31 = 0;
 def_int $int32 = 0;
 while ($int31 < $int30) {
-    if (~script8477($int31) = 1 & ~script13139($inv1, $int31) = 0) {
+    if (~script8477($int31, $inv2) = 1 & ~script13139($inv1, $int31) = 0) {
         $int32 = calc($int32 + 1);
     }
     $int31 = calc($int31 + 1);
@@ -292,7 +292,7 @@ while ($int31 < $int30) {
             cc_setgraphic(rs3_icon_slot_unavailable);
         }
         if (cc_find($component8, $int31) = true) {
-            if (~script8477($int31) = 0) {
+            if (~script8477($int31, $inv2) = 0) {
                 .cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
                 .cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
                 .cc_sethide(true);
@@ -345,8 +345,6 @@ while ($int31 < $int30) {
                             if (oc_param($obj35, param_2091) = false | compare(oc_param($obj35, param_528), "Remove") = 0 | compare(oc_param($obj35, param_529), "Remove") = 0 | compare(oc_param($obj35, param_530), "Remove") = 0 | compare(oc_param($obj35, param_531), "Remove") = 0 | compare(oc_param($obj35, param_1211), "Remove") = 0 | compare(oc_param($obj35, param_6712), "Remove") = 0 | compare(oc_param($obj35, param_6713), "Remove") = 0 | compare(oc_param($obj35, param_6714), "Remove") = 0 | oc_param($obj35, param_9058) = true) {
                                 cc_setop(1, "Remove to bank");
                                 cc_setop(7, "Remove to inventory");
-                            } else if (oc_category($obj35) = category_2267) {
-                                cc_setop(1, "Deactivate");
                             }
                             if (oc_param($obj35, param_4594) = 1) {
                                 cc_setop(2, "Fill from bank");
@@ -399,9 +397,6 @@ while ($int31 < $int30) {
                 } else {
                     ~script9222(null, -1);
                     cc_setgraphic(~script8478($inv1, $int31, 0));
-                    if ($int31 = 14 & ($component8 = interface_1462:com_31 | $component8 = interface_1464:com_15)) {
-                        ~script3344($component8);
-                    }
                     cc_setsize(calc(36 - 4), calc(32 - 2), ^setsize_abs, ^setsize_abs);
                     if ($boolean16 = true & (cc_getlayer = interface_1462:com_31 | cc_getlayer = interface_1464:com_15)) {
                         cc_setsize(44, 39, ^setsize_abs, ^setsize_abs);
@@ -412,7 +407,7 @@ while ($int31 < $int30) {
                             $string2 = "No cosmetic appearance";
                             cc_setonmouserepeat("script3876($string2, event_com, event_comsubid)");
                         }
-                    } else if ($inv1 ! null | $int31 = 14 & $component8 = interface_1462:com_31 | $component8 = interface_1464:com_15) {
+                    } else if ($inv1 ! null) {
                         cc_settrans(127);
                     } else {
                         cc_settrans(0);
@@ -492,19 +487,6 @@ while ($int31 < $int30) {
                                                 cc_setgraphic(rs3_icon_slot_owned);
                                                 $int41 = setbit($int41, 2);
                                             }
-                                        } else if (~script13109($int31) = true & ~script6488($struct38) = 0) {
-                                            cc_setparam(param_8968, ~script15769($struct38));
-                                            cc_setop(6, "Purchase");
-                                            $int41 = clearbit($int41, 1);
-                                            if (.cc_find($component7, $int31) = true) {
-                                                if (~script13102($struct38) = 0) {
-                                                    cc_setgraphic(~script8478($inv1, $int31, 2));
-                                                    cc_settrans(0);
-                                                    $int41 = setbit($int41, 3);
-                                                }
-                                                ~script10017($component7, .cc_getid, -1, 5, null, $component11);
-                                            }
-                                            $int41 = setbit($int41, 2);
                                         } else if ($struct38 ! null & ~script6488($struct38) = 1 & ~script12779($struct38, $obj37, ~script13103($inv1, $int31)) = 1) {
                                             if (.cc_find($component7, $int31) = true) {
                                                 cc_create($component11, ^iftype_graphic, if_getnextsubid($component11));
@@ -591,19 +573,6 @@ while ($int31 < $int30) {
                                                 cc_setgraphic(rs3_icon_slot_owned);
                                                 $int41 = setbit($int41, 2);
                                             }
-                                        } else if (~script13109($int31) = true & ~script6488($struct38) = 0) {
-                                            cc_setparam(param_8968, ~script15769($struct38));
-                                            cc_setop(6, "Purchase");
-                                            $int41 = clearbit($int41, 1);
-                                            if (.cc_find($component7, $int31) = true) {
-                                                if (~script13102($struct38) = 0) {
-                                                    cc_setgraphic(~script8478($inv1, $int31, 2));
-                                                    cc_settrans(0);
-                                                    $int41 = setbit($int41, 3);
-                                                }
-                                                ~script10017($component7, .cc_getid, -1, 5, null, $component11);
-                                            }
-                                            $int41 = setbit($int41, 2);
                                         } else if ($struct38 ! null) {
                                             if (~script6488($struct38) = 1 & ~script12779($struct38, $obj37, ~script13103($inv1, $int31)) = 1) {
                                                 if (.cc_find($component7, $int31) = true) {
@@ -648,15 +617,7 @@ while ($int31 < $int30) {
                         }
                     } else if ($obj37 ! null & $obj37 ! $obj35) {
                         $struct38 = oc_param($obj37, param_4414);
-                        if ($inv1 = inv_743 & ~script10779($int31) = true) {
-                            if (.cc_find($component7, $int31) = true) {
-                                ~script10017($component7, .cc_getid, -1, 5, null, $component11);
-                            }
-                            if (cc_find($component8, $int31) = true) {
-                                cc_setop(1, "Purchase");
-                                cc_setonop("script1620(event_com, event_comsubid, 100, 0, 8)");
-                            }
-                        } else if ($struct38 ! null & ~script6488($struct38) = 1) {
+                        if ($struct38 ! null & ~script6488($struct38) = 1) {
                             if (.cc_find($component7, $int31) = true) {
                                 cc_create($component11, ^iftype_graphic, if_getnextsubid($component11));
                                 cc_setsize(.cc_getwidth, .cc_getheight, ^setsize_abs, ^setsize_abs);
