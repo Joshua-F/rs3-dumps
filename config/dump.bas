@@ -30575,3 +30575,9 @@ walkanim_r=seq_37834
 runanim=seq_37834
 readyanim=seq_37833,seq_37834
 
+// 4906
+[bas_4906]
+readyanim=null,null
+randomreadyanim=seq_37844,70
+randomreadyanim=seq_37845,30
+
