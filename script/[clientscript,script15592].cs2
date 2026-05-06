@@ -1,3 +1,14 @@
 // 15592
 [clientscript,script15592]
 if_sethide(true, interface_906:com_102);
+if_setonvarctransmit("script4732{varclient_8409}", interface_906:com_102);
+~script13993(interface_906:com_105, null, struct_28556, "Import Save");
+if_sethide(false, interface_906:com_102);
+def_int $int0 = calc(date_minutes - %varclient_8409);
+if ($int0 < 60) {
+    if_settext("The import save button will be available in <tostring(calc(60 - $int0))> minute(s).", interface_906:com_104);
+    if_sethide(true, interface_906:com_105);
+} else {
+    if_settext("", interface_906:com_104);
+    if_sethide(false, interface_906:com_105);
+}
