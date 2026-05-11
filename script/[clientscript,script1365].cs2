@@ -7,7 +7,7 @@ def_string $string1 = ~script17844(%varplayer_5148, 4);
 if_sethide(false, interface_1594:com_33);
 if_settext(~script13337($struct0), interface_1594:com_79);
 if_settext(struct_param($struct0, param_4858), $component1);
-if_settext("Cost: <~script12658(%varplayer_5148, $struct0, ~script9095($struct0, ~script13501($struct0)), struct_param($struct0, param_5878), 1)>", $component2);
+if_settext("Cost: <~script12658(%varplayer_5148, $struct0, ~script9095($struct0, ~script13501($struct0)), struct_param($struct0, param_5878), true, 0)>", $component2);
 def_int $int3 = 0;
 def_int $int4 = 0;
 $int3, $int4 = ~script19888($struct0, $struct0);
@@ -95,11 +95,18 @@ if ($int26 > $int27) {
     $int27 = $int26;
 }
 if_setsize(0, $int27, ^setsize_minus, ^setsize_abs, $component1);
-def_int $int28 = calc($int24 + $int26 + if_getheight($component2) + 8 * 2);
+def_int $int28 = ~script7593(if_gettext($component2), if_getwidth($component2), if_getfontmetrics($component2), 0);
+def_int $int29 = 16;
+if ($int28 > $int29) {
+    $int29 = $int28;
+}
+if_setsize(0, $int29, ^setsize_minus, ^setsize_abs, $component2);
+if_setposition(0, calc(if_getheight($component2) + 2), ^setpos_abs_right, ^setpos_abs_bottom, $component1);
+def_int $int30 = calc($int24 + $int26 + $int28 + 8 * 2);
 cc_deleteall($component17);
 if_setscrollsize(0, 0, $component16);
 if_setscrollpos(0, 0, $component16);
-if ($int28 > if_getheight($component16)) {
-    if_setscrollsize(0, $int28, $component16);
+if ($int30 > if_getheight($component16)) {
+    if_setscrollsize(0, $int30, $component16);
     ~rs3_scrollbar_vertical($component17, $component16);
 }
