@@ -11,10 +11,11 @@ if_sethide(true, interface_1594:com_119);
 if (string_length($string0) > 0) {
     if_settext($string0, interface_1594:com_121);
 }
+def_boolean $boolean5 = struct_param($struct1, param_1446);
 if ($boolean2 = false) {
     if_clearops(interface_1594:com_118);
     if_setonop(null, interface_1594:com_118);
-    if_setop(1, ~script12793($struct1, struct_param($struct1, param_4854), 0), interface_1594:com_118);
+    if_setop(1, ~script12793($struct1, struct_param($struct1, param_4854), $boolean5), interface_1594:com_118);
     if (struct_param($struct1, param_4855) ! -1 | struct_param($struct1, param_4856) ! -1 | struct_param($struct1, param_4857) ! -1) {
         if (~script6431 = true) {
             $string1 = "There are more buy options if you tap and hold.";
@@ -22,15 +23,19 @@ if ($boolean2 = false) {
             $string1 = "There are more buy options if you right-click.";
         }
         if (struct_param($struct1, param_4855) ! -1) {
-            if_setop(2, ~script12793($struct1, struct_param($struct1, param_4855), 0), interface_1594:com_118);
+            if_setop(2, ~script12793($struct1, struct_param($struct1, param_4855), false), interface_1594:com_118);
         }
         if (struct_param($struct1, param_4856) ! -1) {
-            if_setop(3, ~script12793($struct1, struct_param($struct1, param_4856), 0), interface_1594:com_118);
-            if_setop(4, ~script12793($struct1, -1, 1), interface_1594:com_118);
+            if_setop(3, ~script12793($struct1, struct_param($struct1, param_4856), false), interface_1594:com_118);
+            if ($boolean5 = false) {
+                if_setop(4, ~script12793($struct1, -1, true), interface_1594:com_118);
+            }
         }
         if (struct_param($struct1, param_4857) ! -1) {
-            if_setop(4, ~script12793($struct1, struct_param($struct1, param_4857), 0), interface_1594:com_118);
-            if_setop(5, ~script12793($struct1, -1, 1), interface_1594:com_118);
+            if_setop(4, ~script12793($struct1, struct_param($struct1, param_4857), false), interface_1594:com_118);
+            if ($boolean5 = false) {
+                if_setop(5, ~script12793($struct1, -1, true), interface_1594:com_118);
+            }
         }
     }
 } else {

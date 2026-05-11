@@ -30580,3 +30580,12 @@ readyanim=null,null
 randomreadyanim=seq_37844,70
 randomreadyanim=seq_37845,30
 
+// 4907
+[bas_4907]
+runanim=seq_13304
+runanim_l=seq_13307
+runanim_r=seq_13308
+walkanim_l=seq_13309
+walkanim_r=seq_13310
+readyanim=seq_13302,seq_13303
+
