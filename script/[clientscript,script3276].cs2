@@ -44,26 +44,27 @@ if_settrans(0, interface_933:com_173);
 if_settrans(0, interface_933:com_174);
 if_settrans(0, interface_933:com_175);
 def_int $int37 = 0;
-if (%varclient_1188 = 1) {
-    $int37 = 5000;
-} else if (%varclient_1188 = 2) {
-    $int37 = 35000;
-} else if (%varclient_1188 = 3) {
-    $int37 = 85000;
+switch_int (%varclient_1188) {
+    case 3 :
+        $int37 = 50000;
+    case 2 :
+        $int37 = 25000;
+    case default :
+        $int37 = 0;
 }
-def_int $int38 = scale(%varclient_1195, 10000, 1000);
+def_int $int38 = 0;
+switch_int (%varclient_1188) {
+    case 3 :
+        $int38 = scale(%varclient_1195, 10000, 36000);
+    case 2 :
+        $int38 = scale(%varclient_1195, 10000, 11000);
+    case default :
+        $int38 = scale(%varclient_1195, 10000, 6000);
+}
 $int3, $int4, $int5 = ~script3273;
 def_int $int39 = $int5;
 def_int $int40 = ~script3274;
 def_int $int41 = 600;
-switch_int (%varclient_1188) {
-    case 3 :
-        $int41 = 600;
-    case 2 :
-        $int41 = 600;
-    case default :
-        $int41 = 600;
-}
 def_int $int42 = calc(10000 - min(%varplayerbit_2365, 4) * $int41);
 if (%varplayerbit_24882 > 0) {
     $int42 = min(10000, calc($int42 + %varplayerbit_24882 * 1 * 100));
@@ -119,13 +120,13 @@ if_sethide(false, interface_933:com_51);
 $int3, $int4, $int5 = ~script3273;
 if (%varclient_1188 = 1) {
     if_settrans(0, interface_933:com_44);
-    if_settext("+<tostring(calc(5000 / 100))>%", interface_933:com_51);
+    if_settext("+<tostring(calc(0 / 100))>%", interface_933:com_51);
 } else if (%varclient_1188 = 2) {
     if_settrans(0, interface_933:com_45);
-    if_settext("+<tostring(calc(35000 / 100))>%", interface_933:com_51);
+    if_settext("+<tostring(calc(25000 / 100))>%", interface_933:com_51);
 } else if (%varclient_1188 = 3) {
     if_settrans(0, interface_933:com_46);
-    if_settext("+<tostring(calc(85000 / 100))>%", interface_933:com_51);
+    if_settext("+<tostring(calc(50000 / 100))>%", interface_933:com_51);
 }
 if_sethide(false, interface_933:com_52);
 if_sethide(false, interface_933:com_53);
