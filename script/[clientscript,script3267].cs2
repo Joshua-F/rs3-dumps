@@ -44,27 +44,28 @@ if_settrans(calc(255 - %varclient_1185), interface_933:com_173);
 if_settrans(calc(255 - %varclient_1185), interface_933:com_174);
 if_settrans(calc(255 - %varclient_1185), interface_933:com_175);
 def_int $int38 = 0;
-if (%varclient_1188 = 1) {
-    $int38 = 5000;
-} else if (%varclient_1188 = 2) {
-    $int38 = 35000;
-} else if (%varclient_1188 = 3) {
-    $int38 = 85000;
+switch_int (%varclient_1188) {
+    case 3 :
+        $int38 = 50000;
+    case 2 :
+        $int38 = 25000;
+    case default :
+        $int38 = 0;
 }
-def_int $int39 = scale(%varclient_1195, 10000, 1000);
+def_int $int39 = 0;
+switch_int (%varclient_1188) {
+    case 3 :
+        $int39 = scale(%varclient_1195, 10000, 36000);
+    case 2 :
+        $int39 = scale(%varclient_1195, 10000, 11000);
+    case default :
+        $int39 = scale(%varclient_1195, 10000, 6000);
+}
 $int3, $int4, $int5 = ~script3273;
 def_int $int40 = $int5;
 def_int $int41 = ~script3274;
 def_int $int42 = calc(%varplayerbit_24886 * 10 * 100);
 def_int $int43 = 600;
-switch_int (%varclient_1188) {
-    case 3 :
-        $int43 = 600;
-    case 2 :
-        $int43 = 600;
-    case default :
-        $int43 = 600;
-}
 def_int $int44 = calc(10000 - min(%varplayerbit_2365, 4) * $int43);
 if (%varplayerbit_24882 > 0) {
     $int44 = min(10000, calc($int44 + %varplayerbit_24882 * 1 * 100));
@@ -236,7 +237,7 @@ if (%varclient_1185 = 0 & %varclient_1192 ! 0) {
                 sound_synth(sound_27367, 1, 0);
             }
             $int0 = 10000;
-            $int1 = calc(10000 + 5000);
+            $int1 = calc(10000 + 0);
             if ($int8 = 33) {
                 %varclient_1270 = $int0;
                 sound_synth(sound_32430, 1, 0);
@@ -258,8 +259,8 @@ if (%varclient_1185 = 0 & %varclient_1192 ! 0) {
             if (%varclient_1186 = calc($int9 + $int10 + $int11 + $int12 + $int13 + $int14 + $int15 + $int16 + $int17 + $int18 + $int19 + $int20 + $int21 / 3 * 2) & %varclient_1188 > 1) {
                 sound_synth(sound_27367, 1, 0);
             }
-            $int0 = calc(10000 + 5000);
-            $int1 = calc(10000 + 35000);
+            $int0 = calc(10000 + 0);
+            $int1 = calc(10000 + 25000);
             if ($int8 = 33) {
                 %varclient_1270 = $int0;
                 sound_synth(sound_32430, 1, 0);
@@ -279,8 +280,8 @@ if (%varclient_1185 = 0 & %varclient_1192 ! 0) {
                 sound_synth(sound_32430, 1, 0);
             }
         } else if (%varclient_1188 > 2) {
-            $int0 = calc(10000 + 35000);
-            $int1 = calc(10000 + 85000);
+            $int0 = calc(10000 + 25000);
+            $int1 = calc(10000 + 50000);
             if ($int8 = 66) {
                 %varclient_1270 = $int0;
                 sound_synth(sound_32430, 1, 0);
