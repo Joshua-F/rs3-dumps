@@ -1,10 +1,10 @@
 // 15892
 [proc,script15892](int $int0, struct $struct1, int $int2, enum $enum3, int $int4)
-if (%varplayer_1295 < 1000) {
+if (%tutorial < 1000) {
     mes("You can't do this while in the tutorial.");
     return;
 }
-if (%varplayerbit_3617 = 1) {
+if (%task_priority_mode = 1) {
     mes("You cannot change your chat filters while you are in the tutorial as you might miss important messages that will help with your progress.");
     return;
 }
@@ -14,7 +14,7 @@ if ($struct1 = null) {
 ~script373($int2, $int0, $struct1);
 switch_struct ($struct1) {
     case struct_37640 :
-        %varclient_2834 = calc(1 - %varclient_2834);
+        %chat_v2_profanity_filter = calc(1 - %chat_v2_profanity_filter);
     case struct_37642 :
         switch_int ($int2) {
             case 1 :
@@ -27,13 +27,13 @@ switch_struct ($struct1) {
                 chat_setfilter(chat_getfilter_public, ^chatfilter_off, chat_getfilter_trade);
         }
     case struct_37653 :
-        %varclient_4505 = calc(1 - %varclient_4505);
+        %message_group_send_to_team = calc(1 - %message_group_send_to_team);
         ~script4539(25);
         ~script1558(25, 0);
     case struct_37655 :
         ~script12429($int0);
     case struct_37910 :
-        %varplayerbit_36975 = calc(1 - %varplayerbit_36975);
+        %chat_v2_button_displaymode = calc(1 - %chat_v2_button_displaymode);
     case struct_41813 :
         ~script5741(calc((~script3873 + 1) % enum_getoutputcount(enum_1649)));
     case struct_37911 :
@@ -43,7 +43,7 @@ switch_struct ($struct1) {
 ~rebuildchatbox($int0);
 ~script10492;
 if (struct_param($struct1, param_6725) = true) {
-    ~script2256(interface_1477:com_787);
+    ~script2256(toplevel_v2:context_menu_layer);
 } else if ($int4 = 1 & $struct1 ! struct_37911) {
     ~script7544($int0, $enum3);
 }

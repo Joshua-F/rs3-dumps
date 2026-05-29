@@ -7,18 +7,18 @@ if ($enum2 = null) {
 }
 def_string $string0 = "";
 def_int $int4 = 0;
-~script13334(%varplayer_6891, 1);
-cc_deleteall(interface_1851:com_41);
-if (cc_find(interface_1851:com_40, $int0) = true) {
-    cc_setonop("cheevo_load_list(%varplayer_6891, -1, 0)");
+~script13334(%cheevo_current_list, 1);
+cc_deleteall(achievements_sub:cheevo_details);
+if (cc_find(achievements_sub:build_layer, $int0) = true) {
+    cc_setonop("cheevo_load_list(%cheevo_current_list, -1, 0)");
     cc_setop(5, "Close");
 }
-if (cc_find(interface_1851:com_40, calc($int0 + 7)) = true) {
+if (cc_find(achievements_sub:build_layer, calc($int0 + 7)) = true) {
     cc_setvflip(true);
 }
 def_int $int5 = 0;
 def_int $int6 = 0;
-if (cc_find(interface_1851:com_40, $int0) = true) {
+if (cc_find(achievements_sub:build_layer, $int0) = true) {
     $int5 = cc_gety;
     $int6 = cc_getheight;
 }
@@ -65,13 +65,13 @@ switch_int ($int3) {
                     $string0 = oc_name(enum(int, obj, $enum2, $int9));
                 } else if ($enum2 = enum_13065) {
                     if ($int9 = 0) {
-                        if (%varplayerbit_11754 = 0) {
+                        if (%luc2_hero_part_1_vis = 0) {
                             $string0 = "Turael";
                         } else {
                             $string0 = "Spria";
                         }
                     } else if ($int9 = 6) {
-                        if (%varplayerbit_11754 = 0) {
+                        if (%luc2_hero_part_1_vis = 0) {
                             $string0 = "Duradel";
                         } else {
                             $string0 = "Lapalok";
@@ -103,14 +103,14 @@ switch_int ($int3) {
             }
         }
 }
-if (calc($int9 % 2) = 1 & cc_find(interface_1851:com_41, calc(if_getnextsubid(interface_1851:com_41) - 1)) = true) {
+if (calc($int9 % 2) = 1 & cc_find(achievements_sub:cheevo_details, calc(if_getnextsubid(achievements_sub:cheevo_details) - 1)) = true) {
     $int11 = calc($int11 + cc_getheight);
 }
 $int11 = calc($int11 + 2);
-if_sethide(false, interface_1851:com_41);
-if_setsize(0, $int11, ^setsize_minus, ^setsize_abs, interface_1851:com_41);
-if_setposition(0, calc($int5 + $int6), ^setpos_abs_left, ^setpos_abs_top, interface_1851:com_41);
+if_sethide(false, achievements_sub:cheevo_details);
+if_setsize(0, $int11, ^setsize_minus, ^setsize_abs, achievements_sub:cheevo_details);
+if_setposition(0, calc($int5 + $int6), ^setpos_abs_left, ^setpos_abs_top, achievements_sub:cheevo_details);
 ~script13344(calc($int5 + $int6), $int11);
-if_setscrollsize(0, calc(if_getscrollheight(interface_1851:com_40) + $int11), interface_1851:com_40);
-if_setscrollpos(0, $int5, interface_1851:com_40);
-~rs3_scrollbar_vertical(interface_1851:com_39, interface_1851:com_40);
+if_setscrollsize(0, calc(if_getscrollheight(achievements_sub:build_layer) + $int11), achievements_sub:build_layer);
+if_setscrollpos(0, $int5, achievements_sub:build_layer);
+~rs3_scrollbar_vertical(achievements_sub:cheevo_scrollbar, achievements_sub:build_layer);

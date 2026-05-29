@@ -1,9 +1,9 @@
 // 10801
 [proc,script10801]
-~script11661(%varplayer_5739, 0);
-def_component $component0 = interface_1562:com_2;
-def_component $component1 = interface_1562:com_0;
-def_component $component2 = interface_1562:com_1;
+~script11661(%mtxmgt_purchase_selected_currency, 0);
+def_component $component0 = mtxmgt_purchase:header_layer;
+def_component $component1 = mtxmgt_purchase:outfit_content_layer;
+def_component $component2 = mtxmgt_purchase:outfit_scrollbar_layer;
 ~script10809;
 ~script10810;
 ~script11663;
@@ -11,33 +11,33 @@ def_component $component2 = interface_1562:com_1;
 cc_deleteall($component0);
 cc_deleteall($component1);
 cc_deleteall($component2);
-if (%varplayer_5006 = null) {
+if (%mtxmgt_purchase_struct = null) {
     return;
 }
-def_struct $struct3 = struct_param(%varplayer_5006, param_4419);
+def_struct $struct3 = struct_param(%mtxmgt_purchase_struct, param_4419);
 if ($struct3 = null) {
-    $struct3 = %varplayer_5006;
+    $struct3 = %mtxmgt_purchase_struct;
 }
 def_obj $obj4 = null;
 def_string $string0 = "";
-if (%varplayer_6628 ! null) {
-    $obj4 = struct_param(%varplayer_6628, param_6140);
+if (%mtxmgt_purchase_event_struct ! null) {
+    $obj4 = struct_param(%mtxmgt_purchase_event_struct, param_6140);
     if ($obj4 ! null) {
         if (~script13032 = struct_40974) {
-            $string0 = "Currency Pack (Contains <tostring(~script12870(struct_param(%varplayer_5006, param_6405), %varplayer_6628))>Currency)";
+            $string0 = "Currency Pack (Contains <tostring(~script12870(struct_param(%mtxmgt_purchase_struct, param_6405), %mtxmgt_purchase_event_struct))>Currency)";
         } else {
             $string0 = oc_name($obj4);
             if (string_length($string0) > 0) {
-                $string0 = "<$string0> (x<tostring(~script12870(struct_param(%varplayer_5006, param_6405), %varplayer_6628))>)";
+                $string0 = "<$string0> (x<tostring(~script12870(struct_param(%mtxmgt_purchase_struct, param_6405), %mtxmgt_purchase_event_struct))>)";
             }
         }
     }
-} else if (%varplayer_9528 ! null) {
-    $obj4 = ~script15145(%varplayer_9528);
+} else if (%mtxmgt_purchase_event_dbrow ! null) {
+    $obj4 = ~script15145(%mtxmgt_purchase_event_dbrow);
     if ($obj4 ! null) {
         $string0 = oc_name($obj4);
         if (string_length($string0) > 0) {
-            $string0 = "<$string0> (x<tostring(oc_param(struct_param(%varplayer_5006, param_6405), param_6168))>)";
+            $string0 = "<$string0> (x<tostring(oc_param(struct_param(%mtxmgt_purchase_struct, param_6405), param_6168))>)";
         }
     }
 }
@@ -45,7 +45,7 @@ def_int $int5 = 0;
 def_int $int6 = 0;
 def_int $int7 = 0;
 def_int $int8 = calc(if_getwidth($component0) - 2 * $int6);
-def_fontmetrics $fontmetrics9 = fontmetrics_29;
+def_fontmetrics $fontmetrics9 = museo_sans_13pt_bold;
 cc_create($component0, ^iftype_text, $int5);
 cc_settextfont($fontmetrics9);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
@@ -55,7 +55,7 @@ cc_settext(~script11659($struct3, 0));
 cc_setsize(calc($int6 * 2), ~script7593(cc_gettext, $int8, cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
 $int7 = calc($int7 + cc_getheight + $int6);
 $int5 = calc($int5 + 1);
-def_fontmetrics $fontmetrics10 = fontmetrics_26;
+def_fontmetrics $fontmetrics10 = museo_sans_11pt_regular;
 cc_create($component0, ^iftype_text, $int5);
 def_int $int11 = $int5;
 cc_settextfont($fontmetrics10);
@@ -167,7 +167,7 @@ def_string $string3 = get_col_tag(~script10495(4));
 $string3 = append_char($string3, '<');
 $string3 = "<$string3>u<substring($string3, 4, calc(string_length($string3) - 1))>";
 if ($obj4 ! null) {
-    $string2 = "This package contains the highlighted items listed below. Please note that this currency can only be used for the current event (<struct_param(%varplayer_6628, param_6135)>). Any currency not used by <~fromdate(struct_param(%varplayer_6628, param_6134))> will be removed. There is no refund available for this package.";
+    $string2 = "This package contains the highlighted items listed below. Please note that this currency can only be used for the current event (<struct_param(%mtxmgt_purchase_event_struct, param_6135)>). Any currency not used by <~fromdate(struct_param(%mtxmgt_purchase_event_struct, param_6134))> will be removed. There is no refund available for this package.";
     $string3 = "";
 } else if (struct_param($struct3, param_6171) = true) {
     $string2 = "This package contains the highlighted items listed below.";
@@ -188,7 +188,7 @@ if (cc_find($component0, $int11) = true & .cc_find($component0, $int12) = true) 
     .cc_sethide(true);
 }
 def_string $string5 = "No recolour available.";
-if (%varplayer_5008 = 1) {
+if (%mtxmgt_purchase_recolour_warning = 1) {
     cc_create($component0, ^iftype_graphic, if_getnextsubid($component0));
     cc_setgraphic("rs3_icon_colour_palette,2");
     cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);

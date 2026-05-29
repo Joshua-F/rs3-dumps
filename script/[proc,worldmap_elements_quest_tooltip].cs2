@@ -1,6 +1,6 @@
 // 7591
 [proc,worldmap_elements_quest_tooltip]
-def_component $component0 = interface_1486:com_14;
+def_component $component0 = text_tooltip:tooltip_dynamic_text;
 def_quest $quest1 = cc_param(param_8225);
 if ($quest1 = null) {
     return;
@@ -79,13 +79,13 @@ def_int $int14 = -1;
 if (quest_param($quest1, param_7862) = true & ~ql4_special_requirements($quest1) = false) {
     $int14 = 1;
 }
-if (quest_pointsreq($quest1) > 0 & %varplayer_1297 < quest_pointsreq($quest1)) {
+if (quest_pointsreq($quest1) > 0 & %qp < quest_pointsreq($quest1)) {
     $int14 = 1;
 }
 if (quest_param($quest1, param_7859) > 0 & ~comlevel < quest_param($quest1, param_7859)) {
     $int14 = 1;
 }
-if (quest_param($quest1, param_7861) = true & %varplayerbit_9663 < 1) {
+if (quest_param($quest1, param_7861) = true & %morytania_entry_allowed < 1) {
     $int14 = 1;
 }
 if (quest_param($quest1, param_7860) > 0 & ~task_kudos_available < quest_param($quest1, param_7860)) {
@@ -99,19 +99,19 @@ def_int $int19 = 0;
 def_int $int20 = 0;
 def_int $int21 = 0;
 def_int $int22 = 1;
-def_fontmetrics $fontmetrics23 = fontmetrics_26;
+def_fontmetrics $fontmetrics23 = museo_sans_11pt_regular;
 if (~script6431 = true) {
-    $fontmetrics23 = fontmetrics_28;
+    $fontmetrics23 = museo_sans_13pt_regular;
     $int16 = 300;
 }
 if (compare($string0, null) ! 0 & compare($string0, "") ! 0) {
     cc_create($component0, ^iftype_text, $int15);
     cc_setposition(4, $int19, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setsize(calc(2 * 4), ~script7593($string0, calc($int16 - 2 * 4), fontmetrics_58, enum(fontmetrics, int, enum_8549, fontmetrics_58)), ^setsize_minus, ^setsize_abs);
+    cc_setsize(calc(2 * 4), ~script7593($string0, calc($int16 - 2 * 4), cinzel_18pt_bold, enum(fontmetrics, int, enum_8549, cinzel_18pt_bold)), ^setsize_minus, ^setsize_abs);
     cc_settext($string0);
-    cc_settextfont(fontmetrics_58);
+    cc_settextfont(cinzel_18pt_bold);
     cc_setcolour(~script10495(0));
-    cc_settextalign(^settextalign_left, ^settextalign_centre, enum(fontmetrics, int, enum_8549, fontmetrics_58));
+    cc_settextalign(^settextalign_left, ^settextalign_centre, enum(fontmetrics, int, enum_8549, cinzel_18pt_bold));
     $int15 = calc($int15 + 1);
     $int19 = calc($int19 + cc_getheight + 2 * 2);
     cc_create($component0, ^iftype_line, $int15);

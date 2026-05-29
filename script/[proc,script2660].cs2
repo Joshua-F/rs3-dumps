@@ -10,25 +10,25 @@ if (struct_param($struct0, param_8841) = 1) {
 def_stat $stat1 = enum(int, stat, enum_681, struct_param($struct0, param_2806));
 def_int $int2 = stat($stat1);
 def_int $int3 = 0;
-def_obj $obj4 = inv_getobj(inv_94, 3);
-def_obj $obj5 = inv_getobj(inv_94, 5);
+def_obj $obj4 = inv_getobj(worn, 3);
+def_obj $obj5 = inv_getobj(worn, 5);
 if ($stat1 = necromancy) {
     $int2 = stat_base($stat1);
-} else if ($stat1 = magic & struct_param($struct0, param_2880) ! 0 & %varplayerbit_3043 = 1) {
-    $int2 = max($int2, %varplayer_1185);
+} else if ($stat1 = magic & struct_param($struct0, param_2880) ! 0 & %assist_engaged = 1) {
+    $int2 = max($int2, %assist_stat_magic);
 }
-if ($int2 < struct_param($struct0, param_2807) & %varplayerbit_15197 = 0) {
+if ($int2 < struct_param($struct0, param_2807) & %cbtv2ca_ignore_ability_requirements = 0) {
     $int3 = 0;
-} else if (struct_param($struct0, param_2809) = 1 & map_members = false & %varplayerbit_15197 = 0) {
+} else if (struct_param($struct0, param_2809) = 1 & map_members = false & %cbtv2ca_ignore_ability_requirements = 0) {
     $int3 = 0;
 } else if (struct_param($struct0, param_2811) = 1) {
-    if ((inv_totalparam(inv_94, param_2826) = 2 | ~script6688($struct0) = true) & struct_param($struct0, param_2806) = 3) {
+    if ((inv_totalparam(worn, param_2826) = 2 | ~script6688($struct0) = true) & struct_param($struct0, param_2806) = 3) {
         $int3 = 1;
-    } else if ((inv_totalparam(inv_94, param_2827) = 2 | ~script6688($struct0) = true) & struct_param($struct0, param_2806) = 4) {
+    } else if ((inv_totalparam(worn, param_2827) = 2 | ~script6688($struct0) = true) & struct_param($struct0, param_2806) = 4) {
         $int3 = 1;
-    } else if ((inv_totalparam(inv_94, param_2825) = 2 | ~script6688($struct0) = true) & (struct_param($struct0, param_2806) = 1 | struct_param($struct0, param_2806) = 2)) {
+    } else if ((inv_totalparam(worn, param_2825) = 2 | ~script6688($struct0) = true) & (struct_param($struct0, param_2806) = 1 | struct_param($struct0, param_2806) = 2)) {
         $int3 = 1;
-    } else if ((inv_totalparam(inv_94, param_8898) = 2 | ~script6688($struct0) = true) & struct_param($struct0, param_2806) = 29) {
+    } else if ((inv_totalparam(worn, param_8898) = 2 | ~script6688($struct0) = true) & struct_param($struct0, param_2806) = 29) {
         $int3 = 1;
     }
 } else if (struct_param($struct0, param_2812) = 1) {
@@ -46,38 +46,38 @@ if ($int2 < struct_param($struct0, param_2807) & %varplayerbit_15197 = 0) {
         case 1, 2 :
             $int3 = 1;
         case 3 :
-            if (struct_param($struct0, param_8888) = 0 & ~script17691(%varplayer_11065) = true) {
+            if (struct_param($struct0, param_8888) = 0 & ~script17691(%combatv2_buff_necromancy_bone_shield_ability_struct) = true) {
                 $int3 = 1;
             }
     }
 } else if (struct_param($struct0, param_2814) = 1) {
-    if (%varplayerbit_1899 ! 1) {
+    if (%combatv2_player_is_in_combat ! 1) {
         $int3 = 1;
     }
 } else if (struct_param($struct0, param_5195) = 1) {
     if ($obj4 ! null & calc(oc_param($obj4, param_2826) + oc_param($obj4, param_2827) + oc_param($obj4, param_2825) + oc_param($obj4, param_8898)) > 0) {
         $int3 = 1;
     }
-} else if ($struct0 = %varplayer_3170 & %varplayerbit_0 = 2 & ~script17690(struct_14874) = 1) {
+} else if ($struct0 = %lunarfm_borrowed_power_spell_struct & %zaros_spellbook = 2 & ~script17690(struct_14874) = 1) {
     $int3 = 1;
-} else if (($struct0 = struct_48326 | $struct0 = struct_48327) & %varplayer_11065 = $struct0) {
+} else if (($struct0 = struct_48326 | $struct0 = struct_48327) & %combatv2_buff_necromancy_bone_shield_ability_struct = $struct0) {
     $int3 = 1;
-} else if (%varplayerbit_0 = 1 & %varplayerbit_21855 = 1 & %varplayerbit_21841 = 95) {
+} else if (%zaros_spellbook = 1 & %tpr_zaros_inside_player = 1 & %tpr_main = 95) {
     $int3 = 1;
 } else if (~script17690($struct0) = 0) {
     $int3 = 0;
 } else if (~script17691($struct0) = false) {
     $int3 = 0;
-} else if (%varclient_1725 >= 11 & (struct_param($struct0, param_2806) = 4 | struct_param($struct0, param_2806) = 27) & struct_param($struct0, param_2872) = 0) {
+} else if (%toolbelt_if_category >= 11 & (struct_param($struct0, param_2806) = 4 | struct_param($struct0, param_2806) = 27) & struct_param($struct0, param_2872) = 0) {
     $int3 = 0;
 } else if ($struct0 = struct_14878) {
-    if (%varplayer_1101 = null) {
+    if (%rand_gate_stone_coord = null) {
         $int3 = 0;
     } else {
         $int3 = 1;
     }
 } else if ($struct0 = struct_20280) {
-    if (%varplayer_3858 = null | ~script11771(4) = 0) {
+    if (%rand_gate_stone_coord2 = null | ~script11771(4) = 0) {
         $int3 = 0;
     } else {
         $int3 = 1;
@@ -95,7 +95,7 @@ if ($int2 < struct_param($struct0, param_2807) & %varplayerbit_15197 = 0) {
         $int3 = 0;
     }
 } else if ($struct0 = struct_11748) {
-    if (oc_category(inv_getobj(inv_94, 2)) = category_4700 & oc_param(inv_getobj(inv_94, 2), param_3793) = 0) {
+    if (oc_category(inv_getobj(worn, 2)) = category_4700 & oc_param(inv_getobj(worn, 2), param_3793) = 0) {
         $int3 = 1;
     } else {
         $int3 = 0;
@@ -105,14 +105,14 @@ if ($int2 < struct_param($struct0, param_2807) & %varplayerbit_15197 = 0) {
         $int3 = 1;
     }
 } else if ($struct0 = struct_45801 | $struct0 = struct_45802) {
-    if (oc_category(inv_getobj(inv_94, 13)) = category_5087 & oc_param(inv_getobj(inv_94, 13), param_8605) > 1 & oc_hasvarobj(inv_getobj(inv_94, 13)) = true) {
+    if (oc_category(inv_getobj(worn, 13)) = category_5087 & oc_param(inv_getobj(worn, 13), param_8605) > 1 & oc_hasvarobj(inv_getobj(worn, 13)) = true) {
         switch_struct ($struct0) {
             case struct_45801 :
-                if (inv_getvar(inv_94, 13, varobjectbit_50377) ! 0) {
+                if (inv_getvar(worn, 13, quiver_ammo_slot_3_id) ! 0) {
                     $int3 = 1;
                 }
             case struct_45802 :
-                if (inv_getvar(inv_94, 13, varobjectbit_50377) ! 1) {
+                if (inv_getvar(worn, 13, quiver_ammo_slot_3_id) ! 1) {
                     $int3 = 1;
                 }
         }
@@ -121,19 +121,19 @@ if ($int2 < struct_param($struct0, param_2807) & %varplayerbit_15197 = 0) {
     $int3 = 1;
     switch_struct ($struct0) {
         case struct_14767 :
-            if (inv_total(inv_94, obj_4170) < 1 & ~script7008 = false & inv_total(inv_94, obj_30828) < 1 & inv_total(inv_94, obj_30825) < 1 & inv_total(inv_94, obj_36635) < 1 & inv_total(inv_94, obj_30827) < 1 & inv_total(inv_94, obj_30830) < 1 & inv_total(inv_94, obj_36637) < 1) {
+            if (inv_total(worn, slayer_staff) < 1 & ~script7008 = false & inv_total(worn, dt14_abyssal_orb) < 1 & inv_total(worn, dt14_abyssal_wand) < 1 & inv_total(worn, dt14_abyssal_wand_augmented) < 1 & inv_total(worn, lent_dt14_abyssal_wand) < 1 & inv_total(worn, lent_dt14_abyssal_orb) < 1 & inv_total(worn, dt14_abyssal_orb_augmented) < 1) {
                 $int3 = 0;
             }
         case struct_14880 :
-            if (inv_total(inv_94, obj_22494) < 1 & inv_total(inv_94, obj_22496) < 1 & inv_total(inv_94, obj_22497) < 1 & inv_total(inv_94, obj_36639) < 1) {
+            if (inv_total(worn, polypore_staff) < 1 & inv_total(worn, polypore_staff_degraded_100) < 1 & inv_total(worn, polypore_staff_degraded_50) < 1 & inv_total(worn, polypore_staff_augmented) < 1) {
                 $int3 = 0;
             }
         case struct_14781 :
-            if (inv_total(inv_93, obj_1963) < 1) {
+            if (inv_total(inv, banana) < 1) {
                 $int3 = 0;
             }
         case struct_14783, struct_14775, struct_14771, struct_14780 :
-            if (inv_total(inv_93, obj_567) < 1) {
+            if (inv_total(inv, stafforb) < 1) {
                 $int3 = 0;
             }
         case struct_32942, struct_32943 :
@@ -145,7 +145,7 @@ if ($int2 < struct_param($struct0, param_2807) & %varplayerbit_15197 = 0) {
     }
 } else if (struct_param($struct0, param_2945) ! 0) {
     $int3 = ~script12007($struct0);
-    if (~prayer_points_level = 0 | %varplayerbit_16789 ! struct_param($struct0, param_2947)) {
+    if (~prayer_points_level = 0 | %prayer_mode ! struct_param($struct0, param_2947)) {
         $int3 = 0;
     }
 } else if (struct_param($struct0, param_2806) = 3 & oc_param($obj4, param_2826) = 1) {
@@ -157,7 +157,7 @@ if ($int2 < struct_param($struct0, param_2807) & %varplayerbit_15197 = 0) {
         }
     } else if (struct_param($struct0, param_2874) = 0) {
         $int3 = 1;
-    } else if (inv_totalparam(inv_94, param_2827) > 0) {
+    } else if (inv_totalparam(worn, param_2827) > 0) {
         $int3 = 1;
     }
 } else if ($obj4 = null & (struct_param($struct0, param_9408) = 1 | $struct0 = struct_49531)) {
@@ -173,14 +173,14 @@ if ($int2 < struct_param($struct0, param_2807) & %varplayerbit_15197 = 0) {
         case default :
             $int3 = 1;
     }
-    if (struct_param($struct0, param_8889) = 1 & %varplayer_11218 = 0) {
+    if (struct_param($struct0, param_8889) = 1 & %combatv2_underworld_conduit_active = 0) {
         $int3 = 0;
     }
 } else if (struct_param($struct0, param_5348) = 1) {
     $int3 = 1;
 } else if (struct_param($struct0, param_2806) = 5 | struct_param($struct0, param_2806) = 6) {
     $int3 = 1;
-} else if (struct_param($struct0, param_2871) ! 3 & struct_param($struct0, param_2871) ! %varplayerbit_0 & struct_param($struct0, param_2880) ! 5) {
+} else if (struct_param($struct0, param_2871) ! 3 & struct_param($struct0, param_2871) ! %zaros_spellbook & struct_param($struct0, param_2880) ! 5) {
     $int3 = 0;
 }
 if (struct_param($struct0, param_2882) = 1) {
@@ -194,55 +194,55 @@ if (struct_param($struct0, param_2882) = 1) {
                 $int3 = 0;
             }
         case struct_14836 :
-            if (%varplayerbit_16374 < 1) {
+            if (%lunarfm_spells_unlocked < 1) {
                 $int3 = 0;
             }
         case struct_14840 :
-            if (%varplayerbit_16374 < 2) {
+            if (%lunarfm_spells_unlocked < 2) {
                 $int3 = 0;
             }
         case struct_14843 :
-            if (%varplayerbit_16374 < 3) {
+            if (%lunarfm_spells_unlocked < 3) {
                 $int3 = 0;
             }
         case struct_14846 :
-            if (%varplayerbit_16374 < 4) {
+            if (%lunarfm_spells_unlocked < 4) {
                 $int3 = 0;
             }
         case struct_44699 :
-            if (%varplayerbit_16374 < 5) {
+            if (%lunarfm_spells_unlocked < 5) {
                 $int3 = 0;
             }
         case struct_14854 :
-            if (%varplayerbit_16374 < 6) {
+            if (%lunarfm_spells_unlocked < 6) {
                 $int3 = 0;
             }
         case struct_14865 :
-            if (%varplayerbit_16374 < 7) {
+            if (%lunarfm_spells_unlocked < 7) {
                 $int3 = 0;
             }
         case struct_14871 :
-            if (%varplayerbit_16374 < 8) {
+            if (%lunarfm_spells_unlocked < 8) {
                 $int3 = 0;
             }
         case struct_14867 :
-            if (%varplayerbit_16374 < 9 | %varplayerbit_9987 < 320) {
+            if (%lunarfm_spells_unlocked < 9 | %myarm < 320) {
                 $int3 = 0;
             }
         case struct_14868 :
-            if (%varplayerbit_16374 < 10 | %varplayerbit_9987 < 320) {
+            if (%lunarfm_spells_unlocked < 10 | %myarm < 320) {
                 $int3 = 0;
             }
         case struct_14874 :
-            if (%varplayerbit_16374 < 11) {
+            if (%lunarfm_spells_unlocked < 11) {
                 $int3 = 0;
             }
         case struct_14861 :
-            if (%varplayerbit_11610 < 170) {
+            if (%mah5_main < 170) {
                 $int3 = 0;
             }
         case struct_51274 :
-            if (%varplayer_2265 < 50) {
+            if (%legendsquest < 50) {
                 $int3 = 0;
             }
         case struct_31921 :
@@ -250,11 +250,11 @@ if (struct_param($struct0, param_2882) = 1) {
                 $int3 = 0;
             }
         case struct_51276, struct_51277 :
-            if (%varplayerbit_44469 < 50) {
+            if (%dino_onboarding_progress < 50) {
                 $int3 = 0;
             }
         case struct_53006 :
-            if (~script18522(quest_526) = false) {
+            if (~script18522(quest_wendle_connections) = false) {
                 $int3 = 0;
             }
     }
@@ -263,35 +263,35 @@ switch_struct ($struct0) {
     case struct_14665, struct_14726, struct_47129, struct_45801, struct_45802 :
         return($int3);
     case struct_48299 :
-        if (%varplayer_11035 < 1) {
+        if (%combatv2_buff_necromancy_residual_soul_stacks < 1) {
             $int3 = 0;
         }
     case struct_48301 :
-        if (%varplayer_11035 < 2) {
+        if (%combatv2_buff_necromancy_residual_soul_stacks < 2) {
             $int3 = 0;
         }
     case struct_48302 :
-        if (%varplayer_10994 = 1) {
+        if (%combatv2_ability_necromancy_conjure_skeleton_warrior_active = 1) {
             $int3 = 0;
         }
     case struct_48304 :
-        if (%varplayer_11006 = 1) {
+        if (%combatv2_ability_necromancy_conjure_putrid_zombie_active = 1) {
             $int3 = 0;
         }
     case struct_48305 :
-        if (%varplayer_11009 = 1) {
+        if (%combatv2_buff_necromancy_spirit_putrid_zombie_explode_active = 1) {
             $int3 = 0;
         }
     case struct_48306 :
-        if (%varplayer_11018 = 1) {
+        if (%combatv2_ability_necromancy_conjure_vengeful_ghost_active = 1) {
             $int3 = 0;
         }
     case struct_48307 :
-        if (%varplayer_11021 = 1) {
+        if (%combatv2_buff_necromancy_spirit_vengeful_ghost_haunt_active = 1) {
             $int3 = 0;
         }
     case struct_31820 :
-        if (%varplayer_11820 = 1) {
+        if (%combatv2_ability_necromancy_conjure_phantom_guardian_active = 1) {
             $int3 = 0;
         }
     case struct_33965 :
@@ -307,7 +307,7 @@ def_obj $obj6 = null;
 if ($int3 = 1) {
     if (oc_param($obj4, param_2827) = 1) {
         if (struct_param($struct0, param_5542) = 7) {
-            if ($struct0 = %varplayer_3170) {
+            if ($struct0 = %lunarfm_borrowed_power_spell_struct) {
                 $int3 = 1;
             } else if (~script17690($struct0) = 0) {
                 $int3 = 0;
@@ -316,14 +316,14 @@ if ($int3 = 1) {
             $int3 = 0;
         }
     } else if (oc_param($obj4, param_2826) = 1 & struct_param($struct0, param_5542) = 6) {
-        if (oc_param(inv_getobj(inv_94, 3), param_686) = struct_14940) {
+        if (oc_param(inv_getobj(worn, 3), param_686) = struct_14940) {
             return(1);
         }
-        $obj6 = inv_getobj(inv_94, 13);
-        if (oc_category($obj6) = category_5087 & %varplayer_10264 ! null) {
-            $obj6 = %varplayer_10264;
+        $obj6 = inv_getobj(worn, 13);
+        if (oc_category($obj6) = category_5087 & %quiver_active_ammo ! null) {
+            $obj6 = %quiver_active_ammo;
         }
-        if (oc_param(inv_getobj(inv_94, 3), param_21) ! null & oc_param(inv_getobj(inv_94, 3), param_21) ! oc_category($obj6)) {
+        if (oc_param(inv_getobj(worn, 3), param_21) ! null & oc_param(inv_getobj(worn, 3), param_21) ! oc_category($obj6)) {
             $int3 = 0;
         }
     }
