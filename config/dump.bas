@@ -30589,3 +30589,20 @@ walkanim_l=seq_13309
 walkanim_r=seq_13310
 readyanim=seq_13302,seq_13303
 
+// 4908
+[bas_4908]
+readyanim_l=seq_37892
+readyanim_r=seq_37892
+walkturn_l=seq_37892
+walkturn_r=seq_37892
+walkanim_l=seq_37892
+walkanim_r=seq_37892
+runanim=seq_37893
+readyanim=seq_37891,seq_37892
+
+// 4909
+[bas_4909]
+readyanim=null,null
+randomreadyanim=seq_37897,70
+randomreadyanim=seq_37898,30
+
