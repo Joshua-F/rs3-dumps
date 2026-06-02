@@ -1,13 +1,13 @@
 // 15614
 [clientscript,event_job](component $component0)
 def_string $string0 = "";
-if (if_gethide(interface_906:com_151) = true) {
-    switch_int (%varclient_6885) {
+if (if_gethide(lobbyscreen:popup) = true) {
+    switch_int (%lobbyscreen_entry_checks) {
         case 0 :
             if (~is_mobile_client = true) {
                 switch_int (unknown_command_41) {
                     case 0 :
-                        %varclient_6885 = calc(%varclient_6885 + 1);
+                        %lobbyscreen_entry_checks = calc(%lobbyscreen_entry_checks + 1);
                     case 1 :
                         ~lobby_popup(10005, dbrow_4040, "Pending Transaction", "Pending transactions found!<br><br>Do you wish to apply them now?", "loadingwheel,9", "Yes", "No");
                     case 2 :
@@ -18,7 +18,7 @@ if (if_gethide(interface_906:com_151) = true) {
                         ~lobby_popup(10007, dbrow_4041, "Pending Transaction", "Transactions applied!", "loadingwheel,8", "", "OK");
                 }
             } else {
-                %varclient_6885 = calc(%varclient_6885 + 1);
+                %lobbyscreen_entry_checks = calc(%lobbyscreen_entry_checks + 1);
             }
         case 1 :
             $string0 = ~script2781;
@@ -29,7 +29,7 @@ if (if_gethide(interface_906:com_151) = true) {
                     ~lobby_popup(-3000, dbrow_4037, "Credit Card Expiry", $string0, "loadingwheel,9", "", "Close");
                 }
             }
-            %varclient_6885 = calc(%varclient_6885 + 1);
+            %lobbyscreen_entry_checks = calc(%lobbyscreen_entry_checks + 1);
         case default :
             if_setontimer(null, $component0);
     }

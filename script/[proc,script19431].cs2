@@ -15,21 +15,21 @@ def_int $int14 = 0;
 def_int $int15 = achievement_req_count($achievement3);
 $int14 = ~script19623($achievement3);
 def_int $int16 = min(16384, scale(16384, $int15, $int14));
-if (%varplayerbit_56570 = $int1) {
+if (%group_ironman_achievements_list_selected = $int1) {
     $dbrow10 = dbrow_14486;
     $graphic13 = ~script19433($int1);
-    if (achievement_reqstate($achievement3) = -2 & %varplayer_11944 ! null) {
+    if (achievement_reqstate($achievement3) = -2 & %group_ironman_cache_clanhash ! null) {
         db_find(dbtable_306:col1, $achievement3);
         if (~script19337(db_findnext) = true) {
-            if_settext("Claimed", interface_1302:com_82);
-            if_setenabled(false, interface_1302:com_82);
+            if_settext("Claimed", group_ironman_parent:button_reward_claim);
+            if_setenabled(false, group_ironman_parent:button_reward_claim);
         } else {
-            if_settext("Claim Reward", interface_1302:com_82);
-            if_setenabled(true, interface_1302:com_82);
+            if_settext("Claim Reward", group_ironman_parent:button_reward_claim);
+            if_setenabled(true, group_ironman_parent:button_reward_claim);
         }
     } else {
-        if_settext("Locked", interface_1302:com_82);
-        if_setenabled(false, interface_1302:com_82);
+        if_settext("Locked", group_ironman_parent:button_reward_claim);
+        if_setenabled(false, group_ironman_parent:button_reward_claim);
     }
 }
 ~if_add_child_layer($component0, $int1, $int4++, 0, $int2, ^setpos_abs_left, ^setpos_abs_top, 0, 65, ^setsize_minus, ^setsize_abs);
@@ -41,12 +41,12 @@ if (%varplayerbit_56570 = $int1) {
 ~cc_add_child_text($int1, $int4++, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 6554, $int5, ^setsize_rel, ^setsize_abs, dbrow_17467, "Tier <tostring($int1)>:");
 ~cc_add_child_layer($int1, $int4++, 0, 0, ^setpos_abs_right, ^setpos_abs_top, calc($int9 + 4 + $int5), $int5, ^setsize_abs, ^setsize_abs);
 cc_setop(1, "Go To Achievements");
-cc_setopcursor(1, cursor_210);
+cc_setopcursor(1, cursor_goto);
 cc_setonmouseover("script19434(event_com, $int1, $int4, $graphic6, $graphic7)");
 cc_setonmouseleave("script19435(event_com, $int1, $int4, $graphic6, $graphic7)");
-cc_setonscrollwheel("scrollbar_vertical_wheel(interface_1302:com_106, interface_1302:com_105, event_mousey)");
+cc_setonscrollwheel("scrollbar_vertical_wheel(group_ironman_parent:achievement_scrollbar, group_ironman_parent:achievement_scrolling, event_mousey)");
 ~script19632(20, 10, 8, 12);
-cc_setonswipevertical("script3791(interface_1302:com_106, interface_1302:com_105, event_mousey, null)");
+cc_setonswipevertical("script3791(group_ironman_parent:achievement_scrollbar, group_ironman_parent:achievement_scrolling, event_mousey, null)");
 ~cc_add_child_graphic($int1, $int4++, 0, 0, ^setpos_abs_right, ^setpos_abs_top, $int5, $int5, ^setsize_abs, ^setsize_abs, $graphic6);
 ~cc_add_child_text($int1, $int4++, 0, 0, ^setpos_abs_left, ^setpos_abs_top, $int9, $int5, ^setsize_abs, ^setsize_abs, dbrow_17514, $string0);
 cc_find_parent;

@@ -1,13 +1,13 @@
 // 12484
 [clientscript,script12484]
-cc_deleteall(interface_1757:com_31);
-cc_deleteall(interface_1757:com_34);
-cc_deleteall(interface_1757:com_37);
-cc_deleteall(interface_1757:com_40);
-cc_deleteall(interface_1757:com_30);
-cc_deleteall(interface_1757:com_33);
-cc_deleteall(interface_1757:com_36);
-cc_deleteall(interface_1757:com_39);
+cc_deleteall(mm16_cases:build_pet);
+cc_deleteall(mm16_cases:build_misc);
+cc_deleteall(mm16_cases:build_people);
+cc_deleteall(mm16_cases:build_item);
+cc_deleteall(mm16_cases:click_pet);
+cc_deleteall(mm16_cases:click_misc);
+cc_deleteall(mm16_cases:click_people);
+cc_deleteall(mm16_cases:click_item);
 def_int $int0 = 0;
 def_int $int1 = enum_getoutputcount(enum_11211);
 def_int $int2 = 0;
@@ -33,13 +33,13 @@ while ($int0 < $int1) {
         $string1 = db_getfield($dbrow8, dbtable_9:col2, 0);
         switch_int ($int6) {
             case 1 :
-                $component9, $component10 = interface_1757:com_31, interface_1757:com_30;
+                $component9, $component10 = mm16_cases:build_pet, mm16_cases:click_pet;
             case 2 :
-                $component9, $component10 = interface_1757:com_34, interface_1757:com_33;
+                $component9, $component10 = mm16_cases:build_misc, mm16_cases:click_misc;
             case 3 :
-                $component9, $component10 = interface_1757:com_37, interface_1757:com_36;
+                $component9, $component10 = mm16_cases:build_people, mm16_cases:click_people;
             case 4 :
-                $component9, $component10 = interface_1757:com_40, interface_1757:com_39;
+                $component9, $component10 = mm16_cases:build_item, mm16_cases:click_item;
             case default :
                 return;
         }
@@ -64,7 +64,7 @@ while ($int0 < $int1) {
             }
             $graphic12 = mad_may_16_icon_case_complete;
             $string0 = "<$string1><br><br>You have completed this case!";
-        } else if ($int2 = %varplayerbit_31220) {
+        } else if ($int2 = %mm16_active_task) {
             $graphic11 = db_getfield($dbrow8, dbtable_9:col7, 0);
             if ($graphic11 = null) {
                 $graphic11 = "mad_may_16_icon_case_generic,1";
@@ -95,14 +95,14 @@ while ($int0 < $int1) {
         cc_create($component9, ^iftype_graphic, if_getnextsubid($component9));
         cc_setsize(50, 50, ^setsize_abs, ^setsize_abs);
         cc_setposition($int3, $int4, ^setpos_abs_left, ^setpos_abs_top);
-        if ($int2 = %varplayerbit_31220) {
-            if_sethide(false, interface_1757:com_24);
-            if_setposition(calc(~script3365($component10) + $int3 - 2), calc(~script3366($component10) + $int4 - 2), ^setpos_abs_left, ^setpos_abs_top, interface_1757:com_24);
+        if ($int2 = %mm16_active_task) {
+            if_sethide(false, mm16_cases:highlight_rect);
+            if_setposition(calc(~script3365($component10) + $int3 - 2), calc(~script3366($component10) + $int4 - 2), ^setpos_abs_left, ^setpos_abs_top, mm16_cases:highlight_rect);
         }
         cc_setgraphic($graphic12);
     }
     $int0 = calc($int0 + 1);
 }
-if (%varplayerbit_31220 = 0) {
-    if_sethide(true, interface_1757:com_24);
+if (%mm16_active_task = 0) {
+    if_sethide(true, mm16_cases:highlight_rect);
 }

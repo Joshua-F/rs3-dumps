@@ -1,6 +1,6 @@
 // 547
 [proc,stats_mouseover_create](component $component0, int $int1, stat $stat2, int $int3)
-def_component $component4 = interface_1477:com_908;
+def_component $component4 = toplevel_v2:tooltips_layer;
 def_int $int5 = 2;
 def_string $string0 = "";
 def_string $string1 = "";
@@ -16,7 +16,7 @@ def_string $string3 = "";
 def_enum $enum6 = ~script12289($stat2);
 def_int $int7 = enum(stat, int, enum_10865, $stat2);
 def_int $int8 = ~script3158($stat2);
-if (%varplayerbit_19007 = 1) {
+if (%option_virtuallvl = 1) {
     if ($int3 = 0 & ~script11862($stat2) < $int8) {
         $string2 = tostring_localised(enum(int, int, $enum6, calc(~script11862($stat2) + 1)), true);
         $string3 = tostring_localised(calc(enum(int, int, $enum6, calc(~script11862($stat2) + 1)) - stat_visible_xp_actual($stat2)), true);
@@ -54,71 +54,71 @@ if ($int3 = 0) {
 }
 def_string $string6 = "";
 def_int $int16 = 0;
-def_fontmetrics $fontmetrics17 = fontmetrics_207;
+def_fontmetrics $fontmetrics17 = notosans_12;
 if (~script6431 = true) {
-    $fontmetrics17 = struct_param(enum(int, struct, enum_14118, %varplayer_7989), param_7275);
+    $fontmetrics17 = struct_param(enum(int, struct, enum_14118, %minimenu_skin), param_7275);
     $int15 = calc(enum(fontmetrics, int, enum_8549, $fontmetrics17) + 3);
 }
 if ($int3 = 0) {
     switch_stat ($stat2) {
         case attack :
-            $int16 = %varplayer_3304;
+            $int16 = %bonusxp_attack;
         case strength :
-            $int16 = %varplayer_3305;
+            $int16 = %bonusxp_strength;
         case defence :
-            $int16 = %varplayer_3306;
+            $int16 = %bonusxp_defence;
         case magic :
-            $int16 = %varplayer_3307;
+            $int16 = %bonusxp_magic;
         case ranged :
-            $int16 = %varplayer_3308;
+            $int16 = %bonusxp_ranged;
         case prayer :
-            $int16 = %varplayer_2850;
+            $int16 = %bonusxp_prayer;
         case summoning :
-            $int16 = %varplayer_3309;
+            $int16 = %bonusxp_summoning;
         case mining :
-            $int16 = %varplayer_3310;
+            $int16 = %bonusxp_mining;
         case smithing :
-            $int16 = %varplayer_3311;
+            $int16 = %bonusxp_smithing;
         case crafting :
-            $int16 = %varplayer_3312;
+            $int16 = %bonusxp_crafting;
         case woodcutting :
-            $int16 = %varplayer_3313;
+            $int16 = %bonusxp_woodcutting;
         case farming :
-            $int16 = %varplayer_3314;
+            $int16 = %bonusxp_farming;
         case firemaking :
-            $int16 = %varplayer_3315;
+            $int16 = %bonusxp_firemaking;
         case fishing :
-            $int16 = %varplayer_3316;
+            $int16 = %bonusxp_fishing;
         case cooking :
-            $int16 = %varplayer_3317;
+            $int16 = %bonusxp_cooking;
         case dungeoneering :
-            $int16 = %varplayer_3318;
+            $int16 = %bonusxp_dungeoneering;
         case slayer :
-            $int16 = %varplayer_3319;
+            $int16 = %bonusxp_slayer;
         case runecraft :
-            $int16 = %varplayer_3320;
+            $int16 = %bonusxp_runecrafting;
         case hunter :
-            $int16 = %varplayer_3321;
+            $int16 = %bonusxp_hunter;
         case thieving :
-            $int16 = %varplayer_3322;
+            $int16 = %bonusxp_thieving;
         case construction :
-            $int16 = %varplayer_3323;
+            $int16 = %bonusxp_construction;
         case hitpoints :
-            $int16 = %varplayer_3324;
+            $int16 = %bonusxp_hitpoints;
         case agility :
-            $int16 = %varplayer_3325;
+            $int16 = %bonusxp_agility;
         case fletching :
-            $int16 = %varplayer_3326;
+            $int16 = %bonusxp_fletching;
         case herblore :
-            $int16 = %varplayer_3327;
+            $int16 = %bonusxp_herblore;
         case divination :
-            $int16 = %varplayer_3836;
+            $int16 = %bonusxp_divination;
         case invention :
-            $int16 = %varplayer_6092;
+            $int16 = %bonusxp_invention;
         case archaeology :
-            $int16 = %varplayer_9406;
+            $int16 = %bonusxp_archaeology;
         case necromancy :
-            $int16 = %varplayer_11202;
+            $int16 = %bonusxp_necromancy;
     }
     if ($int16 > 0) {
         $string6 = tostring_localised(calc($int16 / 10), true);
@@ -184,7 +184,7 @@ if ($int18 = 1) {
     $int24 = max($int24, calc(parawidth($string8, 190, $fontmetrics17) + 10));
     $int20 = max($int20, $int24);
 }
-if ($int3 = 0 & (stat_base_actual($stat2) < $int7 | %varplayerbit_19007 = 1 & ~script11862($stat2) < $int8)) {
+if ($int3 = 0 & (stat_base_actual($stat2) < $int7 | %option_virtuallvl = 1 & ~script11862($stat2) < $int8)) {
     $int22 = parawidth("Next level:", 190, $fontmetrics17);
     $int23 = parawidth($string2, 190, $fontmetrics17);
     $int24 = calc($int22 + 3 + $int23);
@@ -219,8 +219,8 @@ if (cc_find($component0, $int1) = true) {
     $int22 = calc(cc_getx + ~script8407($component0));
     $int23 = calc(cc_gety + ~script8408($component0) + 27);
 }
-if (calc($int22 + $int20 + 10) > if_getwidth(interface_1477:com_27)) {
-    $int22 = calc(if_getwidth(interface_1477:com_27) - ($int20 + 24));
+if (calc($int22 + $int20 + 10) > if_getwidth(toplevel_v2:viewport)) {
+    $int22 = calc(if_getwidth(toplevel_v2:viewport) - ($int20 + 24));
 }
 if (calc($int23 + $int21 + 10) > if_getheight($component4)) {
     $int23 = calc($int23 - ($int21 + 10));
@@ -345,7 +345,7 @@ cc_settext($string1);
 $int27 = calc($int27 + $int15);
 def_int $int36 = 0;
 def_int $int37 = 0;
-if ($int3 = 0 & (stat_base_actual($stat2) < $int7 | %varplayerbit_19007 = 1 & ~script11862($stat2) < $int8)) {
+if ($int3 = 0 & (stat_base_actual($stat2) < $int7 | %option_virtuallvl = 1 & ~script11862($stat2) < $int8)) {
     cc_create($component4, ^iftype_text, if_getnextsubid($component4));
     cc_setposition(calc($int22 + $int34), calc($int23 + $int27), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize($int20, $int15, ^setsize_abs, ^setsize_abs);

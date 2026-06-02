@@ -1,22 +1,22 @@
 // 15855
 [proc,script15855](int $int0)
-if_sethide(true, interface_857:com_20);
-if_settext("", interface_857:com_19);
-%varclient_6910 = 0;
+if_sethide(true, mobile_chat_panel:tabs_layer);
+if_settext("", mobile_chat_panel:secondary_title);
+%mobile_chat_panel_current_tab = 0;
 db_find(dbtable_136:col0, $int0);
 def_dbrow $dbrow1 = db_findnext;
 def_struct $struct2 = ~script10405($int0);
 def_component $component3 = enum(int, component, enum_10344, $int0);
 if ($dbrow1 ! null) {
     if_setgraphic(struct_param($struct2, param_8097), $component3);
-    if_settext(db_getfield($dbrow1, dbtable_136:col1, 0), interface_857:com_18);
+    if_settext(db_getfield($dbrow1, dbtable_136:col1, 0), mobile_chat_panel:main_title);
     if (db_getfieldcount($dbrow1, dbtable_136:col2) > 0) {
-        if (if_find(interface_857:com_20) = true) {
+        if (if_find(mobile_chat_panel:tabs_layer) = true) {
             cc_setparam(param_424, $dbrow1);
         }
-        if_sethide(false, interface_857:com_20);
+        if_sethide(false, mobile_chat_panel:tabs_layer);
         ~script15857($dbrow1);
-    } else if (if_find(interface_857:com_20) = true) {
+    } else if (if_find(mobile_chat_panel:tabs_layer) = true) {
         cc_setparam(param_424, null);
     }
 }
@@ -25,7 +25,7 @@ if ($int4 ! 31) {
     $struct2 = ~script10405(18);
 }
 if_sethide(false, struct_param($struct2, param_3503));
-%varplayerbit_49443 = enum_getreverseindex(int, int, enum_10155, $int0, 0);
+%mobile_chat_panel_current_social_button_active = enum_getreverseindex(int, int, enum_10155, $int0, 0);
 if ($int4 ! 31) {
     ~chat_v2_rebuildchatbox(18);
     ~script8551(18, ~script257($int0));
