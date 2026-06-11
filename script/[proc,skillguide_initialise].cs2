@@ -1,96 +1,96 @@
 // 5690
 [proc,skillguide_initialise]
-if (%varclient_1753 <= 0) {
-    if (%varplayerbit_3264 > 0) {
-        %varclient_1753 = %varplayerbit_3264;
+if (%skillguide_skill_clicked <= 0) {
+    if (%lvl_setting > 0) {
+        %skillguide_skill_clicked = %lvl_setting;
     } else {
-        %varclient_1753 = 8;
+        %skillguide_skill_clicked = 8;
     }
 }
-if_sethide(false, interface_1218:com_262);
-cc_deleteall(interface_1218:com_246);
-cc_deleteall(interface_1218:com_247);
-cc_deleteall(interface_1218:com_245);
+if_sethide(false, skillguide:members_filter_wrapper);
+cc_deleteall(skillguide:content_layer);
+cc_deleteall(skillguide:image_layer);
+cc_deleteall(skillguide:background_layer);
 def_int $int0 = 0;
 def_int $int1 = 0;
 def_string $string0 = "";
 def_int $int2 = -1;
 def_int $int3 = 0;
 def_int $int4 = 0;
-def_enum $enum5 = enum(int, enum, enum_5420, %varclient_1753);
+def_enum $enum5 = enum(int, enum, enum_5420, %skillguide_skill_clicked);
 def_int $int6 = enum_getoutputcount($enum5);
 def_int $intarray0(calc($int6 + 1));
 def_int $int7 = 0;
 def_int $int8 = 1;
-switch_int (%varclient_1753) {
+switch_int (%skillguide_skill_clicked) {
     case 1 :
-        $int8 = %varclient_1469;
+        $int8 = %lvl_attack_before_levelup_varc;
     case 2 :
-        $int8 = %varclient_1470;
+        $int8 = %lvl_strength_before_levelup_varc;
     case 5 :
-        $int8 = %varclient_1471;
+        $int8 = %lvl_defence_before_levelup_varc;
     case 3 :
-        $int8 = %varclient_1472;
+        $int8 = %lvl_ranged_before_levelup_varc;
     case 7 :
-        $int8 = %varclient_1473;
+        $int8 = %lvl_prayer_before_levelup_varc;
     case 4 :
-        $int8 = %varclient_1474;
+        $int8 = %lvl_magic_before_levelup_varc;
     case 6 :
-        $int8 = %varclient_1475;
+        $int8 = %lvl_hitpoints_before_levelup_varc;
     case 8 :
-        $int8 = %varclient_1476;
+        $int8 = %lvl_agility_before_levelup_varc;
     case 9 :
-        $int8 = %varclient_1477;
+        $int8 = %lvl_herblore_before_levelup_varc;
     case 10 :
-        $int8 = %varclient_1478;
+        $int8 = %lvl_thieving_before_levelup_varc;
     case 11 :
-        $int8 = %varclient_1479;
+        $int8 = %lvl_crafting_before_levelup_varc;
     case 19 :
-        $int8 = %varclient_1480;
+        $int8 = %lvl_fletching_before_levelup_varc;
     case 13 :
-        $int8 = %varclient_1481;
+        $int8 = %lvl_mining_before_levelup_varc;
     case 14 :
-        $int8 = %varclient_1482;
+        $int8 = %lvl_smithing_before_levelup_varc;
     case 15 :
-        $int8 = %varclient_1483;
+        $int8 = %lvl_fishing_before_levelup_varc;
     case 16 :
-        $int8 = %varclient_1484;
+        $int8 = %lvl_cooking_before_levelup_varc;
     case 17 :
-        $int8 = %varclient_1485;
+        $int8 = %lvl_firemaking_before_levelup_varc;
     case 18 :
-        $int8 = %varclient_1486;
+        $int8 = %lvl_woodcutting_before_levelup_varc;
     case 12 :
-        $int8 = %varclient_1487;
+        $int8 = %lvl_runecraft_before_levelup_varc;
     case 20 :
-        $int8 = %varclient_1488;
+        $int8 = %lvl_slayer_before_levelup_varc;
     case 21 :
-        $int8 = %varclient_1489;
+        $int8 = %lvl_farming_before_levelup_varc;
     case 22 :
-        $int8 = %varclient_1490;
+        $int8 = %lvl_construction_before_levelup_varc;
     case 23 :
-        $int8 = %varclient_1491;
+        $int8 = %lvl_hunter_before_levelup_varc;
     case 24 :
-        $int8 = %varclient_1492;
+        $int8 = %lvl_summoning_before_levelup_varc;
     case 25 :
-        $int8 = %varclient_1493;
+        $int8 = %lvl_dungeoneering_before_levelup_varc;
     case 26 :
-        $int8 = %varclient_3715;
+        $int8 = %lvl_divination_before_levelup_varc;
     case 27 :
-        $int8 = %varclient_5125;
+        $int8 = %lvl_invention_before_levelup_varc;
     case 28 :
-        $int8 = %varclient_6783;
+        $int8 = %lvl_archaeology_before_levelup_varc;
     case 29 :
-        $int8 = %varclient_7292;
+        $int8 = %lvl_necromancy_before_levelup_varc;
 }
-~script5712(%varclient_1753);
-def_int $int9 = stat_base(enum(int, stat, enum_681, %varclient_1753));
+~script5712(%skillguide_skill_clicked);
+def_int $int9 = stat_base(enum(int, stat, enum_681, %skillguide_skill_clicked));
 def_struct $struct10 = null;
 def_int $int11 = 0;
 def_int $int12 = 0;
 def_obj $obj13 = null;
 def_boolean $boolean14 = false;
 def_int $int15 = 0;
-def_stat $stat16 = enum(int, stat, enum_681, %varclient_1753);
+def_stat $stat16 = enum(int, stat, enum_681, %skillguide_skill_clicked);
 def_quest $quest17 = null;
 def_int $int18 = 0;
 def_int $int19 = 36;
@@ -121,14 +121,14 @@ if ($int9 > $int8) {
         $int12 = ~skillguide_level($struct10);
         $boolean14 = ~skillguide_members($struct10);
         $obj13 = struct_param($struct10, param_2213);
-        if ($obj13 ! null & oc_param($obj13, param_2640) > 0 & oc_param($obj13, param_2640) ! 62 & oc_param($obj13, param_2641) = 0 & oc_param($obj13, param_2640) = %varclient_1753) {
+        if ($obj13 ! null & oc_param($obj13, param_2640) > 0 & oc_param($obj13, param_2640) ! 62 & oc_param($obj13, param_2641) = 0 & oc_param($obj13, param_2640) = %skillguide_skill_clicked) {
             $int12 = oc_param($obj13, param_2645);
             if (oc_param($obj13, param_2639) = true | oc_members(oc_param($obj13, param_2655)) = 1 | oc_members(oc_param($obj13, param_2656)) = 1 | oc_members(oc_param($obj13, param_2650)) = 1 | oc_members($obj13) = 1) {
                 $boolean14 = true;
             }
         }
         if ($int12 > $int8 & $int12 <= $int9) {
-            cc_create(interface_1218:com_246, ^iftype_graphic, if_getnextsubid(interface_1218:com_246));
+            cc_create(skillguide:content_layer, ^iftype_graphic, if_getnextsubid(skillguide:content_layer));
             $int19 = 36;
             cc_setsize(590, $int19, ^setsize_abs, ^setsize_abs);
             cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
@@ -137,11 +137,11 @@ if ($int9 > $int8) {
             if ($boolean14 = true) {
                 cc_setgraphic("aif_skill_select_btn_1,2");
             }
-            cc_create(interface_1218:com_245, ^iftype_graphic, if_getnextsubid(interface_1218:com_245));
+            cc_create(skillguide:background_layer, ^iftype_graphic, if_getnextsubid(skillguide:background_layer));
             cc_setsize(590, $int19, ^setsize_abs, ^setsize_abs);
             cc_setposition(0, $int3, ^setpos_abs_left, ^setpos_abs_top);
             $int3 = calc($int3 + 41);
-            switch_int (%varplayerbit_22875) {
+            switch_int (%toplevel_v2_active_skinset) {
                 case 1 :
                     if ($int18 = 1) {
                         cc_setgraphic("aif_skill_select_btn_2,1");
@@ -171,39 +171,39 @@ if ($int9 > $int8) {
         $int7 = calc($int7 + 1);
     }
     if ($int3 > 0) {
-        if_sethide(true, interface_1218:com_262);
-        if_sethide(true, interface_1218:com_256);
-        if_sethide(true, interface_1218:com_259);
-        if_sethide(false, interface_1218:com_240);
-        if_sethide(true, interface_1218:com_242);
-        if ($int3 < if_getheight(interface_1218:com_255)) {
-            if_setscrollsize(0, 0, interface_1218:com_244);
+        if_sethide(true, skillguide:members_filter_wrapper);
+        if_sethide(true, skillguide:sort_by_dropdown);
+        if_sethide(true, skillguide:filter_by_dropdown);
+        if_sethide(false, skillguide:new_unlocks_layer);
+        if_sethide(true, skillguide:loading_text);
+        if ($int3 < if_getheight(skillguide:main_content_scrollbar_layer)) {
+            if_setscrollsize(0, 0, skillguide:main_content_layer);
         } else {
-            if_setscrollsize(0, $int3, interface_1218:com_244);
+            if_setscrollsize(0, $int3, skillguide:main_content_layer);
         }
-        if_setscrollpos(0, 0, interface_1218:com_244);
-        if_setsize(590, $int3, ^setsize_abs, ^setsize_abs, interface_1218:com_246);
-        if_setsize(590, $int3, ^setsize_abs, ^setsize_abs, interface_1218:com_247);
-        ~rs3_scrollbar_vertical(interface_1218:com_255, interface_1218:com_244);
+        if_setscrollpos(0, 0, skillguide:main_content_layer);
+        if_setsize(590, $int3, ^setsize_abs, ^setsize_abs, skillguide:content_layer);
+        if_setsize(590, $int3, ^setsize_abs, ^setsize_abs, skillguide:image_layer);
+        ~rs3_scrollbar_vertical(skillguide:main_content_scrollbar_layer, skillguide:main_content_layer);
         return;
     }
 }
-if_sethide(false, interface_1218:com_255);
+if_sethide(false, skillguide:main_content_scrollbar_layer);
 $int7 = 0;
-$int3 = ~script6346(%varclient_1753, %varclient_1754, $int3);
-if_sethide(true, interface_1218:com_240);
+$int3 = ~script6346(%skillguide_skill_clicked, %skillguide_filter_clicked, $int3);
+if_sethide(true, skillguide:new_unlocks_layer);
 while ($int7 < $int6) {
-    cc_create(interface_1218:com_246, ^iftype_graphic, $int7);
+    cc_create(skillguide:content_layer, ^iftype_graphic, $int7);
     $struct10 = enum(int, struct, $enum5, $int7);
     $boolean14 = ~skillguide_members($struct10);
     $obj13 = struct_param($struct10, param_2213);
-    if ($obj13 ! null & oc_param($obj13, param_2640) > 0 & oc_param($obj13, param_2640) ! 62 & oc_param($obj13, param_2641) = 0 & oc_param($obj13, param_2640) = %varclient_1753) {
+    if ($obj13 ! null & oc_param($obj13, param_2640) > 0 & oc_param($obj13, param_2640) ! 62 & oc_param($obj13, param_2641) = 0 & oc_param($obj13, param_2640) = %skillguide_skill_clicked) {
         $int12 = oc_param($obj13, param_2645);
         if (oc_param($obj13, param_2639) = true | oc_members(oc_param($obj13, param_2655)) = 1 | oc_members(oc_param($obj13, param_2656)) = 1 | oc_members(oc_param($obj13, param_2650)) = 1 | oc_members($obj13) = 1) {
             $boolean14 = true;
         }
     }
-    if (%varplayerbit_41394 = 1 & $boolean14 = true) {
+    if (%skill_guide_hide_members_entrys = 1 & $boolean14 = true) {
         $int19 = 0;
         $int20 = calc($int20 + 1);
     } else {
@@ -215,10 +215,10 @@ while ($int7 < $int6) {
     if ($boolean14 = true) {
         cc_setgraphic("aif_skill_select_btn_1,2");
     }
-    cc_create(interface_1218:com_245, ^iftype_graphic, if_getnextsubid(interface_1218:com_245));
+    cc_create(skillguide:background_layer, ^iftype_graphic, if_getnextsubid(skillguide:background_layer));
     cc_setsize(590, $int19, ^setsize_abs, ^setsize_abs);
     cc_setposition(0, calc(41 * ($int7 - $int20)), ^setpos_abs_left, ^setpos_abs_top);
-    switch_int (%varplayerbit_22875) {
+    switch_int (%toplevel_v2_active_skinset) {
         case 1 :
             if ($int18 = 1) {
                 cc_setgraphic("aif_skill_select_btn_2,1");
@@ -259,14 +259,14 @@ while ($int7 < $int6) {
     $intarray0($int7) = $int7;
     $int7 = calc($int7 + 1);
 }
-%varclient_1754 = ~script12842(%varclient_1753);
+%skillguide_filter_clicked = ~script12842(%skillguide_skill_clicked);
 $intarray0($int6) = -1;
 ~script5698(intarray0, 0, calc($int6 - 1), $enum5);
 $int7 = 0;
-if_setparam_int(param_2221, $intarray0($int7), interface_1218:com_246);
-if_setparam_int(param_2222, $intarray0(calc($int6 - 1)), interface_1218:com_246);
+if_setparam_int(param_2221, $intarray0($int7), skillguide:content_layer);
+if_setparam_int(param_2222, $intarray0(calc($int6 - 1)), skillguide:content_layer);
 while ($int7 < $int6) {
-    if (cc_find(interface_1218:com_246, $intarray0($int7)) = true) {
+    if (cc_find(skillguide:content_layer, $intarray0($int7)) = true) {
         cc_setparam_int(param_2221, $intarray0(calc($int7 + 1)));
         if ($int7 > 0) {
             cc_setparam_int(param_2222, $intarray0(calc($int7 - 1)));
@@ -276,10 +276,10 @@ while ($int7 < $int6) {
 }
 $int7 = 0;
 ~script5699(intarray0, 0, calc($int6 - 1), $enum5);
-if_setparam_int(param_2223, $intarray0($int7), interface_1218:com_246);
-if_setparam_int(param_2224, $intarray0(calc($int6 - 1)), interface_1218:com_246);
+if_setparam_int(param_2223, $intarray0($int7), skillguide:content_layer);
+if_setparam_int(param_2224, $intarray0(calc($int6 - 1)), skillguide:content_layer);
 while ($int7 < $int6) {
-    if (cc_find(interface_1218:com_246, $intarray0($int7)) = true) {
+    if (cc_find(skillguide:content_layer, $intarray0($int7)) = true) {
         cc_setparam_int(param_2223, $intarray0(calc($int7 + 1)));
         if ($int7 > 0) {
             cc_setparam_int(param_2224, $intarray0(calc($int7 - 1)));
@@ -287,5 +287,5 @@ while ($int7 < $int6) {
     }
     $int7 = calc($int7 + 1);
 }
-if_setscrollpos(0, 0, interface_1218:com_244);
-~skillguide_skill_refresh(%varclient_1753);
+if_setscrollpos(0, 0, skillguide:main_content_layer);
+~skillguide_skill_refresh(%skillguide_skill_clicked);

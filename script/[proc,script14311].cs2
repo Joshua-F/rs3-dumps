@@ -1,28 +1,28 @@
 // 14311
 [proc,script14311](int $int0)
 if ($int0 = 0) {
-    if_sethide(true, interface_1126:com_40);
-    if_sethide(false, interface_1126:com_39);
+    if_sethide(true, tt2_noticeboard:details_layer);
+    if_sethide(false, tt2_noticeboard:start_text);
     return;
 }
 ~script14308;
-if_sethide(false, interface_1126:com_40);
+if_sethide(false, tt2_noticeboard:details_layer);
 def_struct $struct1 = enum(int, struct, enum_5033, $int0);
-if_settext(struct_param($struct1, param_7278), interface_1126:com_28);
+if_settext(struct_param($struct1, param_7278), tt2_noticeboard:name_text);
 def_int $int2 = 0;
-switch_int (%varplayerbit_4125) {
+switch_int (%tt2_npc_selected) {
     case 1 :
-        $int2 = %varplayerbit_4126;
+        $int2 = %tt2_npc1_xp;
     case 2 :
-        $int2 = %varplayerbit_4127;
+        $int2 = %tt2_npc2_xp;
     case 3 :
-        $int2 = %varplayerbit_4131;
+        $int2 = %tt2_npc3_xp;
     case 4 :
-        $int2 = %varplayerbit_4132;
+        $int2 = %tt2_npc4_xp;
     case 5 :
-        $int2 = %varplayerbit_4133;
+        $int2 = %tt2_npc5_xp;
     case 6 :
-        $int2 = %varplayerbit_4134;
+        $int2 = %tt2_npc6_xp;
 }
 def_int $int3 = 1;
 def_int $int4 = 0;
@@ -38,35 +38,35 @@ def_int $int6 = enum(int, int, enum_5034, calc($int4 + 1));
 def_int $int7 = calc($int6 - enum(int, int, enum_5034, $int4));
 def_int $int8 = calc($int6 - $int2);
 def_int $int9 = scale($int8, $int7, 100);
-def_int $int10 = calc(if_getwidth(interface_1126:com_30) - 12);
-if_setsize(scale($int10, 100, $int9), if_getheight(interface_1126:com_46), ^setsize_abs, ^setsize_abs, interface_1126:com_46);
-if_settext("Level: <tostring($int4)>", interface_1126:com_29);
+def_int $int10 = calc(if_getwidth(tt2_noticeboard:bar_holder) - 12);
+if_setsize(scale($int10, 100, $int9), if_getheight(tt2_noticeboard:xp_bar), ^setsize_abs, ^setsize_abs, tt2_noticeboard:xp_bar);
+if_settext("Level: <tostring($int4)>", tt2_noticeboard:npc_level_text);
 switch_int (struct_param($struct1, param_1915)) {
     case 1 :
-        if_settext("Difficulty: Easy", interface_1126:com_31);
+        if_settext("Difficulty: Easy", tt2_noticeboard:difficulty_text);
     case 2 :
-        if_settext("Difficulty: Medium", interface_1126:com_31);
+        if_settext("Difficulty: Medium", tt2_noticeboard:difficulty_text);
     case 3 :
-        if_settext("Difficulty: Hard", interface_1126:com_31);
+        if_settext("Difficulty: Hard", tt2_noticeboard:difficulty_text);
 }
-if_settext(tostring(struct_param($struct1, param_1898)), interface_1126:com_4);
-if_settext(tostring(struct_param($struct1, param_1901)), interface_1126:com_88);
-if_settext(tostring(struct_param($struct1, param_1904)), interface_1126:com_91);
-if_settext(tostring(struct_param($struct1, param_1907)), interface_1126:com_94);
-if_settext(struct_param($struct1, param_1899), interface_1126:com_5);
-if_settext(struct_param($struct1, param_1902), interface_1126:com_89);
-if_settext(struct_param($struct1, param_1905), interface_1126:com_92);
-if_settext(struct_param($struct1, param_1908), interface_1126:com_95);
+if_settext(tostring(struct_param($struct1, param_1898)), tt2_noticeboard:unlock_level1);
+if_settext(tostring(struct_param($struct1, param_1901)), tt2_noticeboard:unlock_level2);
+if_settext(tostring(struct_param($struct1, param_1904)), tt2_noticeboard:unlock_level3);
+if_settext(tostring(struct_param($struct1, param_1907)), tt2_noticeboard:unlock_level4);
+if_settext(struct_param($struct1, param_1899), tt2_noticeboard:unlock_text1);
+if_settext(struct_param($struct1, param_1902), tt2_noticeboard:unlock_text2);
+if_settext(struct_param($struct1, param_1905), tt2_noticeboard:unlock_text3);
+if_settext(struct_param($struct1, param_1908), tt2_noticeboard:unlock_text4);
 def_int $rgb11 = ~compare_int_switch($int4, struct_param($struct1, param_1898), 0x64dc64, 0xdc6464);
-if_setcolour($rgb11, interface_1126:com_4);
-if_setcolour($rgb11, interface_1126:com_5);
+if_setcolour($rgb11, tt2_noticeboard:unlock_level1);
+if_setcolour($rgb11, tt2_noticeboard:unlock_text1);
 $rgb11 = ~compare_int_switch($int4, struct_param($struct1, param_1901), 0x64dc64, 0xdc6464);
-if_setcolour($rgb11, interface_1126:com_88);
-if_setcolour($rgb11, interface_1126:com_89);
+if_setcolour($rgb11, tt2_noticeboard:unlock_level2);
+if_setcolour($rgb11, tt2_noticeboard:unlock_text2);
 $rgb11 = ~compare_int_switch($int4, struct_param($struct1, param_1904), 0x64dc64, 0xdc6464);
-if_setcolour($rgb11, interface_1126:com_91);
-if_setcolour($rgb11, interface_1126:com_92);
+if_setcolour($rgb11, tt2_noticeboard:unlock_level3);
+if_setcolour($rgb11, tt2_noticeboard:unlock_text3);
 $rgb11 = ~compare_int_switch($int4, struct_param($struct1, param_1907), 0x64dc64, 0xdc6464);
-if_setcolour($rgb11, interface_1126:com_94);
-if_setcolour($rgb11, interface_1126:com_95);
-if_sethide(true, interface_1126:com_39);
+if_setcolour($rgb11, tt2_noticeboard:unlock_level4);
+if_setcolour($rgb11, tt2_noticeboard:unlock_text4);
+if_sethide(true, tt2_noticeboard:start_text);

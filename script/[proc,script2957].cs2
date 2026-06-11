@@ -1,25 +1,25 @@
 // 2957
 [proc,script2957](int $int0, int $int1, int $int2)
-cc_deleteall(interface_365:com_12);
-cc_deleteall(interface_365:com_13);
-cc_deleteall(interface_365:com_17);
-cc_deleteall(interface_365:com_18);
-cc_deleteall(interface_365:com_19);
-cc_deleteall(interface_365:com_20);
-cc_deleteall(interface_365:com_10);
-if_sethide(true, interface_365:com_21);
-if_sethide(true, interface_365:com_22);
-if_sethide(true, interface_365:com_23);
-if_sethide(true, interface_365:com_7);
+cc_deleteall(settings:cat_build);
+cc_deleteall(settings:cat_click);
+cc_deleteall(settings:set_link);
+cc_deleteall(settings:set_build);
+cc_deleteall(settings:set_click);
+cc_deleteall(settings:set_value);
+cc_deleteall(settings:spinner);
+if_sethide(true, settings:shop_warning_buy_box);
+if_sethide(true, settings:shop_warning_sell_box);
+if_sethide(true, settings:loot_beam_value_box);
+if_sethide(true, settings:loading);
 def_enum $enum3 = ~script20382;
 def_int $int4 = 0;
-def_component $component5 = interface_365:com_2;
+def_component $component5 = settings:search_input;
 def_int $int6 = string_length(if_gettext($component5));
 $int0, $int1 = ~settings_validate_selected($int0, $int1);
 def_int $int7 = 0;
 def_int $int8 = enum_getoutputcount($enum3);
 def_int $int9 = 0;
-def_int $int10 = if_getwidth(interface_365:com_14);
+def_int $int10 = if_getwidth(settings:cat_scrolling);
 def_int $int11 = 0;
 def_int $int12 = 0;
 def_int $int13 = 0;
@@ -34,7 +34,7 @@ while ($int7 < $int8) {
         $int11 = ~script2971($dbrow14, 0, $int11, $int10, -3);
     } else if ($int13 = 0) {
         $int11 = ~script2971($dbrow14, 0, $int11, $int10, $int1);
-    } else if ($dbrow17 ! $dbrow14 | %varclient_6501 = 1 | ~script2972($dbrow14, $int13, $dbrow16) = false) {
+    } else if ($dbrow17 ! $dbrow14 | %settings_collapsed = 1 | ~script2972($dbrow14, $int13, $dbrow16) = false) {
         $int11 = ~script2971($dbrow14, 0, $int11, $int10, -1);
     } else {
         $int11 = ~script2971($dbrow14, 0, $int11, $int10, -2);
@@ -47,8 +47,8 @@ while ($int7 < $int8) {
     }
     $int7 = calc($int7 + 1);
 }
-if_setscrollsize(0, $int11, interface_365:com_14);
-~rs3_scrollbar_vertical(interface_365:com_15, interface_365:com_14);
+if_setscrollsize(0, $int11, settings:cat_scrolling);
+~rs3_scrollbar_vertical(settings:cat_scrollbar, settings:cat_scrolling);
 if ($int6 >= 2) {
     ~script9394($component5, $int2, $enum3);
     return;
@@ -57,17 +57,17 @@ $dbrow14 = enum(int, dbrow, enum_14569, $int1);
 if ($dbrow14 = null) {
     return;
 }
-$int10 = if_getwidth(interface_365:com_16);
+$int10 = if_getwidth(settings:set_scrolling);
 def_string $string0 = db_getfield($dbrow14, dbtable_31:col0, 0);
 def_string $string1 = db_getfield($dbrow14, dbtable_31:col1, 0);
 def_int $int18 = ~script20478($string0, $int10, dbrow_2195, 0);
 def_int $int19 = ~script20478($string1, $int10, dbrow_17514, 0);
-~cc_add_text(interface_365:com_18, if_getnextsubid(interface_365:com_18), 0, 0, ^setpos_abs_left, ^setpos_abs_top, $int10, $int18, ^setsize_abs, ^setsize_abs, dbrow_2195, $string0);
+~cc_add_text(settings:set_build, if_getnextsubid(settings:set_build), 0, 0, ^setpos_abs_left, ^setpos_abs_top, $int10, $int18, ^setsize_abs, ^setsize_abs, dbrow_2195, $string0);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-~cc_add_text(interface_365:com_18, if_getnextsubid(interface_365:com_18), 4, calc($int18 + 4), ^setpos_abs_left, ^setpos_abs_top, calc($int10 - 2 * 4), $int19, ^setsize_abs, ^setsize_abs, dbrow_17514, $string1);
+~cc_add_text(settings:set_build, if_getnextsubid(settings:set_build), 4, calc($int18 + 4), ^setpos_abs_left, ^setpos_abs_top, calc($int10 - 2 * 4), $int19, ^setsize_abs, ^setsize_abs, dbrow_17514, $string1);
 $int11 = calc($int18 + 4);
 if (string_length($string1) > 0) {
     $int11 = calc($int11 + $int19 + 4);
 }
-$int11 = ~script2970(interface_365:com_18, interface_365:com_19, interface_365:com_20, $dbrow14, $int1, $int11, $int10);
+$int11 = ~script2970(settings:set_build, settings:set_click, settings:set_value, $dbrow14, $int1, $int11, $int10);
 ~script5713($int2, $int11);

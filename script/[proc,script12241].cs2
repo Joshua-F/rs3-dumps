@@ -8,21 +8,21 @@ if (if_gethide(struct_param($struct1, param_8123)) = false) {
 if_setsize(calc(if_getwidth(struct_param($struct1, param_8122)) + $int3), calc(if_getheight(struct_param($struct1, param_8122)) + if_getheight(struct_param($struct1, param_8127))), ^setsize_abs, ^setsize_abs, $component0);
 cc_deleteall($component0);
 def_string $string0 = "";
-if (%varplayerbit_45116 = 1) {
+if (%prayer_client_showing_active_summary = 1) {
     if ($int2 = 0) {
         if_sethide(true, struct_param($struct1, param_8127));
         if_sethide(true, struct_param($struct1, param_8123));
         if_sethide(false, $component0);
         cc_create($component0, ^iftype_text, if_getnextsubid($component0));
         if (~script6431 = false) {
-            switch_int (%varplayerbit_16789) {
+            switch_int (%prayer_mode) {
                 case default :
                     $string0 = "You don't have any prayers active.<br><br>Click the bottom-left button to view the full prayer list.";
                 case 1 :
                     $string0 = "You don't have any curses active.<br><br>Click the bottom-left button to view the full curse list.";
             }
         } else {
-            switch_int (%varplayerbit_16789) {
+            switch_int (%prayer_mode) {
                 case default :
                     $string0 = "You don't have any prayers active.<br><br>Tap the Active Prayers button to view the full list of prayers.";
                 case 1 :
@@ -30,7 +30,7 @@ if (%varplayerbit_45116 = 1) {
             }
         }
         cc_settext($string0);
-        cc_settextfont(fontmetrics_26);
+        cc_settextfont(museo_sans_11pt_regular);
         cc_setcolour(^white);
         cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
         cc_settextshadow(true);

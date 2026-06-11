@@ -2,8 +2,8 @@
 [proc,poh_furniture_create_update](int $int0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
 cc_deleteall($component1);
 cc_deleteall($component5);
-def_obj $obj7 = inv_getobj(inv_398, calc($int0 - 1));
-if ($obj7 = null | $obj7 = obj_8245) {
+def_obj $obj7 = inv_getobj(poh_furniture_menu_inv, calc($int0 - 1));
+if ($obj7 = null | $obj7 = poh_null_furniture_object) {
     if_sethide(true, $component2);
     if_sethide(true, $component3);
     if_sethide(true, $component4);
@@ -22,7 +22,7 @@ cc_setoutline(1);
 cc_create($component5, ^iftype_text, 1);
 cc_setsize(60, calc(32 + 4), ^setsize_abs, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
-cc_settextfont(fontmetrics_27);
+cc_settextfont(museo_sans_11pt_regular_multiline);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_setcolour(~script10495(3));
 cc_settextshadow(true);
@@ -30,7 +30,7 @@ cc_settext("Level <tostring(oc_param($obj7, param_23))>");
 cc_create($component5, ^iftype_text, 2);
 cc_setsize(60, 12, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
-cc_settextfont(fontmetrics_27);
+cc_settextfont(museo_sans_11pt_regular_multiline);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_setcolour(~script10495(3));
 cc_settextshadow(true);
@@ -38,7 +38,7 @@ cc_settext(~script3930("<tostring_localised($int0, true)>. <oc_name($obj7)>", cc
 cc_create($component5, ^iftype_text, 3);
 cc_setsize(60, 12, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom);
-cc_settextfont(fontmetrics_27);
+cc_settextfont(museo_sans_11pt_regular_multiline);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_setcolour(~script10495(3));
 cc_settextshadow(true);
@@ -52,13 +52,13 @@ if (string_length($string0) <= 0) {
     $string0 = ~poh_furniture_create_addingredient($string0, oc_param($obj7, param_221), oc_param($obj7, param_222));
 }
 cc_settext($string0);
-if (testbit(%varclient_841, $int0) = ^false) {
+if (testbit(%mob_client_squad_rank, $int0) = ^false) {
     ~script13994($component2, null, struct_28556, "", true);
 } else {
     ~script13994($component2, null, struct_28556, "", false);
 }
 def_int $int8 = 0;
-if (testbit(%varclient_841, 0) = ^true) {
+if (testbit(%mob_client_squad_rank, 0) = ^true) {
     $int8 = 1;
 }
 cc_create($component1, ^iftype_text, 0);

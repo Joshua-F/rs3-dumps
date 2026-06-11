@@ -1,27 +1,27 @@
 // 8463
 [proc,script8463](component $component0)
 def_int $int1 = 0;
-def_inv $inv2 = inv_94;
-def_int $int3 = %varplayer_716;
-def_int $int4 = %varplayer_1039;
-def_int $int5 = %varplayer_1037;
-def_int $int6 = %varplayer_1038;
-def_int $int7 = %varplayer_11308;
-def_int $int8 = %varplayer_3562;
-def_int $int9 = %varplayer_718;
-def_int $int10 = %varplayerbit_43;
-def_int $int11 = %varclient_2760;
-if ($component0 = interface_1559:com_25) {
+def_inv $inv2 = worn;
+def_int $int3 = %combatv2_offhand_strength;
+def_int $int4 = %combatv2_magic_attack_nerf;
+def_int $int5 = %combatv2_melee_attack_nerf;
+def_int $int6 = %combatv2_ranged_attack_nerf;
+def_int $int7 = %combatv2_necromancy_attack_nerf;
+def_int $int8 = %combatv2_offhand_attack_rating_bonus;
+def_int $int9 = %combatv2_offhand_style;
+def_int $int10 = %autocast_spell;
+def_int $int11 = %combatv2_equip_screen_vs_level;
+if ($component0 = toplevel_v2_inspect_worn_stats:main_layer) {
     $int1 = 1;
-    $inv2 = inv_742;
-    $int3 = %varplayer_4972;
-    $int4 = %varplayer_4968;
-    $int5 = %varplayer_4966;
-    $int6 = %varplayer_4967;
-    $int7 = %varplayer_11208;
-    $int8 = %varplayer_4973;
-    $int9 = %varplayer_4974;
-    $int10 = %varplayerbit_26124;
+    $inv2 = inspect_worn;
+    $int3 = %player_inspect_combatv2_offhand_strength;
+    $int4 = %player_inspect_combatv2_magic_attack_nerf;
+    $int5 = %player_inspect_combatv2_melee_attack_nerf;
+    $int6 = %player_inspect_combatv2_ranged_attack_nerf;
+    $int7 = %player_inspect_combatv2_necromancy_attack_nerf;
+    $int8 = %player_inspect_combatv2_offhand_attack_rating_bonus;
+    $int9 = %player_inspect_combatv2_offhand_style;
+    $int10 = %player_inspect_autocast_spell;
 }
 def_obj $obj12 = inv_getobj($inv2, 5);
 def_obj $obj13 = inv_getobj($inv2, 13);
@@ -55,35 +55,35 @@ def_int $int28 = 0;
 def_int $int29 = 0;
 if ($obj12 = null | oc_param($obj12, param_2832) = 1) {
     if ($int1 = 1) {
-        if_sethide(false, interface_1559:com_96);
-        if (%varclient_4664 = 1) {
+        if_sethide(false, toplevel_v2_inspect_worn_stats:off_weapon_button_disabled_layer);
+        if (%player_inspect_combatv2_equip_screen_weapon_tab = 1) {
             ~script8467($component0, 0);
         }
     } else {
-        if_sethide(false, interface_1463:com_176);
-        if_sethide(false, interface_1463:com_120);
-        if_sethide(true, interface_1463:com_117);
-        if_sethide(true, interface_1463:com_114);
-        if (%varclient_2761 = 1) {
+        if_sethide(false, toplevel_v2_parent_suboverlay_worn_stats:off_weapon_button_disabled_layer);
+        if_sethide(false, toplevel_v2_parent_suboverlay_worn_stats:off_vs_button_disabled);
+        if_sethide(true, toplevel_v2_parent_suboverlay_worn_stats:off_vs_button_off);
+        if_sethide(true, toplevel_v2_parent_suboverlay_worn_stats:off_vs_button_on);
+        if (%combatv2_equip_screen_vs_level_tab = 1) {
             ~script8459($component0, 0);
         }
-        if (%varclient_2762 = 1) {
+        if (%combatv2_equip_screen_weapon_tab = 1) {
             ~script8467($component0, 0);
         }
     }
     return;
 } else {
     if ($int1 = 1) {
-        if_sethide(true, interface_1559:com_96);
+        if_sethide(true, toplevel_v2_inspect_worn_stats:off_weapon_button_disabled_layer);
     } else {
-        if_sethide(true, interface_1463:com_176);
-        if_sethide(true, interface_1463:com_120);
-        if (%varclient_2761 = 1) {
-            if_sethide(true, interface_1463:com_117);
-            if_sethide(false, interface_1463:com_114);
+        if_sethide(true, toplevel_v2_parent_suboverlay_worn_stats:off_weapon_button_disabled_layer);
+        if_sethide(true, toplevel_v2_parent_suboverlay_worn_stats:off_vs_button_disabled);
+        if (%combatv2_equip_screen_vs_level_tab = 1) {
+            if_sethide(true, toplevel_v2_parent_suboverlay_worn_stats:off_vs_button_off);
+            if_sethide(false, toplevel_v2_parent_suboverlay_worn_stats:off_vs_button_on);
         } else {
-            if_sethide(false, interface_1463:com_117);
-            if_sethide(true, interface_1463:com_114);
+            if_sethide(false, toplevel_v2_parent_suboverlay_worn_stats:off_vs_button_off);
+            if_sethide(true, toplevel_v2_parent_suboverlay_worn_stats:off_vs_button_on);
         }
     }
     switch_int (~script7241($obj12)) {
@@ -148,7 +148,7 @@ if ($obj12 = null | oc_param($obj12, param_2832) = 1) {
             $int26 = calc($int14 - $int24 - $int25);
     }
 }
-if (%varplayerbit_27168 = 1) {
+if (%toplevel_v2_legacy_combat = 1) {
     $int14 = calc($int14 / 10);
     $int24 = calc($int24 / 10);
     $int25 = calc($int25 / 10);
@@ -156,34 +156,34 @@ if (%varplayerbit_27168 = 1) {
 }
 def_string $string3 = "";
 if ($int1 = 1) {
-    if_settext(tostring($int14), interface_1559:com_63);
-    if_settext(tostring($int16), interface_1559:com_68);
-    if_settext($string0, interface_1559:com_73);
-    if_settext($string2, interface_1559:com_77);
+    if_settext(tostring($int14), toplevel_v2_inspect_worn_stats:off_damage_value);
+    if_settext(tostring($int16), toplevel_v2_inspect_worn_stats:off_accuracy_value);
+    if_settext($string0, toplevel_v2_inspect_worn_stats:off_type_value);
+    if_settext($string2, toplevel_v2_inspect_worn_stats:off_speed_value);
     $string3 = "Weapon : <col=00FF00><tostring(~script7244($obj12))></col><br>Skill Bonus : <col=00FF00><tostring($int8)></col>";
     if ($int15 > 0) {
         $string3 = "Weapon : <col=00FF00><tostring(~script7244($obj12))></col><br>Skill Bonus : <col=00FF00><tostring($int8)></col><br>Hybrid Nerf : <col=00FF00>-<tostring($int15)></col>";
     }
-    if_setonmouserepeat("script3876($string3, event_com, event_comsubid)", interface_1559:com_66);
-    if_setonmouseleave("script8805", interface_1559:com_66);
+    if_setonmouserepeat("script3876($string3, event_com, event_comsubid)", toplevel_v2_inspect_worn_stats:off_accuracy_value_box);
+    if_setonmouseleave("script8805", toplevel_v2_inspect_worn_stats:off_accuracy_value_box);
     $string3 = "<$string1> : <col=00FF00><tostring($int24)></col><br>Skill Bonus : <col=00FF00><tostring($int25)></col><br>Damage Bonus : <col=00FF00><tostring($int26)></col>";
-    if_setonmouserepeat("script3876($string3, event_com, event_comsubid)", interface_1559:com_61);
-    if_setonmouseleave("script8805", interface_1559:com_61);
+    if_setonmouserepeat("script3876($string3, event_com, event_comsubid)", toplevel_v2_inspect_worn_stats:off_damage_value_box);
+    if_setonmouseleave("script8805", toplevel_v2_inspect_worn_stats:off_damage_value_box);
 } else {
-    if_settext(tostring($int14), interface_1463:com_68);
-    if_settext(tostring($int16), interface_1463:com_73);
-    if_settext($string0, interface_1463:com_78);
-    if_settext($string2, interface_1463:com_82);
-    if_settext("<tostring(scale($int21, 1000, 10))>%", interface_1463:com_127);
-    if_settext("<tostring(scale($int22, 1000, 10))>%", interface_1463:com_131);
-    if_settext("<tostring(scale($int23, 1000, 10))>%", interface_1463:com_135);
+    if_settext(tostring($int14), toplevel_v2_parent_suboverlay_worn_stats:off_damage_value);
+    if_settext(tostring($int16), toplevel_v2_parent_suboverlay_worn_stats:off_accuracy_value);
+    if_settext($string0, toplevel_v2_parent_suboverlay_worn_stats:off_type_value);
+    if_settext($string2, toplevel_v2_parent_suboverlay_worn_stats:off_speed_value);
+    if_settext("<tostring(scale($int21, 1000, 10))>%", toplevel_v2_parent_suboverlay_worn_stats:off_vs_melee_value);
+    if_settext("<tostring(scale($int22, 1000, 10))>%", toplevel_v2_parent_suboverlay_worn_stats:off_vs_range_value);
+    if_settext("<tostring(scale($int23, 1000, 10))>%", toplevel_v2_parent_suboverlay_worn_stats:off_vs_magic_value);
     $string3 = "Weapon : <col=00FF00><tostring(~script7244($obj12))></col><br>Skill Bonus : <col=00FF00><tostring($int8)></col>";
     if ($int15 > 0) {
         $string3 = "Weapon : <col=00FF00><tostring(~script7244($obj12))></col><br>Skill Bonus : <col=00FF00><tostring($int8)></col><br>Hybrid Nerf : <col=00FF00>-<tostring($int15)></col>";
     }
-    if_setonmouserepeat("script3876($string3, event_com, event_comsubid)", interface_1463:com_71);
-    if_setonmouseleave("script8805", interface_1463:com_71);
+    if_setonmouserepeat("script3876($string3, event_com, event_comsubid)", toplevel_v2_parent_suboverlay_worn_stats:off_accuracy_value_box);
+    if_setonmouseleave("script8805", toplevel_v2_parent_suboverlay_worn_stats:off_accuracy_value_box);
     $string3 = "<$string1> : <col=00FF00><tostring($int24)></col><br>Skill Bonus : <col=00FF00><tostring($int25)></col><br>Damage Bonus : <col=00FF00><tostring($int26)></col>";
-    if_setonmouserepeat("script3876($string3, event_com, event_comsubid)", interface_1463:com_66);
-    if_setonmouseleave("script8805", interface_1463:com_66);
+    if_setonmouserepeat("script3876($string3, event_com, event_comsubid)", toplevel_v2_parent_suboverlay_worn_stats:off_damage_value_box);
+    if_setonmouseleave("script8805", toplevel_v2_parent_suboverlay_worn_stats:off_damage_value_box);
 }

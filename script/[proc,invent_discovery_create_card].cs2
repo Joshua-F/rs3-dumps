@@ -4,7 +4,7 @@ def_int $int7 = $int1;
 cc_create($component0, ^iftype_graphic, $int1);
 cc_setsize(212, 166, ^setsize_abs, ^setsize_abs);
 cc_setposition(calc($int4 - 8), calc($int5 - 8), ^setpos_abs_left, ^setpos_abs_top);
-if (%varplayer_5992 = $dbrow6) {
+if (%invent_blueprint_selected = $dbrow6) {
     cc_setgraphic("invention_discovery_card_effects,1");
 } else {
     cc_setgraphic("invention_discovery_card_effects,0");
@@ -22,7 +22,7 @@ cc_setposition(calc($int4 + 48), calc($int5 + 40), ^setpos_abs_left, ^setpos_abs
 $int1 = calc($int1 + 1);
 cc_create($component0, ^iftype_text, $int1);
 cc_settext(db_getfield($dbrow6, dbtable_5:col1, 0));
-cc_settextfont(fontmetrics_26);
+cc_settextfont(museo_sans_11pt_regular);
 cc_settextalign(^settextalign_left, ^settextalign_top, 12);
 cc_setcolour(0x332200);
 cc_setsize(140, 32, ^setsize_abs, ^setsize_abs);
@@ -30,7 +30,7 @@ cc_setposition(calc($int4 + 5), calc($int5 + 5), ^setpos_abs_left, ^setpos_abs_t
 $int1 = calc($int1 + 1);
 def_string $string0 = tostring(db_getfield($dbrow6, dbtable_5:col9, 0));
 cc_create($component0, ^iftype_text, $int1);
-cc_settextfont(fontmetrics_26);
+cc_settextfont(museo_sans_11pt_regular);
 cc_settext($string0);
 cc_settextalign(^settextalign_right, ^settextalign_top, 12);
 cc_setcolour(0x332200);
@@ -48,7 +48,7 @@ def_int $int10 = 0;
 while ($int10 < $int9) {
     $string0 = ~script12051($dbrow6, $int10);
     cc_create($component0, ^iftype_text, $int1);
-    cc_settextfont(fontmetrics_26);
+    cc_settextfont(museo_sans_11pt_regular);
     cc_settext($string0);
     cc_settextalign(^settextalign_left, ^settextalign_top, 12);
     cc_setcolour(0x332200);
@@ -68,8 +68,8 @@ if ($component2 ! null & cc_find($component2, $int3) = true) {
     cc_setonmouserepeat("script12123(event_com, event_comsubid, $dbrow6, $component0, $int7, $int1)");
     cc_setop(1, "Select");
     cc_sendtofront;
-    if ($component2 = interface_1708:com_33) {
-        cc_setonscrollwheel("scrollbar_vertical_wheel(interface_1708:com_1, interface_1708:com_2, event_mousey)");
+    if ($component2 = invent_discovery:side_active_layer) {
+        cc_setonscrollwheel("scrollbar_vertical_wheel(invent_discovery:side_scrollbar_layer, invent_discovery:side_content_layer, event_mousey)");
     }
 }
 return($int1);

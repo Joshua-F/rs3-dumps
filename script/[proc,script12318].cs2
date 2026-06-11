@@ -38,24 +38,24 @@ cc_deleteall($component3);
 if_setonscrollwheel(null, $component3);
 if_setontimer(null, $component3);
 if_setonvartransmit(null, $component3);
-if (%varclient_5156 ! 0) {
+if (%telemetry_graph_ids_changed ! 0) {
     return;
 }
 def_int $int4 = ~script12285(%varclientbit_30618, %varclientbit_30619);
 if (%varclientbit_30630 = 1) {
-    %varclient_5173 = enum(int, int, enum_10877, $int4);
-    %varclient_5174 = enum(int, int, enum_10878, $int4);
-    %varclient_5175 = enum(int, int, enum_10878, $int4);
-    %varclient_5176 = %varclient_5173;
-    %varclient_5177 = %varclient_5174;
-    %varclient_5178 = %varclient_5175;
+    %telemetry_graph_colour_positive = enum(int, int, enum_10877, $int4);
+    %telemetry_graph_colour_positive_over = enum(int, int, enum_10878, $int4);
+    %telemetry_graph_colour_positive_highlight = enum(int, int, enum_10878, $int4);
+    %telemetry_graph_colour_negative = %telemetry_graph_colour_positive;
+    %telemetry_graph_colour_negative_over = %telemetry_graph_colour_positive_over;
+    %telemetry_graph_colour_negative_highlight = %telemetry_graph_colour_positive_highlight;
 } else {
-    %varclient_5173 = 0x51ff57;
-    %varclient_5174 = 16773632;
-    %varclient_5175 = 0x00ff08;
-    %varclient_5176 = 0xff6051;
-    %varclient_5177 = 16773632;
-    %varclient_5178 = 0xff1500;
+    %telemetry_graph_colour_positive = 0x51ff57;
+    %telemetry_graph_colour_positive_over = 16773632;
+    %telemetry_graph_colour_positive_highlight = 0x00ff08;
+    %telemetry_graph_colour_negative = 0xff6051;
+    %telemetry_graph_colour_negative_over = 16773632;
+    %telemetry_graph_colour_negative_highlight = 0xff1500;
 }
 def_component $component5 = struct_param($struct0, param_5646);
 def_component $component6 = if_getlayer($component5);
@@ -234,7 +234,7 @@ if_setparam_int(param_5642, 0, $component2);
 if_setparam_int(param_5639, %varclientbit_30621, $component2);
 if_setparam_int(param_5640, %varclientbit_30622, $component2);
 def_int $int19 = max(1, ~script12303);
-def_int $int20 = calc((clientclock - %varclient_5159) / max(1, %varclient_5157) % $int19);
+def_int $int20 = calc((clientclock - %telemetry_graph_data_initial_modulo) / max(1, %telemetry_graph_data_divisor) % $int19);
 def_int $int21 = calc(256 / $int19 - 1 + %varclientbit_30621);
 def_int $int22 = 2;
 if (%varclientbit_30621 = 1) {
@@ -296,7 +296,7 @@ def_int $int29 = 0;
 def_int $int30 = 0;
 while (++$int26 < $int23) {
     if ($boolean28 = true) {
-        $boolean28, $int29, $int30 = ~script12310(interface_1477:com_13, calc(($int23 - 1 - $int26) * $int19 + $int20), $int19);
+        $boolean28, $int29, $int30 = ~script12310(toplevel_v2:graph_data_layer, calc(($int23 - 1 - $int26) * $int19 + $int20), $int19);
         $int29 = ~script12311($int29, $int30);
         if ($int29 > $int17) {
             $int17 = $int29;
@@ -322,10 +322,10 @@ if (%varclientbit_30621 = 1 & ++$int23 > 0) {
         $int29 = 0;
         $int30 = 0;
     } else {
-        $boolean28, $int29, $int30 = ~script12310(interface_1477:com_13, 0, $int20);
+        $boolean28, $int29, $int30 = ~script12310(toplevel_v2:graph_data_layer, 0, $int20);
     }
     if ($boolean28 = true) {
-        $boolean28, $int31, $int32 = ~script12310(interface_1477:com_14, 0, 1);
+        $boolean28, $int31, $int32 = ~script12310(toplevel_v2:graph_data_fine_layer, 0, 1);
     }
     if ($boolean28 = true) {
         $int29, $int30 = ~script12313($int29, $int30, $int31, $int32);
@@ -350,7 +350,7 @@ if ($boolean28 = false) {
     $int33 = calc(clientclock + 1500);
 }
 if_setontimer("script12322($struct0, $int33)", $component3);
-if_setonvartransmit("script12317($struct0){varplayer_3814}", $component3);
+if_setonvartransmit("script12317($struct0){toplevel_v2_skins_varp}", $component3);
 $string0 = "";
 def_int $int34 = -1;
 def_int $int35 = 0;
@@ -364,7 +364,7 @@ def_int $int42 = 0;
 if ($int23 > 0) {
     if_setonscrollwheel("script12301(event_mousey)", $component3);
     if ($int8 = 1 | $int1 = 1 & if_gethide($component15) = false) {
-        $int35 = calc(10 * %varclient_5157 * $int19 / 50);
+        $int35 = calc(10 * %telemetry_graph_data_divisor * $int19 / 50);
         $string0 = "Zoom: <~script12304>";
         $string0 = "Interval: <~script12291($int35)><br><$string0>";
         $int35 = calc($int35 * $int23);
@@ -373,7 +373,7 @@ if ($int23 > 0) {
     if ($int1 = 1 & if_gethide($component15) = false) {
         if_setonscrollwheel("script12301(event_mousey)", $component15);
         cc_create($component15, ^iftype_text, 0);
-        cc_settextfont(fontmetrics_26);
+        cc_settextfont(museo_sans_11pt_regular);
         cc_setcolour($rgb37);
         cc_settextshadow(true);
         cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
@@ -384,7 +384,7 @@ if ($int23 > 0) {
     }
     if ($int8 = 1) {
         cc_create($component5, ^iftype_text, 0);
-        cc_settextfont(fontmetrics_29);
+        cc_settextfont(museo_sans_13pt_bold);
         cc_setcolour($rgb37);
         cc_settextshadow(true);
         cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
@@ -394,7 +394,7 @@ if ($int23 > 0) {
         cc_setsize(calc(parawidth(cc_gettext, 1000, cc_getfontmetrics) + 4), 4, ^setsize_abs, ^setsize_minus);
         $int16 = if_getwidth(cc_getlayer);
         $int40 = parawidth("-888W", 1000, cc_getfontmetrics);
-        if (%varplayerbit_28120 = 1) {
+        if (%telemetry_show_precise_values = 1) {
             $int41 = parawidth("-2,088,888,888", 1000, cc_getfontmetrics);
         }
         if ($int16 >= calc(max($int40, $int41) + cc_getwidth + 25 + 4)) {
@@ -408,7 +408,7 @@ if ($int23 > 0) {
             $int42 = 1;
         }
         .cc_create($component5, ^iftype_text, 1);
-        .cc_settextfont(fontmetrics_29);
+        .cc_settextfont(museo_sans_13pt_bold);
         .cc_setcolour($rgb37);
         .cc_settextshadow(true);
         .cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
@@ -436,14 +436,14 @@ if ($int23 > 0) {
     }
     if ($int10 = 1) {
         cc_create($component9, ^iftype_text, 0);
-        cc_settextfont(fontmetrics_26);
+        cc_settextfont(museo_sans_11pt_regular);
         cc_setcolour($rgb37);
         cc_settextshadow(true);
         cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
         cc_setposition(4, 0, ^setpos_abs_right, ^setpos_abs_bottom);
         cc_setsize(4, ~script7593("8888", 1000, cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
         cc_create($component9, ^iftype_text, 1);
-        cc_settextfont(fontmetrics_26);
+        cc_settextfont(museo_sans_11pt_regular);
         cc_setcolour($rgb37);
         cc_settextshadow(true);
         cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
@@ -452,14 +452,14 @@ if ($int23 > 0) {
     }
     if (%varclientbit_30626 = 1) {
         cc_create($component11, ^iftype_text, 0);
-        cc_settextfont(fontmetrics_26);
+        cc_settextfont(museo_sans_11pt_regular);
         cc_setcolour($rgb37);
         cc_settextshadow(true);
         cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         cc_setposition(1, 0, ^setpos_abs_left, ^setpos_abs_bottom);
         cc_setsize(0, ~script7593("8888", 1000, cc_getfontmetrics, 0), ^setsize_minus, ^setsize_abs);
         cc_create($component11, ^iftype_text, 1);
-        cc_settextfont(fontmetrics_26);
+        cc_settextfont(museo_sans_11pt_regular);
         cc_setcolour($rgb37);
         cc_settextshadow(true);
         cc_settextalign(^settextalign_left, ^settextalign_centre, 0);

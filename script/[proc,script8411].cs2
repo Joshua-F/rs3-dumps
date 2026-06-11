@@ -69,7 +69,7 @@ $int24 = struct_param($struct3, param_3546);
 if ($int1 = 1 & ~script8314($int0) ! -1 | $boolean32 = true) {
     $int25 = 1;
 }
-if ($int0 = 32 & $int1 = 1 & %varplayer_12314 > 0) {
+if ($int0 = 32 & $int1 = 1 & %league_active_player > 0) {
     $int25 = 1;
     $int24 = 0;
 }
@@ -79,9 +79,9 @@ def_int $int35 = $int26;
 def_boolean $boolean36 = ~script12616($struct2);
 def_boolean $boolean37 = true;
 def_boolean $boolean38 = false;
-if (struct_param($struct2, param_3734) = 0 | $int0 = 1000 & if_hassuboverlay(interface_1477:com_31, interface_1421) = true | $int0 = 1004 & %varplayerbit_60446 = 1) {
+if (struct_param($struct2, param_3734) = 0 | $int0 = 1000 & if_hassuboverlay(toplevel_v2:render_layer, worldmap_v2) = true | $int0 = 1004 & %toplevel_v2_minimap_shape = 1) {
     $boolean37 = false;
-} else if (struct_param($struct2, param_3734) = 1 & %varplayerbit_20188 = 1 | $int1 = 0 & $boolean36 = true) {
+} else if (struct_param($struct2, param_3734) = 1 & %toplevel_v2_allow_window_clickthrough = 1 | $int1 = 0 & $boolean36 = true) {
     $boolean37 = false;
     $boolean38 = true;
 }
@@ -336,11 +336,11 @@ if ($component7 ! null) {
                 cc_setposition(20, 0, ^setpos_abs_left, ^setpos_abs_top);
             }
             cc_settext(struct_param($struct2, param_3493));
-            cc_settextfont(fontmetrics_57);
+            cc_settextfont(cinzel_15pt_bold);
             cc_setcolour(~script10495(0));
             cc_settextshadow(true);
             cc_setmaxlines(2);
-            cc_settextalign(^settextalign_left, ^settextalign_centre, enum(fontmetrics, int, enum_8549, fontmetrics_57));
+            cc_settextalign(^settextalign_left, ^settextalign_centre, enum(fontmetrics, int, enum_8549, cinzel_15pt_bold));
             if (struct_param($struct2, param_3495) ! null) {
                 cc_create($component7, ^iftype_graphic, 16);
                 cc_setposition(5, 0, ^setpos_abs_left, ^setpos_abs_top);
@@ -636,7 +636,7 @@ if ($component7 ! null) {
             cc_setgraphic(null);
             if_sethide(false, $component8);
         }
-        if (%varplayerbit_38842 = 0 | struct_param($struct2, param_8659) = 0) {
+        if (%toplevel_v2_mobile_interface = 0 | struct_param($struct2, param_8659) = 0) {
             cc_create($component7, ^iftype_button, 16);
             cc_create($component7, ^iftype_graphic, 17);
         } else {
@@ -664,7 +664,7 @@ if ($component9 ! null) {
         if (($boolean32 = true | $boolean36 = true) & $boolean20 = true & $int0 ! 1001 & $int0 ! 1008 & $int0 ! 17 & enum_getreversecount(int, enum_7717, $int0) ! 0) {
             if_sethide(true, $component9);
         } else {
-            if ($int0 = 17 & %varplayer_3871 = 0) {
+            if ($int0 = 17 & %toplevel_v2_minigame_close_button = 0) {
                 if_sethide(true, $component9);
             } else {
                 if_sethide(false, $component9);
@@ -689,7 +689,7 @@ if ($component9 ! null) {
         if (($boolean32 = true | $boolean36 = true) & $boolean20 = true & $int0 ! 1001 & $int0 ! 1008 & $int0 ! 17 & enum_getreversecount(int, enum_7717, $int0) ! 0) {
             if_sethide(true, $component9);
         } else {
-            if ($int0 = 17 & %varplayer_3871 = 0) {
+            if ($int0 = 17 & %toplevel_v2_minigame_close_button = 0) {
                 if_sethide(true, $component9);
             } else {
                 if_sethide(false, $component9);
@@ -713,7 +713,7 @@ if ($component9 ! null) {
                 $string0 = "Close";
                 cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
                 cc_setonmouseleave("script8806(event_com, event_comsubid, struct_param($struct3, param_3602))");
-                cc_setmouseovercursor(cursor_36);
+                cc_setmouseovercursor(cursor_default);
                 cc_setnoclickthrough(true);
             } else if ($boolean21 = true) {
                 if (struct_param($struct2, param_3524) = true) {
@@ -726,7 +726,7 @@ if ($component9 ! null) {
                     $string0 = "Settings";
                     cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
                     cc_setonmouseleave("script8806(event_com, event_comsubid, struct_param($struct3, param_3605))");
-                    cc_setmouseovercursor(cursor_36);
+                    cc_setmouseovercursor(cursor_default);
                     cc_setnoclickthrough(true);
                 }
             }
@@ -746,7 +746,7 @@ if ($component10 ! null) {
     $string0 = "Help";
     cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
     cc_setonmouseleave("script8806(event_com, 1, struct_param($struct3, param_4467))");
-    cc_setmouseovercursor(cursor_36);
+    cc_setmouseovercursor(cursor_default);
     cc_create($component10, ^iftype_graphic, 1);
     cc_setposition(struct_param($struct3, param_4462), struct_param($struct3, param_4463), ^setpos_abs_right, ^setpos_abs_top);
     cc_setsize(struct_param($struct3, param_4460), $int31, ^setsize_abs, ^setsize_abs);
@@ -908,19 +908,19 @@ def_int $int43 = 0;
 switch_int ($int0) {
     case 1003, 1032, 1033, 1034, 1035 :
         $int42, $int43 = ~script8721($int0);
-        $int42, $int43 = ~script8729(%varclient_4108, $int0);
+        $int42, $int43 = ~script8729(%toplevel_v2_active_layout, $int0);
 }
 if (~script8137($int0) = true) {
-    if (($int0 = 1003 | $int0 = 1032 | $int0 = 1033) & %varplayerbit_27169 = 1) {
+    if (($int0 = 1003 | $int0 = 1032 | $int0 = 1033) & %toplevel_v2_legacy_interface = 1) {
         ~script8140($int0, 0, 0);
     } else {
         ~script8140($int0, ~script8721($int0));
     }
 }
-if ($int0 = 18 & %varplayerbit_27169 = 1 & cc_find($component7, 9) = true) {
+if ($int0 = 18 & %toplevel_v2_legacy_interface = 1 & cc_find($component7, 9) = true) {
     cc_setdragrenderbehaviour(3);
-    cc_setmouseovercursor(cursor_190);
-    cc_setdraggable(interface_1477:com_27, -1);
+    cc_setmouseovercursor(toplevel_v2_scale_vert);
+    cc_setdraggable(toplevel_v2:viewport, -1);
     cc_setdragdeadtime(1);
     cc_setdragdeadzone(1);
     cc_setondrag("script9948($int0, event_mousey, 0)");

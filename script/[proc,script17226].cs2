@@ -64,7 +64,7 @@ if (string_length($string5) = 0 & $obj16 ! null) {
 }
 def_int $int18 = db_getfield($dbrow5, dbtable_220:col6, 0);
 if ($int18 > -1) {
-    if (%varplayerbit_52689 >= $int18) {
+    if (%quest_fort_main >= $int18) {
         $int18 = 1;
     } else {
         $int18 = 0;
@@ -163,7 +163,7 @@ if ($boolean26 = true & $boolean14 = true) {
     }
     ~script10631("Discuss");
     cc_setopbase($string1);
-    cc_setopcursor(1, cursor_44);
+    cc_setopcursor(1, cursor_talkto);
     ~script3537("Discuss this clue with your investigative assistant.");
 }
 def_int $int31 = calc($int11 + $int10);
@@ -177,7 +177,7 @@ if ($boolean27 = true) {
     }
     ~script10631("Replay");
     cc_setopbase($string1);
-    cc_setopcursor(1, cursor_44);
+    cc_setopcursor(1, cursor_talkto);
     ~script3537("Replay the conversation summarised in this testimony.");
 }
 def_boolean $boolean32 = false;
@@ -213,11 +213,11 @@ if ($boolean27 = false) {
             $boolean32 = false;
             $string6 = "Not Found";
             $string7 = "You must first discover this clue";
-        } else if (%varplayer_10788 ! null & $boolean14 = true & $int35 < $int34) {
+        } else if (%quest_fort_casefile_link_npc ! null & $boolean14 = true & $int35 < $int34) {
             $boolean32 = true;
             $string6 = "Link";
             $string7 = "Show this evidence to this suspect.";
-        } else if (%varplayer_10789 ! null & $boolean14 = true & $int35 < $int34) {
+        } else if (%quest_fort_casefile_link_loc ! null & $boolean14 = true & $int35 < $int34) {
             $boolean32 = true;
             $string6 = "Link";
             $string7 = "Use this evidence on this scenery.";
@@ -241,7 +241,7 @@ if ($boolean27 = false) {
             } else {
                 ~script10631($string6);
                 cc_setopbase($string1);
-                cc_setopcursor(1, cursor_176);
+                cc_setopcursor(1, cursor_target);
                 if (~script6431 = false) {
                     ~script3537($string7);
                 }

@@ -58,11 +58,11 @@ while (++$int11 < $int12) {
             $int14 = calc($int14 * -1);
             cc_setparam(param_5929, 0);
             $int16 = $int18;
-            cc_setcolour(%varclient_5176);
+            cc_setcolour(%telemetry_graph_colour_negative);
         } else {
             cc_setparam(param_5929, 2);
             $int16 = $int17;
-            cc_setcolour(%varclient_5173);
+            cc_setcolour(%telemetry_graph_colour_positive);
         }
         $int15 = cc_getx;
         if (%varclientbit_30621 = 1) {
@@ -105,13 +105,13 @@ if ($component24 ! null & cc_find($component24, 1) = true) {
     $int26, $int27 = ~script12299(%varclientbit_30618);
     if (%varclientbit_30621 = 1 & .if_find($component3) = true) {
         $string0 = "~";
-        $int28 = calc((clientclock - .cc_param(param_5642) - %varclient_5159) % (%varclient_5157 * $int25));
-        $int28 = calc(%varclient_5157 * $int25 - $int28 / %varclient_5158 * %varclient_5158);
+        $int28 = calc((clientclock - .cc_param(param_5642) - %telemetry_graph_data_initial_modulo) % (%telemetry_graph_data_divisor * $int25));
+        $int28 = calc(%telemetry_graph_data_divisor * $int25 - $int28 / %telemetry_graph_data_divisor_fine * %telemetry_graph_data_divisor_fine);
     }
     $string0 = "Based on data recorded over the current time window (<$string0><~script12291(cc_param(param_4261))>)";
     cc_setonmouserepeat("script3876($string0, event_com, event_comsubid)");
     $int29 = ~script12311($int21, $int22);
-    $int29 = scale($int29, calc($int12 * %varclient_5157 * $int25 - $int28), $int27);
+    $int29 = scale($int29, calc($int12 * %telemetry_graph_data_divisor * $int25 - $int28), $int27);
     $int29 = ~script11853($int29, %varclientbit_30620);
     cc_settext(~telemetry_get_text($int29, %varclientbit_30619, $int26, cc_param(param_5946)));
 }

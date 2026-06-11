@@ -1,10 +1,10 @@
 // 19438
 [proc,script19438]
-~script20486(interface_1302:com_95, dbrow_17514, 0, ^setsize_minus, 2, "Complete all tier <tostring(%varplayerbit_56570)> tasks to unlock these rewards:");
-db_find(dbtable_306:col0, %varplayerbit_56570);
+~script20486(group_ironman_parent:reward_subtitle, dbrow_17514, 0, ^setsize_minus, 2, "Complete all tier <tostring(%group_ironman_achievements_list_selected)> tasks to unlock these rewards:");
+db_find(dbtable_306:col0, %group_ironman_achievements_list_selected);
 def_dbrow $dbrow0 = db_findnext;
-def_component $component1 = interface_1302:com_94;
-if (if_find($component1) = true & cc_param(param_5946) = %varplayerbit_56570 & cc_param(param_5947) = %varplayerbit_56571) {
+def_component $component1 = group_ironman_parent:reward_selection_area;
+if (if_find($component1) = true & cc_param(param_5946) = %group_ironman_achievements_list_selected & cc_param(param_5947) = %group_ironman_achievements_sublist_selected) {
     return;
 }
 cc_deleteall($component1);
@@ -21,10 +21,10 @@ if ($int5 = 0) {
     return;
 }
 if ($int5 = 1) {
-    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_1302:com_86);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, group_ironman_parent:reward_selected_area);
     if_sethide(true, $component1);
 } else {
-    if_setsize(40, 0, ^setsize_minus, ^setsize_minus, interface_1302:com_86);
+    if_setsize(40, 0, ^setsize_minus, ^setsize_minus, group_ironman_parent:reward_selected_area);
     if_sethide(false, $component1);
 }
 def_int $int6 = calc(40 * $int5 + ($int5 - 1) * 4);
@@ -48,7 +48,7 @@ $int11 = $int3;
 def_struct $struct14 = null;
 while ($int7 < $int11) {
     $graphic9 = db_getfield($dbrow0, dbtable_306:col4:0, $int7);
-    $struct14 = ~script19338($dbrow0, $int7, %varplayerbit_56614);
+    $struct14 = ~script19338($dbrow0, $int7, %group_ironman_cache_ruleset);
     ~script19439($component1, $int8, $graphic9, null, $struct14, null, "", -1, -1);
     $int8 = calc($int8 + 1);
     $int7 = calc($int7 + 1);
@@ -58,10 +58,10 @@ $int11 = $int4;
 def_dbrow $dbrow15 = null;
 while ($int7 < $int11) {
     $graphic9 = db_getfield($dbrow0, dbtable_306:col3:0, $int7);
-    $dbrow15 = ~script19339($dbrow0, $int7, %varplayerbit_56614);
+    $dbrow15 = ~script19339($dbrow0, $int7, %group_ironman_cache_ruleset);
     ~script19439($component1, $int8, $graphic9, null, null, $dbrow15, "", -1, -1);
     $int8 = calc($int8 + 1);
     $int7 = calc($int7 + 1);
 }
-if_setparam_int(param_5946, %varplayerbit_56570, $component1);
-if_setparam_int(param_5947, %varplayerbit_56571, $component1);
+if_setparam_int(param_5946, %group_ironman_achievements_list_selected, $component1);
+if_setparam_int(param_5947, %group_ironman_achievements_sublist_selected, $component1);
