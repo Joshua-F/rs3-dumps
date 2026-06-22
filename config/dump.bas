@@ -458,12 +458,6 @@ readyanim=seq_7222,seq_7224
 [bas_107]
 readyanim=seq_7217,seq_7216
 
-[bas_108]
-runanim=seq_15263
-readyanim=null,seq_189
-randomreadyanim=seq_195,225
-randomreadyanim=seq_16369,30
-
 [bas_109]
 readyanim=null,seq_9670
 randomreadyanim=seq_9669,80
@@ -1015,7 +1009,7 @@ readyanim=seq_2256,null
 readyanim=seq_6927,seq_6928
 
 [bas_238]
-readyanim=seq_1412,seq_189
+readyanim=seq_1412,seq_37952
 
 [bas_239]
 readyanim=seq_4472,seq_4473
@@ -2065,9 +2059,6 @@ readyanim=seq_6036,seq_6036
 [bas_500]
 readyanim=seq_11449,null
 
-[bas_501]
-readyanim=seq_195,null
-
 [bas_502]
 readyanim=seq_4457,seq_4459
 
@@ -2090,9 +2081,6 @@ readyanim=seq_3952,seq_3953
 
 [bas_505]
 readyanim=seq_3965,seq_3963
-
-[bas_506]
-readyanim=seq_195,seq_195
 
 [bas_507]
 readyanim_l=seq_15578
@@ -2642,7 +2630,7 @@ readyanim=seq_7209,seq_7210
 readyanim=seq_813,seq_4226
 
 [bas_658]
-readyanim=seq_2904,seq_189
+readyanim=seq_2904,seq_37952
 
 [bas_659]
 readyanim=seq_15744,null
@@ -4146,9 +4134,6 @@ readyanim=seq_9165,seq_9165
 
 [bas_1057]
 readyanim=seq_90,seq_4635
-
-[bas_1058]
-readyanim=seq_2691,seq_189
 
 [bas_1059]
 readyanim=seq_2668,seq_2667
@@ -6649,7 +6634,7 @@ randomreadyanim=seq_5484,10
 readyanim=seq_5504,seq_12514
 
 [bas_1647]
-readyanim=seq_195,seq_189
+readyanim=seq_37961,seq_37952
 
 [bas_1648]
 runanim=seq_12525
@@ -8264,9 +8249,6 @@ walkturn_l=seq_781
 walkturn_r=seq_781
 readyanim=seq_202,seq_781
 
-[bas_1965]
-readyanim=seq_15269,seq_15270
-
 [bas_1966]
 readyanim=seq_4536,null
 
@@ -8278,7 +8260,7 @@ readyanim=seq_4537,null
 
 [bas_1969]
 readyanim=null,seq_1226
-randomreadyanim=seq_195,50
+randomreadyanim=seq_37961,50
 randomreadyanim=seq_3216,50
 
 [bas_1970]
@@ -8290,8 +8272,8 @@ randomreadyanim=seq_7122,80
 randomreadyanim=seq_1391,20
 
 [bas_1972]
-readyanim=null,seq_189
-randomreadyanim=seq_195,225
+readyanim=null,seq_37952
+randomreadyanim=seq_37961,225
 randomreadyanim=seq_16369,30
 
 [bas_1973]
@@ -10717,7 +10699,7 @@ randomreadyanim=seq_16352,10
 readyanim=seq_4472,seq_4473
 
 [bas_2444]
-readyanim=seq_16367,seq_189
+readyanim=seq_16367,seq_37952
 
 [bas_2445]
 readyanim=null,seq_16358
@@ -11333,7 +11315,7 @@ readyanim=seq_17151,seq_17151
 readyanim=seq_17169,seq_17169
 
 [bas_2560]
-readyanim=seq_15263,seq_15263
+readyanim=seq_37953,seq_37953
 
 [bas_2561]
 readyanim=seq_7332,seq_7332
@@ -11358,8 +11340,8 @@ runanim=seq_7332
 readyanim=seq_6181,null
 
 [bas_2568]
-runanim=seq_15263
-readyanim=seq_195,null
+runanim=seq_37953
+readyanim=seq_37961,null
 
 [bas_2569]
 runanim=seq_17151
@@ -25714,4 +25696,22 @@ hillrotate=32,32
 readyanim=null,seq_34478
 randomreadyanim=seq_37949,90
 randomreadyanim=seq_37950,10
+
+[bas_4913]
+runanim=seq_37953
+readyanim=null,seq_37952
+randomreadyanim=seq_37961,225
+randomreadyanim=seq_16369,30
+
+[bas_4914]
+readyanim=seq_37961,null
+
+[bas_4915]
+readyanim=seq_15269,seq_15270
+
+[bas_4916]
+readyanim=seq_37961,seq_37961
+
+[bas_4917]
+readyanim=seq_37965,seq_37952
 
