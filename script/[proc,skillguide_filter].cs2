@@ -1,13 +1,13 @@
 // 12100
 [proc,skillguide_filter](struct $struct0)(int)
 def_int $int1 = 0;
-def_dbrow $dbrow2 = struct_param($struct0, param_6569);
+def_dbrow $dbrow2 = struct_param($struct0, skillguide_data);
 if ($dbrow2 = null) {
-    $int1 = struct_param($struct0, param_2220);
+    $int1 = struct_param($struct0, skillguide_filter);
 } else {
     switch_dbtable (db_getrowtable($dbrow2)) {
-        case dbtable_5 :
-            switch_int (db_getfield($dbrow2, dbtable_5:col7, 0)) {
+        case invent_blueprint_table :
+            switch_int (db_getfield($dbrow2, invent_blueprint_table:col7, 0)) {
                 case 2 :
                     $int1 = 4;
                 case 1 :
@@ -17,11 +17,11 @@ if ($dbrow2 = null) {
                 case 3 :
                     $int1 = 5;
             }
-            if (struct_param($struct0, param_2218) = true) {
+            if (struct_param($struct0, skillguide_is_milestone) = true) {
                 $int1 = 1;
             }
         case default :
-            $int1 = struct_param($struct0, param_2220);
+            $int1 = struct_param($struct0, skillguide_filter);
     }
 }
 return($int1);

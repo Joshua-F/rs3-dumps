@@ -1,14 +1,14 @@
 // 20195
 [proc,script20195](int $int0)
-def_dbrow $dbrow1 = ~script20117(%varplayer_12314);
+def_dbrow $dbrow1 = ~script20117(%league_active_player);
 if ($dbrow1 = null | ~script20129 = false) {
     ~script20207;
     return;
 }
-def_enum $enum2 = db_getfield($dbrow1, dbtable_326:col19, 0);
+def_enum $enum2 = db_getfield($dbrow1, league:col19, 0);
 ~script20206;
 def_int $int3 = 0;
-def_int $int4 = enum_getoutputcount(enum_9053);
+def_int $int4 = enum_getoutputcount(league_locality_list);
 def_int $int5 = -1;
 def_boolean $boolean6 = false;
 def_boolean $boolean7 = false;
@@ -19,22 +19,22 @@ def_string $string0 = "";
 def_dbrow $dbrow11 = null;
 def_int $int12 = 0;
 while ($int3 < $int4) {
-    $int5 = enum(int, int, enum_9053, $int3);
-    $component9 = enum(int, component, enum_9080, $int5);
-    $component10 = enum(int, component, enum_9081, $int5);
-    $string0 = enum(int, string, enum_9057, $int5);
+    $int5 = enum(int, int, league_locality_list, $int3);
+    $component9 = enum(int, component, league_locality_id_to_unlocked, $int5);
+    $component10 = enum(int, component, league_locality_id_to_icon, $int5);
+    $string0 = enum(int, string, league_locality_name, $int5);
     $boolean6 = ~script20133($enum2, $int5);
-    $boolean7 = ~equal_int_bool($int5, %varplayerbit_58391);
+    $boolean7 = ~equal_int_bool($int5, %league_locality_selected);
     if ($boolean6 = true) {
-        $dbrow11 = dbrow_17062;
+        $dbrow11 = button_action_positive;
     } else {
-        $dbrow11 = dbrow_4476;
+        $dbrow11 = button_cornered_neutral;
     }
     if ($component9 ! null & $component10 ! null) {
         if (.if_find($component10) = true) {
             $graphic8 = .cc_getgraphic;
         }
-        ~if_add_child_layer(interface_1409:com_25, $int5, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 40, ^setsize_minus, ^setsize_abs);
+        ~if_add_child_layer(league_parent_areas:area_scrolling, $int5, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 40, ^setsize_minus, ^setsize_abs);
         ~cc_add_child_button_full($int5, 1, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, $dbrow11, $string0, true, true, true, $boolean7);
         cc_setonmouserepeat("script20198(event_com, event_comsubid)");
         cc_margin_set(0, 40, 4, 4, 4);
@@ -50,14 +50,14 @@ while ($int3 < $int4) {
     $int3 = calc($int3 + 1);
 }
 if ($int0 = 1) {
-    if_setscrollpos(0, calc(max(0, calc(%varplayerbit_58391 - 2)) * 44), interface_1409:com_25);
+    if_setscrollpos(0, calc(max(0, calc(%league_locality_selected - 2)) * 44), league_parent_areas:area_scrolling);
 }
-~script19620(interface_1409:com_26, interface_1409:com_25, $int12, null, -1, 0, 0, 40);
-if (%varplayerbit_58390 = 0) {
-    if_sethide(false, interface_1409:com_7);
-    if_sethide(true, interface_1409:com_23);
+~script19620(league_parent_areas:area_scrollbar, league_parent_areas:area_scrolling, $int12, null, -1, 0, 0, 40);
+if (%league_locality_overview_tab = 0) {
+    if_sethide(false, league_parent_areas:map);
+    if_sethide(true, league_parent_areas:map_overview);
 } else {
-    if_sethide(true, interface_1409:com_7);
-    if_sethide(false, interface_1409:com_23);
+    if_sethide(true, league_parent_areas:map);
+    if_sethide(false, league_parent_areas:map_overview);
     ~script20205;
 }
