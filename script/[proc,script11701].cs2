@@ -1,11 +1,11 @@
 // 11701
 [proc,script11701](string $string0, obj $obj0, component $component1, component $component2, int $int3, int $int4)
 def_component $component5 = null;
-switch_int (%varplayerbit_19000) {
+switch_int (%toplevel_v2_parent_last_parent_tab_id_grand_exchange) {
     case 1 :
-        $component5 = interface_105:com_340;
+        $component5 = stockmarket:search_scrolling;
     case 4 :
-        $component5 = interface_707:com_20;
+        $component5 = stock_favourites:search_scrolling;
 }
 def_int $int6 = oc_find($string0, true);
 def_int $int7 = if_getwidth($component5);
@@ -14,7 +14,7 @@ if ($int6 < 1) {
     cc_create($component1, ^iftype_text, 0);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setsize($int7, if_getheight($component5), ^setsize_abs, ^setsize_abs);
-    cc_settextfont(fontmetrics_28);
+    cc_settextfont(museo_sans_13pt_regular);
     if ($int6 = -1) {
         cc_settext("Too many results. Please refine your search.");
     } else {
@@ -25,8 +25,8 @@ if ($int6 < 1) {
     cc_settextshadow(false);
     if_setscrollsize(0, 0, $component5);
     ~script11702(0, 0);
-    %varclient_6789 = 0;
-    %varclient_6790 = 0;
+    %stock_search_height = 0;
+    %stock_search_scroll_pos = 0;
     return;
 }
 def_int $int8 = 0;
@@ -49,14 +49,14 @@ def_int $int24 = 14;
 while ($obj9 ! null) {
     $int21 = 0;
     $int8 = 0;
-    if (oc_param($obj9, param_6628) ! 0) {
-        $int21 = oc_param($obj9, param_6628);
-    } else if (oc_param($obj9, param_4749) ! null) {
-        $int21 = ~trh_promo_start_runeday(oc_param($obj9, param_4749));
+    if (oc_param($obj9, original_release_date) ! 0) {
+        $int21 = oc_param($obj9, original_release_date);
+    } else if (oc_param($obj9, trh_release_promo) ! null) {
+        $int21 = ~trh_promo_start_runeday(oc_param($obj9, trh_release_promo));
     } else {
-        $int21 = oc_param($obj9, param_4742);
+        $int21 = oc_param($obj9, release_date);
     }
-    if (%varplayer_3079 < $int21) {
+    if (%atlum_day_tracker < $int21) {
         $obj9 = oc_findnext;
         $int8 = 1;
     }
@@ -65,7 +65,7 @@ while ($obj9 ! null) {
             $int19 = $int10;
             $int20 = calc($int20 + $int12 + $int10);
         }
-        ~script10410($component1, null, struct_21361, $int19, $int20, $int11, $int12, if_getnextsubid($component1), false, "");
+        ~script10410($component1, null, rs3_content_container_active, $int19, $int20, $int11, $int12, if_getnextsubid($component1), false, "");
         cc_create($component1, ^iftype_rectangle, if_getnextsubid($component1));
         cc_setsize($int11, $int12, ^setsize_abs, ^setsize_abs);
         cc_setposition($int19, $int20, ^setpos_abs_left, ^setpos_abs_top);
@@ -74,25 +74,25 @@ while ($obj9 ! null) {
         cc_setonmouserepeat("script9564($obj9, event_com, event_comsubid)");
         if ($obj0 = $obj9) {
             cc_setcolour(0xf0be79);
-            %varclient_6790 = $int20;
+            %stock_search_scroll_pos = $int20;
         } else {
             cc_settrans(255);
         }
         cc_create($component2, ^iftype_graphic, if_getnextsubid($component2));
         cc_setsize($int13, $int14, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int19 + $int10), calc($int20 + $int15), ^setpos_abs_left, ^setpos_abs_top);
-        cc_setparam(param_4677, $obj9);
+        cc_setparam(combatv2_ability_object, $obj9);
         cc_create($component1, ^iftype_text, if_getnextsubid($component1));
         cc_setsize($int16, $int17, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int19 + $int10 + $int13), calc($int20 + $int15), ^setpos_abs_left, ^setpos_abs_top);
         cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         cc_settext(~script18300($obj9));
-        cc_settextfont(fontmetrics_206);
+        cc_settextfont(notosans_11);
         ~script11024(3);
         cc_setonmouseover("script10496(event_com, event_comsubid, 4)");
         cc_setonmouseleave("script10496(event_com, event_comsubid, 3)");
         cc_setmaxlines(3);
-        if (inv_total(inv_890, $obj9) > 0) {
+        if (inv_total(stock_favourites, $obj9) > 0) {
             ~script7924($component1, if_getnextsubid($component1), $int23, $int24, calc($int19 + $int10 / 2), calc($int20 + $int10 / 2), "rs3_icon_lobby_favorite_small,1", false, false, false, 0);
         }
         $obj9 = oc_findnext;
@@ -102,13 +102,13 @@ while ($obj9 ! null) {
 }
 while (--$int22 >= 0) {
     if (cc_find($component2, $int22) = true) {
-        cc_setobject_nonum(cc_param(param_4677), 1);
+        cc_setobject_nonum(cc_param(combatv2_ability_object), 1);
     }
 }
 $int20 = calc($int20 + $int12);
-%varclient_6789 = $int20;
+%stock_search_height = $int20;
 if ($int3 = 1) {
-    ~script11702($int20, %varclient_6790);
+    ~script11702($int20, %stock_search_scroll_pos);
 } else {
     ~script11702($int20, $int4);
 }
