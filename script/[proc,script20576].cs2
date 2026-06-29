@@ -19,22 +19,25 @@ switch_int (random(6)) {
 }
 def_stat $stat0 = enum(int, stat, enum_681, %varplayer_12583);
 def_string $string0 = enum(stat, string, enum_680, $stat0);
-def_int $int1 = ~script11151($stat0);
-def_string $string1 = "Current <$string0> Bonus XP : <tostring_localised(calc($int1 / 10), true)> / <tostring_localised(calc(50000000 / 10), true)>.<br>";
+def_int $int1 = 0;
+def_boolean $boolean2 = false;
+$int1, $boolean2 = ~script20455(%varplayer_12583, %varplayer_12584);
+def_string $string1 = "";
 def_string $string2 = "";
-def_int $int2 = ~script20568($stat0);
-if ($int2 = 2) {
-    $string2 = "<col=FF0000>You have reached the Bonus XP cap in <$string0>.</col>";
-} else if ($int2 = 0) {
-    $string1 = "";
-    $string2 = "<col=FF0000>You cannot place Bonus XP in this skill.</col>";
-} else if ($int2 = 3) {
-    $string1 = "";
-    $string2 = "<col=FF0000>You cannot place Bonus XP in this skill because it has reached the 200m cap.</col>";
+def_int $int3 = ~script20568($stat0);
+if ($int3 = 2) {
+    $string1 = "<col=FA3232>You cannot place Bonus XP in this skill as you have reached the 100m Bonus XP cap.</col>";
+} else if ($int3 = 0) {
+    $string1 = "<col=FA3232>You cannot place Bonus XP in this skill.</col>";
+} else if ($int3 = 3) {
+    $string1 = "<col=FA3232>You cannot place Bonus XP in this skill because it has reached the 200m XP cap.</col>";
 } else {
-    $string2 = "You will receive <tostring_localised(~script20455(%varplayer_12583, %varplayer_12584), true)> Bonus XP in <$string0>.";
+    if ($boolean2 = true) {
+        $string1 = "<col=FA3232>You are receiving less Bonus XP as this redemption will exceed the 100m Bonus XP cap.</col><br>";
+    }
+    $string2 = "You will receive <tostring_localised($int1, true)> Bonus XP in <$string0>.";
 }
 ~xp_reward_textbox("<$string1><$string2>", interface_1485:com_68, 50);
 if_settext(tostring_localised(%varplayer_12584, true), interface_1485:com_82);
-if_settext("You are using <tostring(%varplayer_12584)> Radiant <~text_plural(%varplayer_12584, "Star", "Stars")>.<br>You will receive <tostring_localised(~script20455(%varplayer_12583, %varplayer_12584), true)> Bonus XP in <$string0>.", interface_1485:com_125);
+if_settext("You are using <tostring(%varplayer_12584)> Radiant <~text_plural(%varplayer_12584, "Star", "Stars")>.<br>You will receive <tostring_localised($int1, true)> Bonus XP in <$string0>.", interface_1485:com_125);
 ~script20560;

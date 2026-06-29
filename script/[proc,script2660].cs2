@@ -12,9 +12,11 @@ def_int $int2 = stat($stat1);
 def_int $int3 = 0;
 def_obj $obj4 = inv_getobj(inv_94, 3);
 def_obj $obj5 = inv_getobj(inv_94, 5);
-if ($stat1 = necromancy) {
-    $int2 = stat_base($stat1);
-} else if ($stat1 = magic & struct_param($struct0, param_2880) ! 0 & %varplayerbit_3043 = 1) {
+switch_stat ($stat1) {
+    case attack, strength, magic, ranged, necromancy, agility :
+        $int2 = stat_base($stat1);
+}
+if ($stat1 = magic & struct_param($struct0, param_2880) ! 0 & %varplayerbit_3043 = 1) {
     $int2 = max($int2, %varplayer_1185);
 }
 if ($int2 < struct_param($struct0, param_2807) & %varplayerbit_15197 = 0) {
