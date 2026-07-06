@@ -566,6 +566,10 @@ readyanim=seq_7222,seq_7224
 [bas_107]
 readyanim=seq_7217,seq_7216
 
+// 108
+[bas_108]
+readyanim=seq_190,null
+
 // 109
 [bas_109]
 readyanim=null,seq_9670
@@ -6308,14 +6312,18 @@ walkanim_b=seq_18817
 walkanim_l=seq_18817
 walkanim_r=seq_18817
 runanim=seq_18816
-readyanim=seq_18815,seq_18817
+readyanim=null,seq_18817
+randomreadyanim=seq_18815,90
+randomreadyanim=seq_37974,10
 
 // 1284
 [bas_1284]
 readyanim_r=seq_18020
 readyanim_l=seq_18020
 runanim=seq_18021
-readyanim=seq_18019,seq_18020
+readyanim=null,seq_18020
+randomreadyanim=seq_18815,90
+randomreadyanim=seq_37974,10
 
 // 1285
 [bas_1285]
@@ -14806,112 +14814,144 @@ readyanim=seq_37647,seq_37649
 readyanim_r=seq_17996
 readyanim_l=seq_17996
 runanim=seq_17998
-readyanim=seq_17996,seq_17997
+readyanim=null,seq_17997
+randomreadyanim=seq_17996,80
+randomreadyanim=seq_37972,20
 
 // 2696
 [bas_2696]
 readyanim_r=seq_18024
 readyanim_l=seq_18024
 runanim=seq_18017
-readyanim=seq_18023,seq_18024
+readyanim=null,seq_18024
+randomreadyanim=seq_18023,80
+randomreadyanim=seq_37968,20
 
 // 2697
 [bas_2697]
 readyanim_r=seq_18044
 readyanim_l=seq_18044
 runanim=seq_18017
-readyanim=seq_18022,seq_18044
+readyanim=null,seq_18044
+randomreadyanim=seq_18022,80
+randomreadyanim=seq_28084,20
 
 // 2698
 [bas_2698]
 readyanim_r=seq_18016
 readyanim_l=seq_18016
 runanim=seq_18017
-readyanim=seq_18015,seq_18016
+readyanim=null,seq_18016
+randomreadyanim=seq_18015,80
+randomreadyanim=seq_2691,20
 
 // 2699
 [bas_2699]
 readyanim_r=seq_18020
 readyanim_l=seq_18020
 runanim=seq_18021
-readyanim=seq_18019,seq_18020
+readyanim=null,seq_18020
+randomreadyanim=seq_18019,80
+randomreadyanim=seq_196,20
 
 // 2700
 [bas_2700]
 readyanim_r=seq_18053
 readyanim_l=seq_18053
 runanim=seq_18051
-readyanim=seq_18049,seq_18053
+readyanim=null,seq_18053
+randomreadyanim=seq_18049,80
+randomreadyanim=seq_37970,20
 
 // 2701
 [bas_2701]
 readyanim_r=seq_18057
 readyanim_l=seq_18057
 runanim=seq_18059
-readyanim=seq_18055,seq_18057
+readyanim=null,seq_18057
+randomreadyanim=seq_18055,80
+randomreadyanim=seq_37966,20
 
 // 2702
 [bas_2702]
 readyanim_r=seq_18040
 readyanim_l=seq_18040
 runanim=seq_18039
-readyanim=seq_18038,seq_18040
+readyanim=null,seq_18040
+randomreadyanim=seq_18038,80
+randomreadyanim=seq_197,20
 
 // 2703
 [bas_2703]
 readyanim_r=seq_18043
 readyanim_l=seq_18043
 runanim=seq_18042
-readyanim=seq_18041,seq_18043
+readyanim=null,seq_18043
+randomreadyanim=seq_18041,80
+randomreadyanim=seq_3803,20
 
 // 2704
 [bas_2704]
 readyanim_r=seq_18037
 readyanim_l=seq_18037
 runanim=seq_18036
-readyanim=seq_18035,seq_18037
+readyanim=null,seq_18037
+randomreadyanim=seq_18035,80
+randomreadyanim=seq_37973,20
 
 // 2705
 [bas_2705]
 readyanim_r=seq_18045
 readyanim_l=seq_18045
 runanim=seq_18042
-readyanim=seq_18046,seq_18045
+readyanim=null,seq_18045
+randomreadyanim=seq_18046,80
+randomreadyanim=seq_37969,20
 
 // 2706
 [bas_2706]
 readyanim_r=seq_18047
 readyanim_l=seq_18047
 runanim=seq_18042
-readyanim=seq_18048,seq_18047
+readyanim=null,seq_18047
+randomreadyanim=seq_18048,80
+randomreadyanim=seq_28085,20
 
 // 2707
 [bas_2707]
 readyanim_r=seq_18054
 readyanim_l=seq_18054
 runanim=seq_18052
-readyanim=seq_18050,seq_18054
+readyanim=null,seq_18054
+randomreadyanim=seq_18050,80
+randomreadyanim=seq_37971,20
 
 // 2708
 [bas_2708]
 readyanim_r=seq_18058
 readyanim_l=seq_18058
 runanim=seq_18060
-readyanim=seq_18056,seq_18058
+readyanim=null,seq_18058
+randomreadyanim=seq_18056,80
+randomreadyanim=seq_37967,20
 
 // 2709
 [bas_2709]
 readyanim_r=seq_18063
 readyanim_l=seq_18063
 runanim=seq_18065
-readyanim=seq_18061,seq_18063
+readyanim=null,seq_18063
+randomreadyanim=seq_18061,80
+randomreadyanim=seq_15266,20
 
 // 2710
 [bas_2710]
 readyanim_r=seq_18064
 readyanim_l=seq_18064
 runanim=seq_18066
-readyanim=seq_18062,seq_18064
+readyanim=null,seq_18064
+randomreadyanim=seq_18062,80
+randomreadyanim=seq_15263,20
 
 // 2711
 [bas_2711]
@@ -16171,14 +16211,18 @@ readyanim=seq_37632,seq_37655
 readyanim_r=seq_20972
 readyanim_l=seq_20972
 runanim=seq_20973
-readyanim=seq_18015,seq_20972
+readyanim=null,seq_20972
+randomreadyanim=seq_18015,80
+randomreadyanim=seq_2691,20
 
 // 2913
 [bas_2913]
 readyanim_r=seq_20974
 readyanim_l=seq_20974
 runanim=seq_20975
-readyanim=seq_18019,seq_20974
+readyanim=null,seq_20974
+randomreadyanim=seq_18019,80
+randomreadyanim=seq_196,20
 
 // 2914
 [bas_2914]
@@ -18863,7 +18907,9 @@ readyanim_r=seq_18020
 readyanim_l=seq_18020
 runanim=seq_18021
 unknown53=no
-readyanim=seq_18019,seq_18020
+readyanim=null,seq_18020
+randomreadyanim=seq_18019,80
+randomreadyanim=seq_196,20
 
 // 3323
 [bas_3323]
@@ -21754,7 +21800,9 @@ readyanim_r=seq_28358
 walkanim_l=seq_28358
 walkanim_r=seq_28358
 runanim=seq_28360
-readyanim=seq_28359,seq_28358
+readyanim=null,seq_28358
+randomreadyanim=seq_28359,80
+randomreadyanim=seq_37976,20
 
 // 3694
 [bas_3694]
@@ -21955,21 +22003,27 @@ readyanim=seq_37629,seq_37667
 readyanim_r=seq_28564
 readyanim_l=seq_28564
 runanim=seq_28565
-readyanim=seq_18015,seq_28564
+readyanim=null,seq_28564
+randomreadyanim=seq_18015,80
+randomreadyanim=seq_2691,20
 
 // 3715
 [bas_3715]
 readyanim_r=seq_28567
 readyanim_l=seq_28567
 runanim=seq_28566
-readyanim=seq_18041,seq_28567
+readyanim=null,seq_28567
+randomreadyanim=seq_18041,80
+randomreadyanim=seq_3803,20
 
 // 3716
 [bas_3716]
 readyanim_r=seq_28568
 readyanim_l=seq_28568
 runanim=seq_28566
-readyanim=seq_18048,seq_28568
+readyanim=null,seq_28568
+randomreadyanim=seq_18048,80
+randomreadyanim=seq_28085,20
 
 // 3717
 [bas_3717]
@@ -24218,7 +24272,9 @@ readyanim=seq_88,seq_88
 readyanim_r=seq_30848
 readyanim_l=seq_30848
 runanim=seq_20973
-readyanim=seq_18023,seq_30848
+readyanim=null,seq_30848
+randomreadyanim=seq_18023,80
+randomreadyanim=seq_37968,20
 
 // 4090
 [bas_4090]
@@ -24339,7 +24395,9 @@ readyanim=seq_31027,seq_819
 readyanim_l=seq_31003
 readyanim_r=seq_31003
 runanim=seq_31003
-readyanim=seq_31031,seq_31003
+readyanim=null,seq_31003
+randomreadyanim=seq_31031,90
+randomreadyanim=seq_37977,10
 
 // 4109
 [bas_4109]
@@ -24382,7 +24440,9 @@ readyanim_r=seq_31056
 walkanim_l=seq_31056
 walkanim_r=seq_31056
 runanim=seq_31058
-readyanim=seq_31057,seq_31056
+readyanim=null,seq_31056
+randomreadyanim=seq_31057,80
+randomreadyanim=seq_37975,20
 
 // 4115
 [bas_4115]
@@ -26256,14 +26316,18 @@ readyanim=seq_17970,seq_17971
 readyanim_r=seq_32839
 readyanim_l=seq_32839
 runanim=seq_32840
-readyanim=seq_18019,seq_32839
+readyanim=null,seq_32839
+randomreadyanim=seq_18019,80
+randomreadyanim=seq_196,20
 
 // 4396
 [bas_4396]
 readyanim_r=seq_32841
 readyanim_l=seq_32841
 runanim=seq_32842
-readyanim=seq_18055,seq_32841
+readyanim=null,seq_32841
+randomreadyanim=seq_18055,80
+randomreadyanim=seq_37966,20
 
 // 4397
 [bas_4397]
@@ -27313,7 +27377,9 @@ readyanim=seq_33951,seq_33951
 
 // 4523
 [bas_4523]
-readyanim=seq_18019,null
+readyanim=null,null
+randomreadyanim=seq_18019,80
+randomreadyanim=seq_196,20
 
 // 4524
 [bas_4524]
