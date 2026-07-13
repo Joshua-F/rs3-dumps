@@ -2563,6 +2563,10 @@ readyanim=seq_6036,seq_6036
 [bas_500]
 readyanim=seq_11449,null
 
+// 501
+[bas_501]
+readyanim=seq_38001,null
+
 // 502
 [bas_502]
 readyanim=seq_4457,seq_4459
@@ -2589,6 +2593,12 @@ readyanim=seq_3952,seq_3953
 // 505
 [bas_505]
 readyanim=seq_3965,seq_3963
+
+// 506
+[bas_506]
+runanim=seq_38007
+hillrotate=32,32
+readyanim=seq_38005,seq_38006
 
 // 507
 [bas_507]
@@ -5193,6 +5203,10 @@ readyanim=seq_9165,seq_9165
 // 1057
 [bas_1057]
 readyanim=seq_90,seq_4635
+
+// 1058
+[bas_1058]
+readyanim=seq_38011,null
 
 // 1059
 [bas_1059]

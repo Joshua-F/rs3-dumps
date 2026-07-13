@@ -1,33 +1,38 @@
 // 12098
-[proc,skillguide_level](struct $struct0)(int)
-def_int $int1 = 0;
-if (struct_param($struct0, param_2212) > 0) {
-    $int1 = struct_param($struct0, param_2212);
-} else if (struct_param($struct0, param_2213) ! null & ~skillguide_skill($struct0) > 0) {
-    $int1 = ~script7960(struct_param($struct0, param_2213), enum(int, stat, enum_681, ~skillguide_skill($struct0)));
-    if ($int1 = 0) {
-        $int1 = ~script2516(struct_param($struct0, param_2213), enum(int, stat, enum_681, ~skillguide_skill($struct0)));
+[proc,skillguide_level](struct $struct0, dbrow $dbrow1)(int)
+def_int $int2 = 0;
+def_struct $struct3 = null;
+if ($struct0 ! null) {
+    if (struct_param($struct0, param_2212) > 0) {
+        $int2 = struct_param($struct0, param_2212);
+    } else if (struct_param($struct0, param_2213) ! null & ~skillguide_skill($struct0, $dbrow1) > 0) {
+        $int2 = ~script7960(struct_param($struct0, param_2213), enum(int, stat, enum_681, ~skillguide_skill($struct0, $dbrow1)));
+        if ($int2 = 0) {
+            $int2 = ~script2516(struct_param($struct0, param_2213), enum(int, stat, enum_681, ~skillguide_skill($struct0, $dbrow1)));
+        }
     }
+    if ($int2 > 0) {
+        return($int2);
+    }
+    $struct3 = struct_param($struct0, param_8877);
+    $dbrow1 = struct_param($struct0, param_6569);
 }
-if ($int1 > 0) {
-    return($int1);
-}
-def_dbrow $dbrow2 = struct_param($struct0, param_6569);
-def_struct $struct3 = struct_param($struct0, param_8877);
-if ($dbrow2 ! null) {
-    switch_dbtable (db_getrowtable($dbrow2)) {
+if ($dbrow1 ! null) {
+    switch_dbtable (db_getrowtable($dbrow1)) {
         case dbtable_5 :
-            $int1 = db_getfield($dbrow2, dbtable_5:col9, 0);
+            $int2 = db_getfield($dbrow1, dbtable_5:col9, 0);
         case dbtable_86 :
-            $int1 = db_getfield($dbrow2, dbtable_86:col6, 0);
+            $int2 = db_getfield($dbrow1, dbtable_86:col6, 0);
         case dbtable_88 :
-            $int1 = db_getfield($dbrow2, dbtable_88:col4, 0);
+            $int2 = db_getfield($dbrow1, dbtable_88:col4, 0);
         case dbtable_235 :
-            if (db_getfield($dbrow2, dbtable_235:col5:0, 0) = enum(int, stat, enum_681, ~skillguide_skill($struct0))) {
-                $int1 = db_getfield($dbrow2, dbtable_235:col5:1, 0);
+            if (db_getfield($dbrow1, dbtable_235:col5:0, 0) = enum(int, stat, enum_681, ~skillguide_skill($struct0, $dbrow1))) {
+                $int2 = db_getfield($dbrow1, dbtable_235:col5:1, 0);
             }
+        case dbtable_370 :
+            $int2 = db_getfield($dbrow1, dbtable_370:col9, 0);
     }
 } else if ($struct3 ! null & struct_param($struct3, param_2793) > 0) {
-    $int1 = struct_param($struct3, param_2807);
+    $int2 = struct_param($struct3, param_2807);
 }
-return($int1);
+return($int2);

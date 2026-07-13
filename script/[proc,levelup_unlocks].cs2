@@ -71,113 +71,48 @@ def_stat $stat7 = enum(int, stat, enum_681, $int0);
 $stat7 = enum(stat, stat, enum_744, $stat7);
 def_int $int8 = 0;
 def_int $int9 = 0;
-def_int $int10 = 0;
-def_int $int11 = 0;
-def_graphic $graphic12 = null;
-def_int $int13 = 0;
-def_int $int14 = 0;
+def_struct $struct10 = null;
 def_string $string0 = "";
-def_obj $obj15 = null;
-def_struct $struct16 = null;
-def_string $string1 = "";
-def_boolean $boolean17 = false;
-def_string $string2 = "";
+def_dbfilter $dbfilter11 = null;
+def_dbrow $dbrow12 = null;
 $int1 = calc($int1 / 5);
 if ($int4 > $int2 & $int4 <= 120) {
-    $string2 = ~script16836($int2, $stat3);
-    if (string_length($string2) > 0) {
-        ~levelup_custom_unlock($string2, $int11, $int1);
-        $int11 = calc($int11 + 1);
+    $string0 = ~script16836($int2, $stat3);
+    if (string_length($string0) > 0) {
+        ~levelup_custom_unlock($string0, $int9, $int1);
+        $int9 = calc($int9 + 1);
     }
     switch_int ($int0) {
         case 1, 2, 5, 3, 7, 4, 6, 24, 29 :
             if (%varplayerbit_3294 = 1) {
                 %varplayerbit_3294 = 0;
-                ~levelup_custom_unlock("Increased Combat level!", $int11, $int1);
-                $int11 = calc($int11 + 1);
+                ~levelup_custom_unlock("Increased Combat level!", $int9, $int1);
+                $int9 = calc($int9 + 1);
             }
     }
     if ($int0 = 7 | $int0 = 6) {
         if ($int0 = 7) {
-            ~levelup_custom_unlock("More prayer points!", $int11, $int1);
+            ~levelup_custom_unlock("More prayer points!", $int9, $int1);
         } else {
-            ~levelup_custom_unlock("More lifepoints!", $int11, $int1);
+            ~levelup_custom_unlock("More lifepoints!", $int9, $int1);
         }
-        $int11 = calc($int11 + 1);
+        $int9 = calc($int9 + 1);
     }
-    while ($int10 < $int6 & $int11 < 5) {
-        $struct16 = enum(int, struct, $enum5, $int10);
-        $int8 = ~skillguide_skill($struct16);
-        $int9 = ~skillguide_level($struct16);
-        $obj15 = struct_param($struct16, param_2213);
-        $string1 = ~skillguide_name($struct16);
-        $boolean17 = ~skillguide_members($struct16);
-        if ($obj15 ! null & oc_param($obj15, param_2640) > 0 & oc_param($obj15, param_2640) ! 62 & oc_param($obj15, param_2641) = 0 & (oc_param($obj15, param_2640) = $int8 | $int8 = -1)) {
-            $int9 = oc_param($obj15, param_2645);
-            $string1 = oc_name($obj15);
-            if (oc_param($obj15, param_2639) = true | oc_members(oc_param($obj15, param_2655)) = 1 | oc_members(oc_param($obj15, param_2656)) = 1 | oc_members(oc_param($obj15, param_2650)) = 1 | oc_members($obj15) = 1) {
-                $boolean17 = true;
-            }
+    while ($int8 < $int6 & $int9 < 5) {
+        $struct10 = enum(int, struct, $enum5, $int8);
+        $int9 = ~script16267($struct10, null, $int9, $int2, $int4, $int1);
+        $int8 = calc($int8 + 1);
+    }
+    if ($int9 < 5) {
+        switch_stat ($stat3) {
+            case construction :
+                $dbfilter11 = ~script20817($int2, $int4);
+                unknown_command_77($dbfilter11, dbtable_370:col9, true);
+                $dbrow12 = db_findnext;
+                while ($dbrow12 ! null & $int9 < 5) {
+                    $int9 = ~script16267(null, $dbrow12, $int9, $int2, $int4, $int1);
+                    $dbrow12 = db_findnext;
+                }
         }
-        if ($int9 = $int4 & struct_param(enum(int, struct, $enum5, $int10), param_2219) = true) {
-            cc_create(interface_1216:com_6, ^iftype_text, if_getnextsubid(interface_1216:com_6));
-            cc_setposition(0, 25, ^setpos_abs_centre, ^setpos_abs_bottom);
-            $int14 = calc(stringwidth($string1, fontmetrics_23) + stringwidth("New", fontmetrics_23));
-            if ($boolean17 = false) {
-                $stat7 = attack;
-            } else {
-                $stat7 = null;
-            }
-            cc_setsize(0, 33, ^setsize_minus, ^setsize_abs);
-            cc_setontimer("levelup_unlocktimer(event_comsubid, $string1, calc(clientclock + $int11 * $int1))");
-            $int13 = cc_getx;
-            cc_create(interface_1216:com_6, ^iftype_graphic, if_getnextsubid(interface_1216:com_6));
-            cc_setposition(0, 24, ^setpos_abs_centre, ^setpos_abs_bottom);
-            cc_setsize($int14, 33, ^setsize_abs, ^setsize_abs);
-            cc_settiling(true);
-            if ($stat7 = null) {
-                $graphic12 = "aif_level_up_text_box_gold,1";
-            } else {
-                $graphic12 = "aif_level_up_text_box,1";
-            }
-            cc_setontimer("levelup_unlocktimer_graphic(event_comsubid, $graphic12, calc(clientclock + $int11 * $int1))");
-            cc_sendtoback;
-            $int13 = cc_getx;
-            $int14 = cc_getwidth;
-            cc_create(interface_1216:com_6, ^iftype_graphic, if_getnextsubid(interface_1216:com_6));
-            cc_setposition(calc($int13 - 50), 24, ^setpos_abs_left, ^setpos_abs_bottom);
-            cc_setsize(50, 33, ^setsize_abs, ^setsize_abs);
-            if ($stat7 = null) {
-                $graphic12 = "aif_level_up_text_box_gold,0";
-            } else {
-                $graphic12 = "aif_level_up_text_box,0";
-            }
-            cc_setontimer("levelup_unlocktimer_graphic(event_comsubid, $graphic12, calc(clientclock + $int11 * $int1))");
-            cc_sendtoback;
-            cc_create(interface_1216:com_6, ^iftype_graphic, if_getnextsubid(interface_1216:com_6));
-            cc_setposition(calc($int13 + $int14), 24, ^setpos_abs_left, ^setpos_abs_bottom);
-            cc_setsize(50, 33, ^setsize_abs, ^setsize_abs);
-            if ($stat7 = null) {
-                $graphic12 = "aif_level_up_text_box_gold,2";
-            } else {
-                $graphic12 = "aif_level_up_text_box,2";
-            }
-            cc_setontimer("levelup_unlocktimer_graphic(event_comsubid, $graphic12, calc(clientclock + $int11 * $int1))");
-            cc_sendtoback;
-            cc_create(interface_1216:com_1, ^iftype_model, if_getnextsubid(interface_1216:com_1));
-            cc_setmodel(model_32144);
-            cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
-            cc_setmodelanim(seq_15754);
-            cc_setmodelangle(0, 0, 512, 0, 0, calc(1500 + random(1000)));
-            $int14 = calc(stringwidth(~skillguide_name(enum(int, struct, $enum5, $int10)), fontmetrics_23) / 2 + 20);
-            if (random(2) = 0) {
-                cc_setposition($int14, 120, ^setpos_abs_centre, ^setpos_abs_top);
-            } else {
-                cc_setposition(calc($int14 * -1), 120, ^setpos_abs_centre, ^setpos_abs_top);
-            }
-            cc_setontimer("script3369(event_comsubid, calc(clientclock + $int11 * $int1), 0)");
-            $int11 = calc($int11 + 1);
-        }
-        $int10 = calc($int10 + 1);
     }
 }

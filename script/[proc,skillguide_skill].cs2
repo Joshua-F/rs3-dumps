@@ -1,21 +1,18 @@
 // 12097
-[proc,skillguide_skill](struct $struct0)(int)
-def_int $int1 = 0;
-def_dbrow $dbrow2 = struct_param($struct0, param_6569);
-if ($dbrow2 = null) {
-    if (struct_param($struct0, param_2215) > 0) {
-        $int1 = struct_param($struct0, param_2215);
-    }
-} else {
-    switch_dbtable (db_getrowtable($dbrow2)) {
+[proc,skillguide_skill](struct $struct0, dbrow $dbrow1)(int)
+def_int $int2 = 0;
+if ($struct0 ! null) {
+    $dbrow1 = struct_param($struct0, param_6569);
+    $int2 = struct_param($struct0, param_2215);
+}
+if ($dbrow1 ! null) {
+    switch_dbtable (db_getrowtable($dbrow1)) {
         case dbtable_5 :
-            $int1 = 27;
+            $int2 = 27;
         case dbtable_88 :
-            $int1 = 28;
-        case default :
-            if (struct_param($struct0, param_2215) > 0) {
-                $int1 = struct_param($struct0, param_2215);
-            }
+            $int2 = 28;
+        case dbtable_370 :
+            $int2 = 22;
     }
 }
-return($int1);
+return($int2);
