@@ -1,21 +1,20 @@
 // 12096
-[proc,skillguide_info](struct $struct0)(string)
+[proc,skillguide_info](struct $struct0, dbrow $dbrow1)(string)
 def_string $string0 = "";
-def_dbrow $dbrow1 = struct_param($struct0, param_6569);
-def_obj $obj2 = struct_param($struct0, param_2213);
-def_int $int3 = struct_param($struct0, param_8875);
-def_int $int4 = struct_param($struct0, param_5442);
-def_struct $struct5 = null;
-if ($dbrow1 = null) {
+def_int $int2 = 0;
+if ($struct0 ! null) {
+    $dbrow1 = struct_param($struct0, param_6569);
     $string0 = struct_param($struct0, param_2211);
-} else {
+    $int2 = struct_param($struct0, param_5442);
+}
+if ($dbrow1 ! null) {
     switch_dbtable (db_getrowtable($dbrow1)) {
         case dbtable_5 :
             $string0 = db_getfield($dbrow1, dbtable_5:col3, 0);
             if (struct_param($struct0, param_5443) = 0) {
                 $string0 = "<$string0><br><struct_param($struct0, param_2211)>";
             }
-            $int4 = 1;
+            $int2 = 1;
         case dbtable_86 :
             $string0 = db_getfield($dbrow1, dbtable_86:col3, 0);
         case dbtable_88 :
@@ -24,41 +23,46 @@ if ($dbrow1 = null) {
             $string0 = "Offering this to the Monolith at the Archaeology campus will unlock the '<db_getfield($dbrow1, dbtable_94:col1, 0)>' relic power.<br><br>Power: <~arch_relic_get_description($dbrow1)>";
         case dbtable_235 :
             $string0 = ~script17817($dbrow1);
-        case default :
-            $string0 = struct_param($struct0, param_2211);
+        case dbtable_370 :
+            $string0 = ~script20815($dbrow1);
     }
 }
-if ($int4 = 1) {
-    if ($obj2 ! null & struct_param($struct0, param_5443) = 1) {
-        $string0 = "<$string0>Ingredients: <~script12104($obj2, $int3)>";
+if ($int2 = 0) {
+    return($string0);
+}
+def_obj $obj3 = struct_param($struct0, param_2213);
+def_int $int4 = struct_param($struct0, param_8875);
+def_struct $struct5 = null;
+def_string $string1 = "<br>";
+if ($obj3 ! null & struct_param($struct0, param_5443) = 1) {
+    $string0 = "<$string0>Ingredients: <~script12104($obj3, $int4, $string1)>";
+}
+if ($obj3 ! null & struct_param($struct0, param_8876) = 1) {
+    $struct5 = oc_param($obj3, param_3203);
+    $string0 = "<$string0>Ingredients:";
+    if (struct_param($struct5, param_3205) ! null) {
+        $string0 = ~script17670($string0, struct_param($struct5, param_3205), $int4);
     }
-    if ($obj2 ! null & struct_param($struct0, param_8876) = 1) {
-        $struct5 = oc_param($obj2, param_3203);
-        $string0 = "<$string0>Ingredients:";
-        if (struct_param($struct5, param_3205) ! null) {
-            $string0 = ~script17670($string0, struct_param($struct5, param_3205), $int3);
-        }
-        if (struct_param($struct5, param_3210) ! null) {
-            $string0 = ~script17670($string0, struct_param($struct5, param_3210), $int3);
-        }
-        if (struct_param($struct5, param_3215) ! null) {
-            $string0 = ~script17670($string0, struct_param($struct5, param_3215), $int3);
-        }
-        if (struct_param($struct5, param_3220) ! null) {
-            $string0 = ~script17670($string0, struct_param($struct5, param_3220), $int3);
-        }
-        if (struct_param($struct5, param_3225) ! null) {
-            $string0 = ~script17670($string0, struct_param($struct5, param_3225), $int3);
-        }
-        if (struct_param($struct5, param_5559) ! null) {
-            $string0 = ~script17670($string0, struct_param($struct5, param_5559), $int3);
-        }
-        if (struct_param($struct5, param_5564) ! null) {
-            $string0 = ~script17670($string0, struct_param($struct5, param_5564), $int3);
-        }
-        if (struct_param($struct5, param_5569) ! null) {
-            $string0 = ~script17670($string0, struct_param($struct5, param_5569), $int3);
-        }
+    if (struct_param($struct5, param_3210) ! null) {
+        $string0 = ~script17670($string0, struct_param($struct5, param_3210), $int4);
+    }
+    if (struct_param($struct5, param_3215) ! null) {
+        $string0 = ~script17670($string0, struct_param($struct5, param_3215), $int4);
+    }
+    if (struct_param($struct5, param_3220) ! null) {
+        $string0 = ~script17670($string0, struct_param($struct5, param_3220), $int4);
+    }
+    if (struct_param($struct5, param_3225) ! null) {
+        $string0 = ~script17670($string0, struct_param($struct5, param_3225), $int4);
+    }
+    if (struct_param($struct5, param_5559) ! null) {
+        $string0 = ~script17670($string0, struct_param($struct5, param_5559), $int4);
+    }
+    if (struct_param($struct5, param_5564) ! null) {
+        $string0 = ~script17670($string0, struct_param($struct5, param_5564), $int4);
+    }
+    if (struct_param($struct5, param_5569) ! null) {
+        $string0 = ~script17670($string0, struct_param($struct5, param_5569), $int4);
     }
 }
 return($string0);
