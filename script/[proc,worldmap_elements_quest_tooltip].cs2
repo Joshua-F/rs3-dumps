@@ -1,15 +1,15 @@
 // 7591
 [proc,worldmap_elements_quest_tooltip]
-def_component $component0 = interface_1486:com_14;
-def_quest $quest1 = cc_param(param_8225);
+def_component $component0 = text_tooltip:tooltip_dynamic_text;
+def_quest $quest1 = cc_param(toplevel_v2_tooltip_param_quest);
 if ($quest1 = null) {
     return;
 }
-def_int $int2 = quest_param($quest1, param_1345);
+def_int $int2 = quest_param($quest1, quest_id);
 def_string $string0 = ~quest_name($quest1);
 def_graphic $graphic3 = ~quest_icon($quest1);
 def_graphic $graphic4 = null;
-switch_int (quest_param($quest1, param_7831)) {
+switch_int (quest_param($quest1, quest_age)) {
     case 1 :
         $graphic4 = aif_5th_age;
     case 3, 4 :
@@ -18,9 +18,9 @@ switch_int (quest_param($quest1, param_7831)) {
 if ($graphic3 = "quest_rating_icon,5") {
     $graphic3 = null;
 }
-def_string $string1 = quest_param($quest1, param_5968);
+def_string $string1 = quest_param($quest1, quest_description);
 def_int $int5 = ~ql4_getprogress($quest1);
-def_int $int6 = quest_param($quest1, param_7855);
+def_int $int6 = quest_param($quest1, quest_length);
 def_int $intarray0(4);
 def_int $intarray1(4);
 def_int $int7 = 0;
@@ -35,7 +35,7 @@ while ($int8 < 12) {
             if ($int7 = 1 & $int5 = 0) {
                 $int5 = -1;
             }
-            $intarray0(calc($int7 - 1)) = enum(stat, int, enum_1482, $stat9);
+            $intarray0(calc($int7 - 1)) = enum(stat, int, stat_to_int, $stat9);
             $intarray1(calc($int7 - 1)) = $int10;
         } else {
             $intarray1(3) = calc($int7 - 3);
@@ -54,7 +54,7 @@ def_quest $quest13 = null;
 while ($int8 < 12) {
     $int12 = ~script2111($quest1, calc($int8 + 1));
     if ($int12 ! -1) {
-        $quest13 = enum(int, quest, enum_2252, $int12);
+        $quest13 = enum(int, quest, ql4_quests, $int12);
         if ($quest13 ! null & ~ql4_getprogress($quest13) ! 2) {
             if ($int5 = 0) {
                 $int5 = -1;
@@ -76,19 +76,19 @@ while ($int8 < 12) {
     $int8 = calc($int8 + 1);
 }
 def_int $int14 = -1;
-if (quest_param($quest1, param_7862) = true & ~ql4_special_requirements($quest1) = false) {
+if (quest_param($quest1, quest_requires_special) = true & ~ql4_special_requirements($quest1) = false) {
     $int14 = 1;
 }
-if (quest_pointsreq($quest1) > 0 & %varplayer_1297 < quest_pointsreq($quest1)) {
+if (quest_pointsreq($quest1) > 0 & %qp < quest_pointsreq($quest1)) {
     $int14 = 1;
 }
-if (quest_param($quest1, param_7859) > 0 & ~comlevel < quest_param($quest1, param_7859)) {
+if (quest_param($quest1, quest_requires_comlevel) > 0 & ~comlevel < quest_param($quest1, quest_requires_comlevel)) {
     $int14 = 1;
 }
-if (quest_param($quest1, param_7861) = true & %varplayerbit_9663 < 1) {
+if (quest_param($quest1, quest_requires_morytania) = true & %morytania_entry_allowed < 1) {
     $int14 = 1;
 }
-if (quest_param($quest1, param_7860) > 0 & ~task_kudos_available < quest_param($quest1, param_7860)) {
+if (quest_param($quest1, quest_requires_kudos) > 0 & ~task_kudos_available < quest_param($quest1, quest_requires_kudos)) {
     $int14 = 1;
 }
 def_int $int15 = 0;
@@ -99,19 +99,19 @@ def_int $int19 = 0;
 def_int $int20 = 0;
 def_int $int21 = 0;
 def_int $int22 = 1;
-def_fontmetrics $fontmetrics23 = fontmetrics_26;
+def_fontmetrics $fontmetrics23 = museo_sans_11pt_regular;
 if (~script6431 = true) {
-    $fontmetrics23 = fontmetrics_28;
+    $fontmetrics23 = museo_sans_13pt_regular;
     $int16 = 300;
 }
 if (compare($string0, null) ! 0 & compare($string0, "") ! 0) {
     cc_create($component0, ^iftype_text, $int15);
     cc_setposition(4, $int19, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setsize(calc(2 * 4), ~script7593($string0, calc($int16 - 2 * 4), fontmetrics_58, enum(fontmetrics, int, enum_8549, fontmetrics_58)), ^setsize_minus, ^setsize_abs);
+    cc_setsize(calc(2 * 4), ~script7593($string0, calc($int16 - 2 * 4), cinzel_18pt_bold, enum(fontmetrics, int, toplevel_v2_font_heights, cinzel_18pt_bold)), ^setsize_minus, ^setsize_abs);
     cc_settext($string0);
-    cc_settextfont(fontmetrics_58);
+    cc_settextfont(cinzel_18pt_bold);
     cc_setcolour(~script10495(0));
-    cc_settextalign(^settextalign_left, ^settextalign_centre, enum(fontmetrics, int, enum_8549, fontmetrics_58));
+    cc_settextalign(^settextalign_left, ^settextalign_centre, enum(fontmetrics, int, toplevel_v2_font_heights, cinzel_18pt_bold));
     $int15 = calc($int15 + 1);
     $int19 = calc($int19 + cc_getheight + 2 * 2);
     cc_create($component0, ^iftype_line, $int15);
@@ -214,7 +214,7 @@ cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 $int15 = calc($int15 + 1);
 .cc_create($component0, ^iftype_text, $int15);
 .cc_setposition(4, calc($int19 + 8), ^setpos_abs_right, ^setpos_abs_top);
-.cc_settext(enum(int, string, enum_13354, quest_param($quest1, param_7855)));
+.cc_settext(enum(int, string, ql4_quest_categories_length, quest_param($quest1, quest_length)));
 .cc_settextfont($fontmetrics23);
 .cc_setcolour(~script10495(3));
 .cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
@@ -277,7 +277,7 @@ if ($int7 > 0) {
         if ($int8 = 3 & $int7 > 4) {
             cc_setgraphic(rs3_icon_additional);
         } else {
-            cc_setgraphic(enum(int, graphic, enum_8548, $intarray0($int8)));
+            cc_setgraphic(enum(int, graphic, stat2icon_medium, $intarray0($int8)));
         }
         $int15 = calc($int15 + 1);
         cc_create($component0, ^iftype_text, $int15);
@@ -288,7 +288,7 @@ if ($int7 > 0) {
             cc_settext("Lvl <tostring($intarray1($int8))>");
         }
         cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-        cc_setsize(calc($int17 + 1), enum(fontmetrics, int, enum_8549, $fontmetrics23), ^setsize_abs, ^setsize_abs);
+        cc_setsize(calc($int17 + 1), enum(fontmetrics, int, toplevel_v2_font_heights, $fontmetrics23), ^setsize_abs, ^setsize_abs);
         cc_settextfont($fontmetrics23);
         cc_setcolour(~script10495(3));
         $int15 = calc($int15 + 1);
