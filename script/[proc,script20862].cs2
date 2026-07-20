@@ -1,0 +1,29 @@
+// 20862
+[proc,script20862](int $int0)(int)
+def_dbrow $dbrow1 = ~script20847;
+if ($dbrow1 = null) {
+    return($int0);
+}
+def_graphic $graphic2 = null;
+switch_int (map_lang) {
+    case 1 :
+        $graphic2 = db_getfield($dbrow1, dbtable_379:col3, 0);
+    case 2 :
+        $graphic2 = db_getfield($dbrow1, dbtable_379:col2, 0);
+    case 3 :
+        $graphic2 = db_getfield($dbrow1, dbtable_379:col4, 0);
+    case default :
+        $graphic2 = db_getfield($dbrow1, dbtable_379:col1, 0);
+}
+~cc_add_layer(interface_1498:com_2, if_getnextsubid(interface_1498:com_2), 0, $int0, ^setpos_abs_centre, ^setpos_abs_top, 544, 98, ^setsize_abs, ^setsize_abs);
+~cc_add_child_graphic(ui_getcategory(if_getnextsubid(interface_1498:com_2)), ui_getdynid(if_getnextsubid(interface_1498:com_2)), 0, 0, ^setpos_abs_centre, ^setpos_abs_top, 0, 24, ^setsize_minus, ^setsize_minus, $graphic2);
+~cc_add_child_graphic(ui_getcategory(if_getnextsubid(interface_1498:com_2)), ui_getdynid(if_getnextsubid(interface_1498:com_2)), 0, 0, ^setpos_abs_centre, ^setpos_abs_top, 0, 24, ^setsize_minus, ^setsize_minus, graphic_36195);
+~cc_add_child_graphic(ui_getcategory(if_getnextsubid(interface_1498:com_2)), ui_getdynid(if_getnextsubid(interface_1498:com_2)), 0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, 200, 24, ^setsize_abs, ^setsize_abs, graphic_36197);
+def_int $int3 = ui_getcategory(if_getnextsubid(interface_1498:com_2));
+def_int $int4 = ui_getdynid(if_getnextsubid(interface_1498:com_2));
+def_int $int5 = db_getfield($dbrow1, dbtable_379:col6, 0);
+~cc_add_child_text($int3, $int4, 0, 1, ^setpos_abs_centre, ^setpos_abs_bottom, 200, 24, ^setsize_abs, ^setsize_abs, dbrow_2099, ~script20864($int5));
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_setontimer("script20863($int3, $int4, $int5)");
+$int0 = calc($int0 + 103);
+return($int0);
