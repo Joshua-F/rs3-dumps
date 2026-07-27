@@ -7,16 +7,26 @@ if (%varplayer_139 = 1) {
     } else {
         $int2 = inv_total(inv_93, %varplayer_135);
     }
+    if (%varplayer_138 ! -1 & stockmarket_isofferempty(%varplayer_138, 0) = false & %varplayer_135 = stockmarket_getofferitem(%varplayer_138, 0)) {
+        $int2 = calc($int2 + (stockmarket_getoffercount(%varplayer_138, 0) - stockmarket_getoffercompletedcount(%varplayer_138, 0)));
+    }
     if ($int0 = 1000) {
         %varclient_84 = $int2;
     } else if ($int1 = 1) {
         %varclient_84 = min($int2, $int0);
-    } else {
+    } else if (calc(^max_32bit_int - $int0 - %varclient_84) >= 0) {
         %varclient_84 = min($int2, calc(%varclient_84 + $int0));
+    } else {
+        %varclient_84 = ^max_32bit_int;
     }
-} else if (%varclient_84 <= calc(^max_32bit_int - $int0)) {
-    %varclient_84 = calc(%varclient_84 + $int0);
 } else {
-    %varclient_84 = ^max_32bit_int;
+    if (%varclient_84 = 1 & $int0 > 1) {
+        $int0 = calc($int0 - 1);
+    }
+    if (calc(^max_32bit_int - $int0 - %varclient_84) >= 0) {
+        %varclient_84 = calc(%varclient_84 + $int0);
+    } else {
+        %varclient_84 = ^max_32bit_int;
+    }
 }
 ~script15038(%varclient_84, %varclient_85, 1);

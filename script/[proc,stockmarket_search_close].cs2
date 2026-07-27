@@ -1,12 +1,16 @@
 // 15047
 [proc,stockmarket_search_close]
-if (compare(%varclient_2250, "") = 0 & compare(%varclient_6788, "") = 0) {
-    if_sethide(false, interface_105:com_345);
-    ~script11704;
+if (string_length(%varclient_6788) = 0) {
+    if (~script20898(0) = true) {
+        return;
+    } else {
+        if_sethide(false, interface_105:com_224);
+        ~script11704;
+    }
 } else {
-    if_settext(escape(%varclient_2250), interface_105:com_335);
-    %varclient_6788 = %varclient_2250;
-    if_sethide(false, interface_105:com_337);
-    if_setonclick("stockmarket_clear_search", interface_105:com_337);
+    if (if_find(interface_105:com_225) = true) {
+        %varclient_6788 = cc_gettext;
+    }
+    ~script20892;
     ~script15054;
 }
