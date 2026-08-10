@@ -8,21 +8,25 @@ def_graphic $graphic6 = null;
 def_achievement $achievement7 = null;
 def_int $int8 = 0;
 def_int $int9 = -1;
-def_int $int10 = 0;
+def_int $int10 = 38;
 def_int $int11 = -1;
+def_int $int12 = 0;
+def_int $int13 = 2;
+def_int $int14 = db_getfield($dbrow1, dbtable_334:col5, 0);
 if (.cc_findbycategory($component0, $int2, 0) = 1 & cc_find($component0, $int4) = true) {
-    $achievement7 = db_getfield($dbrow1, dbtable_334:col2, 0);
+    $achievement7 = db_getfield($dbrow1, dbtable_334:col3, 0);
     $string0 = ~script20131($dbrow1, $achievement7);
     if (~script20306($component0, $achievement7, $string0) = false) {
         cc_delete;
     } else {
         $graphic6 = ~script20307($dbrow1, $int3);
         $int9 = achievement_reqstate($achievement7);
+        if (map_members = false & (achievement_getmembers($achievement7) = true | db_getfield($dbrow1, dbtable_334:col8, 0) = false)) {
+            $int12 = 1;
+        }
         $int11 = ~script20297($achievement7);
-        if ($int11 ! -1) {
-            $int10 = calc(38 + 32);
-        } else {
-            $int10 = 38;
+        if ($int11 ! -1 | $int12 = 1) {
+            $int10 = calc($int10 + 32);
         }
         $int8 = max(40, calc(~script20478($string0, calc(cc_getwidth - $int10), dbrow_2100, 0) + 4));
         cc_setsize(6, $int8, ^setsize_minus, ^setsize_abs);
@@ -32,7 +36,7 @@ if (.cc_findbycategory($component0, $int2, 0) = 1 & cc_find($component0, $int4) 
         }
         .cc_setparam(param_9334, $int8);
         .cc_setparam(param_9336, calc(.cc_param(param_9336) + 1));
-        if (db_getfield($dbrow1, dbtable_334:col5, 0) = 0) {
+        if (db_getfield($dbrow1, dbtable_334:col6, 0) = 0) {
             .cc_setparam(param_9337, calc(.cc_param(param_9337) + 1));
         }
         cc_setonresize(null);
@@ -45,14 +49,21 @@ if (.cc_findbycategory($component0, $int2, 0) = 1 & cc_find($component0, $int4) 
             ~cc_add_child_graphic(~script20173(calc($int5 * 2 + $int4)), 2, 0, ^setpos_abs_left, ^setpos_abs_top, 30, 30, ^setsize_abs, ^setsize_abs, $graphic6);
             ~cc_add_child_text(~script20173(calc($int5 * 3 + $int4)), 2, 0, ^setpos_abs_left, ^setpos_abs_bottom, 30, 30, ^setsize_abs, ^setsize_abs, dbrow_2141, ~script20305($dbrow1));
             cc_settextalign(^settextalign_centre, ^settextalign_bottom, 0);
-            cc_settextfont(fontmetrics_83);
+            cc_settextfont(fontmetrics_207);
         } else {
             ~cc_add_child_graphic(~script20173(calc($int5 * 2 + $int4)), 2, 0, ^setpos_abs_left, ^setpos_abs_centre, 30, 30, ^setsize_abs, ^setsize_abs, $graphic6);
         }
-        if ($int11 ! -1) {
-            ~cc_add_child_graphic(~script20173(calc($int5 * 5 + $int4)), 2, 0, ^setpos_abs_right, ^setpos_abs_centre, 32, 32, ^setsize_abs, ^setsize_abs, "rs3_icon_info_32px,0");
+        if ($int12 = 1) {
+            ~cc_add_child_graphic(~script20173(calc($int5 * 5 + $int4)), $int13, 0, ^setpos_abs_right, ^setpos_abs_centre, 30, 30, ^setsize_abs, ^setsize_abs, "rs3_icon_members_32px,0");
+            cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, \"rs3_icon_members_32px,1\")");
+            cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, \"rs3_icon_members_32px,0\")");
+            cc_setonmouserepeat("script8799(\"Membership Required\", event_com, event_comsubid)");
+            $int13 = calc($int13 + (30 + 4));
+        } else if ($int11 ! -1) {
+            ~cc_add_child_graphic(~script20173(calc($int5 * 5 + $int4)), $int13, 0, ^setpos_abs_right, ^setpos_abs_centre, 32, 32, ^setsize_abs, ^setsize_abs, "rs3_icon_info_32px,0");
             cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, \"rs3_icon_info_32px,1\")");
             cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, \"rs3_icon_info_32px,0\")");
+            $int13 = calc($int13 + (32 + 4));
             if ($int11 > 0) {
                 cc_setop(2, "More Details");
                 cc_setonop("script20303(event_com, $achievement7, $int11)");
@@ -65,14 +76,19 @@ if (.cc_findbycategory($component0, $int2, 0) = 1 & cc_find($component0, $int4) 
                 cc_setonmouserepeat("script20299(event_com, event_comsubid, $achievement7)");
             }
         }
+        if ($int14 = 1) {
+            $int10 = calc(38 + 32 + 30 + 2 * 4);
+            ~cc_add_child_graphic(~script20173(calc($int5 * 6 + $int4)), 36, 0, ^setpos_abs_right, ^setpos_abs_centre, 32, 32, ^setsize_abs, ^setsize_abs, graphic_36309);
+            ~script3537("Combat Blessing task");
+        }
         ~cc_add_child_text(~script20173(calc($int5 * 4 + $int4)), 36, 0, ^setpos_abs_left, ^setpos_abs_centre, $int10, 4, ^setsize_minus, ^setsize_minus, dbrow_2100, $string0);
         if ($int9 = -2) {
             cc_setcolour(0x80e934);
         }
     }
 }
-if ($component0 = interface_1479:com_19) {
-    if_setontimer("script20308($component0, interface_1479:com_18, interface_1479:com_20, event_com)", interface_1479:com_6);
+if ($component0 = interface_1479:com_20) {
+    if_setontimer("script20308($component0, interface_1479:com_19, interface_1479:com_21, event_com)", interface_1479:com_6);
 } else {
     if_setontimer("script20308($component0, interface_1361:com_20, interface_1361:com_22, event_com)", interface_1361:com_6);
 }

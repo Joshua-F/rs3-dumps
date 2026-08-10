@@ -24,10 +24,6 @@ switch_struct ($struct0) {
         if (%varplayerbit_30359 > 0) {
             $string0 = ~script12202($string0, dbrow_520, %varplayerbit_30359);
         }
-    case struct_14714 :
-        if (%varplayerbit_30362 > 0) {
-            $string0 = ~script12202($string0, dbrow_536, %varplayerbit_30362);
-        }
     case struct_14712 :
         if (%varplayerbit_30332 > 0) {
             $string0 = ~script12202($string0, dbrow_511, -1);
@@ -291,6 +287,14 @@ switch_struct ($struct0) {
         $string0 = ~script18604($struct0, $string0, $int1);
     case struct_37205 :
         $string0 = ~script18605($struct0, $string0, $int1);
+    case struct_14715 :
+        $string0 = ~script21113($struct0, $string0, $int1);
+    case struct_14716 :
+        $string0 = ~script21114($struct0, $string0, $int1);
+    case struct_14714 :
+        $string0 = ~script21115($struct0, $string0, $int1);
+    case struct_14718 :
+        $string0 = ~script21116($struct0, $string0, $int1);
 }
 def_int $int3 = 0;
 def_int $int4 = 0;
@@ -353,6 +357,8 @@ if ($struct0 ! null) {
             $string1 = "<$string1><br><col=969696>Maximum stacks: <tostring(10)>.</col>";
         case struct_33650 :
             $string1 = "<$string1><br><col=969696>Damage dealt has diminishing returns in PvP.";
+        case struct_14718 :
+            $string1 = "<$string1><br><col=969696>Maximum stacks: <tostring(~script21117)>.</col>";
     }
     if (struct_param($struct0, param_2806) = 4 & struct_param($struct0, param_2880) ! 5 & struct_param($struct0, param_2879) > 0) {
         $string1 = "<$string1><br><col=969696>Damage scales up to level <tostring(struct_param($struct0, param_2879))>.</col>";
@@ -443,12 +449,16 @@ switch_struct ($struct0) {
         $string0 = ~script17708($string0, struct_48340);
     case struct_48330 :
         $string0 = ~script17708($string0, struct_48345);
-        $string0 = "<$string0><br><br><col=969696>Life points cap: <tostring_localised(30000, true)>.</col>";
+        if (~script20977 = false) {
+            $string0 = "<$string0><br><br><col=969696>Life points cap: <tostring_localised(30000, true)>.</col>";
+        }
     case struct_48331 :
         $string0 = ~script17708($string0, struct_48343);
     case struct_49072 :
         $string0 = ~script17708($string0, struct_49074);
         $string0 = "<$string0><br><br><col=969696>Maximum stacks: <tostring_localised(200, true)>.</col>";
+    case struct_14718 :
+        $string0 = ~script17708($string0, struct_3636);
 }
 def_string $string2 = "";
 switch_struct ($struct0) {
@@ -551,6 +561,10 @@ switch_struct ($struct0) {
     case struct_19253 :
         if (%varplayerbit_30341 > 0) {
             $string2 = "<$string2><br><~script18553(dbrow_529, %varplayerbit_30341)>";
+        }
+    case struct_14714 :
+        if (%varplayerbit_30362 > 0) {
+            $string2 = "<$string2><br><~script18553(dbrow_536, %varplayerbit_30362)>";
         }
 }
 if (string_length($string2) > 0) {
