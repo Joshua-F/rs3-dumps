@@ -1,6 +1,6 @@
 // 20250
 [clientscript,script20250]
-cc_deleteall(interface_1442:com_15);
+cc_deleteall(interface_1442:com_17);
 def_dbrow $dbrow0 = ~script20117(2);
 if ($dbrow0 = null) {
     return;
@@ -8,7 +8,7 @@ if ($dbrow0 = null) {
 def_dbrow $dbrow1 = db_getfield($dbrow0, dbtable_326:col12, 0);
 def_int $int2 = 0;
 def_int $int3 = db_getfieldcount($dbrow1, dbtable_333:col0);
-def_int $int4 = if_getheight(interface_1442:com_15);
+def_int $int4 = if_getheight(interface_1442:com_17);
 def_int $int5 = calc(($int4 - 4 * ($int3 - 1)) / $int3);
 def_int $int6 = 0;
 def_int $int7 = scale(32, 36, calc($int5 - 4));
@@ -30,7 +30,7 @@ while ($int2 < $int3) {
     } else {
         $dbrow11 = dbrow_2099;
     }
-    ~if_add_child_layer(interface_1442:com_15, $int2, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, $int5, ^setsize_minus, ^setsize_abs);
+    ~if_add_child_layer(interface_1442:com_17, $int2, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, $int5, ^setsize_minus, ^setsize_abs);
     $int6 = cc_getwidth;
     ~script16109($int2, 1, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, $int2, false);
     ~script17950($int2, 2, 4, 4, ^setpos_abs_left, ^setpos_abs_top, $int7, 8, ^setsize_abs, ^setsize_minus, $obj12, 1);
@@ -57,7 +57,7 @@ if ($int13 = calc($int3 - 1)) {
 } else {
     $string0 = "Earn <tostring_localised(calc($int9 - $int8), true)> points to unlock the next trophy";
 }
-if_settext($string0, interface_1442:com_11);
+if_settext($string0, interface_1442:com_13);
 def_model $model16 = null;
 def_int $int17 = -1;
 def_material $material18 = null;
@@ -69,16 +69,23 @@ def_int $int23 = -1;
 def_int $int24 = -1;
 def_int $int25 = -1;
 $model16, $int17, $material18, $material19, $int20, $int21, $int22, $int23, $int24, $int25 = ~script21087($obj12);
-if_setmodel($model16, interface_1442:com_12);
-if_setmodelzoom($int17, interface_1442:com_12);
+if_setmodel($model16, interface_1442:com_14);
+if_setmodelzoom($int17, interface_1442:com_14);
 if ($material18 ! null & $material19 ! null) {
-    if_setretex(1, $material18, $material19, interface_1442:com_12);
+    if_setretex(1, $material18, $material19, interface_1442:com_14);
 }
 if ($int20 ! -1 & $int21 ! -1) {
-    if_setrecol(1, $int20, $int21, interface_1442:com_12);
+    if_setrecol(1, $int20, $int21, interface_1442:com_14);
     if ($int22 ! -1 & $int23 ! -1) {
-        if_setrecol(2, $int22, $int23, interface_1442:com_12);
+        if_setrecol(2, $int22, $int23, interface_1442:com_14);
     }
 }
-if_setposition($int24, $int25, ^setpos_abs_centre, ^setpos_abs_centre, interface_1442:com_12);
-if_settext("Trophies are available once the League ends.", interface_1442:com_13);
+if_setposition($int24, $int25, ^setpos_abs_centre, ^setpos_abs_centre, interface_1442:com_14);
+if_settext("Trophies are available once the League ends.", interface_1442:com_15);
+def_string $string2 = "You have already set your nominated account for this league, you cannot change it again.";
+if (%varplayer_13541 = 2) {
+    if_setenabled(false, interface_1442:com_10);
+    if_setonop("script15194($string2, event_com)", interface_1442:com_10);
+} else {
+    if_setenabled(true, interface_1442:com_10);
+}
