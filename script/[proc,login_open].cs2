@@ -4,27 +4,27 @@ def_int $int1 = ~login_getreply;
 if ($int1 = -3 & $int0 ! 10 | $int1 = 21 | $int1 = 1) {
     return;
 }
-if_settext(~script1346(%varclient_2576), interface_744:com_111);
-if_settext(~script2949(%varclient_2577), interface_744:com_134);
-if (if_gethide(interface_744:com_319) = false) {
+if_settext(~script1346(%loginscreen_username), loginscreen:toggle_remember_username_login);
+if_settext(~script2949(%loginscreen_password), loginscreen:login_button_disabled);
+if (if_gethide(loginscreen:recover_main) = false) {
     ~login_setfocus(113);
-    %varclient_1099 = string_length(%varclient_6896);
-    ~script3237(interface_744:com_338, interface_744:com_339, interface_744:com_340, %varclient_6896, 113, fontmetrics_212);
-} else if (if_gethide(interface_744:com_147) = false) {
+    %login_caret = string_length(%loginscreen_recovery_username);
+    ~script3237(loginscreen:popup_content_layer_2, loginscreen:popup_background, loginscreen:popup_content, %loginscreen_recovery_username, 113, notosans_17);
+} else if (if_gethide(loginscreen:auth_input_group_graphics) = false) {
     ~login_setfocus(114);
-    %varclient_1099 = string_length(%varclient_4192);
-    ~script3237(interface_744:com_164, interface_744:com_165, interface_744:com_166, %varclient_4192, 114, fontmetrics_212);
-} else if (if_gethide(interface_744:com_93) = false) {
-    if (string_length(%varclient_2576) > 0) {
+    %login_caret = string_length(%loginscreen_totp_auth);
+    ~script3237(loginscreen:login_button_auth_layer, loginscreen:auth_cant_log_in, loginscreen:auth_cant_log_in_text, %loginscreen_totp_auth, 114, notosans_17);
+} else if (if_gethide(loginscreen:username_input_group_graphic) = false) {
+    if (string_length(%loginscreen_username) > 0) {
         ~login_setfocus(101);
     } else {
         ~login_setfocus(100);
     }
-    if (%varclient_174 = 100) {
-        %varclient_1099 = string_length(%varclient_2576);
-        ~script3237(interface_744:com_110, interface_744:com_111, interface_744:com_112, %varclient_2576, 100, fontmetrics_212);
+    if (%loginscreen_focus = 100) {
+        %login_caret = string_length(%loginscreen_username);
+        ~script3237(loginscreen:username_options, loginscreen:toggle_remember_username_login, loginscreen:toggle_hide_username_login, %loginscreen_username, 100, notosans_17);
     } else {
-        %varclient_1099 = string_length(~script2949(%varclient_2577));
-        ~script3237(interface_744:com_133, interface_744:com_134, interface_744:com_135, ~script2949(%varclient_2577), 101, fontmetrics_212);
+        %login_caret = string_length(~script2949(%loginscreen_password));
+        ~script3237(loginscreen:login_button_graphic, loginscreen:login_button_disabled, loginscreen:login_button, ~script2949(%loginscreen_password), 101, notosans_17);
     }
 }
