@@ -1483,6 +1483,9 @@ readyanim=seq_8737,seq_6088
 [bas_351]
 readyanim=seq_8737,seq_6088
 
+[bas_352]
+readyanim=seq_38085,null
+
 [bas_353]
 readyanim=seq_2715,seq_2715
 
