@@ -16,7 +16,7 @@ def_int $int16 = 0;
 def_boolean $boolean17 = ~script3085($int2);
 def_int $int18 = 0;
 def_int $int19 = 0;
-if ($int3 > max(3, %varplayer_7990) & $boolean17 = false) {
+if ((~is_mobile_client = true & $int3 > 3 | ~is_mobile_client = false & $int2 > ~script6238($struct4)) & $boolean17 = false) {
     while ($int12 < $int3) {
         $int11, $string0 = unknown_command_28($int12);
         if ($int11 > 1) {
@@ -29,8 +29,8 @@ if ($int3 > max(3, %varplayer_7990) & $boolean17 = false) {
         }
         $int12 = calc($int12 + 1);
     }
-    $int7 = calc(struct_param($struct4, param_7276) * $int3 + 6 + struct_param($struct4, param_7265));
-    $int10 = calc(struct_param($struct4, param_7276) * $int10 + 6 + struct_param($struct4, param_7265));
+    $int7 = calc(struct_param($struct4, param_7276) * $int3 + 3 + struct_param($struct4, param_7265));
+    $int10 = calc(struct_param($struct4, param_7276) * $int10 + 3 + struct_param($struct4, param_7265));
 } else {
     $int6 = ~script13394($int6, -1, $int2, $struct4);
     if (%varclient_6403 ! 0 & $int6 > 200) {
@@ -50,7 +50,7 @@ if ($int3 > max(3, %varplayer_7990) & $boolean17 = false) {
             }
         }
     }
-    $int7 = calc(struct_param($struct4, param_7276) * $int13 + struct_param($struct4, param_7265) + $int19);
+    $int7 = calc(struct_param($struct4, param_7276) * $int13 + struct_param($struct4, param_7265) + $int19 + struct_param($struct4, param_9478));
 }
 if ($int9 > 0) {
     $int9 = max($int9, $int6);
@@ -74,7 +74,7 @@ if (~script6431 = true) {
 if (calc($int1 + $int7 + $int10) > calc($int24 + $int21)) {
     if (calc($int7 + $int10) < calc($int24 / 2)) {
         $int1 = max($int21, min($int1, calc($int24 - $int7 - $int10 - 10 + $int21)));
-    } else {
+    } else if (~script6431 = true) {
         if ($int7 < calc($int24 / 2 - 10)) {
             $int1 = max($int21, min($int1, calc($int24 - max($int7, $int10) - 10 + $int21)));
         } else {
@@ -83,6 +83,13 @@ if (calc($int1 + $int7 + $int10) > calc($int24 + $int21)) {
         $int8 = $int7;
         $int7 = min($int7, calc($int24 / 2 - 10));
         $int6 = calc($int6 + 16);
+    } else {
+        if ($int7 > calc($int24 - 10)) {
+            $int8 = $int7;
+            $int7 = calc($int24 - 10);
+            $int6 = calc($int6 + 16);
+        }
+        $int1 = calc($int24 - 5 - $int7);
     }
 }
 if (~script6431 = true) {
