@@ -12701,13 +12701,6 @@ readyanim=seq_16041,null
 [bas_2388]
 readyanim=seq_16042,null
 
-// 2389
-[bas_2389]
-walkanim_b=seq_820
-walkanim_l=seq_821
-walkanim_r=seq_822
-readyanim=seq_15907,seq_819
-
 // 2390
 [bas_2390]
 readyanim_l=seq_15988
@@ -19136,6 +19129,13 @@ readyanim=seq_25410,seq_25415
 // 3346
 [bas_3346]
 readyanim=seq_25442,null
+
+// 3347
+[bas_3347]
+walkanim_b=seq_820
+walkanim_l=seq_821
+walkanim_r=seq_822
+readyanim=seq_38099,seq_819
 
 // 3348
 [bas_3348]
