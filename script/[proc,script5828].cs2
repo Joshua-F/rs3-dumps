@@ -1098,6 +1098,34 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                                 $int44 = ~script7235("Data recovered: <tostring($int17)>/<tostring($int34)>", $string3, $struct2, $component3, $component4, $int44);
                             }
                         }
+                    case category_5813 :
+                        $int17 = min(max(scale(%varplayerbit_62039, 1000, 100), 0), 100);
+                        $string2 = "<col=ffffff>";
+                        $string12 = tostring($int17);
+                        if ($int17 <= 50) {
+                            $string2 = "<col=ff0000>";
+                            $string12 = "<$string2><$string12><$string1>%";
+                        } else if ($int17 < 100) {
+                            $string2 = "<col=FFA500>";
+                            $string12 = "<$string2><$string12><$string1>%";
+                        } else {
+                            $string2 = "<col=00ff00>";
+                            $string12 = "Full";
+                            $string12 = "<$string2><$string12><$string1>";
+                        }
+                        $int44 = ~script7235("Imaging status: <$string12>", $string3, $struct2, $component3, $component4, $int44);
+                        if (%varplayerbit_62056 > 0) {
+                            $dbrow46 = null;
+                            db_find(dbtable_388:col0, %varplayerbit_62056);
+                            $dbrow46 = db_findnext;
+                            if ($dbrow46 ! null) {
+                                $string12 = db_getfield($dbrow46, dbtable_388:col4, 0);
+                                $int44 = ~script7235("Attuned mural: <$string12>", $string3, $struct2, $component3, $component4, $int44);
+                            }
+                        }
+                    case category_5814 :
+                        $int34 = inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_62023);
+                        $int44 = ~script7236("Charges remaining", $int34, $int7, "", $struct2, $component3, $component4, $int44);
                     case category_4359 :
                         if (%varclient_5121 = inv_90 & %varclient_6492 = 1) {
                             $int44 = ~script7235("Name: <~script1004($obj0)>", $string3, $struct2, $component3, $component4, $int44);
@@ -1185,7 +1213,7 @@ if (%varclient_5121 ! null & %varclient_5122 >= 0) {
                         $int44 = ~script7235("Charges remaining: <$string12><tostring_localised(inv_getvar(%varclient_5121, %varclient_5122, varobjectbit_18550), true)>", $string3, $struct2, $component3, $component4, $int44);
                     case category_35 :
                         $string12 = tostring(enum(obj, int, enum_6560, $obj0));
-                        if ((oc_param($obj0, param_485) = 1265 | oc_param($obj0, param_485) = 1300) & stat_base(woodcutting) >= struct_param(struct_28972, param_2212)) {
+                        if ((oc_param($obj0, param_485) = 1265 | oc_param($obj0, param_485) = 1300 | oc_param($obj0, param_485) = 1300) & stat_base(woodcutting) >= struct_param(struct_28972, param_2212)) {
                             $string12 = tostring(calc(enum(obj, int, enum_6560, $obj0) + 2));
                         }
                         $int44 = ~script7235("Cutting power: Tier <$string12>", $string3, $struct2, $component3, $component4, $int44);
