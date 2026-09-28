@@ -12701,6 +12701,10 @@ readyanim=seq_16041,null
 [bas_2388]
 readyanim=seq_16042,null
 
+// 2389
+[bas_2389]
+readyanim=seq_37685,null
+
 // 2390
 [bas_2390]
 readyanim_l=seq_15988
@@ -30596,10 +30600,10 @@ walkanim_l=seq_36744
 walkanim_r=seq_36744
 walkturn_l=seq_36744
 walkturn_r=seq_36744
-runanim=seq_36745
-runanim_b=seq_36745
-runanim_l=seq_36745
-runanim_r=seq_36745
+runanim=seq_38179
+runanim_b=seq_38179
+runanim_l=seq_38179
+runanim_r=seq_38179
 readyanim=seq_37778,null
 
 // 4901
@@ -30707,4 +30711,100 @@ readyanim=seq_37961,seq_37961
 // 4917
 [bas_4917]
 readyanim=seq_37965,seq_37952
+
+// 4918
+[bas_4918]
+readyanim=seq_38119,null
+
+// 4919
+[bas_4919]
+readyanim=seq_38129,seq_38130
+
+// 4920
+[bas_4920]
+readyanim=seq_38127,seq_38128
+
+// 4921
+[bas_4921]
+readyanim=seq_38134,seq_38135
+
+// 4922
+[bas_4922]
+runanim=seq_38152
+readyanim=seq_38151,null
+
+// 4923
+[bas_4923]
+readyanim=seq_38163,seq_38164
+
+// 4924
+[bas_4924]
+readyanim_l=seq_38191
+readyanim_r=seq_38191
+walkanim_b=seq_38191
+walkanim_l=seq_38191
+walkanim_r=seq_38191
+walkturn_l=seq_38191
+walkturn_r=seq_38191
+runanim=seq_38192
+hillrotate=32,32
+readyanim=seq_38190,seq_38191
+
+// 4925
+[bas_4925]
+hillrotate=32,32
+readyanim=seq_38202,null
+
+// 4926
+[bas_4926]
+readyanim_l=seq_38193
+readyanim_r=seq_38193
+walkanim_b=seq_38193
+walkanim_l=seq_38193
+walkanim_r=seq_38193
+walkturn_l=seq_38193
+walkturn_r=seq_38193
+runanim=seq_38194
+hillrotate=32,32
+readyanim=seq_38190,seq_38193
+
+// 4927
+[bas_4927]
+readyanim_l=seq_38215
+readyanim_r=seq_38215
+walkturn_l=seq_38215
+walkturn_r=seq_38215
+walkanim_l=seq_38215
+walkanim_r=seq_38215
+runanim=seq_38204
+hillrotate=32,32
+readyanim=seq_38205,seq_38215
+
+// 4928
+[bas_4928]
+readyanim_l=seq_38215
+readyanim_r=seq_38215
+walkturn_l=seq_38215
+walkturn_r=seq_38215
+walkanim_l=seq_38215
+walkanim_r=seq_38215
+runanim=seq_38216
+hillrotate=32,32
+readyanim=null,seq_38215
+randomreadyanim=seq_38217,90
+randomreadyanim=seq_38219,10
+
+// 4929
+[bas_4929]
+readyanim_l=seq_38223
+readyanim_r=seq_38223
+walkturn_l=seq_38223
+walkturn_r=seq_38223
+walkanim_l=seq_38223
+walkanim_r=seq_38223
+runanim=seq_38224
+hillrotate=32,32
+readyanim=null,seq_38223
+randomreadyanim=seq_38217,90
+randomreadyanim=seq_38219,10
 
