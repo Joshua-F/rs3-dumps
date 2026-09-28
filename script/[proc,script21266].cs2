@@ -1,0 +1,28 @@
+[proc,script21266](int $int0)(int)
+def_dbrow $dbrow1 = ~script20977;
+if ($dbrow1 = null) {
+    return($int0);
+}
+def_graphic $graphic2 = null;
+switch_int (map_lang) {
+    case 1 :
+        $graphic2 = db_getfield($dbrow1, marketplace_store_sale_data:col3, 0);
+    case 2 :
+        $graphic2 = db_getfield($dbrow1, marketplace_store_sale_data:col2, 0);
+    case 3 :
+        $graphic2 = db_getfield($dbrow1, marketplace_store_sale_data:col4, 0);
+    case default :
+        $graphic2 = db_getfield($dbrow1, marketplace_store_sale_data:col1, 0);
+}
+~cc_add_layer(marketplace_store:items_holder, if_getnextsubid(marketplace_store:items_holder), 0, $int0, ^setpos_abs_centre, ^setpos_abs_top, 544, 98, ^setsize_abs, ^setsize_abs);
+~cc_add_child_graphic(ui_getcategory(if_getnextsubid(marketplace_store:items_holder)), ui_getdynid(if_getnextsubid(marketplace_store:items_holder)), 0, 0, ^setpos_abs_centre, ^setpos_abs_top, 0, 24, ^setsize_minus, ^setsize_minus, $graphic2);
+~cc_add_child_graphic(ui_getcategory(if_getnextsubid(marketplace_store:items_holder)), ui_getdynid(if_getnextsubid(marketplace_store:items_holder)), 0, 0, ^setpos_abs_centre, ^setpos_abs_top, 0, 24, ^setsize_minus, ^setsize_minus, marketplace_store_sale_header_frame);
+~cc_add_child_graphic(ui_getcategory(if_getnextsubid(marketplace_store:items_holder)), ui_getdynid(if_getnextsubid(marketplace_store:items_holder)), 0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, 200, 24, ^setsize_abs, ^setsize_abs, "marketplace_store_timer_panel,0");
+def_int $int3 = ui_getcategory(if_getnextsubid(marketplace_store:items_holder));
+def_int $int4 = ui_getdynid(if_getnextsubid(marketplace_store:items_holder));
+def_int $int5 = db_getfield($dbrow1, marketplace_store_sale_data:col6, 0);
+~cc_add_child_text($int3, $int4, 0, 1, ^setpos_abs_centre, ^setpos_abs_bottom, 200, 24, ^setsize_abs, ^setsize_abs, text_body_large, ~script21268($int5));
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_setontimer("script21267($int3, $int4, $int5)");
+$int0 = calc($int0 + 103);
+return($int0);

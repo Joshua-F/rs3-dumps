@@ -1,13 +1,15 @@
-[proc,script21115](struct $struct0, string $string0, int $int1)(string)
-def_int $int2 = 16;
-def_int $int3 = 5;
-def_int $int4 = 20;
-if (~script20986 = 0) {
-    $string0 = "<$string0><br>-	Reduce the cooldown of <sprite=14222><nbsp><col=ffffff><struct_param(struct_14713, param_2794)></col> and <sprite=15035><nbsp><col=ffffff><struct_param(struct_45045, param_2794)></col> by <col=ffffff><~script15973($int3, 1)></col> each time you are hit by an attack.";
-    $string0 = "<$string0><br>- <~script17710($int2)>.";
+[proc,script21115]
+def_boolean $boolean0 = ~script21116;
+if ($boolean0 = false) {
+    if_setenabled(false, stockmarket_collectall:send_to_bank);
+    if_setenabled(false, stockmarket_collectall:send_to_inv);
+    if_setonvartransmit(null, stockmarket_collectall:send_to_bank);
+    if_setonvartransmit(null, stockmarket_collectall:send_to_inv);
+    if_text_setcolour(~script10495(25), 0, stockmarket_collectall:send_to_inv);
+    if_text_setcolour(~script10495(26), 0, stockmarket_collectall:send_to_bank);
 } else {
-    $string0 = "<$string0><br>-	Reduce the cooldown of all other abilities by <col=ffffff><~script15973($int4, 1)></col>.";
-    $string0 = "<$string0><br>-	Reduce the cooldown of <sprite=14222><nbsp><col=ffffff><struct_param(struct_14713, param_2794)></col> and <sprite=15035><nbsp><col=ffffff><struct_param(struct_45045, param_2794)></col> by <col=ffffff><~script15973($int3, 1)></col> each time you are hit by an attack.";
-    $string0 = "<$string0><br>- <~script17710($int2)>.";
+    if_setenabled(true, stockmarket_collectall:send_to_bank);
+    if_setenabled(true, stockmarket_collectall:send_to_inv);
+    if_text_setcolour(~script10495(22), 0, stockmarket_collectall:send_to_inv);
+    if_text_setcolour(~script10495(23), 0, stockmarket_collectall:send_to_bank);
 }
-return($string0);

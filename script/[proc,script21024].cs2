@@ -1,5 +1,21 @@
-[proc,script21024](int $int0)(boolean)
-if ($int0 = 37 | $int0 = 38) {
-    return(true);
+[proc,script21024](int $int0, dbrow $dbrow1)
+if ($dbrow1 = null) {
+    return;
 }
-return(false);
+if (db_getrowtable($dbrow1) ! locality_ui_info) {
+    error("Incorrect dbrow type provided");
+    return;
+}
+if (~script20133($int0) = true) {
+    return;
+}
+def_int $int2 = 0;
+def_int $int3 = db_getfieldcount($dbrow1, locality_ui_info:col1);
+def_component $component4 = null;
+def_graphic $graphic5 = null;
+def_graphic $graphic6 = null;
+while ($int2 < $int3) {
+    $component4, $graphic5, $graphic6 = db_getfield($dbrow1, locality_ui_info:col1, $int2);
+    ~script21022($component4, $graphic5);
+    $int2 = calc($int2 + 1);
+}

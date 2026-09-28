@@ -1,13 +1,7 @@
-[proc,script20878](int $int0, int $int1)
-def_string $string0 = "";
-def_string $string1 = ~script20879($int0, $int1);
-if (%varplayer_135 = null) {
-    $string0 = "";
-} else if (%varplayer_9464 <= 0) {
-    $string0 = "Loading...";
-} else if (string_length($string1) > 0) {
-    $string0 = "Buy limit per 4 hours: <tostring(%varplayer_13484)> / <tostring_localised(%varplayer_9464, true)> (<$string1>)";
-} else {
-    $string0 = "Buy limit per 4 hours: <tostring_localised(%varplayer_9464, true)>";
+[proc,script20878](int $int0, dbrow $dbrow1)(boolean)
+def_int $int2 = ~script20141($int0, 0);
+def_int $int3 = db_getfield($dbrow1, league_relic_tier:col0, 0);
+if ($int2 < $int3) {
+    return(true);
 }
-if_settext($string0, interface_105:com_141);
+return(false);

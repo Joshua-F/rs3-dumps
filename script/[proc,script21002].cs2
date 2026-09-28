@@ -1,9 +1,12 @@
-[proc,script21002](obj $obj0)(int)
-def_int $int1 = 0;
-if (enum_hasoutput(obj, enum_13250, $obj0) = true) {
-    $int1 = enum_getreverseindex(obj, int, enum_13250, $obj0, 0);
-    if ($int1 > -1 & $int1 < 23) {
-        return(inv_getnum(inv_1011, $int1));
-    }
+[proc,script21002](dbrow $dbrow0)(boolean)
+def_var_int $var_int1 = db_getfield($dbrow0, construction_house_furniture_skin:col3, 0);
+def_int $int2 = db_getfield($dbrow0, construction_house_furniture_skin:col4, 0);
+if ($var_int1 = null) {
+    ~error("No unlock var defined on <db_getfield($dbrow0, construction_house_furniture_skin:col0, 0)>");
+    return(false);
 }
-return(0);
+def_int $int3 = var_reference_get($var_int1);
+if ($int3 >= $int2) {
+    return(true);
+}
+return(false);

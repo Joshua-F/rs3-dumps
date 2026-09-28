@@ -1,4 +1,12 @@
-[proc,script21076]
-if (%varclient_8475 = null) {
-    %varclient_8475 = ~script15039(%varplayerbit_58391);
+[proc,script21076](dbrow $dbrow0, int $int1)(string)
+if (%leagues_parent_relics_selected_type = 1) {
+    switch_dbrow ($dbrow0) {
+        case league_2_combat_relic_tier_4 :
+            return("God Tier 1");
+        case league_2_combat_relic_tier_5, league_2_combat_relic_tier_6, league_2_combat_relic_tier_7 :
+            return("Tier <tostring($int1)>");
+        case league_2_combat_relic_tier_8 :
+            return("God Tier 2");
+    }
 }
+return("Tier <tostring(calc($int1 + 1))>");

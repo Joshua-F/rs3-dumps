@@ -1,16 +1,9 @@
-[proc,script20953](int $int0, dbrow $dbrow1, int $int2)(boolean)
-def_boolean $boolean3 = db_getfield($dbrow1, dbtable_328:col3, 0);
-if ($boolean3 = false) {
-    return(true);
-}
-if (map_members = true) {
-    return(true);
-}
-if (playermember = false) {
-    if ($int2 = 1) {
-        ~script1296("You need to be a member to unlock this relic.");
+[proc,script20953](obj $obj0)(int)
+def_int $int1 = 0;
+if (enum_hasoutput(obj, league_herb_charm_bag_contents, $obj0) = true) {
+    $int1 = enum_getreverseindex(obj, int, league_herb_charm_bag_contents, $obj0, 0);
+    if ($int1 > -1 & $int1 < 23) {
+        return($int1);
     }
-} else if ($int2 = 1) {
-    ~script1296("You need to be on a members' world to unlock this relic.");
 }
-return(false);
+return(-1);
