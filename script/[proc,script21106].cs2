@@ -1,9 +1,13 @@
 [proc,script21106](int $int0, int $int1)
-cc_createchild(^iftype_line, $int0, $int1);
-cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(0, 0, ^setsize_abs, ^setsize_minus);
-~script11024(7);
-cc_createchild(^iftype_line, $int0, calc($int1 + 1));
-cc_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(0, 1, ^setsize_abs, ^setsize_minus);
-~script11024(8);
+def_string $string0 = "";
+def_string $string1 = ~script21107($int0, $int1);
+if (%stock_offeritem = null) {
+    $string0 = "";
+} else if (%stock_buylimit <= 0) {
+    $string0 = "Loading...";
+} else if (string_length($string1) > 0) {
+    $string0 = "Buy limit per 4 hours: <tostring(%stock_buylimit_current)> / <tostring_localised(%stock_buylimit, true)> (<$string1>)";
+} else {
+    $string0 = "Buy limit per 4 hours: <tostring_localised(%stock_buylimit, true)>";
+}
+if_settext($string0, stockmarket:offeritem_buylimit);

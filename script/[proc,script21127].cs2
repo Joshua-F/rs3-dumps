@@ -1,0 +1,56 @@
+[proc,script21127](int $int0)(boolean)
+if (string_length(%stock_search_save) > 0) {
+    return(false);
+}
+if (%toplevel_v2_parent_last_parent_tab_id_grand_exchange ! 1) {
+    return(false);
+}
+if (%stock_search_history_1 = null & inv_size(stock_favourites) = inv_freespace(stock_favourites)) {
+    return(false);
+}
+if_sethide(true, stockmarket:search_warning_layer);
+cc_deleteall(stockmarket:search_build);
+cc_deleteall(stockmarket:search_obj);
+if_settext("", stockmarket:search_input);
+def_component $component1 = stockmarket:search_build;
+def_component $component2 = stockmarket:search_obj;
+def_component $component3 = stockmarket:search_scrolling;
+def_int $int4 = 0;
+def_int $int5 = 5;
+def_int $int6 = 0;
+def_int $int7 = if_getwidth($component3);
+def_int $int8 = calc(($int7 - 4 * 5) / 3);
+def_int $int9 = 50;
+def_int $int10 = calc(50 / 2 - 32 / 2);
+def_int $int11 = calc($int8 - 36 - 5 * 2);
+if (%stock_search_history_1 ! null) {
+    $int5, $int6 = ~script21128($component1, $int5, $int6, $int9, "Recent searches:");
+    $int5, $int6, $int4 = ~script21129($component1, $component2, $int5, $int6, $int8, $int9, %stock_offeritem, %stock_search_history_1, $int10, $int11, 1);
+    $int5, $int6, $int4 = ~script21129($component1, $component2, $int5, $int6, $int8, $int9, %stock_offeritem, %stock_search_history_2, $int10, $int11, 1);
+    $int5, $int6, $int4 = ~script21129($component1, $component2, $int5, $int6, $int8, $int9, %stock_offeritem, %stock_search_history_3, $int10, $int11, 1);
+}
+def_int $int12 = 0;
+def_int $int13 = inv_size(stock_favourites);
+if (inv_freespace(stock_favourites) < $int13) {
+    $int5, $int6 = ~script21128($component1, $int5, $int6, $int9, "Favourites:");
+    while ($int12 < $int13) {
+        $int5, $int6, $int4 = ~script21129($component1, $component2, $int5, $int6, $int8, $int9, %stock_offeritem, inv_getobj(stock_favourites, $int12), $int10, $int11, 2);
+        $int12 = calc($int12 + 1);
+    }
+}
+def_int $int14 = 0;
+while (cc_find($component2, $int14++) = true) {
+    cc_setobject_nonum(cc_param(combatv2_ability_object), 1);
+}
+if ($int5 > 5) {
+    $int6 = calc($int6 + $int9 + 5);
+}
+%stock_search_height = $int6;
+if ($int0 = 1) {
+    %stock_search_scroll_pos = 0;
+} else {
+    %stock_search_scroll_pos = if_getscrolly($component3);
+}
+~script11702(%stock_search_height, %stock_search_scroll_pos);
+if_setonvartransmit("script21126{stock_search_history_1, stock_search_history_2, stock_search_history_3}", $component3);
+return(true);

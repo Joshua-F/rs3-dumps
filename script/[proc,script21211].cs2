@@ -1,0 +1,12 @@
+[proc,script21211]
+if (%plugin_hub_install_component = null | %plugin_hub_install_row_id = -1 | %plugin_hub_install_plugin_id = -1 | string_length(%plugin_hub_install_name) = 0) {
+    return;
+}
+def_int $int0 = calc(2500 * 21 + %plugin_hub_install_row_id);
+if (cc_findbycategory(%plugin_hub_install_component, ~script20964($int0)) = 1) {
+    if (beta_unknown_command_50(%plugin_hub_install_plugin_id) = 1) {
+        ~script21201;
+    } else {
+        ~script426("Uninstall failed. Please try again later.", %plugin_hub_install_component, %plugin_hub_install_row_id, 1);
+    }
+}

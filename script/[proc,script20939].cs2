@@ -1,11 +1,8 @@
-[proc,script20939](dbrow $dbrow0)(boolean)
-def_int $int1 = -1;
-def_int $int2 = db_getfieldcount($dbrow0, dbtable_327:col0);
-def_dbrow $dbrow3 = null;
-while (++$int1 < $int2) {
-    $dbrow3 = db_getfield($dbrow0, dbtable_327:col0, $int1);
-    if (~script20940($int1, $dbrow3) = true) {
-        return(true);
-    }
+[proc,script20939]()(int)
+if (%league_active_player ! -1) {
+    return(0);
 }
-return(false);
+if (%league_relic_combat_damage_buffs_no_ultimates > 0) {
+    return(1);
+}
+return(0);

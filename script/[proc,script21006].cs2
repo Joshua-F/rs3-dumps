@@ -1,6 +1,8 @@
-[proc,script21006](quest $quest0)(boolean)
-if (~ql4_getprogress($quest0) = 0) {
-    return(true);
-} else {
-    return(false);
+[proc,script21006](dbrow $dbrow0)(int)
+if ($dbrow0 = null) {
+    ~error("Recieved null dbrow when requesting capacity.");
+    return(0);
 }
+def_int $int1 = db_getfield($dbrow0, invent_machine_table:col11, 0);
+$int1 = ~script20914($int1);
+return($int1);

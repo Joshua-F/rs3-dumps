@@ -1,2 +1,10 @@
-[proc,script21027]()(int)
-return(calc(%varplayer_711 + %varplayer_3563));
+[proc,script21027]
+if_sethide(false, league_parent_areas:confirm_unlock);
+def_string $string0 = enum(int, string, league_locality_name, %league_locality_selected);
+if_settext("Region unlocks are permanent.<br>This is your final chance to change your mind.<br><br>Unlock this region: <$string0>", league_parent_areas:confirm_unlock_body_text);
+def_string $string1 = "Unlock";
+if_setontimer("script21084(clientclock, league_parent_areas:confirm_unlock_button, league_parent_areas:overview_confirm_unlock_spinner, $string1)", league_parent_areas:confirm_unlock_button);
+if_sethide(false, league_parent_areas:overview_confirm_unlock_spinner);
+if_settext("5...", league_parent_areas:confirm_unlock_button);
+if_setenabled(false, league_parent_areas:confirm_unlock_button);
+if_setenabled(false, league_parent_areas:unlock);

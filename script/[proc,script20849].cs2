@@ -1,12 +1,30 @@
-[proc,script20849](dbrow $dbrow0)(boolean, boolean)
-def_boolean $boolean1 = db_getfield($dbrow0, dbtable_348:col20, 0);
-def_boolean $boolean2 = false;
-if ($boolean1 = true) {
-    switch_dbrow ($dbrow0) {
-        case dbrow_19494, dbrow_19495 :
-            $boolean2 = ~script205;
-        case dbrow_19496 :
-            $boolean2 = ~script584;
+[proc,script20849]
+def_int $int0 = 0;
+def_obj $obj1 = null;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+while ($int0 < 3) {
+    $obj1 = inv_getobj(league_relic_survivalist_bag, $int0);
+    if ($obj1 ! null) {
+        $int2 = inv_getnum(league_relic_survivalist_bag, $int0);
+        if ($int2 > 0) {
+            $int6 = 1;
+            $int3 = ~bank_itemspace2($obj1, $int2);
+            $int4 = calc($int2 - $int3);
+            if (~bank_deposit(league_relic_survivalist_bag, $obj1, $int4, $int0) = 1) {
+                $int5 = 1;
+            }
+        }
     }
+    $int0 = calc($int0 + 1);
 }
-return($boolean1, $boolean2);
+if ($int6 = 0) {
+    ~bank_mes("The survivalist bag is already empty.");
+} else if ($int5 = 0) {
+    ~bank_mes("You don't have enough space in your bank to do that.");
+} else {
+    ~bank_mes_spam("You empty the items to your bank.");
+}

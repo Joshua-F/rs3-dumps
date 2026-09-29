@@ -1,0 +1,36 @@
+[proc,script21249](component $component0, component $component1, component $component2, component $component3, dbrow $dbrow4, dbrow $dbrow5, int $int6)
+if ($dbrow4 = null) {
+    return;
+}
+def_obj $obj7 = db_getfield($dbrow4, construction_house_furniture:col4, 0);
+if ($obj7 = null) {
+    $obj7 = db_getfield($dbrow4, construction_house_furniture_skin:col2, 0);
+}
+if_sethide(false, $component0);
+if_setobject($obj7, -1, $component2);
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+if ($dbrow5 ! null) {
+    if (db_getrowtable($dbrow5) ! if_model_positional_data) {
+        ~error("Invalid table in positional data.");
+        return;
+    }
+    $int8 = db_getfield($dbrow5, if_model_positional_data:col0, 0);
+    $int9 = db_getfield($dbrow5, if_model_positional_data:col1, 0);
+    $int10 = db_getfield($dbrow5, if_model_positional_data:col2, 0);
+    $int11 = db_getfield($dbrow5, if_model_positional_data:col3, 0);
+    $int12 = db_getfield($dbrow5, if_model_positional_data:col4, 0);
+    $int13 = db_getfield($dbrow5, if_model_positional_data:col5, 0);
+    if_setmodelangle($int8, $int9, $int10, $int11, $int12, $int13, $component2);
+}
+if ($int6 = 0) {
+    if_sethide(false, $component1);
+    ~script11619($component1, $component2);
+} else {
+    ~script11620($component1);
+}
+if_setontimer("script11621(null, 7, 50, -1, $component3, $component2, $component0, null)", $component3);

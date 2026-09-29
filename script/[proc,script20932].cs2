@@ -1,8 +1,11 @@
-[proc,script20932](int $int0, int $int1)(int)
-if (%varplayer_12314 > 0 & ~script20925 = true & ~script20136($int0) = ^false) {
-    if ($int1 = 1) {
-        ~script1296(~script20933);
-    }
-    return(0);
+[proc,script20932](int $int0)(dbfilter)
+switch_int ($int0) {
+    case 1 :
+        return(db_filter_value(league_task:col1, true, ^filterop_eq, 0));
+    case 2 :
+        return(db_filter_value(league_task:col2, true, ^filterop_eq, 0));
+    case default :
+        ~error("League <tostring($int0)> has not been plugged in to filter generation.");
+        return(null);
 }
-return(1);
+return(null);

@@ -1,0 +1,29 @@
+[clientscript,script21030]
+def_dbrow $dbrow0 = ~script20117(%league_active_player);
+if (~script20132($dbrow0) = false) {
+    return;
+}
+def_dbrow $dbrow1 = ~script20876($dbrow0);
+def_dbrow $dbrow2 = db_getfield($dbrow1, league_relic_list:col0, %league_relic_selected_tier);
+if ($dbrow2 = null) {
+    return;
+}
+def_boolean $boolean3 = db_getfield($dbrow2, league_relic_tier:col3, 0);
+def_string $string0 = "Relic choices are permanent.<br><br>This is your final chance to change your mind.<br><br>You are about to activate:";
+if (%leagues_parent_relics_selected_type = 1) {
+    $string0 = "You will have limited opportunities to reset your choice of Blessings.<br><br>This is your final chance to change your mind.<br><br>You are about to activate:";
+}
+def_string $string1 = "Unlock";
+if (playermember = true | $boolean3 = false) {
+    if_sethide(false, league_parent_relics:confirm_popup);
+    if_sethide(true, league_parent_relics:passive_info);
+    if_settext($string0, league_parent_relics:body_confirm);
+    if_setontimer("script21084(clientclock, league_parent_relics:overview_confirm_unlock, league_parent_relics:overview_confirm_unlock_spinner, $string1)", league_parent_relics:overview_confirm_unlock);
+    if_sethide(false, league_parent_relics:overview_confirm_unlock_spinner);
+    if_settext("5...", league_parent_relics:overview_confirm_unlock);
+    if_setenabled(false, league_parent_relics:overview_confirm_unlock);
+    if_setenabled(false, league_parent_relics:overview_unlock);
+} else {
+    ~script21085($dbrow2);
+    return;
+}
