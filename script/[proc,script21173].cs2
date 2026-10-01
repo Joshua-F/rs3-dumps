@@ -1,0 +1,12 @@
+[proc,script21173]
+def_string $string0 = "";
+if (if_find(plugin_hub_parent_auth:input) = true) {
+    $string0 = cc_gettext;
+    if (string_length($string0) ! 5) {
+        cc_focus;
+        ~script426("Please enter a valid code. A code will contain <tostring(5)> characters.", plugin_hub_parent_auth:input, -1, 1);
+        return;
+    }
+    pluginapi_auth_submit(1, $string0);
+    ~script21164(6);
+}

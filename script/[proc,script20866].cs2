@@ -1,5 +1,12 @@
-[proc,script20866]()(boolean)
-if (%varclient_8473 ! ~script20847) {
-    return(true);
+[proc,script20866](int $int0)(int)
+def_dbrow $dbrow1 = ~script20117(%league_active_player);
+if ($dbrow1 = null) {
+    return(0);
 }
-return(false);
+def_enum $enum2 = db_getfield($dbrow1, league:col22, 0);
+def_int $int3 = db_getfield($dbrow1, league:col26, 0);
+if (playermember = true | $int0 = 1) {
+    return(enum_getoutputcount($enum2));
+} else {
+    return($int3);
+}

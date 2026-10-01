@@ -1,6 +1,20 @@
 [proc,script21070]
-if_setgraphic(rs3_parent_side_tab_current, interface_1409:com_109);
-if_sethide(false, interface_1409:com_120);
-~script21071;
-def_int $int0 = ~script20477(interface_1409:com_121);
-~script21074($int0, interface_1409:com_120);
+def_int $int0 = 0;
+def_int $int1 = 4;
+def_int $int2 = 0;
+if (if_find(league_parent_ranks:confirm_change_info) = true) {
+    $int0 = cc_getwidth;
+    $int2, $int1 = ~script19613(0, $int2, $int1, $int0, "Nominate a <col=FFFFFF>DIFFERENT</col> account to receive your League rewards for this league onwards.");
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    $int2, $int1 = ~script19615(0, $int2, $int1, $int0, "You may ONLY do this ONCE per league.");
+    if (string_length(%league_onboarding_link_displayname_current_varc) = 0) {
+        $int2, $int1 = ~script19615(0, $int2, $int1, $int0, "Current nominated account name was '<col=FFFFFF><chat_playername_unfiltered></col>'.");
+        if_settext(chat_playername_unfiltered, league_parent_ranks:linking_name);
+    } else {
+        $int2, $int1 = ~script19615(0, $int2, $int1, $int0, "Current nominated account name was '<col=FFFFFF><%league_onboarding_link_displayname_current_varc></col>'.");
+        if_settext(%league_onboarding_link_displayname_current_varc, league_parent_ranks:linking_name);
+    }
+    $int2, $int1 = ~script19615(0, $int2, $int1, $int0, "You will NOT be able to claim previous league points from this account after doing this.");
+    $int2, $int1 = ~script19615(0, $int2, $int1, $int0, "Enter the display name of the account you wish to import rewards to for THIS league onwards.");
+}
+~script21071(league_parent_ranks:confirm_unlock_button, league_parent_ranks:overview_confirm_unlock_spinner);
