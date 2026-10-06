@@ -25878,3 +25878,6 @@ readyanim=null,seq_38223
 randomreadyanim=seq_38217,90
 randomreadyanim=seq_38219,10
 
+[bas_4930]
+readyanim=seq_37766,null
+
