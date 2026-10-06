@@ -1,19 +1,5 @@
-[proc,script20874]
-def_int $int0 = 0;
-def_int $int1 = 0;
-def_int $int2 = 0;
-def_int $int3 = 0;
-if (if_find(interface_105:com_147) = true & .if_find(interface_105:com_149) = true) {
-    $int1 = cc_getwidth;
-    $int2 = parawidth(cc_gettext, $int1, fontmetrics_26);
-    $int3 = .cc_getwidth;
-    $int0 = calc(($int1 - $int2) / 2 - ($int3 - 5));
-    .cc_setposition($int0, 14, ^setpos_abs_left, ^setpos_abs_bottom);
+[proc,script20874](int $int0, dbrow $dbrow1)(boolean, string)
+if (%league_active_player > 0 & ~script20870(db_getfield($dbrow1, pvm_portal_destination:col8, 0), 0) = 0) {
+    return(false, ~script20871);
 }
-if (if_find(interface_105:com_150) = true & .if_find(interface_105:com_152) = true) {
-    $int1 = cc_getwidth;
-    $int2 = max($int2, parawidth(cc_gettext, $int1, fontmetrics_26));
-    $int3 = .cc_getwidth;
-    $int0 = calc(($int1 - $int2) / 2 - ($int3 - 5));
-    .cc_setposition($int0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
-}
+return(true, "");

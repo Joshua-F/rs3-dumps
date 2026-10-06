@@ -1,5 +1,33 @@
-[proc,script20848]()(boolean)
-if (~script20847 ! null) {
-    return(true);
+[proc,script20848]
+def_int $int0 = 0;
+def_int $int1 = enum_getoutputcount(league_herb_charm_bag_contents);
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_obj $obj7 = null;
+def_int $int8 = -1;
+while ($int0 < $int1) {
+    $obj7 = enum(int, obj, league_herb_charm_bag_contents, $int0);
+    $int8 = ~script20953($obj7);
+    if ($int8 ! -1) {
+        $int2 = inv_getnum(league_herb_charm_bag, $int8);
+        if ($int2 > 0) {
+            $int6 = 1;
+            $int3 = ~bank_itemspace2($obj7, $int2);
+            $int4 = calc($int2 - $int3);
+            if (~bank_deposit(league_herb_charm_bag, $obj7, $int4, $int8) = 1) {
+                $int5 = 1;
+            }
+        }
+    }
+    $int0 = calc($int0 + 1);
 }
-return(false);
+if ($int6 = 0) {
+    ~bank_mes("The herb bag is already empty.");
+} else if ($int5 = 0) {
+    ~bank_mes("You don't have enough space in your bank to do that.");
+} else {
+    ~bank_mes_spam("You empty the herbs to your bank.");
+}

@@ -1,6 +1,12 @@
-[proc,script20955](dbrow $dbrow0, boolean $boolean1, string $string0)(boolean, string)
-if (map_members = false & db_getfield($dbrow0, dbtable_339:col6, 0) = false) {
-    $string0 = append($string0, "<br>- You must be on a members world to teleport here.");
-    $boolean1 = false;
+[proc,script20955]()(boolean)
+def_int $int0 = 0;
+def_int $int1 = enum_getoutputcount(league_herb_charm_bag_contents);
+def_obj $obj2 = null;
+while ($int0 < $int1) {
+    $obj2 = enum(int, obj, league_herb_charm_bag_contents, $int0);
+    if (~script20954($obj2) > 0) {
+        return(true);
+    }
+    $int0 = calc($int0 + 1);
 }
-return($boolean1, $string0);
+return(false);

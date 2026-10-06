@@ -1,0 +1,19 @@
+[proc,script21136]
+def_component $component0 = toplevel_v2_plugin_content:plugin_content;
+cc_deleteall($component0);
+cc_deleteall(toplevel_v2_plugin_content:info_layer);
+def_int $int1 = 0;
+def_int $int2 = beta_unknown_command_16;
+def_string $string0 = "";
+def_int $int3 = 0;
+while ($int1 < $int2) {
+    $int3 = beta_unknown_command_17($int1);
+    if ($int3 = %plugin_ribbon_plugin_open_id & ~script21228($int3) = true) {
+        pluginapi_send_event($component0, 1, $int3);
+        return;
+    }
+    $int1 = calc($int1 + 1);
+}
+%plugin_ribbon_plugin_open_id = -1;
+$string0 = "Visit the Plugin Hub to install or enable plugins. Their quick-access settings may then be displayed here.";
+~script20480(toplevel_v2_plugin_content:info_layer, 0, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 0, 50, ^setsize_minus, ^setsize_abs, text_body_default, $string0, -1, ^settextalign_centre, ^settextalign_centre);
