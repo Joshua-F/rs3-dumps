@@ -1,0 +1,40 @@
+[proc,script21180](component $component0, component $component1, component $component2, int $int3)
+if (~script21159(plugin_hub_parent_browse:auth_layer) = false) {
+    if_setontimer("script21179($component0, $component1, $component2, $int3)", plugin_hub_parent_browse:rebuild_listener);
+    return;
+}
+if (calc(%plugin_hub_last_search_clientclock + 50) > clientclock) {
+    if_setontimer("script21179($component0, $component1, $component2, $int3)", plugin_hub_parent_browse:rebuild_listener);
+    if_sethide(false, $component1);
+    return;
+}
+if_setontimer(null, plugin_hub_parent_browse:rebuild_listener);
+if (%plugin_hub_page = -1) {
+    %plugin_hub_page = 0;
+}
+def_string $string0 = enum(int, string, plugin_hub_categories, %plugin_hub_category_id);
+def_string $string1 = "";
+beta_unknown_command_22;
+switch_int ($int3) {
+    case 2 :
+        pluginapi_search_sortby(3);
+    case 1 :
+        pluginapi_search_sortby(2);
+    case default :
+        pluginapi_search_sortby(1);
+}
+pluginapi_search_page(%plugin_hub_page, 50);
+pluginapi_search_filterinstalled(2);
+if (string_length(%plugin_hub_last_search) >= 2) {
+    $string1 = urlencode("*<%plugin_hub_last_search>*");
+    pluginapi_search_addfield(0, 0, $string1);
+}
+if (beta_unknown_command_27 = 1) {
+    %plugin_hub_last_search_clientclock = clientclock;
+    beta_unknown_command_9("script21181($component0, $component1, $component2, event_mousex, event_mousey)", plugin_hub_parent_browse:search_listener);
+    if_setontimer("script611($component0, $component1, $component2)", plugin_hub_parent_browse:search_listener);
+    if_sethide(false, $component1);
+    return;
+}
+if_sethide(false, plugin_hub_parent_browse:content);
+~script21185($component0, $component1, $component2, "Plugin details can not be loaded at this time (error type: 1). Please try again later.");

@@ -1,2 +1,16 @@
-[proc,script21054](boolean $boolean0)
-if_sethide($boolean0, interface_1409:com_16);
+[proc,script21054]
+if (~script20133(%league_locality_selected) = true) {
+    if_setenabled(true, league_parent_areas:unlock);
+    if_settext("Teleport", league_parent_areas:unlock);
+    if_setop(1, "Teleport", league_parent_areas:unlock);
+    if_setopcursor(1, cursor_use, league_parent_areas:unlock);
+} else if (~script20135(%league_locality_selected) = true | playermember = false & %league_locality_unlock_count > 0 & %league_locality_unlock_count < ~script20867) {
+    if_setenabled(true, league_parent_areas:unlock);
+    if_settext("Unlock", league_parent_areas:unlock);
+    if_setop(1, "Unlock", league_parent_areas:unlock);
+    if_setopcursor(1, cursor_unlock, league_parent_areas:unlock);
+} else {
+    if_setenabled(false, league_parent_areas:unlock);
+    if_settext("Locked", league_parent_areas:unlock);
+    if_setop(1, "Unlock", league_parent_areas:unlock);
+}

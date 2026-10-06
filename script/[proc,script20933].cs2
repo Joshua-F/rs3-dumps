@@ -1,2 +1,12 @@
-[proc,script20933]()(string)
-return("You do not have that region unlocked.");
+[proc,script20933](dbrow $dbrow0)(boolean)
+switch_int (-1) {
+    case -1 :
+        return(false);
+    case 1 :
+        return(db_getfield($dbrow0, league_task:col1, 0));
+    case 2 :
+        return(db_getfield($dbrow0, league_task:col2, 0));
+    case default :
+        ~error("League <tostring(-1)> has not been plugged in to task validation.");
+        return(false);
+}

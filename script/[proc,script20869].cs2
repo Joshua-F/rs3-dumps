@@ -1,5 +1,7 @@
-[proc,script20869]
-if (if_getfocused = true & cc_getlayer = interface_707:com_5) {
-    if_unfocus;
-    ~script15016;
+[proc,script20869](int $int0)(boolean)
+def_dbrow $dbrow1 = ~script20851($int0);
+if ($dbrow1 = null) {
+    error("Invalid locality ID : <tostring($int0)>");
+    return(false);
 }
+return(db_getfield($dbrow1, league_locality:col3, 0));

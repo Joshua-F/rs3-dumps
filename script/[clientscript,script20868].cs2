@@ -1,0 +1,26 @@
+[clientscript,script20868]
+def_dbrow $dbrow0 = ~script20117(%league_active_player);
+if ($dbrow0 = null) {
+    ~error("Attempted lookup without an active league: <tostring(%league_active_player)>");
+    return;
+}
+def_enum $enum1 = db_getfield($dbrow0, league:col22, 0);
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = ~script20866(0);
+def_int $int5 = 0;
+while ($int2 < $int4) {
+    $int5 = enum(int, int, $enum1, $int2);
+    if (%league_task_completed_total < $int5) {
+        if ($int2 = 0) {
+            %league_locality_current_tier = 15;
+        } else {
+            %league_locality_current_tier = calc($int2 - 1);
+        }
+        %league_locality_next_unlock_total = $int5;
+        return;
+    }
+    $int2 = calc($int2 + 1);
+}
+%league_locality_current_tier = calc($int2 - 1);
+%league_locality_next_unlock_total = 2047;

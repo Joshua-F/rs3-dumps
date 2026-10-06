@@ -1,0 +1,19 @@
+[proc,script21130](obj $obj0)(int)
+if ($obj0 = null) {
+    return(1);
+}
+def_int $int1 = oc_param($obj0, original_release_date);
+if ($int1 = 0) {
+    if (oc_param($obj0, trh_release_promo) ! null) {
+        $int1 = ~trh_promo_start_runeday(oc_param($obj0, trh_release_promo));
+    } else {
+        $int1 = oc_param($obj0, release_date);
+    }
+}
+if (%atlum_day_tracker < $int1) {
+    return(2);
+}
+if (~ironman_mode = true & oc_param($obj0, stock_ironman_can_buy) = false) {
+    return(3);
+}
+return(0);

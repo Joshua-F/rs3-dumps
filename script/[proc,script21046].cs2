@@ -1,13 +1,11 @@
 [proc,script21046]
-def_int $int0 = 0;
-def_int $int1 = enum_getoutputcount(enum_9053);
-def_int $int2 = 0;
-def_dbrow $dbrow3 = null;
-while ($int0 < $int1) {
-    $int2 = enum(int, int, enum_9053, $int0);
-    $dbrow3 = ~script15039($int2);
-    if ($dbrow3 ! null & ~script20133($int2) = false) {
-        ~script21045($int2, $dbrow3);
-    }
-    $int0 = calc($int0 + 1);
+cc_deleteall(league_parent_areas:tab_contents_1);
+if (playermember = false & ~script20869(%league_locality_selected) = true) {
+    ~cc_add_graphic(league_parent_areas:tab_contents_1, 0, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 32, 32, ^setsize_abs, ^setsize_abs, "rs3_icon_members_32px,0");
+    ~cc_add_text(league_parent_areas:tab_contents_1, 1, 40, 0, ^setpos_abs_left, ^setpos_abs_top, 40, 32, ^setsize_minus, ^setsize_abs, text_body_default, "<col=EB2F2F>You must be a member to access this region.</col>");
+    if_setposition(0, calc(36 + 4), ^setpos_abs_left, ^setpos_abs_top, league_parent_areas:tab_contents_1_text);
+} else {
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, league_parent_areas:tab_contents_1_text);
 }
+def_string $string0 = db_getfield(%league_locality_selected_ui_info_cache, locality_ui_info:col2, 0);
+if_settext($string0, league_parent_areas:tab_contents_1_text);

@@ -1,11 +1,12 @@
-[proc,script21016](struct $struct0)(int)
-def_int $int1 = 500;
-if (%varplayer_12314 = -1 & %varplayerbit_61685 = 1) {
-    return(0);
+[proc,script21016](int $int0, component $component1)
+def_dbrow $dbrow2 = ~script20850($int0);
+if ($dbrow2 = null) {
+    error("Missing locality UI data for locality ID : <tostring($int0)>");
+    return;
 }
-if (%varplayerbit_61491 = 1) {
-    $int1 = 150;
-}
-switch_struct ($struct0) {
-}
-return($int1);
+def_graphic $graphic3 = db_getfield($dbrow2, locality_ui_info:col0:1, 0);
+def_graphic $graphic4 = db_getfield($dbrow2, locality_ui_info:col0:2, 0);
+~script21017($int0, $dbrow2);
+if_setonmouseover("script21019($graphic4, $dbrow2, $component1)", $component1);
+if_setonmouseleave("script21023($int0, $graphic3, $dbrow2, $component1)", $component1);
+~script21018($component1);

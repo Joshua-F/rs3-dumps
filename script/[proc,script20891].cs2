@@ -1,9 +1,16 @@
-[proc,script20891]
-if_input_setemptytext(~mobile_text_get(1), -1701144064, 255, interface_105:com_225);
-if (string_length(%varclient_6788) > 0) {
-    if_settext(escape(%varclient_6788), interface_105:com_225);
-    ~script11700(%varplayer_135);
-} else {
-    %varclient_6788 = "";
-    ~stockmarket_search_close;
+[proc,script20891](int $int0, dbrow $dbrow1, int $int2)(boolean)
+def_boolean $boolean3 = db_getfield($dbrow1, league_relic_tier:col3, 0);
+if ($boolean3 = false) {
+    return(true);
 }
+if (map_members = true) {
+    return(true);
+}
+if (playermember = false) {
+    if ($int2 = 1) {
+        ~script1296("You need to be a member to unlock this relic.");
+    }
+} else if ($int2 = 1) {
+    ~script1296("You need to be on a members' world to unlock this relic.");
+}
+return(false);
