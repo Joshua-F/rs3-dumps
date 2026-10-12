@@ -30812,3 +30812,21 @@ randomreadyanim=seq_38219,10
 [bas_4930]
 readyanim=seq_37766,null
 
+// 4931
+[bas_4931]
+readyanim=seq_38177,null
+
+// 4932
+[bas_4932]
+readyanim_l=seq_38256
+readyanim_r=seq_38256
+walkanim_b=seq_38256
+walkanim_l=seq_38256
+walkanim_r=seq_38256
+walkturn_l=seq_38256
+walkturn_r=seq_38256
+runanim=seq_38257
+readyanim=null,seq_38256
+randomreadyanim=seq_38254,90
+randomreadyanim=seq_38255,10
+
