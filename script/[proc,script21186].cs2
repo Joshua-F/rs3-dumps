@@ -1,0 +1,50 @@
+// 21186
+[proc,script21186](int $int0, int $int1)
+def_int $int2 = calc($int0 / 50 + min(1, calc($int0 % 50)));
+cc_deleteall(interface_1586:com_28);
+if ($int2 <= 1) {
+    if ($int0 > 0) {
+        ~script20480(interface_1586:com_28, 0, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 0, 0, ^setsize_minus, ^setsize_minus, dbrow_2100, "Showing <tostring($int0)> matching <~text_plural($int0, "plugin", "plugins")>.", -1, ^settextalign_centre, ^settextalign_centre);
+    }
+    return;
+}
+def_int $int3 = 0;
+if ($int2 <= 5) {
+    ~if_add_child_panel(interface_1586:com_28, 200, 0, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, calc($int2 * (24 + 4)), 24, ^setsize_abs, ^setsize_abs, false, 4);
+    while ($int3 < $int2) {
+        ~script21187($int3, $int3, $int2);
+        $int3 = calc($int3 + 1);
+    }
+    return;
+}
+def_int $int4 = calc(96 + 4 * 2);
+def_int $int5 = 0;
+def_int $int6 = calc($int2 - 1);
+~if_add_child_panel(interface_1586:com_28, 200, 0, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 300, 24, ^setsize_abs, ^setsize_abs, false, 4);
+~script21187($int5++, -1, $int2);
+~script21187($int5++, 0, $int2);
+if (%varclient_8501 >= 3) {
+    ~cc_add_child_text(0, $int5++, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 12, 0, ^setsize_abs, ^setsize_minus, dbrow_2100, "...");
+    $int4 = calc($int4 + 16);
+}
+if (%varclient_8501 >= 2) {
+    ~script21187($int5++, calc(%varclient_8501 - 1), $int2);
+    $int4 = calc($int4 + 28);
+}
+if (%varclient_8501 > 0 & %varclient_8501 < $int6) {
+    ~script21187($int5++, %varclient_8501, $int2);
+    $int4 = calc($int4 + 28);
+}
+if (calc(%varclient_8501 + 1) < $int6) {
+    ~script21187($int5++, calc(%varclient_8501 + 1), $int2);
+    $int4 = calc($int4 + 28);
+}
+if (%varclient_8501 < calc($int6 - 2)) {
+    ~cc_add_child_text(0, $int5++, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 12, 0, ^setsize_abs, ^setsize_minus, dbrow_2100, "...");
+    $int4 = calc($int4 + 16);
+}
+~script21187($int5++, $int6, $int2);
+~script21187($int5++, -2, $int2);
+if (cc_findbycategory(interface_1586:com_28, 200, 0) = 1) {
+    cc_setsize($int4, 24, ^setsize_abs, ^setsize_abs);
+}

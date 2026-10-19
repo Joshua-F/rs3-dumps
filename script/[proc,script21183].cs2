@@ -1,0 +1,47 @@
+// 21183
+[proc,script21183](component $component0, component $component1, component $component2, int $int3)
+if (unknown_command_146(-1) = 1) {
+    if_sethide(true, interface_1586:com_29);
+    if_sethide(false, interface_1586:com_5);
+    ~script21189($component0, $component1, $component2, "The Plugin Hub is currently disabled. Please try again later.");
+    return;
+}
+if (~script21162(interface_1586:com_29) = false) {
+    if_setontimer("script21182($component0, $component1, $component2, $int3)", interface_1586:com_1);
+    return;
+}
+if (calc(%varclient_8502 + 50) > clientclock) {
+    if_setontimer("script21182($component0, $component1, $component2, $int3)", interface_1586:com_1);
+    if_sethide(false, $component1);
+    return;
+}
+if_setontimer(null, interface_1586:com_1);
+if (%varclient_8501 = -1) {
+    %varclient_8501 = 0;
+}
+def_string $string0 = enum(int, string, enum_13833, %varclient_8499);
+def_string $string1 = "";
+unknown_command_133;
+switch_int ($int3) {
+    case 2 :
+        pluginapi_search_sortby(3);
+    case 1 :
+        pluginapi_search_sortby(2);
+    case default :
+        pluginapi_search_sortby(1);
+}
+pluginapi_search_page(%varclient_8501, 50);
+pluginapi_search_filterinstalled(2);
+if (string_length(%varclient_8500) >= 2) {
+    $string1 = urlencode("*<%varclient_8500>*");
+    pluginapi_search_addfield(0, 0, $string1);
+}
+if (unknown_command_134 = 1) {
+    %varclient_8502 = clientclock;
+    unknown_command_120("script21184($component0, $component1, $component2, event_mousex, event_mousey)", interface_1586:com_2);
+    if_setontimer("script21185($component0, $component1, $component2)", interface_1586:com_2);
+    if_sethide(false, $component1);
+    return;
+}
+if_sethide(false, interface_1586:com_5);
+~script21189($component0, $component1, $component2, "Plugin details can not be loaded at this time (error type: 1). Please try again later.");
