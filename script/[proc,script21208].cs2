@@ -1,19 +1,19 @@
 // 21208
 [proc,script21208](component $component0, component $component1, component $component2, int $int3)
 if (unknown_command_146(-1) = 1) {
-    if_sethide(true, interface_1604:com_27);
+    if_sethide(true, plugin_hub_parent_manage:auth_layer);
     ~script21189($component0, $component1, $component2, "The Plugin Hub is currently disabled. Please try again later.");
     return;
 }
-if (~script21162(interface_1604:com_27) = false) {
-    if_setontimer("script21207($component0, $component1, $component2, $int3)", interface_1604:com_1);
+if (~script21162(plugin_hub_parent_manage:auth_layer) = false) {
+    if_setontimer("script21207($component0, $component1, $component2, $int3)", plugin_hub_parent_manage:rebuild_listener);
     return;
 }
-if (%varclient_8511 = clientclock) {
+if (%plugin_api_manage_redraw = clientclock) {
     return;
 }
-%varclient_8511 = clientclock;
-if_setontimer(null, interface_1604:com_1);
+%plugin_api_manage_redraw = clientclock;
+if_setontimer(null, plugin_hub_parent_manage:rebuild_listener);
 def_int $int4 = unknown_command_127;
 if ($int4 < 1) {
     ~script21189($component0, $component1, $component2, "You do not have any plugins installed.");
