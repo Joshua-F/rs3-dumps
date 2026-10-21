@@ -1,9 +1,19 @@
 // 21148
 [clientscript,script21148](int $int0, int $int1)
-~script21154;
-if (%plugin_hub_category_id ! $int1) {
-    %plugin_hub_category_id = $int1;
-    ~script21261(4, $int0, %plugin_hub_category_id, -1);
-    ~script21143($int0, %plugin_hub_sort_id, 0);
+def_component $component2 = null;
+def_component $component3 = null;
+def_component $component4 = null;
+$component2, $component3, $component4 = ~script21149($int0);
+if ($component2 = null | $component3 = null | $component4 = null) {
+    return;
 }
-~script21144($int0, 0);
+if ($int0 = 2) {
+    if_sethide(true, $component2);
+    return;
+}
+if ($int1 = -1) {
+    $int1 = max(0, %plugin_hub_sort_id);
+}
+cc_deleteall($component3);
+cc_deleteall($component4);
+~dynamic_dropdown_create($component4, $component3, 0, 0, 200, if_getnextsubid($component2), plugin_hub_sort_options, null, "", $int1, 0);

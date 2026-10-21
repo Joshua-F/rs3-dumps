@@ -1,7 +1,8 @@
 // 21128
-[proc,script21128](struct $struct0, string $string0, int $int1)(string)
-$string0 = "<$string0><br>- <col=ffffff><tostring_localised(scale(6, 100, ~script2915), true)></col> (<col=ffffff>6%</col> <sprite=18851><nbsp><col=ED705A>Maximum<nbsp>Life<nbsp>Points</col>) damage to self when a Zombie spirit attacks.";
-$string0 = "<$string0><br>- <col=ffffff>Zombie spirit attacks</col> deal <col=ffffff>75%</col> of this as additional damage.";
-$string0 = "<$string0><br>- Increased by an additional <col=ffffff><tostring(100)>%</col> if your <sprite=18851><nbsp><col=ED705A>Life<nbsp>Points</col> are below <col=ffffff><tostring_localised(scale(50, 100, ~script2915), true)></col> (<col=ffffff>50%</col> <sprite=18851><nbsp><col=ED705A>Maximum<nbsp>Life<nbsp>Points</col>).";
-$string0 = "<$string0><br>- <~script17710(~script17444(combatv2_ability_necromancy_invoke_arisen_flesh))>.";
-return($string0);
+[proc,script21128](component $component0, int $int1, int $int2, int $int3, string $string0)(int, int)
+if ($int1 > 5) {
+    $int2 = calc($int2 + $int3 + 5);
+}
+~cc_add_text($component0, if_getnextsubid($component0), 5, $int2, ^setpos_abs_left, ^setpos_abs_top, 5, 18, ^setsize_minus, ^setsize_abs, text_subtitle_body, $string0);
+~script8560($component0, 0, calc($int2 + 20), calc(if_getwidth($component0) + 1));
+return(5, calc($int2 + 30));

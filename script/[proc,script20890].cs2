@@ -1,24 +1,35 @@
 // 20890
-[proc,script20890](int $int0)
-if (%stock_offertype ! -1) {
+[proc,script20890]
+def_dbrow $dbrow0 = ~script20117(%league_active_player);
+if ($dbrow0 = null) {
+    ~error("Attempted lookup without an active league: <tostring(%league_active_player)>");
     return;
 }
-%stock_offerslot = $int0;
-if (~script15045($int0) = true) {
+def_dbrow $dbrow1 = db_getfield($dbrow0, league:col10, 0);
+if ($dbrow1 = null) {
     return;
 }
-if (stockmarket_isofferempty($int0, 0) = false) {
-    %stock_offertype = stockmarket_getoffertype($int0, 0);
-    %stock_offeritem = stockmarket_getofferitem($int0, 0);
-    %stock_offercount = stockmarket_getoffercount($int0, 0);
-    %stock_offerprice = stockmarket_getofferprice($int0, 0);
-    %stock_offeritem_marketprice = -1;
-    %stock_offeritem_recentprice = -1;
-    %stock_offercount_pre_edit = %stock_offercount;
-    %stock_offerprice_pre_edit = %stock_offerprice;
-    ~script621;
-    ~script15038(%stock_offercount, %stock_offerprice, 0);
-    ~script15036(0, 0, 0, 1, 1, 1);
-} else {
-    ~stockmarket_choosebuy_client(%stock_offerslot);
+def_dbrow $dbrow2 = null;
+def_int $int3 = 0;
+def_int $int4 = db_getfieldcount($dbrow1, league_relic_list:col0);
+def_int $int5 = 0;
+def_int $int6 = 0;
+while ($int3 < $int4) {
+    $dbrow2 = db_getfield($dbrow1, league_relic_list:col0, $int3);
+    $int6 = db_getfield($dbrow2, league_relic_tier:col2, 0);
+    if (%league_task_combat_relic_completed_total < $int6) {
+        if ($int3 = 0) {
+            %league_task_combat_relic_current_tier = 15;
+        } else {
+            %league_task_combat_relic_current_tier = calc($int3 - 1);
+        }
+        %league_task_combat_relic_current_tier_total = $int5;
+        %league_task_combat_relic_next_tier_total = $int6;
+        return;
+    }
+    $int5 = $int6;
+    $int3 = calc($int3 + 1);
 }
+%league_task_combat_relic_current_tier = calc($int3 - 1);
+%league_task_combat_relic_current_tier_total = 255;
+%league_task_combat_relic_next_tier_total = 255;

@@ -1,23 +1,13 @@
 // 21247
-[proc,script21247](component $component0, int $int1, int $int2, int $int3, int $int4, int $int5, string $string0)
-def_int $int6 = if_getnextsubid($component0);
-~cc_add_button($component0, $int6, $int1, $int2, ^setpos_abs_left, ^setpos_abs_top, 24, 24, ^setsize_abs, ^setsize_abs, button_icon_neutral, "");
-if (cc_find($component0, $int6) = true) {
-    cc_setonmouserepeat("script8799($string0, event_com, event_comsubid)");
-    cc_setop(1, $string0);
-    cc_setonop("script21248($int5)");
-    cc_setnoclickthrough(true);
-    $int6 = if_getnextsubid($component0);
-    ~cc_add_graphic($component0, $int6, calc($int1 + 6), calc($int2 + 6), ^setpos_abs_left, ^setpos_abs_top, 11, 11, ^setsize_abs, ^setsize_abs, "rs3_btn_child_tab_scroll_sml,0");
-    if (cc_find($component0, $int6) = true) {
-        if ($int4 = 1) {
-            if ($int3 ! 0) {
-                cc_set2dangle(16384);
-            } else {
-                cc_sethflip(true);
-            }
-        } else if ($int3 ! 0) {
-            cc_set2dangle(49152);
-        }
-    }
+[proc,script21247](string $string0, int $rgb0, int $int1)
+~money_pouch_anim_set($string0, $rgb0, 96534537, toplevel_v2_inventory:money_pouch_anim_layer, toplevel_v2_inventory:money_pouch_anim_text);
+~money_pouch_anim_set($string0, $rgb0, 109182982, exchange_moneypouch:money_pouch_anim_layer, exchange_moneypouch:money_pouch_anim_text);
+if (~script8292(0, 3) = true) {
+    ~money_pouch_anim_set($string0, $rgb0, 96600076, toplevel_v2_parent_suboverlay_inventory:money_pouch_anim_layer, toplevel_v2_parent_suboverlay_inventory:money_pouch_anim_text);
+}
+if (%toplevel_v2_legacy_interface = 1 & %option_moneypouch = 1) {
+    ~money_pouch_anim_set($string0, $rgb0, 125829129, toplevel_v2_minimap_legacy:money_pouch_anim_layer, toplevel_v2_minimap_legacy:money_pouch_anim_text);
+}
+if ($int1 = 0 & ~script10906 = true) {
+    ~money_pouch_anim_set($string0, $rgb0, -1, bank:money_pouch_anim_layer, bank:money_pouch_anim_text);
 }

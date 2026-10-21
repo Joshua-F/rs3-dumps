@@ -1,7 +1,19 @@
 // 21189
-[proc,script21189](component $component0, component $component1, component $component2, string $string0)
-cc_deleteall($component0);
-if_sethide(true, $component1);
-~cc_add_text($component0, if_getnextsubid($component0), 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 0, 20, ^setsize_minus, ^setsize_abs, text_body_default, $string0);
-cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-~script19620($component2, $component0, 0, null, -1, 0, 0, 0);
+[proc,script21189](component $component0, int $int1, int $int2)
+if ($component0 = null) {
+    return;
+}
+if_opensubclient($component0, plugin_hub_parent_install);
+def_string $string0 = "Install";
+if ($int2 = 1) {
+    $string0 = "Update Plugin";
+}
+~script8421(plugin_hub_parent_install:background, plugin_hub_parent_install:border, plugin_hub_parent_install:content, plugin_hub_parent_install:close_button, $string0, toplevel_v2_nondragable_modal_dialogue_skin_data, -1, 1, null, null);
+if_setonop("script21190($component0)", plugin_hub_parent_install:main);
+if_setonop("script21190($component0)", plugin_hub_parent_install:close_button);
+if (testbit(unknown_command_140($int1), 0) = ^false) {
+    if_setontimer("script21191($int1, $int2)", plugin_hub_parent_install:install_listener);
+    plugin_info_request($int1, 0);
+    return;
+}
+~script21192($int1, $int2);

@@ -1,25 +1,17 @@
 // 21250
-[proc,script21250](int $int0, int $int1, int $int2)
-def_int $int3 = if_getwidth(toplevel_v2_plugin_content:body);
-def_int $int4 = if_getheight(toplevel_v2_plugin_content:body);
-def_int $int5 = 0;
-def_int $int6 = 0;
-def_int $int7 = $int3;
-def_int $int8 = $int4;
-if ($int0 = 0) {
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, toplevel_v2_plugin_content:plugin_buttons_layer);
-    if_setsize($int3, $int2, ^setsize_abs, ^setsize_abs, toplevel_v2_plugin_content:plugin_buttons_layer);
-    $int6 = $int2;
-    $int8 = max(0, calc($int4 - $int2));
-} else {
-    if ($int0 = 2) {
-        if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, toplevel_v2_plugin_content:plugin_buttons_layer);
-        $int5 = $int1;
+[proc,script21250](int $int0)
+cc_deleteall(marketplace_featured:rotator_button_layer);
+def_int $int1 = calc(40 + $int0 * 12 + ($int0 - 1) * 4);
+if_setsize($int1, 22, ^setsize_abs, ^setsize_abs, marketplace_featured:rotator_panel);
+def_int $int2 = -1;
+def_graphic $graphic3 = null;
+while (++$int2 < $int0) {
+    if ($int2 = 0) {
+        $graphic3 = "marketplace_icon_pagination_indicator,0";
     } else {
-        if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, toplevel_v2_plugin_content:plugin_buttons_layer);
+        $graphic3 = "marketplace_icon_pagination_indicator,1";
     }
-    if_setsize($int1, $int4, ^setsize_abs, ^setsize_abs, toplevel_v2_plugin_content:plugin_buttons_layer);
-    $int7 = max(0, calc($int3 - $int1));
+    ~cc_add_graphic(marketplace_featured:rotator_button_layer, $int2, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 12, 12, ^setsize_abs, ^setsize_abs, $graphic3);
+    cc_setonvartransmit("script21251(event_com, event_comsubid){marketplace_featured_rotator_index}");
+    cc_setop(1, "Select");
 }
-if_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top, toplevel_v2_plugin_content:plugin_content);
-if_setsize($int7, $int8, ^setsize_abs, ^setsize_abs, toplevel_v2_plugin_content:plugin_content);

@@ -1,35 +1,13 @@
 // 20952
-[proc,script20952]
-def_dbrow $dbrow0 = ~script20117(%league_active_player);
-if ($dbrow0 = null) {
-    ~error("Attempted lookup without an active league: <tostring(%league_active_player)>");
-    return;
+[proc,script20952]()(int)
+def_int $int0 = 0;
+if (%league_combat_relic_choices_chaotic_count > 0) {
+    $int0 = calc($int0 + 1);
 }
-def_dbrow $dbrow1 = db_getfield($dbrow0, league:col10, 0);
-if ($dbrow1 = null) {
-    return;
+if (%league_combat_relic_choices_order_count > 0) {
+    $int0 = calc($int0 + 1);
 }
-def_dbrow $dbrow2 = null;
-def_int $int3 = 0;
-def_int $int4 = db_getfieldcount($dbrow1, league_relic_list:col0);
-def_int $int5 = 0;
-def_int $int6 = 0;
-while ($int3 < $int4) {
-    $dbrow2 = db_getfield($dbrow1, league_relic_list:col0, $int3);
-    $int6 = db_getfield($dbrow2, league_relic_tier:col2, 0);
-    if (%league_task_combat_relic_completed_total < $int6) {
-        if ($int3 = 0) {
-            %league_task_combat_relic_current_tier = 15;
-        } else {
-            %league_task_combat_relic_current_tier = calc($int3 - 1);
-        }
-        %league_task_combat_relic_current_tier_total = $int5;
-        %league_task_combat_relic_next_tier_total = $int6;
-        return;
-    }
-    $int5 = $int6;
-    $int3 = calc($int3 + 1);
+if (%league_combat_relic_choices_balance_count > 0) {
+    $int0 = calc($int0 + 1);
 }
-%league_task_combat_relic_current_tier = calc($int3 - 1);
-%league_task_combat_relic_current_tier_total = 255;
-%league_task_combat_relic_next_tier_total = 255;
+return($int0);

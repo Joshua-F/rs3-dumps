@@ -1,6 +1,12 @@
 // 20957
-[proc,script20957]()(boolean)
-if (%league_active_player > 0 & %league_relic_seren_spells_prayers_unlocked = 1) {
-    return(true);
+[proc,script20957](struct $struct0)(int)
+if (struct_param($struct0, rewardshop_preview_shop) = 1) {
+    return(1);
 }
-return(false);
+switch_struct ($struct0) {
+    case league_1_reward_shop :
+        if (~script3825 = true) {
+            return(1);
+        }
+}
+return(0);

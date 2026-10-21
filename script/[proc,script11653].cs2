@@ -1,21 +1,33 @@
 // 11653
-[proc,script11653]
-def_int $int0 = 0;
-def_int $int1 = 4;
-def_int $int2 = 0;
-if (if_find(league_parent_ranks:confirm_change_info) = true) {
-    $int0 = cc_getwidth;
-    $int2, $int1 = ~script19613(0, $int2, $int1, $int0, "Nominate a <col=FFFFFF>DIFFERENT</col> account to receive your League rewards for this league onwards.");
-    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    $int2, $int1 = ~script19615(0, $int2, $int1, $int0, "You may ONLY do this ONCE per league.");
-    if (string_length(%league_onboarding_link_displayname_current_varc) = 0) {
-        $int2, $int1 = ~script19615(0, $int2, $int1, $int0, "Current nominated account name was '<col=FFFFFF><chat_playername_unfiltered></col>'.");
-        if_settext(chat_playername_unfiltered, league_parent_ranks:linking_name);
-    } else {
-        $int2, $int1 = ~script19615(0, $int2, $int1, $int0, "Current nominated account name was '<col=FFFFFF><%league_onboarding_link_displayname_current_varc></col>'.");
-        if_settext(%league_onboarding_link_displayname_current_varc, league_parent_ranks:linking_name);
-    }
-    $int2, $int1 = ~script19615(0, $int2, $int1, $int0, "You will NOT be able to claim previous league points from this account after doing this.");
-    $int2, $int1 = ~script19615(0, $int2, $int1, $int0, "Enter the display name of the account you wish to import rewards to for THIS league onwards.");
+[proc,script11653](component $component0, int $int1, int $int2, int $int3, int $int4)(int, int)
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_string $string0 = "";
+def_string $string1 = "";
+switch_int ($int4) {
+    case 1 :
+        $string0 = "Optional permissions";
+        $string1 = "There are no optional permissions for this plugin.";
+        $int5 = plugin_info_int($int3, 151, -1);
+        $int8 = 153;
+    case 0 :
+        $string0 = "Required permissions";
+        $string1 = "There are no required permissions for this plugin.";
+        $int5 = plugin_info_int($int3, 150, -1);
+        $int8 = 152;
 }
-~script15760(league_parent_ranks:confirm_unlock_button, league_parent_ranks:overview_confirm_unlock_spinner);
+~cc_add_text($component0, $int1++, 0, $int2, ^setpos_abs_left, ^setpos_abs_top, 0, 20, ^setsize_minus, ^setsize_abs, text_label_feature, $string0);
+$int2 = calc($int2 + 20);
+if ($int5 <= 0) {
+    ~cc_add_text($component0, $int1++, 0, $int2, ^setpos_abs_left, ^setpos_abs_top, 0, 16, ^setsize_minus, ^setsize_abs, text_body_paragraph, $string1);
+    $int2 = calc($int2 + 16);
+} else {
+    while ($int6 < $int5) {
+        $int7 = plugin_info_int($int3, $int8, $int6);
+        $int2, $int1 = ~script12556($component0, $int1, $int2, $int3, $int7);
+        $int6 = calc($int6 + 1);
+    }
+}
+return($int2, $int1);

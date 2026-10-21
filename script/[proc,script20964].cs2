@@ -1,11 +1,7 @@
 // 20964
-[proc,script20964](obj $obj0)(boolean)
-if (%league_active_player > 0) {
-    switch_obj ($obj0) {
-        case naturerune :
-            if (~inv_find(inv, league_2_transmute_relic, 0) ! -1 | inv_getobj(worn, 17) = league_2_transmute_relic) {
-                return(true);
-            }
-    }
+[proc,script20964](int $int0)(int, int)
+if ($int0 <= 4095) {
+    return(0, $int0);
 }
-return(false);
+$int0 = calc($int0 - 4096);
+return(calc(1 + $int0 / 256), calc($int0 % 256));
