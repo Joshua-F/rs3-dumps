@@ -1,4 +1,14 @@
 // 21065
-[proc,script21065]
-if_sethide(false, league_parent_areas:tab_title);
-if_settext(enum(int, string, league_locality_name, %league_locality_selected), league_parent_areas:tab_title);
+[proc,script21065]()(int)
+def_int $int0 = 0;
+def_int $int1 = 0;
+if (%league_task_combat_relic_current_tier ! 15) {
+    $int1 = %league_task_combat_relic_current_tier;
+}
+while ($int0 <= $int1) {
+    if (~script20142($int0) = true) {
+        return($int0);
+    }
+    $int0 = calc($int0 + 1);
+}
+return(-1);

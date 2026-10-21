@@ -1,7 +1,20 @@
 // 21130
-[proc,script21130](int $int0)(int, int)
-if ($int0 <= 4095) {
-    return(0, $int0);
+[proc,script21130](obj $obj0)(int)
+if ($obj0 = null) {
+    return(1);
 }
-$int0 = calc($int0 - 4096);
-return(calc(1 + $int0 / 256), calc($int0 % 256));
+def_int $int1 = oc_param($obj0, original_release_date);
+if ($int1 = 0) {
+    if (oc_param($obj0, trh_release_promo) ! null) {
+        $int1 = ~trh_promo_start_runeday(oc_param($obj0, trh_release_promo));
+    } else {
+        $int1 = oc_param($obj0, release_date);
+    }
+}
+if (%atlum_day_tracker < $int1) {
+    return(2);
+}
+if (~ironman_mode = true & oc_param($obj0, stock_ironman_can_buy) = false) {
+    return(3);
+}
+return(0);

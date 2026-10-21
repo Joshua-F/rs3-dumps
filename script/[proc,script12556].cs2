@@ -1,34 +1,22 @@
 // 12556
-[proc,script12556]
-def_int $int0 = 0;
-def_int $int1 = enum_getoutputcount(league_herb_charm_bag_contents);
-def_int $int2 = 0;
-def_int $int3 = 0;
-def_int $int4 = 0;
-def_int $int5 = 0;
-def_int $int6 = 0;
-def_obj $obj7 = null;
-def_int $int8 = -1;
-while ($int0 < $int1) {
-    $obj7 = enum(int, obj, league_herb_charm_bag_contents, $int0);
-    $int8 = ~script21001($obj7);
-    if ($int8 ! -1) {
-        $int2 = inv_getnum(league_herb_charm_bag, $int8);
-        if ($int2 > 0) {
-            $int6 = 1;
-            $int3 = ~bank_itemspace2($obj7, $int2);
-            $int4 = calc($int2 - $int3);
-            if (~bank_deposit(league_herb_charm_bag, $obj7, $int4, $int8) = 1) {
-                $int5 = 1;
-            }
-        }
-    }
-    $int0 = calc($int0 + 1);
+[proc,script12556](component $component0, int $int1, int $int2, int $int3, int $int4)(int, int)
+def_string $string0 = enum_string(plugin_hub_permissions, $int4);
+def_string $string1 = enum_string(plugin_hub_permissions_descriptions, $int4);
+def_int $int5 = $int1;
+def_int $int6 = calc(4 * 2 + 20);
+def_int $int7 = calc(if_getwidth($component0) - $int6 - 4);
+def_int $int8 = ~script20478($string1, $int7, text_body_default, 0);
+def_boolean $boolean9 = ~script18337($int3, $int4);
+~cc_add_checkbox_full($component0, $int1++, 4, $int2, ^setpos_abs_left, ^setpos_abs_top, 20, 20, ^setsize_abs, ^setsize_abs, checkbox_default_left_aligned, "", true, true, $boolean9);
+cc_setop(1, "Toggle <$string0>");
+cc_setonop("script15032($component0, $int5, 1, $int3, $int4)");
+~cc_add_text($component0, $int1++, $int6, $int2, ^setpos_abs_left, ^setpos_abs_top, $int7, 18, ^setsize_abs, ^setsize_abs, text_subtitle_body, $string0);
+cc_setop(1, "Toggle <$string0>");
+cc_setonop("script15032($component0, $int5, 0, $int3, $int4)");
+$int2 = calc($int2 + (18 + 4));
+~cc_add_text($component0, $int1++, $int6, $int2, ^setpos_abs_left, ^setpos_abs_top, $int7, $int8, ^setsize_abs, ^setsize_abs, text_body_default, $string1);
+$int2 = calc($int2 + ($int8 + 4));
+if ($int4 = 0) {
+    $int2, $int1 = ~script15039($component0, $int1, $int2, $int6, $int7, $int3);
 }
-if ($int6 = 0) {
-    ~bank_mes("The herb bag is already empty.");
-} else if ($int5 = 0) {
-    ~bank_mes("You don't have enough space in your bank to do that.");
-} else {
-    ~bank_mes_spam("You empty the herbs to your bank.");
-}
+return($int2, $int1);

@@ -1836,8 +1836,8 @@ readyanim=rabbit_large_ready,rabbit_update_walk
 readyanim=rabbit_large_ready,rabbit_update_walk
 
 // 352
-[human_actor_thunder_summon_rest_loop]
-readyanim=human_actor_thunder_summon_rest_loop,null
+[havenhythe_sanguine_heart]
+readyanim=havenhythe_sanguine_heart_idle,null
 
 // 353
 [bounty_mandrith]
@@ -12702,8 +12702,8 @@ readyanim=omge_soldier_injured_h,null
 readyanim=omge_soldier_injured_i,null
 
 // 2389
-[havenhythe_sanguine_heart]
-readyanim=havenhythe_sanguine_heart_idle,null
+[havenhythe_sanguine_heart_boss]
+readyanim=havenhythe_sanguine_heart_idle_boss,null
 
 // 2390
 [omge_trapped_miner_female]
@@ -19061,11 +19061,8 @@ readyanim=xmas14_player_snowboard_idle,xmas14_player_snowboard_walk_b
 readyanim=atelf_elf_hold_wisp_idle,null
 
 // 3347
-[omge_mother_crying]
-walkanim_b=human_walk_b
-walkanim_l=human_walk_l
-walkanim_r=human_walk_r
-readyanim=omge_mother_crying,human_walk_f
+[hh2_bogolin_sanguine_combat]
+readyanim=hh2_bogolin_sanguine_squat_ready_spear,hh2_bogolin_sanguine_squat_walk_spear
 
 // 3348
 [atelf_child_elf]
@@ -30639,12 +30636,15 @@ readyanim=gnome_old_ready,gnome_old_ready
 readyanim=gnome_old_takes_photographs,gnome_old_walk
 
 // 4918
-[havenhythe_sanguine_heart_boss]
-readyanim=havenhythe_sanguine_heart_idle_boss,null
+[human_actor_thunder_summon_rest_loop]
+readyanim=human_actor_thunder_summon_rest_loop,null
 
 // 4919
-[hh2_bogolin_sanguine_combat]
-readyanim=hh2_bogolin_sanguine_squat_ready_spear,hh2_bogolin_sanguine_squat_walk_spear
+[omge_mother_crying]
+walkanim_b=human_walk_b
+walkanim_l=human_walk_l
+walkanim_r=human_walk_r
+readyanim=omge_mother_crying,human_walk_f
 
 // 4920
 [hh2_bogolin_general]
@@ -30655,94 +30655,92 @@ readyanim=hh2_bogolin_squat_ready_spear,hh2_bogolin_squat_walk_spear
 readyanim=hh2_bogolin_unarmed_idle,hh2_bogolin_unarmed_walk
 
 // 4922
-[ghrazi_lady]
-runanim=ghrazi_lady_run
-readyanim=ghrazi_lady_idle,null
-
-// 4923
-[ghrazi_lord]
-readyanim=ghrazi_lord_idle,ghrazi_lord_walk
-
-// 4924
-[strigoi]
-readyanim_l=strigoi_walk
-readyanim_r=strigoi_walk
-walkanim_b=strigoi_walk
-walkanim_l=strigoi_walk
-walkanim_r=strigoi_walk
-walkturn_l=strigoi_walk
-walkturn_r=strigoi_walk
-runanim=strigoi_run
-hillrotate=32,32
-readyanim=strigoi_idle,strigoi_walk
-
-// 4925
-[strigoi_special_attack]
-hillrotate=32,32
-readyanim=strigoi_special_attack_loop,null
-
-// 4926
-[strigoi_scaled_down]
-readyanim_l=strigoi_walk_scaled_down
-readyanim_r=strigoi_walk_scaled_down
-walkanim_b=strigoi_walk_scaled_down
-walkanim_l=strigoi_walk_scaled_down
-walkanim_r=strigoi_walk_scaled_down
-walkturn_l=strigoi_walk_scaled_down
-walkturn_r=strigoi_walk_scaled_down
-runanim=strigoi_run_scaled_down
-hillrotate=32,32
-readyanim=strigoi_idle,strigoi_walk_scaled_down
-
-// 4927
-[werewolf_combat]
-readyanim_l=werewolf_sanguine_walk
-readyanim_r=werewolf_sanguine_walk
-walkturn_l=werewolf_sanguine_walk
-walkturn_r=werewolf_sanguine_walk
-walkanim_l=werewolf_sanguine_walk
-walkanim_r=werewolf_sanguine_walk
-runanim=werewolf_2021_run
-hillrotate=32,32
-readyanim=werewolf_2021_idle_combat,werewolf_sanguine_walk
-
-// 4928
-[sanguine_werewolf_combat]
-readyanim_l=werewolf_sanguine_walk
-readyanim_r=werewolf_sanguine_walk
-walkturn_l=werewolf_sanguine_walk
-walkturn_r=werewolf_sanguine_walk
-walkanim_l=werewolf_sanguine_walk
-walkanim_r=werewolf_sanguine_walk
-runanim=werewolf_sanguine_run
-hillrotate=32,32
-readyanim=null,werewolf_sanguine_walk
-randomreadyanim=werewolf_sanguine_idle_combat,90
-randomreadyanim=werewolf_sanguine_combat_idle_extra,10
-
-// 4929
-[sanguine_werewolf_elite_combat]
-readyanim_l=werewolf_sanguine_elite_walk
-readyanim_r=werewolf_sanguine_elite_walk
-walkturn_l=werewolf_sanguine_elite_walk
-walkturn_r=werewolf_sanguine_elite_walk
-walkanim_l=werewolf_sanguine_elite_walk
-walkanim_r=werewolf_sanguine_elite_walk
-runanim=werewolf_sanguine_elite_run
-hillrotate=32,32
-readyanim=null,werewolf_sanguine_elite_walk
-randomreadyanim=werewolf_sanguine_idle_combat,90
-randomreadyanim=werewolf_sanguine_combat_idle_extra,10
-
-// 4930
-[mtx_poh_oct_music_box_closed_idle]
-readyanim=mtx_poh_oct_music_box_closed_idle,null
-
-// 4931
 [ghrazi_lord_defeated]
 readyanim=ghrazi_lord_defeated_loop,null
 
+// 4923
+[championships_running_werewolf]
+readyanim=championships_werewolf_run,championships_werewolf_run
+
+// 4924
+[championships_running_human]
+readyanim=championships_human_run,championships_human_run
+
+// 4925
+[championships_running_gnome]
+readyanim=gnome_old_run,gnome_old_run
+
+// 4926
+[championships_running_goblin]
+readyanim=lotg_goblin_run,lotg_goblin_run
+
+// 4927
+[championships_athletics_blue]
+readyanim=hw11_diango_ready,human_npc_walk_female
+
+// 4928
+[championships_running]
+readyanim_l=human_turnonspot
+readyanim_r=human_turnonspot
+walkanim_b=human_walk_b
+walkanim_l=human_walk_l
+walkanim_r=human_walk_r
+runanim=human_running
+readyanim=human_running,human_running
+
+// 4929
+[championships_cheesewheel]
+readyanim=championships_cheese_wheel_rolling,championships_cheese_wheel_rolling
+
+// 4930
+[championships_gymnast]
+readyanim=championships_gymnast_idle,null
+
+// 4931
+[championships_longjumper]
+readyanim=championships_longjumper_idle,null
+
 // 4932
+[championships_archery_wind_sock]
+readyanim=championships_archery_wind_sock,null
+
+// 4933
+[championships_oomad]
+readyanim=gnome_staff_ready,gnome_staff_walk
+
+// 4934
+[championships_goblin_runer]
+runanim=lotg_goblin_run
+readyanim=slice_surface_goblin_squat_ready,null
+
+// 4935
+[championships_gnome_runner]
+runanim=gnome_old_run
+readyanim=gnome_old_ready,null
+
+// 4936
+[championships_werewolf_runner]
+runanim=championships_werewolf_run
+readyanim=championships_werewolf_run,null
+
+// 4937
+[championships_human_runner]
+runanim=championships_human_run
+readyanim=fmc_emmett_ready,null
+
+// 4938
+[championships_detour_bowman]
+readyanim=championships_detour_bowman_idle,null
+
+// 4939
+[human_actor_rest_carving_pumpkin_loop]
+readyanim=human_actor_rest_carving_pumpkin_loop,null
+
+// 4940
+[mtx_poh_oct_music_box_closed_idle]
+readyanim=mtx_poh_oct_music_box_closed_idle,null
+
+// 4941
 [ghrazi_pet]
 readyanim_l=ghrazi_lady_bosspet_walk
 readyanim_r=ghrazi_lady_bosspet_walk
@@ -30756,11 +30754,16 @@ readyanim=null,ghrazi_lady_bosspet_walk
 randomreadyanim=ghrazi_lady_bosspet_idle,90
 randomreadyanim=ghrazi_lady_bosspet_idle_extra,10
 
-// 4933
-[human_actor_rest_carving_pumpkin_loop]
-readyanim=human_actor_rest_carving_pumpkin_loop,null
+// 4942
+[ghrazi_lady]
+runanim=ghrazi_lady_run
+readyanim=ghrazi_lady_idle,null
 
-// 4934
+// 4943
+[ghrazi_lord]
+readyanim=ghrazi_lord_idle,ghrazi_lord_walk
+
+// 4944
 [human_child_headless_horseman]
 readyanim_l=human_child_headless_horseman_walk
 readyanim_r=human_child_headless_horseman_walk
@@ -30774,77 +30777,74 @@ readyanim=null,human_child_headless_horseman_walk
 randomreadyanim=human_child_headless_horseman_idle,90
 randomreadyanim=human_child_headless_horseman_idle_extra,10
 
-// 4935
-[championships_running_werewolf]
-readyanim=championships_werewolf_run,championships_werewolf_run
-
-// 4936
-[championships_running_human]
-readyanim=championships_human_run,championships_human_run
-
-// 4937
-[championships_running_gnome]
-readyanim=gnome_old_run,gnome_old_run
-
-// 4938
-[championships_running_goblin]
-readyanim=lotg_goblin_run,lotg_goblin_run
-
-// 4939
-[championships_athletics_blue]
-readyanim=hw11_diango_ready,human_npc_walk_female
-
-// 4940
-[championships_running]
-readyanim_l=human_turnonspot
-readyanim_r=human_turnonspot
-walkanim_b=human_walk_b
-walkanim_l=human_walk_l
-walkanim_r=human_walk_r
-runanim=human_running
-readyanim=human_running,human_running
-
-// 4941
-[championships_cheesewheel]
-readyanim=championships_cheese_wheel_rolling,championships_cheese_wheel_rolling
-
-// 4942
-[championships_gymnast]
-readyanim=championships_gymnast_idle,null
-
-// 4943
-[championships_longjumper]
-readyanim=championships_longjumper_idle,null
-
-// 4944
-[championships_archery_wind_sock]
-readyanim=championships_archery_wind_sock,null
-
 // 4945
-[championships_oomad]
-readyanim=gnome_staff_ready,gnome_staff_walk
+[strigoi]
+readyanim_l=strigoi_walk
+readyanim_r=strigoi_walk
+walkanim_b=strigoi_walk
+walkanim_l=strigoi_walk
+walkanim_r=strigoi_walk
+walkturn_l=strigoi_walk
+walkturn_r=strigoi_walk
+runanim=strigoi_run
+hillrotate=32,32
+readyanim=strigoi_idle,strigoi_walk
 
 // 4946
-[championships_goblin_runer]
-runanim=lotg_goblin_run
-readyanim=slice_surface_goblin_squat_ready,null
+[strigoi_special_attack]
+hillrotate=32,32
+readyanim=strigoi_special_attack_loop,null
 
 // 4947
-[championships_gnome_runner]
-runanim=gnome_old_run
-readyanim=gnome_old_ready,null
+[strigoi_scaled_down]
+readyanim_l=strigoi_walk_scaled_down
+readyanim_r=strigoi_walk_scaled_down
+walkanim_b=strigoi_walk_scaled_down
+walkanim_l=strigoi_walk_scaled_down
+walkanim_r=strigoi_walk_scaled_down
+walkturn_l=strigoi_walk_scaled_down
+walkturn_r=strigoi_walk_scaled_down
+runanim=strigoi_run_scaled_down
+hillrotate=32,32
+readyanim=strigoi_idle,strigoi_walk_scaled_down
 
 // 4948
-[championships_werewolf_runner]
-runanim=championships_werewolf_run
-readyanim=championships_werewolf_run,null
+[werewolf_combat]
+readyanim_l=werewolf_sanguine_walk
+readyanim_r=werewolf_sanguine_walk
+walkturn_l=werewolf_sanguine_walk
+walkturn_r=werewolf_sanguine_walk
+walkanim_l=werewolf_sanguine_walk
+walkanim_r=werewolf_sanguine_walk
+runanim=werewolf_2021_run
+hillrotate=32,32
+readyanim=werewolf_2021_idle_combat,werewolf_sanguine_walk
 
 // 4949
-[championships_human_runner]
-runanim=championships_human_run
-readyanim=fmc_emmett_ready,null
+[sanguine_werewolf_combat]
+readyanim_l=werewolf_sanguine_walk
+readyanim_r=werewolf_sanguine_walk
+walkturn_l=werewolf_sanguine_walk
+walkturn_r=werewolf_sanguine_walk
+walkanim_l=werewolf_sanguine_walk
+walkanim_r=werewolf_sanguine_walk
+runanim=werewolf_sanguine_run
+hillrotate=32,32
+readyanim=null,werewolf_sanguine_walk
+randomreadyanim=werewolf_sanguine_idle_combat,90
+randomreadyanim=werewolf_sanguine_combat_idle_extra,10
 
 // 4950
-[championships_detour_bowman]
-readyanim=championships_detour_bowman_idle,null
+[sanguine_werewolf_elite_combat]
+readyanim_l=werewolf_sanguine_elite_walk
+readyanim_r=werewolf_sanguine_elite_walk
+walkturn_l=werewolf_sanguine_elite_walk
+walkturn_r=werewolf_sanguine_elite_walk
+walkanim_l=werewolf_sanguine_elite_walk
+walkanim_r=werewolf_sanguine_elite_walk
+runanim=werewolf_sanguine_elite_run
+hillrotate=32,32
+readyanim=null,werewolf_sanguine_elite_walk
+randomreadyanim=werewolf_sanguine_idle_combat,90
+randomreadyanim=werewolf_sanguine_combat_idle_extra,10
 

@@ -1,6 +1,17 @@
 // 20973
-[proc,script20973]()(boolean)
-if (%league_active_player > 0 & %league_relic_clues_holes_filled = 1) {
+[proc,script20973](dbrow $dbrow0)(boolean)
+if ($dbrow0 = null) {
+    return(false);
+}
+def_boolean $boolean1 = db_getfield($dbrow0, marketplace_featured_data:col14, 0);
+def_boolean $boolean2 = db_getfield($dbrow0, marketplace_featured_data:col13, 0);
+if ($boolean1 = false & $boolean2 = false) {
     return(true);
 }
-return(false);
+if ($boolean1 = true & playermember = true) {
+    return(false);
+}
+if ($boolean2 = true & playermember = false) {
+    return(false);
+}
+return(true);

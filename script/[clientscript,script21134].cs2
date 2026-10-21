@@ -1,6 +1,17 @@
 // 21134
 [clientscript,script21134](int $int0, int $int1)
-if (~script21164($int0, $int1) ! 8) {
-    return;
+switch_int ($int1) {
+    case 0, 4 :
+    case 3, 6 :
+        if ($int0 = %plugin_ribbon_plugin_open_id) {
+            %plugin_ribbon_plugin_open_id = -1;
+            ~script21136;
+        }
+    case default :
+        return;
 }
-~script21136;
+if (%plugin_api_child_redraw < clientclock) {
+    ~script21220;
+    ~script21138;
+    %plugin_api_child_redraw = clientclock;
+}
