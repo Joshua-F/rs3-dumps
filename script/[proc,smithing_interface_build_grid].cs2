@@ -18,6 +18,7 @@ def_int $int15 = 0;
 def_int $int16 = 0;
 def_int $int17 = 0;
 def_graphic $graphicarray0(3);
+def_int $int18 = $int3;
 $graphicarray0(0) = "aif_make_x_unavailable,0";
 $graphicarray0(1) = "aif_make_x_unavailable,1";
 $graphicarray0(2) = "aif_make_x_unavailable,2";
@@ -31,6 +32,7 @@ while ($int6 < $int5) {
     $int14 = 1;
     $int15 = 0;
     $int17 = 0;
+    $int18 = $int3;
     if ($obj11 ! null) {
         $int9 = calc($int6 % 4);
         $int10 = calc($int6 / 4);
@@ -43,10 +45,10 @@ while ($int6 < $int5) {
                 $int14 = 0;
             }
         }
-        switch_int ($int3) {
+        switch_int ($int18) {
             case 3 :
                 if ($int17 = 0) {
-                    $int3 = 0;
+                    $int18 = 0;
                 }
             case 4 :
                 if (oc_param($obj11, smithing_max_upgrades) > 0) {
@@ -60,7 +62,7 @@ while ($int6 < $int5) {
         }
         cc_create($component2, ^iftype_graphic, $int1);
         cc_setposition($int7, $int8, ^setpos_abs_left, ^setpos_abs_top);
-        if ($int3 = 3 & %smithing_interface_material_dbrow_selected ! null & enum(obj, dbrow, smithing_material_to_item_dbrow, $obj11) = %smithing_interface_material_dbrow_selected | $int3 = 4 & ($obj11 = %smithing_interface_base_object_selected | oc_param($obj11, smithing_base_version) = %smithing_interface_base_object_selected)) {
+        if ($int18 = 3 & %smithing_interface_material_dbrow_selected ! null & enum(obj, dbrow, smithing_material_to_item_dbrow, $obj11) = %smithing_interface_material_dbrow_selected | $int18 = 4 & ($obj11 = %smithing_interface_base_object_selected | oc_param($obj11, smithing_base_version) = %smithing_interface_base_object_selected)) {
             $int15 = 1;
         }
         if ($int14 = 1) {
@@ -82,7 +84,7 @@ while ($int6 < $int5) {
         cc_setsize(46, 46, ^setsize_abs, ^setsize_abs);
         cc_create($component2, ^iftype_graphic, $int1);
         $int1 = calc($int1 + 1);
-        if ($int3 = 3) {
+        if ($int18 = 3) {
             cc_setop(2, "Deposit all <oc_name($obj11)>");
             cc_setop(3, "Deposit-X <oc_name($obj11)>");
             cc_setop(4, "Withdraw all <oc_name($obj11)>");
@@ -96,9 +98,9 @@ while ($int6 < $int5) {
             cc_setobject_nonum($obj11, 1);
         }
         cc_setparam(smithing_interface_object, $obj11);
-        if ($int3 ! 5) {
+        if ($int18 ! 5) {
             cc_setop(1, "Select <oc_name($obj11)>");
-            cc_setonop("smithing_grid_op(event_com, event_comsubid, event_op, $int3)");
+            cc_setonop("smithing_grid_op(event_com, event_comsubid, event_op, $int18)");
         }
         cc_setposition(calc($int7 + (46 - 36) / 2 + 2), calc($int8 + (46 - 32) / 2), ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);

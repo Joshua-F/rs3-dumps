@@ -1,5 +1,5 @@
 // 20610
-[clientscript,script20610](int $int0)
+[clientscript,script20610](int $int0, int $int1)
 if ($int0 = 1) {
     switch_int (random(6)) {
         case 0 :
@@ -15,7 +15,14 @@ if ($int0 = 1) {
         case 5 :
             sound_vorbis_rate(market26_general_click_06, 1, 0, 150, random_sound_pitch(15, 15));
     }
-    if_sethide(false, marketplace_preview:preview_popup);
+    switch_int ($int1) {
+        case 1 :
+            if_sethide(false, marketplace_preview:preview_popup);
+        case 2 :
+            ~script15230(1019);
+        case default :
+            if_sethide(false, marketplace_preview:preview_popup);
+    }
     ~script20625(1);
 } else {
     if_sethide(false, marketplace_preview:preview_popup);
