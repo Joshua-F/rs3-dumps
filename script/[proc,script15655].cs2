@@ -2,6 +2,18 @@
 [proc,script15655]
 if (if_gethide(loginscreen:settings_layer) = true) {
     if_sethide(false, loginscreen:settings_layer);
+    if (platformtype = ^platformtype_default) {
+        if_setenabled(true, loginscreen:show_login_username_window);
+        if_sethide(false, loginscreen:show_login_username_window);
+        if_setposition(0, 240, ^setpos_abs_centre, ^setpos_abs_top, loginscreen:show_login_username_window);
+        if_setposition(0, 294, ^setpos_abs_centre, ^setpos_abs_top, loginscreen:quit_option);
+        if_setsize(300, 333, ^setsize_abs, ^setsize_abs, loginscreen:desktop_settings_root);
+    } else {
+        if_setenabled(false, loginscreen:show_login_username_window);
+        if_sethide(true, loginscreen:show_login_username_window);
+        if_setposition(0, 240, ^setpos_abs_centre, ^setpos_abs_top, loginscreen:quit_option);
+        if_setsize(300, 279, ^setsize_abs, ^setsize_abs, loginscreen:desktop_settings_root);
+    }
 } else {
     if_sethide(true, loginscreen:settings_layer);
 }
